@@ -17,7 +17,6 @@ using NUnit.Framework;
 namespace Dev2.Activities.Designers.Tests.Preview
 {
     [TestFixture]
-    [SetUpFixture]
     public class PreviewViewModelTests
     {
         [Test]

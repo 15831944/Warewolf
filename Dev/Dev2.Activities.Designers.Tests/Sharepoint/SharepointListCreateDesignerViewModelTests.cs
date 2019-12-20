@@ -11,7 +11,6 @@ using System.Activities.Presentation.Model;
 namespace Dev2.Activities.Designers.Tests.Sharepoint
 {
     [TestFixture]
-    [SetUpFixture]
     public class SharepointListCreateDesignerViewModelTests
     {
         [Test]

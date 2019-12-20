@@ -23,7 +23,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Activities.Designers.Tests.MultiAssignObjectTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class MultiAssignObjectViewModelTests
     {
         [Test]

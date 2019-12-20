@@ -20,7 +20,6 @@ using Warewolf.Core;
 namespace Dev2.Activities.Designers.Tests.ODBC
 {
     [TestFixture]
-    [SetUpFixture]
     public class TestODBCServerViewModel
     {
         [Test]

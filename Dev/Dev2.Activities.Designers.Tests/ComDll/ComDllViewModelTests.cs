@@ -24,7 +24,6 @@ using Warewolf.Testing;
 namespace Dev2.Activities.Designers.Tests.ComDll
 {
     [TestFixture]
-    [SetUpFixture]
     public class ComDllViewModelTests
     {
         [Test]

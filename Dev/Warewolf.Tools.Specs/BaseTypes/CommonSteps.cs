@@ -1,5 +1,5 @@
 #pragma warning disable
-﻿/*
+ /*
 *  Warewolf - Once bitten, there's no going back
 *  Copyright 2019 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later.
@@ -48,6 +48,7 @@ namespace Dev2.Activities.Specs.BaseTypes
     [Binding]
     public class CommonSteps : BaseActivityUnitTest
     {
+        public CommonSteps () {}
         readonly ScenarioContext _scenarioContext;
 
         public CommonSteps(ScenarioContext scenarioContext)

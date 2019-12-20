@@ -23,7 +23,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Activities.Designers.Tests.DataSplit
 {
     [TestFixture]
-    [SetUpFixture]
     public class DataSplitDesignerViewModelSplitTests
     {
         [Test]

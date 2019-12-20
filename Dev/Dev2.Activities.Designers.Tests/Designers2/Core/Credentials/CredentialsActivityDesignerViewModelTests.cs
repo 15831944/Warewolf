@@ -22,7 +22,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Activities.Designers.Tests.Designers2.Core.Credentials
 {
     [TestFixture]
-    [SetUpFixture]
     
     public class CredentialsActivityDesignerViewModelTests
     {

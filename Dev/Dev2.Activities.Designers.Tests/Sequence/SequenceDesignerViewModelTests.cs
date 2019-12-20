@@ -29,7 +29,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Activities.Designers.Tests.Sequence
 {
     [TestFixture]
-    [SetUpFixture]
     public class SequenceDesignerViewModelTests
     {
         [SetUp]

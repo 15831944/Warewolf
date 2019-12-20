@@ -18,7 +18,6 @@ using Dev2.Studio.Interfaces;
 namespace Dev2.Activities.Designers.Tests.RabbitMQ.Publish
 {
     [TestFixture]
-    [SetUpFixture]
     public class RabbitMQPublishDesignerViewModelTest
     {
         [Test]

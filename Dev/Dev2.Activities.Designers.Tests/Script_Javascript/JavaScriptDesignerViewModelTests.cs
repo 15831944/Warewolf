@@ -23,7 +23,6 @@ using NUnit.Framework;
 namespace Dev2.Activities.Designers.Tests.Script_Javascript
 {
     [TestFixture]
-    [SetUpFixture]
     public class JavaScriptDesignerViewModelTests
     {
 

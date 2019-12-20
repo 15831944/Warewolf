@@ -10,7 +10,6 @@ using System.Linq;
 namespace Dev2.Activities.Designers.Tests.Core
 {
     [TestFixture]
-    [SetUpFixture]
     public class WebServiceHeaderBuilderTests
     {
         [Test]

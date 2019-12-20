@@ -24,7 +24,6 @@ using Moq;
 namespace Dev2.Activities.Designers.Tests.RedisRemove
 {
     [TestFixture]
-    [SetUpFixture]
     public class RedisRemoveDesignerViewModelTests
     {
         static ModelItem CreateModelItem()

@@ -21,7 +21,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Activities.Designers.Tests.WriteFile
 {
     [TestFixture]
-    [SetUpFixture]
     
     public class WriteFileDesignerViewModelTests
     {

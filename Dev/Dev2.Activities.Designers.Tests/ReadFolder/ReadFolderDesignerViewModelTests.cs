@@ -18,7 +18,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Activities.Designers.Tests.ReadFolder
 {
     [TestFixture]
-    [SetUpFixture]
     
     public class ReadFolderDesignerViewModelTests
     {

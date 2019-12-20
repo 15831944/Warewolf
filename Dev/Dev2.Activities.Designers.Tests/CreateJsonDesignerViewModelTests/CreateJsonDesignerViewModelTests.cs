@@ -14,7 +14,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Activities.Designers.Tests.CreateJsonDesignerViewModelTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class CreateJsonDesignerViewModelTests
     {
         [Test]

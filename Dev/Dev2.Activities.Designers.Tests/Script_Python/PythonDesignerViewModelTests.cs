@@ -23,7 +23,6 @@ using NUnit.Framework;
 namespace Dev2.Activities.Designers.Tests.Script_Python
 {
     [TestFixture]
-    [SetUpFixture]
     public class PythonDesignerViewModelTests
     {
         public TestContext TestContext { get; set; }

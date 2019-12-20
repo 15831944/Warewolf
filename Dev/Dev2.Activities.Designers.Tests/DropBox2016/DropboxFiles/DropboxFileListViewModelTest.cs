@@ -20,7 +20,6 @@ using Moq;
 namespace Dev2.Activities.Designers.Tests.DropBox2016.DropboxFiles
 {
     [TestFixture]
-    [SetUpFixture]
     public class DropboxFileListViewModelTest
     {
 

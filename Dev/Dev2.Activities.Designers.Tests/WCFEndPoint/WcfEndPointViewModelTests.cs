@@ -20,7 +20,6 @@ using Dev2.Common;
 namespace Dev2.Activities.Designers.Tests.WCFEndPoint
 {
     [TestFixture]
-    [SetUpFixture]
     public class WcfEndPointViewModelTests
     {
         public const string TestOwner = "Bernardt Joubert";

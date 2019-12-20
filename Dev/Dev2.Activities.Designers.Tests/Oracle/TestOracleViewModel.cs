@@ -18,7 +18,6 @@ using Warewolf.Studio.ViewModels;
 namespace Dev2.Activities.Designers.Tests.Oracle
 {
     [TestFixture]
-    [SetUpFixture]
     public class TestOracleViewModel
     {
         [Test]

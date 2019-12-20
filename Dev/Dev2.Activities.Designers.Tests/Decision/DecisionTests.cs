@@ -28,7 +28,6 @@ using System.Linq;
 namespace Dev2.Activities.Designers.Tests.Decision
 {
     [TestFixture]
-    [SetUpFixture]
     public class DecisionTests
     {
         [Test]

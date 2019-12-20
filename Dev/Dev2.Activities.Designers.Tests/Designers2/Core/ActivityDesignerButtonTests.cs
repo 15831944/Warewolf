@@ -21,7 +21,6 @@ using Moq;
 namespace Dev2.Activities.Designers.Tests.Designers2.Core
 {
     [TestFixture]
-    [SetUpFixture]
     
     public class ActivityDesignerButtonTests
     {

@@ -50,7 +50,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Activities.Designers.Tests.Service
 {
     [TestFixture]
-    [SetUpFixture]
     public class ServiceDesignerViewModelTests
     {
         const string ExpectedName = "TestServiceName";

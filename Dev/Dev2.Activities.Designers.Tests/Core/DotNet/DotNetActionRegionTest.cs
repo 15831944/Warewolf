@@ -17,7 +17,6 @@ using Moq;
 namespace Dev2.Activities.Designers.Tests.Core.DotNet
 {
     [TestFixture]
-    [SetUpFixture]
     public class DotNetActionRegionTest
     {
         [Test]

@@ -16,7 +16,6 @@ using Warewolf.Resource.Errors;
 namespace Dev2.Activities.Designers.Tests.Sharepoint
 {
     [TestFixture]
-    [SetUpFixture]
     public class SharePointDeleteFileDesignerViewModelTests
     {
         [Test]

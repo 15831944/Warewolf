@@ -21,7 +21,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Activities.Designers.Tests.DateTimeDifference
 {
     [TestFixture]
-    [SetUpFixture]
     public class DateTimeDifferenceDesignerViewModelTests
     {
         [SetUp]

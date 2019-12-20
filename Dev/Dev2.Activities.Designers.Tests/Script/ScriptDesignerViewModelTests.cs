@@ -23,7 +23,6 @@ using NUnit.Framework;
 namespace Dev2.Activities.Designers.Tests.Script
 {
     [TestFixture]
-    [SetUpFixture]
     public class ScriptDesignerViewModelTests
     {
         public TestContext TestContext { get; set; }
@@ -36,7 +35,7 @@ namespace Dev2.Activities.Designers.Tests.Script
         }
 
         [OneTimeSetUp]
-        public static void Init(TestContext context)
+        public static void Init()
         {
             try
             {

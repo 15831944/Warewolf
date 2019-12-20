@@ -35,7 +35,6 @@ using Moq;
 namespace Dev2.Activities.Designers.Tests.SqlBulkInsert
 {
     [TestFixture]
-    [SetUpFixture]
     public class SqlBulkInsertDesignerViewModelTests
     {
 

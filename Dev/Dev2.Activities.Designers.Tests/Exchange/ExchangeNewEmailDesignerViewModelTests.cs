@@ -31,7 +31,6 @@ using Warewolf.Studio.ViewModels;
 namespace Dev2.Activities.Designers.Tests.Exchange
 {
     [TestFixture]
-    [SetUpFixture]
     public class ExchangeNewEmailDesignerViewModelTests
     {
         const string AppLocalhost = "http://localhost:3142";

@@ -23,7 +23,6 @@ using Dev2.TO;
 namespace Dev2.Activities.Designers.Tests.CaseConvert
 {
     [TestFixture]
-    [SetUpFixture]
     public class CaseConvertDesignerViewModelTests
     {
         [Test]

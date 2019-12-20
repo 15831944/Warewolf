@@ -27,7 +27,6 @@ using Warewolf.Core;
 namespace Dev2.Activities.Designers.Tests.SqlServer
 {
     [TestFixture]
-    [SetUpFixture]
     public class TestSqlServerViewModel
     {
 

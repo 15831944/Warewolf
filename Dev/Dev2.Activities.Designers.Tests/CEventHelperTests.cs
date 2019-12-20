@@ -14,7 +14,6 @@ using NUnit.Framework;
 namespace Dev2.Activities.Designers.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class CEventHelperTests
     {
         int _i;

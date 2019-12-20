@@ -19,7 +19,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Activities.Designers.Tests.RecordsLength
 {
     [TestFixture]
-    [SetUpFixture]
     
     public class RecordsLengthDesignerViewModelTests
     {

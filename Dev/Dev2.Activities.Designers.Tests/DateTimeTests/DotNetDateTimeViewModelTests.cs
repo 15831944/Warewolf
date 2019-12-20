@@ -23,7 +23,6 @@ using Dev2.Activities.DateAndTime;
 namespace Dev2.Activities.Designers.Tests.DateTimeTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class DotNetDateTimeViewModelTests
     {
         [SetUp]

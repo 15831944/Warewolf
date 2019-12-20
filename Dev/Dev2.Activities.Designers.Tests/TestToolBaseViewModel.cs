@@ -111,7 +111,6 @@ namespace Dev2.Activities.Designers.Tests
     }
 
     [TestFixture]
-    [SetUpFixture]
     public class TestViewModelWithRegionsBase
     {
         [Test]

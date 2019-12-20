@@ -20,7 +20,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Activities.Designers.Tests.Delete
 {
     [TestFixture]
-    [SetUpFixture]
     
     public class DeleteDesignerViewModelTests
     {

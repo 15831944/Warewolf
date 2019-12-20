@@ -35,7 +35,6 @@ using Moq;
 namespace Dev2.Activities.Designers.Tests.Email
 {
     [TestFixture]
-    [SetUpFixture]
     public class EmailDesignerViewModelTests
     {
         const string AppLocalhost = "http://localhost:3142";

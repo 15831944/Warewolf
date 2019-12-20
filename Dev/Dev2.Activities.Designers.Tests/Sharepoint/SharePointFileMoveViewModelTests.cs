@@ -15,7 +15,6 @@ using Moq;
 namespace Dev2.Activities.Designers.Tests.Sharepoint
 {
     [TestFixture]
-    [SetUpFixture]
     public class SharePointFileMoveViewModelTests
     {
         public const string TestOwner = "Bernardt Joubert";

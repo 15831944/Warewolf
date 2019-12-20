@@ -19,7 +19,6 @@ using Warewolf.Core;
 namespace Dev2.Activities.Designers.Tests.Core.Database
 {
     [TestFixture]
-    [SetUpFixture]
     public class DatabaseActionRegionTest
     {
         [Test]

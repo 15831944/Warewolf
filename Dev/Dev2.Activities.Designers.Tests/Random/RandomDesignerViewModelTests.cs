@@ -22,7 +22,6 @@ using Moq;
 namespace Dev2.Activities.Designers.Tests.Random
 {
     [TestFixture]
-    [SetUpFixture]
     public class RandomDesignerViewModelTests
     {
         [Test]

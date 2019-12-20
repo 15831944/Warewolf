@@ -25,7 +25,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Activities.Designers.Tests.Designers2.Core
 {
     [TestFixture]
-    [SetUpFixture]
     public class ActivityCollectionDesignerViewModelTests
     {
         [Test]

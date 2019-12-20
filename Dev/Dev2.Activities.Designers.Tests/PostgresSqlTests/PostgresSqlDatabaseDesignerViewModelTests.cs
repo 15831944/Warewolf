@@ -21,7 +21,6 @@ using Warewolf.Core;
 namespace Dev2.Activities.Designers.Tests.PostgresSqlTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class PostgresSqlDatabaseDesignerViewModelTests
     {
         public const string TestOwner = "Bernardt Joubert";

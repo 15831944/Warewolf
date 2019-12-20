@@ -30,7 +30,6 @@ using Moq;
 namespace Dev2.Activities.Designers.Tests.Exchange.Email
 {
     [TestFixture]
-    [SetUpFixture]
     public class ExchangeEmailDesignerViewModelTests
     {
         public const string TestOwner = "Bernardt Joubert";

@@ -18,7 +18,6 @@ using Moq;
 namespace Dev2.Activities.Designers.Tests.Core.ComDll
 {
     [TestFixture]
-    [SetUpFixture]
     public class ComActionRegionTest
     {
         [Test]

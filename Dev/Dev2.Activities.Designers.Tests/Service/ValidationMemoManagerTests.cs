@@ -10,7 +10,6 @@ using Moq;
 namespace Dev2.Activities.Designers.Tests.Service
 {
     [TestFixture]
-    [SetUpFixture]
     public class ValidationMemoManagerTests
     {
         [Test]

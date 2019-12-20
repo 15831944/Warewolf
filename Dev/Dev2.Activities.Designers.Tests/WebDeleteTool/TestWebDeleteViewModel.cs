@@ -21,7 +21,6 @@ using Warewolf.Core;
 namespace Dev2.Activities.Designers.Tests.WebDeleteTool
 {
     [TestFixture]
-    [SetUpFixture]
     public class TestWebDeleteViewModel
     {
         #region Test Setup

@@ -23,7 +23,6 @@ using Warewolf.Studio.ViewModels;
 namespace Dev2.Activities.Designers.Tests.WebPostTool
 {
     [TestFixture]
-    [SetUpFixture]
     public class TestWebPostViewModel
     {
         #region Test Setup

@@ -21,7 +21,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Activities.Designers.Tests.XPath
 {
     [TestFixture]
-    [SetUpFixture]
     
     public class XPathDesignerViewModelTests
     {

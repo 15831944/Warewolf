@@ -24,7 +24,6 @@ using Warewolf.Core;
 namespace Dev2.Activities.Designers.Tests.MySql
 {
     [TestFixture]
-    [SetUpFixture]
     public class TestMySqlViewModel
     {
         [Test]

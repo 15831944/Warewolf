@@ -22,7 +22,6 @@ using Dev2.Common;
 namespace Dev2.Activities.Designers.Tests.DateTimeDifference
 {
     [TestFixture]
-    [SetUpFixture]
     public class DotNetDateTimeDifferenceDesignerViewModelTests
     {
         [SetUp]

@@ -24,7 +24,6 @@ using Moq;
 namespace Dev2.Activities.Designers.Tests.RedisCache
 {
     [TestFixture]
-    [SetUpFixture]
     public class RedisCacheDesignerViewModelTests
     {
         static ModelItem CreateModelItem()

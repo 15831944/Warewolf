@@ -19,7 +19,6 @@ using Dev2.Studio.Interfaces;
 namespace Dev2.Activities.Designers.Tests.RabbitMQ.Consume
 {
     [TestFixture]
-    [SetUpFixture]
     public class RabbitMQConsumeDesignerViewModelTest
     {
         [Test]

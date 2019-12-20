@@ -23,7 +23,6 @@ using Moq;
 namespace Dev2.Activities.Designers.Tests.ExecuteCommandLine
 {
     [TestFixture]
-    [SetUpFixture]
     
     public class CommandLineDesignerViewModelTests
     {

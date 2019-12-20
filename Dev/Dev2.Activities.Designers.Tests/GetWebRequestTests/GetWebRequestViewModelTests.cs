@@ -20,7 +20,6 @@ using Moq.Protected;
 namespace Dev2.Activities.Designers.Tests.GetWebRequestTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class GetWebRequestViewModelTests
     {
         [Test]

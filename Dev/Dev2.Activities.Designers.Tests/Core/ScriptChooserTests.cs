@@ -8,7 +8,6 @@ using NUnit.Framework;
 namespace Dev2.Activities.Designers.Tests.Core
 {
     [TestFixture]
-    [SetUpFixture]
     public class ScriptChooserTests
     {
         [Test]

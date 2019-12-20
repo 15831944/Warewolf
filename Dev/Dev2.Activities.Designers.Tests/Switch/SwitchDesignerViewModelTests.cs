@@ -16,7 +16,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Activities.Designers.Tests.Switch
 {
     [TestFixture]
-    [SetUpFixture]
     public class SwitchDesignerViewModelTests
     {
         [Test]

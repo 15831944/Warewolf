@@ -14,7 +14,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Activities.Designers.Tests.SelectAndApply
 {
     [TestFixture]
-    [SetUpFixture]
     public class SelectAndApplyDesignerViewModelTests
     {
         [Test]

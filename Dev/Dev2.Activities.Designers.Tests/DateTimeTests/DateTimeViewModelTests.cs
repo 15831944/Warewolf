@@ -22,7 +22,6 @@ using Moq.Protected;
 namespace Dev2.Activities.Designers.Tests.DateTimeTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class DateTimeViewModelTests
     {
         [SetUp]

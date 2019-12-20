@@ -30,7 +30,6 @@ using Warewolf.Testing;
 namespace Dev2.Activities.Designers.Tests.DotNetDll
 {
     [TestFixture]
-    [SetUpFixture]
     public class DotNetDllEnhancedViewModelTests
     {
         [Test]

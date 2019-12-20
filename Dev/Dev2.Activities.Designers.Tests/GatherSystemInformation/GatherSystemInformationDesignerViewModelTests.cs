@@ -22,7 +22,6 @@ using System;
 namespace Dev2.Activities.Designers.Tests.GatherSystemInformation
 {
     [TestFixture]
-    [SetUpFixture]
     public class GatherSystemInformationDesignerViewModelTests
     {
         [Test]

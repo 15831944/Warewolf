@@ -11,7 +11,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Activities.Designers.Tests.Calculate
 {
     [TestFixture]
-    [SetUpFixture]
     public class CalculateDesignerViewModelTests
     {
         [Test]

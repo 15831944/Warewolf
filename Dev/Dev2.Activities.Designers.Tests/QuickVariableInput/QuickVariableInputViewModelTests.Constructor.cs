@@ -18,7 +18,6 @@ using NUnit.Framework;
 namespace Dev2.Activities.Designers.Tests.QuickVariableInput
 {
     [TestFixture]
-    [SetUpFixture]
     
     public partial class QuickVariableInputViewModelTests
     {

@@ -26,7 +26,6 @@ namespace Dev2.Activities.Designers.Tests.FindRecordsMultipleCriteria
     // OnSearchTypeChanged moved from FindRecordsTO tests
     
     [TestFixture]
-    [SetUpFixture]
     public class FindRecordsMultipleCriteriaTests
     {
         [Test]

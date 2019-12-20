@@ -21,11 +21,12 @@ using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using System;
+using System.Threading;
 
 namespace Dev2.Activities.Designers.Tests.BaseConvert
 {
     [TestFixture]
-    [SetUpFixture]
+    [Apartment(ApartmentState.STA)]
     public class BaseConvertTests
     {
         [Test]

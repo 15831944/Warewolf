@@ -15,7 +15,6 @@ using NUnit.Framework;
 namespace Dev2.Activities.Designers.Tests.UtilTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ActivityTypeToActionTypeConverterTests
     {
         [Test]

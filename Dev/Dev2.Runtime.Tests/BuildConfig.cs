@@ -8,6 +8,6 @@ namespace Dev2.Activities.Specs
     public static class BuildConfig
     {
         [OneTimeSetUp]
-        public static void Apply(TestContext context) => TestLauncher.EnableDocker = Job_Definitions.GetEnableDockerValue();
+        public static void Apply() => TestLauncher.EnableDocker = Job_Definitions.GetEnableDockerValue();
     }
 }

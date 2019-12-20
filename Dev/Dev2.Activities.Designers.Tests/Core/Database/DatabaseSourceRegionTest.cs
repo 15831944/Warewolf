@@ -16,7 +16,6 @@ using Moq;
 namespace Dev2.Activities.Designers.Tests.Core.Database
 {
     [TestFixture]
-    [SetUpFixture]
     public class DatabaseSourceRegionTest
     {
         [Test]

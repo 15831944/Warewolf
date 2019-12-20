@@ -21,7 +21,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Activities.Designers.Tests.FindIndex
 {
     [TestFixture]
-    [SetUpFixture]
     public class FindIndexDesignerViewModelTests
     {
         [Test]

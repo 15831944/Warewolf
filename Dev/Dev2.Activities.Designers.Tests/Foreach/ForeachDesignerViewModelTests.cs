@@ -24,7 +24,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Activities.Designers.Tests.Foreach
 {
     [TestFixture]
-    [SetUpFixture]
     public class ForeachDesignerViewModelTests
     {
         [Test]

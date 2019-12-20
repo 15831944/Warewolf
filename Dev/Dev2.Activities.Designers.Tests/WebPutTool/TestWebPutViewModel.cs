@@ -24,7 +24,6 @@ using Warewolf.Studio.ViewModels;
 namespace Dev2.Activities.Designers.Tests.WebPutTool
 {
     [TestFixture]
-    [SetUpFixture]
     public class TestWebPutViewModel
     {
         #region Test Setup

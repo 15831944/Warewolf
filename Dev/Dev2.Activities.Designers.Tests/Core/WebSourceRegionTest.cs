@@ -17,7 +17,6 @@ namespace Dev2.Activities.Designers.Tests.Core
     /// Summary description for SharepointReadListTests
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class WebSourceRegionTest
     {
 

@@ -23,14 +23,11 @@ using System.Collections.ObjectModel;
 namespace Dev2.Activities.Designers.Tests.AdvancedRecordset
 {
     [TestFixture]
-    [SetUpFixture]
     public class AdvancedRecordsetViewModelTests
     {
-
         [Test]
         [Author("Candice Daniel")]
         [Category("AdvancedRecordset")]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AdvancedRecordsetViewModel_MethodName_ClearErrors()
         {
             CustomContainer.LoadedTypes = new List<Type>

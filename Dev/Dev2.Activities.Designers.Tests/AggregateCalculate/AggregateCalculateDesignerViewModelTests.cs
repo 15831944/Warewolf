@@ -12,7 +12,6 @@ using System;
 namespace Dev2.Activities.Designers.Tests.AggregateCalculate
 {
     [TestFixture]
-    [SetUpFixture]
     public class AggregateCalculateDesignerViewModelTests
     {
         [Test]

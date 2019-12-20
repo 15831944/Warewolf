@@ -19,7 +19,6 @@ using Moq;
 namespace Dev2.Activities.Designers.Tests.UniqueRecords
 {
     [TestFixture]
-    [SetUpFixture]
     public class UniqueRecordsDesignerViewModelTests
     {
         [Test]

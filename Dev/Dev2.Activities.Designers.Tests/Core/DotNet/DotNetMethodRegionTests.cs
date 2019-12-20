@@ -23,7 +23,6 @@ using Warewolf.Core;
 namespace Dev2.Activities.Designers.Tests.Core.DotNet
 {
     [TestFixture]
-    [SetUpFixture]
     public class DotNetMethodRegionTests
     {
         [Test]
