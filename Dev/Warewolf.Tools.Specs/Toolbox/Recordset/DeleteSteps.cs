@@ -13,7 +13,7 @@ using System.Activities.Statements;
 using System.Collections.Generic;
 using System.Linq;
 using Dev2.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Warewolf.Storage;
@@ -173,11 +173,11 @@ namespace Warewolf.ToolsSpecs.Toolbox.Recordset
                 
                 var recordSetValues = (recordSets as CommonFunctions.WarewolfEvalResult.WarewolfAtomListresult).Item.ToList();
                 
-                Assert.AreEqual<int>(tableRows.Count, recordSetValues.Count);
+                Assert.AreEqual(tableRows.Count, recordSetValues.Count);
 
                 for (int i = 0; i < tableRows.Count; i++)
                 {
-                    Assert.AreEqual<string>(tableRows[i][1], ExecutionEnvironment.WarewolfAtomToString( recordSetValues[i]));
+                    Assert.AreEqual(tableRows[i][1], ExecutionEnvironment.WarewolfAtomToString( recordSetValues[i]));
                 }
             }
             else

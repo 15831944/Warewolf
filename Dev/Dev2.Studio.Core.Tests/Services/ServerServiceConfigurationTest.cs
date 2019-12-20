@@ -13,7 +13,7 @@ using System.Windows;
 using Dev2.Common.Interfaces.Studio.Controller;
 using Dev2.Services;
 using Dev2.Studio.Core.Services;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Core.Tests.Services
@@ -21,7 +21,8 @@ namespace Dev2.Core.Tests.Services
     /// <summary>
     /// Summary description for ServerServiceConfigurationTest
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ServerServiceConfigurationTest
     {
         /// <summary>
@@ -32,9 +33,9 @@ namespace Dev2.Core.Tests.Services
 
         
         
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ServerServiceConfiguration_PromptUserToStartService")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ServerServiceConfiguration_PromptUserToStartService")]
         [ExpectedException(typeof(Exception))]
         public void ServerServiceConfiguration_PromptUserToStartService_WhenNullServiceConfiguration_ExpectException()
         {
@@ -46,9 +47,9 @@ namespace Dev2.Core.Tests.Services
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ServerServiceConfiguration_PromptUserToStartService")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ServerServiceConfiguration_PromptUserToStartService")]
         [ExpectedException(typeof(Exception))]
         public void ServerServiceConfiguration_PromptUserToStartService_WhenServiceNotRunningAndNullPopupController_ExpectException()
         {
@@ -60,9 +61,9 @@ namespace Dev2.Core.Tests.Services
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ServerServiceConfiguration_IsServiceRunning")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ServerServiceConfiguration_IsServiceRunning")]
         public void ServerServiceConfiguration_IsServiceRunning_WhenNotRunning_ExpectFalse()
         {
             //------------Setup for test--------------------------
@@ -76,9 +77,9 @@ namespace Dev2.Core.Tests.Services
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ServerServiceConfiguration_IsServiceRunning")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ServerServiceConfiguration_IsServiceRunning")]
         public void ServerServiceConfiguration_IsServiceRunning_WhenRunning_ExpectTrue()
         {
             //------------Setup for test--------------------------
@@ -93,9 +94,9 @@ namespace Dev2.Core.Tests.Services
         }
         
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ServerServiceConfiguration_PromptUserToStartService")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ServerServiceConfiguration_PromptUserToStartService")]
         public void ServerServiceConfiguration_PromptUserToStartService_WhenServiceRunning_ExpectFalse()
         {
             //------------Setup for test--------------------------
@@ -109,9 +110,9 @@ namespace Dev2.Core.Tests.Services
         }
 
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ServerServiceConfiguration_PromptUserToStartService")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ServerServiceConfiguration_PromptUserToStartService")]
         public void ServerServiceConfiguration_PromptUserToStartService_WhenServiceNotRunningAndNoneSelected_ExpectFalse()
         {
             //------------Setup for test--------------------------
@@ -125,9 +126,9 @@ namespace Dev2.Core.Tests.Services
             controller.Verify(m => m.Show(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<MessageBoxButton>(), It.IsAny<MessageBoxImage>(), It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ServerServiceConfiguration_PromptUserToStartService")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ServerServiceConfiguration_PromptUserToStartService")]
         public void ServerServiceConfiguration_PromptUserToStartService_WhenServiceNotRunningAndNoSelected_ExpectFalse()
         {
             //------------Setup for test--------------------------
@@ -141,9 +142,9 @@ namespace Dev2.Core.Tests.Services
             controller.Verify(m => m.Show(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<MessageBoxButton>(), It.IsAny<MessageBoxImage>(), It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ServerServiceConfiguration_PromptUserToStartService")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ServerServiceConfiguration_PromptUserToStartService")]
         public void ServerServiceConfiguration_PromptUserToStartService_WhenServiceNotRunningAndCancelSelected_ExpectFalse()
         {
             //------------Setup for test--------------------------
@@ -157,9 +158,9 @@ namespace Dev2.Core.Tests.Services
             controller.Verify(m => m.Show(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<MessageBoxButton>(), It.IsAny<MessageBoxImage>(), It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ServerServiceConfiguration_PromptUserToStartService")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ServerServiceConfiguration_PromptUserToStartService")]
         public void ServerServiceConfiguration_PromptUserToStartService_WhenServiceNotRunningAndOkSelected_ExpectTrue()
         {
             //------------Setup for test--------------------------
@@ -173,9 +174,9 @@ namespace Dev2.Core.Tests.Services
             controller.Verify(m => m.Show(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<MessageBoxButton>(), It.IsAny<MessageBoxImage>(), It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ServerServiceConfiguration_PromptUserToStartService")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ServerServiceConfiguration_PromptUserToStartService")]
         public void ServerServiceConfiguration_PromptUserToStartService_WhenServiceNotRunningAndYesSelected_ExpectTrue()
         {
             //------------Setup for test--------------------------
@@ -189,9 +190,9 @@ namespace Dev2.Core.Tests.Services
             controller.Verify(m => m.Show(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<MessageBoxButton>(), It.IsAny<MessageBoxImage>(), It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ServerServiceConfiguration_StartService")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ServerServiceConfiguration_StartService")]
         [ExpectedException(typeof(Exception))]
         public void ServerServiceConfiguration_StartService_WhenServiceConfigurationNull_ExpectException()
         {
@@ -203,9 +204,9 @@ namespace Dev2.Core.Tests.Services
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ServerServiceConfiguration_StartService")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ServerServiceConfiguration_StartService")]
         public void ServerServiceConfiguration_StartService_WhenServiceRunning_ExpectTrue()
         {
             //------------Setup for test--------------------------
@@ -218,9 +219,9 @@ namespace Dev2.Core.Tests.Services
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ServerServiceConfiguration_StartService")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ServerServiceConfiguration_StartService")]
         public void ServerServiceConfiguration_StartService_WhenServiceNotRunning_ExpectTrue()
         {
             //------------Setup for test--------------------------
@@ -233,9 +234,9 @@ namespace Dev2.Core.Tests.Services
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ServerServiceConfiguration_StartService")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ServerServiceConfiguration_StartService")]
         public void ServerServiceConfiguration_StartService_WhenServiceNotRunningAndProblemsStarting_ExpectFalse()
         {
             //------------Setup for test--------------------------
@@ -249,9 +250,9 @@ namespace Dev2.Core.Tests.Services
             controller.Verify(m => m.Show(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<MessageBoxButton>(), It.IsAny<MessageBoxImage>(), It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ServerServiceConfiguration_StartService")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ServerServiceConfiguration_StartService")]
         public void ServerServiceConfiguration_StartService_WhenServiceNotRunningAndDoesNotExist_ExpectFalse()
         {
             //------------Setup for test--------------------------
@@ -265,9 +266,9 @@ namespace Dev2.Core.Tests.Services
             controller.Verify(m => m.Show(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<MessageBoxButton>(), It.IsAny<MessageBoxImage>(), It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ServerServiceConfiguration_DoesServiceExist")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ServerServiceConfiguration_DoesServiceExist")]
         public void ServerServiceConfiguration_DoesServiceExist_WhenServiceExist_ExpectTrue()
         {
             //------------Setup for test--------------------------
@@ -280,9 +281,9 @@ namespace Dev2.Core.Tests.Services
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ServerServiceConfiguration_DoesServiceExist")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ServerServiceConfiguration_DoesServiceExist")]
         public void ServerServiceConfiguration_DoesServiceExist_WhenServiceDoesNotExist_ExpectFalse()
         {
             //------------Setup for test--------------------------

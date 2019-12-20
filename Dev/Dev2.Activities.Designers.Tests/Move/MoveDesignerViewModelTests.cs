@@ -11,19 +11,20 @@
 using Dev2.Common.Interfaces.Help;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Activities.Designers.Tests.Move
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class MoveDesignerViewModelTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("MoveDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("MoveDesignerViewModel_Constructor")]
         public void MoveDesignerViewModel_Constructor_Properties_Initialized()
         {
             //------------Setup for test-------------------------
@@ -40,9 +41,9 @@ namespace Dev2.Activities.Designers.Tests.Move
             Assert.AreEqual(0, viewModel.TitleBarToggles.Count);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MoveDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MoveDesignerViewModel_Handle")]
         public void MoveDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -58,9 +59,9 @@ namespace Dev2.Activities.Designers.Tests.Move
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("MoveDesignerViewModel_Validate")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("MoveDesignerViewModel_Validate")]
         public void MoveDesignerViewModel_Validate_CorrectFieldsAreValidated()
         {
             //------------Setup for test-------------------------

@@ -8,16 +8,17 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Common.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class RecordSetSearchPayloadTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(RecordSetSearchPayload))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(RecordSetSearchPayload))]
         public void RecordSetSearchPayload_NoParamsConstractor_SetProperty_ExpectSetValue()
         {
             //--------------------Arrange--------------------
@@ -33,9 +34,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(testPayload, recordSetSearchPayload.Payload);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(RecordSetSearchPayload))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(RecordSetSearchPayload))]
         public void RecordSetSearchPayload_WithParamsConstractor_SetProperty_ExpectSetValue()
         {
             //--------------------Arrange--------------------

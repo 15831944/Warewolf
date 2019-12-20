@@ -9,19 +9,20 @@
 */
 
 using Dev2.Data.Decisions.Operations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests.DecisionsTests
 {
     /// <summary>
     /// Summary description for NotEndsWithTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class NotEndsWithTests
     {
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("NotEndsWith_Invoke")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("NotEndsWith_Invoke")]
         public void NotEndsWith_Invoke_DoesEndWith_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -35,12 +36,12 @@ namespace Dev2.Data.Tests.DecisionsTests
             var result = notStartsWith.Invoke(cols);
 
             //------------Assert Results-------------------------
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("NotEndsWith_Invoke")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("NotEndsWith_Invoke")]
         public void NotEndsWith_Invoke_DoesntEndWith_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -54,12 +55,12 @@ namespace Dev2.Data.Tests.DecisionsTests
             var result = notStartsWith.Invoke(cols);
 
             //------------Assert Results-------------------------
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthmembu")]
-        [TestCategory("NotEndsWith_HandlesType")]
+        [Test]
+        [Author("Sanele Mthmembu")]
+        [Category("NotEndsWith_HandlesType")]
         public void NotEndsWith_HandlesType_ReturnsNotEndsWithType()
         {
             var expected = enDecisionType.NotEndsWith;
@@ -67,7 +68,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             var notEndsWith = new NotEndsWith();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.AreEqual(expected, notEndsWith.HandlesType());
+            NUnit.Framework.Assert.AreEqual(expected, notEndsWith.HandlesType());
         }
     }
 }

@@ -20,7 +20,7 @@ using Dev2.Runtime.Interfaces;
 using Dev2.Runtime.WebServer;
 using Dev2.Runtime.WebServer.Handlers;
 using Dev2.Services.Security;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.Runtime.WebServer
@@ -28,8 +28,9 @@ namespace Dev2.Tests.Runtime.WebServer
     /// <summary>
     /// Summary description for InternalServiceRequestHandlerTest
     /// </summary>
-    [TestClass]
-    [TestCategory("Runtime WebServer")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime WebServer")]
     public class InternalServiceRequestHandlerTest
     {
         /// <summary>
@@ -38,9 +39,9 @@ namespace Dev2.Tests.Runtime.WebServer
         ///</summary>
         public TestContext TestContext { get; set; }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(InternalServiceRequestHandler))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(InternalServiceRequestHandler))]
         [ExpectedException(typeof(FormatException))]
         public void InternalServiceRequestHandler_ProcessRequest_WhenMalformedConnectionId_ExpectException()
         {
@@ -57,9 +58,9 @@ namespace Dev2.Tests.Runtime.WebServer
             internalServiceRequestHandler.ProcessRequest(eer, Guid.Empty, Guid.Empty, "1");
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(InternalServiceRequestHandler))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(InternalServiceRequestHandler))]
         [ExpectedException(typeof(Exception))]
         public void InternalServiceRequestHandler_ProcessRequest_WhenNullExecutingUserInFirstOverload_ExpectException()
         {
@@ -77,9 +78,9 @@ namespace Dev2.Tests.Runtime.WebServer
             internalServiceRequestHandler.ProcessRequest(ctx.Object);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(InternalServiceRequestHandler))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(InternalServiceRequestHandler))]
         public void InternalServiceRequestHandler_ProcessRequest_WhenExecutingUser()
         {
             //------------Setup for test--------------------------
@@ -99,9 +100,9 @@ namespace Dev2.Tests.Runtime.WebServer
             internalServiceRequestHandler.ProcessRequest(ctx.Object);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(InternalServiceRequestHandler))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(InternalServiceRequestHandler))]
         [ExpectedException(typeof(Exception))]
         public void InternalServiceRequestHandler_ProcessRequest_WhenNullExecutingUser_ExpectException()
         {
@@ -122,9 +123,9 @@ namespace Dev2.Tests.Runtime.WebServer
             internalServiceRequestHandler.ProcessRequest(eer, Guid.Empty, Guid.Empty, Guid.NewGuid().ToString());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(InternalServiceRequestHandler))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(InternalServiceRequestHandler))]
         public void InternalServiceRequestHandler_ProcessRequest()
         {
             //------------Setup for test--------------------------
@@ -145,9 +146,9 @@ namespace Dev2.Tests.Runtime.WebServer
             internalServiceRequestHandler.ProcessRequest(eer, Guid.Empty, Guid.Empty, Guid.NewGuid().ToString());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(InternalServiceRequestHandler))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(InternalServiceRequestHandler))]
         public void InternalServiceRequestHandler_ProcessRequestGivenIsServiceTestExecution()
         {
             //------------Setup for test--------------------------
@@ -174,9 +175,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.IsNotNull(processRequest);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(InternalServiceRequestHandler))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(InternalServiceRequestHandler))]
         public void InternalServiceRequestHandler_ProcessRequestGivenUnAuthorizedPermission()
         {
             //------------Setup for test--------------------------

@@ -12,7 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Dev2.Common.Interfaces.Core.Graph;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Framework.Converters.Graph;
 using Unlimited.Framework.Converters.Graph.Poco;
 using Unlimited.Framework.Converters.Graph.String.Json;
@@ -22,7 +22,8 @@ using Unlimited.UnitTest.Framework.ConverterTests.GraphTests;
 
 namespace Dev2.Tests.ConverterTests.GraphTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DataBrowserTests
     {
         internal PocoTestData GivenPoco()
@@ -265,7 +266,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests
         /// <summary>
         /// Map paths of unexpected type expected poco paths returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void MapPathsOfUnexpectedType_Expected_PocoPaths()
         {
             var uri = new Uri("/cake", UriKind.Relative);
@@ -279,7 +280,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests
         /// <summary>
         /// Map paths of reference type expected poco paths returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void MapPathsOfReferenceType_Expected_PocoPaths()
         {
             var testData = GivenPoco();
@@ -293,7 +294,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests
         /// <summary>
         /// Select scalar value using poco scalar path from reference type expected scalar value returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void SelectScalarValueUsingPocoScalarPathFromReferenceType_Expected_ScalarValue()
         {
             var testData = GivenPoco();
@@ -310,7 +311,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests
         /// Select enumerable value using poco enumerable path from reference type expected values from each item 
         /// in enumeration.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void SelectEnumerableValueUsingPocoEnumerablePathFromReferenceType_Expected_ValuesFromEachItemInEnumeration()
         {
             var testData = GivenPoco();
@@ -330,7 +331,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests
         /// Select enumerable values as related using poco enumerable paths from reference type where paths contain nested enumerable paths 
         /// expected flattened data with values from outer enumerable path repeating for every value from nested enumerable path.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void SelectEnumerableValuesAsRelatedUsingPocoEnumerablePathsFromReferenceType_Where_PathsContainNestedEnumerablePaths_Expected_FlattenedDataWithValuesFromOuterEnumerablePathRepeatingForEveryValueFromNestedEnumerablePath()
         {
             var testData = GivenPocoWithParallelAndNestedEnumerables();
@@ -394,7 +395,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests
         /// <summary>
         /// Map paths of XML expected XML paths returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void MapPathsOfXml_Expected_XmlPaths()
         {
             var testData = GivenXml();
@@ -408,7 +409,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests
         /// <summary>
         /// Select scalar value using poco scalar path from XML expected scalar value returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void SelectScalarValueUsingPocoScalarPathFromXml_Expected_ScalarValue()
         {
             var testData = GivenXml();
@@ -426,7 +427,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests
         /// enumerable paths expected flattened data with values from outer 
         /// enumerable path repeating for every value from nested enumerable path.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void SelectEnumerableValuesAsRelatedUsingPocoEnumerablePathsFromXml_Where_PathsContainNestedEnumerablePaths_Expected_FlattenedDataWithValuesFromOuterEnumerablePathRepeatingForEveryValueFromNestedEnumerablePath()
         {
             var testData = GivenXml();
@@ -448,7 +449,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests
         /// <summary>
         /// Map paths of JSON expected JSON paths.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void MapPathsOfJson_Expected_JsonPaths()
         {
             var testData = GivenJson();
@@ -462,7 +463,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests
         /// <summary>
         /// Select scalar value using JSON scalar path from JSON expected scalar value returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void SelectScalarValueUsingJsonScalarPathFromJson_Expected_ScalarValue()
         {
             var testData = GivenJson();
@@ -480,7 +481,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests
         /// nested enumerable paths expected flattened data with values from outer enumerable path repeating 
         /// for every value from nested enumerable path.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void SelectEnumerableValuesAsRelatedUsingJsonEnumerablePathsFromJson_Where_PathsContainNestedEnumerablePaths_Expected_FlattenedDataWithValuesFromOuterEnumerablePathRepeatingForEveryValueFromNestedEnumerablePath()
         {
             var testData = GivenJson();

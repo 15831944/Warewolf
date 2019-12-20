@@ -10,18 +10,19 @@
 
 using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.DB;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System.Collections.Generic;
 
 namespace Dev2.Common.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WcfActionTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WcfAction))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WcfAction))]
         public void WcfAction_Validate_Default()
         {
             const string expectedFullName = "FullName";

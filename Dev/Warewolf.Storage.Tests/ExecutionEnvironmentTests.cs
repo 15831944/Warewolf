@@ -10,7 +10,7 @@
 
 using Dev2.Common.Common;
 using Dev2.Common.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -22,12 +22,13 @@ using WarewolfParserInterop;
 namespace Warewolf.Storage.Tests
 {
     [ExcludeFromCodeCoverage]
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ExecutionEnvironmentTest
     {
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         [ExpectedException(typeof(IndexOutOfRangeException))]
         public void ExecutionEnvironment_Eval_GivenInvalidIndex_Throws_IndexOutOfRangeException()
         {
@@ -35,9 +36,9 @@ namespace Warewolf.Storage.Tests
             _environment.Eval("[[rec(0).a]]", 0, true);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_Assign_RecsetField()
         {
             var _environment = new ExecutionEnvironment();
@@ -46,9 +47,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(1, recordSet);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_Assign_NullExpression_DoesNotThrow()
         {
             var _environment = new ExecutionEnvironment();
@@ -57,9 +58,9 @@ namespace Warewolf.Storage.Tests
             // reached here, test passed
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_Assign_RecordSetToScalar_HasError()
         {
             var _environment = new ExecutionEnvironment();
@@ -72,9 +73,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("assigning an entire recordset to a variable is not defined", _environment.Errors.First());
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_Assign_ParseError_NoThrow()
         {
             var _environment = new ExecutionEnvironment();
@@ -85,9 +86,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("parse error", _environment.Errors.First());
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_AssignStrict_RecsetField()
         {
             var _environment = new ExecutionEnvironment();
@@ -96,9 +97,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(1, recordSet);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_AssignStrict_NullExpression_DoesNotThrow()
         {
             var _environment = new ExecutionEnvironment();
@@ -107,9 +108,9 @@ namespace Warewolf.Storage.Tests
             // reached here, test passed
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_AssignStrict_RecordSetToScalar_HasError()
         {
             var _environment = new ExecutionEnvironment();
@@ -123,9 +124,9 @@ namespace Warewolf.Storage.Tests
             //Assert.AreEqual("assigning an entire recordset to a variable is not defined", _environment.Errors.First());
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_AssignStrict_ParseError_NoThrow()
         {
             var _environment = new ExecutionEnvironment();
@@ -136,9 +137,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("parse error", _environment.Errors.First());
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_EvalAssignFromNestedLast_GivenRecSet_Should()
         {
             var _environment = new ExecutionEnvironment();
@@ -158,9 +159,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(33, (result[2] as DataStorage.WarewolfAtom.Int).Item);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_EvalAssignFromNestedLast_GivenRecSet_TwoColumn_Should()
         {
             var _environment = new ExecutionEnvironment();
@@ -208,9 +209,9 @@ namespace Warewolf.Storage.Tests
             Assert.IsTrue(list_c[3].Equals("czz"));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_EvalAssignFromNestedLast_GivenNonExistingRec_ShouldAddStar()
         {
             var _environment = new ExecutionEnvironment();
@@ -232,9 +233,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(33, (result[2] as DataStorage.WarewolfAtom.Int).Item);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_GetLength_GivenJson_ShouldThrow()
         {
             var _environment = new ExecutionEnvironment();
@@ -251,9 +252,9 @@ namespace Warewolf.Storage.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_GetObjectLength_GivenJson_ShouldThrow()
         {
             var _environment = new ExecutionEnvironment();
@@ -269,9 +270,9 @@ namespace Warewolf.Storage.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_AssignFromNestedStar_Should()
         {
             var _environment = new ExecutionEnvironment();
@@ -290,9 +291,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(33, (result[3] as DataStorage.WarewolfAtom.Int).Item);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_SortRecordSet_ShouldSortRecordSet()
         {
             var _environment = new ExecutionEnvironment();
@@ -318,9 +319,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("Bob", (result[5] as DataStorage.WarewolfAtom.DataString).Item);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_SortRecordSet_Desc_ShouldSortRecordSet_InReverse()
         {
             var _environment = new ExecutionEnvironment();
@@ -346,10 +347,10 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("1Bob", (result[5] as DataStorage.WarewolfAtom.DataString).Item);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
-        [TestCategory("ExecutionEnvironment_EvalAsList")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
+        [Category("ExecutionEnvironment_EvalAsList")]
         public void ExecutionEnvironment_EvalAsList_WhenRecSet_ListsAllCells_ColumnByColumn()
         {
             var _environment = new ExecutionEnvironment();
@@ -368,10 +369,10 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("mary", (list[3] as DataStorage.WarewolfAtom.DataString).Item);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
-        [TestCategory("ExecutionEnvironment_EvalAsList")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
+        [Category("ExecutionEnvironment_EvalAsList")]
         public void ExecutionEnvironment_EvalAsList_NonExistentRecordset_Returns1NothingItem()
         {
             var _environment = new ExecutionEnvironment();
@@ -382,10 +383,10 @@ namespace Warewolf.Storage.Tests
             Assert.IsTrue(list[0].IsNothing);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
-        [TestCategory("ExecutionEnvironment_EvalAsList")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
+        [Category("ExecutionEnvironment_EvalAsList")]
         public void ExecutionEnvironment_EvalAsList_Scalar()
         {
             var _environment = new ExecutionEnvironment();
@@ -397,10 +398,10 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(1234, (list[0] as DataStorage.WarewolfAtom.Int).Item);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
-        [TestCategory("ExecutionEnvironment_EvalAsList")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
+        [Category("ExecutionEnvironment_EvalAsList")]
         public void ExecutionEnvironment_EvalAsList_Scalar_NotExists_Returns1NothingItem()
         {
             var _environment = new ExecutionEnvironment();
@@ -411,10 +412,10 @@ namespace Warewolf.Storage.Tests
             Assert.IsTrue(list[0].IsNothing);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
-        [TestCategory("ExecutionEnvironment_EvalAsList")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
+        [Category("ExecutionEnvironment_EvalAsList")]
         public void ExecutionEnvironment_EvalAsList_JsonObject()
         {
             var _environment = new ExecutionEnvironment();
@@ -426,10 +427,10 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("{" + Environment.NewLine + "  \"Name\": \"Bob\"" + Environment.NewLine + "}", (list[0] as DataStorage.WarewolfAtom.DataString).Item);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
-        [TestCategory("ExecutionEnvironment_EvalAsList")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
+        [Category("ExecutionEnvironment_EvalAsList")]
         public void ExecutionEnvironment_EvalAsList_JsonObject_NotExists_Returns1NothingItem()
         {
             var _environment = new ExecutionEnvironment();
@@ -440,9 +441,9 @@ namespace Warewolf.Storage.Tests
             Assert.IsTrue(list[0].IsNothing);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("ExecutionEnvironment_EvalAsList")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("ExecutionEnvironment_EvalAsList")]
         public void ExecutionEnvironment_EvalAsList_WhenRecSet_PadLeft_IsNotStripped()
         {
             var _environment = new ExecutionEnvironment();
@@ -461,9 +462,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("mary", (list[3] as DataStorage.WarewolfAtom.DataString).Item);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("ExecutionEnvironment_EvalAsList")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("ExecutionEnvironment_EvalAsList")]
         public void ExecutionEnvironment_EvalAsList_WhenRecSet_Padding_IsNotStripped()
         {
             var _environment = new ExecutionEnvironment();
@@ -482,10 +483,10 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("mary\t", (list[3] as DataStorage.WarewolfAtom.DataString).Item);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
-        [TestCategory("ExecutionEnvironment_EvalAsList")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
+        [Category("ExecutionEnvironment_EvalAsList")]
         public void ExecutionEnvironment_EvalAsListOfString_WhenRecSet_ShouldReturnListOfAllValues()
         {
             var _environment = new ExecutionEnvironment();
@@ -504,10 +505,10 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("mary", list[3]);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
-        [TestCategory("ExecutionEnvironment_EvalAsList")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
+        [Category("ExecutionEnvironment_EvalAsList")]
         public void ExecutionEnvironment_EvalAsListOfString_NoData()
         {
             var _environment = new ExecutionEnvironment();
@@ -520,10 +521,10 @@ namespace Warewolf.Storage.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
-        [TestCategory("ExecutionEnvironment_EvalAsList")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
+        [Category("ExecutionEnvironment_EvalAsList")]
         public void ExecutionEnvironment_EvalAsString_WhenRecSet_ShouldReturnListOfAllValues()
         {
             var _environment = new ExecutionEnvironment();
@@ -539,9 +540,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("27,31,bob,mary", stringVal);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_EvalAsListOfStrings_SameValues_ShouldReturn()
         {
             var _environment = new ExecutionEnvironment();
@@ -555,9 +556,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("Bob", evalAsListOfStrings[1]);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_EvalAsListOfStrings_ListOfNothing_DoesNotThrow()
         {
             var _environment = new ExecutionEnvironment();
@@ -568,9 +569,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(0, evalAsListOfStrings.Count);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_EvalAsListOfStrings_GivenListResults_ShouldReturnValuesAsList()
         {
             var _environment = new ExecutionEnvironment();
@@ -582,9 +583,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("Bob", evalAsListOfStrings[0]);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_HasRecordSet_GivenRecSet_ShouldReturnTrue()
         {
             var executionEnv = new ExecutionEnvironment();
@@ -593,9 +594,9 @@ namespace Warewolf.Storage.Tests
             Assert.IsTrue(hasRecordSet);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_HasRecordSet_ShouldReturnFalse()
         {
             var _environment = new ExecutionEnvironment();
@@ -603,9 +604,9 @@ namespace Warewolf.Storage.Tests
             Assert.IsFalse(hasRecordSet);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_HasRecordSet_GivenIncorrectString_ShouldReturnFalse()
         {
             var _environment = new ExecutionEnvironment();
@@ -613,9 +614,9 @@ namespace Warewolf.Storage.Tests
             Assert.IsFalse(hasRecordSet);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_ToStar_GivenJson_ShouldReturnAddStar()
         {
 
@@ -625,9 +626,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("[[@Person(*).Name]]", star);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_ToStar_GivenRecSet_ShouldReturnAddStar()
         {
             var _environment = new ExecutionEnvironment();
@@ -639,9 +640,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("[[rec(*)]]", star);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_ToStar_GivenVariable_ShouldReturnTheSame()
         {
             var _environment = new ExecutionEnvironment();
@@ -650,9 +651,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("[[a]]", star);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_AssignFromNestedNumeric_ShouldAppendLast()
         {
             var _environment = new ExecutionEnvironment();
@@ -670,9 +671,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(33, (result[1] as DataStorage.WarewolfAtom.Int).Item);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_AssignFromNestedNumeric_ToStar_Should_ReplaceItemsWithLast()
         {
             var _environment = new ExecutionEnvironment();
@@ -691,9 +692,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(33, (result[1] as DataStorage.WarewolfAtom.Int).Item);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_IsRecordSetName_GivenRecSet_ShouldReturnTrue()
         {
             var _environment = new ExecutionEnvironment();
@@ -702,9 +703,9 @@ namespace Warewolf.Storage.Tests
             Assert.IsTrue(isRecordSetName);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_IsRecordSetName_GivenRecSetExists_UseNameIncorrectly_ShouldReturnFalse()
         {
             var _environment = new ExecutionEnvironment();
@@ -713,27 +714,27 @@ namespace Warewolf.Storage.Tests
             Assert.IsFalse(isRecordSetName);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_IsRecordSetName_GivenInvalidRecSet_ShouldReturnFalse()
         {
             var isRecordSetName = ExecutionEnvironment.IsRecordSetName("[[rec(0).a]]");
             Assert.IsFalse(isRecordSetName);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_IsRecordSetName_GivenScalar_ShouldReturnFalse()
         {
             var isRecordSetName = ExecutionEnvironment.IsRecordSetName("[[a]]");
             Assert.IsFalse(isRecordSetName);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_IsValidVariableExpression_GivenValidExpression_ShouldReturnTrue()
         {
             var result = ExecutionEnvironment.IsValidVariableExpression("[[a]]", out string message, 0);
@@ -741,9 +742,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("", message);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_IsValidVariableExpression_GivenInValidExpression_ShouldReturnFalse()
         {
             var result = ExecutionEnvironment.IsValidVariableExpression("[[rec(0).a]", out string message, 0);
@@ -751,9 +752,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("parse error", message);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_IsValidVariableExpression_GivenInValidExpression2_ShouldReturnFalse()
         {
             var result = ExecutionEnvironment.IsValidVariableExpression("@", out string message, 0);
@@ -762,9 +763,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("", message);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_IsValidVariableExpression_GivenEmptyString_ShouldReturnFalse()
         {
             var result = ExecutionEnvironment.IsValidVariableExpression(string.Empty, out string message, 0);
@@ -773,9 +774,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("", message);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_GetLength_Should()
         {
             var _environment = new ExecutionEnvironment();
@@ -785,9 +786,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(2, recordSet);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_GetLength_NotARecordset()
         {
             var _environment = new ExecutionEnvironment();
@@ -805,9 +806,9 @@ namespace Warewolf.Storage.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_GetLength_EmptyIsNotARecordset()
         {
             var _environment = new ExecutionEnvironment();
@@ -824,9 +825,9 @@ namespace Warewolf.Storage.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_GetObjectLength_Should()
         {
             var _environment = new ExecutionEnvironment();
@@ -835,9 +836,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(1, recordSet);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_GetObjectLength_ChildObject()
         {
             var _environment = new ExecutionEnvironment();
@@ -846,9 +847,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(1, recordSet);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_GetObjectLength_ChildChildObject()
         {
             var _environment = new ExecutionEnvironment();
@@ -858,9 +859,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(2, recordSet);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_GetObjectLength_GivenChildObject()
         {
             var _environment = new ExecutionEnvironment();
@@ -869,9 +870,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(3, recordSet);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_GetObjectLength_GivenChildArray()
         {
             var _environment = new ExecutionEnvironment();
@@ -880,10 +881,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(2, grandChildCount);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
-        [Ignore]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_GetObjectLength_ChildArray2()
         {
             var _environment = new ExecutionEnvironment();
@@ -892,9 +892,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(2, grandChildCount);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_EvalToExpression_ShouldEvaluateToBaseExpression()
         {
             var _environment = new ExecutionEnvironment();
@@ -906,9 +906,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("[[SomeValue]]", evalToExpression);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_EvalToExpression_Should()
         {
             var _environment = new ExecutionEnvironment();
@@ -919,9 +919,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("[[a]]", evalToExpression);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_EvalToExpression_Empty()
         {
             var _environment = new ExecutionEnvironment();
@@ -929,9 +929,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("", evalToExpression);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_EvalComplexCalcExpression_ShouldNotReplaceSpaces()
         {
             var _environment = new ExecutionEnvironment();
@@ -943,9 +943,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("!~calculation~!FIND(\" \",\"Bob\",1)!~~calculation~!", ExecutionEnvironment.WarewolfEvalResultToString(evalResult));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_WarewolfEvalResultToString_EnsureNoNewResultTypes()
         {
             /* This test ensures that if we add a new result type we will make sure that we alter WarewolfEvalResultToString */
@@ -958,9 +958,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("WarewolfRecordSetResult", members[3].Name);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_WarewolfEvalResultToString()
         {
             var _environment = new ExecutionEnvironment();
@@ -972,9 +972,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("Bob1,Bob2", result);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_WarewolfEvalResultToString_NothingResultsInNull()
         {
             var _environment = new ExecutionEnvironment();
@@ -984,9 +984,9 @@ namespace Warewolf.Storage.Tests
             Assert.IsNull(result);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_WarewolfEvalResultToString_GivenWarewolfAtomList_DataStringIsUnaltered()
         {
             var warewolfEvalResultToString = ExecutionEnvironment.WarewolfEvalResultToString(
@@ -995,9 +995,9 @@ namespace Warewolf.Storage.Tests
             Assert.IsNotNull(warewolfEvalResultToString);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_WarewolfEvalResultToString_GivenWarewolfAtom_DataStringIsUnaltered()
         {
             var warewolfEvalResultToString = ExecutionEnvironment.WarewolfEvalResultToString(
@@ -1006,9 +1006,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("Test string", warewolfEvalResultToString);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_EvalAsTable()
         {
             var _environment = new ExecutionEnvironment();
@@ -1027,9 +1027,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("Bob2", rows[1][0].Item2.ToString());
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         [ExpectedException(typeof(NullValueInVariableException))]
         public void ExecutionEnvironment_EvalAsTable_Empty()
         {
@@ -1041,9 +1041,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(0, result.Count());
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_GetPositionColumnExpression_GivenRecsetNameExpression()
         {
             var _environment = new ExecutionEnvironment();
@@ -1054,9 +1054,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("[[rec(*).WarewolfPositionColumn]]", positionColumnExpression);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_GetPositionColumnExpression_GivenScalar()
         {
             var positionColumnExpression = ExecutionEnvironment.GetPositionColumnExpression("[[a]]");
@@ -1064,9 +1064,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("[[a]]", positionColumnExpression);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_GetPositionColumnExpression_GivenRecSetNameExpression_NotExists()
         {
             var positionColumnExpression = ExecutionEnvironment.GetPositionColumnExpression("[[rec()]]");
@@ -1074,9 +1074,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("[[rec(*).WarewolfPositionColumn]]", positionColumnExpression);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_GetPositionColumnExpression_RecordSetExpression()
         {
             var positionColumnExpression = ExecutionEnvironment.GetPositionColumnExpression("[[rec().N]]");
@@ -1084,9 +1084,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("[[rec(*).WarewolfPositionColumn]]", positionColumnExpression);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_ConvertToIndex()
         {
             var result = ExecutionEnvironment.ConvertToIndex("[[a]]", 0);
@@ -1100,54 +1100,54 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("[[rec(0).a]]", result);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_ConvertToIndex_LastNotAltered()
         {
             var result = ExecutionEnvironment.ConvertToIndex("[[rec().a]]", 0);
             Assert.AreEqual("[[rec().a]]", result);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_IsScalar_GivenVariable_ShouldBeTrue()
         {
             var isScalar = ExecutionEnvironment.IsScalar("[[a]]");
             Assert.IsTrue(isScalar);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_IsScalar_GivenSomeString_ShouldBeFalse()
         {
             var isScalar = ExecutionEnvironment.IsScalar("SomeString");
             Assert.IsFalse(isScalar);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_IsScalar_GivenInvalid_ShouldNotThrow()
         {
             var isScalar = ExecutionEnvironment.IsScalar("[[a]");
             Assert.IsFalse(isScalar);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_IsScalar_GivenRecset_ShouldBeFalse()
         {
             var isScalar = ExecutionEnvironment.IsScalar("[[rec().a]]");
             Assert.IsFalse(isScalar);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_EvalAsList_RecordsetNotExists_Returns1NothingCell()
         {
             var _environment = new ExecutionEnvironment();
@@ -1156,9 +1156,9 @@ namespace Warewolf.Storage.Tests
             Assert.IsTrue(result[0].IsNothing);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_EvalAsList_GivenEmptyString_Returns1DataStringCell()
         {
             var _environment = new ExecutionEnvironment();
@@ -1168,9 +1168,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("", (result[0] as DataStorage.WarewolfAtom.DataString).Item);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_EvalAsList_ScalarNotExists_Returns1NothingCell()
         {
             var _environment = new ExecutionEnvironment();
@@ -1181,9 +1181,9 @@ namespace Warewolf.Storage.Tests
             Assert.IsTrue(result[0].IsNothing);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_EvalAsList_List()
         {
             var _environment = new ExecutionEnvironment();
@@ -1203,9 +1203,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("Bob2", v.Item);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_ApplyUpdate_ShouldAlterDataInPlace()
         {
             var _environment = new ExecutionEnvironment();
@@ -1218,9 +1218,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("beforeSomeValueafter", result[0]);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_ApplyUpdate_ShouldAlterDataInPlace_Recset()
         {
             var _environment = new ExecutionEnvironment();
@@ -1238,9 +1238,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("before2.4after", result[2]);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         [ExpectedException(typeof(KeyNotFoundException))]
         public void ExecutionEnvironment_ApplyUpdate_RecsetNotExists()
         {
@@ -1252,9 +1252,9 @@ namespace Warewolf.Storage.Tests
             _environment.ApplyUpdate("[[rec(*)]]", clause, 0);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_ApplyUpdate_ScalarNotExists()
         {
             var _environment = new ExecutionEnvironment();
@@ -1272,9 +1272,9 @@ namespace Warewolf.Storage.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_EvalWhere_GivenIsNothingEval_ShouldReturnNothing()
         {
             var _environment = new ExecutionEnvironment();
@@ -1286,9 +1286,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(0, evalWhere.ToArray().Length);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_GetIndexes_GivenJSonExpression_ShouldReturn1Index()
         {
             var _environment = new ExecutionEnvironment();
@@ -1300,9 +1300,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("[[@Person().Name]]", indexes[0]);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_GetIndexes_Scalar_HasNoIndexes()
         {
             var _environment = new ExecutionEnvironment();
@@ -1311,9 +1311,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(0, indexes.Count);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_GetIndexes_GivenRecSet_ShouldReturn1Index()
         {
             var _environment = new ExecutionEnvironment();
@@ -1323,9 +1323,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(1, indexes.Count);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_EvalDelete_Should_Clear_RecordSet()
         {
             var _environment = new ExecutionEnvironment();
@@ -1338,9 +1338,9 @@ namespace Warewolf.Storage.Tests
             Assert.IsTrue(WarewolfDataEvaluationCommon.isNothing(result));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_AssignWithFrame_GivenEmptyString_ThrowsWithMessage()
         {
             var _environment = new ExecutionEnvironment();
@@ -1355,9 +1355,9 @@ namespace Warewolf.Storage.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_AssignWithFrame_GivenInvalidScalar_ShouldThrowException()
         {
             var _environment = new ExecutionEnvironment();
@@ -1374,9 +1374,9 @@ namespace Warewolf.Storage.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_AssignWithFrame()
         {
             var _environment = new ExecutionEnvironment();
@@ -1393,17 +1393,17 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("n2", result[1]);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_IsValidRecordSetIndex_Last()
         {
             Assert.IsTrue(ExecutionEnvironment.IsValidRecordSetIndex("[[rec().a]]"));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_IsValidRecordSetIndex_InvalidString()
         {
             // TODO: shouldn't this just return false to keep similarity with IsScalar?
@@ -1418,9 +1418,9 @@ namespace Warewolf.Storage.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_IsValidRecordSetIndex_EmptyString()
         {
             // BUG: this should pass?
@@ -1428,25 +1428,25 @@ namespace Warewolf.Storage.Tests
             Assert.IsTrue(ExecutionEnvironment.IsValidRecordSetIndex(""));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_IsValidRecordSetIndex_Number()
         {
             Assert.IsTrue(ExecutionEnvironment.IsValidRecordSetIndex("[[rec(1).b]]"));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_IsValidRecordSetIndex_Star()
         {
             Assert.IsTrue(ExecutionEnvironment.IsValidRecordSetIndex("[[rec(*).b]]"));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_AssignDataShape_Scalar()
         {
             var _environment = new ExecutionEnvironment();
@@ -1457,9 +1457,9 @@ namespace Warewolf.Storage.Tests
             Assert.IsTrue(value.IsNothing);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_AssignDataShape_Recset()
         {
             var _environment = new ExecutionEnvironment();
@@ -1476,9 +1476,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(0, stringValues.Length);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_EvalForDataMerge_ShouldReturnWarewolfEvalResult()
         {
             var _environment = new ExecutionEnvironment();
@@ -1492,9 +1492,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("bob", (resultItem.Item as DataStorage.WarewolfAtom.DataString).Item);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_EvalStrict_GivenUnAssignedVar_ShouldThrowNullValueInVariableException()
         {
             var _environment = new ExecutionEnvironment();
@@ -1510,9 +1510,9 @@ namespace Warewolf.Storage.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_EvalStrict_Should()
         {
             var _environment = new ExecutionEnvironment();
@@ -1526,9 +1526,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("Bob", (resultItem as DataStorage.WarewolfAtom.DataString).Item);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_Assign_GivenEmptyString_ShouldReturnWithoutAlteringEnvironment()
         {
             var _environment = new ExecutionEnvironment();
@@ -1540,9 +1540,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(jsonBefore, jsonAfter);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_AssignUnique_Distinct()
         {
             var cols = new List<string>
@@ -1567,9 +1567,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("bob1", result[1]);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_AssignUnique_TwoColumnRecsetOneDistinct()
         {
             var cols = new List<string>
@@ -1600,9 +1600,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("", result[2]);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         [ExpectedException(typeof(Exception))]
         public void ExecutionEnvironment_Eval_GivenInvalidExpression_ShouldThrowException()
         {
@@ -1611,9 +1611,9 @@ namespace Warewolf.Storage.Tests
             _environment.Eval(expression, 0, true);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_Eval_GivenInvalidExpressionAndthrowsifnotexistsIsFalse_ShouldReturnNothing()
         {
             var _environment = new ExecutionEnvironment();
@@ -1624,9 +1624,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(CommonFunctions.WarewolfEvalResult.NewWarewolfAtomResult(DataStorage.WarewolfAtom.Nothing), warewolfEvalResult);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_EvalJContainer_GivenEmptyString_ShouldReturn()
         {
 
@@ -1641,9 +1641,9 @@ namespace Warewolf.Storage.Tests
             Assert.IsNull(evalJContainer);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_EvalJContainer_GivenObjectWithOneField_GetField()
         {
             var _environment = new ExecutionEnvironment();
@@ -1655,9 +1655,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("Bob", (evalJContainer[0]["Name"]).Value<string>());
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_EvalJContainer_NameExpression_GetObject()
         {
 
@@ -1669,9 +1669,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("Bob", evalJContainer[0]["name"].ToString());
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_EvalJContainer_NonJson_DoesNotThrow()
         {
             var _environment = new ExecutionEnvironment();
@@ -1682,9 +1682,9 @@ namespace Warewolf.Storage.Tests
             Assert.IsNull(evalJContainer);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_EvalForJson_GivenEmptyString_ShouldReturnNothing()
         {
             var _environment = new ExecutionEnvironment();
@@ -1693,9 +1693,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(CommonFunctions.WarewolfEvalResult.NewWarewolfAtomResult(DataStorage.WarewolfAtom.Nothing), warewolfEvalResult);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_EvalForJson_GivenInvalidScalar_ShouldReturnNothing()
         {
             var _environment = new ExecutionEnvironment();
@@ -1707,9 +1707,9 @@ namespace Warewolf.Storage.Tests
             Assert.IsTrue(result.Item[0].IsNothing);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         [ExpectedException(typeof(IndexOutOfRangeException))]
         public void ExecutionEnvironment_EvalForJson_GivenInvalidIndex_ShouldThrow()
         {
@@ -1719,9 +1719,9 @@ namespace Warewolf.Storage.Tests
             var result = warewolfEvalResult as CommonFunctions.WarewolfEvalResult.WarewolfAtomListresult;
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_EvalForJson_GivenValid_ShouldReturn()
         {
             var _environment = new ExecutionEnvironment();
@@ -1733,9 +1733,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("some value", (result.Item[0] as DataStorage.WarewolfAtom.DataString).Item);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_EvalForJson_GivenInvalidScalar_ShouldNotThrow()
         {
 
@@ -1751,9 +1751,9 @@ namespace Warewolf.Storage.Tests
             Assert.IsTrue(resultItem[0].IsNothing);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_AssignJson_GivenEmptyString_ShouldNotThrow()
         {
 
@@ -1767,9 +1767,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(beforeJson, afterJson);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_AssignJson_GivenObjectExecutionEnvironment_ShouldAddObject()
         {
 
@@ -1783,9 +1783,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("{" + Environment.NewLine + "  \"Name\": \"John\"" + Environment.NewLine + "}", result[0]);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_AssignJson_GivenInvalidObject_ShouldThrowParseError()
         {
 
@@ -1803,9 +1803,9 @@ namespace Warewolf.Storage.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_Construct()
         {
             const string expectedJson = "{\"Environment\":{\"scalars\":{},\"record_sets\":{},\"json_objects\":{}},\"Errors\":[],\"AllErrors\":[]}";
@@ -1817,9 +1817,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(0, _environment.Errors.Count);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_WarewolfAtomToStringErrorIfNull_ShouldReturnString()
         {
             const string expected = "SomeString";
@@ -1830,9 +1830,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(expected, result);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_WarewolfAtomToStringErrorIfNull_ShouldReturnEmptyString()
         {
             var result = ExecutionEnvironment.WarewolfAtomToStringErrorIfNull(null);
@@ -1840,9 +1840,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("", result);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_AddToJsonObjects_ShouldAddJsonObject()
         {
             var expectedJson = "{\"Environment\":{\"scalars\":{},\"record_sets\":{},\"json_objects\":{\"Person\":null}},\"Errors\":[],\"AllErrors\":[]}";
@@ -1853,9 +1853,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(expectedJson, _environment.ToJson());
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_WarewolfAtomToStringErrorIfNull_ShouldThrow()
         {
             var atom = DataStorage.WarewolfAtom.Nothing;
@@ -1870,7 +1870,7 @@ namespace Warewolf.Storage.Tests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ExecutionEnvironment_WarewolfAtomToStringNullAsNothing_ShouldReturnNull()
         {
             var givenNoting = DataStorage.WarewolfAtom.Nothing;
@@ -1881,7 +1881,7 @@ namespace Warewolf.Storage.Tests
             Assert.IsNull(result);
         }
 
-        [TestMethod]
+        [Test]
         public void ExecutionEnvironment_WarewolfAtomToStringNullAsNothing_ShouldReturnString()
         {
             var givenSomeString = DataStorage.WarewolfAtom.NewDataString("SomeString");
@@ -1889,18 +1889,18 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(givenSomeString, result);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_WarewolfAtomToString_GivenNullForWarewolfAtom_ShouldReturnNull()
         {
             var result = ExecutionEnvironment.WarewolfAtomToString(null);
             Assert.IsTrue(string.IsNullOrEmpty(result));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_WarewolfAtomToString_GivenStringForWarewolfAtom_ShouldReturnString()
         {
             const string somestring = "SomeString";
@@ -1911,9 +1911,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(somestring, result);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_WarewolfAtomToString_GivenVarForWarewolfAtom_ShouldReturnVar()
         {
             const string somestring = "[[a]]";
@@ -1924,9 +1924,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(somestring, result);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_AddError_ShouldIncreaseErrorCount()
         {
             var _environment = new ExecutionEnvironment();
@@ -1939,9 +1939,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("error message #1", _environment.Errors.ToArray()[0]);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_HasErrors_ShouldBeTrue()
         {
             var _environment = new ExecutionEnvironment();
@@ -1951,9 +1951,9 @@ namespace Warewolf.Storage.Tests
             Assert.IsTrue(_environment.HasErrors());
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_HasErrors_Cleared_ReturnsFalse()
         {
             var _environment = new ExecutionEnvironment();
@@ -1967,9 +1967,9 @@ namespace Warewolf.Storage.Tests
             Assert.IsFalse(_environment.HasErrors());
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_HasErrors_IgnoresEmptyAndNull()
         {
             var _environment = new ExecutionEnvironment();
@@ -1987,9 +1987,9 @@ namespace Warewolf.Storage.Tests
             Assert.IsFalse(_environment.HasErrors());
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_FetchError_GivenErrorsAndAllErrorsHaveCount_ShouldJoinAllErrors()
         {
             var _environment = new ExecutionEnvironment();
@@ -2003,9 +2003,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(expected, _environment.ToJson());
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_FromJson_ShouldSetValidEnvironment()
         {
             // setup
@@ -2030,9 +2030,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("{" + Environment.NewLine + "  \"Name\": \"B\"" + Environment.NewLine + "}", jsonVal);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_FromJson_ShouldSetValidEnvironment1()
         {
             // setup
@@ -2043,9 +2043,9 @@ namespace Warewolf.Storage.Tests
             _environment.FromJson(serializedEnv);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_FromJson_GivenInvalid_NoThrow()
         {
             var _environment = new ExecutionEnvironment();
@@ -2056,9 +2056,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(expected, _environment.ToJson());
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_FromJson_GivenJsonSerializedEnv_EmptyString_ShouldNotUpdateEnvironment()
         {
             var _environment = new ExecutionEnvironment();
@@ -2069,9 +2069,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(expected, _environment.ToJson());
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ExecutionEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ExecutionEnvironment))]
         public void ExecutionEnvironment_GivenJsonSerializedEnv_FromJson_NullString_ShouldNotUpdateEnvironment()
         {
             var _environment = new ExecutionEnvironment();

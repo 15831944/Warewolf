@@ -1,17 +1,18 @@
 using Dev2.Data.Decisions.Operations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests.DecisionsTests
 {
     /// <summary>
     /// Summary description for IsEndsWithTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IsEndsWithTests
     {
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("IsEndsWith_Invoke")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("IsEndsWith_Invoke")]
         public void IsEndsWith_Invoke_DoesEndWith_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -22,12 +23,12 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = endsWith.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("IsEndsWith_Invoke")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("IsEndsWith_Invoke")]
         public void IsEndsWith_Invoke_DoesntEndWith_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -38,12 +39,12 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = endsWith.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
         
-        [TestMethod]
-        [Owner("Sanele Mthmembu")]
-        [TestCategory("IsEndsWith_HandlesType")]
+        [Test]
+        [Author("Sanele Mthmembu")]
+        [Category("IsEndsWith_HandlesType")]
         public void IsEndsWith_HandlesType_ReturnsIsEndsWithType()
         {
             var expected = enDecisionType.IsEndsWith;
@@ -51,7 +52,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             var isEndsWith = new IsEndsWith();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.AreEqual(expected, isEndsWith.HandlesType());
+            NUnit.Framework.Assert.AreEqual(expected, isEndsWith.HandlesType());
         }
     }
 }

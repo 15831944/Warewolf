@@ -11,14 +11,15 @@
 using System.Linq;
 using System.Reflection;
 using Dev2.Common.Interfaces.Core.Graph;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Framework.Converters.Graph.Poco;
 using Unlimited.UnitTest.Framework.ConverterTests.GraphTests;
 
 
 namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class PocoPathTests {
 
         #region GetSegements Tests
@@ -26,7 +27,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
         /// <summary>
         /// Get segments expected correct segment count returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void GetSegments_Expected_CorrectSegmentCount()
         {
             var path = new PocoPath("EnumerableData().NestedData.Name", "EnumerableData.NestedData.Name");
@@ -40,7 +41,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
         /// <summary>
         /// Get segments expected last segment is correct returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void GetSegments_Expected_LastSegmentIsCorrect()
         {
             var path = new PocoPath("EnumerableData().NestedData.NestedData.Name", "EnumerableData.NestedData.NestedData.Name");
@@ -58,7 +59,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
         /// <summary>
         /// Create enumerable path segment from property info expected enumerable poco path segment returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void CreateEnumerablePathSegmentFromPropertyInfo_Expected_EnumerablePocoPathSegment()
         {
             var propertyInfo = typeof(PocoTestData).GetProperty("EnumerableData");
@@ -74,7 +75,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
         /// <summary>
         /// Create scalar path segment from property info expected scalar poco path segment returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void CreateScalarPathSegmentFromPropertyInfo_Expected_ScalarPocoPathSegment()
         {
             var propertyInfo = typeof(PocoTestData).GetProperty("Name");
@@ -90,7 +91,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
         /// <summary>
         /// Create enumerable path segment from segment text expected enumerable poco path segment returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void CreateEnumerablePathSegmentFromSegmentText_Expected_EnumerablePocoPathSegment()
         {
             var path = new PocoPath();
@@ -105,7 +106,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
         /// <summary>
         /// Create scalar path segment from segment text expected scalar poco path segment returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void CreateScalarPathSegmentFromSegmentText_Expected_ScalarPocoPathSegment()
         {
             var path = new PocoPath();

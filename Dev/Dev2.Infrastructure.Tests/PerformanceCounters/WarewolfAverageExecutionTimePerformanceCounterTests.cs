@@ -1,14 +1,15 @@
 ﻿using Dev2.Common;
 using Dev2.Common.Interfaces.Monitoring;
 using Dev2.PerformanceCounters.Counters;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Linq;
 
 namespace Dev2.Infrastructure.Tests.PerformanceCounters
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WarewolfAverageExecutionTimePerformanceCounterTests
     {
         const string CounterName = "Average workflow execution time";
@@ -17,7 +18,7 @@ namespace Dev2.Infrastructure.Tests.PerformanceCounters
         string _categoryInstanceName = GlobalConstants.GlobalCounterName;
         Guid _resourceGuid = Guid.NewGuid();
 
-        [TestMethod]
+        [Test]
         public void WarewolfAverageExecutionTimePerformanceCounter_Construct()
         {
             var mockPerformanceCounterFactory = new Mock<IRealPerformanceCounterFactory>();
@@ -33,7 +34,7 @@ namespace Dev2.Infrastructure.Tests.PerformanceCounters
             }
         }
 
-        [TestMethod]
+        [Test]
         public void WarewolfAverageExecutionTimePerformanceCounter_CreationData_Valid()
         {
             var mockPerformanceCounterFactory = new Mock<IRealPerformanceCounterFactory>();
@@ -54,7 +55,7 @@ namespace Dev2.Infrastructure.Tests.PerformanceCounters
         }
 
 
-        [TestMethod]
+        [Test]
         public void WarewolfAverageExecutionTimePerformanceCounter_Reset_ClearsCounter()
         {
             var mockPerformanceCounterFactory = new Mock<IRealPerformanceCounterFactory>();
@@ -72,7 +73,7 @@ namespace Dev2.Infrastructure.Tests.PerformanceCounters
             mockCounter2.VerifySet(o => o.RawValue = 0, Times.Once);
         }
 
-        [TestMethod]
+        [Test]
         public void WarewolfAverageExecutionTimePerformanceCounter_Increment_CallsUnderlyingCounter()
         {
             var mockPerformanceCounterFactory = new Mock<IRealPerformanceCounterFactory>();
@@ -90,7 +91,7 @@ namespace Dev2.Infrastructure.Tests.PerformanceCounters
             mockCounter2.Verify(o => o.Increment(), Times.Once);
         }
 
-        [TestMethod]
+        [Test]
         public void WarewolfAverageExecutionTimePerformanceCounter_IncrementBy_CallsUnderlyingCounter()
         {
             var mockPerformanceCounterFactory = new Mock<IRealPerformanceCounterFactory>();
@@ -108,7 +109,7 @@ namespace Dev2.Infrastructure.Tests.PerformanceCounters
             mockCounter2.Verify(o => o.Increment(), Times.Once);
         }
 
-        [TestMethod]
+        [Test]
         public void WarewolfAverageExecutionTimePerformanceCounter_Setup_CreatesCounter()
         {
             var mockPerformanceCounterFactory = new Mock<IRealPerformanceCounterFactory>();
@@ -124,7 +125,7 @@ namespace Dev2.Infrastructure.Tests.PerformanceCounters
             mockPerformanceCounterFactory.Verify(o => o.New(GlobalConstants.Warewolf, CounterName2, GlobalConstants.GlobalCounterName), Times.Once);
         }
 
-        [TestMethod]
+        [Test]
         public void WarewolfAverageExecutionTimePerformanceCounter_Decrement_CallsUnderlyingCounter()
         {
             var mockPerformanceCounterFactory = new Mock<IRealPerformanceCounterFactory>();

@@ -9,16 +9,17 @@
 */
 
 using Dev2.Data.Decisions.Operations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests.DecisionsTests.Operations
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IsNotAlphanumericTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(IsNotAlphanumeric))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(IsNotAlphanumeric))]
         public void IsNotAlphanumeric_Invoke_DoesEndWith_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -28,12 +29,12 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //------------Execute Test---------------------------
             var result = isNotAlphanumeric.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(IsNotAlphanumeric))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(IsNotAlphanumeric))]
         public void IsNotAlphanumeric_Invoke_DoesntEndWith_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -43,12 +44,12 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //------------Execute Test---------------------------
             var result = isNotAlphanumeric.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(IsNotAlphanumeric))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(IsNotAlphanumeric))]
         public void IsNotAlphanumeric_Invoke_EmptyColumns_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -58,12 +59,12 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //------------Execute Test---------------------------
             var result = isNotAlphanumeric.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(IsNotAlphanumeric))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(IsNotAlphanumeric))]
         public void IsNotAlphanumeric_HandlesType_ReturnsIsNotAlphanumericType()
         {
             var expected = enDecisionType.IsNotAlphanumeric;
@@ -71,7 +72,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             var IsNotAlphanumeric = new IsNotAlphanumeric();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.AreEqual(expected, IsNotAlphanumeric.HandlesType());
+            NUnit.Framework.Assert.AreEqual(expected, IsNotAlphanumeric.HandlesType());
         }
     }
 }

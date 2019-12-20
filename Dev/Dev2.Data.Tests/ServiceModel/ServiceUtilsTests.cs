@@ -13,16 +13,17 @@ using System.Text;
 using Dev2.Common.Interfaces.Data;
 using Dev2.Data.ServiceModel.Helper;
 using Dev2.DataList.Contract;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests.ServiceModel
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ServiceUtilsTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ServiceUtils_MappingNamesChanged")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ServiceUtils_MappingNamesChanged")]
         public void ServiceUtils_MappingNamesChanged_OldMappingsIsNull_True()
         {
             //------------Setup for test--------------------------
@@ -31,12 +32,12 @@ namespace Dev2.Data.Tests.ServiceModel
             var actual = ServiceUtils.MappingNamesChanged(null, new List<IDev2Definition>());
 
             //------------Assert Results-------------------------
-            Assert.IsTrue(actual);
+            NUnit.Framework.Assert.IsTrue(actual);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ServiceUtils_MappingNamesChanged")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ServiceUtils_MappingNamesChanged")]
         public void ServiceUtils_MappingNamesChanged_NewMappingsIsNull_True()
         {
             //------------Setup for test--------------------------
@@ -45,12 +46,12 @@ namespace Dev2.Data.Tests.ServiceModel
             var actual = ServiceUtils.MappingNamesChanged(new List<IDev2Definition>(), null);
 
             //------------Assert Results-------------------------
-            Assert.IsTrue(actual);
+            NUnit.Framework.Assert.IsTrue(actual);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ServiceUtils_MappingNamesChanged")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ServiceUtils_MappingNamesChanged")]
         public void GivenXmlDoesNotContainDatalist_ServiceUtils_ExtractDataListShouldReturnEmptyString()
         {
             const string xmlDocument = "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"no\"?>" +
@@ -63,12 +64,12 @@ namespace Dev2.Data.Tests.ServiceModel
             stringBuilder.AppendLine(xmlDocument);
             var actual = ServiceUtils.ExtractDataList(stringBuilder);
             //------------Assert Results-------------------------
-            Assert.AreEqual(string.Empty, actual);
+            NUnit.Framework.Assert.AreEqual(string.Empty, actual);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ServiceUtils_MappingNamesChanged")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ServiceUtils_MappingNamesChanged")]
         public void ServiceUtils_MappingNamesChanged_OldAndNewMappingsAreSame_False()
         {
             //------------Setup for test--------------------------
@@ -91,12 +92,12 @@ namespace Dev2.Data.Tests.ServiceModel
             var actual = ServiceUtils.MappingNamesChanged(oldMappings, newMappings);
 
             //------------Assert Results-------------------------
-            Assert.IsFalse(actual);
+            NUnit.Framework.Assert.IsFalse(actual);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ServiceUtils_MappingNamesChanged")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ServiceUtils_MappingNamesChanged")]
         public void ServiceUtils_MappingNamesChanged_OldAndNewMappingsHaveDifferentCounts_True()
         {
             //------------Setup for test--------------------------
@@ -118,12 +119,12 @@ namespace Dev2.Data.Tests.ServiceModel
             var actual = ServiceUtils.MappingNamesChanged(oldMappings, newMappings);
 
             //------------Assert Results-------------------------
-            Assert.IsTrue(actual);
+            NUnit.Framework.Assert.IsTrue(actual);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ServiceUtils_MappingNamesChanged")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ServiceUtils_MappingNamesChanged")]
         public void ServiceUtils_MappingNamesChanged_OldAndNewMappingsAreDifferent_True()
         {
             //------------Setup for test--------------------------
@@ -146,7 +147,7 @@ namespace Dev2.Data.Tests.ServiceModel
             var actual = ServiceUtils.MappingNamesChanged(oldMappings, newMappings);
 
             //------------Assert Results-------------------------
-            Assert.IsTrue(actual);
+            NUnit.Framework.Assert.IsTrue(actual);
         }
 
         static IDev2Definition CreateNameMapping(string name)

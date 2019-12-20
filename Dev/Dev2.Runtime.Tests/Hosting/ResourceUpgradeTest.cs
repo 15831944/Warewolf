@@ -11,18 +11,19 @@
 using System;
 using System.Xml.Linq;
 using Dev2.Runtime.Hosting;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Runtime.Hosting
 {
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class ResourceUpgradeTest
     {
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ResourceUpgrade_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ResourceUpgrade_Ctor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ResourceUpgrade_Ctor_Null_Params_Func()
         {
@@ -36,16 +37,16 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ResourceUpgrade_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ResourceUpgrade_Ctor")]
         public void ResourceUpgrade_Properties()
         {
             //------------Setup for test--------------------------
             
             var x = new Func<XElement,XElement>( async=>async);
             var a = new ResourceUpgrade(x);
-            Assert.AreEqual(x,a.UpgradeFunc);
+            NUnit.Framework.Assert.AreEqual(x,a.UpgradeFunc);
             
 
             //------------Execute Test---------------------------

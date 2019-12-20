@@ -10,18 +10,19 @@
 
 using Dev2.Activities.DropBox2016.Result;
 using Dropbox.Api.Files;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.Activities.ActivityTests.DropBox2016
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
 
         public class DropboxListFolderResultShould
         {
-            [TestMethod]
-            [Owner("Nkosinathi Sangweni")]
-            [TestCategory(nameof(DropboxListFolderSuccesResult))]
+            [Test]
+            [Author("Nkosinathi Sangweni")]
+            [Category(nameof(DropboxListFolderSuccesResult))]
             public void DropboxListFolderSuccesResult_ConstructDropBoxSuccessResult_GivenListFolderResult_ShouldRetunNewSuccessResult()
             {
                 //---------------Set up test pack-------------------
@@ -33,9 +34,9 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016
                 Assert.IsNotNull(successResult);
             }
 
-            [TestMethod]
-            [Owner("Siphamandla Dube")]
-            [TestCategory(nameof(DropboxListFolderSuccesResult))]
+            [Test]
+            [Author("Siphamandla Dube")]
+            [Category(nameof(DropboxListFolderSuccesResult))]
             public void DropboxListFolderSuccesResult_GivenListFolderResult_Expect_ILIstFolderResult()
             {
                 //---------------Set up test pack-------------------

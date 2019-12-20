@@ -11,19 +11,20 @@
 using Dev2.Data.ServiceModel;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Tests.Runtime.XML;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Newtonsoft.Json;
 using System;
 using System.Xml.Linq;
 namespace Dev2.Tests.Runtime.ServiceModel.Data
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ConnectionTests
     {
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("Connection")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("Connection")]
         public void Connection_GetTestConnectionAddress_WhenDsfPresent_ExpectSameAddress()
         {
             //------------Setup for test--------------------------
@@ -39,13 +40,13 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             var result = conn.FetchTestConnectionAddress();
 
             //------------Assert Results-------------------------
-            StringAssert.Contains(result, address);
+            NUnit.Framework.StringAssert.Contains(result, address);
 
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("Connection")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("Connection")]
         public void Connection_GetTestConnectionAddress_WhenOnlySlashPresent_ExpectDsfAdded()
         {
 
@@ -63,12 +64,12 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             var result = conn.FetchTestConnectionAddress();
 
             //------------Assert Results-------------------------
-            StringAssert.Contains(result, expected);
+            NUnit.Framework.StringAssert.Contains(result, expected);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("Connection")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("Connection")]
         public void Connection_GetTestConnectionAddress_WhenNoSlashPresent_ExpectSlashAndDsfAdded()
         {
             //------------Setup for test--------------------------
@@ -85,34 +86,34 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             var result = conn.FetchTestConnectionAddress();
 
             //------------Assert Results-------------------------
-            StringAssert.Contains(result, expected);
+            NUnit.Framework.StringAssert.Contains(result, expected);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("Connection")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("Connection")]
         public void Connection_ToString_FullySetupObject_Expected_JSONSerializedObjectReturnedAsString()
         {
             var testConnection = SetupDefaultConnection();
             var actualConnectionToString = testConnection.ToString();
             var expected = JsonConvert.SerializeObject(testConnection);
-            Assert.AreEqual(expected, actualConnectionToString);
+            NUnit.Framework.Assert.AreEqual(expected, actualConnectionToString);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("Connection")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("Connection")]
         public void Connection_ToString_EmptyObject_Expected_()
         {
             var testConnection = new Connection();
             var actualSerializedConnection = testConnection.ToString();
             var expected = JsonConvert.SerializeObject(testConnection);
-            Assert.AreEqual(expected, actualSerializedConnection);
+            NUnit.Framework.Assert.AreEqual(expected, actualSerializedConnection);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("Connection")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("Connection")]
         public void Connection_ToXml_AllPropertiesSetup_Expected_XElementContainingAllObjectInformation()
         {
 
@@ -126,15 +127,15 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             {
                 if (attribEnum.Current.Name == "Name")
                 {
-                    Assert.AreEqual("TestResourceIMadeUp", attribEnum.Current.Value);
+                    NUnit.Framework.Assert.AreEqual("TestResourceIMadeUp", attribEnum.Current.Value);
                     break;
                 }
             }
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("Connection")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("Connection")]
         public void Connection_ToXml_EmptyObject_Expected_XElementContainingNoInformationRegardingSource()
         {
             var testConnection = new Connection();
@@ -146,15 +147,15 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             {
                 if (attribEnum.Current.Name == "Name")
                 {
-                    Assert.AreEqual(string.Empty, attribEnum.Current.Value);
+                    NUnit.Framework.Assert.AreEqual(string.Empty, attribEnum.Current.Value);
                     break;
                 }
             }
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("Connection")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("Connection")]
         public void Connection_Equals_Connection_Return_False()
         {
             var testConnection = new Connection()
@@ -177,41 +178,41 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
                 Password = "password2",
                 WebServerPort = 12343
             };
-            Assert.IsFalse(testConnection.Equals(testConnectionOther));
+            NUnit.Framework.Assert.IsFalse(testConnection.Equals(testConnectionOther));
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("Connection")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("Connection")]
         public void Connection_Equals_Object_Return_False()
         {
             var testConnection = SetupDefaultConnection();
             object other = new object();
-            Assert.IsFalse(testConnection.Equals(other));
+            NUnit.Framework.Assert.IsFalse(testConnection.Equals(other));
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("Connection")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("Connection")]
         public void Connection_Equals_Object_Connection_Return_False()
         {
             var testConnection = SetupDefaultConnection();
             object other = new object();
             other = testConnection;
-            Assert.IsTrue(testConnection.Equals(other));
+            NUnit.Framework.Assert.IsTrue(testConnection.Equals(other));
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("Connection")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("Connection")]
         public void Connection_Equals_Object_Null_Return_False()
         {
             var testConnection = SetupDefaultConnection();
             object other = new object();
             other = null;
-            Assert.IsFalse(testConnection.Equals(other));
+            NUnit.Framework.Assert.IsFalse(testConnection.Equals(other));
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("Connection")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("Connection")]
         public void Connection_Ctor_XElement()
         {
             XElement _connectionXml;
@@ -219,25 +220,25 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
 
             _connectionXml = XmlResource.Fetch("ServerConnection2");
             _connection = new Connection(_connectionXml);
-            Assert.AreEqual(1235, _connection.WebServerPort);
-            Assert.AreEqual("http://127.0.0.2:1235/", _connection.Address);
-            Assert.AreEqual(AuthenticationType.User, _connection.AuthenticationType);
-            Assert.AreEqual("Dev2", _connection.Password);
-            Assert.AreEqual("Dev2Server", _connection.ResourceType);
-            Assert.AreEqual("http://127.0.0.2:1235/", _connection.WebAddress);
+            NUnit.Framework.Assert.AreEqual(1235, _connection.WebServerPort);
+            NUnit.Framework.Assert.AreEqual("http://127.0.0.2:1235/", _connection.Address);
+            NUnit.Framework.Assert.AreEqual(AuthenticationType.User, _connection.AuthenticationType);
+            NUnit.Framework.Assert.AreEqual("Dev2", _connection.Password);
+            NUnit.Framework.Assert.AreEqual("Dev2Server", _connection.ResourceType);
+            NUnit.Framework.Assert.AreEqual("http://127.0.0.2:1235/", _connection.WebAddress);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("Connection")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("Connection")]
         public void Connection_GetHashCode()
         {
             var connection = SetupDefaultConnection();
             connection.GetHashCode();
-            Assert.AreNotEqual(0, connection.GetHashCode());
+            NUnit.Framework.Assert.AreNotEqual(0, connection.GetHashCode());
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("Connection")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("Connection")]
         public void Connection_GetHashCode_NullValues()
         {
             var testConnection = new Connection
@@ -252,7 +253,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
                 WebServerPort = 8080
             };
             testConnection.GetHashCode();
-            Assert.AreNotEqual(0, testConnection.GetHashCode());
+            NUnit.Framework.Assert.AreNotEqual(0, testConnection.GetHashCode());
         }
 
 

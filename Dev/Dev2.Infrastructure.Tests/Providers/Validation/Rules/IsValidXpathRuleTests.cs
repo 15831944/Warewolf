@@ -9,17 +9,18 @@
 */
 
 using Dev2.Providers.Validation.Rules;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class IsValidXpathRuleTests
     {
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("IsValidXpathRule_Check")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("IsValidXpathRule_Check")]
         public void IsValidXpathRule_Check_StringIsEmpty_ReturnsError()
         {
             //------------Setup for test--------------------------
@@ -31,9 +32,9 @@ namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
             Assert.AreEqual("Xpath is not a valid expression", errorInfo.Message);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("IsValidXpathRule_Check")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("IsValidXpathRule_Check")]
         public void IsValidXpathRule_Check_StringIsInvalidXPath_ReturnsError()
         {
             //------------Setup for test--------------------------
@@ -46,9 +47,9 @@ namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
         }
 
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("IsValidXpathRule_Check")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("IsValidXpathRule_Check")]
         public void IsValidXpathRule_Check_StringInvalidXPath_ReturnsNoError()
         {
             //------------Setup for test--------------------------

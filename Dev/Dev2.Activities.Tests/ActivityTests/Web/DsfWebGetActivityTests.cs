@@ -25,7 +25,7 @@ using Dev2.Interfaces;
 using Dev2.Runtime.Interfaces;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Tests.Activities.XML;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Framework.Converters.Graph.Ouput;
 using Unlimited.Framework.Converters.Graph.String.Json;
@@ -35,12 +35,13 @@ using Warewolf.Storage.Interfaces;
 
 namespace Dev2.Tests.Activities.ActivityTests.Web
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfWebGetActivityTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DsfWebGetActivity_Execute")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DsfWebGetActivity_Execute")]
         public void DsfWebGetActivity_Execute_WithValidTextResponse_ShouldSetVariables()
         {
             //------------Setup for test--------------------------
@@ -84,9 +85,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual(response, ExecutionEnvironment.WarewolfEvalResultToString(environment.Eval("[[Response]]", 0)));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfWebGetActivity_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfWebGetActivity_Execute")]
         public void DsfWebGetActivity_Execute_ErrorResponse_ShouldSetVariables()
         {
             //------------Setup for test--------------------------
@@ -121,9 +122,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual(response, ExecutionEnvironment.WarewolfEvalResultToString(environment.Eval("[[Message]]", 0)));
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetActivity))]
         public void DsfWebGetActivity_ExecutionImpl_ErrorResultTO_ReturnErrors_ToActivity_Success()
         {
             //-----------------------Arrange-------------------------

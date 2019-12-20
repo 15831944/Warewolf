@@ -16,7 +16,7 @@ using ActivityUnitTests;
 using Dev2.Activities;
 using Dev2.Common.State;
 using Dev2.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Warewolf.Storage;
 
 namespace Dev2.Tests.Activities.ActivityTests
@@ -24,7 +24,8 @@ namespace Dev2.Tests.Activities.ActivityTests
     /// <summary>
     /// Summary description for DataSplitActivityTest
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class UniqueActivityTests : BaseActivityUnitTest
     {
         /// <summary>
@@ -34,7 +35,7 @@ namespace Dev2.Tests.Activities.ActivityTests
         public TestContext TestContext { get; set; }
 
 
-        [TestMethod]
+        [Test]
         public void EmptyInFieldsStringExpectedNoUnique()
         {
             const string DataList = "<ADL><recset1>\r\n\t\t<field1/>\r\n\t</recset1>\r\n\t<recset2>\r\n\t\t<field2/>\r\n\t</recset2>\r\n\t<OutVar1/>\r\n\t<OutVar2/>\r\n\t<OutVar3/>\r\n\t<OutVar4/>\r\n\t<OutVar5/>\r\n</ADL>";
@@ -47,7 +48,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("", actual);
         }
 
-        [TestMethod]
+        [Test]
         public void RecordsetWithWithNoRecordsInRecSetExpectedUniqueAndAppendRecords()
         {
             const string DataList = "<ADL><recset1><field1/><field2/><field3/></recset1><recset2><id/><value/></recset2><OutVar1/></ADL>";
@@ -86,7 +87,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             CollectionAssert.AreEqual(expected, actualRet, comparer);
         }
 
-        [TestMethod]
+        [Test]
         public void ScalarResultExpectedError()
         {
             const string DataList = "<ADL><recset1><field1/><field2/><field3/></recset1><recset2><id/><value/></recset2><OutVar1/></ADL>";
@@ -121,7 +122,7 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
+        [Test]
         public void RecordsetWithWithRecordsInRecSetExpectedUniqueAndAppendRecords()
         {
             const string DataList = "<ADL><recset1><field1/><field2/><field3/></recset1><recset2><id/><value/></recset2><OutVar1/></ADL>";
@@ -163,7 +164,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             CollectionAssert.AreEqual(expected, actualRet, comparer);
         }
 
-        [TestMethod]
+        [Test]
         public void RecordsetWithWithMulitpleRecordsInRecSetExpectedUniqueAndAppendRecords()
         {
             const string DataList = "<ADL><recset1><field1/><field2/><field3/></recset1><recset2><id/><value/></recset2><OutVar1/></ADL>";
@@ -210,10 +211,10 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [Owner("Travis")]
+        [Test]
+        [Author("Travis")]
         [Description("Ensure we can use the star notation in the unique tool!")]
-        [TestCategory("UniqueTool,UnitTest")]
+        [Category("UniqueTool,UnitTest")]
         public void CanUniqueToolUseStarNotationInResultsFields()
         {
             const string DataList = "<ADL><recset1><field1/><field2/><field3/></recset1><recset2><id/><value/></recset2><OutVar1/></ADL>";
@@ -259,10 +260,10 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [Owner("Travis")]
+        [Test]
+        [Author("Travis")]
         [Description("Ensure we can use mixed star and append notation in the unique tool!")]
-        [TestCategory("UniqueTool,UnitTest")]
+        [Category("UniqueTool,UnitTest")]
         public void CanUniqueToolUseStarAndAppendNotationInResultsFields()
         {
             const string DataList = "<ADL><recset1><field1/><field2/><field3/></recset1><recset2><id/><value/></recset2><OutVar1/></ADL>";
@@ -320,9 +321,9 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfUniqueActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfUniqueActivity_UpdateForEachInputs")]
         public void DsfUniqueActivity_UpdateForEachInputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -338,9 +339,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(ResultFields, act.ResultFields);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfUniqueActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfUniqueActivity_UpdateForEachInputs")]
         public void DsfUniqueActivity_UpdateForEachInputs_MoreThan1Updates_Updates()
         {
             //------------Setup for test--------------------------
@@ -359,9 +360,9 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfUniqueActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfUniqueActivity_UpdateForEachOutputs")]
         public void DsfUniqueActivity_UpdateForEachOutputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -375,9 +376,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(Result, act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfUniqueActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfUniqueActivity_UpdateForEachOutputs")]
         public void DsfUniqueActivity_UpdateForEachOutputs_MoreThan1Updates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -394,9 +395,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(Result, act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfUniqueActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfUniqueActivity_UpdateForEachOutputs")]
         public void DsfUniqueActivity_UpdateForEachOutputs_1Updates_UpdateCommandResult()
         {
             //------------Setup for test--------------------------
@@ -412,9 +413,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Test", act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfUniqueActivity_GetForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfUniqueActivity_GetForEachInputs")]
         public void DsfUniqueActivity_GetForEachInputs_WhenHasExpression_ReturnsInputList()
         {
             //------------Setup for test--------------------------
@@ -433,9 +434,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(ResultFields, dsfForEachItems[1].Value);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfUniqueActivity_GetForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfUniqueActivity_GetForEachOutputs")]
         public void DsfUniqueActivity_GetForEachOutputs_WhenHasResult_ReturnsOutputList()
         {
             //------------Setup for test--------------------------
@@ -453,9 +454,9 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("GetOutputs")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("GetOutputs")]
         public void GetOutputs_Called_ShouldReturnListWithResultValueInIt()
         {
             //------------Setup for test--------------------------
@@ -470,9 +471,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("[[res]]", outputs[0]);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("Errors")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("Errors")]
         public void DsfUniqueActivity_ResultIsEmpty()
         {
             const string DataList = "<ADL><recset1>\r\n\t\t<field1/>\r\n\t</recset1>\r\n\t<recset2>\r\n\t\t<field2/>\r\n\t</recset2>\r\n\t<OutVar1/>\r\n\t<OutVar2/>\r\n\t<OutVar3/>\r\n\t<OutVar4/>\r\n\t<OutVar5/>\r\n</ADL>";
@@ -481,8 +482,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Invalid In fields", result.Environment.FetchErrors());
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
+        [Test]
+        [Author("Candice Daniel")]
         public void GivenEmptyStringAndName_ExecutionEnvironmentIsValidRecordSetIndex_ShouldReturn()
         {
             ExecutionEnvironment _environment;
@@ -490,9 +491,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsNotNull(_environment);
             Assert.IsTrue(ExecutionEnvironment.IsValidRecordSetIndex("[[rec().a]]"));
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("DsfUniqueActivity_GetState")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("DsfUniqueActivity_GetState")]
         public void DsfUniqueActivity_GetState()
         {
             //------------Setup for test--------------------------

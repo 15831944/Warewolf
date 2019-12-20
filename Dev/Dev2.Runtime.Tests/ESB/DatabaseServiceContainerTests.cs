@@ -12,19 +12,20 @@ using System;
 using Dev2.Data.TO;
 using Dev2.Runtime.ESB.Execution;
 using Dev2.Services.Execution;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Tests.Runtime.ESB
 {
-    [TestClass]
-    [TestCategory("Runtime ESB")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime ESB")]
     public class DatabaseServiceContainerTests
     {
         #region ClassInitialize
 
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void MyClassInitialize(TestContext context)
         {
         }
@@ -33,7 +34,7 @@ namespace Dev2.Tests.Runtime.ESB
 
         #region Execute
 
-        [TestMethod]
+        [Test]
         public void DatabaseServiceContainer_UnitTest_ExecuteWhereHasDatabaseServiceExecution_Guid()
         {
             //------------Setup for test--------------------------
@@ -45,7 +46,7 @@ namespace Dev2.Tests.Runtime.ESB
             //------------Execute Test---------------------------
             var actual = databaseServiceContainer.Execute(out errors, 0);
             //------------Assert Results-------------------------
-            Assert.AreEqual(expected, actual, "Execute should return the Guid from the service execution");
+            NUnit.Framework.Assert.AreEqual(expected, actual, "Execute should return the Guid from the service execution");
         }
 
         #endregion

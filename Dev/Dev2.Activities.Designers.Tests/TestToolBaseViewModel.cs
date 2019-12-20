@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using Dev2.Activities.Designers2.Core;
 using Dev2.Common.Interfaces.ToolBase;
 using Dev2.Studio.Core.Activities.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 
@@ -110,19 +110,20 @@ namespace Dev2.Activities.Designers.Tests
         #endregion
     }
 
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class TestViewModelWithRegionsBase
     {
-        [TestMethod]
+        [Test]
         public void CustomToolWithRegionBase_Ctor()
         {
             CustomToolWithRegionBase b = new ImplRegionBase(ModelItemUtils.CreateModelItem(new DsfFileRead()));
             b.Regions = b.BuildRegions();
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("CustomToolWithRegionBase_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("CustomToolWithRegionBase_Ctor")]
         public void CustomToolWithRegionBase_Ctor_ValidRegions_HasCorrectHeights()
         {
             //------------Setup for test--------------------------

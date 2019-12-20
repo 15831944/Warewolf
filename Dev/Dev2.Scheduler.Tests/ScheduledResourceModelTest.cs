@@ -15,7 +15,7 @@ using Dev2.Common.Interfaces.Wrappers;
 using Dev2.Communication;
 using Dev2.Diagnostics.Debug;
 using Dev2.Runtime.ESB.Management.Services;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Microsoft.Win32.TaskScheduler;
 using Moq;
 using System;
@@ -26,7 +26,8 @@ using System.Text;
 
 namespace Dev2.Scheduler.Test
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ScheduledResourceModelTest
     {
         Mock<IDev2TaskService> _mockService;
@@ -36,7 +37,7 @@ namespace Dev2.Scheduler.Test
         Mock<ITaskFolder> _folder;
         Mock<ISecurityWrapper> _wrapper;
 
-        [TestInitialize]
+        [SetUp]
         public void Init()
         {
             _mockService = new Mock<IDev2TaskService>();
@@ -49,9 +50,9 @@ namespace Dev2.Scheduler.Test
             _wrapper.Setup(a => a.IsWarewolfAuthorised(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>())).Returns(true);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ScheduledResourceModel")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ScheduledResourceModel")]
         public void ScheduledResourceModel_Constructor_ShouldConstruct()
         {
             _mockService.Setup(a => a.GetFolder(_folderId)).Returns(_folder.Object);
@@ -64,9 +65,9 @@ namespace Dev2.Scheduler.Test
             Assert.AreEqual(0, model.ScheduledResources.Count);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ScheduledResourceModel")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ScheduledResourceModel")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ScheduledResourceModel_Constructor_ShouldThrowErrorIfArgsNull()
         {
@@ -99,9 +100,9 @@ securityWrapper
             actual = new StringBuilder(actual).Replace(Environment.NewLine, "\n").Replace("\r", "").ToString();
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ScheduledResourceModel")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ScheduledResourceModel")]
         public void ScheduledResourceModel_Constructor_ShouldSelectedCorrectResources()
         {
             SetupSingleTask();
@@ -109,9 +110,9 @@ securityWrapper
             Assert.AreEqual(1, model.ScheduledResources.Count);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ScheduledResourceModel_ScheduledResources")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ScheduledResourceModel_ScheduledResources")]
         public void ScheduledResourceModel_Constructor_ShouldSelectedCorrectResourcesWithId()
         {
             SetupSingleTaskWithId();
@@ -119,9 +120,9 @@ securityWrapper
             Assert.AreEqual(1, model.ScheduledResources.Count);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ScheduledResourceModel")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ScheduledResourceModel")]
         public void ScheduledResourceModel_CorrectSelectedResources()
         {
             SetupSingleTask();
@@ -132,9 +133,9 @@ securityWrapper
             Assert.AreEqual("a", a.WorkflowName);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ScheduledResourceModel")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ScheduledResourceModel")]
         public void ScheduledResourceModel_ShouldDeleteTest_Valid()
         {
             SetupSingleTask();
@@ -153,9 +154,9 @@ securityWrapper
             mockFolder.Verify(a => a.DeleteTask("Dora", false));
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ScheduledResourceModel")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ScheduledResourceModel")]
         public void ScheduledResourceModel_Delete_InValid()
         {
             //setup
@@ -177,9 +178,9 @@ securityWrapper
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ScheduledResourceModel")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ScheduledResourceModel")]
         public void ScheduledResourceModel_HistoryTest_CorrectTaskEventsSelected()
         {
             var startTime = new DateTime(2000, 1, 1);
@@ -204,9 +205,9 @@ securityWrapper
             Assert.AreEqual(endTime, history.Last().DebugOutput.First().EndTime);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ScheduledResourceModel")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ScheduledResourceModel")]
         public void ScheduledResourceModel_HistoryTestDebugCreated()
         {
             var startTime = new DateTime(2000, 1, 1);
@@ -245,9 +246,9 @@ securityWrapper
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ScheduledResourceModel")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ScheduledResourceModel")]
         public void ScheduledResourceModel_HistoryTestStatusNotFoundIfNoDebugDebugCreated()
         {
             var startTime = new DateTime(2000, 1, 1);
@@ -283,9 +284,9 @@ securityWrapper
             Assert.AreEqual(0, history.Count);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ScheduledResourceModel")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ScheduledResourceModel")]
         public void ScheduledResourceModel_HistoryTestStatusFailedWindowsSchedulerError()
         {
             //setup
@@ -318,9 +319,9 @@ securityWrapper
             Assert.AreEqual(ScheduleRunStatus.Error, history.Last().TaskHistoryOutput.Success);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ScheduledResourceModel")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ScheduledResourceModel")]
         public void ScheduledResourceModel_HistoryTestDebugCreated_StatusFailureIfDebugHasError()
         {
             //setup
@@ -354,9 +355,9 @@ securityWrapper
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ScheduledResourceModel")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ScheduledResourceModel")]
         public void ScheduledResourceModel_SaveTestValid()
         {
             //create objects
@@ -392,9 +393,9 @@ securityWrapper
             mockFolder.Verify(a => a.RegisterTaskDefinition("henry", task.Object, TaskCreation.CreateOrUpdate, "user", "pwd", TaskLogonType.InteractiveTokenOrPassword));
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ScheduledResourceModel")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ScheduledResourceModel")]
         public void ScheduledResourceModel_SaveInvalidWindowsUserPermissions()
         {
             //create objects
@@ -410,9 +411,9 @@ securityWrapper
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ScheduledResourceModel_Save")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ScheduledResourceModel_Save")]
         public void ScheduledResourceModel_SaveInvalidWarewolfUserPermissions()
         {
             //create objects
@@ -428,9 +429,9 @@ securityWrapper
             Assert.AreEqual(Warewolf.Resource.Errors.ErrorResource.ScheduledResourceInvalidUserPermissionErrorTest, errorMessage);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ScheduledResourceModel")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ScheduledResourceModel")]
         public void ScheduledResourceModel_SaveInvalidName()
         {
             //create objects
@@ -447,9 +448,9 @@ securityWrapper
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ScheduledResourceModel")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ScheduledResourceModel")]
         public void ScheduledResourceModel_SaveTest_UserPassword()
         {
             SetupSingleTask();

@@ -9,17 +9,18 @@
 */
 
 using Dev2.Studio.Core.AppResources.Browsers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests.AppResources.Browsers
 {
-    [TestClass]
-	[TestCategory("Studio Resources Core")]
+    [TestFixture]
+    [SetUpFixture]
+	[Category("Studio Resources Core")]
     public class BrowserPopupControllerTests
     {
         #region ShowPopup
 
-        [TestMethod]
+        [Test]
         public void ExternalBrowserPopupControllerShowPopupExpectedNoUnhandledExceptions()
         {
             var controller = new ExternalBrowserPopupController();

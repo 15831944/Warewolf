@@ -31,31 +31,29 @@ using Dev2.Studio.Core.Models.DataList;
 using Dev2.Studio.Interfaces;
 using Dev2.Studio.ViewModels.DataList;
 using Dev2.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
-
-
-
-
-
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Warewolf.Studio.ViewModels.Tests
 {
-	[TestClass]
+	[TestFixture]
+    [SetUpFixture]
 	public partial class ServiceTestViewModelTests
 	{
 
-        [TestInitialize]
+        [SetUp]
         public void Init()
         {
             CustomContainer.Register(new Mock<IWarewolfWebClient>().Object);
         }
 
-        [TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
-		[TestCategory("TestFrameworkViewModel_Constructor")]
-		[ExpectedException(typeof(ArgumentNullException))]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
+		[Category("TestFrameworkViewModel_Constructor")]
+		[NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
 		public void TestFrameworkViewModel_Constructor_NullResourceModel_ShouldThrowException()
 		{
 			//------------Setup for test--------------------------
@@ -66,10 +64,11 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//------------Assert Results-------------------------
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
-		[TestCategory("TestFrameworkViewModel_Constructor")]
-		[ExpectedException(typeof(NullReferenceException))]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
+		[Category("TestFrameworkViewModel_Constructor")]
+		[NUnit.Framework.ExpectedException(typeof(NullReferenceException))]
 		public void TestFrameworkViewModel_MsgConstructor_NullMessage_ShouldThrowException()
 		{
 			//------------Setup for test--------------------------
@@ -83,8 +82,9 @@ namespace Warewolf.Studio.ViewModels.Tests
 
 
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void TestFrameworkViewModel_MsgConstructor_MessageResourceModel_ShouldCreateNewtest()
 		{
 			//------------Setup for test--------------------------
@@ -99,13 +99,14 @@ namespace Warewolf.Studio.ViewModels.Tests
             testViewModel.WebClient = new Mock<IWarewolfWebClient>().Object;
 			//------------Execute Test---------------------------
 			//------------Assert Results-------------------------
-			Assert.IsNotNull(testViewModel.SelectedServiceTest);
+			NUnit.Framework.Assert.IsNotNull(testViewModel.SelectedServiceTest);
 		}
 
 
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void TestFrameworkViewModel_MsgConstructor_MsgWithInputValues_ShouldAddInputvalues()
 		{
 			//------------Setup for test--------------------------
@@ -120,11 +121,12 @@ namespace Warewolf.Studio.ViewModels.Tests
 
 			//------------Execute Test---------------------------
 			//------------Assert Results-------------------------
-			Assert.IsNotNull(testViewModel.SelectedServiceTest);
+			NUnit.Framework.Assert.IsNotNull(testViewModel.SelectedServiceTest);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void ShoDuplicatePopup_GivenIsInvoked_ShouldShowCorrectMessage()
 		{
 			//---------------Set up test pack-------------------
@@ -140,9 +142,10 @@ namespace Warewolf.Studio.ViewModels.Tests
 
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
-		[TestCategory("TestFrameworkViewModel_Constructor")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
+		[Category("TestFrameworkViewModel_Constructor")]
 		public void TestFrameworkViewModel_Constructor_NotNullResourceModel_ShouldSetResourceModel()
 		{
 			//------------Setup for test--------------------------
@@ -151,13 +154,14 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//------------Execute Test---------------------------
 			var testVM = new ServiceTestViewModel(CreateResourceModel(), new SynchronousAsyncWorker(), new Mock<IEventAggregator>().Object, new Mock<IExternalProcessExecutor>().Object, new Mock<IWorkflowDesignerViewModel>().Object);
 			//------------Assert Results-------------------------
-			Assert.IsNotNull(testVM);
-			Assert.IsNotNull(testVM.ResourceModel);
+			NUnit.Framework.Assert.IsNotNull(testVM);
+			NUnit.Framework.Assert.IsNotNull(testVM.ResourceModel);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
-		[TestCategory("TestFrameworkViewModel_Constructor")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
+		[Category("TestFrameworkViewModel_Constructor")]
 		public void TestFrameworkViewModel_Constructor_NotNullResourceModel_ShouldSetDisplayNameIncludingResourceDisplayName()
 		{
 			//------------Setup for test--------------------------
@@ -166,64 +170,68 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//------------Execute Test---------------------------
 			var testVM = new ServiceTestViewModel(CreateResourceModel(), new SynchronousAsyncWorker(), new Mock<IEventAggregator>().Object, new Mock<IExternalProcessExecutor>().Object, new Mock<IWorkflowDesignerViewModel>().Object);
 			//------------Assert Results-------------------------
-			Assert.AreEqual("My WF - Tests", testVM.DisplayName);
+			NUnit.Framework.Assert.AreEqual("My WF - Tests", testVM.DisplayName);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Pieter Terblanche")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Pieter Terblanche")]
 		public void OnCreation_GivenIsNew_ShouldHaveRunAllTestsUrl()
 		{
 			//---------------Set up test pack-------------------
 			var vm = new ServiceTestViewModel(CreateResourceModel(), new SynchronousAsyncWorker(), new Mock<IEventAggregator>().Object, new Mock<IExternalProcessExecutor>().Object, new Mock<IWorkflowDesignerViewModel>().Object);
 			//---------------Assert Precondition----------------
-			Assert.IsNotNull(vm);
+			NUnit.Framework.Assert.IsNotNull(vm);
 			//---------------Execute Test ----------------------
 			//---------------Test Result -----------------------
-			Assert.AreEqual("http://rsaklf/secure/My WF.tests", vm.RunAllTestsUrl);
+			NUnit.Framework.Assert.AreEqual("http://rsaklf/secure/My WF.tests", vm.RunAllTestsUrl);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void OnCreation_GivenIsNew_ShouldHaveDuplicateTestCommand()
 		{
 			//---------------Set up test pack-------------------
 			var vm = new ServiceTestViewModel(CreateResourceModel(), new SynchronousAsyncWorker(), new Mock<IEventAggregator>().Object, new Mock<IExternalProcessExecutor>().Object, new Mock<IWorkflowDesignerViewModel>().Object);
 			//---------------Assert Precondition----------------
-			Assert.IsNotNull(vm);
+			NUnit.Framework.Assert.IsNotNull(vm);
 			//---------------Execute Test ----------------------
-			Assert.IsNotNull(vm.DuplicateTestCommand);
+			NUnit.Framework.Assert.IsNotNull(vm.DuplicateTestCommand);
 			//---------------Test Result -----------------------
-			Assert.IsFalse(vm.DuplicateTestCommand.CanExecute(null));
+			NUnit.Framework.Assert.IsFalse(vm.DuplicateTestCommand.CanExecute(null));
 		}
 
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void OnCreation_GivenIsNew_ShouldHaveStopTestCommand()
 		{
 			//---------------Set up test pack-------------------
 			var vm = new ServiceTestViewModel(CreateResourceModel(), new SynchronousAsyncWorker(), new Mock<IEventAggregator>().Object, new Mock<IExternalProcessExecutor>().Object, new Mock<IWorkflowDesignerViewModel>().Object);
 			//---------------Assert Precondition----------------
-			Assert.IsNotNull(vm);
+			NUnit.Framework.Assert.IsNotNull(vm);
 			//---------------Execute Test ----------------------
-			Assert.IsNotNull(vm.StopTestCommand);
+			NUnit.Framework.Assert.IsNotNull(vm.StopTestCommand);
 			//---------------Test Result -----------------------
-			Assert.IsFalse(vm.StopTestCommand.CanExecute(null));
+			NUnit.Framework.Assert.IsFalse(vm.StopTestCommand.CanExecute(null));
 		}
 
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void OnCreation_GivenIsNew_ShouldHaveCreateTestCommand()
 		{
 			//---------------Set up test pack-------------------
 			var vm = new ServiceTestViewModel(CreateResourceModel(), new SynchronousAsyncWorker(), new Mock<IEventAggregator>().Object, new Mock<IExternalProcessExecutor>().Object, new Mock<IWorkflowDesignerViewModel>().Object);
 			//---------------Assert Precondition----------------
-			Assert.IsNotNull(vm);
+			NUnit.Framework.Assert.IsNotNull(vm);
 			//---------------Execute Test ----------------------
-			Assert.IsNotNull(vm.CreateTestCommand);
+			NUnit.Framework.Assert.IsNotNull(vm.CreateTestCommand);
 			//---------------Test Result -----------------------
-			Assert.IsTrue(vm.CreateTestCommand.CanExecute(null));
+			NUnit.Framework.Assert.IsTrue(vm.CreateTestCommand.CanExecute(null));
 		}
 
         IContextualResourceModel CreateResourceModel(bool isConnected = true)
@@ -250,150 +258,160 @@ namespace Warewolf.Studio.ViewModels.Tests
             return moqModel.Object;
         }
 
-        [TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void OnCreation_GivenIsNew_ShouldHaveModel()
 		{
 			//---------------Set up test pack-------------------
 			var vm = new ServiceTestViewModel(CreateResourceModel(), new SynchronousAsyncWorker(), new Mock<IEventAggregator>().Object, new Mock<IExternalProcessExecutor>().Object, new Mock<IWorkflowDesignerViewModel>().Object);
 			//---------------Assert Precondition----------------
-			Assert.IsNotNull(vm);
+			NUnit.Framework.Assert.IsNotNull(vm);
 			//---------------Execute Test ----------------------
-			Assert.IsNotNull(vm.CreateTestCommand);
+			NUnit.Framework.Assert.IsNotNull(vm.CreateTestCommand);
 			//---------------Test Result -----------------------
-			Assert.IsTrue(vm.CreateTestCommand.CanExecute(null));
+			NUnit.Framework.Assert.IsTrue(vm.CreateTestCommand.CanExecute(null));
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void OnCreation_GivenIsNew_ShouldHaveRunAllTestsCommand()
 		{
 			//---------------Set up test pack-------------------
 			var vm = new ServiceTestViewModel(CreateResourceModel(), new SynchronousAsyncWorker(), new Mock<IEventAggregator>().Object, new Mock<IExternalProcessExecutor>().Object, new Mock<IWorkflowDesignerViewModel>().Object);
 			//---------------Assert Precondition----------------
-			Assert.IsNotNull(vm);
+			NUnit.Framework.Assert.IsNotNull(vm);
 			//---------------Execute Test ----------------------
-			Assert.IsNotNull(vm.RunAllTestsCommand);
+			NUnit.Framework.Assert.IsNotNull(vm.RunAllTestsCommand);
 			//---------------Test Result -----------------------
-			Assert.IsTrue(vm.RunAllTestsCommand.CanExecute(null));
+			NUnit.Framework.Assert.IsTrue(vm.RunAllTestsCommand.CanExecute(null));
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void OnCreation_GivenIsNewNotConnected_ShouldSetRunAllTestsCommandExecuteFalse()
 		{
 			//---------------Set up test pack-------------------
 			var mock = new Mock<IEventAggregator>();
 			var vm = new ServiceTestViewModel(CreateResourceModel(false), new SynchronousAsyncWorker(), mock.Object, new Mock<IExternalProcessExecutor>().Object, new Mock<IWorkflowDesignerViewModel>().Object);
 			//---------------Assert Precondition----------------
-			Assert.IsNotNull(vm);
+			NUnit.Framework.Assert.IsNotNull(vm);
 			//---------------Execute Test ----------------------
-			Assert.IsNotNull(vm.RunAllTestsCommand);
+			NUnit.Framework.Assert.IsNotNull(vm.RunAllTestsCommand);
 			//---------------Test Result -----------------------
-			Assert.IsFalse(vm.RunAllTestsCommand.CanExecute(null));
+			NUnit.Framework.Assert.IsFalse(vm.RunAllTestsCommand.CanExecute(null));
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void OnCreation_GivenIsNew_ShouldHaveRunSelectedTestCommand()
 		{
 			//---------------Set up test pack-------------------
 			var vm = new ServiceTestViewModel(CreateResourceModel(), new SynchronousAsyncWorker(), new Mock<IEventAggregator>().Object, new Mock<IExternalProcessExecutor>().Object, new Mock<IWorkflowDesignerViewModel>().Object);
 			//---------------Assert Precondition----------------
-			Assert.IsNotNull(vm);
+			NUnit.Framework.Assert.IsNotNull(vm);
 			//---------------Execute Test ----------------------
-			Assert.IsNotNull(vm.RunSelectedTestCommand);
+			NUnit.Framework.Assert.IsNotNull(vm.RunSelectedTestCommand);
 			//---------------Test Result -----------------------
-			Assert.IsTrue(vm.RunSelectedTestCommand.CanExecute(null));
+			NUnit.Framework.Assert.IsTrue(vm.RunSelectedTestCommand.CanExecute(null));
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void OnCreation_GivenIsNewNotConnected_ShouldSetRunSelectedTestCommandCanExecuteFalse()
 		{
 			//---------------Set up test pack-------------------
 			var mock = new Mock<IEventAggregator>();
 			var vm = new ServiceTestViewModel(CreateResourceModel(false), new SynchronousAsyncWorker(), mock.Object, new Mock<IExternalProcessExecutor>().Object, new Mock<IWorkflowDesignerViewModel>().Object);
 			//---------------Assert Precondition----------------
-			Assert.IsNotNull(vm);
+			NUnit.Framework.Assert.IsNotNull(vm);
 			//---------------Execute Test ----------------------
-			Assert.IsNotNull(vm.RunSelectedTestCommand);
+			NUnit.Framework.Assert.IsNotNull(vm.RunSelectedTestCommand);
 			//---------------Test Result -----------------------
-			Assert.IsFalse(vm.RunSelectedTestCommand.CanExecute(null));
+			NUnit.Framework.Assert.IsFalse(vm.RunSelectedTestCommand.CanExecute(null));
 		}
 
 
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void OnCreation_GivenIsNewNotConnected_ShouldSetRunAllTestsInBrowserCommandCanExecuteFalse()
 		{
 			//---------------Set up test pack-------------------
 			var mock = new Mock<IEventAggregator>();
 			var vm = new ServiceTestViewModel(CreateResourceModel(false), new SynchronousAsyncWorker(), mock.Object, new Mock<IExternalProcessExecutor>().Object, new Mock<IWorkflowDesignerViewModel>().Object);
 			//---------------Assert Precondition----------------
-			Assert.IsNotNull(vm);
+			NUnit.Framework.Assert.IsNotNull(vm);
 			//---------------Execute Test ----------------------
-			Assert.IsNotNull(vm.RunAllTestsInBrowserCommand);
+			NUnit.Framework.Assert.IsNotNull(vm.RunAllTestsInBrowserCommand);
 			//---------------Test Result -----------------------
-			Assert.IsFalse(vm.RunAllTestsInBrowserCommand.CanExecute(null));
+			NUnit.Framework.Assert.IsFalse(vm.RunAllTestsInBrowserCommand.CanExecute(null));
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void OnCreation_GivenIsNew_ShouldHaveRunSelectedTestInBrowserCommand()
 		{
 			//---------------Set up test pack-------------------
 			var vm = new ServiceTestViewModel(CreateResourceModel(), new SynchronousAsyncWorker(), new Mock<IEventAggregator>().Object, new Mock<IExternalProcessExecutor>().Object, new Mock<IWorkflowDesignerViewModel>().Object);
 			//---------------Assert Precondition----------------
-			Assert.IsNotNull(vm);
+			NUnit.Framework.Assert.IsNotNull(vm);
 			//---------------Execute Test ----------------------
-			Assert.IsNotNull(vm.RunSelectedTestInBrowserCommand);
+			NUnit.Framework.Assert.IsNotNull(vm.RunSelectedTestInBrowserCommand);
 			//---------------Test Result -----------------------
-			Assert.IsFalse(vm.RunSelectedTestInBrowserCommand.CanExecute(null));
+			NUnit.Framework.Assert.IsFalse(vm.RunSelectedTestInBrowserCommand.CanExecute(null));
 		}
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void AllNamesValid_GivenEmptyItemIn_ListOfTestName_ShouldReturnTrue()
         {
             //---------------Set up test pack-------------------
             var vm = new ServiceTestViewModel(CreateResourceModelWithMoreSave(), new SynchronousAsyncWorker(), new Mock<IEventAggregator>().Object, new Mock<IExternalProcessExecutor>().Object, new Mock<IWorkflowDesignerViewModel>().Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(vm);
+            NUnit.Framework.Assert.IsNotNull(vm);
             var privateObj = new PrivateObject(vm);
             var names = new List<string> { "", "Test2" };
             var results = privateObj.Invoke("AllNamesValid", names);
             //---------------Execute Test ----------------------
-            Assert.IsNotNull(results);
+            NUnit.Framework.Assert.IsNotNull(results);
             //---------------Test Result -----------------------
-            Assert.AreEqual(false, results);
+            NUnit.Framework.Assert.AreEqual(false, results);
         }
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void AllNamesValid_GivenListOfTestName_ShouldReturnTrue()
         {
             //---------------Set up test pack-------------------
             var vm = new ServiceTestViewModel(CreateResourceModelWithMoreSave(), new SynchronousAsyncWorker(), new Mock<IEventAggregator>().Object, new Mock<IExternalProcessExecutor>().Object, new Mock<IWorkflowDesignerViewModel>().Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(vm);
+            NUnit.Framework.Assert.IsNotNull(vm);
             var privateObj = new PrivateObject(vm);
             var names = new List<string> { "Test1", "Test2"};
             var results = privateObj.Invoke("AllNamesValid", names);
             //---------------Execute Test ----------------------
-            Assert.IsNotNull(results);
+            NUnit.Framework.Assert.IsNotNull(results);
             //---------------Test Result -----------------------
-            Assert.AreEqual(true, results);
+            NUnit.Framework.Assert.AreEqual(true, results);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void Save_GivenEmptyTestName_SetErrorMessage()
         {
             //---------------Set up test pack-------------------
             var vm = new ServiceTestViewModel(CreateResourceModelWithMoreSave(), new SynchronousAsyncWorker(), new Mock<IEventAggregator>().Object, new Mock<IExternalProcessExecutor>().Object, new Mock<IWorkflowDesignerViewModel>().Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(vm);
+            NUnit.Framework.Assert.IsNotNull(vm);
             //---------------Execute Test ----------------------
             vm.CreateTestCommand.Execute(null);
             var DummyTest = typeof(DummyServiceTest);
@@ -401,27 +419,29 @@ namespace Warewolf.Studio.ViewModels.Tests
             test1.TestName = string.Empty;
             vm.Save();
             //---------------Test Result -----------------------
-            Assert.AreEqual(vm.ErrorMessage, "Cannot be null");
+            NUnit.Framework.Assert.AreEqual(vm.ErrorMessage, "Cannot be null");
         }
 
-        [TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void Save_GivenThrowsNoException_ShouldMarkAllTestsAsNotDirty()
 		{
 			//---------------Set up test pack-------------------
 			var vm = new ServiceTestViewModel(CreateResourceModelWithMoreSave(), new SynchronousAsyncWorker(), new Mock<IEventAggregator>().Object, new Mock<IExternalProcessExecutor>().Object, new Mock<IWorkflowDesignerViewModel>().Object);
 			//---------------Assert Precondition----------------
-			Assert.IsNotNull(vm);
+			NUnit.Framework.Assert.IsNotNull(vm);
 			//---------------Execute Test ----------------------
 			vm.CreateTestCommand.Execute(null);
 			vm.Save();
 			//---------------Test Result -----------------------
-			Assert.IsTrue(vm.Tests.All(model => !model.IsDirty));
+			NUnit.Framework.Assert.IsTrue(vm.Tests.All(model => !model.IsDirty));
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Pieter Terblanche")]
-		[TestCategory("TestFrameworkViewModel_SelectedServiceTest")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Pieter Terblanche")]
+		[Category("TestFrameworkViewModel_SelectedServiceTest")]
 		public void TestFrameworkViewModel_SelectedServiceTest_CheckIsNull()
 		{
 			//------------Setup for test--------------------------
@@ -431,12 +451,13 @@ namespace Warewolf.Studio.ViewModels.Tests
 			testFrameworkViewModel.CreateTestCommand.Execute(null);
 			testFrameworkViewModel.SelectedServiceTest = null;
 			//------------Assert Results-------------------------
-			Assert.IsNull(testFrameworkViewModel.SelectedServiceTest);
+			NUnit.Framework.Assert.IsNull(testFrameworkViewModel.SelectedServiceTest);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
-		[TestCategory("TestFrameworkViewModel_CreateTestCommand")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
+		[Category("TestFrameworkViewModel_CreateTestCommand")]
 		public void TestFrameworkViewModel_CreateTestCommand_Execute_ShouldAddANewTest()
 		{
 			//------------Setup for test--------------------------
@@ -445,13 +466,14 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//------------Execute Test---------------------------
 			testFrameworkViewModel.CreateTestCommand.Execute(null);
 			//------------Assert Results-------------------------
-			Assert.IsNotNull(testFrameworkViewModel.Tests);
-			Assert.AreEqual(2, testFrameworkViewModel.Tests.Count);
+			NUnit.Framework.Assert.IsNotNull(testFrameworkViewModel.Tests);
+			NUnit.Framework.Assert.AreEqual(2, testFrameworkViewModel.Tests.Count);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Pieter Terblanche")]
-		[TestCategory("TestFrameworkViewModel_CreateTestCommand")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Pieter Terblanche")]
+		[Category("TestFrameworkViewModel_CreateTestCommand")]
 		public void TestFrameworkViewModel_CreateTestCommand_Execute_ShouldIncrementTestNumber()
 		{
 			//------------Setup for test--------------------------
@@ -460,14 +482,15 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//------------Execute Test---------------------------
 			testFrameworkViewModel.CreateTestCommand.Execute(null);
 			//------------Assert Results-------------------------
-			Assert.IsNotNull(testFrameworkViewModel.Tests);
-			Assert.AreEqual(2, testFrameworkViewModel.Tests.Count);
-			Assert.AreEqual("Test 1", testFrameworkViewModel.Tests[0].TestName);
+			NUnit.Framework.Assert.IsNotNull(testFrameworkViewModel.Tests);
+			NUnit.Framework.Assert.AreEqual(2, testFrameworkViewModel.Tests.Count);
+			NUnit.Framework.Assert.AreEqual("Test 1", testFrameworkViewModel.Tests[0].TestName);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Pieter Terblanche")]
-		[TestCategory("TestFrameworkViewModel_CreateTestCommand")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Pieter Terblanche")]
+		[Category("TestFrameworkViewModel_CreateTestCommand")]
 		public void TestFrameworkViewModel_CreateTestCommand_Execute_ShouldDisableDuplicateCommand()
 		{
 			//------------Setup for test--------------------------
@@ -476,14 +499,15 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//------------Execute Test---------------------------
 			testFrameworkViewModel.CreateTestCommand.Execute(null);
 			//------------Assert Results-------------------------
-			Assert.IsNotNull(testFrameworkViewModel.Tests);
-			Assert.AreEqual(2, testFrameworkViewModel.Tests.Count);
-			Assert.IsFalse(testFrameworkViewModel.DuplicateTestCommand.CanExecute(null));
+			NUnit.Framework.Assert.IsNotNull(testFrameworkViewModel.Tests);
+			NUnit.Framework.Assert.AreEqual(2, testFrameworkViewModel.Tests.Count);
+			NUnit.Framework.Assert.IsFalse(testFrameworkViewModel.DuplicateTestCommand.CanExecute(null));
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Pieter Terblanche")]
-		[TestCategory("TestFrameworkViewModel_CreateTestCommand")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Pieter Terblanche")]
+		[Category("TestFrameworkViewModel_CreateTestCommand")]
 		public void TestFrameworkViewModel_CreateTestCommand_Execute_ShouldShowError()
 		{
 			//------------Setup for test--------------------------
@@ -495,13 +519,14 @@ namespace Warewolf.Studio.ViewModels.Tests
 			testFrameworkViewModel.CreateTestCommand.Execute(null);
 			testFrameworkViewModel.CreateTestCommand.Execute(null);
 			//------------Assert Results-------------------------
-			Assert.IsNotNull(testFrameworkViewModel.PopupController);
+			NUnit.Framework.Assert.IsNotNull(testFrameworkViewModel.PopupController);
 			popupController.Verify(controller => controller.Show(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<MessageBoxButton>(), MessageBoxImage.Error, null, false, true, false, false, false, false), Times.Once);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
-		[TestCategory("TestFrameworkViewModel_CreateTestCommand")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
+		[Category("TestFrameworkViewModel_CreateTestCommand")]
 		public void TestFrameworkViewModel_CreateTestCommand_Execute_ShouldAddANewTestWithDefaultName()
 		{
 			//------------Setup for test--------------------------
@@ -510,15 +535,16 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//------------Execute Test---------------------------
 			testFrameworkViewModel.CreateTestCommand.Execute(null);
 			//------------Assert Results-------------------------
-			Assert.IsNotNull(testFrameworkViewModel.Tests);
+			NUnit.Framework.Assert.IsNotNull(testFrameworkViewModel.Tests);
 			var test = testFrameworkViewModel.Tests[0];
-			Assert.IsNotNull(test);
-			Assert.AreEqual("Test 1", test.TestName);
+			NUnit.Framework.Assert.IsNotNull(test);
+			NUnit.Framework.Assert.AreEqual("Test 1", test.TestName);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
-		[TestCategory("TestFrameworkViewModel_CreateTestCommand")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
+		[Category("TestFrameworkViewModel_CreateTestCommand")]
 		public void TestFrameworkViewModel_CreateTestCommand_Executed_ShouldSetSelectedTestToNewlyCreatedTest()
 		{
 			//------------Setup for test--------------------------
@@ -527,22 +553,23 @@ namespace Warewolf.Studio.ViewModels.Tests
 			testFrameworkViewModel.Tests = new ObservableCollection<IServiceTestModel> { testModel };
 			testFrameworkViewModel.SelectedServiceTest = testModel;
 			//------------Assert Preconditions-------------------
-			Assert.IsNotNull(testFrameworkViewModel.Tests);
-			Assert.IsNotNull(testFrameworkViewModel.SelectedServiceTest);
-			Assert.AreEqual(1, testFrameworkViewModel.Tests.Count);
-			Assert.AreEqual(testModel, testFrameworkViewModel.SelectedServiceTest);
+			NUnit.Framework.Assert.IsNotNull(testFrameworkViewModel.Tests);
+			NUnit.Framework.Assert.IsNotNull(testFrameworkViewModel.SelectedServiceTest);
+			NUnit.Framework.Assert.AreEqual(1, testFrameworkViewModel.Tests.Count);
+			NUnit.Framework.Assert.AreEqual(testModel, testFrameworkViewModel.SelectedServiceTest);
 			//------------Execute Test---------------------------
 			testFrameworkViewModel.CreateTestCommand.Execute(null);
 			//------------Assert Results-------------------------
-			Assert.AreEqual(2, testFrameworkViewModel.Tests.Count);
-			Assert.AreNotEqual(testModel, testFrameworkViewModel.SelectedServiceTest);
-			Assert.AreEqual(testFrameworkViewModel.Tests[0], testFrameworkViewModel.SelectedServiceTest);
-			Assert.AreEqual("http://rsaklf/secure/My WF.tests/Test 1", testFrameworkViewModel.SelectedServiceTest.RunSelectedTestUrl);
+			NUnit.Framework.Assert.AreEqual(2, testFrameworkViewModel.Tests.Count);
+			NUnit.Framework.Assert.AreNotEqual(testModel, testFrameworkViewModel.SelectedServiceTest);
+			NUnit.Framework.Assert.AreEqual(testFrameworkViewModel.Tests[0], testFrameworkViewModel.SelectedServiceTest);
+			NUnit.Framework.Assert.AreEqual("http://rsaklf/secure/My WF.tests/Test 1", testFrameworkViewModel.SelectedServiceTest.RunSelectedTestUrl);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Pieter Terblanche")]
-		[TestCategory("TestFrameworkViewModel_CreateTestCommand")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Pieter Terblanche")]
+		[Category("TestFrameworkViewModel_CreateTestCommand")]
 		public void TestFrameworkViewModel_CreateTestCommand_SaveAsPublic_ShouldSetSelectedTestToPublic()
 		{
 			//------------Setup for test--------------------------
@@ -565,22 +592,23 @@ namespace Warewolf.Studio.ViewModels.Tests
 			testFrameworkViewModel.CreateTestCommand.Execute(null);
 			testFrameworkViewModel.Save();
 			//------------Assert Preconditions-------------------
-			Assert.AreEqual(2, testFrameworkViewModel.Tests.Count);
-			Assert.AreEqual(testFrameworkViewModel.Tests[0], testFrameworkViewModel.SelectedServiceTest);
-			Assert.AreEqual("http://rsaklf/secure/My WF.tests/Test 1", testFrameworkViewModel.SelectedServiceTest.RunSelectedTestUrl);
+			NUnit.Framework.Assert.AreEqual(2, testFrameworkViewModel.Tests.Count);
+			NUnit.Framework.Assert.AreEqual(testFrameworkViewModel.Tests[0], testFrameworkViewModel.SelectedServiceTest);
+			NUnit.Framework.Assert.AreEqual("http://rsaklf/secure/My WF.tests/Test 1", testFrameworkViewModel.SelectedServiceTest.RunSelectedTestUrl);
 			//------------Execute Test---------------------------
 			testFrameworkViewModel.SelectedServiceTest.AuthenticationType = AuthenticationType.Public;
 			//------------Assert Results-------------------------
-			Assert.AreEqual("http://rsaklf/secure/My WF.tests/Test 1", testFrameworkViewModel.SelectedServiceTest.RunSelectedTestUrl);
+			NUnit.Framework.Assert.AreEqual("http://rsaklf/secure/My WF.tests/Test 1", testFrameworkViewModel.SelectedServiceTest.RunSelectedTestUrl);
 
 			testFrameworkViewModel.Save();
 
-			Assert.AreEqual("http://rsaklf/public/My WF.tests/Test 1", testFrameworkViewModel.SelectedServiceTest.RunSelectedTestUrl);
+			NUnit.Framework.Assert.AreEqual("http://rsaklf/public/My WF.tests/Test 1", testFrameworkViewModel.SelectedServiceTest.RunSelectedTestUrl);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
-		[TestCategory("TestFrameworkViewModel_Tests")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
+		[Category("TestFrameworkViewModel_Tests")]
 		public void TestFrameworkViewModel_Tests_SetProperty_ShouldFireOnPropertyChanged()
 		{
 			//------------Setup for test--------------------------
@@ -596,12 +624,13 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//------------Execute Test---------------------------
 			testFrameworkViewModel.Tests = new ObservableCollection<IServiceTestModel>();
 			//------------Assert Results-------------------------
-			Assert.IsTrue(_wasCalled);
+			NUnit.Framework.Assert.IsTrue(_wasCalled);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
-		[TestCategory("TestFrameworkViewModel_Tests")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
+		[Category("TestFrameworkViewModel_Tests")]
 		public void TestFrameworkViewModel_SelectedTest_SetProperty_ShouldFireOnPropertyChanged()
 		{
 			//------------Setup for test--------------------------
@@ -617,13 +646,14 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//------------Execute Test---------------------------
 			testFrameworkViewModel.SelectedServiceTest = new ServiceTestModel(Guid.NewGuid());
 			//------------Assert Results-------------------------
-			Assert.IsTrue(_wasCalled);
+			NUnit.Framework.Assert.IsTrue(_wasCalled);
 		}
 		
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
-		[TestCategory("TestFrameworkViewModel_Tests")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
+		[Category("TestFrameworkViewModel_Tests")]
 		public void TestFrameworkViewModel_ErrorMessage_SetProperty_ShouldFireOnPropertyChanged()
 		{
 			//------------Setup for test--------------------------
@@ -639,12 +669,13 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//------------Execute Test---------------------------
 			testFrameworkViewModel.ErrorMessage = "Home";
 			//------------Assert Results-------------------------
-			Assert.IsTrue(_wasCalled);
+			NUnit.Framework.Assert.IsTrue(_wasCalled);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
-		[TestCategory("TestFrameworkViewModel_CreateTestCommand")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
+		[Category("TestFrameworkViewModel_CreateTestCommand")]
 		public void TestFrameworkViewModel_CreateTestCommand_Execute_ShouldAddInputsFromResourceModel()
 		{
 			//------------Setup for test--------------------------
@@ -653,17 +684,18 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//------------Execute Test---------------------------
 			testFrameworkViewModel.CreateTestCommand.Execute(null);
 			//------------Assert Results-------------------------
-			Assert.IsNotNull(testFrameworkViewModel.Tests);
+			NUnit.Framework.Assert.IsNotNull(testFrameworkViewModel.Tests);
 			var test = testFrameworkViewModel.Tests[0];
-			Assert.IsNotNull(test);
-			Assert.AreEqual(1, test.Inputs.Count);
-			Assert.AreEqual("a", test.Inputs[0].Variable);
-			Assert.AreEqual("", test.Inputs[0].Value);
+			NUnit.Framework.Assert.IsNotNull(test);
+			NUnit.Framework.Assert.AreEqual(1, test.Inputs.Count);
+			NUnit.Framework.Assert.AreEqual("a", test.Inputs[0].Variable);
+			NUnit.Framework.Assert.AreEqual("", test.Inputs[0].Value);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
-		[TestCategory("TestFrameworkViewModel_CreateTestCommand")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
+		[Category("TestFrameworkViewModel_CreateTestCommand")]
 		public void TestFrameworkViewModel_CreateTestCommand_Execute_ShouldAddOutputsFromResourceModel()
 		{
 			//------------Setup for test--------------------------
@@ -672,106 +704,112 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//------------Execute Test---------------------------
 			testFrameworkViewModel.CreateTestCommand.Execute(null);
 			//------------Assert Results-------------------------
-			Assert.IsNotNull(testFrameworkViewModel.Tests);
+			NUnit.Framework.Assert.IsNotNull(testFrameworkViewModel.Tests);
 			var test = testFrameworkViewModel.Tests[0];
-			Assert.IsNotNull(test);
-			Assert.AreEqual(1, test.Outputs.Count);
-			Assert.AreEqual("msg", test.Outputs[0].Variable);
-			Assert.AreEqual("", test.Outputs[0].Value);
+			NUnit.Framework.Assert.IsNotNull(test);
+			NUnit.Framework.Assert.AreEqual(1, test.Outputs.Count);
+			NUnit.Framework.Assert.AreEqual("msg", test.Outputs[0].Variable);
+			NUnit.Framework.Assert.AreEqual("", test.Outputs[0].Value);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void OnCreation_GivenIsNew_ShouldHaveDeleteTestCommand()
 		{
 			//---------------Set up test pack-------------------
 			var vm = new ServiceTestViewModel(CreateResourceModel(), new SynchronousAsyncWorker(), new Mock<IEventAggregator>().Object, new Mock<IExternalProcessExecutor>().Object, new Mock<IWorkflowDesignerViewModel>().Object);
 			//---------------Assert Precondition----------------
-			Assert.IsNotNull(vm);
+			NUnit.Framework.Assert.IsNotNull(vm);
 			//---------------Execute Test ----------------------
 			vm.CreateTestCommand.Execute(null);
-			Assert.IsNotNull(vm.DeleteTestCommand);
+			NUnit.Framework.Assert.IsNotNull(vm.DeleteTestCommand);
 			//---------------Test Result -----------------------
-			Assert.IsFalse(vm.DeleteTestCommand.CanExecute(null));
+			NUnit.Framework.Assert.IsFalse(vm.DeleteTestCommand.CanExecute(null));
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void DeleteTestCommand_GivenResourceModelIsConnectedAndTestIsDisabled_ShouldsetCanExecuteTrue()
 		{
 			//---------------Set up test pack-------------------
 			var vm = new ServiceTestViewModel(CreateResourceModel(), new SynchronousAsyncWorker(), new Mock<IEventAggregator>().Object, new Mock<IExternalProcessExecutor>().Object, new Mock<IWorkflowDesignerViewModel>().Object);
 			vm.CreateTestCommand.Execute(null);
 			//---------------Assert Precondition----------------
-			Assert.IsNotNull(vm);
+			NUnit.Framework.Assert.IsNotNull(vm);
 
-			Assert.IsTrue(vm.SelectedServiceTest != null);
+			NUnit.Framework.Assert.IsTrue(vm.SelectedServiceTest != null);
 			var isConnected = vm.ResourceModel.Environment.IsConnected;
-			Assert.IsTrue(isConnected);
+			NUnit.Framework.Assert.IsTrue(isConnected);
 			//---------------Execute Test ----------------------
 
 			vm.SelectedServiceTest.Enabled = false;
 			//---------------Test Result -----------------------
 			var canExecute = vm.DeleteTestCommand.CanExecute(vm.SelectedServiceTest);
-			Assert.IsTrue(canExecute);
+			NUnit.Framework.Assert.IsTrue(canExecute);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void DeleteTestCommand_GivenResourceModelIsNotConnectedAndTestIsDisabled_ShouldsetCanExecuteTrue()
 		{
 			//---------------Set up test pack-------------------
 			var vm = new ServiceTestViewModel(CreateResourceModel(false), new SynchronousAsyncWorker(), new Mock<IEventAggregator>().Object, new Mock<IExternalProcessExecutor>().Object, new Mock<IWorkflowDesignerViewModel>().Object);
 			vm.CreateTestCommand.Execute(null);
 			//---------------Assert Precondition----------------
-			Assert.IsNotNull(vm);
+			NUnit.Framework.Assert.IsNotNull(vm);
 
-			Assert.IsTrue(vm.SelectedServiceTest != null);
+			NUnit.Framework.Assert.IsTrue(vm.SelectedServiceTest != null);
 			var isConnected = vm.ResourceModel.Environment.IsConnected;
-			Assert.IsFalse(isConnected);
+			NUnit.Framework.Assert.IsFalse(isConnected);
 			//---------------Execute Test ----------------------
 			vm.CreateTestCommand.Execute(null);
 			vm.SelectedServiceTest.Enabled = false;
 			//---------------Test Result -----------------------
 			var canExecute = vm.DeleteTestCommand.CanExecute(null);
-			Assert.IsFalse(canExecute);
+			NUnit.Framework.Assert.IsFalse(canExecute);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Pieter Terblanche")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Pieter Terblanche")]
 		public void OnCreation_GivenIsDisabled_DeleteTestCommandShouldBeEnabled()
 		{
 			//---------------Set up test pack-------------------
 			var vm = new ServiceTestViewModel(CreateResourceModel(), new SynchronousAsyncWorker(), new Mock<IEventAggregator>().Object, new Mock<IExternalProcessExecutor>().Object, new Mock<IWorkflowDesignerViewModel>().Object);
 			//---------------Assert Precondition----------------
-			Assert.IsNotNull(vm);
+			NUnit.Framework.Assert.IsNotNull(vm);
 			//---------------Execute Test ----------------------
 			vm.CreateTestCommand.Execute(null);
-			Assert.IsNotNull(vm.DeleteTestCommand);
+			NUnit.Framework.Assert.IsNotNull(vm.DeleteTestCommand);
 			//---------------Test Result -----------------------
-			Assert.IsFalse(vm.DeleteTestCommand.CanExecute(null));
+			NUnit.Framework.Assert.IsFalse(vm.DeleteTestCommand.CanExecute(null));
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Pieter Terblanche")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Pieter Terblanche")]
 		public void OnCreation_GivenIsEnabled_DeleteTestCommandShouldBeDisabled()
 		{
 			//---------------Set up test pack-------------------
 			var vm = new ServiceTestViewModel(CreateResourceModel(), new SynchronousAsyncWorker(), new Mock<IEventAggregator>().Object, new Mock<IExternalProcessExecutor>().Object, new Mock<IWorkflowDesignerViewModel>().Object);
 			//---------------Assert Precondition----------------
-			Assert.IsNotNull(vm);
+			NUnit.Framework.Assert.IsNotNull(vm);
 			//---------------Execute Test ----------------------
 			vm.CreateTestCommand.Execute(null);
 			vm.SelectedServiceTest.Enabled = true;
-			Assert.IsNotNull(vm.DeleteTestCommand);
+			NUnit.Framework.Assert.IsNotNull(vm.DeleteTestCommand);
 			//---------------Test Result -----------------------
-			Assert.IsFalse(vm.DeleteTestCommand.CanExecute(null));
+			NUnit.Framework.Assert.IsFalse(vm.DeleteTestCommand.CanExecute(null));
 		}
 
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
-		[TestCategory("ServiceTestViewModel_Save")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
+		[Category("ServiceTestViewModel_Save")]
 		public void ServiceTestViewModel_Save_WithTests_ShouldCallSaveTestOnResourceModel()
 		{
 			//------------Setup for test--------------------------
@@ -795,15 +833,16 @@ namespace Warewolf.Studio.ViewModels.Tests
 				new ServiceTestOutput("[[var]]","val", "","")
 			};
 			//------------Execute Test---------------------------
-			Assert.IsTrue(serviceTestViewModel.CanSave);
+			NUnit.Framework.Assert.IsTrue(serviceTestViewModel.CanSave);
 			serviceTestViewModel.Save();
 			//------------Assert Results-------------------------
 			mockResourceRepo.Verify(repository => repository.SaveTests(It.IsAny<IResourceModel>(), It.IsAny<List<IServiceTestModelTO>>()), Times.Once);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
-		[TestCategory("ServiceTestViewModel_Save")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
+		[Category("ServiceTestViewModel_Save")]
 		public void ServiceTestViewModel_Save_WithTestSteps_ShouldCallSaveTestOnResourceModel()
 		{
 			//------------Setup for test--------------------------
@@ -849,15 +888,16 @@ namespace Warewolf.Studio.ViewModels.Tests
 			};
 			mockWorkflowDesignerViewModel.Object.ItemSelectedAction(modelItem);
 			//------------Execute Test---------------------------
-			Assert.IsTrue(testFrameworkViewModel.CanSave);
+			NUnit.Framework.Assert.IsTrue(testFrameworkViewModel.CanSave);
 			testFrameworkViewModel.Save();
 			//------------Assert Results-------------------------
 			mockResourceRepo.Verify(repository => repository.SaveTests(It.IsAny<IResourceModel>(), It.IsAny<List<IServiceTestModelTO>>()), Times.Once);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Pieter Terblanche")]
-		[TestCategory("ServiceTestViewModel_Save")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Pieter Terblanche")]
+		[Category("ServiceTestViewModel_Save")]
 		public void ServiceTestViewModel_Save_DuplicateName_ShouldShowPopupError()
 		{
 			//------------Setup for test--------------------------
@@ -875,18 +915,19 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//------------Execute Test---------------------------
 			var serviceTestViewModel = new ServiceTestViewModel(resourceModelMock.Object, new SynchronousAsyncWorker(), new Mock<IEventAggregator>().Object, new Mock<IExternalProcessExecutor>().Object, new Mock<IWorkflowDesignerViewModel>().Object);
 			serviceTestViewModel.CreateTestCommand.Execute(null);
-			Assert.IsTrue(serviceTestViewModel.CanSave);
+			NUnit.Framework.Assert.IsTrue(serviceTestViewModel.CanSave);
 			serviceTestViewModel.Save();
 
 			serviceTestViewModel.CreateTestCommand.Execute(null);            
 			//------------Assert Results-------------------------
-			Assert.IsNotNull(serviceTestViewModel.PopupController);
+			NUnit.Framework.Assert.IsNotNull(serviceTestViewModel.PopupController);
 			popupController.Verify(controller => controller.Show(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<MessageBoxButton>(), MessageBoxImage.Error, null, false, true, false, false, false, false), Times.Once);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Pieter Terblanche")]
-		[TestCategory("ServiceTestViewModel_Save")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Pieter Terblanche")]
+		[Category("ServiceTestViewModel_Save")]
 		public void ServiceTestViewModel_Save_Rename_ShouldRename()
 		{
 			//------------Setup for test--------------------------
@@ -894,21 +935,22 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//------------Execute Test---------------------------
 			var serviceTestViewModel = new ServiceTestViewModel(CreateResourceModel(), new SynchronousAsyncWorker(), new Mock<IEventAggregator>().Object, new Mock<IExternalProcessExecutor>().Object, new Mock<IWorkflowDesignerViewModel>().Object);
 			serviceTestViewModel.CreateTestCommand.Execute(null);
-			Assert.IsTrue(serviceTestViewModel.IsDirty);
-			Assert.IsTrue(serviceTestViewModel.CanSave);
+			NUnit.Framework.Assert.IsTrue(serviceTestViewModel.IsDirty);
+			NUnit.Framework.Assert.IsTrue(serviceTestViewModel.CanSave);
 			serviceTestViewModel.Save();
 
 			serviceTestViewModel.SelectedServiceTest.TestName = "NewName";
 			serviceTestViewModel.Save();
 
 			//------------Assert Results-------------------------
-			Assert.AreEqual("NewName", serviceTestViewModel.SelectedServiceTest.TestName);
-			Assert.AreEqual(2, serviceTestViewModel.Tests.Count);
+			NUnit.Framework.Assert.AreEqual("NewName", serviceTestViewModel.SelectedServiceTest.TestName);
+			NUnit.Framework.Assert.AreEqual(2, serviceTestViewModel.Tests.Count);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Pieter Terblanche")]
-		[TestCategory("TestFrameworkViewModel_Constructor")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Pieter Terblanche")]
+		[Category("TestFrameworkViewModel_Constructor")]
 		public void TestFrameworkViewModel_Constructor_IsDirty_IsFalse()
 		{
 			//------------Setup for test--------------------------
@@ -916,12 +958,13 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//------------Assert Preconditions-------------------
 			//------------Execute Test---------------------------
 			//------------Assert Results-------------------------
-			Assert.IsFalse(testFrameworkViewModel.IsDirty);
+			NUnit.Framework.Assert.IsFalse(testFrameworkViewModel.IsDirty);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
-		[TestCategory("TestFrameworkViewModel_CreateTestCommand")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
+		[Category("TestFrameworkViewModel_CreateTestCommand")]
 		public void TestFrameworkViewModel_CreateTestCommand_Execute_ShouldSetHasChangedTrue()
 		{
 			//------------Setup for test--------------------------
@@ -930,14 +973,15 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//------------Execute Test---------------------------
 			testFrameworkViewModel.CreateTestCommand.Execute(null);
 			//------------Assert Results-------------------------
-			Assert.IsNotNull(testFrameworkViewModel.Tests);
+			NUnit.Framework.Assert.IsNotNull(testFrameworkViewModel.Tests);
 			var test = testFrameworkViewModel.Tests[0];
-			Assert.IsNotNull(test);
-			Assert.IsTrue(testFrameworkViewModel.IsDirty);
+			NUnit.Framework.Assert.IsNotNull(test);
+			NUnit.Framework.Assert.IsTrue(testFrameworkViewModel.IsDirty);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Pieter Terblanche")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Pieter Terblanche")]
 		public void TestUpdateHelpDescriptor()
 		{
 			//arrange
@@ -956,9 +1000,10 @@ namespace Warewolf.Studio.ViewModels.Tests
 			helpViewModelMock.Verify(it => it.UpdateHelpText(helpText));
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
-		[TestCategory("ServiceTestViewModel_IsDirty")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
+		[Category("ServiceTestViewModel_IsDirty")]
 		public void ServiceTestViewModel_IsDirty_WhenSetTrue_ShouldUpdateDisplayNameWithStar()
 		{
 			//------------Setup for test--------------------------
@@ -967,13 +1012,14 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//------------Execute Test---------------------------
 			testFrameworkViewModel.CreateTestCommand.Execute(null);
 			//------------Assert Results-------------------------
-			Assert.IsTrue(testFrameworkViewModel.IsDirty);
-			Assert.AreEqual("My WF - Tests *", testFrameworkViewModel.DisplayName);
+			NUnit.Framework.Assert.IsTrue(testFrameworkViewModel.IsDirty);
+			NUnit.Framework.Assert.AreEqual("My WF - Tests *", testFrameworkViewModel.DisplayName);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
-		[TestCategory("ServiceTestViewModel_IsDirty")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
+		[Category("ServiceTestViewModel_IsDirty")]
 		public void ServiceTestViewModel_IsDirty_WhenSetTrueTwice_ShouldUpdateDisplayNameWithOneStarOnly()
 		{
 			//------------Setup for test--------------------------
@@ -982,13 +1028,14 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//------------Execute Test---------------------------
 			testFrameworkViewModel.CreateTestCommand.Execute(null);
 			//------------Assert Results-------------------------
-			Assert.IsTrue(testFrameworkViewModel.IsDirty);
-			Assert.AreEqual("My WF - Tests *", testFrameworkViewModel.DisplayName);
+			NUnit.Framework.Assert.IsTrue(testFrameworkViewModel.IsDirty);
+			NUnit.Framework.Assert.AreEqual("My WF - Tests *", testFrameworkViewModel.DisplayName);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
-		[TestCategory("ServiceTestViewModel_Tests")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
+		[Category("ServiceTestViewModel_Tests")]
 		public void ServiceTestViewModel_Tests_GetWhenNullTests_ShouldHaveDummyTest()
 		{
 			//------------Setup for test--------------------------
@@ -1003,13 +1050,14 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//------------Execute Test---------------------------
 			var tests = serviceTestViewModel.Tests;
 			//------------Assert Results-------------------------
-			Assert.AreEqual(1, tests.Count);
-			Assert.AreEqual("Create a new test.", tests[0].TestName);
+			NUnit.Framework.Assert.AreEqual(1, tests.Count);
+			NUnit.Framework.Assert.AreEqual("Create a new test.", tests[0].TestName);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
-		[TestCategory("ServiceTestViewModel_Tests")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
+		[Category("ServiceTestViewModel_Tests")]
 		public void ServiceTestViewModel_Tests_GetWhenEmptyTests_ShouldHaveDummyTest()
 		{
 			//------------Setup for test--------------------------
@@ -1024,13 +1072,14 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//------------Execute Test---------------------------
 			var tests = serviceTestViewModel.Tests;
 			//------------Assert Results-------------------------
-			Assert.AreEqual(1, tests.Count);
-			Assert.AreEqual("Create a new test.", tests[0].TestName);
+			NUnit.Framework.Assert.AreEqual(1, tests.Count);
+			NUnit.Framework.Assert.AreEqual("Create a new test.", tests[0].TestName);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
-		[TestCategory("ServiceTestViewModel_Tests")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
+		[Category("ServiceTestViewModel_Tests")]
 		public void ServiceTestViewModel_Tests_GetWhenTests_ShouldHaveTestsAndDummyAtBottom()
 		{
 			//------------Setup for test--------------------------
@@ -1054,16 +1103,17 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//------------Execute Test---------------------------
 			var tests = serviceTestViewModel.Tests;
 			//------------Assert Results-------------------------
-			Assert.AreEqual(2, tests.Count);
-			Assert.AreEqual("Test From Server", tests[0].TestName);
-			Assert.AreEqual(AuthenticationType.Public, tests[0].AuthenticationType);
-			Assert.IsTrue(tests[0].Enabled);
-			Assert.AreEqual("Create a new test.", tests[1].TestName);
+			NUnit.Framework.Assert.AreEqual(2, tests.Count);
+			NUnit.Framework.Assert.AreEqual("Test From Server", tests[0].TestName);
+			NUnit.Framework.Assert.AreEqual(AuthenticationType.Public, tests[0].AuthenticationType);
+			NUnit.Framework.Assert.IsTrue(tests[0].Enabled);
+			NUnit.Framework.Assert.AreEqual("Create a new test.", tests[1].TestName);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
-		[TestCategory("ServiceTestViewModel_Tests")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
+		[Category("ServiceTestViewModel_Tests")]
 		public void ServiceTestViewModel_Tests_GetWhenTestsWithSteps_ShouldHaveTestsAndDummyAtBottom()
 		{
 			//------------Setup for test--------------------------
@@ -1096,13 +1146,14 @@ namespace Warewolf.Studio.ViewModels.Tests
 			var tests = serviceTestViewModel.Tests;
 			//------------Assert Results-------------------------
 
-			Assert.AreEqual(2, tests.Count);
-			Assert.AreEqual("Create a new test.", tests[1].TestName);
+			NUnit.Framework.Assert.AreEqual(2, tests.Count);
+			NUnit.Framework.Assert.AreEqual("Create a new test.", tests[1].TestName);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
-		[TestCategory("ServiceTestViewModel_Tests")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
+		[Category("ServiceTestViewModel_Tests")]
 		public void ServiceTestViewModel_ResourceUpdateMessage_GetWhenTestsWithSteps_ShouldHaveTestsAndDummyAtBottom()
 		{
 			//------------Setup for test--------------------------
@@ -1141,60 +1192,64 @@ namespace Warewolf.Studio.ViewModels.Tests
 			var tests = serviceTestViewModel.Tests;
 			mockEnvironment.Object.Connection.ReceivedResourceAffectedMessage.Invoke(It.IsAny<Guid>(), new CompileMessageList());
 			//------------Assert Results-------------------------
-			Assert.AreEqual(2, tests.Count);
+			NUnit.Framework.Assert.AreEqual(2, tests.Count);
 
 
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void DuplicateCommand_GivenIsDirty_ShouldSetCanExecuteFalse()
 		{
 			//---------------Set up test pack-------------------
 			var testFrameworkViewModel = new ServiceTestViewModel(CreateResourceModelWithSingleScalarOutput(), new SynchronousAsyncWorker(), new Mock<IEventAggregator>().Object, new Mock<IExternalProcessExecutor>().Object, new Mock<IWorkflowDesignerViewModel>().Object);
 			testFrameworkViewModel.CreateTestCommand.Execute(null);
 			//---------------Assert Precondition----------------
-			Assert.IsNotNull(testFrameworkViewModel.DuplicateTestCommand);
-			Assert.IsTrue(testFrameworkViewModel.IsDirty);
+			NUnit.Framework.Assert.IsNotNull(testFrameworkViewModel.DuplicateTestCommand);
+			NUnit.Framework.Assert.IsTrue(testFrameworkViewModel.IsDirty);
 			//---------------Execute Test ----------------------
 			var canDuplicate = testFrameworkViewModel.DuplicateTestCommand.CanExecute(null);
 			//---------------Test Result -----------------------
-			Assert.IsFalse(canDuplicate);
+			NUnit.Framework.Assert.IsFalse(canDuplicate);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void DuplicateCommand_GivenIsDirtyFalseAndSelectedIsNotNull_ShouldSetCanExecuteTrue()
 		{
 			//---------------Set up test pack-------------------
 			var testFrameworkViewModel = new ServiceTestViewModel(CreateResourceModel(), new SynchronousAsyncWorker(), new Mock<IEventAggregator>().Object, new Mock<IExternalProcessExecutor>().Object, new Mock<IWorkflowDesignerViewModel>().Object);
 			//---------------Assert Precondition----------------
-			Assert.IsNotNull(testFrameworkViewModel.DuplicateTestCommand);
-			Assert.IsFalse(testFrameworkViewModel.IsDirty);
+			NUnit.Framework.Assert.IsNotNull(testFrameworkViewModel.DuplicateTestCommand);
+			NUnit.Framework.Assert.IsFalse(testFrameworkViewModel.IsDirty);
 			testFrameworkViewModel.SelectedServiceTest = new ServiceTestModel(Guid.NewGuid());
 			//---------------Execute Test ----------------------
 			var canDuplicate = testFrameworkViewModel.DuplicateTestCommand.CanExecute(null);
 			//---------------Test Result -----------------------
-			Assert.IsTrue(canDuplicate);
+			NUnit.Framework.Assert.IsTrue(canDuplicate);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void CanSave_GivenIsDirty_ShouldSetCanSaveFalse()
 		{
 			//---------------Set up test pack-------------------
 			var testFrameworkViewModel = new ServiceTestViewModel(CreateResourceModelWithSingleScalarOutput(), new SynchronousAsyncWorker(), new Mock<IEventAggregator>().Object, new Mock<IExternalProcessExecutor>().Object, new Mock<IWorkflowDesignerViewModel>().Object);
 			//---------------Assert Precondition----------------
-			Assert.IsNotNull(testFrameworkViewModel.DuplicateTestCommand);
-			Assert.IsFalse(testFrameworkViewModel.IsDirty);
+			NUnit.Framework.Assert.IsNotNull(testFrameworkViewModel.DuplicateTestCommand);
+			NUnit.Framework.Assert.IsFalse(testFrameworkViewModel.IsDirty);
 			//---------------Execute Test ----------------------
 			var canSave = testFrameworkViewModel.CanSave;
 			//---------------Test Result -----------------------
-			Assert.IsFalse(canSave);
+			NUnit.Framework.Assert.IsFalse(canSave);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void CanSave_GivenIsDirtyAndValidName_ShouldSetCanSavetrue()
 		{
 			//---------------Set up test pack-------------------
@@ -1202,16 +1257,17 @@ namespace Warewolf.Studio.ViewModels.Tests
 			testFrameworkViewModel.CreateTestCommand.Execute(null);
 			testFrameworkViewModel.SelectedServiceTest.TestName = "name";
 			//---------------Assert Precondition----------------
-			Assert.IsTrue(testFrameworkViewModel.IsDirty);
+			NUnit.Framework.Assert.IsTrue(testFrameworkViewModel.IsDirty);
 
 			//---------------Execute Test ----------------------
 			var canSave = testFrameworkViewModel.CanSave;
 			//---------------Test Result -----------------------
-			Assert.IsTrue(canSave);
+			NUnit.Framework.Assert.IsTrue(canSave);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void CanSave_GivenIsDirtyAndInvalidValidName_ShouldSetCanSaveFalse()
 		{
 			//---------------Set up test pack-------------------
@@ -1219,17 +1275,18 @@ namespace Warewolf.Studio.ViewModels.Tests
 			testFrameworkViewModel.CreateTestCommand.Execute(null);
 			testFrameworkViewModel.SelectedServiceTest.TestName = "name$";
 			//---------------Assert Precondition----------------
-			Assert.IsNotNull(testFrameworkViewModel.DuplicateTestCommand);
-			Assert.IsTrue(testFrameworkViewModel.IsDirty);
+			NUnit.Framework.Assert.IsNotNull(testFrameworkViewModel.DuplicateTestCommand);
+			NUnit.Framework.Assert.IsTrue(testFrameworkViewModel.IsDirty);
 
 			//---------------Execute Test ----------------------
 			var canSave = testFrameworkViewModel.CanSave;
 			//---------------Test Result -----------------------
-			Assert.IsFalse(canSave);
+			NUnit.Framework.Assert.IsFalse(canSave);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void CanSave_GivenIsDirtyAndEmptyName_ShouldSetCanSaveFalse()
 		{
 			//---------------Set up test pack-------------------
@@ -1237,17 +1294,18 @@ namespace Warewolf.Studio.ViewModels.Tests
 			testFrameworkViewModel.CreateTestCommand.Execute(null);
 			testFrameworkViewModel.SelectedServiceTest.TestName = "";
 			//---------------Assert Precondition----------------
-			Assert.IsNotNull(testFrameworkViewModel.DuplicateTestCommand);
-			Assert.IsTrue(testFrameworkViewModel.IsDirty);
+			NUnit.Framework.Assert.IsNotNull(testFrameworkViewModel.DuplicateTestCommand);
+			NUnit.Framework.Assert.IsTrue(testFrameworkViewModel.IsDirty);
 
 			//---------------Execute Test ----------------------
 			var canSave = testFrameworkViewModel.CanSave;
 			//---------------Test Result -----------------------
-			Assert.IsFalse(canSave);
+			NUnit.Framework.Assert.IsFalse(canSave);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Pieter Terblanche")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Pieter Terblanche")]
 		public void RunSelectedTestCommand_GivenSelectedTestIsNotDirty_ShouldRunTheTest()
 		{
 			//---------------Set up test pack-------------------
@@ -1276,17 +1334,18 @@ namespace Warewolf.Studio.ViewModels.Tests
 			testFrameworkViewModel.SelectedServiceTest.TestName = "NewTestSaved";
 			testFrameworkViewModel.Save();
 			//---------------Assert Precondition----------------
-			Assert.IsFalse(testFrameworkViewModel.IsDirty);
+			NUnit.Framework.Assert.IsFalse(testFrameworkViewModel.IsDirty);
 			var selectedServiceTest = testFrameworkViewModel.SelectedServiceTest;
-			Assert.IsNotNull(selectedServiceTest);
+			NUnit.Framework.Assert.IsNotNull(selectedServiceTest);
 			//---------------Execute Test ----------------------
 			testFrameworkViewModel.RunSelectedTestCommand.Execute(null);
 			//---------------Test Result -----------------------
-            Assert.IsNull(testFrameworkViewModel.TestPassingResult);
+            NUnit.Framework.Assert.IsNull(testFrameworkViewModel.TestPassingResult);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Pieter Terblanche")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Pieter Terblanche")]
 		public void RunSelectedTestCommand_GivenSelectedTestIsDirty_ShouldSaveAndRunTheTest()
 		{
 			//---------------Set up test pack-------------------
@@ -1296,16 +1355,17 @@ namespace Warewolf.Studio.ViewModels.Tests
 			testFrameworkViewModel.Save();
 			//---------------Assert Precondition----------------
 			testFrameworkViewModel.SelectedServiceTest.TestName = "NewTestSaved1";
-			Assert.IsTrue(testFrameworkViewModel.IsDirty);
+			NUnit.Framework.Assert.IsTrue(testFrameworkViewModel.IsDirty);
 			var selectedServiceTest = testFrameworkViewModel.SelectedServiceTest;
-			Assert.IsNotNull(selectedServiceTest);
+			NUnit.Framework.Assert.IsNotNull(selectedServiceTest);
 			//---------------Execute Test ----------------------
 			testFrameworkViewModel.RunSelectedTestCommand.Execute(null);
 			//---------------Test Result -----------------------
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Pieter Terblanche")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Pieter Terblanche")]
 		public void RunSelectedTestCommand_GivenTestNameExists_ShouldShowDuplicateError()
 		{
 			//---------------Set up test pack-------------------
@@ -1318,17 +1378,18 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//---------------Assert Precondition----------------
 			testFrameworkViewModel.CreateTestCommand.Execute(null);
 			testFrameworkViewModel.SelectedServiceTest.TestName = "NewTestSaved";
-			Assert.IsTrue(testFrameworkViewModel.IsDirty);
+			NUnit.Framework.Assert.IsTrue(testFrameworkViewModel.IsDirty);
 			var selectedServiceTest = testFrameworkViewModel.SelectedServiceTest;
-			Assert.IsNotNull(selectedServiceTest);
+			NUnit.Framework.Assert.IsNotNull(selectedServiceTest);
 			//---------------Execute Test ----------------------
 			testFrameworkViewModel.RunSelectedTestCommand.Execute(null);
 			//---------------Test Result -----------------------
 			popupController.Verify(controller => controller.Show(Resources.Languages.Core.ServiceTestDuplicateTestNameMessage, Resources.Languages.Core.ServiceTestDuplicateTestNameHeader, MessageBoxButton.OK, MessageBoxImage.Error, null, false, true, false, false, false, false));
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Pieter Terblanche")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Pieter Terblanche")]
 		public void DeleteSelectedTestCommand_GivenTestNameExists_ShouldDeleteSelectedTest()
 		{
 			//---------------Set up test pack-------------------
@@ -1342,18 +1403,19 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//---------------Assert Precondition----------------
 			testFrameworkViewModel.CreateTestCommand.Execute(null);
 			testFrameworkViewModel.SelectedServiceTest.TestName = "NewTestSaved";
-			Assert.IsTrue(testFrameworkViewModel.IsDirty);
+			NUnit.Framework.Assert.IsTrue(testFrameworkViewModel.IsDirty);
 			var selectedServiceTest = testFrameworkViewModel.SelectedServiceTest;
-			Assert.IsNotNull(selectedServiceTest);
-			Assert.AreEqual(3, testFrameworkViewModel.Tests.Count);
+			NUnit.Framework.Assert.IsNotNull(selectedServiceTest);
+			NUnit.Framework.Assert.AreEqual(3, testFrameworkViewModel.Tests.Count);
 			//---------------Execute Test ----------------------
 			testFrameworkViewModel.DeleteTestCommand.Execute(testFrameworkViewModel.SelectedServiceTest);
 			//---------------Test Result -----------------------
-			Assert.AreEqual(2, testFrameworkViewModel.Tests.Count);
+			NUnit.Framework.Assert.AreEqual(2, testFrameworkViewModel.Tests.Count);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void CanSave_GivenIsDirtynameHastrailingSpaces_ShouldSetCanSaveFalse()
 		{
 			//---------------Set up test pack-------------------
@@ -1361,21 +1423,22 @@ namespace Warewolf.Studio.ViewModels.Tests
 			testFrameworkViewModel.CreateTestCommand.Execute(null);
 			testFrameworkViewModel.SelectedServiceTest.TestName = "name ";
 			//---------------Assert Precondition----------------
-			Assert.IsNotNull(testFrameworkViewModel.DuplicateTestCommand);
-			Assert.IsTrue(testFrameworkViewModel.IsDirty);
+			NUnit.Framework.Assert.IsNotNull(testFrameworkViewModel.DuplicateTestCommand);
+			NUnit.Framework.Assert.IsTrue(testFrameworkViewModel.IsDirty);
 
 			//---------------Execute Test ----------------------
 			var canSave = testFrameworkViewModel.CanSave;
 			//---------------Test Result -----------------------
-			Assert.IsFalse(canSave);
+			NUnit.Framework.Assert.IsFalse(canSave);
 		}
 
         List<IServiceTestModel> GetTests(IServiceTestViewModel viewModel)
         {
             return viewModel.Tests.Where(model => model.GetType() != typeof(DummyServiceTest)).ToList();
         }
-        [TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void DuplicateTestCommand_GivenSelectedTesIsNotNull_ShouldAddNewTestToTestCollection()
 		{
 			//---------------Set up test pack-------------------
@@ -1384,20 +1447,21 @@ namespace Warewolf.Studio.ViewModels.Tests
 			testFrameworkViewModel.SelectedServiceTest.TestName = "NewTestSaved";
 			testFrameworkViewModel.Save();
 			//---------------Assert Precondition----------------
-			Assert.IsFalse(testFrameworkViewModel.IsDirty);
+			NUnit.Framework.Assert.IsFalse(testFrameworkViewModel.IsDirty);
 			var testCount = GetTests(testFrameworkViewModel).Count;
-			Assert.AreEqual(1, testCount);
+			NUnit.Framework.Assert.AreEqual(1, testCount);
 			var selectedServiceTest = testFrameworkViewModel.SelectedServiceTest;
-			Assert.IsNotNull(selectedServiceTest);
+			NUnit.Framework.Assert.IsNotNull(selectedServiceTest);
 			//---------------Execute Test ----------------------
 			testFrameworkViewModel.DuplicateTestCommand.Execute(null);
-			Assert.IsTrue(!testFrameworkViewModel.SelectedServiceTest.TestName.Contains("_dup"));
+			NUnit.Framework.Assert.IsTrue(!testFrameworkViewModel.SelectedServiceTest.TestName.Contains("_dup"));
 			//---------------Test Result -----------------------
-			Assert.AreEqual(2, GetTests(testFrameworkViewModel).Count);
+			NUnit.Framework.Assert.AreEqual(2, GetTests(testFrameworkViewModel).Count);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void DuplicateTestCommand_GivenSelectedTesIsNotNull_ShouldSetSelectedTestToNewlyDuplicatedTest()
 		{
 			//---------------Set up test pack-------------------
@@ -1406,20 +1470,21 @@ namespace Warewolf.Studio.ViewModels.Tests
 			testFrameworkViewModel.SelectedServiceTest.TestName = "NewTestSaved";
 			testFrameworkViewModel.Save();
 			//---------------Assert Precondition----------------
-			Assert.IsFalse(testFrameworkViewModel.IsDirty);
+			NUnit.Framework.Assert.IsFalse(testFrameworkViewModel.IsDirty);
 			var testCount = GetTests(testFrameworkViewModel).Count;
-			Assert.AreEqual(1, testCount);
+			NUnit.Framework.Assert.AreEqual(1, testCount);
 			var selectedServiceTest = testFrameworkViewModel.SelectedServiceTest;
-			Assert.IsNotNull(selectedServiceTest);
+			NUnit.Framework.Assert.IsNotNull(selectedServiceTest);
 			//---------------Execute Test ----------------------
 			testFrameworkViewModel.DuplicateTestCommand.Execute(null);
 
 			//---------------Test Result -----------------------
-			Assert.IsTrue(!testFrameworkViewModel.SelectedServiceTest.TestName.Contains("_dup"));
+			NUnit.Framework.Assert.IsTrue(!testFrameworkViewModel.SelectedServiceTest.TestName.Contains("_dup"));
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void DeleteCommand_GivenSelectedTestIsDisabled_ShouldSetCanDeleteTrue()
 		{
 			//---------------Set up test pack-------------------
@@ -1427,17 +1492,18 @@ namespace Warewolf.Studio.ViewModels.Tests
 			testFrameworkViewModel.CreateTestCommand.Execute(null);
 			testFrameworkViewModel.Save();
 			//---------------Assert Precondition----------------
-			Assert.AreEqual("Test 1", testFrameworkViewModel.SelectedServiceTest.TestName);
+			NUnit.Framework.Assert.AreEqual("Test 1", testFrameworkViewModel.SelectedServiceTest.TestName);
 			//---------------Execute Test ----------------------
 			testFrameworkViewModel.SelectedServiceTest.Enabled = false;
 			var caDelete = testFrameworkViewModel.DeleteTestCommand.CanExecute(testFrameworkViewModel.SelectedServiceTest);
 			//---------------Test Result -----------------------
-			Assert.IsTrue(caDelete);
+			NUnit.Framework.Assert.IsTrue(caDelete);
 
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void DeleteTestCommand_GivenNullTest_Execute_ShouldReturnNull()
 		{
 			//------------Setup for test--------------------------
@@ -1455,8 +1521,9 @@ namespace Warewolf.Studio.ViewModels.Tests
 			popupController.Verify(controller => controller.ShowDeleteConfirmation(It.IsAny<string>()), Times.Never);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void DeleteTestCommand_GivenTests_ShouldShowConfirmation()
 		{
 			//------------Setup for test--------------------------
@@ -1490,8 +1557,9 @@ namespace Warewolf.Studio.ViewModels.Tests
 			popupController.Verify(controller => controller.ShowDeleteConfirmation(It.IsAny<string>()), Times.Once);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void DeleteTestCommand_GivenTests_ShouldUpdateTestsCollection()
 		{
 			//------------Setup for test--------------------------
@@ -1529,18 +1597,19 @@ namespace Warewolf.Studio.ViewModels.Tests
 			testFrameworkViewModel.SelectedServiceTest = testModel;
 			//------------Assert Preconditions-------------------
 			var beforeDelete = GetTests(testFrameworkViewModel).Count;
-			Assert.AreEqual(1, beforeDelete);
+			NUnit.Framework.Assert.AreEqual(1, beforeDelete);
 			//------------Execute Test---------------------------
 			testFrameworkViewModel.DeleteTestCommand.Execute(testFrameworkViewModel.SelectedServiceTest);
 			//------------Assert Results-------------------------
 			popupController.Verify(controller => controller.ShowDeleteConfirmation(It.IsAny<string>()), Times.Once);
-			Assert.IsTrue(wasCalled);
-			Assert.AreEqual(beforeDelete - 1, GetTests(testFrameworkViewModel).Count);
+			NUnit.Framework.Assert.IsTrue(wasCalled);
+			NUnit.Framework.Assert.AreEqual(beforeDelete - 1, GetTests(testFrameworkViewModel).Count);
 
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void IsValid_GivenNameOne_ShouldBeValid()
 		{
 			//---------------Set up test pack-------------------
@@ -1557,15 +1626,16 @@ namespace Warewolf.Studio.ViewModels.Tests
 			testFrameworkViewModel.SelectedServiceTest = testModel;
 			var methodInfo = typeof(ServiceTestViewModel).GetMethod("IsValidName", BindingFlags.NonPublic | BindingFlags.Instance);
 			//---------------Assert Precondition----------------
-			Assert.IsNotNull(methodInfo);
+			NUnit.Framework.Assert.IsNotNull(methodInfo);
 			//---------------Execute Test ----------------------
 			var invoke = methodInfo.Invoke(testFrameworkViewModel, new object[] {  });
 			//---------------Test Result -----------------------
-			Assert.AreEqual(true, bool.Parse(invoke.ToString()));
+			NUnit.Framework.Assert.AreEqual(true, bool.Parse(invoke.ToString()));
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void IsValid_GivenNameOnePErcenta_ShouldBeInValid()
 		{
 			//---------------Set up test pack-------------------
@@ -1582,15 +1652,16 @@ namespace Warewolf.Studio.ViewModels.Tests
 			testFrameworkViewModel.SelectedServiceTest = testModel;
 			var methodInfo = typeof(ServiceTestViewModel).GetMethod("IsValidName", BindingFlags.NonPublic | BindingFlags.Instance);
 			//---------------Assert Precondition----------------
-			Assert.IsNotNull(methodInfo);
+			NUnit.Framework.Assert.IsNotNull(methodInfo);
 			//---------------Execute Test ----------------------
 			var invoke = methodInfo.Invoke(testFrameworkViewModel, new object[] {  });
 			//---------------Test Result -----------------------
-			Assert.AreEqual(false, bool.Parse(invoke.ToString()));
+			NUnit.Framework.Assert.AreEqual(false, bool.Parse(invoke.ToString()));
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void IsValid_GivenEmpty_ShouldBeInValid()
 		{
 			//---------------Set up test pack-------------------
@@ -1607,15 +1678,16 @@ namespace Warewolf.Studio.ViewModels.Tests
 			testFrameworkViewModel.SelectedServiceTest = testModel;
 			var methodInfo = typeof(ServiceTestViewModel).GetMethod("IsValidName", BindingFlags.NonPublic | BindingFlags.Instance);
 			//---------------Assert Precondition----------------
-			Assert.IsNotNull(methodInfo);
+			NUnit.Framework.Assert.IsNotNull(methodInfo);
 			//---------------Execute Test ----------------------
 			var invoke = methodInfo.Invoke(testFrameworkViewModel, new object[] {});
 			//---------------Test Result -----------------------
-			Assert.AreEqual(false, bool.Parse(invoke.ToString()));
+			NUnit.Framework.Assert.AreEqual(false, bool.Parse(invoke.ToString()));
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void IsValid_GivenNull_ShouldBeInValid()
 		{
 			//---------------Set up test pack-------------------
@@ -1632,15 +1704,16 @@ namespace Warewolf.Studio.ViewModels.Tests
 			testFrameworkViewModel.SelectedServiceTest = testModel;
 			var methodInfo = typeof(ServiceTestViewModel).GetMethod("IsValidName", BindingFlags.NonPublic | BindingFlags.Instance);
 			//---------------Assert Precondition----------------
-			Assert.IsNotNull(methodInfo);
+			NUnit.Framework.Assert.IsNotNull(methodInfo);
 			//---------------Execute Test ----------------------
 			var invoke = methodInfo.Invoke(testFrameworkViewModel, new object[] { });
 			//---------------Test Result -----------------------
-			Assert.AreEqual(false, bool.Parse(invoke.ToString()));
+			NUnit.Framework.Assert.AreEqual(false, bool.Parse(invoke.ToString()));
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void IsValid_GivennameWithtrailingSpaces_ShouldBeInValid()
 		{
 			//---------------Set up test pack-------------------
@@ -1657,15 +1730,16 @@ namespace Warewolf.Studio.ViewModels.Tests
 			testFrameworkViewModel.SelectedServiceTest = testModel;
 			var methodInfo = typeof(ServiceTestViewModel).GetMethod("IsValidName", BindingFlags.NonPublic | BindingFlags.Instance);
 			//---------------Assert Precondition----------------
-			Assert.IsNotNull(methodInfo);
+			NUnit.Framework.Assert.IsNotNull(methodInfo);
 			//---------------Execute Test ----------------------
 			var invoke = methodInfo.Invoke(testFrameworkViewModel, new object[] { });
 			//---------------Test Result -----------------------
-			Assert.AreEqual(false, bool.Parse(invoke.ToString()));
+			NUnit.Framework.Assert.AreEqual(false, bool.Parse(invoke.ToString()));
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void LastDateVisibility_GivenSelectedTestIsNew_ShouldHaveDateVisibilityCollapsed()
 		{
 			//---------------Set up test pack-------------------
@@ -1680,13 +1754,14 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//---------------Assert Precondition----------------
 			//---------------Execute Test ----------------------
 			testFrameworkViewModel.CreateTestCommand.Execute(null);
-			Assert.IsNotNull(testFrameworkViewModel.SelectedServiceTest);
+			NUnit.Framework.Assert.IsNotNull(testFrameworkViewModel.SelectedServiceTest);
 			//---------------Test Result -----------------------
-			Assert.IsFalse(testFrameworkViewModel.SelectedServiceTest.LastRunDateVisibility);
+			NUnit.Framework.Assert.IsFalse(testFrameworkViewModel.SelectedServiceTest.LastRunDateVisibility);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void NeverRunStringVisibility_GivenSelectedTestIsNew_ShouldHaveDateVisibilityVisible()
 		{
 			//---------------Set up test pack-------------------
@@ -1701,13 +1776,14 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//---------------Assert Precondition----------------
 			//---------------Execute Test ----------------------
 			testFrameworkViewModel.CreateTestCommand.Execute(null);
-			Assert.IsNotNull(testFrameworkViewModel.SelectedServiceTest);
+			NUnit.Framework.Assert.IsNotNull(testFrameworkViewModel.SelectedServiceTest);
 			//---------------Test Result -----------------------
-			Assert.IsTrue(testFrameworkViewModel.SelectedServiceTest.NeverRunStringVisibility);
+			NUnit.Framework.Assert.IsTrue(testFrameworkViewModel.SelectedServiceTest.NeverRunStringVisibility);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
 		public void ItemSelected_GivenSelectedItemDecision_ShouldHaveAddServiceTestStepShouldHaveArmOptions()
 		{
 			//---------------Set up test pack-------------------
@@ -1736,22 +1812,23 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//---------------Execute Test ----------------------
 			mockWorkflowDesignerViewModel.Object.ItemSelectedAction(modelItem);
 			//---------------Test Result -----------------------
-			Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
-			Assert.AreEqual(StepType.Assert, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].Type);
-			Assert.AreEqual(dsfDecision.GetType().Name, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].ActivityType);
-			Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].StepOutputs.Count);
+			NUnit.Framework.Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
+			NUnit.Framework.Assert.AreEqual(StepType.Assert, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].Type);
+			NUnit.Framework.Assert.AreEqual(dsfDecision.GetType().Name, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].ActivityType);
+			NUnit.Framework.Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].StepOutputs.Count);
 			var serviceTestOutput = testFrameworkViewModel.SelectedServiceTest.TestSteps[0].StepOutputs[0] as ServiceTestOutput;
-			Assert.AreEqual(2, serviceTestOutput.OptionsForValue.Count);
-			Assert.IsTrue(serviceTestOutput.HasOptionsForValue);
-			Assert.AreEqual("True Path", serviceTestOutput.OptionsForValue[0]);
-			Assert.AreEqual("False Path", serviceTestOutput.OptionsForValue[1]);
-			Assert.AreEqual(GlobalConstants.ArmResultText, serviceTestOutput.Variable);
+			NUnit.Framework.Assert.AreEqual(2, serviceTestOutput.OptionsForValue.Count);
+			NUnit.Framework.Assert.IsTrue(serviceTestOutput.HasOptionsForValue);
+			NUnit.Framework.Assert.AreEqual("True Path", serviceTestOutput.OptionsForValue[0]);
+			NUnit.Framework.Assert.AreEqual("False Path", serviceTestOutput.OptionsForValue[1]);
+			NUnit.Framework.Assert.AreEqual(GlobalConstants.ArmResultText, serviceTestOutput.Variable);
 		}
 
 
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
 		public void ItemSelected_GivenDebugStateDecision_ShouldHaveAddServiceTestStepShouldHaveArmOptions()
 		{
 			//---------------Set up test pack-------------------
@@ -1784,20 +1861,21 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//---------------Execute Test ----------------------
 			mockWorkflowDesignerViewModel.Object.ItemSelectedAction(modelItem);
 			//---------------Test Result -----------------------
-			Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
-			Assert.AreEqual(StepType.Assert, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].Type);
-			Assert.AreEqual(dsfDecision.GetType().Name, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].ActivityType);
-			Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].StepOutputs.Count);
+			NUnit.Framework.Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
+			NUnit.Framework.Assert.AreEqual(StepType.Assert, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].Type);
+			NUnit.Framework.Assert.AreEqual(dsfDecision.GetType().Name, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].ActivityType);
+			NUnit.Framework.Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].StepOutputs.Count);
 			var serviceTestOutput = testFrameworkViewModel.SelectedServiceTest.TestSteps[0].StepOutputs[0] as ServiceTestOutput;
-			Assert.AreEqual(2, serviceTestOutput.OptionsForValue.Count);
-			Assert.IsTrue(serviceTestOutput.HasOptionsForValue);
-			Assert.AreEqual("True Path", serviceTestOutput.OptionsForValue[0]);
-			Assert.AreEqual("False Path", serviceTestOutput.OptionsForValue[1]);
-			Assert.AreEqual(GlobalConstants.ArmResultText, serviceTestOutput.Variable);
+			NUnit.Framework.Assert.AreEqual(2, serviceTestOutput.OptionsForValue.Count);
+			NUnit.Framework.Assert.IsTrue(serviceTestOutput.HasOptionsForValue);
+			NUnit.Framework.Assert.AreEqual("True Path", serviceTestOutput.OptionsForValue[0]);
+			NUnit.Framework.Assert.AreEqual("False Path", serviceTestOutput.OptionsForValue[1]);
+			NUnit.Framework.Assert.AreEqual(GlobalConstants.ArmResultText, serviceTestOutput.Variable);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
 		public void ItemSelected_GivenSelectedItemFlowDecision_ShouldHaveAddServiceTestStepShouldHaveArmOptions()
 		{
 			//---------------Set up test pack-------------------
@@ -1826,20 +1904,21 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//---------------Execute Test ----------------------
 			mockWorkflowDesignerViewModel.Object.ItemSelectedAction(modelItem);
 			//---------------Test Result -----------------------
-			Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
-			Assert.AreEqual(StepType.Assert, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].Type);
-			Assert.AreEqual(typeof(DsfDecision).Name, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].ActivityType);
-			Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].StepOutputs.Count);
+			NUnit.Framework.Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
+			NUnit.Framework.Assert.AreEqual(StepType.Assert, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].Type);
+			NUnit.Framework.Assert.AreEqual(typeof(DsfDecision).Name, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].ActivityType);
+			NUnit.Framework.Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].StepOutputs.Count);
 			var serviceTestOutput = testFrameworkViewModel.SelectedServiceTest.TestSteps[0].StepOutputs[0] as ServiceTestOutput;
-			Assert.AreEqual(2, serviceTestOutput.OptionsForValue.Count);
-			Assert.IsTrue(serviceTestOutput.HasOptionsForValue);
-			Assert.AreEqual("Name Input", serviceTestOutput.OptionsForValue[0]);
-			Assert.AreEqual("Blank Input", serviceTestOutput.OptionsForValue[1]);
-			Assert.AreEqual(GlobalConstants.ArmResultText, serviceTestOutput.Variable);
+			NUnit.Framework.Assert.AreEqual(2, serviceTestOutput.OptionsForValue.Count);
+			NUnit.Framework.Assert.IsTrue(serviceTestOutput.HasOptionsForValue);
+			NUnit.Framework.Assert.AreEqual("Name Input", serviceTestOutput.OptionsForValue[0]);
+			NUnit.Framework.Assert.AreEqual("Blank Input", serviceTestOutput.OptionsForValue[1]);
+			NUnit.Framework.Assert.AreEqual(GlobalConstants.ArmResultText, serviceTestOutput.Variable);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
 		public void ItemSelected_GivenSelectedItemSwitch_NoDefault_ShouldHaveAddServiceTestStepShouldHaveCaseOptions()
 		{
 			//---------------Set up test pack-------------------
@@ -1865,21 +1944,22 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//---------------Execute Test ----------------------
 			mockWorkflowDesignerViewModel.Object.ItemSelectedAction(modelItem);
 			//---------------Test Result -----------------------
-			Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
-			Assert.AreEqual(StepType.Assert, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].Type);
-			Assert.AreEqual(dsfSwitch.GetType().Name, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].ActivityType);
-			Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].StepOutputs.Count);
+			NUnit.Framework.Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
+			NUnit.Framework.Assert.AreEqual(StepType.Assert, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].Type);
+			NUnit.Framework.Assert.AreEqual(dsfSwitch.GetType().Name, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].ActivityType);
+			NUnit.Framework.Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].StepOutputs.Count);
 			var serviceTestOutput = testFrameworkViewModel.SelectedServiceTest.TestSteps[0].StepOutputs[0] as ServiceTestOutput;
-			Assert.AreEqual(3, serviceTestOutput.OptionsForValue.Count);
-			Assert.IsTrue(serviceTestOutput.HasOptionsForValue);
-			Assert.AreEqual("Case1", serviceTestOutput.OptionsForValue[0]);
-			Assert.AreEqual("Case2", serviceTestOutput.OptionsForValue[1]);
-			Assert.AreEqual("Case3", serviceTestOutput.OptionsForValue[2]);
-			Assert.AreEqual(GlobalConstants.ArmResultText, serviceTestOutput.Variable);
+			NUnit.Framework.Assert.AreEqual(3, serviceTestOutput.OptionsForValue.Count);
+			NUnit.Framework.Assert.IsTrue(serviceTestOutput.HasOptionsForValue);
+			NUnit.Framework.Assert.AreEqual("Case1", serviceTestOutput.OptionsForValue[0]);
+			NUnit.Framework.Assert.AreEqual("Case2", serviceTestOutput.OptionsForValue[1]);
+			NUnit.Framework.Assert.AreEqual("Case3", serviceTestOutput.OptionsForValue[2]);
+			NUnit.Framework.Assert.AreEqual(GlobalConstants.ArmResultText, serviceTestOutput.Variable);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
 		public void ItemSelected_GivenSelectedItemSwitch_Default_ShouldHaveAddServiceTestStepShouldHaveCaseOptionsWithDefaultAtTop()
 		{
 			//---------------Set up test pack-------------------
@@ -1906,22 +1986,23 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//---------------Execute Test ----------------------
 			mockWorkflowDesignerViewModel.Object.ItemSelectedAction(modelItem);
 			//---------------Test Result -----------------------
-			Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
-			Assert.AreEqual(StepType.Assert, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].Type);
-			Assert.AreEqual(dsfSwitch.GetType().Name, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].ActivityType);
-			Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].StepOutputs.Count);
+			NUnit.Framework.Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
+			NUnit.Framework.Assert.AreEqual(StepType.Assert, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].Type);
+			NUnit.Framework.Assert.AreEqual(dsfSwitch.GetType().Name, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].ActivityType);
+			NUnit.Framework.Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].StepOutputs.Count);
 			var serviceTestOutput = testFrameworkViewModel.SelectedServiceTest.TestSteps[0].StepOutputs[0] as ServiceTestOutput;
-			Assert.AreEqual(4, serviceTestOutput.OptionsForValue.Count);
-			Assert.IsTrue(serviceTestOutput.HasOptionsForValue);
-			Assert.AreEqual("Default", serviceTestOutput.OptionsForValue[0]);
-			Assert.AreEqual("Case1", serviceTestOutput.OptionsForValue[1]);
-			Assert.AreEqual("Case2", serviceTestOutput.OptionsForValue[2]);
-			Assert.AreEqual("Case3", serviceTestOutput.OptionsForValue[3]);
-			Assert.AreEqual(GlobalConstants.ArmResultText, serviceTestOutput.Variable);
+			NUnit.Framework.Assert.AreEqual(4, serviceTestOutput.OptionsForValue.Count);
+			NUnit.Framework.Assert.IsTrue(serviceTestOutput.HasOptionsForValue);
+			NUnit.Framework.Assert.AreEqual("Default", serviceTestOutput.OptionsForValue[0]);
+			NUnit.Framework.Assert.AreEqual("Case1", serviceTestOutput.OptionsForValue[1]);
+			NUnit.Framework.Assert.AreEqual("Case2", serviceTestOutput.OptionsForValue[2]);
+			NUnit.Framework.Assert.AreEqual("Case3", serviceTestOutput.OptionsForValue[3]);
+			NUnit.Framework.Assert.AreEqual(GlobalConstants.ArmResultText, serviceTestOutput.Variable);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
 		public void ItemSelected_GivenSelectedItemFlowSwitch_Default_ShouldHaveAddServiceTestStepShouldHaveCaseOptionsWithDefaultAtTop()
 		{
 			//---------------Set up test pack-------------------
@@ -1951,22 +2032,23 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//---------------Execute Test ----------------------
 			mockWorkflowDesignerViewModel.Object.ItemSelectedAction(modelItem);
 			//---------------Test Result -----------------------
-			Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
-			Assert.AreEqual(StepType.Assert, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].Type);
-			Assert.AreEqual(typeof(DsfSwitch).Name, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].ActivityType);
-			Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].StepOutputs.Count);
+			NUnit.Framework.Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
+			NUnit.Framework.Assert.AreEqual(StepType.Assert, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].Type);
+			NUnit.Framework.Assert.AreEqual(typeof(DsfSwitch).Name, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].ActivityType);
+			NUnit.Framework.Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].StepOutputs.Count);
 			var serviceTestOutput = testFrameworkViewModel.SelectedServiceTest.TestSteps[0].StepOutputs[0] as ServiceTestOutput;
-			Assert.AreEqual(4, serviceTestOutput.OptionsForValue.Count);
-			Assert.IsTrue(serviceTestOutput.HasOptionsForValue);
-			Assert.AreEqual("Default", serviceTestOutput.OptionsForValue[0]);
-			Assert.AreEqual("Case1", serviceTestOutput.OptionsForValue[1]);
-			Assert.AreEqual("Case2", serviceTestOutput.OptionsForValue[2]);
-			Assert.AreEqual("Case3", serviceTestOutput.OptionsForValue[3]);
-			Assert.AreEqual(GlobalConstants.ArmResultText, serviceTestOutput.Variable);
+			NUnit.Framework.Assert.AreEqual(4, serviceTestOutput.OptionsForValue.Count);
+			NUnit.Framework.Assert.IsTrue(serviceTestOutput.HasOptionsForValue);
+			NUnit.Framework.Assert.AreEqual("Default", serviceTestOutput.OptionsForValue[0]);
+			NUnit.Framework.Assert.AreEqual("Case1", serviceTestOutput.OptionsForValue[1]);
+			NUnit.Framework.Assert.AreEqual("Case2", serviceTestOutput.OptionsForValue[2]);
+			NUnit.Framework.Assert.AreEqual("Case3", serviceTestOutput.OptionsForValue[3]);
+			NUnit.Framework.Assert.AreEqual(GlobalConstants.ArmResultText, serviceTestOutput.Variable);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void ItemSelected_GivenSelectedItemSelectAndApply_Default_ShouldHaveAddServiceTestStepShouldHaveCaseOptionsWithDefaultAtTop()
 		{
 			//---------------Set up test pack-------------------
@@ -1991,16 +2073,17 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//---------------Execute Test ----------------------
 			mockWorkflowDesignerViewModel.Object.ItemSelectedAction(modelItem);
 			//---------------Test Result -----------------------
-			Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
-			Assert.AreEqual(StepType.Mock, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].Type);
-			Assert.AreEqual(typeof(DsfSelectAndApplyActivity).Name, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].ActivityType);
-			Assert.AreEqual(0, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].StepOutputs.Count);
+			NUnit.Framework.Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
+			NUnit.Framework.Assert.AreEqual(StepType.Mock, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].Type);
+			NUnit.Framework.Assert.AreEqual(typeof(DsfSelectAndApplyActivity).Name, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].ActivityType);
+			NUnit.Framework.Assert.AreEqual(0, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].StepOutputs.Count);
 	  
 		   
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
 		public void ItemSelected_GivenSelectedItemMultiAssign_ShouldHaveAddServiceTestStepShouldHaveOutputs()
 		{
 			//---------------Set up test pack-------------------
@@ -2029,23 +2112,24 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//---------------Execute Test ----------------------
 			mockWorkflowDesignerViewModel.Object.ItemSelectedAction(modelItem);
 			//---------------Test Result -----------------------
-			Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
-			Assert.AreEqual(StepType.Assert, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].Type);
-			Assert.AreEqual(assignActivity.GetType().Name, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].ActivityType);
-			Assert.AreEqual(3, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].StepOutputs.Count);
+			NUnit.Framework.Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
+			NUnit.Framework.Assert.AreEqual(StepType.Assert, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].Type);
+			NUnit.Framework.Assert.AreEqual(assignActivity.GetType().Name, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].ActivityType);
+			NUnit.Framework.Assert.AreEqual(3, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].StepOutputs.Count);
 			var serviceTestOutput1 = testFrameworkViewModel.SelectedServiceTest.TestSteps[0].StepOutputs[0] as ServiceTestOutput;
 			var serviceTestOutput2 = testFrameworkViewModel.SelectedServiceTest.TestSteps[0].StepOutputs[1] as ServiceTestOutput;
 			var serviceTestOutput3 = testFrameworkViewModel.SelectedServiceTest.TestSteps[0].StepOutputs[2] as ServiceTestOutput;
-			Assert.IsFalse(serviceTestOutput1.HasOptionsForValue);
-			Assert.IsFalse(serviceTestOutput2.HasOptionsForValue);
-			Assert.IsFalse(serviceTestOutput3.HasOptionsForValue);
-			Assert.AreEqual("[[Var1]]", serviceTestOutput1.Variable);
-			Assert.AreEqual("[[Var2]]", serviceTestOutput2.Variable);
-			Assert.AreEqual("[[name]]", serviceTestOutput3.Variable);
+			NUnit.Framework.Assert.IsFalse(serviceTestOutput1.HasOptionsForValue);
+			NUnit.Framework.Assert.IsFalse(serviceTestOutput2.HasOptionsForValue);
+			NUnit.Framework.Assert.IsFalse(serviceTestOutput3.HasOptionsForValue);
+			NUnit.Framework.Assert.AreEqual("[[Var1]]", serviceTestOutput1.Variable);
+			NUnit.Framework.Assert.AreEqual("[[Var2]]", serviceTestOutput2.Variable);
+			NUnit.Framework.Assert.AreEqual("[[name]]", serviceTestOutput3.Variable);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Pieter Terblanche")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Pieter Terblanche")]
 		public void ItemSelected_GivenSelectedItemEnhancedDotNetDll_ShouldHaveAddServiceTestStepShouldHaveOutputs()
 		{
 			//---------------Set up test pack-------------------
@@ -2075,14 +2159,15 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//---------------Execute Test ----------------------
 			mockWorkflowDesignerViewModel.Object.ItemSelectedAction(modelItem);
 			//---------------Test Result -----------------------
-			Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
-			Assert.AreEqual(StepType.Mock, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].Type);
-			Assert.AreEqual(dotNetDllActivity.GetType().Name, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].ActivityType);
-			Assert.AreEqual(0, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].StepOutputs.Count);
+			NUnit.Framework.Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
+			NUnit.Framework.Assert.AreEqual(StepType.Mock, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].Type);
+			NUnit.Framework.Assert.AreEqual(dotNetDllActivity.GetType().Name, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].ActivityType);
+			NUnit.Framework.Assert.AreEqual(0, testFrameworkViewModel.SelectedServiceTest.TestSteps[0].StepOutputs.Count);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
 		public void ItemSelected_GivenSelectedItemForEach_ShouldHaveAddServiceTestStepShouldHaveOutputs()
 		{
 			//---------------Set up test pack-------------------
@@ -2117,33 +2202,34 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//---------------Execute Test ----------------------
 			mockWorkflowDesignerViewModel.Object.ItemSelectedAction(modelItem);
 			//---------------Test Result -----------------------
-			Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
+			NUnit.Framework.Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
 			var serviceTestStep = testFrameworkViewModel.SelectedServiceTest.TestSteps[0];
-			Assert.AreEqual(StepType.Mock, serviceTestStep.Type);
-			Assert.AreEqual(forEach.GetType().Name, serviceTestStep.ActivityType);
-			Assert.AreEqual(forEachId, serviceTestStep.UniqueId);
+			NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTestStep.Type);
+			NUnit.Framework.Assert.AreEqual(forEach.GetType().Name, serviceTestStep.ActivityType);
+			NUnit.Framework.Assert.AreEqual(forEachId, serviceTestStep.UniqueId);
 
-			Assert.AreEqual(1, serviceTestStep.Children.Count);
+			NUnit.Framework.Assert.AreEqual(1, serviceTestStep.Children.Count);
 			var childItem = serviceTestStep.Children[0];
-			Assert.AreEqual(StepType.Mock, childItem.Type);
-			Assert.AreEqual(assignActivity.GetType().Name, childItem.ActivityType);
-			Assert.AreEqual(uniqueId, childItem.UniqueId);
-			Assert.AreEqual(serviceTestStep, childItem.Parent);
+			NUnit.Framework.Assert.AreEqual(StepType.Mock, childItem.Type);
+			NUnit.Framework.Assert.AreEqual(assignActivity.GetType().Name, childItem.ActivityType);
+			NUnit.Framework.Assert.AreEqual(uniqueId, childItem.UniqueId);
+			NUnit.Framework.Assert.AreEqual(serviceTestStep, childItem.Parent);
 
-			Assert.AreEqual(3, childItem.StepOutputs.Count);
+			NUnit.Framework.Assert.AreEqual(3, childItem.StepOutputs.Count);
 			var serviceTestOutput1 = childItem.StepOutputs[0] as ServiceTestOutput;
 			var serviceTestOutput2 = childItem.StepOutputs[1] as ServiceTestOutput;
 			var serviceTestOutput3 = childItem.StepOutputs[2] as ServiceTestOutput;
-			Assert.IsFalse(serviceTestOutput1.HasOptionsForValue);
-			Assert.IsFalse(serviceTestOutput2.HasOptionsForValue);
-			Assert.IsFalse(serviceTestOutput3.HasOptionsForValue);
-			Assert.AreEqual("[[Var1]]", serviceTestOutput1.Variable);
-			Assert.AreEqual("[[Var2]]", serviceTestOutput2.Variable);
-			Assert.AreEqual("[[name]]", serviceTestOutput3.Variable);
+			NUnit.Framework.Assert.IsFalse(serviceTestOutput1.HasOptionsForValue);
+			NUnit.Framework.Assert.IsFalse(serviceTestOutput2.HasOptionsForValue);
+			NUnit.Framework.Assert.IsFalse(serviceTestOutput3.HasOptionsForValue);
+			NUnit.Framework.Assert.AreEqual("[[Var1]]", serviceTestOutput1.Variable);
+			NUnit.Framework.Assert.AreEqual("[[Var2]]", serviceTestOutput2.Variable);
+			NUnit.Framework.Assert.AreEqual("[[name]]", serviceTestOutput3.Variable);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
 		public void ItemSelected_GivenSelectedItemForEachWithSequence_ShouldHaveAddServiceTestStepShouldHaveOutputs()
 		{
 			//---------------Set up test pack-------------------
@@ -2183,40 +2269,41 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//---------------Execute Test ----------------------
 			mockWorkflowDesignerViewModel.Object.ItemSelectedAction(modelItem);
 			//---------------Test Result -----------------------
-			Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
+			NUnit.Framework.Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
 			var serviceTestStep = testFrameworkViewModel.SelectedServiceTest.TestSteps[0];
-			Assert.AreEqual(StepType.Mock, serviceTestStep.Type);
-			Assert.AreEqual(forEach.GetType().Name, serviceTestStep.ActivityType);
-			Assert.AreEqual(forEachId, serviceTestStep.UniqueId);
+			NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTestStep.Type);
+			NUnit.Framework.Assert.AreEqual(forEach.GetType().Name, serviceTestStep.ActivityType);
+			NUnit.Framework.Assert.AreEqual(forEachId, serviceTestStep.UniqueId);
 
-			Assert.AreEqual(1, serviceTestStep.Children.Count);
+			NUnit.Framework.Assert.AreEqual(1, serviceTestStep.Children.Count);
 			var childItem = serviceTestStep.Children[0];
-			Assert.AreEqual(StepType.Mock, childItem.Type);
-			Assert.AreEqual(sequenceActivity.GetType().Name, childItem.ActivityType);
-			Assert.AreEqual(seqId, childItem.UniqueId);
-			Assert.AreEqual(serviceTestStep, childItem.Parent);
+			NUnit.Framework.Assert.AreEqual(StepType.Mock, childItem.Type);
+			NUnit.Framework.Assert.AreEqual(sequenceActivity.GetType().Name, childItem.ActivityType);
+			NUnit.Framework.Assert.AreEqual(seqId, childItem.UniqueId);
+			NUnit.Framework.Assert.AreEqual(serviceTestStep, childItem.Parent);
 
-			Assert.AreEqual(1, childItem.Children.Count);
+			NUnit.Framework.Assert.AreEqual(1, childItem.Children.Count);
 			var seqChildItem = childItem.Children[0];
-			Assert.AreEqual(StepType.Mock, seqChildItem.Type);
-			Assert.AreEqual(assignActivity.GetType().Name, seqChildItem.ActivityType);
-			Assert.AreEqual(uniqueId, seqChildItem.UniqueId);
-			Assert.AreEqual(childItem, seqChildItem.Parent);
+			NUnit.Framework.Assert.AreEqual(StepType.Mock, seqChildItem.Type);
+			NUnit.Framework.Assert.AreEqual(assignActivity.GetType().Name, seqChildItem.ActivityType);
+			NUnit.Framework.Assert.AreEqual(uniqueId, seqChildItem.UniqueId);
+			NUnit.Framework.Assert.AreEqual(childItem, seqChildItem.Parent);
 
-			Assert.AreEqual(3, seqChildItem.StepOutputs.Count);
+			NUnit.Framework.Assert.AreEqual(3, seqChildItem.StepOutputs.Count);
 			var serviceTestOutput1 = seqChildItem.StepOutputs[0] as ServiceTestOutput;
 			var serviceTestOutput2 = seqChildItem.StepOutputs[1] as ServiceTestOutput;
 			var serviceTestOutput3 = seqChildItem.StepOutputs[2] as ServiceTestOutput;
-			Assert.IsFalse(serviceTestOutput1.HasOptionsForValue);
-			Assert.IsFalse(serviceTestOutput2.HasOptionsForValue);
-			Assert.IsFalse(serviceTestOutput3.HasOptionsForValue);
-			Assert.AreEqual("[[Var1]]", serviceTestOutput1.Variable);
-			Assert.AreEqual("[[Var2]]", serviceTestOutput2.Variable);
-			Assert.AreEqual("[[name]]", serviceTestOutput3.Variable);
+			NUnit.Framework.Assert.IsFalse(serviceTestOutput1.HasOptionsForValue);
+			NUnit.Framework.Assert.IsFalse(serviceTestOutput2.HasOptionsForValue);
+			NUnit.Framework.Assert.IsFalse(serviceTestOutput3.HasOptionsForValue);
+			NUnit.Framework.Assert.AreEqual("[[Var1]]", serviceTestOutput1.Variable);
+			NUnit.Framework.Assert.AreEqual("[[Var2]]", serviceTestOutput2.Variable);
+			NUnit.Framework.Assert.AreEqual("[[name]]", serviceTestOutput3.Variable);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
 		public void ItemSelected_GivenSelectedItemSequenceWithForEach_ShouldHaveAddServiceTestStepShouldHaveOutputs()
 		{
 			//---------------Set up test pack-------------------
@@ -2255,40 +2342,41 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//---------------Execute Test ----------------------
 			mockWorkflowDesignerViewModel.Object.ItemSelectedAction(modelItem);
 			//---------------Test Result -----------------------
-			Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
+			NUnit.Framework.Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
 			var serviceTestStep = testFrameworkViewModel.SelectedServiceTest.TestSteps[0];
-			Assert.AreEqual(StepType.Mock, serviceTestStep.Type);
-			Assert.AreEqual(sequenceActivity.GetType().Name, serviceTestStep.ActivityType);
-			Assert.AreEqual(seqId, serviceTestStep.UniqueId);
+			NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTestStep.Type);
+			NUnit.Framework.Assert.AreEqual(sequenceActivity.GetType().Name, serviceTestStep.ActivityType);
+			NUnit.Framework.Assert.AreEqual(seqId, serviceTestStep.UniqueId);
 
-			Assert.AreEqual(1, serviceTestStep.Children.Count);
+			NUnit.Framework.Assert.AreEqual(1, serviceTestStep.Children.Count);
 			var childItem = serviceTestStep.Children[0];
-			Assert.AreEqual(StepType.Mock, childItem.Type);
-			Assert.AreEqual(forEach.GetType().Name, childItem.ActivityType);
-			Assert.AreEqual(forEachId, childItem.UniqueId);
-			Assert.AreEqual(serviceTestStep, childItem.Parent);
+			NUnit.Framework.Assert.AreEqual(StepType.Mock, childItem.Type);
+			NUnit.Framework.Assert.AreEqual(forEach.GetType().Name, childItem.ActivityType);
+			NUnit.Framework.Assert.AreEqual(forEachId, childItem.UniqueId);
+			NUnit.Framework.Assert.AreEqual(serviceTestStep, childItem.Parent);
 
-			Assert.AreEqual(1, childItem.Children.Count);
+			NUnit.Framework.Assert.AreEqual(1, childItem.Children.Count);
 			var forEachChildItem = childItem.Children[0];
-			Assert.AreEqual(assignActivity.GetType().Name, forEachChildItem.ActivityType);
-			Assert.AreEqual(uniqueId, forEachChildItem.UniqueId);
-			Assert.AreEqual(childItem, forEachChildItem.Parent);
+			NUnit.Framework.Assert.AreEqual(assignActivity.GetType().Name, forEachChildItem.ActivityType);
+			NUnit.Framework.Assert.AreEqual(uniqueId, forEachChildItem.UniqueId);
+			NUnit.Framework.Assert.AreEqual(childItem, forEachChildItem.Parent);
 
-			Assert.AreEqual(3, forEachChildItem.StepOutputs.Count);
+			NUnit.Framework.Assert.AreEqual(3, forEachChildItem.StepOutputs.Count);
 			var serviceTestOutput1 = forEachChildItem.StepOutputs[0] as ServiceTestOutput;
 			var serviceTestOutput2 = forEachChildItem.StepOutputs[1] as ServiceTestOutput;
 			var serviceTestOutput3 = forEachChildItem.StepOutputs[2] as ServiceTestOutput;
-			Assert.IsFalse(serviceTestOutput1.HasOptionsForValue);
-			Assert.IsFalse(serviceTestOutput2.HasOptionsForValue);
-			Assert.IsFalse(serviceTestOutput3.HasOptionsForValue);
-			Assert.AreEqual("[[Var1]]", serviceTestOutput1.Variable);
-			Assert.AreEqual("[[Var2]]", serviceTestOutput2.Variable);
-			Assert.AreEqual("[[name]]", serviceTestOutput3.Variable);
+			NUnit.Framework.Assert.IsFalse(serviceTestOutput1.HasOptionsForValue);
+			NUnit.Framework.Assert.IsFalse(serviceTestOutput2.HasOptionsForValue);
+			NUnit.Framework.Assert.IsFalse(serviceTestOutput3.HasOptionsForValue);
+			NUnit.Framework.Assert.AreEqual("[[Var1]]", serviceTestOutput1.Variable);
+			NUnit.Framework.Assert.AreEqual("[[Var2]]", serviceTestOutput2.Variable);
+			NUnit.Framework.Assert.AreEqual("[[name]]", serviceTestOutput3.Variable);
 		}
 
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
 		public void ItemSelected_DeleteTestStep_ShouldHaveAddServiceTestStepShouldHaveOutputs()
 		{
 			//---------------Set up test pack-------------------
@@ -2325,24 +2413,25 @@ namespace Warewolf.Studio.ViewModels.Tests
 			testFrameworkViewModel.SelectedServiceTest = testModel;
 			mockWorkflowDesignerViewModel.Object.ItemSelectedAction(modelItem);
 			//---------------Assert Precondition----------------      
-			Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
+			NUnit.Framework.Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
 			var serviceTestStep = testFrameworkViewModel.SelectedServiceTest.TestSteps[0];
-			Assert.AreEqual(StepType.Mock, serviceTestStep.Type);
-			Assert.AreEqual(sequenceActivity.GetType().Name, serviceTestStep.ActivityType);
-			Assert.AreEqual(seqId, serviceTestStep.UniqueId);
+			NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTestStep.Type);
+			NUnit.Framework.Assert.AreEqual(sequenceActivity.GetType().Name, serviceTestStep.ActivityType);
+			NUnit.Framework.Assert.AreEqual(seqId, serviceTestStep.UniqueId);
 
-			Assert.AreEqual(1, serviceTestStep.Children.Count);
+			NUnit.Framework.Assert.AreEqual(1, serviceTestStep.Children.Count);
 			var childItem = serviceTestStep.Children[0];
 			//---------------Execute Test ----------------------
 			testFrameworkViewModel.DeleteTestStepCommand.Execute(childItem);
 			//---------------Test Result -----------------------
-			Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
-			Assert.AreEqual(0, serviceTestStep.Children.Count);
+			NUnit.Framework.Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
+			NUnit.Framework.Assert.AreEqual(0, serviceTestStep.Children.Count);
 
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
 		public void ItemSelected_GivenSelectedItemSequence_ShouldHaveAddServiceTestStepShouldHaveOutputs()
 		{
 			//---------------Set up test pack-------------------
@@ -2375,33 +2464,34 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//---------------Execute Test ----------------------
 			mockWorkflowDesignerViewModel.Object.ItemSelectedAction(modelItem);
 			//---------------Test Result -----------------------
-			Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
+			NUnit.Framework.Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
 			var serviceTestStep = testFrameworkViewModel.SelectedServiceTest.TestSteps[0];
-			Assert.AreEqual(StepType.Mock, serviceTestStep.Type);
-			Assert.AreEqual(sequenceActivity.GetType().Name, serviceTestStep.ActivityType);
-			Assert.AreEqual(seqId, serviceTestStep.UniqueId);
+			NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTestStep.Type);
+			NUnit.Framework.Assert.AreEqual(sequenceActivity.GetType().Name, serviceTestStep.ActivityType);
+			NUnit.Framework.Assert.AreEqual(seqId, serviceTestStep.UniqueId);
 
-			Assert.AreEqual(1, serviceTestStep.Children.Count);
+			NUnit.Framework.Assert.AreEqual(1, serviceTestStep.Children.Count);
 			var childItem = serviceTestStep.Children[0];
-			Assert.AreEqual(StepType.Mock, childItem.Type);
-			Assert.AreEqual(assignActivity.GetType().Name, childItem.ActivityType);
-			Assert.AreEqual(uniqueId, childItem.UniqueId);
-			Assert.AreEqual(serviceTestStep, childItem.Parent);
+			NUnit.Framework.Assert.AreEqual(StepType.Mock, childItem.Type);
+			NUnit.Framework.Assert.AreEqual(assignActivity.GetType().Name, childItem.ActivityType);
+			NUnit.Framework.Assert.AreEqual(uniqueId, childItem.UniqueId);
+			NUnit.Framework.Assert.AreEqual(serviceTestStep, childItem.Parent);
 
-			Assert.AreEqual(3, childItem.StepOutputs.Count);
+			NUnit.Framework.Assert.AreEqual(3, childItem.StepOutputs.Count);
 			var serviceTestOutput1 = childItem.StepOutputs[0] as ServiceTestOutput;
 			var serviceTestOutput2 = childItem.StepOutputs[1] as ServiceTestOutput;
 			var serviceTestOutput3 = childItem.StepOutputs[2] as ServiceTestOutput;
-			Assert.IsFalse(serviceTestOutput1.HasOptionsForValue);
-			Assert.IsFalse(serviceTestOutput2.HasOptionsForValue);
-			Assert.IsFalse(serviceTestOutput3.HasOptionsForValue);
-			Assert.AreEqual("[[Var1]]", serviceTestOutput1.Variable);
-			Assert.AreEqual("[[Var2]]", serviceTestOutput2.Variable);
-			Assert.AreEqual("[[name]]", serviceTestOutput3.Variable);
+			NUnit.Framework.Assert.IsFalse(serviceTestOutput1.HasOptionsForValue);
+			NUnit.Framework.Assert.IsFalse(serviceTestOutput2.HasOptionsForValue);
+			NUnit.Framework.Assert.IsFalse(serviceTestOutput3.HasOptionsForValue);
+			NUnit.Framework.Assert.AreEqual("[[Var1]]", serviceTestOutput1.Variable);
+			NUnit.Framework.Assert.AreEqual("[[Var2]]", serviceTestOutput2.Variable);
+			NUnit.Framework.Assert.AreEqual("[[name]]", serviceTestOutput3.Variable);
 		}
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Hagashen Naidu")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Hagashen Naidu")]
 		public void ItemSelected_GivenSelectedItemSequenceWithSequence_ShouldHaveAddServiceTestStepShouldHaveOutputs()
 		{
 			//---------------Set up test pack-------------------
@@ -2438,40 +2528,41 @@ namespace Warewolf.Studio.ViewModels.Tests
 			//---------------Execute Test ----------------------
 			mockWorkflowDesignerViewModel.Object.ItemSelectedAction(modelItem);
 			//---------------Test Result -----------------------
-			Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
+			NUnit.Framework.Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
 			var serviceTestStep = testFrameworkViewModel.SelectedServiceTest.TestSteps[0];
-			Assert.AreEqual(StepType.Mock, serviceTestStep.Type);
-			Assert.AreEqual(sequenceActivity.GetType().Name, serviceTestStep.ActivityType);
-			Assert.AreEqual(seqId, serviceTestStep.UniqueId);
+			NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTestStep.Type);
+			NUnit.Framework.Assert.AreEqual(sequenceActivity.GetType().Name, serviceTestStep.ActivityType);
+			NUnit.Framework.Assert.AreEqual(seqId, serviceTestStep.UniqueId);
 
-			Assert.AreEqual(1, serviceTestStep.Children.Count);
+			NUnit.Framework.Assert.AreEqual(1, serviceTestStep.Children.Count);
 			var childItem = serviceTestStep.Children[0];
-			Assert.AreEqual(StepType.Mock, childItem.Type);
-			Assert.AreEqual(dsfSequenceActivity.GetType().Name, childItem.ActivityType);
-			Assert.AreEqual(dsfSeqId, childItem.UniqueId);
-			Assert.AreEqual(serviceTestStep, childItem.Parent);
+			NUnit.Framework.Assert.AreEqual(StepType.Mock, childItem.Type);
+			NUnit.Framework.Assert.AreEqual(dsfSequenceActivity.GetType().Name, childItem.ActivityType);
+			NUnit.Framework.Assert.AreEqual(dsfSeqId, childItem.UniqueId);
+			NUnit.Framework.Assert.AreEqual(serviceTestStep, childItem.Parent);
 
-			Assert.AreEqual(1, childItem.Children.Count);
+			NUnit.Framework.Assert.AreEqual(1, childItem.Children.Count);
 			var forEachChildItem = childItem.Children[0];
-			Assert.AreEqual(assignActivity.GetType().Name, forEachChildItem.ActivityType);
-			Assert.AreEqual(uniqueId, forEachChildItem.UniqueId);
-			Assert.AreEqual(childItem, forEachChildItem.Parent);
+			NUnit.Framework.Assert.AreEqual(assignActivity.GetType().Name, forEachChildItem.ActivityType);
+			NUnit.Framework.Assert.AreEqual(uniqueId, forEachChildItem.UniqueId);
+			NUnit.Framework.Assert.AreEqual(childItem, forEachChildItem.Parent);
 
-			Assert.AreEqual(3, forEachChildItem.StepOutputs.Count);
+			NUnit.Framework.Assert.AreEqual(3, forEachChildItem.StepOutputs.Count);
 			var serviceTestOutput1 = forEachChildItem.StepOutputs[0] as ServiceTestOutput;
 			var serviceTestOutput2 = forEachChildItem.StepOutputs[1] as ServiceTestOutput;
 			var serviceTestOutput3 = forEachChildItem.StepOutputs[2] as ServiceTestOutput;
-			Assert.IsFalse(serviceTestOutput1.HasOptionsForValue);
-			Assert.IsFalse(serviceTestOutput2.HasOptionsForValue);
-			Assert.IsFalse(serviceTestOutput3.HasOptionsForValue);
-			Assert.AreEqual("[[Var1]]", serviceTestOutput1.Variable);
-			Assert.AreEqual("[[Var2]]", serviceTestOutput2.Variable);
-			Assert.AreEqual("[[name]]", serviceTestOutput3.Variable);
+			NUnit.Framework.Assert.IsFalse(serviceTestOutput1.HasOptionsForValue);
+			NUnit.Framework.Assert.IsFalse(serviceTestOutput2.HasOptionsForValue);
+			NUnit.Framework.Assert.IsFalse(serviceTestOutput3.HasOptionsForValue);
+			NUnit.Framework.Assert.AreEqual("[[Var1]]", serviceTestOutput1.Variable);
+			NUnit.Framework.Assert.AreEqual("[[Var2]]", serviceTestOutput2.Variable);
+			NUnit.Framework.Assert.AreEqual("[[name]]", serviceTestOutput3.Variable);
 		}
 
 
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void DisplayName_GivenServerIsNotLocalHost_ShouldAppendServerIntoDisplayName()
 		{
 			//---------------Set up test pack-------------------
@@ -2495,13 +2586,14 @@ namespace Warewolf.Studio.ViewModels.Tests
 
 			
 			var server = fieldInfo.GetValue(testFrameworkViewModel).ToString();
-			Assert.AreEqual(" - GenDev", server);
+			NUnit.Framework.Assert.AreEqual(" - GenDev", server);
 			//---------------Execute Test ----------------------
 			//---------------Test Result -----------------------
-			Assert.AreEqual("My WF - Tests - GenDev", testFrameworkViewModel.DisplayName);
+			NUnit.Framework.Assert.AreEqual("My WF - Tests - GenDev", testFrameworkViewModel.DisplayName);
 		}
-		[TestMethod,Timeout(60000)]
-		[Owner("Nkosinathi Sangweni")]
+		[Test]
+        [NUnit.Framework.Timeout(60000)]
+		[Author("Nkosinathi Sangweni")]
 		public void DisplayName_GivenServerIsLocalHost_ShouldAppendNotServerIntoDisplayName()
 		{
 			//---------------Set up test pack-------------------
@@ -2525,13 +2617,14 @@ namespace Warewolf.Studio.ViewModels.Tests
 
 			
 			var server = fieldInfo.GetValue(testFrameworkViewModel).ToString();
-			Assert.AreEqual("", server);
+			NUnit.Framework.Assert.AreEqual("", server);
 			//---------------Execute Test ----------------------
 			//---------------Test Result -----------------------
-			Assert.AreEqual("My WF - Tests", testFrameworkViewModel.DisplayName);
+			NUnit.Framework.Assert.AreEqual("My WF - Tests", testFrameworkViewModel.DisplayName);
 		}
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void IsValid_GivenNoSelectecTest_ShouldBeValid()
         {
             //---------------Set up test pack-------------------
@@ -2548,15 +2641,16 @@ namespace Warewolf.Studio.ViewModels.Tests
             testFrameworkViewModel.SelectedServiceTest = null;
             var methodInfo = typeof(ServiceTestViewModel).GetMethod("IsValidName", BindingFlags.NonPublic | BindingFlags.Instance);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(methodInfo);
+            NUnit.Framework.Assert.IsNotNull(methodInfo);
             //---------------Execute Test ----------------------
             var invoke = methodInfo.Invoke(testFrameworkViewModel, new object[] { });
             //---------------Test Result -----------------------
-            Assert.AreEqual(true, bool.Parse(invoke.ToString()));
+            NUnit.Framework.Assert.AreEqual(true, bool.Parse(invoke.ToString()));
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Pieter Terblanche")]
         public void AddOutputs_NullOutputs_ShouldSet_StepOutputs()
         {
             //---------------Set up test pack-------------------
@@ -2578,16 +2672,17 @@ namespace Warewolf.Studio.ViewModels.Tests
             testFrameworkViewModel.SelectedServiceTest = testModel;
             var methodInfo = typeof(ServiceTestViewModel).GetMethod("AddOutputs", BindingFlags.NonPublic | BindingFlags.Instance);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(methodInfo);
+            NUnit.Framework.Assert.IsNotNull(methodInfo);
             //---------------Execute Test ----------------------
             var invoke = methodInfo.Invoke(testFrameworkViewModel, new object[] { null, serviceTestStep });
 
             //---------------Test Result -----------------------
-            Assert.AreEqual(1, serviceTestStep.StepOutputs.Count);
+            NUnit.Framework.Assert.AreEqual(1, serviceTestStep.StepOutputs.Count);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Pieter Terblanche")]
         public void AddOutputs_SetOutputs_ShouldReturn()
         {
             //---------------Set up test pack-------------------
@@ -2621,7 +2716,7 @@ namespace Warewolf.Studio.ViewModels.Tests
             testFrameworkViewModel.SelectedServiceTest = testModel;
             var methodInfo = typeof(ServiceTestViewModel).GetMethod("SetOutputs", BindingFlags.NonPublic | BindingFlags.Instance);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(methodInfo);
+            NUnit.Framework.Assert.IsNotNull(methodInfo);
             //---------------Execute Test ----------------------
             var invoke = methodInfo.Invoke(testFrameworkViewModel, new object[] { null });
 
@@ -2629,8 +2724,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             //NOTE: Purely for cover, meant to only return
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Pieter Terblanche")]
         public void AddOutputs_SetOutputs_MoreLink_ShouldSetValue()
         {
             //---------------Set up test pack-------------------
@@ -2664,7 +2760,7 @@ namespace Warewolf.Studio.ViewModels.Tests
             testFrameworkViewModel.SelectedServiceTest = testModel;
             var methodInfo = typeof(ServiceTestViewModel).GetMethod("SetOutputs", BindingFlags.NonPublic | BindingFlags.Instance);
             //---------------Assert Precondition-`---------------
-            Assert.IsNotNull(methodInfo);
+            NUnit.Framework.Assert.IsNotNull(methodInfo);
 
             var resId = Guid.NewGuid();
             var serverId = Guid.NewGuid();
@@ -2696,14 +2792,15 @@ namespace Warewolf.Studio.ViewModels.Tests
             var outputs = testFrameworkViewModel.SelectedServiceTest.Outputs;
 
             //---------------Test Result -----------------------
-            Assert.AreEqual(1, outputs.Count);
-            Assert.AreEqual("Contains", outputs[0].AssertOp);
-            Assert.AreEqual("Name", outputs[0].Variable);
-            Assert.AreEqual("Bob", outputs[0].Value);
+            NUnit.Framework.Assert.AreEqual(1, outputs.Count);
+            NUnit.Framework.Assert.AreEqual("Contains", outputs[0].AssertOp);
+            NUnit.Framework.Assert.AreEqual("Name", outputs[0].Variable);
+            NUnit.Framework.Assert.AreEqual("Bob", outputs[0].Value);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Pieter Terblanche")]
         public void AddOutputs_SetOutputs_DsfEnhancedDotNetDllActivity_ShouldSetValue()
         {
             //---------------Set up test pack-------------------
@@ -2737,7 +2834,7 @@ namespace Warewolf.Studio.ViewModels.Tests
             testFrameworkViewModel.SelectedServiceTest = testModel;
             var methodInfo = typeof(ServiceTestViewModel).GetMethod("SetOutputs", BindingFlags.NonPublic | BindingFlags.Instance);
             //---------------Assert Precondition-`---------------
-            Assert.IsNotNull(methodInfo);
+            NUnit.Framework.Assert.IsNotNull(methodInfo);
 
             var mockWebClient = new Mock<IWarewolfWebClient>();
             mockWebClient.Setup(web => web.DownloadString("MoreLink")).Returns("SomeAddress");
@@ -2774,14 +2871,15 @@ namespace Warewolf.Studio.ViewModels.Tests
             var outputs = testFrameworkViewModel.SelectedServiceTest.Outputs;
 
             //---------------Test Result -----------------------
-            Assert.AreEqual(1, outputs.Count);
-            Assert.AreEqual("=", outputs[0].AssertOp);
-            Assert.AreEqual("Name", outputs[0].Variable);
-            Assert.AreEqual("SomeAddress", outputs[0].Value);
+            NUnit.Framework.Assert.AreEqual(1, outputs.Count);
+            NUnit.Framework.Assert.AreEqual("=", outputs[0].AssertOp);
+            NUnit.Framework.Assert.AreEqual("Name", outputs[0].Variable);
+            NUnit.Framework.Assert.AreEqual("SomeAddress", outputs[0].Value);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Pieter Terblanche")]
         public void AddOutputs_AddSequence_ShouldReturn()
         {
             //---------------Set up test pack-------------------
@@ -2804,7 +2902,7 @@ namespace Warewolf.Studio.ViewModels.Tests
             testFrameworkViewModel.SelectedServiceTest = testModel;
             var methodInfo = typeof(ServiceTestViewModel).GetMethod("AddSequence", BindingFlags.NonPublic | BindingFlags.Instance);
             //---------------Assert Precondition-`---------------
-            Assert.IsNotNull(methodInfo);
+            NUnit.Framework.Assert.IsNotNull(methodInfo);
 
             //---------------Execute Test ----------------------
             var invoke = methodInfo.Invoke(testFrameworkViewModel, new object[]
@@ -2816,8 +2914,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             //NOTE: Purely for cover, meant to only return
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Pieter Terblanche")]
         public void AddOutputs_AddSequence_ShouldCall_AddMissingChild()
         {
             //---------------Set up test pack-------------------
@@ -2840,7 +2939,7 @@ namespace Warewolf.Studio.ViewModels.Tests
             testFrameworkViewModel.SelectedServiceTest = testModel;
             var methodInfo = typeof(ServiceTestViewModel).GetMethod("AddSequence", BindingFlags.NonPublic | BindingFlags.Instance);
             //---------------Assert Precondition-`---------------
-            Assert.IsNotNull(methodInfo);
+            NUnit.Framework.Assert.IsNotNull(methodInfo);
 
             var uniqueId = Guid.NewGuid();
             var sequence = new DsfSequenceActivity() { UniqueID = uniqueId.ToString(), DisplayName = "a" };
@@ -2858,8 +2957,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             //NOTE: Purely for cover, meant to only return
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Pieter Terblanche")]
         public void AddOutputs_AddEnhancedDotNetDll_ShouldReturn()
         {
             //---------------Set up test pack-------------------
@@ -2882,7 +2982,7 @@ namespace Warewolf.Studio.ViewModels.Tests
             testFrameworkViewModel.SelectedServiceTest = testModel;
             var methodInfo = typeof(ServiceTestViewModel).GetMethod("AddEnhancedDotNetDll", BindingFlags.NonPublic | BindingFlags.Static);
             //---------------Assert Precondition-`---------------
-            Assert.IsNotNull(methodInfo);
+            NUnit.Framework.Assert.IsNotNull(methodInfo);
 
             //---------------Execute Test ----------------------
             var invoke = methodInfo.Invoke(testFrameworkViewModel, new object[]
@@ -2894,8 +2994,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             //NOTE: Purely for cover, meant to only return
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Pieter Terblanche")]
         public void AddOutputs_AddEnhancedDotNetDll_ShouldCall_AddEnhancedDotNetDllMethod()
         {
             //---------------Set up test pack-------------------
@@ -2918,7 +3019,7 @@ namespace Warewolf.Studio.ViewModels.Tests
             testFrameworkViewModel.SelectedServiceTest = testModel;
             var methodInfo = typeof(ServiceTestViewModel).GetMethod("AddEnhancedDotNetDll", BindingFlags.NonPublic | BindingFlags.Static);
             //---------------Assert Precondition-`---------------
-            Assert.IsNotNull(methodInfo);
+            NUnit.Framework.Assert.IsNotNull(methodInfo);
 
             var uniqueId = Guid.NewGuid();
             var pluginAction = new PluginAction
@@ -2949,8 +3050,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             //NOTE: Purely for cover, meant to only return
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Pieter Terblanche")]
         public void AddOutputs_ProcessActivity_ShouldAddTestSteps()
         {
             //---------------Set up test pack-------------------
@@ -2973,7 +3075,7 @@ namespace Warewolf.Studio.ViewModels.Tests
             testFrameworkViewModel.SelectedServiceTest = testModel;
             var methodInfo = typeof(ServiceTestViewModel).GetMethod("ProcessActivity", BindingFlags.NonPublic | BindingFlags.Instance);
             //---------------Assert Precondition-`---------------
-            Assert.IsNotNull(methodInfo);
+            NUnit.Framework.Assert.IsNotNull(methodInfo);
 
             var uniqueId = Guid.NewGuid();
             var sequence = new DsfActivity { UniqueID = uniqueId.ToString(), DisplayName = "a" };
@@ -2987,14 +3089,15 @@ namespace Warewolf.Studio.ViewModels.Tests
             var testSteps = testFrameworkViewModel.SelectedServiceTest.TestSteps;
 
             //---------------Test Result -----------------------
-            Assert.AreEqual(1, testSteps.Count);
-            Assert.AreEqual("DsfActivity", testSteps[0].ActivityType);
-            Assert.AreEqual("a", testSteps[0].StepDescription);
-            Assert.AreEqual(1, testSteps[0].StepOutputs.Count);
+            NUnit.Framework.Assert.AreEqual(1, testSteps.Count);
+            NUnit.Framework.Assert.AreEqual("DsfActivity", testSteps[0].ActivityType);
+            NUnit.Framework.Assert.AreEqual("a", testSteps[0].StepDescription);
+            NUnit.Framework.Assert.AreEqual(1, testSteps[0].StepOutputs.Count);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Pieter Terblanche")]
         public void AddOutputs_ProcessActivity_ParentNotNull_ShouldAddTestSteps()
         {
             //---------------Set up test pack-------------------
@@ -3017,7 +3120,7 @@ namespace Warewolf.Studio.ViewModels.Tests
             testFrameworkViewModel.SelectedServiceTest = testModel;
             var methodInfo = typeof(ServiceTestViewModel).GetMethod("ProcessActivity", BindingFlags.NonPublic | BindingFlags.Instance);
             //---------------Assert Precondition-`---------------
-            Assert.IsNotNull(methodInfo);
+            NUnit.Framework.Assert.IsNotNull(methodInfo);
 
             var seqUniqueId = Guid.NewGuid();
             var actUniqueId = Guid.NewGuid();
@@ -3041,10 +3144,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             var testSteps = testFrameworkViewModel.SelectedServiceTest.TestSteps;
 
             //---------------Test Result -----------------------
-            Assert.AreEqual(1, testSteps.Count);
-            Assert.AreEqual("Sequence", testSteps[0].ActivityType);
-            Assert.AreEqual("Sequence", testSteps[0].StepDescription);
-            Assert.AreEqual(1, testSteps[0].StepOutputs.Count);
+            NUnit.Framework.Assert.AreEqual(1, testSteps.Count);
+            NUnit.Framework.Assert.AreEqual("Sequence", testSteps[0].ActivityType);
+            NUnit.Framework.Assert.AreEqual("Sequence", testSteps[0].StepDescription);
+            NUnit.Framework.Assert.AreEqual(1, testSteps[0].StepOutputs.Count);
         }
 
         IContextualResourceModel CreateResourceModelWithSingleScalarInput()

@@ -11,7 +11,7 @@
 using System.Collections.Generic;
 using Dev2.Factories;
 using Dev2.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.FindMissingStrategyTest
@@ -19,7 +19,8 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
     /// <summary>
     /// Summary description for ForEachActivityFindMissingStrategyTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ForEachActivityFindMissingStrategyTests
     {
         /// <summary>
@@ -33,7 +34,7 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
         // You can use the following additional attributes as you write your tests:
         //
         // Use ClassInitialize to run code before running the first test in the class
-        // [ClassInitialize()]
+        // [OneTimeSetUp]
         // public static void MyClassInitialize(TestContext testContext) { }
         //
         // Use ClassCleanup to run code after all tests in a class have run
@@ -52,7 +53,7 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
 
         #region ForEach Activity Tests
 
-        [TestMethod]
+        [Test]
         public void GetActivityFieldsOffDsfForEachActivityWithADsfActivityInsideItExpectedAllFindMissingFieldsToBeReturned()
         {
             var dsfActivity = new DsfActivity
@@ -72,7 +73,7 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
             CollectionAssert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void GetActivityFieldsOffDsfForEachActivityWithADsfMultiAssignActivityInsideItExpectedAllFindMissingFieldsToBeReturned()
         {
             var multiAssignActivity = new DsfMultiAssignActivity { FieldsCollection = new List<ActivityDTO> { new ActivityDTO("[[AssignRight1]]", "[[AssignLeft1]]", 1), new ActivityDTO("[[AssignRight2]]", "[[AssignLeft2]]", 2) } };

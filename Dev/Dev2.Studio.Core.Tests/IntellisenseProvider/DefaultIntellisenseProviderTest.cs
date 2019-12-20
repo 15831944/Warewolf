@@ -26,13 +26,14 @@ using Dev2.Studio.Interfaces;
 using Dev2.Studio.Interfaces.DataList;
 using Dev2.Studio.Interfaces.Enums;
 using Dev2.Studio.ViewModels.DataList;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Core.Tests.IntellisenseProvider
 {
-    [TestClass]
-    [TestCategory("Intellisense Provider Core")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Intellisense Provider Core")]
     public class DefaultIntellisenseProviderTest
     {
 
@@ -40,10 +41,10 @@ namespace Dev2.Core.Tests.IntellisenseProvider
 
         #region Test Initialization
 
-        [TestInitialize]
+        [SetUp]
         public void Init()
         {
-            var p = new PrivateType(typeof(Dev2DataLanguageParser));
+            var p = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType(typeof(Dev2DataLanguageParser));
             var cache = p.GetStaticField("_expressionCache") as ConcurrentDictionary<string, IList<IIntellisenseResult>>;
             Assert.IsNotNull(cache);
             cache.Clear();
@@ -79,9 +80,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         #endregion Test Initialization
 
         #region Constructor
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DefaultIntellisenseProvider_Construct")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DefaultIntellisenseProvider_Construct")]
         public void DefaultIntellisenseProvider_Construct_DefaultPropertiesAreSet()
         {
             var provider = new DefaultIntellisenseProvider();
@@ -97,9 +98,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         #region GetIntellisenseResults
 
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("IntellisenseProvider_GetIntellisenseResults")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("IntellisenseProvider_GetIntellisenseResults")]
         public void IntellisenseProvider_GetIntellisenseResults_CommaSeperatedListOfCompleteValuesAndCaretInMiddle_NoResults()
         {
             //------------Setup for test--------------------------
@@ -118,9 +119,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("IntellisenseProvider_GetIntellisenseResults")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("IntellisenseProvider_GetIntellisenseResults")]
         public void IntellisenseProvider_GetIntellisenseResults_WhenNoOpeningBracketsAndNoRecordsetNoDot_ValidResults()
         {
             //------------Setup for test--------------------------
@@ -144,9 +145,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.IsTrue(getResults.Any(a => a.ToString() == "[[City(*).GeoLocation]]"));
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DefaultIntellisenseProvider_GetIntellisenseResults")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DefaultIntellisenseProvider_GetIntellisenseResults")]
         public void DefaultIntellisenseProvider_GetIntellisenseResults_ContextIsNull_ResultCountIsZero()
         {
             //------------Execute Test---------------------------
@@ -155,9 +156,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(0, getResults.Count);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("IntellisenseProvider_GetIntellisenseResults")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("IntellisenseProvider_GetIntellisenseResults")]
         public void IntellisenseProvider_GetIntellisenseResults_WhenNoOpeningBracketsAndRecordSetDot_ValidResults()
         {
             //------------Setup for test--------------------------
@@ -183,9 +184,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("IntellisenseProvider_GetIntellisenseResults")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("IntellisenseProvider_GetIntellisenseResults")]
         public void IntellisenseProvider_GetIntellisenseResults_WhenNoOpeningBracketsAndOpenRecordset_ValidResults()
         {
             //------------Setup for test--------------------------
@@ -209,9 +210,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.IsTrue(getResults.Any(a => a.ToString() == "[[City(*).GeoLocation]]"));
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("IntellisenseProvider_GetIntellisenseResults")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("IntellisenseProvider_GetIntellisenseResults")]
         public void IntellisenseProvider_GetIntellisenseResults_WhenOpeningBracketsAndOpenRecordset_ValidResults()
         {
             //------------Setup for test--------------------------
@@ -236,9 +237,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.IsTrue(getResults.Any(a => a.ToString() == "[[City(*).GeoLocation]]"));
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("IntellisenseProvider_GetIntellisenseResults")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("IntellisenseProvider_GetIntellisenseResults")]
         public void IntellisenseProvider_GetIntellisenseResults_WhenOpeningBracketsAndNoRecordset_ValidResults()
         {
             //------------Setup for test--------------------------
@@ -264,7 +265,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.IsTrue(getResults.Any(a => a.ToString() == "[[City(*).GeoLocation]]"));
         }
 
-        [TestMethod]
+        [Test]
         
         public void GetIntellisenseResultsWithNumberExpectedErrorInResults()
 
@@ -282,7 +283,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
 
         }
 
-        [TestMethod]
+        [Test]
         
         public void GetIntellisenseResults_With_OpenRegion_Expected_AllVarsInResults()
 
@@ -306,7 +307,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.IsTrue(getResults.Any(a => a.ToString() == "[[City(*).GeoLocation]]"));
         }
 
-        [TestMethod]
+        [Test]
         
         public void GetIntellisenseResults_With_OpenRegion_AndInRecSetIndex_Expected_AllVarsInResults()
 
@@ -331,7 +332,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
         //BUG 8755
-        [TestMethod]
+        [Test]
         
         public void GetIntellisenseResultsWithOpenRegionAndStarIndexExpectedNoResults()
 
@@ -351,7 +352,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
 
         //BUG 8755
         
-        [TestMethod]
+        [Test]
 
         public void GetIntellisenseResultsWithOpenRegionAndOpenRegionStarIndexExpectedNoResults()
         {
@@ -368,7 +369,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
 
         }
 
-        [TestMethod]
+        [Test]
         
         public void GetIntellisenseResults_With_OpenRegion_AndInRecSetIndex_AndNoParentRegion_Expected_AllVarsInResults()
 
@@ -392,7 +393,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.IsTrue(getResults.Any(a => a.ToString() == "[[City(*).GeoLocation]]"));
         }
 
-        [TestMethod]
+        [Test]
         
         public void GetIntellisenseResults_With_OpenRegion_AndInRecSetIndex_AndWithField_Expected_AllVarsInResults()
 
@@ -418,7 +419,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
         //BUG 8755
-        [TestMethod]
+        [Test]
         public void GetIntellisenseResultsWithInRegionAndStarIndexAndWithFieldExpectedNoResults()
         {
             var context = new IntellisenseProviderContext
@@ -434,7 +435,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
         //BUG 8755
-        [TestMethod]
+        [Test]
         public void GetIntellisenseResultsWithInRegionAndNumberIndexAndWithFieldExpectedNoResults()
         {
             var context = new IntellisenseProviderContext
@@ -449,7 +450,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(0, getResults.Count);
         }
 
-        [TestMethod]
+        [Test]
         
         public void GetIntellisenseResults_With_InRecSetIndex_AndWithField_Expected_AllVarsInResults()
 
@@ -474,7 +475,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
         //BUG 8755
-        [TestMethod]
+        [Test]
         public void GetIntellisenseResultsWithNoRegionAndStarIndexAndWithFieldExpectedNoResults()
         {
             var context = new IntellisenseProviderContext
@@ -490,7 +491,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
         //BUG 8755
-        [TestMethod]
+        [Test]
         public void GetIntellisenseResultsWithNoRegionAndStarNumberAndWithFieldExpectedNoResults()
         {
             var context = new IntellisenseProviderContext
@@ -505,7 +506,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(0, getResults.Count);
         }
 
-        [TestMethod]
+        [Test]
         
         public void GetIntellisenseResults_With_OpenRegion_AndInRecSetIndex_AndWithField_Expected_ScalarVarInResults()
 
@@ -525,7 +526,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
         //BUG 8755
-        [TestMethod]
+        [Test]
         public void GetIntellisenseResultsWithOpenRegionAndAfterStarIndexAndWithPartialFieldExpectedScalarVarInResults()
         {
             var context = new IntellisenseProviderContext
@@ -544,7 +545,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
         //BUG 8755
-        [TestMethod]
+        [Test]
         public void GetIntellisenseResultsWithOpenRegionAndAfterNumberIndexAndWithPartialFieldExpectedScalarVarInResults()
         {
             var context = new IntellisenseProviderContext
@@ -561,7 +562,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
 
-        [TestMethod]
+        [Test]
         
         public void GetIntellisenseResults_With_OpenRegion_AndInRecSetIndex_AndWithField_Expected_RecSetVarInResults()
 
@@ -584,7 +585,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.IsTrue(getResults.Any(a => a.ToString() == "[[City()]]"));
         }
 
-        [TestMethod]
+        [Test]
         
         public void GetIntellisenseResults_With_CommaSeperatedRegions_Expected_AllVarsInResults()
 
@@ -613,7 +614,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
 
         }
 
-        [TestMethod]
+        [Test]
         
         public void GetIntellisenseResults_With_CommaSeperatedRegions_AndWithinIndex_Expected_AllVarsInResults()
 
@@ -641,7 +642,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
         //BUG 8755
-        [TestMethod]
+        [Test]
         public void GetIntellisenseResultsWithCommaSeperatedRegionsAndStarIndexExpectedNoResults()
         {
             var context = new IntellisenseProviderContext
@@ -657,7 +658,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
         //BUG 8755
-        [TestMethod]
+        [Test]
         public void GetIntellisenseResultsWithCommaSeperatedRegionsAndNumberIndexExpectedNoResults()
         {
             var context = new IntellisenseProviderContext
@@ -672,7 +673,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(0, getResults.Count);
         }
 
-        [TestMethod]
+        [Test]
         
         public void GetIntellisenseResults_With_CommaSeperatedRegions_AndAfterLastComma_Expected_AllVarsInResults()
 
@@ -697,7 +698,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.IsTrue(getResults.Any(a => a.ToString() == "[[State]]"));
         }
 
-        [TestMethod]
+        [Test]
         
         public void GetIntellisenseResults_With_Sum_Expected_AllVarsInResults()
 
@@ -723,7 +724,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.IsTrue(getResults.Any(a => a.ToString() == "[[State]]"));
         }
 
-        [TestMethod]
+        [Test]
         
         public void GetIntellisenseResults_With_Sum_AndAfterComma_Expected_AllVarsInResults()
 
@@ -749,7 +750,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
         //BUG 8736
-        [TestMethod]
+        [Test]
         public void GetIntellisenseResultsWithSumAndAfterCommaAndBeforeBraceExpectedAllVarsInResults()
         {
             var context = new IntellisenseProviderContext
@@ -773,7 +774,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
         //BUG 8755
-        [TestMethod]
+        [Test]
         public void GetIntellisenseResultsWhereBracketOfRecordsetIsClosedAndThereIsAFieldAfterClosedBracketExpectedNoResultsAndException()
         {
             var context = new IntellisenseProviderContext
@@ -794,7 +795,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
         //BUG 8755
-        [TestMethod]
+        [Test]
         public void GetIntellisenseResultsWhereBracketOfRecordsetIsClosedAndThereIsAFieldAfterClosedBracketAndStarIndexExpectedNoResultsAndException()
         {
             var context = new IntellisenseProviderContext
@@ -813,7 +814,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
         //BUG 8736
-        [TestMethod]
+        [Test]
         public void GetIntellisenseResultsWhereCommaEnteredForInfragisticsFunctonExpectedNoResultsAndException()
         {
             var context = new IntellisenseProviderContext
@@ -829,7 +830,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
         //BUG 8736
-        [TestMethod]
+        [Test]
         public void GetIntellisenseResultsWithAdjacentRegionsInParamaterOfInfragisticsFunctionExpectedAllVarsInResults()
         {
             var context = new IntellisenseProviderContext
@@ -855,7 +856,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
         //BUG 8736
-        [TestMethod]
+        [Test]
         public void GetIntellisenseResultsWhereCarretPositionPastTheLengthOfTheInputTextExpectedNoResultsAndException()
         {
             var context = new IntellisenseProviderContext
@@ -871,7 +872,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
         //BUG 8736
-        [TestMethod]
+        [Test]
         public void GetIntellisenseResultsWhereCarretPositionLessThanZeroExpectedNoResultsAndException()
         {
             var context = new IntellisenseProviderContext
@@ -885,7 +886,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
         //BUG 8736
-        [TestMethod]
+        [Test]
         public void GetIntellisenseResultsWhereInputTextContainsSpecialCharactersExpectedNoResultsAndException()
         {
             var context = new IntellisenseProviderContext
@@ -899,7 +900,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(0, getResults.Count);
         }
         
-        [TestMethod]
+        [Test]
         public void GetIntellisenseResultsWithInRecSetIndexAndWithFieldAndWithClosingSquareBraceExpectedNoResults()
         {
             var context = new IntellisenseProviderContext
@@ -914,7 +915,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(0, getResults.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void GetIntellisenseResultsWithClosingSquareBraceExpectedInvalidExpressionResult()
         {
             var context = new IntellisenseProviderContext
@@ -929,7 +930,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(0, getResults.Count);
         }
         
-        [TestMethod]
+        [Test]
         public void GetIntellisenseResultsWithOpenRegionAndInRecSetIndexAndWithFieldExpectedAllResults()
         {
             var context = new IntellisenseProviderContext
@@ -953,7 +954,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.IsTrue(getResults.Any(a => a.ToString() == "[[State]]"));
         }
 
-        [TestMethod]
+        [Test]
         public void PerformResultInsertionWithRecordsetFilterAndNoRegionExpectedCompleteResult()
         {
             var context = new IntellisenseProviderContext
@@ -972,7 +973,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
 
         }
 
-        [TestMethod]
+        [Test]
         public void PerformResultInsertionWithRecordsetFilterExpectedCompleteResult()
         {
             var context = new IntellisenseProviderContext
@@ -994,9 +995,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
 
         #region PerformResultInsertion
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("DefaultIntellisenseProvider_PerformResultsInsertion")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("DefaultIntellisenseProvider_PerformResultsInsertion")]
         public void DefaultIntellisenseProvider_PerformResultsInsertion_WhenClosingRegionWithTextAfter_InsertedNormally()
         {
             //------------Setup for test--------------------------
@@ -1015,9 +1016,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual("some string [[obfsucationStaging]] some string", result);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DefaultIntellisenseProvider_PerformMultipleSelection")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DefaultIntellisenseProvider_PerformMultipleSelection")]
         public void DefaultIntellisenseProvider_PerformMultipleSelection_WhenSelectingOpenBracket_InsertedNormally()
         {
             //------------Setup for test--------------------------
@@ -1039,9 +1040,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual("s [[a]] s [[b]]", result);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DefaultIntellisenseProvider_PerformMultipleSelection")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DefaultIntellisenseProvider_PerformMultipleSelection")]
         public void DefaultIntellisenseProvider_PerformMultipleSelection_WhenSelectingChar_InsertedNormally()
         {
             //------------Setup for test--------------------------
@@ -1063,9 +1064,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual("s [[a]] s [[b]]", result);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DefaultIntellisenseProvider_PerformResultInsertion")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DefaultIntellisenseProvider_PerformResultInsertion")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void DefaultIntellisenseProvider_PerformResultInsertion_ContextIsNull_ThrowsException()
         {
@@ -1075,9 +1076,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             provider.PerformResultInsertion("", null);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DefaultIntellisenseProvider_PerformResultsInsertion")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DefaultIntellisenseProvider_PerformResultsInsertion")]
         public void DefaultIntellisenseProvider_PerformResultsInsertion_WhenCaseMisMatched_InsertedNormally()
         {
             //------------Setup for test--------------------------
@@ -1096,9 +1097,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual("[[rs().Val]]", result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DefaultIntellisenseProvider_PerformResultsInsertion")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DefaultIntellisenseProvider_PerformResultsInsertion")]
         public void DefaultIntellisenseProvider_PerformResultsInsertion_WhenBlank_InsertedNormally()
         {
             //------------Setup for test--------------------------
@@ -1118,9 +1119,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DefaultIntellisenseProvider_GetIntellisenseResults")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DefaultIntellisenseProvider_GetIntellisenseResults")]
         public void DefaultIntellisenseProvider_GetIntellisenseResults_ActiviDataListIsInErrorButInPutTextDoesNotMatchesVariable_ResultIsNotInError()
         {
             //------------Setup for test--------------------------
@@ -1142,9 +1143,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.IsFalse(result[0].IsError);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DefaultIntellisenseProvider_Dispose")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DefaultIntellisenseProvider_Dispose")]
         public void DefaultIntellisenseProvider_Dispose_IsDisposedIsSetToTrue()
         {
             var provider = new DefaultIntellisenseProvider();
@@ -1174,9 +1175,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
         
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DefaultIntellisenseProvider_GetIntellisenseResults")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DefaultIntellisenseProvider_GetIntellisenseResults")]
         public void DefaultIntellisenseProvider_GetIntellisenseResults_InputIsAnOpenRegion_AllVariables()
         {
             //------------Setup for test--------------------------
@@ -1203,9 +1204,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
 
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DefaultIntellisenseProvider_PerformResultsInsertion")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DefaultIntellisenseProvider_PerformResultsInsertion")]
         public void DefaultIntellisenseProvider_PerformResultsInsertion_InputTextStartsWithAnEqual_NewStringIsInsertedAndEqualIsNotRemoved()
         {
             var context = new IntellisenseProviderContext
@@ -1226,9 +1227,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
 
 
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DefaultIntellisenseProvider_PerformResultsInsertion")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DefaultIntellisenseProvider_PerformResultsInsertion")]
         public void DefaultIntellisenseProvider_PerformResultsInsertion_WhenDoubleBracket_InsertedNormally1()
         {
             //------------Setup for test--------------------------
@@ -1246,9 +1247,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual("[[rs().Val]]", result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DefaultIntellisenseProvider_PerformResultsInsertion")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DefaultIntellisenseProvider_PerformResultsInsertion")]
         public void DefaultIntellisenseProvider_PerformResultsInsertion_WhenSelectionContainsStar_InsertedNormally1()
         {
             //------------Setup for test--------------------------
@@ -1266,10 +1267,10 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual("[[rs(*).Val]]", result);
         }
 
-        [TestMethod]
-        [TestCategory("IntellisenseTests")]
+        [Test]
+        [Category("IntellisenseTests")]
         [Description("Inserting a scalar into a recordset index")]
-        [Owner("Massimo Guerrera")]
+        [Author("Massimo Guerrera")]
         
         public void PerformResultsInsertion_UnitTest_InsertIntoRecordsetIndexWithoutBrackets_InsertedTheRightValue()
 
@@ -1284,10 +1285,10 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual("[[recset([[test]]).field]]", new DefaultIntellisenseProvider().PerformResultInsertion("[[test]]", context));
         }
 
-        [TestMethod]
-        [TestCategory("IntellisenseTests")]
+        [Test]
+        [Category("IntellisenseTests")]
         [Description("Inserting a recordset with a field when just the field is typed")]
-        [Owner("Massimo Guerrera")]
+        [Author("Massimo Guerrera")]
         
         public void PerformResultsInsertion_UnitTest_WhenFieldTypeAndRecordsetSelected_FieldReplacedWithSelected()
 
@@ -1302,7 +1303,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual("[[recset().field]]", new DefaultIntellisenseProvider().PerformResultInsertion("[[recset().field]]", context));
         }
 
-        [TestMethod]
+        [Test]
         
         public void PerformResultInsertion_With_PartialScalar_AndRegion_Expected_ResultReplacesText()
 
@@ -1317,7 +1318,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual("[[scalar]]", new DefaultIntellisenseProvider().PerformResultInsertion("[[scalar]]", context));
         }
 
-        [TestMethod]
+        [Test]
         
         public void PerformResultInsertion_With_PartialRecSet_AndRegion_Expected_ResultReplacesText()
 
@@ -1332,7 +1333,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual("[[recset().field]]", new DefaultIntellisenseProvider().PerformResultInsertion("[[recset().field]]", context));
         }
         
-        [TestMethod]
+        [Test]
         
         public void PerformResultInsertion_With_PartialField_AndRegion_Expected_ResultReplacesText()
 
@@ -1347,7 +1348,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual("[[recset().field]]", new DefaultIntellisenseProvider().PerformResultInsertion("[[recset().field]]", context));
         }
 
-        [TestMethod]
+        [Test]
         
         public void PerformResultInsertion_With_PartialScalar_AndNoRegion_Expected_ResultReplacesText()
 
@@ -1363,7 +1364,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
         //Bug 8437
-        [TestMethod]
+        [Test]
         
         public void NoFieldResultInsertion_AndMatchOnMiddleOfRecsetName_Expected_ResultReplacesText()
 
@@ -1378,7 +1379,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual("[[recset()]]", new DefaultIntellisenseProvider().PerformResultInsertion("[[recset()]]", context));
         }
 
-        [TestMethod]
+        [Test]
         
         public void NoFieldResultInsertion_Where_CaretPositionIsZero_Expected_DoesNotThrowException()
 
@@ -1395,7 +1396,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual("", actual);
         }
 
-        [TestMethod]
+        [Test]
         
         public void NoFieldStarResultInsertion_AndMatchOnRecsetName_AndRegion_Expected_ResultReplacesText()
 
@@ -1410,7 +1411,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual("[[recset(*)]]", new DefaultIntellisenseProvider().PerformResultInsertion("[[recset(*)]]", context));
         }
 
-        [TestMethod]
+        [Test]
         
         public void PerformResultInsertion_With_PartialScalar_AndRegion_Expected_ResultAppendsText()
 
@@ -1426,7 +1427,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
         //Bug 6103
-        [TestMethod]
+        [Test]
         
         public void PerformResultInsertion_With_PartialScalar_AndRegion_Expected_ResultInsertsText()
 
@@ -1441,7 +1442,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual("[[recset([[scalar]]).field]]", new DefaultIntellisenseProvider().PerformResultInsertion("[[scalar]]", context));
         }
 
-        [TestMethod]
+        [Test]
         
         public void PerformResultInsertion_With_PartialRecset_AndRegion_Expected_ResultInsertsText()
 
@@ -1457,7 +1458,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual("[[recset([[anotherRecset().newfield]]).field]]", actual);
         }
 
-        [TestMethod]
+        [Test]
         
         public void PerformResultInsertion_With_PartialScalar_AndRegion_AtDeepWithinExtaIndex_Expected_ResultInsertsText()
 
@@ -1473,7 +1474,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual("[[recset([[recset([[scalar]]).field]]).field]]", performResultInsertion);
         }
 
-        [TestMethod]
+        [Test]
         
         public void PerformResultInsertion_With_PartialScalar_AndRegion_AndWithinPluses_Expected_ResultInsertsText()
 
@@ -1489,7 +1490,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual("[[recset().field]]+[[Scalar]]+[[Car]]+[[fail]]", actual);
         }
 
-        [TestMethod]
+        [Test]
         
         public void PerformResultInsertion_With_PartialScalar_AndRegion_AndAfterPluses_Expected_ResultInsertsText()
 
@@ -1504,7 +1505,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual("[[recset().field]]+[[Scalar]]+[[Car]]", new DefaultIntellisenseProvider().PerformResultInsertion("[[Car]]", context));
         }
 
-        [TestMethod]
+        [Test]
         
         public void PerformResultInsertion_With_PartialScalar_AndRegion_AndAfterSum_Expected_ResultInsertsText()
 
@@ -1519,7 +1520,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual("Sum([[Scalar]]", new DefaultIntellisenseProvider().PerformResultInsertion("[[Scalar]]", context));
         }
 
-        [TestMethod]
+        [Test]
         
         public void PerformResultInsertion_With_PartialField_AndRegion_AndAfterIndexed_Expected_ResultInsertsText()
 
@@ -1535,7 +1536,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
         // BUG 8755
-        [TestMethod]
+        [Test]
         
         public void PerformResultInsertionWithPartialFieldAndRegionAndAfterBlankIndexExpectedResultInsertsText()
 
@@ -1551,7 +1552,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
         // BUG 8755
-        [TestMethod]
+        [Test]
         
         public void PerformResultInsertionWithPartialFieldAndRegionAndAfterStarIndexExpectedResultInsertsText()
 
@@ -1567,7 +1568,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
         //Bug 8736
-        [TestMethod]
+        [Test]
         public void PerformResultInsertionWithPartialScalarAndFullRegionExpectedResultInsertsText()
         {
             var defaultIntellisenseProvider = new DefaultIntellisenseProvider();
@@ -1586,7 +1587,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
 
 
         //Bug 8736
-        [TestMethod]
+        [Test]
         public void PerformResultInsertionWithPartialRecordsetAndPartialRegionExpectedResultInsertsText()
         {
             var defaultIntellisenseProvider = new DefaultIntellisenseProvider();
@@ -1604,7 +1605,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
         //Bug 8736
-        [TestMethod]
+        [Test]
         public void PerformResultInsertionWithPartialRecordsetWithIndexAndPartialRegionExpectedResultInsertsText()
         {
             var defaultIntellisenseProvider = new DefaultIntellisenseProvider();
@@ -1622,7 +1623,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
         //Bug 8755
-        [TestMethod]
+        [Test]
         public void PerformResultInsertionWithPartialRecordsetAndPartialRegionAndStarIndexExpectedResultInsertsText()
         {
             var defaultIntellisenseProvider = new DefaultIntellisenseProvider();
@@ -1640,7 +1641,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
         //Bug 8736
-        [TestMethod]
+        [Test]
         public void PerformResultInsertionWithPartialRecordsetWithClosedBracketsAndFullRegionExpectedResultInsertsText()
         {
             var defaultIntellisenseProvider = new DefaultIntellisenseProvider();
@@ -1658,7 +1659,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
         //Bug 8755
-        [TestMethod]
+        [Test]
         public void PerformResultInsertionWithPartialRecordsetWithClosedBracketsAndFullRegionAnNumberIndexExpectedResultInsertsText()
         {
             var defaultIntellisenseProvider = new DefaultIntellisenseProvider();
@@ -1676,7 +1677,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
         //Bug 8755
-        [TestMethod]
+        [Test]
         public void PerformResultInsertionWithPartialRecordsetWithClosedBracketsAndFullRegionAnStarIndexExpectedResultInsertsText()
         {
             var defaultIntellisenseProvider = new DefaultIntellisenseProvider();
@@ -1693,7 +1694,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(exprected, actual);
         }
         
-        [TestMethod]
+        [Test]
         public void PerformResultInsertionWithPartialRecordsetExpectedResultInsertsText()
         {
             var defaultIntellisenseProvider = new DefaultIntellisenseProvider();
@@ -1710,7 +1711,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(exprected, actual);
         }
         
-        [TestMethod]
+        [Test]
         public void PerformResultInsertionWithPartialRecordsetFieldAfterScalarExpectedCompleteResult()
         {
             const string currentText = "[[index1]][[rec().fi";
@@ -1727,7 +1728,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(exprected, actual, "Inserting a recordset after a scalar from intellisense results performs an incorrect insertion");
         }
 
-        [TestMethod]
+        [Test]
         public void PerformResultInsertionWithRecordsetAfterScalarExpectedCompleteResult()
         {
             const string currentText = "[[index1]][[rec";

@@ -10,18 +10,19 @@ using Dev2.Communication;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Runtime.Interfaces;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json.Serialization;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SaveComPluginSourceTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -33,9 +34,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -47,9 +48,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(AuthorizationContext.Contribute, resId);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("SaveComPluginSource_HandlesType")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("SaveComPluginSource_HandlesType")]
         public void SaveComPluginSource_HandlesType_ExpectName()
         {
             //------------Setup for test--------------------------
@@ -62,9 +63,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("SaveComPluginSource", saveComPluginSource.HandlesType());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("SaveComPluginSource_HandlesType")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("SaveComPluginSource_HandlesType")]
         public void SaveComPluginSource_CreateServiceEntry_ExpectActions()
         {
             //------------Setup for test--------------------------
@@ -78,9 +79,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsNotNull(dynamicService.Actions);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("SaveComPluginSource_Execute")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("SaveComPluginSource_Execute")]
         public void SaveComPluginSource_Execute_NullValues_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -93,9 +94,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(result.HasError);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("SaveComPluginSource_Execute")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("SaveComPluginSource_Execute")]
         public void SaveComPluginSource_Execute_ResourceIDNotPresent_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -109,8 +110,8 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(result.HasError);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenResourceDefination_ShouldSaveNewSourceReturnResourceDefinationMsg()
         {
             //---------------Set up test pack-------------------
@@ -144,8 +145,8 @@ namespace Dev2.Tests.Runtime.Services
             catalog.Verify(resourceCatalog => resourceCatalog.SaveResource(It.IsAny<Guid>(), It.IsAny<IResource>(), It.IsAny<string>()));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenResourceDefination_GivenExising_ShouldReturnResourceDefinationMsg()
         {
             //---------------Set up test pack-------------------
@@ -181,7 +182,7 @@ namespace Dev2.Tests.Runtime.Services
             catalog.Verify(resourceCatalog => resourceCatalog.SaveResource(It.IsAny<Guid>(), comPluginSource, It.IsAny<string>()));
         }
 
-        [TestMethod]
+        [Test]
         public void DllListing_GetHashCode_CorrectlyHashedObject()
         {
             var dllListing = new DllListing
@@ -192,7 +193,7 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(-1908201757, dllListing.GetHashCode(), "Cannot get correct hash code for this object.");
         }
 
-        [TestMethod]
+        [Test]
         public void DllListing_EqualsOperator_WithEqualObjects_AreEqual()
         {
             var firstDllListing = new DllListing { Name = "bravo" };
@@ -200,7 +201,7 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(firstDllListing == secondDllListing, "Equals operator doesnt work.");
         }
 
-        [TestMethod]
+        [Test]
         public void DllListing_NotEqualsOperator_WithNotEqualObjects_AreNotEqual()
         {
             var firstDllListing = new DllListing { Name = "bravo" };

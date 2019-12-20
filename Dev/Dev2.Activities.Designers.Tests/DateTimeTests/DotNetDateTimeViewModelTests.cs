@@ -12,7 +12,7 @@ using System.Activities.Presentation.Model;
 using System.Collections.Generic;
 using Dev2.Common.Interfaces.Help;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Moq.Protected;
 using Dev2.Studio.Core.Activities.Utils;
@@ -22,10 +22,11 @@ using Dev2.Activities.DateAndTime;
 
 namespace Dev2.Activities.Designers.Tests.DateTimeTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DotNetDateTimeViewModelTests
     {
-        [TestInitialize]
+        [SetUp]
         public void PreConditions()
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-ZA");
@@ -35,64 +36,64 @@ namespace Dev2.Activities.Designers.Tests.DateTimeTests
             Assert.AreEqual("en-ZA", System.Threading.Thread.CurrentThread.CurrentUICulture.Name);
         }
 
-        [TestMethod]
+        [Test]
         public void DateTimeDesignerViewModel_ShouldSetInputFormat_WhenNoInputFormat()
         {
             var modelItem = CreateModelItem();
             var viewModel = new Dev2.Activities.Designers2.DateTimStandard.DateTimeDesignerViewModel(modelItem);
             var expectedDefaultFormat = GlobalConstants.Dev2DotNetDefaultDateTimeFormat;
-            var po = new PrivateObject(viewModel);
+            var po= new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(viewModel);
             Assert.AreEqual(expectedDefaultFormat, po.GetProperty("InputFormat"));
         }
 
-        [TestMethod]
+        [Test]
         public void DateTimeDesignerViewModel_ShouldNotSetInputFormat_WhenInputFormat()
         {
             var modelItem = CreateModelItemWithInputFormat("yyyy-mm-dd");
             var viewModel = new Dev2.Activities.Designers2.DateTimStandard.DateTimeDesignerViewModel(modelItem);
             var expectedDefaultFormat = GlobalConstants.Dev2DotNetDefaultDateTimeFormat;
-            var po = new PrivateObject(viewModel);
+            var po= new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(viewModel);
             Assert.AreNotEqual(expectedDefaultFormat, po.GetProperty("InputFormat"));
             Assert.AreEqual("yyyy-mm-dd", po.GetProperty("InputFormat"));
         }
 
-        [TestMethod]
+        [Test]
         public void DateTimeDesignerViewModel_ShouldSetOutputFormat_WhenNoInputFormat()
         {
             var modelItem = CreateModelItem();
             var viewModel = new Dev2.Activities.Designers2.DateTimStandard.DateTimeDesignerViewModel(modelItem);
             var expectedDefaultFormat = GlobalConstants.Dev2DotNetDefaultDateTimeFormat;
-            var po = new PrivateObject(viewModel);
+            var po= new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(viewModel);
             Assert.AreEqual(expectedDefaultFormat, po.GetProperty("OutputFormat"));
         }
 
-        [TestMethod]
+        [Test]
         public void DateTimeDesignerViewModel_ShouldNotSetOutputFormat_WhenOutputFormat()
         {
             var modelItem = CreateModelItemWithOutputFormat("yyyy-mm-dd");
             var viewModel = new Dev2.Activities.Designers2.DateTimStandard.DateTimeDesignerViewModel(modelItem);
             var expectedDefaultFormat = GlobalConstants.Dev2DotNetDefaultDateTimeFormat;
-            var po = new PrivateObject(viewModel);
+            var po= new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(viewModel);
             Assert.AreNotEqual(expectedDefaultFormat, po.GetProperty("OutputFormat"));
             Assert.AreEqual("yyyy-mm-dd", po.GetProperty("OutputFormat"));
         }
 
-        [TestMethod]
+        [Test]
         public void DateTimeDesignerViewModel_ShouldNotSetInputOrOutputFormat_WhenInputAndOutputFormat()
         {
             var modelItem = CreateModelItemWithInputOutputFormat("yyyy-mm-dd", "MM/dd/yyyy");
             var viewModel = new Dev2.Activities.Designers2.DateTimStandard.DateTimeDesignerViewModel(modelItem);
             var expectedDefaultFormat = GlobalConstants.Dev2DotNetDefaultDateTimeFormat;
-            var po = new PrivateObject(viewModel);
+            var po= new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(viewModel);
             Assert.AreNotEqual(expectedDefaultFormat, po.GetProperty("InputFormat"));
             Assert.AreEqual("yyyy-mm-dd", po.GetProperty("InputFormat"));
             Assert.AreNotEqual(expectedDefaultFormat, po.GetProperty("OutputFormat"));
             Assert.AreEqual("MM/dd/yyyy", po.GetProperty("OutputFormat"));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DateTimeActivityViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DateTimeActivityViewModel_Handle")]
         public void DateTimeActivityViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      

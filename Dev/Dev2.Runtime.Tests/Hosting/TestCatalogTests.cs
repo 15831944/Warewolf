@@ -21,21 +21,22 @@ using Dev2.Communication;
 using Dev2.Data;
 using Dev2.DataList.Contract;
 using Dev2.Runtime;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 
 namespace Dev2.Tests.Runtime.Hosting
 {
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class TestCatalogTests
     {
         public static IDirectory DirectoryWrapperInstance()
         {
             return new DirectoryWrapper();
         }
-        [TestInitialize]
+        [SetUp]
         public void CleanupTestDirectory()
         {
             if (Directory.Exists(EnvironmentVariables.TestPath))
@@ -44,23 +45,23 @@ namespace Dev2.Tests.Runtime.Hosting
             }
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestCatalog_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestCatalog_Constructor")]
         public void TestCatalog_Constructor_TestPathDoesNotExist_ShouldCreateIt()
         {
             //------------Setup for test--------------------------
             //------------Assert Preconditions-------------------
-            Assert.IsFalse(Directory.Exists(EnvironmentVariables.TestPath));
+            NUnit.Framework.Assert.IsFalse(Directory.Exists(EnvironmentVariables.TestPath));
             //------------Execute Test---------------------------
             new TestCatalog();
             //------------Assert Results-------------------------
-            Assert.IsTrue(Directory.Exists(EnvironmentVariables.TestPath));
+            NUnit.Framework.Assert.IsTrue(Directory.Exists(EnvironmentVariables.TestPath));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestCatalog_SaveTests")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestCatalog_SaveTests")]
         public void TestCatalog_SaveTests_WhenNullList_ShouldDoNothing()
         {
             //------------Setup for test--------------------------
@@ -69,12 +70,12 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             testCatalog.SaveTests(resourceID, null);
             //------------Assert Results-------------------------
-            Assert.IsFalse(Directory.Exists(EnvironmentVariables.TestPath + "\\" + resourceID));
+            NUnit.Framework.Assert.IsFalse(Directory.Exists(EnvironmentVariables.TestPath + "\\" + resourceID));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestCatalog_SaveTests")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestCatalog_SaveTests")]
         public void TestCatalog_SaveTests_WhenEmptyList_ShouldDoNothing()
         {
             //------------Setup for test--------------------------
@@ -83,12 +84,12 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             testCatalog.SaveTests(resourceID, new List<IServiceTestModelTO>());
             //------------Assert Results-------------------------
-            Assert.IsFalse(Directory.Exists(EnvironmentVariables.TestPath + "\\" + resourceID));
+            NUnit.Framework.Assert.IsFalse(Directory.Exists(EnvironmentVariables.TestPath + "\\" + resourceID));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestCatalog_SaveTests")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestCatalog_SaveTests")]
         public void TestCatalog_SaveTests_WhenNotEmptyList_ShouldSaveTestsAsFiles()
         {
             //------------Setup for test--------------------------
@@ -111,29 +112,29 @@ namespace Dev2.Tests.Runtime.Hosting
             testCatalog.SaveTests(resourceID, serviceTestModelTos);
             //------------Assert Results-------------------------
             var path = EnvironmentVariables.TestPath + "\\" + resourceID;
-            Assert.IsTrue(Directory.Exists(path));
+            NUnit.Framework.Assert.IsTrue(Directory.Exists(path));
             var testFiles = Directory.EnumerateFiles(path).ToList();
             var test1FilePath = path + "\\" + "Test 1.test";
-            Assert.AreEqual(test1FilePath, testFiles[0]);
+            NUnit.Framework.Assert.AreEqual(test1FilePath, testFiles[0]);
             var test2FilePath = path + "\\" + "Test 2.test";
-            Assert.AreEqual(test2FilePath, testFiles[1]);
+            NUnit.Framework.Assert.AreEqual(test2FilePath, testFiles[1]);
 
             var test1String = File.ReadAllText(test1FilePath);
             var serializer = new Dev2JsonSerializer();
             var test1 = serializer.Deserialize<IServiceTestModelTO>(test1String);
-            Assert.AreEqual("Test 1", test1.TestName);
-            Assert.IsTrue(test1.Enabled);
+            NUnit.Framework.Assert.AreEqual("Test 1", test1.TestName);
+            NUnit.Framework.Assert.IsTrue(test1.Enabled);
 
             var test2String = File.ReadAllText(test2FilePath);
             var test2 = serializer.Deserialize<IServiceTestModelTO>(test2String);
-            Assert.AreEqual("Test 2", test2.TestName);
-            Assert.IsFalse(test2.Enabled);
+            NUnit.Framework.Assert.AreEqual("Test 2", test2.TestName);
+            NUnit.Framework.Assert.IsFalse(test2.Enabled);
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestCatalog_SaveTest")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestCatalog_SaveTest")]
         public void TestCatalog_SaveTests_WhenNoResourceIdList_ShouldSaveTestAsFiles()
         {
             //------------Setup for test--------------------------
@@ -150,22 +151,22 @@ namespace Dev2.Tests.Runtime.Hosting
             testCatalog.SaveTest(resourceID, testToSave);
             //------------Assert Results-------------------------
             var path = EnvironmentVariables.TestPath + "\\" + resourceID;
-            Assert.IsTrue(Directory.Exists(path));
+            NUnit.Framework.Assert.IsTrue(Directory.Exists(path));
             var testFiles = Directory.EnumerateFiles(path).ToList();
             var test1FilePath = path + "\\" + "Test 1.test";
-            Assert.AreEqual(test1FilePath, testFiles[0]);
+            NUnit.Framework.Assert.AreEqual(test1FilePath, testFiles[0]);
           
             var test1String = File.ReadAllText(test1FilePath);
             var serializer = new Dev2JsonSerializer();
             var test1 = serializer.Deserialize<IServiceTestModelTO>(test1String);
-            Assert.AreEqual("Test 1", test1.TestName);
-            Assert.IsFalse(test1.Enabled);
+            NUnit.Framework.Assert.AreEqual("Test 1", test1.TestName);
+            NUnit.Framework.Assert.IsFalse(test1.Enabled);
             
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestCatalog_SaveTest")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestCatalog_SaveTest")]
         public void TestCatalog_SaveTests_WhenResourceIdList_ShouldSaveTestAsAddToList()
         {
             //------------Setup for test--------------------------
@@ -190,27 +191,27 @@ namespace Dev2.Tests.Runtime.Hosting
             testCatalog.SaveTest(resourceID, testToSave2);
             //------------Assert Results-------------------------
             var path = EnvironmentVariables.TestPath + "\\" + resourceID;
-            Assert.IsTrue(Directory.Exists(path));
+            NUnit.Framework.Assert.IsTrue(Directory.Exists(path));
             var testFiles = Directory.EnumerateFiles(path).ToList();
             var test2FilePath = path + "\\" + "Test 2.test";
-            Assert.AreEqual(test2FilePath, testFiles[1]);
+            NUnit.Framework.Assert.AreEqual(test2FilePath, testFiles[1]);
           
             var test2String = File.ReadAllText(test2FilePath);
             var serializer = new Dev2JsonSerializer();
             var test1 = serializer.Deserialize<IServiceTestModelTO>(test2String);
-            Assert.AreEqual("Test 2", test1.TestName);
-            Assert.IsFalse(test1.Enabled);
+            NUnit.Framework.Assert.AreEqual("Test 2", test1.TestName);
+            NUnit.Framework.Assert.IsFalse(test1.Enabled);
 
             var testInList = testCatalog.FetchTest(resourceID, "Test 2");
-            Assert.IsNotNull(testInList);
-            Assert.AreEqual("Test 2",testInList.TestName);
+            NUnit.Framework.Assert.IsNotNull(testInList);
+            NUnit.Framework.Assert.AreEqual("Test 2",testInList.TestName);
             
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestCatalog_SaveTest")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestCatalog_SaveTest")]
         public void TestCatalog_SaveTests_WhenResourceIdListHasTest_ShouldSaveTestUpdateToList()
         {
             //------------Setup for test--------------------------
@@ -234,22 +235,22 @@ namespace Dev2.Tests.Runtime.Hosting
 
             //------------Assert Preconditions-------------------
             var path = EnvironmentVariables.TestPath + "\\" + resourceID;
-            Assert.IsTrue(Directory.Exists(path));
+            NUnit.Framework.Assert.IsTrue(Directory.Exists(path));
             var testFiles = Directory.EnumerateFiles(path).ToList();
             var test1FilePath = path + "\\" + "Test 1.test";
             var test2FilePath = path + "\\" + "Test 2.test";
-            Assert.AreEqual(test1FilePath, testFiles[0]);
-            Assert.AreEqual(test2FilePath, testFiles[1]);
+            NUnit.Framework.Assert.AreEqual(test1FilePath, testFiles[0]);
+            NUnit.Framework.Assert.AreEqual(test2FilePath, testFiles[1]);
 
             var test1String = File.ReadAllText(test2FilePath);
             var serializer = new Dev2JsonSerializer();
             var test2 = serializer.Deserialize<IServiceTestModelTO>(test1String);
-            Assert.AreEqual("Test 2", test2.TestName);
-            Assert.IsFalse(test2.Enabled);
+            NUnit.Framework.Assert.AreEqual("Test 2", test2.TestName);
+            NUnit.Framework.Assert.IsFalse(test2.Enabled);
 
             var testInList = testCatalog.FetchTest(resourceID, "Test 2");
-            Assert.IsNotNull(testInList);
-            Assert.AreEqual("Test 2", testInList.TestName);
+            NUnit.Framework.Assert.IsNotNull(testInList);
+            NUnit.Framework.Assert.AreEqual("Test 2", testInList.TestName);
             //------------Execute Test---------------------------
             var testToSaveUpdate = new ServiceTestModelTO
             {
@@ -261,19 +262,19 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Assert Results-------------------------
             var test2StringUpdated = File.ReadAllText(test2FilePath);
             var test2Updated = serializer.Deserialize<IServiceTestModelTO>(test2StringUpdated);
-            Assert.AreEqual("Test 2", test2Updated.TestName);
-            Assert.IsTrue(test2Updated.Enabled);
+            NUnit.Framework.Assert.AreEqual("Test 2", test2Updated.TestName);
+            NUnit.Framework.Assert.IsTrue(test2Updated.Enabled);
 
             var testInListUpdated = testCatalog.FetchTest(resourceID, "Test 2");
-            Assert.IsNotNull(testInListUpdated);
-            Assert.AreEqual("Test 2", testInListUpdated.TestName);
-            Assert.IsTrue(testInListUpdated.Enabled);
+            NUnit.Framework.Assert.IsNotNull(testInListUpdated);
+            NUnit.Framework.Assert.AreEqual("Test 2", testInListUpdated.TestName);
+            NUnit.Framework.Assert.IsTrue(testInListUpdated.Enabled);
 
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestCatalog_DeleteTest")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestCatalog_DeleteTest")]
         public void TestCatalog_DeleteTest_WhenResourceIdTestName_ShouldDeleteTest()
         {
             //------------Setup for test--------------------------
@@ -295,36 +296,36 @@ namespace Dev2.Tests.Runtime.Hosting
             testCatalog.SaveTests(resourceID, serviceTestModelTos);
             //------------Assert Preconditions-------------------
             var path = EnvironmentVariables.TestPath + "\\" + resourceID;
-            Assert.IsTrue(Directory.Exists(path));
+            NUnit.Framework.Assert.IsTrue(Directory.Exists(path));
             var testFiles = Directory.EnumerateFiles(path).ToList();
             var test1FilePath = path + "\\" + "Test 1.test";
-            Assert.AreEqual(test1FilePath, testFiles[0]);
+            NUnit.Framework.Assert.AreEqual(test1FilePath, testFiles[0]);
             var test2FilePath = path + "\\" + "Test 2.test";
-            Assert.AreEqual(test2FilePath, testFiles[1]);
+            NUnit.Framework.Assert.AreEqual(test2FilePath, testFiles[1]);
             var modelTO = testCatalog.Tests.Select(pair => pair.Value.Single(to => to.TestName == "Test 2")).Single();
-            Assert.IsNotNull(modelTO);
+            NUnit.Framework.Assert.IsNotNull(modelTO);
             var test1String = File.ReadAllText(test1FilePath);
             var serializer = new Dev2JsonSerializer();
             var test1 = serializer.Deserialize<IServiceTestModelTO>(test1String);
-            Assert.AreEqual("Test 1", test1.TestName);
-            Assert.IsTrue(test1.Enabled);
+            NUnit.Framework.Assert.AreEqual("Test 1", test1.TestName);
+            NUnit.Framework.Assert.IsTrue(test1.Enabled);
 
             var test2String = File.ReadAllText(test2FilePath);
             var test2 = serializer.Deserialize<IServiceTestModelTO>(test2String);
-            Assert.AreEqual("Test 2", test2.TestName);
-            Assert.IsFalse(test2.Enabled);
+            NUnit.Framework.Assert.AreEqual("Test 2", test2.TestName);
+            NUnit.Framework.Assert.IsFalse(test2.Enabled);
             //------------Execute Test---------------------------
             testCatalog.DeleteTest(resourceID, "Test 2");
             //------------Assert Results-------------------------
-            Assert.IsTrue(File.Exists(test1FilePath));
-            Assert.IsFalse(File.Exists(test2FilePath));
+            NUnit.Framework.Assert.IsTrue(File.Exists(test1FilePath));
+            NUnit.Framework.Assert.IsFalse(File.Exists(test2FilePath));
             modelTO = testCatalog.Tests.Select(pair => pair.Value.SingleOrDefault(to => to.TestName == "Test 2")).SingleOrDefault();
-            Assert.IsNull(modelTO);
+            NUnit.Framework.Assert.IsNull(modelTO);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestCatalog_DeleteTest")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestCatalog_DeleteTest")]
         public void TestCatalog_DeleteAllTests_WhenResourceIdTestName_ShouldDeleteTestFolder()
         {
             //------------Setup for test--------------------------
@@ -346,37 +347,37 @@ namespace Dev2.Tests.Runtime.Hosting
             testCatalog.SaveTests(resourceID, serviceTestModelTos);
             //------------Assert Preconditions-------------------
             var path = EnvironmentVariables.TestPath + "\\" + resourceID;
-            Assert.IsTrue(Directory.Exists(path));
+            NUnit.Framework.Assert.IsTrue(Directory.Exists(path));
             var testFiles = Directory.EnumerateFiles(path).ToList();
             var test1FilePath = path + "\\" + "Test 1.test";
-            Assert.AreEqual(test1FilePath, testFiles[0]);
+            NUnit.Framework.Assert.AreEqual(test1FilePath, testFiles[0]);
             var test2FilePath = path + "\\" + "Test 2.test";
-            Assert.AreEqual(test2FilePath, testFiles[1]);
+            NUnit.Framework.Assert.AreEqual(test2FilePath, testFiles[1]);
             var modelTO = testCatalog.Tests.Select(pair => pair.Value.Single(to => to.TestName == "Test 2")).Single();
-            Assert.IsNotNull(modelTO);
+            NUnit.Framework.Assert.IsNotNull(modelTO);
             var test1String = File.ReadAllText(test1FilePath);
             var serializer = new Dev2JsonSerializer();
             var test1 = serializer.Deserialize<IServiceTestModelTO>(test1String);
-            Assert.AreEqual("Test 1", test1.TestName);
-            Assert.IsTrue(test1.Enabled);
+            NUnit.Framework.Assert.AreEqual("Test 1", test1.TestName);
+            NUnit.Framework.Assert.IsTrue(test1.Enabled);
 
             var test2String = File.ReadAllText(test2FilePath);
             var test2 = serializer.Deserialize<IServiceTestModelTO>(test2String);
-            Assert.AreEqual("Test 2", test2.TestName);
-            Assert.IsFalse(test2.Enabled);
+            NUnit.Framework.Assert.AreEqual("Test 2", test2.TestName);
+            NUnit.Framework.Assert.IsFalse(test2.Enabled);
             //------------Execute Test---------------------------
             testCatalog.DeleteAllTests(resourceID);
             //------------Assert Results-------------------------
-            Assert.IsFalse(File.Exists(test1FilePath));
-            Assert.IsFalse(File.Exists(test2FilePath));
+            NUnit.Framework.Assert.IsFalse(File.Exists(test1FilePath));
+            NUnit.Framework.Assert.IsFalse(File.Exists(test2FilePath));
             modelTO = testCatalog.Tests.Select(pair => pair.Value.SingleOrDefault(to => to.TestName == "Test 2")).SingleOrDefault();
-            Assert.IsNull(modelTO);
-            Assert.IsFalse(Directory.Exists(path));
+            NUnit.Framework.Assert.IsNull(modelTO);
+            NUnit.Framework.Assert.IsFalse(Directory.Exists(path));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestCatalog_Load")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestCatalog_Load")]
         public void TestCatalog_Load_WhenTests_ShouldLoadDictionaryWithResourceIdAndTests()
         {
             //------------Setup for test--------------------------
@@ -416,20 +417,20 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             testCatalog.Load();
             //------------Assert Results-------------------------
-            Assert.AreEqual(2, testCatalog.Tests.Count);
+            NUnit.Framework.Assert.AreEqual(2, testCatalog.Tests.Count);
             var res1Tests = testCatalog.Tests[resourceID];
-            Assert.AreEqual(2, res1Tests.Count);
-            Assert.AreEqual("Test 1", res1Tests[0].TestName);
-            Assert.AreEqual("Test 2", res1Tests[1].TestName);
+            NUnit.Framework.Assert.AreEqual(2, res1Tests.Count);
+            NUnit.Framework.Assert.AreEqual("Test 1", res1Tests[0].TestName);
+            NUnit.Framework.Assert.AreEqual("Test 2", res1Tests[1].TestName);
             var res2Tests = testCatalog.Tests[resourceID2];
-            Assert.AreEqual(2, res2Tests.Count);
-            Assert.AreEqual("Test 21", res2Tests[0].TestName);
-            Assert.AreEqual("Test 22", res2Tests[1].TestName);
+            NUnit.Framework.Assert.AreEqual(2, res2Tests.Count);
+            NUnit.Framework.Assert.AreEqual("Test 21", res2Tests[0].TestName);
+            NUnit.Framework.Assert.AreEqual("Test 22", res2Tests[1].TestName);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestCatalog_Load")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestCatalog_Load")]
         public void TestCatalog_Reload_ShouldLoadDictionaryWithResourceIdAndTests()
         {
             //------------Setup for test--------------------------
@@ -468,27 +469,27 @@ namespace Dev2.Tests.Runtime.Hosting
             testCatalog.SaveTests(resourceID2, res2ServiceTestModelTos);
             testCatalog.Load();
             //------------Assert Preconditions-------------------
-            Assert.AreEqual(2, testCatalog.Tests.Count);
+            NUnit.Framework.Assert.AreEqual(2, testCatalog.Tests.Count);
             var res1Tests = testCatalog.Tests[resourceID];
-            Assert.AreEqual(2, res1Tests.Count);
-            Assert.AreEqual("Test 1", res1Tests[0].TestName);
-            Assert.AreEqual("Test 2", res1Tests[1].TestName);
+            NUnit.Framework.Assert.AreEqual(2, res1Tests.Count);
+            NUnit.Framework.Assert.AreEqual("Test 1", res1Tests[0].TestName);
+            NUnit.Framework.Assert.AreEqual("Test 2", res1Tests[1].TestName);
             var res2Tests = testCatalog.Tests[resourceID2];
-            Assert.AreEqual(2, res2Tests.Count);
-            Assert.AreEqual("Test 21", res2Tests[0].TestName);
-            Assert.AreEqual("Test 22", res2Tests[1].TestName);
+            NUnit.Framework.Assert.AreEqual(2, res2Tests.Count);
+            NUnit.Framework.Assert.AreEqual("Test 21", res2Tests[0].TestName);
+            NUnit.Framework.Assert.AreEqual("Test 22", res2Tests[1].TestName);
             DirectoryWrapperInstance().CleanUp(EnvironmentVariables.TestPath);
             Directory.CreateDirectory(EnvironmentVariables.TestPath);
             //------------Execute Test---------------------------
             testCatalog.ReloadAllTests();
             //------------Assert Results-------------------------
-            Assert.AreEqual(0, testCatalog.Tests.Count);
+            NUnit.Framework.Assert.AreEqual(0, testCatalog.Tests.Count);
 
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestCatalog_Fetch")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestCatalog_Fetch")]
         public void TestCatalog_Fetch_WhenResourceIdValid_ShouldReturnListOfTestsForResourceId()
         {
             //------------Setup for test--------------------------
@@ -530,14 +531,14 @@ namespace Dev2.Tests.Runtime.Hosting
             var tests = testCatalog.Fetch(resourceID2);
             //------------Assert Results-------------------------
             var res2Tests = tests;
-            Assert.AreEqual(2, res2Tests.Count);
-            Assert.AreEqual("Test 21", res2Tests[0].TestName);
-            Assert.AreEqual("Test 22", res2Tests[1].TestName);
+            NUnit.Framework.Assert.AreEqual(2, res2Tests.Count);
+            NUnit.Framework.Assert.AreEqual("Test 21", res2Tests[0].TestName);
+            NUnit.Framework.Assert.AreEqual("Test 22", res2Tests[1].TestName);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("TestCatalog_Fetch")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("TestCatalog_Fetch")]
         public void TestCatalog_Fetch_WhenPassResult_ShouldReturnListOfTestsForResourceIdWithCorrectPassResult()
         {
             //------------Setup for test--------------------------
@@ -595,20 +596,20 @@ namespace Dev2.Tests.Runtime.Hosting
             var tests = testCatalog.Fetch(resourceID2);
             //------------Assert Results-------------------------
             var res2Tests = tests;
-            Assert.AreEqual(2, res2Tests.Count);
-            Assert.AreEqual(true, res2Tests[0].TestFailing);
-            Assert.AreEqual(true, res2Tests[0].TestInvalid);
-            Assert.AreEqual(true, res2Tests[0].TestPending);
-            Assert.AreEqual(true, res2Tests[0].TestPassed);
-            Assert.AreEqual(true, res2Tests[1].TestPassed);
-            Assert.AreEqual(true, res2Tests[1].TestPassed);
-            Assert.AreEqual(true, res2Tests[1].TestPassed);
-            Assert.AreEqual(true, res2Tests[1].TestPassed);
+            NUnit.Framework.Assert.AreEqual(2, res2Tests.Count);
+            NUnit.Framework.Assert.AreEqual(true, res2Tests[0].TestFailing);
+            NUnit.Framework.Assert.AreEqual(true, res2Tests[0].TestInvalid);
+            NUnit.Framework.Assert.AreEqual(true, res2Tests[0].TestPending);
+            NUnit.Framework.Assert.AreEqual(true, res2Tests[0].TestPassed);
+            NUnit.Framework.Assert.AreEqual(true, res2Tests[1].TestPassed);
+            NUnit.Framework.Assert.AreEqual(true, res2Tests[1].TestPassed);
+            NUnit.Framework.Assert.AreEqual(true, res2Tests[1].TestPassed);
+            NUnit.Framework.Assert.AreEqual(true, res2Tests[1].TestPassed);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestCatalog_Fetch")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestCatalog_Fetch")]
         public void TestCatalog_Fetch_WhenResourceIdNotLoaded_ShouldReturnListOfTestsForResourceId()
         {
             //------------Setup for test--------------------------
@@ -649,14 +650,14 @@ namespace Dev2.Tests.Runtime.Hosting
             var tests = testCatalog.Fetch(resourceID2);
             //------------Assert Results-------------------------
             var res2Tests = tests;
-            Assert.AreEqual(2, res2Tests.Count);
-            Assert.AreEqual("Test 21", res2Tests[0].TestName);
-            Assert.AreEqual("Test 22", res2Tests[1].TestName);
+            NUnit.Framework.Assert.AreEqual(2, res2Tests.Count);
+            NUnit.Framework.Assert.AreEqual("Test 21", res2Tests[0].TestName);
+            NUnit.Framework.Assert.AreEqual("Test 22", res2Tests[1].TestName);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestCatalog_Fetch")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestCatalog_Fetch")]
         public void TestCatalog_Fetch_WhenResourceIdNotValid_ShouldReturnListOfTestsForResourceId()
         {
             //------------Setup for test--------------------------
@@ -697,13 +698,13 @@ namespace Dev2.Tests.Runtime.Hosting
             var tests = testCatalog.Fetch(Guid.NewGuid());
             //------------Assert Results-------------------------
             var res2Tests = tests;
-            Assert.AreEqual(0, res2Tests.Count);
+            NUnit.Framework.Assert.AreEqual(0, res2Tests.Count);
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestCatalog_FetchTest")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestCatalog_FetchTest")]
         public void TestCatalog_FetchTest_WhenResourceIdTestName_ShouldReturnTest()
         {
             //------------Setup for test--------------------------
@@ -727,13 +728,13 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var test = testCatalog.FetchTest(resourceID, "Test 2");
             //------------Assert Results-------------------------
-            Assert.IsNotNull(test);
-            Assert.AreEqual("Test 2",test.TestName);
+            NUnit.Framework.Assert.IsNotNull(test);
+            NUnit.Framework.Assert.AreEqual("Test 2",test.TestName);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestCatalog_FetchTest")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestCatalog_FetchTest")]
         public void TestCatalog_FetchTest_WhenResourceIdInvalidTestName_ShouldReturnNull()
         {
             //------------Setup for test--------------------------
@@ -757,12 +758,12 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var test = testCatalog.FetchTest(resourceID, "Test 6");
             //------------Assert Results-------------------------
-            Assert.IsNull(test);
+            NUnit.Framework.Assert.IsNull(test);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestCatalog_FetchTest")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestCatalog_FetchTest")]
         public void TestCatalog_FetchTest_WhenInvalidResourceIdTestName_ShouldReturnNull()
         {
             //------------Setup for test--------------------------
@@ -786,14 +787,14 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var test = testCatalog.FetchTest(resourceID, "Test 6");
             //------------Assert Results-------------------------
-            Assert.IsNull(test);
+            NUnit.Framework.Assert.IsNull(test);
         }
 
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestCatalog_UpdateTestsBasedOnIOChange")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestCatalog_UpdateTestsBasedOnIOChange")]
         public void TestCatalog_UpdateTestsBasedOnIOChange_WhenTestsFound_ShouldUpdateBasedOnChange_Scalars()
         {
             //------------Setup for test--------------------------
@@ -858,45 +859,45 @@ namespace Dev2.Tests.Runtime.Hosting
             var updatedTest1 = updatedTests[0];
             var updatedTest2 = updatedTests[1];
 
-            Assert.AreEqual("Test 1",updatedTest1.TestName);
-            Assert.IsTrue(updatedTest1.TestInvalid);
-            Assert.IsFalse(updatedTest1.TestFailing);
-            Assert.IsFalse(updatedTest1.TestPassed);
-            Assert.IsFalse(updatedTest1.TestPending);
-            Assert.AreEqual(2,updatedTest1.Inputs.Count);
-            Assert.AreEqual("Age",updatedTest1.Inputs[0].Variable);
-            Assert.AreEqual("20",updatedTest1.Inputs[0].Value);
-            Assert.AreEqual("Gender", updatedTest1.Inputs[1].Variable);
-            Assert.AreEqual("", updatedTest1.Inputs[1].Value);
-            Assert.IsFalse(updatedTest1.Inputs[1].EmptyIsNull);
+            NUnit.Framework.Assert.AreEqual("Test 1",updatedTest1.TestName);
+            NUnit.Framework.Assert.IsTrue(updatedTest1.TestInvalid);
+            NUnit.Framework.Assert.IsFalse(updatedTest1.TestFailing);
+            NUnit.Framework.Assert.IsFalse(updatedTest1.TestPassed);
+            NUnit.Framework.Assert.IsFalse(updatedTest1.TestPending);
+            NUnit.Framework.Assert.AreEqual(2,updatedTest1.Inputs.Count);
+            NUnit.Framework.Assert.AreEqual("Age",updatedTest1.Inputs[0].Variable);
+            NUnit.Framework.Assert.AreEqual("20",updatedTest1.Inputs[0].Value);
+            NUnit.Framework.Assert.AreEqual("Gender", updatedTest1.Inputs[1].Variable);
+            NUnit.Framework.Assert.AreEqual("", updatedTest1.Inputs[1].Value);
+            NUnit.Framework.Assert.IsFalse(updatedTest1.Inputs[1].EmptyIsNull);
 
-            Assert.AreEqual(1, updatedTest1.Outputs.Count);
-            Assert.AreEqual("MessageForUser", updatedTest1.Outputs[0].Variable);
-            Assert.AreEqual("This is the message", updatedTest1.Outputs[0].Value);
+            NUnit.Framework.Assert.AreEqual(1, updatedTest1.Outputs.Count);
+            NUnit.Framework.Assert.AreEqual("MessageForUser", updatedTest1.Outputs[0].Variable);
+            NUnit.Framework.Assert.AreEqual("This is the message", updatedTest1.Outputs[0].Value);
             
 
 
-            Assert.AreEqual("Test 2",updatedTest2.TestName);
-            Assert.IsTrue(updatedTest2.TestInvalid);
-            Assert.IsFalse(updatedTest2.TestFailing);
-            Assert.IsFalse(updatedTest2.TestPassed);
-            Assert.IsFalse(updatedTest2.TestPending);
-            Assert.AreEqual(2, updatedTest2.Inputs.Count);
-            Assert.AreEqual("Age", updatedTest2.Inputs[0].Variable);
-            Assert.AreEqual("25", updatedTest2.Inputs[0].Value);
-            Assert.AreEqual("Gender", updatedTest2.Inputs[1].Variable);
-            Assert.AreEqual("", updatedTest2.Inputs[1].Value);
-            Assert.IsFalse(updatedTest2.Inputs[1].EmptyIsNull);
+            NUnit.Framework.Assert.AreEqual("Test 2",updatedTest2.TestName);
+            NUnit.Framework.Assert.IsTrue(updatedTest2.TestInvalid);
+            NUnit.Framework.Assert.IsFalse(updatedTest2.TestFailing);
+            NUnit.Framework.Assert.IsFalse(updatedTest2.TestPassed);
+            NUnit.Framework.Assert.IsFalse(updatedTest2.TestPending);
+            NUnit.Framework.Assert.AreEqual(2, updatedTest2.Inputs.Count);
+            NUnit.Framework.Assert.AreEqual("Age", updatedTest2.Inputs[0].Variable);
+            NUnit.Framework.Assert.AreEqual("25", updatedTest2.Inputs[0].Value);
+            NUnit.Framework.Assert.AreEqual("Gender", updatedTest2.Inputs[1].Variable);
+            NUnit.Framework.Assert.AreEqual("", updatedTest2.Inputs[1].Value);
+            NUnit.Framework.Assert.IsFalse(updatedTest2.Inputs[1].EmptyIsNull);
 
-            Assert.AreEqual(1, updatedTest2.Outputs.Count);
-            Assert.AreEqual("MessageForUser", updatedTest2.Outputs[0].Variable);
-            Assert.AreEqual("", updatedTest2.Outputs[0].Value);
+            NUnit.Framework.Assert.AreEqual(1, updatedTest2.Outputs.Count);
+            NUnit.Framework.Assert.AreEqual("MessageForUser", updatedTest2.Outputs[0].Variable);
+            NUnit.Framework.Assert.AreEqual("", updatedTest2.Outputs[0].Value);
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestCatalog_UpdateTestsBasedOnIOChange")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestCatalog_UpdateTestsBasedOnIOChange")]
         public void TestCatalog_UpdateTestsBasedOnIOChange_WhenTestsFound_ShouldUpdateBasedOnChange_RecordSets()
         {
             //------------Setup for test--------------------------
@@ -991,44 +992,44 @@ namespace Dev2.Tests.Runtime.Hosting
             var updatedTest1 = updatedTests[0];
             var updatedTest2 = updatedTests[1];
 
-            Assert.AreEqual("Test 1",updatedTest1.TestName);
-            Assert.IsTrue(updatedTest1.TestInvalid);
-            Assert.IsFalse(updatedTest1.TestFailing);
-            Assert.IsFalse(updatedTest1.TestPassed);
-            Assert.IsFalse(updatedTest1.TestPending);
-            Assert.AreEqual(9,updatedTest1.Inputs.Count);
-            Assert.AreEqual("Age",updatedTest1.Inputs[0].Variable);
-            Assert.AreEqual("20",updatedTest1.Inputs[0].Value);
-            Assert.AreEqual("Gender", updatedTest1.Inputs[1].Variable);
-            Assert.AreEqual("", updatedTest1.Inputs[1].Value);
-            Assert.IsFalse(updatedTest1.Inputs[1].EmptyIsNull);
+            NUnit.Framework.Assert.AreEqual("Test 1",updatedTest1.TestName);
+            NUnit.Framework.Assert.IsTrue(updatedTest1.TestInvalid);
+            NUnit.Framework.Assert.IsFalse(updatedTest1.TestFailing);
+            NUnit.Framework.Assert.IsFalse(updatedTest1.TestPassed);
+            NUnit.Framework.Assert.IsFalse(updatedTest1.TestPending);
+            NUnit.Framework.Assert.AreEqual(9,updatedTest1.Inputs.Count);
+            NUnit.Framework.Assert.AreEqual("Age",updatedTest1.Inputs[0].Variable);
+            NUnit.Framework.Assert.AreEqual("20",updatedTest1.Inputs[0].Value);
+            NUnit.Framework.Assert.AreEqual("Gender", updatedTest1.Inputs[1].Variable);
+            NUnit.Framework.Assert.AreEqual("", updatedTest1.Inputs[1].Value);
+            NUnit.Framework.Assert.IsFalse(updatedTest1.Inputs[1].EmptyIsNull);
 
-            Assert.AreEqual(2, updatedTest1.Outputs.Count);
-            Assert.AreEqual("MessageForUser", updatedTest1.Outputs[0].Variable);
-            Assert.AreEqual("This is the message", updatedTest1.Outputs[0].Value);
+            NUnit.Framework.Assert.AreEqual(2, updatedTest1.Outputs.Count);
+            NUnit.Framework.Assert.AreEqual("MessageForUser", updatedTest1.Outputs[0].Variable);
+            NUnit.Framework.Assert.AreEqual("This is the message", updatedTest1.Outputs[0].Value);
             
 
 
-            Assert.AreEqual("Test 2",updatedTest2.TestName);
-            Assert.IsTrue(updatedTest2.TestInvalid);
-            Assert.IsFalse(updatedTest2.TestFailing);
-            Assert.IsFalse(updatedTest2.TestPassed);
-            Assert.IsFalse(updatedTest2.TestPending);
-            Assert.AreEqual(6, updatedTest2.Inputs.Count);
-            Assert.AreEqual("Age", updatedTest2.Inputs[0].Variable);
-            Assert.AreEqual("25", updatedTest2.Inputs[0].Value);
-            Assert.AreEqual("Gender", updatedTest2.Inputs[1].Variable);
-            Assert.AreEqual("", updatedTest2.Inputs[1].Value);
-            Assert.IsFalse(updatedTest2.Inputs[1].EmptyIsNull);
+            NUnit.Framework.Assert.AreEqual("Test 2",updatedTest2.TestName);
+            NUnit.Framework.Assert.IsTrue(updatedTest2.TestInvalid);
+            NUnit.Framework.Assert.IsFalse(updatedTest2.TestFailing);
+            NUnit.Framework.Assert.IsFalse(updatedTest2.TestPassed);
+            NUnit.Framework.Assert.IsFalse(updatedTest2.TestPending);
+            NUnit.Framework.Assert.AreEqual(6, updatedTest2.Inputs.Count);
+            NUnit.Framework.Assert.AreEqual("Age", updatedTest2.Inputs[0].Variable);
+            NUnit.Framework.Assert.AreEqual("25", updatedTest2.Inputs[0].Value);
+            NUnit.Framework.Assert.AreEqual("Gender", updatedTest2.Inputs[1].Variable);
+            NUnit.Framework.Assert.AreEqual("", updatedTest2.Inputs[1].Value);
+            NUnit.Framework.Assert.IsFalse(updatedTest2.Inputs[1].EmptyIsNull);
 
-            Assert.AreEqual(2, updatedTest2.Outputs.Count);
-            Assert.AreEqual("MessageForUser", updatedTest2.Outputs[0].Variable);
-            Assert.AreEqual("", updatedTest2.Outputs[0].Value);
+            NUnit.Framework.Assert.AreEqual(2, updatedTest2.Outputs.Count);
+            NUnit.Framework.Assert.AreEqual("MessageForUser", updatedTest2.Outputs[0].Variable);
+            NUnit.Framework.Assert.AreEqual("", updatedTest2.Outputs[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestCatalog_UpdateTestsBasedOnIOChange")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestCatalog_UpdateTestsBasedOnIOChange")]
         public void TestCatalog_UpdateTestsBasedOnIOChange_WhenTestsFound_ShouldUpdateStepsToInvalid()
         {
             //------------Setup for test--------------------------
@@ -1126,12 +1127,12 @@ namespace Dev2.Tests.Runtime.Hosting
             var updatedTests = testCatalog.Fetch(resourceID);
             var updatedTest1 = updatedTests[0];
 
-            Assert.AreEqual("Test 1", updatedTest1.TestName);
-            Assert.IsTrue(updatedTest1.TestInvalid);
-            Assert.AreEqual(RunResult.TestInvalid, updatedTest1.TestSteps[0].Result.RunTestResult);
-            Assert.AreEqual(RunResult.TestInvalid, updatedTest1.TestSteps[0].StepOutputs[0].Result.RunTestResult);
-            Assert.AreEqual(RunResult.TestInvalid, updatedTest1.TestSteps[1].Result.RunTestResult);
-            Assert.AreEqual(RunResult.TestInvalid, updatedTest1.TestSteps[1].Children[0].StepOutputs[0].Result.RunTestResult);
+            NUnit.Framework.Assert.AreEqual("Test 1", updatedTest1.TestName);
+            NUnit.Framework.Assert.IsTrue(updatedTest1.TestInvalid);
+            NUnit.Framework.Assert.AreEqual(RunResult.TestInvalid, updatedTest1.TestSteps[0].Result.RunTestResult);
+            NUnit.Framework.Assert.AreEqual(RunResult.TestInvalid, updatedTest1.TestSteps[0].StepOutputs[0].Result.RunTestResult);
+            NUnit.Framework.Assert.AreEqual(RunResult.TestInvalid, updatedTest1.TestSteps[1].Result.RunTestResult);
+            NUnit.Framework.Assert.AreEqual(RunResult.TestInvalid, updatedTest1.TestSteps[1].Children[0].StepOutputs[0].Result.RunTestResult);
         }
     }
 }

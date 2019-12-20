@@ -15,7 +15,7 @@ using Dev2.Providers.Errors;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Core;
 using Warewolf.Testing;
@@ -23,12 +23,13 @@ using Warewolf.Testing;
 
 namespace Dev2.Activities.Designers.Tests.ComDll
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ComDllViewModelTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComDllViewModel_Constructor")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComDllViewModel_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ComDllViewModel_Constructor_NullModelItem_Exception()
         {
@@ -38,9 +39,9 @@ namespace Dev2.Activities.Designers.Tests.ComDll
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComDllViewModel_Constructor")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComDllViewModel_Constructor")]
         public void ComDllViewModel_Constructor_Valid_ShouldSetupViewModel()
         {
             //------------Setup for test--------------------------
@@ -77,9 +78,9 @@ namespace Dev2.Activities.Designers.Tests.ComDll
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComDllViewModel_Validate")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComDllViewModel_Validate")]
         public void ComDllViewModel_Validate_HasErrorsIfNoSource()
         {
             //------------Setup for test--------------------------
@@ -96,9 +97,9 @@ namespace Dev2.Activities.Designers.Tests.ComDll
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComDllViewModel_GenerateOutputsVisible")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComDllViewModel_GenerateOutputsVisible")]
         public void ComDllViewModel_GenerateOutputsVisible_Set_SetsOtherProperties()
         {
             //------------Setup for test--------------------------
@@ -126,9 +127,9 @@ namespace Dev2.Activities.Designers.Tests.ComDll
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComDllViewModel_ToModel")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComDllViewModel_ToModel")]
         public void ComDllViewModel_ToModel()
         {
             //------------Setup for test--------------------------
@@ -147,9 +148,9 @@ namespace Dev2.Activities.Designers.Tests.ComDll
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComDllViewModel_ToModel")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComDllViewModel_ToModel")]
         public void ComDllViewModel_ClearValidationMessage()
         {
             //------------Setup for test--------------------------
@@ -166,9 +167,9 @@ namespace Dev2.Activities.Designers.Tests.ComDll
             Assert.AreEqual(vm.DesignValidationErrors[0].Message, String.Empty);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComDllViewModel_SetDisplayName")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComDllViewModel_SetDisplayName")]
         public void ComDllViewModel_SetDisplayName()
         {
             //------------Setup for test--------------------------
@@ -182,13 +183,13 @@ namespace Dev2.Activities.Designers.Tests.ComDll
 
             //------------Assert Results-------------------------
             vm.SetDisplayName("dsfbob_builer");
-            var p = new PrivateObject(vm);
+            var p= new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(vm);
             Assert.AreEqual(p.GetProperty("DisplayName"), "Com DLLdsfbob_builer");
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComDllViewModel_Handle")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComDllViewModel_Handle")]
         public void ComDllViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -207,9 +208,9 @@ namespace Dev2.Activities.Designers.Tests.ComDll
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComDllViewModel_SetDisplayName")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComDllViewModel_SetDisplayName")]
         public void ComDllViewModel_ErrorMessage()
         {
             //------------Setup for test--------------------------
@@ -228,9 +229,9 @@ namespace Dev2.Activities.Designers.Tests.ComDll
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComDllViewModel_SetDisplayName")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComDllViewModel_SetDisplayName")]
         public void ComDllViewModel_FixErrors()
         {
             //------------Setup for test--------------------------
@@ -247,9 +248,9 @@ namespace Dev2.Activities.Designers.Tests.ComDll
             Assert.IsTrue(vm.IsWorstErrorReadOnly);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComDllViewModel_SetDisplayName")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComDllViewModel_SetDisplayName")]
         public void ComDllViewModel_UpdateWorstDesignError()
         {
             //------------Setup for test--------------------------
@@ -261,7 +262,7 @@ namespace Dev2.Activities.Designers.Tests.ComDll
 
             var vm = new ComDllViewModel(CreateModelItemWithValues(), ps.Object);
             vm.DesignValidationErrors.Add(new ErrorInfo() { Message = "bob error", ErrorType = ErrorType.Critical });
-            var p = new PrivateObject(vm);
+            var p= new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(vm);
             p.Invoke("UpdateWorstError");
             var inf = vm.WorstDesignError as ErrorInfo;
             //------------Assert Results-------------------------
@@ -271,9 +272,9 @@ namespace Dev2.Activities.Designers.Tests.ComDll
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComDllViewModel_SetDisplayName")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComDllViewModel_SetDisplayName")]
         public void ComDllViewModel_Test()
         {
             //------------Setup for test--------------------------
@@ -288,8 +289,8 @@ namespace Dev2.Activities.Designers.Tests.ComDll
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void BuildRegions_GivenNamespacesRegionHasErrors_ShouldhaveErrors()
         {
             //---------------Set up test pack-------------------
@@ -310,7 +311,7 @@ namespace Dev2.Activities.Designers.Tests.ComDll
             Assert.AreEqual(buildRegions.Single(region => region is INamespaceToolRegion<INamespaceItem>).Errors.Count, 1);
         }
 
-        [TestMethod]
+        [Test]
         public void Equals_WithOperator_ShouldBeEqual()
         {
             //---------------Set up test pack-------------------
@@ -323,7 +324,7 @@ namespace Dev2.Activities.Designers.Tests.ComDll
             Assert.IsTrue(firstObject==secondObject, "ComPluginSourceDefinition object equals operator broken.");
         }
 
-        [TestMethod]
+        [Test]
         public void Equals_WithNotEqualOperator_ShouldNotBeEqual()
         {
             //---------------Set up test pack-------------------

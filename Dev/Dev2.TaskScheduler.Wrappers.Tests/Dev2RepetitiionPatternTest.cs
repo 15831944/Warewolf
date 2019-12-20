@@ -9,18 +9,19 @@
 */
 
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Microsoft.Win32.TaskScheduler;
 
 namespace Dev2.TaskScheduler.Wrappers.Test
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class Dev2RepetitionPatternTest
     {
 
-              [TestMethod]
-              [Owner("Leon Rajindrapersadh")]
-              [TestCategory("TaskShedulerWrapper_Dev2RepetitionPattern_Construct")]
+              [Test]
+              [Author("Leon Rajindrapersadh")]
+              [Category("TaskShedulerWrapper_Dev2RepetitionPattern_Construct")]
               public void TaskShedulerWrapper_Dev2RepetitionPattern_Construct()
               {
                   Trigger a = new DailyTrigger(6);

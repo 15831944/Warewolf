@@ -8,7 +8,7 @@ using Dev2.Activities.DropBox2016.UploadActivity;
 using Dev2.Common.Interfaces.Core.DynamicServices;
 using Dev2.Data.ServiceModel;
 using Dev2.Studio.Core.Activities.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using TechTalk.SpecFlow;
 using Warewolf.Tools.Specs.BaseTypes;
@@ -159,7 +159,7 @@ namespace Dev2.Activities.Specs.Toolbox.Storage.Dropbox
         [When(@"I change source from ""(.*)"" to ""(.*)""")]
         public void WhenIChangeSourceFromTo(string oldSourceName, string newSourceName)
         {
-            Assert.AreEqual<string>(oldSourceName,GetViewModel().SelectedSource.ResourceName);
+            Assert.AreEqual(oldSourceName,GetViewModel().SelectedSource.ResourceName);
             Assert.IsFalse(string.IsNullOrEmpty(GetViewModel().FromPath));
             Assert.IsFalse(string.IsNullOrEmpty(GetViewModel().ToPath));
             GetViewModel().SelectedSource = new DropBoxSource()

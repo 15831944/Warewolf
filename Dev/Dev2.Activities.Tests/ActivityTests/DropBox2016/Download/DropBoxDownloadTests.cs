@@ -4,12 +4,13 @@ using Dev2.Activities.DropBox2016.Result;
 using Dev2.Common.Interfaces.Wrappers;
 using Dropbox.Api.Files;
 using Dropbox.Api.Stone;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
 
     public class DropBoxDownloadTests
     {
@@ -23,8 +24,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateDropBoxActivity_GivenIsNew_ShouldNotBeNull()
         {
             //---------------Set up test pack-------------------
@@ -35,8 +36,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
             Assert.IsNotNull(dropboxDownload);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ExecuteTask_GivenDropBoxDownload_ShouldReturnFileMetadata()
         {
             //---------------Set up test pack-------------------
@@ -49,8 +50,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
             downloadMock.Verify(upload => upload.ExecuteTask(It.IsAny<IDropboxClient>()));
         }
         
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         [ExpectedException(typeof(ArgumentException))]
         public void CreateNewDropboxUpload_GivenMissingToPath_ShouldBeInValid()
         {
@@ -62,8 +63,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
             //---------------Test Result -----------------------
         } 
         
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateNewDropboxDownload_GivenMissingToPath_ShouldBeValid()
         {
             //---------------Set up test pack-------------------
@@ -74,8 +75,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
             Assert.IsNotNull(dropBoxDownLoad);
         }
 
-        [TestMethod]
-        [Owner("Ashley Lewis")]
+        [Test]
+        [Author("Ashley Lewis")]
         public void ExecuteDropboxDownload_Throws_ShouldReturnFailedResult()
         {
             //---------------Set up test pack-------------------
@@ -86,7 +87,7 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
             //---------------Execute Test ----------------------
             var result = dropBoxDownLoad.ExecuteTask(mockDropboxClient.Object);
             //---------------Test Result -----------------------
-            Assert.IsInstanceOfType(result, typeof(DropboxFailureResult), "Dropbox failure result not returned after exception");
+            Assert.IsInstanceOf(result.GetType(), typeof(DropboxFailureResult), "Dropbox failure result not returned after exception");
         }
     }
 }

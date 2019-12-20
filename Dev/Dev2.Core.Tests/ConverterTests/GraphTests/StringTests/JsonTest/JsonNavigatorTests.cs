@@ -13,13 +13,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Dev2.Common.Interfaces.Core.Graph;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Framework.Converters.Graph.String.Json;
 using Unlimited.Framework.Converters.Graph.String.Xml;
 
 namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class JsonNavigatorTests
     {
         internal string testData => @"{
@@ -81,7 +82,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
     ],
   }";
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SelectScalar_WithNull_ExpectArgumentNullException()
         {
@@ -89,7 +90,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
             JsonNavigator.SelectScalar(null);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(Exception))]
         public void SelectScalar_WithoutJsonPath_ExpectException()
         {
@@ -97,7 +98,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
             JsonNavigator.SelectScalar(new XmlPath());
         }
 
-        [TestMethod]
+        [Test]
         public void SelectScalarValue_WithEnumerableSymbolAndSeperatorSymbol_Expected_PrimitiveRecordset()
         {
             IPath namePath = new JsonPath("().", "().");
@@ -113,7 +114,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void SelectScalarValueUsingSeperatorSymbol_Expected_UnchangedPath()
         {
             IPath namePath = new JsonPath(".", ".");
@@ -180,7 +181,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void SelectScalarValue_WithScalarPathFromJson_Expected_ScalarValue()
         {
             IPath namePath = new JsonPath("Name", "Name");
@@ -193,7 +194,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void SelectScalarValue_WithEnumerablePathFromJson_Expected_ScalarValue()
         {
             IPath namePath = new JsonPath("Departments().Employees().Name", "Departments.Employees.Name");
@@ -206,7 +207,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
             Assert.AreEqual(expected, actual);
         }
         
-        [TestMethod]
+        [Test]
         public void SelectScalarValue_WithEnumerablePathFromJson_WherePathMapsToPrimitiveEnumerable_Expected_ScalarValue()
         {
             IPath namePath = new JsonPath("PrimitiveRecordset()", "PrimitiveRecordset");
@@ -219,7 +220,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SelectEnumerable_WithNull_ExpectArgumentNullException()
         {
@@ -227,7 +228,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
             JsonNavigator.SelectEnumerable(null);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(Exception))]
         public void SelectEnumerable_WithoutJsonPath_ExpectArgumentNullException()
         {
@@ -235,7 +236,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
             JsonNavigator.SelectEnumerable(new XmlPath());
         }
 
-        [TestMethod]
+        [Test]
         public void SelectEnumerable_WithEnumerableSymbolAndSeperatorSymbol_Expected_PipeDelimited()
         {
             IPath namePath = new JsonPath("().", "().");
@@ -295,7 +296,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void SelectEnumerable_WithSeperatorSymbol_Expected_UnchangedPath()
         {
             IPath namePath = new JsonPath(".", ".");
@@ -362,7 +363,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void SelectEnumerableValuesUsingEnumerablePathFromJson_WherePathMapsToPrimitiveEnumerable_Expected_EnumerableValue()
         {
             IPath path = new JsonPath("PrimitiveRecordset()", "PrimitiveRecordset");
@@ -375,7 +376,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
             Assert.AreEqual(expected, actual);
         }
         
-        [TestMethod]
+        [Test]
         public void SelectEnumerableValuesUsingEnumerablePathFromJson_Expected_EnumerableValue()
         {
             IPath path = new JsonPath("Departments().Name", "Departments.Name");
@@ -388,7 +389,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
             Assert.AreEqual(expected, actual);
         }
         
-        [TestMethod]
+        [Test]
         public void SelectEnumerableValuesUsingScalarPathFromJson_Expected_EnumerableValue()
         {
             IPath path = new JsonPath("Motto", "Motto");
@@ -401,7 +402,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
             Assert.AreEqual(expected, actual);
         }
         
-        [TestMethod]
+        [Test]
         public void SelectEnumerableValuesUsingEnumerablePathFromJson_WherePathMapsThroughNestedEnumerables_Expected_EnumerableValue()
         {
             IPath path = new JsonPath("Departments().Employees().Name", "Departments.Employees.Name");
@@ -414,7 +415,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
             Assert.AreEqual(expected, actual);
         }
         
-        [TestMethod]
+        [Test]
         public void SelectEnumerableValuesAsRelatedUsingEnumerablePathFromJson_Where_PathsContainAScalarPath_Expected_FlattenedDataWithValueFromScalarPathRepeatingForEachEnumeration()
         {
             IPath path = new JsonPath("Name", "Name");
@@ -431,7 +432,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
             Assert.AreEqual(expected, actual);
         }
         
-        [TestMethod]
+        [Test]
         public void SelectEnumerableValuesAsRelatedUsingEnumerablePathFromJson_Where_PathsContainUnrelatedEnumerablePaths_Expected_FlattenedDataWithValuesFromUnrelatedEnumerablePathsAtMatchingIndexes()
         {
             IPath path = new JsonPath("Departments().Name", "Departments.Name");
@@ -448,7 +449,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
             Assert.AreEqual(expected, actual);
         }
         
-        [TestMethod]
+        [Test]
         public void SelectEnumerableValuesAsRelatedUsingEnumerablePathFromJson_Where_PathsContainNestedEnumerablePaths_Expected_FlattenedDataWithValuesFromOuterEnumerablePathRepeatingForEveryValueFromNestedEnumerablePath()
         {
             IPath path3 = new JsonPath("Name", "Name");
@@ -473,7 +474,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
             actual = new StringBuilder(actual).Replace(Environment.NewLine, "\n").Replace("\r", "").ToString();
         }
 
-        [TestMethod]
+        [Test]
         public void SelectEnumerableValuesAsRelatedUsingEnumerablePathFromJson_Where_PathsContainASinglePathWhichIsEnumerable_Expected_FlattenedDataWithValuesFromEnumerablePath()
         {
             IPath path = new JsonPath("Departments().Employees().Name", "Departments.Employees.Name");
@@ -489,7 +490,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
             Assert.AreEqual(expected, actual);
         }
         
-        [TestMethod]
+        [Test]
         public void SelectEnumerableValuesAsRelatedUsingEnumerablePathFromJson_Where_PathsContainASinglePathWhichIsScalar_Expected_FlattenedDataWithValueFromScalarPath()
         {
             IPath path = new JsonPath("Name", "Name");
@@ -505,7 +506,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void SelectEnumerablesAsRelated_WithEnumerableSymbolAndSeperatorSymbol_Expected_PipeDelimited()
         {
             List<IPath> namePath = new List<IPath>() { new JsonPath("().", "().") };
@@ -565,7 +566,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void SelectEnumerablesAsRelated_WithSeperatorSymbol_Expected_UnchangedPath()
         {
             List<IPath> namePath = new List<IPath>() { new JsonPath(".", ".") };

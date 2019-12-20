@@ -9,22 +9,23 @@
 */
 
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Warewolf.ComponentModel;
 
 namespace Dev2.Sql.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ExtensiosnTests
     {
-        [TestMethod]
+        [Test]
         public void ToStringSafeWithNullExpectedReturnsEmptyString()
         {
             var result = Extensions.ToStringSafe(null);
             Assert.AreEqual(string.Empty, result);
         }
 
-        [TestMethod]
+        [Test]
         public void ToStringSafeWithStringExpectedReturnsString()
         {
             const string Expected = "hello";
@@ -32,7 +33,7 @@ namespace Dev2.Sql.Tests
             Assert.AreEqual(Expected, result);
         }
 
-        [TestMethod]
+        [Test]
         public void ToStringSafeWithDbNullExpectedReturnsEmptyString()
         {
             var result = Extensions.ToStringSafe(Convert.DBNull);

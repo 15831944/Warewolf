@@ -37,7 +37,8 @@ namespace Warewolf.UI.Tests.WorkflowTab.Tools.Resources
             Assert.IsFalse(UIMap.ControlExistsNow(DialogsUIMap.ServicePickerDialog.OK), "Service picker dialog still exists after clicking cancel button.");
         }
 
-        [TestMethod, DeploymentItem("EnableDocker.txt")]
+        [TestMethod]
+        [DeploymentItem("EnableDocker.txt")]
         [TestCategory("Resource Tools")]
         public void ServiceTool_CopyPaste_NoStudioFreeze_UITest()
         {

@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using Dev2.Communication;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Tests.Runtime.Plugins
 {
-    [TestClass]
+    [TestFixture]
     public class ServiceConstructorListTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ToString_GivenIsNotNull_ShouldJsonFormat()
         {
             //---------------Set up test pack-------------------
@@ -18,7 +18,7 @@ namespace Dev2.Tests.Runtime.Plugins
             //---------------Assert Precondition----------------
             Assert.IsNotNull(constructorList);
             //---------------Execute Test ----------------------
-            Assert.IsInstanceOfType(constructorList, typeof(List<ServiceConstructor>));
+            Assert.IsInstanceOf(constructorList.GetType(), typeof(List<ServiceConstructor>));
             //---------------Test Result -----------------------
             var s = constructorList.ToString();
             var dev2JsonSerializer = new Dev2JsonSerializer();

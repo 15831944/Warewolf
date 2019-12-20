@@ -14,7 +14,7 @@ using Dev2.Factories;
 using Dev2.Interfaces;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.TO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.FindMissingStrategyTest
@@ -22,7 +22,8 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
     /// <summary>
     /// Summary description for MixedActivityFindMissingStrategyTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class MixedActivityFindMissingStrategyTests
     {
@@ -34,7 +35,7 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
 
         #region DataSplit Activity Tests
 
-        [TestMethod]
+        [Test]
         public void GetActivityFieldsOffDataSplitActivityExpectedAllFindMissingFieldsToBeReturned()
         {
             var dataSplitActivity = new DsfDataSplitActivity();
@@ -52,7 +53,7 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
 
         #region DataMerge Activity Tests
 
-        [TestMethod]
+        [Test]
         public void GetActivityFieldsOffDataMergeActivityExpectedAllFindMissingFieldsToBeReturned()
         {
             var dataMergeActivity = new DsfDataMergeActivity();
@@ -69,9 +70,9 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
         #endregion
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("MixedActivityFindMissingStrategy_GetActivityFields")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("MixedActivityFindMissingStrategy_GetActivityFields")]
         public void MixedActivityFindMissingStrategy_GetActivityFields_DsfSqlBulkInsertActivity_AllFindMissingFieldsToBeReturned()
         {
             //------------Setup for test--------------------------
@@ -95,7 +96,7 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
             CollectionAssert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void GetActivityFieldsOf_DsfCreateJsonActivity_ExpectedAllFindMissingFieldsToBeReturned()
         {
             var act = new DsfCreateJsonActivity {
@@ -114,7 +115,7 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
             CollectionAssert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void GetActivityFieldsOf_DsfXPathActivity_ExpectedAllFindMissingFieldsToBeReturned()
         {
             var act = new DsfXPathActivity
@@ -134,7 +135,7 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
             CollectionAssert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void GetActivityFieldsOf_DsfFindRecordsMultipleCriteriaActivity_ExpectedAllFindMissingFieldsToBeReturned()
         {
             var act = new DsfFindRecordsMultipleCriteriaActivity
@@ -155,7 +156,7 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
             CollectionAssert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void GetActivityFieldsOf_NativeActivity_ExpectErrorWorkflowFieldToBeReturned()
         {
             var act = new DsfFindRecordsMultipleCriteriaActivity

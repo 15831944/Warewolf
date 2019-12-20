@@ -15,7 +15,7 @@ using System.Linq;
 using System.Xml.Linq;
 using Dev2.Data.Util;
 using Dev2.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Warewolf.Storage;

@@ -1,15 +1,16 @@
 ﻿using System;
 using Dev2.Activities.DropBox2016.Result;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Activities.ActivityTests.DropBox2016
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
 
     public class DropBoxFailureResultShould
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ConstructDropBoxFailureResult_GivenException_ShouldRetunNewFailureResult()
         {
             //---------------Set up test pack-------------------
@@ -21,8 +22,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016
             Assert.IsNotNull(failureResult);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void failureResult_GivenException_ShouldRetunNewFailureResult()
         {
             //---------------Set up test pack-------------------

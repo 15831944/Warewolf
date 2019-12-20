@@ -15,30 +15,18 @@ using ActivityUnitTests;
 using Dev2.Data.Interfaces;
 using Dev2.Diagnostics;
 using Dev2.Tests.Activities.Mocks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
-    /// <summary>
-    /// Summary description for DateTimeDifferenceTests
-    /// </summary>
-    [TestClass]
-    
+    [TestFixture]
+    [SetUpFixture]
     public class UnZipTests : BaseActivityUnitTest
     {
-
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext { get; set; }
-
-        
-
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DsfUnZip_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DsfUnZip_Constructor")]
         public void DsfUnZip_Constructor_DisplayName_Unzip()
         {
             //------------Setup for test--------------------------
@@ -50,14 +38,14 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Unzip", dsfUnZip.DisplayName);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DsfUnZip_Execute")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DsfUnZip_Execute")]
         public void Unzip_Execute_Workflow_SourceFile_And_DestinationFile_Has_Separate_Passwords_Both_Passwords_Are_Sent_To_OperationBroker()
         {
             var fileNames = new List<string>();
             var guid = Guid.NewGuid();
-            fileNames.Add(Path.Combine(TestContext.TestRunDirectory, guid + "Dev2.txt"));
+            fileNames.Add(Path.Combine(Environment.CurrentDirectory, guid + "Dev2.txt"));
 
             foreach (string fileName in fileNames)
             {
@@ -69,7 +57,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             var act = new DsfUnZip
             {
                 InputPath = @"c:\OldFile.txt",
-                OutputPath = Path.Combine(TestContext.TestRunDirectory, "NewName.txt"),
+                OutputPath = Path.Combine(Environment.CurrentDirectory, "NewName.txt"),
                 Result = "[[res]]",
                 DestinationUsername = "destUName",
                 DestinationPassword = "destPWord",
@@ -87,9 +75,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(activityOperationBrokerMock.Source.IOPath.Username, "uName");
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DsfUnzip_Construct")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DsfUnzip_Construct")]
         public void UnZip_Construct_Object_Must_Be_OfType_IDestinationUsernamePassword()
         {
             var unzip = new DsfUnZip();

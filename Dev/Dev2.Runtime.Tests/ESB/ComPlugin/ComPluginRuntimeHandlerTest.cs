@@ -19,7 +19,7 @@ using Dev2.Runtime;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Runtime.ServiceModel.Esb.Brokers.ComPlugin;
 using DummyNamespaceForTest;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json.Serialization;
 using TestingDotnetDllCascading;
@@ -28,15 +28,16 @@ using System.Diagnostics;
 
 namespace Dev2.Tests.Runtime.ESB.ComPlugin
 {
-    [TestClass]
-    [TestCategory("Runtime ESB")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime ESB")]
     public class ComPluginRuntimeHandlerTest
     {
         public const string adodbConnectionClassId = "00000514-0000-0010-8000-00AA006D2EA4";
                 
         public TestContext TestContext { get; set; }
 
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void Add_Component_To_Registry(TestContext tstctx)
         {
             var assembly = Assembly.GetExecutingAssembly();
@@ -56,9 +57,9 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
 
         #region FetchNamespaceListObject
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComPluginRuntimeHandler_ListMethods")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComPluginRuntimeHandler_ListMethods")]
         public void ComPluginRuntimeHandler_ListMethods_WhenValidDll_ExpectListMethods_32bit()
         {
             //------------Setup for test--------------------------
@@ -73,12 +74,12 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
             var isolated = new ComPluginRuntimeHandler(mock.Object);
             var serviceMethodList = isolated.ListMethods(adodbConnectionClassId, true);
             //------------Assert Results-------------------------
-            Assert.AreEqual(0, serviceMethodList.Count);
+            NUnit.Framework.Assert.AreEqual(0, serviceMethodList.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComPluginRuntimeHandler_ListMethods")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComPluginRuntimeHandler_ListMethods")]
         public void ComPluginRuntimeHandler_ListMethods_WhenValidDll_ExpectListMethods_64Bit()
         {
             //------------Setup for test--------------------------
@@ -93,13 +94,13 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
             var isolated = new ComPluginRuntimeHandler(mock.Object);
             var result = isolated.ListMethods(adodbConnectionClassId, false);
             //------------Assert Results-------------------------
-            CollectionAssert.AllItemsAreUnique(result);
-            CollectionAssert.AllItemsAreNotNull(result);
+            NUnit.Framework.CollectionAssert.AllItemsAreUnique(result);
+            NUnit.Framework.CollectionAssert.AllItemsAreNotNull(result);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComPluginRuntimeHandler_FetchNamespaceListObject")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComPluginRuntimeHandler_FetchNamespaceListObject")]
         public void ComPluginRuntimeHandler_FetchNamespaceListObject_WhenValidDll_ExpectNamespaces()
         {
             //------------Setup for test--------------------------
@@ -114,13 +115,13 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
             var isolated = new ComPluginRuntimeHandler(mock.Object);
             var result = isolated.FetchNamespaceListObject(source);
             //------------Assert Results-------------------------
-            Assert.AreEqual(1, result.Count);
+            NUnit.Framework.Assert.AreEqual(1, result.Count);
             var assemblyLocation = result[0].AssemblyLocation;
-            Assert.IsTrue(string.IsNullOrEmpty(assemblyLocation));
+            NUnit.Framework.Assert.IsTrue(string.IsNullOrEmpty(assemblyLocation));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void TryBuildValuedTypeParams_GivenValid_ShouldPassThrough()
         {
             //---------------Set up test pack-------------------
@@ -143,11 +144,11 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
             //---------------Execute Test ----------------------
             var enumerable = methodInfo.Invoke("TryBuildValuedTypeParams", new object[] { args }) as IEnumerable<object>;
             //---------------Test Result -----------------------
-            Assert.AreEqual(1,enumerable?.Count());
+            NUnit.Framework.Assert.AreEqual(1,enumerable?.Count());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void TryBuildValuedTypeParams_GivenValidObjectparam_ShouldPassThrough()
         {
             //---------------Set up test pack-------------------
@@ -171,12 +172,12 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
             //---------------Execute Test ----------------------
             var enumerable = methodInfo.Invoke("TryBuildValuedTypeParams", new object[] { args }) as IEnumerable<object>;
             //---------------Test Result -----------------------
-            Assert.AreEqual(1,enumerable?.Count());
+            NUnit.Framework.Assert.AreEqual(1,enumerable?.Count());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComPluginRuntimeHandler_FetchNamespaceListObject")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComPluginRuntimeHandler_FetchNamespaceListObject")]
         [ExpectedException(typeof(NullReferenceException))]
         public void ComPluginRuntimeHandler_FetchNamespaceListObject_WhenNullDll_ExpectException()
         {
@@ -189,9 +190,9 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComPluginRuntimeHandler_FetchNamespaceListObject")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComPluginRuntimeHandler_FetchNamespaceListObject")]
         [ExpectedException(typeof(NullReferenceException))]
         public void ComPluginRuntimeHandler_FetchNamespaceListObject_WhenNullLocationAndInvalidSourceID_ExpectException()
         {
@@ -211,9 +212,9 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
 
         #region ListNamespaces
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComPluginRuntimeHandler_ListNamespaces")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComPluginRuntimeHandler_ListNamespaces")]
         public void ComPluginRuntimeHandler_ListNamespaces_WhenValidClassID_ExpectNamespaces()
         {
             //------------Setup for test--------------------------
@@ -222,13 +223,13 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
             using (var isolated = new Isolated<ComPluginRuntimeHandler>())
             {
                 var result = isolated.Value.FetchNamespaceListObject(source);
-                Assert.IsNotNull(result);
+                NUnit.Framework.Assert.IsNotNull(result);
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComPluginRuntimeHandler_ListNamespaces")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComPluginRuntimeHandler_ListNamespaces")]
         [ExpectedException(typeof(NullReferenceException))]
         public void ComPluginRuntimeHandler_ListNamespaces_WhenNullLocation_ExpectException()
         {
@@ -240,9 +241,9 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComPluginRuntimeHandler_ListMethods")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComPluginRuntimeHandler_ListMethods")]
         public void ComPluginRuntimeHandler_ListMethods_WhenInvalidLocation_ExpectNoResults()
         {
             //------------Setup for test--------------------------
@@ -250,13 +251,13 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
             using (var isolated = new Isolated<ComPluginRuntimeHandler>())
             {
                 var result = isolated.Value.ListMethods(string.Empty, false);
-                Assert.AreEqual(0, result.Count);
+                NUnit.Framework.Assert.AreEqual(0, result.Count);
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComPluginRuntimeHandler_ListMethods")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComPluginRuntimeHandler_ListMethods")]
         [DeploymentItem("Warewolf.COMIPC.exe"),DeploymentItem("Warewolf.COMIPC.pdb")]
         public void ComPluginRuntimeHandler_ListMethods_WhenValidLocation_ExpectResults()
         {
@@ -265,8 +266,8 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
             using (var isolated = new Isolated<ComPluginRuntimeHandler>())
             {
                 var result = isolated.Value.ListMethods(adodbConnectionClassId, true);
-                CollectionAssert.AllItemsAreUnique(result);
-                Assert.AreNotEqual(0, result.Count);
+                NUnit.Framework.CollectionAssert.AllItemsAreUnique(result);
+                NUnit.Framework.Assert.AreNotEqual(0, result.Count);
             }
         }
 
@@ -274,9 +275,9 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
 
         #region Run and test
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComPluginRuntimeHandler_Run")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComPluginRuntimeHandler_Run")]
         public void ComPluginRuntimeHandler_Run_WhenInvalidMethod_ExpectNoReturn()
         {
             //------------Setup for test--------------------------
@@ -287,13 +288,13 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
 
             var args = new ComPluginInvokeArgs { ClsId = adodbConnectionClassId, Fullname = svc.Namespace, Method = "InvalidName", Parameters = svc.Method.Parameters };
             var run = isolated.Run(args);
-            Assert.IsNull(run);
+            NUnit.Framework.Assert.IsNull(run);
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComPluginRuntimeHandler_Test")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComPluginRuntimeHandler_Test")]
         public void ComPluginRuntimeHandler_Test_WhenInvalidMethod_ExpectNoReturn()
         {
             //------------Setup for test--------------------------
@@ -303,14 +304,14 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
             var isolated = new ComPluginRuntimeHandler();
             var args = new ComPluginInvokeArgs { ClsId = adodbConnectionClassId, Fullname = svc.Namespace, Method = "InvalidName", Parameters = svc.Method.Parameters };
             var run = isolated.Test(args, out string outString);
-            Assert.IsNotNull(run);
-            Assert.IsNull(outString);
+            NUnit.Framework.Assert.IsNotNull(run);
+            NUnit.Framework.Assert.IsNull(outString);
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComPluginRuntimeHandler_Test")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComPluginRuntimeHandler_Test")]
         public void ComPluginRuntimeHandler_Test_WhenValidMethod_ExpectReturn()
         {
             //------------Setup for test--------------------------
@@ -325,14 +326,14 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
             var isolated = new ComPluginRuntimeHandler(mock.Object);
             var args = new ComPluginInvokeArgs { ClsId = adodbConnectionClassId, Fullname = svc.Namespace, Method = "ToString", Parameters = svc.Method.Parameters, Is32Bit = true };
             var run = isolated.Test(args, out string outString);
-            Assert.IsNotNull(run);
-            Assert.IsNotNull(outString);
+            NUnit.Framework.Assert.IsNotNull(run);
+            NUnit.Framework.Assert.IsNotNull(outString);
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComPluginRuntimeHandler_Run")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComPluginRuntimeHandler_Run")]
         [ExpectedException(typeof(NullReferenceException))]
         public void ComPluginRuntimeHandler_Run_WhenNullParameters_ExpectException()
         {

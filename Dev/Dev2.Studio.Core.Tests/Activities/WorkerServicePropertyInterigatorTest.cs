@@ -16,20 +16,21 @@ using Caliburn.Micro;
 using Dev2.Studio.Core.Activities.Interegators;
 using Dev2.Studio.Core.Models;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 
 namespace Dev2.Core.Tests.Activities
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WorkerServicePropertyInterigatorTest
     {
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("WorkerServicePropertyInterigator_SetActivityProperties")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("WorkerServicePropertyInterigator_SetActivityProperties")]
         public void WorkerServicePropertyInterigator_SetActivityProperties_WhenNullXML_ExpectSomePropertiesSet()
         {
             //------------Setup for test--------------------------
@@ -50,9 +51,9 @@ namespace Dev2.Core.Tests.Activities
             Assert.IsNull(activity.ActionName);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("WorkerServicePropertyInterigator_SetActivityProperties")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("WorkerServicePropertyInterigator_SetActivityProperties")]
         public void WorkerServicePropertyInterigator_SetActivityProperties_WhenNotNullXML_ExpectPropertiesSet()
         {
             //------------Setup for test--------------------------
@@ -77,9 +78,9 @@ namespace Dev2.Core.Tests.Activities
             Assert.AreEqual("TheSource", activity.FriendlySourceName.Expression.ToString());
             Assert.AreEqual("SourceMethod", activity.ActionName.Expression.ToString());
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WorkerServicePropertyInterigator_SetActivityProperties")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("WorkerServicePropertyInterigator_SetActivityProperties")]
         public void WorkerServicePropertyInterigator_SetActivityProperties_GetSourceNameFromResourceRepo()
         {
             //------------Setup for test--------------------------
@@ -111,9 +112,9 @@ namespace Dev2.Core.Tests.Activities
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WorkerServicePropertyInterigator_SetActivityProperties")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("WorkerServicePropertyInterigator_SetActivityProperties")]
         public void WorkerServicePropertyInterigator_SetActivityProperties_NoSourceNameFromResourceRepo_NoSourceIdOnXML()
         {
             //------------Setup for test--------------------------
@@ -143,9 +144,9 @@ namespace Dev2.Core.Tests.Activities
             Assert.AreEqual("TheSource", activity.FriendlySourceName.Expression.ToString());
             Assert.AreEqual("SourceMethod", activity.ActionName.Expression.ToString());
         }
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("WorkerServicePropertyInterigator_SetActivityProperties")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("WorkerServicePropertyInterigator_SetActivityProperties")]
         public void WorkerServicePropertyInterigator_SetActivityProperties_WhenXMLWithOutAttributes_ExpectSomePropertiesSet()
         {
             //------------Setup for test--------------------------

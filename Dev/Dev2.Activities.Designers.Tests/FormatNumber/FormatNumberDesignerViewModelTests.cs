@@ -12,18 +12,19 @@ using System.Activities.Presentation.Model;
 using Dev2.Common.Interfaces.Help;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Activities.Designers.Tests.FormatNumber
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FormatNumberDesignerViewModelTests
     {
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("FormatNumberDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("FormatNumberDesignerViewModel_Constructor")]
         public void FormatNumberDesignerViewModel_Constructor_ModelItemIsValid_SelectedRoundingTypeIsInitialized()
         {
             var modelItem = CreateModelItem();
@@ -33,9 +34,9 @@ namespace Dev2.Activities.Designers.Tests.FormatNumber
             Assert.IsTrue(viewModel.HasLargeView);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("FormatNumberDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("FormatNumberDesignerViewModel_Constructor")]
         public void FormatNumberDesignerViewModel_Constructor_ModelItemIsValid_RoundingTypesHasFourItems()
         {
             var modelItem = CreateModelItem();
@@ -44,9 +45,9 @@ namespace Dev2.Activities.Designers.Tests.FormatNumber
             Assert.AreEqual(4, viewModel.RoundingTypes.Count);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("FormatNumberDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("FormatNumberDesignerViewModel_Handle")]
         public void FormatNumberDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -62,9 +63,9 @@ namespace Dev2.Activities.Designers.Tests.FormatNumber
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("FormatNumberDesignerViewModel_SetSelectedRoundingType")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("FormatNumberDesignerViewModel_SetSelectedRoundingType")]
         public void FormatNumberDesignerViewModel_SetSelectedSelectedSort_ValidOrderType_RoundingTypeOnModelItemIsAlsoSet()
         {
             var modelItem = CreateModelItem();

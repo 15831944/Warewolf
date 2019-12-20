@@ -18,15 +18,15 @@ using Dev2.Providers.Errors;
 using Dev2.Services.Events;
 using Dev2.Studio.Core.Messages;
 using Dev2.Studio.ViewModels.WorkSurface;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Activities.Designers.Tests.QuickVariableInput
 {
     public partial class QuickVariableInputViewModelTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_AddCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_AddCommand")]
         public void QuickVariableInputViewModel_AddCommand_WiredUpCorrectly()
         {
             var qviViewModel = new QuickVariableInputViewModelMock();
@@ -48,9 +48,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             Assert.AreEqual(2,hitCount);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_AddCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_AddCommand")]
         public void QuickVariableInputViewModel_AddCommand_ValidInputs_AddsListToActivityCollectionViewModel()
         {
             List<string> actualListToAdd = null;
@@ -82,9 +82,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             CollectionAssert.AreEqual(expected, actualListToAdd);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_AddCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_AddCommand")]
         public void QuickVariableInputViewModel_AddCommand_ValidInputs_InvokesDoClear()
         {
             var qviViewModel = new QuickVariableInputViewModelMock
@@ -102,9 +102,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             Assert.AreEqual(1, qviViewModel.DoClearHitCount);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_AddCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_AddCommand")]
         public void QuickVariableInputViewModel_AddCommand_DoesNotValidate()
         {
             var qviViewModel = new QuickVariableInputViewModelMock { Errors = new List<IActionableErrorInfo> { new ActionableErrorInfo() } };
@@ -113,9 +113,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             Assert.AreEqual(0, qviViewModel.ValidateHitCount);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_AddCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_AddCommand")]
         public void QuickVariableInputViewModel_AddCommand_IncompleteVariableList_CorrectResultsReturned()
         {
             var qviViewModel = new QuickVariableInputViewModel((source, overwrite) => { })
@@ -135,9 +135,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             CollectionAssert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_AddCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_AddCommand")]
         public void QuickVariableInputViewModel_AddCommand_SplitTypeWithChars_CorrectResultsReturned()
         {
             var qviViewModel = new QuickVariableInputViewModel((source, overwrite) => { })
@@ -157,9 +157,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             CollectionAssert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_AddCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_AddCommand")]
         public void QuickVariableInputViewModel_AddCommand_SplitTypeWithChars_SplitTokenSpace_CorrectResultsReturned()
         {
             var qviViewModel = new QuickVariableInputViewModel((source, overwrite) => { })
@@ -182,9 +182,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             CollectionAssert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_AddCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_AddCommand")]
         public void QuickVariableInputViewModel_AddCommand_SplitTypeWithIndex_CorrectResultsReturned()
         {
             var qviViewModel = new QuickVariableInputViewModel((source, overwrite) => { })
@@ -205,9 +205,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             CollectionAssert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_AddCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_AddCommand")]
         public void QuickVariableInputViewModel_AddCommand_SplitTypeWithNewLine_CorrectResultsReturned()
         {
             VerifySplitTypeWithNewLine("\r\n", true);
@@ -219,9 +219,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             VerifySplitTypeWithNewLine("\r", false);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_AddCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_AddCommand")]
         public void QuickVariableInputViewModel_AddCommand_SplitTypeWithSpace_CorrectResultsReturned()
         {
             var qviViewModel = new QuickVariableInputViewModel((source, overwrite) => { })
@@ -242,9 +242,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             CollectionAssert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_AddCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_AddCommand")]
         public void QuickVariableInputViewModel_AddCommand_SplitTypeWithTab_CorrectResultsReturned()
         {
             var qviViewModel = new QuickVariableInputViewModel((source, overwrite) => { })
@@ -302,9 +302,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             CollectionAssert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_AddCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_AddCommand")]
         public void QuickVariableInputViewModel_AddCommand_RemoveEmptyEntriesTrue_CorrectResultsReturned()
         {
             var qviViewModel = new QuickVariableInputViewModel((source, overwrite) => { })
@@ -326,9 +326,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             CollectionAssert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_AddCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_AddCommand")]
         public void QuickVariableInputViewModel_AddCommand_RemoveEmptyEntriesFalse_CorrectResultsReturned()
         {
             var qviViewModel = new QuickVariableInputViewModel((source, overwrite) => { })
@@ -350,9 +350,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             CollectionAssert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("QuickVariableInputViewModel_AddCommand")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("QuickVariableInputViewModel_AddCommand")]
         public void QuickVariableInputViewModel_AddCommand_PublishesAAddStringListToDataListMessage()
         {
             var qviViewModel = new QuickVariableInputViewModelMock();

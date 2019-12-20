@@ -6,7 +6,7 @@ using Dev2.Common.Interfaces.Core;
 using Dev2.Common.Interfaces.DB;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Warewolf.Core;
 
 
@@ -14,12 +14,13 @@ using Warewolf.Core;
 
 namespace Dev2.Activities.Designers.Tests.Core.Database
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ManageDatabaseServiceInputViewModelTests
     {
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("OutputsRegion_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("OutputsRegion_Ctor")]
         public void ManageDatabaseServiceInputViewModel_Ctor()
         {
             var mod = new SqlServerModel();
@@ -39,9 +40,9 @@ namespace Dev2.Activities.Designers.Tests.Core.Database
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("OutputsRegion_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("OutputsRegion_Ctor")]
         public void ManageDatabaseServiceInputViewModel_TestAction()
         {
             var called = false;
@@ -73,9 +74,9 @@ namespace Dev2.Activities.Designers.Tests.Core.Database
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SqlServer_MethodName")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SqlServer_MethodName")]
         public void ManageDatabaseServiceInputViewModel_PropertyChangedHandler()
         {
             //------------Setup for test--------------------------
@@ -95,9 +96,9 @@ namespace Dev2.Activities.Designers.Tests.Core.Database
 
 
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SqlServer_MethodName")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SqlServer_MethodName")]
         public void ManageDatabaseServiceInputViewModelCloneRegion_ReturnsNull()
         {
             //------------Setup for test--------------------------
@@ -116,9 +117,9 @@ namespace Dev2.Activities.Designers.Tests.Core.Database
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SqlServer_MethodName")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SqlServer_MethodName")]
         public void ManageDatabaseServiceInputViewModelTestAction_Exception()
         {
             //------------Setup for test--------------------------
@@ -138,9 +139,9 @@ namespace Dev2.Activities.Designers.Tests.Core.Database
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SqlServer_MethodName")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SqlServer_MethodName")]
         public void ManageDatabaseServiceInputViewModelOkAction_Exception()
         {
             //------------Setup for test--------------------------
@@ -160,9 +161,9 @@ namespace Dev2.Activities.Designers.Tests.Core.Database
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SqlServer_MethodName")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SqlServer_MethodName")]
         public void ManageDatabaseServiceInputViewModel_RestoreRegion_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -181,9 +182,9 @@ namespace Dev2.Activities.Designers.Tests.Core.Database
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SqlServer_MethodName")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SqlServer_MethodName")]
         public void ManageDatabaseServiceInputViewModel_TestActionSetSourceAndTestClickOk()
         {
             //------------Setup for test--------------------------
@@ -216,9 +217,9 @@ namespace Dev2.Activities.Designers.Tests.Core.Database
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SqlServer_MethodName")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SqlServer_MethodName")]
         public void ManageDatabaseServiceInputViewModel_WithOneColumn_TestActionSetSourceAndTestClickOk()
         {
             //------------Setup for test--------------------------
@@ -245,9 +246,9 @@ namespace Dev2.Activities.Designers.Tests.Core.Database
             Assert.AreEqual(1, sqlServer.OutputsRegion.Outputs.Count);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SqlServer_MethodName")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SqlServer_MethodName")]
         public void ManageDatabaseServiceInputViewModel_TestActionSetSourceAndTestClickClose()
         {
             //------------Setup for test--------------------------
@@ -270,9 +271,9 @@ namespace Dev2.Activities.Designers.Tests.Core.Database
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("OutputsRegion_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("OutputsRegion_Ctor")]
         public void ManageDatabaseServiceInputViewModel_Properties()
         {
             var mod = new SqlServerModel();
@@ -302,9 +303,9 @@ namespace Dev2.Activities.Designers.Tests.Core.Database
             Assert.IsTrue(vm.IsTesting);
             Assert.IsNotNull(vm.Model);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("SqlServer_MethodName")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("SqlServer_MethodName")]
         public void ManageDatabaseServiceInputViewModel_TestActionSetSourceAndReturnNoDataMessage()
         {
             //------------Setup for test--------------------------
@@ -315,7 +316,7 @@ namespace Dev2.Activities.Designers.Tests.Core.Database
             var inputview = new ManageDatabaseServiceInputViewModel(sqlServer, mod);
             inputview.Model = new DatabaseService() { Source = new DbSourceDefinition(), Action = new DbAction() { Inputs = new List<IServiceInput>(), Name = "" }, };
             inputview.TryExecuteTest();
-            
+
             Assert.IsTrue(inputview.TestPassed);
             Assert.IsFalse(inputview.TestFailed);
             Assert.AreEqual("No data returned.   ", inputview.TestMessage);

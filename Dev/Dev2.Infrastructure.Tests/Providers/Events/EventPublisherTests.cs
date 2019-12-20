@@ -11,17 +11,18 @@
 using System;
 using Dev2.Communication;
 using Dev2.Providers.Events;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Infrastructure.Tests.Providers.Events
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class EventPublisherTests
     {
-        [TestMethod]
+        [Test]
         [Description("GetEvent must add a new subject when invoked for the first time for the type.")]
-        [TestCategory("UnitTest")]
-        [Owner("Trevor Williams-Ros")]
+        [Category("UnitTest")]
+        [Author("Trevor Williams-Ros")]
         
         public void EventPublisherGetEvent_UnitTest_FirstTimeForType_New()
 
@@ -32,13 +33,13 @@ namespace Dev2.Infrastructure.Tests.Providers.Events
             var actual = publisher.GetEvent<object>();
             Assert.AreEqual(1, publisher.Count);
             Assert.IsNotNull(actual);
-            Assert.IsInstanceOfType(actual, typeof(IObservable<object>));
+            Assert.IsInstanceOf(actual.GetType(), typeof(IObservable<object>));
         }
 
-        [TestMethod]
+        [Test]
         [Description("GetEvent must return an existing subject when invoked for the second time for the type.")]
-        [TestCategory("UnitTest")]
-        [Owner("Trevor Williams-Ros")]
+        [Category("UnitTest")]
+        [Author("Trevor Williams-Ros")]
         
         public void EventPublisherGetEvent_UnitTest_SecondTimeForType_Existing()
 
@@ -49,18 +50,18 @@ namespace Dev2.Infrastructure.Tests.Providers.Events
             var first = publisher.GetEvent<object>();
             Assert.AreEqual(1, publisher.Count);
             Assert.IsNotNull(first);
-            Assert.IsInstanceOfType(first, typeof(IObservable<object>));
+            Assert.IsInstanceOf(first.GetType(), typeof(IObservable<object>));
 
             var second = publisher.GetEvent<object>();
             Assert.AreEqual(1, publisher.Count);
             Assert.IsNotNull(second);
-            Assert.IsInstanceOfType(second, typeof(IObservable<object>));
+            Assert.IsInstanceOf(second.GetType(), typeof(IObservable<object>));
         }
 
-        [TestMethod]
+        [Test]
         [Description("Publish must find the subject and invoke OnNext on it for a type that has been previously requested by GetEvent.")]
-        [TestCategory("UnitTest")]
-        [Owner("Trevor Williams-Ros")]
+        [Category("UnitTest")]
+        [Author("Trevor Williams-Ros")]
         
         public void EventPublisherPublish_UnitTest_RegisteredType_FindsSubjectAndInvokesOnNext()
 
@@ -74,10 +75,10 @@ namespace Dev2.Infrastructure.Tests.Providers.Events
             subscription.Dispose();
         }
 
-        [TestMethod]
+        [Test]
         [Description("Publish must find the subject and invoke OnNext on it for an object whose type has been previously requested by GetEvent.")]
-        [TestCategory("UnitTest")]
-        [Owner("Trevor Williams-Ros")]
+        [Category("UnitTest")]
+        [Author("Trevor Williams-Ros")]
         
         public void EventPublisherPublish_UnitTest_RegisteredObjectType_FindsSubjectAndInvokesOnNext()
 
@@ -92,10 +93,10 @@ namespace Dev2.Infrastructure.Tests.Providers.Events
         }
 
 
-        [TestMethod]
+        [Test]
         [Description("Publish must not find the subject and not invoke OnNext for a type that has not been previously requested by GetEvent.")]
-        [TestCategory("UnitTest")]
-        [Owner("Trevor Williams-Ros")]
+        [Category("UnitTest")]
+        [Author("Trevor Williams-Ros")]
         
         public void EventPublisherPublish_UnitTest_UnregisteredType_DoesNotFindSubject()
 
@@ -109,9 +110,9 @@ namespace Dev2.Infrastructure.Tests.Providers.Events
         }
 
 
-        [TestMethod]
-        [TestCategory("EventPublisherPublish_RemoveEvent")]
-        [Owner("Trevor Williams-Ros")]
+        [Test]
+        [Category("EventPublisherPublish_RemoveEvent")]
+        [Author("Trevor Williams-Ros")]
         
         public void EventPublisherPublish_RemoveEvent_RegisteredObjectType_Removed()
 
@@ -125,9 +126,9 @@ namespace Dev2.Infrastructure.Tests.Providers.Events
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [TestCategory("EventPublisherPublish_RemoveEvent")]
-        [Owner("Trevor Williams-Ros")]
+        [Test]
+        [Category("EventPublisherPublish_RemoveEvent")]
+        [Author("Trevor Williams-Ros")]
         
         public void EventPublisherPublish_RemoveEvent_UnregisteredObjectType_NotRemoved()
 

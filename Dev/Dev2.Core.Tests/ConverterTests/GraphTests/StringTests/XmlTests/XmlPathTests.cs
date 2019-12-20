@@ -11,18 +11,19 @@
 using System.Linq;
 using System.Xml.Linq;
 using Dev2.Common.Interfaces.Core.Graph;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Framework.Converters.Graph.String.Xml;
 
 
 namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.XmlTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class XmlPathTests {
 
         #region GetSegments Tests
 
-        [TestMethod]
+        [Test]
         public void GetSegments_Expected_CorrectSegmentCount()
         {
             var path = new XmlPath("Company.Departments().Department:Name", "Company.Departments.Department:Name");
@@ -33,7 +34,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.XmlTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void GetSegments_Expected_LastSegmentIsCorrect()
         {
             var path = new XmlPath("Company.Departments().Department:Name", "Company.Departments.Department:Name");
@@ -49,7 +50,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.XmlTests
 
         #region Enumerable Tests
 
-        [TestMethod]
+        [Test]
         public void CreateEnumerablePathSegmentFromXElement_Expected_EnumerableXmlPathSegment()
         {
             var element = new XElement("Departments",
@@ -65,7 +66,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.XmlTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void CreateScalarPathSegmentFromXElement_Expected_ScalarXmlPathSegment()
         {
             var element = new XElement("Departments");
@@ -78,7 +79,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.XmlTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void CreateEnumerablePathSegmentFromSegmentText_Expected_EnumerableXmlPathSegment()
         {
             var path = new XmlPath();
@@ -90,7 +91,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.XmlTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void CreateScalarPathSegmentFromSegmentText_Expected_ScalarXmlPathSegment()
         {
             var path = new XmlPath();

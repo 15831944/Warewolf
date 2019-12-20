@@ -10,7 +10,7 @@
 
 using System.Linq;
 using Dev2.Common.Interfaces.Core.Graph;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Framework.Converters.Graph;
 using Unlimited.Framework.Converters.Graph.Poco;
 using Unlimited.Framework.Converters.Graph.String.Json;
@@ -18,14 +18,15 @@ using Unlimited.Framework.Converters.Graph.String.Xml;
 
 namespace Unlimited.UnitTest.Framework.ConverterTests.GraphTests.OutputTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class OutputDescriptionSerializationServiceTests
     {
         #region XML Paths
         /// <summary>
         /// Serializes the output description with XML paths expected deserialization to work.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void SerializeOutputDescriptionWithXMLPaths_Expected_DeserializationToWork()
         {
             var dataSourceShape = DataSourceShapeFactory.CreateDataSourceShape();
@@ -59,7 +60,7 @@ namespace Unlimited.UnitTest.Framework.ConverterTests.GraphTests.OutputTests
         /// <summary>
         /// Serializes the output description with JSON paths expected deserialization to work.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void SerializeOutputDescriptionWithJSONPaths_Expected_DeserializationToWork()
         {
             var dataSourceShape = DataSourceShapeFactory.CreateDataSourceShape();
@@ -94,7 +95,7 @@ namespace Unlimited.UnitTest.Framework.ConverterTests.GraphTests.OutputTests
         /// <summary>
         /// Serializes the output description with Poco paths expected deserialization to work.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void SerializeOutputDescriptionWithPocoPaths_Expected_DeserializationToWork()
         {
             var dataSourceShape = DataSourceShapeFactory.CreateDataSourceShape();

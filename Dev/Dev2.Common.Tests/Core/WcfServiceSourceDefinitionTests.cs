@@ -12,17 +12,18 @@ using System;
 using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.Core;
 using Dev2.Common.Interfaces.Core.DynamicServices;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Common.Tests.Core
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WcfServiceSourceDefinitionTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WcfServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WcfServiceSourceDefinition))]
         public void WcfServiceSourceDefinition_Validate()
         {
             const string expectedResourceName = "testResourceName";
@@ -56,9 +57,9 @@ namespace Dev2.Common.Tests.Core
             Assert.AreEqual(expectedResourceType, wcfServiceSourceDefinition.ResourceType);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WcfServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WcfServiceSourceDefinition))]
         public void WcfServiceSourceDefinition_Equals_WcfServerSource_Null_Expected_False()
         {
             var wcfServiceSourceDefinition = new WcfServiceSourceDefinition();
@@ -69,9 +70,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WcfServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WcfServiceSourceDefinition))]
         public void WcfServiceSourceDefinition_Equals_WcfServerSource_Expected_True()
         {
             const string expectedEndpointUrl = "testEndpointUrl";
@@ -88,9 +89,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WcfServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WcfServiceSourceDefinition))]
         public void WcfServiceSourceDefinition_ReferenceEquals_WcfServerSource_Expected_True()
         {
             const string expectedEndpointUrl = "testEndpointUrl";
@@ -104,9 +105,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WcfServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WcfServiceSourceDefinition))]
         public void WcfServiceSourceDefinition_Equals_WcfServerSource_Expected_False()
         {
             const string expectedEndpointUrl = "testEndpointUrl";
@@ -123,9 +124,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WcfServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WcfServiceSourceDefinition))]
         public void WcfServiceSourceDefinition_Equals_WcfServiceSourceDefinition_Null_Expected_False()
         {
             var wcfServiceSourceDefinition = new WcfServiceSourceDefinition();
@@ -136,9 +137,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WcfServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WcfServiceSourceDefinition))]
         public void WcfServiceSourceDefinition_ReferenceEquals_WcfServiceSourceDefinition_Expected_True()
         {
             const string expectedEndpointUrl = "testEndpointUrl";
@@ -152,9 +153,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WcfServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WcfServiceSourceDefinition))]
         public void WcfServiceSourceDefinition_Equals_WcfServiceSourceDefinition_Expected_True()
         {
             const string expectedEndpointUrl = "testEndpointUrl";
@@ -173,9 +174,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(wcfServiceSourceDefinition == wcfServiceSourceDefinitionDup);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WcfServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WcfServiceSourceDefinition))]
         public void WcfServiceSourceDefinition_Equals_WcfServiceSourceDefinition_Expected_False()
         {
             const string expectedEndpointUrl = "testEndpointUrl";
@@ -195,9 +196,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(wcfServiceSourceDefinition != wcfServiceSourceDefinitionDup);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WcfServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WcfServiceSourceDefinition))]
         public void WcfServiceSourceDefinition_RefEquals_Object_As_WcfServiceSourceDefinition_Expected_True()
         {
             const string expectedResourceName = "testResourceName";
@@ -227,9 +228,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WcfServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WcfServiceSourceDefinition))]
         public void WcfServiceSourceDefinition_RefEquals_Object_As_WcfServerSource_Expected_True()
         {
             const string expectedEndpointUrl = "testEndpointUrl";
@@ -248,9 +249,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WcfServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WcfServiceSourceDefinition))]
         public void WcfServiceSourceDefinition_Equals_Null_Object_As_Unknown_Expected_False()
         {
             var wcfServiceSourceDefinition = new WcfServiceSourceDefinition();
@@ -261,9 +262,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WcfServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WcfServiceSourceDefinition))]
         public void WcfServiceSourceDefinition_GetHashCode_Not_Equal_To_Zero()
         {
             const string expectedResourceName = "testResourceName";
@@ -292,9 +293,9 @@ namespace Dev2.Common.Tests.Core
             Assert.AreNotEqual(0, hashCode);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WcfServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WcfServiceSourceDefinition))]
         public void WcfServiceSourceDefinition_GetHashCode_Expect_Zero()
         {
             var wcfServiceSourceDefinition = new WcfServiceSourceDefinition();

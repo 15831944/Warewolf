@@ -13,18 +13,19 @@ using System.Net;
 using System.Xml.Linq;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Tests.Runtime.XML;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Runtime.ServiceModel.Data
 {
     // PBI 5656 - 2013.05.20 - TWR - Created
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class WebSourceTests
     {
         #region CTOR
 
-        [TestMethod]
+        [Test]
         public void WebSourceContructorWithDefaultExpectedInitializesProperties()
         {
             var source = new WebSource();
@@ -32,14 +33,14 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual("WebSource", source.ResourceType);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void WebSourceContructorWithNullXmlExpectedThrowsArgumentNullException()
         {
             var source = new WebSource(null);
         }
 
-        [TestMethod]
+        [Test]
         public void WebSourceContructorWithInvalidXmlExpectedDoesNotThrowExceptionAndInitializesProperties()
         {
             var xml = new XElement("root");
@@ -49,7 +50,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual("WebSource", source.ResourceType);
         }
 
-        [TestMethod]
+        [Test]
         public void WebSourceContructorWithValidXmlExpectedInitializesProperties()
         {
             var xml = XmlResource.Fetch("WebSource");
@@ -67,7 +68,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
 
         #region ToXml
 
-        [TestMethod]
+        [Test]
         public void WebSourceToXmlExpectedSerializesProperties()
         {
             var expected = new WebSource
@@ -95,7 +96,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
 
         #region Dispose
 
-        [TestMethod]
+        [Test]
         public void WebSourceDisposeClientExpectedDisposesAndNullsClient()
         {
             var source = new WebSource { Client = new WebClient() };
@@ -105,7 +106,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.IsNull(source.Client);
         }
 
-        [TestMethod]
+        [Test]
         public void WebSourceDisposeExpectedDisposesAndNullsClient()
         {
             var source = new WebSource { Client = new WebClient() };

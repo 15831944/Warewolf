@@ -11,15 +11,18 @@
 
 using Dev2.Common.Interfaces;
 using Dev2.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Warewolf.Storage.Interfaces;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+
 namespace Warewolf.Storage.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WarewolfListIteratorTests
     {
         IWarewolfIterator _expr1;
@@ -30,7 +33,7 @@ namespace Warewolf.Storage.Tests
 
         const string Result = "[[Result]]";
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             _environment = new ExecutionEnvironment();
@@ -52,43 +55,43 @@ namespace Warewolf.Storage.Tests
             _warewolfListIterator.AddVariableToIterateOn(_expr2);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_Instance_ShouldHaveConstructor()
         {
-            Assert.IsNotNull(_warewolfListIterator);
+            NUnit.Framework.Assert.IsNotNull(_warewolfListIterator);
             var privateObj = new PrivateObject(_warewolfListIterator);
             var variablesToIterateOn = privateObj.GetField("_variablesToIterateOn");
             var count = privateObj.GetField("_count");
-            Assert.IsNotNull(variablesToIterateOn);
-            Assert.AreEqual(-1, count);
+            NUnit.Framework.Assert.IsNotNull(variablesToIterateOn);
+            NUnit.Framework.Assert.AreEqual(-1, count);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(WarewolfListIterator))]
         public void GivenResultExpression_WarewolfListIterator_FetchNextValue_Should()
         {
-            Assert.IsNotNull(_warewolfListIterator);
+            NUnit.Framework.Assert.IsNotNull(_warewolfListIterator);
             var privateObj = new PrivateObject(_warewolfListIterator);
             var variablesToIterateOn = privateObj.GetField("_variablesToIterateOn") as List<IWarewolfIterator>;
-            Assert.IsNotNull(variablesToIterateOn);
+            NUnit.Framework.Assert.IsNotNull(variablesToIterateOn);
 
             var result = variablesToIterateOn.FirstOrDefault();
             var fetchNextValue = _warewolfListIterator.FetchNextValue(result);
-            Assert.AreEqual("Success", fetchNextValue);
+            NUnit.Framework.Assert.AreEqual("Success", fetchNextValue);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(WarewolfListIterator))]
         public void GivenPosition_WarewolfListIterator_FetchNextValue_Should()
         {
-            Assert.IsNotNull(_warewolfListIterator);
+            NUnit.Framework.Assert.IsNotNull(_warewolfListIterator);
             var privateObj = new PrivateObject(_warewolfListIterator);
             var variablesToIterateOn = privateObj.GetField("_variablesToIterateOn") as List<IWarewolfIterator>;
-            Assert.IsNotNull(variablesToIterateOn);
+            NUnit.Framework.Assert.IsNotNull(variablesToIterateOn);
             var listIterator = _warewolfListIterator as WarewolfListIterator;
             if (listIterator == null)
             {
@@ -96,28 +99,28 @@ namespace Warewolf.Storage.Tests
             }
 
             var fetchNextValue = listIterator.FetchNextValue(0);
-            Assert.AreEqual("Success", fetchNextValue);
+            NUnit.Framework.Assert.AreEqual("Success", fetchNextValue);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_AddVariableToIterateOn_Should()
         {
             _expr3 = new WarewolfIterator(_environment.Eval("[[RecSet()]]", 0));
-            Assert.IsNotNull(_warewolfListIterator);
+            NUnit.Framework.Assert.IsNotNull(_warewolfListIterator);
             var privateObj = new PrivateObject(_warewolfListIterator);
             var variablesToIterateOn = privateObj.GetField("_variablesToIterateOn") as List<IWarewolfIterator>;
-            Assert.IsNotNull(variablesToIterateOn);
-            Assert.AreEqual(2, variablesToIterateOn.Count);
+            NUnit.Framework.Assert.IsNotNull(variablesToIterateOn);
+            NUnit.Framework.Assert.AreEqual(2, variablesToIterateOn.Count);
             _warewolfListIterator.AddVariableToIterateOn(_expr3);
-            Assert.AreEqual(3, variablesToIterateOn.Count);
+            NUnit.Framework.Assert.AreEqual(3, variablesToIterateOn.Count);
         }
 
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_GetMax_ShouldReturn1()
         {
             var env = new ExecutionEnvironment();
@@ -133,72 +136,72 @@ namespace Warewolf.Storage.Tests
                 warewolfListIterator.AddVariableToIterateOn(warewolfIterator);
 
                 var max = warewolfListIterator.GetMax();
-                Assert.AreEqual(1, max);
+                NUnit.Framework.Assert.AreEqual(1, max);
             }
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_Read_ShouldReturnTrue()
         {
-            Assert.IsNotNull(_warewolfListIterator);
+            NUnit.Framework.Assert.IsNotNull(_warewolfListIterator);
             var privateObj = new PrivateObject(_warewolfListIterator);
             var variablesToIterateOn = privateObj.GetField("_variablesToIterateOn") as List<IWarewolfIterator>;
-            Assert.IsNotNull(variablesToIterateOn);
+            NUnit.Framework.Assert.IsNotNull(variablesToIterateOn);
             var listIterator = _warewolfListIterator as WarewolfListIterator;
             if (listIterator == null)
             {
                 return;
             }
 
-            Assert.AreEqual(2, listIterator.FieldCount);
+            NUnit.Framework.Assert.AreEqual(2, listIterator.FieldCount);
             var read = listIterator.Read();
-            Assert.IsTrue(read);
+            NUnit.Framework.Assert.IsTrue(read);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_NextResult_ShouldReturnFalse()
         {
-            Assert.IsNotNull(_warewolfListIterator);
+            NUnit.Framework.Assert.IsNotNull(_warewolfListIterator);
             var privateObj = new PrivateObject(_warewolfListIterator);
             var variablesToIterateOn = privateObj.GetField("_variablesToIterateOn") as List<IWarewolfIterator>;
-            Assert.IsNotNull(variablesToIterateOn);
+            NUnit.Framework.Assert.IsNotNull(variablesToIterateOn);
             var listIterator = _warewolfListIterator as WarewolfListIterator;
             if (listIterator == null)
             {
                 return;
             }
 
-            Assert.IsFalse(listIterator.IsClosed);
+            NUnit.Framework.Assert.IsFalse(listIterator.IsClosed);
             var nextResult = listIterator.NextResult();
-            Assert.IsFalse(nextResult);
+            NUnit.Framework.Assert.IsFalse(nextResult);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_HasMoreData_ShouldReturnTrue()
         {
-            Assert.IsNotNull(_warewolfListIterator);
+            NUnit.Framework.Assert.IsNotNull(_warewolfListIterator);
             var privateObj = new PrivateObject(_warewolfListIterator);
             var variablesToIterateOn = privateObj.GetField("_variablesToIterateOn") as List<IWarewolfIterator>;
-            Assert.IsNotNull(variablesToIterateOn);
+            NUnit.Framework.Assert.IsNotNull(variablesToIterateOn);
             var hasMoreData = _warewolfListIterator.HasMoreData();
-            Assert.IsTrue(hasMoreData);
+            NUnit.Framework.Assert.IsTrue(hasMoreData);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_GetName_ShouldReturnString()
         {
-            Assert.IsNotNull(_warewolfListIterator);
+            NUnit.Framework.Assert.IsNotNull(_warewolfListIterator);
             var privateObj = new PrivateObject(_warewolfListIterator);
             var variablesToIterateOn = privateObj.GetField("_variablesToIterateOn") as List<IWarewolfIterator>;
-            Assert.IsNotNull(variablesToIterateOn);
+            NUnit.Framework.Assert.IsNotNull(variablesToIterateOn);
             var listIterator = _warewolfListIterator as WarewolfListIterator;
             if (listIterator == null)
             {
@@ -206,20 +209,20 @@ namespace Warewolf.Storage.Tests
             }
 
             var count = privateObj.GetField("_count");
-            Assert.AreEqual(count, listIterator.Depth);
+            NUnit.Framework.Assert.AreEqual(count, listIterator.Depth);
             var dataTypeName = listIterator.GetName(0);
-            Assert.AreEqual("", dataTypeName);
+            NUnit.Framework.Assert.AreEqual("", dataTypeName);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_GetDataTypeName_ShouldReturnTrue()
         {
-            Assert.IsNotNull(_warewolfListIterator);
+            NUnit.Framework.Assert.IsNotNull(_warewolfListIterator);
             var privateObj = new PrivateObject(_warewolfListIterator);
             var variablesToIterateOn = privateObj.GetField("_variablesToIterateOn") as List<IWarewolfIterator>;
-            Assert.IsNotNull(variablesToIterateOn);
+            NUnit.Framework.Assert.IsNotNull(variablesToIterateOn);
             var listIterator = _warewolfListIterator as WarewolfListIterator;
             if (listIterator == null)
             {
@@ -227,18 +230,18 @@ namespace Warewolf.Storage.Tests
             }
 
             var dataTypeName = listIterator.GetDataTypeName(0);
-            Assert.AreEqual("String", dataTypeName);
+            NUnit.Framework.Assert.AreEqual("String", dataTypeName);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_GetFieldType_ShouldReturnTrue()
         {
-            Assert.IsNotNull(_warewolfListIterator);
+            NUnit.Framework.Assert.IsNotNull(_warewolfListIterator);
             var privateObj = new PrivateObject(_warewolfListIterator);
             var variablesToIterateOn = privateObj.GetField("_variablesToIterateOn") as List<IWarewolfIterator>;
-            Assert.IsNotNull(variablesToIterateOn);
+            NUnit.Framework.Assert.IsNotNull(variablesToIterateOn);
             var listIterator = _warewolfListIterator as WarewolfListIterator;
             if (listIterator == null)
             {
@@ -246,19 +249,19 @@ namespace Warewolf.Storage.Tests
             }
 
             var fieldType = listIterator.GetFieldType(0);
-            Assert.AreEqual(typeof(string), fieldType);
+            NUnit.Framework.Assert.AreEqual(typeof(string), fieldType);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_GetOrdinal_ShouldReturn0()
         {
             var names = new List<string> { Result };
-            Assert.IsNotNull(_warewolfListIterator);
+            NUnit.Framework.Assert.IsNotNull(_warewolfListIterator);
             var privateObj = new PrivateObject(_warewolfListIterator);
             var variablesToIterateOn = privateObj.GetField("_variablesToIterateOn") as List<IWarewolfIterator>;
-            Assert.IsNotNull(variablesToIterateOn);
+            NUnit.Framework.Assert.IsNotNull(variablesToIterateOn);
             var listIterator = _warewolfListIterator as WarewolfListIterator;
             if (listIterator == null)
             {
@@ -268,13 +271,13 @@ namespace Warewolf.Storage.Tests
             listIterator.Names = names;
             listIterator.Types = variablesToIterateOn.Select(iterator => iterator.GetType()).ToList();
             var ordinal = listIterator.GetOrdinal(Result);
-            Assert.AreEqual(0, ordinal);
-            Assert.IsNotNull(listIterator.Types);
+            NUnit.Framework.Assert.AreEqual(0, ordinal);
+            NUnit.Framework.Assert.IsNotNull(listIterator.Types);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(WarewolfListIterator))]
         public void GivenStringTrueIsAssigned_WarewolfListIterator_GetBoolean_ShouldReturnTrue()
         {
             ValidateInstance(out PrivateObject privateObj, out List<IWarewolfIterator> variablesToIterateOn);
@@ -285,12 +288,12 @@ namespace Warewolf.Storage.Tests
             }
 
             var boolean = listIterator.GetBoolean(2);
-            Assert.IsTrue(boolean);
+            NUnit.Framework.Assert.IsTrue(boolean);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_GetChars_ShouldReturn0()
         {
             ValidateInstance(out PrivateObject privateObj, out List<IWarewolfIterator> variablesToIterateOn);
@@ -301,12 +304,12 @@ namespace Warewolf.Storage.Tests
             }
 
             var chars = listIterator.GetChars(It.IsAny<int>(), It.IsAny<long>(), It.IsAny<char[]>(), It.IsAny<int>(), It.IsAny<int>());
-            Assert.AreEqual(0, chars);
+            NUnit.Framework.Assert.AreEqual(0, chars);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_GetStrings_ShouldReturnStringValue()
         {
             ValidateInstance(out PrivateObject privateObj, out List<IWarewolfIterator> variablesToIterateOn);
@@ -317,13 +320,13 @@ namespace Warewolf.Storage.Tests
             }
 
             var strig = listIterator.GetString(2);
-            Assert.AreEqual("SomeValue", strig);
+            NUnit.Framework.Assert.AreEqual("SomeValue", strig);
         }
 
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_GetDateTime_ShouldReturnDateFormat()
         {
             ValidateInstance(out PrivateObject privateObj, out List<IWarewolfIterator> variablesToIterateOn);
@@ -335,12 +338,12 @@ namespace Warewolf.Storage.Tests
 
             var toDate = Convert.ToDateTime("01/01/2000");
             var dateTime = listIterator.GetDateTime(2);
-            Assert.AreEqual(toDate, dateTime);
+            NUnit.Framework.Assert.AreEqual(toDate, dateTime);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_GetDataAndGetSchemaTable_ShouldReturnNull()
         {
             ValidateInstance(out PrivateObject privateObj, out List<IWarewolfIterator> variablesToIterateOn);
@@ -351,11 +354,11 @@ namespace Warewolf.Storage.Tests
             }
 
             var dataReader = listIterator.GetData(2);
-            Assert.IsNull(dataReader);
+            NUnit.Framework.Assert.IsNull(dataReader);
             var schemaTable = listIterator.GetSchemaTable();
-            Assert.IsNull(schemaTable);
+            NUnit.Framework.Assert.IsNull(schemaTable);
             var isDbNull = listIterator.IsDBNull(2);
-            Assert.IsFalse(isDbNull);
+            NUnit.Framework.Assert.IsFalse(isDbNull);
         }
 
         bool AssignExpression(out WarewolfListIterator listIterator)
@@ -368,21 +371,21 @@ namespace Warewolf.Storage.Tests
                 return true;
             }
 
-            Assert.AreEqual(0, listIterator.RecordsAffected);
+            NUnit.Framework.Assert.AreEqual(0, listIterator.RecordsAffected);
             return false;
         }
 
         void ValidateInstance(out PrivateObject privateObj, out List<IWarewolfIterator> variablesToIterateOn)
         {
-            Assert.IsNotNull(_warewolfListIterator);
+            NUnit.Framework.Assert.IsNotNull(_warewolfListIterator);
             privateObj = new PrivateObject(_warewolfListIterator);
             variablesToIterateOn = privateObj.GetField("_variablesToIterateOn") as List<IWarewolfIterator>;
-            Assert.IsNotNull(variablesToIterateOn);
+            NUnit.Framework.Assert.IsNotNull(variablesToIterateOn);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_GetGuid_ShouldReturn0()
         {
             ValidateInstance(out PrivateObject privateObj, out List<IWarewolfIterator> variablesToIterateOn);
@@ -396,12 +399,12 @@ namespace Warewolf.Storage.Tests
             }
 
             var guid = listIterator.GetGuid(2);
-            Assert.IsNotNull(guid);
+            NUnit.Framework.Assert.IsNotNull(guid);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_IDataRecordFunctions_Should()
         {
             ValidateInstance(out PrivateObject privateObj, out List<IWarewolfIterator> variablesToIterateOn);
@@ -413,37 +416,37 @@ namespace Warewolf.Storage.Tests
 
             var bytes = listIterator.GetBytes(It.IsAny<int>(), It.IsAny<long>(), It.IsAny<byte[]>(), It.IsAny<int>(),
                 It.IsAny<int>());
-            Assert.AreEqual(0, bytes);
+            NUnit.Framework.Assert.AreEqual(0, bytes);
             var aToChar = Convert.ToChar("1");
             var cha = listIterator.GetChar(2);
-            Assert.AreEqual(aToChar, cha);
+            NUnit.Framework.Assert.AreEqual(aToChar, cha);
             var aToByte = Convert.ToByte("1");
             var bite = listIterator.GetByte(2);
-            Assert.AreEqual(aToByte, bite);
+            NUnit.Framework.Assert.AreEqual(aToByte, bite);
             var aToDouble = Convert.ToDouble("1");
             var duble = listIterator.GetDouble(2);
-            Assert.AreEqual(aToDouble, duble);
+            NUnit.Framework.Assert.AreEqual(aToDouble, duble);
             var aToDecimal = Convert.ToDecimal("1");
             var desimal = listIterator.GetDecimal(2);
-            Assert.AreEqual(aToDecimal, desimal);
+            NUnit.Framework.Assert.AreEqual(aToDecimal, desimal);
             var aToFloat = Convert.ToSingle("1");
             var flot = listIterator.GetFloat(2);
-            Assert.AreEqual(aToFloat, flot);
+            NUnit.Framework.Assert.AreEqual(aToFloat, flot);
             var aToInt64 = Convert.ToInt64("1");
             var log = listIterator.GetInt64(2);
-            Assert.AreEqual(aToInt64, log);
+            NUnit.Framework.Assert.AreEqual(aToInt64, log);
             var aToInt32 = Convert.ToInt32("1");
             var innt = listIterator.GetInt32(2);
-            Assert.AreEqual(aToInt32, innt);
+            NUnit.Framework.Assert.AreEqual(aToInt32, innt);
             var aToInt16 = Convert.ToInt16("1");
             var shot = listIterator.GetInt16(2);
-            Assert.AreEqual(aToInt16, shot);
+            NUnit.Framework.Assert.AreEqual(aToInt16, shot);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(WarewolfListIterator))]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(WarewolfListIterator))]
+        [NUnit.Framework.ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void WarewolfListIterator_FetchNextValue_NoValuesToIterateOn_ReturnsException()
         {
             //------------Setup for test--------------------------
@@ -454,13 +457,13 @@ namespace Warewolf.Storage.Tests
                 //------------Execute Test---------------------------
                 var value = warewolfListIterator.FetchNextValue(warewolfIterator);
                 //------------Assert Results-------------------------
-                Assert.IsNull(value);
+                NUnit.Framework.Assert.IsNull(value);
             }
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_FetchNextValue_HasValues_ShouldReturnValue()
         {
             //------------Setup for test--------------------------
@@ -477,13 +480,13 @@ namespace Warewolf.Storage.Tests
                 //------------Execute Test---------------------------
                 var value = warewolfListIterator.FetchNextValue(warewolfIterator);
                 //------------Assert Results-------------------------
-                Assert.AreEqual("Test5", value);
+                NUnit.Framework.Assert.AreEqual("Test5", value);
             }
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_FetchNextValue_WithStar_HasValues_ShouldReturnValues()
         {
             //------------Setup for test--------------------------
@@ -500,17 +503,17 @@ namespace Warewolf.Storage.Tests
                 //------------Execute Test---------------------------
                 var value = warewolfListIterator.FetchNextValue(warewolfIterator);
                 //------------Assert Results-------------------------
-                Assert.AreEqual("Test", value);
+                NUnit.Framework.Assert.AreEqual("Test", value);
                 //------------Execute Test---------------------------
                 value = warewolfListIterator.FetchNextValue(warewolfIterator);
                 //------------Assert Results-------------------------
-                Assert.AreEqual("Test2", value);
+                NUnit.Framework.Assert.AreEqual("Test2", value);
             }
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_FetchNextValue_WithIndex_HasValues_ShouldReturnValues()
         {
             //------------Setup for test--------------------------
@@ -528,17 +531,17 @@ namespace Warewolf.Storage.Tests
                 warewolfListIterator.AddVariableToIterateOn(warewolfIterator);
                 value = warewolfListIterator.FetchNextValue(warewolfIterator);
                 //------------Assert Results-------------------------
-                Assert.AreEqual("Test4", value);
+                NUnit.Framework.Assert.AreEqual("Test4", value);
                 //------------Execute Test---------------------------
                 value = warewolfListIterator.FetchNextValue(warewolfIterator);
             }
             //------------Assert Results-------------------------
-            Assert.AreEqual("Test4", value);
+            NUnit.Framework.Assert.AreEqual("Test4", value);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_FetchNextValue_PassLastValue_HasValues_ShouldReturnValues()
         {
             //------------Setup for test--------------------------
@@ -553,17 +556,17 @@ namespace Warewolf.Storage.Tests
                 warewolfListIterator.AddVariableToIterateOn(warewolfIterator);
                 value = warewolfListIterator.FetchNextValue(warewolfIterator);
                 //------------Assert Results-------------------------
-                Assert.AreEqual("Test", value);
+                NUnit.Framework.Assert.AreEqual("Test", value);
                 //------------Execute Test---------------------------
                 value = warewolfListIterator.FetchNextValue(warewolfIterator);
             }
             //------------Assert Results-------------------------
-            Assert.AreEqual("Test", value);
+            NUnit.Framework.Assert.AreEqual("Test", value);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_FetchNextValue_WithScalar_HasValues_ShouldReturnValues()
         {
             //------------Setup for test--------------------------
@@ -578,18 +581,18 @@ namespace Warewolf.Storage.Tests
                 warewolfListIterator.AddVariableToIterateOn(warewolfIterator);
                 value = warewolfListIterator.FetchNextValue(warewolfIterator);
                 //------------Assert Results-------------------------
-                Assert.AreEqual("Test", value);
+                NUnit.Framework.Assert.AreEqual("Test", value);
                 //------------Execute Test---------------------------
                 value = warewolfListIterator.FetchNextValue(warewolfIterator);
             }
             //------------Assert Results-------------------------
-            Assert.AreEqual("Test", value);
+            NUnit.Framework.Assert.AreEqual("Test", value);
         }
 
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_FetchNextValue_WithIndex_HasMoreData_ShouldReturnTrue_WhenCounterSmallerThanLargestIndex()
         {
             //------------Setup for test--------------------------
@@ -608,12 +611,12 @@ namespace Warewolf.Storage.Tests
                 hasMoreData = warewolfListIterator.HasMoreData();
             }
             //------------Assert Results-------------------------
-            Assert.IsTrue(hasMoreData);
+            NUnit.Framework.Assert.IsTrue(hasMoreData);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_Object_GetValue_String()
         {
             //------------Setup for test--------------------------
@@ -628,12 +631,12 @@ namespace Warewolf.Storage.Tests
             var val = listIterator.GetValue(0);
             listIterator.Close();
             //------------Assert Results-------------------------
-            Assert.AreEqual("Success", val);
+            NUnit.Framework.Assert.AreEqual("Success", val);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_Object_GetValue_Guid_Success()
         {
             //------------Setup for test--------------------------
@@ -656,12 +659,12 @@ namespace Warewolf.Storage.Tests
             var val = listIterator.GetValue(0);
             listIterator.Close();
             //------------Assert Results-------------------------
-            Assert.AreEqual(expected, val);
+            NUnit.Framework.Assert.AreEqual(expected, val);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_Object_GetValue_Decimal_Success()
         {
             //------------Setup for test--------------------------
@@ -683,13 +686,13 @@ namespace Warewolf.Storage.Tests
                 var val = listIterator.GetValue(0);
                 listIterator.Close();
                 //------------Assert Results-------------------------
-                Assert.AreEqual(expected, val);
+                NUnit.Framework.Assert.AreEqual(expected, val);
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_Object_GetValue_String_Success()
         {
             //------------Setup for test--------------------------
@@ -710,13 +713,13 @@ namespace Warewolf.Storage.Tests
                 var val = listIterator.GetValue(0);
                 listIterator.Close();
                 //------------Assert Results-------------------------
-                Assert.AreEqual(expected, val);
+                NUnit.Framework.Assert.AreEqual(expected, val);
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_Object_GetValue_Double_Success()
         {
             //------------Setup for test--------------------------
@@ -737,13 +740,13 @@ namespace Warewolf.Storage.Tests
                 var val = listIterator.GetValue(0);
                 listIterator.Close();
                 //------------Assert Results-------------------------
-                Assert.AreEqual(expected, val);
+                NUnit.Framework.Assert.AreEqual(expected, val);
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_Object_GetValue_Float_Success()
         {
             //------------Setup for test--------------------------
@@ -764,13 +767,13 @@ namespace Warewolf.Storage.Tests
                 var val = listIterator.GetValue(0);
                 listIterator.Close();
                 //------------Assert Results-------------------------
-                Assert.AreEqual(expected, val);
+                NUnit.Framework.Assert.AreEqual(expected, val);
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_Object_GetValue_Int64_Success()
         {
             //------------Setup for test--------------------------
@@ -791,13 +794,13 @@ namespace Warewolf.Storage.Tests
                 var val = listIterator.GetValue(0);
                 listIterator.Close();
                 //------------Assert Results-------------------------
-                Assert.AreEqual(expected, val);
+                NUnit.Framework.Assert.AreEqual(expected, val);
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_Object_GetValue_Int16_Success()
         {
             //------------Setup for test--------------------------
@@ -818,13 +821,13 @@ namespace Warewolf.Storage.Tests
                 var val = listIterator.GetValue(0);
                 listIterator.Close();
                 //------------Assert Results-------------------------
-                Assert.AreEqual(expected, val);
+                NUnit.Framework.Assert.AreEqual(expected, val);
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_Object_GetValue_Byte_Success()
         {
             //------------Setup for test--------------------------
@@ -845,13 +848,13 @@ namespace Warewolf.Storage.Tests
                 var val = listIterator.GetValue(0);
                 listIterator.Close();
                 //------------Assert Results-------------------------
-                Assert.AreEqual(expected, val);
+                NUnit.Framework.Assert.AreEqual(expected, val);
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_Object_GetValue_Char_Success()
         {
             //------------Setup for test--------------------------
@@ -872,13 +875,13 @@ namespace Warewolf.Storage.Tests
                 var val = listIterator.GetValue(0);
                 listIterator.Close();
                 //------------Assert Results-------------------------
-                Assert.AreEqual(expected, val);
+                NUnit.Framework.Assert.AreEqual(expected, val);
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_Object_GetValue_DateTime_Success()
         {
             //------------Setup for test--------------------------
@@ -899,13 +902,13 @@ namespace Warewolf.Storage.Tests
                 var val = listIterator.GetValue(0);
                 listIterator.Close();
                 //------------Assert Results-------------------------
-                Assert.AreEqual(expected.ToString(), val.ToString());
+                NUnit.Framework.Assert.AreEqual(expected.ToString(), val.ToString());
             }
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(WarewolfListIterator))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(WarewolfListIterator))]
         public void WarewolfListIterator_Object_GetValues()
         {
             //------------Setup for test--------------------------
@@ -927,7 +930,7 @@ namespace Warewolf.Storage.Tests
             var val = listIterator.GetValues(objects);
 
             //------------Assert Results-------------------------
-            Assert.AreEqual(2, val);
+            NUnit.Framework.Assert.AreEqual(2, val);
         }
     }
 }

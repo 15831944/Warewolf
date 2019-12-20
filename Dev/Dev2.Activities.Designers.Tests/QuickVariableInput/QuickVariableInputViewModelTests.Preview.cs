@@ -14,16 +14,16 @@ using System.Text;
 using Dev2.Activities.Designers2.Core.QuickVariableInput;
 using Dev2.Common.Interfaces.Infrastructure.Providers.Errors;
 using Dev2.Providers.Errors;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Activities.Designers.Tests.QuickVariableInput
 {
     public partial class QuickVariableInputViewModelTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_PreviewRequested")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_PreviewRequested")]
         public void QuickVariableInputViewModel_PreviewRequested_ClearsPreviewOutputAndChecksValidationErrors()
         {
             //------------Setup for test--------------------------
@@ -38,9 +38,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             Assert.AreEqual(string.Empty, qviViewModel.PreviewViewModel.Output);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_AddCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_AddCommand")]
         public void QuickVariableInputViewModel_PreviewRequested_ValidationErrorsCountNotZero_DoesNotGetPreviewOutput()
         {
             var qviViewModel = new QuickVariableInputViewModelMock();
@@ -51,9 +51,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             Assert.AreEqual(0, qviViewModel.GetPreviewOutputHitCount);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_AddCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_AddCommand")]
         public void QuickVariableInputViewModel_PreviewRequested_ValidationErrorsCountZero_DoesGetPreviewOutput()
         {
             var qviViewModel = new QuickVariableInputViewModelMock();
@@ -63,9 +63,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             Assert.AreEqual(1, qviViewModel.GetPreviewOutputHitCount);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_PreviewRequested")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_PreviewRequested")]
         public void QuickVariableInputViewModel_PreviewRequested_ValidationErrorsReturnsEmpty_PreviewRequestedArgsOutputIsEmpty()
         {
             //------------Setup for test--------------------------
@@ -75,12 +75,12 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             qviViewModel.PreviewViewModel.PreviewCommand.Execute(null);
 
             //------------Assert Results-------------------------
-            //Assert.IsTrue(string.IsNullOrEmpty(qviViewModel.OnPreviewRequestedArgs.Output));
+            //NUnit.Framework.Assert.IsTrue(string.IsNullOrEmpty(qviViewModel.OnPreviewRequestedArgs.Output));
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_PreviewRequested")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_PreviewRequested")]
         public void QuickVariableInputViewModel_PreviewRequested_AllFieldsPopulatedOverWriteFalse_CorrectPreviewOutput()
         {
              var Expected = @"1 [[Customer().Fname]]
@@ -105,9 +105,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             Assert.AreEqual(Expected, output);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_PreviewRequested")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_PreviewRequested")]
         public void QuickVariableInputViewModel_PreviewRequested_AllFieldsPopulatedOverWriteTrue_CorrectPreviewOutput()
         {
              var Expected = @"1 [[Customer().Fname]]
@@ -133,9 +133,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             expected = new StringBuilder(expected).Replace(Environment.NewLine, "\n").Replace("\r", "").ToString();
             actual = new StringBuilder(actual).Replace(Environment.NewLine, "\n").Replace("\r", "").ToString();
         }
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_PreviewRequested")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_PreviewRequested")]
         public void QuickVariableInputViewModel_PreviewRequested_MoreThenThreeItemsBeingAdded_CorrectPreviewOutput()
         {
              var Expected = @"1 [[Customer().Fname]]
@@ -160,9 +160,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             Assert.AreEqual(Expected, output);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_PreviewRequested")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_PreviewRequested")]
         public void QuickVariableInputViewModel_PreviewRequested_SplitTypeWithNewLine_CorrectResultsReturned()
         {
             VerifySplitTypeWithNewLine("\r\n", true, true);
@@ -175,9 +175,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
         }
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_PreviewRequested")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_PreviewRequested")]
         public void QuickVariableInputViewModel_PreviewRequested_RemoveEmptyEntriesFalse_CorrectPreviewOutput()
         {
              var Expected = @"1 [[Customer().Fname]]
@@ -203,9 +203,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             Assert.AreEqual(Expected, output);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_PreviewRequested")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_PreviewRequested")]
         public void QuickVariableInputViewModel_PreviewRequested_RemoveEmptyEntriesTrue_CorrectPreviewOutput()
         {
              var Expected = @"1 [[Customer().Fname]]

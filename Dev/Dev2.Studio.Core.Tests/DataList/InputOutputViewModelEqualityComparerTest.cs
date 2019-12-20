@@ -10,20 +10,21 @@
 
 using Dev2.Common.Interfaces.Data;
 using Dev2.DataList;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Core.Tests.DataList
 {
-    [TestClass]
-	[TestCategory("Studio Datalist Core")]
+    [TestFixture]
+    [SetUpFixture]
+	[Category("Studio Datalist Core")]
     public class InputOutputViewModelEqualityComparerTest
     {
         public TestContext TestContext { get; set; }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("InputOutputViewModelEqualityComparer_Equals")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("InputOutputViewModelEqualityComparer_Equals")]
         public void InputOutputViewModelEqualityComparer_Equals_WhenEqual_ExpectTrue()
         {
             //------------Setup for test--------------------------
@@ -42,9 +43,9 @@ namespace Dev2.Core.Tests.DataList
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("InputOutputViewModelEqualityComparer_Equals")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("InputOutputViewModelEqualityComparer_Equals")]
         public void InputOutputViewModelEqualityComparer_Equals_WhenNotEqual_ExpectFalse()
         {
             //------------Setup for test--------------------------

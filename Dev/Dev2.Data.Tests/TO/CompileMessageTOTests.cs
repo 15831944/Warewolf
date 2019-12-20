@@ -13,18 +13,19 @@ using Dev2.Common.ExtMethods;
 using Dev2.Common.Interfaces.Infrastructure.Providers.Errors;
 using Dev2.Common.Interfaces.Infrastructure.SharedModels;
 using Dev2.Data.ServiceModel.Messages;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Data.Tests.TO
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class CompileMessageTOTests
     {
-        [TestMethod]
-        [TestCategory("CompileMessageTOUnitTest")]
+        [Test]
+        [Category("CompileMessageTOUnitTest")]
         [Description("Test for CompileMessageTO's 'ToErrorInfo' method: A valid CompileMessageTO is constructed and converted to an ErrorInfo object successfully")]
-        [Owner("Ashley Lewis")]
+        [Author("Ashley Lewis")]
         public void CompileMessageTO_CompileMessageTOUnitTest_ToErrorInfo_CorrectErrorInfoReturned()
         {
             //init
@@ -40,16 +41,16 @@ namespace Dev2.Data.Tests.TO
             var actual = message.ToErrorInfo();
 
             //aserts
-            Assert.AreEqual(expectedID, actual.InstanceID, "ToErrorInfo created an error info object with an incorrect InstanceID");
-            Assert.AreEqual(ErrorType.Critical, actual.ErrorType, "ToErrorInfo created an error info object with an incorrect ErrorType");
-            Assert.AreEqual(expectedFixType, actual.FixType, "ToErrorInfo created an error info object with an incorrect FixType");
-            Assert.AreEqual(CompileMessageType.MappingChange.GetDescription(), actual.Message, "ToErrorInfo created an error info object with an incorrect Message");
-            Assert.AreEqual("Test Fix Data", actual.FixData, "ToErrorInfo created an error info object with incorrect FixData");
+            NUnit.Framework.Assert.AreEqual(expectedID, actual.InstanceID, "ToErrorInfo created an error info object with an incorrect InstanceID");
+            NUnit.Framework.Assert.AreEqual(ErrorType.Critical, actual.ErrorType, "ToErrorInfo created an error info object with an incorrect ErrorType");
+            NUnit.Framework.Assert.AreEqual(expectedFixType, actual.FixType, "ToErrorInfo created an error info object with an incorrect FixType");
+            NUnit.Framework.Assert.AreEqual(CompileMessageType.MappingChange.GetDescription(), actual.Message, "ToErrorInfo created an error info object with an incorrect Message");
+            NUnit.Framework.Assert.AreEqual("Test Fix Data", actual.FixData, "ToErrorInfo created an error info object with incorrect FixData");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("CompileMessageTO_Clone")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("CompileMessageTO_Clone")]
         public void CompileMessageTO_Clone_ShouldCloneAllProperties()
         {
             //------------Setup for test--------------------------
@@ -74,15 +75,15 @@ namespace Dev2.Data.Tests.TO
             //------------Execute Test---------------------------
             var clonedTO = message.Clone();
             //------------Assert Results-------------------------
-            Assert.AreEqual(workspaceID, clonedTO.WorkspaceID);
-            Assert.AreEqual(messageID, clonedTO.MessageID);
-            Assert.AreEqual(serviceID, clonedTO.ServiceID);
-            Assert.AreEqual(uniqueID, clonedTO.UniqueID);
-            Assert.AreEqual(serviceName, clonedTO.ServiceName);
-            Assert.AreEqual(errorType, clonedTO.ErrorType);
-            Assert.AreEqual(fixType, clonedTO.ToFixType());
-            Assert.AreEqual(messageType, clonedTO.MessageType);
-            Assert.AreEqual(messagePayload, clonedTO.MessagePayload);
+            NUnit.Framework.Assert.AreEqual(workspaceID, clonedTO.WorkspaceID);
+            NUnit.Framework.Assert.AreEqual(messageID, clonedTO.MessageID);
+            NUnit.Framework.Assert.AreEqual(serviceID, clonedTO.ServiceID);
+            NUnit.Framework.Assert.AreEqual(uniqueID, clonedTO.UniqueID);
+            NUnit.Framework.Assert.AreEqual(serviceName, clonedTO.ServiceName);
+            NUnit.Framework.Assert.AreEqual(errorType, clonedTO.ErrorType);
+            NUnit.Framework.Assert.AreEqual(fixType, clonedTO.ToFixType());
+            NUnit.Framework.Assert.AreEqual(messageType, clonedTO.MessageType);
+            NUnit.Framework.Assert.AreEqual(messagePayload, clonedTO.MessagePayload);
         }
     }
 }

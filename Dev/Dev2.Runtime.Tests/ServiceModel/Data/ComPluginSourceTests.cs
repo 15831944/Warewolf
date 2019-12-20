@@ -1,48 +1,49 @@
 using System;
 using System.Xml.Linq;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Tests.Runtime.ServiceModel
 {
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class ComPluginSourceTests
     {
   
         #region CTOR
 
-        [TestMethod]
+        [Test]
         public void ComPluginSourceContructorWithDefaultExpectedInitializesProperties()
         {
             var source = new ComPluginSource();
-            Assert.AreEqual(Guid.Empty, source.ResourceID);
-            Assert.AreEqual("ComPluginSource", source.ResourceType);
+            NUnit.Framework.Assert.AreEqual(Guid.Empty, source.ResourceID);
+            NUnit.Framework.Assert.AreEqual("ComPluginSource", source.ResourceType);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ComPluginSourceContructorWithNullXmlExpectedThrowsArgumentNullException()
         {
             var source = new ComPluginSource(null);
         }
 
-        [TestMethod]
+        [Test]
         public void ComPluginSourceContructorWithInvalidXmlExpectedDoesNotThrowExceptionAndInitializesProperties()
         {
             var xml = new XElement("root");
             var source = new ComPluginSource(xml);
-            Assert.AreNotEqual(Guid.Empty, source.ResourceID);
-            Assert.IsTrue(source.IsUpgraded);
-            Assert.AreEqual("ComPluginSource", source.ResourceType);
+            NUnit.Framework.Assert.AreNotEqual(Guid.Empty, source.ResourceID);
+            NUnit.Framework.Assert.IsTrue(source.IsUpgraded);
+            NUnit.Framework.Assert.AreEqual("ComPluginSource", source.ResourceType);
         }
 
         #endregion
 
         #region ToXml
 
-        [TestMethod]
+        [Test]
         public void ComPluginSourceToXmlExpectedSerializesProperties()
         {
             var expected = new ComPluginSource
@@ -55,12 +56,12 @@ namespace Dev2.Tests.Runtime.ServiceModel
 
             var actual = new ComPluginSource(xml);
 
-            Assert.AreEqual(expected.ResourceType, actual.ResourceType);
-            Assert.AreEqual(expected.ClsId, actual.ClsId);
-            Assert.AreEqual(expected.Is32Bit, actual.Is32Bit);
+            NUnit.Framework.Assert.AreEqual(expected.ResourceType, actual.ResourceType);
+            NUnit.Framework.Assert.AreEqual(expected.ClsId, actual.ClsId);
+            NUnit.Framework.Assert.AreEqual(expected.Is32Bit, actual.Is32Bit);
         }
 
-        [TestMethod]
+        [Test]
         public void ComPluginSourceToXmlWithNullPropertiesExpectedSerializesPropertiesAsEmpty()
         {
             var expected = new ComPluginSource
@@ -73,9 +74,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
 
             var actual = new ComPluginSource(xml);
 
-            Assert.AreEqual(expected.ResourceType, actual.ResourceType);
-            Assert.AreEqual("", actual.ClsId);
-            Assert.AreEqual(false, actual.Is32Bit);
+            NUnit.Framework.Assert.AreEqual(expected.ResourceType, actual.ResourceType);
+            NUnit.Framework.Assert.AreEqual("", actual.ClsId);
+            NUnit.Framework.Assert.AreEqual(false, actual.Is32Bit);
         }
 
         #endregion

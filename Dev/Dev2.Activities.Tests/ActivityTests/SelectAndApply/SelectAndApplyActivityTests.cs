@@ -8,7 +8,7 @@ using Dev2.Activities.SelectAndApply;
 using Dev2.Common.ExtMethods;
 using Dev2.Common.Interfaces.Core.Convertors.Case;
 using Dev2.Data.Interfaces.Enums;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Warewolf.Resource.Errors;
 using Warewolf.Storage;
@@ -16,7 +16,8 @@ using WarewolfParserInterop;
 
 namespace Dev2.Tests.Activities.ActivityTests.SelectAndApply
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SelectAndApplyActivityTests : BaseActivityUnitTest
     {
         DsfSelectAndApplyActivity CreateActivity()
@@ -24,9 +25,9 @@ namespace Dev2.Tests.Activities.ActivityTests.SelectAndApply
             return new DsfSelectAndApplyActivity();
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SelectAndApplyActivity_Construct")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SelectAndApplyActivity_Construct")]
         public void SelectAndApplyActivity_Construct_GivenInstance_ShouldNotBeNull()
         {
             //------------Setup for test--------------------------
@@ -36,9 +37,9 @@ namespace Dev2.Tests.Activities.ActivityTests.SelectAndApply
             Assert.IsNotNull(selectAndApplyActivity);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("SelectAndApplyActivity_GetFindMissingType")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("SelectAndApplyActivity_GetFindMissingType")]
         public void SelectAndApplyActivity_GetFindMissingType_GivenInstance_ShouldNotBeNull()
         {
             //------------Setup for test--------------------------
@@ -49,9 +50,9 @@ namespace Dev2.Tests.Activities.ActivityTests.SelectAndApply
             Assert.AreEqual(enFindMissingType, enFindMissingType.ForEach);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("SelectAndApplyActivity_GetFindMissingType")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("SelectAndApplyActivity_GetFindMissingType")]
         public void SelectAndApplyActivity_GetOutputs_GivenInstance_ShouldNotBeNull()
         {
             //------------Setup for test--------------------------
@@ -62,9 +63,9 @@ namespace Dev2.Tests.Activities.ActivityTests.SelectAndApply
             Assert.AreEqual(0, outputs.Count);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SelectAndApplyActivity_DisplayName")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SelectAndApplyActivity_DisplayName")]
         public void SelectAndApplyActivity_DisplayName_GivenIsCreated_ShouldBeSelectAndApply()
         {
             //------------Setup for test--------------------------
@@ -75,9 +76,9 @@ namespace Dev2.Tests.Activities.ActivityTests.SelectAndApply
             Assert.AreEqual("Select and apply", selectAndApplyActivity.DisplayName);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SelectAndApplyActivity_SetupExecute")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SelectAndApplyActivity_SetupExecute")]
         public void SelectAndApplyActivity_SetupExecute_GivenCaseConvertActivityApplied_ToUpperApplied()
         {
             //------------Setup for test--------------------------
@@ -103,9 +104,9 @@ namespace Dev2.Tests.Activities.ActivityTests.SelectAndApply
             Assert.IsTrue(names.Any(s => s == "ORLANDO"));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SelectAndApplyActivity_SetupExecute")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SelectAndApplyActivity_SetupExecute")]
         public void SelectAndApplyActivity_SetupExecute_GivenCaseConvertActivityApplied_ToCorrectIndex()
         {
             //------------Setup for test--------------------------
@@ -131,9 +132,9 @@ namespace Dev2.Tests.Activities.ActivityTests.SelectAndApply
             Assert.AreEqual("ORLANDO", names[4]);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("SelectAndApplyActivity_SetupExecute")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("SelectAndApplyActivity_SetupExecute")]
         public void SelectAndApplyActivity_SetupExecute_GivenCaseConvertActivityApplied_ToCorrectIndex_ComplexObjects()
         {
             //------------Setup for test--------------------------
@@ -182,9 +183,9 @@ namespace Dev2.Tests.Activities.ActivityTests.SelectAndApply
             Assert.AreEqual("ORLANDO", names[4]);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SelectAndApplyActivity_SetupExecute")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SelectAndApplyActivity_SetupExecute")]
         public void SelectAndApplyActivity_SetupExecute_GivenNumberFormatTool_ToCorrectFormat()
         {
             var activity = new DsfNumberFormatActivity
@@ -210,9 +211,9 @@ namespace Dev2.Tests.Activities.ActivityTests.SelectAndApply
             Assert.AreEqual("0.88", ages[4]);
         } 
          
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("SelectAndApplyActivity_SetupExecute")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("SelectAndApplyActivity_SetupExecute")]
         public void SelectAndApplyActivity_SetupExecute_GivenNumberFormatTool_ToCorrectFormat_ComplexObjects()
         {
             var activity = new DsfNumberFormatActivity
@@ -259,9 +260,9 @@ namespace Dev2.Tests.Activities.ActivityTests.SelectAndApply
             Assert.AreEqual("0.88", ages[4]);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("SelectAndApplyActivity_SetupExecute")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("SelectAndApplyActivity_SetupExecute")]
         public void SelectAndApplyActivity_SetupExecute_GivenNullDataSource_DataObjectsHasCorrectErrors()
         {
             var activity = new DsfNumberFormatActivity
@@ -299,9 +300,9 @@ namespace Dev2.Tests.Activities.ActivityTests.SelectAndApply
             Assert.IsTrue(errors.Contains(string.Format(ErrorResource.CanNotBeEmpty, "Alias")));
         }  
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SelectAndApplyActivity_SetupExecute")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SelectAndApplyActivity_SetupExecute")]
         public void SelectAndApplyActivity_SetupExecute_GivenNumberFormatTool_ToDifferentResult()
         {
             var activity = new DsfNumberFormatActivity
@@ -324,18 +325,18 @@ namespace Dev2.Tests.Activities.ActivityTests.SelectAndApply
         }
 
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SelectAndApplyActivity_SetupExecute")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SelectAndApplyActivity_SetupExecute")]
         [ExpectedException(typeof(NotImplementedException))]
         public void SelectAndApplyActivity_UpdateForEachInputs_ThrowsException()
         {
             var activity = new DsfSelectAndApplyActivity();
             activity.UpdateForEachInputs(new List<Tuple<string, string>>());
         }
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SelectAndApplyActivity_SetupExecute")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SelectAndApplyActivity_SetupExecute")]
         [ExpectedException(typeof(NotImplementedException))]
         public void SelectAndApplyActivity_UpdateForEachOutputs_ThrowsException()
         {
@@ -343,9 +344,9 @@ namespace Dev2.Tests.Activities.ActivityTests.SelectAndApply
             activity.UpdateForEachOutputs(new List<Tuple<string, string>>());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SelectAndApplyActivity_SetupExecute")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SelectAndApplyActivity_SetupExecute")]
         public void SelectAndApplyActivity_GetForEachInputs()
         {
             var activity = new DsfSelectAndApplyActivity();
@@ -354,9 +355,9 @@ namespace Dev2.Tests.Activities.ActivityTests.SelectAndApply
             Assert.AreEqual(dsfForEachItems.Single().Value, "[[Rec(*)]]");
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SelectAndApplyActivity_SetupExecute")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SelectAndApplyActivity_SetupExecute")]
         public void SelectAndApplyActivity_GetForEachOutputs()
         {
             var activity = new DsfSelectAndApplyActivity();

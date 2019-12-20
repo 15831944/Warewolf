@@ -10,7 +10,7 @@
 
 using Dev2.Data.Interfaces;
 using Dev2.Data.PathOperations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -19,12 +19,13 @@ using static Dev2.Data.PathOperations.Dev2FTPProvider;
 
 namespace Dev2.Data.Tests.PathOperations
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class Dev2FTPProviderTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(Dev2FTPProvider))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(Dev2FTPProvider))]
         public void Dev2FTPProvider_Validate_Defaults()
         {
             var mockActivityIOPath = new Mock<IActivityIOPath>();
@@ -34,14 +35,14 @@ namespace Dev2.Data.Tests.PathOperations
                 IOPath = mockActivityIOPath.Object
             };
 
-            Assert.AreEqual(mockActivityIOPath.Object, dev2FTPProvider.IOPath);
-            Assert.AreEqual(@"/", dev2FTPProvider.PathSeperator());
-            Assert.IsTrue(dev2FTPProvider.RequiresLocalTmpStorage());
+            NUnit.Framework.Assert.AreEqual(mockActivityIOPath.Object, dev2FTPProvider.IOPath);
+            NUnit.Framework.Assert.AreEqual(@"/", dev2FTPProvider.PathSeperator());
+            NUnit.Framework.Assert.IsTrue(dev2FTPProvider.RequiresLocalTmpStorage());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(Dev2FTPProvider))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(Dev2FTPProvider))]
         public void Dev2FTPProvider_Get_IsStandardFtp_ReadFromFtp()
         {
             var mockActivityIOPath = new Mock<IActivityIOPath>();
@@ -59,14 +60,14 @@ namespace Dev2.Data.Tests.PathOperations
 
             var stream = dev2FTPProvider.Get(mockActivityIOPath.Object, filesToCleanup);
 
-            Assert.AreEqual(null, stream);
+            NUnit.Framework.Assert.AreEqual(null, stream);
             mockImplementation.Verify(implementation => implementation.IsStandardFtp(mockActivityIOPath.Object), Times.Once);
             mockImplementation.Verify(implementation => implementation.ReadFromFtp(mockActivityIOPath.Object, ref streamNullResult), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(Dev2FTPProvider))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(Dev2FTPProvider))]
         public void Dev2FTPProvider_Get_ExpectedException()
         {
             const string path = "path";
@@ -79,17 +80,17 @@ namespace Dev2.Data.Tests.PathOperations
             try
             {
                 dev2FTPProvider.Get(mockActivityIOPath.Object, filesToCleanup);
-                Assert.Fail("Code should have caused an exception to be thrown");
+                NUnit.Framework.Assert.Fail("Code should have caused an exception to be thrown");
             }
             catch (Exception ex)
             {
-                Assert.AreEqual("Object reference not set to an instance of an object. ,  [path]", ex.Message);
+                NUnit.Framework.Assert.AreEqual("Object reference not set to an instance of an object. ,  [path]", ex.Message);
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(Dev2FTPProvider))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(Dev2FTPProvider))]
         public void Dev2FTPProvider_Get_IsStandardFtp_ReadFromSftp()
         {
             var mockActivityIOPath = new Mock<IActivityIOPath>();
@@ -107,14 +108,14 @@ namespace Dev2.Data.Tests.PathOperations
 
             var stream = dev2FTPProvider.Get(mockActivityIOPath.Object, filesToCleanup);
 
-            Assert.AreEqual(null, stream);
+            NUnit.Framework.Assert.AreEqual(null, stream);
             mockImplementation.Verify(implementation => implementation.IsStandardFtp(mockActivityIOPath.Object), Times.Once);
             mockImplementation.Verify(implementation => implementation.ReadFromSftp(mockActivityIOPath.Object, ref streamNullResult, filesToCleanup), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(Dev2FTPProvider))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(Dev2FTPProvider))]
         public void Dev2FTPProvider_Put_OverWrite_WriteToFtp()
         {
             Stream streamResult = new MemoryStream(new byte[0]);
@@ -134,13 +135,13 @@ namespace Dev2.Data.Tests.PathOperations
             var dev2FTPProvider = new Dev2FTPProvider(mockImplementation.Object);
             var result = dev2FTPProvider.Put(streamResult, mockActivityIOPath.Object, mockDev2CRUDOperationTO.Object, whereToPut, filesToCleanup);
 
-            Assert.AreEqual(1, result);
+            NUnit.Framework.Assert.AreEqual(1, result);
             mockImplementation.Verify(implementation => implementation.WriteToFtp(streamResult, mockActivityIOPath.Object), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(Dev2FTPProvider))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(Dev2FTPProvider))]
         public void Dev2FTPProvider_Put_ExpectedException_using()
         {
             Stream streamResult = new MemoryStream(new byte[0]);
@@ -160,12 +161,12 @@ namespace Dev2.Data.Tests.PathOperations
             var dev2FTPProvider = new Dev2FTPProvider(mockImplementation.Object);
 
             var result = dev2FTPProvider.Put(streamResult, null, mockDev2CRUDOperationTO.Object, whereToPut, filesToCleanup);
-            Assert.AreEqual(0, result);
+            NUnit.Framework.Assert.AreEqual(0, result);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(Dev2FTPProvider))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(Dev2FTPProvider))]
         public void Dev2FTPProvider_Put_ExpectedException_All()
         {
             Stream streamResult = new MemoryStream(new byte[0]);
@@ -187,17 +188,17 @@ namespace Dev2.Data.Tests.PathOperations
             try
             {
                 dev2FTPProvider.Put(streamResult, mockActivityIOPath.Object, mockDev2CRUDOperationTO.Object, whereToPut, filesToCleanup);
-                Assert.Fail("Code should have caused an exception to be thrown");
+                NUnit.Framework.Assert.Fail("Code should have caused an exception to be thrown");
             }
             catch (Exception ex)
             {
-                Assert.AreEqual("Object reference not set to an instance of an object.", ex.Message);
+                NUnit.Framework.Assert.AreEqual("Object reference not set to an instance of an object.", ex.Message);
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(Dev2FTPProvider))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(Dev2FTPProvider))]
         public void Dev2FTPProvider_Put_OverWrite_WriteToSftp()
         {
             Stream streamResult = new MemoryStream(new byte[0]);
@@ -217,13 +218,13 @@ namespace Dev2.Data.Tests.PathOperations
             var dev2FTPProvider = new Dev2FTPProvider(mockImplementation.Object);
             var result = dev2FTPProvider.Put(streamResult, mockActivityIOPath.Object, mockDev2CRUDOperationTO.Object, whereToPut, filesToCleanup);
 
-            Assert.AreEqual(1, result);
+            NUnit.Framework.Assert.AreEqual(1, result);
             mockImplementation.Verify(implementation => implementation.WriteToSftp(streamResult, mockActivityIOPath.Object), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(Dev2FTPProvider))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(Dev2FTPProvider))]
         public void Dev2FTPProvider_Put_No_OverWrite_IsStandardFtp()
         {
             Stream streamResult = new MemoryStream(new byte[0]);
@@ -242,12 +243,12 @@ namespace Dev2.Data.Tests.PathOperations
             var dev2FTPProvider = new Dev2FTPProvider(mockImplementation.Object);
             var result = dev2FTPProvider.Put(streamResult, mockActivityIOPath.Object, mockDev2CRUDOperationTO.Object, whereToPut, filesToCleanup);
 
-            Assert.AreEqual(-1, result);
+            NUnit.Framework.Assert.AreEqual(-1, result);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(Dev2FTPProvider))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(Dev2FTPProvider))]
         public void Dev2FTPProvider_Delete_PathType_Directory_DeleteHandler()
         {
             const string path = "path";
@@ -270,13 +271,13 @@ namespace Dev2.Data.Tests.PathOperations
             var dev2FTPProvider = new Dev2FTPProvider(mockImplementation.Object);
             var result = dev2FTPProvider.Delete(mockActivityIOPath.Object);
 
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
             mockImplementation.Verify(implementation => implementation.DeleteHandler(pathStack, userName, password, privateKeyFile), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(Dev2FTPProvider))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(Dev2FTPProvider))]
         public void Dev2FTPProvider_Delete_ExpectedException()
         {
             const string path = "path";
@@ -288,17 +289,17 @@ namespace Dev2.Data.Tests.PathOperations
             try
             {
                 dev2FTPProvider.Delete(mockActivityIOPath.Object);
-                Assert.Fail("Code should have caused an exception to be thrown");
+                NUnit.Framework.Assert.Fail("Code should have caused an exception to be thrown");
             }
             catch (Exception ex)
             {
-                Assert.AreEqual("Object reference not set to an instance of an object.", ex.Message);
+                NUnit.Framework.Assert.AreEqual("Object reference not set to an instance of an object.", ex.Message);
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(Dev2FTPProvider))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(Dev2FTPProvider))]
         public void Dev2FTPProvider_Delete_PathType_File_DeleteOp()
         {
             const string path = ".path";
@@ -322,13 +323,13 @@ namespace Dev2.Data.Tests.PathOperations
             var dev2FTPProvider = new Dev2FTPProvider(mockImplementation.Object);
             var result = dev2FTPProvider.Delete(mockActivityIOPath.Object);
 
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
             mockImplementation.Verify(implementation => implementation.DeleteOp(activityIOPathList), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(Dev2FTPProvider))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(Dev2FTPProvider))]
         public void Dev2FTPProvider_ListDirectory_ListDirectoryStandardFtp()
         {
             var mockActivityIOPath = new Mock<IActivityIOPath>();
@@ -343,14 +344,14 @@ namespace Dev2.Data.Tests.PathOperations
             var dev2FTPProvider = new Dev2FTPProvider(mockImplementation.Object);
             var listDirectory = dev2FTPProvider.ListDirectory(mockActivityIOPath.Object);
 
-            Assert.AreEqual(activityIOPathList, listDirectory);
-            Assert.AreEqual(1, listDirectory.Count);
+            NUnit.Framework.Assert.AreEqual(activityIOPathList, listDirectory);
+            NUnit.Framework.Assert.AreEqual(1, listDirectory.Count);
             mockImplementation.Verify(implementation => implementation.ListDirectoryStandardFtp(mockActivityIOPath.Object), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(Dev2FTPProvider))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(Dev2FTPProvider))]
         public void Dev2FTPProvider_ListDirectory_ListDirectorySftp()
         {
             var mockActivityIOPath = new Mock<IActivityIOPath>();
@@ -365,14 +366,14 @@ namespace Dev2.Data.Tests.PathOperations
             var dev2FTPProvider = new Dev2FTPProvider(mockImplementation.Object);
             var listDirectory = dev2FTPProvider.ListDirectory(mockActivityIOPath.Object);
 
-            Assert.AreEqual(activityIOPathList, listDirectory);
-            Assert.AreEqual(1, listDirectory.Count);
+            NUnit.Framework.Assert.AreEqual(activityIOPathList, listDirectory);
+            NUnit.Framework.Assert.AreEqual(1, listDirectory.Count);
             mockImplementation.Verify(implementation => implementation.ListDirectorySftp(mockActivityIOPath.Object), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(Dev2FTPProvider))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(Dev2FTPProvider))]
         public void Dev2FTPProvider_CreateDirectory_Overwrite()
         {
             const string path = "path";
@@ -401,16 +402,16 @@ namespace Dev2.Data.Tests.PathOperations
             var dev2FTPProvider = new Dev2FTPProvider(mockImplementation.Object);
             var result = dev2FTPProvider.CreateDirectory(mockActivityIOPath.Object, mockDev2CRUDOperationTO.Object);
 
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
 
             mockImplementation.Verify(implementation => implementation.IsDirectoryAlreadyPresent(mockActivityIOPath.Object), Times.Once);
             mockImplementation.Verify(implementation => implementation.DeleteHandler(pathStack, userName, password, privateKeyFile), Times.Once);
             mockImplementation.Verify(implementation => implementation.CreateDirectoryStandardFtp(mockActivityIOPath.Object), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(Dev2FTPProvider))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(Dev2FTPProvider))]
         public void Dev2FTPProvider_CreateDirectory_Not_Overwrite()
         {
             const string path = "path";
@@ -436,15 +437,15 @@ namespace Dev2.Data.Tests.PathOperations
             var dev2FTPProvider = new Dev2FTPProvider(mockImplementation.Object);
             var result = dev2FTPProvider.CreateDirectory(mockActivityIOPath.Object, mockDev2CRUDOperationTO.Object);
 
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
 
             mockImplementation.Verify(implementation => implementation.IsDirectoryAlreadyPresent(mockActivityIOPath.Object), Times.Once);
             mockImplementation.Verify(implementation => implementation.CreateDirectorySftp(mockActivityIOPath.Object), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(Dev2FTPProvider))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(Dev2FTPProvider))]
         public void Dev2FTPProvider_PathExist_Directory()
         {
             var mockActivityIOPath = new Mock<IActivityIOPath>();
@@ -456,14 +457,14 @@ namespace Dev2.Data.Tests.PathOperations
             var dev2FTPProvider = new Dev2FTPProvider(mockImplementation.Object);
             var pathExists = dev2FTPProvider.PathExist(mockActivityIOPath.Object);
 
-            Assert.IsTrue(pathExists);
+            NUnit.Framework.Assert.IsTrue(pathExists);
             mockImplementation.Verify(implementation => implementation.PathIs(mockActivityIOPath.Object), Times.Once);
             mockImplementation.Verify(implementation => implementation.IsDirectoryAlreadyPresent(mockActivityIOPath.Object), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(Dev2FTPProvider))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(Dev2FTPProvider))]
         public void Dev2FTPProvider_PathExist_File()
         {
             var mockActivityIOPath = new Mock<IActivityIOPath>();
@@ -475,31 +476,31 @@ namespace Dev2.Data.Tests.PathOperations
             var dev2FTPProvider = new Dev2FTPProvider(mockImplementation.Object);
             var pathExists = dev2FTPProvider.PathExist(mockActivityIOPath.Object);
 
-            Assert.IsTrue(pathExists);
+            NUnit.Framework.Assert.IsTrue(pathExists);
             mockImplementation.Verify(implementation => implementation.PathIs(mockActivityIOPath.Object), Times.Once);
             mockImplementation.Verify(implementation => implementation.IsFilePresent(mockActivityIOPath.Object), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(Dev2FTPProvider))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(Dev2FTPProvider))]
         public void Dev2FTPProvider_HandlesType()
         {
             var mockImplementation = new Mock<IImplementation>();
 
             var dev2FTPProvider = new Dev2FTPProvider(mockImplementation.Object);
 
-            Assert.IsFalse(dev2FTPProvider.HandlesType(Interfaces.Enums.enActivityIOPathType.FileSystem));
-            Assert.IsFalse(dev2FTPProvider.HandlesType(Interfaces.Enums.enActivityIOPathType.Invalid));
-            Assert.IsTrue(dev2FTPProvider.HandlesType(Interfaces.Enums.enActivityIOPathType.FTPS));
-            Assert.IsTrue(dev2FTPProvider.HandlesType(Interfaces.Enums.enActivityIOPathType.SFTP));
-            Assert.IsTrue(dev2FTPProvider.HandlesType(Interfaces.Enums.enActivityIOPathType.FTP));
-            Assert.IsTrue(dev2FTPProvider.HandlesType(Interfaces.Enums.enActivityIOPathType.FTPES));
+            NUnit.Framework.Assert.IsFalse(dev2FTPProvider.HandlesType(Interfaces.Enums.enActivityIOPathType.FileSystem));
+            NUnit.Framework.Assert.IsFalse(dev2FTPProvider.HandlesType(Interfaces.Enums.enActivityIOPathType.Invalid));
+            NUnit.Framework.Assert.IsTrue(dev2FTPProvider.HandlesType(Interfaces.Enums.enActivityIOPathType.FTPS));
+            NUnit.Framework.Assert.IsTrue(dev2FTPProvider.HandlesType(Interfaces.Enums.enActivityIOPathType.SFTP));
+            NUnit.Framework.Assert.IsTrue(dev2FTPProvider.HandlesType(Interfaces.Enums.enActivityIOPathType.FTP));
+            NUnit.Framework.Assert.IsTrue(dev2FTPProvider.HandlesType(Interfaces.Enums.enActivityIOPathType.FTPES));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(Dev2FTPProvider))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(Dev2FTPProvider))]
         public void Dev2FTPProvider_ListFoldersInDirectory()
         {
             var mockActivityIOPath = new Mock<IActivityIOPath>();
@@ -512,14 +513,14 @@ namespace Dev2.Data.Tests.PathOperations
             var dev2FTPProvider = new Dev2FTPProvider(mockImplementation.Object);
             var foldersInDirectory = dev2FTPProvider.ListFoldersInDirectory(mockActivityIOPath.Object);
 
-            Assert.AreEqual(activityIOPathList, foldersInDirectory);
-            Assert.AreEqual(1, foldersInDirectory.Count);
+            NUnit.Framework.Assert.AreEqual(activityIOPathList, foldersInDirectory);
+            NUnit.Framework.Assert.AreEqual(1, foldersInDirectory.Count);
             mockImplementation.Verify(implementation => implementation.ListFoldersInDirectory(mockActivityIOPath.Object), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(Dev2FTPProvider))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(Dev2FTPProvider))]
         public void Dev2FTPProvider_ListFilesInDirectory()
         {
             const string path = "path";
@@ -546,8 +547,8 @@ namespace Dev2.Data.Tests.PathOperations
             mockImplementation.Setup(implementation => implementation.ExtendedDirList(path, userName, password, enableSsl, isNotCertVerifiable, privateKeyFile)).Returns(tmpDirData);
             mockImplementation.Setup(implementation => implementation.ExtractList(tmpDirData, It.IsAny<Func<string, bool>>()))
                 .Callback<string, Func<string, bool>>((string payload, Func<string, bool> matchFunc) => {
-                    Assert.IsFalse(matchFunc("<dir>"));
-                    Assert.IsTrue(matchFunc("ftp:\\testfile.txt"));
+                    NUnit.Framework.Assert.IsFalse(matchFunc("<dir>"));
+                    NUnit.Framework.Assert.IsTrue(matchFunc("ftp:\\testfile.txt"));
                     matchFunc(payload);
                 })
                 .Returns(extractList);
@@ -557,21 +558,21 @@ namespace Dev2.Data.Tests.PathOperations
             var dev2FTPProvider = new Dev2FTPProvider(mockImplementation.Object);
             var foldersInDirectory = dev2FTPProvider.ListFilesInDirectory(mockActivityIOPath.Object);
 
-            Assert.AreEqual(2, foldersInDirectory.Count);
+            NUnit.Framework.Assert.AreEqual(2, foldersInDirectory.Count);
 
-            Assert.IsFalse(foldersInDirectory[0].IsNotCertVerifiable);
-            Assert.AreEqual(password, foldersInDirectory[0].Password);
-            Assert.AreEqual(path1, foldersInDirectory[0].Path);
-            Assert.AreEqual(Interfaces.Enums.enActivityIOPathType.FileSystem, foldersInDirectory[0].PathType);
-            Assert.AreEqual(privateKeyFile, foldersInDirectory[0].PrivateKeyFile);
-            Assert.AreEqual(userName, foldersInDirectory[0].Username);
+            NUnit.Framework.Assert.IsFalse(foldersInDirectory[0].IsNotCertVerifiable);
+            NUnit.Framework.Assert.AreEqual(password, foldersInDirectory[0].Password);
+            NUnit.Framework.Assert.AreEqual(path1, foldersInDirectory[0].Path);
+            NUnit.Framework.Assert.AreEqual(Interfaces.Enums.enActivityIOPathType.FileSystem, foldersInDirectory[0].PathType);
+            NUnit.Framework.Assert.AreEqual(privateKeyFile, foldersInDirectory[0].PrivateKeyFile);
+            NUnit.Framework.Assert.AreEqual(userName, foldersInDirectory[0].Username);
 
-            Assert.IsFalse(foldersInDirectory[1].IsNotCertVerifiable);
-            Assert.AreEqual(password, foldersInDirectory[1].Password);
-            Assert.AreEqual(path2, foldersInDirectory[1].Path);
-            Assert.AreEqual(Interfaces.Enums.enActivityIOPathType.FileSystem, foldersInDirectory[1].PathType);
-            Assert.AreEqual(privateKeyFile, foldersInDirectory[1].PrivateKeyFile);
-            Assert.AreEqual(userName, foldersInDirectory[1].Username);
+            NUnit.Framework.Assert.IsFalse(foldersInDirectory[1].IsNotCertVerifiable);
+            NUnit.Framework.Assert.AreEqual(password, foldersInDirectory[1].Password);
+            NUnit.Framework.Assert.AreEqual(path2, foldersInDirectory[1].Path);
+            NUnit.Framework.Assert.AreEqual(Interfaces.Enums.enActivityIOPathType.FileSystem, foldersInDirectory[1].PathType);
+            NUnit.Framework.Assert.AreEqual(privateKeyFile, foldersInDirectory[1].PrivateKeyFile);
+            NUnit.Framework.Assert.AreEqual(userName, foldersInDirectory[1].Username);
 
             mockImplementation.Verify(implementation => implementation.EnableSsl(mockActivityIOPath.Object), Times.Once);
             mockImplementation.Verify(implementation => implementation.ExtendedDirList(path, userName, password, enableSsl, isNotCertVerifiable, privateKeyFile), Times.Once);
@@ -579,9 +580,9 @@ namespace Dev2.Data.Tests.PathOperations
             mockImplementation.Verify(implementation => implementation.BuildValidPathForFtp(mockActivityIOPath.Object, path1), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(Dev2FTPProvider))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(Dev2FTPProvider))]
         public void Dev2FTPProvider_ListFilesInDirectory_ExpectedException()
         {
             const string path = "path";
@@ -593,11 +594,11 @@ namespace Dev2.Data.Tests.PathOperations
             try
             {
                 dev2FTPProvider.ListFilesInDirectory(mockActivityIOPath.Object);
-                Assert.Fail("Code should have caused an exception to be thrown");
+                NUnit.Framework.Assert.Fail("Code should have caused an exception to be thrown");
             }
             catch (Exception ex)
             {
-                Assert.AreEqual("Object reference not set to an instance of an object. : [path]", ex.Message);
+                NUnit.Framework.Assert.AreEqual("Object reference not set to an instance of an object. : [path]", ex.Message);
             }
         }
     }

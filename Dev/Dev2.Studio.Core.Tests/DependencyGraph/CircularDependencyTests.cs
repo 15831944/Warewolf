@@ -12,16 +12,17 @@ using System;
 using System.Collections.Generic;
 using Dev2.Common.DependencyVisualization;
 using Dev2.Common.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests.DependencyGraph
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class CircularDependencyTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(CircularDependency))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(CircularDependency))]
         public void CircularDependency_Constructor_GivenNodes_ShouldExpectDefaults()
         {
             var list = new List<IDependencyVisualizationNode>();
@@ -32,9 +33,9 @@ namespace Dev2.Core.Tests.DependencyGraph
             Assert.AreEqual(0, circularDependency.Nodes.Count, "circularDependency.Nodes");
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(CircularDependency))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(CircularDependency))]
         public void CircularDependency_Equals_GivenNodesEquals_ShouldReturnTrue()
         {
             //---------------Set up test pack-------------------
@@ -49,9 +50,9 @@ namespace Dev2.Core.Tests.DependencyGraph
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(CircularDependency))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(CircularDependency))]
         public void CircularDependency_Equals_GivenNodesEquals_GivenNodesNotZero_ShouldReturnTrue()
         {
             //---------------Set up test pack-------------------
@@ -71,9 +72,9 @@ namespace Dev2.Core.Tests.DependencyGraph
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(CircularDependency))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(CircularDependency))]
         public void CircularDependency_Equals_GivenNodesNotEquals_GivenNodesNotZero_ShouldReturnFalse()
         {
             //---------------Set up test pack-------------------
@@ -97,9 +98,9 @@ namespace Dev2.Core.Tests.DependencyGraph
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(CircularDependency))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(CircularDependency))]
         public void CircularDependency_CompareTo_GivenEqualNodes_ShouldOne()
         {
             //---------------Set up test pack-------------------
@@ -114,9 +115,9 @@ namespace Dev2.Core.Tests.DependencyGraph
             Assert.AreEqual(0, compareTo);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(CircularDependency))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(CircularDependency))]
         public void CircularDependency_GetHashCode_GivenEqualNodes_ShouldNodeshashCode()
         {
             //---------------Set up test pack-------------------

@@ -10,27 +10,25 @@
 
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Management;
 using System.Threading;
 using Dev2.Common.Interfaces.Wrappers;
 using Dev2.Common.Wrappers;
 using Dev2.Infrastructure.Tests;
 using Dev2.Intellisense.Helper;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Core.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FileSystemQueryTest
     {
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_GetFilesListing")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_GetFilesListing")]
         public void FileSystemQuery_GetFilesListing_CorrectPath_ExpectResults()
         {
             var dir = new Mock<IDirectory>();
@@ -44,9 +42,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("c", files[2]);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_GetFilesListing")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_GetFilesListing")]
         public void FileSystemQuery_GetFilesListing_NoSeperator_ExpectNoResults()
         {
             var dir = new Mock<IDirectory>();
@@ -55,17 +53,18 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(files.Count, 0);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_GetFilesListing")]
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_GetFilesListing")]
         public void FileSystemQuery_GetFilesListing_NullDir_ExpectException()
         {
             FileSystemQuery.GetFilesListing("bob", 'c', null);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_GetFoldersAndFiles")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_GetFoldersAndFiles")]
         public void FileSystemQuery_GetFoldersAndFiles_NullDirectory_ExpectException()
         {
             //------------Setup for test--------------------------
@@ -75,9 +74,10 @@ namespace Dev2.Core.Tests
         }
 
 
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_GetFoldersAndFiles")]
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_GetFoldersAndFiles")]
         public void FileSystemQuery_GetFoldersAndFiles_NullPath_ExpectException()
         {
             //------------Setup for test--------------------------
@@ -86,9 +86,9 @@ namespace Dev2.Core.Tests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_GetFoldersAndFiles")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_GetFoldersAndFiles")]
         public void FileSystemQuery_GetFoldersAndFiles_ValidPathAndDir_ExpectResults()
         {
             //------------Setup for test--------------------------
@@ -105,9 +105,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(files[2], "f");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_GetFoldersAndFiles")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_GetFoldersAndFiles")]
         public void FileSystemQuery_GetFoldersAndFiles_NonExistentPath_ExpectResults()
         {
             //------------Setup for test--------------------------
@@ -124,9 +124,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(files[2], "f");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_GetServerFolderShare")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_GetServerFolderShare")]
         public void FileSystemQuery_GetServerFolderShare_NullPath_ExpectFalse()
         {
             //------------Setup for test--------------------------
@@ -137,9 +137,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(res);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_GetServerFolderShare")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_GetServerFolderShare")]
         public void FileSystemQuery_GetServerFolderShare_PathLength_ExpectFalse()
         {
             //------------Setup for test--------------------------
@@ -150,9 +150,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(res);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_GetServerFolderShare")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_GetServerFolderShare")]
         public void FileSystemQuery_GetServerFolderShare_InvalidStartsWith_ExpectFalse()
         {
             //------------Setup for test--------------------------
@@ -163,9 +163,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(res);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_GetServerFolderShare")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_GetServerFolderShare")]
         public void FileSystemQuery_GetServerFolderShare_MultipleSlashesNoShareName_ExpectFalse()
         {
             //------------Setup for test--------------------------
@@ -176,9 +176,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(res);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_GetServerFolderShare")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_GetServerFolderShare")]
         public void FileSystemQuery_GetServerFolderShare_MultipleSlashesShareName_ExpectTrue()
         {
             //------------Setup for test--------------------------
@@ -192,9 +192,9 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(res);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_GetServerFolderShare")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_GetServerFolderShare")]
         public void FileSystemQuery_GetServerFolderShare_MultipleSlashesShareNameDoesNotExist_ExpectFalse()
         {
             //------------Setup for test--------------------------
@@ -209,9 +209,9 @@ namespace Dev2.Core.Tests
             dir.Verify(a => a.Exists("\\\\bobthebuilder\\dave"));
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_GetServerFolderShare")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_GetServerFolderShare")]
         public void FileSystemQuery_GetServerFolderShare_DefaultValue_ExpectTrue()
         {
             //------------Setup for test--------------------------
@@ -226,9 +226,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(@"\\BOBTHEBUILDER\DAVE\", sServerFolderShare);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_GetFilesAndFoldersIncludingNetwork")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_GetFilesAndFoldersIncludingNetwork")]
         public void FileSystemQuery_GetFilesAndFoldersIncludingNetwork_MultipleSlashesShareNameDoesNotExist_ExpectFalse()
         {
             //------------Setup for test--------------------------
@@ -244,9 +244,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("\\\\bobthebuilder\\dave\\".ToUpper(), res[0]);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_FindNetworkComputers")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_FindNetworkComputers")]
         public void FileSystemQuery_FindNetworkComputers_ValidEntries_ExpectReturned()
         {
             //------------Setup for test--------------------------
@@ -274,9 +274,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("\\\\a", res[0]);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_GetComputerNamesOnNetwork")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_GetComputerNamesOnNetwork")]
         public void FileSystemQuery_GetComputerNamesOnNetwork_ValidPath_ExpectDirectoryEntryValuesReturned()
         {
             //------------Setup for test--------------------------
@@ -288,9 +288,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("\\\\a", res[0]);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_GetComputerNamesOnNetwork")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_GetComputerNamesOnNetwork")]
         public void FileSystemQuery_GetComputerNamesOnNetwork_ValidPath_ExpectDirectoryEntryValuesReturnedWhenCacheIsPopulated()
         {
             //------------Setup for test--------------------------
@@ -305,9 +305,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("\\\\a", res[0]);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_GetComputerNamesOnNetwork")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_GetComputerNamesOnNetwork")]
         public void FileSystemQuery_GetComputerNamesOnNetwork_InvalidPath_ExpectEmpty()
         {
             //------------Setup for test--------------------------
@@ -318,9 +318,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(res.Count, 0);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_GetComputerNamesOnNetwork")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_GetComputerNamesOnNetwork")]
         public void FileSystemQuery_GetComputerNamesOnNetwork_NullPath_ExpectEmpty()
         {
             //------------Setup for test--------------------------
@@ -331,9 +331,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(res.Count, 0);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_GetServerNameFromInput")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_GetServerNameFromInput")]
         public void FileSystemQuery_GetServerNameFromInput_ValidPath_ExpectValue()
         {
             //------------Setup for test--------------------------
@@ -346,9 +346,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("bob", qs);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_GetServerNameFromInput")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_GetServerNameFromInput")]
         public void FileSystemQuery_GetServerNameFromInput_InValidPath_ExpectNoValue()
         {
             //------------Setup for test--------------------------
@@ -361,9 +361,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("mp", qs);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_GetServerNameFromInput")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_GetServerNameFromInput")]
         public void FileSystemQuery_GetServerNameFromInput_InValidPathTermination_ExpectNoValue()
         {
             //------------Setup for test--------------------------
@@ -376,9 +376,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("mp", qs);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_GetServerNameFromInput")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_GetServerNameFromInput")]
         public void FileSystemQuery_GetServerNameFromInput_Noshares_ExpectNoValue()
         {
             //------------Setup for test--------------------------
@@ -391,9 +391,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("mp", qs);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_GetSharesInformationFromSpecifiedServer")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_GetSharesInformationFromSpecifiedServer")]
         public void FileSystemQuery_GetSharesInformationFromSpecifiedServer_HasShares_Expectalue()
         {
             //------------Setup for test--------------------------
@@ -406,9 +406,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(output.First(), @"\\a\b");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_GetSharesInformationFromSpecifiedServer")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_GetSharesInformationFromSpecifiedServer")]
         public void FileSystemQuery_GetSharesInformationFromSpecifiedServer_NoShares_ExpectEmpty()
         {
             //------------Setup for test--------------------------
@@ -420,9 +420,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(output.Count, 0);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_GetAllFilesAndFolders")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_GetAllFilesAndFolders")]
         public void FileSystemQuery_GetAllFilesAndFolders_ValidServer_ExpectValues()
         {
             //------------Setup for test--------------------------
@@ -435,9 +435,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(output.First(), @"\\a\b");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_GetAllFilesAndFolders")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_GetAllFilesAndFolders")]
         public void FileSystemQuery_GetAllFilesAndFolders_InValidServerValidDrive_ExpectValues()
         {
             //------------Setup for test--------------------------
@@ -452,9 +452,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(files[2], "f");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_GetAllFilesAndFolders")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_GetAllFilesAndFolders")]
         public void FileSystemQuery_GetAllFilesAndFolders_NullServer_ExpectValues()
         {
             //------------Setup for test--------------------------
@@ -466,9 +466,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(files.Count, 0);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_GetFilesAndFoldersFromDrive")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_GetFilesAndFoldersFromDrive")]
         public void FileSystemQuery_GetFilesAndFoldersFromDrive_ValidSearchPath_ExpectValues()
         {
             //------------Setup for test--------------------------
@@ -486,9 +486,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("c", files[2]);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_GetFilesAndFoldersFromDrive")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_GetFilesAndFoldersFromDrive")]
         public void FileSystemQuery_GetFilesAndFoldersFromDrive_NullSearchPath_ExpectCurrentValues()
         {
             //------------Setup for test--------------------------
@@ -504,9 +504,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("non", files[0]);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_GetFilesAndFoldersFromDrive")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_GetFilesAndFoldersFromDrive")]
         public void FileSystemQuery_GetFilesAndFoldersFromDrive_NonDriveSearchPath_ExpectCurrentValues()
         {
             //------------Setup for test--------------------------
@@ -522,9 +522,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("non", files[0]);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_SearchForFileAndFolders")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_SearchForFileAndFolders")]
         public void FileSystemQuery_SearchForFileAndFolders_DriveSearchPath_ExpectCurrentValues()
         {
             //------------Setup for test--------------------------
@@ -542,9 +542,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("c", files[2]);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_SearchForFileAndFolders")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_SearchForFileAndFolders")]
         public void FileSystemQuery_SearchForFileAndFolders_ShareSearchPath_ExpectSharesFromShareCollection()
         {
             //------------Setup for test--------------------------
@@ -560,9 +560,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(@"\\a\b", files[0]);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_QueryList")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_QueryList")]
         public void FileSystemQuery_QueryList_EmptyPath_ExpectLocalDrives()
         {
             //------------Setup for test--------------------------
@@ -579,9 +579,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("c", files[2]);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_QueryList")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_QueryList")]
         public void FileSystemQuery_QueryList_NullPath_ExpectLocalDrives()
         {
             //------------Setup for test--------------------------
@@ -598,9 +598,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("c", files[2]);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemQuery_QueryList")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("FileSystemQuery_QueryList")]
         public void FileSystemQuery_QueryList_DirSearchPath_ExpectValues()
         {
             //------------Setup for test--------------------------
@@ -616,9 +616,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(@"\\a\b", files[0]);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("FileSystemQuery_ShareCollection")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [NUnit.Framework.Category("FileSystemQuery_ShareCollection")]
         public void FileSystemQuery_ShareCollection()
         {
             var shareCollection = new ShareCollection(@"\\rsaklfsvrpdc.dev2.local\");

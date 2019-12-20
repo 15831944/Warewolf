@@ -11,12 +11,13 @@
 using System.Text.RegularExpressions;
 using Dev2.Runtime.ResourceUpgrades;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Warewolf.Security.Encryption;
 
 namespace Dev2.Tests.Runtime.ResourceUpgraders
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class EncryptionResourceUpgraderTests
     {
         readonly string _connectionString;
@@ -31,18 +32,18 @@ namespace Dev2.Tests.Runtime.ResourceUpgraders
         }
 
 
-        [TestMethod]
-        [Owner("Kerneels Roos")]
-        [TestCategory("EncryptionResourceUpgrader_Upgrade")]
+        [Test]
+        [Author("Kerneels Roos")]
+        [Category("EncryptionResourceUpgrader_Upgrade")]
         
         public void EncryptionResourceUpgrader_Upgrade_HasMatchin_ExpectReplace()
         {
             _matchAndReplaceWhereAppropriate(_beforeContainingSource, _beforeWithoutSource, _connectionString);
         }
 
-        [TestMethod]
-        [Owner("Kerneels Roos")]
-        [TestCategory("EncryptionResourceUpgrader_Upgrade")]
+        [Test]
+        [Author("Kerneels Roos")]
+        [Category("EncryptionResourceUpgrader_Upgrade")]
         public void EncryptionResourceUpgrader_Upgrade_HasMatchin_DsfFileWrite()
         {
             _matchAndReplaceWhereAppropriate(
@@ -71,9 +72,9 @@ namespace Dev2.Tests.Runtime.ResourceUpgraders
 
 
 
-        [TestMethod]
-        [Owner("Kerneels Roos")]
-        [TestCategory("EncryptionResourceUpgrader_Upgrade")]
+        [Test]
+        [Author("Kerneels Roos")]
+        [Category("EncryptionResourceUpgrader_Upgrade")]
         
         public void EncryptionResourceUpgrader_Upgrade_CanDecrypt()
         {
@@ -95,9 +96,9 @@ namespace Dev2.Tests.Runtime.ResourceUpgraders
             DpapiWrapper.Decrypt(x).Should().Be(_connectionString);
         }
 
-        [TestMethod]
-        [Owner("Kerneels Roos")]
-        [TestCategory("EncryptionResourceUpgrader_Upgrade")]
+        [Test]
+        [Author("Kerneels Roos")]
+        [Category("EncryptionResourceUpgrader_Upgrade")]
         
         public void EncryptionResourceUpgrader_TwiceUpgrade_DoesNotEncrypt()
         {

@@ -16,15 +16,17 @@ using System.Windows.Data;
 using System.Windows.Threading;
 using Dev2.Collections;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Infrastructure.Tests.Collections
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ObservableReadOnlyListTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ObservableReadOnlyList_IReadOnlyList")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ObservableReadOnlyList_IReadOnlyList")]
         public void ObservableReadOnlyList_IReadOnlyList_Implemented()
         {
             //------------Setup for test--------------------------
@@ -33,33 +35,33 @@ namespace Dev2.Infrastructure.Tests.Collections
             //------------Execute Test---------------------------
 
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(observableReadOnlyList, typeof(IReadOnlyList<string>));
+            NUnit.Framework.Assert.IsInstanceOf(observableReadOnlyList.GetType(), typeof(IReadOnlyList<string>));
 
             observableReadOnlyList.Insert(0, "Item1");
             observableReadOnlyList.Insert(1, "Item3");
             observableReadOnlyList.Insert(1, "Item2");
 
-            Assert.AreEqual(3, observableReadOnlyList.Count);
-            Assert.AreEqual("Item1", observableReadOnlyList[0]);
-            Assert.AreEqual("Item2", observableReadOnlyList[1]);
-            Assert.AreEqual("Item3", observableReadOnlyList[2]);
+            NUnit.Framework.Assert.AreEqual(3, observableReadOnlyList.Count);
+            NUnit.Framework.Assert.AreEqual("Item1", observableReadOnlyList[0]);
+            NUnit.Framework.Assert.AreEqual("Item2", observableReadOnlyList[1]);
+            NUnit.Framework.Assert.AreEqual("Item3", observableReadOnlyList[2]);
 
             var idx = observableReadOnlyList.IndexOf("Item3");
-            Assert.AreEqual(2, idx);
+            NUnit.Framework.Assert.AreEqual(2, idx);
 
             observableReadOnlyList.RemoveAt(1);
-            Assert.AreEqual(2, observableReadOnlyList.Count);
-            Assert.AreEqual("Item1", observableReadOnlyList[0]);
-            Assert.AreEqual("Item3", observableReadOnlyList[1]);
+            NUnit.Framework.Assert.AreEqual(2, observableReadOnlyList.Count);
+            NUnit.Framework.Assert.AreEqual("Item1", observableReadOnlyList[0]);
+            NUnit.Framework.Assert.AreEqual("Item3", observableReadOnlyList[1]);
 
             observableReadOnlyList[1] = "Item5";
-            Assert.AreEqual("Item5", observableReadOnlyList[1]);
+            NUnit.Framework.Assert.AreEqual("Item5", observableReadOnlyList[1]);
         }
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ObservableReadOnlyList_IReadOnlyCollection")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ObservableReadOnlyList_IReadOnlyCollection")]
         public void ObservableReadOnlyList_IReadOnlyCollection_Implemented()
         {
             //------------Setup for test--------------------------
@@ -68,40 +70,40 @@ namespace Dev2.Infrastructure.Tests.Collections
             //------------Execute Test---------------------------
 
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(observableReadOnlyList, typeof(IReadOnlyCollection<string>));
-            Assert.IsTrue(observableReadOnlyList.IsReadOnly);
+            NUnit.Framework.Assert.IsInstanceOf(observableReadOnlyList.GetType(), typeof(IReadOnlyCollection<string>));
+            NUnit.Framework.Assert.IsTrue(observableReadOnlyList.IsReadOnly);
 
             observableReadOnlyList.Add("Item1");
             observableReadOnlyList.Add("Item2");
             observableReadOnlyList.Add("Item3");
 
-            Assert.AreEqual(3, observableReadOnlyList.Count);
-            Assert.AreEqual("Item1", observableReadOnlyList[0]);
-            Assert.AreEqual("Item2", observableReadOnlyList[1]);
-            Assert.AreEqual("Item3", observableReadOnlyList[2]);
+            NUnit.Framework.Assert.AreEqual(3, observableReadOnlyList.Count);
+            NUnit.Framework.Assert.AreEqual("Item1", observableReadOnlyList[0]);
+            NUnit.Framework.Assert.AreEqual("Item2", observableReadOnlyList[1]);
+            NUnit.Framework.Assert.AreEqual("Item3", observableReadOnlyList[2]);
 
             var contains = observableReadOnlyList.Contains("Item3");
             var notContains = observableReadOnlyList.Contains("Item4");
-            Assert.IsTrue(contains);
-            Assert.IsFalse(notContains);
+            NUnit.Framework.Assert.IsTrue(contains);
+            NUnit.Framework.Assert.IsFalse(notContains);
 
             observableReadOnlyList.Remove("Item2");
-            Assert.AreEqual(2, observableReadOnlyList.Count);
-            Assert.AreEqual("Item1", observableReadOnlyList[0]);
-            Assert.AreEqual("Item3", observableReadOnlyList[1]);
+            NUnit.Framework.Assert.AreEqual(2, observableReadOnlyList.Count);
+            NUnit.Framework.Assert.AreEqual("Item1", observableReadOnlyList[0]);
+            NUnit.Framework.Assert.AreEqual("Item3", observableReadOnlyList[1]);
 
             var array = new string[3];
             observableReadOnlyList.CopyTo(array, 1);
 
-            Assert.IsNull(array[0]);
-            Assert.AreEqual("Item1", array[1]);
-            Assert.AreEqual("Item3", array[2]);
+            NUnit.Framework.Assert.IsNull(array[0]);
+            NUnit.Framework.Assert.AreEqual("Item1", array[1]);
+            NUnit.Framework.Assert.AreEqual("Item3", array[2]);
         }
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ObservableReadOnlyList_IEnumerable")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ObservableReadOnlyList_IEnumerable")]
         public void ObservableReadOnlyList_IEnumerable_Implemented()
         {
             //------------Setup for test--------------------------
@@ -110,22 +112,22 @@ namespace Dev2.Infrastructure.Tests.Collections
             //------------Execute Test---------------------------
 
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(observableReadOnlyList, typeof(IEnumerable<string>));
+            NUnit.Framework.Assert.IsInstanceOf(observableReadOnlyList.GetType(), typeof(IEnumerable<string>));
 
             var enumeratorCount = 0;
             var enumerator = observableReadOnlyList.GetEnumerator();
             while(enumerator.MoveNext())
             {
-                Assert.AreEqual("Item" + ++enumeratorCount, enumerator.Current);
+                NUnit.Framework.Assert.AreEqual("Item" + ++enumeratorCount, enumerator.Current);
             }
 
-            Assert.AreEqual(3, enumeratorCount);
+            NUnit.Framework.Assert.AreEqual(3, enumeratorCount);
         }
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ObservableReadOnlyList_INotifyCollectionChanged")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ObservableReadOnlyList_INotifyCollectionChanged")]
         public void ObservableReadOnlyList_INotifyCollectionChanged_Implemented()
         {
             //------------Setup for test--------------------------
@@ -138,13 +140,13 @@ namespace Dev2.Infrastructure.Tests.Collections
             observableReadOnlyList.Add("item4");
 
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(observableReadOnlyList, typeof(INotifyCollectionChanged));
-            Assert.IsTrue(collectionChanged);
+            NUnit.Framework.Assert.IsInstanceOf(observableReadOnlyList.GetType(), typeof(INotifyCollectionChanged));
+            NUnit.Framework.Assert.IsTrue(collectionChanged);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ObservableReadOnlyList_CollectionChanged")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ObservableReadOnlyList_CollectionChanged")]
         public void ObservableReadOnlyList_CollectionChanged_BoundToCollectionViewAndModifiedFromNonDispatcherThread_DoesNotThrowException()
         {
             //------------Setup for test--------------------------
@@ -208,7 +210,7 @@ namespace Dev2.Infrastructure.Tests.Collections
             otherDone.Wait();
 
             //------------Assert Results-------------------------
-            Assert.IsNull(exceptionMessage);
+            NUnit.Framework.Assert.IsNull(exceptionMessage);
         }
     }
 

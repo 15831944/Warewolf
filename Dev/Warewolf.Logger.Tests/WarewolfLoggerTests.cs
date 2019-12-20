@@ -7,17 +7,18 @@
 *  AUTHORS <http://warewolf.io/authors.php> , CONTRIBUTORS <http://warewolf.io/contributors.php>
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.Linq;
 
 namespace Warewolf.Logger.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WarewolfLoggerTests
     {
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(LoggerContext))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(LoggerContext))]
         public void LoggerContext_Contructor_Verbose_IsTrue()
         {
             var args = new Args
@@ -29,9 +30,9 @@ namespace Warewolf.Logger.Tests
             Assert.IsTrue(loggerContext.Verbose);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(LoggerContext))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(LoggerContext))]
         public void LoggerContext_Contructor_Verbose_IsFalse()
         {
             var args = new Args

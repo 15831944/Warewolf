@@ -4,16 +4,17 @@ using Dev2.Activities.Exchange;
 using Dev2.Common.Interfaces.Core;
 using Dev2.Common.Interfaces.ToolBase.ExchangeEmail;
 using Dev2.Common.State;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfExchangeEmailActivityComparerTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UniqueIDEquals_EmptyDropBoxDeleteActivities_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -28,8 +29,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UniqueID_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -43,8 +44,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             //---------------Test Result -----------------------
             Assert.IsFalse(equals);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -59,8 +60,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -75,8 +76,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -90,8 +91,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             //---------------Test Result -----------------------
             Assert.IsFalse(equals);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Result_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -106,8 +107,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Result_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -122,8 +123,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Result_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -138,8 +139,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void To_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -154,8 +155,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void To_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -170,8 +171,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DeletePath_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -187,8 +188,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Cc_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -203,8 +204,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Cc_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -219,8 +220,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Cc_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -236,8 +237,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Bcc_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -252,8 +253,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Bcc_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -268,8 +269,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Bcc_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -284,8 +285,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Subject_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -300,8 +301,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Subject_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -316,8 +317,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Subject_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -333,8 +334,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Attachments_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -349,8 +350,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Attachments_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -365,8 +366,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Attachments_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -382,8 +383,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Body_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -398,8 +399,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void BodyDifferent_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -414,8 +415,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Body_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -430,8 +431,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void SavedSource_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -448,8 +449,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void SavedSource_Same_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -466,9 +467,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DsfExchangeEmailActivity_GetState")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DsfExchangeEmailActivity_GetState")]
         public void DsfExchangeEmailActivity_GetState_ReturnsStateVariable()
         {
             //------------Setup for test--------------------------
@@ -569,7 +570,7 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             }
         }
 
-        [TestMethod]
+        [Test]
         public void SavedSource_Null_Object_Is_NotEqual()
         {
             //---------------Set up test pack-------------------
@@ -582,7 +583,7 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsFalse(exchangeEmailActivity.Equals(null), "Equals operator can't compare to null.");
         }
 
-        [TestMethod]
+        [Test]
         public void SavedSource_Itself_Is_Equal()
         {
             //---------------Set up test pack-------------------

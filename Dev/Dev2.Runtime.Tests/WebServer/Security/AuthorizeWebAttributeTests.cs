@@ -16,18 +16,19 @@ using System.Web.Http.Controllers;
 using Dev2.Runtime.Security;
 using Dev2.Runtime.WebServer.Security;
 using Dev2.Services.Security;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.Runtime.WebServer.Security
 {
-    [TestClass]
-    [TestCategory("Runtime WebServer")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime WebServer")]
     public class AuthorizeWebAttributeTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizeWebAttribute_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizeWebAttribute_Constructor")]
         public void AuthorizeWebAttribute_Constructor_Default_ProviderIsAuthorizationProviderInstance()
         {
             //------------Setup for test--------------------------
@@ -39,9 +40,9 @@ namespace Dev2.Tests.Runtime.WebServer.Security
             Assert.AreSame(ServerAuthorizationService.Instance, attribute.Service);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizeWebAttribute_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizeWebAttribute_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void AuthorizeWebAttribute_Constructor_AuthorizationProviderIsNull_ThrowsArgumentNullException()
         {
@@ -55,9 +56,9 @@ namespace Dev2.Tests.Runtime.WebServer.Security
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizeWebAttribute_OnAuthorization")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizeWebAttribute_OnAuthorization")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void AuthorizeWebAttribute_OnAuthorization_ActionContextIsNull_ThrowsArgumentNullException()
         {
@@ -71,33 +72,33 @@ namespace Dev2.Tests.Runtime.WebServer.Security
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizeWebAttribute_OnAuthorization")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizeWebAttribute_OnAuthorization")]
         public void AuthorizeWebAttribute_OnAuthorization_UserIsNotAuthenticated_ResponseIsUnauthorized()
         {
             Verify_OnAuthorization_Response(false, null, false, HttpStatusCode.Unauthorized, "Authorization has been denied for this request.");
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizeWebAttribute_OnAuthorization")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizeWebAttribute_OnAuthorization")]
         public void AuthorizeWebAttribute_OnAuthorization_UserIsAuthenticatedAndNotAuthorized_ResponseIsAccessDenied()
         {
             Verify_OnAuthorization_Response(true, null, false, HttpStatusCode.Forbidden, "Access has been denied for this request.");
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizeWebAttribute_OnAuthorization")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizeWebAttribute_OnAuthorization")]
         public void AuthorizeWebAttribute_OnAuthorization_UserIsAuthenticatedAndAuthorized_ResponseIsNull()
         {
             Verify_OnAuthorization_Response(true, null, true, HttpStatusCode.OK, null);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("AuthorizeWebAttribute_OnAuthorization")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("AuthorizeWebAttribute_OnAuthorization")]
         public void AuthorizeWebAttribute_OnAuthorization_WhenInternalService_UserIsAuthenticated()
         {
             //------------Setup for test--------------------------
@@ -106,9 +107,9 @@ namespace Dev2.Tests.Runtime.WebServer.Security
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("AuthorizeWebAttribute_OnAuthorization")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("AuthorizeWebAttribute_OnAuthorization")]
         public void AuthorizeWebAttribute_OnAuthorization_WhenInternalService_UserIsNotAuthenticated()
         {
             //------------Setup for test--------------------------
@@ -117,9 +118,9 @@ namespace Dev2.Tests.Runtime.WebServer.Security
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("AuthorizeWebAttribute_OnAuthorization")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("AuthorizeWebAttribute_OnAuthorization")]
         public void AuthorizeWebAttribute_OnAuthorization_WhenNotInternalService_UserIsNotAuthenticated()
         {
             //------------Setup for test--------------------------
@@ -128,9 +129,9 @@ namespace Dev2.Tests.Runtime.WebServer.Security
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("AuthorizeWebAttribute_OnAuthorization")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("AuthorizeWebAttribute_OnAuthorization")]
         public void AuthorizeWebAttribute_OnAuthorization_WhenNotInternalService_UserIsAuthenticated()
         {
             //------------Setup for test--------------------------

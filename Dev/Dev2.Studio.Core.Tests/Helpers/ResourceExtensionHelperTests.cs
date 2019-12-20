@@ -2,7 +2,7 @@ using Dev2.Common.Interfaces.Data;
 using Dev2.Common.Interfaces.Studio.Controller;
 using Dev2.Common.Interfaces.Wrappers;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.IO;
@@ -10,11 +10,12 @@ using System.Text;
 
 namespace Dev2.Studio
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
 
     public class ResourceExtensionHelperTests
     {
-        [TestMethod]
+        [Test]
         public void HandleResourceNotInResourceFolderAsync_Given_MoveCancel_On_Popup_MessageBox_Has_Null_ViewModel()
         {
             var popupController = new Mock<IPopupController>();
@@ -28,7 +29,7 @@ namespace Dev2.Studio
             Assert.IsNull(results.Result);
         }
 
-        [TestMethod]
+        [Test]
         public void HandleResourceNotInResourceFolderAsync_Given_MoveOK_On_Popup_MessageBox_Has_Null_ViewModel()
         {
             var file = new Mock<IFile>();
@@ -54,7 +55,7 @@ namespace Dev2.Studio
             shellViewModel.Verify(p => p.OpenResource(It.IsAny<Guid>(), It.IsAny<Guid>(), It.IsAny<IServer>(), It.IsAny<IContextualResourceModel>()), Times.AtLeastOnce);
         }
 
-        [TestMethod]
+        [Test]
         public void HandleResourceNotInResourceFolderAsync_Given_Source_And_MoveOK_On_Popup_MessageBox_Has_Null_ViewModel()
         {
             var file = new Mock<IFile>();
@@ -88,7 +89,7 @@ namespace Dev2.Studio
             shellViewModel.Verify(p => p.OpenResource(It.IsAny<Guid>(), It.IsAny<Guid>(), It.IsAny<IServer>(), It.IsAny<IContextualResourceModel>()), Times.AtLeastOnce);
         }
 
-        [TestMethod]
+        [Test]
         public void HandleResourceInResourceFolderAndOtherDir_Given_MoveOK_On_Popup_MessageBox_Has_Null_ViewModel()
         {
             var file = new Mock<IFile>();
@@ -114,7 +115,7 @@ namespace Dev2.Studio
             shellViewModel.Verify(p => p.OpenResource(It.IsAny<Guid>(), It.IsAny<Guid>(), It.IsAny<IServer>(), It.IsAny<IContextualResourceModel>()), Times.AtLeastOnce);
         }
 
-        [TestMethod]
+        [Test]
         public void HandleResourceInResourceFolderAndOtherDir_Given_Source_And_MoveOK_On_Popup_MessageBox_Has_Null_ViewModel()
         {
             var file = new Mock<IFile>();

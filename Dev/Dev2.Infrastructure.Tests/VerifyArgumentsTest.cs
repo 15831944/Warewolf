@@ -11,17 +11,18 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Infrastructure.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class VerifyArgumentsTest
     {
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("VerifyArgumentsTest_AreNotNull")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("VerifyArgumentsTest_AreNotNull")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void VerifyArgumentsTest_AreNotNull_Throws()
         {
@@ -54,9 +55,9 @@ namespace Dev2.Infrastructure.Tests
             actual = new StringBuilder(actual).Replace(Environment.NewLine, "").Replace("\r", "").ToString();
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("VerifyArgumentsTest_AreNotNull")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("VerifyArgumentsTest_AreNotNull")]
         public void VerifyArgumentsTest_AreNotNull_DoesNotThrows()
         {
             VerifyArgument.AreNotNull(new Dictionary<string, object>

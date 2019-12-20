@@ -2,18 +2,20 @@
 using System.Collections.Generic;
 using Dev2.Common.Common;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Warewolf.Storage;
 using WarewolfParserInterop;
 
 
 namespace WarewolfParsingTest
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class TestDistinct
     {
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Distinct_EvalDistinct")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Distinct_EvalDistinct")]
         public void Distinct_EvalDistinct_HappyPath_ExpectDistinctResults()
         {
             //------------Setup for test--------------------------
@@ -24,13 +26,13 @@ namespace WarewolfParsingTest
             
             //------------Assert Results-------------------------
            var res = CommonFunctions.evalResultToString( EvaluationFunctions.eval(modified, 0, false, "[[Bec(*).a]]"));
-            Assert.AreEqual(res,"1,2,3");
+            NUnit.Framework.Assert.AreEqual(res,"1,2,3");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Distinct_EvalDistinct")]
-        [ExpectedException(typeof(NullValueInVariableException))]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Distinct_EvalDistinct")]
+        [NUnit.Framework.ExpectedException(typeof(NullValueInVariableException))]
         public void Distinct_EvalDistinct_MultipleRecsetsExpectSomethingBad()
         {
             //------------Setup for test--------------------------
@@ -41,13 +43,13 @@ namespace WarewolfParsingTest
 
             //------------Assert Results-------------------------
             var res = CommonFunctions.evalResultToString(EvaluationFunctions.eval(modified, 0, false, "[[Bec(*).a]]"));
-            Assert.AreEqual(res, "1,2,3");
+            NUnit.Framework.Assert.AreEqual(res, "1,2,3");
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Distinct_EvalDistinct")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Distinct_EvalDistinct")]
         public void Distinct_EvalDistinct_HappyPath_ExpectDistinctResults_Expression()
         {
             //------------Setup for test--------------------------
@@ -58,12 +60,12 @@ namespace WarewolfParsingTest
 
             //------------Assert Results-------------------------
             var res = CommonFunctions.evalResultToString(EvaluationFunctions.eval(modified, 0, false, "[[Bec(*).a]]"));
-            Assert.AreEqual(res, "1,2,3");
+            NUnit.Framework.Assert.AreEqual(res, "1,2,3");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Distinct_EvalDistinct")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Distinct_EvalDistinct")]
         public void Distinct_EvalDistinct_HappyPath_Last_ExpectDistinctResults()
         {
             //------------Setup for test--------------------------
@@ -74,13 +76,13 @@ namespace WarewolfParsingTest
 
             //------------Assert Results-------------------------
             var res = CommonFunctions.evalResultToString(EvaluationFunctions.eval(modified, 0, false, "[[Bec(*).a]]"));
-            Assert.AreEqual(res, "1,2,3");
+            NUnit.Framework.Assert.AreEqual(res, "1,2,3");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Distinct_EvalDistinct")]
-        [ExpectedException(typeof(Exception))]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Distinct_EvalDistinct")]
+        [NUnit.Framework.ExpectedException(typeof(Exception))]
         public void Distinct_EvalDistinct_HappyPath_indexExp_ExpectDistinctResults()
         {
             //------------Setup for test--------------------------
@@ -91,11 +93,11 @@ namespace WarewolfParsingTest
 
             //------------Assert Results-------------------------
             var res = CommonFunctions.evalResultToString(EvaluationFunctions.eval(modified, 0, false, "[[Bec(*).a]]"));
-            Assert.AreEqual(res, "3");
+            NUnit.Framework.Assert.AreEqual(res, "3");
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Distinct_EvalDistinct")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Distinct_EvalDistinct")]
         public void Distinct_EvalDistinct_HappyPathScalarResult_ExpectDistinctResults()
         {
             //------------Setup for test--------------------------
@@ -106,12 +108,12 @@ namespace WarewolfParsingTest
 
             //------------Assert Results-------------------------
             var res = CommonFunctions.evalResultToString(EvaluationFunctions.eval(modified, 0, false, "[[ax]]"));
-            Assert.AreEqual(res, "1,2,3");
+            NUnit.Framework.Assert.AreEqual(res, "1,2,3");
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Distinct_EvalDistinct")]
-        [ExpectedException(typeof(Exception))]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Distinct_EvalDistinct")]
+        [NUnit.Framework.ExpectedException(typeof(Exception))]
         public void Distinct_EvalDistinct_HappyPathComplexResult_ExpectDistinctResults()
         {
             //------------Setup for test--------------------------
@@ -122,12 +124,11 @@ namespace WarewolfParsingTest
 
             //------------Assert Results-------------------------
             var res = CommonFunctions.evalResultToString(EvaluationFunctions.eval(modified, 0, false, "[[ax]]"));
-            Assert.AreEqual(res, "1,2,3");
+            NUnit.Framework.Assert.AreEqual(res, "1,2,3");
         }
 
         static DataStorage.WarewolfEnvironment CreateEnvironmentWithData()
         {
-
             var env = new ExecutionEnvironment();
             env.Assign("[[Rec(1).a]]", "1", 0);
             env.Assign("[[Rec(2).a]]", "2", 0);

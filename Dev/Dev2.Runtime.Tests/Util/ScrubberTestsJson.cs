@@ -11,14 +11,14 @@
 using System.Collections.Generic;
 using Dev2.Common.Interfaces.Core.Graph;
 using Dev2.Data.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Framework.Converters.Graph.String.Json;
 
 namespace Dev2.Tests.Runtime.Util
 {
     public partial class ScrubberTests
     {
-        [TestMethod]
+        [Test]
         public void ScrubberScrubJsonWithNonArrayDefinitionExpectedReturnsSameJson()
         {
             //------------------------Setup ----------------------------------------------------------------------
@@ -31,7 +31,7 @@ namespace Dev2.Tests.Runtime.Util
             Assert.AreEqual(JsonData,scrub);
         }
 
-        [TestMethod]
+        [Test]
         public void ScrubberScrubJsonWhereDataIsArrayWithNoNameExpectNamedArray()
         {
             //------------Setup for test--------------------------
@@ -51,7 +51,7 @@ namespace Dev2.Tests.Runtime.Util
             Assert.AreEqual(ExpectedData, scrub);
         }      
         
-        [TestMethod]
+        [Test]
         public void ScrubberScrubJsonWhereDataIsArrayWithNameExpectSameJson()
         {
             //------------Setup for test--------------------------
@@ -63,7 +63,7 @@ namespace Dev2.Tests.Runtime.Util
             Assert.AreEqual(JsonData, scrub);            
         }
 
-        [TestMethod]
+        [Test]
         public void VerifyScrubWhereRegularJsonExpectCorrectOutputDescription()
         {
             //------------Setup for test--------------------------
@@ -78,7 +78,7 @@ namespace Dev2.Tests.Runtime.Util
             VerifyScrub(JsonData,paths);
         }
 
-        [TestMethod]
+        [Test]
         public void VerifyScrubJsonWhereDataIsArrayWithNameExpectCorrectOutputDescription()
         {
             //------------Setup for test--------------------------
@@ -94,7 +94,7 @@ namespace Dev2.Tests.Runtime.Util
             VerifyScrub(JsonData, paths);
         }
 
-        [TestMethod]
+        [Test]
         public void VerifyScrubJsonWhereComplexStructureExpectCorrectOutputDescription()
         {
             //------------Setup for test--------------------------

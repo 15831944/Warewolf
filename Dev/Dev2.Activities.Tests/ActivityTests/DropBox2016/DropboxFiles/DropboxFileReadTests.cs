@@ -1,15 +1,17 @@
 ﻿using Dev2.Activities.DropBox2016.DropboxFileActivity;
 using Dev2.Activities.DropBox2016.Result;
 using Dropbox.Api.Files;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System.Reflection;
 using Dev2.Common.Interfaces.Wrappers;
 using System;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.DropboxFiles
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
 
     public class DropboxFileReadTests
     {
@@ -22,8 +24,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.DropboxFiles
             return mock;
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateDropBoxActivity_GivenIsNew_ShouldNotBeNull()
         {
             //---------------Set up test pack-------------------
@@ -31,37 +33,37 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.DropboxFiles
             //---------------Assert Precondition----------------
             //---------------Execute Test ----------------------
             //---------------Test Result -----------------------
-            Assert.IsNotNull(dropboxFileRead);
+            NUnit.Framework.Assert.IsNotNull(dropboxFileRead);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ExecuteTask_GivendropboxFileRead_ShouldReturnFileMetadata()
         {
             //---------------Set up test pack-------------------
             var downloadMock = CreateDropboxReadMock();
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(downloadMock);
+            NUnit.Framework.Assert.IsNotNull(downloadMock);
             //---------------Execute Test ----------------------
             //---------------Test Result -----------------------
             downloadMock.Object.ExecuteTask(It.IsAny<IDropboxClient>());
             downloadMock.Verify(upload => upload.ExecuteTask(It.IsAny<IDropboxClient>()));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateNewDropboxUpload_GivenEmptyPath_ShouldBeValid()
         {
             //---------------Set up test pack-------------------
             var dropboxFileRead = new DropboxFileRead(true, "", false, false);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(dropboxFileRead);
+            NUnit.Framework.Assert.IsNotNull(dropboxFileRead);
             //---------------Execute Test ----------------------
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateNewdropboxFileRead_GivenPath_ShouldBeValid()
         {
             //---------------Set up test pack-------------------
@@ -69,28 +71,28 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.DropboxFiles
             //---------------Assert Precondition----------------
             //---------------Execute Test ----------------------
             //---------------Test Result -----------------------
-            Assert.IsNotNull(dropboxFileRead);
+            NUnit.Framework.Assert.IsNotNull(dropboxFileRead);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateNewdropboxFileRead_GivenNullPath_ShouldBeValid()
         {
             //---------------Set up test pack-------------------
             var dropboxFileRead = new DropboxFileRead(true, null, false, false);
-            var type = new PrivateObject(dropboxFileRead);
+            var type = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(dropboxFileRead);
             var staticField = type.GetField("_path", BindingFlags.Instance | BindingFlags.NonPublic);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(dropboxFileRead);
-            Assert.IsNotNull(staticField);
+            NUnit.Framework.Assert.IsNotNull(dropboxFileRead);
+            NUnit.Framework.Assert.IsNotNull(staticField);
             //---------------Execute Test ----------------------
             //---------------Test Result -----------------------
-            Assert.IsNotNull(staticField);
-            Assert.AreEqual("", "");
+            NUnit.Framework.Assert.IsNotNull(staticField);
+            NUnit.Framework.Assert.AreEqual("", "");
         }
 
-        [TestMethod]
-        [Owner("Ashley Lewis")]
+        [Test]
+        [Author("Ashley Lewis")]
         public void ExecuteDropboxFileRead_Throws_ShouldReturnFailedResult()
         {
             //---------------Set up test pack-------------------
@@ -101,7 +103,7 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.DropboxFiles
             //---------------Execute Test ----------------------
             var result = dropBoxFileRead.ExecuteTask(mockDropboxClient.Object);
             //---------------Test Result -----------------------
-            Assert.IsInstanceOfType(result, typeof(DropboxFailureResult), "Dropbox failure result not returned after exception");
+            NUnit.Framework.Assert.IsInstanceOf(result.GetType(), typeof(DropboxFailureResult), "Dropbox failure result not returned after exception");
         }
     }
 }

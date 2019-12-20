@@ -8,17 +8,18 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.Collections.Generic;
 
 namespace Dev2.Common.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SingleApiTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(SingleApi))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(SingleApi))]
         public void SingleApi_SetProperties_AreEqual_ToPropertyValue_ExpertTrue()
         {
             //----------------------Arrange-----------------------

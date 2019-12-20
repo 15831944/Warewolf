@@ -12,20 +12,21 @@ using System;
 using System.Text;
 using Dev2.Common;
 using Dev2.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Utils
 {
     /// <summary>
     /// Summary description for Dev2XamlLoaderTest
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class Dev2XamlCleanerTest
     {
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("Dev2XamlCleaner_StripNaughtyNamespaces")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("Dev2XamlCleaner_StripNaughtyNamespaces")]
         public void Dev2XamlCleaner_StripNaughtyNamespaces_WhenContainsBadNamespace_ExpectNamespaceRemoved()
         {
             //------------Setup for test--------------------------

@@ -1,14 +1,15 @@
 using Dev2.Data.Decisions.Operations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests.DecisionsTests
 {    
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IsBinaryTests
     {
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("IsBinary_Invoke")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("IsBinary_Invoke")]
         public void IsBinary_Invoke_DoesEndWith_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -18,15 +19,15 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = isBinary.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
             result = isBinary.Invoke(new []{string.Empty});
             //------------Assert Results-------------------------
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("IsBinary_Invoke")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("IsBinary_Invoke")]
         public void IsBinary_Invoke_DoesntEndWith_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -36,12 +37,12 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = isBinary.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthmembu")]
-        [TestCategory("IsBinary_HandlesType")]
+        [Test]
+        [Author("Sanele Mthmembu")]
+        [Category("IsBinary_HandlesType")]
         public void IsBinary_HandlesType_ReturnsIsBinaryType()
         {
             var expected = enDecisionType.IsBinary;
@@ -49,7 +50,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             var isBinary = new IsBinary();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.AreEqual(expected, isBinary.HandlesType());
+            NUnit.Framework.Assert.AreEqual(expected, isBinary.HandlesType());
         }
     }
 }

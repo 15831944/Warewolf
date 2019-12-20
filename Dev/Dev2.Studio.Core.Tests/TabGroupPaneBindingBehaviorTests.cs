@@ -1,13 +1,14 @@
 ﻿using Dev2.Studio.AppResources.Behaviors;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Infragistics.Windows.DockManager;
 
 namespace Dev2.Core.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class TabGroupPaneBindingBehaviorTests
     {
-        [TestMethod]
+        [Test]
         public void TabGroupPaneBindingBehavior_SetDocumentHost_CanSetDocumentHost()
         {
             //------------Setup for test-------------------------

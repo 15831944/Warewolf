@@ -4,17 +4,18 @@ using Dev2.Common.Interfaces.Data;
 using Dev2.Interfaces;
 using Dev2.Runtime.Interfaces;
 using Dev2.Runtime.WebServer;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.Runtime.WebServer
 {
-    [TestClass]
-    [TestCategory("Runtime WebServer")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime WebServer")]
     public class DataObjectExtentionsTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         //SetResourceNameAndId(this IDSFDataObject dataObject, IResourceCatalog catalog, string serviceName, out IResource resource)
         public void SetResourceNameAndId_GivenResourceNameIsBad_ShouldFixAndLoadResource()
         {

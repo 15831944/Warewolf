@@ -7,13 +7,14 @@ using Dev2.Common.Interfaces.Core.DynamicServices;
 using Dev2.Common.Interfaces.Core.Graph;
 using Dev2.Runtime.Interfaces;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Framework.Converters.Graph.Ouput;
 
 namespace Dev2.Tests.Runtime.ServiceModel.Data
 {
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class WcfSourceTests
     {
         public WcfSource GetSource()
@@ -21,7 +22,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             return new WcfSource(new FakeWcfProxyService()) {Name = "WcfSource", EndpointUrl = "TestUrl"};
         }
 
-        [TestMethod]
+        [Test]
         public void WcfSource_InstantiateNewSource_ReturnsSuccess()
         {
             var source = GetSource();
@@ -29,7 +30,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.IsNotNull(source);
         }
 
-        [TestMethod]
+        [Test]
         public void WcfSource_InitializeProperties_ReturnsSuccess()
         {
             var source = GetSource();
@@ -49,7 +50,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.IsNotNull(source.Type);
         }
 
-        [TestMethod]
+        [Test]
         public void WcfSource_Equals_ReturnsSuccess()
         {
             var source = GetSource();
@@ -58,7 +59,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
         }
 
         
-        [TestMethod]
+        [Test]
         public void WcfSource_ToXml_ReturnsSuccess()
         {
             var source = GetSource();
@@ -69,14 +70,14 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual(source.ResourceType, actual.ResourceType);
         }
 
-        [TestMethod]
+        [Test]
         public void WcfSource_Execute_ReturnsSuccess()
         {
             var source = GetSource();
            source.Execute();
         }
 
-        [TestMethod]
+        [Test]
         public void WcfSource_ExecuteWithService_ReturnsSuccess()
         {
             var source = GetSource();
@@ -85,7 +86,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.IsNotNull(source);
         }
 
-        [TestMethod]
+        [Test]
         public void WcfSource_ExecuteWithAction_ReturnsSuccess()
         {
             var source = GetSource();
@@ -94,7 +95,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.IsNotNull(source);
         }
 
-        [TestMethod]
+        [Test]
         public void WcfSource_DataList_ReturnsSuccess()
         {
             var source = GetSource();

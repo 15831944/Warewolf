@@ -13,19 +13,20 @@ using Dev2.Studio.Core;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
 using Dev2.Studio.Interfaces.DataList;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Activities.Designers.Tests.Rename
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class RenameDesignerViewModelTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("RenameDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("RenameDesignerViewModel_Constructor")]
         public void RenameDesignerViewModel_Constructor_Properties_Initialized()
         {
             //------------Setup for test-------------------------
@@ -42,9 +43,9 @@ namespace Dev2.Activities.Designers.Tests.Rename
             Assert.AreEqual(0, viewModel.TitleBarToggles.Count);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("RenameDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("RenameDesignerViewModel_Handle")]
         public void RenameDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -60,9 +61,9 @@ namespace Dev2.Activities.Designers.Tests.Rename
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("RenameDesignerViewModel_Validate")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("RenameDesignerViewModel_Validate")]
         public void RenameDesignerViewModel_Validate_CorrectFieldsAreValidated()
         {
             //------------Setup for test-------------------------

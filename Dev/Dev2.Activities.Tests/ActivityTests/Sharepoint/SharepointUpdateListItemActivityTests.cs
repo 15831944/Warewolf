@@ -11,13 +11,15 @@ using Dev2.DynamicServices;
 using Dev2.Runtime.Interfaces;
 using Dev2.TO;
 using Dev2.Utilities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using static Dev2.Tests.Activities.ActivityTests.Sharepoint.SharepointCopyFileActivityTests;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SharepointUpdateListItemActivityTests : BaseActivityUnitTest
     {
         SharepointUpdateListItemActivity CreateActivity()
@@ -25,21 +27,21 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
             return new SharepointUpdateListItemActivity();
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SharepointUpdateListItemActivity_Construct")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SharepointUpdateListItemActivity_Construct")]
         public void SharepointUpdateListItemActivity_Construct_GivenInstance_ShouldNotBeNull()
         {
             //------------Setup for test--------------------------
             var sharepointUpdateListItemActivity = CreateActivity();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.IsNotNull(sharepointUpdateListItemActivity);
+            NUnit.Framework.Assert.IsNotNull(sharepointUpdateListItemActivity);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SharepointUpdateListItem_Execute")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SharepointUpdateListItem_Execute")]
         public void SharepointSource_DoesNotExist_OnResourceCatalog_ShouldSetSharepointSource_ToGuidEmpty()
         {
             //------------Setup for test--------------------------
@@ -59,18 +61,18 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
             var resourceCatalog = new Mock<IResourceCatalog>();
             var mockSharepointSource = new Mock<SharepointSource>();
 
-            var privateObject = new PrivateObject(sharepointUpdateListItemActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(sharepointUpdateListItemActivity);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
 
             //------------Execute Test---------------------------
             privateObject.Invoke("ExecuteTool", dataObj, 0);
 
-            Assert.AreEqual(resourceId, sharepointUpdateListItemActivity.SharepointServerResourceId);
+            NUnit.Framework.Assert.AreEqual(resourceId, sharepointUpdateListItemActivity.SharepointServerResourceId);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SharepointUpdateListItem_Execute")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SharepointUpdateListItem_Execute")]
         public void SharepointSource_Exists_OnResourceCatalog_BlankRecordSet()
         {
             //------------Setup for test--------------------------
@@ -99,18 +101,18 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
 
             resourceCatalog.Setup(r => r.GetResource<SharepointSource>(It.IsAny<Guid>(), It.IsAny<Guid>())).Returns(mockSharepointSource);
 
-            var privateObject = new PrivateObject(sharepointUpdateListItemActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(sharepointUpdateListItemActivity);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
 
             //------------Execute Test---------------------------
             privateObject.Invoke("ExecuteTool", dataObj, 0);
             //------------Assert Result--------------------------
             GetRecordSetFieldValueFromDataList(dataObj.Environment, "Files", "Name", out IList<string> result, out string error);
-            Assert.IsNotNull(result);
+            NUnit.Framework.Assert.IsNotNull(result);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("SharepointUpdateListItemActivity_GetState")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("SharepointUpdateListItemActivity_GetState")]
         public void SharepointUpdateListItemActivity_GetState()
         {
             //------------Setup for test--------------------------
@@ -175,7 +177,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
                  }
             };
             var stateItems = sharepointUpdateListItemActivity.GetState();
-            Assert.AreEqual(6, stateItems.Count());
+            NUnit.Framework.Assert.AreEqual(6, stateItems.Count());
             var iter = stateItems.Select(
                 (item, index) => new
                 {
@@ -187,9 +189,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
             //------------Assert Results-------------------------
             foreach (var entry in iter)
             {
-                Assert.AreEqual(entry.expectValue.Name, entry.value.Name);
-                Assert.AreEqual(entry.expectValue.Type, entry.value.Type);
-                Assert.AreEqual(entry.expectValue.Value, entry.value.Value);
+                NUnit.Framework.Assert.AreEqual(entry.expectValue.Name, entry.value.Name);
+                NUnit.Framework.Assert.AreEqual(entry.expectValue.Type, entry.value.Type);
+                NUnit.Framework.Assert.AreEqual(entry.expectValue.Value, entry.value.Value);
             }
         }
 

@@ -8,11 +8,12 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DebugProviderTests
     {
     }

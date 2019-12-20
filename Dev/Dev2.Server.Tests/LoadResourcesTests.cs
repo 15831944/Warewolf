@@ -11,17 +11,18 @@
 using Dev2.Common;
 using Dev2.Common.Interfaces.Wrappers;
 using Dev2.Runtime.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System.IO;
 using System.Reflection;
 
 namespace Dev2.Server.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class LoadResourcesTests
     {
-        [TestInitialize]
+        [SetUp]
         public void Initialize()
         {
             if (EnvironmentVariables.ApplicationPath == null)
@@ -32,9 +33,9 @@ namespace Dev2.Server.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(LoadResources))]        
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(LoadResources))]        
         public void LoadResources_CheckExampleResources_DirectoryExists_True()
         {
             //------------------Arrange---------------
@@ -54,9 +55,9 @@ namespace Dev2.Server.Tests
             mockResourceCatalog.Verify();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(LoadResources))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(LoadResources))]
         public void LoadResources_CheckExampleResources_DirectoryExists_False()
         {
             //------------------Arrange---------------
@@ -74,9 +75,9 @@ namespace Dev2.Server.Tests
             mockResourceCatalog.Verify(o => o.LoadExamplesViaBuilder(It.IsAny<string>()), Times.Never);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(LoadResources))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(LoadResources))]
         public void LoadResources_MigrateOldResources_DirectoryExits_True()
         {
             //------------------Arrange---------------
@@ -95,9 +96,9 @@ namespace Dev2.Server.Tests
             mockDirectory.Verify(o => o.CleanUp(It.IsAny<string>()), Times.Never);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(LoadResources))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(LoadResources))]
         public void LoadResources_MigrateOldResources_DirectoryExits_False()
         {
             //------------------Arrange---------------
@@ -119,9 +120,9 @@ namespace Dev2.Server.Tests
             mockDirectory.Verify();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(LoadResources))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(LoadResources))]
         public void LoadResources_ValidateResourceFolder_Success()
         {
             //------------------Arrange---------------
@@ -140,9 +141,9 @@ namespace Dev2.Server.Tests
             mockDirectory.Verify();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(LoadResources))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(LoadResources))]
         public void LoadResources_MethodsToBeDepricated_Success()
         {
             //------------------Arrange---------------
@@ -162,9 +163,9 @@ namespace Dev2.Server.Tests
             mockResourceCatalog.Verify();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(LoadResources))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(LoadResources))]
         public void LoadResources_LoadResourceCatalog_Success()
         {
             //------------------Arrange---------------
@@ -187,9 +188,9 @@ namespace Dev2.Server.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(LoadResources))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(LoadResources))]
         public void LoadResources_LoadActivityCache_Success()
         {
             //------------------Arrange---------------
@@ -218,9 +219,9 @@ namespace Dev2.Server.Tests
             mockWriter.Verify();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(LoadResources))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(LoadResources))]
         public void LoadResources_LoadServerWorkspace_Success()
         {
             //------------------Arrange---------------
@@ -242,9 +243,9 @@ namespace Dev2.Server.Tests
             mockWriter.Verify();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(LoadResources))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(LoadResources))]
         public void LoadResources_MigrateOldTests_DirecotoryExists_True()
         {
             //------------------Arrange---------------
@@ -265,9 +266,9 @@ namespace Dev2.Server.Tests
             mockDirectory.Verify(o => o.CleanUp(It.IsAny<string>()), Times.Never);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(LoadResources))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(LoadResources))]
         public void LoadResources_MigrateOldTests_DirecotoryExists_False()
         {
             //------------------Arrange---------------

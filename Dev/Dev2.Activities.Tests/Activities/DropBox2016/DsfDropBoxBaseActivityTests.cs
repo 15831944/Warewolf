@@ -14,17 +14,18 @@ using Dev2.Activities.DropBox2016;
 using Dev2.Common.Interfaces.Wrappers;
 using Dev2.Common.State;
 using Dev2.Common.Wrappers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.Activities.Activities.DropBox2016
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfDropBoxBaseActivityTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxBaseActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxBaseActivity))]
         public void DsfDropBoxBaseActivity_SetupDropboxClient_DropboxClient_IsNotNull_ExpectTrue()
         {
             //----------------------------Arrange------------------------------

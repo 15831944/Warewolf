@@ -10,17 +10,18 @@
 
 using Dev2.Data.Interfaces;
 using Dev2.Data.PathOperations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Data.Tests.PathOperations
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ValidateAuthorizationTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ValidateAuthorization))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ValidateAuthorization))]
         public void ValidateAuthorization_DoLogOn_IsNull_ExpectTrue()
         {
             //--------------------------Arrange--------------------------
@@ -29,12 +30,12 @@ namespace Dev2.Data.Tests.PathOperations
             //--------------------------Act------------------------------
             var doLogOn = ValidateAuthorization.DoLogOn(mockValidateAuthorization.Object, mockActivityIOPath.Object);
             //--------------------------Assert---------------------------
-            Assert.IsNull(doLogOn);
+            NUnit.Framework.Assert.IsNull(doLogOn);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ValidateAuthorization))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ValidateAuthorization))]
         public void ValidateAuthorization_RequiresAuth_safeToken_IsNull_ExpectTrue()
         {
             //--------------------------Arrange--------------------------
@@ -43,7 +44,7 @@ namespace Dev2.Data.Tests.PathOperations
             //--------------------------Act------------------------------
             var doLogOn = ValidateAuthorization.RequiresAuth(mockActivityIOPath.Object, mockDev2LogonProvider.Object);
             //--------------------------Assert---------------------------
-            Assert.IsNull(doLogOn);
+            NUnit.Framework.Assert.IsNull(doLogOn);
         }
     }
 }

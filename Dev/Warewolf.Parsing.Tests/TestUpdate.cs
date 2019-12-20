@@ -1,17 +1,19 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Warewolf.Storage;
 using WarewolfParserInterop;
 
 
 namespace WarewolfParsingTest
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class TestUpdate
     {
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("UpdateInPlace_Update")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("UpdateInPlace_Update")]
         public void UpdateInPlace_Update_ApplyLambda_ExpectModified()
         {
             //------------Setup for test--------------------------
@@ -21,12 +23,12 @@ namespace WarewolfParsingTest
            var updated=  PublicFunctions.EvalUpdate("[[Rec(*).a]]", env, 0, a => DataStorage.WarewolfAtom.NewDataString("1x"));
             //------------Assert Results-------------------------
           var res = CommonFunctions.evalResultToString(  EvaluationFunctions.eval(updated, 0, false, "[[Rec(*).a]]"));
-            Assert.AreEqual(res,"1x,1x,1x,1x");
+            NUnit.Framework.Assert.AreEqual(res,"1x,1x,1x,1x");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("UpdateInPlace_Update")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("UpdateInPlace_Update")]
         public void UpdateInPlace_Update_ApplyLambda_ExpectModified_LastIndex()
         {
             //------------Setup for test--------------------------
@@ -36,13 +38,13 @@ namespace WarewolfParsingTest
             var updated = PublicFunctions.EvalUpdate("[[Rec().a]]", env, 0, a => DataStorage.WarewolfAtom.NewDataString("1x"));
             //------------Assert Results-------------------------
             var res = CommonFunctions.evalResultToString(EvaluationFunctions.eval(updated, 0, false, "[[Rec(*).a]]"));
-            Assert.AreEqual(res, "1,2,3,2,1x");
+            NUnit.Framework.Assert.AreEqual(res, "1,2,3,2,1x");
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("UpdateInPlace_Update")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("UpdateInPlace_Update")]
         public void UpdateInPlace_Update_ApplyLambda_ExpectModified_intIndex()
         {
             //------------Setup for test--------------------------
@@ -52,12 +54,12 @@ namespace WarewolfParsingTest
             var updated = PublicFunctions.EvalUpdate("[[Rec(1).a]]", env, 0, a => DataStorage.WarewolfAtom.NewDataString("1x"));
             //------------Assert Results-------------------------
             var res = CommonFunctions.evalResultToString(EvaluationFunctions.eval(updated, 0, false, "[[Rec(*).a]]"));
-            Assert.AreEqual(res, "1x,2,3,2");
+            NUnit.Framework.Assert.AreEqual(res, "1x,2,3,2");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("UpdateInPlace_Update")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("UpdateInPlace_Update")]
         public void UpdateInPlace_Update_ApplyLambda_Scalar()
         {
             //------------Setup for test--------------------------
@@ -67,13 +69,13 @@ namespace WarewolfParsingTest
             var updated = PublicFunctions.EvalUpdate("[[x]]", env, 0, a => DataStorage.WarewolfAtom.NewDataString("1x"));
             //------------Assert Results-------------------------
             var res = CommonFunctions.evalResultToString(EvaluationFunctions.eval(updated, 0, false, "[[x]]"));
-            Assert.AreEqual(res, "1x");
+            NUnit.Framework.Assert.AreEqual(res, "1x");
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("UpdateInPlace_Update")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("UpdateInPlace_Update")]
         public void UpdateInPlace_Update_ApplyLambda_reordSet()
         {
             //------------Setup for test--------------------------
@@ -83,14 +85,14 @@ namespace WarewolfParsingTest
             var updated = PublicFunctions.EvalUpdate("[[Rec(*)]]", env, 0, a => DataStorage.WarewolfAtom.NewDataString("1x"));
             //------------Assert Results-------------------------
             var res = CommonFunctions.evalResultToString(EvaluationFunctions.eval(updated, 0, false, "[[Rec(*)]]"));
-            Assert.AreEqual(res, "1x,1x,1x,1x,1x,1x,1x,1x");
+            NUnit.Framework.Assert.AreEqual(res, "1x,1x,1x,1x,1x,1x,1x,1x");
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("UpdateInPlace_Update")]
-        [ExpectedException(typeof(Exception))]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("UpdateInPlace_Update")]
+        [NUnit.Framework.ExpectedException(typeof(Exception))]
         public void UpdateInPlace_Update_ApplyLambda_Atom()
         {
             //------------Setup for test--------------------------
@@ -100,13 +102,13 @@ namespace WarewolfParsingTest
             var updated = PublicFunctions.EvalUpdate("12", env, 0, a => DataStorage.WarewolfAtom.NewDataString("1x"));
             //------------Assert Results-------------------------
             var res = CommonFunctions.evalResultToString(EvaluationFunctions.eval(updated, 0, false, "[[x]]"));
-            Assert.AreEqual(res, "1x");
+            NUnit.Framework.Assert.AreEqual(res, "1x");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("UpdateInPlace_Update")]
-        [ExpectedException(typeof(Exception))]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("UpdateInPlace_Update")]
+        [NUnit.Framework.ExpectedException(typeof(Exception))]
         public void UpdateInPlace_Update_ApplyLambda_NonExistent()
         {
             //------------Setup for test--------------------------
@@ -116,12 +118,12 @@ namespace WarewolfParsingTest
             var updated = PublicFunctions.EvalUpdate("[[ressss().a]]", env, 0, a => DataStorage.WarewolfAtom.NewDataString("1x"));
             //------------Assert Results-------------------------
             var res = CommonFunctions.evalResultToString(EvaluationFunctions.eval(updated, 0, false, "[[x]]"));
-            Assert.AreEqual(res, "1x");
+            NUnit.Framework.Assert.AreEqual(res, "1x");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("UpdateInPlace_Update")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("UpdateInPlace_Update")]
         public void UpdateInPlace_Update_ApplyLambda_ExpectModified_IndexExp()
         {
             //------------Setup for test--------------------------
@@ -131,12 +133,12 @@ namespace WarewolfParsingTest
             var updated = PublicFunctions.EvalUpdate("[[Rec([[x]]).a]]", env, 0, a => DataStorage.WarewolfAtom.NewDataString("1x"));
             //------------Assert Results-------------------------
             var res = CommonFunctions.evalResultToString(EvaluationFunctions.eval(updated, 0, false, "[[Rec(*).a]]"));
-            Assert.AreEqual(res, "1x,2,3,2");
+            NUnit.Framework.Assert.AreEqual(res, "1x,2,3,2");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("UpdateInPlace_Update")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("UpdateInPlace_Update")]
         public void UpdateInPlace_Update_ApplyLambda_ExpectModified_Complex()
         {
             //------------Setup for test--------------------------
@@ -146,13 +148,12 @@ namespace WarewolfParsingTest
             var updated = PublicFunctions.EvalUpdate("[[[[r]]]]", env, 0, a => DataStorage.WarewolfAtom.NewDataString("1x"));
             //------------Assert Results-------------------------
             var res = CommonFunctions.evalResultToString(EvaluationFunctions.eval(updated, 0, false, "[[s]]"));
-            Assert.AreEqual(res, "1x");
+            NUnit.Framework.Assert.AreEqual(res, "1x");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("UpdateInPlace_Update")]
-      
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("UpdateInPlace_Update")]
         public void UpdateInPlace_Update_ApplyLambda_ExpectError_Complex()
         {
             //------------Setup for test--------------------------
@@ -164,11 +165,11 @@ namespace WarewolfParsingTest
             updated = PublicFunctions.EvalUpdate("[[[[s]]]]", updated, 0, a => DataStorage.WarewolfAtom.NewDataString("e"));
             //------------Assert Results-------------------------
             var res = CommonFunctions.evalResultToString(EvaluationFunctions.eval(updated, 0, false, "[[s]]"));
-            Assert.AreEqual(res, "e");
+            NUnit.Framework.Assert.AreEqual(res, "e");
         }
+
         public static DataStorage.WarewolfEnvironment CreateEnvironmentWithData()
         {
-
             var env = new ExecutionEnvironment();
             env.Assign("[[Rec(1).a]]", "1", 0);
             env.Assign("[[Rec(2).a]]", "2", 0);

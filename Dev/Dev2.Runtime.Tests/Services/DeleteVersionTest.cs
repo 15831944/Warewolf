@@ -18,17 +18,18 @@ using Dev2.Common.Interfaces.Versioning;
 using Dev2.Communication;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DeleteVersionTest
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -40,9 +41,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -54,9 +55,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(AuthorizationContext.Contribute, resId);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DeleteVersion_Name")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DeleteVersion_Name")]
 
         public void DeleteVersion_Name_GetName()
 
@@ -70,9 +71,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("DeleteVersion", DeleteVersion.HandlesType());
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DeleteVersion_CreateServiceEntry")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DeleteVersion_CreateServiceEntry")]
         public void DeleteVersion_CreateServiceEntry_ExpectCorrectDL()
         {
             //------------Setup for test--------------------------
@@ -87,9 +88,9 @@ namespace Dev2.Tests.Runtime.Services
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DeleteVersion_Execute")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DeleteVersion_Execute")]
         public void DeleteVersion_Execute_InvalidParams()
         {
             //------------Setup for test--------------------------
@@ -105,9 +106,9 @@ namespace Dev2.Tests.Runtime.Services
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DeleteVersion_Execute")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DeleteVersion_Execute")]
         public void DeleteVersion_Execute_InvalidParams_NoVersion()
         {
             //------------Setup for test--------------------------
@@ -123,9 +124,9 @@ namespace Dev2.Tests.Runtime.Services
         }
         
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DeleteVersion_Execute")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DeleteVersion_Execute")]
         public void DeleteVersion_Execute_Valid_ExpectServerCalled()
         {
             //------------Setup for test--------------------------

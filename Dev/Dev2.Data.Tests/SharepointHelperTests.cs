@@ -8,17 +8,18 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Warewolf.Sharepoint;
 
 namespace Dev2.Data.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SharepointHelperTests
     {
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(SharepointHelper))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(SharepointHelper))]
         public void SharepointHelper_Construct()
         {
             var s = new SharepointHelper("hostname");

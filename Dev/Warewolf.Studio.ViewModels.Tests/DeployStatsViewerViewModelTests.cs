@@ -14,7 +14,7 @@ using System.Linq;
 using Dev2;
 using Dev2.Studio.Interfaces;
 using Microsoft.Practices.Prism.PubSubEvents;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Studio.Core;
 using Dev2.ConnectionHelpers;
@@ -23,12 +23,13 @@ using System.Collections.ObjectModel;
 
 namespace Warewolf.Studio.ViewModels.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DeployStatsViewerViewModelTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DeployStatsViewerViewModel))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DeployStatsViewerViewModel))]
         public void DeployStatsViewerViewModel_OneParamCTOR_Status_IsEmptyString_ShouldBeTrue()
         {
             //-------------------------Arrange----------------------------
@@ -42,9 +43,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual("", deployStatsViewerViewModel.Status);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DeployStatsViewerViewModel))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DeployStatsViewerViewModel))]
         public void DeployStatsViewerViewModel_TryCalculate_ShouldBeTrue()
         {
             var explorerTooltips = new Mock<IExplorerTooltips>();
@@ -122,9 +123,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsNull(stat.RenameErrors);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DeployStatsViewerViewModel))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DeployStatsViewerViewModel))]
         public void DeployStatsViewerViewModel_ReCalculate_ShouldBeTrue()
         {
             //-------------------------Arrange----------------------------
@@ -140,9 +141,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual("", deployStatsViewerViewModel.Status);
         }
 
-        [TestMethod, Timeout(60000)]
-        [Owner("Sanele Mthembu")]
-        [TestCategory(nameof(DeployStatsViewerViewModel))]
+        [Test]
+        [Timeout(60000)]
+        [Author("Sanele Mthembu")]
+        [Category(nameof(DeployStatsViewerViewModel))]
         public void DeployStatsViewerViewModel_Given_TheSameServer_CheckDestinationPersmisions_ShouldBeTrue()
         {
             var explorerTooltips = new Mock<IExplorerTooltips>();
@@ -193,9 +195,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(sourceExplorerItem.First().CanDeploy);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DeployStatsViewerViewModel))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DeployStatsViewerViewModel))]
         public void DeployStatsViewerViewModel_CalculateRenameErrors_HasErrors_ShouldBeTrue()
         {
             //-------------------------Arrange----------------------------
@@ -239,9 +241,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual("\nCategory\\Testing-->Category\\Testing\r\nPlease rename either the source or destination before continuing", deployStatsViewerViewModel.RenameErrors);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DeployStatsViewerViewModel))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DeployStatsViewerViewModel))]
         public void DeployStatsViewerViewModel_CheckDestinationPermissions_ExplorerItemViewModel_IsNotNull_ShouldBeTrue()
         {
             //-------------------------Arrange----------------------------
@@ -284,9 +286,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsNull(deployStatsViewerViewModel.RenameErrors);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DeployStatsViewerViewModel))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DeployStatsViewerViewModel))]
         public void DeployStatsViewerViewModel_CheckDestinationPermissions_ExplorerItemViewModel_IsNull_ShouldBeTrue()
         {
             //-------------------------Arrange----------------------------

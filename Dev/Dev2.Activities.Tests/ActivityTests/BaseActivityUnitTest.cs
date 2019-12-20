@@ -29,7 +29,7 @@ using Dev2.Runtime.ESB.Execution;
 using Dev2.Runtime.Execution;
 using Dev2.Workspaces;
 using Microsoft.VisualBasic.Activities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Warewolf.Storage;
@@ -39,7 +39,8 @@ using Warewolf.Storage.Interfaces;
 namespace ActivityUnitTests
 
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class BaseActivityUnitTest
     {
         

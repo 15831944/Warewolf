@@ -12,21 +12,21 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using Dev2.Services.Sql;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-
+using NUnit.Framework;
 using TSQL;
 using TSQL.Tokens;
 using TSQL.Statements;
 
 namespace Dev2.Sql.Tests
 {
-	[TestClass]
+	[TestFixture]
+    [SetUpFixture]
 	public class SQLiteServerTests
 	{
 		#region SqliteServer_Connect
-		[TestMethod]
-		[Owner("Candice Daniel")]
-		[TestCategory("SqliteServer_Connect")]
+		[Test]
+		[Author("Candice Daniel")]
+		[Category("SqliteServer_Connect")]
 		[DeploymentItem(@"x86\SQLite.Interop.dll")]
 		public void SqliteServer_Connect_ConnectionStringIsNull_ThrowsArgumentNullException()
 		{
@@ -35,7 +35,7 @@ namespace Dev2.Sql.Tests
 			try
 			{
 				//------------Execute Test---------------------------
-				Assert.ThrowsException<ArgumentNullException>(() => sqliteServer.Connect(null, CommandType.Text, null));
+				Assert.Throws<ArgumentNullException>(() => sqliteServer.Connect(null, CommandType.Text, null));
 				//------------Assert Results-------------------------
 			}
 			finally
@@ -44,9 +44,9 @@ namespace Dev2.Sql.Tests
 			}
 		}
 
-		[TestMethod]
-		[Owner("Candice Daniel")]
-		[TestCategory("SqliteServer_Connect")]
+		[Test]
+		[Author("Candice Daniel")]
+		[Category("SqliteServer_Connect")]
 		[DeploymentItem(@"x86\SQLite.Interop.dll")]
 		public void SqliteServer_Connect_ConnectionStringIsInvalid_ThrowsArgumentException()
 		{
@@ -55,7 +55,7 @@ namespace Dev2.Sql.Tests
 			try
 			{
 				//------------Execute Test---------------------------
-				Assert.ThrowsException<ArgumentNullException>(() => sqliteServer.Connect("xxx", CommandType.Text, null));
+				Assert.Throws<ArgumentNullException>(() => sqliteServer.Connect("xxx", CommandType.Text, null));
 				//------------Assert Results-------------------------
 			}
 			finally
@@ -64,9 +64,9 @@ namespace Dev2.Sql.Tests
 			}
 		}
 
-		[TestMethod]
-		[Owner("Candice Daniel")]
-		[TestCategory("SqliteServer_Connect")]
+		[Test]
+		[Author("Candice Daniel")]
+		[Category("SqliteServer_Connect")]
 		[DeploymentItem(@"x86\SQLite.Interop.dll")]
 		public void SqliteServer_Connect_CommandTextIsNull_ThrowsArgumentNullException()
 		{
@@ -75,7 +75,7 @@ namespace Dev2.Sql.Tests
 			try
 			{
 				//------------Execute Test---------------------------
-				Assert.ThrowsException<ArgumentNullException>(() => sqliteServer.Connect(":memory:", CommandType.Text, null));
+				Assert.Throws<ArgumentNullException>(() => sqliteServer.Connect(":memory:", CommandType.Text, null));
 				//------------Assert Results-------------------------
 			}
 			finally
@@ -86,9 +86,9 @@ namespace Dev2.Sql.Tests
 		#endregion
 
 		#region Create Command
-		[TestMethod]
-		[Owner("Candice Daniel")]
-		[TestCategory("SqliteServer_CreateCommand")]
+		[Test]
+		[Author("Candice Daniel")]
+		[Category("SqliteServer_CreateCommand")]
 		[DeploymentItem(@"x86\SQLite.Interop.dll")]
 		public void SqliteServer_CreateCommand_ConnectionNotInitialized_ThrowsConnectFirstException()
 		{
@@ -97,7 +97,7 @@ namespace Dev2.Sql.Tests
 			try
 			{
 				//------------Execute Test---------------------------
-				Assert.ThrowsException<Exception>(() => sqliteServer.CreateCommand());
+				Assert.Throws<Exception>(() => sqliteServer.CreateCommand());
 				//------------Assert Results-------------------------
 			}
 			finally
@@ -106,9 +106,9 @@ namespace Dev2.Sql.Tests
 			}
 		}
 
-		[TestMethod]
-		[Owner("Candice Daniel")]
-		[TestCategory("SqliteServer_CreateCommand")]
+		[Test]
+		[Author("Candice Daniel")]
+		[Category("SqliteServer_CreateCommand")]
 		[DeploymentItem(@"x86\SQLite.Interop.dll")]
 		public void SqliteServer_CreateCommand_CommandIsNull_ThrowsArgumentNullException()
 		{
@@ -117,7 +117,7 @@ namespace Dev2.Sql.Tests
 			try
 			{
 				//------------Execute Test---------------------------
-				Assert.ThrowsException<ArgumentNullException>(() => sqliteServer.FetchDataTable((IDbCommand)null));
+				Assert.Throws<ArgumentNullException>(() => sqliteServer.FetchDataTable((IDbCommand)null));
 				//------------Assert Results-------------------------
 			}
 			finally
@@ -128,9 +128,9 @@ namespace Dev2.Sql.Tests
 
 		#endregion
 
-		[TestMethod]
-		[Owner("Candice Daniel")]
-		[TestCategory("SqliteServer_ParseTSQL")]
+		[Test]
+		[Author("Candice Daniel")]
+		[Category("SqliteServer_ParseTSQL")]
 		[DeploymentItem(@"x86\SQLite.Interop.dll")]
 		public void SqliteServer_ParseTSQL_SelectStatement_ReturnTableNames()
 		{
@@ -201,9 +201,9 @@ namespace Dev2.Sql.Tests
 		}
 
 		#region SqliteServer_ParseTSQL
-		[TestMethod]
-		[Owner("Candice Daniel")]
-		[TestCategory("SqliteServer_ParseTSQL")]
+		[Test]
+		[Author("Candice Daniel")]
+		[Category("SqliteServer_ParseTSQL")]
 		[DeploymentItem(@"x86\SQLite.Interop.dll")]
 		public void SqliteServer_ParseTSQL_UnknownStatement_MissingFirstToken()
 		{
@@ -228,9 +228,9 @@ namespace Dev2.Sql.Tests
 
 			}
 		}
-		[TestMethod]
-		[Owner("Candice Daniel")]
-		[TestCategory("SqliteServer_ParseTSQL")]
+		[Test]
+		[Author("Candice Daniel")]
+		[Category("SqliteServer_ParseTSQL")]
 		[DeploymentItem(@"x86\SQLite.Interop.dll")]
 		public void SqliteServer_ParseTSQL_SelectStatement_SelectLiteral()
 		{
@@ -258,9 +258,9 @@ namespace Dev2.Sql.Tests
 
 			}
 		}
-		[TestMethod]
-		[Owner("Candice Daniel")]
-		[TestCategory("SqliteServer_ParseTSQL")]
+		[Test]
+		[Author("Candice Daniel")]
+		[Category("SqliteServer_ParseTSQL")]
 		public void SqliteServer_ParseTSQL_SelectStatement_SelectLiteralNoWhitespace()
 		{
 			List<TSQLStatement> statements = TSQLStatementReader.ParseStatements(
@@ -276,9 +276,9 @@ namespace Dev2.Sql.Tests
 			Assert.AreEqual("1", select.Tokens[1].AsNumericLiteral.Text);
 		}
 
-		[TestMethod]
-		[Owner("Candice Daniel")]
-		[TestCategory("SqliteServer_ParseTSQL")]
+		[Test]
+		[Author("Candice Daniel")]
+		[Category("SqliteServer_ParseTSQL")]
 		[DeploymentItem(@"x86\SQLite.Interop.dll")]
 		public void SqliteServer_ParseTSQL_SelectStatement_TwoLiteralSelects()
 		{
@@ -304,9 +304,9 @@ namespace Dev2.Sql.Tests
 			Assert.AreEqual("2", select2.Tokens[2].AsNumericLiteral.Text);
 		}
 
-		[TestMethod]
-		[Owner("Candice Daniel")]
-		[TestCategory("SqliteServer_ParseTSQL")]
+		[Test]
+		[Author("Candice Daniel")]
+		[Category("SqliteServer_ParseTSQL")]
 		[DeploymentItem(@"x86\SQLite.Interop.dll")]
 		public void SqliteServer_ParseTSQL_SelectStatement_CorrelatedSelect()
 		{
@@ -328,9 +328,9 @@ namespace Dev2.Sql.Tests
 			Assert.AreEqual(")", select.Tokens[6].AsCharacter.Text);
 		}
 
-		[TestMethod]
-		[Owner("Candice Daniel")]
-		[TestCategory("SqliteServer_ParseTSQL")]
+		[Test]
+		[Author("Candice Daniel")]
+		[Category("SqliteServer_ParseTSQL")]
 		[DeploymentItem(@"x86\SQLite.Interop.dll")]
 		public void SqliteServer_ParseTSQL_SelectStatement_CommonSelect()
 		{
@@ -371,9 +371,9 @@ namespace Dev2.Sql.Tests
 			Assert.AreEqual(12, select.OrderBy.Tokens.Count);
 		}
 
-		[TestMethod]
-		[Owner("Candice Daniel")]
-		[TestCategory("SqliteServer_ParseTSQL")]
+		[Test]
+		[Author("Candice Daniel")]
+		[Category("SqliteServer_ParseTSQL")]
 		[DeploymentItem(@"x86\SQLite.Interop.dll")]
 		public void SqliteServer_ParseTSQL_SelectStatement_MultipleSelectsWithoutSemicolon()
 		{
@@ -391,9 +391,9 @@ namespace Dev2.Sql.Tests
 			Assert.AreEqual(TSQLStatementType.Select, select2.Type);
 		}
 
-		[TestMethod]
-		[Owner("Candice Daniel")]
-		[TestCategory("SqliteServer_ParseTSQL")]
+		[Test]
+		[Author("Candice Daniel")]
+		[Category("SqliteServer_ParseTSQL")]
 		[DeploymentItem(@"x86\SQLite.Interop.dll")]
 		public void SqliteServer_ParseTSQL_SelectStatement_Option()
 		{
@@ -414,9 +414,9 @@ namespace Dev2.Sql.Tests
 			Assert.AreEqual(5, select.Option.Tokens.Count);
 		}
 
-		[TestMethod]
-		[Owner("Candice Daniel")]
-		[TestCategory("SqliteServer_ParseTSQL")]
+		[Test]
+		[Author("Candice Daniel")]
+		[Category("SqliteServer_ParseTSQL")]
 		[DeploymentItem(@"x86\SQLite.Interop.dll")]
 		public void SqliteServer_ParseTSQL_SelectStatement_DontEatFinalDescAsKeyword()
 		{

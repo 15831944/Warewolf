@@ -1,15 +1,16 @@
 ﻿using Dev2.Communication;
 using Dev2.Runtime.ESB.Management.Services;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ServerSettingsTest
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SaveServerSettings_Execute")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SaveServerSettings_Execute")]
         public void SaveServerSettings_Execute_NullValues_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -22,9 +23,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(result.HasError);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("GetServerSettings_Execute")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("GetServerSettings_Execute")]
         public void GetServerSettings_Execute_NullValues_ErrorResult()
         {
             //------------Setup for test--------------------------

@@ -11,17 +11,18 @@
 using System;
 using Dev2.Common;
 using Dev2.Common.Interfaces.Versioning;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Core.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ResourceCriteriaTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ResourceCriteria))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ResourceCriteria))]
         public void ResourceCriteria_ResourceID_SetProperty_Expect_SetValue()
         {
             //-----------------Arrange-------------------
@@ -34,9 +35,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(resourceID, resourceCriteria.ResourceID);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ResourceCriteria))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ResourceCriteria))]
         public void ResourceCriteria_ResourceName_SetProperty_Expect_SetValue()
         {
             //-----------------Arrange-------------------
@@ -49,9 +50,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(resourceName, resourceCriteria.ResourceName);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ResourceCriteria))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ResourceCriteria))]
         public void ResourceCriteria_ResourcePath_SetProperty_Expect_SetValue()
         {
             //-----------------Arrange-------------------
@@ -64,9 +65,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(resourcePath, resourceCriteria.ResourcePath);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ResourceCriteria))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ResourceCriteria))]
         public void ResourceCriteria_ResourceType_SetProperty_Expect_SetValue()
         {
             //-----------------Arrange-------------------
@@ -79,9 +80,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(resourceType, resourceCriteria.ResourceType);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ResourceCriteria))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ResourceCriteria))]
         public void ResourceCriteria_VersionInfo_SetProperty_Expect_SetValue()
         {
             //-----------------Arrange-------------------
@@ -94,9 +95,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(mockVersionInfo.Object, resourceCriteria.VersionInfo);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ResourceCriteria))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ResourceCriteria))]
         public void ResourceCriteria_WorkspaceId_SetProperty_Expect_SetValue()
         {
             //-----------------Arrange-------------------
@@ -109,9 +110,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(workspaceId, resourceCriteria.WorkspaceId);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ResourceCriteria))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ResourceCriteria))]
         public void ResourceCriteria_IsUpgraded_SetProperty_Expect_SetValue()
         {
             //-----------------Arrange-------------------
@@ -124,9 +125,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(isUpgraded, resourceCriteria.IsUpgraded);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ResourceCriteria))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ResourceCriteria))]
         public void ResourceCriteria_IsNewResource_SetProperty_Expect_SetValue()
         {
             //-----------------Arrange-------------------
@@ -139,9 +140,9 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(resourceCriteria.IsNewResource);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ResourceCriteria))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ResourceCriteria))]
         public void ResourceCriteria_GuidCsv_SetProperty_Expect_SetValue()
         {
             //-----------------Arrange-------------------
@@ -154,9 +155,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(guidCsv, resourceCriteria.GuidCsv);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ResourceCriteria))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ResourceCriteria))]
         public void ResourceCriteria_FilePath_SetProperty_Expect_SetValue()
         {
             //-----------------Arrange-------------------
@@ -169,9 +170,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(filePath, resourceCriteria.FilePath);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ResourceCriteria))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ResourceCriteria))]
         public void ResourceCriteria_FetchAll_SetProperty_Expect_SetValue()
         {
             //-----------------Arrange-------------------
@@ -184,9 +185,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(fetchAll, resourceCriteria.FetchAll);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ResourceCriteria))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ResourceCriteria))]
         public void ResourceCriteria_AuthorRoles_SetProperty_Expect_SetValue()
         {
             //-----------------Arrange-------------------

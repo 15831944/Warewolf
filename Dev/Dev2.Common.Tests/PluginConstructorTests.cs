@@ -10,17 +10,18 @@
 
 using System;
 using Dev2.Common.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Common.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class PluginConstructorTests
     {
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(PluginConstructor))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(PluginConstructor))]
         public void PluginConstructor_Construct()
         {
             var p = GetDefaultInstance();
@@ -34,9 +35,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(null, p.GetIdentifier());
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(PluginConstructor))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(PluginConstructor))]
         public void PluginConstructor_ConstructWithValues()
         {
             var id = Guid.NewGuid();
@@ -50,9 +51,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual("return ob", p.ReturnObject);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(PluginConstructor))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(PluginConstructor))]
         public void PluginConstructor_Equals_IsFalse()
         {
             var id = Guid.NewGuid();
@@ -66,9 +67,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(ob1 != ob2);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(PluginConstructor))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(PluginConstructor))]
         public void PluginConstructor_Equals_IsTrue()
         {
             var id = Guid.NewGuid();
@@ -82,9 +83,9 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(ob1 != ob2);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(PluginConstructor))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(PluginConstructor))]
         public void PluginConstructor_SameEquals_IsTrue()
         {
             var id = Guid.NewGuid();
@@ -95,9 +96,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(ob1.Equals((object)ob1));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(PluginConstructor))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(PluginConstructor))]
         public void PluginConstructor_Equals_Null_IsFalse()
         {
             var id = Guid.NewGuid();
@@ -108,9 +109,9 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(ob1.Equals((object)null));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(PluginConstructor))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(PluginConstructor))]
         public void PluginConstructor_Equals_DifferentType_IsFalse()
         {
             var id = Guid.NewGuid();

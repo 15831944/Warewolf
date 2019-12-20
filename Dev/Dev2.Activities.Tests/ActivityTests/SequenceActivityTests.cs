@@ -13,18 +13,19 @@ using System.Linq;
 using ActivityUnitTests;
 using Dev2.Activities;
 using Dev2.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Warewolf.Storage.Interfaces;
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SequenceActivityTests : BaseActivityUnitTest
     {
-        [TestMethod]
-        [Owner("Candice Daniel")]
+        [Test]
+        [Author("Candice Daniel")]
         public void SequenceActivity_Execute()
         {
             //---------------Set up test pack-------------------

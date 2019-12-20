@@ -10,19 +10,20 @@
 
 using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.DB;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Collections.Generic;
 
 namespace Dev2.Common.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class PluginActionTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(PluginAction))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(PluginAction))]
         public void PluginAction_Validate()
         {
             const string expectedFullName = "testFullName";
@@ -118,9 +119,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(expectedID, pluginAction.ID);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(PluginAction))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(PluginAction))]
         public void PluginAction_Equals_PluginAction_Null_Expected_False()
         {
             var pluginAction = new PluginAction();
@@ -131,9 +132,9 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(PluginAction))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(PluginAction))]
         public void PluginAction_ReferenceEquals_PluginAction_Expected_True()
         {
             const string expectedMethod = "testMethod";
@@ -147,9 +148,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(PluginAction))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(PluginAction))]
         public void PluginAction_Equals_PluginAction_Expected_True()
         {
             const string expectedMethod = "testMethod";
@@ -168,9 +169,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(pluginAction == pluginActionDup);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(PluginAction))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(PluginAction))]
         public void PluginAction_Equals_PluginAction_Expected_False()
         {
             const string expectedMethod = "testMethod";
@@ -192,9 +193,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(pluginAction != pluginActionObj);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(PluginAction))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(PluginAction))]
         public void PluginAction_Equals_Object_Null_Expected_False()
         {
             var pluginAction = new PluginAction();
@@ -205,9 +206,9 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(PluginAction))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(PluginAction))]
         public void PluginAction_Equals_Object_Expected_True()
         {
             const string expectedMethod = "testMethod";
@@ -223,9 +224,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(PluginAction))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(PluginAction))]
         public void PluginAction_Equals_Object_Expected_False()
         {
             const string expectedMethod = "testMethod";
@@ -246,9 +247,9 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(PluginAction))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(PluginAction))]
         public void PluginAction_Equals_Object_GetType_Expected_False()
         {
             const string expectedMethod = "testMethod";
@@ -264,9 +265,9 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(PluginAction))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(PluginAction))]
         public void PluginAction_GetHashCode_Not_Equal_To_Zero()
         {
             const string expectedMethod = "testMethod";
@@ -296,9 +297,9 @@ namespace Dev2.Common.Tests
             Assert.AreNotEqual(0, hashCode);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(PluginAction))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(PluginAction))]
         public void PluginAction_GetHashCode_Expect_Zero()
         {
             var pluginAction = new PluginAction();
@@ -308,9 +309,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(0, hashCode);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(PluginAction))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(PluginAction))]
         public void PluginAction_OnPropertyChanged()
         {
             bool called = false;
@@ -324,9 +325,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(called);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(PluginAction))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(PluginAction))]
         public void PluginAction_OnPropertyChanged_Null_DoesNotThrow()
         {
             bool called = false;

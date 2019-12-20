@@ -10,24 +10,25 @@
 
 using Dev2.Data.ServiceModel;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Text;
 
 namespace Warewolf.Common.Framework48.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ResourceCatalogProxyTests
     {
-        [TestMethod]
+        [Test]
         public void ResourceCatalogProxy_Construct()
         {
             var proxy = GetResourceCatalog();
             Assert.IsNotNull(proxy);
         }
 
-        [TestMethod]
+        [Test]
         public void ResourceCatalogProxy_GetResourceById_ReturnsResource()
         {
             var environmentConnection = GetConnection();

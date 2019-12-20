@@ -1,24 +1,25 @@
 ﻿using Dev2.Activities.RabbitMQ.Publish;
 using Dev2.Data.ServiceModel;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using RabbitMQ.Client;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using Dev2.Runtime.Interfaces;
-using System.Reflection;
 using Dev2.Common.State;
 using System.Linq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Publish
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfPublishRabbitMQActivityTests
     {
-        [TestMethod]
-        [Owner("Clint Stedman")]
-        [TestCategory("DsfPublishRabbitMQActivity_Construct")]
+        [Test]
+        [Author("Clint Stedman")]
+        [Category("DsfPublishRabbitMQActivity_Construct")]
         public void DsfSqlBulkInsertActivity_Construct_Paramterless_SetsDefaultPropertyValues()
         {
             //------------Setup for test--------------------------
@@ -26,13 +27,13 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Publish
             //------------Execute Test---------------------------
             var dsfPublishRabbitMQActivity = new DsfPublishRabbitMQActivity();
             //------------Assert Results-------------------------
-            Assert.IsNotNull(dsfPublishRabbitMQActivity);
-            Assert.AreEqual("RabbitMQ Publish", dsfPublishRabbitMQActivity.DisplayName);
+            NUnit.Framework.Assert.IsNotNull(dsfPublishRabbitMQActivity);
+            NUnit.Framework.Assert.AreEqual("RabbitMQ Publish", dsfPublishRabbitMQActivity.DisplayName);
         }
 
-        [TestMethod]
-        [Owner("Clint Stedman")]
-        [TestCategory("DsfPublishRabbitMQActivity_Execute")]
+        [Test]
+        [Author("Clint Stedman")]
+        [Category("DsfPublishRabbitMQActivity_Execute")]
         public void DsfPublishRabbitMQActivity_Execute_Sucess()
         {
             //------------Setup for test--------------------------
@@ -55,7 +56,7 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Publish
             channel.Setup(c => c.BasicPublish(string.Empty, queueName, null, body));
             channel.Setup(c => c.CreateBasicProperties()).Returns(mockBasicProperties.Object);
 
-            var p = new PrivateObject(dsfPublishRabbitMQActivity);
+            var p = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(dsfPublishRabbitMQActivity);
             p.SetProperty("ConnectionFactory", connectionFactory.Object);
             p.SetProperty("ResourceCatalog", resourceCatalog.Object);
 
@@ -69,13 +70,13 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Publish
             channel.Verify(c => c.ExchangeDeclare(It.IsAny<String>(), It.IsAny<String>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<IDictionary<string, object>>()), Times.Once);
             channel.Verify(c => c.QueueDeclare(It.IsAny<String>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<IDictionary<string, object>>()), Times.Once);
             channel.Verify(c => c.BasicPublish(It.IsAny<String>(), It.IsAny<String>(), It.IsAny<IBasicProperties>(), It.IsAny<byte[]>()), Times.Once);
-            Assert.AreEqual(result[0], "Success");
-            Assert.IsTrue(mockBasicProperties.Object.Persistent);
+            NUnit.Framework.Assert.AreEqual(result[0], "Success");
+            NUnit.Framework.Assert.IsTrue(mockBasicProperties.Object.Persistent);
         }
 
-        [TestMethod]
-        [Owner("Clint Stedman")]
-        [TestCategory("DsfPublishRabbitMQActivity_Execute")]
+        [Test]
+        [Author("Clint Stedman")]
+        [Category("DsfPublishRabbitMQActivity_Execute")]
         public void DsfPublishRabbitMQActivity_Execute_Failure_NullSource()
         {
             //------------Setup for test--------------------------
@@ -84,7 +85,7 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Publish
             var resourceCatalog = new Mock<IResourceCatalog>();
             resourceCatalog.Setup(r => r.GetResource<RabbitMQSource>(It.IsAny<Guid>(), It.IsAny<Guid>())).Returns<RabbitMQSource>(null);
 
-            var p = new PrivateObject(dsfPublishRabbitMQActivity);
+            var p = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(dsfPublishRabbitMQActivity);
             p.SetProperty("ResourceCatalog", resourceCatalog.Object);
 
             //------------Execute Test---------------------------
@@ -92,13 +93,13 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Publish
             //------------Assert Results-------------------------
             if (p.Invoke("PerformExecution", new Dictionary<string, string>()) is List<string> result)
             {
-                Assert.AreEqual(result[0], "Failure: Source has been deleted.");
+                NUnit.Framework.Assert.AreEqual(result[0], "Failure: Source has been deleted.");
             }
         }
 
-        [TestMethod]
-        [Owner("Clint Stedman")]
-        [TestCategory("DsfPublishRabbitMQActivity_Execute")]
+        [Test]
+        [Author("Clint Stedman")]
+        [Category("DsfPublishRabbitMQActivity_Execute")]
         public void DsfPublishRabbitMQActivity_Execute_Failure_NoParams()
         {
             //------------Setup for test--------------------------
@@ -109,7 +110,7 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Publish
 
             resourceCatalog.Setup(r => r.GetResource<RabbitMQSource>(It.IsAny<Guid>(), It.IsAny<Guid>())).Returns(rabbitMQSource.Object);
 
-            var p = new PrivateObject(dsfPublishRabbitMQActivity);
+            var p = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(dsfPublishRabbitMQActivity);
             p.SetProperty("ResourceCatalog", resourceCatalog.Object);
 
             //------------Execute Test---------------------------
@@ -117,13 +118,13 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Publish
             //------------Assert Results-------------------------
             if (p.Invoke("PerformExecution", new Dictionary<string, string>()) is List<string> result)
             {
-                Assert.AreEqual(result[0], "Failure: Queue Name and Message are required.");
+                NUnit.Framework.Assert.AreEqual(result[0], "Failure: Queue Name and Message are required.");
             }
         }
 
-        [TestMethod]
-        [Owner("Clint Stedman")]
-        [TestCategory("DsfPublishRabbitMQActivity_Execute")]
+        [Test]
+        [Author("Clint Stedman")]
+        [Category("DsfPublishRabbitMQActivity_Execute")]
         public void DsfPublishRabbitMQActivity_Execute_Failure_InvalidParams()
         {
             //------------Setup for test--------------------------
@@ -134,7 +135,7 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Publish
 
             resourceCatalog.Setup(r => r.GetResource<RabbitMQSource>(It.IsAny<Guid>(), It.IsAny<Guid>())).Returns(rabbitMQSource.Object);
 
-            var p = new PrivateObject(dsfPublishRabbitMQActivity);
+            var p = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(dsfPublishRabbitMQActivity);
             p.SetProperty("ResourceCatalog", resourceCatalog.Object);
 
             //------------Execute Test---------------------------
@@ -142,14 +143,14 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Publish
             //------------Assert Results-------------------------
             if (p.Invoke("PerformExecution", new Dictionary<string, string> { { "Param1", "Blah1" }, { "Param2", "Blah2" } }) is List<string> result)
             {
-                Assert.AreEqual(result[0], "Failure: Queue Name and Message are required.");
+                NUnit.Framework.Assert.AreEqual(result[0], "Failure: Queue Name and Message are required.");
             }
         }
 
-        [TestMethod]
-        [Owner("Clint Stedman")]
-        [TestCategory("DsfPublishRabbitMQActivity_Execute")]
-        [ExpectedException(typeof(Exception))]
+        [Test]
+        [Author("Clint Stedman")]
+        [Category("DsfPublishRabbitMQActivity_Execute")]
+        [NUnit.Framework.ExpectedException(typeof(Exception))]
         public void DsfPublishRabbitMQActivity_Execute_Failure_NullException()
         {
             //------------Setup for test--------------------------
@@ -162,7 +163,7 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Publish
             resourceCatalog.Setup(r => r.GetResource<RabbitMQSource>(It.IsAny<Guid>(), It.IsAny<Guid>())).Returns(rabbitMQSource.Object);
             connectionFactory.Setup(c => c.CreateConnection()).Returns<IConnection>(null);
 
-            var p = new PrivateObject(dsfPublishRabbitMQActivity);
+            var p = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(dsfPublishRabbitMQActivity);
             p.SetProperty("ConnectionFactory", connectionFactory.Object);
             p.SetProperty("ResourceCatalog", resourceCatalog.Object);
 
@@ -170,12 +171,12 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Publish
             var result = p.Invoke("PerformExecution", new Dictionary<string, string> { { "QueueName", "Q1" }, { "Message", "Test message" } });
 
             //------------Assert Results-------------------------
-            Assert.Fail("Exception not thrown");
+            NUnit.Framework.Assert.Fail("Exception not thrown");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfPublishRabbitMQActivity_GetState")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfPublishRabbitMQActivity_GetState")]
         public void DsfPublishRabbitMQActivity_GetState_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------
@@ -193,7 +194,7 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Publish
             };
             //------------Execute Test---------------------------
             var stateItems = act.GetState();
-            Assert.AreEqual(7, stateItems.Count());
+            NUnit.Framework.Assert.AreEqual(7, stateItems.Count());
 
             var expectedResults = new[]
             {
@@ -252,9 +253,9 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Publish
             //------------Assert Results-------------------------
             foreach (var entry in iter)
             {
-                Assert.AreEqual(entry.expectValue.Name, entry.value.Name);
-                Assert.AreEqual(entry.expectValue.Type, entry.value.Type);
-                Assert.AreEqual(entry.expectValue.Value, entry.value.Value);
+                NUnit.Framework.Assert.AreEqual(entry.expectValue.Name, entry.value.Name);
+                NUnit.Framework.Assert.AreEqual(entry.expectValue.Type, entry.value.Type);
+                NUnit.Framework.Assert.AreEqual(entry.expectValue.Value, entry.value.Value);
             }
         }
     }

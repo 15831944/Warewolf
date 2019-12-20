@@ -1,14 +1,15 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using Dev2.Core.Tests.Merge.Utils;
 using System.Linq;
 
 namespace Dev2.Core.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class MergeWorkflowViewModelTests : MergeTestUtils
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void MergeWorkflowViewModel_Constructor()
         {
             var mergeWorkflowViewModel = CreateMergeWorkflowViewModel();

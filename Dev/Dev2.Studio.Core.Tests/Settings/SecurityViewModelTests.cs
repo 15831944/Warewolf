@@ -24,17 +24,18 @@ using Dev2.Settings.Security;
 using Dev2.Studio.Core;
 using Dev2.Studio.Interfaces;
 using Dev2.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Core.Tests.Settings
 {
-    [TestClass]
-    [TestCategory("Studio Settings Core")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Studio Settings Core")]
     public class SecurityViewModelTests
     {
-        [TestInitialize]
+        [SetUp]
         public void setup()
         {
 
@@ -44,9 +45,9 @@ namespace Dev2.Core.Tests.Settings
 
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityViewModel_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SecurityViewModel_Constructor_DirectoryObjectPickerDialogIsNull_ThrowsArgumentNullException()
         {
@@ -60,9 +61,9 @@ namespace Dev2.Core.Tests.Settings
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityViewModel_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SecurityViewModel_Constructor_ParentWindowIsNull_ThrowsArgumentNullException()
         {
@@ -76,9 +77,9 @@ namespace Dev2.Core.Tests.Settings
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityViewModel_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SecurityViewModel_Constructor_EnvironmentIsNull_ThrowsArgumentNullException()
         {
@@ -92,17 +93,17 @@ namespace Dev2.Core.Tests.Settings
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityViewModel_Constructor")]
         public void SecurityViewModel_Constructor_SecuritySettingsIsNull_PropertiesInitialized()
         {
             Verify_Constructor_InitializesProperties(null);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityViewModel_Constructor")]
         public void SecurityViewModel_Constructor_AllParametersValid_PropertiesInitialized()
         {
             //------------Setup for test--------------------------
@@ -159,9 +160,9 @@ namespace Dev2.Core.Tests.Settings
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityViewModel_OnPermissionPropertyChanged")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityViewModel_OnPermissionPropertyChanged")]
         public void SecurityViewModel_OnPermissionPropertyChanged_PermissionChanged_IsDirtyIsTrue()
         {
             //------------Setup for test--------------------------
@@ -187,9 +188,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsTrue(viewModel.IsDirty);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SecurityViewModel_OnPermissionPropertyChanged")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SecurityViewModel_OnPermissionPropertyChanged")]
         public void SecurityViewModel_OnPermissionPropertyChanged_MakeContributeTrue_MakesViewExecuteTrue()
         {
             //------------Setup for test--------------------------
@@ -214,9 +215,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsTrue(permission.Execute);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SecurityViewModel_OnPermissionPropertyChanged")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SecurityViewModel_OnPermissionPropertyChanged")]
         public void SecurityViewModel_OnPermissionPropertyChanged_WithContributeTrue_MakeViewFalse_MakesContributeFalse()
         {
             //------------Setup for test--------------------------
@@ -241,9 +242,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsTrue(permission.Execute);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SecurityViewModel_OnPermissionPropertyChanged")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SecurityViewModel_OnPermissionPropertyChanged")]
         public void SecurityViewModel_OnPermissionPropertyChanged_WithContributeTrue_MakeExecuteFalse_MakesContributeFalse()
         {
             //------------Setup for test--------------------------
@@ -268,9 +269,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsFalse(permission.Execute);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SecurityViewModel_OnPermissionPropertyChanged")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SecurityViewModel_OnPermissionPropertyChanged")]
         public void SecurityViewModel_OnPermissionPropertyChanged_MakeAdministratorTrue_MakesAllOtherPermissionsTrue()
         {
             //------------Setup for test--------------------------
@@ -301,9 +302,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsTrue(permission.DeployTo);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SecurityViewModel_OnPermissionPropertyChanged")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SecurityViewModel_OnPermissionPropertyChanged")]
         public void SecurityViewModel_OnPermissionPropertyChanged_MakeDeployFromFalse_MakesAdministratorPermissionFalse()
         {
             //------------Setup for test--------------------------
@@ -334,9 +335,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsTrue(permission.DeployTo);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SecurityViewModel_OnPermissionPropertyChanged")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SecurityViewModel_OnPermissionPropertyChanged")]
         public void SecurityViewModel_OnPermissionPropertyChanged_MakeDeployToFalse_MakesAdministratorPermissionFalse()
         {
             //------------Setup for test--------------------------
@@ -367,9 +368,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsFalse(permission.DeployTo);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SecurityViewModel_OnPermissionPropertyChanged")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SecurityViewModel_OnPermissionPropertyChanged")]
         public void SecurityViewModel_OnPermissionPropertyChanged_MakeContributeFalse_MakesAdministratorPermissionFalse()
         {
             //------------Setup for test--------------------------
@@ -400,9 +401,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsTrue(permission.DeployTo);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SecurityViewModel_OnPermissionPropertyChanged")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SecurityViewModel_OnPermissionPropertyChanged")]
         public void SecurityViewModel_OnPermissionPropertyChanged_MakeViewFalse_MakesAdministratorPermissionFalse()
         {
             //------------Setup for test--------------------------
@@ -433,9 +434,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsTrue(permission.DeployTo);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SecurityViewModel_OnPermissionPropertyChanged")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SecurityViewModel_OnPermissionPropertyChanged")]
         public void SecurityViewModel_OnPermissionPropertyChanged_MakeExecuteFalse_MakesAdministratorPermissionFalse()
         {
             //------------Setup for test--------------------------
@@ -466,9 +467,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsTrue(permission.DeployTo);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityViewModel_OnPermissionPropertyChanged")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityViewModel_OnPermissionPropertyChanged")]
         public void SecurityViewModel_OnPermissionPropertyChanged_ServerPermissionWindowsGroupChangedToNonEmptyAndIsNew_NewServerPermissionIsAdded()
         {
             //------------Setup for test--------------------------
@@ -487,9 +488,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsTrue(viewModel.ServerPermissions[1].IsNew);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityViewModel_OnPermissionPropertyChanged")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityViewModel_OnPermissionPropertyChanged")]
         public void SecurityViewModel_OnPermissionPropertyChanged_ServerPermissionWindowsGroupChangedToEmptyAndIsNotNew_ServerPermissionIsRemoved()
         {
             //------------Setup for test--------------------------
@@ -521,9 +522,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.AreNotSame(permission, viewModel.ServerPermissions[0]);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityViewModel_OnPermissionPropertyChanged")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityViewModel_OnPermissionPropertyChanged")]
         public void SecurityViewModel_OnPermissionPropertyChanged_ResourcePermissionWindowsGroupAndResourceNameChangedToNonEmptyAndIsNew_NewResourcePermissionIsAdded()
         {
             //------------Setup for test--------------------------
@@ -543,9 +544,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsTrue(viewModel.ResourcePermissions[1].IsNew);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityViewModel_OnPermissionPropertyChanged")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityViewModel_OnPermissionPropertyChanged")]
         public void SecurityViewModel_OnPermissionPropertyChanged_ResourcePermissionWindowsGroupChangedToEmptyAndIsNotNew_ResourcePermissionIsRemoved()
         {
             //------------Setup for test--------------------------
@@ -577,9 +578,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.AreNotSame(permission, viewModel.ResourcePermissions[0]);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityViewModel_PickWindowsGroupCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityViewModel_PickWindowsGroupCommand")]
         public void SecurityViewModel_PickWindowsGroupCommand_DialogResultIsNotOK_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -607,9 +608,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.AreEqual("Deploy Admins", viewModel.ResourcePermissions[0].WindowsGroup);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityViewModel_PickWindowsGroupCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityViewModel_PickWindowsGroupCommand")]
         public void SecurityViewModel_PickWindowsGroupCommand_DialogResultIsOKAndNothingSelected_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -637,9 +638,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.AreEqual("Deploy Admins", viewModel.ResourcePermissions[0].WindowsGroup);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityViewModel_PickWindowsGroupCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityViewModel_PickWindowsGroupCommand")]
         public void SecurityViewModel_PickWindowsGroupCommand_PermissionIsNull_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -667,9 +668,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.AreEqual("Deploy Admins", viewModel.ResourcePermissions[0].WindowsGroup);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityViewModel_PickWindowsGroupCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityViewModel_PickWindowsGroupCommand")]
         public void SecurityViewModel_PickWindowsGroupCommand_ResultIsNull_PermissionWindowsGroupIsNotUpdated()
         {
             //------------Setup for test--------------------------
@@ -698,9 +699,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.AreEqual("Deploy Admins", viewModel.ResourcePermissions[0].WindowsGroup);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityViewModel_PickWindowsGroupCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityViewModel_PickWindowsGroupCommand")]
         public void SecurityViewModel_PickWindowsGroupCommand_ResultIsNotNull_PermissionWindowsGroupIsUpdated()
         {
             //------------Setup for test--------------------------
@@ -732,9 +733,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.AreEqual(directoryObj.Name, viewModel.ResourcePermissions[0].WindowsGroup);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityViewModel_PickWindowsGroupCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityViewModel_PickWindowsGroupCommand")]
         public void SecurityViewModel_PickWindowsGroupCommand_ResultIsEmptyArray_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -764,9 +765,9 @@ namespace Dev2.Core.Tests.Settings
 
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityViewModel_PickResourceCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityViewModel_PickResourceCommand")]
         public void SecurityViewModel_PickResourceCommand_PermissionIsNull_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -800,9 +801,9 @@ namespace Dev2.Core.Tests.Settings
 
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityViewModel_HelpText")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityViewModel_HelpText")]
         public void SecurityViewModel_HelpText_IsResourceHelpVisibleIsTrue_ContainsResourceHelpText()
         {
             //------------Setup for test--------------------------          
@@ -814,9 +815,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.AreEqual(Warewolf.Studio.Resources.Languages.HelpText.SettingsSecurityResourceHelpResource, viewModel.HelpText);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityViewModel_IsServerHelpVisible")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityViewModel_IsServerHelpVisible")]
         public void SecurityViewModel_IsServerHelpVisible_ChangedToTrueAndIsResourceHelpVisibleIsTrue_IsResourceHelpVisibleIsFalse()
         {
             //------------Setup for test--------------------------          
@@ -829,9 +830,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsFalse(viewModel.IsResourceHelpVisible);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityViewModel_IsResourceHelpVisible")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityViewModel_IsResourceHelpVisible")]
         public void SecurityViewModel_IsResourceHelpVisible_ChangedToTrueAndIsServerHelpVisibleIsTrue_IsServerHelpVisibleIsFalse()
         {
             //------------Setup for test--------------------------          
@@ -844,9 +845,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsFalse(viewModel.IsServerHelpVisible);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityViewModel_CloseHelpCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityViewModel_CloseHelpCommand")]
         public void SecurityViewModel_CloseHelpCommand_IsServerHelpVisibleIsTrue_IsServerHelpVisibleIsFalse()
         {
             //------------Setup for test--------------------------          
@@ -860,9 +861,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsFalse(viewModel.IsServerHelpVisible);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityViewModel_CloseHelpCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityViewModel_CloseHelpCommand")]
         public void SecurityViewModel_CloseHelpCommand_IsResourceHelpVisibleIsTrue_IsResourceHelpVisibleIsFalse()
         {
             //------------Setup for test--------------------------          
@@ -876,9 +877,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsFalse(viewModel.IsServerHelpVisible);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityViewModel_Save")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityViewModel_Save")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SecurityViewModel_Save_NullPermissions_ThrowsArgumentNullException()
         {
@@ -891,9 +892,9 @@ namespace Dev2.Core.Tests.Settings
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityViewModel_Save")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityViewModel_Save")]
         public void SecurityViewModel_Save_InvalidPermissions_InvalidPermissionsAreRemoved()
         {
             //------------Setup for test--------------------------          
@@ -924,9 +925,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.AreEqual(1, viewModel.ServerPermissions.Count(p => p.IsNew));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SecurityViewModel_Save")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SecurityViewModel_Save")]
         public void SecurityViewModel_Save_DeletedPermissions_DeletedPermissionsAreRemoved()
         {
             //------------Setup for test--------------------------          
@@ -957,9 +958,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.AreEqual(1, viewModel.ServerPermissions.Count(p => p.IsNew));
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("SecurityViewModel_ServerDuplicates")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("SecurityViewModel_ServerDuplicates")]
         public void SecurityViewModel_HasInvalidResourcePermission_Given_Invalid_Resource_That_Is_Being_Deleted_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -978,9 +979,9 @@ namespace Dev2.Core.Tests.Settings
         }
 
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("SecurityViewModel_ServerDuplicates")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("SecurityViewModel_ServerDuplicates")]
         public void SecurityViewModel_HasInvalidResourcePermission_Given_Resource_And_No_Group_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -997,9 +998,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsTrue(hasDuplicateServerPermissions);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("SecurityViewModel_ServerDuplicates")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("SecurityViewModel_ServerDuplicates")]
         public void SecurityViewModel_HasInvalidResourcePermission_Given_Group_And_No_Resource_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -1016,9 +1017,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsTrue(hasDuplicateServerPermissions);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SecurityViewModel_ServerDuplicates")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SecurityViewModel_ServerDuplicates")]
         public void SecurityViewModel_ServerDuplicates_NoDuplicates_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -1042,9 +1043,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsFalse(hasDuplicateServerPermissions);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SecurityViewModel_ServerDuplicates")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SecurityViewModel_ServerDuplicates")]
         public void SecurityViewModel_ServerDuplicates_HasDuplicatesDeleted_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -1070,9 +1071,9 @@ namespace Dev2.Core.Tests.Settings
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SecurityViewModel_ServerDuplicates")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SecurityViewModel_ServerDuplicates")]
         public void SecurityViewModel_ServerDuplicates_Duplicates_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -1096,9 +1097,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsTrue(hasDuplicateServerPermissions);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SecurityViewModel_HasDuplicateResourcePermissions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SecurityViewModel_HasDuplicateResourcePermissions")]
         public void SecurityViewModel_HasDuplicateResourcePermissions_NoDuplicatesResourceID_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -1122,9 +1123,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsFalse(hasDuplicateResourcePermissions);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SecurityViewModel_HasDuplicateResourcePermissions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SecurityViewModel_HasDuplicateResourcePermissions")]
         public void SecurityViewModel_HasDuplicateResourcePermissions_NoDuplicatesWindowsGroup_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -1149,9 +1150,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsFalse(hasDuplicateResourcePermissions);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SecurityViewModel_HasDuplicateResourcePermissions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SecurityViewModel_HasDuplicateResourcePermissions")]
         public void SecurityViewModel_HasDuplicateResourcePermissions_DuplicateDeleted_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -1177,9 +1178,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsFalse(hasDuplicateResourcePermissions);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("SecurityViewModel_HasDuplicateResourcePermissions")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("SecurityViewModel_HasDuplicateResourcePermissions")]
         public void SecurityViewModel_ResourcePermissionsCompare_IsDeleted_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -1216,9 +1217,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsFalse(bool.Parse(invoke.ToString()));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("SecurityViewModel_HasDuplicateResourcePermissions")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("SecurityViewModel_HasDuplicateResourcePermissions")]
         public void SecurityViewModel_ServerPermissionsCompare_IsDeleted_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -1255,8 +1256,8 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsFalse(bool.Parse(invoke.ToString()));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsInDomain_GivenNotInDomaint_ShouldReturnCollapsed()
         {
             //---------------Set up test pack-------------------
@@ -1275,8 +1276,8 @@ namespace Dev2.Core.Tests.Settings
             Assert.AreEqual(Visibility.Collapsed, invoke);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsInDomain_GivenInDomaint_ShouldReturnVisible()
         {
             //---------------Set up test pack-------------------
@@ -1295,9 +1296,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.AreEqual(Visibility.Visible, invoke);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SecurityViewModel_HasDuplicateResourcePermissions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SecurityViewModel_HasDuplicateResourcePermissions")]
         public void SecurityViewModel_HasDuplicateResourcePermissions_DuplicateNotDeleted_ReturnsTrue()
         {
             //------------Setup for test--------------------------

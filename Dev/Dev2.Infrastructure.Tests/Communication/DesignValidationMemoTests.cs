@@ -9,17 +9,18 @@
 */
 
 using Dev2.Communication;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Infrastructure.Tests.Communication
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DesignValidationMemoTests
     {
-        [TestMethod]
+        [Test]
         [Description("Constructor must initialize Errors list and set IsValid to true.")]
-        [TestCategory("UnitTest")]
-        [Owner("Trevor Williams-Ros")]
+        [Category("UnitTest")]
+        [Author("Trevor Williams-Ros")]
         
         public void DesignValidationMemoConstructor_UnitTest_Intialization_ErrorsNotNullAndIsValidTrue()
 

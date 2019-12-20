@@ -3,19 +3,20 @@ using Dev2.Common.Interfaces.DB;
 using Dev2.Studio.Core;
 using Dev2.Studio.Interfaces.DataList;
 using Dev2.Studio.ViewModels.DataList;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System.Collections.Generic;
 using Warewolf.Core;
 
 namespace Dev2.Activities.Designers.Tests.Core
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ActionInputDatalistMapperTests
     {
         ActionInputDatalistMapper _actionInputDatalistMapper;
 
-        [TestInitialize]
+        [SetUp]
         public void Initialize()
         {
             IDataListViewModel setupDatalist = new DataListViewModel();
@@ -24,9 +25,9 @@ namespace Dev2.Activities.Designers.Tests.Core
             _actionInputDatalistMapper = new ActionInputDatalistMapper(mockActiveDataList.Object);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ActionInputDatalistMapper))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ActionInputDatalistMapper))]
         public void ActionInputDatalistMapper_MapInputsToDatalist_Should_MapToScalar()
         {
             var serviceInputs = new List<IServiceInput>();
@@ -39,9 +40,9 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.AreEqual("[[a]]", serviceInputs[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ActionInputDatalistMapper))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ActionInputDatalistMapper))]
         public void ActionInputDatalistMapper_MapInputsToDatalist_Should_MapToObject()
         {
             var serviceInputs = new List<IServiceInput>();
@@ -59,9 +60,9 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.AreEqual("@[[a]]", serviceInputs[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ActionInputDatalistMapper))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ActionInputDatalistMapper))]
         public void ActionInputDatalistMapper_MapInputsToDatalist_IsNullOrEmpty_Should_Continue()
         {
             var serviceInputs = new List<IServiceInput>();

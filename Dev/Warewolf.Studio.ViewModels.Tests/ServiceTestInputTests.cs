@@ -1,16 +1,18 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 
 namespace Warewolf.Studio.ViewModels.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ServiceTestInputTests
     {
-        [TestMethod,Timeout(60000)]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestInput_Constructor")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Hagashen Naidu")]
+        [Category("TestInput_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestInput_Constructor_WhenNullVariable_ShouldThrowException()
         {
@@ -22,9 +24,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Assert Results-------------------------
         } 
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestInput_Constructor")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Hagashen Naidu")]
+        [Category("TestInput_Constructor")]
         public void TestInput_Constructor_WhenValidParameters_ShouldSetProperties()
         {
             //------------Setup for test--------------------------
@@ -37,9 +40,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(input.EmptyIsNull);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestInput_Constructor")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Hagashen Naidu")]
+        [Category("TestInput_Constructor")]
         public void TestInput_Variable_WhenSet_ShouldFirePropertyChange()
         {
             //------------Setup for test--------------------------
@@ -58,9 +62,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(_wasCalled);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestInput_Constructor")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Hagashen Naidu")]
+        [Category("TestInput_Constructor")]
         public void TestInput_Value_WhenSet_ShouldFirePropertyChange()
         {
             //------------Setup for test--------------------------
@@ -79,9 +84,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(_wasCalled);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestInput_Value")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Hagashen Naidu")]
+        [Category("TestInput_Value")]
         public void TestInput_Value_WhenSetNonEmpty_ShouldInvokeAddRowAction()
         {
             //------------Setup for test--------------------------
@@ -97,9 +103,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(_wasCalled);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestInput_Value")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Hagashen Naidu")]
+        [Category("TestInput_Value")]
         public void TestInput_Value_WhenSetEmpty_ShouldNotInvokeAddRowAction()
         {
             //------------Setup for test--------------------------
@@ -115,9 +122,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(_wasCalled);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestInput_Constructor")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Hagashen Naidu")]
+        [Category("TestInput_Constructor")]
         public void TestInput_EmptyIsNull_WhenSet_ShouldFirePropertyChange()
         {
             //------------Setup for test--------------------------

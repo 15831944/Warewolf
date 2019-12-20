@@ -13,7 +13,7 @@ using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Core.Messages;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using TechTalk.SpecFlow;
 using Warewolf.Storage.Interfaces;
@@ -142,7 +142,7 @@ namespace Dev2.Activities.Specs.Toolbox.Storage.Dropbox
         public void WhenIChangeReadSourceFromTo(string oldSourceName, string newSourceName)
         {
             var selectedSource = GetViewModel().SelectedSource;
-            Assert.AreEqual<string>(oldSourceName, selectedSource.ResourceName);
+            Assert.AreEqual(oldSourceName, selectedSource.ResourceName);
             Assert.IsFalse(string.IsNullOrEmpty(GetViewModel().ToPath));
             GetViewModel().SelectedSource = new DropBoxSource()
             {

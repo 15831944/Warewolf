@@ -8,7 +8,7 @@ using Dev2.Common.Interfaces.Studio.Controller;
 using Dev2.Communication;
 using Dev2.Controller;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Resource.Errors;
 
@@ -16,12 +16,13 @@ using Warewolf.Resource.Errors;
 
 namespace Dev2.Core.Tests.Controller
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class CommunicationControllerTests
     {
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ExecuteCommand_GivenReturnAuthorizationError_ShouldShowCorrectPopup()
         {
             //---------------Set up test pack-------------------
@@ -47,8 +48,8 @@ namespace Dev2.Core.Tests.Controller
             mock.Verify(c => c.Show(It.IsAny<string>(), It.IsAny<string>(), MessageBoxButton.OK, MessageBoxImage.Error, "", false, false, true, false, false, false), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ExecuteCommand_GivenReturnExploreAuthorizationError_ShouldShowCorrectPopup()
         {
             //---------------Set up test pack-------------------
@@ -77,8 +78,8 @@ namespace Dev2.Core.Tests.Controller
             mock.Verify(c => c.Show(It.IsAny<string>(), It.IsAny<string>(), MessageBoxButton.OK, MessageBoxImage.Error, "", false, false, true, false, false, false), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ExecuteCommandAsync_GivenReturnExploreAuthorizationError_ShouldShowCorrectPopup()
         {
             //---------------Set up test pack-------------------
@@ -107,8 +108,8 @@ namespace Dev2.Core.Tests.Controller
             mock.Verify(c => c.Show(It.IsAny<string>(), It.IsAny<string>(), MessageBoxButton.OK, MessageBoxImage.Error, "", false, false, true, false, false, false), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ExecuteCommandAsync_GivenHasAuthorizationError_ShouldShowCorrectPopup()
         {
             //---------------Set up test pack-------------------
@@ -132,8 +133,8 @@ namespace Dev2.Core.Tests.Controller
             
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ExecuteCommandAsync_GivenHasAuthorizationError_ShouldShowCorrectPopup_Aggregation()
         {
             //---------------Set up test pack-------------------

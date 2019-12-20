@@ -10,7 +10,7 @@
 
 using Dev2.Common;
 using Dev2.Common.Wrappers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.IO;
@@ -20,12 +20,13 @@ using System.Text;
 
 namespace Dev2.Infrastructure.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class TestEnvironmentVariables
     {
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(EnvironmentVariables))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(EnvironmentVariables))]
         public void EnvironmentVariables_GetServerSettingsFolder_ShouldReturnProgramDataFolder()
         {
             //------------Setup for test--------------------------
@@ -36,9 +37,9 @@ namespace Dev2.Infrastructure.Tests
             StringAssert.Contains(serverSettingsFolder, serverSettingsFolderPart);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(EnvironmentVariables))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(EnvironmentVariables))]
         public void EnvironmentVariables_GetServerSecurityFile_ShouldReturnSecuritySettingsFileInProgramData()
         {
             //------------Setup for test--------------------------
@@ -49,9 +50,9 @@ namespace Dev2.Infrastructure.Tests
             StringAssert.Contains(filePath, filePart);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(EnvironmentVariables))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(EnvironmentVariables))]
         public void EnvironmentVariables_GetServerLogSettingsFile_ShouldReturnLogSettingsFileInProgramData()
         {
             //------------Setup for test--------------------------
@@ -62,9 +63,9 @@ namespace Dev2.Infrastructure.Tests
             StringAssert.Contains(serverSecurityFilePath, serverSecurityFilePart);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(EnvironmentVariables))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(EnvironmentVariables))]
         public void EnvironmentVariables_GetServerLogFile_ShouldReturnLogFileInProgramData()
         {
             //------------Setup for test--------------------------
@@ -75,9 +76,9 @@ namespace Dev2.Infrastructure.Tests
             StringAssert.Contains(filePath, filePart);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(EnvironmentVariables))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(EnvironmentVariables))]
         public void EnvironmentVariables_GetResourcePath_ShouldReturnResourceFolderInProgramData()
         {
             //------------Setup for test--------------------------
@@ -88,9 +89,9 @@ namespace Dev2.Infrastructure.Tests
             StringAssert.Contains(folderPath, folderPart);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(EnvironmentVariables))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(EnvironmentVariables))]
         public void EnvironmentVariables_GetTestPath_ShouldReturnTestFolderInProgramData()
         {
             //------------Setup for test--------------------------
@@ -101,9 +102,9 @@ namespace Dev2.Infrastructure.Tests
             StringAssert.Contains(folderPath, folderPart);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(EnvironmentVariables))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(EnvironmentVariables))]
         public void EnvironmentVariables_WorkspacePath_ShouldReturnWorkspaceFolderInProgramData()
         {
             //------------Setup for test--------------------------
@@ -113,9 +114,9 @@ namespace Dev2.Infrastructure.Tests
             //------------Assert Results-------------------------
             StringAssert.Contains(folderPath, folderPart);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(EnvironmentVariables))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(EnvironmentVariables))]
         public void EnvironmentVariables_GetWorkspacePath_GuidEmpty()
         {
             //------------Setup for test--------------------------
@@ -126,9 +127,9 @@ namespace Dev2.Infrastructure.Tests
             StringAssert.Contains(folderPath, folderPart);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(EnvironmentVariables))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(EnvironmentVariables))]
         public void EnvironmentVariables_GetWorkspacePath_Guid()
         {
             var guid = new Guid("c550ca0d-d324-45de-92bb-0c91879eb8b3");
@@ -139,9 +140,9 @@ namespace Dev2.Infrastructure.Tests
             //------------Assert Results-------------------------
             StringAssert.Contains(folderPath, folderPart);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(EnvironmentVariables))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(EnvironmentVariables))]
         public void EnvironmentVariables_ServerPerfmonSettingsFile()
         {
             //------------Setup for test--------------------------
@@ -152,9 +153,9 @@ namespace Dev2.Infrastructure.Tests
             StringAssert.Contains(path, folderPart);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(EnvironmentVariables))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(EnvironmentVariables))]
         public void EnvironmentVariables_ServerResourcePerfmonSettingsFile()
         {
             //------------Setup for test--------------------------
@@ -165,9 +166,9 @@ namespace Dev2.Infrastructure.Tests
             StringAssert.Contains(path, folderPart);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(EnvironmentVariables))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(EnvironmentVariables))]
         public void EnvironmentVariables_WorkflowDetailLogArchivePath()
         {
             //------------Setup for test--------------------------
@@ -177,9 +178,9 @@ namespace Dev2.Infrastructure.Tests
             //------------Assert Results-------------------------
             StringAssert.Contains(path, folderPart);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(EnvironmentVariables))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(EnvironmentVariables))]
         public void EnvironmentVariables_WorkflowDetailLogArchivePath_Name()
         {
             //------------Setup for test--------------------------
@@ -190,9 +191,9 @@ namespace Dev2.Infrastructure.Tests
             StringAssert.Contains(path,folderPart);
         }
        
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(EnvironmentVariables))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(EnvironmentVariables))]
         public void EnvironmentVariables_AppDataPath()
         {
             //------------Setup for test--------------------------
@@ -203,9 +204,9 @@ namespace Dev2.Infrastructure.Tests
             StringAssert.Contains(path, folderPart);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(EnvironmentVariables))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(EnvironmentVariables))]
         public void EnvironmentVariables_VersionsPath()
         {
             //------------Setup for test--------------------------
@@ -216,9 +217,9 @@ namespace Dev2.Infrastructure.Tests
             StringAssert.Contains(path, folderPart);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(EnvironmentVariables))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(EnvironmentVariables))]
         public void EnvironmentVariables_DetailedLogsArchives()
         {
             //------------Setup for test--------------------------
@@ -229,9 +230,9 @@ namespace Dev2.Infrastructure.Tests
             StringAssert.Contains(path, folderPart);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(EnvironmentVariables))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(EnvironmentVariables))]
         public void EnvironmentVariables_WorkflowDetailLogPath_ShouldReturnDetailedLogsInProgramData()
         {
             //------------Setup for test--------------------------
@@ -244,9 +245,9 @@ namespace Dev2.Infrastructure.Tests
             directory.Delete(folderPath, true);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(EnvironmentVariables))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(EnvironmentVariables))]
         public void EnvironmentVariables_IsServerOnline()
         {
             //------------Execute Test---------------------------
@@ -255,9 +256,9 @@ namespace Dev2.Infrastructure.Tests
             Assert.IsTrue(EnvironmentVariables.IsServerOnline);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(EnvironmentVariables))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(EnvironmentVariables))]
         public void EnvironmentVariables_WebServerUri()
         {
             //------------Execute Test---------------------------
@@ -266,9 +267,9 @@ namespace Dev2.Infrastructure.Tests
             Assert.AreEqual("warewolf:8080/", EnvironmentVariables.WebServerUri);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(EnvironmentVariables))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(EnvironmentVariables))]
         public void EnvironmentVariables_DnsName()
         {
             //------------Execute Test---------------------------
@@ -277,9 +278,9 @@ namespace Dev2.Infrastructure.Tests
             Assert.AreEqual("warewolf", EnvironmentVariables.DnsName);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(EnvironmentVariables))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(EnvironmentVariables))]
         public void EnvironmentVariables_Port()
         {
             //------------Execute Test---------------------------
@@ -288,17 +289,17 @@ namespace Dev2.Infrastructure.Tests
             Assert.AreEqual(8080, EnvironmentVariables.Port);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(EnvironmentVariables))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(EnvironmentVariables))]
         public void EnvironmentVariables_RemoteInvokeID()
         {
             Assert.IsNotNull(EnvironmentVariables.RemoteInvokeID);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(EnvironmentVariables))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(EnvironmentVariables))]
         public void EnvironmentVariables_PublicWebServerUri()
         {
             EnvironmentVariables.DnsName = "warewolf";
@@ -306,9 +307,9 @@ namespace Dev2.Infrastructure.Tests
             Assert.AreEqual("warewolf:8080/", EnvironmentVariables.PublicWebServerUri);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(EnvironmentVariables))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(EnvironmentVariables))]
         public void EnvironmentVariables_RootPersistencePath()
         {
             //------------Execute Test---------------------------
@@ -318,9 +319,9 @@ namespace Dev2.Infrastructure.Tests
             StringAssert.Contains(folderPart, path);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(EnvironmentVariables))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(EnvironmentVariables))]
         public void EnvironmentVariables_CharacterMap()
         {
             var defaultEncoding = EnvironmentVariables.CharacterMap.DefaultEncoding;
@@ -333,9 +334,9 @@ namespace Dev2.Infrastructure.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(EnvironmentVariables))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(EnvironmentVariables))]
         public void EnvironmentVariables_ApplicationPath_OnlySetsOnce()
         {
             //------------Setup for test--------------------------

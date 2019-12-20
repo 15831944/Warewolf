@@ -20,18 +20,19 @@ using Dev2.Common.State;
 using Dev2.Common.Wrappers;
 using Dev2.Data.ServiceModel;
 using Dev2.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Storage.Interfaces;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfDropBoxUploadActivityComparerTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_UniqueIDEquals_EmptyDropBoxDeleteActivities_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -46,9 +47,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_UniqueID_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -62,9 +63,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_Equals_Given_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -79,9 +80,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_Equals_Given_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -96,9 +97,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_Equals_Given_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -112,9 +113,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_Result_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -129,9 +130,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_Result_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -146,9 +147,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_Result_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -163,9 +164,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_FromPath_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -180,9 +181,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_FromPath_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -197,9 +198,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_FromPath_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -214,9 +215,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_ToPath_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -231,9 +232,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_ToPath_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -248,9 +249,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_ToPath_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -265,9 +266,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_DropBoxSource_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -300,9 +301,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_DropBoxSource_Same_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -332,9 +333,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_AddMode_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -364,9 +365,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_AddMode_Same_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -395,9 +396,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
                 Assert.IsTrue(@equals);
             }
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_OverWriteMode_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -427,9 +428,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_OverWriteMode_Same_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -459,9 +460,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_GetState_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------
@@ -540,9 +541,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_ObjectEquals_IsFalse_ExpectFalse()
         {
             //-----------------------Arrange----------------------------
@@ -562,9 +563,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_ObjectEquals_IsTrue_ExpectTrue()
         {
             //-----------------------Arrange----------------------------
@@ -584,9 +585,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_ObjectEquals_IsNotExpectedObject_ExpectFalse()
         {
             //-----------------------Arrange----------------------------
@@ -603,9 +604,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_Equals_ExpectFalse()
         {
             //-----------------------Arrange----------------------------
@@ -623,9 +624,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_Equals_IsNull_ExpectFalse()
         {
             //-----------------------Arrange----------------------------
@@ -642,9 +643,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_Equals_IsEqual_ExpectTrue()
         {
             //-----------------------Arrange----------------------------
@@ -654,9 +655,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsTrue(dsfDropBoxUploadActivity.Equals(dsfDropBoxUploadActivity));
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_GetHashCode_Properties_NotNull_ExpertTrue()
         {
             //--------------------------Arrange----------------------------
@@ -679,9 +680,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_GetHashCode_Properties_IsNull_ExpertTrue()
         {
             //--------------------------Arrange----------------------------
@@ -700,9 +701,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
         }
 
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_PerformExecution_GetDebugInputs_Null_ExpertSuccess()
         {
             //--------------------------Arrange----------------------------
@@ -720,9 +721,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_PerformExecution_GetDebugInputs_NotNull_WithSetProperties_ExpertSuccess()
         {
             //--------------------------Arrange----------------------------

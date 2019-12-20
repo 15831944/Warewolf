@@ -12,17 +12,18 @@ using System.Collections.Specialized;
 using System.Net;
 using Dev2.Runtime.WebServer;
 using Dev2.Runtime.WebServer.Responses;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Runtime.WebServer.Responses
 {
-    [TestClass]
-    [TestCategory("Runtime WebServer")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime WebServer")]
     public class StatusResponseWriterTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("StatusResponseWriter_Write")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("StatusResponseWriter_Write")]
         public void StatusResponseWriter_Write_WebServerContext_WritesTheStatus()
         {
             //------------Setup for test--------------------------

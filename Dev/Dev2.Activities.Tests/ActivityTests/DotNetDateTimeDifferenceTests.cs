@@ -13,7 +13,7 @@ using System.Activities.Statements;
 using System.Collections.Generic;
 using Dev2.Interfaces;
 using Dev2.Tests.Activities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Dev2.Common;
 using Dev2.Activities.DateAndTime;
 using System.Linq;
@@ -25,11 +25,12 @@ namespace ActivityUnitTests.ActivityTests
     /// <summary>
     /// Summary description for DateTimeDifferenceTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
 
     public class DotNetDateTimeDifferenceTests : BaseActivityUnitTest
     {
-        [TestInitialize]
+        [SetUp]
         public void PreConditions()
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-ZA");
@@ -47,7 +48,7 @@ namespace ActivityUnitTests.ActivityTests
 
         #region Positive Test Cases
 
-        [TestMethod]
+        [Test]
         public void Positive_With_Normal_Params_Expected_Positive()
         {
             SetupArguments(
@@ -68,7 +69,7 @@ namespace ActivityUnitTests.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Positive_UsingRecorsetWithStar_Expected_Positive()
         {
             SetupArguments(
@@ -90,7 +91,7 @@ namespace ActivityUnitTests.ActivityTests
             Assert.AreEqual("9090", results[2]);
         }
 
-        [TestMethod]
+        [Test]
         public void Blank_InputFormat_Expected_Error()
         {
             SetupArguments(
@@ -114,9 +115,9 @@ namespace ActivityUnitTests.ActivityTests
 
         #endregion Error Test Cases
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfDateTimeDifferenceActivity_GetOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfDateTimeDifferenceActivity_GetOutputs")]
         public void DsfDateTimeDifferenceActivity_GetOutputs_Called_ShouldReturnListWithResultValueInIt()
         {
             //------------Setup for test--------------------------
@@ -128,9 +129,9 @@ namespace ActivityUnitTests.ActivityTests
             Assert.AreEqual("[[dtd]]", outputs[0]);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("DsfDateTimeDifferenceActivity_Equality")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("DsfDateTimeDifferenceActivity_Equality")]
         public void DsfDateTimeDifferenceActivity_Expect_NotEqual()
         {
             var id = Guid.NewGuid().ToString();
@@ -154,9 +155,9 @@ namespace ActivityUnitTests.ActivityTests
             };
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("DsfDateTimeDifferenceActivity_Equality")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("DsfDateTimeDifferenceActivity_Equality")]
         public void DsfDateTimeDifferenceActivity_Expect_Equal()
         {
             var id = Guid.NewGuid().ToString();
@@ -211,9 +212,9 @@ namespace ActivityUnitTests.ActivityTests
             Assert.IsTrue(activity1.Equals(activity2));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DsfDotNetDateTimeDifferenceActivity_GetState")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DsfDotNetDateTimeDifferenceActivity_GetState")]
         public void DsfDotNetDateTimeDifferenceActivity_GetState_ReturnsStateVariable()
         {
             //------------Setup for test--------------------------

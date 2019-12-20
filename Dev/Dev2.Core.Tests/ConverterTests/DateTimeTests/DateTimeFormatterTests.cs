@@ -12,11 +12,12 @@ using System;
 using Dev2.Common.DateAndTime;
 using Dev2.Common.DateAndTime.TO;
 using Dev2.Common.Interfaces.Core.Convertors.DateAndTime;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.ConverterTests.DateTimeTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DateTimeFormatterTests
     {
 
@@ -24,7 +25,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
 
         public TestContext TestContext { get; set; }
 
-        [TestInitialize]
+        [SetUp]
         public void PreConditions()
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-ZA");
@@ -39,7 +40,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         // You can use the following additional attributes as you write your tests:
         //
         // Use ClassInitialize to run code before running the first test in the class
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void MyClassInitialize(TestContext testContext)
         {
             _formatter = DateTimeConverterFactory.CreateFormatter();
@@ -64,7 +65,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         /// <summary>
         /// Tests that the formatter can correctly read input format and return a correctly formatted output
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatAllArgsValid_Expected_ResultFormattedAccordingToOutputFormat()
         {
             IDateTimeOperationTO dateTimeTO = new DateTimeOperationTO();
@@ -81,7 +82,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         /// <summary>
         /// Tests that the formatter can accept and return formats with Timezone values
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatAllArgsValid_WithTimeZone_Expected_ResultContainsFullTimezoneName()
         {
             IDateTimeOperationTO dateTimeTO = new DateTimeOperationTO();
@@ -98,7 +99,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         /// <summary>
         /// Tests that the formatter correctly fails to retrieve the correct input given an invalid input format
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatInputFormatInvalid_Expected_UnableToParseInvalidInputFormat()
         {
             IDateTimeOperationTO dateTimeTO = new DateTimeOperationTO();
@@ -122,7 +123,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         /// <summary>
         /// Tests that invalid modifiers are not used to modify date
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatTimeModifierTypeInvalid_Expected_DateNotModified()
         {
             IDateTimeOperationTO dateTimeTO = new DateTimeOperationTO();
@@ -137,7 +138,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
 
         }
         
-        [TestMethod]
+        [Test]
         public void FormatWithTrailingZerosInOutputExpectedTrailingZerosNotRemoved()
         {
             IDateTimeOperationTO dateTimeTO = new DateTimeOperationTO();
@@ -150,7 +151,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
 
             Assert.AreEqual("900", result);
         }
-        [TestMethod]
+        [Test]
         public void FormatWithTrailingSpacesInInputExpectedOutputDateNotBlank()
         {
             IDateTimeOperationTO dateTimeTO = new DateTimeOperationTO();
@@ -167,7 +168,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         /// <summary>
         /// Tests that non-matching input to format does not return any date time format
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatDateTimeInvalid_Expected_ErrorMessageReturnedByFormatter()
         {
             IDateTimeOperationTO dateTimeTO = new DateTimeOperationTO();
@@ -190,7 +191,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         /// <summary>
         /// Tests that null datetime values are correctly handled by the Formatter
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatDateTimeNULLorEmpty_Expected_ErrorMessageReturnedByFormatter()
         {
             IDateTimeOperationTO dateTimeTO = new DateTimeOperationTO();
@@ -213,7 +214,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         /// <summary>
         /// Tests that modifier that is empty does not modify date in any way
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatTimeModifierTypeNULLorEmpty_Expected_SameDateReturned()
         {
             IDateTimeOperationTO dateTimeTO = new DateTimeOperationTO();
@@ -233,7 +234,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         /// <summary>
         /// Tests that if the output format is empty, the formatter returns an error regarding this
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatOutputFormatNULLorEmpty_Expected_NoOutputFormattingPerformed()
         {
             IDateTimeOperationTO dateTimeTO = new DateTimeOperationTO();
@@ -251,7 +252,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         /// <summary>
         /// Tests that if there is an empty output format specified, the input format is used
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatInputFormatNULLorEmpty_Expected_DateValueAssumesInputFormat()
         {
             IDateTimeOperationTO dateTimeTO = new DateTimeOperationTO();
@@ -270,7 +271,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         /// <summary>
         /// Tests that the formatter is able to apply a week when it is not given one
         /// </summary>
-        [TestMethod]
+        [Test]
         public void TryFormat_Converting_Date_To_Week_Expected_WeekofTheSpecifiedDataReturned()
         {
             const string inputString = "06-01-2013";
@@ -286,7 +287,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         /// <summary>
         /// Tests that the formatter is able to apply a week when it is not given one
         /// </summary>
-        [TestMethod]
+        [Test]
         public void TryFormat_Converting_Date_To_ww_Expected_WeekReturnedInDoubleDigitFormat()
         {
             const string inputString = "06-01-2013";
@@ -305,7 +306,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         #region Blank Tests
 
         //28.09.2012: massimo.guerrera - Added after bug was found
-        [TestMethod]
+        [Test]
         public void TimeModifiers_Blank_Positive_Expected_No_Change()
         {
             const string inputString = "2012/02/15 11:21:51 AM";
@@ -318,7 +319,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         }
 
         //28.09.2012: massimo.guerrera - Added after bug was found
-        [TestMethod]
+        [Test]
         public void TimeModifiers_Blank_Negative_Expected_No_Change()
         {
             const string inputString = "2025/02/15 11:21:51 AM";
@@ -331,7 +332,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         }
 
         //28.09.2012: massimo.guerrera - Added after bug was found
-        [TestMethod]
+        [Test]
         public void TimeModifiers_Blank_Zero_Expected_No_Change()
         {
             const string inputString = "2025/02/15 11:21:51 AM";
@@ -348,7 +349,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         #region Years Tests
 
         //28.09.2012: massimo.guerrera - Added after bug was found
-        [TestMethod]
+        [Test]
         public void TimeModifiers_Years_Positive_Expected_Correct_Addition()
         {
             const string inputString = "2012/02/15 11:21:51 AM";
@@ -361,7 +362,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         }
 
         //28.09.2012: massimo.guerrera - Added after bug was found
-        [TestMethod]
+        [Test]
         public void TimeModifiers_Years_Negative_Expected_Correct_Subtraction()
         {
             const string inputString = "2025/02/15 11:21:51 AM";
@@ -374,7 +375,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         }
 
         //28.09.2012: massimo.guerrera - Added after bug was found
-        [TestMethod]
+        [Test]
         public void TimeModifiers_Years_Zero_Expected_No_Change()
         {
             const string inputString = "2025/02/15 11:21:51 AM";
@@ -391,7 +392,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         #region Months Tests
 
         //28.09.2012: massimo.guerrera - Added after bug was found
-        [TestMethod]
+        [Test]
         public void TimeModifiers_Months_Positive_Expected_Correct_Addition()
         {
             const string inputString = "2025/02/15 11:21:51 AM";
@@ -404,7 +405,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         }
 
         //28.09.2012: massimo.guerrera - Added after bug was found
-        [TestMethod]
+        [Test]
         public void TimeModifiers_Months_Negative_Expected_Correct_Subtraction()
         {
             const string inputString = "2025/02/15 11:21:51 AM";
@@ -417,7 +418,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         }
 
         //28.09.2012: massimo.guerrera - Added after bug was found
-        [TestMethod]
+        [Test]
         public void TimeModifiers_Months_Zero_Expected_No_Change()
         {
             const string inputString = "2025/02/15 11:21:51 AM";
@@ -434,7 +435,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         #region Days Tests
 
         //28.09.2012: massimo.guerrera - Added after bug was found
-        [TestMethod]
+        [Test]
         public void TimeModifiers_Days_Positive_Expected_Correct_Addition()
         {
             const string inputString = "2025/06/15 11:21:51 AM";
@@ -447,7 +448,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         }
 
         //28.09.2012: massimo.guerrera - Added after bug was found
-        [TestMethod]
+        [Test]
         public void TimeModifiers_Days_Negative_Expected_Correct_Subtraction()
         {
             const string inputString = "2025/06/15 11:21:51 AM";
@@ -460,7 +461,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         }
 
         //28.09.2012: massimo.guerrera - Added after bug was found
-        [TestMethod]
+        [Test]
         public void TimeModifiers_Days_Zero_Expected_No_Change()
         {
             const string inputString = "2025/02/15 11:21:51 AM";
@@ -477,7 +478,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         #region Week Tests
 
         //28.09.2012: massimo.guerrera - Added after bug was found
-        [TestMethod]
+        [Test]
         public void TimeModifiers_Weeks_Positive_Expected_Correct_Addition()
         {
             const string inputString = "2025/02/15 11:21:51 AM";
@@ -490,7 +491,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         }
 
         //28.09.2012: massimo.guerrera - Added after bug was found
-        [TestMethod]
+        [Test]
         public void TimeModifiers_Weeks_Negative_Expected_Correct_Subtraction()
         {
             const string inputString = "2025/02/15 11:21:51 AM";
@@ -503,7 +504,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         }
 
         //28.09.2012: massimo.guerrera - Added after bug was found
-        [TestMethod]
+        [Test]
         public void TimeModifiers_Weeks_Zero_Expected_No_Change()
         {
             const string inputString = "2025/02/15 11:21:51 AM";
@@ -520,7 +521,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         #region Hours Tests
 
         //28.09.2012: massimo.guerrera - Added after bug was found
-        [TestMethod]
+        [Test]
         public void TimeModifiers_Hours_Positive_Expected_Correct_Addition()
         {
             const string inputString = "2025/02/15 11:21:51 AM";
@@ -533,7 +534,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         }
 
         //28.09.2012: massimo.guerrera - Added after bug was found
-        [TestMethod]
+        [Test]
         public void TimeModifiers_Hours_Negative_Expected_Correct_Subtraction()
         {
             const string inputString = "2025/02/15 11:21:51 AM";
@@ -546,7 +547,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         }
 
         //28.09.2012: massimo.guerrera - Added after bug was found
-        [TestMethod]
+        [Test]
         public void TimeModifiers_Hours_Zero_Expected_No_Change()
         {
             const string inputString = "2025/02/15 11:21:51 AM";
@@ -563,7 +564,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         #region Minutes Tests
 
         //28.09.2012: massimo.guerrera - Added after bug was found
-        [TestMethod]
+        [Test]
         public void TimeModifiers_Minutes_Positive_Expected_Correct_Addition()
         {
             const string inputString = "2025/02/15 11:21:51 AM";
@@ -576,7 +577,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         }
 
         //28.09.2012: massimo.guerrera - Added after bug was found
-        [TestMethod]
+        [Test]
         public void TimeModifiers_Minutes_Negative_Expected_Correct_Subtraction()
         {
             const string inputString = "2025/02/15 11:21:51 AM";
@@ -589,7 +590,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         }
 
         //28.09.2012: massimo.guerrera - Added after bug was found
-        [TestMethod]
+        [Test]
         public void TimeModifiers_Minutes_Zero_Expected_No_Change()
         {
             const string inputString = "2025/02/15 11:21:51 AM";
@@ -606,7 +607,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         #region Seconds Tests
 
         //28.09.2012: massimo.guerrera - Added after bug was found
-        [TestMethod]
+        [Test]
         public void TimeModifiers_Seconds_Positive_Expected_Correct_Addition()
         {
             const string inputString = "2025/02/15 11:21:51 AM";
@@ -619,7 +620,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         }
 
         //28.09.2012: massimo.guerrera - Added after bug was found
-        [TestMethod]
+        [Test]
         public void TimeModifiers_Seconds_Negative_Expected_Correct_Subtraction()
         {
             const string inputString = "2025/02/15 11:21:51 AM";
@@ -632,7 +633,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         }
 
         //28.09.2012: massimo.guerrera - Added after bug was found
-        [TestMethod]
+        [Test]
         public void TimeModifiers_Seconds_Zero_Expected_No_Change()
         {
             const string inputString = "2025/02/15 11:21:51 AM";
@@ -648,7 +649,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
 
         #region Milliseconds Tests
 
-        [TestMethod]
+        [Test]
         public void TimeModifiers_Split_Secs_Positive_Expected_Correct_Addition()
         {
             const string inputString = "2025/02/15 11:21:51 AM";
@@ -660,7 +661,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             Assert.IsTrue(result == "2025/02/15 11:21:52 AM");
         }
 
-        [TestMethod]
+        [Test]
         public void TimeModifiers_Split_Secs_Negative_Expected_Correct_Subtraction()
         {
             const string inputString = "2025/02/15 11:21:51 AM";
@@ -672,7 +673,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             Assert.IsTrue(result == "2025/02/15 11:21:50 AM");
         }
 
-        [TestMethod]
+        [Test]
         public void TimeModifiers_Split_Secs_Zero_Expected_No_Change()
         {
             const string inputString = "2025/02/15 11:21:51 AM";

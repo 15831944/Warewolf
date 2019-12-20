@@ -10,17 +10,18 @@
 
 using System.Collections.ObjectModel;
 using Dev2.Validation;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Activities.Designers.Tests.Designers2.Core
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class VariableUtilsTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("VariableUtils_TryParseVariables")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("VariableUtils_TryParseVariables")]
         public void VariableUtils_TryParseVariables_InputValueIsNullOrEmpty_NoErrors()
         {
             //------------Setup for test--------------------------
@@ -32,9 +33,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.IsNull(error);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("VariableUtils_TryParseVariables")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("VariableUtils_TryParseVariables")]
         public void VariableUtils_TryParseVariables_InputValueIsInvalidExpression_HasErrors()
         {
             //------------Setup for test--------------------------
@@ -47,9 +48,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.AreEqual("Result - Invalid expression: opening and closing brackets don't match", error.Message);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("VariableUtils_TryParseVariables")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("VariableUtils_TryParseVariables")]
         public void VariableUtils_TryParseVariables_InputValueIsValidExpressionAndNoInputs_UsesVariableValueAndHasNoErrors()
         {
             //------------Setup for test--------------------------
@@ -63,9 +64,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.AreEqual(variableValue, outputValue);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("VariableUtils_TryParseVariables")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("VariableUtils_TryParseVariables")]
         public void VariableUtils_TryParseVariables_InputValueIsValidExpressionAndHasInputs_UsesInputsValueAndHasNoErrors()
         {
             //------------Setup for test--------------------------

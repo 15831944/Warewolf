@@ -14,18 +14,19 @@ using Dev2.Common.Interfaces.Diagnostics.Debug;
 using Dev2.Diagnostics;
 using Dev2.Diagnostics.Debug;
 using Dev2.Tests.Weave;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json.Serialization;
 
 namespace Dev2.Tests.Diagnostics
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DebugStateTests
     {
 
 
-        [TestMethod]
+        [Test]
 
         public void Constructor_Expected_InitializesInputsAndOutputsAsEmptyLists()
 
@@ -39,8 +40,8 @@ namespace Dev2.Tests.Diagnostics
             Assert.AreEqual(0, debugState.Outputs.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Constructor_GivenIsNew_ShouldSetNullParentId()
         {
             //---------------Set up test pack-------------------
@@ -53,8 +54,8 @@ namespace Dev2.Tests.Diagnostics
             Assert.IsNull(debugState.ParentID);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_GivenSameIdAndSessionId_ShouldReturnTrue()
         {
             //---------------Set up test pack-------------------
@@ -80,8 +81,8 @@ namespace Dev2.Tests.Diagnostics
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void op_Equals_GivenSameIdAndSessionId_ShouldReturnTrue()
         {
             //---------------Set up test pack-------------------
@@ -107,8 +108,8 @@ namespace Dev2.Tests.Diagnostics
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetHashCode_GivenSameIdAndSessionId_ShouldReturnTrue()
         {
             //---------------Set up test pack-------------------
@@ -139,8 +140,8 @@ namespace Dev2.Tests.Diagnostics
 
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsFinalStep_GivenValidEndStateArgs_ShouldReturnTrue()
         {
             //---------------Set up test pack-------------------
@@ -160,8 +161,8 @@ namespace Dev2.Tests.Diagnostics
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsFirstStep_GivenValidEndStateArgs_ShouldReturnTrue()
         {
             //---------------Set up test pack-------------------
@@ -179,8 +180,8 @@ namespace Dev2.Tests.Diagnostics
             Assert.IsTrue(isFirstStep);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void PropertyChange_GivenEmptyGuidParent_ShouldSetNullParentId()
         {
             //---------------Set up test pack-------------------
@@ -204,7 +205,7 @@ namespace Dev2.Tests.Diagnostics
 
 
 
-        [TestMethod]
+        [Test]
 
         public void Constructor_With_ByteReaderBase_Expected_InvokesByteReaderBase()
 
@@ -231,7 +232,7 @@ namespace Dev2.Tests.Diagnostics
 
         #region Write
 
-        [TestMethod]
+        [Test]
 
         public void Write_With_ByteWriterBase_Expected_InvokesByteWriterBase()
 
@@ -257,7 +258,7 @@ namespace Dev2.Tests.Diagnostics
 
         #region Serialization
 
-        [TestMethod]
+        [Test]
 
         public void Serialized_Expected_CanBeDeserialized()
 
@@ -296,9 +297,9 @@ namespace Dev2.Tests.Diagnostics
         }
 
         
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DebugItem_Add")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DebugItem_Add")]
         public void DebugItem_Add_GroupIndexIsGreaterThan10_MoreLinkHasData()
         {
             var itemToAdd = new DebugItem();
@@ -331,8 +332,8 @@ namespace Dev2.Tests.Diagnostics
             Assert.IsFalse(string.IsNullOrEmpty(itemToAdd.ResultsList[10].MoreLink));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void JsonConverter_GivenStatetype_ShouldConvertToString()
         {
             //---------------Set up test pack-------------------

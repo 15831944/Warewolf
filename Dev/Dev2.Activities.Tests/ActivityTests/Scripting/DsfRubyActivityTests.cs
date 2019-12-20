@@ -9,48 +9,25 @@ using ActivityUnitTests;
 using Dev2.Activities.Scripting;
 using Dev2.Common.Interfaces.Enums;
 using Dev2.Development.Languages.Scripting;
-using Dev2.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Warewolf.Core;
 
 
 namespace Dev2.Tests.Activities.ActivityTests.Scripting
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfRubyActivityTests : BaseActivityUnitTest
     {
-        [ClassCleanup]
-        public static void Cleaner()
-        {
-            try
-            {
-            }
-            catch (Exception)
-            {
-                //supress exceptio
-            }
-        }
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext { get; set; }
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void Init(TestContext context)
         {
-            try
-            {
-                File.WriteAllBytes(GetRbTmpFile(), Encoding.ASCII.GetBytes(@"def greaterBalanceThanFive(other) return 5 < other end"));
-            }
-            catch (Exception ex)
-            {
-                //supress exceptio
-                Assert.Fail(ex.Message);
-            }
+            File.WriteAllBytes(GetRbTmpFile(), Encoding.ASCII.GetBytes(@"def greaterBalanceThanFive(other) return 5 < other end"));
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Attribute_GivenIsNew_ShouldhaveCorrectValues()
         {
             //---------------Set up test pack-------------------
@@ -67,8 +44,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             Assert.AreEqual("Ruby", toolDescriptorInfo.Name );
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void OnConstruction_GivenType_ShouldInheritCorrectly()
         {
             //---------------Set up test pack-------------------
@@ -78,17 +55,17 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             //---------------Execute Test ----------------------
 
             //---------------Test Result -----------------------
-            Assert.IsInstanceOfType(act, typeof(DsfActivityAbstract<string>));
+            Assert.IsInstanceOf(act.GetType(), typeof(DsfActivityAbstract<string>));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_GivenIsNew_ShouldSetJavascript()
         {
             //---------------Set up test pack-------------------
             var act = new DsfRubyActivity();
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOfType(act, typeof(DsfActivityAbstract<string>));
+            Assert.IsInstanceOf(act.GetType(), typeof(DsfActivityAbstract<string>));
             //---------------Execute Test ----------------------
             var displayName = act.DisplayName;
             //---------------Test Result -----------------------
@@ -96,14 +73,14 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Script_GivenIsNew_ShouldBeEmpty()
         {
             //---------------Set up test pack-------------------
             var act = new DsfRubyActivity();
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOfType(act, typeof(DsfActivityAbstract<string>));
+            Assert.IsInstanceOf(act.GetType(), typeof(DsfActivityAbstract<string>));
             //---------------Execute Test ----------------------
             var displayName = act.Script;
             //---------------Test Result -----------------------
@@ -111,8 +88,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ScriptType_GivenIsNew_ShouldSetJavascript()
         {
             //---------------Set up test pack-------------------
@@ -128,7 +105,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
 
         #region Should execute valid ruby script
 
-        [TestMethod]
+        [Test]
         public void RubytmpHost_ShouldSetDefaultValues()
         {
             var win8Pal = new RubyContext.TmpHost.Win8PAL();
@@ -136,7 +113,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             Assert.IsFalse(win8Pal.FileExists(win8Pal.CurrentDirectory));
             Assert.IsFalse(win8Pal.DirectoryExists(win8Pal.CurrentDirectory));
         }
-        [TestMethod]
+        [Test]
         public void RubyOptionsAttribute_ShouldSetDefaultValues()
         {
             var optionsAttribute = new RubyContext.OptionsAttribute();
@@ -146,7 +123,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             Assert.IsNull(optionsAttribute.Pal);
         }
 
-        [TestMethod]
+        [Test]
         public void ExecuteWithEscapeCharecters_RubyExpectedCorrectResultReturned()
         {
             SetupArguments("<DataList><Result>\"C:\test\"</Result></DataList>", "<DataList><Result/></DataList>", "[[Result]]",
@@ -167,7 +144,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ExecuteWithoutEscapeCharecters_RubyExpectedCorrectResultReturned()
         {
             SetupArguments("<DataList><Result>C:\test</Result></DataList>", "<DataList><Result/></DataList>", "[[Result]]",
@@ -188,7 +165,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ExecuteWithValidRubyExpectedCorrectResultReturned()
         {
             SetupArguments("<DataList><Result>0</Result></DataList>", "<DataList><Result/></DataList>", "[[Result]]", @"return 1+1;", enScriptType.Ruby);
@@ -208,7 +185,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ExecuteWithValidRubyAndVariableExpectedCorrectResultReturned()
         {
             SetupArguments("<DataList><Result>0</Result></DataList>", "<DataList><Result/></DataList>", "[[Result]]", @"i = 1 + 1;return i;", enScriptType.Ruby);
@@ -228,7 +205,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ExecuteWithValidRubyWithScalarDataListRegionsInScriptExpectedCorrectResultReturned()
         {
             SetupArguments("<DataList><inputData>1</inputData><Result>0</Result></DataList>", "<DataList><inputData/><Result/></DataList>", "[[Result]]", @"i = [[inputData]] + [[inputData]];return i;", enScriptType.Ruby);
@@ -248,7 +225,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ExecuteWithValidRubyWithRecordAppendNotationDataListRegionsInScriptExpectedCorrectResultReturned()
         {
             SetupArguments("<DataList><inputData><field1>1</field1></inputData><inputData><field1>2</field1></inputData><inputData><field1>3</field1></inputData><inputData><field1>4</field1></inputData><Result>0</Result></DataList>", "<DataList><inputData><field1/></inputData><Result/></DataList>", "[[Result]]", @"i = [[inputData().field1]] + [[inputData().field1]];return i;", enScriptType.Ruby);
@@ -268,7 +245,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ExecuteWithValidRubyWithRecordStarNotationDataListRegionsInScriptExpectedCorrectResultReturned()
         {
             SetupArguments("<DataList><inputData><field1>1</field1></inputData><inputData><field1>2</field1></inputData><inputData><field1>3</field1></inputData><inputData><field1>4</field1></inputData></DataList>", "<DataList><inputData><field1/></inputData><Result><res/></Result></DataList>", "[[Result().res]]", @"i = '[[inputData(*).field1]]';return i;", enScriptType.Ruby);
@@ -291,7 +268,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ExecuteWithValidRubyWithEmptyRecordStarNotationDataListRegionsInScriptExpectedCorrectResultReturned()
         {
             SetupArguments("<DataList><inputData><field1/></inputData><Result><res/></Result></DataList>", "<DataList><inputData><field1/></inputData><Result><res/></Result></DataList>", "[[Result().res]]", @"i = [[inputData(*).field1]] + [[inputData(*).field1]];return i;", enScriptType.Ruby);
@@ -311,7 +288,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ExecuteRubyWithNoReturnExpectedReturnsLastValue()
         {
             SetupArguments("<DataList><Result>0</Result></DataList>", "<DataList><Result/></DataList>", "[[Result]]", @"def Add(x,y); return x + y; end; Add(1,1);", enScriptType.Ruby);

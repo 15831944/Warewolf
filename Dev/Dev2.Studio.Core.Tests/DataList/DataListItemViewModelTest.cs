@@ -10,12 +10,13 @@
 
 using Dev2.Studio.Core.Factories;
 using Dev2.Studio.Interfaces.DataList;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests
 {
-    [TestClass]
-    [TestCategory("Studio Datalist Core")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Studio Datalist Core")]
     public class DataListItemViewModelTest
     {
         #region Locals
@@ -28,12 +29,12 @@ namespace Dev2.Core.Tests
 
         #region Additional test attributes
 
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void MyClassInitialize(TestContext testContext)
         {
         }
 
-        [TestInitialize]
+        [SetUp]
         public void MyTestInitialize()
         {
             _dataListItemModel = DataListItemModelFactory.CreateDataListModel("testItem");
@@ -47,7 +48,7 @@ namespace Dev2.Core.Tests
         /// <summary>
         ///A test for DataListItemViewModel Parent Property Setter
         ///</summary>
-        //[TestMethod]
+        //[Test]
         //public void CreationofItemAsChild_ExpectedCorrectReferenceToParent()
         //{
         //    IDataListItemModel childSet = DataListItemModelFactory.CreateDataListModel("TestChild", "", _dataListItemModel);
@@ -62,7 +63,7 @@ namespace Dev2.Core.Tests
         /// <summary>
         ///A test for Adding DataListItems to the DataListViewModel
         ///</summary>
-        //[TestMethod]
+        //[Test]
         //public void AddChild_ExpectedChildCreationOnDataListItem()
         //{
         //    IDataListItemModel dataListItemToAdd = DataListItemModelFactory.CreateDataListModel("testName");
@@ -76,7 +77,7 @@ namespace Dev2.Core.Tests
         /// <summary>
         /// A test for adding invalid children
         /// </summary>
-        //[TestMethod]
+        //[Test]
         //public void AddChild_InvalidChildrenCollection_Expected_ChildrenContainErrors()
         //{
         //    IDataListItemModel child = DataListItemModelFactory.CreateDataListModel("test!@#");
@@ -90,7 +91,7 @@ namespace Dev2.Core.Tests
 
         #region RemoveChild Tests
 
-        //[TestMethod]
+        //[Test]
         //public void RemoveChild_ExpectRootDataListItemToHaveOneChild()
         //{
         //    IDataListItemModel dataListItemToAdd = DataListItemModelFactory.CreateDataListModel("testDataListItem");
@@ -109,7 +110,7 @@ namespace Dev2.Core.Tests
         /// <summary>
         ///A test for DisplayName
         ///</summary>
-        //[TestMethod]
+        //[Test]
         //public void GetDisplayName_ExpectedReturnDataListItemDisplayName()
         //{
         //    _dataListItemModel.Children.Add(DataListItemModelFactory.CreateDataListModel("testChild", "", _dataListItemModel));
@@ -122,7 +123,7 @@ namespace Dev2.Core.Tests
         /// <summary>
         ///A test for IsRecordSet
         ///</summary>
-        //[TestMethod]
+        //[Test]
         //public void IsNotRecordSet_ExpectedDataItemNotContainChildren()
         //{
         //    const bool expected = false;
@@ -133,7 +134,7 @@ namespace Dev2.Core.Tests
         /// <summary>
         ///A test for Name
         ///</summary>
-        [TestMethod]
+        [Test]
         public void DataItemNameUpdate_ExpectedDataItemNameUpdated()
         {
             const string expected = "testItem";
@@ -144,7 +145,7 @@ namespace Dev2.Core.Tests
         /// <summary>
         /// Tests if an invalidly formed DataListItem is sent to the ActivityComparer
         ///</summary>
-        [TestMethod]
+        [Test]
         public void MalformedDataListItemToDsfActivityComparer()
         {
             _dataListItemModel.HasError = true;
@@ -160,7 +161,7 @@ namespace Dev2.Core.Tests
         /// <summary>
         ///Verifying the name has no special chars
         ///</summary>
-        [TestMethod]
+        [Test]
         public void VerifyNameHasNoSpecialChars()
         {
             _dataListItemModel.DisplayName = "test@";

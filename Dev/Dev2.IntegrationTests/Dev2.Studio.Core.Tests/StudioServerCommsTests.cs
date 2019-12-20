@@ -12,7 +12,7 @@ using System;
 using System.Threading;
 using Dev2.Network;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Integration.Tests.Dev2.Studio.Core.Tests
 {
@@ -20,7 +20,8 @@ namespace Dev2.Integration.Tests.Dev2.Studio.Core.Tests
     // Sashen.Naidoo : 13-02-2012 : Tests the Studio can always create a connection to the server
     //                              & that the Studio always performs it's connection actions in a 
     //                              synchronous fashion.
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class StudioServerCommsTests
     {
         #region Environment Connection Tests
@@ -31,7 +32,7 @@ namespace Dev2.Integration.Tests.Dev2.Studio.Core.Tests
         // The Dispatch client would have to use Asynchronous method calls in an asynchronous fashion to the Studio.
         // And the server would send the studio a ClientDetails message on Connection (required by the Studio)
         // that was just ignored by the Studio.
-        [TestMethod]
+        [Test]
         public void EnvironmentConnectionWithServerAuthenticationExpectedClientDetailsRecieved()
         {
             var conn = CreateConnection();
@@ -40,14 +41,14 @@ namespace Dev2.Integration.Tests.Dev2.Studio.Core.Tests
             // The IsConnected property of the EnvironmentConnection references the TCPDispatch Client
             // Only if the connection to the server is successfully made by the dispatch client will the
             // IsConnected message return true
-            Assert.IsTrue(conn.IsConnected);
+            NUnit.Framework.Assert.IsTrue(conn.IsConnected);
 
             conn.Disconnect();
         }
 
 
 
-        [TestMethod]
+        [Test]
         public void EnvironmentConnectionReconnectToServerExpecetedClientConnectionSuccessful()
         {
             var conn = CreateConnection();
@@ -59,7 +60,7 @@ namespace Dev2.Integration.Tests.Dev2.Studio.Core.Tests
             Thread.Sleep(500);
             var afterReconnection = conn.IsConnected;
 
-            Assert.IsTrue(afterReconnection);
+            NUnit.Framework.Assert.IsTrue(afterReconnection);
 
             conn.Disconnect();
         }

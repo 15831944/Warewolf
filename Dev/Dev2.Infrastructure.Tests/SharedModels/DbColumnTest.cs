@@ -10,21 +10,22 @@
 
 using System.Data;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Infrastructure.Tests.SharedModels
 {
     /// <summary>
     /// When adding logic behind properties... TEST!
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DbColumnTest
     {
         
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_Constructor")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_Constructor")]
         public void DbColumn_Constructor_WhenUsingDbTable_ExpectAllPropertiesTransfered()
         {
             //------------Setup for test--------------------------
@@ -41,9 +42,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_Constructor")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_Constructor")]
         public void DbColumn_Constructor_WhenEmptyConstuctor_ExpectDefaultProperties()
         {
             //------------Setup for test--------------------------
@@ -59,9 +60,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenVarCharWithNoMaxLength_ExpectVarCharOfZero()
         {
             //------------Setup for test--------------------------
@@ -75,9 +76,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenVarCharWithMaxLength_ExpectVarCharOfTen()
         {
             //------------Setup for test--------------------------
@@ -91,9 +92,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenCharWithNoMaxLength_ExpectCharOfZero()
         {
             //------------Setup for test--------------------------
@@ -107,9 +108,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenCharWithMaxLength_ExpectCharOfTen()
         {
             //------------Setup for test--------------------------
@@ -123,9 +124,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenNVarCharWithNoMaxLength_ExpectNVarCharOfZero()
         {
             //------------Setup for test--------------------------
@@ -139,9 +140,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenNVarCharWithMaxLength_ExpectNVarCharOfTen()
         {
             //------------Setup for test--------------------------
@@ -156,9 +157,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
         }
 
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenNCharWithNoMaxLength_ExpectNCharOfZero()
         {
             //------------Setup for test--------------------------
@@ -172,9 +173,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenNCharWithMaxLength_ExpectNCharOfTen()
         {
             //------------Setup for test--------------------------
@@ -188,9 +189,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenBigIntNoMaxLength_ExpectBigInt()
         {
             //------------Setup for test--------------------------
@@ -204,9 +205,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenBinaryNoMaxLength_ExpectBinary()
         {
             //------------Setup for test--------------------------
@@ -219,9 +220,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
             StringAssert.Contains(result, "binary (0)");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenBinaryMaxLength_ExpectBinaryTen()
         {
             //------------Setup for test--------------------------
@@ -235,9 +236,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenBitNoMaxLength_ExpectBit()
         {
             //------------Setup for test--------------------------
@@ -251,9 +252,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenDateNoMaxLength_ExpectDate()
         {
             //------------Setup for test--------------------------
@@ -267,9 +268,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenDateTimeNoMaxLength_ExpectDateTime()
         {
             //------------Setup for test--------------------------
@@ -283,9 +284,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenDateTime2NoMaxLength_ExpectDateTime2()
         {
             //------------Setup for test--------------------------
@@ -299,9 +300,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenDateTimeOffsetNoMaxLength_ExpectDateTimeOffset()
         {
             //------------Setup for test--------------------------
@@ -315,9 +316,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenDecimalNoMaxLength_ExpectDecimal()
         {
             //------------Setup for test--------------------------
@@ -331,9 +332,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenFloatNoMaxLength_ExpectFloat()
         {
             //------------Setup for test--------------------------
@@ -347,9 +348,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenImageNoMaxLength_ExpectImage()
         {
             //------------Setup for test--------------------------
@@ -362,9 +363,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
             StringAssert.Contains(result, "image");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenIntNoMaxLength_ExpectInt()
         {
             //------------Setup for test--------------------------
@@ -377,9 +378,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
             StringAssert.Contains(result, "int");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenMoneyNoMaxLength_ExpectMoney()
         {
             //------------Setup for test--------------------------
@@ -392,9 +393,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
             StringAssert.Contains(result, "money");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenRealNoMaxLength_ExpectReal()
         {
             //------------Setup for test--------------------------
@@ -407,9 +408,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
             StringAssert.Contains(result, "real");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenSmallDateTimeNoMaxLength_ExpectSmallDateTime()
         {
             //------------Setup for test--------------------------
@@ -422,9 +423,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
             StringAssert.Contains(result, "smalldatetime");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenSmallIntNoMaxLength_ExpectSmallInt()
         {
             //------------Setup for test--------------------------
@@ -437,9 +438,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
             StringAssert.Contains(result, "smallint");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenSmallMoneyNoMaxLength_ExpectSmallMoney()
         {
             //------------Setup for test--------------------------
@@ -452,9 +453,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
             StringAssert.Contains(result, "smallmoney");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenSctructedNoMaxLength_ExpectStructured()
         {
             //------------Setup for test--------------------------
@@ -467,9 +468,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
             StringAssert.Contains(result, "structured");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenTextNoMaxLength_ExpectText()
         {
             //------------Setup for test--------------------------
@@ -482,9 +483,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
             StringAssert.Contains(result, "text");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenTimeNoMaxLength_ExpectTime()
         {
             //------------Setup for test--------------------------
@@ -497,9 +498,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
             StringAssert.Contains(result, "time");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenTimestampNoMaxLength_ExpectTimestamp()
         {
             //------------Setup for test--------------------------
@@ -512,9 +513,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
             StringAssert.Contains(result, "timestamp");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenTinyIntNoMaxLength_ExpectTinyInt()
         {
             //------------Setup for test--------------------------
@@ -527,9 +528,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
             StringAssert.Contains(result, "tinyint");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenUdtNoMaxLength_ExpectUdt()
         {
             //------------Setup for test--------------------------
@@ -542,9 +543,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
             StringAssert.Contains(result, "udt");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenUniqueIdentifierNoMaxLength_ExpectUniqueIdentifier()
         {
             //------------Setup for test--------------------------
@@ -557,9 +558,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
             StringAssert.Contains(result, "uniqueidentifier");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenVarBinaryNoMaxLength_ExpectVarBinary()
         {
             //------------Setup for test--------------------------
@@ -572,9 +573,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
             StringAssert.Contains(result, "varbinary (0)");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenVarBinaryWithMaxLength_ExpectVarBinaryTen()
         {
             //------------Setup for test--------------------------
@@ -587,9 +588,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
             StringAssert.Contains(result, "varbinary (10)");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenVariantNoMaxLength_ExpectVariant()
         {
             //------------Setup for test--------------------------
@@ -602,9 +603,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
             StringAssert.Contains(result, "variant");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DbColumn_DataTypeName")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DbColumn_DataTypeName")]
         public void DbColumn_DataTypeName_WhenXmlNoMaxLength_ExpectXml()
         {
             //------------Setup for test--------------------------

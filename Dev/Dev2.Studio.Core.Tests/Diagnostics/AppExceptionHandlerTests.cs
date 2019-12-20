@@ -15,44 +15,45 @@ using Dev2.Studio;
 using Dev2.Studio.Core.Messages;
 using Dev2.Studio.Diagnostics;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Moq.Protected;
 
 namespace Dev2.Core.Tests.Diagnostics
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class AppExceptionHandlerTests
     {
         static readonly object TestGuard = new object();
 
-        [TestInitialize]
+        [SetUp]
         public void TestInit()
         {
             Monitor.Enter(TestGuard);
         }
 
-        [TestCleanup]
+        [TearDown]
         public void TestCleanUp()
         {
             Monitor.Exit(TestGuard);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void AppExceptionHandlerConstructorWithNullEventAggregatorExpectedThrowsArgumentNullException()
         {
             new AppExceptionHandler(null, null);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void AppExceptionHandlerConstructorWithNullAppExpectedThrowsArgumentNullException()
         {
             new AppExceptionHandler(null, null);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void AppExceptionHandlerConstructorWithNullMainViewModelExpectedThrowsArgumentNullException()
         {
@@ -62,7 +63,7 @@ namespace Dev2.Core.Tests.Diagnostics
 
         #region Handle
 
-        [TestMethod]
+        [Test]
         public void AppExceptionHandlerHandleWithOneExceptionExpectedHandledAndAppNotRestarted()
         {
             //Initialize
@@ -81,9 +82,9 @@ namespace Dev2.Core.Tests.Diagnostics
         }
 
 
-        //[TestMethod]
-        //[Owner("Hagashen Naidu")]
-        //[TestCategory("AppExceptionHandler_Handle")]
+        //[Test]
+        //[Author("Hagashen Naidu")]
+        //[Category("AppExceptionHandler_Handle")]
         //public void AppExceptionHandlerHandle_WithOneException_ExpectedHandledLogsException()
         //{
         //    //------------Setup for test--------------------------
@@ -104,7 +105,7 @@ namespace Dev2.Core.Tests.Diagnostics
 
         //}
 
-        [TestMethod]
+        [Test]
         public void AppExceptionHandlerHandleWithSameExceptionTwiceExpectedHandledAndAppRestarted()
         {
             //Initialize
@@ -123,7 +124,7 @@ namespace Dev2.Core.Tests.Diagnostics
             Assert.IsTrue(actual, "AppExceptionHandlerAbstract failed to handle valid exception");
         }
 
-        [TestMethod]
+        [Test]
         public void AppExceptionHandlerHandleWithExceptionWhileHandlingExpectedShutdownCalled()
         {
             //Initialize
@@ -145,7 +146,7 @@ namespace Dev2.Core.Tests.Diagnostics
 
         #region Shutdown/Restart App
 
-        [TestMethod]
+        [Test]
         public void AppExceptionHandlerShutdownAppExpectedShouldRestartIsFalse()
         {
             //Initialize
@@ -167,7 +168,7 @@ namespace Dev2.Core.Tests.Diagnostics
             mockApp.Verify(c => c.Shutdown(), "App did not shutdown after non critical exception");
         }
 
-        [TestMethod]
+        [Test]
         public void AppExceptionHandlerRestartAppExpectedShouldRestartIsTrue()
         {
             //Initialize

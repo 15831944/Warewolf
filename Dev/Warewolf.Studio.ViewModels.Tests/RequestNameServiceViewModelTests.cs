@@ -1,17 +1,18 @@
 ﻿using Dev2;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Warewolf.Studio.ViewModels.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class RequestNameServiceViewModelTests
     {
-
-        [TestMethod,Timeout(60000)]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DeploySourceExplorerViewModel_Ctor_valid")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DeploySourceExplorerViewModel_Ctor_valid")]
         public void TestDispose()
         {
             var serverRepo = new Mock<IServerRepository>();
@@ -28,28 +29,5 @@ namespace Warewolf.Studio.ViewModels.Tests
             x.Verify(a=>a.Dispose());
             env.Verify(a => a.Dispose());
         }
-
-    }
-
-
-    [TestClass]
-    public class ManageDatabaseSourceModellTests
-    {
-
-      /*  [TestMethod,Timeout(60000)]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DeploySourceExplorerViewModel_Ctor_valid")]
-        public void TestDispose()
-        {
-            var vm = new ManageDatabaseSourceViewModel(new Mock<IAsyncWorker>().Object );
-            var ns = new Mock<IRequestServiceNameViewModel>();
-            Task<IRequestServiceNameViewModel> t = new Task<IRequestServiceNameViewModel>(()=> ns.Object );
-            t.Start();
-            vm.RequestServiceNameViewModel = t;
-
-            vm.Dispose();
-            ns.Verify(a=>a.Dispose());
-        }*/
-
     }
 }

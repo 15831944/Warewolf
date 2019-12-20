@@ -20,19 +20,21 @@ using Dev2.Services.Security;
 using Dev2.Studio.Interfaces;
 using Dev2.Studio.Interfaces.Deploy;
 using Microsoft.Practices.Prism.PubSubEvents;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Studio.Core;
 using Dev2.ConnectionHelpers;
 
 namespace Warewolf.Studio.ViewModels.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DeployViewModelTests
     {
-        [TestMethod,Timeout(60000)]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DeployViewModel_Ctor"), ExpectedException(typeof(ArgumentNullException))]
+        [Test]
+        [Timeout(60000)]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DeployViewModel_Ctor"), ExpectedException(typeof(ArgumentNullException))]
         public void DeployViewModel_Ctor_NullParamsFirst_ExprecErrors()
         {
             //------------Setup for test--------------------------
@@ -41,9 +43,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DeployViewModel_Ctor"), ExpectedException(typeof(ArgumentNullException))]
+        [Test]
+        [Timeout(60000)]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DeployViewModel_Ctor"), ExpectedException(typeof(ArgumentNullException))]
         public void DeployViewModel_Ctor_NullParamsSecond_ExprecErrors()
         {
             //------------Setup for test--------------------------
@@ -52,9 +55,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DeployViewModel_Ctor"), ExpectedException(typeof(ArgumentNullException))]
+        [Test]
+        [Timeout(60000)]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DeployViewModel_Ctor"), ExpectedException(typeof(ArgumentNullException))]
         public void DeployViewModel_Ctor_NullParamsThird_ExprecErrors()
         {
             //------------Setup for test--------------------------
@@ -63,9 +67,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DeployViewModel_Ctor"), ExpectedException(typeof(ArgumentNullException))]
+        [Test]
+        [Timeout(60000)]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DeployViewModel_Ctor"), ExpectedException(typeof(ArgumentNullException))]
         public void DeployViewModel_Ctor_NullParamsFourth_ExprecErrors()
         {
             //------------Setup for test--------------------------
@@ -79,9 +84,10 @@ namespace Warewolf.Studio.ViewModels.Tests
         Mock<IDeployDestinationExplorerViewModel> _deployDestinationExplorerViewModel;
         Mock<IDeploySourceExplorerViewModel> _deploySourceExplorerViewModel;
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DeploySourceExplorerViewModel_Ctor"), ExpectedException(typeof(ArgumentNullException))]
+        [Test]
+        [Timeout(60000)]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DeploySourceExplorerViewModel_Ctor"), ExpectedException(typeof(ArgumentNullException))]
         public void DeploySourceExplorerViewModel_Ctor_Nulls_ExpectErrors()
         {
             //------------Setup for test--------------------------
@@ -90,9 +96,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DeploySourceExplorerViewModel_Ctor_valid")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DeploySourceExplorerViewModel_Ctor_valid")]
         public void DeploySourceExplorerViewModel_Ctor_Nulls_ExpectSuccess()
         {
             var explorerTooltips = new Mock<IExplorerTooltips>();
@@ -131,9 +138,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             return mockEnvironmentConnection;
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DeploySourceExplorerViewModel_Ctor_valid")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DeploySourceExplorerViewModel_Ctor_valid")]
         public void DeploySourceExplorerViewModel_Updates_AllItemsToHaveNoContextMenuFunctions()
         {
             var explorerTooltips = new Mock<IExplorerTooltips>();
@@ -161,8 +169,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void DeployViewModel_Version_Mistmatch()
         {
             SetupDeployViewModelMock();
@@ -176,8 +185,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             deployViewModel.Verify(model => model.DeployCommand.Execute(null), Times.AtLeast(1));
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void Given_TheSameServer_CheckDestinationPersmisions_ShouldBeTrue()
         {
             var explorerTooltips = new Mock<IExplorerTooltips>();

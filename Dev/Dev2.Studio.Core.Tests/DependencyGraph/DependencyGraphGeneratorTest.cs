@@ -11,18 +11,19 @@
 using System.Linq;
 using System.Text;
 using Dev2.Common;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Core.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
 
     public class DependencyGraphGeneratorTest
     {
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DependencyGraphGenerator_BuildGraph")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DependencyGraphGenerator_BuildGraph")]
         public void DependencyGraphGenerator_BuildGraph_WhenGraphDataValid_ExpectValidGraph()
         {
             //------------Setup for test--------------------------
@@ -49,9 +50,9 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DependencyGraphGenerator_BuildGraph")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DependencyGraphGenerator_BuildGraph")]
         public void DependencyGraphGenerator_BuildGraph_WhenGraphDataValidAndNestingLevel_ExpectValidGraph()
         {
             //------------Setup for test--------------------------
@@ -81,9 +82,9 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DependencyGraphGenerator_BuildGraph")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DependencyGraphGenerator_BuildGraph")]
         public void DependencyGraphGenerator_BuildGraph_WhenIdEqualsName_ExpectCenterCoordinates()
         {
             //------------Setup for test--------------------------
@@ -115,9 +116,9 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DependencyGraphGenerator_BuildGraph")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DependencyGraphGenerator_BuildGraph")]
         public void DependencyGraphGenerator_BuildGraph_WhenGraphContainsMalformedGraphTag_ExpectErrorGraph()
         {
             //------------Setup for test--------------------------
@@ -138,9 +139,9 @@ namespace Dev2.Core.Tests
             StringAssert.Contains(result.Title, expected);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DependencyGraphGenerator_BuildGraph")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DependencyGraphGenerator_BuildGraph")]
         public void DependencyGraphGenerator_BuildGraph_WhenGraphDataEmpty_ExpectErrorGraph()
         {
             //------------Setup for test--------------------------
@@ -155,9 +156,9 @@ namespace Dev2.Core.Tests
             StringAssert.Contains(result.Title, expected);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DependencyGraphGenerator_BuildGraph")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DependencyGraphGenerator_BuildGraph")]
         public void DependencyGraphGenerator_BuildGraph_WhenGraphDataNull_ExpectErrorGraph()
         {
             //------------Setup for test--------------------------

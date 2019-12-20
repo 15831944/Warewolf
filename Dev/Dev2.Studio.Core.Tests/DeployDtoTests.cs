@@ -2,16 +2,16 @@
 using Dev2.Studio.Core.InterfaceImplementors;
 using Dev2.Studio.Core.Models;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Core.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class DeployDtoTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DeployDto_GivenInstance_ShouldHaveEmptyValues()
         {
             //---------------Set up test pack-------------------
@@ -25,8 +25,8 @@ namespace Dev2.Core.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DeployDto_GivenInstance_ShouldInheritFromIdeployDto()
         {
             //---------------Set up test pack-------------------
@@ -36,9 +36,7 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(default(IList<ResourceModel>), deployDto.ResourceModels);
             //---------------Execute Test ----------------------
             //---------------Test Result -----------------------
-                Assert.IsInstanceOfType(deployDto, typeof(IDeployDto));    
-        }
-
-      
+                Assert.IsInstanceOf(deployDto.GetType(), typeof(IDeployDto));    
+        }      
     }
 }

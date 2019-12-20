@@ -13,15 +13,16 @@ using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using System.Xml.Linq;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Runtime.ServiceModel.Data
 {
     /// <summary>
     /// Summary description for DbServiceTests
     /// </summary>
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     [ExcludeFromCodeCoverage]
     public class DbServiceTests
     {
@@ -33,8 +34,8 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
 
         #region Ctor Tests
 
-        [TestMethod]
-        [TestCategory("DbService_Constructor")]
+        [Test]
+        [Category("DbService_Constructor")]
         
         public void DbService_Constructor_CorrectDbService()
 
@@ -70,14 +71,14 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             var testElm = XElement.Parse(xmlDataString);
             var dbService = new DbService(testElm);
 
-            Assert.AreEqual("TravsTestService", dbService.ResourceName);
-            Assert.AreEqual("DbService", dbService.ResourceType);
-            Assert.AreEqual("af8d2d38-22b5-4599-8357-adce196beb83", dbService.ResourceID.ToString());
+            NUnit.Framework.Assert.AreEqual("TravsTestService", dbService.ResourceName);
+            NUnit.Framework.Assert.AreEqual("DbService", dbService.ResourceType);
+            NUnit.Framework.Assert.AreEqual("af8d2d38-22b5-4599-8357-adce196beb83", dbService.ResourceID.ToString());
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DbService_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DbService_Constructor")]
         
         public void DbService_Constructor_BlankRecordsetName_UsesMethodName()
 
@@ -94,12 +95,12 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             var actual = new DbService(xml);
 
             //------------Assert Results-------------------------
-            Assert.AreEqual(ExpectedName, actual.Recordset.Name);
+            NUnit.Framework.Assert.AreEqual(ExpectedName, actual.Recordset.Name);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DbService_Create")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DbService_Create")]
         
         public void DbService_Create_ReturnsEmpty()
 
@@ -110,23 +111,23 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             var actual = DbService.Create();
 
             //------------Assert Results-------------------------
-            Assert.IsNotNull(actual);
-            Assert.AreEqual(Guid.Empty, actual.ResourceID);
-            Assert.AreEqual("DbService", actual.ResourceType);
+            NUnit.Framework.Assert.IsNotNull(actual);
+            NUnit.Framework.Assert.AreEqual(Guid.Empty, actual.ResourceID);
+            NUnit.Framework.Assert.AreEqual("DbService", actual.ResourceType);
 
-            Assert.IsNotNull(actual.Source);
-            Assert.IsInstanceOfType(actual.Source, typeof(DbSource));
-            Assert.AreEqual(Guid.Empty, actual.Source.ResourceID);
-            Assert.AreEqual("DbSource", actual.Source.ResourceType);
+            NUnit.Framework.Assert.IsNotNull(actual.Source);
+            NUnit.Framework.Assert.IsInstanceOf(actual.Source.GetType(), typeof(DbSource));
+            NUnit.Framework.Assert.AreEqual(Guid.Empty, actual.Source.ResourceID);
+            NUnit.Framework.Assert.AreEqual("DbSource", actual.Source.ResourceType);
         }
 
         #endregion
 
         #region ToXml Tests
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DbService_ToXml")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DbService_ToXml")]
         
         public void DbService_ToXml_WhenRecordSetHasBlankFields_ExpectNotPartOfOutputDescription()
 
@@ -175,10 +176,10 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             var expectedResult = string.Format(expected, resourceId);
             var actual = xElement.ToString();
             FixBreaks(ref expectedResult, ref actual);
-            Assert.AreEqual(expectedResult, actual);
+            NUnit.Framework.Assert.AreEqual(expectedResult, actual);
         }
 
-        [TestMethod]
+        [Test]
         
         public void DbService_ToXml_CorrectXml()
 
@@ -218,7 +219,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             var returnedXelm = dbService.ToXml();
             var actual = returnedXelm.ToString();
             FixBreaks(ref xmlDataString, ref actual);
-            Assert.AreEqual(xmlDataString, actual);
+            NUnit.Framework.Assert.AreEqual(xmlDataString, actual);
         }
 
 

@@ -1,14 +1,15 @@
 ﻿using System.Data;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.Database
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DbColumnEqualityTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_EmptyTos_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -22,8 +23,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Database
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_ColumnName__Object_Is_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -37,8 +38,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Database
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_DiffentColumnName_Object_Is_Not_IsEqual_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -52,8 +53,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Database
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_DiffentColumnName_Object_Is_Not_IsEqua()
         {
             //---------------Set up test pack-------------------
@@ -67,8 +68,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Database
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_SqlDataType__Object_Is_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -82,8 +83,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Database
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_DiffentSqlDataType_Object_Is_Not_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -97,8 +98,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Database
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_DiffentIsNullable_Object_Is_Not_IsEqua()
         {
             //---------------Set up test pack-------------------
@@ -113,8 +114,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Database
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_IsNullable__Object_Is_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -128,8 +129,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Database
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_DiffentMaxLength_Object_Is_Not_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -143,8 +144,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Database
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_SameMaxLength_Object_Is_IsEqua()
         {
             //---------------Set up test pack-------------------

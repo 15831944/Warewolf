@@ -28,25 +28,22 @@ using Dev2.Studio.Core.Models;
 using Dev2.Studio.Interfaces;
 using Dev2.Threading;
 using Dev2.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Dev2.Studio.Interfaces.Enums;
 
 
 namespace Dev2.Core.Tests.Environments
 {
-
-    /// <summary>
-    /// Summary description for EnvironmentRepositoryTest
-    /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class EnviromentRepositoryTest
     {
         static readonly object TestLock = new object();
 
         #region MyClass/TestInitialize
 
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void MyClassInitialize(TestContext testContext)
         {
             AppUsageStats.LocalHost = "http://localhost:3142";
@@ -57,13 +54,13 @@ namespace Dev2.Core.Tests.Environments
         {
         }
 
-        [TestInitialize]
+        [SetUp]
         public void MyTestInitialize()
         {
             Monitor.Enter(TestLock);
         }
 
-        [TestCleanup]
+        [TearDown]
         public void MyTestCleanup()
         {
             Monitor.Exit(TestLock);
@@ -73,7 +70,7 @@ namespace Dev2.Core.Tests.Environments
 
         #region Constructor
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void EnvironmentRepositoryConstructorWithNullSourceExpectedThrowsArgumentNullException()
         {
@@ -82,7 +79,7 @@ namespace Dev2.Core.Tests.Environments
             
         }
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositoryConstructorWithSourceExpectedAddsSource()
         {
             var source = new Mock<IServer>();
@@ -90,7 +87,7 @@ namespace Dev2.Core.Tests.Environments
             Assert.AreEqual(1, repo.All().Count);
         }
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositoryConstructorWithNoParametersExpectedCreatesAndAddsDefaultSource()
         {
             var source = new Mock<IServer>();
@@ -112,7 +109,7 @@ namespace Dev2.Core.Tests.Environments
 
         #region Clear
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositoryClearExpectedDisconnectsAndRemovesAllItems()
         {
             var source = new Mock<IServer>();
@@ -136,7 +133,7 @@ namespace Dev2.Core.Tests.Environments
 
         #region All
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositoryAllExpectedReturnsAllItems()
         {
             var source = new Mock<IServer>();
@@ -151,7 +148,7 @@ namespace Dev2.Core.Tests.Environments
 
         #region Find
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositoryFindWithNullExpectedReturnsEmptyList()
         {
             var source = CreateMockEnvironment();
@@ -164,7 +161,7 @@ namespace Dev2.Core.Tests.Environments
             Assert.AreEqual(0, actual.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositoryFindWithMatchingCriteriaExpectedReturnsMatchingList()
         {
             var source = CreateMockEnvironment();
@@ -178,7 +175,7 @@ namespace Dev2.Core.Tests.Environments
             Assert.AreSame(e1.Object, actual[0]);
         }
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositoryFindWithNonMatchingCriteriaExpectedReturnsEmptyList()
         {
             var source = CreateMockEnvironment();
@@ -195,7 +192,7 @@ namespace Dev2.Core.Tests.Environments
 
         #region FindSingle
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositoryFindSingleWithNullExpectedReturnsNull()
         {
             var source = CreateMockEnvironment();
@@ -207,7 +204,7 @@ namespace Dev2.Core.Tests.Environments
             Assert.IsNull(actual);
         }
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositoryFindSingleWithMatchingCriteriaExpectedReturnsMatchingItem()
         {
             var source = CreateMockEnvironment();
@@ -221,7 +218,7 @@ namespace Dev2.Core.Tests.Environments
             Assert.AreSame(e1.Object, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositoryFindSingleWithNonMatchingCriteriaExpectedReturnsNull()
         {
             var source = CreateMockEnvironment();
@@ -238,7 +235,7 @@ namespace Dev2.Core.Tests.Environments
 
         #region Load
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositoryLoadExpectedSetsIsLoadedToFalseAndInvokesLoadInternal()
         {
             var source = new Mock<IServer>();
@@ -252,7 +249,7 @@ namespace Dev2.Core.Tests.Environments
             Assert.AreEqual(1, repo.LoadInternalHitCount);
         }
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositoryLoadCompleteExpectedEnvironmentsReturned()
         {
             var source = new Mock<IServer>();
@@ -268,7 +265,7 @@ namespace Dev2.Core.Tests.Environments
 
         #region Save
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositorySaveWithManyNullExpectedDoesNothing()
         {
             var source = new Mock<IServer>();
@@ -282,7 +279,7 @@ namespace Dev2.Core.Tests.Environments
             Assert.AreEqual(0, repo.WriteSessionHitCount);
         }
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositorySaveWithManyItemsExpectedAddsItems()
         {
             var source = new Mock<IServer>();
@@ -297,7 +294,7 @@ namespace Dev2.Core.Tests.Environments
             Assert.AreEqual(2, repo.AddInternalHitCount);
         }
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositorySaveWithManyItemsExpectedDoesNotInvokesWriteSession()
         {
             var source = new Mock<IServer>();
@@ -310,7 +307,7 @@ namespace Dev2.Core.Tests.Environments
             Assert.AreEqual(0, repo.WriteSessionHitCount);
         }
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositorySaveWithSingleNullExpectedDoesNothing()
         {
             var source = new Mock<IServer>();
@@ -324,7 +321,7 @@ namespace Dev2.Core.Tests.Environments
             Assert.AreEqual(0, repo.WriteSessionHitCount);
         }
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositorySaveWithSingleItemExpectedAddsItem()
         {
             var source = new Mock<IServer>();
@@ -338,7 +335,7 @@ namespace Dev2.Core.Tests.Environments
             Assert.AreEqual(1, repo.AddInternalHitCount);
         }
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepository_Save_ValidEnvironmentModel_ReturnsASaveMessage()
         {
             var source = new Mock<IServer>();
@@ -352,7 +349,7 @@ namespace Dev2.Core.Tests.Environments
         }
 
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepository_Save_ValidEnvironmentModel_ReturnsNotSaveMessage()
         {
             var source = new Mock<IServer>();
@@ -364,7 +361,7 @@ namespace Dev2.Core.Tests.Environments
             Assert.AreEqual(result, "Not Saved");
         }
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositorySaveWithSingleItemExpectedDoesNotInvokesWriteSession()
         {
             var source = new Mock<IServer>();
@@ -376,7 +373,7 @@ namespace Dev2.Core.Tests.Environments
             Assert.AreEqual(0, repo.WriteSessionHitCount);
         }
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositorySaveWithSingleExistingItemExpectedReplacesItem()
         {
             // DO NOT use mock as test requires IEquatable of IEnvironmentModel
@@ -392,9 +389,9 @@ namespace Dev2.Core.Tests.Environments
             Assert.AreEqual(startCount, repo.All().Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("EnvironmentRepository_Save")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("EnvironmentRepository_Save")]
         public void EnvironmentRepository_Save_ExistingEnvironment_RaisesItemEditedEvent()
         {
             //------------Setup for test--------------------------
@@ -416,9 +413,9 @@ namespace Dev2.Core.Tests.Environments
             Assert.AreEqual("New Name", _editedEnvironment.Name);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("EnvironmentRepository_Save")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("EnvironmentRepository_Save")]
         public void EnvironmentRepository_Save_NotExistingEnvironment_DoesNotRaisesItemEditedEvent()
         {
             //------------Setup for test--------------------------
@@ -438,9 +435,9 @@ namespace Dev2.Core.Tests.Environments
             Assert.IsNull(_editedEnvironment);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("EnvironmentRepository_Save")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("EnvironmentRepository_Save")]
         public void EnvironmentRepository_Save_RaisesItemAddedEvent()
         {
             //------------Setup for test--------------------------
@@ -460,9 +457,9 @@ namespace Dev2.Core.Tests.Environments
             Assert.IsTrue(_eventFired);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("EnvironmentRepository_Fetch")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("EnvironmentRepository_Fetch")]
         public void EnvironmentRepository_Fetch_ReturnsFoundEnvironment()
         {
             //------------Setup for test--------------------------
@@ -477,9 +474,9 @@ namespace Dev2.Core.Tests.Environments
             Assert.IsNotNull(environmentModel);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("EnvironmentRepository_Fetch")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("EnvironmentRepository_Fetch")]
         public void EnvironmentRepository_Fetch_Null_ReturnsNull()
         {
             //------------Setup for test--------------------------
@@ -494,9 +491,9 @@ namespace Dev2.Core.Tests.Environments
             Assert.IsNull(environmentModel);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("EnvironmentRepository_Fetch")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("EnvironmentRepository_Fetch")]
         public void EnvironmentRepository_Fetch_NotFound_ReturnsEnvironment()
         {
             //------------Setup for test--------------------------
@@ -512,7 +509,7 @@ namespace Dev2.Core.Tests.Environments
         }
 
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositorySaveWithSingleExpectedDoesNotConnect()
         {
             // DO NOT use mock as test requires IEquatable of IEnvironmentModel
@@ -533,7 +530,7 @@ namespace Dev2.Core.Tests.Environments
 
         #region Remove
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositoryRemoveWithManyNullExpectedDoesNothing()
         {
             var source = new Mock<IServer>();
@@ -546,7 +543,7 @@ namespace Dev2.Core.Tests.Environments
             Assert.AreEqual(0, repo.RemoveInternalHitCount);
         }
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositoryRemoveWithManyItemsExpectedDisconnectsAndRemovesItems()
         {
             // DO NOT use mock as test requires IEquatable of IEnvironmentModel
@@ -582,7 +579,7 @@ namespace Dev2.Core.Tests.Environments
             Assert.AreSame(e2, actual[1]);
         }
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositoryRemoveWithManyItemsExpectedDoesNotInvokesWriteSession()
         {
             var source = new Mock<IServer>();
@@ -595,7 +592,7 @@ namespace Dev2.Core.Tests.Environments
             Assert.AreEqual(0, repo.WriteSessionHitCount);
         }
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositoryRemoveWithSingleNullExpectedDoesNothing()
         {
             var source = new Mock<IServer>();
@@ -609,7 +606,7 @@ namespace Dev2.Core.Tests.Environments
             Assert.AreEqual(0, repo.WriteSessionHitCount);
         }
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositoryRemoveWithSingleItemExpectedDisconnectsAndRemovesItem()
         {
             var source = new Mock<IServer>();
@@ -644,7 +641,7 @@ namespace Dev2.Core.Tests.Environments
             Assert.AreSame(e3, actual[2]);
         }
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositoryRemoveWithSingleItemExpectedDoesNotInvokesWriteSession()
         {
             var source = new Mock<IServer>();
@@ -662,7 +659,7 @@ namespace Dev2.Core.Tests.Environments
             Assert.AreEqual(0, repo.WriteSessionHitCount);
         }
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositoryRemoveWithSingleNonExistingItemExpectedDoesNotRemoveItem()
         {
             var source = new Mock<IServer>();
@@ -688,7 +685,7 @@ namespace Dev2.Core.Tests.Environments
 
         #region Persistence
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositoryPersistenceExpectedUsesCurrentUsersAppDataFolder()
         {
             var expected = Path.Combine(new[]
@@ -707,7 +704,7 @@ namespace Dev2.Core.Tests.Environments
 
         #region ReadSession
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositoryReadSessionWithOneEnvironmentExpectedReturnsOneEnvironment()
         {
             var path = ServerRepository.GetEnvironmentsFilePath();
@@ -725,7 +722,7 @@ namespace Dev2.Core.Tests.Environments
 
         #region WriteSession
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositoryWriteSessionWithNonExistingFileExpectedCreatesFile()
         {
             var path = ServerRepository.GetEnvironmentsFilePath();
@@ -739,7 +736,7 @@ namespace Dev2.Core.Tests.Environments
 
         }
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositoryWriteSessionWithExistingFileExpectedOverwritesFile()
         {
             var path = ServerRepository.GetEnvironmentsFilePath();
@@ -768,14 +765,14 @@ namespace Dev2.Core.Tests.Environments
 
         #region LookupEnvironments
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void EnvironmentRepositoryLookupEnvironmentsWithNullParametersExpectedThrowsArgumentNullException()
         {
             ServerRepository.Instance.LookupEnvironments(null);
         }
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositoryLookupEnvironmentsWithNoEnvironmentIDsExpectedReturnsListOfServers()
         {
             var env = new Mock<IServer>();
@@ -808,9 +805,9 @@ namespace Dev2.Core.Tests.Environments
             Assert.AreEqual(id, result[0].EnvironmentID, "EnvironmentRepository did not assign the resource ID to the environment ID.");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("EnvironmentRepository_Save")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("EnvironmentRepository_Save")]
         public void EnvironmentRepository_All_ReturnsListOfServers()
         {
             var env = new Mock<IServer>();
@@ -847,7 +844,7 @@ namespace Dev2.Core.Tests.Environments
             Assert.IsTrue(result.Count > 0);
         }
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositoryLookupEnvironmentsWithAuthenticationTypeExpectedReturnsListOfServers()
         {
             var env = new Mock<IServer>();
@@ -886,7 +883,7 @@ namespace Dev2.Core.Tests.Environments
             Assert.AreEqual("password", result[0].Connection.Password);
         }
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositoryLookupEnvironmentsWithInvalidParametersExpectedReturnsEmptyList()
         {
             var env = CreateMockEnvironment();
@@ -895,7 +892,7 @@ namespace Dev2.Core.Tests.Environments
             Assert.AreEqual(0, result.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositoryLookupEnvironmentsWithInvalidEnvironmentIDExpectedReturnsEmptyList()
         {
             var env = CreateMockEnvironment(
@@ -905,7 +902,7 @@ namespace Dev2.Core.Tests.Environments
             Assert.AreEqual(0, result.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositoryLookupEnvironmentsWithInvalidEnvironmentAppServerUriExpectedReturnsEmptyList()
         {
 
@@ -916,7 +913,7 @@ namespace Dev2.Core.Tests.Environments
             Assert.AreEqual(0, result.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositoryLookupEnvironmentsWithInvalidEnvironmentWebServerPortExpectedReturnsEmptyList()
         {
             var env = CreateMockEnvironment(
@@ -926,7 +923,7 @@ namespace Dev2.Core.Tests.Environments
             Assert.AreEqual(0, result.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositoryLookupEnvironmentsWithOneValidEnvironmentIDExpectedReturnsOneEnvironment()
         {
 
@@ -965,7 +962,7 @@ namespace Dev2.Core.Tests.Environments
             Assert.AreEqual("http://tst-ci-remote:3142/", result[0].Connection.WebServerUri.AbsoluteUri);
         }
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepositoryLookupEnvironmentsWithOneValidEnvironmentAuthenticationTypeExpectedReturnsOneEnvironment()
         {
 
@@ -1007,7 +1004,7 @@ namespace Dev2.Core.Tests.Environments
             Assert.AreEqual("hahaha", result[0].Connection.Password);
         }
 
-        [TestMethod]
+        [Test]
         public void EnvironmentRepository_UnitTest_LookupEnvironmentsWithDefaultEnvironmentExpectDoesNotThrowException()
         {
 
@@ -1042,10 +1039,10 @@ namespace Dev2.Core.Tests.Environments
             Assert.IsTrue(true);
         }
 
-        [TestMethod]
-        [TestCategory("EnvironmentRepository_LookupEnvironments")]
+        [Test]
+        [Category("EnvironmentRepository_LookupEnvironments")]
         [Description("EnvironmentRepository must initialize EnvironmentModels with their catalog resource ID.")]
-        [Owner("Trevor Williams-Ros")]
+        [Author("Trevor Williams-Ros")]
         public void EnvironmentRepository_UnitTest_EnvironmentModelID_ResourceID()
         {
 
@@ -1082,8 +1079,8 @@ namespace Dev2.Core.Tests.Environments
 
         #region CreateEnvironment
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateEnvironment_GivenEmptyUri_ShouldUseMachineName()
         {
 
@@ -1114,14 +1111,14 @@ namespace Dev2.Core.Tests.Environments
 
             var instance = ServerRepository.Instance;
 
-            var obj = new PrivateObject(instance, new PrivateType(typeof(ServerRepository)));
+            var obj = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(instance, new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType(typeof(ServerRepository)));
             var environmentModel = obj.Invoke("CreateEnvironmentModel", BindingFlags.NonPublic | BindingFlags.Static, new[] { typeof(Guid), typeof(Uri), typeof(string) }, new object[] { Guid.NewGuid(), new Uri("http://LOCALHOST"), "" }) as IServer;
 
             Assert.IsTrue(environmentModel?.Connection.WebServerUri.AbsoluteUri.Contains(Environment.MachineName.ToLowerInvariant()) ?? false);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateEnvironment_GivenLocalHostIsEmpty_ShouldUseMachineName()
         {
             AppUsageStats.LocalHost = "";
@@ -1151,7 +1148,7 @@ namespace Dev2.Core.Tests.Environments
 
             var instance = ServerRepository.Instance;
 
-            var obj = new PrivateObject(instance, new PrivateType(typeof(ServerRepository)));
+            var obj = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(instance, new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType(typeof(ServerRepository)));
             var environmentModel = obj.Invoke("CreateEnvironmentModel", BindingFlags.NonPublic | BindingFlags.Static, new[] { typeof(Guid), typeof(Uri), typeof(string) }, new object[] { Guid.NewGuid(), new Uri("http://LOCALHOST"), "" }) as IServer;
 
             Assert.IsTrue(environmentModel?.Connection.WebServerUri.AbsoluteUri.Contains(Environment.MachineName.ToLowerInvariant()) ?? false);
@@ -1202,7 +1199,7 @@ namespace Dev2.Core.Tests.Environments
 
         #endregion
 
-        [TestMethod]
+        [Test]
         public void ParseConnectionStringIntoAppServerUri()
         {
             const string toParse = "AppServerUri=http://rsatest1:77/dsf;WebServerPort=1234";

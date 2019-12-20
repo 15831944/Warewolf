@@ -8,19 +8,20 @@ using Dev2.Common.Interfaces.DB;
 using Dev2.Common.Interfaces.ServerProxyLayer;
 using Dev2.Common.Interfaces.ToolBase;
 using Dev2.Studio.Core.Activities.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 
 namespace Dev2.Activities.Designers.Tests.Core.Database
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DatabaseSourceRegionTest
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DatabaseSourceRegion_Constructor")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DatabaseSourceRegion_Constructor")]
         public void DatabaseSourceRegion_Constructor_Scenerio_Result()
         {
             //------------Setup for test--------------------------
@@ -35,9 +36,9 @@ namespace Dev2.Activities.Designers.Tests.Core.Database
             Assert.AreEqual(region.LabelWidth, 46);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DatabaseSourceRegion_ConstructorWithSelectedSource")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DatabaseSourceRegion_ConstructorWithSelectedSource")]
         public void DatabaseSourceRegion_ConstructorWithSelectedSource_Scenerio_Result()
         {
             //------------Setup for test--------------------------
@@ -55,9 +56,9 @@ namespace Dev2.Activities.Designers.Tests.Core.Database
             Assert.IsTrue(region.CanEditSource());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DatabaseSourceRegion_ChangeSourceSomethingChanged")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DatabaseSourceRegion_ChangeSourceSomethingChanged")]
         public void DatabaseSourceRegion_ChangeSourceSomethingChanged_ExpectedChange_Result()
         {
             //------------Setup for test--------------------------
@@ -78,9 +79,9 @@ namespace Dev2.Activities.Designers.Tests.Core.Database
             Assert.IsTrue(evt);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DatabaseSourceRegion_ChangeSourceSomethingChanged")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DatabaseSourceRegion_ChangeSourceSomethingChanged")]
         public void DatabaseSourceRegion_ChangeSourceSomethingChanged_RestoreRegion_Result()
         {
             //------------Setup for test--------------------------
@@ -111,9 +112,9 @@ namespace Dev2.Activities.Designers.Tests.Core.Database
             dep2.Verify(a => a.RestoreRegion(clone2.Object), Times.Never);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DatabaseSourceRegion_ChangeSourceSomethingChanged")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DatabaseSourceRegion_ChangeSourceSomethingChanged")]
         public void DatabaseSourceRegion_ChangeSourceSomethingChanged_RegionsNotRestored_Invalid()
         {
             //------------Setup for test--------------------------
@@ -144,9 +145,9 @@ namespace Dev2.Activities.Designers.Tests.Core.Database
             dep2.Verify(a => a.RestoreRegion(clone2.Object), Times.Never);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DatabaseSourceRegion_ChangeSourceSomethingChanged")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DatabaseSourceRegion_ChangeSourceSomethingChanged")]
         public void DatabaseSourceRegion_ChangeSourceSomethingChanged_CloneRegion_ExpectedClone()
         {
             //------------Setup for test--------------------------
@@ -165,9 +166,9 @@ namespace Dev2.Activities.Designers.Tests.Core.Database
             Assert.AreEqual(((DatabaseSourceRegion)cloned).SelectedSource, region.SelectedSource);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DatabaseSourceRegion_ChangeSourceSomethingChanged")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DatabaseSourceRegion_ChangeSourceSomethingChanged")]
         public void DatabaseSourceRegion_ChangeSourceSomethingChanged_RestoreRegion_ExpectedRestore()
         {
             //------------Setup for test--------------------------
@@ -190,7 +191,7 @@ namespace Dev2.Activities.Designers.Tests.Core.Database
             Assert.AreEqual(region.SelectedSource, s2);
         }
 
-        [TestMethod]
+        [Test]
         public void DbSource_Equals_WithOperator_ShouldBeEqual()
         {
             var id = Guid.NewGuid();
@@ -204,7 +205,7 @@ namespace Dev2.Activities.Designers.Tests.Core.Database
             Assert.IsTrue(firstObject == secondObject, "DbSourceDefinition object equals operator broken.");
         }
 
-        [TestMethod]
+        [Test]
         public void DbSource_Equals_WithNotEqualOperator_ShouldNotBeEqual()
         {
             //---------------Set up test pack-------------------

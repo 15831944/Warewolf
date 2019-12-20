@@ -16,18 +16,19 @@ using Dev2.ConnectionHelpers;
 using Dev2.Core.Tests.Environments;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Core.Tests.ConnectionHelpers
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ConnectControlSingletonTests
     {
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ConnectControlSingleton_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ConnectControlSingleton_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ConnectControlSingleton_Constructor_ServerProviderIsNull_ThrowsException()
         {
@@ -36,9 +37,9 @@ namespace Dev2.Core.Tests.ConnectionHelpers
             new ConnectControlSingleton(null, environmentRepository.Object);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ConnectControlSingleton_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ConnectControlSingleton_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ConnectControlSingleton_Constructor_EnvironmentRepositoryIsNull_ThrowsException()
         {
@@ -47,9 +48,9 @@ namespace Dev2.Core.Tests.ConnectionHelpers
             new ConnectControlSingleton(serverProvider.Object, null);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ConnectControlSingleton_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ConnectControlSingleton_Constructor")]
         public void ConnectControlSingleton_Constructor_ServerProviderReturnsNoEnvironment_WillHaveAtLeastOneEnvironmentLoaded()
         {
             var serverProvider = new Mock<IEnvironmentModelProvider>();
@@ -65,9 +66,9 @@ namespace Dev2.Core.Tests.ConnectionHelpers
             Assert.AreEqual(ConnectControlSingleton.NewServerText, connectControlSingleton.Servers[0].DisplayName);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ConnectControlSingleton_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ConnectControlSingleton_Constructor")]
         public void ConnectControlSingleton_Constructor_ServerProviderReturnsOneEnvironment_WillHaveTwoEnvironmentsLoaded()
         {
             var serverProvider = new Mock<IEnvironmentModelProvider>();
@@ -85,9 +86,9 @@ namespace Dev2.Core.Tests.ConnectionHelpers
             Assert.AreEqual(2, connectControlSingleton.Servers.Count);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ConnectControlSingleton_ToggleConnection")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ConnectControlSingleton_ToggleConnection")]
         public void ConnectControlSingleton_ToggleConnection_SelectedServerIsDisconnected_StudioRepositoryLoadIsCalled()
         {
             var serverProvider = new Mock<IEnvironmentModelProvider>();
@@ -120,9 +121,9 @@ namespace Dev2.Core.Tests.ConnectionHelpers
             Assert.AreEqual(selectedServer.Server.EnvironmentID, environmentId);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ConnectControlSingleton_ToggleConnection")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ConnectControlSingleton_ToggleConnection")]
         public void ConnectControlSingleton_ToggleConnection_SelectedServerIndexIsOutofRange_StudioRepositoryLoadIsNotCalled()
         {
             var serverProvider = new Mock<IEnvironmentModelProvider>();
@@ -148,9 +149,9 @@ namespace Dev2.Core.Tests.ConnectionHelpers
             Assert.IsFalse(eventWasRaised);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ConnectControlSingleton_ToggleConnection")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ConnectControlSingleton_ToggleConnection")]
         public void ConnectControlSingleton_ToggleConnection_SelectedServerIsConnected_StudioRepositoryDisconnectIsCalled()
         {
             var serverProvider = new Mock<IEnvironmentModelProvider>();
@@ -183,9 +184,9 @@ namespace Dev2.Core.Tests.ConnectionHelpers
             Assert.AreEqual(selectedServer.Server.EnvironmentID, environmentId);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ConnectControlSingleton_ToggleConnection")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ConnectControlSingleton_ToggleConnection")]
         public void ConnectControlSingleton_ToggleConnectionOverload_SelectedServerIsDisconnected_StudioRepositoryLoadIsCalled()
         {
             var serverProvider = new Mock<IEnvironmentModelProvider>();
@@ -218,9 +219,9 @@ namespace Dev2.Core.Tests.ConnectionHelpers
             Assert.AreEqual(selectedId, environmentId);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ConnectControlSingleton_ToggleConnection")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ConnectControlSingleton_ToggleConnection")]
         public void ConnectControlSingleton_ToggleConnectionOverload_SelectedServerIsConnected_StudioRepositoryDisconnectIsCalled()
         {
             var serverProvider = new Mock<IEnvironmentModelProvider>();
@@ -253,9 +254,9 @@ namespace Dev2.Core.Tests.ConnectionHelpers
             Assert.AreEqual(selectedId, environmentId);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ConnectControlSingleton_EditConnection")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ConnectControlSingleton_EditConnection")]
         public void ConnectControlSingleton_EditConnection_ServerUriIsNotChangedOnTheDialog_StudioResourceRepositoryLoadIsNotCalled()
         {
             var serverProvider = new Mock<IEnvironmentModelProvider>();
@@ -279,9 +280,9 @@ namespace Dev2.Core.Tests.ConnectionHelpers
             Assert.AreEqual(1, selectedIndex);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ConnectControlSingleton_EditConnection")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ConnectControlSingleton_EditConnection")]
         public void ConnectControlSingleton_EditConnection_ServerUriIsChangedOnTheDialog_StudioResourceRepositoryLoadIsCalled()
         {
             var serverProvider = new Mock<IEnvironmentModelProvider>();
@@ -324,9 +325,9 @@ namespace Dev2.Core.Tests.ConnectionHelpers
             Assert.AreEqual(1, selectedIndex);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ConnectControlSingleton_EditConnection")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ConnectControlSingleton_EditConnection")]
         public void ConnectControlSingleton_EditConnection_AuthChangedOnTheDialog_StudioResourceRepositoryLoadIsCalled()
         {
             var serverProvider = new Mock<IEnvironmentModelProvider>();
@@ -369,9 +370,9 @@ namespace Dev2.Core.Tests.ConnectionHelpers
             Assert.AreEqual(1, selectedIndex);
         }
         
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ConnectControlSingleton_EditConnection")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ConnectControlSingleton_EditConnection")]
         public void ConnectControlSingleton_EditConnection_AuthNotChangedOnTheDialog_StudioResourceRepositoryLoadIsNotCalled()
         {
             var serverProvider = new Mock<IEnvironmentModelProvider>();
@@ -401,9 +402,9 @@ namespace Dev2.Core.Tests.ConnectionHelpers
         }
 
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ConnectControlSingleton_EditConnection")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ConnectControlSingleton_EditConnection")]
         public void ConnectControlSingleton_EditConnection_ServerUriIsChangedWhenItsConnected_StudioResourceRepositoryDisconnectIsCalled()
         {
             var serverProvider = new Mock<IEnvironmentModelProvider>();
@@ -434,9 +435,9 @@ namespace Dev2.Core.Tests.ConnectionHelpers
             Assert.AreEqual(1, selectedIndex);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ConnectControlSingleton_EditConnection")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ConnectControlSingleton_EditConnection")]
         public void ConnectControlSingleton_EditConnection_SelectedServerIndexIsOutOfRange_StudioResourceRepositoryDisconnectIsNotCalled()
         {
             var serverProvider = new Mock<IEnvironmentModelProvider>();
@@ -463,9 +464,9 @@ namespace Dev2.Core.Tests.ConnectionHelpers
             Assert.IsFalse(wasCallbackInvoked);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ConnectControlSingleton_Refresh")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ConnectControlSingleton_Refresh")]
         public void ConnectControlSingleton_Refresh_SelectedServerIsDisconnected_StudioRepositoryLoadIsCalled()
         {
             var serverProvider = new Mock<IEnvironmentModelProvider>();
@@ -498,9 +499,9 @@ namespace Dev2.Core.Tests.ConnectionHelpers
             Assert.AreEqual(selectedId, environmentId);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ConnectControlSingleton_Refresh")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ConnectControlSingleton_Refresh")]
         public void ConnectControlSingleton_Refresh_SelectedServerIsConnected_StudioRepositoryLoadIsCalled()
         {
             var serverProvider = new Mock<IEnvironmentModelProvider>();
@@ -533,9 +534,9 @@ namespace Dev2.Core.Tests.ConnectionHelpers
             Assert.AreEqual(selectedId, environmentId);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ConnectControlSingleton_Remove")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ConnectControlSingleton_Remove")]
         public void ConnectControlSingleton_Remove_SelectedServerIsDisconnected_StudioRepositoryRemoveEnvironmentIsCalled()
         {
             var serverProvider = new Mock<IEnvironmentModelProvider>();
@@ -565,9 +566,9 @@ namespace Dev2.Core.Tests.ConnectionHelpers
             Assert.IsTrue(eventRaised);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ConnectControlSingleton_Remove")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ConnectControlSingleton_Remove")]
         public void ConnectControlSingleton_Remove_SelectedServerIsConnected_StudioRepositoryDisconnectIsCalled()
         {
             var serverProvider = new Mock<IEnvironmentModelProvider>();
@@ -597,9 +598,9 @@ namespace Dev2.Core.Tests.ConnectionHelpers
             Assert.IsTrue(eventRaised);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ConnectControlSingleton_SetConnectionState")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ConnectControlSingleton_SetConnectionState")]
         public void ConnectControlSingleton_SetConnectionState_WhenThereIsASubscriber_RaisesAnEvent()
         {
             var serverProvider = new Mock<IEnvironmentModelProvider>();

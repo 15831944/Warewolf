@@ -3,23 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using Dev2.Common;
 using Dev2.Common.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Warewolf.Storage;
 using WarewolfParserInterop;
 using Newtonsoft.Json.Linq;
-
-
-
-
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace WarewolfParsingTest
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class TestEvaluation
     {
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("CreateDataSet_ExpectColumnsIncludePositionAndEmpty")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("CreateDataSet_ExpectColumnsIncludePositionAndEmpty")]
         public void CreateJSONAndEvalEntireObject()
         {
             //------------Setup for test--------------------------
@@ -29,18 +27,18 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
 
             //------------Assert Results-------------------------
-            Assert.IsTrue(added.JsonObjects.ContainsKey("bob"));
-            Assert.AreEqual((added.JsonObjects["bob"] as JObject).GetValue("Name").ToString(), "n");
+            NUnit.Framework.Assert.IsTrue(added.JsonObjects.ContainsKey("bob"));
+            NUnit.Framework.Assert.AreEqual((added.JsonObjects["bob"] as JObject).GetValue("Name").ToString(), "n");
             var evalled = EvaluationFunctions.eval(added, 0, false, "[[@bob]]");
-            Assert.IsTrue(evalled.IsWarewolfAtomResult);
+            NUnit.Framework.Assert.IsTrue(evalled.IsWarewolfAtomResult);
             var res = (evalled as CommonFunctions.WarewolfEvalResult.WarewolfAtomResult).Item;
             var str = (res as DataStorage.WarewolfAtom.DataString).ToString();
-            Assert.AreEqual(str, j.ToString());
+            NUnit.Framework.Assert.AreEqual(str, j.ToString());
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("CreateDataSet_ExpectColumnsIncludePositionAndEmpty")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("CreateDataSet_ExpectColumnsIncludePositionAndEmpty")]
         public void CreateJSONAndEvalPartialObject()
         {
             //------------Setup for test--------------------------
@@ -50,16 +48,16 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
 
             //------------Assert Results-------------------------
-            Assert.IsTrue(added.JsonObjects.ContainsKey("bob"));
-            Assert.AreEqual((added.JsonObjects["bob"] as JObject).GetValue("Name").ToString(), "n");
+            NUnit.Framework.Assert.IsTrue(added.JsonObjects.ContainsKey("bob"));
+            NUnit.Framework.Assert.AreEqual((added.JsonObjects["bob"] as JObject).GetValue("Name").ToString(), "n");
             var evalled = CommonFunctions.evalResultToString(EvaluationFunctions.eval(added, 0, false, "[[@bob.Name]]"));
 
-            Assert.AreEqual(evalled, "n");
+            NUnit.Framework.Assert.AreEqual(evalled, "n");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("CreateDataSet_ExpectColumnsIncludePositionAndEmpty")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("CreateDataSet_ExpectColumnsIncludePositionAndEmpty")]
         public void CreateJSONAndEvalPartialObjectNested()
         {
             //------------Setup for test--------------------------
@@ -69,16 +67,16 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
 
             //------------Assert Results-------------------------
-            Assert.IsTrue(added.JsonObjects.ContainsKey("bob"));
-            Assert.AreEqual((added.JsonObjects["bob"] as JObject).GetValue("Name").ToString(), "n");
+            NUnit.Framework.Assert.IsTrue(added.JsonObjects.ContainsKey("bob"));
+            NUnit.Framework.Assert.AreEqual((added.JsonObjects["bob"] as JObject).GetValue("Name").ToString(), "n");
             var evalled = CommonFunctions.evalResultToString(EvaluationFunctions.eval(added, 0, false, "[[@bob.Spouse.Name]]"));
 
-            Assert.AreEqual(evalled, "o");
+            NUnit.Framework.Assert.AreEqual(evalled, "o");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("CreateDataSet_ExpectColumnsIncludePositionAndEmpty")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("CreateDataSet_ExpectColumnsIncludePositionAndEmpty")]
         public void CreateJSONAndEvalPartialObjectNestedIndex()
         {
             //------------Setup for test--------------------------
@@ -88,18 +86,18 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
 
             //------------Assert Results-------------------------
-            Assert.IsTrue(added.JsonObjects.ContainsKey("bob"));
+            NUnit.Framework.Assert.IsTrue(added.JsonObjects.ContainsKey("bob"));
 
             var evalled = CommonFunctions.evalResultToString(EvaluationFunctions.eval(added, 0, false, "[[@bob.Children(1).Name]]"));
 
-            Assert.AreEqual(evalled, "p");
+            NUnit.Framework.Assert.AreEqual(evalled, "p");
         }
 
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("CreateDataSet_ExpectColumnsIncludePositionAndEmpty")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("CreateDataSet_ExpectColumnsIncludePositionAndEmpty")]
         public void CreateJSONAndEvalPartialObjectNestedStar()
         {
             //------------Setup for test--------------------------
@@ -109,15 +107,15 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
 
             //------------Assert Results-------------------------
-            Assert.IsTrue(added.JsonObjects.ContainsKey("bob"));
+            NUnit.Framework.Assert.IsTrue(added.JsonObjects.ContainsKey("bob"));
 
             var evalled = CommonFunctions.evalResultToString(EvaluationFunctions.eval(added, 0, false, "[[@bob.Children(*).Name]]"));
 
-            Assert.AreEqual(evalled, "p,q");
+            NUnit.Framework.Assert.AreEqual(evalled, "p,q");
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("CreateDataSet_ExpectColumnsIncludePositionAndEmpty")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("CreateDataSet_ExpectColumnsIncludePositionAndEmpty")]
         public void CreateJSONAndEvalPartialObjectNestedStarAll()
         {
             //------------Setup for test--------------------------
@@ -127,17 +125,17 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
 
             //------------Assert Results-------------------------
-            Assert.IsTrue(added.JsonObjects.ContainsKey("bob"));
+            NUnit.Framework.Assert.IsTrue(added.JsonObjects.ContainsKey("bob"));
 
             var evalled = CommonFunctions.evalResultToString(EvaluationFunctions.eval(added, 0, false, "[[@bob.Children(*)]]"));
-            Assert.IsTrue(evalled.Contains(@"""Name"": ""p"""));
-            Assert.IsTrue(evalled.Contains(@"""Name"": ""q"""));
+            NUnit.Framework.Assert.IsTrue(evalled.Contains(@"""Name"": ""p"""));
+            NUnit.Framework.Assert.IsTrue(evalled.Contains(@"""Name"": ""q"""));
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("CreateDataSet_ExpectColumnsIncludePositionAndEmpty")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("CreateDataSet_ExpectColumnsIncludePositionAndEmpty")]
         public void CreateJSONAndEvalPartialObjectNestedLast()
         {
             //------------Setup for test--------------------------
@@ -147,16 +145,16 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
 
             //------------Assert Results-------------------------
-            Assert.IsTrue(added.JsonObjects.ContainsKey("bob"));
+            NUnit.Framework.Assert.IsTrue(added.JsonObjects.ContainsKey("bob"));
 
             var evalled = CommonFunctions.evalResultToString(EvaluationFunctions.eval(added, 0, false, "[[@bob.Children().Name]]"));
 
-            Assert.AreEqual(evalled, "q");
+            NUnit.Framework.Assert.AreEqual(evalled, "q");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("CreateDataSet_ExpectColumnsIncludePositionAndEmpty")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("CreateDataSet_ExpectColumnsIncludePositionAndEmpty")]
         public void AddToScalarsCreatesAscalarEval()
         {
             //------------Setup for test--------------------------
@@ -164,22 +162,11 @@ namespace WarewolfParsingTest
             var x = new[] { new Person() { Name = "n", Children = new List<Person>() }, new Person() { Name = "n", Children = new List<Person>() } };
             var j = JArray.FromObject(x);
             var q = j.SelectTokens("[*]");
-            //  var added = AssignEvaluation.addToJsonObjects(createDataSet, "bob", j);
-            ////------------Execute Test---------------------------
-
-            ////------------Assert Results-------------------------
-            //Assert.IsTrue(added.JsonObjects.ContainsKey("bob"));
-            //Assert.AreEqual(added.JsonObjects["bob"].GetValue("Name").ToString(), "n");
-            //var evalled = EvaluationFunctions.eval(added, 0, "[[bob]]");
-            //Assert.IsTrue(evalled.IsWarewolfAtomResult);
-            //var res = (evalled as CommonFunctions.WarewolfEvalResult.WarewolfAtomResult).Item;
-            //var str = (res as DataStorage.WarewolfAtom.DataString).ToString();
-            //Assert.AreEqual(str, j.ToString());
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WarewolfParse_Eval")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("WarewolfParse_Eval")]
         public void WarewolfParse_Eval_where_WithNoIndexAndMultipleColumns_MultipleEvals()
         {
 
@@ -204,13 +191,13 @@ namespace WarewolfParsingTest
             env.AssignWithFrame(new AssignValue("[[rec().a]]", "28"), 0);
 
             var items = env.EvalWhere("[[rec(*).a]]", a => PublicFunctions.AtomtoString(a) == "25", 0);
-            Assert.AreEqual(items.ToArray()[0], 1);
+            NUnit.Framework.Assert.AreEqual(items.ToArray()[0], 1);
 
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WarewolfParse_Eval")]
-        [ExpectedException(typeof(Exception))]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("WarewolfParse_Eval")]
+        [NUnit.Framework.ExpectedException(typeof(Exception))]
         public void WarewolfParse_Eval_where_WithNoIndexAndMultipleColumns_ComplexIndex()
         {
 
@@ -235,15 +222,15 @@ namespace WarewolfParsingTest
             env.AssignWithFrame(new AssignValue("[[rec().a]]", "28"), 0);
 
             var items = env.EvalWhere("[[rec([[rec().a]]).a]]", a => PublicFunctions.AtomtoString(a) == "25", 0);
-            Assert.AreEqual(items.ToArray()[0], 1);
+            NUnit.Framework.Assert.AreEqual(items.ToArray()[0], 1);
 
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WarewolfParse_Eval")]
-        [ExpectedException(typeof(Exception))]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("WarewolfParse_Eval")]
+        [NUnit.Framework.ExpectedException(typeof(Exception))]
         public void WarewolfParse_Eval_where_nonExistentRecset()
         {
 
@@ -268,13 +255,13 @@ namespace WarewolfParsingTest
             env.AssignWithFrame(new AssignValue("[[rec().a]]", "28"), 0);
 
             var items = env.EvalWhere("[[bec().a]]", a => PublicFunctions.AtomtoString(a) == "25", 0);
-            Assert.AreEqual(items.ToArray()[0], 1);
+            NUnit.Framework.Assert.AreEqual(items.ToArray()[0], 1);
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WarewolfParse_Eval")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("WarewolfParse_Eval")]
         public void WarewolfParse_Eval_where_WithNoIndexAndMultipleColumns_ComplexIndexThatIsStar()
         {
 
@@ -299,16 +286,16 @@ namespace WarewolfParsingTest
             env.AssignWithFrame(new AssignValue("[[rec().a]]", "28"), 0);
             env.AssignWithFrame(new AssignValue("[[a]]", "*"), 0);
             var items = env.EvalWhere("[[rec([[a]]).a]]", a => PublicFunctions.AtomtoString(a) == "25", 0);
-            Assert.AreEqual(items.ToArray()[0], 1);
+            NUnit.Framework.Assert.AreEqual(items.ToArray()[0], 1);
 
         }
 
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WarewolfParse_EvalWhere")]
-        [ExpectedException(typeof(Exception))]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("WarewolfParse_EvalWhere")]
+        [NUnit.Framework.ExpectedException(typeof(Exception))]
         public void WarewolfParse_Eval_where_WithNoIndexAndMultipleColumns_MultipleEvalsErrorsOnScalar()
         {
 
@@ -328,9 +315,9 @@ namespace WarewolfParsingTest
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WarewolfParse_EvalWhere")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("WarewolfParse_EvalWhere")]
         public void WarewolfParse_Eval_where_WithNoIndexAndMultipleColumns_MultipleEvalsErrorsRecordSetName()
         {
 
@@ -357,14 +344,14 @@ namespace WarewolfParsingTest
 
 
             var items = env.EvalWhere("[[rec()]]", a => PublicFunctions.AtomtoString(a) == "25", 0);
-            Assert.AreEqual(items.ToArray()[0], 1);
+            NUnit.Framework.Assert.AreEqual(items.ToArray()[0], 1);
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WarewolfParse_EvalWhere")]
-        [ExpectedException(typeof(Exception))]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("WarewolfParse_EvalWhere")]
+        [NUnit.Framework.ExpectedException(typeof(Exception))]
         public void WarewolfParse_Eval_where_recset()
         {
 
@@ -378,10 +365,10 @@ namespace WarewolfParsingTest
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WarewolfParse_EvalWhere")]
-        [ExpectedException(typeof(Exception))]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("WarewolfParse_EvalWhere")]
+        [NUnit.Framework.ExpectedException(typeof(Exception))]
         public void WarewolfParse_Eval_where_WithNoIndexAndMultipleColumns_MultipleEvalsErrorsOnComplex()
         {
 
@@ -396,9 +383,9 @@ namespace WarewolfParsingTest
 
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("EvalCalculate")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("EvalCalculate")]
         public void EvalCalculate_Scalar()
         {
             //------------Setup for test--------------------------
@@ -409,12 +396,12 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
             var res = EvaluationFunctions.evalForCalculate(env, 0, GlobalConstants.CalculateTextConvertPrefix + "Sum([[x]])" + GlobalConstants.CalculateTextConvertSuffix);
             //------------Assert Results-------------------------
-            Assert.AreEqual(CommonFunctions.evalResultToString(res), GlobalConstants.CalculateTextConvertPrefix + "Sum(1)" + GlobalConstants.CalculateTextConvertSuffix);
+            NUnit.Framework.Assert.AreEqual(CommonFunctions.evalResultToString(res), GlobalConstants.CalculateTextConvertPrefix + "Sum(1)" + GlobalConstants.CalculateTextConvertSuffix);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("EvalCalculate")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("EvalCalculate")]
         public void EvalCalculate_RecsetIndex()
         {
             //------------Setup for test--------------------------
@@ -425,13 +412,13 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
             var res = EvaluationFunctions.evalForCalculate(env, 0, GlobalConstants.CalculateTextConvertPrefix + "Sum([[Rec([[x]]).a]])" + GlobalConstants.CalculateTextConvertSuffix);
             //------------Assert Results-------------------------
-            Assert.AreEqual(CommonFunctions.evalResultToString(res), GlobalConstants.CalculateTextConvertPrefix + "Sum(1)" + GlobalConstants.CalculateTextConvertSuffix);
+            NUnit.Framework.Assert.AreEqual(CommonFunctions.evalResultToString(res), GlobalConstants.CalculateTextConvertPrefix + "Sum(1)" + GlobalConstants.CalculateTextConvertSuffix);
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("EvalCalculate")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("EvalCalculate")]
         public void EvalCalculate_Scalar_Complex()
         {
             //------------Setup for test--------------------------
@@ -442,13 +429,13 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
             var res = EvaluationFunctions.evalForCalculate(env, 0, GlobalConstants.CalculateTextConvertPrefix + "Sum([[x]][[z]])" + GlobalConstants.CalculateTextConvertSuffix);
             //------------Assert Results-------------------------
-            Assert.AreEqual(CommonFunctions.evalResultToString(res), GlobalConstants.CalculateTextConvertPrefix + "Sum(12)" + GlobalConstants.CalculateTextConvertSuffix);
+            NUnit.Framework.Assert.AreEqual(CommonFunctions.evalResultToString(res), GlobalConstants.CalculateTextConvertPrefix + "Sum(12)" + GlobalConstants.CalculateTextConvertSuffix);
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("EvalCalculate")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("EvalCalculate")]
         public void EvalCalculate_recset_ComplexIndex()
         {
             //------------Setup for test--------------------------
@@ -459,12 +446,12 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
             var res = EvaluationFunctions.evalForCalculate(env, 0, GlobalConstants.CalculateTextConvertPrefix + "Sum([[[[q]]]])" + GlobalConstants.CalculateTextConvertSuffix);
             //------------Assert Results-------------------------
-            Assert.AreEqual(CommonFunctions.evalResultToString(res), GlobalConstants.CalculateTextConvertPrefix + "Sum(1)" + GlobalConstants.CalculateTextConvertSuffix);
+            NUnit.Framework.Assert.AreEqual(CommonFunctions.evalResultToString(res), GlobalConstants.CalculateTextConvertPrefix + "Sum(1)" + GlobalConstants.CalculateTextConvertSuffix);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("EvalCalculate")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("EvalCalculate")]
         public void EvalCalculate_RecSet()
         {
             //------------Setup for test--------------------------
@@ -475,11 +462,11 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
             var res = EvaluationFunctions.evalForCalculate(env, 0, GlobalConstants.CalculateTextConvertPrefix + "Sum([[Rec().a]])" + GlobalConstants.CalculateTextConvertSuffix);
             //------------Assert Results-------------------------
-            Assert.AreEqual(CommonFunctions.evalResultToString(res), GlobalConstants.CalculateTextConvertPrefix + "Sum(3)" + GlobalConstants.CalculateTextConvertSuffix);
+            NUnit.Framework.Assert.AreEqual(CommonFunctions.evalResultToString(res), GlobalConstants.CalculateTextConvertPrefix + "Sum(3)" + GlobalConstants.CalculateTextConvertSuffix);
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("EvalCalculate")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("EvalCalculate")]
         public void EvalCalculate_RecSet_Index()
         {
             //------------Setup for test--------------------------
@@ -490,11 +477,11 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
             var res = EvaluationFunctions.evalForCalculate(env, 0, GlobalConstants.CalculateTextConvertPrefix + "Sum([[Rec(1).a]])" + GlobalConstants.CalculateTextConvertSuffix);
             //------------Assert Results-------------------------
-            Assert.AreEqual(CommonFunctions.evalResultToString(res), GlobalConstants.CalculateTextConvertPrefix + "Sum(1)" + GlobalConstants.CalculateTextConvertSuffix);
+            NUnit.Framework.Assert.AreEqual(CommonFunctions.evalResultToString(res), GlobalConstants.CalculateTextConvertPrefix + "Sum(1)" + GlobalConstants.CalculateTextConvertSuffix);
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("EvalCalculate")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("EvalCalculate")]
         public void EvalCalculate_RecSet_Star()
         {
             //------------Setup for test--------------------------
@@ -505,12 +492,12 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
             var res = EvaluationFunctions.evalForCalculate(env, 0, GlobalConstants.CalculateTextConvertPrefix + "Sum([[Rec(*).a]])" + GlobalConstants.CalculateTextConvertSuffix);
             //------------Assert Results-------------------------
-            Assert.AreEqual(GlobalConstants.CalculateTextConvertPrefix + "Sum(1)" + GlobalConstants.CalculateTextConvertSuffix + "," + GlobalConstants.CalculateTextConvertPrefix + "Sum(2)" + GlobalConstants.CalculateTextConvertSuffix + "," + GlobalConstants.CalculateTextConvertPrefix + "Sum(3)" + GlobalConstants.CalculateTextConvertSuffix, CommonFunctions.evalResultToString(res));
+            NUnit.Framework.Assert.AreEqual(GlobalConstants.CalculateTextConvertPrefix + "Sum(1)" + GlobalConstants.CalculateTextConvertSuffix + "," + GlobalConstants.CalculateTextConvertPrefix + "Sum(2)" + GlobalConstants.CalculateTextConvertSuffix + "," + GlobalConstants.CalculateTextConvertPrefix + "Sum(3)" + GlobalConstants.CalculateTextConvertSuffix, CommonFunctions.evalResultToString(res));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("EvalCalculate")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("EvalCalculate")]
         public void EvalAggregateCalculate_RecSet_Star()
         {
             //------------Setup for test--------------------------
@@ -521,14 +508,14 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
             var res = EvaluationFunctions.evalForCalculateAggregate(env, 0, GlobalConstants.AggregateCalculateTextConvertPrefix + "Sum([[Rec(*).a]])" + GlobalConstants.AggregateCalculateTextConvertSuffix);
             //------------Assert Results-------------------------
-            Assert.AreEqual(GlobalConstants.AggregateCalculateTextConvertPrefix + "Sum(1,2,3)" + GlobalConstants.AggregateCalculateTextConvertSuffix, CommonFunctions.evalResultToString(res));
+            NUnit.Framework.Assert.AreEqual(GlobalConstants.AggregateCalculateTextConvertPrefix + "Sum(1,2,3)" + GlobalConstants.AggregateCalculateTextConvertSuffix, CommonFunctions.evalResultToString(res));
         }
 
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("EvalCalculate")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("EvalCalculate")]
         public void EvalCalculate_RecSet_Complex()
         {
             //------------Setup for test--------------------------
@@ -539,12 +526,12 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
             var res = EvaluationFunctions.evalForCalculate(env, 0, GlobalConstants.CalculateTextConvertPrefix + "Sum([[Rec(*).a]][[x]])" + GlobalConstants.CalculateTextConvertSuffix);
             //------------Assert Results-------------------------
-            Assert.AreEqual(GlobalConstants.CalculateTextConvertPrefix + "Sum(11)" + GlobalConstants.CalculateTextConvertSuffix + "," + GlobalConstants.CalculateTextConvertPrefix + "Sum(21)" + GlobalConstants.CalculateTextConvertSuffix + "," + GlobalConstants.CalculateTextConvertPrefix + "Sum(31)" + GlobalConstants.CalculateTextConvertSuffix, CommonFunctions.evalResultToString(res));
+            NUnit.Framework.Assert.AreEqual(GlobalConstants.CalculateTextConvertPrefix + "Sum(11)" + GlobalConstants.CalculateTextConvertSuffix + "," + GlobalConstants.CalculateTextConvertPrefix + "Sum(21)" + GlobalConstants.CalculateTextConvertSuffix + "," + GlobalConstants.CalculateTextConvertPrefix + "Sum(31)" + GlobalConstants.CalculateTextConvertSuffix, CommonFunctions.evalResultToString(res));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("EvalCalculate")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("EvalCalculate")]
         public void EvalAggregateCalculate_RecSet_Complex()
         {
             //------------Setup for test--------------------------
@@ -555,12 +542,12 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
             var res = EvaluationFunctions.evalForCalculateAggregate(env, 0, GlobalConstants.AggregateCalculateTextConvertPrefix + "Sum([[Rec(*).a]][[x]])" + GlobalConstants.AggregateCalculateTextConvertSuffix);
             //------------Assert Results-------------------------
-            Assert.AreEqual(CommonFunctions.evalResultToString(res), GlobalConstants.AggregateCalculateTextConvertPrefix + "Sum(1,2,31)" + GlobalConstants.AggregateCalculateTextConvertSuffix);
+            NUnit.Framework.Assert.AreEqual(CommonFunctions.evalResultToString(res), GlobalConstants.AggregateCalculateTextConvertPrefix + "Sum(1,2,31)" + GlobalConstants.AggregateCalculateTextConvertSuffix);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("EvalCalculate")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("EvalCalculate")]
         public void EvalCalculate_RecSet_Json()
         {
             //------------Setup for test--------------------------
@@ -571,12 +558,12 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
             var res = EvaluationFunctions.evalForCalculate(env, 0, GlobalConstants.CalculateTextConvertPrefix + "Sum([[@Person.Age]])" + GlobalConstants.CalculateTextConvertSuffix);
             //------------Assert Results-------------------------
-            Assert.AreEqual(CommonFunctions.evalResultToString(res), GlobalConstants.CalculateTextConvertPrefix + "Sum(22)" + GlobalConstants.CalculateTextConvertSuffix);
+            NUnit.Framework.Assert.AreEqual(CommonFunctions.evalResultToString(res), GlobalConstants.CalculateTextConvertPrefix + "Sum(22)" + GlobalConstants.CalculateTextConvertSuffix);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("EvalCalculate")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("EvalCalculate")]
         public void EvalCalculate_RecSet_Json_Array()
         {
             //------------Setup for test--------------------------
@@ -587,12 +574,12 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
             var res = EvaluationFunctions.evalForCalculate(env, 0, GlobalConstants.CalculateTextConvertPrefix + "Sum([[@Person.Score(1)]])" + GlobalConstants.CalculateTextConvertSuffix);
             //------------Assert Results-------------------------
-            Assert.AreEqual(CommonFunctions.evalResultToString(res), GlobalConstants.CalculateTextConvertPrefix + "Sum(2)" + GlobalConstants.CalculateTextConvertSuffix);
+            NUnit.Framework.Assert.AreEqual(CommonFunctions.evalResultToString(res), GlobalConstants.CalculateTextConvertPrefix + "Sum(2)" + GlobalConstants.CalculateTextConvertSuffix);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("EvalCalculate")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("EvalCalculate")]
         public void EvalAggregateCalculate_RecSet_Json_Array()
         {
             //------------Setup for test--------------------------
@@ -603,12 +590,12 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
             var res = EvaluationFunctions.evalForCalculateAggregate(env, 0, GlobalConstants.AggregateCalculateTextConvertPrefix + "Sum([[@Person.Score(1)]])" + GlobalConstants.AggregateCalculateTextConvertSuffix);
             //------------Assert Results-------------------------
-            Assert.AreEqual(CommonFunctions.evalResultToString(res), GlobalConstants.AggregateCalculateTextConvertPrefix + "Sum(2)" + GlobalConstants.AggregateCalculateTextConvertSuffix);
+            NUnit.Framework.Assert.AreEqual(CommonFunctions.evalResultToString(res), GlobalConstants.AggregateCalculateTextConvertPrefix + "Sum(2)" + GlobalConstants.AggregateCalculateTextConvertSuffix);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("EvalCalculate")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("EvalCalculate")]
         public void EvalCalculate_RecSet_Json_Array_star()
         {
             //------------Setup for test--------------------------
@@ -619,12 +606,12 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
             var res = EvaluationFunctions.evalForCalculate(env, 0, GlobalConstants.CalculateTextConvertPrefix + "Sum([[@Person.Score(*)]])" + GlobalConstants.CalculateTextConvertSuffix);
             //------------Assert Results-------------------------
-            Assert.AreEqual(GlobalConstants.CalculateTextConvertPrefix + "Sum(2)" + GlobalConstants.CalculateTextConvertSuffix + "," + GlobalConstants.CalculateTextConvertPrefix + "Sum(3)" + GlobalConstants.CalculateTextConvertSuffix, CommonFunctions.evalResultToString(res));
+            NUnit.Framework.Assert.AreEqual(GlobalConstants.CalculateTextConvertPrefix + "Sum(2)" + GlobalConstants.CalculateTextConvertSuffix + "," + GlobalConstants.CalculateTextConvertPrefix + "Sum(3)" + GlobalConstants.CalculateTextConvertSuffix, CommonFunctions.evalResultToString(res));
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("EvalCalculate")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("EvalCalculate")]
         public void EvalCalculate_RecSet_Atom()
         {
             //------------Setup for test--------------------------
@@ -635,12 +622,12 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
             var res = EvaluationFunctions.evalForCalculate(env, 0, GlobalConstants.CalculateTextConvertPrefix + "Sum( 1 2 3)" + GlobalConstants.CalculateTextConvertSuffix);
             //------------Assert Results-------------------------
-            Assert.AreEqual(CommonFunctions.evalResultToString(res), GlobalConstants.CalculateTextConvertPrefix + "Sum( 1 2 3)" + GlobalConstants.CalculateTextConvertSuffix);
+            NUnit.Framework.Assert.AreEqual(CommonFunctions.evalResultToString(res), GlobalConstants.CalculateTextConvertPrefix + "Sum( 1 2 3)" + GlobalConstants.CalculateTextConvertSuffix);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("EvalCalculate")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("EvalCalculate")]
         public void EvalCalculate_RecSet_RecsetResult()
         {
             //------------Setup for test--------------------------
@@ -648,12 +635,12 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
             var res = EvaluationFunctions.evalForCalculate(env, 0, GlobalConstants.CalculateTextConvertPrefix + "Sum([[Rec()]])" + GlobalConstants.CalculateTextConvertSuffix);
             //------------Assert Results-------------------------
-            Assert.AreEqual(GlobalConstants.CalculateTextConvertPrefix + "Sum(3)" + GlobalConstants.CalculateTextConvertSuffix + "," + GlobalConstants.CalculateTextConvertPrefix + "Sum(c)" + GlobalConstants.CalculateTextConvertSuffix, CommonFunctions.evalResultToString(res));
+            NUnit.Framework.Assert.AreEqual(GlobalConstants.CalculateTextConvertPrefix + "Sum(3)" + GlobalConstants.CalculateTextConvertSuffix + "," + GlobalConstants.CalculateTextConvertPrefix + "Sum(c)" + GlobalConstants.CalculateTextConvertSuffix, CommonFunctions.evalResultToString(res));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("EvalCalculate")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("EvalCalculate")]
         public void EvalAggregateCalculate_RecSet_RecsetResult()
         {
             //------------Setup for test--------------------------
@@ -661,13 +648,13 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
             var res = EvaluationFunctions.evalForCalculateAggregate(env, 0, GlobalConstants.AggregateCalculateTextConvertPrefix + "Sum([[Rec()]])" + GlobalConstants.AggregateCalculateTextConvertSuffix);
             //------------Assert Results-------------------------
-            Assert.AreEqual(CommonFunctions.evalResultToString(res), GlobalConstants.AggregateCalculateTextConvertPrefix + "Sum(3,c)" + GlobalConstants.AggregateCalculateTextConvertSuffix);
+            NUnit.Framework.Assert.AreEqual(CommonFunctions.evalResultToString(res), GlobalConstants.AggregateCalculateTextConvertPrefix + "Sum(3,c)" + GlobalConstants.AggregateCalculateTextConvertSuffix);
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Eval")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Eval")]
         public void Eval_DataMergeScalar()
         {
             //------------Setup for test--------------------------
@@ -678,11 +665,11 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
             var res = DataMergeFunctions.evalForDataMerge(env, 0, "[[x]]");
             //------------Assert Results-------------------------
-            Assert.AreEqual(CommonFunctions.evalResultToString(res.First()), "1");
+            NUnit.Framework.Assert.AreEqual(CommonFunctions.evalResultToString(res.First()), "1");
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Eval")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Eval")]
         public void Eval_DataMergeRecSet()
         {
             //------------Setup for test--------------------------
@@ -693,12 +680,12 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
             var res = DataMergeFunctions.evalForDataMerge(env, 0, "[[Rec().a]]");
             //------------Assert Results-------------------------
-            Assert.AreEqual(CommonFunctions.evalResultToString(res.First()), "3");
+            NUnit.Framework.Assert.AreEqual(CommonFunctions.evalResultToString(res.First()), "3");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Eval")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Eval")]
         public void Eval_DataMergeRecSet_Name()
         {
             //------------Setup for test--------------------------
@@ -709,12 +696,12 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
             var res = DataMergeFunctions.evalForDataMerge(env, 0, "[[Rec()]]");
             //------------Assert Results-------------------------
-            Assert.AreEqual(CommonFunctions.evalResultToString(res.First()), "3,c");
+            NUnit.Framework.Assert.AreEqual(CommonFunctions.evalResultToString(res.First()), "3,c");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Eval")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Eval")]
         public void Eval_DataMergeRecSet_Index()
         {
             //------------Setup for test--------------------------
@@ -725,11 +712,11 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
             var res = DataMergeFunctions.evalForDataMerge(env, 0, "[[Rec(1).a]]");
             //------------Assert Results-------------------------
-            Assert.AreEqual(CommonFunctions.evalResultToString(res.First()), "1");
+            NUnit.Framework.Assert.AreEqual(CommonFunctions.evalResultToString(res.First()), "1");
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Eval")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Eval")]
         public void Eval_DataMergeRecSet_Star()
         {
             //------------Setup for test--------------------------
@@ -740,12 +727,12 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
             var res = DataMergeFunctions.evalForDataMerge(env, 0, "[[Rec(*).a]]");
             //------------Assert Results-------------------------
-            Assert.AreEqual(CommonFunctions.evalResultToString(res.First()), "1,2,3");
+            NUnit.Framework.Assert.AreEqual(CommonFunctions.evalResultToString(res.First()), "1,2,3");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Eval")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Eval")]
         public void Eval_DataMergeRecSet_Complex()
         {
             //------------Setup for test--------------------------
@@ -756,14 +743,14 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
             var res = DataMergeFunctions.evalForDataMerge(env, 0, "[[Rec(*).a]][[x]]");
             //------------Assert Results-------------------------
-            Assert.AreEqual(CommonFunctions.evalResultToString(res.First()), "1,2,3");
-            Assert.AreEqual(CommonFunctions.evalResultToString(res.Last()), "1");
+            NUnit.Framework.Assert.AreEqual(CommonFunctions.evalResultToString(res.First()), "1,2,3");
+            NUnit.Framework.Assert.AreEqual(CommonFunctions.evalResultToString(res.Last()), "1");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Eval")]
-        [ExpectedException(typeof(Exception))]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Eval")]
+        [NUnit.Framework.ExpectedException(typeof(Exception))]
         public void Eval_DataMergeRecSet_Json()
         {
             //------------Setup for test--------------------------
@@ -774,13 +761,13 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
             var res = DataMergeFunctions.evalForDataMerge(env, 0, "[[Person.Age]]");
             //------------Assert Results-------------------------
-            Assert.AreEqual(CommonFunctions.evalResultToString(res.First()), "22");
+            NUnit.Framework.Assert.AreEqual(CommonFunctions.evalResultToString(res.First()), "22");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Eval")]
-        [ExpectedException(typeof(Exception))]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Eval")]
+        [NUnit.Framework.ExpectedException(typeof(Exception))]
         public void Eval_DataMergeRecSet_Json_Array()
         {
             //------------Setup for test--------------------------
@@ -791,13 +778,13 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
             var res = DataMergeFunctions.evalForDataMerge(env, 0, "[[Person.Score(1)]]");
             //------------Assert Results-------------------------
-            Assert.AreEqual(CommonFunctions.evalResultToString(res.First()), "2");
+            NUnit.Framework.Assert.AreEqual(CommonFunctions.evalResultToString(res.First()), "2");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Eval")]
-        [ExpectedException(typeof(Exception))]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Eval")]
+        [NUnit.Framework.ExpectedException(typeof(Exception))]
         public void Eval_DataMergeRecSet_Json_Array_star()
         {
             //------------Setup for test--------------------------
@@ -808,12 +795,12 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
             var res = DataMergeFunctions.evalForDataMerge(env, 0, "[[Person.Score(*)]]");
             //------------Assert Results-------------------------
-            Assert.AreEqual(CommonFunctions.evalResultToString(res.First()), "2,3");
+            NUnit.Framework.Assert.AreEqual(CommonFunctions.evalResultToString(res.First()), "2,3");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Eval")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Eval")]
         public void Eval_DataMergeRecSet_Atom()
         {
             //------------Setup for test--------------------------
@@ -824,12 +811,12 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
             var res = DataMergeFunctions.evalForDataMerge(env, 0, " 1 2 3");
             //------------Assert Results-------------------------
-            Assert.AreEqual(CommonFunctions.evalResultToString(res.First()), " 1 2 3");
+            NUnit.Framework.Assert.AreEqual(CommonFunctions.evalResultToString(res.First()), " 1 2 3");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Eval")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Eval")]
         public void Eval_DataMergeRecSet_RecsetResult()
         {
             //------------Setup for test--------------------------
@@ -837,7 +824,7 @@ namespace WarewolfParsingTest
             //------------Execute Test---------------------------
             var res = DataMergeFunctions.evalForDataMerge(env, 0, " [[Rec()]]");
             //------------Assert Results-------------------------
-            Assert.AreEqual(CommonFunctions.evalResultToString(res.Last()), "3,c");
+            NUnit.Framework.Assert.AreEqual(CommonFunctions.evalResultToString(res.Last()), "3,c");
         }
 
         static DataStorage.WarewolfEnvironment CreateEnvironmentWithData()
@@ -867,9 +854,9 @@ namespace WarewolfParsingTest
             return (DataStorage.WarewolfEnvironment)p.GetFieldOrProperty("_env");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WarewolfParse_Eval")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("WarewolfParse_Eval")]
         public void WarewolfParse_Eval_where_WithNoIndexAndMultipleColumns_Multipleresults()
         {
 
@@ -896,13 +883,13 @@ namespace WarewolfParsingTest
             var items = env.EvalWhere("[[rec(*).a]]", a => PublicFunctions.AtomtoString(a) == "25", 0);
 
             IEnumerable<int> enumerable = items as int[] ?? items.ToArray();
-            Assert.AreEqual(enumerable.ToArray()[0], 1);
-            Assert.AreEqual(enumerable.ToArray()[1], 3);
+            NUnit.Framework.Assert.AreEqual(enumerable.ToArray()[0], 1);
+            NUnit.Framework.Assert.AreEqual(enumerable.ToArray()[1], 3);
 
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WarewolfParse_Eval")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("WarewolfParse_Eval")]
         public void WarewolfParse_Eval_Assign_MultipleEvals_Star()
         {
 
@@ -927,13 +914,13 @@ namespace WarewolfParsingTest
             env.AssignWithFrame(new AssignValue("[[rec(*).a]]", "28"), 0);
 
             var items = env.EvalAsListOfStrings("[[rec(*).a]]", 0);
-            Assert.AreEqual(items.ToArray()[0], "28");
-            Assert.AreEqual(items.ToArray()[1], "28");
+            NUnit.Framework.Assert.AreEqual(items.ToArray()[0], "28");
+            NUnit.Framework.Assert.AreEqual(items.ToArray()[1], "28");
 
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WarewolfParse_Eval")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("WarewolfParse_Eval")]
         public void WarewolfParse_Eval_Assign_MultipleEvals_Star_NonExistent()
         {
 
@@ -958,12 +945,12 @@ namespace WarewolfParsingTest
             env.AssignWithFrame(new AssignValue("[[rsec(*).a]]", "28"), 0);
 
             var items = env.EvalAsListOfStrings("[[rsec(*).a]]", 0);
-            Assert.AreEqual(items.Count, 1);
-            Assert.AreEqual(items[0], "28");
+            NUnit.Framework.Assert.AreEqual(items.Count, 1);
+            NUnit.Framework.Assert.AreEqual(items[0], "28");
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
+        [Test]
+        [Author("Rory McGuire")]
         public void AppendObjectToArrayInAnObject()
         {
             var assigns = new List<IAssignValue>
@@ -981,23 +968,23 @@ namespace WarewolfParsingTest
             var testEnv2 = PublicFunctions.EvalMultiAssign(assigns, 0, testEnv);
 
             // assert that a, b, and c belong to the same object in the addr array inside obj
-            Assert.IsTrue(testEnv2.JsonObjects.ContainsKey("obj"));
+            NUnit.Framework.Assert.IsTrue(testEnv2.JsonObjects.ContainsKey("obj"));
             var obj = testEnv2.JsonObjects["obj"] as JObject;
-            Assert.IsNotNull(obj, "not a JObject");
+            NUnit.Framework.Assert.IsNotNull(obj, "not a JObject");
             var addrList = obj["addr"] as JArray;
-            Assert.IsNotNull(addrList, "not a JArray");
-            Assert.AreEqual(2, addrList.Count);
+            NUnit.Framework.Assert.IsNotNull(addrList, "not a JArray");
+            NUnit.Framework.Assert.AreEqual(2, addrList.Count);
             var addr = addrList.First as JObject;
-            Assert.IsNotNull(addr, "not a JObject");
+            NUnit.Framework.Assert.IsNotNull(addr, "not a JObject");
 
-            Assert.AreEqual(125, addr["a"].Value<int>());
-            Assert.AreEqual(133, addr["b"].Value<int>());
-            Assert.AreEqual(126, addr["c"].Value<int>());
+            NUnit.Framework.Assert.AreEqual(125, addr["a"].Value<int>());
+            NUnit.Framework.Assert.AreEqual(133, addr["b"].Value<int>());
+            NUnit.Framework.Assert.AreEqual(126, addr["c"].Value<int>());
 
             addr = addrList.Last as JObject;
-            Assert.AreEqual(225, addr["a"].Value<int>());
-            Assert.AreEqual(233, addr["b"].Value<int>());
-            Assert.AreEqual(226, addr["c"].Value<int>());
+            NUnit.Framework.Assert.AreEqual(225, addr["a"].Value<int>());
+            NUnit.Framework.Assert.AreEqual(233, addr["b"].Value<int>());
+            NUnit.Framework.Assert.AreEqual(226, addr["c"].Value<int>());
         }
     }
 }

@@ -1,14 +1,15 @@
 ﻿using System;
 using Dev2.Activities.Sharepoint;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SharepointDeleteFileActivityEqualityTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UniqueIDEquals_EmptySharepointCopyFile_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -23,8 +24,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UniqueIDDifferent_EmptySharepointCopyFile_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -39,8 +40,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -55,8 +56,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -71,8 +72,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -87,8 +88,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ServerInputPath_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -103,8 +104,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ServerInputPath_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -119,8 +120,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ServerInputPath_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -137,8 +138,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
 
         
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void SharepointServerResourceId_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -153,8 +154,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void SharepointServerResourceId_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------

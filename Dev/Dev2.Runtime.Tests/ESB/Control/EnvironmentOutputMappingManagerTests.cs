@@ -11,7 +11,7 @@ using Dev2.DataList.Contract;
 using Dev2.DynamicServices;
 using Dev2.Interfaces;
 using Dev2.Runtime.ESB.Control;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json.Linq;
 using Warewolf.Storage;
@@ -20,12 +20,13 @@ using WarewolfParserInterop;
 
 namespace Dev2.Tests.Runtime.ESB.Control
 {
-    [TestClass]
-    [TestCategory("Runtime ESB")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime ESB")]
     public class EnvironmentOutputMappingManagerTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UpdatePreviousEnvironmentWithSubExecutionResultUsingOutputMappings_GivenValidArgs_ShouldNotThrowException()
         {
             //---------------Set up test pack-------------------
@@ -41,11 +42,11 @@ namespace Dev2.Tests.Runtime.ESB.Control
             var executionEnvironment = manager.UpdatePreviousEnvironmentWithSubExecutionResultUsingOutputMappings(dsfObject.Object, "", 0, true, errors);
             //---------------Test Result -----------------------
             dsfObject.Verify(o => o.PopEnvironment(), Times.Once);
-            Assert.IsNotNull(executionEnvironment);
+            NUnit.Framework.Assert.IsNotNull(executionEnvironment);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UpdatePreviousEnvironmentWithSubExecutionResultUsingOutputMappings_GivenEnvHasErrors_ShouldAddErrorsToResultTo()
         {
             //---------------Set up test pack-------------------
@@ -66,11 +67,11 @@ namespace Dev2.Tests.Runtime.ESB.Control
             dsfObject.Verify(o => o.PopEnvironment(), Times.Once);
             env.VerifyGet(o => o.AllErrors);
             env.VerifyGet(o => o.Errors);
-            Assert.IsNotNull(executionEnvironment);
+            NUnit.Framework.Assert.IsNotNull(executionEnvironment);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void EvalAssignRecordSets_GivenValidArgs_ShouldEvaluateCorrectlyAndAssignCorrectly()
         {
             //---------------Set up test pack-------------------
@@ -100,7 +101,7 @@ namespace Dev2.Tests.Runtime.ESB.Control
             environment.Verify(executionEnvironment => executionEnvironment.EvalAssignFromNestedNumeric(It.IsAny<string>(), It.IsAny<CommonFunctions.WarewolfEvalResult.WarewolfAtomListresult>(), It.IsAny<int>()));
         }
 
-        [TestMethod]
+        [Test]
         public void EvalAssignScalars_GivenRecordsetWithoutItems_ShouldEvaluate()
         {
             //---------------Set up test pack-------------------
@@ -116,8 +117,8 @@ namespace Dev2.Tests.Runtime.ESB.Control
             innerEnvironment.Verify(executionEnvironment => executionEnvironment.Eval(It.IsAny<string>(), It.IsAny<int>()));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void EvalAssignScalars_GivenValidArgs_ShouldEvaluateCorrectlyAndAssignCorrectly()
         {
             //---------------Set up test pack-------------------
@@ -144,8 +145,8 @@ namespace Dev2.Tests.Runtime.ESB.Control
             innerEnvironment.Verify(executionEnvironment => executionEnvironment.Eval(It.IsAny<string>(), It.IsAny<int>()));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void EvalAssignComplexObjects_GivenValidArgs_ShouldEvaluateCorrectlyAndAssignCorrectly()
         {
             //---------------Set up test pack-------------------

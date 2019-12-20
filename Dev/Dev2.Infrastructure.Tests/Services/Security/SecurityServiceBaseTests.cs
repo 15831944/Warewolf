@@ -12,17 +12,18 @@ using System;
 using System.Collections.Generic;
 using Dev2.Common.Interfaces.Enums;
 using Dev2.Services.Security;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Infrastructure.Tests.Services.Security
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SecurityServiceBaseTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityServiceBase_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityServiceBase_Constructor")]
         public void SecurityServiceBase_Constructor_PropertiesInitialized()
         {
             //------------Setup for test--------------------------
@@ -35,9 +36,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.AreEqual(0, securityServiceBase.Permissions.Count);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityServiceBase_Read")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityServiceBase_Read")]
         public void SecurityServiceBase_Read_ReadPermissionsResultIsNotNull_PermissionsUpdated()
         {
             //------------Setup for test--------------------------
@@ -69,9 +70,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityServiceBase_Read")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityServiceBase_Read")]
         public void SecurityServiceBase_Read_FiresPermissionsUpdatedEvent_HasModifiedPermissionsAsEventArgsProperty()
         {
             //------------Setup for test--------------------------
@@ -106,9 +107,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.AreEqual(3, changedPermissions.Count);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityServiceBase_Read")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityServiceBase_Read")]
         public void SecurityServiceBase_Read_NoChanges_FiresPermissionsUpdatedEvent_HasModifiedPermissionsAsEventArgsProperty()
         {
             //------------Setup for test--------------------------
@@ -145,9 +146,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.AreEqual(3, changedPermissions.Count);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityServiceBase_Read")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityServiceBase_Read")]
         public void SecurityServiceBase_Read_ReadPermissionsResultIsNull_PermissionsCleared()
         {
             //------------Setup for test--------------------------
@@ -169,9 +170,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.AreEqual(0, securityServiceBase.Permissions.Count);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityServiceBase_Read")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityServiceBase_Read")]
         public void SecurityServiceBase_Read_ChangeEvent_Fired()
         {
             //------------Setup for test--------------------------
@@ -186,9 +187,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsTrue(changedEventWasFired);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityServiceBase_Remove")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityServiceBase_Remove")]
         public void SecurityServiceBase_Remove_ResourceIDDoesNotExist_PermissionNotRemoved()
         {
             //------------Setup for test--------------------------
@@ -210,9 +211,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsTrue(WindowsGroupPermissionEquals(permissions[0], securityService.Permissions[0]));
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ServerSecurityService_Remove")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ServerSecurityService_Remove")]
         public void SecurityServiceBase_Remove_ResourceIDDoesExist_PermissionsRemoved()
         {
             //------------Setup for test--------------------------

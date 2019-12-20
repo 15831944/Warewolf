@@ -8,17 +8,18 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Warewolf.Driver.Serilog;
 
 namespace Warewolf.Tests.Sinks
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SQLiteConfigTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(SeriLogSQLiteConfig))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(SeriLogSQLiteConfig))]
         public void SeriLogSQLiteConfig_NoParamConstructor_Returns_Default()
         {
             //---------------------------------Arrange-----------------------------
@@ -30,9 +31,9 @@ namespace Warewolf.Tests.Sinks
             Assert.IsNull(sqliteConfig.ServerLoggingAddress);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(SeriLogSQLiteConfig))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(SeriLogSQLiteConfig))]
         public void SeriLogSQLiteConfig_WithParamConstructor_Returns_Correct_Settings()
         {
             //---------------------------------Arrange-----------------------------

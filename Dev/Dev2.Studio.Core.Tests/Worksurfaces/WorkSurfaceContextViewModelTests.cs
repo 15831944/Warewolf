@@ -26,11 +26,9 @@ using Dev2.Common.Interfaces.Infrastructure.SharedModels;
 using Dev2.Common.Interfaces.Security;
 using Dev2.Common.Interfaces.Studio.Controller;
 using Dev2.Communication;
-using Dev2.Core.Tests.Environments;
 using Dev2.Core.Tests.Workflows;
 using Dev2.Data.ServiceModel.Messages;
 using Dev2.Messages;
-using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Services.Security;
 using Dev2.Studio.AppResources.Comparers;
 using Dev2.Studio.Core.Messages;
@@ -45,27 +43,28 @@ using Dev2.Studio.ViewModels.WorkSurface;
 using Dev2.Util;
 using Dev2.Utilities;
 using Dev2.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
-
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dev2.Core.Tests
 {
-    [TestClass]
-    [TestCategory("Studio Worksurfaces Core")]
+    [TestFixture]
+    [SetUpFixture]
+    [NUnit.Framework.Category("Studio Worksurfaces Core")]
     public class WorkSurfaceContextViewModelTests
     {
-        [ClassInitialize]
-        public static void ClassInitialize(TestContext context)
+        [OneTimeSetUp]
+        public static void ClassInitialize(NUnit.Framework.TestContext context)
         {
             AppUsageStats.LocalHost = "http://localhost:3142";
             CustomContainer.Register<IServerRepository>(new Mock<IServerRepository>().Object);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WorkSurfaceContextViewModel_Constructor")]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_Constructor")]
+        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
         public void WorkSurfaceContextViewModel_Constructor_NullWorkSurfaceKey_ExpectException()
         {
             //------------Setup for test--------------------------
@@ -77,10 +76,10 @@ namespace Dev2.Core.Tests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WorkSurfaceContextViewModel_Constructor")]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_Constructor")]
+        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
         public void WorkSurfaceContextViewModel_Constructor_NullWorkSurfaceViewModel_ExpectException()
         {
             //------------Setup for test--------------------------
@@ -93,9 +92,9 @@ namespace Dev2.Core.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WorkSurfaceContextViewModel_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_Constructor")]
         public void WorkSurfaceContextViewModel_Constructor_ValidArguments_DebugOutputViewModelIsNull()
         {
             //------------Setup for test--------------------------
@@ -112,14 +111,14 @@ namespace Dev2.Core.Tests
             //------------Execute Test---------------------------
             var workSurfaceContextViewModel = new WorkSurfaceContextViewModel(new Mock<IEventAggregator>().Object, workSurfaceKey, workSurfaceViewModel, new Mock<IPopupController>().Object, (a, b, c) => { });
             //------------Assert Results-------------------------
-            Assert.IsNotNull(workSurfaceContextViewModel);
-            Assert.IsNull(workSurfaceContextViewModel.DebugOutputViewModel);
+            NUnit.Framework.Assert.IsNotNull(workSurfaceContextViewModel);
+            NUnit.Framework.Assert.IsNull(workSurfaceContextViewModel.DebugOutputViewModel);
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WorkSurfaceContextViewModel_EnvironmentModelIsConnectedChanged")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_EnvironmentModelIsConnectedChanged")]
         public void WorkSurfaceContextViewModel_EnvironmentModelIsConnectedChanged_False_DebugStatusFinished()
         {
             //------------Setup for test--------------------------
@@ -155,7 +154,7 @@ namespace Dev2.Core.Tests
             //------------Execute Test---------------------------
             mockEnvironmentModel.Raise(model => model.IsConnectedChanged += null, connectedEventArgs);
             //------------Assert Results-------------------------
-            Assert.AreEqual(DebugStatus.Finished, workSurfaceContextViewModel.DebugOutputViewModel.DebugStatus);
+            NUnit.Framework.Assert.AreEqual(DebugStatus.Finished, workSurfaceContextViewModel.DebugOutputViewModel.DebugStatus);
         }
 
         static WorkflowDesignerViewModelMock WorkflowDesignerViewModelMock(bool isConnected, Mock<IContextualResourceModel> ResourceModel = null)
@@ -232,9 +231,9 @@ namespace Dev2.Core.Tests
             return viewModel;
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WorkSurfaceContextViewModel_EnvironmentModelIsConnectedChanged")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_EnvironmentModelIsConnectedChanged")]
         public void WorkSurfaceContextViewModel_EnvironmentModelIsConnectedChanged_True_DebugStatusNotChanged()
         {
             //------------Setup for test--------------------------
@@ -249,12 +248,12 @@ namespace Dev2.Core.Tests
             //------------Execute Test---------------------------
             mockEnvironmentModel.Raise(model => model.IsConnectedChanged += null, connectedEventArgs);
             //------------Assert Results-------------------------
-            Assert.AreEqual(DebugStatus.Executing, workSurfaceContextViewModel.DebugOutputViewModel.DebugStatus);
+            NUnit.Framework.Assert.AreEqual(DebugStatus.Executing, workSurfaceContextViewModel.DebugOutputViewModel.DebugStatus);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("WorkSurfaceContextViewModel_Debug")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_Debug")]
         public void WorkSurfaceContextViewModel_Debug_ExpectReturn()
         {
             //------------Setup for test--------------------------
@@ -270,9 +269,9 @@ namespace Dev2.Core.Tests
             // NOTE: No Assert, purely for coverage
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("WorkSurfaceContextViewModel_Debug")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_Debug")]
         public void WorkSurfaceContextViewModel_Debug_StopExecution()
         {
             //------------Setup for test--------------------------
@@ -285,12 +284,12 @@ namespace Dev2.Core.Tests
             //------------Execute Test---------------------------
             workSurfaceContextViewModel.StopExecution();
             //------------Assert Results-------------------------
-            Assert.AreEqual(DebugStatus.Finished, workSurfaceContextViewModel.DebugOutputViewModel.DebugStatus);
+            NUnit.Framework.Assert.AreEqual(DebugStatus.Finished, workSurfaceContextViewModel.DebugOutputViewModel.DebugStatus);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("WorkSurfaceContextViewModel_Debug")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_Debug")]
         public void WorkSurfaceContextViewModel_Debug_ViewInBrowser_NullExpected()
         {
             //------------Setup for test--------------------------
@@ -308,12 +307,12 @@ namespace Dev2.Core.Tests
             //------------Execute Test---------------------------
             workSurfaceContextViewModel.ViewInBrowser();
             //------------Assert Results-------------------------
-            Assert.IsNull(workSurfaceContextViewModel.DebugOutputViewModel);
+            NUnit.Framework.Assert.IsNull(workSurfaceContextViewModel.DebugOutputViewModel);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("WorkSurfaceContextViewModel_Debug")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_Debug")]
         public void WorkSurfaceContextViewModel_Debug_ViewInBrowser()
         {
             //------------Setup for test--------------------------
@@ -335,9 +334,9 @@ namespace Dev2.Core.Tests
             // NOTE: No Assert, purely for coverage
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("WorkSurfaceContextViewModel_Debug")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_Debug")]
         public void WorkSurfaceContextViewModel_Debug_QuickViewInBrowser()
         {
             //------------Setup for test--------------------------
@@ -359,9 +358,9 @@ namespace Dev2.Core.Tests
             // NOTE: No Assert, purely for coverage
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("WorkSurfaceContextViewModel_Debug")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_Debug")]
         public void WorkSurfaceContextViewModel_Debug_QuickDebug()
         {
             //------------Setup for test--------------------------
@@ -381,12 +380,12 @@ namespace Dev2.Core.Tests
             //------------Execute Test---------------------------
             workSurfaceContextViewModel.QuickDebug();
             //------------Assert Results-------------------------
-            Assert.AreEqual(DebugStatus.Finished, workSurfaceContextViewModel.DebugOutputViewModel.DebugStatus);
+            NUnit.Framework.Assert.AreEqual(DebugStatus.Finished, workSurfaceContextViewModel.DebugOutputViewModel.DebugStatus);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("WorkSurfaceContextViewModel_Debug")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_Debug")]
         public void WorkSurfaceContextViewModel_ShowSaveDialog()
         {
             //------------Setup for test--------------------------
@@ -410,9 +409,9 @@ namespace Dev2.Core.Tests
             // NOTE: No Assert, purely for coverage
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WorkSurfaceContextViewModel_SetDebugStatus")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_SetDebugStatus")]
         public void WorkSurfaceContextViewModel_SetDebugStatus_StatusConfigure_ClearsDebugOutputViewModel()
         {
             //------------Setup for test--------------------------
@@ -422,16 +421,16 @@ namespace Dev2.Core.Tests
             mockDebugState.Setup(m => m.SessionID).Returns(workSurfaceContextViewModel.DebugOutputViewModel.SessionID);
             workSurfaceContextViewModel.DebugOutputViewModel.Append(mockDebugState.Object);
             //------------Precondition----------------------------
-            Assert.AreEqual(1, workSurfaceContextViewModel.DebugOutputViewModel.ContentItemCount);
+            NUnit.Framework.Assert.AreEqual(1, workSurfaceContextViewModel.DebugOutputViewModel.ContentItemCount);
             //------------Execute Test---------------------------
             workSurfaceContextViewModel.SetDebugStatus(DebugStatus.Configure);
             //------------Assert Results-------------------------
-            Assert.AreEqual(1, workSurfaceContextViewModel.DebugOutputViewModel.ContentItemCount);
+            NUnit.Framework.Assert.AreEqual(1, workSurfaceContextViewModel.DebugOutputViewModel.ContentItemCount);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WorkSurfaceContextViewModel_SetDebugStatus")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_SetDebugStatus")]
         public void WorkSurfaceContextViewModel_SetDebugStatus_StatusFinished_DebugStatusFinished()
         {
             //------------Setup for test--------------------------
@@ -440,12 +439,12 @@ namespace Dev2.Core.Tests
             //------------Execute Test---------------------------
             workSurfaceContextViewModel.SetDebugStatus(DebugStatus.Finished);
             //------------Assert Results-------------------------
-            Assert.AreEqual(DebugStatus.Finished, workSurfaceContextViewModel.DebugOutputViewModel.DebugStatus);
+            NUnit.Framework.Assert.AreEqual(DebugStatus.Finished, workSurfaceContextViewModel.DebugOutputViewModel.DebugStatus);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WorkSurfaceContextViewModel_IsEnvironmentConnected")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_IsEnvironmentConnected")]
         public void WorkSurfaceContextViewModel_IsEnvironmentConnected_WhenEnvironmentConnected_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -464,12 +463,12 @@ namespace Dev2.Core.Tests
             //------------Execute Test---------------------------
             var isEnvironmentConnected = workSurfaceContextViewModel.IsEnvironmentConnected();
             //------------Assert Results-------------------------
-            Assert.IsTrue(isEnvironmentConnected);
+            NUnit.Framework.Assert.IsTrue(isEnvironmentConnected);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WorkSurfaceContextViewModel_IsEnvironmentConnected")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_IsEnvironmentConnected")]
         public void WorkSurfaceContextViewModel_IsEnvironmentConnected_WhenEnvironmentNotConnected_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -485,12 +484,12 @@ namespace Dev2.Core.Tests
             //------------Execute Test---------------------------
             var isEnvironmentConnected = workSurfaceContextViewModel.IsEnvironmentConnected();
             //------------Assert Results-------------------------
-            Assert.IsFalse(isEnvironmentConnected);
+            NUnit.Framework.Assert.IsFalse(isEnvironmentConnected);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WorkSurfaceContextViewModel_IsEnvironmentConnected")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_IsEnvironmentConnected")]
         public void WorkSurfaceContextViewModel_IsEnvironmentConnected_WhenEnvironmentNull_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -499,12 +498,12 @@ namespace Dev2.Core.Tests
             //------------Execute Test---------------------------
             var isEnvironmentConnected = workSurfaceContextViewModel.IsEnvironmentConnected();
             //------------Assert Results-------------------------
-            Assert.IsFalse(isEnvironmentConnected);
+            NUnit.Framework.Assert.IsFalse(isEnvironmentConnected);
         }
 
-        [TestMethod]
-        [Owner("Ashley Lewis")]
-        [TestCategory("WorkSurfaceContextViewModel_HandleUpdateDisplayName")]
+        [Test]
+        [Author("Ashley Lewis")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_HandleUpdateDisplayName")]
         public void WorkSurfaceContextViewModel_HandleUpdateDisplayName_NewName_ContextualResourceModelNameChanged()
         {
             var WorksurfaceResourceID = Guid.NewGuid();
@@ -519,13 +518,13 @@ namespace Dev2.Core.Tests
             workSurfaceContextViewModel.Handle(new UpdateWorksurfaceDisplayName(WorksurfaceResourceID, "Worksurface Resource Name", newName));
 
             // Assert ContextualResourceModel Name Changed
-            Assert.IsNotNull(actualNewName);
-            Assert.AreEqual(actualNewName, newName, "Tab title not updated");
+            NUnit.Framework.Assert.IsNotNull(actualNewName);
+            NUnit.Framework.Assert.AreEqual(actualNewName, newName, "Tab title not updated");
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("WorkSurfaceContextViewModel_BindToModel")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_BindToModel")]
         public void WorkSurfaceContextViewModel_BindToModel_CallsBindToModelOnWorkSurfaceViewModel()
         {
             //------------Setup for test--------------------------
@@ -547,9 +546,9 @@ namespace Dev2.Core.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WorkSurfaceContextViewModel_CanDebug")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_CanDebug")]
         public void WorkSurfaceContextViewModel_CanDebug_ExpectTrue()
         {
             var explorerTooltips = new Mock<IExplorerTooltips>();
@@ -574,13 +573,13 @@ namespace Dev2.Core.Tests
             workSurfaceContextViewModel.WorkSurfaceViewModel = new WorkSurfaceViewModelTest();
             workSurfaceContextViewModel.DebugOutputViewModel = viewModel.DebugOutputViewModel;
             //------------Execute Test---------------------------
-            Assert.IsTrue(workSurfaceContextViewModel.CanDebug());
+            NUnit.Framework.Assert.IsTrue(workSurfaceContextViewModel.CanDebug());
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WorkSurfaceContextViewModel_CanDebug")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_CanDebug")]
         public void WorkSurfaceContextViewModel_CanSave_ExpectTrue()
         {
             //------------Setup for test--------------------------
@@ -601,14 +600,14 @@ namespace Dev2.Core.Tests
             workSurfaceContextViewModel.WorkSurfaceViewModel = new WorkSurfaceViewModelTest();
             workSurfaceContextViewModel.DebugOutputViewModel = viewModel.DebugOutputViewModel;
             //------------Execute Test---------------------------
-            Assert.IsTrue(workSurfaceContextViewModel.CanSave());
+            NUnit.Framework.Assert.IsTrue(workSurfaceContextViewModel.CanSave());
         }
 
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WorkSurfaceContextViewModel_CanDebug")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_CanDebug")]
         public void WorkSurfaceContextViewModel_CanExecute_ExpectTrue()
         {
             //------------Setup for test--------------------------
@@ -625,13 +624,13 @@ namespace Dev2.Core.Tests
             var workSurfaceContextViewModel = new WorkSurfaceContextViewModel(new Mock<IEventAggregator>().Object, workSurfaceKey, viewModel, new Mock<IPopupController>().Object, (a, b, c) => { }) { WorkSurfaceViewModel = new WorkSurfaceViewModelTest() };
             workSurfaceContextViewModel.DebugOutputViewModel = viewModel.DebugOutputViewModel;
             //------------Execute Test---------------------------
-            Assert.IsTrue(workSurfaceContextViewModel.CanExecute());
+            NUnit.Framework.Assert.IsTrue(workSurfaceContextViewModel.CanExecute());
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WorkSurfaceContextViewModel_CanDebug")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_CanDebug")]
         public void WorkSurfaceContextViewModel_CanViewInBrowser_ExpectTrue()
         {
             //------------Setup for test--------------------------
@@ -650,13 +649,13 @@ namespace Dev2.Core.Tests
             var workSurfaceContextViewModel = new WorkSurfaceContextViewModel(new Mock<IEventAggregator>().Object, workSurfaceKey, viewModel, new Mock<IPopupController>().Object, (a, b, c) => { }) { WorkSurfaceViewModel = new WorkSurfaceViewModelTest() };
             workSurfaceContextViewModel.DebugOutputViewModel = viewModel.DebugOutputViewModel;
             //------------Execute Test---------------------------
-            Assert.IsTrue(workSurfaceContextViewModel.CanViewInBrowser());
+            NUnit.Framework.Assert.IsTrue(workSurfaceContextViewModel.CanViewInBrowser());
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WorkSurfaceContextViewModel_Save")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_Save")]
         public void WorkSurfaceContextViewModel_SaveCallsCheckForServerMessages()
         {
             //------------Setup for test--------------------------
@@ -689,9 +688,9 @@ namespace Dev2.Core.Tests
 
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WorkSurfaceContextViewModel_Save")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_Save")]
         public void WorkSurfaceContextViewModel_SaveCallsCheckForServerMessages_NoMessagesAvailable_NothingHappen()
         {
             //------------Setup for test--------------------------
@@ -734,9 +733,9 @@ namespace Dev2.Core.Tests
             rsHandler.Verify(a => a.ShowResourceChanged(It.IsAny<IContextualResourceModel>(), It.IsAny<IList<string>>(), null), Times.Never());
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WorkSurfaceContextViewModel_Save")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_Save")]
         public void WorkSurfaceContextViewModel_SaveCallsCheckForServerMessages_MessagesAvailable_SuffHappens()
         {
             //------------Setup for test--------------------------
@@ -779,9 +778,9 @@ namespace Dev2.Core.Tests
             workSurfaceContextViewModel.Handle(new SaveResourceMessage(mockResourceModel.Object, false, false));
         }
         
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("WorkSurfaceContextViewModel_GetServiceInputDataFromUser")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_GetServiceInputDataFromUser")]
         public void WorkSurfaceContextViewModel_GetServiceInputDataFromUser()
         {
             //------------Setup for test--------------------------
@@ -806,9 +805,9 @@ namespace Dev2.Core.Tests
             mockServiceDebugInfoModel.SetupGet(p => p.ResourceModel).Returns(mockResourceModel.Object);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("WorkSurfaceContextViewModel_Handle")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_Handle")]
         public void WorkSurfaceContextViewModel_Handle_SaveResourceMessage_CallsBindModelAndSave()
         {
             //------------Setup for test--------------------------
@@ -842,9 +841,9 @@ namespace Dev2.Core.Tests
             mockRepository.Verify(m => m.SaveToServer(It.IsAny<IResourceModel>()), Times.Once());
         }
         
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WorkSurfaceContextViewModel_Handle")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_Handle")]
         public void WorkSurfaceContextViewModel_Handle_Save_InvalidXml_CausesPopup()
         {
             //------------Setup for test--------------------------
@@ -880,9 +879,9 @@ namespace Dev2.Core.Tests
 
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WorkSurfaceContextViewModel_Handle")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_Handle")]
         public void WorkSurfaceContextViewModel_Handle_Save_IsNewWF_CausesWebPopup()
         {
             //------------Setup for test--------------------------
@@ -916,12 +915,12 @@ namespace Dev2.Core.Tests
             //------------Execute Test---------------------------
             workSurfaceContextViewModel.Handle(new SaveResourceMessage(mockResourceModel.Object, false, false));
             //------------Assert---------------------------------
-            Assert.IsTrue(called);
+            NUnit.Framework.Assert.IsTrue(called);
         }
         
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WorkSurfaceContextViewModel_Handle")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_Handle")]
         public void WorkSurfaceContextViewModel_Handle_Save_WhenContextualResourceModelIsNotNull()
         {
             //------------Setup for test--------------------------
@@ -958,12 +957,12 @@ namespace Dev2.Core.Tests
             //------------Execute Test---------------------------
             workSurfaceContextViewModel.Handle(new SaveResourceMessage(mockResourceModel.Object, false, false));
             //------------Assert---------------------------------
-            Assert.IsTrue(called);
+            NUnit.Framework.Assert.IsTrue(called);
         }
         
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WorkSurfaceContextViewModel_Dispose")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_Dispose")]
         public void WorkSurfaceContextViewModel_Dispose_ExpectObjectsCleanedUp()
         {
             //------------Setup for test--------------------------
@@ -995,7 +994,7 @@ namespace Dev2.Core.Tests
             mockResourceModel.Setup(a => a.IsNewWorkflow).Returns(true);
             //------------Execute Test---------------------------
             workSurfaceContextViewModel.Dispose();
-            Assert.IsTrue(workSurfaceContextViewModel.IsDisposed);
+            NUnit.Framework.Assert.IsTrue(workSurfaceContextViewModel.IsDisposed);
         }
 
         static WorkSurfaceContextViewModel CreateWorkSurfaceContextViewModel(IServer server, bool isConnected, Mock<IContextualResourceModel> ResourceModel = null)
@@ -1024,41 +1023,41 @@ namespace Dev2.Core.Tests
             return CreateWorkSurfaceContextViewModel(environmentModel, true);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WorkSurfaceContextViewModel_DebugCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_DebugCommand")]
         public void WorkSurfaceContextViewModel_DebugCommand_UserHasAdministratorPermissions_CanExecuteIsTrue()
         {
             Verify_DebugCommand_CanExecute(Permissions.Administrator, true);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WorkSurfaceContextViewModel_DebugCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_DebugCommand")]
         public void WorkSurfaceContextViewModel_DebugCommand_UserHasContributePermissions_CanExecuteIsTrue()
         {
             Verify_DebugCommand_CanExecute(Permissions.Contribute, true);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WorkSurfaceContextViewModel_DebugCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_DebugCommand")]
         public void WorkSurfaceContextViewModel_DebugCommand_UserHasViewAndExecutePermissions_CanExecuteIsTrue()
         {
             Verify_DebugCommand_CanExecute(Permissions.View | Permissions.Execute, true);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WorkSurfaceContextViewModel_DebugCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_DebugCommand")]
         public void WorkSurfaceContextViewModel_DebugCommand_UserHasViewPermissions_CanExecuteIsFalse()
         {
             Verify_DebugCommand_CanExecute(Permissions.View, false);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WorkSurfaceContextViewModel_DebugCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_DebugCommand")]
         public void WorkSurfaceContextViewModel_DebugCommand_UserHasExecutePermissions_CanExecuteIsFalse()
         {
             Verify_DebugCommand_CanExecute(Permissions.Execute, false);
@@ -1074,8 +1073,8 @@ namespace Dev2.Core.Tests
             var actualQuickDebug = workSurfaceContextViewModel.QuickDebugCommand.CanExecute(null);
 
             //------------Assert Results-------------------------
-            Assert.AreEqual(expected, actualDebug);
-            Assert.AreEqual(expected, actualQuickDebug);
+            NUnit.Framework.Assert.AreEqual(expected, actualDebug);
+            NUnit.Framework.Assert.AreEqual(expected, actualQuickDebug);
         }
 
         static WorkSurfaceContextViewModel CreateWorkSurfaceContextViewModel(Permissions userPermissions)
@@ -1125,9 +1124,9 @@ namespace Dev2.Core.Tests
             return workSurfaceContextViewModel;
         }
         
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WorkSurfaceContextViewModel_DebugCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_DebugCommand")]
         public void WorkSurfaceContextViewModel_DebugCommand_UserHasNoContributePermissions_SaveIsNotInvoked()
         {
             //------------Setup for test--------------------------
@@ -1156,9 +1155,9 @@ namespace Dev2.Core.Tests
             resourceRepo.Verify(r => r.Save(It.IsAny<IResourceModel>()), Times.Exactly(expected));
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WorkSurfaceContextViewModel_DebugCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_DebugCommand")]
         public void WorkSurfaceContextViewModel_DebugCommand_UserHasContributePermissions_SaveIsInvoked()
         {
             //------------Setup for test--------------------------
@@ -1181,9 +1180,9 @@ namespace Dev2.Core.Tests
             resourceRepo.Verify(r => r.Save(It.IsAny<IResourceModel>()), Times.Exactly(expected));
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WorkSurfaceContextViewModel_DebugCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_DebugCommand")]
         public void WorkSurfaceContextViewModel_DebugCommand_UserHasContributePermissions_WfChanged_SaveIsInvokedAgain()
         {
             //------------Setup for test--------------------------
@@ -1208,15 +1207,15 @@ namespace Dev2.Core.Tests
             expected += 1;
             workSurfaceContextViewModel.ContextualResourceModel.IsWorkflowSaved = false;
             var designSurface = workSurfaceContextViewModel.WorkSurfaceViewModel as WorkflowDesignerViewModelMock;
-            Assert.IsNotNull(designSurface);
+            NUnit.Framework.Assert.IsNotNull(designSurface);
             designSurface.FireWorkflowChanged();
             workSurfaceContextViewModel.QuickDebugCommand.Execute(null);
             resourceRepo.Verify(r => r.Save(It.IsAny<IResourceModel>()), Times.Exactly(expected));
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WorkSurfaceContextViewModel_Debug")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("WorkSurfaceContextViewModel_Debug")]
         public void WorkSurfaceContextViewModel_Debug_ValidateDataList()
         {
             const Permissions userPermissions = Permissions.Administrator;
@@ -1236,7 +1235,7 @@ namespace Dev2.Core.Tests
             environmentModel.Setup(model => model.ResourceRepository).Returns(resourceRepo.Object);
             var popup = new Mock<IPopupController>();
             ctx.Setup(a => a.DataList).Returns("asdasda$%^");
-            var pvt = new PrivateObject(workSurfaceContextViewModel);
+            var pvt = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(workSurfaceContextViewModel);
             pvt.SetField("_contextualResourceModel", ctx.Object);
             pvt.SetField("_popupController", popup.Object);
             ctx.Setup(a => a.Environment).Returns(environmentModel.Object);
@@ -1249,16 +1248,16 @@ namespace Dev2.Core.Tests
             popup.Verify(a => a.Show(It.IsAny<string>(), "Error Debugging", MessageBoxButton.OK, MessageBoxImage.Error, "", false, true, false, false, false, false));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WorkSurfaceContextViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [NUnit.Framework.Category(nameof(WorkSurfaceContextViewModel))]
         public void WorkSurfaceContextViewModel_Save_Expected_HasTrigger_Popup()
         {
             var workSurfaceContextViewModel = CreateWorkSurfaceContextViewModel(Permissions.Contribute);
 
             var mockPopupController = new Mock<IPopupController>();
             mockPopupController.Setup(popup => popup.Show(It.IsAny<string>(), It.IsAny<string>(), MessageBoxButton.YesNo, MessageBoxImage.Warning, "", false, false, false, true, false, false)).Returns(MessageBoxResult.No);
-            var pvt = new PrivateObject(workSurfaceContextViewModel);
+            var pvt = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(workSurfaceContextViewModel);
             pvt.SetField("_popupController", mockPopupController.Object);
 
             var mockTriggerQueue = new Mock<Warewolf.Triggers.ITriggerQueue>();
@@ -1267,7 +1266,7 @@ namespace Dev2.Core.Tests
             Runtime.Hosting.TriggersCatalog.Instance.Queues.Add(mockTriggerQueue.Object);
 
             var isSaved = workSurfaceContextViewModel.Save(false, false);
-            Assert.IsFalse(isSaved);
+            NUnit.Framework.Assert.IsFalse(isSaved);
 
             Runtime.Hosting.TriggersCatalog.Instance.Queues.Clear();
 

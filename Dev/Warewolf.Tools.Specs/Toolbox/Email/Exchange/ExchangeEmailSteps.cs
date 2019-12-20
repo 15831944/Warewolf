@@ -2,7 +2,7 @@
 using Dev2.Data.Util;
 using Dev2.Runtime.Hosting;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using netDumbster.smtp;
 using System;
 using System.Activities.Statements;

@@ -8,7 +8,7 @@ using Dev2.Activities.WcfEndPoint;
 using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.DB;
 using Dev2.Studio.Core.Activities.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Core;
 using Warewolf.Testing;
@@ -19,7 +19,8 @@ using Dev2.Common;
 
 namespace Dev2.Activities.Designers.Tests.WCFEndPoint
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WcfEndPointViewModelTests
     {
         public const string TestOwner = "Bernardt Joubert";
@@ -74,9 +75,9 @@ namespace Dev2.Activities.Designers.Tests.WCFEndPoint
             };
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void WcfEndPointViewModel_CreateNewInstance_ReturnsSuccess()
         {
             var model = GetViewModel();
@@ -84,9 +85,9 @@ namespace Dev2.Activities.Designers.Tests.WCFEndPoint
             Assert.IsNotNull(model);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("WcfEndPointViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("WcfEndPointViewModel_Handle")]
         public void WcfEndPointViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -102,9 +103,9 @@ namespace Dev2.Activities.Designers.Tests.WCFEndPoint
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void WcfEndPointViewModel_ClearValidation_Success()
         {
             var model = GetViewModel();
@@ -112,9 +113,9 @@ namespace Dev2.Activities.Designers.Tests.WCFEndPoint
             Assert.IsNotNull(model);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void WcfEndPointViewModel_SetRegion_Vizibility_Success()
         {
             var model = GetViewModel();
@@ -122,9 +123,9 @@ namespace Dev2.Activities.Designers.Tests.WCFEndPoint
             Assert.IsNotNull(model);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void WcfEndPointViewModel_SetException_Success()
         {
             var model = GetViewModel();
@@ -132,9 +133,9 @@ namespace Dev2.Activities.Designers.Tests.WCFEndPoint
             Assert.IsNotNull(model);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void WcfEndPointViewModel_SetDisplayName_Success()
         {
             var model = GetViewModel();
@@ -143,9 +144,9 @@ namespace Dev2.Activities.Designers.Tests.WCFEndPoint
             Assert.IsNotNull(model);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void WcfEndPointViewModel_ToModel_Success()
         {
             var model = GetViewModel();
@@ -160,9 +161,9 @@ namespace Dev2.Activities.Designers.Tests.WCFEndPoint
             Assert.IsNotNull(model);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void WcfEndPointViewModel_GenerateOutputs_Success()
         {
             var model = GetViewModel();
@@ -171,9 +172,9 @@ namespace Dev2.Activities.Designers.Tests.WCFEndPoint
             Assert.IsTrue(model.GenerateOutputsVisible);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void WcfEndPointViewModel_GenerateOutputsFalse_Success()
         {
             var model = GetViewModel();
@@ -183,13 +184,13 @@ namespace Dev2.Activities.Designers.Tests.WCFEndPoint
             Assert.IsNotNull(model.WorstDesignError);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void WcfEndPointViewModel_InitialiseProperties_Success()
         {
             var model = GetViewModel();
-            
+
             Assert.IsNotNull(model.LabelWidth);
             Assert.IsNotNull(model.NoError);
             Assert.IsNotNull(model.TestInputCommand);
@@ -200,9 +201,9 @@ namespace Dev2.Activities.Designers.Tests.WCFEndPoint
 
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void WcfEndPointViewModel_Validate_Success()
         {
             var model = GetViewModel();
@@ -213,9 +214,9 @@ namespace Dev2.Activities.Designers.Tests.WCFEndPoint
 
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void WcfEndPointViewModel_TestProcedure_Success()
         {
             var model = GetViewModel();

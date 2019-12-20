@@ -2,17 +2,18 @@ using System;
 using System.Net;
 using Dev2.Network;
 using Dev2.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Core.Tests.Network
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public partial class ServerProxyWithFallbackTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServerProxy_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServerProxy_Constructor")]
         public void ServerProxy_Constructor_DefaultConstruction_ShouldHaveEsbProxy()
         {
             //------------Setup for test--------------------------
@@ -26,9 +27,9 @@ namespace Dev2.Core.Tests.Network
 
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServerProxy_ExecuteCommand")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServerProxy_ExecuteCommand")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ServerProxy_ExecuteCommand_WhenNullPayload_ExceptionThrown()
         {
@@ -39,9 +40,9 @@ namespace Dev2.Core.Tests.Network
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServerProxy_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServerProxy_Constructor")]
         public void ServerProxy_Constructor_DefaultConstruction_ShouldHaveEsbProxyWithSendMemoSubscription()
         {
             //------------Setup for test--------------------------
@@ -53,9 +54,9 @@ namespace Dev2.Core.Tests.Network
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServerProxy_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServerProxy_Constructor")]
         public void ServerProxy_Constructor_DefaultConstruction_ShouldHaveEsbProxyWithSendDebugStateSubscription()
         {
             //------------Setup for test--------------------------

@@ -12,19 +12,20 @@ using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.Core;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Common.Interfaces.Core.DynamicServices;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using Dev2.Common.Interfaces.ServerProxyLayer;
 
 namespace Dev2.Common.Tests.Core.Database
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DbSourceDefinitionTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DbSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DbSourceDefinition))]
         public void DbSourceDefinition_Validate()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -70,9 +71,9 @@ namespace Dev2.Common.Tests.Core.Database
             Assert.AreEqual(expectedResourceName, dbSourceDefinition.ToString());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DbSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DbSourceDefinition))]
         public void DbSourceDefinition_Equals_DbSource_Null_Expected_False()
         {
             var dbSourceDefinition = new DbSourceDefinition();
@@ -83,9 +84,9 @@ namespace Dev2.Common.Tests.Core.Database
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DbSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DbSourceDefinition))]
         public void DbSourceDefinition_Equals_DbSource_Expected_True()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -123,9 +124,9 @@ namespace Dev2.Common.Tests.Core.Database
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DbSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DbSourceDefinition))]
         public void DbSourceDefinition_ReferenceEquals_DbSource_Expected_True()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -153,9 +154,9 @@ namespace Dev2.Common.Tests.Core.Database
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DbSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DbSourceDefinition))]
         public void DbSourceDefinition_Equals_DbSource_Expected_False()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -193,9 +194,9 @@ namespace Dev2.Common.Tests.Core.Database
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DbSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DbSourceDefinition))]
         public void DbSourceDefinition_Equals_DbSourceDefinition_Null_Expected_False()
         {
             var dbSourceDefinition = new DbSourceDefinition();
@@ -206,9 +207,9 @@ namespace Dev2.Common.Tests.Core.Database
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DbSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DbSourceDefinition))]
         public void DbSourceDefinition_ReferenceEquals_DbSourceDefinition_Expected_True()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -236,9 +237,9 @@ namespace Dev2.Common.Tests.Core.Database
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DbSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DbSourceDefinition))]
         public void DbSourceDefinition_Equals_DbSourceDefinition_Expected_True()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -268,9 +269,9 @@ namespace Dev2.Common.Tests.Core.Database
             Assert.IsTrue(dbSourceDefinition == dbSourceDefinitionDup);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DbSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DbSourceDefinition))]
         public void DbSourceDefinition_Equals_DbSourceDefinition_Expected_False()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -311,9 +312,9 @@ namespace Dev2.Common.Tests.Core.Database
             Assert.IsTrue(dbSourceDefinition != dbSourceDefinitionDup);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DbSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DbSourceDefinition))]
         public void DbSourceDefinition_Equals_Object_Null_Expected_False()
         {
             var dbSourceDefinition = new DbSourceDefinition();
@@ -324,9 +325,9 @@ namespace Dev2.Common.Tests.Core.Database
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DbSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DbSourceDefinition))]
         public void DbSourceDefinition_Equals_Object_Expected_True()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -356,9 +357,9 @@ namespace Dev2.Common.Tests.Core.Database
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DbSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DbSourceDefinition))]
         public void DbSourceDefinition_Equals_Object_Expected_False()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -398,9 +399,9 @@ namespace Dev2.Common.Tests.Core.Database
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DbSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DbSourceDefinition))]
         public void DbSourceDefinition_Equals_Object_GetType_Expected_False()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -430,9 +431,9 @@ namespace Dev2.Common.Tests.Core.Database
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DbSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DbSourceDefinition))]
         public void DbSourceDefinition_GetHashCode_Not_Equal_To_Zero()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -459,9 +460,9 @@ namespace Dev2.Common.Tests.Core.Database
             Assert.AreNotEqual(0, hashCode);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DbSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DbSourceDefinition))]
         public void DbSourceDefinition_GetHashCode_Expect_Zero()
         {
             var mockDb = new Mock<IDb>();

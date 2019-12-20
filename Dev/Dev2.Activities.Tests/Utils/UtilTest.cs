@@ -8,7 +8,7 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Activities.Utils
 {
@@ -16,7 +16,8 @@ namespace Dev2.Tests.Activities.Utils
     ///This is a test class for UtilTest and is intended
     ///to contain all UtilTest Unit Tests
     ///</summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class UtilTest
     {
         /// <summary>
@@ -28,7 +29,7 @@ namespace Dev2.Tests.Activities.Utils
         /// <summary>
         ///A test for IsBetween
         ///</summary>
-        [TestMethod]
+        [Test]
         public void IsBetweenIsFalseIfStartIsNullAndEndIsNull()
         {
             const string value = "2010-01-01";
@@ -42,7 +43,7 @@ namespace Dev2.Tests.Activities.Utils
         /// <summary>
         ///A test for IsEqualTo
         ///</summary>
-        [TestMethod]
+        [Test]
         public void IsEqualToTest()
         {
             var value = string.Empty; // TODO: Initialize to an appropriate value
@@ -55,7 +56,7 @@ namespace Dev2.Tests.Activities.Utils
         /// <summary>
         ///A test for IsGreaterThan
         ///</summary>
-        [TestMethod]
+        [Test]
         public void IsGreaterThanTest()
         {
             var value = string.Empty; // TODO: Initialize to an appropriate value
@@ -68,7 +69,7 @@ namespace Dev2.Tests.Activities.Utils
         /// <summary>
         ///A test for IsGreaterThanOrEqualTo
         ///</summary>
-        [TestMethod]
+        [Test]
         public void IsGreaterThanOrEqualToTest()
         {
             var value = string.Empty; // TODO: Initialize to an appropriate value
@@ -82,7 +83,7 @@ namespace Dev2.Tests.Activities.Utils
         /// <summary>
         ///A test for IsLessThan
         ///</summary>
-        [TestMethod]
+        [Test]
         public void IsLessThanTest()
         {
             var value = string.Empty; // TODO: Initialize to an appropriate value
@@ -97,7 +98,7 @@ namespace Dev2.Tests.Activities.Utils
         /// <summary>
         ///A test for IsLessThanOrEqualTo
         ///</summary>
-        [TestMethod]
+        [Test]
         public void IsLessThanOrEqualToTest()
         {
             var value = string.Empty; // TODO: Initialize to an appropriate value
@@ -112,7 +113,7 @@ namespace Dev2.Tests.Activities.Utils
         /// <summary>
         ///A test for IsNotEqualTo
         ///</summary>
-        [TestMethod]
+        [Test]
         public void IsNotEqualToTest()
         {
             var value = string.Empty; // TODO: Initialize to an appropriate value
@@ -127,7 +128,7 @@ namespace Dev2.Tests.Activities.Utils
         /// <summary>
         ///A test for ValueIsDate
         ///</summary>
-        [TestMethod]
+        [Test]
         public void ValueIsDateTest()
         {
             var value = string.Empty; // TODO: Initialize to an appropriate value
@@ -141,7 +142,7 @@ namespace Dev2.Tests.Activities.Utils
         /// <summary>
         ///A test for ValueIsNumber
         ///</summary>
-        [TestMethod]
+        [Test]
         public void ValueIsNumberTest()
         {
             var value = string.Empty; // TODO: Initialize to an appropriate value
@@ -152,7 +153,7 @@ namespace Dev2.Tests.Activities.Utils
             // Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
-        [TestMethod]
+        [Test]
         public void Util_Eq()
         {
             Assert.IsFalse(Unlimited.Applications.BusinessDesignStudio.Activities.Util.Eq("theString", null));
@@ -166,7 +167,7 @@ namespace Dev2.Tests.Activities.Utils
             Assert.IsFalse(Unlimited.Applications.BusinessDesignStudio.Activities.Util.Eq("1.45", "1.454"));
         }
 
-        [TestMethod]
+        [Test]
         public void Util_NtEq()
         {
             Assert.IsFalse(Unlimited.Applications.BusinessDesignStudio.Activities.Util.NtEq("theString", null));
@@ -179,7 +180,7 @@ namespace Dev2.Tests.Activities.Utils
             Assert.IsTrue(Unlimited.Applications.BusinessDesignStudio.Activities.Util.NtEq("1.45", "1.454"));
         }
 
-        [TestMethod]
+        [Test]
         public void Util_LsTh()
         {
             Assert.IsFalse(Unlimited.Applications.BusinessDesignStudio.Activities.Util.LsTh("theString", null));
@@ -193,7 +194,7 @@ namespace Dev2.Tests.Activities.Utils
             Assert.IsTrue(Unlimited.Applications.BusinessDesignStudio.Activities.Util.LsTh("1.45", "1.454"));
         }
 
-        [TestMethod]
+        [Test]
         public void Util_LsThEq()
         {
             Assert.IsFalse(Unlimited.Applications.BusinessDesignStudio.Activities.Util.LsThEq("theString", null));
@@ -207,7 +208,7 @@ namespace Dev2.Tests.Activities.Utils
             Assert.IsTrue(Unlimited.Applications.BusinessDesignStudio.Activities.Util.LsThEq("1.45", "1.454"));
         }
 
-        [TestMethod]
+        [Test]
         public void Util_GrTh()
         {
             Assert.IsFalse(Unlimited.Applications.BusinessDesignStudio.Activities.Util.GrTh("theString", null));
@@ -221,7 +222,7 @@ namespace Dev2.Tests.Activities.Utils
             Assert.IsFalse(Unlimited.Applications.BusinessDesignStudio.Activities.Util.GrTh("1.45", "1.454"));
         }
 
-        [TestMethod]
+        [Test]
         public void Util_GrThEq()
         {
             Assert.IsFalse(Unlimited.Applications.BusinessDesignStudio.Activities.Util.GrThEq("theString", null));
@@ -235,7 +236,7 @@ namespace Dev2.Tests.Activities.Utils
             Assert.IsFalse(Unlimited.Applications.BusinessDesignStudio.Activities.Util.GrThEq("1.45", "1.454"));
         }
 
-        [TestMethod]
+        [Test]
         public void Util_Btw()
         {
             Assert.IsFalse(Unlimited.Applications.BusinessDesignStudio.Activities.Util.Btw("", null, null));

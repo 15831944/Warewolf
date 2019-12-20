@@ -13,17 +13,18 @@ using Dev2.Common.Interfaces.Wrappers;
 using Dev2.Data.Interfaces;
 using Dev2.Data.PathOperations;
 using Dev2.Data.PathOperations.Operations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Data.Tests.PathOperations
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DoGetActionTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoGetAction))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoGetAction))]
         public void DoGetAction_ExecuteOperation__ImpersonatedUser_IsNull_ExpectException()
         {
             //------------------------Arrange--------------------------
@@ -32,12 +33,12 @@ namespace Dev2.Data.Tests.PathOperations
             var doGetAction = new DoGetAction(mockActivityIOPath.Object);
             //------------------------Act------------------------------
             //------------------------Assert---------------------------
-            Assert.ThrowsException<Exception>(()=> doGetAction.ExecuteOperation());
+            NUnit.Framework.Assert.Throws<Exception>(()=> doGetAction.ExecuteOperation());
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoGetAction))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoGetAction))]
         public void DoGetAction_ExecuteOperation__ImpersonatedUser_IsNotNull_IsTrue_ExpectTrue()
         {
             //------------------------Arrange--------------------------
@@ -50,15 +51,15 @@ namespace Dev2.Data.Tests.PathOperations
             //------------------------Act------------------------------
             var executeOperation = doGetAction.ExecuteOperation();
             //------------------------Assert---------------------------
-            Assert.IsTrue(executeOperation.CanRead);
-            Assert.IsTrue(executeOperation.CanSeek);
-            Assert.IsFalse(executeOperation.CanTimeout);
-            Assert.IsTrue(executeOperation.CanWrite);
+            NUnit.Framework.Assert.IsTrue(executeOperation.CanRead);
+            NUnit.Framework.Assert.IsTrue(executeOperation.CanSeek);
+            NUnit.Framework.Assert.IsFalse(executeOperation.CanTimeout);
+            NUnit.Framework.Assert.IsTrue(executeOperation.CanWrite);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoGetAction))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoGetAction))]
         public void DoGetAction_ExecuteOperation__ImpersonatedUser_IsNull_ExpectTrue()
         {
             //------------------------Arrange--------------------------
@@ -73,15 +74,15 @@ namespace Dev2.Data.Tests.PathOperations
             var executeOperation = doGetAction.ExecuteOperation();
             //------------------------Assert---------------------------
             mockFileWrapper.VerifyAll();
-            Assert.IsTrue(executeOperation.CanRead);
-            Assert.IsTrue(executeOperation.CanSeek);
-            Assert.IsFalse(executeOperation.CanTimeout);
-            Assert.IsTrue(executeOperation.CanWrite);
+            NUnit.Framework.Assert.IsTrue(executeOperation.CanRead);
+            NUnit.Framework.Assert.IsTrue(executeOperation.CanSeek);
+            NUnit.Framework.Assert.IsFalse(executeOperation.CanTimeout);
+            NUnit.Framework.Assert.IsTrue(executeOperation.CanWrite);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoGetAction))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoGetAction))]
         public void DoGetAction_ExecuteOperation__ImpersonatedUser_IsNotNull_Catch_ExpectTrue()
         {
             //------------------------Arrange--------------------------
@@ -95,7 +96,7 @@ namespace Dev2.Data.Tests.PathOperations
             var doGetAction = new DoGetAction(mockActivityIOPath.Object, mockDev2LogonProvider.Object, mockFileWrapper.Object, (arg1, arg2) => mockWindowsImpersonationContext.Object);
             //------------------------Act------------------------------
             //------------------------Assert---------------------------
-            Assert.ThrowsException<Exception>(()=> doGetAction.ExecuteOperation());
+            NUnit.Framework.Assert.Throws<Exception>(()=> doGetAction.ExecuteOperation());
         }
     }
 }

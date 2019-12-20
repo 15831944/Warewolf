@@ -1,17 +1,19 @@
 ﻿using Dev2.Common.Interfaces;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
-
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Warewolf.Studio.ViewModels.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ManageRabbitMqSourceModelTests
     {
-        [TestMethod,Timeout(60000)]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ManageRabbitMQSourceModel_Ctor")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ManageRabbitMQSourceModel_Ctor")]
         public void ManageRabbitMQSourceModel_Ctor_Valid_ExpectPropertiesSet()
         {
             //------------Setup for test--------------------------
@@ -26,17 +28,18 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Assert Results-------------------------
             var p = new PrivateObject(manageRabbitMQSourceModel);
 
-            Assert.IsNotNull(p.GetField("_updateManager"));
-            Assert.IsNotNull(p.GetField("_queryManager"));
-            Assert.IsNotNull(p.GetField("_shellViewModel"));
+            NUnit.Framework.Assert.IsNotNull(p.GetField("_updateManager"));
+            NUnit.Framework.Assert.IsNotNull(p.GetField("_queryManager"));
+            NUnit.Framework.Assert.IsNotNull(p.GetField("_shellViewModel"));
         }
 
         
 
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ManageRabbitMQSourceModel_Retrieve")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ManageRabbitMQSourceModel_Retrieve")]
         public void ManageRabbitMQSourceModel_Retrieve_ExpectPassThrough()
         {
             //------------Setup for test--------------------------
@@ -54,9 +57,10 @@ namespace Warewolf.Studio.ViewModels.Tests
         }
 
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ManageRabbitMQSourceModel_Edit")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ManageRabbitMQSourceModel_Edit")]
         public void ManageRabbitMQSourceModel_Edit_ExpectPassThrough()
         {
             //------------Setup for test--------------------------
@@ -74,9 +78,10 @@ namespace Warewolf.Studio.ViewModels.Tests
         }
 
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ManageRabbitMQSourceModel_New")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ManageRabbitMQSourceModel_New")]
         public void ManageRabbitMQSourceModel_New_ExpectPassThrough()
         {
             //------------Setup for test--------------------------
@@ -94,9 +99,10 @@ namespace Warewolf.Studio.ViewModels.Tests
         }
 
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ManageRabbitMQSourceModel_Test")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ManageRabbitMQSourceModel_Test")]
         public void ManageRabbitMQSourceModel_Test_ExpectPassThrough()
         {
             //------------Setup for test--------------------------
@@ -110,13 +116,14 @@ namespace Warewolf.Studio.ViewModels.Tests
             var res = manageRabbitMQSourceModel.TestSource(src.Object);
             //------------Assert Results-------------------------
 
-            Assert.AreEqual("bob",res);
+            NUnit.Framework.Assert.AreEqual("bob",res);
            
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ManageRabbitMQSourceModel_Save")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ManageRabbitMQSourceModel_Save")]
         public void ManageRabbitMQSourceModel_Save_ExpectPassThrough()
         {
             //------------Setup for test--------------------------

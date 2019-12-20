@@ -10,18 +10,19 @@
 
 using System;
 using Dev2.Common.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using static Dev2.Common.Utils.JsonPathContext;
 
 namespace Dev2.Utils.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class JsonPathContextTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(JsonPathContext))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(JsonPathContext))]
         public void JsonPathContext_SelectTo_Output_IsNull_AreEqual_ExpectArgumentNullException()
         {
             //--------------------------Arrange---------------------------
@@ -30,12 +31,12 @@ namespace Dev2.Utils.Tests
             var jsonPathContext = new JsonPathContext();
             //--------------------------Act-------------------------------
             //--------------------------Assert----------------------------
-            Assert.ThrowsException<ArgumentNullException>(() => jsonPathContext.SelectTo(obj, "$;", null));
+            Assert.Throws<ArgumentNullException>(() => jsonPathContext.SelectTo(obj, "$;", null));
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(JsonPathContext))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(JsonPathContext))]
         public void JsonPathContext_SelectNodes_Obj_NotNull_AreEqual_ExpectTrue()
         {
             //--------------------------Arrange---------------------------
@@ -50,9 +51,9 @@ namespace Dev2.Utils.Tests
             Assert.AreEqual(obj, testList[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(JsonPathContext))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(JsonPathContext))]
         public void JsonPathContext_SelectNodes_ValueSystem_NotNull_AreEqual_ExpectTrue()
         {
             //--------------------------Arrange---------------------------
@@ -73,9 +74,9 @@ namespace Dev2.Utils.Tests
             Assert.AreEqual(mockJsonPathValueSystem.Object, jsonPathContext.ValueSystem);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(JsonPathContext))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(JsonPathContext))]
         public void JsonPathContext_SelectNodes_JsonPathNodeArray_IsNull_AreEqual_ExpectTrue()
         {
             //--------------------------Arrange---------------------------
@@ -94,20 +95,20 @@ namespace Dev2.Utils.Tests
             Assert.AreEqual(0, testList.Length);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(JsonPathContext))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(JsonPathContext))]
         public void JsonPathContext_AsBracketNotation_IsNull_AreEqual_ExpectTrue()
         {
             //--------------------------Arrange---------------------------
             //--------------------------Act-------------------------------
             //--------------------------Assert----------------------------
-            Assert.ThrowsException<ArgumentNullException>(() => AsBracketNotation(null));
+            Assert.Throws<ArgumentNullException>(() => AsBracketNotation(null));
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(JsonPathContext))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(JsonPathContext))]
         public void JsonPathContext_AsBracketNotation_NotNull_AreEqual_ExpectTrue()
         {
             //--------------------------Arrange---------------------------
@@ -118,9 +119,9 @@ namespace Dev2.Utils.Tests
             Assert.AreEqual("$['testString2']['testString3'][*]", asBracketNotation);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(JsonPathContext))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(JsonPathContext))]
         public void JsonPathContext_SelectNodes_Expr_Index1_NotSemiColon_AreEqual_ExpectTrue()
         {
             //--------------------------Arrange---------------------------
@@ -130,12 +131,12 @@ namespace Dev2.Utils.Tests
             var jsonPathContext = new JsonPathContext();
             //--------------------------Act-------------------------------
             //--------------------------Assert----------------------------
-            Assert.ThrowsException<NullReferenceException>(() => jsonPathContext.SelectNodes(obj, "$test"));
+            Assert.Throws<NullReferenceException>(() => jsonPathContext.SelectNodes(obj, "$test"));
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(JsonPathContext))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(JsonPathContext))]
         public void JsonPathContext_SetProperty_AreEqual_ToSetValue_ExpectTrue()
         {
             //--------------------------Arrange---------------------------
@@ -149,16 +150,16 @@ namespace Dev2.Utils.Tests
             Assert.AreEqual(mockJsonPathValueSystem.Object, jsonPathContext.ValueSystem);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(JsonPathContext))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(JsonPathContext))]
         public void JsonPathContext_SelectNodes_Obj_IsNull_AreEqual_ExpectArgumentNullException()
         {
             //--------------------------Arrange---------------------------
             var jsonPathContext = new JsonPathContext();
             //--------------------------Act-------------------------------
             //--------------------------Assert----------------------------
-            Assert.ThrowsException<ArgumentNullException>(() => jsonPathContext.SelectNodes(null, "$;"));
+            Assert.Throws<ArgumentNullException>(() => jsonPathContext.SelectNodes(null, "$;"));
         }
     }
 }

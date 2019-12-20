@@ -11,7 +11,7 @@ using Dev2.Diagnostics;
 using Dev2.DynamicServices;
 using Dev2.Interfaces;
 using Dev2.Services.Security;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Warewolf.Core;
@@ -20,12 +20,13 @@ using WarewolfParserInterop;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.CountRecordset
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfRecordsetNullhandlerLengthActivityTest : BaseActivityUnitTest
     {
-        [TestMethod]
-        [TestCategory("DsfRecordsetNullhandlerLength")]
-        [Owner("Candice Daniel")]
+        [Test]
+        [Category("DsfRecordsetNullhandlerLength")]
+        [Author("Candice Daniel")]
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void RecordsetNullhandlerLength_BlankResultVariable()
         {

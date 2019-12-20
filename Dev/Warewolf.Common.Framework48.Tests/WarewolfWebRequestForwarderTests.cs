@@ -8,7 +8,7 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -21,12 +21,13 @@ using Warewolf.Web;
 
 namespace Warewolf.Common.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WarewolfWebRequestForwarderTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(WarewolfWebRequestForwarder))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(WarewolfWebRequestForwarder))]
         public void WarewolfWebRequestForwarder_Consume_Success()
         {
             //---------------------------------Arrange--------------------------------
@@ -47,9 +48,9 @@ namespace Warewolf.Common.Tests
             mockHttpClientFactory.Verify(o => o.New(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(WarewolfWebRequestForwarder))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(WarewolfWebRequestForwarder))]
         public void WarewolfWebRequestForwarder_Consume_Should_CallPostAsync()
         {
             //---------------------------------Arrange--------------------------------
@@ -71,9 +72,9 @@ namespace Warewolf.Common.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(WarewolfWebRequestForwarder))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(WarewolfWebRequestForwarder))]
         public void WarewolfWebRequestForwarder_Consume_GivenMappableInputsAndXmlData_ShouldCreateCorrectPostBody()
         {
             //---------------------------------Arrange--------------------------------
@@ -99,9 +100,9 @@ namespace Warewolf.Common.Tests
             Assert.AreEqual(expectedPostBody, postBody);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(WarewolfWebRequestForwarder))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(WarewolfWebRequestForwarder))]
         public void WarewolfWebRequestForwarder_Consume_GivenMappableInputsAndJsonData_ShouldCreateCorrectPostBody()
         {
             //---------------------------------Arrange--------------------------------
@@ -127,9 +128,9 @@ namespace Warewolf.Common.Tests
             Assert.AreEqual(expectedPostBody, postBody);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(WarewolfWebRequestForwarder))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(WarewolfWebRequestForwarder))]
         public async Task WarewolfWebRequestForwarder_Consume_GivenNonSuccessResponse_ShouldPublishMessageToDeadLetterQueueAsync()
         {
             //---------------------------------Arrange--------------------------------
@@ -152,9 +153,9 @@ namespace Warewolf.Common.Tests
             mockPublisher.Verify(p => p.Publish(It.IsAny<byte[]>()),Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(WarewolfWebRequestForwarder))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(WarewolfWebRequestForwarder))]
         public async Task WarewolfWebRequestForwarder_Consume_GivenSuccessResponse_ShouldNotPublishMessageToDeadLetterQueueAsync()
         {
             //---------------------------------Arrange--------------------------------

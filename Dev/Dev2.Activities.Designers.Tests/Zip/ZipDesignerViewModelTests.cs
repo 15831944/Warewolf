@@ -16,19 +16,20 @@ using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Core.Models;
 using Dev2.Studio.Interfaces;
 using Dev2.Studio.ViewModels.DataList;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Activities.Designers.Tests.Zip
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class ZipDesignerViewModelTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ZipDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ZipDesignerViewModel_Constructor")]
         public void ZipDesignerViewModel_Constructor_Properties_Initialized()
         {
             //------------Setup for test-------------------------
@@ -45,9 +46,9 @@ namespace Dev2.Activities.Designers.Tests.Zip
             Assert.AreEqual(0, viewModel.TitleBarToggles.Count);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("ZipDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("ZipDesignerViewModel_Handle")]
         public void ZipDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -63,9 +64,9 @@ namespace Dev2.Activities.Designers.Tests.Zip
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ZipDesignerViewModel_Validate")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ZipDesignerViewModel_Validate")]
         public void ZipDesignerViewModel_Validate_CorrectFieldsAreValidated()
         {
             //------------Setup for test-------------------------
@@ -81,27 +82,27 @@ namespace Dev2.Activities.Designers.Tests.Zip
             Assert.AreEqual(1, viewModel.ValidateDestinationUsernameAndPasswordHitCount);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ZipDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ZipDesignerViewModel_Constructor")]
         public void ZipDesignerViewModel_Constructor_ModelItemIsValid_SelectedCompressionRatioIsInitialized()
         {
             var viewModel = ZipViewModel();
             Assert.AreEqual("Default", viewModel.CompressionRatio);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ZipDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ZipDesignerViewModel_Constructor")]
         public void ZipDesignerViewModel_Constructor_ModelItemIsValid_CompressionRatiosHasThreeItems()
         {
             var viewModel = ZipViewModel();
             Assert.AreEqual(4, viewModel.CompressionRatioList.Count);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ZipDesignerViewModel_SetSelectedCompressionRatio")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ZipDesignerViewModel_SetSelectedCompressionRatio")]
         public void ZipDesignerViewModel_SetSelectedCompressionRatio_ValidCompressionRatio_CompressionRatioOnModelItemIsAlsoSet()
         {
             var viewModel = ZipViewModel();
@@ -109,9 +110,9 @@ namespace Dev2.Activities.Designers.Tests.Zip
             Assert.AreEqual("BestSpeed", viewModel.CompressionRatio);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("ZipDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("ZipDesignerViewModel_Constructor")]
         public void ZipDesignerViewModel_Constructor_InitList_ListMatchesEnumDescriptions()
         {
             //------------Setup for test--------------------------

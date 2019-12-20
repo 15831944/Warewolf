@@ -8,17 +8,18 @@ using Dev2.Data;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FetchAllTestsTest
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("GetResourceID")]
         public void GetResourceID_GivenArgsWithResourceId_ShouldReturnResourceId()
         {
             //------------Setup for test--------------------------
@@ -37,9 +38,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(resId, resourceID);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -50,9 +51,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -63,9 +64,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(AuthorizationContext.Contribute, resId);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("FetchAllTests_HandlesType")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("FetchAllTests_HandlesType")]
         public void FetchTests_HandlesType_ExpectName()
         {
             //------------Setup for test--------------------------
@@ -75,9 +76,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("FetchAllTests", fetchAllTests.HandlesType());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("FetchAllTests_Execute")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("FetchAllTests_Execute")]
         public void FetchTests_Execute_NullValues_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -90,9 +91,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsFalse(result.HasError);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("FetchAllTests_Execute")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("FetchAllTests_Execute")]
         public void FetchTests_Execute_ResourceIDNotPresent_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -106,9 +107,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsFalse(result.HasError);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("FetchAllTests_Execute")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("FetchAllTests_Execute")]
         public void FetchTests_Execute_ResourceIDNotGuid_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -122,9 +123,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsFalse(result.HasError);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("FetchTests_Execute")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("FetchTests_Execute")]
         public void FetchAllTests_Execute_ExpectTestList()
         {
             //------------Setup for test--------------------------

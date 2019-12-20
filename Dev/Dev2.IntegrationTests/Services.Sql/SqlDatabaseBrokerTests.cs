@@ -16,7 +16,7 @@ using Dev2.Common.Interfaces.Data;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Runtime.ServiceModel.Esb.Brokers;
 using Dev2.Services.Sql;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading;
@@ -30,12 +30,13 @@ using Dev2.Infrastructure.Tests;
 
 namespace Dev2.Integration.Tests.Services.Sql
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SqlDatabaseBrokerTests
     {
         static Depends _containerOps;
 
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void MyClassInitialize(TestContext testContext)
         {
             _containerOps = new Depends(Depends.ContainerType.MSSQL);
@@ -45,11 +46,11 @@ namespace Dev2.Integration.Tests.Services.Sql
             }
         }
 
-        [ClassCleanup]
+        [OneTimeTearDown]
         public static void CleanupContainer() => _containerOps?.Dispose();
 
-        [TestMethod]
-        [Owner("Ashley Lewis")]
+        [Test]
+        [Author("Ashley Lewis")]
         public void SqlDatabaseBroker_GetServiceMethods_WindowsUserWithDbAccess_GetsMethods()
         {
             RunAs("IntegrationTester", "dev2", () =>
@@ -57,12 +58,12 @@ namespace Dev2.Integration.Tests.Services.Sql
                 var dbSource = SqlServerTestUtils.CreateDev2TestingDbSource(AuthenticationType.Windows, Depends.SVRDEVIP);
                 var broker = new SqlDatabaseBroker();
                 var result = broker.GetServiceMethods(dbSource);
-                Assert.AreEqual(true, result.Count > 0);
+                NUnit.Framework.Assert.AreEqual(true, result.Count > 0);
             });
         }
         
-        [TestMethod]
-        [Owner("Ashley Lewis")]
+        [Test]
+        [Author("Ashley Lewis")]
         public void SqlDatabaseBroker_GetServiceMethods_WindowsUserWithoutDbAccess_ThrowsLoginFailedException()
         {
             RunAs("NoDBAccessTest", "DEV2", () =>
@@ -72,19 +73,19 @@ namespace Dev2.Integration.Tests.Services.Sql
                 try
                 {
                     broker.GetServiceMethods(dbSource);
-                    Assert.Fail();
+                    NUnit.Framework.Assert.Fail();
                 }
                 catch(Exception ex)
                 {
-                    Assert.IsNotNull(ex);
-                    Assert.IsInstanceOfType(ex, typeof(SqlException));
-                    Assert.AreEqual("Login failed for user 'DEV2\\NoDBAccessTest'.", ex.Message);
+                    NUnit.Framework.Assert.IsNotNull(ex);
+                    NUnit.Framework.Assert.IsInstanceOf(ex.GetType(), typeof(SqlException));
+                    NUnit.Framework.Assert.AreEqual("Login failed for user 'DEV2\\NoDBAccessTest'.", ex.Message);
                 }
             });
         }
 
-        [TestMethod]
-        [Owner("Ashley Lewis")]
+        [Test]
+        [Author("Ashley Lewis")]
         [ExpectedException(typeof(WarewolfDbException))]        
         public void SqlDatabaseBroker_GetServiceMethods_SqlUserWithInvalidUsername_ThrowsLoginFailedException()
         {
@@ -96,19 +97,19 @@ namespace Dev2.Integration.Tests.Services.Sql
             broker.GetServiceMethods(dbSource);
         }
 
-        [TestMethod]
-        [Owner("Ashley Lewis")]
+        [Test]
+        [Author("Ashley Lewis")]
         public void SqlDatabaseBroker_GetServiceMethods_SqlUserWithValidUsername_GetsMethods()
         {
             var dbSource = SqlServerTestUtils.CreateDev2TestingDbSource();
             var broker = new SqlDatabaseBroker();
             var result = broker.GetServiceMethods(dbSource);
-            Assert.AreEqual(true, result.Count > 0);
+            NUnit.Framework.Assert.AreEqual(true, result.Count > 0);
         }
         
-        [TestMethod]
-        [Owner("Massimo.Guerrera")]
-        [TestCategory("SqlDatabaseBroker")]
+        [Test]
+        [Author("Massimo.Guerrera")]
+        [Category("SqlDatabaseBroker")]
         public void SqlDatabaseBroker_TestService_WindowsUserWithDbAccess_ReturnsValidResult()
         {
             RunAs("IntegrationTester", "dev2", () =>
@@ -129,12 +130,12 @@ namespace Dev2.Integration.Tests.Services.Sql
                 };
                 var broker = new SqlDatabaseBroker();
                 var result = broker.TestService(serviceConn);
-                Assert.AreEqual(OutputFormats.ShapedXML, result.Format);
+                NUnit.Framework.Assert.AreEqual(OutputFormats.ShapedXML, result.Format);
             });
         }
         
-        [TestMethod]
-        [Owner("Massimo.Guerrera")]
+        [Test]
+        [Author("Massimo.Guerrera")]
         public void SqlDatabaseBroker_TestService_WindowsUserWithoutDbAccess_ReturnsInvalidResult()
         {
             Exception exception = null;
@@ -166,14 +167,14 @@ namespace Dev2.Integration.Tests.Services.Sql
                     exception = ex;
                 }
 
-                Assert.IsNotNull(exception);
-                Assert.IsInstanceOfType(exception, typeof(SqlException));
-                Assert.AreEqual("Login failed for user 'DEV2\\NoDBAccessTest'.", exception.Message);
+                NUnit.Framework.Assert.IsNotNull(exception);
+                NUnit.Framework.Assert.IsInstanceOf(exception.GetType(), typeof(SqlException));
+                NUnit.Framework.Assert.AreEqual("Login failed for user 'DEV2\\NoDBAccessTest'.", exception.Message);
             });
         }
 
-        [TestMethod]
-        [Owner("Massimo.Guerrera")]
+        [Test]
+        [Author("Massimo.Guerrera")]
         [ExpectedException(typeof(WarewolfDbException))]        
         public void SqlDatabaseBroker_TestService_SqlUserWithInvalidUsername_ReturnsInvalidResult()
 
@@ -199,9 +200,9 @@ namespace Dev2.Integration.Tests.Services.Sql
             broker.TestService(serviceConn);
         }
 
-        [TestMethod]
-        [Owner("Massimo.Guerrera")]
-        [TestCategory("SqlDatabaseBroker")]
+        [Test]
+        [Author("Massimo.Guerrera")]
+        [Category("SqlDatabaseBroker")]
         public void SqlDatabaseBroker_TestService_SqlUserWithValidUsername_ReturnsValidResult()
         {
             var dbSource = SqlServerTestUtils.CreateDev2TestingDbSource();
@@ -220,11 +221,11 @@ namespace Dev2.Integration.Tests.Services.Sql
             };
             var broker = new SqlDatabaseBroker();
             var result = broker.TestService(serviceConn);
-            Assert.AreEqual(OutputFormats.ShapedXML, result.Format);
+            NUnit.Framework.Assert.AreEqual(OutputFormats.ShapedXML, result.Format);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Author("Hagashen Naidu")]
         public void SqlDatabaseBroker_TestService_ValidDbServiceThatReturnsNull_RecordsetWithNullColumn()
         {
             var service = new DbService
@@ -247,11 +248,11 @@ namespace Dev2.Integration.Tests.Services.Sql
 
             var broker = new SqlDatabaseBroker();
             var outputDescription = broker.TestService(service);
-            Assert.AreEqual(1, outputDescription.DataSourceShapes.Count);
+            NUnit.Framework.Assert.AreEqual(1, outputDescription.DataSourceShapes.Count);
             var dataSourceShape = outputDescription.DataSourceShapes[0];
-            Assert.IsNotNull(dataSourceShape);
-            Assert.AreEqual(3, dataSourceShape.Paths.Count);
-            StringAssert.Contains(dataSourceShape.Paths[2].DisplayPath, "TestTextNull"); //This is the field that contains a null value. Previously this column would not have been returned.
+            NUnit.Framework.Assert.IsNotNull(dataSourceShape);
+            NUnit.Framework.Assert.AreEqual(3, dataSourceShape.Paths.Count);
+            NUnit.Framework.StringAssert.Contains(dataSourceShape.Paths[2].DisplayPath, "TestTextNull"); //This is the field that contains a null value. Previously this column would not have been returned.
         }
 
         public static bool RunAs(string userName, string domain, Action action)

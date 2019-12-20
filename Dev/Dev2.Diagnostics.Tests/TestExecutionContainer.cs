@@ -10,20 +10,21 @@ using Dev2.PerformanceCounters.Counters;
 using Dev2.PerformanceCounters.Management;
 using Dev2.Runtime;
 using Dev2.Runtime.ESB.Execution;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Diagnostics.Test
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class TestExecutionContainer
     {
         Mock<IRealPerformanceCounterFactory> _mockPerformanceCounterFactory;
         IRealPerformanceCounterFactory _performanceCounterFactory;
         IWarewolfPerformanceCounterLocater _performanceCounterLocater;
 
-        [TestInitialize]
+        [SetUp]
         public void Init()
         {
             try
@@ -51,9 +52,9 @@ namespace Dev2.Diagnostics.Test
             CustomContainer.Register<IWarewolfPerformanceCounterLocater>(_performanceCounterLocater);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("PerfmonContainer_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("PerfmonContainer_Ctor")]
         public void PerfmonContainer_Ctor_ValidArg_No_Error()
         {
             var cont = new Mock<IEsbExecutionContainer>();
@@ -66,9 +67,9 @@ namespace Dev2.Diagnostics.Test
             Assert.AreEqual(perfmonContainer.Container, cont.Object);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("PerfmonContainer_Ctor"), ExpectedException(typeof(ArgumentNullException))]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("PerfmonContainer_Ctor"), ExpectedException(typeof(ArgumentNullException))]
         public void PerfmonContainer_Ctor_InValidArg_Has_Error()
         {
             var cont = new Mock<IEsbExecutionContainer>();
@@ -76,9 +77,9 @@ namespace Dev2.Diagnostics.Test
             var perfmonContainer = new PerfmonExecutionContainer(null);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("PerfmonContainer_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("PerfmonContainer_Ctor")]
         public void PerfmonContainer_Ctor_WrappedMethods()
         {
             var cont = new Cont();

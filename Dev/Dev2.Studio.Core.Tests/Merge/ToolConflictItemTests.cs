@@ -1,18 +1,19 @@
 ﻿using Dev2.Activities.Designers2.MultiAssign;
 using Dev2.Core.Tests.Merge.Utils;
 using Dev2.ViewModels.Merge;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Windows;
 using System.Windows.Media;
 
 namespace Dev2.Core.Tests.Merge
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ToolConflictItemTests : MergeTestUtils
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void ToolConflictItem_NewFromActivity()
         {
             //------------Setup for test--------------------------
@@ -27,8 +28,8 @@ namespace Dev2.Core.Tests.Merge
             Assert.AreEqual(_location, toolConflictItem.NodeLocation);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void ToolConflictItem_SetUserInterface()
         {
             //------------Setup for test--------------------------
@@ -44,8 +45,8 @@ namespace Dev2.Core.Tests.Merge
             Assert.AreEqual(instance, toolConflictItem.ActivityDesignerViewModel);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void ToolConflictItem_NewStartConflictItem()
         {
             //------------Setup for test--------------------------
@@ -63,8 +64,8 @@ namespace Dev2.Core.Tests.Merge
             Assert.IsNull(startConflictItem.ActivityDesignerViewModel);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void ToolConflictItem_ShowCheckbox_ExpectedTrue()
         {
             //------------Setup for test--------------------------
@@ -74,8 +75,8 @@ namespace Dev2.Core.Tests.Merge
             Assert.IsTrue(toolConflictItem.ShowCheckbox);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void ToolConflictItem_ShowCheckbox_ExpectedFalse()
         {
             //------------Setup for test--------------------------
@@ -85,8 +86,8 @@ namespace Dev2.Core.Tests.Merge
             Assert.IsFalse(toolConflictItem.ShowCheckbox);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void ToolConflictItem_IsChecked_PropertyChanged()
         {
             //------------Setup for test--------------------------

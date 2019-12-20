@@ -10,19 +10,20 @@
 
 using System;
 using Dev2.Communication;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Runtime.WebServer.Hubs
 {
-    [TestClass]
-    [TestCategory("Runtime WebServer")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime WebServer")]
     public class ResultsCacheTest
     {
         
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ResultsCache_ContainsPendingRequestForUser")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ResultsCache_ContainsPendingRequestForUser")]
         public void ResultsCache_ContainsPendingRequestForUser_WhenValidKey_ExpectTrue()
         {
             //------------Setup for test--------------------------
@@ -36,9 +37,9 @@ namespace Dev2.Tests.Runtime.WebServer.Hubs
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ResultsCache_ContainsPendingRequestForUser")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ResultsCache_ContainsPendingRequestForUser")]
         public void ResultsCache_ContainsPendingRequestForUser_WhenValidKeyNotExist_ExpectFalce()
         {
             //------------Setup for test--------------------------
@@ -52,9 +53,9 @@ namespace Dev2.Tests.Runtime.WebServer.Hubs
             Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ResultsCache_ContainsPendingRequestForUser")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ResultsCache_ContainsPendingRequestForUser")]
         public void ResultsCache_ContainsPendingRequestForUser_WhenValidKeyPartialMatch_ExpectFalce()
         {
             //------------Setup for test--------------------------
@@ -68,9 +69,9 @@ namespace Dev2.Tests.Runtime.WebServer.Hubs
             Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ResultsCache_ContainsPendingRequestForUser")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ResultsCache_ContainsPendingRequestForUser")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ResultsCache_ContainsPendingRequestForUser_WhenNullKey_ExpectException()
         {
@@ -82,9 +83,9 @@ namespace Dev2.Tests.Runtime.WebServer.Hubs
             ResultsCache.Instance.ContainsPendingRequestForUser(null);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ResultsCache_ContainsPendingRequestForUser")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ResultsCache_ContainsPendingRequestForUser")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ResultsCache_ContainsPendingRequestForUser_WhenEmptyKey_ExpectException()
         {
@@ -96,9 +97,9 @@ namespace Dev2.Tests.Runtime.WebServer.Hubs
             ResultsCache.Instance.ContainsPendingRequestForUser(null);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ResultsCache_AddResult")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ResultsCache_AddResult")]
         public void ResultsCache_AddResult_WhenValidKey_ExpectAdded()
         {
             //------------Setup for test--------------------------
@@ -112,9 +113,9 @@ namespace Dev2.Tests.Runtime.WebServer.Hubs
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ResultsCache_AddResult")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ResultsCache_AddResult")]
         [ExpectedException(typeof(Exception))]
         public void ResultsCache_AddResult_WhenInvalidKey_ExpectException()
         {
@@ -128,9 +129,9 @@ namespace Dev2.Tests.Runtime.WebServer.Hubs
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ResultsCache_AddResult")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ResultsCache_AddResult")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ResultsCache_AddResult_WhenNullKey_ExpectException()
         {
@@ -142,9 +143,9 @@ namespace Dev2.Tests.Runtime.WebServer.Hubs
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ResultsCache_AddResult")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ResultsCache_AddResult")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ResultsCache_AddResult_WhenNullValue_ExpectException()
         {
@@ -157,9 +158,9 @@ namespace Dev2.Tests.Runtime.WebServer.Hubs
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ResultsCache_AddResult")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ResultsCache_AddResult")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ResultsCache_AddResult_WhenEmptyValue_ExpectException()
         {
@@ -172,9 +173,9 @@ namespace Dev2.Tests.Runtime.WebServer.Hubs
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ResultsCache_FetchResult")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ResultsCache_FetchResult")]
         public void ResultsCache_FetchResult_WhenValidKey_ExpectResult()
         {
             //------------Setup for test--------------------------
@@ -191,9 +192,9 @@ namespace Dev2.Tests.Runtime.WebServer.Hubs
 
 
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ResultsCache_FetchResult")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ResultsCache_FetchResult")]
         public void ResultsCache_FetchResult_WhenKeyNotPresent_ExpectEmptyString()
         {
             //------------Setup for test--------------------------
@@ -209,9 +210,9 @@ namespace Dev2.Tests.Runtime.WebServer.Hubs
             Assert.AreEqual(string.Empty, result, "Non-empty string on invalid key");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ResultsCache_FetchResult")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ResultsCache_FetchResult")]
         [ExpectedException(typeof(Exception))]
         public void ResultsCache_FetchResult_WhenInvalidKey_ExpectException()
         {
@@ -225,9 +226,9 @@ namespace Dev2.Tests.Runtime.WebServer.Hubs
             ResultsCache.Instance.FetchResult(reciept);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ResultsCache_FetchResult")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ResultsCache_FetchResult")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ResultsCache_FetchResult_WhenNullKey_ExpectException()
         {

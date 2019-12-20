@@ -1,18 +1,19 @@
 ﻿using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.Core;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Windows.Input;
 
 namespace Dev2.Common.Tests.Core
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ServerSourceTests
     {
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ServerSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ServerSource))]
         public void ServerSource_ServerName()
         {
             var testServerName = "TestServerName";
@@ -22,9 +23,9 @@ namespace Dev2.Common.Tests.Core
 
             Assert.AreEqual(testServerName, serverSource.ServerName);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ServerSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ServerSource))]
         public void ServerSource_Address()
         {
             var testAddress = "https://ddkksfsw:3143";
@@ -34,9 +35,9 @@ namespace Dev2.Common.Tests.Core
 
             Assert.AreEqual(testAddress, serverSource.Address);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ServerSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ServerSource))]
         public void ServerSource_AuthenticationType()
         {
             var expectedAuthenticationType = AuthenticationType.User;
@@ -46,9 +47,9 @@ namespace Dev2.Common.Tests.Core
 
             Assert.AreEqual(expectedAuthenticationType, serverSource.AuthenticationType);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ServerSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ServerSource))]
         public void ServerSource_UserName()
         {
             var testUserName = "TestUserName";
@@ -58,9 +59,9 @@ namespace Dev2.Common.Tests.Core
 
             Assert.AreEqual(testUserName, serverSource.UserName);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ServerSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ServerSource))]
         public void ServerSource_Password()
         {
             var testPassword = "TestPassword";
@@ -70,9 +71,9 @@ namespace Dev2.Common.Tests.Core
 
             Assert.AreEqual(testPassword, serverSource.Password);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ServerSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ServerSource))]
         public void ServerSource_TestCommand()
         {
             var serverSource = new ServerSource();
@@ -81,9 +82,9 @@ namespace Dev2.Common.Tests.Core
         }
         public ICommand TestCommand { get; set; }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ServerSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ServerSource))]
         public void ServerSource_TestMessage()
         {
             var testMessage = "TestMessage";
@@ -93,9 +94,9 @@ namespace Dev2.Common.Tests.Core
 
             Assert.AreEqual(testMessage, serverSource.TestMessage);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ServerSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ServerSource))]
         public void ServerSource_ID()
         {
             var testID = Guid.NewGuid();
@@ -105,9 +106,9 @@ namespace Dev2.Common.Tests.Core
 
             Assert.AreEqual(testID, serverSource.ID);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ServerSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ServerSource))]
         public void ServerSource_Name()
         {
             var testName = "TestName";
@@ -117,9 +118,9 @@ namespace Dev2.Common.Tests.Core
 
             Assert.AreEqual(testName, serverSource.Name);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ServerSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ServerSource))]
         public void ServerSource_ResourcePath()
         {
             var resourcePath = "ResourcePath";
@@ -129,9 +130,9 @@ namespace Dev2.Common.Tests.Core
 
             Assert.AreEqual(resourcePath, serverSource.ResourcePath);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ServerSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ServerSource))]
         public void ServerSource_Equals_OtherIsNull_ReturnFalse()
         {
             //---------------Set up test pack-------------------
@@ -141,9 +142,9 @@ namespace Dev2.Common.Tests.Core
             //---------------Assert Precondition----------------
             Assert.IsFalse(serverSource.Equals(null), "Equals operator can't compare to null.");
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ServerSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ServerSource))]
         public void ServerSource_Equals_ReturnTrue()
         {
             //---------------Set up test pack-------------------
@@ -166,9 +167,9 @@ namespace Dev2.Common.Tests.Core
             //---------------Assert Precondition----------------
             Assert.IsTrue(serverSource.Equals(otherServerSource));
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ServerSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ServerSource))]
         public void ServerSource_Equals_ReturnFalse_NameNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -191,9 +192,9 @@ namespace Dev2.Common.Tests.Core
             //---------------Assert Precondition----------------
             Assert.IsFalse(serverSource.Equals(otherServerSource));
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ServerSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ServerSource))]
         public void ServerSource_Equals_ReturnFalse_PasswordNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -216,9 +217,9 @@ namespace Dev2.Common.Tests.Core
             //---------------Assert Precondition----------------
             Assert.IsFalse(serverSource.Equals(otherServerSource));
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ServerSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ServerSource))]
         public void ServerSource_Equals_ReturnFalse_UsernameNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -241,9 +242,9 @@ namespace Dev2.Common.Tests.Core
             //---------------Assert Precondition----------------
             Assert.IsFalse(serverSource.Equals(otherServerSource));
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ServerSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ServerSource))]
         public void ServerSource_Equals_ReturnFalse_AuthenticationTypeNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -266,9 +267,9 @@ namespace Dev2.Common.Tests.Core
             //---------------Assert Precondition----------------
             Assert.IsFalse(serverSource.Equals(otherServerSource));
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ServerSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ServerSource))]
         public void ServerSource_Equals_ReturnFalse_AddressNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -291,9 +292,9 @@ namespace Dev2.Common.Tests.Core
             //---------------Assert Precondition----------------
             Assert.IsFalse(serverSource.Equals(otherServerSource));
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ServerSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ServerSource))]
         public void ServerSource_IServerSource_Equals_ReturnFalse_AddressNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -317,9 +318,9 @@ namespace Dev2.Common.Tests.Core
             //---------------Assert Precondition----------------
             Assert.IsFalse(serverSource.Equals(otherServerSource));
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ServerSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ServerSource))]
         public void ServerSource_IServerSource_Equals_ReturnTrue()
         {
             //---------------Set up test pack-------------------
@@ -342,9 +343,9 @@ namespace Dev2.Common.Tests.Core
             //---------------Assert Precondition----------------
             Assert.IsTrue(serverSource.Equals(otherServerSource));
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ServerSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ServerSource))]
         public void ServerSource_IServerSource_Equals_ReturnFalse_NameNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -367,9 +368,9 @@ namespace Dev2.Common.Tests.Core
             //---------------Assert Precondition----------------
             Assert.IsFalse(serverSource.Equals(otherServerSource));
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ServerSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ServerSource))]
         public void ServerSource_IServerSource_Equals_ReturnFalse_PasswordNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -392,9 +393,9 @@ namespace Dev2.Common.Tests.Core
             //---------------Assert Precondition----------------
             Assert.IsFalse(serverSource.Equals(otherServerSource));
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ServerSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ServerSource))]
         public void ServerSource_IServerSource_Equals_ReturnFalse_UsernameNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -417,9 +418,9 @@ namespace Dev2.Common.Tests.Core
             //---------------Assert Precondition----------------
             Assert.IsFalse(serverSource.Equals(otherServerSource));
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ServerSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ServerSource))]
         public void ServerSource_IServerSource_Equals_ReturnFalse_AuthenticationTypeNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -442,9 +443,9 @@ namespace Dev2.Common.Tests.Core
             //---------------Assert Precondition----------------
             Assert.IsFalse(serverSource.Equals(otherServerSource));
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ServerSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ServerSource))]
         public void ServerSource_IServerSource_Equals_ReturnFalse_OtherIsNull()
         {
             //---------------Set up test pack-------------------

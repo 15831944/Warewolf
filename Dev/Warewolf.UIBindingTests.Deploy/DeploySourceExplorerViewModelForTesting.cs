@@ -7,9 +7,10 @@ using Dev2.Common.Interfaces.Security;
 using Dev2.Services.Security;
 using Dev2.Studio.Interfaces;
 using Dev2.Studio.Interfaces.Deploy;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Studio.ViewModels;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Warewolf.UIBindingTests.Deploy
 {

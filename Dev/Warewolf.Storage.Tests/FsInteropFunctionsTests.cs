@@ -1,14 +1,15 @@
 using System.Diagnostics.CodeAnalysis;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Warewolf.Storage.Tests
 {
     [ExcludeFromCodeCoverage]
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FsInteropFunctionsTests
     {
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Given_ParseLanguageExpression_Should()
         {
             const string personChildName = "[[@Person.Child.Name]]";
@@ -16,8 +17,8 @@ namespace Warewolf.Storage.Tests
             Assert.IsNotNull(languageExpression);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Given_ParseLanguageExpressionWithoutUpdate_Should()
         {
             const string personChildName = "[[@Person.Child.Name]]";
@@ -26,8 +27,8 @@ namespace Warewolf.Storage.Tests
             Assert.IsNotNull(languageExpression);
             Assert.IsTrue(isJsonIdentifierExpression);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Given_LanguageExpressionToString_Should()
         {
             const string personChildName = "[[@Person.Child.Name]]";

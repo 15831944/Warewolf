@@ -17,7 +17,7 @@ using Dev2.Communication;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Framework.Converters.Graph.String.Xml;
 using Warewolf.Core;
@@ -26,14 +26,15 @@ using Warewolf.Core;
 
 namespace Dev2.Activities.Designers.Tests.WebGetTool
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class TestWebGetViewModel
     {
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Webget_MethodName")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Webget_MethodName")]
         public void Webget_MethodName_ValidateExpectErrors()
         {
             //------------Setup for test--------------------------
@@ -50,9 +51,9 @@ namespace Dev2.Activities.Designers.Tests.WebGetTool
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Webget_MethodName")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Webget_MethodName")]
         public void Webget_MethodName_ClearErrors()
         {
             //------------Setup for test--------------------------
@@ -68,9 +69,9 @@ namespace Dev2.Activities.Designers.Tests.WebGetTool
             Assert.AreEqual(webget.DesignValidationErrors.Count, 1);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Webget_MethodName")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Webget_MethodName")]
         public void Webget_Ctor_EmptyModelItem()
         {
             //------------Setup for test--------------------------
@@ -89,9 +90,9 @@ namespace Dev2.Activities.Designers.Tests.WebGetTool
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Webget_MethodName")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Webget_MethodName")]
         public void GetHeaderRegion_GivenIsNew_ShouldReturnInputArea()
         {
             //------------Setup for test--------------------------
@@ -111,9 +112,9 @@ namespace Dev2.Activities.Designers.Tests.WebGetTool
             Assert.AreSame(webget.InputArea, webget.GetHeaderRegion());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("WebGetDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("WebGetDesignerViewModel_Handle")]
         public void WebGetDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -132,9 +133,9 @@ namespace Dev2.Activities.Designers.Tests.WebGetTool
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Webget_MethodName")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Webget_MethodName")]
         public void Webget_TestActionSetSource()
         {
             //------------Setup for test--------------------------
@@ -163,9 +164,9 @@ namespace Dev2.Activities.Designers.Tests.WebGetTool
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Webget_MethodName")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Webget_MethodName")]
         public void Webget_TestActionSetSourceAndTestClickOkHasMappings()
         {
             //------------Setup for test--------------------------
@@ -193,9 +194,9 @@ namespace Dev2.Activities.Designers.Tests.WebGetTool
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Webget_MethodName")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Webget_MethodName")]
         public void Webget_TestActionSetSourceAndTestClickOkHasMappingsErrorFromServer()
         {
             //------------Setup for test--------------------------
@@ -220,9 +221,9 @@ namespace Dev2.Activities.Designers.Tests.WebGetTool
 
             //------------Assert Results-------------------------
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Webget_MethodName")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Webget_MethodName")]
         public void Webget_TestActionSetSourceAndTestClickOkHasserialisationIssue()
         {
             //------------Setup for test--------------------------
@@ -247,9 +248,9 @@ namespace Dev2.Activities.Designers.Tests.WebGetTool
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Webget_MethodName")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Webget_MethodName")]
         public void Webget_TestActionSetSourceAndTestClickOkHasHeaders()
         {
             //------------Setup for test--------------------------
@@ -278,9 +279,9 @@ namespace Dev2.Activities.Designers.Tests.WebGetTool
             Assert.AreEqual(0, webget.ManageServiceInputViewModel.Errors.Count);
             //------------Assert Results-------------------------
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Webget_MethodName")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Webget_MethodName")]
         public void Webget_TestActionSetSourceAndTestClickOkHasQueryStringAndHeaders()
         {
             //------------Setup for test--------------------------
@@ -312,9 +313,9 @@ namespace Dev2.Activities.Designers.Tests.WebGetTool
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Webget_MethodName")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Webget_MethodName")]
         public void Webget_TestActionSetSourceAndTestClickOkHasQueryStringAndHeadersRecSet()
         {
             //------------Setup for test--------------------------

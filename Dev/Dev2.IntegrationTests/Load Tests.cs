@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Dev2.Tests.Runtime.Util;
 using System.Diagnostics;
 using System.Threading;
@@ -9,15 +9,17 @@ using System.Globalization;
 using Dev2.Common;
 using Dev2.Data;
 using Dev2.Common.Common;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dev2.Integration.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class Load_Tests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("Load Tests")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("Load Tests")]
         public void ExecutionManager_StartRefresh_WaitsForCurrentExecutions()
         {
             //------------Setup for test--------------------------
@@ -35,11 +37,11 @@ namespace Dev2.Integration.Tests
             executionManager.StartRefresh();
             stopwatch.Stop();
             //------------Assert Results-------------------------
-            Assert.IsTrue(stopwatch.ElapsedMilliseconds > 2000, stopwatch.ElapsedMilliseconds.ToString());
+            NUnit.Framework.Assert.IsTrue(stopwatch.ElapsedMilliseconds > 2000, stopwatch.ElapsedMilliseconds.ToString());
         }
 
-        [TestMethod]
-        [TestCategory("Load Tests")]
+        [Test]
+        [Category("Load Tests")]
         public void Single_Token_Perfomance_Op()
         {
             var dtb = new Dev2TokenizerBuilder { ToTokenize = Properties.TestStrings.tokenizerBase.ToStringBuilder() };
@@ -62,11 +64,11 @@ namespace Dev2.Integration.Tests
             var exeTime = sw.ElapsedMilliseconds;
 
             Console.WriteLine(@"Total Time : " + exeTime);
-            Assert.IsTrue(opCnt == 100000 && exeTime < 1300, "Expecting it to take 1300 ms but it took " + exeTime + " ms.");
+            NUnit.Framework.Assert.IsTrue(opCnt == 100000 && exeTime < 1300, "Expecting it to take 1300 ms but it took " + exeTime + " ms.");
         }
 
-        [TestMethod]
-        [TestCategory("Load Tests")]
+        [Test]
+        [Category("Load Tests")]
         public void Three_Token_Perfomance_Op()
         {
             var dtb = new Dev2TokenizerBuilder { ToTokenize = Properties.TestStrings.tokenizerBase.ToStringBuilder() };
@@ -89,31 +91,31 @@ namespace Dev2.Integration.Tests
             var exeTime = sw.ElapsedMilliseconds;
 
             Console.WriteLine("Total Time : " + exeTime);
-            Assert.IsTrue(opCnt == 35000 && exeTime < 2500, "It took [ " + exeTime + " ]");
+            NUnit.Framework.Assert.IsTrue(opCnt == 35000 && exeTime < 2500, "It took [ " + exeTime + " ]");
         }
 
-        [TestMethod]
-        [TestCategory("Load Tests")]
+        [Test]
+        [Category("Load Tests")]
         public void PulseTracker_Should()
         {
             var elapsed = false;
             var pulseTracker = new PulseTracker(2000);
 
-            Assert.AreEqual(2000, pulseTracker.Interval);
+            NUnit.Framework.Assert.AreEqual(2000, pulseTracker.Interval);
             var pvt = new PrivateObject(pulseTracker);
             var timer = (System.Timers.Timer)pvt.GetField("_timer");
             timer.Elapsed += (sender, e) =>
             {
                 elapsed = true;
             };
-            Assert.AreEqual(false, timer.Enabled);
+            NUnit.Framework.Assert.AreEqual(false, timer.Enabled);
             pulseTracker.Start();
             Thread.Sleep(6000);
-            Assert.IsTrue(elapsed);
+            NUnit.Framework.Assert.IsTrue(elapsed);
         }
 
-        [TestMethod]
-        [TestCategory("Load Tests")]
+        [Test]
+        [Category("Load Tests")]
         public void SortLargeListOfScalarsExpectedLessThan5500Milliseconds()
         {
             //Initialize
@@ -129,11 +131,11 @@ namespace Dev2.Integration.Tests
 
             var endTime = DateTime.Now.Subtract(timeBefore);
             //Assert
-            Assert.AreEqual("Country", _dataListViewModel.ScalarCollection[0].DisplayName, "Sort datalist with large list failed");
-            Assert.AreEqual("testVar1000", _dataListViewModel.ScalarCollection[1000].DisplayName, "Sort datalist with large list failed");
-            Assert.AreEqual("testVar1750", _dataListViewModel.ScalarCollection[1750].DisplayName, "Sort datalist with large list failed");
-            Assert.AreEqual("testVar2500", _dataListViewModel.ScalarCollection[2500].DisplayName, "Sort datalist with large list failed");
-            Assert.IsTrue(endTime < TimeSpan.FromMilliseconds(5500), $"Sort datalist took longer than 5500 milliseconds to sort 2500 variables. Took {endTime}");
+            NUnit.Framework.Assert.AreEqual("Country", _dataListViewModel.ScalarCollection[0].DisplayName, "Sort datalist with large list failed");
+            NUnit.Framework.Assert.AreEqual("testVar1000", _dataListViewModel.ScalarCollection[1000].DisplayName, "Sort datalist with large list failed");
+            NUnit.Framework.Assert.AreEqual("testVar1750", _dataListViewModel.ScalarCollection[1750].DisplayName, "Sort datalist with large list failed");
+            NUnit.Framework.Assert.AreEqual("testVar2500", _dataListViewModel.ScalarCollection[2500].DisplayName, "Sort datalist with large list failed");
+            NUnit.Framework.Assert.IsTrue(endTime < TimeSpan.FromMilliseconds(5500), $"Sort datalist took longer than 5500 milliseconds to sort 2500 variables. Took {endTime}");
 
             DataListViewModelTests.SortCleanup(_dataListViewModel);
         }

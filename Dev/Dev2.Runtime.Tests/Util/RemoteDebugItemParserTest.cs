@@ -14,17 +14,18 @@ using Dev2.Common.Interfaces.Diagnostics.Debug;
 using Dev2.Communication;
 using Dev2.Diagnostics.Debug;
 using Dev2.Runtime.ESB.Execution;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Newtonsoft.Json;
 
 namespace Dev2.Tests.Runtime.Util
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class RemoteDebugItemParserTest
     {
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("RemoteDebugItemParser_Parse")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("RemoteDebugItemParser_Parse")]
         
         public void RemoteDebugItemParser_Parse_WhenValidJsonList_ExpectItems()
 
@@ -47,9 +48,9 @@ namespace Dev2.Tests.Runtime.Util
             Assert.AreEqual(ActivityType.Workflow, result[0].ActivityType);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("RemoteDebugItemParser_Parse")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("RemoteDebugItemParser_Parse")]
         
         public void RemoteDebugItemParser_Parse_WhenValidJsonListUnderOldNamespace_ExpectItems()
 
@@ -72,9 +73,9 @@ namespace Dev2.Tests.Runtime.Util
             Assert.AreEqual(ActivityType.Workflow, result[9].ActivityType);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("RemoteDebugItemParser_Parse")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("RemoteDebugItemParser_Parse")]
         
         public void RemoteDebugItemParser_Parse_WhenNullJsonList_ExpectNull()
 

@@ -7,7 +7,7 @@ using Dev2.Data.ServiceModel;
 using Dev2.Network;
 using Dev2.Studio.Core.Models;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 using System.Linq;
 using Warewolf.Test.Agent;
@@ -60,7 +60,7 @@ namespace Dev2.Activities.Specs.Deploy
         {
             var remoteServer = _scenarioContext.Get<IServer>("destinationServer");
             var loadContextualResourceModel = remoteServer.ResourceRepository.LoadContextualResourceModel(_resourceId);
-            Assert.AreEqual(p0, loadContextualResourceModel.DisplayName, "Expected Resource to be " + p0 + " on load for ci-remote");
+            NUnit.Framework.Assert.AreEqual(p0, loadContextualResourceModel.DisplayName, "Expected Resource to be " + p0 + " on load for ci-remote");
         }
 
         [Given(@"And the localhost resource is ""(.*)""")]
@@ -68,8 +68,8 @@ namespace Dev2.Activities.Specs.Deploy
         {
             var loaclHost = _scenarioContext.Get<IServer>("sourceServer");
             var loadContextualResourceModel = loaclHost.ResourceRepository.LoadContextualResourceModel(_resourceId);
-            Assert.AreEqual(p0, loadContextualResourceModel.DisplayName, "Expected Resource to be " + p0 + " on load for localhost");
-            Assert.AreEqual(p0, loadContextualResourceModel.ResourceName, "Expected Resource to be " + p0 + " on load for localhost");
+            NUnit.Framework.Assert.AreEqual(p0, loadContextualResourceModel.DisplayName, "Expected Resource to be " + p0 + " on load for localhost");
+            NUnit.Framework.Assert.AreEqual(p0, loadContextualResourceModel.ResourceName, "Expected Resource to be " + p0 + " on load for localhost");
         }
 
         [Given(@"I reload the destination resources")]
@@ -98,8 +98,8 @@ namespace Dev2.Activities.Specs.Deploy
         {
             var destinationServer = _scenarioContext.Get<IServer>("destinationServer");
             var loadContextualResourceModel = destinationServer.ResourceRepository.LoadContextualResourceModel(_resourceId);
-            Assert.AreEqual(p0, loadContextualResourceModel.DisplayName, "Failed to Update " + loadContextualResourceModel.DisplayName + " after deploy");
-            Assert.AreEqual(p0, loadContextualResourceModel.ResourceName, "Failed to Update " + loadContextualResourceModel.ResourceName + " after deploy");
+            NUnit.Framework.Assert.AreEqual(p0, loadContextualResourceModel.DisplayName, "Failed to Update " + loadContextualResourceModel.DisplayName + " after deploy");
+            NUnit.Framework.Assert.AreEqual(p0, loadContextualResourceModel.ResourceName, "Failed to Update " + loadContextualResourceModel.ResourceName + " after deploy");
         }
 
         [Given(@"I RollBack Resource")]
@@ -121,10 +121,10 @@ namespace Dev2.Activities.Specs.Deploy
             var destinationServer = _scenarioContext.Get<IServer>("destinationServer");
             var localResource = destinationServer.ResourceRepository.LoadContextualResourceModel(resourceId);
 
-            Assert.IsNotNull(localResource, originalName + " failed to deploy.");
+            NUnit.Framework.Assert.IsNotNull(localResource, originalName + " failed to deploy.");
 
-            Assert.AreEqual(originalName, localResource.DisplayName, "Failed to Update " + localResource.DisplayName + " after deploy");
-            Assert.AreEqual(originalName, localResource.ResourceName, "Failed to Update " + localResource.ResourceName + " after deploy");
+            NUnit.Framework.Assert.AreEqual(originalName, localResource.DisplayName, "Failed to Update " + localResource.DisplayName + " after deploy");
+            NUnit.Framework.Assert.AreEqual(originalName, localResource.ResourceName, "Failed to Update " + localResource.ResourceName + " after deploy");
         }
         
         [When(@"I deploy the workflow")]
@@ -148,7 +148,7 @@ namespace Dev2.Activities.Specs.Deploy
                 {
                     if (result.HasError)
                     {
-                        Assert.Fail("Error returned from deploy operation. " + result.ErrorDetails);
+                        NUnit.Framework.Assert.Fail("Error returned from deploy operation. " + result.ErrorDetails);
                     }
                 }
             }

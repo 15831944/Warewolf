@@ -17,17 +17,18 @@ using Dev2.Communication;
 using Dev2.Data.ServiceModel;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 // ReSharper disable InconsistentNaming
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FindResourceTestsTest
     {
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void GetAuthorizationContextForService_Returns_Any()
         {
             //------------Setup for test-------------------------
@@ -37,8 +38,8 @@ namespace Dev2.Tests.Runtime.Services
             //------------Assert Results-------------------------
             Assert.AreEqual(AuthorizationContext.Any, authorizationContextForService);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void CreateServiceEntry_Returns_New_Dynamic_Service_DeleteAllTestsService()
         {
             //------------Setup for test-------------------------
@@ -51,8 +52,8 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsFalse(string.IsNullOrEmpty(handleType));
             Assert.AreEqual(handleType, dynamicService.Name);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void GetResourceID_GivenEmptyArgs_Returns_EmptyGuid()
         {
             //------------Setup for test-------------------------
@@ -64,8 +65,8 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsNotNull(resourceID);
             Assert.AreEqual(Guid.Empty, resourceID);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Execute_GivenNoArgs_Exception()
         {
             //------------Setup for test-------------------------

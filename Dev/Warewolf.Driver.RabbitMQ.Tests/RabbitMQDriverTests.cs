@@ -8,7 +8,7 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using RabbitMQ.Client;
 using System;
 using System.Text;
@@ -20,7 +20,8 @@ using Warewolf.Streams;
 
 namespace Warewolf.Driver.RabbitMQ.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class RabbitMQDriverTests
     {
         private class TestQueueNameGenerator
@@ -33,9 +34,9 @@ namespace Warewolf.Driver.RabbitMQ.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(RabbitMQSource))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(RabbitMQSource))]
         public void RabbitMQSource_GivenSourceCreateNewConnection_Success()
         {
             //----------------------Arrange----------------------
@@ -72,9 +73,9 @@ namespace Warewolf.Driver.RabbitMQ.Tests
             Assert.IsFalse(testConsumer.IsDataReceived);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(RabbitMQSource))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(RabbitMQSource))]
         public void RabbitMQSource_Publish_Success()
         {
             //----------------------Arrange----------------------

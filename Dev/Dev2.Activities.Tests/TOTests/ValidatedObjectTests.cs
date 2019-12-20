@@ -14,18 +14,19 @@ using Dev2.Common.Interfaces.Infrastructure.Providers.Validation;
 using Dev2.Providers.Errors;
 using Dev2.Providers.Validation.Rules;
 using Dev2.TO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Tests.Activities.TOTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ValidatedObjectTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ValidatedObject_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ValidatedObject_Constructor")]
         public void ValidatedObject_Constructor_Properties_Initialized()
         {
             //------------Setup for test--------------------------
@@ -39,9 +40,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsNull(validatedObject[It.IsAny<string>()]);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ValidatedObject_Validate")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ValidatedObject_Validate")]
         public void ValidatedObject_ValidatePropertyNameOnly_InvokesGetRuleSet()
         {
             //------------Setup for test--------------------------
@@ -61,9 +62,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.AreEqual(ExpectedPropertyName, actualPropertyName);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ValidatedObject_Validate")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ValidatedObject_Validate")]
         public void ValidatedObject_ValidatePropertyNameAndRuleSet_NullRuleSet_DoesNotInvokesRuleSetAndReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -86,9 +87,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ValidatedObject_Validate")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ValidatedObject_Validate")]
         public void ValidatedObject_ValidatePropertyNameAndRuleSet_NonNullRuleSet_InvokesRuleSetValidateAndReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -118,9 +119,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.AreEqual(expectedErrors.Count == 0, result);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ValidatedObject_Validate")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ValidatedObject_Validate")]
         public void ValidatedObject_ValidatePropertyNameAndRuleSet_PropertyNameIsNull_ReturnsTrue()
         {
             //------------Setup for test--------------------------

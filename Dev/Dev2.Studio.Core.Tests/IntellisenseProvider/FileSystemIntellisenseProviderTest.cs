@@ -20,19 +20,20 @@ using Dev2.Studio.Interfaces;
 using Dev2.Studio.Interfaces.DataList;
 using Dev2.Studio.Interfaces.Enums;
 using Dev2.Studio.ViewModels.DataList;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests.IntellisenseProvider
 {
-    [TestClass]
-    [TestCategory("Intellisense Provider Core")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Intellisense Provider Core")]
     public class FileSystemIntellisenseProviderTest
     {
         IResourceModel _resourceModel;
 
         #region Test Initialization
 
-        [TestInitialize]
+        [SetUp]
         public void Init()
         {
             var testEnvironmentModel = ResourceModelTest.CreateMockEnvironment();
@@ -62,7 +63,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         #endregion Test Initialization
 
 
-        [TestMethod]
+        [Test]
         public void GetIntellisenseResultsWhereNothingPassedExpectListOfDrives()
         {
             //------------Setup for test--------------------------
@@ -80,7 +81,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(8, intellisenseProviderResults.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void GetIntellisenseResultsWhereDrivePassedExpectFoldersAndFilesOnDrive()
         {
             //------------Setup for test--------------------------
@@ -99,7 +100,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
 
         }
 
-        [TestMethod]
+        [Test]
         public void GetIntellisenseResultsWhereDriveAndFolderPassedNoSlashExpectFolder()
         {
             //------------Setup for test--------------------------
@@ -118,7 +119,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(9, intellisenseProviderResults.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void GetIntellisenseResultsWhereDriveAndFolderWithStartOfFileNamePassedExpectFileName()
         {
             //------------Setup for test--------------------------
@@ -137,7 +138,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(1, intellisenseProviderResults.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void GetIntellisenseResultsWhereDriveAndFolderWithPartOfFileNamePassedExpectFileName()
         {
             //------------Setup for test--------------------------
@@ -156,7 +157,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(1, intellisenseProviderResults.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void GetIntellisenseResultsWhereNoNetworkExpectFolderNetworkShareInformation()
         {
             //------------Setup for test--------------------------
@@ -175,7 +176,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(40, intellisenseProviderResults.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void GetIntellisenseResultsWhereNetworkPathExpectFolderNetworkShareInformation()
         {
             //------------Setup for test--------------------------
@@ -194,7 +195,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(6, intellisenseProviderResults.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void GetIntellisenseResultsWhereNetworkPathHasFilesExpectFolderWithFilesNetworkShareInformation()
         {
             //------------Setup for test--------------------------
@@ -214,7 +215,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
 
-        [TestMethod]
+        [Test]
         public void GetIntellisenseResultsWhereNetworkPathHasFolderExpectFolderInformation()
         {
             //------------Setup for test--------------------------
@@ -233,7 +234,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(1, intellisenseProviderResults.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void GetIntellisenseResultsWhereNetworkPathHasFileExpectFileInformation()
         {
             //------------Setup for test--------------------------
@@ -252,7 +253,7 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(1, intellisenseProviderResults.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void GetIntellisenseResultsWhereNetworkPathHasMiddleOfFileExpectFileInformation()
         {
             //------------Setup for test--------------------------
@@ -272,9 +273,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(1, intellisenseProviderResults.Count);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemIntellisenseProvider_PerformMethodInsertion")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("FileSystemIntellisenseProvider_PerformMethodInsertion")]
         public void FileSystemIntellisenseProvider_GetIntellisenseResults_EntireSet_ExpectCorrectOutput()
         {
             //------------Setup for test--------------------------
@@ -313,9 +314,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(resp, expected);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("FileSystemIntellisenseProvider_PerformResultInsertion")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("FileSystemIntellisenseProvider_PerformResultInsertion")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void FileSystemIntellisenseProvider_PerformResultInsertion_ContextIsNull_ThrowsException()
         {
@@ -325,9 +326,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             fileSystemIntellisenseProvider.PerformResultInsertion("", null);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DefaultIntellisenseProvider_FileSystemIntellisenseProvider")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DefaultIntellisenseProvider_FileSystemIntellisenseProvider")]
         public void FileSystemIntellisenseProvider_GetIntellisenseResults_ContextIsNull_ResultCountIsZero()
         {
             //------------Execute Test---------------------------
@@ -336,50 +337,50 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(0, getResults.Count);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemIntellisenseProvider_PerformMethodInsertion")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("FileSystemIntellisenseProvider_PerformMethodInsertion")]
         public void FileSystemIntellisenseProvider_PerformMethodInsertion_InsertPath_ExpectCorrectOutput()
         {
             FileSystemIntellisenseProvider_ExecuteInsertion(2, "a ", @"c:\", @"a c:\");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemIntellisenseProvider_PerformMethodInsertion")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("FileSystemIntellisenseProvider_PerformMethodInsertion")]
         public void FileSystemIntellisenseProvider_PerformMethodInsertion_InsertPathAfterLanguageElement_ExpectCorrectOutput()
         {
             FileSystemIntellisenseProvider_ExecuteInsertion(2, "[[a]] ", @"c:\", @"c:\");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemIntellisenseProvider_PerformMethodInsertion")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("FileSystemIntellisenseProvider_PerformMethodInsertion")]
         public void FileSystemIntellisenseProvider_PerformMethodInsertion_EmptyInput_ExpectCorrectOutput()
         {
             FileSystemIntellisenseProvider_ExecuteInsertion(0, "", @"c:\", @"c:\");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemIntellisenseProvider_PerformMethodInsertion")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("FileSystemIntellisenseProvider_PerformMethodInsertion")]
         public void FileSystemIntellisenseProvider_PerformMethodInsertion_NegativeCaret_ExpectEmptyOutput()
         {
             FileSystemIntellisenseProvider_ExecuteInsertion(-1, "", @"c:\", @"");
         }
         
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemIntellisenseProvider_PerformMethodInsertion")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("FileSystemIntellisenseProvider_PerformMethodInsertion")]
         public void FileSystemIntellisenseProvider_PerformMethodInsertion_InsertPathinsideText_ExpectCorrectOutput()
         {
             FileSystemIntellisenseProvider_ExecuteInsertion(2, "bobthebuilder", @"c:\", @"c:\");
             FileSystemIntellisenseProvider_ExecuteInsertion(2, "bobthebuilder doratheexplorer", @"c:\", @"c:\ doratheexplorer");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FileSystemIntellisenseProvider_Dispose")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("FileSystemIntellisenseProvider_Dispose")]
         public void FileSystemIntellisenseProvider_PerformMethodInsertion_Dispose()
         {
 

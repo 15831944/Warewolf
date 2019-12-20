@@ -4,18 +4,19 @@ using Dev2.Activities.Designers2.Core;
 using Dev2.Common.Interfaces.Help;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Activities.Designers.Tests.Calculate
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class CalculateDesignerViewModelTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("CalculateDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("CalculateDesignerViewModel_Constructor")]
         public void CalculateDesignerViewModel_Constructor_ModelItemIsValid_Result()
         {
             //------------Setup for test--------------------------
@@ -26,13 +27,13 @@ namespace Dev2.Activities.Designers.Tests.Calculate
 
             //------------Assert Results-------------------------
             Assert.IsNotNull(calculateDesignerViewModel);
-            Assert.IsInstanceOfType(calculateDesignerViewModel, typeof(ActivityDesignerViewModel));
+            Assert.IsInstanceOf(calculateDesignerViewModel.GetType(), typeof(ActivityDesignerViewModel));
             Assert.AreEqual("Calculate", calculateDesignerViewModel.ModelItem.GetProperty("DisplayName"));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("CalculateDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("CalculateDesignerViewModel_Constructor")]
         public void CalculateDesignerViewModel_Constructor_Constructed_HasHelpLargeViewToogle()
         {
             //------------Setup for test--------------------------
@@ -46,9 +47,9 @@ namespace Dev2.Activities.Designers.Tests.Calculate
             Assert.AreEqual(0, calculateDesignerViewModel.TitleBarToggles.Count);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("CalculateDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("CalculateDesignerViewModel_Handle")]
         public void CalculateDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      

@@ -11,7 +11,7 @@
 using Dev2.Activities;
 using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.DB;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System.Collections.Generic;
 using System.Data;
@@ -22,7 +22,8 @@ using Warewolf.Storage.Interfaces;
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class AdvancedRecordsetActivityWorkerTests
     {
         static AdvancedRecordsetActivity CreateAdvancedRecordsetActivity()
@@ -30,9 +31,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             return new AdvancedRecordsetActivity();
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(AdvancedRecordsetActivityWorker))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(AdvancedRecordsetActivityWorker))]
         public void AdvancedRecordsetActivityWorker_LoadRecordset()
         {
             const string tableName = "tableName";
@@ -48,9 +49,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(AdvancedRecordsetActivityWorker))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(AdvancedRecordsetActivityWorker))]
         public void AdvancedRecordsetActivityWorker_AddDeclarations()
         {
             const string varName = "varName";
@@ -69,9 +70,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(AdvancedRecordsetActivityWorker))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(AdvancedRecordsetActivityWorker))]
         public void AdvancedRecordsetActivityWorker_AddDeclarations_ExpectedException_NoThrow()
         {
             const string varName = "varName";
@@ -87,9 +88,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(AdvancedRecordsetActivityWorker))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(AdvancedRecordsetActivityWorker))]
         public void AdvancedRecordsetActivityWorker_ExecuteSql_TSQLStatementType_Select()
         {
             var advancedRecordsetActivity = CreateAdvancedRecordsetActivity();
@@ -125,9 +126,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(AdvancedRecordsetActivityWorker))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(AdvancedRecordsetActivityWorker))]
         public void AdvancedRecordsetActivityWorker_ExecuteSql_ProcessComplexStatement_UNION()
         {
             const string sqlQuery = "SELECT * from person UNION ALL SELECT * from person;";
@@ -165,9 +166,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(AdvancedRecordsetActivityWorker))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(AdvancedRecordsetActivityWorker))]
         public void AdvancedRecordsetActivityWorker_ExecuteSql_ProcessComplexStatement_CREATE()
         {
             const string sqlQuery = "CREATE TABLE IF NOT EXISTS Variables (Name TEXT PRIMARY KEY, Value BLOB)";
@@ -209,9 +210,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(AdvancedRecordsetActivityWorker))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(AdvancedRecordsetActivityWorker))]
         public void AdvancedRecordsetActivityWorker_ExecuteSql_ProcessComplexStatement_UPDATE()
         {
             const string sqlQuery = "update person set ID = 1 select * from person;";
@@ -261,9 +262,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(AdvancedRecordsetActivityWorker))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(AdvancedRecordsetActivityWorker))]
         public void AdvancedRecordsetActivityWorker_ExecuteSql_ProcessComplexStatement_DELETE()
         {
             const string sqlQuery = "delete from person where ID = 1 select * from person;";
@@ -313,9 +314,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(AdvancedRecordsetActivityWorker))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(AdvancedRecordsetActivityWorker))]
         public void AdvancedRecordsetActivityWorker_ExecuteSql_ProcessComplexStatement_INSERT()
         {
             const string sqlQuery = "insert into person where ID = 1 select * from person;";
@@ -365,9 +366,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(AdvancedRecordsetActivityWorker))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(AdvancedRecordsetActivityWorker))]
         public void AdvancedRecordsetActivityWorker_ExecuteSql_ProcessComplexStatement_REPLACE()
         {
             const string sqlQuery = "REPLACE INTO person(name, age) VALUES('Robocop', 1000);";
@@ -417,9 +418,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(AdvancedRecordsetActivityWorker))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(AdvancedRecordsetActivityWorker))]
         public void AdvancedRecordsetActivityWorker_ExecuteRecordset_With_No_DeclareVariables()
         {
             var advancedRecordsetActivity = CreateAdvancedRecordsetActivity();

@@ -15,17 +15,18 @@ using Dev2.Common.Interfaces.Help;
 using Dev2.Common.Interfaces.Threading;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Activities.Designers.Tests.Sharepoint
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SharepointListDeleteDesignerViewModelTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SharepointListDeleteDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SharepointListDeleteDesignerViewModel))]
         public void SharepointListDeleteDesignerViewModel_ShouldCall_UpdateHelpDescriptor()
         {
             //------------Setup for test--------------------------

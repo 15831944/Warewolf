@@ -16,17 +16,18 @@ using Dev2.Common.Interfaces.Enums;
 using Dev2.Communication;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class PingTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -38,9 +39,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -51,9 +52,9 @@ namespace Dev2.Tests.Runtime.Services
             //------------Assert Results-------------------------
             Assert.AreEqual(AuthorizationContext.Any, resId);
         }
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("Ping_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("Ping_Constructor")]
         public void Ping_Constructor_InitializesProperties()
         {
             //------------Setup for test--------------------------
@@ -65,10 +66,10 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsNotNull(ping.Now);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
         [Description("HandlesType() MUST return Ping otherwise Server connection tests will fail with a Serviec Not Found exception.")]
-        [TestCategory("Ping_HandlesType")]
+        [Category("Ping_HandlesType")]
         public void Ping_HandlesType_Returns_Ping()
         {
             //------------Setup for test--------------------------
@@ -81,9 +82,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("Ping", handlesType);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("Ping_Execute")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("Ping_Execute")]
         public void Ping_Execute_Returns_Pong()
         {
             //------------Setup for test--------------------------
@@ -101,9 +102,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(expected, msg.Message.ToString());
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("Ping_CreateServiceEntry")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("Ping_CreateServiceEntry")]
         public void Ping_CreateServiceEntry_Correct()
         {
             //------------Setup for test--------------------------

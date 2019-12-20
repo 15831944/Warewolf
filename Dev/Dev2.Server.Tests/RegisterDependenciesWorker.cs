@@ -1,16 +1,17 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using Dev2.ServerLifeCycleWorkers;
 
 using Dev2.Runtime;
 
 namespace Dev2.Server.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class RegisterDependenciesWorkerTests
     {
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(RegisterDependenciesWorkerTests))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(RegisterDependenciesWorkerTests))]
         public void RegisterDependenciesWorker_Execute()
         {
             var worker = new RegisterDependenciesWorker();

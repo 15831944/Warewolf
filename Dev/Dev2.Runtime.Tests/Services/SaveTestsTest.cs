@@ -12,18 +12,19 @@ using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Runtime.Interfaces;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SaveTestsTest
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -35,9 +36,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -49,9 +50,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(AuthorizationContext.Contribute, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SaveTests_HandlesType")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SaveTests_HandlesType")]
         public void SaveTests_HandlesType_ExpectName()
         {
             //------------Setup for test--------------------------
@@ -64,9 +65,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("SaveTests", saveTests.HandlesType());
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SaveTests_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SaveTests_Execute")]
         public void SaveTests_Execute_NullValues_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -79,9 +80,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(result.HasError);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SaveTests_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SaveTests_Execute")]
         public void SaveTests_Execute_ResourceIDNotPresent_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -95,9 +96,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(result.HasError);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SaveTests_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SaveTests_Execute")]
         public void SaveTests_Execute_ResourceIDNotGuid_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -111,9 +112,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(result.HasError);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SaveTests_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SaveTests_Execute")]
         public void SaveTests_Execute_TestDefinitionsNotInValues_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -127,9 +128,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(result.HasError);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SaveTests_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SaveTests_Execute")]
         public void SaveTests_Execute_ItemToDeleteNotListOfServiceTestTO_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -143,8 +144,8 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(result.HasError);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenNoPath_ShouldReturnNoPathMsg()
         {
             //---------------Set up test pack-------------------
@@ -171,8 +172,8 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("resourcePath is missing", result.Message.ToString());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenResourceDefination_ShouldReturnResourceDefinationMsg()
         {
             //---------------Set up test pack-------------------
@@ -199,9 +200,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("testDefinition is missing", result.Message.ToString());
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SaveTests_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SaveTests_Execute")]
         public void SaveTests_Execute_ExpectName()
         {
             //------------Setup for test--------------------------
@@ -253,8 +254,8 @@ namespace Dev2.Tests.Runtime.Services
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenNullResource_ShouldReturnResourceDeletedMsg()
         {
             //------------Setup for test--------------------------
@@ -295,8 +296,8 @@ namespace Dev2.Tests.Runtime.Services
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenResourceMoved_ShouldReturnResourceMovedMsg()
         {
             //------------Setup for test--------------------------
@@ -342,8 +343,8 @@ namespace Dev2.Tests.Runtime.Services
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenResourceMoved_ShouldSaveTests()
         {
             //------------Setup for test--------------------------

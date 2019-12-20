@@ -4,7 +4,7 @@ using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.Infrastructure.Providers.Errors;
 using Dev2.Common.Interfaces.RabbitMQ;
 using Dev2.Studio.Core.Activities.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Activities.Presentation.Model;
@@ -17,12 +17,13 @@ using Dev2.Studio.Interfaces;
 
 namespace Dev2.Activities.Designers.Tests.RabbitMQ.Publish
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class RabbitMQPublishDesignerViewModelTest
     {
-        [TestMethod]
-        [Owner("Clint Stedman")]
-        [TestCategory("RabbitMQPublishDesignerViewModelTest_Constructor")]
+        [Test]
+        [Author("Clint Stedman")]
+        [Category("RabbitMQPublishDesignerViewModelTest_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void RabbitMQPublishDesignerViewModel_Constructor_NullModelItem_ThrowsException()
         {
@@ -35,9 +36,9 @@ namespace Dev2.Activities.Designers.Tests.RabbitMQ.Publish
             Assert.IsNull(vm);
         }
 
-        [TestMethod]
-        [Owner("Clint Stedman")]
-        [TestCategory("RabbitMQPublishDesignerViewModelTest_Constructor")]
+        [Test]
+        [Author("Clint Stedman")]
+        [Category("RabbitMQPublishDesignerViewModelTest_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void RabbitMQPublishDesignerViewModel_Constructor_IRabbitMQModelIsNull_ThrowsArgumentNullException()
         {
@@ -50,9 +51,9 @@ namespace Dev2.Activities.Designers.Tests.RabbitMQ.Publish
             Assert.IsNull(vm);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("RabbitMQPublishDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("RabbitMQPublishDesignerViewModel_Handle")]
         public void RabbitMQPublishDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -68,9 +69,9 @@ namespace Dev2.Activities.Designers.Tests.RabbitMQ.Publish
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Clint Stedman")]
-        [TestCategory("RabbitMQPublishDesignerViewModelTest_Constructor")]
+        [Test]
+        [Author("Clint Stedman")]
+        [Category("RabbitMQPublishDesignerViewModelTest_Constructor")]
         public void RabbitMQPublishDesignerViewModel_Constructor1()
         {
             //------------Setup for test--------------------------
@@ -111,9 +112,9 @@ namespace Dev2.Activities.Designers.Tests.RabbitMQ.Publish
             Assert.AreEqual(vm.IsMessageFocused, false);
         }
 
-        [TestMethod]
-        [Owner("Clint Stedman")]
-        [TestCategory("RabbitMQPublishDesignerViewModelTest_Validate")]
+        [Test]
+        [Author("Clint Stedman")]
+        [Category("RabbitMQPublishDesignerViewModelTest_Validate")]
         public void RabbitMQPublishDesignerViewModel_Validate()
         {
             //------------Setup for test--------------------------
@@ -138,9 +139,9 @@ namespace Dev2.Activities.Designers.Tests.RabbitMQ.Publish
             StringAssert.Contains(errors[2].Message, Warewolf.Resource.Errors.ErrorResource.RabbitMqMessageNotNullErrorTest);
         }
 
-        [TestMethod]
-        [Owner("Clint Stedman")]
-        [TestCategory("RabbitMQPublishDesignerViewModelTest_Commands")]
+        [Test]
+        [Author("Clint Stedman")]
+        [Category("RabbitMQPublishDesignerViewModelTest_Commands")]
         public void RabbitMQPublishDesignerViewModel_EditRabbitMQSourceCommand_ShouldCallOpenResource()
         {
             //------------Setup for test--------------------------
@@ -155,9 +156,9 @@ namespace Dev2.Activities.Designers.Tests.RabbitMQ.Publish
             model.Verify(p => p.EditSource(It.IsAny<IRabbitMQServiceSourceDefinition>()));
         }
 
-        [TestMethod]
-        [Owner("Clint Stedman")]
-        [TestCategory("RabbitMQPublishDesignerViewModelTest_Commands")]
+        [Test]
+        [Author("Clint Stedman")]
+        [Category("RabbitMQPublishDesignerViewModelTest_Commands")]
         public void RabbitMQPublishDesignerViewModel_NewRabbitMQSourceCommand_ShouldPublishShowNewResourceWizard()
         {
             var model = new Mock<IRabbitMQSourceModel>();

@@ -18,7 +18,7 @@ using Dev2.Common.Interfaces.DB;
 using Dev2.Data.Interfaces.Enums;
 using Dev2.Factories;
 using Dev2.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Warewolf.Core;
 
@@ -27,7 +27,8 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
     /// <summary>
     /// Summary description for DataGridActivityFindMissingStrategyTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DataGridActivityFindMissingStrategyTests
     {
         /// <summary>
@@ -38,7 +39,7 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
 
         #region BaseConvert Activity Tests
 
-        [TestMethod]
+        [Test]
         public void GetActivityFieldsOffBaseConvertActivityExpectedAllFindMissingFieldsToBeReturned()
         {
             var baseConvertActivity = new DsfBaseConvertActivity { ConvertCollection = new List<BaseConvertTO> { new BaseConvertTO("[[FromExpression]]", "Text", "Binary", "[[ToExpression]]", 1), new BaseConvertTO("[[FromExpression2]]", "Text", "Binary", "[[ToExpression2]]", 2) } };
@@ -51,7 +52,7 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
 
         #endregion
 
-        [TestMethod]
+        [Test]
         public void GetActivityFieldsOffGatherSystemInfoExpectedAllFindMissingFieldsToBeReturned()
         {
             var baseConvertActivity = new DsfGatherSystemInformationActivity{SystemInformationCollection  = new List<GatherSystemInformationTO> {new GatherSystemInformationTO(enTypeOfSystemInformationToGather.CPUAvailable, "res",1)} };
@@ -65,7 +66,7 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
 
         #region CaseConvert Activity Tests
 
-        [TestMethod]
+        [Test]
         public void GetActivityFieldsOffCaseConvertActivityExpectedAllFindMissingFieldsToBeReturned()
         {
             var caseConvertActivity = new DsfCaseConvertActivity { ConvertCollection = new List<ICaseConvertTO> { new CaseConvertTO("[[StringToConvert]]", "UPPER", "[[Result]]", 1), new CaseConvertTO("[[StringToConvert2]]", "UPPER", "[[Result2]]", 2) } };
@@ -80,7 +81,7 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
 
         #region MultiAssign Activity Tests
 
-        [TestMethod]
+        [Test]
         public void GetActivityFieldsOffMultiAssignActivityExpectedAllFindMissingFieldsToBeReturned()
         {
             var multiAssignActivity = new DsfMultiAssignActivity { FieldsCollection = new List<ActivityDTO> { new ActivityDTO("[[AssignRight1]]", "[[AssignLeft1]]", 1), new ActivityDTO("[[AssignRight2]]", "[[AssignLeft2]]", 2) } };
@@ -93,9 +94,9 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
 
         #endregion
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DataGridActivityFindMissingStrategy_GetActivityFields")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DataGridActivityFindMissingStrategy_GetActivityFields")]
         public void DataGridActivityFindMissingStrategy_GetActivityFields_WebGetActivity_ShouldReturnResults()
         {
             //------------Setup for test--------------------------
@@ -126,9 +127,9 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
             Assert.IsTrue(fields.Contains("[[ctype]]"));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DataGridActivityFindMissingStrategy_GetActivityFields")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DataGridActivityFindMissingStrategy_GetActivityFields")]
         public void DataGridActivityFindMissingStrategy_GetActivityFields_WebDeleteActivity_ShouldReturnResults()
         {
             //------------Setup for test--------------------------
@@ -159,9 +160,9 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
             Assert.IsTrue(fields.Contains("[[ctype]]"));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DataGridActivityFindMissingStrategy_GetActivityFields")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DataGridActivityFindMissingStrategy_GetActivityFields")]
         public void DataGridActivityFindMissingStrategy_GetActivityFields_WebPutActivity_ShouldReturnResults()
         {
             //------------Setup for test--------------------------
@@ -194,9 +195,9 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
             Assert.IsTrue(fields.Contains("[[putdata]]"));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DataGridActivityFindMissingStrategy_GetActivityFields")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DataGridActivityFindMissingStrategy_GetActivityFields")]
         public void DataGridActivityFindMissingStrategy_GetActivityFields_DotNetDll_ShouldReturnResults()
         {
             //------------Setup for test--------------------------
@@ -223,9 +224,9 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DataGridActivityFindMissingStrategy_GetActivityFields")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DataGridActivityFindMissingStrategy_GetActivityFields")]
         public void DataGridActivityFindMissingStrategy_GetActivityFields_SqlServer_ShouldReturnResults()
         {
             //------------Setup for test--------------------------
@@ -251,9 +252,9 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
             Assert.IsTrue(fields.Contains("[[errSvc]]"));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DataGridActivityFindMissingStrategy_GetActivityFields")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DataGridActivityFindMissingStrategy_GetActivityFields")]
         public void DataGridActivityFindMissingStrategy_GetActivityFields_MySql_ShouldReturnResults()
         {
             //------------Setup for test--------------------------
@@ -278,9 +279,9 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
             Assert.IsTrue(fields.Contains("[[err]]"));
             Assert.IsTrue(fields.Contains("[[errSvc]]"));
         }
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DataGridActivityFindMissingStrategy_GetActivityFields")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DataGridActivityFindMissingStrategy_GetActivityFields")]
         public void DataGridActivityFindMissingStrategy_GetActivityFields_Oracle_ShouldReturnResults()
         {
             //------------Setup for test--------------------------
@@ -306,9 +307,9 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
             Assert.IsTrue(fields.Contains("[[errSvc]]"));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DataGridActivityFindMissingStrategy_GetActivityFields")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DataGridActivityFindMissingStrategy_GetActivityFields")]
         public void DataGridActivityFindMissingStrategy_GetActivityFields_PostgreSQL_ShouldReturnResults()
         {
             //------------Setup for test--------------------------
@@ -334,9 +335,9 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
             Assert.IsTrue(fields.Contains("[[errSvc]]"));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DataGridActivityFindMissingStrategy_GetActivityFields")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DataGridActivityFindMissingStrategy_GetActivityFields")]
         public void DataGridActivityFindMissingStrategy_GetActivityFields_ODBC_ShouldReturnResults()
         {
             //------------Setup for test--------------------------
@@ -360,9 +361,9 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
             Assert.IsTrue(fields.Contains("[[errSvc]]"));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DataGridActivityFindMissingStrategy_GetActivityFields")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DataGridActivityFindMissingStrategy_GetActivityFields")]
         public void DataGridActivityFindMissingStrategy_GetActivityFields_DsfEnhancedDotNetDllActivity_ShouldReturnResults()
         {
             //------------Setup for test--------------------------
@@ -396,9 +397,9 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
             Assert.IsTrue(fields.Contains("[[errSvc]]"));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DataGridActivityFindMissingStrategy_GetActivityFields")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DataGridActivityFindMissingStrategy_GetActivityFields")]
         public void DataGridActivityFindMissingStrategy_GetActivityFields_DsfEnhancedDotNetDllActivityWithMethodWithInputs_ShouldReturnResults()
         {
             //------------Setup for test--------------------------
@@ -437,9 +438,9 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
         }
 
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DataGridActivityFindMissingStrategy_GetActivityFields")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DataGridActivityFindMissingStrategy_GetActivityFields")]
         public void DataGridActivityFindMissingStrategy_GetActivityFields_WebPostActivity_ShouldReturnResults()
         {
             //------------Setup for test--------------------------
@@ -472,9 +473,9 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
             Assert.IsTrue(fields.Contains("[[data]]"));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("DataGridActivityFindMissingStrategy_GetActivityFields")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("DataGridActivityFindMissingStrategy_GetActivityFields")]
         public void DataGridActivityFindMissingStrategy_GetActivityFields_WebPostActivity_ShouldReturnResults_IsObject()
         {
             //------------Setup for test--------------------------
@@ -498,9 +499,9 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
             Assert.IsTrue(fields.Contains("TheObject"));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("DataGridActivityFindMissingStrategy_GetActivityFields")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("DataGridActivityFindMissingStrategy_GetActivityFields")]
         public void DataGridActivityFindMissingStrategy_GetActivityFields_WebDeleteActivity_ShouldReturnResults_IsObject()
         {
             //------------Setup for test--------------------------
@@ -523,9 +524,9 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
             Assert.IsTrue(fields.Contains("TheObject"));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("DataGridActivityFindMissingStrategy_GetActivityFields")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("DataGridActivityFindMissingStrategy_GetActivityFields")]
         public void DataGridActivityFindMissingStrategy_GetActivityFields_WebPutActivity_ShouldReturnResults_IsObject()
         {
             //------------Setup for test--------------------------
@@ -549,9 +550,9 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
             Assert.IsTrue(fields.Contains("TheObject"));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("DataGridActivityFindMissingStrategy_GetActivityFields")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("DataGridActivityFindMissingStrategy_GetActivityFields")]
         public void DataGridActivityFindMissingStrategy_GetActivityFields_WebGetActivity_ShouldReturnResults_IsObject()
         {
             //------------Setup for test--------------------------
@@ -574,9 +575,9 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
             Assert.IsTrue(fields.Contains("TheObject"));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("DataGridActivityFindMissingStrategy_GetActivityFields")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("DataGridActivityFindMissingStrategy_GetActivityFields")]
         public void DataGridActivityFindMissingStrategy_GetActivityFields_DotNetDll_ShouldReturnResults_IsObject()
         {
             //------------Setup for test--------------------------
@@ -598,9 +599,9 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
             Assert.IsTrue(fields.Contains("TheObject"));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("DataGridActivityFindMissingStrategy_GetActivityFields")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("DataGridActivityFindMissingStrategy_GetActivityFields")]
         public void DataGridActivityFindMissingStrategy_GetActivityFields_ComDll_ShouldReturnResults_IsObject()
         {
             //------------Setup for test--------------------------
@@ -622,9 +623,9 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
             Assert.IsTrue(fields.Contains("TheObject"));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("DataGridActivityFindMissingStrategy_GetActivityFields")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("DataGridActivityFindMissingStrategy_GetActivityFields")]
         public void DataGridActivityFindMissingStrategy_GetActivityFields_WcfEndPoint_ShouldReturnResults_IsObject()
         {
             //------------Setup for test--------------------------

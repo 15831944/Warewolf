@@ -9,22 +9,23 @@
 */
 
 using Dev2.Data.Decisions.Operations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 
 namespace Dev2.Data.Tests.Operations
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class Dev2DecisionOperationTests
     {
         #region Comparing Integers
 
         #region IsLessThan
 
-        [TestMethod]
-        [TestCategory("UnitTest")]
+        [Test]
+        [Category("UnitTest")]
         [Description("Test for invoking IsLessThan with an array of strings that can be parsed to integers, true is expected")]
-        [Owner("Ashley Lewis")]
+        [Author("Ashley Lewis")]
         
         public void IsLessThan_IsLessThanUnitTest_Invoke_TrueIsReturned()
 
@@ -35,21 +36,21 @@ namespace Dev2.Data.Tests.Operations
             //exe
             var actual = comparer.Invoke(new[] { "2", "100" });
             //assert
-            Assert.IsTrue(actual, "IsLessThan returned the wrong result when comparing integers");
+            NUnit.Framework.Assert.IsTrue(actual, "IsLessThan returned the wrong result when comparing integers");
 
             //exe
             actual = comparer.Invoke(new[] { "SomeVal", "Val2" });
             //assert
-            Assert.IsTrue(actual, "IsLessThan returned the wrong result when comparing strings");
+            NUnit.Framework.Assert.IsTrue(actual, "IsLessThan returned the wrong result when comparing strings");
 
             //exe
             actual = comparer.Invoke(new[] { string.Empty });
             //assert
-            Assert.IsFalse(actual, "IsLessThan returned the wrong result when comparing empty string");
+            NUnit.Framework.Assert.IsFalse(actual, "IsLessThan returned the wrong result when comparing empty string");
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthmembu")]        
+        [Test]
+        [Author("Sanele Mthmembu")]        
         public void IsLessThan_HandleType_ShouldReturnIsLessThan()
         {
             var decisionType = enDecisionType.IsLessThan;
@@ -57,13 +58,13 @@ namespace Dev2.Data.Tests.Operations
             var isLessThan = new IsLessThan();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.AreEqual(decisionType, isLessThan.HandlesType());
+            NUnit.Framework.Assert.AreEqual(decisionType, isLessThan.HandlesType());
         }
 
-        [TestMethod]
-        [TestCategory("UnitTest")]
+        [Test]
+        [Category("UnitTest")]
         [Description("Test for invoking IsLessThan with an array of strings that can be parsed to integers, false is expected")]
-        [Owner("Ashley Lewis")]
+        [Author("Ashley Lewis")]
         
         public void IsLessThan_IsLessThanUnitTest_Invoke_FalseIsReturned()
 
@@ -75,13 +76,13 @@ namespace Dev2.Data.Tests.Operations
             var actual = comparer.Invoke(new[] { "100", "2" });
 
             //assert
-            Assert.IsFalse(actual, "IsLessThan returned the wrong result when comparing integers");
+            NUnit.Framework.Assert.IsFalse(actual, "IsLessThan returned the wrong result when comparing integers");
         }
 
-        [TestMethod]
-        [TestCategory("UnitTest")]
+        [Test]
+        [Category("UnitTest")]
         [Description("Test for invoking IsLessThan with an array of strings that can be parsed to decimals, true is expected")]
-        [Owner("Ashley Lewis")]
+        [Author("Ashley Lewis")]
         
         public void IsLessThan_IsLessThanUnitTest_InvokeWithDecimals_TrueIsReturned()
 
@@ -93,17 +94,17 @@ namespace Dev2.Data.Tests.Operations
             var actual = comparer.Invoke(new[] { "2.75", "100.25" });
 
             //assert
-            Assert.IsTrue(actual, "IsLessThan returned the wrong result when comparing integers");
+            NUnit.Framework.Assert.IsTrue(actual, "IsLessThan returned the wrong result when comparing integers");
         }
 
         #endregion
 
         #region IsGreaterThan
 
-        [TestMethod]
-        [TestCategory("UnitTest")]
+        [Test]
+        [Category("UnitTest")]
         [Description("Test for invoking IsGreaterThan with an array of strings that can be parsed to integers, true is expected")]
-        [Owner("Ashley Lewis")]
+        [Author("Ashley Lewis")]
         
         public void IsGreaterThan_IsGreaterThanUnitTest_Invoke_TrueIsReturned()
 
@@ -115,13 +116,13 @@ namespace Dev2.Data.Tests.Operations
             var actual = comparer.Invoke(new[] { "100", "2" });
 
             //assert
-            Assert.IsTrue(actual, "IsGreaterThan returned the wrong result when comparing integers");
+            NUnit.Framework.Assert.IsTrue(actual, "IsGreaterThan returned the wrong result when comparing integers");
         }
 
-        [TestMethod]
-        [TestCategory("UnitTest")]
+        [Test]
+        [Category("UnitTest")]
         [Description("Test for invoking IsGreaterThan with an array of strings that can be parsed to integers, false is expected")]
-        [Owner("Ashley Lewis")]
+        [Author("Ashley Lewis")]
         
         public void IsGreaterThan_IsGreaterThanUnitTest_Invoke_FalseIsReturned()
 
@@ -133,22 +134,22 @@ namespace Dev2.Data.Tests.Operations
             var actual = comparer.Invoke(new[] { "2", "100" });
 
             //assert
-            Assert.IsFalse(actual, "IsGreaterThan returned the wrong result when comparing integers");
+            NUnit.Framework.Assert.IsFalse(actual, "IsGreaterThan returned the wrong result when comparing integers");
 
             //exe
             actual = comparer.Invoke(new[] { "SomeVal", "AnotherVal" });
             //assert
-            Assert.IsTrue(actual, "IsGreaterThan returned the wrong result when comparing strings");
+            NUnit.Framework.Assert.IsTrue(actual, "IsGreaterThan returned the wrong result when comparing strings");
 
             //exe
             actual = comparer.Invoke(new[] { string.Empty });
             //assert
-            Assert.IsFalse(actual, "IsGreaterThan returned the wrong result when comparing empty string");
+            NUnit.Framework.Assert.IsFalse(actual, "IsGreaterThan returned the wrong result when comparing empty string");
         }
 
 
-        [TestMethod]
-        [Owner("Sanele Mthmembu")]
+        [Test]
+        [Author("Sanele Mthmembu")]
         public void IsGreaterThan_HandleType_ShouldReturnIsGreaterThan()
         {
             var decisionType = enDecisionType.IsGreaterThan;
@@ -156,17 +157,17 @@ namespace Dev2.Data.Tests.Operations
             var greaterThan = new IsGreaterThan();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.AreEqual(decisionType, greaterThan.HandlesType());
+            NUnit.Framework.Assert.AreEqual(decisionType, greaterThan.HandlesType());
         }
 
         #endregion
 
         #region IsGreaterThanOrEqual
 
-        [TestMethod]
-        [TestCategory("UnitTest")]
+        [Test]
+        [Category("UnitTest")]
         [Description("Test for invoking IsGreaterThanOrEqual with an array of strings that can be parsed to integers, true is expected")]
-        [Owner("Ashley Lewis")]
+        [Author("Ashley Lewis")]
         
         public void IsGreaterThanOrEqual_IsGreaterThanOrEqualUnitTest_InvokeWithEqualStrings_TrueIsReturned()
     
@@ -178,13 +179,13 @@ namespace Dev2.Data.Tests.Operations
             var actual = comparer.Invoke(new[] { "2", "2" });
 
             //assert
-            Assert.IsTrue(actual, "IsGreaterThanOrEqual returned the wrong result when comparing integers");
+            NUnit.Framework.Assert.IsTrue(actual, "IsGreaterThanOrEqual returned the wrong result when comparing integers");
         }
 
-        [TestMethod]
-        [TestCategory("UnitTest")]
+        [Test]
+        [Category("UnitTest")]
         [Description("Test for invoking IsGreaterThanOrEqual with an array of equal strings that can be parsed to integers, true is expected")]
-        [Owner("Ashley Lewis")]
+        [Author("Ashley Lewis")]
         
         public void IsGreaterThanOrEqual_IsGreaterThanOrEqualUnitTest_Invoke_TrueIsReturned()
     
@@ -196,22 +197,22 @@ namespace Dev2.Data.Tests.Operations
             var actual = comparer.Invoke(new[] { "100", "2" });
 
             //assert
-            Assert.IsTrue(actual, "IsGreaterThanOrEqual returned the wrong result when comparing integers");
+            NUnit.Framework.Assert.IsTrue(actual, "IsGreaterThanOrEqual returned the wrong result when comparing integers");
             //exe
             actual = comparer.Invoke(new[] { "Vals", "Val2" });
             //assert
-            Assert.IsTrue(actual, "IsGreaterThanOrEqual returned the wrong result when comparing strings");
+            NUnit.Framework.Assert.IsTrue(actual, "IsGreaterThanOrEqual returned the wrong result when comparing strings");
 
             //exe
             actual = comparer.Invoke(new[] { string.Empty });
             //assert
-            Assert.IsFalse(actual, "IsGreaterThanOrEqual returned the wrong result when comparing empty string");
+            NUnit.Framework.Assert.IsFalse(actual, "IsGreaterThanOrEqual returned the wrong result when comparing empty string");
         }
 
-        [TestMethod]
-        [TestCategory("UnitTest")]
+        [Test]
+        [Category("UnitTest")]
         [Description("Test for invoking IsGreaterThanOrEqual with an array of strings that can be parsed to integers, false is expected")]
-        [Owner("Ashley Lewis")]
+        [Author("Ashley Lewis")]
         
         public void IsGreaterThanOrEqual_IsGreaterThanOrEqualUnitTest_Invoke_FalseIsReturned()
     
@@ -223,12 +224,12 @@ namespace Dev2.Data.Tests.Operations
             var actual = comparer.Invoke(new[] { "2", "100" });
 
             //assert
-            Assert.IsFalse(actual, "IsGreaterThanOrEqual returned the wrong result when comparing integers");
+            NUnit.Framework.Assert.IsFalse(actual, "IsGreaterThanOrEqual returned the wrong result when comparing integers");
         }
 
 
-        [TestMethod]
-        [Owner("Sanele Mthmembu")]
+        [Test]
+        [Author("Sanele Mthmembu")]
         public void IsGreaterThanOrEqual_HandleType_ShouldReturbIsGreaterThanOrEqual()
         {
             var decisionType = enDecisionType.IsGreaterThanOrEqual;
@@ -236,7 +237,7 @@ namespace Dev2.Data.Tests.Operations
             var isGreaterThanOrEqual = new IsGreaterThanOrEqual();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.AreEqual(decisionType, isGreaterThanOrEqual.HandlesType());
+            NUnit.Framework.Assert.AreEqual(decisionType, isGreaterThanOrEqual.HandlesType());
         }
 
 
@@ -244,10 +245,10 @@ namespace Dev2.Data.Tests.Operations
 
         #region IsLessThanOrEqual
 
-        [TestMethod]
-        [TestCategory("UnitTest")]
+        [Test]
+        [Category("UnitTest")]
         [Description("Test for invoking IsLessThanOrEqual with an array of strings that can be parsed to integers, true is expected")]
-        [Owner("Ashley Lewis")]
+        [Author("Ashley Lewis")]
         
         public void IsLessThanOrEqual_IsLessThanOrEqualUnitTest_Invoke_TrueIsReturned()
 
@@ -259,13 +260,13 @@ namespace Dev2.Data.Tests.Operations
             var actual = comparer.Invoke(new[] { "2", "100" });
 
             //assert
-            Assert.IsTrue(actual, "IsLessThanOrEqual returned the wrong result when comparing integers");
+            NUnit.Framework.Assert.IsTrue(actual, "IsLessThanOrEqual returned the wrong result when comparing integers");
         }
 
-        [TestMethod]
-        [TestCategory("UnitTest")]
+        [Test]
+        [Category("UnitTest")]
         [Description("Test for invoking IsLessThanOrEqual with an array of equal strings that can be parsed to integers, true is expected")]
-        [Owner("Ashley Lewis")]
+        [Author("Ashley Lewis")]
         
         public void IsLessThanOrEqual_IsLessThanOrEqualUnitTest_InvokeWithEqualStrings_TrueIsReturned()
 
@@ -276,21 +277,21 @@ namespace Dev2.Data.Tests.Operations
             //exe
             var actual = comparer.Invoke(new[] { "2", "2" });
             //assert
-            Assert.IsTrue(actual, "IsLessThanOrEqual returned the wrong result when comparing integers");
+            NUnit.Framework.Assert.IsTrue(actual, "IsLessThanOrEqual returned the wrong result when comparing integers");
 
             //exe
             actual = comparer.Invoke(new[] { "SomeVal", "SomeVal" });
             //assert
-            Assert.IsTrue(actual, "IsLessThanOrEqual returned the wrong result when comparing strings");
+            NUnit.Framework.Assert.IsTrue(actual, "IsLessThanOrEqual returned the wrong result when comparing strings");
 
             //exe
             actual = comparer.Invoke(new[] {string.Empty});
             //assert
-            Assert.IsFalse(actual, "IsLessThanOrEqual returned the wrong result when comparing empty string");
+            NUnit.Framework.Assert.IsFalse(actual, "IsLessThanOrEqual returned the wrong result when comparing empty string");
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthmembu")]
+        [Test]
+        [Author("Sanele Mthmembu")]
         public void IsLessThanOrEqual_ShouldReturnedIsLessThanOrEqualDecisionType()
         {
             var decisionType = enDecisionType.IsLessThanOrEqual;
@@ -298,13 +299,13 @@ namespace Dev2.Data.Tests.Operations
             var isLessThanOrEqual = new IsLessThanOrEqual();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.AreEqual(decisionType, isLessThanOrEqual.HandlesType());
+            NUnit.Framework.Assert.AreEqual(decisionType, isLessThanOrEqual.HandlesType());
         }
 
-        [TestMethod]
-        [TestCategory("UnitTest")]
+        [Test]
+        [Category("UnitTest")]
         [Description("Test for invoking IsLessThanOrEqual with an array of strings that can be parsed to integers, false is expected")]
-        [Owner("Ashley Lewis")]
+        [Author("Ashley Lewis")]
         
         public void IsLessThanOrEqual_IsLessThanOrEqualUnitTest_Invoke_FalseIsReturned()
 
@@ -316,7 +317,7 @@ namespace Dev2.Data.Tests.Operations
             var actual = comparer.Invoke(new[] { "100", "2" });
 
             //assert
-            Assert.IsFalse(actual, "IsLessThanOrEqual returned the wrong result when comparing integers");
+            NUnit.Framework.Assert.IsFalse(actual, "IsLessThanOrEqual returned the wrong result when comparing integers");
         }
 
 
@@ -324,10 +325,10 @@ namespace Dev2.Data.Tests.Operations
 
         #region Equal
 
-        [TestMethod]
-        [TestCategory("UnitTest")]
+        [Test]
+        [Category("UnitTest")]
         [Description("Test for invoking IsLessThanOrEqual with an array of strings that can be parsed to integers, true is expected")]
-        [Owner("Ashley Lewis")]
+        [Author("Ashley Lewis")]
         
         public void IsEqual_IsEqualUnitTest_Invoke_TrueIsReturned()
 
@@ -339,13 +340,13 @@ namespace Dev2.Data.Tests.Operations
             var actual = comparer.Invoke(new[] { "100", "100" });
 
             //assert
-            Assert.IsTrue(actual, "IsEqual returned the wrong result when comparing integers");
+            NUnit.Framework.Assert.IsTrue(actual, "IsEqual returned the wrong result when comparing integers");
         }           
         
-        [TestMethod]
-        [TestCategory("UnitTest")]
+        [Test]
+        [Category("UnitTest")]
         [Description("Test for invoking IsLessThanOrEqual with an array of strings that can be parsed to integers, true is expected")]
-        [Owner("Ashley Lewis")]
+        [Author("Ashley Lewis")]
         
         public void IsEqual_IsEqualUnitTest_Invoke_TrueIsReturned_Decimal()
 
@@ -357,22 +358,22 @@ namespace Dev2.Data.Tests.Operations
             var actual = comparer.Invoke(new[] { "1.8", "1.80" });
 
             //assert
-            Assert.IsTrue(actual, "IsEqual returned the wrong result when comparing integers");
+            NUnit.Framework.Assert.IsTrue(actual, "IsEqual returned the wrong result when comparing integers");
 
             //exe
             actual = comparer.Invoke(new[] { "Val", "Val" });
             //assert
-            Assert.IsTrue(actual, "IsEqual returned the wrong result when comparing strings");
+            NUnit.Framework.Assert.IsTrue(actual, "IsEqual returned the wrong result when comparing strings");
 
             //exe
             actual = comparer.Invoke(new[] { string.Empty, "Something" });
             //assert
-            Assert.IsFalse(actual, "IsEqual returned the wrong result when comparing empty string");
+            NUnit.Framework.Assert.IsFalse(actual, "IsEqual returned the wrong result when comparing empty string");
         }
 
 
-        [TestMethod]
-        [Owner("Sanele Mthmembu")]
+        [Test]
+        [Author("Sanele Mthmembu")]
         public void IsEqual_IsEqualUnitTest_HandleType_ShouldReturnIsEqual()
         {
             var decisionType = enDecisionType.IsEqual;
@@ -380,7 +381,7 @@ namespace Dev2.Data.Tests.Operations
             var isEqual = new IsEqual();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.AreEqual(decisionType, isEqual.HandlesType());
+            NUnit.Framework.Assert.AreEqual(decisionType, isEqual.HandlesType());
         }
 
 
@@ -388,31 +389,31 @@ namespace Dev2.Data.Tests.Operations
 
         #region Equal
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]        
+        [Test]
+        [Author("Sanele Mthembu")]        
         public void IsNotEqual_IsNotEqualUnitTest_Invoke_TrueIsReturned()
         {
             var comparer = new IsNotEqual();            
             var actual = comparer.Invoke(new[] { "100", "100" });
-            Assert.IsFalse(actual, "IsNotEqual returned the wrong result when comparing integers");
+            NUnit.Framework.Assert.IsFalse(actual, "IsNotEqual returned the wrong result when comparing integers");
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]        
+        [Test]
+        [Author("Sanele Mthembu")]        
         public void IsNotEqual_IsNotEqualUnitTest_Invoke_TrueIsReturned_Decimal()
 
         {            
             var comparer = new IsNotEqual();
             var actual = comparer.Invoke(new[] { "1.08", "1.80" });
-            Assert.IsTrue(actual, "IsNotEqual returned the wrong result when comparing integers");
+            NUnit.Framework.Assert.IsTrue(actual, "IsNotEqual returned the wrong result when comparing integers");
             
             actual = comparer.Invoke(new[] { "Val", "Val" });
-            Assert.IsFalse(actual, "IsNotEqual returned the wrong result when comparing strings");
+            NUnit.Framework.Assert.IsFalse(actual, "IsNotEqual returned the wrong result when comparing strings");
         }
 
 
-        [TestMethod]
-        [Owner("Sanele Mthmembu")]
+        [Test]
+        [Author("Sanele Mthmembu")]
         public void IsNotEqual_IsNotEqualUnitTest_HandleType_ShouldReturnIsNotEqual()
         {
             var decisionType = enDecisionType.IsNotEqual;
@@ -420,7 +421,7 @@ namespace Dev2.Data.Tests.Operations
             var isNotEqual = new IsNotEqual();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.AreEqual(decisionType, isNotEqual.HandlesType());
+            NUnit.Framework.Assert.AreEqual(decisionType, isNotEqual.HandlesType());
         }
 
 
@@ -432,9 +433,9 @@ namespace Dev2.Data.Tests.Operations
 
         #region NotBetween
 
-        [TestMethod]
-        [Owner("Ashley Lewis")]
-        [TestCategory("NotBetween_Invoke")]
+        [Test]
+        [Author("Ashley Lewis")]
+        [Category("NotBetween_Invoke")]
         public void NotBetween_InvokeWithDoubles_NotBetween_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -448,12 +449,12 @@ namespace Dev2.Data.Tests.Operations
             var result = notBetween.Invoke(cols);
 
             //------------Assert Results-------------------------
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Ashley Lewis")]
-        [TestCategory("NotBetween_Invoke")]
+        [Test]
+        [Author("Ashley Lewis")]
+        [Category("NotBetween_Invoke")]
         public void NotBetween_InvokeWithDoubles_NotBetween_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -467,7 +468,7 @@ namespace Dev2.Data.Tests.Operations
             var result = notBetween.Invoke(cols);
 
             //------------Assert Results-------------------------
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
         #endregion

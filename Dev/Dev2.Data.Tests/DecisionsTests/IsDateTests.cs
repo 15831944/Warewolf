@@ -1,24 +1,25 @@
 using Dev2.Data.Decisions.Operations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests.DecisionsTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IsDateTests
     {
-        [TestInitialize]
+        [SetUp]
         public void PreConditions()
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-ZA");
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-ZA");
 
-            Assert.AreEqual("en-ZA", System.Threading.Thread.CurrentThread.CurrentCulture.Name);
-            Assert.AreEqual("en-ZA", System.Threading.Thread.CurrentThread.CurrentUICulture.Name);
+            NUnit.Framework.Assert.AreEqual("en-ZA", System.Threading.Thread.CurrentThread.CurrentCulture.Name);
+            NUnit.Framework.Assert.AreEqual("en-ZA", System.Threading.Thread.CurrentThread.CurrentUICulture.Name);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("IsDate_Invoke")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("IsDate_Invoke")]
         public void GivenSomeString_IsDate_Invoke_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -28,12 +29,12 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = isDate.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("IsDate_Invoke")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("IsDate_Invoke")]
         public void IsDate_Invoke_IsDate_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -43,12 +44,12 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = notStartsWith.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthmembu")]
-        [TestCategory("IsDate_HandlesType")]
+        [Test]
+        [Author("Sanele Mthmembu")]
+        [Category("IsDate_HandlesType")]
         public void IsDate_HandlesType_ReturnsIsDateType()
         {
             var decisionType = enDecisionType.IsDate;
@@ -56,7 +57,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             var isDate = new IsDate();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.AreEqual(decisionType, isDate.HandlesType());
+            NUnit.Framework.Assert.AreEqual(decisionType, isDate.HandlesType());
         }
     }
 }

@@ -12,30 +12,31 @@ using Dev2.Common.Interfaces.Wrappers;
 using Dev2.Data.Interfaces;
 using Dev2.Data.PathOperations;
 using Dev2.Data.PathOperations.Operations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 
 namespace Dev2.Data.Tests.PathOperations
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DoGetFilesAsPerTypeOperationTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoGetFilesAsPerTypeOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoGetFilesAsPerTypeOperation))]
         public void DoGetFilesAsPerTypeOperation_Ctor_WithNoPath_ExpectNullReferenceException()
         {
             //---------------------------Arrange---------------------------
             var mockActivityIOPath = new Mock<IActivityIOPath>();
             //---------------------------Act-------------------------------
             //---------------------------Assert----------------------------
-            Assert.ThrowsException<NullReferenceException>(() => new DoGetFilesAsPerTypeOperation(mockActivityIOPath.Object, Interfaces.Enums.ReadTypes.Files));
+            NUnit.Framework.Assert.Throws<NullReferenceException>(() => new DoGetFilesAsPerTypeOperation(mockActivityIOPath.Object, Interfaces.Enums.ReadTypes.Files));
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoGetFilesAsPerTypeOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoGetFilesAsPerTypeOperation))]
         public void DoGetFilesAsPerTypeOperation_ExecuteOperation_WithUnknownPath_ExpectException()
         {
             //---------------------------Arrange---------------------------
@@ -45,12 +46,12 @@ namespace Dev2.Data.Tests.PathOperations
             //---------------------------Act-------------------------------
             var doGetFilesAsPerTypeOperation = new DoGetFilesAsPerTypeOperation(mockActivityIOPath.Object, Interfaces.Enums.ReadTypes.Files);
             //---------------------------Assert----------------------------
-            Assert.ThrowsException<Exception>(() => doGetFilesAsPerTypeOperation.ExecuteOperation());
+            NUnit.Framework.Assert.Throws<Exception>(() => doGetFilesAsPerTypeOperation.ExecuteOperation());
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoGetFilesAsPerTypeOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoGetFilesAsPerTypeOperation))]
         public void DoGetFilesAsPerTypeOperation_ExecuteOperation_ImpersonatedUser_IsNull_AreEqual_ExpectException()
         {
             //---------------------------Arrange---------------------------
@@ -69,12 +70,12 @@ namespace Dev2.Data.Tests.PathOperations
             };
             //---------------------------Assert----------------------------
             mockActivityIOPath.VerifyAll();
-            Assert.ThrowsException<Exception>(() => doGetFilesAsPerTypeOperation.ExecuteOperation());
+            NUnit.Framework.Assert.Throws<Exception>(() => doGetFilesAsPerTypeOperation.ExecuteOperation());
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoGetFilesAsPerTypeOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoGetFilesAsPerTypeOperation))]
         public void DoGetFilesAsPerTypeOperation_ExecuteOperation_ImpersonatedUser_IsNull_IsStarWildCard_True_AreEqual_ExpectTrue()
         {
             //---------------------------Arrange---------------------------
@@ -94,12 +95,12 @@ namespace Dev2.Data.Tests.PathOperations
             var list = doGetFilesAsPerTypeOperation.ExecuteOperation();
             //---------------------------Assert----------------------------
             mockActivityIOPath.VerifyAll();
-            Assert.AreEqual(0, list.Count);
+            NUnit.Framework.Assert.AreEqual(0, list.Count);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoGetFilesAsPerTypeOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoGetFilesAsPerTypeOperation))]
         public void DoGetFilesAsPerTypeOperation_ExecuteOperation_ImpersonatedUser_IsNotNull_AreEqual_ExpectTrue()
         {
             //---------------------------Arrange---------------------------
@@ -120,12 +121,12 @@ namespace Dev2.Data.Tests.PathOperations
             var list = doGetFilesAsPerTypeOperation.ExecuteOperation();
             //---------------------------Assert----------------------------
             mockActivityIOPath.VerifyAll();
-            Assert.AreEqual(0, list.Count);
+            NUnit.Framework.Assert.AreEqual(0, list.Count);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoGetFilesAsPerTypeOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoGetFilesAsPerTypeOperation))]
         public void DoGetFilesAsPerTypeOperation_ExecuteOperation_ImpersonatedUser_IsNotNull_IsStarWildCard_True_AreEqual_ExpectTrue()
         {
             //---------------------------Arrange---------------------------
@@ -146,12 +147,12 @@ namespace Dev2.Data.Tests.PathOperations
             var list = doGetFilesAsPerTypeOperation.ExecuteOperationWithAuth();
             //---------------------------Assert----------------------------
             mockActivityIOPath.VerifyAll();
-            Assert.AreEqual(0, list.Count);
+            NUnit.Framework.Assert.AreEqual(0, list.Count);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoGetFilesAsPerTypeOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoGetFilesAsPerTypeOperation))]
         public void DoGetFilesAsPerTypeOperation_ExecuteOperation_DirectoryExists_True_AreEqual_ExpectTrue()
         {
             //---------------------------Arrange---------------------------
@@ -173,7 +174,7 @@ namespace Dev2.Data.Tests.PathOperations
             //---------------------------Assert----------------------------
             mockDirectory.VerifyAll();
             mockActivityIOPath.VerifyAll();
-            Assert.AreEqual(0, list.Count);
+            NUnit.Framework.Assert.AreEqual(0, list.Count);
         }
     }
 }

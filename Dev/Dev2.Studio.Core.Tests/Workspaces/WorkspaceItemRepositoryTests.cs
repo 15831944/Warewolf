@@ -15,32 +15,33 @@ using Dev2.Communication;
 using Dev2.Studio.Interfaces;
 using Dev2.Studio.Interfaces.Enums;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json;
 
 
 namespace Dev2.Core.Tests.Workspaces
 {
-    [TestClass]
-    [TestCategory("Studio Workspaces Core")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Studio Workspaces Core")]
     public class WorkspaceItemRepositoryTests
     {
         #region Static Class Init
 
         static string _testDir;
 
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void MyClassInit(TestContext context)
         {
-            _testDir = context.DeploymentDirectory;
+            _testDir = context.TestDirectory;
         }
 
         #endregion
 
         #region WorkspaceItems
 
-        [TestMethod]
+        [Test]
         public void WorkspaceItemRepositoryWorkspaceItemsExpectedInvokesReadFirstTime()
         {
 
@@ -73,9 +74,9 @@ namespace Dev2.Core.Tests.Workspaces
             Assert.AreEqual(WorkspaceItem.ServiceServiceType, items[0].ServiceType);
         }
 
-        [TestMethod]
+        [Test]
         [Description("UpdateMode workspace item IsWorkflowSaved based on the resource")]
-        [Owner("Huggs")]
+        [Author("Huggs")]
         public void WorkspaceItemRepository_UnitTest_UpdateWorkspaceItemIsWorkflowSaved_ExpectSetsWorkspaceItemIsWorkflowSavedFalse()
         {
 
@@ -118,7 +119,7 @@ namespace Dev2.Core.Tests.Workspaces
 
         #region AddWorkspaceItem
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void WorkspaceItemRepositoryAddWorkspaceItemWithNullModelExpectedThrowsArgumentNullException()
         {
@@ -126,7 +127,7 @@ namespace Dev2.Core.Tests.Workspaces
             repository.AddWorkspaceItem(null);
         }
 
-        [TestMethod]
+        [Test]
         public void WorkspaceItemRepositoryAddWorkspaceItemWithExistingModelExpectedDoesNothing()
         {
 
@@ -151,7 +152,7 @@ namespace Dev2.Core.Tests.Workspaces
             Assert.AreEqual(1, repository.WorkspaceItems.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void WorkspaceItemRepositoryAddWorkspaceItemWithNewModelExpectedAddsAndAssignsWorkspaceID()
         {
 
@@ -172,7 +173,7 @@ namespace Dev2.Core.Tests.Workspaces
             Assert.AreEqual(workspaceID, repository.WorkspaceItems[0].WorkspaceID);
         }
 
-        [TestMethod]
+        [Test]
         public void WorkspaceItemRepositoryAddWorkspaceItemWithNewModelExpectedAddsAndAssignsServerID()
         {
 
@@ -193,7 +194,7 @@ namespace Dev2.Core.Tests.Workspaces
             Assert.AreEqual(serverID, repository.WorkspaceItems[0].ServerID);
         }
 
-        [TestMethod]
+        [Test]
         public void WorkspaceItemRepositoryAddWorkspaceItemWithNewModelExpectedAddsAndAssignsServiceName()
         {
 
@@ -214,7 +215,7 @@ namespace Dev2.Core.Tests.Workspaces
             Assert.AreEqual(resourceName, repository.WorkspaceItems[0].ServiceName);
         }
 
-        [TestMethod]
+        [Test]
         public void WorkspaceItemRepositoryAddWorkspaceItemWithNewServiceModelExpectedAddsAndAssignsServiceServiceType()
         {
 
@@ -234,7 +235,7 @@ namespace Dev2.Core.Tests.Workspaces
             Assert.AreEqual(WorkspaceItem.ServiceServiceType, repository.WorkspaceItems[0].ServiceType);
         }
 
-        [TestMethod]
+        [Test]
         public void WorkspaceItemRepositoryAddWorkspaceItemWithNewSourceModelExpectedAddsAndAssignsSourceServiceType()
         {
 
@@ -254,7 +255,7 @@ namespace Dev2.Core.Tests.Workspaces
             Assert.AreEqual(WorkspaceItem.SourceServiceType, repository.WorkspaceItems[0].ServiceType);
         }
 
-        [TestMethod]
+        [Test]
         public void WorkspaceItemRepositoryAddWorkspaceItemWithNewModelExpectedInvokesWrite()
         {
 
@@ -277,7 +278,7 @@ namespace Dev2.Core.Tests.Workspaces
         }
 
         //Added by Massimo.Guerrera this will ensure that when saving a remote workflow that it will save to the right workspace
-        [TestMethod]
+        [Test]
         public void WorkspaceItemRepositoryAddWorkspaceItemWithNewModelWithSameNameExpectedInvokesWrite()
         {
             var workspaceID = Guid.NewGuid();
@@ -311,7 +312,7 @@ namespace Dev2.Core.Tests.Workspaces
 
         #region Remove
 
-        [TestMethod]
+        [Test]
         public void WorkspaceItemRepositoryRemoveWithNonExistingModelExpectedDoesNothing()
         {
 
@@ -334,7 +335,7 @@ namespace Dev2.Core.Tests.Workspaces
             Assert.AreEqual(1, repository.WorkspaceItems.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void WorkspaceItemRepositoryRemoveWithExistingModelExpectedRemovesItem()
         {
 
@@ -357,7 +358,7 @@ namespace Dev2.Core.Tests.Workspaces
             mockResourceRepo.Verify(resourceRepository => resourceRepository.DeleteResourceFromWorkspaceAsync(It.IsAny<IContextualResourceModel>()), Times.Once());
         }
 
-        [TestMethod]
+        [Test]
         public void WorkspaceItemRepositoryRemoveWithExistingModelExpectedInvokesWrite()
         {
 

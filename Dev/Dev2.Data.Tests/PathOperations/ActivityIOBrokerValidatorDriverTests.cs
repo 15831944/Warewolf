@@ -15,18 +15,19 @@ using Dev2.Common.Interfaces.Wrappers;
 using Dev2.Data.Interfaces;
 using Dev2.Data.Interfaces.Enums;
 using Dev2.PathOperations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Resource.Errors;
 
 namespace Dev2.Data.Tests.PathOperations
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ActivityIOBrokerValidatorDriverTests
     {
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ActivityIOBrokerValidatorDriver))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ActivityIOBrokerValidatorDriver))]
         public void ActivityIOBrokerValidatorDriver_ValidateUnzipSourceDestinationFileOperation_InvalidSource()
         {
             //---------------Set up test pack-------------------
@@ -50,14 +51,14 @@ namespace Dev2.Data.Tests.PathOperations
             catch (Exception ex)
             {
                 hadException = true;
-                Assert.AreEqual(ErrorResource.SourceCannotBeAnEmptyString, ex.Message);
+                NUnit.Framework.Assert.AreEqual(ErrorResource.SourceCannotBeAnEmptyString, ex.Message);
             }
-            Assert.IsTrue(hadException);
+            NUnit.Framework.Assert.IsTrue(hadException);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ActivityIOBrokerValidatorDriver))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ActivityIOBrokerValidatorDriver))]
         public void ActivityIOBrokerValidatorDriver_ValidateUnzipSourceDestinationFileOperation_DestinationNotADirectory()
         {
             //---------------Set up test pack-------------------
@@ -85,14 +86,14 @@ namespace Dev2.Data.Tests.PathOperations
             catch (Exception ex1)
             {
                 hadException = true;
-                Assert.AreEqual(ErrorResource.DestinationMustBeADirectory, ex1.Message);
+                NUnit.Framework.Assert.AreEqual(ErrorResource.DestinationMustBeADirectory, ex1.Message);
             }
-            Assert.IsTrue(hadException);
+            NUnit.Framework.Assert.IsTrue(hadException);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ActivityIOBrokerValidatorDriver))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ActivityIOBrokerValidatorDriver))]
         public void ActivityIOBrokerValidatorDriver_ValidateUnzipSourceDestinationFileOperation_SourceNotAFile()
         {
             //---------------Set up test pack-------------------
@@ -123,14 +124,14 @@ namespace Dev2.Data.Tests.PathOperations
             catch (Exception ex2)
             {
                 hadException = true;
-                Assert.AreEqual(ErrorResource.SourceMustBeAFile, ex2.Message);
+                NUnit.Framework.Assert.AreEqual(ErrorResource.SourceMustBeAFile, ex2.Message);
             }
-            Assert.IsTrue(hadException);
+            NUnit.Framework.Assert.IsTrue(hadException);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ActivityIOBrokerValidatorDriver))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ActivityIOBrokerValidatorDriver))]
         public void ActivityIOBrokerValidatorDriver_ValidateUnzipSourceDestinationFileOperation_DestinationDirectoryExists()
         {
             //---------------Set up test pack-------------------
@@ -164,18 +165,18 @@ namespace Dev2.Data.Tests.PathOperations
             catch (Exception ex3)
             {
                 hadException = true;
-                Assert.AreEqual(ErrorResource.DestinationDirectoryExist, ex3.Message);
+                NUnit.Framework.Assert.AreEqual(ErrorResource.DestinationDirectoryExist, ex3.Message);
                 args = new Dev2UnZipOperationTO("pa", true);
 
                 var invoke = driver.ValidateUnzipSourceDestinationFileOperation(src.Object, dst.Object, args, performAfterValidation);
-                Assert.AreEqual(performAfterValidation.Invoke(), invoke.ToString());
+                NUnit.Framework.Assert.AreEqual(performAfterValidation.Invoke(), invoke.ToString());
             }
-            Assert.IsTrue(hadException);
+            NUnit.Framework.Assert.IsTrue(hadException);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ActivityIOBrokerValidatorDriver))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ActivityIOBrokerValidatorDriver))]
         public void ActivityIOBrokerValidatorDriver_ValidateCopySourceDestinationFileOperation_PathIs_NotDirectory_ExpectSuccess()
         {
             //---------------------------Arrange-----------------------------
@@ -206,7 +207,7 @@ namespace Dev2.Data.Tests.PathOperations
             //---------------------------Act---------------------------------
             var fileOperation = driver.ValidateCopySourceDestinationFileOperation(mockActivityIOOperationsEndPointSrc.Object, mockActivityIOOperationsEndPointDst.Object, mockDev2CRUDOperationTO.Object, () => "test func");
             //---------------------------Assert------------------------------
-            Assert.AreEqual("test func", fileOperation);
+            NUnit.Framework.Assert.AreEqual("test func", fileOperation);
             mockActivityIOPathSrc.VerifyAll();
             mockActivityIOPathDst.VerifyAll();
             mockActivityIOOperationsEndPointDst.VerifyAll();
@@ -214,9 +215,9 @@ namespace Dev2.Data.Tests.PathOperations
             mockActivityIOOperationsEndPointSrc.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ActivityIOBrokerValidatorDriver))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ActivityIOBrokerValidatorDriver))]
         public void ActivityIOBrokerValidatorDriver_ValidateCopySourceDestinationFileOperation_PathIs_Directory_ExpectFail()
         {
             //---------------------------Arrange-----------------------------
@@ -253,7 +254,7 @@ namespace Dev2.Data.Tests.PathOperations
             //---------------------------Act---------------------------------
             var fileOperation = driver.ValidateCopySourceDestinationFileOperation(mockActivityIOOperationsEndPointSrc.Object, mockActivityIOOperationsEndPointDst.Object, mockDev2CRUDOperationTO.Object, () => "test func");
             //---------------------------Assert------------------------------
-            Assert.AreEqual("Success", fileOperation);
+            NUnit.Framework.Assert.AreEqual("Success", fileOperation);
             mockActivityIOPathSrc.VerifyAll();
             mockActivityIOPathDst.VerifyAll();
             mockCommon.VerifyAll();
@@ -261,9 +262,9 @@ namespace Dev2.Data.Tests.PathOperations
             mockActivityIOOperationsEndPointSrc.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ActivityIOBrokerValidatorDriver))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ActivityIOBrokerValidatorDriver))]
         public void ActivityIOBrokerValidatorDriver_ValidateCopySourceDestinationFileOperation_PathIs_File_IsStarWildCard_ExpectSuccess()
         {
             //---------------------------Arrange-----------------------------
@@ -299,7 +300,7 @@ namespace Dev2.Data.Tests.PathOperations
             //---------------------------Act---------------------------------
             var fileOperation = driver.ValidateCopySourceDestinationFileOperation(mockActivityIOOperationsEndPointSrc.Object, mockActivityIOOperationsEndPointDst.Object, mockDev2CRUDOperationTO.Object, () => "test func");
             //---------------------------Assert------------------------------
-            Assert.AreEqual("Success", fileOperation);
+            NUnit.Framework.Assert.AreEqual("Success", fileOperation);
             mockActivityIOPathSrc.VerifyAll();
             mockActivityIOPathDst.VerifyAll();
             mockCommon.VerifyAll();
@@ -307,9 +308,9 @@ namespace Dev2.Data.Tests.PathOperations
             mockActivityIOOperationsEndPointSrc.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ActivityIOBrokerValidatorDriver))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ActivityIOBrokerValidatorDriver))]
         public void ActivityIOBrokerValidatorDriver_ValidateCopySourceDestinationFileOperation_EnsureFilesDontExists_Overwrite_False_PathTypeIsFile_ExpectException()
         {
             //---------------------------Arrange-----------------------------
@@ -339,7 +340,7 @@ namespace Dev2.Data.Tests.PathOperations
             var driver = new ActivityIOBrokerValidatorDriver(mockFile.Object, mockCommon.Object);
             //---------------------------Act---------------------------------
             //---------------------------Assert------------------------------
-            Assert.ThrowsException<Exception>(() => driver.ValidateCopySourceDestinationFileOperation(mockActivityIOOperationsEndPointSrc.Object, mockActivityIOOperationsEndPointDst.Object, mockDev2CRUDOperationTO.Object, () => "test func"), "A file with the same name exists on the destination and overwrite is set to false");
+            NUnit.Framework.Assert.Throws<Exception>(() => driver.ValidateCopySourceDestinationFileOperation(mockActivityIOOperationsEndPointSrc.Object, mockActivityIOOperationsEndPointDst.Object, mockDev2CRUDOperationTO.Object, () => "test func"), "A file with the same name exists on the destination and overwrite is set to false");
             mockActivityIOOperationsEndPointDst.VerifyAll();
             mockActivityIOOperationsEndPointSrc.VerifyAll();
             mockActivityIOPathSrc.VerifyAll();
@@ -347,9 +348,9 @@ namespace Dev2.Data.Tests.PathOperations
             mockCommon.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ActivityIOBrokerValidatorDriver))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ActivityIOBrokerValidatorDriver))]
         public void ActivityIOBrokerValidatorDriver_ValidateCopySourceDestinationFileOperation_EnsureFilesDontExists_Overwrite_False_PathTypeIsNotFile_ExpectFuncInvoke()
         {
             //---------------------------Arrange-----------------------------
@@ -389,7 +390,7 @@ namespace Dev2.Data.Tests.PathOperations
             //---------------------------Act---------------------------------
             var fileOperation = driver.ValidateCopySourceDestinationFileOperation(mockActivityIOOperationsEndPointSrc.Object, mockActivityIOOperationsEndPointDst.Object, mockDev2CRUDOperationTO.Object, () => "test func");
             //---------------------------Assert------------------------------
-            Assert.AreEqual("test func", fileOperation);
+            NUnit.Framework.Assert.AreEqual("test func", fileOperation);
             mockActivityIOOperationsEndPointDst.VerifyAll();
             mockActivityIOOperationsEndPointSrc.VerifyAll();
             mockActivityIOPathSrc.VerifyAll();
@@ -398,9 +399,9 @@ namespace Dev2.Data.Tests.PathOperations
             mockDev2CRUDOperationTO.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ActivityIOBrokerValidatorDriver))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ActivityIOBrokerValidatorDriver))]
         public void ActivityIOBrokerValidatorDriver_ValidateCopySourceDestinationFileOperation_EnsureFilesDontExists_Overwrite_True_ExpectSuccess()
         {
             //---------------------------Arrange-----------------------------
@@ -440,7 +441,7 @@ namespace Dev2.Data.Tests.PathOperations
             //---------------------------Act---------------------------------
             var fileOperation = driver.ValidateCopySourceDestinationFileOperation(mockActivityIOOperationsEndPointSrc.Object, mockActivityIOOperationsEndPointDst.Object, mockDev2CRUDOperationTO.Object, () => "test func");
             //---------------------------Assert------------------------------
-            Assert.AreEqual("Success", fileOperation);
+            NUnit.Framework.Assert.AreEqual("Success", fileOperation);
             mockActivityIOOperationsEndPointDst.VerifyAll();
             mockActivityIOOperationsEndPointSrc.VerifyAll();
             mockActivityIOPathSrc.VerifyAll();
@@ -449,9 +450,9 @@ namespace Dev2.Data.Tests.PathOperations
             mockCommon.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ActivityIOBrokerValidatorDriver))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ActivityIOBrokerValidatorDriver))]
         public void ActivityIOBrokerValidatorDriver_ValidateZipSourceDestinationFileOperation_DstPathExists_ExpectException()
         {
             //---------------------------Arrange-----------------------------
@@ -476,16 +477,16 @@ namespace Dev2.Data.Tests.PathOperations
             var driver = new ActivityIOBrokerValidatorDriver(mockFile.Object, mockCommon.Object);
             //---------------------------Act---------------------------------
             //---------------------------Assert------------------------------
-            Assert.ThrowsException<Exception>(() => driver.ValidateZipSourceDestinationFileOperation(mockActivityIOOperationsEndPointSrc.Object, mockActivityIOOperationsEndPointDst.Object, mockDev2ZipOperationTO.Object, () => "test func"), "Destination file already exists and overwrite is set to false");
+            NUnit.Framework.Assert.Throws<Exception>(() => driver.ValidateZipSourceDestinationFileOperation(mockActivityIOOperationsEndPointSrc.Object, mockActivityIOOperationsEndPointDst.Object, mockDev2ZipOperationTO.Object, () => "test func"), "Destination file already exists and overwrite is set to false");
             mockActivityIOOperationsEndPointDst.VerifyAll();
             mockActivityIOOperationsEndPointSrc.VerifyAll();
             mockActivityIOPathSrc.VerifyAll();
             mockActivityIOPathDst.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ActivityIOBrokerValidatorDriver))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ActivityIOBrokerValidatorDriver))]
         public void ActivityIOBrokerValidatorDriver_ValidateZipSourceDestinationFileOperation_DstPathIs_Directory_ExpectException()
         {
             //---------------------------Arrange-----------------------------
@@ -515,16 +516,16 @@ namespace Dev2.Data.Tests.PathOperations
             var driver = new ActivityIOBrokerValidatorDriver(mockFile.Object, mockCommon.Object);
             //---------------------------Act---------------------------------
             //---------------------------Assert------------------------------
-            Assert.ThrowsException<Exception>(() => driver.ValidateZipSourceDestinationFileOperation(mockActivityIOOperationsEndPointSrc.Object, mockActivityIOOperationsEndPointDst.Object, mockDev2ZipOperationTO.Object, () => "test func"), @"Recursive Directory Create Failed For [ C:\Test_TempPath\Temp_File.txt ]");
+            NUnit.Framework.Assert.Throws<Exception>(() => driver.ValidateZipSourceDestinationFileOperation(mockActivityIOOperationsEndPointSrc.Object, mockActivityIOOperationsEndPointDst.Object, mockDev2ZipOperationTO.Object, () => "test func"), @"Recursive Directory Create Failed For [ C:\Test_TempPath\Temp_File.txt ]");
             mockActivityIOOperationsEndPointDst.VerifyAll();
             mockActivityIOOperationsEndPointSrc.VerifyAll();
             mockActivityIOPathSrc.VerifyAll();
             mockActivityIOPathDst.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ActivityIOBrokerValidatorDriver))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ActivityIOBrokerValidatorDriver))]
         public void ActivityIOBrokerValidatorDriver_ValidateZipSourceDestinationFileOperation_SrcPathIs_Directory_ExpectException()
         {
             //---------------------------Arrange-----------------------------
@@ -555,16 +556,16 @@ namespace Dev2.Data.Tests.PathOperations
             var driver = new ActivityIOBrokerValidatorDriver(mockFile.Object, mockCommon.Object);
             //---------------------------Act---------------------------------
             //---------------------------Assert------------------------------
-            Assert.ThrowsException<Exception>(() => driver.ValidateZipSourceDestinationFileOperation(mockActivityIOOperationsEndPointSrc.Object, mockActivityIOOperationsEndPointDst.Object, mockDev2ZipOperationTO.Object, () => "test func"), @"Recursive Directory Create Failed For [ C:\Test_TempPath\Temp_File.txt ]");
+            NUnit.Framework.Assert.Throws<Exception>(() => driver.ValidateZipSourceDestinationFileOperation(mockActivityIOOperationsEndPointSrc.Object, mockActivityIOOperationsEndPointDst.Object, mockDev2ZipOperationTO.Object, () => "test func"), @"Recursive Directory Create Failed For [ C:\Test_TempPath\Temp_File.txt ]");
             mockActivityIOOperationsEndPointDst.VerifyAll();
             mockActivityIOOperationsEndPointSrc.VerifyAll();
             mockActivityIOPathSrc.VerifyAll();
             mockActivityIOPathDst.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ActivityIOBrokerValidatorDriver))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ActivityIOBrokerValidatorDriver))]
         public void ActivityIOBrokerValidatorDriver_ValidateZipSourceDestinationFileOperation_SrcPathIs_Directory_ExpectException1()
         {
             //---------------------------Arrange-----------------------------
@@ -598,7 +599,7 @@ namespace Dev2.Data.Tests.PathOperations
             //---------------------------Act---------------------------------
             var fileOperation = driver.ValidateZipSourceDestinationFileOperation(mockActivityIOOperationsEndPointSrc.Object, mockActivityIOOperationsEndPointDst.Object, mockDev2ZipOperationTO.Object, () => "test func");
             //---------------------------Assert------------------------------
-            Assert.AreEqual("test func", fileOperation);
+            NUnit.Framework.Assert.AreEqual("test func", fileOperation);
             mockActivityIOOperationsEndPointDst.VerifyAll();
             mockActivityIOOperationsEndPointSrc.VerifyAll();
             mockActivityIOPathSrc.VerifyAll();

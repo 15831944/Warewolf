@@ -13,17 +13,18 @@ using System.Linq;
 using Dev2.Common;
 using Dev2.Common.Common;
 using Dev2.DataList;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Tests.Activities.FindRecsetOptionsTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FindRecsetOptionsTests
     {
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("FindRecsetOptions_FindAll")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("FindRecsetOptions_FindAll")]
         public void FindRecsetOptions_FindAll_GetAllRecsetOptions_RightNumberOfOptionsAndCorrectOrder()
         {
             //------------Setup for test--------------------------

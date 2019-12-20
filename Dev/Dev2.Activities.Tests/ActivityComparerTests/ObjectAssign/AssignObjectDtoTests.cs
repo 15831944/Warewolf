@@ -1,13 +1,14 @@
 ﻿using Dev2.TO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.ObjectAssign
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class AssignObjectDtoTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_EmptyTos_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -21,8 +22,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ObjectAssign
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_FieldNames_Object_Is_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -36,8 +37,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ObjectAssign
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_DiffentFieldNames_Object_Is_NotIsEqual()
         {
             //---------------Set up test pack-------------------
@@ -51,8 +52,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ObjectAssign
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_DiffentFielValue_Object_Is_NotIsEqual()
         {
             //---------------Set up test pack-------------------
@@ -66,8 +67,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ObjectAssign
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_DiffentindexNumber_Object_Is_NotIsEqual()
         {
             //---------------Set up test pack-------------------

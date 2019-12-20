@@ -14,7 +14,7 @@ using Dev2.Core.Tests.Utils;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Core.Models.QuickVariableInput;
 using Dev2.ViewModels.QuickVariableInput;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Dev2.TO;
 
@@ -23,7 +23,8 @@ namespace Dev2.Core.Tests
     /// <summary>
     /// Summary description for QuickVariableInputModelTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class QuickVariableInputModelTests
     {
         #region Additional test attributes
@@ -31,7 +32,7 @@ namespace Dev2.Core.Tests
         // You can use the following additional attributes as you write your tests:
         //
         // Use ClassInitialize to run code before running the first test in the class
-        // [ClassInitialize()]
+        // [OneTimeSetUp]
         // public static void MyClassInitialize(TestContext testContext) { }
         //
         // Use ClassCleanup to run code after all tests in a class have run
@@ -50,7 +51,7 @@ namespace Dev2.Core.Tests
 
         #region Case Convert Tests
 
-        [TestMethod]
+        [Test]
         
         public void QuickVariableInput_Using_Case_Convert_Check_Row_Count_Expected_3()
 
@@ -69,7 +70,7 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(3, colCount);
         }
 
-        [TestMethod]
+        [Test]
         
         public void QuickVariableInput_Using_Case_Convert_Add_List_To_Collection_Overwrite_False_Expected_5()
 
@@ -90,7 +91,7 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(5, colCount);
         }
 
-        [TestMethod]
+        [Test]
         
         public void QuickVariableInput_Using_Case_Convert_Add_List_To_Collection_Overwrite_True_Expected_5()
 
@@ -113,9 +114,9 @@ namespace Dev2.Core.Tests
 
         #endregion
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("QuickVariableInputViewModel_MakeDataListReady")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("QuickVariableInputViewModel_MakeDataListReady")]
         public void QuickVariableInputViewModel_MakeDataListReady_WhenItemsHaveSpaces_ShouldRemoveSpaces()
         {
             //------------Setup for test--------------------------
@@ -130,9 +131,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("[[Test]]", makeDataListReady[2]);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("QuickVariableInputViewModel_Construct")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("QuickVariableInputViewModel_Construct")]
         public void QuickVariableInputViewModel_Construct_SetProperties_ShouldSetCorrectProperties()
         {
             //------------Setup for test--------------------------
@@ -149,9 +150,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(list.Count, quickVariableInputViewModel.SplitTypeList.Count);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("QuickVariableInputViewModel_CancelCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("QuickVariableInputViewModel_CancelCommand")]
         public void QuickVariableInputViewModel_CancelCommand_ClearData_ShouldResetValues()
         {
             //------------Setup for test--------------------------
@@ -167,9 +168,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("", quickVariableInputViewModel.SplitToken);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("QuickVariableInputViewModel_AddCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("QuickVariableInputViewModel_AddCommand")]
         public void QuickVariableInputViewModel_AddCommand_WhenNoItems_ShouldReturnFalse()
         {
             //------------Setup for test--------------------------
@@ -185,9 +186,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("-", quickVariableInputViewModel.SplitToken);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("QuickVariableInputViewModel_AddCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("QuickVariableInputViewModel_AddCommand")]
         public void QuickVariableInputViewModel_AddCommand_IncorrectIndex_ShouldFail()
         {
             //------------Setup for test--------------------------
@@ -204,9 +205,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("T", quickVariableInputViewModel.SplitToken);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("QuickVariableInputViewModel_AddCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("QuickVariableInputViewModel_AddCommand")]
         public void QuickVariableInputViewModel_AddCommand_CorrectIndex_ShouldPass()
         {
             //------------Setup for test--------------------------
@@ -223,9 +224,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("0", quickVariableInputViewModel.SplitToken);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("QuickVariableInputViewModel_AddCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("QuickVariableInputViewModel_AddCommand")]
         public void QuickVariableInputViewModel_AddCommand_Chars_ShouldPass()
         {
             //------------Setup for test--------------------------
@@ -242,9 +243,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("", quickVariableInputViewModel.SplitToken);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("QuickVariableInputViewModel_AddCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("QuickVariableInputViewModel_AddCommand")]
         public void QuickVariableInputViewModel_AddCommand_RecordSet_ShouldPass()
         {
             //------------Setup for test--------------------------
@@ -266,9 +267,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("Chars", quickVariableInputViewModel.SplitType);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("QuickVariableInputViewModel_PreviewCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("QuickVariableInputViewModel_PreviewCommand")]
         public void QuickVariableInputViewModel_PreviewCommand_WhenItemsHaveValues_ShouldResetValues()
         {
             //------------Setup for test--------------------------

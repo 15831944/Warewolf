@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using Dev2.Common.Interfaces;
 using Dev2.Data.MathOperations;
 using Dev2.MathOperations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Tests.MathOperationTest
@@ -21,7 +21,8 @@ namespace Dev2.Tests.MathOperationTest
     /// <summary>
     /// Summary description for FunctionRepositoryTest
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FunctionRepositoryTest
     {
         /// <summary>
@@ -35,7 +36,7 @@ namespace Dev2.Tests.MathOperationTest
         /// <summary>
         /// FunctionRepository load default repository.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FunctionRepository_Load_DefaultRepository()
         {
             var functionRepo = MathOpsFactory.FunctionRepository();
@@ -53,7 +54,7 @@ namespace Dev2.Tests.MathOperationTest
         /// <summary>
         /// Tests that the FunctionRepository is able to find a function that exists in the repository
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FunctionRepository_Find_ValidExpressionAndReturnsData_Expected_ListReturned()
         {
             var functionRepo = MathOpsFactory.FunctionRepository();
@@ -69,7 +70,7 @@ namespace Dev2.Tests.MathOperationTest
         /// <summary>
         /// Tests that the FunctionRepository returns an empty list when it is unable to find a function
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FunctionRepository_Find_ExpressionYieldsNoResult_Expected_EmptyCollectionReturned()
         {
             var functionRepo = MathOpsFactory.FunctionRepository();
@@ -84,7 +85,7 @@ namespace Dev2.Tests.MathOperationTest
         /// <summary>
         ///  Tests that the FunctionRepository throws the correct exception when trying to find a null function to it
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void FunctionRepository_Find_NullExpression_Expected_ErrorFromRepository()
         {
@@ -101,7 +102,7 @@ namespace Dev2.Tests.MathOperationTest
         /// <summary>
         /// FunctionRepository FindSingle valid expression expected single result returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FunctionRepository_FindSingle_ValidExpression_Expected_SingleResultReturned()
         {
             var functionRepo = MathOpsFactory.FunctionRepository();
@@ -117,20 +118,20 @@ namespace Dev2.Tests.MathOperationTest
         /// <summary>
         /// FunctionRepository FindSingle expression yields no result expected empty function returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FunctionRepository_FindSingle_ExpressionYieldsNoResult_Expected_EmptyFunctionReturned()
         {
             var functionRepo = MathOpsFactory.FunctionRepository();
             // The function repository must be loaded in order to populate the function list
             functionRepo.Load();
             var function = functionRepo.FindSingle(c => c.FunctionName == string.Empty);
-            Assert.IsInstanceOfType(function, typeof(IFunction));
+            Assert.IsInstanceOf(function.GetType(), typeof(IFunction));
         }
 
         /// <summary>
         /// FunctionRepository FindSingle NULL expression expected error from repository.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FunctionRepository_FindSingle_NullExpression_Expected_NullReturned()
         {
             var functionRepo = MathOpsFactory.FunctionRepository();
@@ -147,7 +148,7 @@ namespace Dev2.Tests.MathOperationTest
         /// <summary>
         /// FunctionRepository Save Valid function expected repository updated with new function.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FunctionRepository_Save_ValidFunction_Expected_RepoUpdatedWithNewFunction()
         {
             var functionRepo = MathOpsFactory.FunctionRepository();
@@ -170,7 +171,7 @@ namespace Dev2.Tests.MathOperationTest
         /// <summary>
         /// FunctionRepository save NULL function expected argument null exception.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FunctionRepository_Save_NullFunction_Expected_ArgumentNullException()
         {
             var functionRepo = MathOpsFactory.FunctionRepository();
@@ -195,7 +196,7 @@ namespace Dev2.Tests.MathOperationTest
         /// <summary>
         /// FunctionRepositorySaveCollection valid function expected Repository updated with new function.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FunctionRepository_SaveCollection_ValidFunction_Expected_RepoUpdatedWithNewFunction()
         {
             var functionRepo = MathOpsFactory.FunctionRepository();
@@ -223,7 +224,7 @@ namespace Dev2.Tests.MathOperationTest
         /// <summary>
         /// FunctionRepositorySaveCollection empty collection expected repository function count remains the same.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FunctionRepository_SaveCollection_EmptyCollection_Expected_RepoFunctionCountRemainsTheSame()
         {
             var functionRepo = MathOpsFactory.FunctionRepository();
@@ -243,7 +244,7 @@ namespace Dev2.Tests.MathOperationTest
         /// <summary>
         /// FunctionRepository Save Collection NULL Collection expected argument null exception.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void FunctionRepository_SaveCollection_NullCollection_Expected_ArgumentNullException()
         {
@@ -263,7 +264,7 @@ namespace Dev2.Tests.MathOperationTest
         /// <summary>
         /// FunctionRepository Remove valid function expected function removed from repository.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FunctionRepository_Remove_ValidFunction_Expected_FunctionRemovedFromRepo()
         {
             var functionRepo = MathOpsFactory.FunctionRepository();
@@ -288,7 +289,7 @@ namespace Dev2.Tests.MathOperationTest
         /// <summary>
         /// FunctionRepository Remove NULL function expected argument null exception.
         /// </summary>
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void FunctionRepository_Remove_NullFunction_Expected_ArgumentNullException()
         {
@@ -303,7 +304,7 @@ namespace Dev2.Tests.MathOperationTest
 
         #region Remove Collection Tests
 
-        [TestMethod]
+        [Test]
         public void FunctionRepository_RemoveCollection_ValidFunction_Expected_RepoUpdatedWithNewFunction()
         {
             var functionRepo = MathOpsFactory.FunctionRepository();
@@ -322,7 +323,7 @@ namespace Dev2.Tests.MathOperationTest
 
         }
 
-        [TestMethod]
+        [Test]
         public void FunctionRepository_RemopveCollection_EmptyCollection_Expected_NoFunctionsRemovedFromRepo()
         {
             var functionRepo = MathOpsFactory.FunctionRepository();
@@ -339,7 +340,7 @@ namespace Dev2.Tests.MathOperationTest
             Assert.AreEqual(beforeEmptySave, afterEmptySave);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void FunctionRepository_RemoveCollection_NullCollection_Expected_ArgumentException()
         {

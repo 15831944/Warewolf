@@ -11,14 +11,15 @@
 using System;
 using System.Collections.Specialized;
 using Dev2.Runtime.Security;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Runtime.Services
 {
     /// <summary>
     /// Summary description for HostSecureConfigTest
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class HostSecureConfigTests
     {
         public static Guid DefaultServerID = Guid.Parse("{D53BBCC5-4794-4DFA-B096-3AA815692E66}");
@@ -36,14 +37,14 @@ namespace Dev2.Tests.Runtime.Services
 
         #region Class Initialize/Cleanup
 
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void ClassInitialize(TestContext testContext)
         {
             _defaultSettings = CreateDefaultConfig();
             _newSettings = HostSecureConfig.CreateSettings(string.Empty, string.Empty, DefaultSystemKeyPublic);
         }
 
-        [ClassCleanup]
+        [OneTimeTearDown]
         public static void ClassCleanup()
         {
         }
@@ -52,7 +53,7 @@ namespace Dev2.Tests.Runtime.Services
 
         #region Ctor
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         
         public void HostSecureConfig_WithoutConfig_Expected_ThrowsArgumentNullException()
@@ -67,21 +68,21 @@ namespace Dev2.Tests.Runtime.Services
         // The tests run in parallel??? so there is no guarantee that the config saved is the one actually being used!!! 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        //[TestMethod]
+        //[Test]
         //public void HostSecureConfig_WithConfig_Expected_LoadsDefaultValues()
         //{
         //    HostSecureConfig.SaveConfig(_defaultSettings);
         //    TestConfig(DefaultServerID, DefaultServerKey, DefaultSystemKeyPublic, false, new HostSecureConfig());
         //}
 
-        [TestMethod]
+        [Test]
         
         public void HostSecureConfig_WithDefaultSettings_Expected_LoadsDefaultValues()
         {
             TestConfig(DefaultServerID, DefaultServerKey, DefaultSystemKeyPublic, false);
         }
 
-        [TestMethod]
+        [Test]
         public void HostSecureConfig_WithNewSettings_Expected_LoadsNewValues()
         {
             TestConfig(DefaultServerID, DefaultServerKey, DefaultSystemKeyPublic, true);

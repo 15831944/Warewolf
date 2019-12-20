@@ -10,54 +10,55 @@
 
 using System.Collections.Generic;
 using Dev2.Data.Binary_Objects;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests.BinaryDataList
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IndexListTest
     {
-        [TestMethod]
-        [Owner("Travis")]
+        [Test]
+        [Author("Travis")]
         [Description("Ensure the IndexList can init properly")]
-        [TestCategory("UnitTest,IndexList")]
+        [Category("UnitTest,IndexList")]
         public void IndexList_UnitTest_CanInitNormally()
         {
 
             var il = new IndexList(null, 5);
 
-            Assert.AreEqual(1, il.MinValue);
-            Assert.AreEqual(5, il.MaxValue);
+            NUnit.Framework.Assert.AreEqual(1, il.MinValue);
+            NUnit.Framework.Assert.AreEqual(5, il.MaxValue);
         }
 
-        [TestMethod]
-        [Owner("Travis")]
+        [Test]
+        [Author("Travis")]
         [Description("Ensure the IndexList can init properly")]
-        [TestCategory("UnitTest,IndexList")]
+        [Category("UnitTest,IndexList")]
         public void IndexList_UnitTest_CanInitWithGaps()
         {
 
             var gaps = new HashSet<int> { 1, 3 };
             var il = new IndexList(gaps, 5);
 
-            Assert.AreEqual(1, il.MinValue);
-            Assert.AreEqual(5, il.MaxValue);
-            Assert.AreEqual(3, il.Count());
+            NUnit.Framework.Assert.AreEqual(1, il.MinValue);
+            NUnit.Framework.Assert.AreEqual(5, il.MaxValue);
+            NUnit.Framework.Assert.AreEqual(3, il.Count());
         }
         
-        [TestMethod]
-        [Owner("Travis")]
+        [Test]
+        [Author("Travis")]
         [Description("Ensure the IndexList can count correctly when the min value is not 1")]
-        [TestCategory("UnitTest,IndexList")]
+        [Category("UnitTest,IndexList")]
         public void IndexList_UnitTest_CanCountCorrectlyWhenMinValueGreaterThan1()
         {
 
             var gaps = new HashSet<int> { 1, 5 };
             var il = new IndexList(gaps, 4, 3);
 
-            Assert.AreEqual(3, il.MinValue);
-            Assert.AreEqual(4, il.MaxValue);
-            Assert.AreEqual(1, il.Count());
+            NUnit.Framework.Assert.AreEqual(3, il.MinValue);
+            NUnit.Framework.Assert.AreEqual(4, il.MaxValue);
+            NUnit.Framework.Assert.AreEqual(1, il.Count());
         }
         
     }

@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
 using Dev2.Common.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Warewolf.Studio.ViewModels.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DLLChooserTests
     {
         #region Fields
@@ -19,7 +20,7 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         #region Test initialize
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             _modelMock = new Mock<IDllListingModel>();
@@ -37,7 +38,8 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         #region Test commands
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestCancelCommandCanExecute()
         {
             //act
@@ -47,7 +49,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(result);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestCancelCommandExecute()
         {
             //act
@@ -57,7 +60,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsNull(_target.SelectedDll);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestSelectCommandCanExecute()
         {
             //act
@@ -67,7 +71,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(result);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestSaveCommandExecute()
         {
             //act
@@ -82,7 +87,8 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         #region Test properties
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestSelectedDll()
         {
             //act
@@ -92,7 +98,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual(_modelMock.Object, _target.SelectedDll);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestIsLoading()
         {
             //act
@@ -102,7 +109,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(_target.IsLoading);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestSearchTerm()
         {
             //act

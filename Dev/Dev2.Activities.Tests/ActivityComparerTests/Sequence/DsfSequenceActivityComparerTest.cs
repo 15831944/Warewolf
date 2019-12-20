@@ -1,16 +1,17 @@
 ﻿using Dev2.Activities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Linq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.Sequence
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfSequenceActivityComparerTest
     {
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentUniqueIds_ActivityTools_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -24,8 +25,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sequence
             //---------------Test Result -----------------------
             Assert.IsTrue(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_EmptyActivityTools_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -40,8 +41,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sequence
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_DisplayName_ActivityTools_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -55,8 +56,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sequence
             //---------------Test Result -----------------------
             Assert.IsTrue(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_DisplayName_ActivityTools_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -71,8 +72,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sequence
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_Activities_ActivityTools_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -88,8 +89,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sequence
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_Activities_ActivityTools_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -117,8 +118,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sequence
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetChildrenNodes_Given_Activities_ActivityTools()
         {
             //---------------Set up test pack-------------------
@@ -145,9 +146,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sequence
             Assert.AreEqual(1, nodes.Count());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DsfSequenceActivity_GetState")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DsfSequenceActivity_GetState")]
         public void DsfSequenceActivity_GetState_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------

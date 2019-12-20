@@ -14,7 +14,7 @@ using Dev2.Activities.RedisRemove;
 using Dev2.Common.Serializers;
 using Dev2.Interfaces;
 using Dev2.Runtime.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Activities;

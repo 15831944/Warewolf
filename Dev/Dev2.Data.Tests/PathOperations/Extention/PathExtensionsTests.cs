@@ -11,17 +11,18 @@
 using Dev2.Data.Interfaces;
 using Dev2.Data.PathOperations.Extension;
 using Dev2.PathOperations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Data.Tests.PathOperations.Extention
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class PathExtensionsTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(PathExtensions))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(PathExtensions))]
         public void PathExtensions_Combine_EndsWith_PathSeperator()
         {
             var mockDst = new Mock<IActivityIOOperationsEndPoint>();
@@ -32,12 +33,12 @@ namespace Dev2.Data.Tests.PathOperations.Extention
             var dstEndPoint = ActivityIOFactory.CreateOperationEndPointFromIOPath(mockActivityIOPath.Object);
 
             var endpoint = dstEndPoint.Combine("@");
-            Assert.AreEqual("test\\@", endpoint);
+            NUnit.Framework.Assert.AreEqual("test\\@", endpoint);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(PathExtensions))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(PathExtensions))]
         public void PathExtensions_Combine_DoesNot_EndsWith_PathSeperator()
         {
             var mockDst = new Mock<IActivityIOOperationsEndPoint>();
@@ -48,7 +49,7 @@ namespace Dev2.Data.Tests.PathOperations.Extention
             var dstEndPoint = ActivityIOFactory.CreateOperationEndPointFromIOPath(mockActivityIOPath.Object);
 
             var endpoint = dstEndPoint.Combine("@");
-            Assert.AreEqual("test\\@", endpoint);
+            NUnit.Framework.Assert.AreEqual("test\\@", endpoint);
         }
     }
 }

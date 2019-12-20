@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using RUISDK_5_3_1;
 using TechTalk.SpecFlow;
 

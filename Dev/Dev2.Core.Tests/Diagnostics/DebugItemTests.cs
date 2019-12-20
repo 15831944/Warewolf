@@ -13,11 +13,12 @@ using System.IO;
 using Dev2.Common;
 using Dev2.Common.Interfaces.Diagnostics.Debug;
 using Dev2.Diagnostics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Diagnostics
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DebugItemTests
     {
         const string LongText = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
@@ -27,29 +28,29 @@ namespace Dev2.Tests.Diagnostics
 
 
         string _oldWebServerUri;
-        [TestInitialize]
+        [SetUp]
         public void TestInit()
         {
             _oldWebServerUri = EnvironmentVariables.WebServerUri;
             EnvironmentVariables.WebServerUri = "http://localhost:3142";
         }
 
-        [TestCleanup]
+        [TearDown]
         public void Cleanup()
         {
             EnvironmentVariables.WebServerUri = _oldWebServerUri;
         }
 
-        [TestMethod]
+        [Test]
         public void DebugItem_Flush()
         {
             var item = new DebugItem();
             item.FlushStringBuilder();
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DebugItem))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DebugItem))]
         public void DebugItem_Constructor_With_Array_Expected_InitializesWithArray()
         {
             var result = new DebugItemResult { GroupName = "Hello", Value = "world" };
@@ -59,9 +60,9 @@ namespace Dev2.Tests.Diagnostics
             Assert.AreSame(result, item.FetchResultsList()[0]);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DebugItem))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DebugItem))]
         public void DebugItem_Contains_With_NullFilter_Expected_ReturnsInstance()
         {
             var item = new DebugItem();
@@ -70,9 +71,9 @@ namespace Dev2.Tests.Diagnostics
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DebugItem))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DebugItem))]
         public void DebugItem_Contains_With_EmptyFilter_Expected_ReturnsInstance()
         {
             var item = new DebugItem();
@@ -81,9 +82,9 @@ namespace Dev2.Tests.Diagnostics
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DebugItem))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DebugItem))]
         public void DebugItem_Contains_With_ValidFilter_Expected_ReturnsInstance()
         {
             var item = new DebugItem();
@@ -92,9 +93,9 @@ namespace Dev2.Tests.Diagnostics
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DebugItem))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DebugItem))]
         public void DebugItem_Contains_With_InvalidFilter_Expected_ReturnsInstance()
         {
             var item = new DebugItem();
@@ -103,9 +104,9 @@ namespace Dev2.Tests.Diagnostics
             Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DebugItem))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DebugItem))]
         public void DebugItem_Contains_With_Filter_Expected_IsCaseInsensitive()
         {
             var item = new DebugItem();
@@ -114,9 +115,9 @@ namespace Dev2.Tests.Diagnostics
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DebugItem))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DebugItem))]
         public void DebugItem_TruncateItemResultIfNeeded_With_ValueGreaterThanMaxCharDispatchCount_Expected_TruncatesValueToActCharDispatchCount()
         {
             var item = CreateDebugItemWithLongValue();
@@ -127,9 +128,9 @@ namespace Dev2.Tests.Diagnostics
             Assert.AreEqual(DebugItem.ActCharDispatchCount, item.Value.Length);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DebugItem))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DebugItem))]
         public void DebugItem_TruncateItemResultIfNeeded_With_ValueGreaterThanMaxCharDispatchCount_Expected_InvokesSaveFileWithFullContent()
         {
             var item = CreateDebugItemWithLongValue();
@@ -143,9 +144,9 @@ namespace Dev2.Tests.Diagnostics
             Assert.AreEqual(expectedContents, debugItem.SaveFileContents);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DebugItem))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DebugItem))]
         public void DebugItem_TruncateItemResultIfNeeded_With_ValueEqualToMaxCharDispatchCount_Expected_DoesNotTruncateValueToActCharDispatchCount()
         {
             var item = CreateDebugItemWithLongValue();
@@ -157,9 +158,9 @@ namespace Dev2.Tests.Diagnostics
             Assert.AreEqual(DebugItem.MaxCharDispatchCount, item.Value.Length);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DebugItem))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DebugItem))]
         public void DebugItem_TruncateItemResultIfNeeded_With_ValueEqualToMaxCharDispatchCount_Expected_DoesNotInvokeSaveFile()
         {
             var item = CreateDebugItemWithLongValue();
@@ -171,9 +172,9 @@ namespace Dev2.Tests.Diagnostics
             Assert.AreEqual(0, debugState.SaveFileHitCount);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DebugItem))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DebugItem))]
         public void DebugItem_TruncateItemResultIfNeeded_With_ValueLessThanMaxCharDispatchCount_Expected_DoesNotTruncateValueToActCharDispatchCount()
         {
             const int ExpectedLength = 100;
@@ -186,9 +187,9 @@ namespace Dev2.Tests.Diagnostics
             Assert.AreEqual(ExpectedLength, item.Value.Length);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DebugItem))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DebugItem))]
         public void DebugItem_TruncateItemResultIfNeeded_With_ValueLessThanMaxCharDispatchCount_Expected_DoesNotInvokeSaveFile()
         {
             const int ExpectedLength = 100;
@@ -201,9 +202,9 @@ namespace Dev2.Tests.Diagnostics
             Assert.AreEqual(0, debugState.SaveFileHitCount);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DebugItem))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DebugItem))]
         [ExpectedException(typeof(ArgumentNullException))]
         public void DebugItem_SaveFile_With_NullParameters_Expected_ThrowsArgumentNullException()
         {
@@ -212,9 +213,9 @@ namespace Dev2.Tests.Diagnostics
             debugState.SaveFile(null, null);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DebugItem))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DebugItem))]
         public void DebugItem_SaveFile_With_Contents_Expected_SavesFileToDisk()
         {
             var debugState = new DebugItem();
@@ -230,9 +231,9 @@ namespace Dev2.Tests.Diagnostics
             Assert.AreEqual(LongText, contents);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DebugItem))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DebugItem))]
         public void DebugIem_SaveFile_WithContentsNewLineChars_ExpectedSavesFileToDiskWithCorrectChars()
         {
             var debugState = new DebugItem();
@@ -251,9 +252,9 @@ namespace Dev2.Tests.Diagnostics
             Assert.AreEqual(expeced, contents);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DebugItem))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DebugItem))]
         public void DebugItem_GroupIndex_Greater_And_Equal_To_MaxItemDispatchCount()
         {
             var oldWebServerUri = EnvironmentVariables.WebServerUri;
@@ -274,9 +275,9 @@ namespace Dev2.Tests.Diagnostics
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DebugItem))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DebugItem))]
         public void DebugItem_GroupIndex_Greater_Than_MaxItemDispatchCount()
         {
             var item = new DebugItem();
@@ -284,9 +285,9 @@ namespace Dev2.Tests.Diagnostics
             Assert.AreEqual(0, item.ResultsList.Count);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DebugItem))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DebugItem))]
         public void DebugItem_GroupIndex_Greater_Than_MaxItemDispatchCount_Type_Label()
         {
             var item = new DebugItem();
@@ -298,9 +299,9 @@ namespace Dev2.Tests.Diagnostics
             Assert.AreEqual(0, item.ResultsList.Count);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DebugItem))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DebugItem))]
         public void DebugItem_GroupIndex_Less_Than_MaxItemDispatchCount()
         {
             var item = new DebugItem();
@@ -313,9 +314,9 @@ namespace Dev2.Tests.Diagnostics
             Assert.IsTrue(item.ResultsList[0].MoreLink.StartsWith("http://localhost:3142/Services/FetchDebugItemFileService?DebugItemFilePath=C:\\ProgramData\\Warewolf\\Temp\\Warewolf\\Debug\\", StringComparison.Ordinal), "Expected " + item.ResultsList[0].MoreLink);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DebugItem))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DebugItem))]
         public void DebugItem_With_Results_AddRange()
         {
             var results = new[] { new DebugItemResult(), new DebugItemResult { GroupName = "group1", GroupIndex = 1 } };
@@ -335,9 +336,9 @@ namespace Dev2.Tests.Diagnostics
             Assert.IsNull(item.ResultsList[1].MoreLink);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DebugItem))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DebugItem))]
         public void DebugItem_With_Results_AddRange_Matching_Label()
         {
             var results = new[]
@@ -361,9 +362,9 @@ namespace Dev2.Tests.Diagnostics
             Assert.IsNull(item.ResultsList[0].MoreLink);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DebugItem))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DebugItem))]
         public void DebugItem_ResultList_AddMoreThanTenItems_ShouldKeepValues()
         {
             var item = new DebugItem();

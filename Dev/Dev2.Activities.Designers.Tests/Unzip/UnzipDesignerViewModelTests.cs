@@ -14,19 +14,20 @@ using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Core.Models;
 using Dev2.Studio.Interfaces;
 using Dev2.Studio.ViewModels.DataList;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Activities.Designers.Tests.Unzip
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class UnzipDesignerViewModelTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("UnzipDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("UnzipDesignerViewModel_Constructor")]
         public void UnzipDesignerViewModel_Constructor_Properties_Initialized()
         {
             //------------Setup for test-------------------------
@@ -43,9 +44,9 @@ namespace Dev2.Activities.Designers.Tests.Unzip
             Assert.AreEqual(0, viewModel.TitleBarToggles.Count);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UnzipDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UnzipDesignerViewModel_Handle")]
         public void UnzipDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -61,9 +62,9 @@ namespace Dev2.Activities.Designers.Tests.Unzip
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("UnzipDesignerViewModel_Validate")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("UnzipDesignerViewModel_Validate")]
         public void UnzipDesignerViewModel_Validate_CorrectFieldsAreValidated()
         {
             //------------Setup for test-------------------------

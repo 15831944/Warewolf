@@ -13,19 +13,20 @@ using Dev2.Studio.Core;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
 using Dev2.Studio.Interfaces.DataList;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Activities.Designers.Tests.Create
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class CreateDesignerViewModelTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("CreateDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("CreateDesignerViewModel_Constructor")]
         public void CreateDesignerViewModel_Constructor_Properties_Initialized()
         {
             //------------Setup for test-------------------------
@@ -42,9 +43,9 @@ namespace Dev2.Activities.Designers.Tests.Create
             Assert.AreEqual(0, viewModel.TitleBarToggles.Count);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("CreateDesignerViewModel_Validate")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("CreateDesignerViewModel_Validate")]
         public void CreateDesignerViewModel_Validate_CorrectFieldsAreValidated()
         {
             //------------Setup for test-------------------------
@@ -65,9 +66,9 @@ namespace Dev2.Activities.Designers.Tests.Create
             Assert.AreEqual(1, viewModel.ValidateUserNameAndPasswordHitCount);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("CreateDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("CreateDesignerViewModel_Handle")]
         public void CreateDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      

@@ -1,17 +1,18 @@
 ﻿using System;
 using Dev2.Common;
 using Dev2.Runtime.Configuration;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Server.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class LoadRuntimeConfigurationsTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(LoadRuntimeConfigurations))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(LoadRuntimeConfigurations))]
         public void LoadRuntimeConfigurations_WebServerUri_Null_ExpectFail()
         {
             //-------------------Arrange------------------
@@ -24,9 +25,9 @@ namespace Dev2.Server.Tests
             mockWriter.Verify(o => o.WriteLine("fail."), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(LoadRuntimeConfigurations))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(LoadRuntimeConfigurations))]
         public void LoadRuntimeConfigurations_WebServerUri_NotNull_ExpectFail()
         {
             //-------------------Arrange------------------
@@ -39,9 +40,9 @@ namespace Dev2.Server.Tests
             mockWriter.Verify(o => o.WriteLine("done."), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(LoadRuntimeConfigurations))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(LoadRuntimeConfigurations))]
         public void LoadRuntimeConfigurations_WebServerUri_Null_ExpectFail1()
         {
             //-------------------Arrange------------------

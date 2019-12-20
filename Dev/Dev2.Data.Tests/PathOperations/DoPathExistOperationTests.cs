@@ -12,18 +12,19 @@ using Dev2.Common.Interfaces.Wrappers;
 using Dev2.Data.Interfaces;
 using Dev2.Data.PathOperations;
 using Dev2.Data.PathOperations.Operations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 
 namespace Dev2.Data.Tests.PathOperations
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DoPathExistOperationTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoPathExistOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoPathExistOperation))]
         public void DoPathExistOperation_CTOR_Path_IsNull_ExpectNullReferenceException()
         {
             //--------------------------Arrange-------------------------
@@ -32,12 +33,12 @@ namespace Dev2.Data.Tests.PathOperations
             var doPathExistOperation = new DoPathExistOperation(mockActivityIOPath.Object);
             //--------------------------Act-----------------------------
             //--------------------------Assert--------------------------
-            Assert.ThrowsException<NullReferenceException>(() => doPathExistOperation.ExecuteOperation());
+            NUnit.Framework.Assert.Throws<NullReferenceException>(() => doPathExistOperation.ExecuteOperation());
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoPathExistOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoPathExistOperation))]
         public void DoPathExistOperation_ImpersonatedUser_Null_IsFalse_ExpectFalse()
         {
             //--------------------------Arrange-------------------------
@@ -53,12 +54,12 @@ namespace Dev2.Data.Tests.PathOperations
             var isExecuteOperation = doPathExistOperation.ExecuteOperation();
             //--------------------------Assert--------------------------
             mockActivityIOPath.VerifyAll();
-            Assert.IsFalse(isExecuteOperation);
+            NUnit.Framework.Assert.IsFalse(isExecuteOperation);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoPathExistOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoPathExistOperation))]
         public void DoPathExistOperation_ImpersonatedUser_IsNotNull_PathExists_IsTrue_ExpectTrue()
         {
             //--------------------------Arrange-------------------------
@@ -77,12 +78,12 @@ namespace Dev2.Data.Tests.PathOperations
             //--------------------------Assert--------------------------
             mockActivityIOPath.VerifyAll();
             mockDirectory.VerifyAll();
-            Assert.IsTrue(isExecuteOperation);
+            NUnit.Framework.Assert.IsTrue(isExecuteOperation);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoPathExistOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoPathExistOperation))]
         public void DoPathExistOperation_ImpersonatedUser_IsNull_DirectoryPathExists_IsTrue_ExpectTrue()
         {
             //--------------------------Arrange-------------------------
@@ -100,12 +101,12 @@ namespace Dev2.Data.Tests.PathOperations
             //--------------------------Assert--------------------------
             mockActivityIOPath.VerifyAll();
             mockDirectory.VerifyAll();
-            Assert.IsTrue(isExecuteOperation);
+            NUnit.Framework.Assert.IsTrue(isExecuteOperation);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoPathExistOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoPathExistOperation))]
         public void DoPathExistOperation_ImpersonatedUser_IsNull_FileWrapperPathExists_IsTrue_ExpectTrue()
         {
             //--------------------------Arrange-------------------------
@@ -123,12 +124,12 @@ namespace Dev2.Data.Tests.PathOperations
             //--------------------------Assert--------------------------
             mockActivityIOPath.VerifyAll();
             mockfileWrapper.VerifyAll();
-            Assert.IsTrue(isExecuteOperation);
+            NUnit.Framework.Assert.IsTrue(isExecuteOperation);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoPathExistOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoPathExistOperation))]
         public void DoPathExistOperation_ExecuteOperationWithAuth_IsNotNull_FileWrapperPathExists_IsTrue_ExpectTrue()
         {
             //--------------------------Arrange-------------------------
@@ -147,12 +148,12 @@ namespace Dev2.Data.Tests.PathOperations
             //--------------------------Assert--------------------------
             mockActivityIOPath.VerifyAll();
             mockfileWrapper.VerifyAll();
-            Assert.IsTrue(isExecuteOperation);
+            NUnit.Framework.Assert.IsTrue(isExecuteOperation);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoPathExistOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoPathExistOperation))]
         public void DoPathExistOperation_ExecuteOperationWithAuth_IsNotNull_FileWrapperPathExists_IsFalse_ExpectFalse()
         {
             //--------------------------Arrange-------------------------
@@ -171,12 +172,12 @@ namespace Dev2.Data.Tests.PathOperations
             //--------------------------Assert--------------------------
             mockActivityIOPath.VerifyAll();
             mockDirectory.VerifyAll();
-            Assert.IsFalse(isExecuteOperation);
+            NUnit.Framework.Assert.IsFalse(isExecuteOperation);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoPathExistOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoPathExistOperation))]
         public void DoPathExistOperation_ExecuteOperationWithAuth_IsNull_FileWrapperPathExists_IsFalse_ExpectFalse()
         {
             //--------------------------Arrange-------------------------
@@ -194,7 +195,7 @@ namespace Dev2.Data.Tests.PathOperations
             //--------------------------Assert--------------------------
             mockActivityIOPath.VerifyAll();
             mockDirectory.VerifyAll();
-            Assert.IsFalse(isExecuteOperation);
+            NUnit.Framework.Assert.IsFalse(isExecuteOperation);
         }
     }
 }

@@ -13,17 +13,18 @@ using Dev2.Studio.Core.ViewModels.Base;
 using Dev2.Studio.Enums;
 using Dev2.Studio.Interfaces;
 using Dev2.Studio.ViewModels.Workflow;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Studio.Tests.ViewModels.Workflow
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfActivityDropViewModelTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfActivityDropViewModel))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfActivityDropViewModel))]
         public void DsfActivityDropViewModel_Okay_SelectedItem_NotNull_ExpectDialogResult_Okay()
         {
             //---------------------Arrange---------------------
@@ -46,9 +47,9 @@ namespace Dev2.Studio.Tests.ViewModels.Workflow
             Assert.IsTrue(closeRequested);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfActivityDropViewModel))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfActivityDropViewModel))]
         public void DsfActivityDropViewModel_Okay_SelectedItem_IsNull_ExpectDialogResult_Cancel()
         {
             //---------------------Arrange---------------------
@@ -68,9 +69,9 @@ namespace Dev2.Studio.Tests.ViewModels.Workflow
             Assert.IsFalse(closeRequested);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfActivityDropViewModel))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfActivityDropViewModel))]
         public void DsfActivityDropViewModel_SelectedResourceModel_ActivityType_Workflow_ExpectDialogResult_Cancel()
         {
             //---------------------Arrange---------------------
@@ -97,9 +98,9 @@ namespace Dev2.Studio.Tests.ViewModels.Workflow
             Assert.AreEqual(mockContextualResourceModel.Object, selectedResourceModel);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfActivityDropViewModel))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfActivityDropViewModel))]
         public void DsfActivityDropViewModel_CanOkay_ActivityType_Workflow_ExpectDialogResult_Cancel()
         {
             //---------------------Arrange---------------------
@@ -124,9 +125,9 @@ namespace Dev2.Studio.Tests.ViewModels.Workflow
             Assert.IsFalse(canOkay);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfActivityDropViewModel))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfActivityDropViewModel))]
         public void DsfActivityDropViewModel_CancelCommand_ActivityType_Workflow_ExpectDialogResult_Okay()
         {
             //---------------------Arrange---------------------
@@ -158,9 +159,9 @@ namespace Dev2.Studio.Tests.ViewModels.Workflow
             Assert.AreEqual("Workflow-32", imageSource);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfActivityDropViewModel))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfActivityDropViewModel))]
         public void DsfActivityDropViewModel_Okay_ActivityType_Workflow_ExpectDialogResult_Okayq()
         {
             //---------------------Arrange---------------------

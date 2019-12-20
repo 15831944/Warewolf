@@ -5,19 +5,20 @@ using Dev2.Common;
 using Dev2.Common.Interfaces.Monitoring;
 using Dev2.PerformanceCounters.Counters;
 using Dev2.PerformanceCounters.Management;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Diagnostics.Test
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class PerfCounterBuilderTest
     {
         const string CategoryName = "Warewolf";
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("PerformanceCounterBuilder_CtorBuildCounters")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("PerformanceCounterBuilder_CtorBuildCounters")]
         public void PerformanceCounterBuilder_CtorBuildCounters_RegisterExistingCounters()
         {
             try
@@ -78,9 +79,9 @@ namespace Dev2.Diagnostics.Test
             mockCounter7.Verify(o => o.Increment(), Times.Never);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("PerformanceCounterBuilder_CtorBuildCounters")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("PerformanceCounterBuilder_CtorBuildCounters")]
         public void PerformanceCounterBuilder_CtorBuildCounters_NewResets_ExpectNewCounters()
         {
             try
@@ -174,9 +175,9 @@ namespace Dev2.Diagnostics.Test
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("PerformanceCounterBuilder_CtorBuildCounters")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("PerformanceCounterBuilder_CtorBuildCounters")]
         public void WarewolfPerformanceCounterRegister_RegisterNewCounters()
         {
             var mockPerformanceCounterCategory = new Mock<IPerformanceCounterCategory>();
@@ -208,9 +209,9 @@ namespace Dev2.Diagnostics.Test
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("PerformanceCounterBuilder_CtorBuildCounters")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("PerformanceCounterBuilder_CtorBuildCounters")]
         public void WarewolfPerformanceCounterRegister_RegisterCountersOnMachine_ShouldNotThrow()
         {
             var mockPerformanceCounterCategory = new Mock<IPerformanceCounterCategory>();

@@ -14,18 +14,19 @@ using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Runtime.Interfaces;
 using Dev2.Runtime.ServiceModel.Data;
 using Microsoft.AspNet.SignalR.Client;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DirectDeployTest
     {
-        [TestMethod]
-        [Owner("Peter Bezuidenhout")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Peter Bezuidenhout")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -37,9 +38,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Peter Bezuidenhout")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Peter Bezuidenhout")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnGuid()
         {
             //------------Setup for test--------------------------
@@ -62,9 +63,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreNotEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Peter Bezuidenhout")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Peter Bezuidenhout")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -76,9 +77,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(AuthorizationContext.DeployTo, resId);
         }
 
-        [TestMethod]
-        [Owner("Peter Bezuidenhout")]
-        [TestCategory("DirectDeploy_HandlesType")]
+        [Test]
+        [Author("Peter Bezuidenhout")]
+        [Category("DirectDeploy_HandlesType")]
         public void DirectDeploy_HandlesType_ExpectName()
         {
             //------------Setup for test--------------------------
@@ -91,9 +92,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("DirectDeploy", directDeploy.HandlesType());
         }
 
-        [TestMethod]
-        [Owner("Peter Bezuidenhout")]
-        [TestCategory("DirectDeploy_Execute")]
+        [Test]
+        [Author("Peter Bezuidenhout")]
+        [Category("DirectDeploy_Execute")]
         public void DirectDeploy_Execute_NullValues_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -106,9 +107,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(result.Any(r => r.HasError));
         }
 
-        [TestMethod]
-        [Owner("Peter Bezuidenhout")]
-        [TestCategory("DirectDeploy_Execute")]
+        [Test]
+        [Author("Peter Bezuidenhout")]
+        [Category("DirectDeploy_Execute")]
         public void DirectDeploy_Execute_ResourceIDNotPresent_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -122,9 +123,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(result.Any(r => r.HasError));
         }
 
-        [TestMethod]
-        [Owner("Peter Bezuidenhout")]
-        [TestCategory("DirectDeploy_Execute")]
+        [Test]
+        [Author("Peter Bezuidenhout")]
+        [Category("DirectDeploy_Execute")]
         public void Execute_CanNotConnect()
         {
             //------------Setup for test--------------------------
@@ -168,9 +169,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(result.All(r => r.HasError));
         }
 
-        [TestMethod]
-        [Owner("Peter Bezuidenhout")]
-        [TestCategory("DirectDeploy_Execute")]
+        [Test]
+        [Author("Peter Bezuidenhout")]
+        [Category("DirectDeploy_Execute")]
         public void Execute_DeployTests_IsNull()
         {
             //------------Setup for test--------------------------
@@ -213,9 +214,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(result.All(r => r.HasError));
         }
 
-        [TestMethod]
-        [Owner("Peter Bezuidenhout")]
-        [TestCategory("DirectDeploy_Execute")]
+        [Test]
+        [Author("Peter Bezuidenhout")]
+        [Category("DirectDeploy_Execute")]
         public void Execute_ResourceIDsToDeploy_IsNull()
         {
             //------------Setup for test--------------------------
@@ -259,9 +260,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(result.All(r => r.HasError));
         }
 
-        [TestMethod]
-        [Owner("Peter Bezuidenhout")]
-        [TestCategory("DirectDeploy_Execute")]
+        [Test]
+        [Author("Peter Bezuidenhout")]
+        [Category("DirectDeploy_Execute")]
         public void Execute_ValidValues_ValidResults()
         {
             //------------Setup for test--------------------------

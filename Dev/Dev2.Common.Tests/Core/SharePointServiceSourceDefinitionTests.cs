@@ -11,18 +11,19 @@
 using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.Core;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 
 namespace Dev2.Common.Tests.Core
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SharePointServiceSourceDefinitionTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SharePointServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SharePointServiceSourceDefinition))]
         public void SharePointServiceSourceDefinition_Validate()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -58,9 +59,9 @@ namespace Dev2.Common.Tests.Core
             Assert.AreEqual(expectedUserName, sharePointServiceSourceDefinition.UserName);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SharePointServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SharePointServiceSourceDefinition))]
         public void SharePointServiceSourceDefinition_Equals_SharepointSource_Null_Expected_False()
         {
             var sharePointServiceSourceDefinition = new SharePointServiceSourceDefinition();
@@ -71,9 +72,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SharePointServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SharePointServiceSourceDefinition))]
         public void SharePointServiceSourceDefinition_Equals_SharepointSource_Expected_True()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -99,9 +100,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SharePointServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SharePointServiceSourceDefinition))]
         public void SharePointServiceSourceDefinition_ReferenceEquals_SharepointSource_Expected_True()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -121,9 +122,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SharePointServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SharePointServiceSourceDefinition))]
         public void SharePointServiceSourceDefinition_Equals_SharepointSource_Expected_False()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -149,9 +150,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SharePointServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SharePointServiceSourceDefinition))]
         public void SharePointServiceSourceDefinition_Equals_SharePointServiceSourceDefinition_Null_Expected_False()
         {
             var sharePointServiceSourceDefinition = new SharePointServiceSourceDefinition();
@@ -162,9 +163,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SharePointServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SharePointServiceSourceDefinition))]
         public void SharePointServiceSourceDefinition_ReferenceEquals_SharePointServiceSourceDefinition_Expected_True()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -184,9 +185,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SharePointServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SharePointServiceSourceDefinition))]
         public void SharePointServiceSourceDefinition_Equals_SharePointServiceSourceDefinition_Expected_True()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -208,9 +209,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(sharePointServiceSourceDefinition == sharePointServiceSourceDefinitionDup);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SharePointServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SharePointServiceSourceDefinition))]
         public void SharePointServiceSourceDefinition_Equals_SharePointServiceSourceDefinition_Expected_False()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -239,9 +240,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(sharePointServiceSourceDefinition != sharePointServiceSourceDefinitionDup);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SharePointServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SharePointServiceSourceDefinition))]
         public void SharePointServiceSourceDefinition_Equals_Object_Null_Expected_False()
         {
             var sharePointServiceSourceDefinition = new SharePointServiceSourceDefinition();
@@ -252,9 +253,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SharePointServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SharePointServiceSourceDefinition))]
         public void SharePointServiceSourceDefinition_Equals_Object_Expected_True()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -282,9 +283,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SharePointServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SharePointServiceSourceDefinition))]
         public void SharePointServiceSourceDefinition_Equals_Object_Expected_False()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -321,9 +322,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SharePointServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SharePointServiceSourceDefinition))]
         public void SharePointServiceSourceDefinition_Equals_Object_GetType_Expected_False()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -351,9 +352,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SharePointServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SharePointServiceSourceDefinition))]
         public void SharePointServiceSourceDefinition_GetHashCode_Not_Equal_To_Zero()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -380,9 +381,9 @@ namespace Dev2.Common.Tests.Core
             Assert.AreNotEqual(0, hashCode);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SharePointServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SharePointServiceSourceDefinition))]
         public void SharePointServiceSourceDefinition_GetHashCode_Expect_Zero()
         {
             var mockSharepointSource = new Mock<ISharepointSource>();

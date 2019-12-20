@@ -4,16 +4,17 @@ using System.Linq;
 using Dev2.Activities.SelectAndApply;
 using Dev2.Common.State;
 using Dev2.Data.Interfaces.Enums;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfForEachActivityComparerTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UniqueIDEquals_EmptySelectAndApply_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -28,8 +29,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UniqueIDDifferent_EmptySelectAndApply_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -44,8 +45,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -60,8 +61,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ForEachElementName_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -76,8 +77,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ForEachElementName_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -92,8 +93,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ForEachElementName_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -108,8 +109,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void NumOfExections_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -124,8 +125,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void NumOfExections_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -140,8 +141,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void NumOfExections_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -155,8 +156,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
             //---------------Test Result -----------------------
             Assert.IsTrue(@equals);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ForEachType_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -171,8 +172,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ForEachType_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -186,8 +187,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
             //---------------Test Result -----------------------
             Assert.IsTrue(@equals);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void From_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -202,8 +203,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void From_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -218,8 +219,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void From_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -233,8 +234,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
             //---------------Test Result -----------------------
             Assert.IsTrue(@equals);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void To_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -249,8 +250,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void To_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -265,8 +266,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void To_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -281,8 +282,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -298,8 +299,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Recordset_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -314,8 +315,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Recordset_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -330,8 +331,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Recordset_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -346,8 +347,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CsvIndexes_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -362,8 +363,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CsvIndexes_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -378,8 +379,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -400,8 +401,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
             return uniqueId.HasValue ? new DsfMultiAssignActivity { UniqueID = uniqueId.Value.ToString() } : new DsfMultiAssignActivity();
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DataFunc_SameAssigns_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -433,8 +434,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DataFunc_Equalsssigns_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -468,8 +469,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DataFunc_DifferentAssigns_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -503,9 +504,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DsfForEachActivity_GetState")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DsfForEachActivity_GetState")]
         public void DsfForEachActivity_GetState_InRange_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------
@@ -587,9 +588,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DsfForEachActivity_GetState")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DsfForEachActivity_GetState")]
         public void DsfForEachActivity_GetState_InCSV_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------
@@ -671,9 +672,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DsfForEachActivity_GetState")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DsfForEachActivity_GetState")]
         public void DsfForEachActivity_GetState_NumOfExecution_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------
@@ -755,9 +756,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DsfForEachActivity_GetState")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DsfForEachActivity_GetState")]
         public void DsfForEachActivity_GetState_InRecordset_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------
@@ -838,8 +839,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
                 Assert.AreEqual(entry.expectValue.Value, entry.value.Value);
             }
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
+        [Test]
+        [Author("Candice Daniel")]
         public void DsfForEachActivity_GetState_ForEachElementName_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------

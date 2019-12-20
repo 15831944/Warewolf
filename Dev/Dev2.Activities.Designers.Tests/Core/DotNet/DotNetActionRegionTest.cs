@@ -9,19 +9,20 @@ using Dev2.Common.Interfaces.Core;
 using Dev2.Common.Interfaces.ToolBase;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Studio.Core.Activities.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 
 namespace Dev2.Activities.Designers.Tests.Core.DotNet
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DotNetActionRegionTest
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DotNetActionRegion_Constructor")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DotNetActionRegion_Constructor")]
         public void DotNetActionRegion_Constructor_Scenerio_Result()
         {
             //------------Setup for test--------------------------
@@ -43,9 +44,9 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.IsTrue(dotNetActionRegion.IsEnabled);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DotNetActionRegion_ConstructorWithSelectedAction")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DotNetActionRegion_ConstructorWithSelectedAction")]
         public void DotNetActionRegion_ConstructorWithSelectedAction_Scenerio_Result()
         {
             //------------Setup for test--------------------------
@@ -77,9 +78,9 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.AreEqual(0, dotNetActionRegion.SelectedAction.Variables.Count);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DotNetActionRegion_ChangeActionSomethingChanged")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DotNetActionRegion_ChangeActionSomethingChanged")]
         public void DotNetActionRegion_ChangeActionSomethingChanged_ExpectedChange_Result()
         {
             //------------Setup for test--------------------------
@@ -107,9 +108,9 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.IsTrue(evt);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DotNetActionRegion_ChangeActionSomethingChanged")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DotNetActionRegion_ChangeActionSomethingChanged")]
         public void DotNetActionRegion_ChangeActionSomethingChanged_RestoreRegion_Result()
         {
             //------------Setup for test--------------------------
@@ -148,9 +149,9 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             dep2.Verify(a => a.RestoreRegion(clone2.Object), Times.Never);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DotNetActionRegion_ChangeActionSomethingChanged")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DotNetActionRegion_ChangeActionSomethingChanged")]
         public void DotNetActionRegion_ChangeActionSomethingChanged_RegionsNotRestored_Invalid()
         {
             //------------Setup for test--------------------------
@@ -189,9 +190,9 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             dep2.Verify(a => a.RestoreRegion(clone2.Object), Times.Never);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DotNetActionRegion_ChangeActionSomethingChanged")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DotNetActionRegion_ChangeActionSomethingChanged")]
         public void DotNetActionRegion_ChangeActionSomethingChanged_CloneRegion_ExpectedClone()
         {
             //------------Setup for test--------------------------
@@ -217,9 +218,9 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.AreEqual(((DotNetActionRegion)cloned).SelectedAction, dotNetActionRegion.SelectedAction);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DotNetActionRegion_ChangeActionSomethingChanged")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DotNetActionRegion_ChangeActionSomethingChanged")]
         public void DotNetActionRegion_ChangeActionSomethingChanged_RestoreRegion_ExpectedRestore()
         {
             //------------Setup for test--------------------------

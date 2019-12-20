@@ -18,12 +18,13 @@ using Dev2.Common.Interfaces.Enums;
 using Dev2.Communication;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DeleteLogTests
     {
         readonly static object MonitorLock = new object();
@@ -33,23 +34,23 @@ namespace Dev2.Tests.Runtime.Services
 
         #region ClassInitialize
 
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void MyClassInitialize(TestContext context)
         {
-            _testDir = context.DeploymentDirectory;
+            _testDir = context.TestDirectory;
         }
 
         #endregion
 
         #region TestInitialize/Cleanup
 
-        [TestInitialize]
+        [SetUp]
         public void MyTestInitialize()
         {
             Monitor.Enter(MonitorLock);
         }
 
-        [TestCleanup]
+        [TearDown]
         public void MyTestCleanup()
         {
             Monitor.Exit(MonitorLock);
@@ -66,9 +67,9 @@ namespace Dev2.Tests.Runtime.Services
 
         #region Execute
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -80,9 +81,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -94,7 +95,7 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(AuthorizationContext.Administrator, resId);
         }
 
-        [TestMethod]
+        [Test]
         public void DeleteLogExecuteWithNullFilePathExpectedReturnsError()
         {
             var workspace = new Mock<IWorkspace>();
@@ -106,7 +107,7 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(msg.Message.ToString().StartsWith("DeleteLog: Error"));
         }
 
-        [TestMethod]
+        [Test]
         public void DeleteLogExecuteWithNullDirectoryExpectedReturnsError()
         {
             var workspace = new Mock<IWorkspace>();
@@ -118,7 +119,7 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(msg.Message.ToString().StartsWith("DeleteLog: Error"));
         }
 
-        [TestMethod]
+        [Test]
         public void DeleteLogExecuteWithNonExistingDirectoryExpectedReturnsError()
         {
             var workspace = new Mock<IWorkspace>();
@@ -130,7 +131,7 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(msg.Message.ToString().StartsWith("DeleteLog: Error"));
         }
 
-        [TestMethod]
+        [Test]
         public void DeleteLogExecuteWithNonExistingPathExpectedReturnsError()
         {
             var workspace = new Mock<IWorkspace>();
@@ -143,7 +144,7 @@ namespace Dev2.Tests.Runtime.Services
         }
 
 
-        [TestMethod]
+        [Test]
         public void DeleteLogExecuteWithValidPathAndLockedExpectedReturnsError()
         {
             //Lock because of access to file system
@@ -178,7 +179,7 @@ namespace Dev2.Tests.Runtime.Services
 
         #region HandlesType
 
-        [TestMethod]
+        [Test]
         public void DeleteLogHandlesTypeExpectedReturnsDeleteLogService()
         {
             var esb = new DeleteLog();
@@ -190,7 +191,7 @@ namespace Dev2.Tests.Runtime.Services
 
         #region CreateServiceEntry
 
-        [TestMethod]
+        [Test]
         public void DeleteLogCreateServiceEntryExpectedReturnsDynamicService()
         {
             var esb = new DeleteLog();

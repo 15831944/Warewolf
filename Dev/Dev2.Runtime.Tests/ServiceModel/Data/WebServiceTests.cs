@@ -14,21 +14,22 @@ using System.Xml.Linq;
 using Dev2.Common.Interfaces;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Tests.Runtime.XML;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Tests.Runtime.ServiceModel.Data
 {
 
     // PBI 1220 - 2013.05.26 - TWR - Created
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class WebServiceTests
     {
         #region CTOR
 
 
-        [TestMethod]
+        [Test]
         public void WebServiceConstructorExpectedCorrectWebService()
         {
             //------------Setup for test--------------------------
@@ -70,7 +71,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
 
         #region CTOR
 
-        [TestMethod]
+        [Test]
         public void WebServiceContructorWithDefaultExpectedInitializesProperties()
         {
             var service = new WebService();
@@ -78,7 +79,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual("WebService", service.ResourceType);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void WebServiceContructorWithNullXmlExpectedThrowsArgumentNullException()
         {
@@ -87,7 +88,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             
         }
 
-        [TestMethod]
+        [Test]
         public void WebServiceContructorWithInvalidXmlExpectedDoesNotThrowExceptionAndInitializesProperties()
         {
             var xml = new XElement("root");
@@ -97,7 +98,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual("WebService", service.ResourceType);
         }
 
-        [TestMethod]
+        [Test]
         public void WebServiceContructorWithValidXmlExpectedInitializesProperties()
         {
             var xml = XmlResource.Fetch("WebService");
@@ -110,7 +111,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
 
         #region ToXml
 
-        [TestMethod]
+        [Test]
         public void WebServiceToXmlExpectedSerializesProperties()
         {
             var expected = new WebService
@@ -235,9 +236,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WebService_ToXml")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("WebService_ToXml")]
         public void WebService_ToXml_WhenRequestValuesHaveEnter_ShouldBeRespectedWhenReHydrated()
         {
             //------------Setup for test--------------------------
@@ -268,7 +269,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
 
         #region Dispose
 
-        [TestMethod]
+        [Test]
         public void WebServiceDisposeExpectedDisposesAndNullsSource()
         {
             var service = new WebService { Source = new WebSource() };
@@ -305,9 +306,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
 
         #endregion
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WebService_ApplyPath")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("WebService_ApplyPath")]
         public void WebService_ApplyPath_WhenResponseDataNull_NothingHappens()
         {
             //------------Setup for test--------------------------
@@ -318,9 +319,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.IsNull(webService.RequestResponse);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WebService_ApplyPath")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("WebService_ApplyPath")]
         public void WebService_ApplyPath_WhenResponseDataEmpty_NothingHappens()
         {
             //------------Setup for test--------------------------
@@ -331,9 +332,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual("", webService.RequestResponse);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WebService_ApplyPath")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("WebService_ApplyPath")]
         public void WebService_ApplyPath_WhenJsonPathNull_NothingHappens()
         {
             //------------Setup for test--------------------------
@@ -347,9 +348,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual(expected, webService.RequestResponse);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WebService_ApplyPath")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("WebService_ApplyPath")]
         public void WebService_ApplyPath_WhenJsonPathEmpty_NothingHappens()
         {
             //------------Setup for test--------------------------
@@ -363,9 +364,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual(expected, webService.RequestResponse);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WebService_ApplyPath")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("WebService_ApplyPath")]
         public void WebService_ApplyPath_ResponseDataNotJsonData_ExceptionThrown()
         {
             //------------Setup for test--------------------------

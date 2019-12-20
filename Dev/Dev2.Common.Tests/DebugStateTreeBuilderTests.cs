@@ -2,15 +2,16 @@
 using System.Linq;
 using Dev2.Common.ExtMethods;
 using Dev2.Common.Interfaces.Diagnostics.Debug;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Common.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DebugStateTreeBuilderTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DebugStateTreeBuilder_GivenStates_ShouldReturnStates()
         {
             //---------------Set up test pack-------------------
@@ -22,8 +23,8 @@ namespace Dev2.Common.Tests
             Assert.IsNotNull(buildTree);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DebugStateTreeBuilder_GivenStates_ShouldTreeWithChildren()
         {
             //---------------Set up test pack-------------------
@@ -40,8 +41,8 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(buildTree.Any(state => state.Children.Any()));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DebugStateTreeBuilder_GivenStates_ShouldAddChildrenCorrectly()
         {
             //---------------Set up test pack-------------------
@@ -65,8 +66,8 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(children.Any(state => !state.Children.Any()));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DebugStateTreeBuilder_GivenStatesWithForEach_ShouldAddChildrenCorrectly()
         {
             //---------------Set up test pack-------------------
@@ -87,8 +88,8 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(children.Any(state => !state.Children.Any()));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DebugStateTreeBuilder_GivenStatesWithNestesForEach_ShouldAddChildrenCorrectly()
         {
             //---------------Set up test pack-------------------
@@ -113,8 +114,8 @@ namespace Dev2.Common.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DebugStateTreeBuilder_GivenStatesWithNestesWithService_ShouldAddChildrenCorrectly()
         {
             //---------------Set up test pack-------------------
@@ -139,8 +140,8 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(allHas4Children);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DebugStateTreeBuilder_GivenStatesAllToolsWorkflow_ShouldAggregateErrors()
         {
             //---------------Set up test pack-------------------

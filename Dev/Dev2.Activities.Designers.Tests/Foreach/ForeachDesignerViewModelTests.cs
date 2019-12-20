@@ -16,19 +16,20 @@ using Dev2.Common.Interfaces.Help;
 using Dev2.Data.Interfaces.Enums;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 
 namespace Dev2.Activities.Designers.Tests.Foreach
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ForeachDesignerViewModelTests
     {
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ForeachDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ForeachDesignerViewModel_Constructor")]
         public void ForeachDesignerViewModel_Constructor_ModelItemIsValid_SelectedForeachTypeIsInitialized()
         {
             var modelItem = CreateModelItem();
@@ -44,9 +45,9 @@ namespace Dev2.Activities.Designers.Tests.Foreach
             Assert.IsTrue(viewModel.HasLargeView);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("ForeachDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("ForeachDesignerViewModel_Handle")]
         public void ForeachDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -62,9 +63,9 @@ namespace Dev2.Activities.Designers.Tests.Foreach
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ForeachDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ForeachDesignerViewModel_Constructor")]
         public void ForeachDesignerViewModel_Constructor_ModelItemIsValid_ForeachTypesHasThreeItems()
         {
             var modelItem = CreateModelItem();
@@ -72,9 +73,9 @@ namespace Dev2.Activities.Designers.Tests.Foreach
             Assert.AreEqual(4, viewModel.ForeachTypes.Count);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ForeachDesignerViewModel_SetSelectedForeachType")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ForeachDesignerViewModel_SetSelectedForeachType")]
         public void ForeachDesignerViewModel_SetSelectedForeachTypeToinCsv_ValidForeachType_ForeachTypeOnModelItemIsAlsoSet()
         {
             var modelItem = CreateModelItem();
@@ -89,9 +90,9 @@ namespace Dev2.Activities.Designers.Tests.Foreach
             Assert.AreEqual(viewModel.RecordsetVisibility, Visibility.Hidden);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ForeachDesignerViewModel_SetSelectedForeachType")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ForeachDesignerViewModel_SetSelectedForeachType")]
         public void ForeachDesignerViewModel_SetSelectedForeachTypeToinRecordset_ValidForeachType_ForeachTypeOnModelItemIsAlsoSet()
         {
             var modelItem = CreateModelItem();
@@ -106,9 +107,9 @@ namespace Dev2.Activities.Designers.Tests.Foreach
             Assert.AreEqual(viewModel.RecordsetVisibility, Visibility.Visible);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ForeachDesignerViewModel_SetSelectedForeachType")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ForeachDesignerViewModel_SetSelectedForeachType")]
         public void ForeachDesignerViewModel_SetSelectedForeachTypeToNoOfExecution_ValidForeachType_ForeachTypeOnModelItemIsAlsoSet()
         {
             var modelItem = CreateModelItem();
@@ -123,9 +124,9 @@ namespace Dev2.Activities.Designers.Tests.Foreach
             Assert.AreEqual(viewModel.RecordsetVisibility, Visibility.Hidden);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ForEachDesignerViewModel_MultipleItems")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ForEachDesignerViewModel_MultipleItems")]
         public void ForEachDesignerViewModel_MultipleItems_NoFormats_Null()
         {
             //------------Setup for test--------------------------
@@ -138,9 +139,9 @@ namespace Dev2.Activities.Designers.Tests.Foreach
             Assert.IsFalse(multipleItemsToSequence);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ForEachDesignerViewModel_MultipleItems")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ForEachDesignerViewModel_MultipleItems")]
         public void ForEachDesignerViewModel_MultipleItems_NoDataObject_Null()
         {
             //------------Setup for test--------------------------
@@ -152,9 +153,9 @@ namespace Dev2.Activities.Designers.Tests.Foreach
             Assert.IsFalse(multipleItemsToSequence);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ForEachDesignerViewModel_MultipleItems")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ForEachDesignerViewModel_MultipleItems")]
         public void ForEachDesignerViewModel_MultipleItems_NoModelItemsFormat_Null()
         {
             //------------Setup for test--------------------------
@@ -167,9 +168,9 @@ namespace Dev2.Activities.Designers.Tests.Foreach
             Assert.IsFalse(multipleItemsToSequence);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ForEachDesignerViewModel_MultipleItems")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ForEachDesignerViewModel_MultipleItems")]
         public void ForEachDesignerViewModel_MultipleItems_ModelItemsFormatNotList_Null()
         {
             //------------Setup for test--------------------------
@@ -182,9 +183,9 @@ namespace Dev2.Activities.Designers.Tests.Foreach
             Assert.IsFalse(multipleItemsToSequence);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ForEachDesignerViewModel_MultipleItems")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ForEachDesignerViewModel_MultipleItems")]
         public void ForEachDesignerViewModel_MultipleItems_ModelItemsFormatNotListOfModelItem_Null()
         {
             //------------Setup for test--------------------------
@@ -197,9 +198,9 @@ namespace Dev2.Activities.Designers.Tests.Foreach
             Assert.IsFalse(multipleItemsToSequence);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ForEachDesignerViewModel_MultipleItems")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ForEachDesignerViewModel_MultipleItems")]
         public void ForEachDesignerViewModel_MultipleItems_ModelItemsFormatListOfModelItemContainsNonActivity_NotAddedToSequence()
         {
             //------------Setup for test--------------------------
@@ -213,15 +214,15 @@ namespace Dev2.Activities.Designers.Tests.Foreach
             //------------Assert Results-------------------------
             Assert.IsTrue(multipleItemsToSequence);
             //            var dsfSequenceActivity = multipleItemsToSequence.GetCurrentValue() as DsfSequenceActivity;
-            //            Assert.IsNotNull(dsfSequenceActivity);
-            //            Assert.AreEqual(2, dsfSequenceActivity.Activities.Count);
-            //            Assert.AreEqual(gatherSystemInformationActivity, dsfSequenceActivity.Activities[0]);
-            //            Assert.AreEqual(assignActivity, dsfSequenceActivity.Activities[1]);
+            //            NUnit.Framework.Assert.IsNotNull(dsfSequenceActivity);
+            //            NUnit.Framework.Assert.AreEqual(2, dsfSequenceActivity.Activities.Count);
+            //            NUnit.Framework.Assert.AreEqual(gatherSystemInformationActivity, dsfSequenceActivity.Activities[0]);
+            //            NUnit.Framework.Assert.AreEqual(assignActivity, dsfSequenceActivity.Activities[1]);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ForEachDesignerViewModel_MultipleItems")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ForEachDesignerViewModel_MultipleItems")]
         public void ForEachDesignerViewModel_MultipleItems_ModelItemsFormatListOfModelItemContainsOneActivity_NotAddedToSequence()
         {
             //------------Setup for test--------------------------
@@ -235,9 +236,9 @@ namespace Dev2.Activities.Designers.Tests.Foreach
             Assert.IsFalse(multipleItemsToSequence);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ForEachDesignerViewModel_MultipleItems")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ForEachDesignerViewModel_MultipleItems")]
         public void ForEachDesignerViewModel_MultipleItems_ModelItemsFormatListOfModelItemActivities_AddedToSequence()
         {
             //------------Setup for test--------------------------
@@ -252,11 +253,11 @@ namespace Dev2.Activities.Designers.Tests.Foreach
             //------------Assert Results-------------------------
             Assert.IsTrue(multipleItemsToSequence);
             //            var dsfSequenceActivity = multipleItemsToSequence.GetCurrentValue() as DsfSequenceActivity;
-            //            Assert.IsNotNull(dsfSequenceActivity);
-            //            Assert.AreEqual(3, dsfSequenceActivity.Activities.Count);
-            //            Assert.AreEqual(gatherSystemInformationActivity, dsfSequenceActivity.Activities[0]);
-            //            Assert.AreEqual(assignActivity, dsfSequenceActivity.Activities[1]);
-            //            Assert.AreEqual(numberFormatActivity, dsfSequenceActivity.Activities[2]);
+            //            NUnit.Framework.Assert.IsNotNull(dsfSequenceActivity);
+            //            NUnit.Framework.Assert.AreEqual(3, dsfSequenceActivity.Activities.Count);
+            //            NUnit.Framework.Assert.AreEqual(gatherSystemInformationActivity, dsfSequenceActivity.Activities[0]);
+            //            NUnit.Framework.Assert.AreEqual(assignActivity, dsfSequenceActivity.Activities[1]);
+            //            NUnit.Framework.Assert.AreEqual(numberFormatActivity, dsfSequenceActivity.Activities[2]);
         }
 
         static ModelItem CreateModelItem()

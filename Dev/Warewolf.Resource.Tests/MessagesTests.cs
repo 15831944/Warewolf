@@ -7,16 +7,17 @@
 *  AUTHORS <http://warewolf.io/authors.php> , CONTRIBUTORS <http://warewolf.io/contributors.php>
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Warewolf.Resource.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class MessagesTests
     {
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(Messages.Messages))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(Messages.Messages))]
         public void Messages_Tests()
         {
             Assert.AreEqual("Test message from Warewolf for Email Service Source", Messages.Messages.Test_EmailServerSource_EmailBody);

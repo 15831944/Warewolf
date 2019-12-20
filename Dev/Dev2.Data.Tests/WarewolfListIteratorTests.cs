@@ -9,7 +9,7 @@
 */
 
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Warewolf.Storage;
 
 namespace Dev2.Data.Tests

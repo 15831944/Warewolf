@@ -18,7 +18,7 @@ using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Core.Messages;
 using Dev2.Studio.Interfaces;
 using Dev2.TO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Dev2.Data.TO;
 using Warewolf.Storage.Interfaces;
@@ -27,124 +27,125 @@ using System.Linq;
 
 namespace Dev2.Activities.Designers.Tests.Decision
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DecisionTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DecisionDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DecisionDesignerViewModel))]
         public void DecisionDesignerViewModel_OnSearchTypeChanged_Equal_RequiresCriteriaInput_IsCriteriaEnabledTrue()
         {
             Verify_OnSearchTypeChanged_IsSearchCriteriaEnabled("=", true, false);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DecisionDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DecisionDesignerViewModel))]
         public void DecisionDesignerViewModel_OnSearchTypeChanged_NotContains_RequiresCriteriaInput_IsCriteriaEnabledTrue()
         {
             Verify_OnSearchTypeChanged_IsSearchCriteriaEnabled("Doesn't Contain", true, false);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DecisionDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DecisionDesignerViewModel))]
         public void DecisionDesignerViewModel_OnSearchTypeChanged_Contains_RequiresCriteriaInput_IsCriteriaEnabledTrue()
         {
             Verify_OnSearchTypeChanged_IsSearchCriteriaEnabled("Contains", true, false);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DecisionDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DecisionDesignerViewModel))]
         public void DecisionDesignerViewModel_OnSearchTypeChanged_NotEqual_RequiresCriteriaInput_IsCriteriaEnabledTrue()
         {
             Verify_OnSearchTypeChanged_IsSearchCriteriaEnabled("<> (Not Equal)", true, false);
 
         }
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DecisionDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DecisionDesignerViewModel))]
         public void DecisionDesignerViewModel_OnSearchTypeChanged_EndsWith_RequiresCriteriaInput_IsCriteriaEnabledTrue()
         {
             Verify_OnSearchTypeChanged_IsSearchCriteriaEnabled("Ends With", true, false);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DecisionDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DecisionDesignerViewModel))]
         public void DecisionDesignerViewModel_OnSearchTypeChanged_StartsWith_RequiresCriteriaInput_IsCriteriaEnabledTrue()
         {
             Verify_OnSearchTypeChanged_IsSearchCriteriaEnabled("Starts With", true, false);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DecisionDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DecisionDesignerViewModel))]
         public void DecisionDesignerViewModel_OnSearchTypeChanged_Regex_RequiresCriteriaInput_IsCriteriaEnabledTrue()
         {
             Verify_OnSearchTypeChanged_IsSearchCriteriaEnabled("Is Regex", true, false);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DecisionDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DecisionDesignerViewModel))]
         public void DecisionDesignerViewModel_OnSearchTypeChanged_GreaterThan_RequiresCriteriaInput_IsCriteriaEnabledTrue()
         {
             Verify_OnSearchTypeChanged_IsSearchCriteriaEnabled(">", true, false);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DecisionDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DecisionDesignerViewModel))]
         public void DecisionDesignerViewModel_OnSearchTypeChanged_LessThan_RequiresCriteriaInput_IsCriteriaEnabledTrue()
         {
             Verify_OnSearchTypeChanged_IsSearchCriteriaEnabled("<", true, false);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DecisionDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DecisionDesignerViewModel))]
         public void DecisionDesignerViewModel_OnSearchTypeChanged_LessThanEqual_RequiresCriteriaInput_IsCriteriaEnabledTrue()
         {
             Verify_OnSearchTypeChanged_IsSearchCriteriaEnabled("<=", true, false);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DecisionDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DecisionDesignerViewModel))]
         public void DecisionDesignerViewModel_OnSearchTypeChanged_GreaterThanEqual_RequiresCriteriaInput_IsCriteriaEnabledTrue()
         {
             Verify_OnSearchTypeChanged_IsSearchCriteriaEnabled(">=", true, false);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DecisionDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DecisionDesignerViewModel))]
         public void DecisionDesignerViewModel_OnSearchTypeChanged_NotInRequiresCriteriaInputList_IsCriteriaEnabledFalseSearchCriteriaEmptyString()
         {
             Verify_OnSearchTypeChanged_IsSearchCriteriaEnabled("Is Numeric", false, false);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DecisionDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DecisionDesignerViewModel))]
         public void DecisionDesignerViewModel_OnSearchTypeChanged_IndexObjectIsnotZero()
         {
             Verify_OnSearchTypeChanged_IsSearchCriteriaEnabled("Is Numeric", false, false, -1);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DecisionDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DecisionDesignerViewModel))]
         public void DecisionDesignerViewModel_OnSearchTypeChanged_InRequiresCriteriaInputList_IsCriteriaEnabledFalseSearchCriteriaInBetween()
         {
             Verify_OnSearchTypeChanged_IsSearchCriteriaEnabled("Is Between", true, false);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DecisionDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DecisionDesignerViewModel))]
         public void DecisionDesignerViewModel_OnSearchTypeChanged_InRequiresCriteriaInputList_IsCriteriaEnabledFalseSearchCriteriaNotBetween()
         {
             Verify_OnSearchTypeChanged_IsSearchCriteriaEnabled("Not Between", true, false);
@@ -181,9 +182,9 @@ namespace Dev2.Activities.Designers.Tests.Decision
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(DecisionDesignerViewModel))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(DecisionDesignerViewModel))]
         public void Verify_UpdateDecisionDisplayName()
         {
             //------------Setup for test--------------------------
@@ -206,9 +207,9 @@ namespace Dev2.Activities.Designers.Tests.Decision
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DecisionDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DecisionDesignerViewModel))]
         public void DecisionDesignerViewModel_OnSearchTypeChanged_IndexOutOfBounds_DoesNothing()
         {
             Verify_OnSearchTypeChanged_IndexOutOfBounds_DoesNothing(-2);
@@ -240,9 +241,9 @@ namespace Dev2.Activities.Designers.Tests.Decision
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DecisionDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DecisionDesignerViewModel))]
         public void DecisionDesignerViewModel_Validate_CustomizedDisplayText()
         {
             //------------Setup for test--------------------------
@@ -267,9 +268,9 @@ namespace Dev2.Activities.Designers.Tests.Decision
             Assert.AreEqual("Testing", viewModel.DisplayText);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DecisionTo_SearchCriteria")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DecisionTo_SearchCriteria")]
         public void DecisionTo_SearchCriteria_Validate_IsFalse()
         {
             //------------Setup for test--------------------------
@@ -279,9 +280,9 @@ namespace Dev2.Activities.Designers.Tests.Decision
             Assert.IsNotNull(decisionTO.GetRuleSet("SearchCriteria", ""));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DecisionTo_CanAddOrRemove")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DecisionTo_CanAddOrRemove")]
         public void DecisionTo_CanAddOrRemove_Validate_IsTrue()
         {
             //------------Setup for test--------------------------
@@ -300,9 +301,9 @@ namespace Dev2.Activities.Designers.Tests.Decision
             Assert.IsFalse(canRemove);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DecisionTo_CanAddOrRemoveItems")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DecisionTo_CanAddOrRemoveItems")]
         public void DecisionTo_CanAddOrRemoveItems_Validate_IsTrue()
         {
             //------------Setup for test--------------------------
@@ -332,9 +333,9 @@ namespace Dev2.Activities.Designers.Tests.Decision
             Assert.IsFalse(item2.CanRemove());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DecisionTo_ClearRow")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DecisionTo_ClearRow")]
         public void DecisionTo_ClearRow_Validate_RowRemoved()
         {
             //------------Setup for test--------------------------
@@ -359,9 +360,9 @@ namespace Dev2.Activities.Designers.Tests.Decision
             Assert.AreEqual("", item2.SearchType);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DecisionDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DecisionDesignerViewModel))]
         public void DecisionDesignerViewModel_Constructor_PropertiesInitialized()
         {
             //------------Setup for test--------------------------
@@ -376,9 +377,9 @@ namespace Dev2.Activities.Designers.Tests.Decision
             Assert.AreEqual(38,viewModel.WhereOptions.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(DecisionDesignerViewModel))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(DecisionDesignerViewModel))]
         public void DecisionDesignerViewModel_Validate_All()
         {
             //------------Setup for test--------------------------
@@ -398,9 +399,9 @@ namespace Dev2.Activities.Designers.Tests.Decision
             Assert.AreEqual(Warewolf.Resource.Errors.ErrorResource.DecisionFalseArmTextNotNullErrorTest, viewModel.Errors[2].Message);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(DecisionDesignerViewModel))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(DecisionDesignerViewModel))]
         public void DecisionDesignerViewModel_Validate_DisplayText()
         {
             //------------Setup for test--------------------------
@@ -421,9 +422,9 @@ namespace Dev2.Activities.Designers.Tests.Decision
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(DecisionDesignerViewModel))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(DecisionDesignerViewModel))]
         public void DecisionDesignerViewModel_Validate_TrueArm()
         {
             //------------Setup for test--------------------------
@@ -444,9 +445,9 @@ namespace Dev2.Activities.Designers.Tests.Decision
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(DecisionDesignerViewModel))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(DecisionDesignerViewModel))]
         public void DecisionDesignerViewModel_Validate_FalseText()
         {
             //------------Setup for test--------------------------
@@ -467,9 +468,9 @@ namespace Dev2.Activities.Designers.Tests.Decision
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(DecisionDesignerViewModel))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(DecisionDesignerViewModel))]
         public void DecisionDesignerViewModel_HandleConfigureMessage_SetShowLarge()
         {
             //------------Setup for test--------------------------            
@@ -481,9 +482,9 @@ namespace Dev2.Activities.Designers.Tests.Decision
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(DecisionDesignerViewModel))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(DecisionDesignerViewModel))]
         public void DecisionDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------            
@@ -499,9 +500,9 @@ namespace Dev2.Activities.Designers.Tests.Decision
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()),Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(DecisionDesignerViewModel))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(DecisionDesignerViewModel))]
         public void DecisionDesignerViewModel_GetExpressionText_ShouldSetExpressionText()
         {
             //------------Setup for test--------------------------
@@ -525,9 +526,9 @@ namespace Dev2.Activities.Designers.Tests.Decision
             StringAssert.Contains(viewModel.ExpressionText, "{\"TheStack\":[{\"Col1\":\"[[val]]\",\"Col2\":\"5\",\"Col3\":\"\",\"Cols1\":null,\"Cols2\":null,\"Cols3\":null,\"PopulatedColumnCount\":2,\"EvaluationFn\":\"IsEqual\"}],\"TotalDecisions\":1,\"ModelName\":\"Dev2DecisionStack\",\"Mode\":\"AND\",\"TrueArmText\":\"\",\"FalseArmText\":\"\",\"DisplayText\":\"\",\"Version\":null}");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(DecisionDesignerViewModel))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(DecisionDesignerViewModel))]
         public void DecisionDesignerViewModel_RemoveRow_ShouldRemove()
         {
             //------------Setup for test--------------------------
@@ -553,8 +554,8 @@ namespace Dev2.Activities.Designers.Tests.Decision
             Assert.AreEqual(2, viewModel.Collection.Count);
         }
 
-        [TestMethod]
-        [Owner("Ashley Lewis")]
+        [Test]
+        [Author("Ashley Lewis")]
         public void Decision_StaredRecordsetIsBetweenTwoStaredRecordsets_ValidateAndGenerateUserFriendlyModel()
         {
             //------------Setup for test--------------------------
@@ -681,9 +682,9 @@ namespace Dev2.Activities.Designers.Tests.Decision
             public enDecisionType _decisionType;
             public bool _found;
         }
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(enDecisionType))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(enDecisionType))]
         public void enDecisionType_Handled()
         {
             var type = typeof(IDecisionOperation);

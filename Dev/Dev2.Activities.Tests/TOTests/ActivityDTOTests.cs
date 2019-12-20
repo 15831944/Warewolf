@@ -13,19 +13,20 @@ using Dev2.Common.Interfaces.Infrastructure.Providers.Errors;
 using Dev2.Common.Interfaces.Infrastructure.Providers.Validation;
 using Dev2.Providers.Validation.Rules;
 using Dev2.Validation;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 
 
 namespace Dev2.Tests.Activities.TOTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ActivityDtoTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ActivityDTO_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ActivityDTO_Constructor")]
         public void ActivityDTO_Constructor_EmptyConstructor_SetsFieldNameFieldValueIndexNumber()
         {
             //------------Setup for test--------------------------
@@ -39,9 +40,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsNotNull(activityDTO.Errors);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ActivityDTO_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ActivityDTO_Constructor")]
         public void ActivityDTO_Constructor_ConstructorWithParameters_SetsProperties()
         {
             //------------Setup for test--------------------------
@@ -59,9 +60,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsNotNull(activityDTO.Errors);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ActivityDTO_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ActivityDTO_Constructor")]
         public void ActivityDTO_Constructor_Construct_IsInstanceOfTypeIPerformsValidation()
         {
             //------------Setup for test--------------------------
@@ -72,12 +73,12 @@ namespace Dev2.Tests.Activities.TOTests
             //------------Execute Test---------------------------
             var activityDTO = new ActivityDTO(fieldName, fieldValue, indexNumber, inserted);
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(activityDTO, typeof(IPerformsValidation));
+            Assert.IsInstanceOf(activityDTO.GetType(), typeof(IPerformsValidation));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ActivityDTO_OnPropertyChanged")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ActivityDTO_OnPropertyChanged")]
         public void ActivityDTO_OnPropertyChanged_FieldNameChanged_FiresPropertyChanged()
         {
             //------------Setup for test--------------------------
@@ -90,9 +91,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(propertyChangedFired);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ActivityDTO_OnPropertyChanged")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ActivityDTO_OnPropertyChanged")]
         public void ActivityDTO_OnPropertyChanged_FieldValueChanged_FiresPropertyChanged()
         {
             //------------Setup for test--------------------------
@@ -104,9 +105,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(propertyChangedFired);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ActivityDTO_OnPropertyChanged")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ActivityDTO_OnPropertyChanged")]
         public void ActivityDTO_OnPropertyChanged_IndexNumberChanged_FiresPropertyChanged()
         {
             //------------Setup for test--------------------------
@@ -119,9 +120,9 @@ namespace Dev2.Tests.Activities.TOTests
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ActivityDTO_CanRemove")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ActivityDTO_CanRemove")]
         public void ActivityDTO_CanRemove_FieldNameAndFieldValueEmpty_True()
         {
             //------------Setup for test--------------------------
@@ -132,9 +133,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(canRemove);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ActivityDTO_CanRemove")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ActivityDTO_CanRemove")]
         public void ActivityDTO_CanRemove_FieldNameAndFieldValueNull_True()
         {
             //------------Setup for test--------------------------
@@ -145,9 +146,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(canRemove);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ActivityDTO_CanRemove")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ActivityDTO_CanRemove")]
         public void ActivityDTO_CanRemove_FieldNameHasValueAndFieldValueNull_False()
         {
             //------------Setup for test--------------------------
@@ -158,9 +159,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsFalse(canRemove);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ActivityDTO_CanRemove")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ActivityDTO_CanRemove")]
         public void ActivityDTO_CanRemove_FieldNameNullAndFieldValueHasValue_False()
         {
             //------------Setup for test--------------------------
@@ -171,9 +172,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsFalse(canRemove);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ActivityDTO_CanAdd")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ActivityDTO_CanAdd")]
         public void ActivityDTO_CanAdd_FieldNameAndFieldValueEmpty_False()
         {
             //------------Setup for test--------------------------
@@ -184,9 +185,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsFalse(canRemove);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ActivityDTO_CanAdd")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ActivityDTO_CanAdd")]
         public void ActivityDTO_CanAdd_FieldNameAndFieldValueNull_False()
         {
             //------------Setup for test--------------------------
@@ -197,9 +198,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsFalse(canRemove);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ActivityDTO_CanAdd")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ActivityDTO_CanAdd")]
         public void ActivityDTO_CanAdd_FieldNameHasValueAndFieldValueNull_True()
         {
             //------------Setup for test--------------------------
@@ -210,9 +211,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(canRemove);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ActivityDTO_CanAdd")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ActivityDTO_CanAdd")]
         public void ActivityDTO_CanAdd_FieldNameNullAndFieldValueHasValue_True()
         {
             //------------Setup for test--------------------------
@@ -223,9 +224,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(canRemove);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ActivityDTO_ClearRow")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ActivityDTO_ClearRow")]
         public void ActivityDTO_ClearRow_Executed_SetsFieldNameFieldValueToEmptyString()
         {
             //------------Setup for test--------------------------
@@ -240,9 +241,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.AreEqual(string.Empty, activityDTO.FieldValue);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ActivityDTO_ConvertToOutputTO")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ActivityDTO_ConvertToOutputTO")]
         public void ActivityDTO_ConvertToOutputTO_Executed_ReturnsOutputTO()
         {
             //------------Setup for test--------------------------
@@ -254,9 +255,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsNotNull(convertToOutputTO);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ActivityDTO_OutList")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ActivityDTO_OutList")]
         public void ActivityDTO_OutList_Property_ListOfString()
         {
             //------------Setup for test--------------------------
@@ -269,9 +270,9 @@ namespace Dev2.Tests.Activities.TOTests
             CollectionAssert.AreEqual(expectedOutList, outList);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ActivityDTO_ValidateRules")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ActivityDTO_ValidateRules")]
         public void ActivityDTO_ValidateRules_NullRuleSet_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -282,9 +283,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(validate);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ActivityDTO_Validate")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ActivityDTO_Validate")]
         public void ActivityDTO_Validate_GivenNoRules_ReturnTrue()
         {
             //------------Setup for test--------------------------
@@ -295,9 +296,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(isValid);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ActivityDTO_Validate")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ActivityDTO_Validate")]
         public void ActivityDTO_Validate_GivenRules_HasFailingRuleReturnFalse()
         {
             //------------Setup for test--------------------------
@@ -310,9 +311,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsFalse(isValid);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ActivityDTO_Validate")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ActivityDTO_Validate")]
         public void ActivityDTO_Validate_GivenRules_HasPassingRuleReturnTrue()
         {
             //------------Setup for test--------------------------
@@ -325,9 +326,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(isValid);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ActivityDTO_Validate")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ActivityDTO_Validate")]
         public void ActivityDTO_Validate_Executed_SetErrorsProperty()
         {
             //------------Setup for test--------------------------
@@ -340,9 +341,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.AreEqual(1, activityDTO.Errors.Count);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ActivityDTO_GetRuleSet")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ActivityDTO_GetRuleSet")]
         public void ActivityDTO_GetRuleSet_OnFieldName_ReturnTwoRules()
         {
             //------------Setup for test--------------------------
@@ -352,13 +353,13 @@ namespace Dev2.Tests.Activities.TOTests
             //------------Assert Results-------------------------
             Assert.IsNotNull(rulesSet);
             Assert.AreEqual(2, rulesSet.Rules.Count);
-            Assert.IsInstanceOfType(rulesSet.Rules[0], typeof(IsStringEmptyRule));
-            Assert.IsInstanceOfType(rulesSet.Rules[1], typeof(IsValidExpressionRule));
+            Assert.IsInstanceOf(rulesSet.Rules[0].GetType(), typeof(IsStringEmptyRule));
+            Assert.IsInstanceOf(rulesSet.Rules[1].GetType(), typeof(IsValidExpressionRule));
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ActivityDTO_GetRuleSet")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ActivityDTO_GetRuleSet")]
         public void ActivityDTO_GetRuleSet_OnFieldValue_ReturnTwoRules()
         {
             //------------Setup for test--------------------------
@@ -368,14 +369,14 @@ namespace Dev2.Tests.Activities.TOTests
             //------------Assert Results-------------------------
             Assert.IsNotNull(rulesSet);
             Assert.AreEqual(1, rulesSet.Rules.Count);
-            Assert.IsInstanceOfType(rulesSet.Rules[0], typeof(IsValidExpressionRule));
+            Assert.IsInstanceOf(rulesSet.Rules[0].GetType(), typeof(IsValidExpressionRule));
         }
 
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ActivityDTO_OnPropertyChanged")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ActivityDTO_OnPropertyChanged")]
         public void ActivityDTO_OnPropertyChanged_ErrorsChanged_FiresPropertyChanged()
         {
             //------------Setup for test--------------------------
@@ -387,9 +388,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(propertyChangedFired);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ActivityDTO_FieldName")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ActivityDTO_FieldName")]
         public void ActivityDTO_FieldName_ValidatesForErrors_ReturnsError()
         {
             //------------Setup for test--------------------------

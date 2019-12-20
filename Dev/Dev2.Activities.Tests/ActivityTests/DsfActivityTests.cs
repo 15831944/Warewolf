@@ -23,33 +23,23 @@ using Dev2.Communication;
 using Dev2.Diagnostics;
 using Dev2.DynamicServices;
 using Dev2.Services.Security;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Warewolf.Core;
 using Warewolf.Storage;
-using WarewolfParserInterop;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
-    /// <summary>
-    /// Summary description for DateTimeDifferenceTests
-    /// </summary>
-
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfActivityTests : BaseActivityUnitTest
-    {
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext { get; set; }
-
-
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfActivity_BeforeExecutionStart")]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
+    { 
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfActivity_BeforeExecutionStart")]
+        [NUnit.Framework.DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void DsfActivity_BeforeExecutionStart_NullResourceID_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -61,13 +51,13 @@ namespace Dev2.Tests.Activities.ActivityTests
             // remove test datalist ;)
 
             //------------Assert Results-------------------------
-            Assert.AreEqual(5, inRes.Count);
+            NUnit.Framework.Assert.AreEqual(5, inRes.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfActivity_GetForEachInputs")]
-        [ExpectedException(typeof(NotImplementedException))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfActivity_GetForEachInputs")]
+        [NUnit.Framework.ExpectedException(typeof(NotImplementedException))]
         public void DsfActivity_GetForEachInputs_WhenExecuted_ThrowsException()
         {
             //------------Setup for test--------------------------
@@ -78,10 +68,10 @@ namespace Dev2.Tests.Activities.ActivityTests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfActivity_GetForEachOutputs")]
-        [ExpectedException(typeof(NotImplementedException))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfActivity_GetForEachOutputs")]
+        [NUnit.Framework.ExpectedException(typeof(NotImplementedException))]
         public void DsfActivity_GetForEachOutputs_WhenExecuted_ThrowsException()
         {
             //------------Setup for test--------------------------
@@ -92,10 +82,10 @@ namespace Dev2.Tests.Activities.ActivityTests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfActivity_UpdateForEachInputs")]
-        [ExpectedException(typeof(NotImplementedException))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfActivity_UpdateForEachInputs")]
+        [NUnit.Framework.ExpectedException(typeof(NotImplementedException))]
         public void DsfActivity_UpdateForEachInputs_WhenExecuted_ThrowsException()
         {
             //------------Setup for test--------------------------
@@ -106,10 +96,10 @@ namespace Dev2.Tests.Activities.ActivityTests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfActivity_UpdateForEachOutputs")]
-        [ExpectedException(typeof(NotImplementedException))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfActivity_UpdateForEachOutputs")]
+        [NUnit.Framework.ExpectedException(typeof(NotImplementedException))]
         public void DsfActivity_UpdateForEachOutputs_WhenExecuted_ThrowsException()
         {
             //------------Setup for test--------------------------
@@ -120,9 +110,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfActivity_GetFindMissingType")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfActivity_GetFindMissingType")]
         public void DsfActivity_GetFindMissingType_Executed_ReturnsDsfActivity()
         {
             //------------Setup for test--------------------------
@@ -131,12 +121,12 @@ namespace Dev2.Tests.Activities.ActivityTests
             //------------Execute Test---------------------------
             var findMissingType = dsfActivity.GetFindMissingType();
             //------------Assert Results-------------------------
-            Assert.AreEqual(enFindMissingType.DsfActivity, findMissingType);
+            NUnit.Framework.Assert.AreEqual(enFindMissingType.DsfActivity, findMissingType);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfActivity_GetOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfActivity_GetOutputs")]
         public void DsfActivity_GetOutputs_Called_ShouldReturnListWithResultValueInIt()
         {
             //------------Setup for test--------------------------
@@ -151,15 +141,15 @@ namespace Dev2.Tests.Activities.ActivityTests
             //------------Execute Test---------------------------
             var outputs = act.GetOutputs();
             //------------Assert Results-------------------------
-            Assert.AreEqual(2, outputs.Count);
-            Assert.AreEqual("[[res1]]", outputs[0]);
-            Assert.AreEqual("[[res1]]", outputs[0]);
+            NUnit.Framework.Assert.AreEqual(2, outputs.Count);
+            NUnit.Framework.Assert.AreEqual("[[res1]]", outputs[0]);
+            NUnit.Framework.Assert.AreEqual("[[res1]]", outputs[0]);
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfActivity_BeforeExecutionStart")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfActivity_BeforeExecutionStart")]
         public void DsfActivity_BeforeExecutionStart_EmptyResourceID_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -171,13 +161,13 @@ namespace Dev2.Tests.Activities.ActivityTests
             // remove test datalist ;)
 
             //------------Assert Results-------------------------
-            Assert.AreEqual(5, inRes.Count);
+            NUnit.Framework.Assert.AreEqual(5, inRes.Count);
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfActivity_BeforeExecutionStart")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfActivity_BeforeExecutionStart")]
         public void DsfActivity_BeforeExecutionStart_ResourceIDAutorised_Executes()
         {
             //------------Setup for test--------------------------
@@ -186,7 +176,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             var mockAutorizationService = new Mock<IAuthorizationService>();
             mockAutorizationService.Setup(service => service.IsAuthorized(It.IsAny<IPrincipal>(), AuthorizationContext.Execute, resourceID.ToString())).Returns(true);
 
-            var p = new PrivateObject(act);
+            var p = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(act);
             p.SetProperty("AuthorizationService", mockAutorizationService.Object);
             //------------Execute Test---------------------------
             CheckPathOperationActivityDebugInputOutput(act, @"<ADL><scalar></scalar><Numeric><num></num></Numeric><CompanyName></CompanyName><Customer><FirstName></FirstName></Customer></ADL>",
@@ -194,12 +184,12 @@ namespace Dev2.Tests.Activities.ActivityTests
 
             // remove test datalist ;)
             //------------Assert Results-------------------------
-            Assert.AreEqual(5, inRes.Count);
+            NUnit.Framework.Assert.AreEqual(5, inRes.Count);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DsfActivity_OnExecute")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DsfActivity_OnExecute")]
         public void DsfActivity_OnExecute_WhenLocalExecutionInLocalContext_ExpectEnviromentIDRemainsLocalAndOverrideSetToFalse()
         {
             //------------Setup for test--------------------------
@@ -213,7 +203,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             var mockAutorizationService = new Mock<IAuthorizationService>();
             mockAutorizationService.Setup(service => service.IsAuthorized(It.IsAny<IPrincipal>(), AuthorizationContext.Execute, resourceID.ToString())).Returns(true);
 
-            var p = new PrivateObject(act);
+            var p = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(act);
             p.SetProperty("AuthorizationService", mockAutorizationService.Object);
 
             //------------Execute Test---------------------------
@@ -233,12 +223,12 @@ namespace Dev2.Tests.Activities.ActivityTests
 
 
             //------------Assert Results-------------------------
-            Assert.AreEqual(environmentID, resultEnvironmentID);
-            Assert.IsFalse(isRemoteOverridden);
+            NUnit.Framework.Assert.AreEqual(environmentID, resultEnvironmentID);
+            NUnit.Framework.Assert.IsFalse(isRemoteOverridden);
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DsfActivity_UpdateDebugParentID")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DsfActivity_UpdateDebugParentID")]
 
         public void DsfActivity_UpdateDebugParentID_UniqueIdSameIfNestingLevelNotChanged()
 
@@ -255,15 +245,15 @@ namespace Dev2.Tests.Activities.ActivityTests
             var originalGuid = Guid.NewGuid();
             act.UniqueID = originalGuid.ToString();
             act.UpdateDebugParentID(dataObject);
-            Assert.AreEqual(originalGuid.ToString(), act.UniqueID);
-            Assert.AreEqual(act.GetWorkSurfaceMappingId(), originalGuid);
+            NUnit.Framework.Assert.AreEqual(originalGuid.ToString(), act.UniqueID);
+            NUnit.Framework.Assert.AreEqual(act.GetWorkSurfaceMappingId(), originalGuid);
 
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DsfActivity_UpdateDebugParentID")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DsfActivity_UpdateDebugParentID")]
 
         public void DsfActivity_UpdateDebugParentID_UniqueIdNotSameIfNestingLevelIncreased()
 
@@ -279,13 +269,13 @@ namespace Dev2.Tests.Activities.ActivityTests
             var originalGuid = Guid.NewGuid();
             act.UniqueID = originalGuid.ToString();
             act.UpdateDebugParentID(dataObject);
-            Assert.AreNotEqual(originalGuid.ToString(), act.UniqueID);
-            Assert.AreEqual(act.GetWorkSurfaceMappingId(), originalGuid);
+            NUnit.Framework.Assert.AreNotEqual(originalGuid.ToString(), act.UniqueID);
+            NUnit.Framework.Assert.AreEqual(act.GetWorkSurfaceMappingId(), originalGuid);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfActivity_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfActivity_Constructor")]
         public void DsfActivity_Constructor_WithParameters_ShouldSetValues()
         {
             //------------Setup for test--------------------------
@@ -299,17 +289,17 @@ namespace Dev2.Tests.Activities.ActivityTests
 
             var dsfActivity = new DsfActivity(toolboxFriendlyName, iconPath, serviceName, dataTags, resultValidationRequiredTags, resultValidationExpression);
             //------------Assert Results-------------------------
-            Assert.AreEqual(toolboxFriendlyName, dsfActivity.ToolboxFriendlyName);
-            Assert.AreEqual(serviceName, dsfActivity.ServiceName);
-            Assert.AreEqual(dataTags, dsfActivity.DataTags);
-            Assert.AreEqual(resultValidationRequiredTags, dsfActivity.ResultValidationRequiredTags);
-            Assert.AreEqual(resultValidationExpression, dsfActivity.ResultValidationExpression);
-            Assert.IsFalse(dsfActivity.IsService);
+            NUnit.Framework.Assert.AreEqual(toolboxFriendlyName, dsfActivity.ToolboxFriendlyName);
+            NUnit.Framework.Assert.AreEqual(serviceName, dsfActivity.ServiceName);
+            NUnit.Framework.Assert.AreEqual(dataTags, dsfActivity.DataTags);
+            NUnit.Framework.Assert.AreEqual(resultValidationRequiredTags, dsfActivity.ResultValidationRequiredTags);
+            NUnit.Framework.Assert.AreEqual(resultValidationExpression, dsfActivity.ResultValidationExpression);
+            NUnit.Framework.Assert.IsFalse(dsfActivity.IsService);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfActivity_Inputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfActivity_Inputs")]
         public void DsfActivity_Inputs_GivenValue_ShouldSetProperty()
         {
             //------------Setup for test--------------------------
@@ -318,28 +308,28 @@ namespace Dev2.Tests.Activities.ActivityTests
             //------------Execute Test---------------------------
             dsfActivity.Inputs = new List<IServiceInput>();
             //------------Assert Results-------------------------
-            Assert.IsNotNull(dsfActivity.Inputs);
+            NUnit.Framework.Assert.IsNotNull(dsfActivity.Inputs);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfActivity_Inputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfActivity_Inputs")]
         public void DsfActivity_Inputs_GivenNull_ShouldNotSetProperty()
         {
             //------------Setup for test--------------------------
             var dsfActivity = new DsfActivity();
             dsfActivity.Inputs = new List<IServiceInput>();
             //------------Assert Precondition--------------------
-            Assert.IsNotNull(dsfActivity.Inputs);
+            NUnit.Framework.Assert.IsNotNull(dsfActivity.Inputs);
             //------------Execute Test---------------------------
             dsfActivity.Inputs = null;
             //------------Assert Results-------------------------
-            Assert.IsNotNull(dsfActivity.Inputs);
+            NUnit.Framework.Assert.IsNotNull(dsfActivity.Inputs);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfActivity_ExecuteTool")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfActivity_ExecuteTool")]
 
         public void DsfActivity_ExecuteTool_DataObjectWithNullChannel_ShouldError()
 
@@ -355,12 +345,12 @@ namespace Dev2.Tests.Activities.ActivityTests
             var originalGuid = Guid.NewGuid();
             act.UniqueID = originalGuid.ToString();
             act.Execute(dataObject, 0);
-            Assert.IsTrue(dataObject.Environment.HasErrors());
+            NUnit.Framework.Assert.IsTrue(dataObject.Environment.HasErrors());
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfActivity_BeforeExecutionStart")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfActivity_BeforeExecutionStart")]
         public void DsfActivity_GetOutputs_NotObjectAndOutputMapping_GetsOutputs()
         {
             //------------Setup for test--------------------------
@@ -368,12 +358,12 @@ namespace Dev2.Tests.Activities.ActivityTests
             //------------Execute Test---------------------------
             var outputs = act.GetOutputs();
             //------------Assert Results-------------------------
-            Assert.IsNotNull(outputs);
+            NUnit.Framework.Assert.IsNotNull(outputs);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfActivity_BeforeExecutionStart")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfActivity_BeforeExecutionStart")]
         public void DsfActivity_GetOutptus_ObjectAndOutputMapping_GetsObjectName()
         {
             //------------Setup for test--------------------------
@@ -389,13 +379,13 @@ namespace Dev2.Tests.Activities.ActivityTests
             //------------Execute Test---------------------------
             var outputs = act.GetOutputs();
             //------------Assert Results-------------------------
-            Assert.IsNotNull(outputs);
-            Assert.AreEqual("Obj", outputs[0]);
+            NUnit.Framework.Assert.IsNotNull(outputs);
+            NUnit.Framework.Assert.AreEqual("Obj", outputs[0]);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("DsfActivity_BeforeExecutionStart")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("DsfActivity_BeforeExecutionStart")]
         public void DsfActivity_GetDebugInputs_ServiceInputIsEmpty()
         {
             //------------Setup for test--------------------------
@@ -417,12 +407,12 @@ namespace Dev2.Tests.Activities.ActivityTests
             var outputs = act.GetDebugInputs(env, 0);
 
             //------------Assert Results-------------------------
-            Assert.AreEqual(0, outputs.Count);
+            NUnit.Framework.Assert.AreEqual(0, outputs.Count);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("DsfActivity_BeforeExecutionStart")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("DsfActivity_BeforeExecutionStart")]
         public void DsfActivity_GetDebugInputs_ServiceInputIsAtomListResult()
         {
             //------------Setup for test--------------------------
@@ -448,16 +438,16 @@ namespace Dev2.Tests.Activities.ActivityTests
             var outputs = act.GetDebugInputs(env, 0);
 
             //------------Assert Results-------------------------
-            Assert.AreEqual(1, outputs.Count);
-            Assert.AreEqual("Albert", outputs[0].ResultsList[0].Value);
-            Assert.AreEqual(false, outputs[0].ResultsList[0].HasError);
-            Assert.AreEqual("Bob", outputs[0].ResultsList[1].Value);
-            Assert.AreEqual(false, outputs[0].ResultsList[1].HasError);
+            NUnit.Framework.Assert.AreEqual(1, outputs.Count);
+            NUnit.Framework.Assert.AreEqual("Albert", outputs[0].ResultsList[0].Value);
+            NUnit.Framework.Assert.AreEqual(false, outputs[0].ResultsList[0].HasError);
+            NUnit.Framework.Assert.AreEqual("Bob", outputs[0].ResultsList[1].Value);
+            NUnit.Framework.Assert.AreEqual(false, outputs[0].ResultsList[1].HasError);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfActivity_OnExecute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfActivity_OnExecute")]
         public void DsfActivity_OnExecute_WhenIsTestExecutionShouldUpdateDataObject_SetBackToTrue()
         {
             //------------Setup for test--------------------------
@@ -483,7 +473,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             var mockAutorizationService = new Mock<IAuthorizationService>();
             mockAutorizationService.Setup(service => service.IsAuthorized(It.IsAny<IPrincipal>(), AuthorizationContext.Execute, resourceID.ToString())).Returns(true);
 
-            var p = new PrivateObject(act);
+            var p = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(act);
             p.SetProperty("AuthorizationService", mockAutorizationService.Object);
 
             //------------Execute Test---------------------------
@@ -497,12 +487,12 @@ namespace Dev2.Tests.Activities.ActivityTests
             User = new Mock<IPrincipal>().Object;
             ExecuteProcess(dataObject, true, null, false, true, false, environmentID);
             //------------Assert Results-------------------------
-            Assert.IsTrue(dataObject.IsServiceTestExecution);
+            NUnit.Framework.Assert.IsTrue(dataObject.IsServiceTestExecution);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("DsfActivity_OnExecute")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("DsfActivity_OnExecute")]
         public void DsfActivity_GetDebugInputs_WhenListInput_DebugInputExists()
         {
             //------------Setup for test--------------------------
@@ -531,13 +521,13 @@ namespace Dev2.Tests.Activities.ActivityTests
             };
             var inputs = act.GetDebugInputs(env, 0);
             //------------Assert Results-------------------------
-            Assert.AreEqual(1, inputs.Count);
-            Assert.AreEqual("bob", inputs[0].ResultsList[0].Value);
+            NUnit.Framework.Assert.AreEqual(1, inputs.Count);
+            NUnit.Framework.Assert.AreEqual("bob", inputs[0].ResultsList[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("DsfActivity_OnExecute")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("DsfActivity_OnExecute")]
         public void DsfActivity_GetDebugOutputsFromEnv_ObjectNotNull()
         {
             //------------Setup for test--------------------------
@@ -568,12 +558,12 @@ namespace Dev2.Tests.Activities.ActivityTests
             };
             var outputs = act.GetDebugOutputs(env, 0);
             //------------Assert Results-------------------------
-            Assert.AreEqual(1, outputs[0].ResultsList.Count);
-            Assert.AreEqual("objectname", outputs[0].ResultsList[0].Value);
+            NUnit.Framework.Assert.AreEqual(1, outputs[0].ResultsList.Count);
+            NUnit.Framework.Assert.AreEqual("objectname", outputs[0].ResultsList[0].Value);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("DsfActivity_GetState")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("DsfActivity_GetState")]
         public void DsfActivity_GetState()
         {
             //------------Setup for test--------------------------
@@ -618,7 +608,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             };
             //------------Execute Test---------------------------
             var stateItems = act.GetState();
-            Assert.AreEqual(9, stateItems.Count());
+            NUnit.Framework.Assert.AreEqual(9, stateItems.Count());
             var expectedResults = new[]
             {
                 new StateVariable
@@ -687,9 +677,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             //------------Assert Results-------------------------
             foreach (var entry in iter)
             {
-                Assert.AreEqual(entry.expectValue.Name, entry.value.Name);
-                Assert.AreEqual(entry.expectValue.Type, entry.value.Type);
-                Assert.AreEqual(entry.expectValue.Value, entry.value.Value);
+                NUnit.Framework.Assert.AreEqual(entry.expectValue.Name, entry.value.Name);
+                NUnit.Framework.Assert.AreEqual(entry.expectValue.Type, entry.value.Type);
+                NUnit.Framework.Assert.AreEqual(entry.expectValue.Value, entry.value.Value);
             }
         }
     }

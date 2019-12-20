@@ -8,17 +8,18 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Linq;
 using Warewolf.Options;
 
 namespace Warewolf.Data.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ConvertorTests
     {
-        [TestMethod]
+        [Test]
         public void OptionConvertor_GivenSimpleClass_ExpectListOfIOptions()
         {
             var result = ConvertDataToOptionsList();
@@ -27,7 +28,7 @@ namespace Warewolf.Data.Tests
         }
 
 
-        [TestMethod]
+        [Test]
         public void OptionConvertor_GivenSimpleClass_ExpectIntOption_Success()
         {
             var result = ConvertDataToOptionsList();
@@ -36,7 +37,7 @@ namespace Warewolf.Data.Tests
             Assert.AreEqual(12, ((OptionInt) result[0]).Value);
         }
 
-        [TestMethod]
+        [Test]
         public void OptionConvertor_GivenSimpleClass_ExpectStringOption_Success()
         {
             var result = ConvertDataToOptionsList();
@@ -48,7 +49,7 @@ namespace Warewolf.Data.Tests
             Assert.IsTrue(expected.SequenceEqual(suggestions));
         }
 
-        [TestMethod]
+        [Test]
         public void OptionConvertor_GivenSimpleClass_ExpectBoolOption_Success()
         {
             var result = ConvertDataToOptionsList();

@@ -10,13 +10,15 @@ using Dev2.Data.ServiceModel;
 using Dev2.DynamicServices;
 using Dev2.Runtime.Interfaces;
 using Dev2.TO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using static Dev2.Tests.Activities.ActivityTests.Sharepoint.SharepointCopyFileActivityTests;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SharepointCreateListItemActivityTests : BaseActivityUnitTest
     {
         SharepointCreateListItemActivity CreateActivity()
@@ -24,21 +26,21 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
             return new SharepointCreateListItemActivity();
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SharepointCreateListItemActivity_Construct")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SharepointCreateListItemActivity_Construct")]
         public void SharepointCreateListItemActivity_Construct_GivenInstance_ShouldNotBeNull()
         {
             //------------Setup for test--------------------------
             var sharepointCreateListItemActivity = CreateActivity();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.IsNotNull(sharepointCreateListItemActivity);
+            NUnit.Framework.Assert.IsNotNull(sharepointCreateListItemActivity);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SharepointCreateListItem_Execute")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SharepointCreateListItem_Execute")]
         public void SharepointSource_DoesNotExist_OnResourceCatalog_ShouldSetSharepointSource_ToGuidEmpty()
         {
             //------------Setup for test--------------------------
@@ -56,18 +58,18 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
             var resourceCatalog = new Mock<IResourceCatalog>();
             var mockSharepointSource = new Mock<SharepointSource>();
 
-            var privateObject = new PrivateObject(sharepointCreateListItemActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(sharepointCreateListItemActivity);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
 
             //------------Execute Test---------------------------
             privateObject.Invoke("ExecuteTool", dataObj, 0);
 
-            Assert.AreEqual(resourceId, sharepointCreateListItemActivity.SharepointServerResourceId);
+            NUnit.Framework.Assert.AreEqual(resourceId, sharepointCreateListItemActivity.SharepointServerResourceId);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SharepointCreateListItem_Execute")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SharepointCreateListItem_Execute")]
         public void SharepointSource_Exists_OnResourceCatalog_BlankRecordSet()
         {
             //------------Setup for test--------------------------
@@ -94,19 +96,19 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
 
             resourceCatalog.Setup(r => r.GetResource<SharepointSource>(It.IsAny<Guid>(), It.IsAny<Guid>())).Returns(mockSharepointSource);
 
-            var privateObject = new PrivateObject(sharepointCreateListItemActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(sharepointCreateListItemActivity);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
 
             //------------Execute Test---------------------------
             privateObject.Invoke("ExecuteTool", dataObj, 0);
             //------------Assert Result--------------------------
             GetRecordSetFieldValueFromDataList(dataObj.Environment, "Files", "Name", out IList<string> result, out string error);
-            Assert.IsNotNull(result);
+            NUnit.Framework.Assert.IsNotNull(result);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("SharepointCreateListItem_GetState")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("SharepointCreateListItem_GetState")]
         public void SharepointCreateListItem_GetState()
         {
             //------------Setup for test--------------------------
@@ -138,7 +140,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
                 Result = result,
                 SharepointList = sharepointList
             };
-            var privateObject = new PrivateObject(sharepointCreateListItemActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(sharepointCreateListItemActivity);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
 
             //------------Execute Test---------------------------
@@ -180,7 +182,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
                  }
             };
             var stateItems = sharepointCreateListItemActivity.GetState();
-            Assert.AreEqual(5, stateItems.Count());
+            NUnit.Framework.Assert.AreEqual(5, stateItems.Count());
             var iter = stateItems.Select(
                 (item, index) => new
                 {
@@ -192,9 +194,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
             //------------Assert Results-------------------------
             foreach (var entry in iter)
             {
-                Assert.AreEqual(entry.expectValue.Name, entry.value.Name);
-                Assert.AreEqual(entry.expectValue.Type, entry.value.Type);
-                Assert.AreEqual(entry.expectValue.Value, entry.value.Value);
+                NUnit.Framework.Assert.AreEqual(entry.expectValue.Name, entry.value.Name);
+                NUnit.Framework.Assert.AreEqual(entry.expectValue.Type, entry.value.Type);
+                NUnit.Framework.Assert.AreEqual(entry.expectValue.Value, entry.value.Value);
             }
         }
     }

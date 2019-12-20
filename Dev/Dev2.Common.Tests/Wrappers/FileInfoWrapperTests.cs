@@ -11,14 +11,15 @@ using System;
 using System.IO;
 using Dev2.Common.Interfaces.Wrappers;
 using Dev2.Common.Wrappers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Common.Tests.Wrappers
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FileInfoWrapperTests
     {
-        [TestMethod]
+        [Test]
         public void FileInfoWrapper_CreateDelete()
         {
             var fileName = "c:\\FileInfoWrapper_Construct.txt";

@@ -12,14 +12,15 @@ using Dev2.ConnectionHelpers;
 using Warewolf.Studio.ViewModels;
 using Dev2.Core.Tests.Environments;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Studio.Core;
 using IEventAggregator = Microsoft.Practices.Prism.PubSubEvents.IEventAggregator;
 
 namespace Warewolf.Studio.ViewModels.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class MergeServiceViewModelTests
     {
         private MergeServiceViewModel _target;
@@ -31,7 +32,7 @@ namespace Warewolf.Studio.ViewModels.Tests
         private Mock<IExplorerItem> _explorerItemMock;
         private Mock<IMergeView> _mergeView;
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             _serverMock = new Mock<IServer>();
@@ -108,7 +109,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             return conn;
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestEnvironments()
         {
             //arrange
@@ -120,7 +122,8 @@ namespace Warewolf.Studio.ViewModels.Tests
         }
 
         
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestConstructorExpectedProperties()
         {
             Assert.IsNotNull(_target.MergeConnectControlViewModel);
@@ -128,7 +131,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(_target.MergeConnectControlViewModel.CanCreateServer);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestSelectedEnvironmentChanged()
         {
             //arrange
@@ -170,7 +174,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual(0, _target.MergeResourceVersions.Count);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public async Task TestOtherServerСonnect()
         {
             //arrange

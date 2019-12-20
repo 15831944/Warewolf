@@ -19,15 +19,14 @@ using Dev2.Services.Security;
 using Dev2.Studio.Core.Models;
 using Dev2.Studio.Interfaces;
 using Dev2.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
-
-
-
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Warewolf.Studio.ViewModels.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ServerTests
     {
         Mock<IServer> _env;
@@ -36,7 +35,7 @@ namespace Warewolf.Studio.ViewModels.Tests
         Guid _serverId;
         Mock<IAuthorizationService> _authorizationService;
 
-        [TestInitialize]
+        [SetUp]
         public void Initialize()
         {
             var envId = new Guid();
@@ -52,8 +51,9 @@ namespace Warewolf.Studio.ViewModels.Tests
         }
         
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void Server_GivenNewInstance_IsNotNull()
         {
             //------------Setup for test--------------------------
@@ -62,13 +62,14 @@ namespace Warewolf.Studio.ViewModels.Tests
             var server = new Server(Guid.Empty,mockConnection.Object);
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.IsNotNull(server);
-            Assert.IsNotNull(server.Connection);
-            Assert.IsNotNull(server.EnvironmentID);
-            Assert.IsFalse(string.IsNullOrEmpty(server.DisplayName));
+            NUnit.Framework.Assert.IsNotNull(server);
+            NUnit.Framework.Assert.IsNotNull(server.Connection);
+            NUnit.Framework.Assert.IsNotNull(server.EnvironmentID);
+            NUnit.Framework.Assert.IsFalse(string.IsNullOrEmpty(server.DisplayName));
         }
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void CanDeployTo_GivenIsAuthorizedDeployToIsTrue_ShouldReturnTrue()
         {
             //------------Setup for test--------------------------
@@ -77,11 +78,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             var server = new Server(Guid.Empty, new Mock<IEnvironmentConnection>().Object);
             server.AuthorizationService = _authorizationService.Object;
             //------------Assert Results-------------------------
-            Assert.IsTrue(server.CanDeployTo);
+            NUnit.Framework.Assert.IsTrue(server.CanDeployTo);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void CanDeployFrom_GivenIsAuthorizedDeployFromIsTrue_ShouldReturnTrue()
         {
             //------------Setup for test--------------------------
@@ -90,11 +92,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             var server = new Server(Guid.Empty, new Mock<IEnvironmentConnection>().Object);
             server.AuthorizationService = _authorizationService.Object;
             //------------Assert Results-------------------------
-            Assert.IsTrue(server.CanDeployFrom);            
+            NUnit.Framework.Assert.IsTrue(server.CanDeployFrom);            
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void ServerID_GivenEnvironmentConnectionServerID_ShouldReturnValue()
         {
             //------------Setup for test--------------------------
@@ -103,11 +106,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Execute Test---------------------------
             var server = new Server(Guid.Empty, mockConnection.Object);
             //------------Assert Results-------------------------
-            Assert.IsNotNull(server.ServerID);
+            NUnit.Framework.Assert.IsNotNull(server.ServerID);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void EnvironmentModel_GivenConnection_ShouldReturnValue()
         {
             //------------Setup for test--------------------------
@@ -116,11 +120,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Execute Test---------------------------
             var server = new Server(Guid.Empty, mockConnection.Object);
             //------------Assert Results-------------------------
-            Assert.IsNotNull(server.Connection);
+            NUnit.Framework.Assert.IsNotNull(server.Connection);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void UpdateRepository_GivenNewServerInstane_ShouldReturnValue()
         {
             //------------Setup for test--------------------------
@@ -129,11 +134,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Execute Test---------------------------
             var server = new Server(Guid.Empty, mockConnection.Object);
             //------------Assert Results-------------------------
-            Assert.IsNotNull(server.UpdateRepository);
+            NUnit.Framework.Assert.IsNotNull(server.UpdateRepository);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void Permissions_GivenIsAuthorizedDeployFromIsTrue_ShouldReturnTrue()
         {
             //------------Setup for test--------------------------
@@ -146,12 +152,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             var server = new Server(Guid.Empty, mockConnection.Object);
             server.AuthorizationService = auth.Object;
             //------------Assert Results-------------------------
-            Assert.IsNotNull(server.GetPermissions(It.IsAny<Guid>()));
-            Assert.AreEqual(Permissions.Administrator, server.GetPermissions(It.IsAny<Guid>()));
+            NUnit.Framework.Assert.IsNotNull(server.GetPermissions(It.IsAny<Guid>()));
+            NUnit.Framework.Assert.AreEqual(Permissions.Administrator, server.GetPermissions(It.IsAny<Guid>()));
         }   
         
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void GetServerInformation_GivenServerIsNotConnected_ShouldReturnTrue()
         {
             var valueFunction = new Dictionary<string, string> { { "some key", "some value" } };
@@ -168,11 +175,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Execute Test---------------------------
             var serverInformation = server.GetServerInformation();
             //------------Assert Results-------------------------
-            Assert.IsNotNull(serverInformation);
+            NUnit.Framework.Assert.IsNotNull(serverInformation);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void GetServerVersion_GivenServerIsNotConnected_ShouldReturnTrue()
         {
             //------------Setup for test--------------------------
@@ -186,10 +194,11 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Execute Test---------------------------
             var serverVersion = server.GetServerVersion();
             //------------Assert Results-------------------------
-            Assert.IsFalse(string.IsNullOrEmpty(serverVersion));
+            NUnit.Framework.Assert.IsFalse(string.IsNullOrEmpty(serverVersion));
         }
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void GetMinSupportedVersion_GivenServerIsNotConnected_ShouldReturnTrue()
         {
             //------------Setup for test--------------------------
@@ -203,11 +212,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Execute Test---------------------------
             var minSupportedVersion = server.GetMinSupportedVersion();
             //------------Assert Results-------------------------
-            Assert.IsFalse(string.IsNullOrEmpty(minSupportedVersion));
+            NUnit.Framework.Assert.IsFalse(string.IsNullOrEmpty(minSupportedVersion));
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void Connect_GivenServerIsNotConnected_ShouldReturnTrue()
         {
             //------------Setup for test--------------------------
@@ -221,13 +231,14 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Execute Test---------------------------
             var minSupportedVersion = server.GetMinSupportedVersion();
             //------------Assert Results-------------------------
-            Assert.IsFalse(string.IsNullOrEmpty(minSupportedVersion));
-            Assert.AreEqual("2.0.0.0", minSupportedVersion);
+            NUnit.Framework.Assert.IsFalse(string.IsNullOrEmpty(minSupportedVersion));
+            NUnit.Framework.Assert.AreEqual("2.0.0.0", minSupportedVersion);
         }
 
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void IsConnected_GivenEnvironmentConnectionIsConnected_ShouldReturnTrue()
         {
             //------------Setup for test--------------------------
@@ -236,11 +247,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Execute Test---------------------------            
             var server = new Server(Guid.Empty, _envConnection.Object);
             //------------Assert Results-------------------------
-            Assert.IsTrue(server.IsConnected);
+            NUnit.Framework.Assert.IsTrue(server.IsConnected);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void AllowEdit_GivenServerIsNotLocalHost_ShouldReturnTrue()
         {
             //------------Setup for test--------------------------
@@ -249,11 +261,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Execute Test---------------------------
             var server = new Server(Guid.Empty, _envConnection.Object);
             //------------Assert Results-------------------------
-            Assert.IsTrue(server.AllowEdit);
+            NUnit.Framework.Assert.IsTrue(server.AllowEdit);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void DisplayName_GivenEnvirnmentConnectionIsConnected_ShouldHaveValue()
         {
             const string serverName = "Localhost";
@@ -266,12 +279,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Execute Test---------------------------
             var server = new Server(Guid.Empty, _envConnection.Object);
             //------------Assert Results-------------------------
-            Assert.IsFalse(string.IsNullOrEmpty(server.DisplayName));
-            Assert.AreEqual(serverNameConnected, server.DisplayName);
+            NUnit.Framework.Assert.IsFalse(string.IsNullOrEmpty(server.DisplayName));
+            NUnit.Framework.Assert.AreEqual(serverNameConnected, server.DisplayName);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void ToString_GivenDisplyaName_ShouldDisplayName()
         {
             const string serverName = "Localhost";
@@ -283,11 +297,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Execute Test---------------------------
             var toString = server.DisplayName;
             //------------Assert Results-------------------------
-            Assert.AreEqual(serverName, toString);
+            NUnit.Framework.Assert.AreEqual(serverName, toString);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void DisplayName_GivenEnvirnmentConnectionIsNotConnected_ShouldHaveValue()
         {
             const string serverName = "Localhost";
@@ -299,27 +314,29 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Execute Test---------------------------
             var server = new Server(Guid.Empty, _envConnection.Object);
             //------------Assert Results-------------------------
-            Assert.IsFalse(string.IsNullOrEmpty(server.DisplayName));
-            Assert.AreEqual(serverName, server.DisplayName);
+            NUnit.Framework.Assert.IsFalse(string.IsNullOrEmpty(server.DisplayName));
+            NUnit.Framework.Assert.AreEqual(serverName, server.DisplayName);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void DisplayName_GivenNoEnvirnmentConnection_ShouldHaveValueOfNewRemoteServer()
         {
             const string serverName = "Default Name";
             //------------Setup for test--------------------------
             var server = new Server(Guid.Empty,_envConnection.Object);
             //------------Assert Precondition--------------------
-            Assert.IsFalse(string.IsNullOrEmpty(server.DisplayName));            
+            NUnit.Framework.Assert.IsFalse(string.IsNullOrEmpty(server.DisplayName));            
             //------------Execute Test---------------------------
             server.Connection = null;
             //------------Assert Results-------------------------            
-            Assert.AreEqual(serverName, server.DisplayName);
+            NUnit.Framework.Assert.AreEqual(serverName, server.DisplayName);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void ExplorerRepository_GivenProxyLayer_ShouldNotBeNull()
         {
             //------------Setup for test--------------------------
@@ -331,12 +348,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             var server = new Server(Guid.Empty, _envConnection.Object);
             server.ProxyLayer = _proxyLayer.Object;
             //------------Assert Results-------------------------
-            Assert.IsNotNull(server.ExplorerRepository);
-            Assert.IsNotNull(server.QueryProxy);
+            NUnit.Framework.Assert.IsNotNull(server.ExplorerRepository);
+            NUnit.Framework.Assert.IsNotNull(server.QueryProxy);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void Connect_GivenEnvironmentConnectionIsNoConnected_ShouldConnect()
         {
             //------------Setup for test--------------------------
@@ -348,12 +366,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Execute Test---------------------------
             server.Connect();
             //------------Assert Results-------------------------
-            Assert.IsNotNull(server);
+            NUnit.Framework.Assert.IsNotNull(server);
             _envConnection.Verify(connection => connection.Connect(It.IsAny<Guid>()), Times.AtLeastOnce);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void ConnectAsync_GivenEnvironmentConnectionIsNoConnected_ShouldConnect()
         {
             //------------Setup for test--------------------------
@@ -365,12 +384,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Execute Test---------------------------
             var connectAsync = server.ConnectAsync();
             //------------Assert Results-------------------------
-            Assert.IsTrue(connectAsync.Result);
+            NUnit.Framework.Assert.IsTrue(connectAsync.Result);
             _envConnection.Verify(connection => connection.ConnectAsync(It.IsAny<Guid>()), Times.AtLeastOnce);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void Disconnect_GivenEnvironmentConnectionIsNoConnected_ShouldConnect()
         {
             //------------Setup for test--------------------------
@@ -385,8 +405,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             _envConnection.Verify(connection => connection.Disconnect(), Times.AtLeastOnce);
         }
         
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void LoadTools_ShouldReturnTools()
         {
             //------------Setup for test--------------------------
@@ -404,12 +425,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Execute Test---------------------------
             var tools = server.LoadTools();
             //------------Assert Results-------------------------
-            Assert.IsNotNull(tools);
-            Assert.AreEqual(1 , tools.Count);
+            NUnit.Framework.Assert.IsNotNull(tools);
+            NUnit.Framework.Assert.AreEqual(1 , tools.Count);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void LoadExplorer_ShouldReturnTools()
         {
             //------------Setup for test--------------------------
@@ -421,13 +443,14 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Execute Test---------------------------
             var loadExplorer = server.LoadExplorer();
             //------------Assert Results-------------------------
-            Assert.IsNotNull(loadExplorer);
-            Assert.IsTrue(server.HasLoaded);
+            NUnit.Framework.Assert.IsNotNull(loadExplorer);
+            NUnit.Framework.Assert.IsTrue(server.HasLoaded);
             _proxyLayer.Verify(repository => repository.LoadExplorer(false), Times.AtLeastOnce);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void LoadExplorerDuplicates_ShouldReturnTools()
         {
             //------------Setup for test--------------------------
@@ -443,12 +466,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Execute Test---------------------------
             var explorerDuplicates = server.LoadExplorerDuplicates();
             //------------Assert Results-------------------------
-            Assert.IsNotNull(explorerDuplicates);
-            Assert.IsTrue(server.HasLoaded);
+            NUnit.Framework.Assert.IsNotNull(explorerDuplicates);
+            NUnit.Framework.Assert.IsTrue(server.HasLoaded);
             _proxyLayer.Verify(repository => repository.LoadExplorerDuplicates(), Times.AtLeastOnce);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void GetServerInformation_Given_ServerInformation_IsNotNUll_Returns_ServerInformation()
         {
             //------------Setup for test--------------------------
@@ -459,11 +483,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             info.Add("information", "value for inforamtion");
             privateObj.SetField("_serverInformation", info);
             var information = server.GetServerInformation();
-            Assert.IsNotNull(information);
-            Assert.AreEqual(info, information);
+            NUnit.Framework.Assert.IsNotNull(information);
+            NUnit.Framework.Assert.AreEqual(info, information);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void GetServerVersion_Given_ServerVersion_IsNotNUll_Returns_ServerVersion()
         {
             //------------Setup for test--------------------------
@@ -472,32 +497,35 @@ namespace Warewolf.Studio.ViewModels.Tests
             var privateObj = new PrivateObject(server);
             privateObj.SetField("_version", "0.0.0.1");
             var version = server.GetServerVersion();
-            Assert.IsNotNull(version);
-            Assert.AreEqual("0.0.0.1", version);
+            NUnit.Framework.Assert.IsNotNull(version);
+            NUnit.Framework.Assert.AreEqual("0.0.0.1", version);
         }
 
-        [TestMethod,Timeout(60000)]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
         public void EnvironmentModel_Constructor_NullConnection_ThrowsArgumentNullException()
         {
             new Server(Guid.NewGuid(), null);
             
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void EnvironmentModel_Constructor_ConnectionAndWizardEngine_InitializesConnectionAndResourceRepository()
         {
 
             var connection = CreateConnection();
             //, wizard.Object
             var env = new Server(Guid.NewGuid(), connection.Object);
-            Assert.IsNotNull(env.Connection);
-            Assert.IsNotNull(env.ResourceRepository);
-            Assert.AreSame(connection.Object, env.Connection);
+            NUnit.Framework.Assert.IsNotNull(env.Connection);
+            NUnit.Framework.Assert.IsNotNull(env.ResourceRepository);
+            NUnit.Framework.Assert.AreSame(connection.Object, env.Connection);
         }
 
-        [TestMethod,Timeout(60000)]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
         public void EnvironmentModel_Constructor_ConnectionAndNullResourceRepository_ThrowsArgumentNullException()
         {
             var connection = CreateConnection();
@@ -506,22 +534,24 @@ namespace Warewolf.Studio.ViewModels.Tests
             
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void EnvironmentModel_Constructor_ConnectionAndResourceRepository_InitializesConnectionAndResourceRepository()
         {
             var connection = CreateConnection();
             var repo = new Mock<IResourceRepository>();
             var env = new Server(Guid.NewGuid(), connection.Object, repo.Object);
 
-            Assert.IsNotNull(env.Connection);
-            Assert.IsNotNull(env.ResourceRepository);
-            Assert.AreSame(connection.Object, env.Connection);
-            Assert.AreSame(repo.Object, env.ResourceRepository);
+            NUnit.Framework.Assert.IsNotNull(env.Connection);
+            NUnit.Framework.Assert.IsNotNull(env.ResourceRepository);
+            NUnit.Framework.Assert.AreSame(connection.Object, env.Connection);
+            NUnit.Framework.Assert.AreSame(repo.Object, env.ResourceRepository);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("EnvironmentModel_DisplayName")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Hagashen Naidu")]
+        [Category("EnvironmentModel_DisplayName")]
         public void EnvironmentModel_DisplayName_WithConnection_ContainsConnectionAddress()
         {
             //------------Setup for test--------------------------
@@ -532,13 +562,14 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Execute Test---------------------------
             var displayName = env.DisplayName;
             //------------Assert Results-------------------------
-            Assert.AreEqual(expectedDisplayName, displayName);
+            NUnit.Framework.Assert.AreEqual(expectedDisplayName, displayName);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EnvironmentModel_Connect")]
-        [ExpectedException(typeof(ArgumentException))]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Trevor Williams-Ros")]
+        [Category("EnvironmentModel_Connect")]
+        [NUnit.Framework.ExpectedException(typeof(ArgumentException))]
         public void EnvironmentModel_Connect_IsNotConnectedAndNameIsEmpty_ThrowsArgumentException()
         {
             var connection = CreateConnection();
@@ -551,9 +582,10 @@ namespace Warewolf.Studio.ViewModels.Tests
         }
 
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EnvironmentModel_Connect")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Trevor Williams-Ros")]
+        [Category("EnvironmentModel_Connect")]
         public void EnvironmentModel_Connect_IsNotConnectedAndNameIsNotEmpty_DoesInvokeConnection()
         {
             var connection = CreateConnection();
@@ -568,9 +600,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             connection.Verify(c => c.Connect(It.IsAny<Guid>()), Times.Once());
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EnvironmentModel_Connect")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Trevor Williams-Ros")]
+        [Category("EnvironmentModel_Connect")]
         public void EnvironmentModel_Connect_IsConnected_DoesNotInvokeConnection()
         {
             var connection = CreateConnection();
@@ -585,9 +618,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             connection.Verify(c => c.Connect(It.IsAny<Guid>()), Times.Never());
         }
 
-        [TestMethod,Timeout(60000)]
-        [TestCategory("EnvironmentModel_Connect")]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Category("EnvironmentModel_Connect")]
+        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
         public void EnvironmentModel_ConnectOther_Null_ThrowsArgumentNullException()
         {
             var connection = CreateConnection();
@@ -597,8 +631,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             env.Connect(null);
         }
 
-        [TestMethod,Timeout(60000)]
-        [TestCategory("EnvironmentModel_Connect")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Category("EnvironmentModel_Connect")]
         public void EnvironmentModel_ConnectOther_NonNullAndConnected_DoesNotInvokeOthersConnect()
         {
             var c1 = CreateConnection();
@@ -618,8 +653,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             c2.Verify(c => c.Connect(It.IsAny<Guid>()), Times.Never());
         }
 
-        [TestMethod,Timeout(60000)]
-        [TestCategory("EnvironmentModel_Connect")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Category("EnvironmentModel_Connect")]
         public void EnvironmentModel_ConnectOther_NonNullAndConnected_InvokesThisConnect()
         {
             var c1 = CreateConnection();
@@ -639,9 +675,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             c1.Verify(c => c.Connect(It.IsAny<Guid>()), Times.Once());
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EnvironmentModel_Connect")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Trevor Williams-Ros")]
+        [Category("EnvironmentModel_Connect")]
         public void EnvironmentModel_ConnectOther_NonNullAndNotConnected_InvokesOtherConnect()
         {
             var c1 = CreateConnection();
@@ -662,10 +699,11 @@ namespace Warewolf.Studio.ViewModels.Tests
         }
 
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EnvironmentModel_Connect")]
-        [ExpectedException(typeof(InvalidOperationException))]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Trevor Williams-Ros")]
+        [Category("EnvironmentModel_Connect")]
+        [NUnit.Framework.ExpectedException(typeof(InvalidOperationException))]
         public void EnvironmentModel_ConnectOther_NonNullAndNotConnectedFails_ThrowsInvalidOperationException()
         {
             var c1 = CreateConnection();
@@ -682,15 +720,17 @@ namespace Warewolf.Studio.ViewModels.Tests
             e1.Connect(e2);
         }
 
-        [TestMethod,Timeout(60000)]
-        [TestCategory("EnvironmentModel_NetworkStateChanged")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Category("EnvironmentModel_NetworkStateChanged")]
         public void EnvironmentModel_NetworkStateChanged_Offline_DoesPublishEnvironmentDisconnectedMessage()
         {
             TestConnectionEvents(NetworkState.Offline);
         }
 
-        [TestMethod,Timeout(60000)]
-        [TestCategory("EnvironmentModel_NetworkStateChanged")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Category("EnvironmentModel_NetworkStateChanged")]
         public void EnvironmentModel_NetworkStateChanged_Online_DoesPublishEnvironmentConnectedMessage()
         {
             TestConnectionEvents(NetworkState.Online);
@@ -706,12 +746,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             var repo = new Mock<IResourceRepository>();
             var envModel = new Server(Guid.NewGuid(), environmentConnection.Object, repo.Object);
 
-            envModel.IsConnectedChanged += (sender, args) => Assert.AreEqual(toState == NetworkState.Online, args.IsConnected);
+            envModel.IsConnectedChanged += (sender, args) => NUnit.Framework.Assert.AreEqual(toState == NetworkState.Online, args.IsConnected);
 
             environmentConnection.Raise(c => c.NetworkStateChanged += null, new NetworkStateEventArgs(NetworkState.Connecting, toState));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void EnvironmentModel_ForceLoadResources_InvokesForceLoadOnResourceRepository()
         {
             var resourceRepo = new Mock<IResourceRepository>();
@@ -723,14 +764,15 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             var env = new Server(Guid.NewGuid(), connection.Object, resourceRepo.Object);
 
-            Assert.IsTrue(env.CanStudioExecute);
+            NUnit.Framework.Assert.IsTrue(env.CanStudioExecute);
 
             env.ForceLoadResources();
 
             resourceRepo.Verify(r => r.Load(true), Times.Once());
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void EnvironmentModel_LoadResources_ShouldLoadTrue_InvokesLoadOnResourceRepository()
         {
             var resourceRepo = new Mock<IResourceRepository>();
@@ -742,14 +784,15 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             var env = new Server(Guid.NewGuid(), connection.Object, resourceRepo.Object);
 
-            Assert.IsTrue(env.CanStudioExecute);
+            NUnit.Framework.Assert.IsTrue(env.CanStudioExecute);
 
             env.LoadResources();
 
             resourceRepo.Verify(r => r.UpdateWorkspace(), Times.Once());
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void EnvironmentModel_LoadResources_ShouldLoadFalse_NotInvokeLoadOnResourceRepository()
         {
             var resourceRepo = new Mock<IResourceRepository>();
@@ -766,9 +809,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             resourceRepo.Verify(r => r.Load(false), Times.Never());
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("EnvironmentModel_Load")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Leon Rajindrapersadh")]
+        [Category("EnvironmentModel_Load")]
         public void EnvironmentModel_Load_Loads_SetsLoaded()
         {
             var resourceRepo = new Mock<IResourceRepository>();
@@ -781,14 +825,15 @@ namespace Warewolf.Studio.ViewModels.Tests
             var env = new Server(Guid.NewGuid(), connection.Object, resourceRepo.Object) { CanStudioExecute = true };
 
             env.LoadResources();
-            Assert.IsTrue(env.HasLoadedResources);
+            NUnit.Framework.Assert.IsTrue(env.HasLoadedResources);
 
         }
 
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("EnvironmentModel_Load")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Leon Rajindrapersadh")]
+        [Category("EnvironmentModel_Load")]
         public void EnvironmentModel_Load_DoesNotLoads_SetsLoaded()
         {
             var resourceRepo = new Mock<IResourceRepository>();
@@ -801,13 +846,14 @@ namespace Warewolf.Studio.ViewModels.Tests
             var env = new Server(Guid.NewGuid(), connection.Object, resourceRepo.Object) { CanStudioExecute = false };
 
             env.LoadResources();
-            Assert.IsFalse(env.HasLoadedResources);
+            NUnit.Framework.Assert.IsFalse(env.HasLoadedResources);
 
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("EnvironmentModel_Load")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Leon Rajindrapersadh")]
+        [Category("EnvironmentModel_Load")]
         public void EnvironmentModel_Load_CallsLoadedEvent()
         {
             var resourceRepo = new Mock<IResourceRepository>();
@@ -818,17 +864,18 @@ namespace Warewolf.Studio.ViewModels.Tests
             connection.Setup(c => c.IsConnected).Returns(true);
 
             var env = new Server(Guid.NewGuid(), connection.Object, resourceRepo.Object);
-            env.ResourcesLoaded += (sender, args) => Assert.AreEqual(args.Model, env);
+            env.ResourcesLoaded += (sender, args) => NUnit.Framework.Assert.AreEqual(args.Model, env);
             env.CanStudioExecute = false;
 
             env.LoadResources();
-            Assert.IsFalse(env.HasLoadedResources);
+            NUnit.Framework.Assert.IsFalse(env.HasLoadedResources);
 
         }
 
 
-        [TestMethod,Timeout(60000)]
-        [TestCategory("EnvironmentModel_IsLocalHost")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Category("EnvironmentModel_IsLocalHost")]
         public void EnvironmentModel_IsLocalHost_IsLocalHost_True()
         {
             var conn = CreateConnection();
@@ -836,23 +883,25 @@ namespace Warewolf.Studio.ViewModels.Tests
             conn.Setup(connection => connection.IsLocalHost).Returns(conn.Object.DisplayName == "localhost");
             var env = CreateEnvironmentModel(Guid.NewGuid(), conn.Object);
             var isLocalHost = env.IsLocalHost;
-            Assert.IsTrue(isLocalHost);
+            NUnit.Framework.Assert.IsTrue(isLocalHost);
         }
 
-        [TestMethod,Timeout(60000)]
-        [TestCategory("EnvironmentModel_IsLocalHost")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Category("EnvironmentModel_IsLocalHost")]
         public void EnvironmentModel_IsLocalHost_IsNotLocalHost_False()
         {
             var conn = CreateConnection();
             conn.Setup(c => c.DisplayName).Returns("notlocalhost");
             var env = CreateEnvironmentModel(Guid.NewGuid(), conn.Object);
             var isLocalHost = env.IsLocalHost;
-            Assert.IsFalse(isLocalHost);
+            NUnit.Framework.Assert.IsFalse(isLocalHost);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EnvironmentModel_AuthorizationService")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Trevor Williams-Ros")]
+        [Category("EnvironmentModel_AuthorizationService")]
         public void EnvironmentModel_AuthorizationService_Constructor_PropertyInitialized()
         {
             //------------Setup for test--------------------------
@@ -862,12 +911,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             var env = new Server(Guid.NewGuid(), connection.Object, new Mock<IResourceRepository>().Object);
             connection.Raise(environmentConnection => environmentConnection.NetworkStateChanged += null, new NetworkStateEventArgs(NetworkState.Offline, NetworkState.Online));
             //------------Assert Results-------------------------
-            Assert.IsNotNull(env.AuthorizationService);
+            NUnit.Framework.Assert.IsNotNull(env.AuthorizationService);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EnvironmentModel_Connection")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Trevor Williams-Ros")]
+        [Category("EnvironmentModel_Connection")]
         public void EnvironmentModel_Connection_PermissionsChanged_IsAuthorizedChanged()
         {
             //------------Setup for test--------------------------
@@ -875,19 +925,20 @@ namespace Warewolf.Studio.ViewModels.Tests
             connection.Setup(c => c.IsAuthorized).Returns(false);
 
             var envModel = new TestServer(new Mock<IEventAggregator>().Object, Guid.NewGuid(), connection.Object, new Mock<IResourceRepository>().Object, false);
-            Assert.IsFalse(envModel.IsAuthorized);
+            NUnit.Framework.Assert.IsFalse(envModel.IsAuthorized);
 
             //------------Execute Test---------------------------
             connection.Setup(c => c.IsAuthorized).Returns(true);
             connection.Raise(c => c.PermissionsChanged += null, EventArgs.Empty);
 
             //------------Assert Results-------------------------
-            Assert.IsTrue(envModel.IsAuthorized);
+            NUnit.Framework.Assert.IsTrue(envModel.IsAuthorized);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EnvironmentModel_Connection")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Trevor Williams-Ros")]
+        [Category("EnvironmentModel_Connection")]
         public void EnvironmentModel_Connection_PermissionsChanged_IsDeployFromChanged()
         {
             //------------Setup for test--------------------------
@@ -896,19 +947,20 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             var envModel = new TestServer(new Mock<IEventAggregator>().Object, Guid.NewGuid(), connection.Object, new Mock<IResourceRepository>().Object, false);
             connection.Raise(environmentConnection => environmentConnection.NetworkStateChanged += null, new NetworkStateEventArgs(NetworkState.Offline, NetworkState.Online));
-            Assert.IsFalse(envModel.IsAuthorizedDeployFrom);
+            NUnit.Framework.Assert.IsFalse(envModel.IsAuthorizedDeployFrom);
 
             //------------Execute Test---------------------------
             envModel.AuthorizationServiceMock.Setup(service => service.IsAuthorized(AuthorizationContext.DeployFrom, null)).Returns(true);
             connection.Raise(c => c.PermissionsChanged += null, EventArgs.Empty);
 
             //------------Assert Results-------------------------
-            Assert.IsTrue(envModel.IsAuthorizedDeployFrom);
+            NUnit.Framework.Assert.IsTrue(envModel.IsAuthorizedDeployFrom);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EnvironmentModel_Connection")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Trevor Williams-Ros")]
+        [Category("EnvironmentModel_Connection")]
         public void EnvironmentModel_Connection_PermissionsChanged_IsDeployToChanged()
         {
             //------------Setup for test--------------------------
@@ -917,19 +969,20 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             var envModel = new TestServer(new Mock<IEventAggregator>().Object, Guid.NewGuid(), connection.Object, new Mock<IResourceRepository>().Object, false);
             connection.Raise(environmentConnection => environmentConnection.NetworkStateChanged += null, new NetworkStateEventArgs(NetworkState.Offline, NetworkState.Online));
-            Assert.IsFalse(envModel.IsAuthorizedDeployTo);
+            NUnit.Framework.Assert.IsFalse(envModel.IsAuthorizedDeployTo);
 
             //------------Execute Test---------------------------
             envModel.AuthorizationServiceMock.Setup(service => service.IsAuthorized(AuthorizationContext.DeployTo, null)).Returns(true);
             connection.Raise(c => c.PermissionsChanged += null, EventArgs.Empty);
 
             //------------Assert Results-------------------------
-            Assert.IsTrue(envModel.IsAuthorizedDeployTo);
+            NUnit.Framework.Assert.IsTrue(envModel.IsAuthorizedDeployTo);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EnvironmentModel_AuthorizationService")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Trevor Williams-Ros")]
+        [Category("EnvironmentModel_AuthorizationService")]
         public void EnvironmentModel_AuthorizationService_PermissionsChanged_IsAuthorizedDeployToAndIsAuthorizedDeployFromChanged()
         {
             //------------Setup for test--------------------------
@@ -940,8 +993,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             envModel.AuthorizationServiceMock.Setup(a => a.IsAuthorized(AuthorizationContext.DeployFrom, null)).Returns(false).Verifiable();
             envModel.AuthorizationServiceMock.Setup(a => a.IsAuthorized(AuthorizationContext.DeployTo, null)).Returns(false).Verifiable();
 
-            Assert.IsFalse(envModel.IsAuthorizedDeployFrom);
-            Assert.IsFalse(envModel.IsAuthorizedDeployTo);
+            NUnit.Framework.Assert.IsFalse(envModel.IsAuthorizedDeployFrom);
+            NUnit.Framework.Assert.IsFalse(envModel.IsAuthorizedDeployTo);
 
             //------------Execute Test---------------------------
             envModel.AuthorizationServiceMock.Setup(a => a.IsAuthorized(AuthorizationContext.DeployFrom, null)).Returns(true).Verifiable();
@@ -951,13 +1004,14 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Assert Results-------------------------
             envModel.AuthorizationServiceMock.Verify(a => a.IsAuthorized(AuthorizationContext.DeployFrom, null));
             envModel.AuthorizationServiceMock.Verify(a => a.IsAuthorized(AuthorizationContext.DeployTo, null));
-            Assert.IsTrue(envModel.IsAuthorizedDeployFrom);
-            Assert.IsTrue(envModel.IsAuthorizedDeployTo);
+            NUnit.Framework.Assert.IsTrue(envModel.IsAuthorizedDeployFrom);
+            NUnit.Framework.Assert.IsTrue(envModel.IsAuthorizedDeployTo);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EnvironmentModel_Equals")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Trevor Williams-Ros")]
+        [Category("EnvironmentModel_Equals")]
         public void EnvironmentModel_Equals_OtherIsNull_False()
         {
             //------------Setup for test--------------------------
@@ -967,12 +1021,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             var actual = environment.Equals(null);
 
             //------------Assert Results-------------------------
-            Assert.IsFalse(actual);
+            NUnit.Framework.Assert.IsFalse(actual);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EnvironmentModel_Equals")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Trevor Williams-Ros")]
+        [Category("EnvironmentModel_Equals")]
         public void EnvironmentModel_Equals_OtherIsSame_True()
         {
             //------------Setup for test--------------------------
@@ -988,12 +1043,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             var actual = environment1.Equals(environment2);
 
             //------------Assert Results-------------------------
-            Assert.IsTrue(actual);
+            NUnit.Framework.Assert.IsTrue(actual);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EnvironmentModel_Equals")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Trevor Williams-Ros")]
+        [Category("EnvironmentModel_Equals")]
         public void EnvironmentModel_Equals_OtherHasDifferentID_False()
         {
             //------------Setup for test--------------------------
@@ -1008,12 +1064,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             var actual = environment1.Equals(environment2);
 
             //------------Assert Results-------------------------
-            Assert.IsFalse(actual);
+            NUnit.Framework.Assert.IsFalse(actual);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EnvironmentModel_Equals")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Trevor Williams-Ros")]
+        [Category("EnvironmentModel_Equals")]
         public void EnvironmentModel_Equals_OtherHasDifferentName_True()
         {
             //------------Setup for test--------------------------
@@ -1029,12 +1086,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             var actual = environment1.Equals(environment2);
 
             //------------Assert Results-------------------------
-            Assert.IsTrue(actual);
+            NUnit.Framework.Assert.IsTrue(actual);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EnvironmentModel_Disconnect")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Trevor Williams-Ros")]
+        [Category("EnvironmentModel_Disconnect")]
         public void EnvironmentModel_Disconnect_IsConnected_DoesInvokeDisconnectOnConnection()
         {
             //------------Setup for test--------------------------
@@ -1051,9 +1109,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             connection.Verify(c => c.Disconnect());
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EnvironmentModel_Disconnect")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Trevor Williams-Ros")]
+        [Category("EnvironmentModel_Disconnect")]
         public void EnvironmentModel_Disconnect_IsNotConnected_DoesNotInvokeDisconnectOnConnection()
         {
             //------------Setup for test--------------------------
@@ -1071,9 +1130,10 @@ namespace Warewolf.Studio.ViewModels.Tests
         }
 
 
-        [TestMethod,Timeout(60000)]
-        [TestCategory("EnvironmentTreeViewModel_PermissionsChanged")]
-        [Owner("Leon Rajindrasomething")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Category("EnvironmentTreeViewModel_PermissionsChanged")]
+        [Author("Leon Rajindrasomething")]
         public void EnvironmentTreeViewModel_PermissionsChanged_MemoIDEqualsEnvironmentServerId_UserPermissionChanges()
         {
             //------------Setup for test--------------------------
@@ -1094,9 +1154,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Execute Test---------------------------
             eventPublisher.Publish(pubMemo);
         }
-        [TestMethod,Timeout(60000)]
-        [TestCategory("EnvironmentTreeViewModel_PermissionsChanged")]
-        [Owner("Leon Rajindrasomething")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Category("EnvironmentTreeViewModel_PermissionsChanged")]
+        [Author("Leon Rajindrasomething")]
         public void EnvironmentTreeViewModel_PermissionsChanged_MemoIDEqualsEnvironmentServerId_UserPermissionChangesNonLocalHost()
         {
             //------------Setup for test--------------------------

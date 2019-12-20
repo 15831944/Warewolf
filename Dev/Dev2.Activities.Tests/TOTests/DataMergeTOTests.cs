@@ -9,7 +9,7 @@
 */
 
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.TOTests
@@ -17,13 +17,14 @@ namespace Dev2.Tests.Activities.TOTests
     /// <summary>
     /// Summary description for DataMergeTOTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class DataMergeTOTests
     {
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("DataMergeDTO_Constructor")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("DataMergeDTO_Constructor")]
         public void DataMergeDTO_Constructor_FullConstructor_DefaultValues()
         {
             //------------Setup for test--------------------------
@@ -40,9 +41,9 @@ namespace Dev2.Tests.Activities.TOTests
 
         #region CanAdd Tests
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("DataMergeDTO_CanAdd")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("DataMergeDTO_CanAdd")]
         public void DataMergeDTO_CanAdd_WithNewLineMergeTypeAndNoOtherValues_ReturnTrue()
         {
             //------------Setup for test--------------------------
@@ -52,9 +53,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(dataMergeDTO.CanAdd());
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("DataMergeDTO_CanAdd")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("DataMergeDTO_CanAdd")]
         public void DataMergeDTO_CanAdd_WithNoInputVarButValueForAt_ReturnTrue()
         {
             //------------Setup for test--------------------------
@@ -64,9 +65,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(dataMergeDTO.CanAdd());
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("DataMergeDTO_CanAdd")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("DataMergeDTO_CanAdd")]
         public void DataMergeDTO_CanAdd_WithNoInputVarAndNoAt_ReturnFalse()
         {
             //------------Setup for test--------------------------
@@ -76,9 +77,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsFalse(dataMergeDTO.CanAdd());
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("DataMergeDTO_CanAdd")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("DataMergeDTO_CanAdd")]
         public void DataMergeDTO_CanAdd_WithIndexMergeTypeAndNoOtherValues_ReturnFalse()
         {
             //------------Setup for test--------------------------
@@ -92,9 +93,9 @@ namespace Dev2.Tests.Activities.TOTests
 
         #region CanRemove Tests
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("DataMergeDTO_CanRemove")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("DataMergeDTO_CanRemove")]
         public void DataMergeDTO_CanRemove_WithNoInputVarButValueForAt_ReturnFalse()
         {
             //------------Setup for test--------------------------
@@ -104,9 +105,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsFalse(dataMergeDTO.CanRemove());
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("DataMergeDTO_CanRemove")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("DataMergeDTO_CanRemove")]
         public void DataMergeDTO_CanRemove_WithNoInputVarAndNoAt_ReturnTrue()
         {
             //------------Setup for test--------------------------
@@ -116,9 +117,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(dataMergeDTO.CanRemove());
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("DataMergeDTO_CanRemove")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("DataMergeDTO_CanRemove")]
         public void DataMergeDTO_CanRemove_WithNewLineTypeAndNoInputVar_ReturnFalse()
         {
             //------------Setup for test--------------------------
@@ -128,9 +129,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsFalse(dataMergeDTO.CanRemove());
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("DataMergeDTO_CanRemove")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("DataMergeDTO_CanRemove")]
         public void DataMergeDTO_CanRemove_WithNewLineInputTypeAndVar_ReturnFalse()
         {
             //------------Setup for test--------------------------
@@ -143,9 +144,9 @@ namespace Dev2.Tests.Activities.TOTests
         #endregion
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataMergeDTO_IsEmpty")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataMergeDTO_IsEmpty")]
         public void DataMergeDTO_IsEmpty_PropertiesAreEmpty_True()
         {
             Verify_IsEmpty(DataMergeDTO.MergeTypeIndex);
@@ -165,9 +166,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(actual);
         }
 
-        [TestMethod]
-        [Owner("Robin van den Heever")]
-        [TestCategory("DataMergeDTO_GetRuleSet")]
+        [Test]
+        [Author("Robin van den Heever")]
+        [Category("DataMergeDTO_GetRuleSet")]
         public void DataMergeDTO_GetRuleSetOutputVariable_ExpressionIsInvalid_ValidateRulesReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -179,9 +180,9 @@ namespace Dev2.Tests.Activities.TOTests
         }
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataMergeDTO_IsEmpty")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataMergeDTO_IsEmpty")]
         public void DataMergeDTO_IsEmpty_PropertiesAreNotEmpty_False()
         {
             //------------Setup for test--------------------------
@@ -194,9 +195,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsFalse(actual);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataMergeDTO_ClearRow")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataMergeDTO_ClearRow")]
         public void DataMergeDTO_ClearRow_PropertiesAreEmpty()
         {
             //------------Setup for test--------------------------
@@ -211,9 +212,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(dto.IsEmpty());
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataMergeDTO_GetRuleSet")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataMergeDTO_GetRuleSet")]
         public void DataMergeDTO_GetRuleSet_IsEmptyIsTrue_ValidateRulesReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -224,9 +225,9 @@ namespace Dev2.Tests.Activities.TOTests
             Verify_RuleSet(dto, "At", null);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataMergeDTO_GetRuleSet")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataMergeDTO_GetRuleSet")]
         public void DataMergeDTO_GetRuleSet_PaddingExpressionIsInvalid_ValidateRulesReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -236,9 +237,9 @@ namespace Dev2.Tests.Activities.TOTests
             Verify_RuleSet(dto, "Padding", "Result - Invalid expression: opening and closing brackets don't match");
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataMergeDTO_GetRuleSet")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataMergeDTO_GetRuleSet")]
         public void DataMergeDTO_GetRuleSet_PaddingExpressionIsValid_ValidateRulesReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -248,9 +249,9 @@ namespace Dev2.Tests.Activities.TOTests
             Verify_RuleSet(dto, "Padding", null);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataMergeDTO_GetRuleSet")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataMergeDTO_GetRuleSet")]
         public void DataMergeDTO_GetRuleSet_PaddingIsNotSingleChar_ValidateRulesReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -260,9 +261,9 @@ namespace Dev2.Tests.Activities.TOTests
             Verify_RuleSet(dto, "Padding", "Must be a single character");
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataMergeDTO_GetRuleSet")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataMergeDTO_GetRuleSet")]
         public void DataMergeDTO_GetRuleSet_PaddingIsSingleChar_ValidateRulesReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -272,9 +273,9 @@ namespace Dev2.Tests.Activities.TOTests
             Verify_RuleSet(dto, "Padding", null);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataMergeDTO_GetRuleSet")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataMergeDTO_GetRuleSet")]
         public void DataMergeDTO_GetRuleSet_PaddingIsEmpty_ValidateRulesReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -284,9 +285,9 @@ namespace Dev2.Tests.Activities.TOTests
             Verify_RuleSet(dto, "Padding", null);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataMergeDTO_GetRuleSet")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataMergeDTO_GetRuleSet")]
         public void DataMergeDTO_GetRuleSet_AtExpressionIsInvalid_ValidateRulesReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -296,9 +297,9 @@ namespace Dev2.Tests.Activities.TOTests
             Verify_RuleSet(dto, "At", "Result - Invalid expression: opening and closing brackets don't match");
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataMergeDTO_GetRuleSet")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataMergeDTO_GetRuleSet")]
         public void DataMergeDTO_GetRuleSet_AtExpressionIsValid_ValidateRulesReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -308,9 +309,9 @@ namespace Dev2.Tests.Activities.TOTests
             Verify_RuleSet(dto, "At", null);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataMergeDTO_GetRuleSet")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataMergeDTO_GetRuleSet")]
         public void DataMergeDTO_GetRuleSet_AtIsNullOrEmpty_ValidateRulesReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -320,9 +321,9 @@ namespace Dev2.Tests.Activities.TOTests
             Verify_RuleSet(dto, "At", Warewolf.Resource.Errors.ErrorResource.CannotBeNull);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataMergeDTO_GetRuleSet")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataMergeDTO_GetRuleSet")]
         public void DataMergeDTO_GetRuleSet_AtIsNotNullOrEmpty_ValidateRulesReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -332,9 +333,9 @@ namespace Dev2.Tests.Activities.TOTests
             Verify_RuleSet(dto, "At", null);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataMergeDTO_GetRuleSet")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataMergeDTO_GetRuleSet")]
         public void DataMergeDTO_GetRuleSet_AtIsNotPositiveNumber_ValidateRulesReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -344,9 +345,9 @@ namespace Dev2.Tests.Activities.TOTests
             Verify_RuleSet(dto, "At", Warewolf.Resource.Errors.ErrorResource.MustBeRealNumber);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataMergeDTO_GetRuleSet")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataMergeDTO_GetRuleSet")]
         public void DataMergeDTO_GetRuleSet_AtIsPositiveNumber_ValidateRulesReturnsTrue()
         {
             //------------Setup for test--------------------------

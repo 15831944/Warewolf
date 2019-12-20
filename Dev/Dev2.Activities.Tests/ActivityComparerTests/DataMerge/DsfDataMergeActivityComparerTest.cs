@@ -1,15 +1,16 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.DataMerge
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfDataMergeActivityComparerTest
     {
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentUniqueIds_ActivityTools_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -23,8 +24,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DataMerge
             //---------------Test Result -----------------------
             Assert.IsTrue(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_EmptyActivityTools_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -38,8 +39,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DataMerge
             //---------------Test Result -----------------------
             Assert.IsTrue(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_DisplayName_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -54,8 +55,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DataMerge
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_DisplayName_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -69,8 +70,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DataMerge
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_Result_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -85,8 +86,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DataMerge
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_Result_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -101,8 +102,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DataMerge
             Assert.IsFalse(@equals);
         }
         
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_MergeCollection_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -118,8 +119,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DataMerge
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_MergeCollection_Different_Indexes_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -186,8 +187,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DataMerge
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_MergeCollection_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------

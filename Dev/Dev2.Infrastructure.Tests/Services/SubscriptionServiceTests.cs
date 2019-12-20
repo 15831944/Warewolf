@@ -11,22 +11,23 @@
 using System;
 using Dev2.Common.Interfaces.Infrastructure.Events;
 using Dev2.Services;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Infrastructure.Tests.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SubscriptionServiceTests
     {
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SubscriptionServiceConstructorWithNullArgsExpectedThrowsArgumentNullException()
         {
             var service = new SubscriptionService<object>(null);
         }
 
-        [TestMethod]
+        [Test]
         public void SubscriptionServiceSubscribeWithArgsExpectedAddsSubscription()
         {
             var publisher = CreatePublisher();
@@ -37,7 +38,7 @@ namespace Dev2.Infrastructure.Tests.Services
             Assert.AreEqual(2, service.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void SubscriptionServiceDisposeExpectedDisposesSubscriptions()
         {
             var publisher = CreatePublisher();

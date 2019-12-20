@@ -8,19 +8,20 @@ using Dev2.Common.Interfaces.Studio.Controller;
 using Dev2.Core.Tests;
 using Dev2.Core.Tests.Environments;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Moq.Protected;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Activities.Designers.Tests.Switch
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SwitchDesignerViewModelTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SwitchDesignerViewModel_Initialize")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SwitchDesignerViewModel_Initialize")]
         public void SwitchDesignerViewModel_Initialize_Setup_NotNull()
         {
             //------------Setup for test--------------------------
@@ -82,9 +83,9 @@ namespace Dev2.Activities.Designers.Tests.Switch
             Assert.IsNotNull(switchDesigner);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SwitchDesignerViewModel_DisplayName")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SwitchDesignerViewModel_DisplayName")]
         public void SwitchDesignerViewModel_DisplayName_Setup_HasValue()
         {
             //------------Setup for test--------------------------
@@ -147,9 +148,9 @@ namespace Dev2.Activities.Designers.Tests.Switch
             Assert.AreEqual("TrueArm", switchDesigner.DisplayText);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SwitchDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SwitchDesignerViewModel_Handle")]
         public void SwitchDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -218,9 +219,9 @@ namespace Dev2.Activities.Designers.Tests.Switch
         }
 
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SwitchDesignerViewModel_Switch")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SwitchDesignerViewModel_Switch")]
         public void SwitchDesignerViewModel_Switch_SetSwitchVariable()
         {
             //------------Setup for test--------------------------      
@@ -287,9 +288,9 @@ namespace Dev2.Activities.Designers.Tests.Switch
             Assert.AreEqual("TrueArm", switchDesigner.SwitchVariable);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SwitchDesignerViewModel_Switch")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SwitchDesignerViewModel_Switch")]
         public void SwitchDesignerViewModel_Switch_Dev2Switch()
         {
             //------------Setup for test--------------------------      

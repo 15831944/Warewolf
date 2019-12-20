@@ -13,19 +13,20 @@ using System.Collections.Generic;
 using System.Linq;
 using Dev2.Studio.InterfaceImplementors;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Core.Tests.IntellisenseProvider
 {
-    [TestClass]
-    [TestCategory("Intellisense Provider Core")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Intellisense Provider Core")]
     public class CompositeIntellisenseProviderTests
     {
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("CompositeIntellisenseProvider_Constructor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("CompositeIntellisenseProvider_Constructor")]
         public void CompositeIntellisenseProvider_Constructor_Construct_ExpectNonOptionalProvider()
         {
             //------------Setup for test--------------------------
@@ -37,9 +38,10 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.IsFalse(compositeIntellisenseProvider.Optional);
         }
 
-        [TestMethod,ExpectedException(typeof(NotSupportedException))]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("CompositeIntellisenseProvider_PerformResultInsertion")]
+        [Test]
+        [ExpectedException(typeof(NotSupportedException))]
+        [Author("Leon Rajindrapersadh")]
+        [Category("CompositeIntellisenseProvider_PerformResultInsertion")]
         public void CompositeIntellisenseProvider_PerformResultInsertion_ExpectException()
         {
             //------------Setup for test--------------------------
@@ -48,9 +50,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             compositeIntellisenseProvider.PerformResultInsertion("", null);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("CompositeIntellisenseProvider_Dispose")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("CompositeIntellisenseProvider_Dispose")]
         public void CompositeIntellisenseProvider_Dispose_ExpectAllProvidersDisposed()
         {
             //------------Setup for test--------------------------
@@ -62,9 +64,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             mockProviders.ForEach(a=>a.Verify(b=>b.Dispose()));
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("CompositeIntellisenseProvider_PerformResultInsertion")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("CompositeIntellisenseProvider_PerformResultInsertion")]
         public void CompositeIntellisenseProvider_GetIntellisenseResults_OptionalProviderReturnsWhenEntireResultsetSelected()
         {
             //------------Setup for test--------------------------
@@ -104,9 +106,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
 
         }
         
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DefaultIntellisenseProvider_CompositeIntellisenseProvider")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DefaultIntellisenseProvider_CompositeIntellisenseProvider")]
         public void CompositeIntellisenseProvider_GetIntellisenseResults_ContextIsNull_ResultCountIsZero()
         {
             //------------Execute Test---------------------------
@@ -115,9 +117,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(0, getResults.Count);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("CompositeIntellisenseProvider_PerformResultInsertion")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("CompositeIntellisenseProvider_PerformResultInsertion")]
         public void CompositeIntellisenseProvider_GetIntellisenseResults_OptionalProviderReturnsWhenIfError()
         {
             //------------Setup for test--------------------------
@@ -159,9 +161,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("CompositeIntellisenseProvider_PerformResultInsertion")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("CompositeIntellisenseProvider_PerformResultInsertion")]
         public void CompositeIntellisenseProvider_GetIntellisenseResults_OptionalProviderDoesNotReturnsWhenNoErrors()
         {
             //------------Setup for test--------------------------
@@ -202,9 +204,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("CompositeIntellisenseProvider_PerformResultInsertion")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("CompositeIntellisenseProvider_PerformResultInsertion")]
         public void CompositeIntellisenseProvider_GetIntellisenseResults_ContextAtEndAndDefault_ExpectEmpty()
         {
             //------------Setup for test--------------------------

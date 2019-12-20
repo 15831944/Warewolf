@@ -14,19 +14,20 @@ using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Core.Models;
 using Dev2.Studio.Interfaces;
 using Dev2.Studio.ViewModels.DataList;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Activities.Designers.Tests.WriteFile
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class WriteFileDesignerViewModelTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WriteFileDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WriteFileDesignerViewModel_Constructor")]
         public void WriteFileDesignerViewModel_Constructor_Properties_Initialized()
         {
             //------------Setup for test-------------------------
@@ -43,9 +44,9 @@ namespace Dev2.Activities.Designers.Tests.WriteFile
             Assert.AreEqual(0, viewModel.TitleBarToggles.Count);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("WriteFileDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("WriteFileDesignerViewModel_Handle")]
         public void WriteFileDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -61,9 +62,9 @@ namespace Dev2.Activities.Designers.Tests.WriteFile
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WriteFileDesignerViewModel_Validate")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WriteFileDesignerViewModel_Validate")]
         public void WriteFileDesignerViewModel_Validate_CorrectFieldsAreValidated()
         {
             //------------Setup for test-------------------------
@@ -82,9 +83,9 @@ namespace Dev2.Activities.Designers.Tests.WriteFile
             Assert.AreEqual(1, viewModel.ValidateUserNameAndPasswordHitCount);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("WriteFileDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("WriteFileDesignerViewModel_Constructor")]
         public void WriteFileDesignerViewModel_Contructor_OverwriteIsSetToTrue()
         {
             //------------Setup for test-------------------------

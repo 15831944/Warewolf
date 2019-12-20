@@ -1,19 +1,20 @@
 ﻿using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.ToolBase.ExchangeEmail;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Collections.Generic;
 
 namespace Warewolf.Studio.Models.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ExchangeServiceModelTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ExchangeServiceModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ExchangeServiceModel))]
         public void ExchangeServiceModel_Validate_RetrieveSources()
         {
             var guid = Guid.NewGuid();
@@ -40,9 +41,9 @@ namespace Warewolf.Studio.Models.Tests
             mockQueryManager.Verify(model => model.FetchExchangeSources(), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ExchangeServiceModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ExchangeServiceModel))]
         public void ExchangeServiceModel_Validate_CreateNewSource()
         {
             var guid = Guid.NewGuid();
@@ -62,9 +63,9 @@ namespace Warewolf.Studio.Models.Tests
             mockShellViewModel.Verify(model => model.NewExchangeSource(string.Empty), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ExchangeServiceModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ExchangeServiceModel))]
         public void ExchangeServiceModel_Validate_EditSource()
         {
             var guid = Guid.NewGuid();
@@ -86,9 +87,9 @@ namespace Warewolf.Studio.Models.Tests
             mockShellViewModel.Verify(model => model.EditResource(mockExchangeSource), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ExchangeServiceModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ExchangeServiceModel))]
         public void ExchangeServiceModel_Validate_UpdateRepository()
         {
             var guid = Guid.NewGuid();

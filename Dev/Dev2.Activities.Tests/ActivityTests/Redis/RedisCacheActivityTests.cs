@@ -19,7 +19,7 @@ using Dev2.Data.ServiceModel;
 using Dev2.Diagnostics;
 using Dev2.Interfaces;
 using Dev2.Runtime.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Warewolf.Driver.Redis;
@@ -28,7 +28,8 @@ using Warewolf.Storage.Interfaces;
 
 namespace Dev2.Tests.Activities.ActivityTests.Redis
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class RedisCacheActivityTests : BaseActivityTests
     {
         static RedisCacheActivity CreateRedisActivity()
@@ -36,9 +37,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Redis
             return new RedisCacheActivity();
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(RedisCacheActivity))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(RedisCacheActivity))]
         public void RedisActivity_Equal_BothareObjects()
         {
             object redisActivity = CreateRedisActivity();
@@ -47,9 +48,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Redis
             Assert.IsFalse(redisActivityEqual);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(RedisCacheActivity))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(RedisCacheActivity))]
         public void RedisActivity_GivenEnvironmentIsNull_ShouldHaveNoDebugOutputs()
         {
             //---------------Set up test pack-------------------
@@ -61,9 +62,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Redis
             Assert.AreEqual(0, debugInputs.Count);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(RedisCacheActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(RedisCacheActivity))]
         [Depends(Depends.ContainerType.AnonymousRedis)]
         public void RedisActivity_GetDebugInputs_ShouldReturnInnerActivityOutputs()
         {
@@ -99,9 +100,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Redis
 
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(RedisCacheActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(RedisCacheActivity))]
         [Depends(Depends.ContainerType.AnonymousRedis)]
         public void RedisActivity_GetDebugInputs_With_DataListUtilIsEvaluated_ShouldReturnInnerActivityOutputs()
         {
@@ -142,9 +143,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Redis
 
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(RedisCacheActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(RedisCacheActivity))]
         [Depends(Depends.ContainerType.AnonymousRedis)]
         public void RedisActivity_GetDebugOutputs_ShouldReturnCachedData_TTLNotReached()
         {
@@ -181,9 +182,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Redis
 
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(RedisCacheActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(RedisCacheActivity))]
         [Depends(Depends.ContainerType.AnonymousRedis)]
         public void RedisActivity_GetDebugOutputs_ShouldReturnInnerActivityOutputs_TTLReached()
         {

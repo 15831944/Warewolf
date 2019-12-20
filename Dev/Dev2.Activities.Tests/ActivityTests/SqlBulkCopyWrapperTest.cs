@@ -11,16 +11,17 @@
 using System;
 using System.Data;
 using Dev2.Activities.SqlBulkInsert;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SqlBulkCopyWrapperTest
     {
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("SqlBulkCopyWrapper_WriteToServer")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("SqlBulkCopyWrapper_WriteToServer")]
         [ExpectedException(typeof(ArgumentException))]
         
         public void SqlBulkCopyWrapper_WriteToServer_WhenNullBulkCopyObject_ExpectException()

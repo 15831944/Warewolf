@@ -22,17 +22,18 @@ using Dev2.Common.Interfaces.Explorer;
 using Dev2.Common.Interfaces.Infrastructure;
 using Dev2.Explorer;
 using Dev2.Runtime.ESB.Management.Services;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     [ExcludeFromCodeCoverage]
     public class GetDirectoriesRelativeToServerTests
     {
-        [TestInitialize]
+        [SetUp]
         public void Initialize()
         {
             if (EnvironmentVariables.ApplicationPath == null)
@@ -43,9 +44,9 @@ namespace Dev2.Tests.Runtime.Services
             }
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -57,9 +58,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -73,8 +74,8 @@ namespace Dev2.Tests.Runtime.Services
 
         #region Execute
 
-        [TestMethod]
-        [Owner("Huggs")]
+        [Test]
+        [Author("Huggs")]
         [ExpectedException(typeof(InvalidDataContractException))]
         public void GetDirectoriesRelativeToServer_UnitTest_ExecuteWithNullValues_ExpectedInvalidDataContractException()
         {
@@ -83,8 +84,8 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(string.Empty, actual);
         }
 
-        [TestMethod]
-        [Owner("Huggs")]
+        [Test]
+        [Author("Huggs")]
         [ExpectedException(typeof(InvalidDataContractException))]
         public void GetDirectoriesRelativeToServer_UnitTest_ExecuteWithNoDirectoryInValues_ExpectedInvalidDataContractException()
         {
@@ -95,8 +96,8 @@ namespace Dev2.Tests.Runtime.Services
         }
        
 
-        [TestMethod]
-        [Owner("Huggs")]
+        [Test]
+        [Author("Huggs")]
         [ExpectedException(typeof(InvalidDataContractException))]
         public void GetDirectoriesRelativeToServer_UnitTest_ExecuteWithBlankDirectory_ExpectInvalidDataContractException()
         {
@@ -106,8 +107,8 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(string.Empty, actual);
         }
 
-        [TestMethod]
-        [Owner("Huggs")]
+        [Test]
+        [Author("Huggs")]
         public void GetDirectoriesRelativeToServer_UnitTest_ExecuteWithDirectory_ExpectDirectoryStructure()
         {
             //----------------Setup---------------------------------------------
@@ -190,8 +191,8 @@ namespace Dev2.Tests.Runtime.Services
 
         #region HandlesType
 
-        [TestMethod]
-        [Owner("Huggs")]
+        [Test]
+        [Author("Huggs")]
         public void GetDirectoriesRelativeToServer_UnitTest_HandlesType_ExpectedGetDirectoriesRelativeToServerService()
         {
             var esb = new GetDirectoriesRelativeToServer();
@@ -203,8 +204,8 @@ namespace Dev2.Tests.Runtime.Services
 
         #region CreateServiceEntry
 
-        [TestMethod]
-        [Owner("Huggs")]
+        [Test]
+        [Author("Huggs")]
         public void GetDirectoriesRelativeToServer_UnitTest_CreateServiceEntry_ExpectedReturnsDynamicService()
         {
             var esb = new GetDirectoriesRelativeToServer();

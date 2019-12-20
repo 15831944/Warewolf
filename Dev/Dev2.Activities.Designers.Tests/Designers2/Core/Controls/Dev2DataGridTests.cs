@@ -13,17 +13,18 @@ using System.Windows;
 using System.Windows.Controls;
 using Dev2.Activities.Designers2.Core.Controls;
 using Dev2.Studio.Core.Activities.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Activities.Designers.Tests.Designers2.Core.Controls
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class Dev2DataGridTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("Dev2DataGrid_SetFocusToInserted")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("Dev2DataGrid_SetFocusToInserted")]
         public void Dev2DataGrid_SetFocusToInserted_ItemIsInserted_InvokesFocusOnGridRowChild()
         {
             //------------Setup for test--------------------------      
@@ -40,9 +41,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core.Controls
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("Dev2DataGrid_SetFocusToInserted")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("Dev2DataGrid_SetFocusToInserted")]
         public void Dev2DataGrid_SetFocusToInserted_ItemIsNotInserted_DoesNotInvokeFocusOnGridRowChild()
         {
             //------------Setup for test--------------------------      
@@ -59,9 +60,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core.Controls
             Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("Dev2DataGrid_GetFocusElement")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("Dev2DataGrid_GetFocusElement")]
         public void Dev2DataGrid_GetFocusElement_RowIsNotNull_GetVisualChildResult()
         {
             //------------Setup for test--------------------------      
@@ -76,9 +77,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core.Controls
             Assert.AreSame(element, result);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("Dev2DataGrid_GetFocusElement")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("Dev2DataGrid_GetFocusElement")]
         public void Dev2DataGrid_GetFocusElement_RowIsNull_Null()
         {
             //------------Setup for test--------------------------      
@@ -92,9 +93,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core.Controls
             Assert.IsNull(result);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("Dev2DataGrid_Init")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("Dev2DataGrid_Init")]
         public void Dev2DataGrid_Init_VirtulizationIsOn()
         {
             //------------Setup for test--------------------------      

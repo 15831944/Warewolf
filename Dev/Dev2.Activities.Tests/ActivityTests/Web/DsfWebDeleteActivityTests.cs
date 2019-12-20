@@ -23,7 +23,7 @@ using Dev2.Interfaces;
 using Dev2.Runtime.Interfaces;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Tests.Activities.XML;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Unlimited.Framework.Converters.Graph.Ouput;
@@ -34,12 +34,13 @@ using Warewolf.Storage.Interfaces;
 
 namespace Dev2.Tests.Activities.ActivityTests.Web
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
 
     public class DsfWebDeleteActivityTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         
         public void DsfWebDeleteActivity_GivenInstance_ShouldNotBeNull()
         {
@@ -58,8 +59,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             return testDsfWebDeleteActivity;
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DsfWebDeleteActivity_GivenIsCreated_ShouldBeDsfActivity()
         {
             //---------------Set up test pack-------------------
@@ -69,25 +70,25 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             //---------------Execute Test ----------------------
 
             //---------------Test Result -----------------------
-            Assert.IsInstanceOfType(dsfWebDeleteActivity, typeof(DsfActivity));
+            Assert.IsInstanceOf(dsfWebDeleteActivity.GetType(), typeof(DsfActivity));
         }
         
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DsfWebDeleteActivity_GivenNewActivity_ShouldHaveCustomAttribute()
         {
             //---------------Set up test pack-------------------
             var dsfWebDeleteActivity = CreateTestDeleteActivity();
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOfType(dsfWebDeleteActivity, typeof(DsfActivity));
+            Assert.IsInstanceOf(dsfWebDeleteActivity.GetType(), typeof(DsfActivity));
             //---------------Execute Test ----------------------
             var toolDescAtribute = dsfWebDeleteActivity.GetType().GetCustomAttributes(true).Single(o => o.GetType() == typeof(ToolDescriptorInfo));
             //---------------Test Result -----------------------
             Assert.IsNotNull(toolDescAtribute);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DsfWebDeleteActivity_GivenNewActivity_ShouldHaveCorrectAttributeValues()
         {
             //---------------Set up test pack-------------------
@@ -104,8 +105,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DsfWebDeleteActivity_GivenIsNew_ShouldHaveDisplayNameSet()
         {
             //---------------Set up test pack-------------------
@@ -117,8 +118,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual("DELETE Web Method", dsfWebDeleteActivity.DisplayName);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Constructer_GivenHasInstance_ShouldHaveType()
         {
             //---------------Set up test pack-------------------
@@ -131,8 +132,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.IsNotNull(dsfWebDeleteActivity.Type);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetFindMissingType_GivenDeletePostActivity_ShouldReturnMissingTypeDataGridAcitvity()
         {
             //---------------Set up test pack-------------------
@@ -145,8 +146,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual(enFindMissingType.DataGridActivity, dsfWebDeleteActivity.GetFindMissingType());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetDebugInputs_GivenEnvironmentIsNull_ShouldReturnZeroDebugInputs()
         {
             //---------------Set up test pack-------------------
@@ -158,9 +159,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual(0, debugInputs.Count);
         }
         
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DsfWebDeleteActivity_Execute")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DsfWebDeleteActivity_Execute")]
         public void DsfWebDeleteActivity_Delete_WithValidWebResponse_ShouldSetVariables()
         {
             //------------Setup for test--------------------------
@@ -205,9 +206,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DsfWebDeleteActivity_Execute")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DsfWebDeleteActivity_Execute")]
         public void DsfWebDeleteActivity_Delete_WithTextResponseValidResponseReturned()
         {
             //------------Setup for test--------------------------
@@ -250,9 +251,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual(response, ExecutionEnvironment.WarewolfEvalResultToString(environment.Eval("[[Response]]", 0)));
         }
         
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DsfWebDeleteActivity_Execute")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DsfWebDeleteActivity_Execute")]
         public void DsfWebDeleteActivity_Execute_WithInValidWebResponse_ShouldNotError()
         {
             //------------Setup for test--------------------------
@@ -296,9 +297,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual(0, environment.Errors.Count);
         }
         
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DsfWebDeleteActivity_Execute")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DsfWebDeleteActivity_Execute")]
         public void DsfWebDeleteActivity_Execute_WithValidXmlEscaped_ShouldSetVariables()
         {
             //------------Setup for test--------------------------
@@ -353,9 +354,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual("from the NW (320 degrees) at 10 MPH (9 KT) (direction variable):0", wind);
         }
         
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DsfWebDeleteActivity_Execute")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DsfWebDeleteActivity_Execute")]
         public void DsfWebDeleteActivity_Execute_WithInputVariables_ShouldEvalVariablesBeforeExecutingWebRequest()
         {
             //------------Setup for test--------------------------
@@ -398,9 +399,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual("http://www.testing.com/South Africa", dsfWebDeleteActivity.QueryRes);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfWebDeleteActivity_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfWebDeleteActivity_Execute")]
         public void DsfWebDeleteActivity_Execute_ErrorResponse_ShouldSetVariables()
         {
             //------------Setup for test--------------------------
@@ -431,9 +432,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual("Error", ExecutionEnvironment.WarewolfEvalResultToString(dataObject.Environment.Eval("[[Message]]", 0)));
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebDeleteActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebDeleteActivity))]
         public void DsfWebDeleteActivity_ExecutionImpl_ErrorResultTO_ReturnErrors_ToActivity_Success()
         {
             //-----------------------Arrange-------------------------

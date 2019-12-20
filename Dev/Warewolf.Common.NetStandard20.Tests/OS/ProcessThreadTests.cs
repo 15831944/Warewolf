@@ -9,14 +9,15 @@
 */
 
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 using ProcessStartInfo = System.Diagnostics.ProcessStartInfo;
 
 namespace Warewolf.OS.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ProcessThreadTests
     {
         readonly ProcessStartInfo _startInfo = new ProcessStartInfo()
@@ -24,9 +25,9 @@ namespace Warewolf.OS.Tests
             FileName = "Bob.exe",
         };
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ProcessMonitor))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ProcessMonitor))]
         public void ProcessThread_Constructor()
         {
             var mockConfig = new Mock<IJobConfig>();
@@ -39,9 +40,9 @@ namespace Warewolf.OS.Tests
             Assert.IsFalse(processThread.IsAlive);
             Assert.AreEqual(0, processThread.Pid);
         }
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ProcessMonitor))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ProcessMonitor))]
         public void ProcessThread_Start_GivenValid_ExpectNewProcessCreated()
         {
             var mockConfig = new Mock<IJobConfig>();
@@ -68,9 +69,9 @@ namespace Warewolf.OS.Tests
             mockProcess.Verify(o => o.WaitForExit(It.IsAny<int>()));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ProcessMonitor))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ProcessMonitor))]
         public void ProcessThread_Kill_GivenUnstartedProcess_DoNotThrow()
         {
             var mockConfig = new Mock<IJobConfig>();
@@ -93,9 +94,9 @@ namespace Warewolf.OS.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ProcessMonitor))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ProcessMonitor))]
         public void ProcessThread_Kill_GivenDeadProcess_DoNotThrow()
         {
             var mockConfig = new Mock<IJobConfig>();

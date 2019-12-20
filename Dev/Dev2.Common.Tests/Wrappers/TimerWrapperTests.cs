@@ -1,14 +1,15 @@
 ﻿using System.Threading.Tasks;
 using Dev2.Common.Interfaces.Wrappers;
 using Dev2.Common.Wrappers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Common.Tests.Wrappers
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class TimerWrapperTests
     {
-        [TestMethod]
+        [Test]
         public void TimerWrapper_Construct()
         {
             var callCount = 0;

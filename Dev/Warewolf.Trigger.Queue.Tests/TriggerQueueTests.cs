@@ -10,7 +10,7 @@
 
 using Dev2.Common.Interfaces.Data;
 using Dev2.Common.Interfaces.DB;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -19,12 +19,13 @@ using Warewolf.Options;
 
 namespace Warewolf.Trigger.Queue.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class TriggerQueueTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(TriggerQueue))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(TriggerQueue))]
         public void TriggerQueue_Equals_Other_IsNull_Expect_False()
         {
             var triggerQueue = new TriggerQueue();
@@ -32,9 +33,9 @@ namespace Warewolf.Trigger.Queue.Tests
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(TriggerQueue))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(TriggerQueue))]
         public void TriggerQueue_ReferenceEquals_Match_Expect_True()
         {
             var triggerQueue = new TriggerQueue { Concurrency = 1 };
@@ -43,9 +44,9 @@ namespace Warewolf.Trigger.Queue.Tests
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(TriggerQueue))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(TriggerQueue))]
         public void TriggerQueue_Equals_MisMatch_Expect_False()
         {
             var mockResource = new Mock<IResource>();

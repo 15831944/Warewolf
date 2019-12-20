@@ -9,16 +9,17 @@
 */
 
 using Dev2.Activities.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests.UtilsTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ActivityDesignerLanuageNotationConverterTest
     {
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ActivityDesignerLanuageNotationConverter_ConverToTopLevelRSNotation")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ActivityDesignerLanuageNotationConverter_ConverToTopLevelRSNotation")]
         public void ActivityDesignerLanuageNotationConverter_ConverToTopLevelRSNotation_WhenStringEmpty_EmptyString()
         {
             //------------Execute Test---------------------------
@@ -30,9 +31,9 @@ namespace Dev2.Core.Tests.UtilsTests
             Assert.AreEqual(string.Empty, result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ActivityDesignerLanuageNotationConverter_ConverToTopLevelRSNotation")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ActivityDesignerLanuageNotationConverter_ConverToTopLevelRSNotation")]
         public void ActivityDesignerLanuageNotationConverter_ConverToTopLevelRSNotation_WhenStringScalar_AppendNotationRecordset()
         {
             //------------Execute Test---------------------------
@@ -44,9 +45,9 @@ namespace Dev2.Core.Tests.UtilsTests
             Assert.AreEqual("[[abc()]]", result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ActivityDesignerLanuageNotationConverter_ConverToTopLevelRSNotation")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ActivityDesignerLanuageNotationConverter_ConverToTopLevelRSNotation")]
         public void ActivityDesignerLanuageNotationConverter_ConverToTopLevelRSNotation_WhenStringRecordsetWithStar_StarNotationRecordset()
         {
             //------------Execute Test---------------------------
@@ -58,9 +59,9 @@ namespace Dev2.Core.Tests.UtilsTests
             Assert.AreEqual("[[abc(*)]]", result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ActivityDesignerLanuageNotationConverter_ConverToTopLevelRSNotation")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ActivityDesignerLanuageNotationConverter_ConverToTopLevelRSNotation")]
         public void ActivityDesignerLanuageNotationConverter_ConverToTopLevelRSNotation_WhenStringRecordsetWithStarAndField_StarNotationRecordset()
         {
             //------------Execute Test---------------------------
@@ -72,9 +73,9 @@ namespace Dev2.Core.Tests.UtilsTests
             Assert.AreEqual("[[abc(*)]]", result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ActivityDesignerLanuageNotationConverter_ConverToTopLevelRSNotation")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ActivityDesignerLanuageNotationConverter_ConverToTopLevelRSNotation")]
         public void ActivityDesignerLanuageNotationConverter_ConverToTopLevelRSNotation_WhenStringRecordsetWithSingleOpenRegion_AppendNotationRecordset()
         {
             //------------Execute Test---------------------------
@@ -86,9 +87,9 @@ namespace Dev2.Core.Tests.UtilsTests
             Assert.AreEqual("[[abc()]]", result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ActivityDesignerLanuageNotationConverter_ConverToTopLevelRSNotation")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ActivityDesignerLanuageNotationConverter_ConverToTopLevelRSNotation")]
         public void ActivityDesignerLanuageNotationConverter_ConverToTopLevelRSNotation_WhenStringRecordsetWithSingleOpenRegionAndStar_StarNotationRecordset()
         {
             //------------Execute Test---------------------------

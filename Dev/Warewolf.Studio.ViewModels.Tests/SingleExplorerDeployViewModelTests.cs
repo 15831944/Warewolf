@@ -11,14 +11,16 @@ using Dev2.Studio.Core;
 using Dev2.Studio.Interfaces;
 using Dev2.Studio.Interfaces.Deploy;
 using Microsoft.Practices.Prism.PubSubEvents;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Dev2.Threading;
 using Dev2;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Warewolf.Studio.ViewModels.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SingleExplorerDeployViewModelTests
     {
         Mock<IDeployDestinationExplorerViewModel> _destView;
@@ -33,7 +35,7 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         Guid _serverEnvironmentId;
 
-        [TestInitialize]
+        [SetUp]
         public void Initialize()
         {
             _destView = new Mock<IDeployDestinationExplorerViewModel>();
@@ -64,8 +66,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             return mockEnvironmentConnection;
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void CanDeploytests_GivenCanSelectAllDependencies_ShouldMatch()
         {
             //---------------Set up test pack-------------------
@@ -76,8 +79,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             _sourceView.Setup(model => model.ConnectControlViewModel).Returns(connectControl.Object);
             var singleExplorerDeployViewModel = new SingleExplorerDeployViewModel(_destView.Object, _sourceView.Object, new List<IExplorerTreeItem>(), _statsView.Object, _shellVm.Object, popupController.Object);
             //---------------Assert Precondition----------------
-            Assert.IsFalse(singleExplorerDeployViewModel.CanSelectDependencies);
-            Assert.IsFalse(singleExplorerDeployViewModel.CanDeployTests);
+            NUnit.Framework.Assert.IsFalse(singleExplorerDeployViewModel.CanSelectDependencies);
+            NUnit.Framework.Assert.IsFalse(singleExplorerDeployViewModel.CanDeployTests);
             //---------------Execute Test ----------------------
             _sourceView.Setup(model => model.SelectedItems).Returns(new List<IExplorerTreeItem>()
             {
@@ -85,12 +88,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             });
 
             //---------------Test Result -----------------------
-            Assert.IsTrue(singleExplorerDeployViewModel.CanSelectDependencies);
-            Assert.IsTrue(singleExplorerDeployViewModel.CanDeployTests);
+            NUnit.Framework.Assert.IsTrue(singleExplorerDeployViewModel.CanSelectDependencies);
+            NUnit.Framework.Assert.IsTrue(singleExplorerDeployViewModel.CanDeployTests);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void CanDeploy_GivenDestinationIsNotConnected_ShouldReturnFalseAndSetCorrectMessage()
         {
             //---------------Set up test pack-------------------
@@ -105,8 +109,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             _sourceView.Setup(model => model.ConnectControlViewModel).Returns(connectControl.Object);
             var singleExplorerDeployViewModel = new SingleExplorerDeployViewModel(_destView.Object, _sourceView.Object, new List<IExplorerTreeItem>(), _statsView.Object, _shellVm.Object, popupController.Object);
             //---------------Assert Precondition----------------
-            Assert.IsFalse(singleExplorerDeployViewModel.CanSelectDependencies);
-            Assert.IsFalse(singleExplorerDeployViewModel.CanDeployTests);
+            NUnit.Framework.Assert.IsFalse(singleExplorerDeployViewModel.CanSelectDependencies);
+            NUnit.Framework.Assert.IsFalse(singleExplorerDeployViewModel.CanDeployTests);
             //---------------Execute Test ----------------------
             _sourceView.Setup(model => model.SelectedItems).Returns(new List<IExplorerTreeItem>()
             {
@@ -115,13 +119,14 @@ namespace Warewolf.Studio.ViewModels.Tests
             });
 
             //---------------Test Result -----------------------
-            Assert.IsFalse(singleExplorerDeployViewModel.DeployCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsFalse(singleExplorerDeployViewModel.DeployCommand.CanExecute(null));
             var errorMessage = singleExplorerDeployViewModel.ErrorMessage;
-            Assert.AreEqual(Resources.Languages.Core.DeployDestinationNotConnected, errorMessage);
+            NUnit.Framework.Assert.AreEqual(Resources.Languages.Core.DeployDestinationNotConnected, errorMessage);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void DestinationOnPropertyChanged_GivenisConnectedChanged_ShouldHandleDeployChanged()
         {
             //---------------Set up test pack-------------------
@@ -144,8 +149,8 @@ namespace Warewolf.Studio.ViewModels.Tests
                 }
             };
             //---------------Assert Precondition----------------
-            Assert.IsFalse(singleExplorerDeployViewModel.CanSelectDependencies);
-            Assert.IsFalse(singleExplorerDeployViewModel.CanDeployTests);
+            NUnit.Framework.Assert.IsFalse(singleExplorerDeployViewModel.CanSelectDependencies);
+            NUnit.Framework.Assert.IsFalse(singleExplorerDeployViewModel.CanDeployTests);
             //---------------Execute Test ----------------------
             _sourceView.Setup(model => model.SelectedItems).Returns(new List<IExplorerTreeItem>()
             {
@@ -155,11 +160,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             var propertyChangedEventArgs = new PropertyChangedEventArgs("IsConnected");
             _destView.Raise(model => model.PropertyChanged += (sender, args) => { }, singleExplorerDeployViewModel, propertyChangedEventArgs);
             //---------------Test Result -----------------------
-            Assert.IsTrue(wasCalled);
+            NUnit.Framework.Assert.IsTrue(wasCalled);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void Destination_GivenNewDestinationIsCreated_ShouldHaveNewDestination()
         {
             //---------------Set up test pack-------------------
@@ -184,15 +190,16 @@ namespace Warewolf.Studio.ViewModels.Tests
             var singleExplorerDeployViewModel = new SingleExplorerDeployViewModel(_destView.Object, _sourceView.Object, new List<IExplorerTreeItem>(), _statsView.Object, _shellVm.Object, popupController.Object);
             //---------------Assert Precondition----------------
             var deployDestinationExplorerViewModelBefore = singleExplorerDeployViewModel.Destination;
-            Assert.IsNotNull(deployDestinationExplorerViewModelBefore);
+            NUnit.Framework.Assert.IsNotNull(deployDestinationExplorerViewModelBefore);
             //---------------Execute Test ----------------------
             singleExplorerDeployViewModel.Destination = new DeployDestinationViewModel(_shellVm.Object, new EventAggregator());
             //---------------Test Result -----------------------
-            Assert.IsFalse(Equals(deployDestinationExplorerViewModelBefore, singleExplorerDeployViewModel.Destination));
+            NUnit.Framework.Assert.IsFalse(Equals(deployDestinationExplorerViewModelBefore, singleExplorerDeployViewModel.Destination));
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void CanDeploy_GivenServerIsNotConnected_ShouldHaveFalse()
         {
             //---------------Set up test pack-------------------
@@ -217,12 +224,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             var privateObject = new PrivateObject(singleExplorerDeployViewModel);
             var canDeploy = privateObject.GetProperty("CanDeploy");
             //---------------Test Result -----------------------
-            Assert.AreEqual(false, canDeploy);
-            Assert.AreEqual(Resources.Languages.Core.DeploySourceNotConnected, singleExplorerDeployViewModel.ErrorMessage);
+            NUnit.Framework.Assert.AreEqual(false, canDeploy);
+            NUnit.Framework.Assert.AreEqual(Resources.Languages.Core.DeploySourceNotConnected, singleExplorerDeployViewModel.ErrorMessage);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void CanDeploy_GivenSourceAndDestinationAreSameServer_ShouldHaveFalse()
         {
             //---------------Set up test pack-------------------
@@ -255,12 +263,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             var privateObject = new PrivateObject(singleExplorerDeployViewModel);
             var canDeploy = privateObject.GetProperty("CanDeploy");
             //---------------Test Result -----------------------
-            Assert.AreEqual(false, canDeploy);
-            Assert.AreEqual(Resources.Languages.Core.DeploySourceDestinationAreSame, singleExplorerDeployViewModel.ErrorMessage);
+            NUnit.Framework.Assert.AreEqual(false, canDeploy);
+            NUnit.Framework.Assert.AreEqual(Resources.Languages.Core.DeploySourceDestinationAreSame, singleExplorerDeployViewModel.ErrorMessage);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void CanDeploy_GivenSourceServerSelectedItemsIsNull_ShouldHaveFalse()
         {
             //---------------Set up test pack-------------------
@@ -297,12 +306,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             var privateObject = new PrivateObject(singleExplorerDeployViewModel);
             var canDeploy = privateObject.GetProperty("CanDeploy");
             //---------------Test Result -----------------------
-            Assert.AreEqual(false, canDeploy);
-            Assert.AreEqual(Resources.Languages.Core.DeployNoResourcesSelected, singleExplorerDeployViewModel.ErrorMessage);
+            NUnit.Framework.Assert.AreEqual(false, canDeploy);
+            NUnit.Framework.Assert.AreEqual(Resources.Languages.Core.DeployNoResourcesSelected, singleExplorerDeployViewModel.ErrorMessage);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void CanDeploy_GivenNoSourceServerPermissions_ShouldHaveFalse()
         {
             //---------------Set up test pack-------------------
@@ -346,12 +356,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             var privateObject = new PrivateObject(singleExplorerDeployViewModel);
             var canDeploy = privateObject.GetProperty("CanDeploy");
             //---------------Test Result -----------------------
-            Assert.AreEqual(false, canDeploy);
-            Assert.AreEqual(StringResources.SourcePermission_Error, singleExplorerDeployViewModel.ErrorMessage);
+            NUnit.Framework.Assert.AreEqual(false, canDeploy);
+            NUnit.Framework.Assert.AreEqual(StringResources.SourcePermission_Error, singleExplorerDeployViewModel.ErrorMessage);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void CanDeploy_GivenNoDestinarionSourcePermissions_ShouldHaveFalse()
         {
             //---------------Set up test pack-------------------
@@ -397,12 +408,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             var privateObject = new PrivateObject(singleExplorerDeployViewModel);
             var canDeploy = privateObject.GetProperty("CanDeploy");
             //---------------Test Result -----------------------
-            Assert.AreEqual(false, canDeploy);
-            Assert.AreEqual(StringResources.DestinationPermission_Error, singleExplorerDeployViewModel.ErrorMessage);
+            NUnit.Framework.Assert.AreEqual(false, canDeploy);
+            NUnit.Framework.Assert.AreEqual(StringResources.DestinationPermission_Error, singleExplorerDeployViewModel.ErrorMessage);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void CanDeploy_GivenIsDeployingIsTrue_ShouldHaveFalse()
         {
             //---------------Set up test pack-------------------
@@ -449,12 +461,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             typeof(SingleExplorerDeployViewModel).GetProperty("IsDeploying").SetValue(privateObject.Target, true);
             var canDeploy = privateObject.GetProperty("CanDeploy");
             //---------------Test Result -----------------------
-            Assert.AreEqual(false, canDeploy);
+            NUnit.Framework.Assert.AreEqual(false, canDeploy);
         }
 
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void CanDeploy_GivenAllValidRequirements_ShouldHaveTrue()
         {
             //---------------Set up test pack-------------------
@@ -500,13 +513,14 @@ namespace Warewolf.Studio.ViewModels.Tests
             var privateObject = new PrivateObject(singleExplorerDeployViewModel);
             var canDeploy = privateObject.GetProperty("CanDeploy");
             //---------------Test Result -----------------------
-            Assert.AreEqual(true, canDeploy);
-            Assert.IsTrue(string.IsNullOrEmpty(singleExplorerDeployViewModel.ErrorMessage));
+            NUnit.Framework.Assert.AreEqual(true, canDeploy);
+            NUnit.Framework.Assert.IsTrue(string.IsNullOrEmpty(singleExplorerDeployViewModel.ErrorMessage));
         }
 
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void CanDeploy_GivenSelectedServerIsNull_ShouldHaveFalse()
         {
             //---------------Set up test pack-------------------
@@ -535,13 +549,14 @@ namespace Warewolf.Studio.ViewModels.Tests
             var privateObject = new PrivateObject(singleExplorerDeployViewModel);
             var canDeploy = privateObject.GetProperty("CanDeploy");
             //---------------Test Result -----------------------
-            Assert.AreEqual(false, canDeploy);
-            Assert.AreEqual(Resources.Languages.Core.DeploySourceNotConnected, singleExplorerDeployViewModel.ErrorMessage);
+            NUnit.Framework.Assert.AreEqual(false, canDeploy);
+            NUnit.Framework.Assert.AreEqual(Resources.Languages.Core.DeploySourceNotConnected, singleExplorerDeployViewModel.ErrorMessage);
         }
 
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void CanDeploy_GivenNoSelectedItem_ShouldHaveFalse()
         {
             //---------------Set up test pack-------------------
@@ -576,12 +591,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             var privateObject = new PrivateObject(singleExplorerDeployViewModel);
             var canDeploy = privateObject.GetProperty("CanDeploy");
             //---------------Test Result -----------------------
-            Assert.AreEqual(false, canDeploy);
-            Assert.AreEqual(Resources.Languages.Core.DeploySourceNotConnected, singleExplorerDeployViewModel.ErrorMessage);
+            NUnit.Framework.Assert.AreEqual(false, canDeploy);
+            NUnit.Framework.Assert.AreEqual(Resources.Languages.Core.DeploySourceNotConnected, singleExplorerDeployViewModel.ErrorMessage);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void CanDeploy_GivenDestinationIsNotConnected_ShouldHaveFalse()
         {
             //---------------Set up test pack-------------------
@@ -623,12 +639,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             var privateObject = new PrivateObject(singleExplorerDeployViewModel);
             var canDeploy = privateObject.GetProperty("CanDeploy");
             //---------------Test Result -----------------------
-            Assert.AreEqual(false, canDeploy);
-            Assert.AreEqual(Resources.Languages.Core.DeployDestinationNotConnected, singleExplorerDeployViewModel.ErrorMessage);
+            NUnit.Framework.Assert.AreEqual(false, canDeploy);
+            NUnit.Framework.Assert.AreEqual(Resources.Languages.Core.DeployDestinationNotConnected, singleExplorerDeployViewModel.ErrorMessage);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void DestinationServerStateChanged_GivenDestinationIsDisconnected_Should()
         {
             //---------------Set up test pack-------------------
@@ -656,8 +673,9 @@ namespace Warewolf.Studio.ViewModels.Tests
         }
 
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void DestinationServerStateChanged_GivenDestinationConnected_Should()
         {
             //---------------Set up test pack-------------------
@@ -687,17 +705,18 @@ namespace Warewolf.Studio.ViewModels.Tests
             var privateObject = new PrivateObject(singleExplorerDeployViewModel);
             privateObject.Invoke("DestinationServerStateChanged", null, _serverMock.Object);
             //---------------Test Result -----------------------
-            Assert.IsFalse(singleExplorerDeployViewModel.ShowNewItemsList);
-            Assert.IsFalse(singleExplorerDeployViewModel.ShowConflicts);
-            Assert.IsFalse(singleExplorerDeployViewModel.ShowConflictItemsList);
-            Assert.IsTrue(string.IsNullOrEmpty(singleExplorerDeployViewModel.ServicesCount));
-            Assert.IsTrue(string.IsNullOrEmpty(singleExplorerDeployViewModel.OverridesCount));
-            Assert.IsNotNull(singleExplorerDeployViewModel.OverridesViewCommand);
-            Assert.IsNotNull(singleExplorerDeployViewModel.NewResourcesViewCommand);
+            NUnit.Framework.Assert.IsFalse(singleExplorerDeployViewModel.ShowNewItemsList);
+            NUnit.Framework.Assert.IsFalse(singleExplorerDeployViewModel.ShowConflicts);
+            NUnit.Framework.Assert.IsFalse(singleExplorerDeployViewModel.ShowConflictItemsList);
+            NUnit.Framework.Assert.IsTrue(string.IsNullOrEmpty(singleExplorerDeployViewModel.ServicesCount));
+            NUnit.Framework.Assert.IsTrue(string.IsNullOrEmpty(singleExplorerDeployViewModel.OverridesCount));
+            NUnit.Framework.Assert.IsNotNull(singleExplorerDeployViewModel.OverridesViewCommand);
+            NUnit.Framework.Assert.IsNotNull(singleExplorerDeployViewModel.NewResourcesViewCommand);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void DefaultValues_GivenNewInstance_Should()
         {
             //---------------Set up test pack-------------------
@@ -725,18 +744,19 @@ namespace Warewolf.Studio.ViewModels.Tests
             });
             var singleExplorerDeployViewModel = new SingleExplorerDeployViewModel(_destView.Object, _sourceView.Object, new List<IExplorerTreeItem>(), _statsView.Object, _shellVm.Object, popupController.Object);
             //---------------Test Result -----------------------
-            Assert.IsFalse(singleExplorerDeployViewModel.ShowNewItemsList);
-            Assert.IsFalse(singleExplorerDeployViewModel.ShowConflicts);
-            Assert.IsFalse(singleExplorerDeployViewModel.ShowConflictItemsList);
-            Assert.IsTrue(string.IsNullOrEmpty(singleExplorerDeployViewModel.ServicesCount));
-            Assert.IsTrue(string.IsNullOrEmpty(singleExplorerDeployViewModel.OverridesCount));
-            Assert.IsNotNull(singleExplorerDeployViewModel.OverridesViewCommand);
-            Assert.IsNotNull(singleExplorerDeployViewModel.NewResourcesViewCommand);
+            NUnit.Framework.Assert.IsFalse(singleExplorerDeployViewModel.ShowNewItemsList);
+            NUnit.Framework.Assert.IsFalse(singleExplorerDeployViewModel.ShowConflicts);
+            NUnit.Framework.Assert.IsFalse(singleExplorerDeployViewModel.ShowConflictItemsList);
+            NUnit.Framework.Assert.IsTrue(string.IsNullOrEmpty(singleExplorerDeployViewModel.ServicesCount));
+            NUnit.Framework.Assert.IsTrue(string.IsNullOrEmpty(singleExplorerDeployViewModel.OverridesCount));
+            NUnit.Framework.Assert.IsNotNull(singleExplorerDeployViewModel.OverridesViewCommand);
+            NUnit.Framework.Assert.IsNotNull(singleExplorerDeployViewModel.NewResourcesViewCommand);
         }
 
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void DeployConflics_GivenDifferntServerVersions_ShouldHaveIsDeployingFalse()
         {
             //---------------Set up test pack-------------------
@@ -780,11 +800,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             singleExplorerDeployViewModel.SourceConnectControlViewModel.SelectedConnection = _serverMock.Object;
             //---------------Test Result -----------------------
             privateObject.Invoke("CheckVersionConflict");
-            Assert.IsFalse(singleExplorerDeployViewModel.IsDeploying);
+            NUnit.Framework.Assert.IsFalse(singleExplorerDeployViewModel.IsDeploying);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void IsDeploying_GivenSameServerVersions_ShouldHaveIsDeployingTrue()
         {
             //---------------Set up test pack-------------------
@@ -828,11 +849,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             singleExplorerDeployViewModel.SourceConnectControlViewModel.SelectedConnection = _serverMock.Object;
             //---------------Test Result -----------------------
             privateObject.Invoke("CheckVersionConflict");
-            Assert.IsTrue(singleExplorerDeployViewModel.IsDeploying);
+            NUnit.Framework.Assert.IsTrue(singleExplorerDeployViewModel.IsDeploying);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void IsDeploying_GivenSourceServerIsOldVersionAndPopupCancelClick_ShouldHaveIsDeployingTrue()
         {
             //---------------Set up test pack-------------------
@@ -876,12 +898,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             singleExplorerDeployViewModel.SourceConnectControlViewModel.SelectedConnection = _serverMock.Object;
             //---------------Test Result -----------------------
             privateObject.Invoke("CheckVersionConflict");
-            Assert.IsTrue(singleExplorerDeployViewModel.IsDeploying);
+            NUnit.Framework.Assert.IsTrue(singleExplorerDeployViewModel.IsDeploying);
         }
 
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void DeployConflics_GivenDestinationHasOldVersionServerVersions_ShouldHaveIsDeployingFalse()
         {
             //---------------Set up test pack-------------------
@@ -915,13 +938,14 @@ namespace Warewolf.Studio.ViewModels.Tests
             singleExplorerDeployViewModel.SourceConnectControlViewModel.SelectedConnection = _serverMock.Object;
             //---------------Test Result -----------------------
             privateObject.Invoke("CheckVersionConflict");
-            Assert.IsFalse(singleExplorerDeployViewModel.IsDeploying);
+            NUnit.Framework.Assert.IsFalse(singleExplorerDeployViewModel.IsDeploying);
             popupController.Verify(model => model.ShowDeployServerVersionConflict(It.IsAny<string>(), It.IsAny<string>()));
         }
 
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void StatsViewModel_GivenNewInstance_ShouldNotBeNull()
         {
             //---------------Set up test pack-------------------
@@ -946,11 +970,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             var privateObject = new PrivateObject(singleExplorerDeployViewModel);
             privateObject.Invoke("DestinationServerStateChanged", new object[] { null, null });
             //---------------Test Result -----------------------
-            Assert.IsNotNull(singleExplorerDeployViewModel.StatsViewModel);
+            NUnit.Framework.Assert.IsNotNull(singleExplorerDeployViewModel.StatsViewModel);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void ConflictNewResourceText_GivenViewOverrides_ShouldHaveText()
         {
             //---------------Set up test pack-------------------
@@ -971,11 +996,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             var privateObject = new PrivateObject(singleExplorerDeployViewModel);
             privateObject.Invoke("ViewOverrides");
             //---------------Test Result -----------------------
-            Assert.IsFalse(string.IsNullOrEmpty(singleExplorerDeployViewModel.ConflictNewResourceText));
+            NUnit.Framework.Assert.IsFalse(string.IsNullOrEmpty(singleExplorerDeployViewModel.ConflictNewResourceText));
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void ConflictNewResourceText_GivenViewNewResources_ShouldHaveText()
         {
             //---------------Set up test pack-------------------
@@ -996,12 +1022,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             var privateObject = new PrivateObject(singleExplorerDeployViewModel);
             privateObject.Invoke("ViewNewResources");
             //---------------Test Result -----------------------
-            Assert.IsFalse(string.IsNullOrEmpty(singleExplorerDeployViewModel.ConflictNewResourceText));
-            Assert.AreEqual("List of New Resources", singleExplorerDeployViewModel.ConflictNewResourceText);
+            NUnit.Framework.Assert.IsFalse(string.IsNullOrEmpty(singleExplorerDeployViewModel.ConflictNewResourceText));
+            NUnit.Framework.Assert.AreEqual("List of New Resources", singleExplorerDeployViewModel.ConflictNewResourceText);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void UpdateHelpDescriptor_GivenSomeMessage_ShouldHaveSomeMessage()
         {
             //---------------Set up test pack-------------------
@@ -1023,8 +1050,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             //---------------Test Result -----------------------
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void DeploySuccessMessage_GivenSomeError_ShouldHaveEmptyText()
         {
             //---------------Set up test pack-------------------
@@ -1047,12 +1075,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             //---------------Assert Precondition----------------
             //---------------Execute Test ----------------------
             //---------------Test Result -----------------------
-            Assert.IsTrue(string.IsNullOrEmpty(singleExplorerDeployViewModel.DeploySuccessMessage));
-            Assert.IsFalse(singleExplorerDeployViewModel.DeploySuccessfull);
+            NUnit.Framework.Assert.IsTrue(string.IsNullOrEmpty(singleExplorerDeployViewModel.DeploySuccessMessage));
+            NUnit.Framework.Assert.IsFalse(singleExplorerDeployViewModel.DeploySuccessfull);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void NewResourceCount_GivenEmptyStateItems_Should0()
         {
             //---------------Set up test pack-------------------
@@ -1072,11 +1101,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             //---------------Assert Precondition----------------
             //---------------Execute Test ----------------------
             //---------------Test Result -----------------------
-            Assert.IsFalse(string.IsNullOrEmpty(singleExplorerDeployViewModel.NewResourcesCount));
+            NUnit.Framework.Assert.IsFalse(string.IsNullOrEmpty(singleExplorerDeployViewModel.NewResourcesCount));
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void Source_GivenNewSourceIsCreated_ShouldHaveNewSource()
         {
             //---------------Set up test pack-------------------
@@ -1096,15 +1126,16 @@ namespace Warewolf.Studio.ViewModels.Tests
             var singleExplorerDeployViewModel = new SingleExplorerDeployViewModel(_destView.Object, _sourceView.Object, new List<IExplorerTreeItem>(), _statsView.Object, _shellVm.Object, popupController.Object);
             //---------------Assert Precondition----------------
             var deploySourceExplorerViewModelBefore = singleExplorerDeployViewModel.Source;
-            Assert.IsNotNull(deploySourceExplorerViewModelBefore);
+            NUnit.Framework.Assert.IsNotNull(deploySourceExplorerViewModelBefore);
             //---------------Execute Test ----------------------
             singleExplorerDeployViewModel.Source = new DeploySourceExplorerViewModel(_shellVm.Object, new EventAggregator(), new DeployStatsViewerViewModel(new Mock<IDeployDestinationExplorerViewModel>().Object));
             //---------------Test Result -----------------------
-            Assert.IsFalse(Equals(deploySourceExplorerViewModelBefore, singleExplorerDeployViewModel.Source));
+            NUnit.Framework.Assert.IsFalse(Equals(deploySourceExplorerViewModelBefore, singleExplorerDeployViewModel.Source));
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void NewItems_GivenCalculateAction_AreEqualTo_StatViewNew()
         {
             //---------------Set up test pack-------------------            
@@ -1123,15 +1154,16 @@ namespace Warewolf.Studio.ViewModels.Tests
             _statsView.Setup(model => model.New).Returns(explorerTreeItems);
             var singleExplorerDeployViewModel = new SingleExplorerDeployViewModel(_destView.Object, _sourceView.Object, new List<IExplorerTreeItem>(), _statsView.Object, _shellVm.Object, popupController.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNull(singleExplorerDeployViewModel.NewItems);
+            NUnit.Framework.Assert.IsNull(singleExplorerDeployViewModel.NewItems);
             //---------------Execute Test ----------------------
             _statsView.Object.CalculateAction.Invoke();
             //---------------Test Result -----------------------
-            Assert.AreEqual(singleExplorerDeployViewModel.NewItems, _statsView.Object.New);
+            NUnit.Framework.Assert.AreEqual(singleExplorerDeployViewModel.NewItems, _statsView.Object.New);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void SourcesCount_GivenCalculateAction_AreEqualTo_StatViewSources()
         {
             //---------------Set up test pack-------------------            
@@ -1149,15 +1181,16 @@ namespace Warewolf.Studio.ViewModels.Tests
             _statsView.Setup(model => model.Sources).Returns(25);
             var singleExplorerDeployViewModel = new SingleExplorerDeployViewModel(_destView.Object, _sourceView.Object, new List<IExplorerTreeItem>(), _statsView.Object, _shellVm.Object, popupController.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNull(singleExplorerDeployViewModel.SourcesCount);
+            NUnit.Framework.Assert.IsNull(singleExplorerDeployViewModel.SourcesCount);
             //---------------Execute Test ----------------------
             _statsView.Object.CalculateAction.Invoke();
             //---------------Test Result -----------------------
-            Assert.AreEqual(singleExplorerDeployViewModel.SourcesCount, _statsView.Object.Sources.ToString());
+            NUnit.Framework.Assert.AreEqual(singleExplorerDeployViewModel.SourcesCount, _statsView.Object.Sources.ToString());
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void ConflictItems_GivenCalculateAction_AreEqualToStatViewConflictItems()
         {
             //---------------Set up test pack-------------------            
@@ -1178,14 +1211,15 @@ namespace Warewolf.Studio.ViewModels.Tests
             _statsView.Setup(model => model.Conflicts).Returns(conflicts);
             var singleExplorerDeployViewModel = new SingleExplorerDeployViewModel(_destView.Object, _sourceView.Object, new List<IExplorerTreeItem>(), _statsView.Object, _shellVm.Object, popupController.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(singleExplorerDeployViewModel);
+            NUnit.Framework.Assert.IsNotNull(singleExplorerDeployViewModel);
             //---------------Execute Test ----------------------
             _statsView.Object.CalculateAction.Invoke();
             //---------------Test Result -----------------------
-            Assert.AreEqual(singleExplorerDeployViewModel.ConflictItems, _statsView.Object.Conflicts);
+            NUnit.Framework.Assert.AreEqual(singleExplorerDeployViewModel.ConflictItems, _statsView.Object.Conflicts);
         }
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void UpdateServerCompareChanged_ShouldRecalculate_Items()
         {
             //---------------Set up test pack-------------------            
@@ -1209,11 +1243,11 @@ namespace Warewolf.Studio.ViewModels.Tests
             var singleExplorerDeployViewModel = new SingleExplorerDeployViewModel(_destView.Object, _sourceView.Object, new List<IExplorerTreeItem>(), _statsView.Object, _shellVm.Object, popupController.Object);
             //---------------Assert Precondition----------------
             _statsView.Object.CalculateAction();
-            Assert.IsNotNull(singleExplorerDeployViewModel);
-            Assert.AreEqual("5", singleExplorerDeployViewModel.ServicesCount);
-            Assert.AreEqual("2", singleExplorerDeployViewModel.SourcesCount);
-            Assert.AreEqual("3", singleExplorerDeployViewModel.NewResourcesCount);
-            Assert.AreEqual("1", singleExplorerDeployViewModel.OverridesCount);
+            NUnit.Framework.Assert.IsNotNull(singleExplorerDeployViewModel);
+            NUnit.Framework.Assert.AreEqual("5", singleExplorerDeployViewModel.ServicesCount);
+            NUnit.Framework.Assert.AreEqual("2", singleExplorerDeployViewModel.SourcesCount);
+            NUnit.Framework.Assert.AreEqual("3", singleExplorerDeployViewModel.NewResourcesCount);
+            NUnit.Framework.Assert.AreEqual("1", singleExplorerDeployViewModel.OverridesCount);
             //---------------Execute Test ----------------------
             _statsView.Setup(model => model.Services).Returns(50);
             _statsView.Setup(model => model.Sources).Returns(20);
@@ -1222,15 +1256,16 @@ namespace Warewolf.Studio.ViewModels.Tests
             var privateObject = new PrivateObject(singleExplorerDeployViewModel);
             privateObject.Invoke("UpdateServerCompareChanged", new object[] { null, null });
             //---------------Test Result -----------------------
-            Assert.IsFalse(singleExplorerDeployViewModel.ShowConflicts);
-            Assert.AreEqual("50", singleExplorerDeployViewModel.ServicesCount);
-            Assert.AreEqual("20", singleExplorerDeployViewModel.SourcesCount);
-            Assert.AreEqual("30", singleExplorerDeployViewModel.NewResourcesCount);
-            Assert.AreEqual("10", singleExplorerDeployViewModel.OverridesCount);
+            NUnit.Framework.Assert.IsFalse(singleExplorerDeployViewModel.ShowConflicts);
+            NUnit.Framework.Assert.AreEqual("50", singleExplorerDeployViewModel.ServicesCount);
+            NUnit.Framework.Assert.AreEqual("20", singleExplorerDeployViewModel.SourcesCount);
+            NUnit.Framework.Assert.AreEqual("30", singleExplorerDeployViewModel.NewResourcesCount);
+            NUnit.Framework.Assert.AreEqual("10", singleExplorerDeployViewModel.OverridesCount);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void SelectDependencies_GivenSourceWithDependencies_ShouldHaveItemsSelected()
         {
             //---------------Set up test pack-------------------            
@@ -1282,8 +1317,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             mock.VerifySet(model => model.IsResourceChecked = true, Times.Once);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void DestinationConnectControlViewModel_GivenDestinationConnectControlViewModelIsSetToSameValue_ShouldReturn()
         {
             //---------------Set up test pack-------------------            
@@ -1314,19 +1350,20 @@ namespace Warewolf.Studio.ViewModels.Tests
             _sourceView.Setup(model => model.SelectedItems).Returns(explorerTreeItems);
             var singleExplorerDeployViewModel = new SingleExplorerDeployViewModel(_destView.Object, _sourceView.Object, explorerTreeItems, _statsView.Object, _shellVm.Object, popupController.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(singleExplorerDeployViewModel.DestinationConnectControlViewModel);
-            Assert.IsNotNull(singleExplorerDeployViewModel.SourceConnectControlViewModel);
+            NUnit.Framework.Assert.IsNotNull(singleExplorerDeployViewModel.DestinationConnectControlViewModel);
+            NUnit.Framework.Assert.IsNotNull(singleExplorerDeployViewModel.SourceConnectControlViewModel);
             //---------------Execute Test ----------------------
             var privateObject = new PrivateObject(singleExplorerDeployViewModel);
             typeof(SingleExplorerDeployViewModel).GetProperty("DestinationConnectControlViewModel").SetValue(privateObject.Target, connectControl.Object);
             typeof(SingleExplorerDeployViewModel).GetProperty("SourceConnectControlViewModel").SetValue(privateObject.Target, connectControl.Object);
             //---------------Test Result -----------------------
-            Assert.IsNotNull(singleExplorerDeployViewModel.DestinationConnectControlViewModel);
-            Assert.IsNotNull(singleExplorerDeployViewModel.SourceConnectControlViewModel);
+            NUnit.Framework.Assert.IsNotNull(singleExplorerDeployViewModel.DestinationConnectControlViewModel);
+            NUnit.Framework.Assert.IsNotNull(singleExplorerDeployViewModel.SourceConnectControlViewModel);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void CheckResourceNameConflict_GivenSourceWith1ItemAndDestinationWith1Item_ShouldSetIsDeployingToFalse()
         {
             //---------------Set up test pack-------------------            
@@ -1361,12 +1398,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             var privateObject = new PrivateObject(singleExplorerDeployViewModel);
             privateObject.Invoke("CheckResourceNameConflict");
             //---------------Test Result -----------------------
-            Assert.IsFalse(singleExplorerDeployViewModel.IsDeploying);
+            NUnit.Framework.Assert.IsFalse(singleExplorerDeployViewModel.IsDeploying);
             popupController.Verify(controller => controller.ShowDeployResourceNameConflict(It.IsAny<string>()));
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void Deploy_ShouldSetIsDeployingToTrue()
         {
             //---------------Set up test pack-------------------
@@ -1423,14 +1461,15 @@ namespace Warewolf.Studio.ViewModels.Tests
             var privateObject = new PrivateObject(singleExplorerDeployViewModel);
             privateObject.Invoke("Deploy");
             //---------------Test Result -----------------------
-            Assert.IsTrue(singleExplorerDeployViewModel.DeploySuccessfull);
-            Assert.IsTrue(singleExplorerDeployViewModel.DeploySuccessMessage.Contains("Deployed Successfully."));
+            NUnit.Framework.Assert.IsTrue(singleExplorerDeployViewModel.DeploySuccessfull);
+            NUnit.Framework.Assert.IsTrue(singleExplorerDeployViewModel.DeploySuccessMessage.Contains("Deployed Successfully."));
             popupController.Verify(controller => controller.ShowDeploySuccessful(It.IsAny<string>()));
             _statsView.Verify(model => model.ReCalculate(), Times.Once);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void Deploy_GivenConflictsAndMessageBoxResultCancel_ShouldSetIsDeployingToFalse()
         {
             //---------------Set up test pack-------------------
@@ -1492,12 +1531,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             privateObject.Invoke("Deploy");
             //---------------Test Result -----------------------
             popupController.Verify(controller => controller.ShowDeployConflict(It.IsAny<int>()), Times.AtLeastOnce);
-            Assert.IsFalse(singleExplorerDeployViewModel.IsDeploying);
-            Assert.IsTrue(singleExplorerDeployViewModel.ShowConflictItemsList);
+            NUnit.Framework.Assert.IsFalse(singleExplorerDeployViewModel.IsDeploying);
+            NUnit.Framework.Assert.IsTrue(singleExplorerDeployViewModel.ShowConflictItemsList);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Sanele Mthembu")]
         public void Deploy_GivenConflictsAndMessageBoxResultOK_ShouldSetIsDeployingToTrue()
         {
             //---------------Set up test pack-------------------
@@ -1561,9 +1601,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             //---------------Test Result -----------------------
             popupController.Verify(controller => controller.ShowDeployConflict(It.IsAny<int>()), Times.AtLeastOnce);
             popupController.Verify(controller => controller.ShowDeploySuccessful(It.IsAny<string>()), Times.AtLeastOnce);
-            Assert.IsFalse(singleExplorerDeployViewModel.DeploySuccessfull);
-            Assert.IsFalse(singleExplorerDeployViewModel.IsDeploying);
-            Assert.IsFalse(singleExplorerDeployViewModel.DeployInProgress);
+            NUnit.Framework.Assert.IsFalse(singleExplorerDeployViewModel.DeploySuccessfull);
+            NUnit.Framework.Assert.IsFalse(singleExplorerDeployViewModel.IsDeploying);
+            NUnit.Framework.Assert.IsFalse(singleExplorerDeployViewModel.DeployInProgress);
         }
     }
 }

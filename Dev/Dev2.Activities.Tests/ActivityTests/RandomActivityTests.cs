@@ -19,14 +19,15 @@ using Dev2.Common;
 using Dev2.Common.Interfaces.Enums;
 using Dev2.Common.State;
 using Dev2.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
     /// <summary>
     ///     Summary description for RandomActivityTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class RandomActivityTests : BaseActivityUnitTest
     {
         /// <summary>
@@ -37,7 +38,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         #region Numbers Tests
 
-        [TestMethod]
+        [Test]
         public void GenerateRandomNumberWithStaticInputsExpectedARandomNumberToBeOutput()
         {
             const int Start = 10;
@@ -60,7 +61,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void GenerateRandomNumberWithRecordsetWithBlankInOutputExpectedRecordsetToHaveTenNumbers()
         {
             SetupArguments(ActivityStrings.RandomActivityDataListWithData, ActivityStrings.RandomActivityDataListShape, enRandomType.Numbers, "[[recset2(*).field2]]", "[[recset1(*).field1]]", string.Empty, "[[recset2().field2]]");
@@ -90,7 +91,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void GenerateRandomNumberWithBlankStringInFromExpectedError()
         {
             SetupArguments(ActivityStrings.RandomActivityDataListWithData, ActivityStrings.RandomActivityDataListShape, enRandomType.Numbers, "", "[[recset1(1).field1]]", string.Empty, "[[recset2().field2]]");
@@ -110,7 +111,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void GenerateRandomNumberWithBlankStringInToExpectedError()
         {
             SetupArguments(ActivityStrings.RandomActivityDataListWithData, ActivityStrings.RandomActivityDataListShape, enRandomType.Numbers, "[[recset2(1).field2]]", "", string.Empty, "[[recset2().field2]]");
@@ -131,7 +132,7 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
         //Test ammended as this is required to work now BUG 9506.
-        [TestMethod]
+        [Test]
         public void GenerateRandomNumberWithFromHigherThenToExpectedANumberBetweenTheTwoNumbersIsGenerated()
         {
             SetupArguments(ActivityStrings.RandomActivityDataListWithData, ActivityStrings.RandomActivityDataListShape, enRandomType.Numbers, "[[recset1(1).field1]]", "[[recset2(1).field2]]", string.Empty, "[[OutVar1]]");
@@ -153,7 +154,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void GenerateRandomNumberWithFromBlankExpectedError()
         {
             SetupArguments(ActivityStrings.RandomActivityDataListWithData, ActivityStrings.RandomActivityDataListShape, enRandomType.Numbers, "", "[[recset2(1).field2]]", string.Empty, "[[recset2().field2]]");
@@ -173,7 +174,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void GenerateRandomNumberWithToBlankExpectedError()
         {
             SetupArguments(ActivityStrings.RandomActivityDataListWithData, ActivityStrings.RandomActivityDataListShape, enRandomType.Numbers, "[[recset1(1).field1]]", "", string.Empty, "[[recset2().field2]]");
@@ -193,7 +194,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void GenerateRandomNumberWithToFieldWithLettersExpectedError()
         {
             SetupArguments(ActivityStrings.RandomActivityDataListWithData, ActivityStrings.RandomActivityDataListShape, enRandomType.Numbers, "[[recset1(1).field1]]", "letters", "", "[[recset2().field2]]");
@@ -215,7 +216,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void GenerateRandomNumberWithFromFieldWithLettersExpectedError()
         {
             SetupArguments(ActivityStrings.RandomActivityDataListWithData, ActivityStrings.RandomActivityDataListShape, enRandomType.Numbers, "letters", "[[recset1(1).field1]]", string.Empty, "[[recset2().field2]]");
@@ -241,7 +242,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         #region Letters Tests
 
-        [TestMethod]
+        [Test]
         public void GenerateRandomLettersWithLengthOfTenStaticValueExpectedFiveRandomCharString()
         {
             const int Length = 10;
@@ -262,7 +263,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void GenerateRandomLettersWithLengthOfTenRecordsetWithIndexValueExpectedFiveRandomCharString()
         {
             SetupArguments(ActivityStrings.RandomActivityDataListWithData, ActivityStrings.RandomActivityDataListShape, enRandomType.Letters, string.Empty, string.Empty, "[[recset1(1).field1]]", "[[OutVar1]]");
@@ -282,7 +283,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void GenerateRandomLettersWithLengthOfNegativeTenExpectedError()
         {
             SetupArguments(ActivityStrings.RandomActivityDataListWithData, ActivityStrings.RandomActivityDataListShape, enRandomType.Letters, string.Empty, string.Empty, "[[recset2(1).field2]]", "[[OutVar1]]");
@@ -304,7 +305,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void GenerateRandomLettersWithLengthOfLettersExpectedError()
         {
             SetupArguments(ActivityStrings.RandomActivityDataListWithData, ActivityStrings.RandomActivityDataListShape, enRandomType.Letters, string.Empty, string.Empty, "letters", "[[OutVar1]]");
@@ -326,7 +327,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void GenerateRandomLettersWithBlankLengthExpectedError()
         {
             SetupArguments(ActivityStrings.RandomActivityDataListWithData, ActivityStrings.RandomActivityDataListShape, enRandomType.Letters, string.Empty, string.Empty, "", "[[OutVar1]]");
@@ -350,9 +351,9 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfRandomActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfRandomActivity_UpdateForEachInputs")]
         public void DsfRandomActivity_UpdateForEachInputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -370,9 +371,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(Length, act.Length);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfRandomActivity_GetOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfRandomActivity_GetOutputs")]
         public void DsfRandomActivity_GetOutputs_Called_ShouldReturnListWithResultValueInIt()
         {
             //------------Setup for test--------------------------
@@ -388,9 +389,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("[[res]]", outputs[0]);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfRandomActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfRandomActivity_UpdateForEachInputs")]
         public void DsfRandomActivity_UpdateForEachInputs_MoreThan1Updates_Updates()
         {
             //------------Setup for test--------------------------
@@ -412,9 +413,9 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfRandomActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfRandomActivity_UpdateForEachOutputs")]
         public void DsfRandomActivity_UpdateForEachOutputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -429,9 +430,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(Result, act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfRandomActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfRandomActivity_UpdateForEachOutputs")]
         public void DsfRandomActivity_UpdateForEachOutputs_MoreThan1Updates()
         {
             //------------Setup for test--------------------------
@@ -449,9 +450,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(Result, act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfRandomActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfRandomActivity_UpdateForEachOutputs")]
         public void DsfRandomActivity_UpdateForEachOutputs_1Updates_UpdateCommandResult()
         {
             //------------Setup for test--------------------------
@@ -468,9 +469,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Test", act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfRandomActivity_GetForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfRandomActivity_GetForEachInputs")]
         public void DsfRandomActivity_GetForEachInputs_WhenHasExpression_ReturnsInputList()
         {
             //------------Setup for test--------------------------
@@ -492,9 +493,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(Length, dsfForEachItems[2].Value);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfRandomActivity_GetForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfRandomActivity_GetForEachOutputs")]
         public void DsfRandomActivity_GetForEachOutputs_WhenHasResult_ReturnsOutputList()
         {
             //------------Setup for test--------------------------
@@ -512,9 +513,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(Result, dsfForEachItems[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfRandomActivity_GetState")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfRandomActivity_GetState")]
         public void DsfRandomActivity_GetState_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------

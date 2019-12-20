@@ -8,22 +8,22 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 using Dev2.Common.Common;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Net;
 
 namespace Warewolf.Auditing.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class AuditQueryableTests
     {
         string sqlMessage = "SELECT * FROM (SELECT json_extract(Properties, '$.Message') AS Message, Level, TimeStamp FROM Logs) ";
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(AuditQueryable))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(AuditQueryable))]
         public void AuditQueryable_QueryTriggerData()
         {
             var connstring = @"C:\ProgramData\Warewolf\Audits\AuditDB.db";
@@ -34,9 +34,10 @@ namespace Warewolf.Auditing.Tests
             Assert.AreEqual(null, auditQueryable.ConnectionString);
             Assert.AreEqual(null, auditQueryable.SqlString);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(AuditQueryable))]
+
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(AuditQueryable))]
         public void AuditQueryable_QueryTriggerData_FilterByResourceId()
         {
             var connstring = @"C:\ProgramData\Warewolf\Audits\AuditDB.db";
@@ -52,9 +53,10 @@ namespace Warewolf.Auditing.Tests
             Assert.AreEqual(connstring, auditQueryable.ConnectionString);
             Assert.AreEqual(sqlMessage + "WHERE json_extract(Message, '$.ResourceId') = '" + resourceId + "' ORDER BY TimeStamp Desc LIMIT 20", auditQueryable.SqlString.ToString());
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(AuditQueryable))]
+
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(AuditQueryable))]
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AuditQueryable_QueryLogData_FilterBy_NoParameters()
         {
@@ -69,9 +71,9 @@ namespace Warewolf.Auditing.Tests
             Assert.AreEqual(sqlMessage + "ORDER BY TimeStamp Desc LIMIT 20", auditQueryable.SqlString.ToString());
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(AuditQueryable))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(AuditQueryable))]
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AuditQueryable_QueryLogData_FilterBy_ExecutionId_EventLevel()
         {
@@ -89,9 +91,10 @@ namespace Warewolf.Auditing.Tests
             Assert.AreEqual(connstring, auditQueryable.ConnectionString);
             Assert.AreEqual(sqlMessage + "WHERE Level = 'Debug' AND json_extract(Message, '$.ExecutionID') = '" + executionID.ToString() + "' ORDER BY TimeStamp Desc LIMIT 20", auditQueryable.SqlString.ToString());
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(AuditQueryable))]
+
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(AuditQueryable))]
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AuditQueryable_QueryLogData_FilterBy_EventLevel_IncorrectLevel()
         {
@@ -107,9 +110,9 @@ namespace Warewolf.Auditing.Tests
             Assert.AreEqual(connstring, auditQueryable.ConnectionString);
             Assert.AreEqual(sqlMessage + "ORDER BY TimeStamp Desc LIMIT 20", auditQueryable.SqlString.ToString());
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(AuditQueryable))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(AuditQueryable))]
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AuditQueryable_QueryLogData_FilterBy_ExecutionId()
         {
@@ -127,9 +130,9 @@ namespace Warewolf.Auditing.Tests
             Assert.AreEqual(connstring, auditQueryable.ConnectionString);
             Assert.AreEqual(sqlMessage + "WHERE json_extract(Message, '$.ExecutionID') = '" + executionID.ToString() + "' ORDER BY TimeStamp Desc LIMIT 20", auditQueryable.SqlString.ToString());
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(AuditQueryable))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(AuditQueryable))]
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AuditQueryable_QueryLogData_FilterBy_EventLevel_Debug()
         {
@@ -147,9 +150,9 @@ namespace Warewolf.Auditing.Tests
             Assert.AreEqual(connstring, auditQueryable.ConnectionString);
             Assert.AreEqual(sqlMessage + "WHERE Level = 'Debug' ORDER BY TimeStamp Desc LIMIT 20", auditQueryable.SqlString.ToString());
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(AuditQueryable))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(AuditQueryable))]
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AuditQueryable_QueryLogData_FilterBy_EventLevel_Information()
         {
@@ -167,9 +170,9 @@ namespace Warewolf.Auditing.Tests
             Assert.AreEqual(connstring, auditQueryable.ConnectionString);
             Assert.AreEqual(sqlMessage + "WHERE Level = 'Information' ORDER BY TimeStamp Desc LIMIT 20", auditQueryable.SqlString.ToString());
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(AuditQueryable))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(AuditQueryable))]
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AuditQueryable_QueryLogData_FilterBy_EventLevel_Warning()
         {
@@ -187,9 +190,9 @@ namespace Warewolf.Auditing.Tests
             Assert.AreEqual(connstring, auditQueryable.ConnectionString);
             Assert.AreEqual(sqlMessage + "WHERE Level = 'Warning' ORDER BY TimeStamp Desc LIMIT 20", auditQueryable.SqlString.ToString());
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(AuditQueryable))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(AuditQueryable))]
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AuditQueryable_QueryLogData_FilterBy_EventLevel_Error()
         {
@@ -207,9 +210,9 @@ namespace Warewolf.Auditing.Tests
             Assert.AreEqual(connstring, auditQueryable.ConnectionString);
             Assert.AreEqual(sqlMessage + "WHERE Level = 'Error' ORDER BY TimeStamp Desc LIMIT 20", auditQueryable.SqlString.ToString());
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(AuditQueryable))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(AuditQueryable))]
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AuditQueryable_QueryLogData_FilterBy_EventLevel_Fatal()
         {
@@ -227,9 +230,9 @@ namespace Warewolf.Auditing.Tests
             Assert.AreEqual(connstring, auditQueryable.ConnectionString);
             Assert.AreEqual(sqlMessage + "WHERE Level = 'Fatal' ORDER BY TimeStamp Desc LIMIT 20", auditQueryable.SqlString.ToString());
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(AuditQueryable))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(AuditQueryable))]
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AuditQueryable_QueryLogData_FilterBy_DateTime()
         {
@@ -250,9 +253,9 @@ namespace Warewolf.Auditing.Tests
             Assert.AreEqual(sqlMessage + "WHERE (Timestamp >= '" + StartDateTime.ToString("yyyy-MM-ddTHH:mm:ss") + "' AND Timestamp <= '" + CompletedDateTime.ToString("yyyy-MM-ddTHH:mm:ss") + "') ORDER BY TimeStamp Desc LIMIT 20", auditQueryable.SqlString.ToString());
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(AuditQueryable))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(AuditQueryable))]
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AuditQueryable_QueryLogData_DateTime_EventLevel()
         {
@@ -274,9 +277,9 @@ namespace Warewolf.Auditing.Tests
             Assert.AreEqual(sqlMessage + "WHERE Level = 'Debug' AND (Timestamp >= '" + StartDateTime.ToString("yyyy-MM-ddTHH:mm:ss") + "' AND Timestamp <= '" + CompletedDateTime.ToString("yyyy-MM-ddTHH:mm:ss") + "') ORDER BY TimeStamp Desc LIMIT 20", auditQueryable.SqlString.ToString());
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(AuditQueryable))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(AuditQueryable))]
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AuditQueryable_QueryLogData_FilterBy_DateTime_EventLevel_executionID()
         {
@@ -300,9 +303,9 @@ namespace Warewolf.Auditing.Tests
             Assert.AreEqual(sqlMessage + "WHERE Level = 'Debug' AND json_extract(Message, '$.ExecutionID') = '" + executionID + "' AND (Timestamp >= '" + StartDateTime.ToString("yyyy-MM-ddTHH:mm:ss") + "' AND Timestamp <= '" + CompletedDateTime.ToString("yyyy-MM-ddTHH:mm:ss") + "') ORDER BY TimeStamp Desc LIMIT 20", auditQueryable.SqlString.ToString());
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(AuditQueryable))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(AuditQueryable))]
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AuditQueryable_QueryLogData_FilterBy_DateTime_On_UrlEncoded_DateTime_EventLevel_and_executionID_Should_Not_Break()
         {

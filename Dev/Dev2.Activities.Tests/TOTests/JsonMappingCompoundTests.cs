@@ -12,7 +12,7 @@ using System;
 using Dev2.DynamicServices;
 using Dev2.TO;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -20,12 +20,13 @@ using Newtonsoft.Json.Linq;
 namespace Dev2.Tests.Activities.TOTests
 {
 
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class JsonMappingCompoundTests
     {
-        [TestMethod]
-        [Owner("Kerneels Roos")]
-        [TestCategory("JsonMappingCompoundToConstructor")]
+        [Test]
+        [Author("Kerneels Roos")]
+        [Category("JsonMappingCompoundToConstructor")]
         public void JsonMappingCompoundTo_Constructor_SetsProperties_NotIsCompound()
         {
             //------------Setup for test--------------------------
@@ -46,9 +47,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsNotNull(jsonMappingCompound);
             Assert.IsFalse(jsonMappingCompound.IsCompound);
         }
-        [TestMethod]
-        [Owner("Kerneels Roos")]
-        [TestCategory("JsonMappingCompoundToConstructor")]
+        [Test]
+        [Author("Kerneels Roos")]
+        [Category("JsonMappingCompoundToConstructor")]
         public void JsonMappingCompoundTo_Constructor_SetsProperties_IsCompound()
         {
             //------------Setup for test--------------------------
@@ -71,9 +72,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsNotNull(jsonMappingCompound);
             Assert.IsTrue(jsonMappingCompound.IsCompound);
         }
-        [TestMethod]
-        [Owner("Kerneels Roos")]
-        [TestCategory("JsonMappingCompoundToMaxCount")]
+        [Test]
+        [Author("Kerneels Roos")]
+        [Category("JsonMappingCompoundToMaxCount")]
         public void JsonMappingCompoundTo_MaxCount_NotIsCompound()
         {
             //------------Setup for test--------------------------
@@ -111,9 +112,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsFalse(jsonMappingCompound.IsCompound);
             Assert.AreEqual(jsonMappingCompound.MaxCount, 2);
         }
-        [TestMethod]
-        [Owner("Kerneels Roos")]
-        [TestCategory("JsonMappingCompoundToMaxCount")]
+        [Test]
+        [Author("Kerneels Roos")]
+        [Category("JsonMappingCompoundToMaxCount")]
         public void JsonMappingCompoundTo_MaxCount_IsCompound()
         {
             var dataObject = new DsfDataObject(xmldata: string.Empty, dataListId: Guid.NewGuid());
@@ -150,9 +151,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(jsonMappingCompound.IsCompound);
             Assert.AreEqual(jsonMappingCompound.MaxCount, 2);
         }
-        [TestMethod]
-        [Owner("Kerneels Roos")]
-        [TestCategory("JsonMappingCompoundToEvalResultIndexed")]
+        [Test]
+        [Author("Kerneels Roos")]
+        [Category("JsonMappingCompoundToEvalResultIndexed")]
         public void JsonMappingCompoundTo_EvalResultIndexed_IsCompound()
         {
             //------------Setup for test--------------------------
@@ -175,9 +176,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsNotNull(jsonMappingCompound);
             Assert.IsTrue(jsonMappingCompound.IsCompound);
         }
-        [TestMethod]
-        [Owner("Kerneels Roos")]
-        [TestCategory("JsonMappingCompoundToEvalResultIndexed")]
+        [Test]
+        [Author("Kerneels Roos")]
+        [Category("JsonMappingCompoundToEvalResultIndexed")]
         public void JsonMappingCompoundTo_EvalResultIndexed_NotIsCompound()
         {
             //------------Setup for test--------------------------
@@ -226,9 +227,9 @@ namespace Dev2.Tests.Activities.TOTests
             );
             Assert.AreEqual(new JObject(new JProperty("b", jsonMappingCompound.EvaluatedResultIndexed(1))).ToString(Formatting.None), "{\"b\":[500,600]}");
         }
-        [TestMethod]
-        [Owner("Kerneels Roos")]
-        [TestCategory("JsonMappingCompoundToHasRecordSetInCompound")]
+        [Test]
+        [Author("Kerneels Roos")]
+        [Category("JsonMappingCompoundToHasRecordSetInCompound")]
         public void JsonMappingCompoundTo_HasRecordSetInCompound()
         {
             //------------Setup for test--------------------------
@@ -265,9 +266,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(jsonMappingCompound.IsCompound);
             Assert.IsTrue(jsonMappingCompound.HasRecordSetInCompound);
         }
-        [TestMethod]
-        [Owner("Kerneels Roos")]
-        [TestCategory("JsonMappingCompoundToIsValid")]
+        [Test]
+        [Author("Kerneels Roos")]
+        [Category("JsonMappingCompoundToIsValid")]
         public void JsonMappingCompoundTo_IsValid()
         {
             //------------Setup for test--------------------------
@@ -294,9 +295,9 @@ namespace Dev2.Tests.Activities.TOTests
     .Should().BeNull();
         }
 
-        [TestMethod]
-        [Owner("Kerneels Roos")]
-        [TestCategory("JsonMappingCompoundTo_ComplexEvaluatedResultIndexed")]
+        [Test]
+        [Author("Kerneels Roos")]
+        [Category("JsonMappingCompoundTo_ComplexEvaluatedResultIndexed")]
         public void JsonMappingCompoundTo_ComplexEvaluatedResultIndexed()
         {
             //------------Setup for test--------------------------
@@ -309,9 +310,9 @@ namespace Dev2.Tests.Activities.TOTests
             dataObject.Environment.Assign("[[rec(2).b]]", "600", 0);
             CheckComplexEvaluatedResultIndexed("[[a]],[[b]]", "myName", 0, @"{""myName"":{""a"":10,""b"":20}}", dataObject);
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("JsonMappingCompoundTo_ComplexEvaluatedResultIndexed")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("JsonMappingCompoundTo_ComplexEvaluatedResultIndexed")]
         public void JsonMappingCompoundTo_ComplexEvaluatedResultIndexedRecset()
         {
             //------------Setup for test--------------------------
@@ -324,9 +325,9 @@ namespace Dev2.Tests.Activities.TOTests
             dataObject.Environment.Assign("[[rec(2).b]]", "600", 0);
             CheckComplexEvaluatedResultIndexed("[[rec(*)]]", "myName", 0, @"{""rec"":[{""a"":50,""b"":500},{""a"":60,""b"":600}]}", dataObject);
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("JsonMappingCompoundTo_ComplexEvaluatedResultIndexed")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("JsonMappingCompoundTo_ComplexEvaluatedResultIndexed")]
         public void JsonMappingCompoundTo_ComplexEvaluatedResultIndexedRecsetColumnMixed()
         {
             //------------Setup for test--------------------------

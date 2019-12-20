@@ -24,7 +24,7 @@ using Dev2.Interfaces;
 using Dev2.Runtime.Interfaces;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Tests.Activities.XML;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Unlimited.Framework.Converters.Graph.Ouput;
@@ -35,27 +35,28 @@ using Warewolf.Storage.Interfaces;
 
 namespace Dev2.Tests.Activities.ActivityTests.Web
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfWebPostActivityTests
     {
 
         const string _userAgent = "user-agent";
         const string _contentType = "Content-Type";
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfWebPostActivity_Constructed")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfWebPostActivity_Constructed")]
         public void DsfWebPostActivity_Constructed_Correctly_ShouldHaveInheritDsfActivity()
         {
             //------------Setup for test--------------------------
             //------------Execute Test---------------------------
             var dsfWebPostActivity = new DsfWebPostActivity();
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(dsfWebPostActivity, typeof(DsfActivity));
+            Assert.IsInstanceOf(dsfWebPostActivity.GetType(), typeof(DsfActivity));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfWebPostActivity_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfWebPostActivity_Constructor")]
         public void DsfWebPostActivity_Constructor_Correctly_ShouldSetTypeDisplayName()
         {
             //------------Setup for test--------------------------
@@ -65,9 +66,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual("POST Web Method", dsfWebPostActivity.DisplayName);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfWebPostActivity_Constructed")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfWebPostActivity_Constructed")]
         public void DsfWebPostActivity_Constructed_Correctly_ShouldHaveCorrectProperties()
         {
             //------------Setup for test--------------------------
@@ -80,9 +81,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual("POST", toolDescriptor.Name);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfWebPostActivity_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfWebPostActivity_Execute")]
         public void DsfWebPostActivity_Execute_WithNoOutputDescription_ShouldAddError()
         {
             //------------Setup for test--------------------------
@@ -119,9 +120,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.IsNull(dsfWebPostActivity.OutputDescription);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfWebPostActivity_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfWebPostActivity_Execute")]
         public void DsfWebPostActivity_Execute_WithValidWebResponse_ShouldSetVariables()
         {
             //------------Setup for test--------------------------
@@ -165,9 +166,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual("from the NW (320 degrees) at 10 MPH (9 KT) (direction variable):0", ExecutionEnvironment.WarewolfEvalResultToString(environment.Eval("[[weather().Wind]]", 0)));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfWebPostActivity_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfWebPostActivity_Execute")]
         public void DsfWebPostActivity_Execute_WithValidTextResponse_ShouldSetVariables()
         {
             //------------Setup for test--------------------------
@@ -215,9 +216,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
         
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfWebPostActivity_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfWebPostActivity_Execute")]
         public void DsfWebPostActivity_Execute_WithInValidWebResponse_ShouldError()
         {
             //------------Setup for test--------------------------
@@ -270,9 +271,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
 
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfWebPostActivity_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfWebPostActivity_Execute")]
         public void DsfWebPostActivity_Execute_WithValidXmlEscaped_ShouldSetVariables()
         {
             //------------Setup for test--------------------------
@@ -319,9 +320,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
         }
         
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfWebPostActivity_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfWebPostActivity_Execute")]
         public void DsfWebPostActivity_Execute_WithInputVariables_ShouldEvalVariablesBeforeExecutingWebRequest()
         {
             //------------Setup for test--------------------------
@@ -370,8 +371,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Constructer_GivenHasInstance_ShouldHaveType()
         {
             //---------------Set up test pack-------------------
@@ -384,8 +385,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.IsNotNull(dsfWebPostActivity.Type);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetFindMissingType_GivenWebPostActivity_ShouldReturnMissingTypeDataGridAcitvity()
         {
             //---------------Set up test pack-------------------
@@ -398,8 +399,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual(enFindMissingType.DataGridActivity, dsfWebPostActivity.GetFindMissingType());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetDebugInputs_GivenEnvironmentIsNull_ShouldReturnZeroDebugInputs()
         {
             //---------------Set up test pack-------------------
@@ -411,8 +412,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual(0, debugInputs.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetDebugInputs_GivenMockEnvironment_ShouldAddDebugInputItems()
         {
             //---------------Set up test pack-------------------
@@ -459,8 +460,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual(4,debugInputs.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateClient_GivenNoHeaders_ShouldHaveTwoHeaders()
         {
             //---------------Set up test pack-------------------
@@ -480,8 +481,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CleateClient_GivenNoHeaders_ShouldHaveUserAgentHeader()
         {
             //---------------Set up test pack-------------------
@@ -503,8 +504,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CleateClient_GivenNoHeaders_ShouldGlobalConstantsUserAgent()
         {
             //---------------Set up test pack-------------------
@@ -523,8 +524,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateClient_GivenWebSourceAuthenticationTypeIsUser_ShouldSetWebClientPasswordAndUserName()
         {
             //---------------Set up test pack-------------------
@@ -548,8 +549,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual(webClientCredentials.Password, networkCredentialFromWebSource.Password);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateClient_GivenAuthenticationTypeIsNotUser_ShouldNotSetCredentials()
         {
             //---------------Set up test pack-------------------
@@ -568,8 +569,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateClient_GivenHeaders_ShouldHaveHeadersAdded()
         {
             //---------------Set up test pack-------------------
@@ -594,9 +595,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfWebPostActivity_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfWebPostActivity_Execute")]
         public void DsfWebPostActivity_Execute_ErrorResponse_ShouldSetVariables()
         {
             //------------Setup for test--------------------------
@@ -638,9 +639,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual(response, ExecutionEnvironment.WarewolfEvalResultToString(environment.Eval("[[Message]]", 0)));
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebPostActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebPostActivity))]
         public void DsfWebPostActivity_ExecutionImpl_ErrorResultTO_ReturnErrors_ToActivity_Success()
         {
             //-----------------------Arrange-------------------------

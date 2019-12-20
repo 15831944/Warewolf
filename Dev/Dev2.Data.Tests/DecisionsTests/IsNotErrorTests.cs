@@ -1,15 +1,16 @@
 using Dev2.Data.Decisions.Operations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests.DecisionsTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IsNotErrorTests
     {
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("IsNotError_Invoke")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("IsNotError_Invoke")]
         public void GivenSomeString_IsNotError_Invoke_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -19,12 +20,12 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = isNotError.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("IsNotError_Invoke")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("IsNotError_Invoke")]
         public void IsNotError_Invoke_IsNotError_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -34,12 +35,12 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = isNotError.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthmembu")]
-        [TestCategory("IsNotError_HandlesType")]
+        [Test]
+        [Author("Sanele Mthmembu")]
+        [Category("IsNotError_HandlesType")]
         public void IsNotError_HandlesType_ReturnsIsNotErrorType()
         {
             var decisionType = enDecisionType.IsNotError;
@@ -47,7 +48,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             var isNotError = new IsNotError();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.AreEqual(decisionType, isNotError.HandlesType());
+            NUnit.Framework.Assert.AreEqual(decisionType, isNotError.HandlesType());
         }
     }
 }

@@ -9,16 +9,17 @@
 */
 
 using Dev2.Common.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Common.Tests.Utils
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class JSONUtilsTests
     {
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(JsonUtils))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(JsonUtils))]
         public void JSONUtils_ScrubJSON()
         {
             var fetch = JsonResource.Fetch("ForEachWorkFlow");
@@ -27,34 +28,34 @@ namespace Dev2.Common.Tests.Utils
             Assert.AreEqual(fetch, value);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(JsonUtils))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(JsonUtils))]
         public void JSONUtils_ScrubJSON_Clean()
         {
             var fetch = JsonResource.Fetch("ForEachWorkFlow");
             Assert.AreEqual(fetch, JsonUtils.ScrubJson("\"" + fetch + "\""));
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(JsonUtils))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(JsonUtils))]
         public void JSONUtils_Format_Empty()
         {
             Assert.AreEqual("", JsonUtils.Format(""));
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(JsonUtils))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(JsonUtils))]
         public void JSONUtils_Format_GivenMultibyteCharacter()
         {
             Assert.AreEqual("{\r\n\t\"field\":\"euro€value\"\r\n}", JsonUtils.Format(@"{""field"":""euro€value""}"));
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(JsonUtils))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(JsonUtils))]
         public void JSONUtils_Format()
         {
             var fetch = JsonResource.Fetch("Test");

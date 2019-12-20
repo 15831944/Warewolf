@@ -3,19 +3,20 @@ using Dev2.DynamicServices.Objects;
 using Dev2.Interfaces;
 using Dev2.Runtime.ESB.Execution;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 
 namespace Dev2.Tests.Runtime.ESB.Execution
 {
-    [TestClass]
-    [TestCategory("Runtime ESB")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime ESB")]
     public class WfExecutionContainerTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void OnConstruction_ShouldNotThrowException()
         {
             //---------------Set up test pack-------------------
@@ -34,7 +35,7 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             }
             catch(Exception ex)
             {
-                Assert.Fail(ex.Message);
+                NUnit.Framework.Assert.Fail(ex.Message);
             }
             //---------------Test Result -----------------------
         }

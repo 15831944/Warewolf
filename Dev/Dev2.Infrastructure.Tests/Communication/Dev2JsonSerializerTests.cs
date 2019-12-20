@@ -9,7 +9,7 @@
 */
 
 using Dev2.Communication;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -18,7 +18,8 @@ using System.Text;
 
 namespace Dev2.Infrastructure.Tests.Communication
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class Dev2JsonSerializerTests
     {
         readonly JsonSerializerSettings _serializerSettings = new JsonSerializerSettings
@@ -37,9 +38,9 @@ namespace Dev2.Infrastructure.Tests.Communication
         };
         const Formatting Formatting = Newtonsoft.Json.Formatting.Indented;
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(Dev2JsonSerializer))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(Dev2JsonSerializer))]
         public void Dev2JsonSerializer_Serialize()
         {
             var theMessage = "testingtesting123";
@@ -60,9 +61,9 @@ namespace Dev2.Infrastructure.Tests.Communication
             public int Ival { get; set; } = 1234;
             public string Sval { get; set; } = "hello";
         }
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2JsonSerializer))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2JsonSerializer))]
         public void Dev2JsonSerializer_Serialize_GivenObject()
         {
             var expected = "{\"$id\":\"1\",\"$type\":\"Dev2.Infrastructure.Tests.Communication.Dev2JsonSerializerTests+MyType, Dev2.Infrastructure.Tests\",\"Ival\":1234,\"Sval\":\"hello\"}";
@@ -83,9 +84,9 @@ namespace Dev2.Infrastructure.Tests.Communication
             Assert.AreEqual(expected, value);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(Dev2JsonSerializer))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(Dev2JsonSerializer))]
         public void Dev2JsonSerializer_Serialize_Formatting()
         {
             var theMessage = "testingtesting123";
@@ -100,9 +101,9 @@ namespace Dev2.Infrastructure.Tests.Communication
             Assert.AreEqual(resultA.ToString(), resultB.ToString());
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(Dev2JsonSerializer))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(Dev2JsonSerializer))]
         public void Dev2JsonSerializer_Deserialize_String_Type()
         {
             var theMessage = "testingtesting123";
@@ -117,9 +118,9 @@ namespace Dev2.Infrastructure.Tests.Communication
             Assert.AreEqual(resultA.ToString(), resultB.ToString());
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(Dev2JsonSerializer))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(Dev2JsonSerializer))]
         public void Dev2JsonSerializer_Deserialize_String()
         {
             var theMessage = "testingtesting123";
@@ -133,9 +134,9 @@ namespace Dev2.Infrastructure.Tests.Communication
             var resultB = js.Deserialize<ExecuteMessage>(buffer.ToString());
             Assert.AreEqual(resultA.Message.ToString(), resultB.Message.ToString());
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(Dev2JsonSerializer))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(Dev2JsonSerializer))]
         public void Dev2JsonSerializer_Deserialize_StringBuilder_SendNull_ReturnNull()
         {
             var js = new Dev2JsonSerializer();
@@ -144,9 +145,9 @@ namespace Dev2.Infrastructure.Tests.Communication
             var result = js.Deserialize<StringBuilder>(sb);
             Assert.IsNull(result);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(Dev2JsonSerializer))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(Dev2JsonSerializer))]
         public void Dev2JsonSerializer_Deserialize_StringBuilder_SendEmpty_ReturnNull()
         {
             var js = new Dev2JsonSerializer();
@@ -154,9 +155,9 @@ namespace Dev2.Infrastructure.Tests.Communication
             var result = js.Deserialize<StringBuilder>(sb);
             Assert.IsNull(result);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(Dev2JsonSerializer))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(Dev2JsonSerializer))]
         public void Dev2JsonSerializer_SerializeToBuffer_WhenEsbExecuteRequest_ValidObjectStringBuffer()
         {
             //------------Setup for test--------------------------
@@ -176,9 +177,9 @@ namespace Dev2.Infrastructure.Tests.Communication
             Assert.AreEqual(request.Args["key2"].ToString(), resultObj.Args["key2"].ToString());
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(Dev2JsonSerializer))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(Dev2JsonSerializer))]
         public void Dev2JsonSerializer_Deserializer_WhenUsingStream_ExpectValidObject()
         {
             //------------Setup for test--------------------------
@@ -198,9 +199,9 @@ Why end might ask civil again spoil.";
             Assert.AreEqual(theMessage, result.Message.ToString());
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(Dev2JsonSerializer))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(Dev2JsonSerializer))]
         public void Dev2JsonSerializer_Deserializer_WhenUsingStreamWithLargePayload_ExpectValidObject()
         {
             //------------Setup for test--------------------------
@@ -241,9 +242,9 @@ Pointing has no control about the blind texts it is an almost unorthographic lif
             Assert.AreEqual(theMessage, result.Message.ToString());
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(Dev2JsonSerializer))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(Dev2JsonSerializer))]
         public void Dev2JsonSerializer_Deserialize_StreamReader()
         {
             string json = "{\"ErrorMessage\": \"\",\"ErrorDetails\": {\"ErrorID\": 111,\"Description\":{\"Short\": 0,\"Verbose\": 20},\"ErrorDate\": \"\"}}";

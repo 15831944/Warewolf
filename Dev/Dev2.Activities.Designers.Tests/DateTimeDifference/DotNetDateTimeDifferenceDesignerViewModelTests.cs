@@ -14,17 +14,18 @@ using Dev2.Common.DateAndTime;
 using Dev2.Common.Interfaces.Help;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Dev2.Common;
 
 namespace Dev2.Activities.Designers.Tests.DateTimeDifference
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DotNetDateTimeDifferenceDesignerViewModelTests
     {
-        [TestInitialize]
+        [SetUp]
         public void PreConditions()
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-ZA");
@@ -34,9 +35,9 @@ namespace Dev2.Activities.Designers.Tests.DateTimeDifference
             Assert.AreEqual("en-ZA", System.Threading.Thread.CurrentThread.CurrentUICulture.Name);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DateTimeDifferenceDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DateTimeDifferenceDesignerViewModel_Constructor")]
         public void DateTimeDifferenceDesignerViewModel_Constructor_ModelItemIsValid_SelectedOutputTypeIsInitialized()
         {
             var modelItem = CreateModelItem();
@@ -46,9 +47,9 @@ namespace Dev2.Activities.Designers.Tests.DateTimeDifference
             Assert.IsTrue(viewModel.HasLargeView);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DateTimeDifferenceDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DateTimeDifferenceDesignerViewModel_Constructor")]
         public void DateTimeDifferenceDesignerViewModel_Constructor_ModelItemIsValid_SelectedOutputTypeAreInitialized()
         {
             var modelItem = CreateModelItem();
@@ -57,9 +58,9 @@ namespace Dev2.Activities.Designers.Tests.DateTimeDifference
             CollectionAssert.AreEqual(expected, viewModel.OutputTypes);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DateTimeDifferenceDesignerViewModel_SetSelectedOutputType")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DateTimeDifferenceDesignerViewModel_SetSelectedOutputType")]
         public void DateTimeDifferenceDesignerViewModel_SetSelectedOutputType_ValidType_OutputTypeOnModelItemIsAlsoSet()
         {
             var modelItem = CreateModelItem();
@@ -70,7 +71,7 @@ namespace Dev2.Activities.Designers.Tests.DateTimeDifference
             Assert.AreEqual(ExpectedValue, viewModel.OutputType);
         }
 
-        [TestMethod]
+        [Test]
         public void DateTimeDifferenceDesignerViewModel_ShouldSetInputFormat_WhenNoInputFormat()
         {
             var modelItem = CreateModelItem();
@@ -79,7 +80,7 @@ namespace Dev2.Activities.Designers.Tests.DateTimeDifference
             Assert.AreEqual(expectedDefaultFormat, viewModel.InputFormat);
         }
 
-        [TestMethod]
+        [Test]
         public void DateTimeDifferenceDesignerViewModel_ShouldNotSetInputFormat_WhenInputFormat()
         {
             var modelItem = CreateModelItem("yyyy-mm-dd");
@@ -89,9 +90,9 @@ namespace Dev2.Activities.Designers.Tests.DateTimeDifference
             Assert.AreEqual("yyyy-mm-dd", viewModel.InputFormat);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DateTimeDifferenceDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DateTimeDifferenceDesignerViewModel_Handle")]
         public void DateTimeDifferenceDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      

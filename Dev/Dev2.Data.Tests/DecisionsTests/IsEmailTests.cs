@@ -1,14 +1,15 @@
 using Dev2.Data.Decisions.Operations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests.DecisionsTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IsEmailTests
     {
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("IsEmail_Invoke")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("IsEmail_Invoke")]
         public void GivenSomeString_IsEmail_Invoke_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -18,12 +19,12 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = isEmail.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("IsEmail_Invoke")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("IsEmail_Invoke")]
         public void IsEmail_Invoke_IsEmail_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -33,12 +34,12 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = isEmail.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthmembu")]
-        [TestCategory("IsEmail_HandlesType")]
+        [Test]
+        [Author("Sanele Mthmembu")]
+        [Category("IsEmail_HandlesType")]
         public void IsEmail_HandlesType_ReturnsIsEmailType()
         {
             var decisionType = enDecisionType.IsEmail;
@@ -46,7 +47,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             var isEmail = new IsEmail();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.AreEqual(decisionType, isEmail.HandlesType());
+            NUnit.Framework.Assert.AreEqual(decisionType, isEmail.HandlesType());
         }
     }
 }

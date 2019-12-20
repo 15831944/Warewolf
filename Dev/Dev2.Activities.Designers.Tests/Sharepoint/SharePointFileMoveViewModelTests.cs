@@ -9,12 +9,13 @@ using Dev2.Providers.Errors;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
 using Dev2.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Activities.Designers.Tests.Sharepoint
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SharePointFileMoveViewModelTests
     {
         public const string TestOwner = "Bernardt Joubert";
@@ -27,9 +28,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             return ModelItemUtils.CreateModelItem(fileUploadactivity);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SharePointMoveFileDesignerViewModel_Constructor_NullModelItem_ThrowsException()
         {
@@ -42,9 +43,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             Assert.IsNull(sharepointFileMoveDesignerViewModel);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SharePointMoveFileDesignerViewModel_Constructor_NullAsyncWorker_ThrowsException()
         {
@@ -57,9 +58,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SharePointMoveFileDesignerViewModel_Constructor_NullEnvironmentModel_ThrowsException()
         {
@@ -72,9 +73,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void SharePointMoveFileDesignerViewModel_InitilizeProperties_ReturnsSuccess()
         {
             //------------Setup for test--------------------------
@@ -90,9 +91,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void SharePointMoveFileDesignerViewModel_SetProperties_ReturnsSuccess()
         {
             //------------Setup for test--------------------------
@@ -124,9 +125,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void SharePointMoveFileDesignerViewModel_SetPropertiesNullSource_ReturnsSuccess()
         {
             //------------Setup for test--------------------------
@@ -141,7 +142,7 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             sharepointFileMoveDesignerViewModel.Validate();
             var inputPathfrom = modelItem.GetProperty<string>("ServerInputPathFrom");
             var inputPathTo = modelItem.GetProperty<string>("ServerInputPathTo");
-  
+
 
             Assert.IsNotNull(inputPathfrom);
             Assert.IsNotNull(inputPathTo);
@@ -150,9 +151,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void SharePointMoveFileDesignerViewModel_SetPropertiesNullLocalPathFrom_ReturnsSuccess()
         {
             //------------Setup for test--------------------------
@@ -173,9 +174,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void SharePointMoveFileDesignerViewModel_SetPropertiesNullLocalPathTo_ReturnsSuccess()
         {
             //------------Setup for test--------------------------

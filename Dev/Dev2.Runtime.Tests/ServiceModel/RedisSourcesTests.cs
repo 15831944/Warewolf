@@ -12,22 +12,23 @@ using System;
 using Dev2.Data.ServiceModel;
 using Dev2.Infrastructure.Tests;
 using Dev2.Runtime.ServiceModel;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Runtime.ServiceModel
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class RedisSourcesTests
     {
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(RedisSources))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(RedisSources))]
         [ExpectedException(typeof(ArgumentNullException))]
         public void RedisSources_ConstructorWithNullResourceCatalogExpectedThrowsArgumentNullException() => new RedisSources(null);
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(RedisSources))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(RedisSources))]
         public void RedisSources_TestWithValidArgs_Expected_Valid_ValidationResult()
         {
             var handler = new RedisSources();
@@ -36,9 +37,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.IsFalse(result.IsValid);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(RedisSources))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(RedisSources))]
         public void RedisSources_Test_With_InValidArgs_Expected_Valid_InValidationResult()
         {
             var handler = new RedisSources();
@@ -46,9 +47,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.IsFalse(result.IsValid);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(RedisSources))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(RedisSources))]
         [Depends(Depends.ContainerType.AnonymousRedis)]
         public void RedisSources_Test_With_ValidHost_AuthenticationType_Anonymous_Expected_ValidValidationResult()
         {
@@ -64,9 +65,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.IsTrue(result.IsValid, result.ErrorMessage);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(RedisSources))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(RedisSources))]
         public void RedisSources_Test_With_InvalidHost__AuthenticationType_Anonymous_Expected_InvalidValidationResult()
         {
             var source = new RedisSource
@@ -82,9 +83,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual("could not connect to redis Instance at ddd:222:6379\r\nNo such host is known", result.ErrorMessage);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(RedisSources))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(RedisSources))]
         [Depends(Depends.ContainerType.Redis)]
         public void RedisSources_Test_With_ValidHost_AuthenticationType_Password_Expected_ValidValidationResult()
         {
@@ -101,9 +102,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.IsTrue(result.IsValid,result.ErrorMessage);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(RedisSources))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(RedisSources))]
         public void RedisSources_Test_With_InvalidHost_AuthenticationType_Password_Expected_InvalidValidationResult()
         {
             var source = new RedisSource

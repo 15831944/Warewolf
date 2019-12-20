@@ -17,7 +17,7 @@ using Dev2.Runtime.WebServer;
 using Dev2.Runtime.WebServer.Handlers;
 using Dev2.Runtime.WebServer.Responses;
 using Dev2.Services.Security;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.Runtime.WebServer
@@ -25,8 +25,9 @@ namespace Dev2.Tests.Runtime.WebServer
     /// <summary>
     /// Summary description for WebsiteResourceHandlerTest
     /// </summary>
-    [TestClass]
-    [TestCategory("Runtime WebServer")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime WebServer")]
     public class GetApisJsonServiceHandlerTest
     {
         NameValueCollection LocalQueryString => new NameValueCollection
@@ -37,8 +38,8 @@ namespace Dev2.Tests.Runtime.WebServer
             { "rid", "resourceid" }
         };
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ProcessRequest_GiveNullCommunicationContext_ThrowsException()
         {
@@ -49,8 +50,8 @@ namespace Dev2.Tests.Runtime.WebServer
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void ProcessRequest_GiveNoPathAndNonPublicRequest()
         {
             var communicationContext = new Mock<ICommunicationContext>();
@@ -67,8 +68,8 @@ namespace Dev2.Tests.Runtime.WebServer
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void ProcessRequest_GivePublicRequest()
         {
             var collection = new NameValueCollection

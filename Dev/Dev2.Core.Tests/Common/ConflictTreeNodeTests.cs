@@ -11,17 +11,18 @@
 using System;
 using System.Windows;
 using Dev2.Common;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ConflictTreeNodeTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ConflictTreeNode))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ConflictTreeNode))]
         public void ConflictTreeNode_ObjectEquals_IsNot_ConflictTreeNode_ExpectFalse()
         {
             //----------------------Arrange------------------------
@@ -38,9 +39,9 @@ namespace Dev2.Tests
             Assert.IsFalse(treeNode);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ConflictTreeNode))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ConflictTreeNode))]
         public void ConflictTreeNode_ObjectEquals_Is_ConflictTreeNode_ExpectTrue()
         {
             //----------------------Arrange------------------------
@@ -58,9 +59,9 @@ namespace Dev2.Tests
             Assert.IsTrue(treeNode);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ConflictTreeNode))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ConflictTreeNode))]
         public void ConflictTreeNode_Equals_Is_ConflictTreeNode_ExpectTrue()
         {
             //----------------------Arrange------------------------
@@ -77,9 +78,9 @@ namespace Dev2.Tests
             Assert.IsTrue(treeNode);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ConflictTreeNode))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ConflictTreeNode))]
         public void ConflictTreeNode_Equals_IsNot_ConflictTreeNode_ExpectFalse()
         {
             //----------------------Arrange------------------------
@@ -98,9 +99,9 @@ namespace Dev2.Tests
             Assert.IsFalse(treeNode);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ConflictTreeNode))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ConflictTreeNode))]
         public void ConflictTreeNode_Equals_ConflictTreeNode_IsNull_ExpectFalse()
         {
             //----------------------Arrange------------------------
@@ -120,9 +121,9 @@ namespace Dev2.Tests
             Assert.IsFalse(treeNode);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ConflictTreeNode))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ConflictTreeNode))]
         public void ConflictTreeNode_Equals_ConflictTreeNode_IsNull_ExpectFalse1()
         {
             //----------------------Arrange------------------------
@@ -142,9 +143,9 @@ namespace Dev2.Tests
             Assert.IsFalse(treeNode);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ConflictTreeNode))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ConflictTreeNode))]
         public void ConflictTreeNode_Equals_Is_ConflictTreeNode_ExpectTrue1()
         {
             //----------------------Arrange------------------------
@@ -165,9 +166,9 @@ namespace Dev2.Tests
             Assert.IsFalse(treeNode);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ConflictTreeNode))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ConflictTreeNode))]
         public void ConflictTreeNode_Equals_ChildrenSequenceEqual_ExpectTrue()
         {
             //----------------------Arrange------------------------
@@ -207,9 +208,9 @@ namespace Dev2.Tests
             Assert.IsTrue(treeNode);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ConflictTreeNode))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ConflictTreeNode))]
         public void ConflictTreeNode_Equals_ChildrenSequenceEqual_IdDifference_ExpectFalse()
         {
             //----------------------Arrange------------------------
@@ -249,9 +250,9 @@ namespace Dev2.Tests
             Assert.IsFalse(treeNode);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ConflictTreeNode))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ConflictTreeNode))]
         public void ConflictTreeNode_Equals_ChildrenSequenceEqual_NameDifference_ExpectFalse()
         {
             //----------------------Arrange------------------------
@@ -291,9 +292,9 @@ namespace Dev2.Tests
             Assert.IsFalse(treeNode);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ConflictTreeNode))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ConflictTreeNode))]
         public void ConflictTreeNode_Equals_ChildrenSequenceEqual_ChildCountDifference_ExpectFalse()
         {
             //----------------------Arrange------------------------
@@ -338,9 +339,9 @@ namespace Dev2.Tests
             Assert.IsFalse(treeNode);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ConflictTreeNode))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ConflictTreeNode))]
         public void ConflictTreeNode_GetHashCode_Children_IsNotNull_ExpectIsNotNull()
         {
             //----------------------Arrange------------------------
@@ -360,9 +361,9 @@ namespace Dev2.Tests
             Assert.IsNotNull(hashCode);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ConflictTreeNode))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ConflictTreeNode))]
         public void ConflictTreeNode_GetHashCode_Children_IsNull_ExpectIsNotNull()
         {
             //----------------------Arrange------------------------
@@ -380,9 +381,9 @@ namespace Dev2.Tests
             Assert.IsNotNull(hashCode);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ConflictTreeNode))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ConflictTreeNode))]
         public void ConflictTreeNode_SetProperty_Location_and_IsInConflict_ExpectSetValue()
         {
             //----------------------Arrange------------------------

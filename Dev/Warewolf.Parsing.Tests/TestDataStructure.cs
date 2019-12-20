@@ -1,18 +1,19 @@
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Newtonsoft.Json.Linq;
 
 
 namespace WarewolfParsingTest
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class TestDataStructure
     {
 
      
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("CreateDataSet_ExpectColumnsIncludePositionAndEmpty")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("CreateDataSet_ExpectColumnsIncludePositionAndEmpty")]
         public void CreateDataSet_ExpectColumnsIncludePositionAndEmpty_Blank_ValidRecset()
         {
             //------------Setup for test--------------------------
@@ -27,9 +28,9 @@ namespace WarewolfParsingTest
 
             //------------Assert Results-------------------------
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("CreateDataSet_ExpectColumnsIncludePositionAndEmpty")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("CreateDataSet_ExpectColumnsIncludePositionAndEmpty")]
         public void CreateDataSet_EvalRecsetWithAnExpression_ExpectData()
         {
             //------------Setup for test--------------------------
@@ -40,9 +41,9 @@ namespace WarewolfParsingTest
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("CreateDataSet_ExpectColumnsIncludePositionAndEmpty")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("CreateDataSet_ExpectColumnsIncludePositionAndEmpty")]
         public void AddToScalarsCreatesAscalar()
         {
             //------------Setup for test--------------------------

@@ -5,13 +5,14 @@ using Dev2.Common.Interfaces.Core;
 using Dev2.Common.Interfaces.RabbitMQ;
 using Dev2.Data.ServiceModel;
 using Dev2.Studio.Core.Activities.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Dev2.Runtime.Interfaces;
 using TechTalk.SpecFlow;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Warewolf.ToolsSpecs.Toolbox.RabbitMQ.Consum
 {
@@ -33,7 +34,7 @@ namespace Warewolf.ToolsSpecs.Toolbox.RabbitMQ.Consum
         [Given(@"I create New Workflow")]
         public void GivenICreateNewWorkflow()
         {
-            Assert.IsTrue(true);
+            NUnit.Framework.Assert.IsTrue(true);
         }
 
         [Given(@"I drag RabbitMQConsume tool onto the design surface")]
@@ -59,49 +60,49 @@ namespace Warewolf.ToolsSpecs.Toolbox.RabbitMQ.Consum
         public void GivenRabbitMqSourceIsEnabled()
         {
             var vm = scenarioContext.Get<RabbitMQConsumeDesignerViewModel>("ViewModel");
-            Assert.IsTrue(vm.NewRabbitMQSourceCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(vm.NewRabbitMQSourceCommand.CanExecute(null));
         }
 
         [Given(@"EditButton is Disabled")]
         public void GivenEditButtonIsDisabled()
         {
             var vm = scenarioContext.Get<RabbitMQConsumeDesignerViewModel>("ViewModel");
-            Assert.IsFalse(vm.EditRabbitMQSourceCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsFalse(vm.EditRabbitMQSourceCommand.CanExecute(null));
         }
 
         [Then(@"EditButton is Enabled")]
         public void ThenEditButtonIsEnabled()
         {
             var vm = scenarioContext.Get<RabbitMQConsumeDesignerViewModel>("ViewModel");
-            Assert.IsTrue(vm.EditRabbitMQSourceCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(vm.EditRabbitMQSourceCommand.CanExecute(null));
         }
 
         [Given(@"Queue Name is disabled")]
         public void GivenQueueNameIsDisabled()
         {
             var vm = scenarioContext.Get<RabbitMQConsumeDesignerViewModel>("ViewModel");
-            Assert.IsFalse(vm.IsRabbitMQSourceSelected);
+            NUnit.Framework.Assert.IsFalse(vm.IsRabbitMQSourceSelected);
         }
 
         [Given(@"Prefech is disabled")]
         public void GivenPrefechIsDisabled()
         {
             var vm = scenarioContext.Get<RabbitMQConsumeDesignerViewModel>("ViewModel");
-            Assert.IsFalse(vm.IsRabbitMQSourceSelected);
+            NUnit.Framework.Assert.IsFalse(vm.IsRabbitMQSourceSelected);
         }
 
         [Given(@"ReQueue is disabled")]
         public void GivenReQueueIsDisabled()
         {
             var vm = scenarioContext.Get<RabbitMQConsumeDesignerViewModel>("ViewModel");
-            Assert.IsFalse(vm.IsRabbitMQSourceSelected);
+            NUnit.Framework.Assert.IsFalse(vm.IsRabbitMQSourceSelected);
         }
 
         [Given(@"New button is Enabled")]
         public void GivenNewButtonIsEnabled()
         {
             var vm = scenarioContext.Get<RabbitMQConsumeDesignerViewModel>("ViewModel");
-            Assert.IsTrue(vm.NewRabbitMQSourceCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(vm.NewRabbitMQSourceCommand.CanExecute(null));
         }
 
         [When(@"I click new source")]
@@ -161,7 +162,7 @@ namespace Warewolf.ToolsSpecs.Toolbox.RabbitMQ.Consum
         public void WhenIChangeTheSourceFromTo(string p0, string p1)
         {
             var vm = scenarioContext.Get<RabbitMQConsumeDesignerViewModel>("ViewModel");
-            Assert.IsFalse(string.IsNullOrEmpty(vm.QueueName));
+            NUnit.Framework.Assert.IsFalse(string.IsNullOrEmpty(vm.QueueName));
             vm.SelectedRabbitMQSource = new RabbitMQServiceSourceDefinition() { ResourceName = p1 };
         }
 
@@ -175,14 +176,12 @@ namespace Warewolf.ToolsSpecs.Toolbox.RabbitMQ.Consum
         [Given(@"I execute tool without a source")]
         public void GivenIExecuteToolWithoutASource()
         {
-            Assert.IsTrue(true);
+            NUnit.Framework.Assert.IsTrue(true);
         }
 
         [When(@"I hit F-six to execute tool")]
         public void WhenIHitF_SixToExecuteTool()
         {
-         
-
             var consumeRabbitMQActivity = scenarioContext.Get<DsfConsumeRabbitMQActivity>("Activity");
             var _privateObject = scenarioContext.Get<PrivateObject>("PrivateObj");
             var executeResults = _privateObject.Invoke("PerformExecution", new Dictionary<string, string>());
@@ -197,7 +196,7 @@ namespace Warewolf.ToolsSpecs.Toolbox.RabbitMQ.Consum
             var _privateObject = scenarioContext.Get<PrivateObject>("PrivateObj");
             _privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
             var executeResults = _privateObject.Invoke("PerformExecution", new Dictionary<string, string>()) as List<string>;
-            Assert.IsTrue(executeResults != null && string.Equals("Failure: Source has been deleted.", executeResults[0]));
+            NUnit.Framework.Assert.IsTrue(executeResults != null && string.Equals("Failure: Source has been deleted.", executeResults[0]));
         }
 
         [Then(@"No queue error is Returned")]
@@ -214,7 +213,7 @@ namespace Warewolf.ToolsSpecs.Toolbox.RabbitMQ.Consum
             _privateObject.SetProperty("RabbitSource", rabbitMQSource.Object);
 
             var result = _privateObject.Invoke("PerformExecution", new Dictionary<string, string>()) as List<string>;
-            Assert.IsTrue(result != null && Equals("Failure: Queue Name is required.", result[0]));
+            NUnit.Framework.Assert.IsTrue(result != null && Equals("Failure: Queue Name is required.", result[0]));
         }
 
         [Then(@"I add the new source")]
@@ -231,7 +230,7 @@ namespace Warewolf.ToolsSpecs.Toolbox.RabbitMQ.Consum
             consumeRabbitMQActivity.RabbitMQSourceResourceId = new Guid();
             var _privateObject = scenarioContext.Get<PrivateObject>("PrivateObj");
             var executeResults = _privateObject.Invoke("PerformExecution", new Dictionary<string, string>());
-            Assert.IsTrue(Equals(string.Format("Nothing in the Queue : {0}", consumeRabbitMQActivity.QueueName), executeResults));
+            NUnit.Framework.Assert.IsTrue(Equals(string.Format("Nothing in the Queue : {0}", consumeRabbitMQActivity.QueueName), executeResults));
         }
     }
 }

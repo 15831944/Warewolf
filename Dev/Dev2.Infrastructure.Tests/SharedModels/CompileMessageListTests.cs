@@ -10,18 +10,19 @@
 
 using Dev2.Common.Interfaces.Infrastructure.SharedModels;
 using Dev2.Data.ServiceModel.Messages;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 
 namespace Dev2.Infrastructure.Tests.SharedModels
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class CompileMessageListTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(CompileMessageList))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(CompileMessageList))]
         public void CompileMessageList_Validate_Default()
         {
             var expectedMessageList = new List<ICompileMessageTO>
@@ -46,9 +47,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
             Assert.AreEqual(1, compileMessageList.Dependants.Count);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(CompileMessageList))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(CompileMessageList))]
         public void CompileMessageList_Count_Expected_Zero()
         {
             var compileMessageList = new CompileMessageList

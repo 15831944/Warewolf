@@ -7,7 +7,7 @@ using Dev2.Common.ExtMethods;
 using Dev2.Common.Interfaces.DB;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json.Serialization;
 using Warewolf.Core;
@@ -17,12 +17,13 @@ using Warewolf.Storage;
 
 namespace Dev2.Activities.Designers.Tests.Core
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WebOutputsRegionTests
     {
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("OutputsRegion_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("OutputsRegion_Ctor")]
         public void OutputsRegion_Ctor_ValidModelItem_ExpectVisibleAndValidData()
         {
             //------------Setup for test--------------------------
@@ -36,9 +37,9 @@ namespace Dev2.Activities.Designers.Tests.Core
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("OutputsRegion_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("OutputsRegion_Ctor")]
         public void OutputsRegion_Ctor_NewModelItem_ExpectVisibleAndValidData()
         {
             //------------Setup for test--------------------------
@@ -51,8 +52,8 @@ namespace Dev2.Activities.Designers.Tests.Core
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [TestCategory("OutputsRegion_Ctor")]
+        [Test]
+        [Category("OutputsRegion_Ctor")]
         public void OutputsRegion_Given_MappedTo_Is_Changed_From_RecordSetTo_Scalar_Sets_RecordSet_To_Empty()
         {
             //------------Setup for test--------------------------
@@ -66,8 +67,8 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.IsTrue(String.IsNullOrEmpty(outputsRegion.Outputs.First().RecordSetName));
         }
 
-        [TestMethod]
-        [TestCategory("OutputsRegion_Ctor")]
+        [Test]
+        [Category("OutputsRegion_Ctor")]
         public void OutputsRegion_Given_MappedTo_Is_Changed_From_Scalar_To_RecordSet_Sets_RecordSet_Name()
         {
             //------------Setup for test--------------------------
@@ -83,9 +84,9 @@ namespace Dev2.Activities.Designers.Tests.Core
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("OutputsRegion_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("OutputsRegion_Ctor")]
         public void OutputsRegion_AddSomeOutputsExpectHeightChanged()
         {
             //------------Setup for test--------------------------
@@ -102,9 +103,9 @@ namespace Dev2.Activities.Designers.Tests.Core
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("OutputsRegion_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("OutputsRegion_Ctor")]
         public void OutputsRegion_Clone()
         {
             CustomContainer.Register<IFieldAndPropertyMapper>(new FieldAndPropertyMapper());
@@ -124,9 +125,9 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.AreEqual(4, x.Outputs.Count);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("OutputsRegion_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("OutputsRegion_Ctor")]
         public void OutputsRegion_Restore()
         {
             CustomContainer.Register<IFieldAndPropertyMapper>(new FieldAndPropertyMapper());
@@ -150,8 +151,8 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.IsFalse(outputsRegion.IsEnabled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Outputs_GivenNull_ShouldUpdatesModelItem()
         {
             //---------------Set up test pack-------------------
@@ -172,8 +173,8 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.IsTrue(wasCalled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Outputs_GivenNull_ShouldAttachEventHandlers()
         {
             //---------------Set up test pack-------------------
@@ -198,8 +199,8 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.IsTrue(outPutsChanged);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Outputs_GivenNull_ShouldRemovedEventHandlers()
         {
             //---------------Set up test pack-------------------
@@ -230,8 +231,8 @@ namespace Dev2.Activities.Designers.Tests.Core
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ObjectName_GivenIsObjectAndNullObjectResult_ShouldNotFireChanges()
         {
             //---------------Set up test pack-------------------
@@ -250,8 +251,8 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.IsFalse(wasCalled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ObjectName_GivenIsObjectAndObjectResult_ShouldFireChanges()
         {
             //---------------Set up test pack-------------------
@@ -274,8 +275,8 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.AreEqual(outputsRegion.ObjectName, act.ObjectName);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ObjectName_GivenIsObjectAndObjectResult_ShouldUpdateDatalist()
         {
             //---------------Set up test pack-------------------
@@ -300,8 +301,8 @@ namespace Dev2.Activities.Designers.Tests.Core
             shellVm.Verify(model => model.UpdateCurrentDataListWithObjectFromJson(It.IsAny<string>(), It.IsAny<string>()), Times.Once);
             Assert.AreEqual(outputsRegion.ObjectName, act.ObjectName);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ObjectName_GivenIsObjectAndNullValues_ShouldUpdateDatalist()
         {
             //---------------Set up test pack-------------------
@@ -320,8 +321,8 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.AreEqual(outputsRegion.ObjectName, string.Empty);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ResetOutputs_GivenUpdatedOutputs_ShouldUpdateOutPutsCollection()
         {
             //---------------Set up test pack-------------------

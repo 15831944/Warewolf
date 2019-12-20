@@ -24,31 +24,32 @@ using Dev2.Runtime.ESB.Execution;
 using Dev2.Runtime.Interfaces;
 using Dev2.Tests.Runtime.XML;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Storage;
 
 
 namespace Dev2.Tests.Runtime.ESB
 {
-    [TestClass]
-    [TestCategory("Runtime ESB")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime ESB")]
     public class RemoteWorkflowExecutionContainerTests
     {
         static XElement _connectionXml;
         static Connection _connection;
 
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void ClassInitialize(TestContext context)
         {
             _connectionXml = XmlResource.Fetch("ServerConnection2");
             _connection = new Connection(_connectionXml);
         }
 
-        [TestMethod]
-        [TestCategory("RemoteWorkflowExecutionContainer_Constructor")]
+        [Test]
+        [Category("RemoteWorkflowExecutionContainer_Constructor")]
         [Description("RemoteWorkflowExecutionContainer cannot be constructed without a resource catalog.")]
-        [Owner("Trevor Williams-Ros")]
+        [Author("Trevor Williams-Ros")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void RemoteWorkflowExecutionContainer_UnitTest_ConstructorWithNullResourceCatalog_ArgumentNullException()
         {
@@ -59,10 +60,10 @@ namespace Dev2.Tests.Runtime.ESB
             new RemoteWorkflowExecutionContainerMock(sa, dataObj.Object, workspace.Object, esbChannel.Object, null);
         }
 
-        [TestMethod]
-        [TestCategory("RemoteWorkflowExecutionContainer_Execute")]
+        [Test]
+        [Category("RemoteWorkflowExecutionContainer_Execute")]
         [Description("RemoteWorkflowExecutionContainer execute must return an error when the connection cannot be retrieved from the resource catalog.")]
-        [Owner("Trevor Williams-Ros")]
+        [Author("Trevor Williams-Ros")]
         public void RemoteWorkflowExecutionContainer_UnitTest_ExecuteWithoutConnectionInCatalog_ConnectionNotRetrieved()
         {
             var resourceCatalog = new Mock<IResourceCatalog>();
@@ -72,12 +73,12 @@ namespace Dev2.Tests.Runtime.ESB
 
             container.Execute(out ErrorResultTO errors, 0);
 
-            Assert.AreEqual("Service not found", errors.MakeDisplayReady(), "Execute did not return an error for a non-existent resource catalog connection.");
+            NUnit.Framework.Assert.AreEqual("Service not found", errors.MakeDisplayReady(), "Execute did not return an error for a non-existent resource catalog connection.");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("RemoteWorkflowExecutionContainer_PerformLogExecution")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("RemoteWorkflowExecutionContainer_PerformLogExecution")]
         public void RemoteWorkflowExecutionContainer_PerformLogExecution_WhenNoDataListFragments_HasProvidedUriToExecute()
         {
             //------------Setup for test--------------------------
@@ -88,12 +89,12 @@ namespace Dev2.Tests.Runtime.ESB
             //------------Execute Test---------------------------
             container.PerformLogExecution(LogUri, 0);
             //------------Assert Results-------------------------
-            Assert.AreEqual(LogUri, container.LogExecutionUrl);
+            NUnit.Framework.Assert.AreEqual(LogUri, container.LogExecutionUrl);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("RemoteWorkflowExecutionContainer_PerformLogExecution")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("RemoteWorkflowExecutionContainer_PerformLogExecution")]
         public void RemoteWorkflowExecutionContainer_PerformLogExecution_WhenScalarDataListFragments_HasEvaluatedUriToExecute()
         {
             //------------Setup for test--------------------------
@@ -105,13 +106,13 @@ namespace Dev2.Tests.Runtime.ESB
             //------------Execute Test---------------------------
             container.PerformLogExecution(LogUri, 0);
             //------------Assert Results-------------------------
-            Assert.AreEqual(ExpectedLogUri, container.LogExecutionUrl);
+            NUnit.Framework.Assert.AreEqual(ExpectedLogUri, container.LogExecutionUrl);
 
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("RemoteWorkflowExecutionContainer_PerformLogExecution")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("RemoteWorkflowExecutionContainer_PerformLogExecution")]
         public void RemoteWorkflowExecutionContainer_PerformLogExecution_WhenRecordsetDataListFragments_HasEvaluatedUriToExecute()
         {
             //------------Setup for test--------------------------
@@ -124,7 +125,7 @@ namespace Dev2.Tests.Runtime.ESB
             //------------Execute Test---------------------------
             container.PerformLogExecution(LogUri, 0);
             //------------Assert Results-------------------------
-            Assert.AreEqual(ExpectedLogUri, container.LogExecutionUrl);
+            NUnit.Framework.Assert.AreEqual(ExpectedLogUri, container.LogExecutionUrl);
         }
 
         static RemoteWorkflowExecutionContainerMock CreateExecutionContainer(IResourceCatalog resourceCatalog, string dataListShape = "<DataList></DataList>", string dataListData = "",string webResponse= "<DataList><NumericGUID>74272317-2264-4564-3988-700350008298</NumericGUID></DataList>")

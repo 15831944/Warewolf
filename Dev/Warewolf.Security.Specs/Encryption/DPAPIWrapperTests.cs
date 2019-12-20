@@ -12,7 +12,7 @@
 
 using System;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using FluentAssertions;
 
 
@@ -20,15 +20,16 @@ using FluentAssertions;
 
 namespace Warewolf.Security.Encryption
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DPAPIWrapperTests
     {
 
         readonly string message = "This is the secret message to encrypt.";
 
-        [TestMethod]
-        [Owner("Kerneels Roos")]
-        [TestCategory("ServerPermissionsSecurity")]
+        [Test]
+        [Author("Kerneels Roos")]
+        [Category("ServerPermissionsSecurity")]
         public void EncryptDecryptTest()
         {
             //------------Setup for test--------------------------
@@ -42,9 +43,9 @@ namespace Warewolf.Security.Encryption
             DpapiWrapper.Decrypt(encrypted).Should().Be(message);
         }
 
-        [TestMethod]
-        [Owner("Kerneels Roos")]
-        [TestCategory("ServerPermissionsSecurity")]
+        [Test]
+        [Author("Kerneels Roos")]
+        [Category("ServerPermissionsSecurity")]
         public void EncryptDecryptFailsIfAlreadyPerformedTest()
         {
             //------------Setup for test--------------------------

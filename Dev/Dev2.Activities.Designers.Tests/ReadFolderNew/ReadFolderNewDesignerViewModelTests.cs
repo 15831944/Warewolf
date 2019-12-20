@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using Dev2.Common.Interfaces.Help;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
@@ -8,12 +8,13 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Activities.Designers.Tests.ReadFolderNew
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ReadFolderNewDesignerViewModelTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ReadFolderDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ReadFolderDesignerViewModel_Constructor")]
         public void ReadFolderDesignerViewModel_Constructor_Properties_Initialized()
         {
             //------------Setup for test-------------------------
@@ -30,9 +31,9 @@ namespace Dev2.Activities.Designers.Tests.ReadFolderNew
             Assert.AreEqual(0, viewModel.TitleBarToggles.Count);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("ReadFolderDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("ReadFolderDesignerViewModel_Handle")]
         public void ReadFolderDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -48,9 +49,9 @@ namespace Dev2.Activities.Designers.Tests.ReadFolderNew
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ReadFolderDesignerViewModel_Validate")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ReadFolderDesignerViewModel_Validate")]
         public void ReadFolderDesignerViewModel_Validate_CorrectFieldsAreValidated()
         {
             //------------Setup for test-------------------------
@@ -66,9 +67,9 @@ namespace Dev2.Activities.Designers.Tests.ReadFolderNew
             Assert.AreEqual(1, viewModel.ValidateUserNameAndPasswordHitCount);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ReadFolderDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ReadFolderDesignerViewModel_Constructor")]
         public void ReadFolderDesignerViewModel_Constructor_IsFilesSelectedIsSetToTrue()
         {
             //------------Setup for test-------------------------

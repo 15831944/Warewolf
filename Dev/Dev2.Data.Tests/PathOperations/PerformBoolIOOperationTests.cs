@@ -12,19 +12,20 @@ using Dev2.Common.Interfaces.Wrappers;
 using Dev2.Data.Interfaces;
 using Dev2.Data.Interfaces.Enums;
 using Dev2.Data.PathOperations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.IO;
 
 namespace Dev2.Data.Tests.PathOperations
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class PerformBoolIOOperationTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(PerformBoolIOOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(PerformBoolIOOperation))]
         public void PerformBoolIOOperation_PathIs_Directory_AreEqual_ExpectException()
         {
             //-------------------------Arrange-----------------------
@@ -34,12 +35,12 @@ namespace Dev2.Data.Tests.PathOperations
             
             //-------------------------Act---------------------------
             //-------------------------Assert------------------------
-            Assert.ThrowsException<NullReferenceException>(() => PerformBoolIOOperation.PathIs(mockActivityIOPath.Object, mockFile.Object, mockDirectory.Object));
+            NUnit.Framework.Assert.Throws<NullReferenceException>(() => PerformBoolIOOperation.PathIs(mockActivityIOPath.Object, mockFile.Object, mockDirectory.Object));
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(PerformBoolIOOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(PerformBoolIOOperation))]
         public void PerformBoolIOOperation_PathIs_IsDirectory_AreEqual_ExpectTrue()
         {
             //-------------------------Arrange-----------------------
@@ -52,12 +53,12 @@ namespace Dev2.Data.Tests.PathOperations
             var pathIs = PerformBoolIOOperation.PathIs(mockActivityIOPath.Object, mockFile.Object, mockDirectory.Object);
             //-------------------------Assert------------------------
             mockActivityIOPath.VerifyAll();
-            Assert.AreEqual(enPathType.Directory, pathIs);
+            NUnit.Framework.Assert.AreEqual(enPathType.Directory, pathIs);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(PerformBoolIOOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(PerformBoolIOOperation))]
         public void PerformBoolIOOperation_PathIs_File_IsStarWildCard_False_AreEqual_ExpectTrue()
         {
             //-------------------------Arrange-----------------------
@@ -75,12 +76,12 @@ namespace Dev2.Data.Tests.PathOperations
             //-------------------------Assert------------------------
             mockFile.VerifyAll();
             mockActivityIOPath.VerifyAll();
-            Assert.AreEqual(enPathType.File, pathIs);
+            NUnit.Framework.Assert.AreEqual(enPathType.File, pathIs);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(PerformBoolIOOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(PerformBoolIOOperation))]
         public void PerformBoolIOOperation_PathIs_File_IsStarWildCard_True_AreEqual_ExpectTrue()
         {
             //-------------------------Arrange-----------------------
@@ -97,12 +98,12 @@ namespace Dev2.Data.Tests.PathOperations
             //-------------------------Assert------------------------
             mockDirectory.VerifyAll();
             mockActivityIOPath.VerifyAll();
-            Assert.AreEqual(enPathType.File, pathIs);
+            NUnit.Framework.Assert.AreEqual(enPathType.File, pathIs);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(PerformBoolIOOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(PerformBoolIOOperation))]
         public void PerformBoolIOOperation_PathIs_Directory_AreEqual_ExpectTrue()
         {
             //-------------------------Arrange-----------------------
@@ -120,12 +121,12 @@ namespace Dev2.Data.Tests.PathOperations
             //-------------------------Assert------------------------
             mockFile.VerifyAll();
             mockActivityIOPath.VerifyAll();
-            Assert.AreEqual(enPathType.Directory, pathIs);
+            NUnit.Framework.Assert.AreEqual(enPathType.Directory, pathIs);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(PerformBoolIOOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(PerformBoolIOOperation))]
         public void PerformBoolIOOperation_RequiresOverwrite_Overwrite_IsFalse_ExpectIsNullTrue()
         {
             //-------------------------Arrange-----------------------
@@ -138,12 +139,12 @@ namespace Dev2.Data.Tests.PathOperations
             var pathIs = PerformBoolIOOperation.RequiresOverwrite(mockDev2CRUDOperationTO.Object, mockActivityIOPath.Object, mockDev2LogonProvider.Object);
             //-------------------------Assert------------------------
             mockDev2CRUDOperationTO.VerifyAll();
-            Assert.IsNull(pathIs);
+            NUnit.Framework.Assert.IsNull(pathIs);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(PerformBoolIOOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(PerformBoolIOOperation))]
         public void PerformBoolIOOperation_RequiresOverwrite_Overwrite_IsTrue_ExpectIsNullFalse()
         {
             //-------------------------Arrange-----------------------
@@ -156,12 +157,12 @@ namespace Dev2.Data.Tests.PathOperations
             var pathIs = PerformBoolIOOperation.RequiresOverwrite(mockDev2CRUDOperationTO.Object, mockActivityIOPath.Object, mockDev2LogonProvider.Object);
             //-------------------------Assert------------------------
             mockDev2CRUDOperationTO.VerifyAll();
-            Assert.IsNotNull(pathIs);
+            NUnit.Framework.Assert.IsNotNull(pathIs);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(PerformBoolIOOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(PerformBoolIOOperation))]
         public void PerformBoolIOOperation_FileExist_IsTrue_ExpectTrue()
         {
             //-------------------------Arrange-----------------------
@@ -175,12 +176,12 @@ namespace Dev2.Data.Tests.PathOperations
             //-------------------------Assert------------------------
             mockFile.VerifyAll();
             mockActivityIOPath.VerifyAll();
-            Assert.IsTrue(fileExist);
+            NUnit.Framework.Assert.IsTrue(fileExist);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(PerformBoolIOOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(PerformBoolIOOperation))]
         public void PerformBoolIOOperation_DirectoryExist_IsTrue_ExpectTrue()
         {
             //-------------------------Arrange-----------------------
@@ -194,7 +195,7 @@ namespace Dev2.Data.Tests.PathOperations
             //-------------------------Assert------------------------
             mockDirectory.VerifyAll();
             mockActivityIOPath.VerifyAll();
-            Assert.IsTrue(directoryExist);
+            NUnit.Framework.Assert.IsTrue(directoryExist);
         }
 
     }

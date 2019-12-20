@@ -18,12 +18,13 @@ using Dev2.Common.Interfaces.Help;
 using Dev2.Data.ServiceModel;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Activities.Designers.Tests.RedisRemove
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class RedisRemoveDesignerViewModelTests
     {
         static ModelItem CreateModelItem()
@@ -31,9 +32,9 @@ namespace Dev2.Activities.Designers.Tests.RedisRemove
             return ModelItemUtils.CreateModelItem(new RedisRemoveActivity());
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(RedisRemoveDesignerViewModel))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(RedisRemoveDesignerViewModel))]
         [ExpectedException(typeof(ArgumentNullException))]
         public void RedisRemoveDesignerViewModel_Constructor_ModelItemIsValid_Null_EnvironmentModel()
         {
@@ -43,9 +44,9 @@ namespace Dev2.Activities.Designers.Tests.RedisRemove
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(RedisRemoveDesignerViewModel))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(RedisRemoveDesignerViewModel))]
         [ExpectedException(typeof(ArgumentNullException))]
         public void RedisRemoveDesignerViewModel_Constructor_ModelItemIsValid_Null_ShellViewModel()
         {
@@ -56,9 +57,9 @@ namespace Dev2.Activities.Designers.Tests.RedisRemove
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(RedisRemoveDesignerViewModel))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(RedisRemoveDesignerViewModel))]
         public void RedisRemoveDesignerViewModel_Constructor_ModelItemIsValid_Constructor()
         {
             //------------Setup for test--------------------------
@@ -107,9 +108,9 @@ namespace Dev2.Activities.Designers.Tests.RedisRemove
             mockResourceRepository.Verify(resourceRepository => resourceRepository.FindSourcesByType<RedisSource>(It.IsAny<IServer>(), enSourceType.RedisSource), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(RedisRemoveDesignerViewModel))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(RedisRemoveDesignerViewModel))]
         public void RedisRemoveDesignerViewModel_Constructor_ModelItemIsValid_UpdateHelpDescriptor()
         {
             var expectedHelpText = "redis help text";
@@ -144,9 +145,9 @@ namespace Dev2.Activities.Designers.Tests.RedisRemove
             mockHelpViewModel.Verify(helpViewModel => helpViewModel.UpdateHelpText(expectedHelpText), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(RedisRemoveDesignerViewModel))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(RedisRemoveDesignerViewModel))]
         public void RedisRemoveDesignerViewModel_Constructor_ModelItemIsValid_EditRedisServerSource()
         {
             var expectedId = Guid.NewGuid();
@@ -186,9 +187,9 @@ namespace Dev2.Activities.Designers.Tests.RedisRemove
             mockResourceRepository.Verify(resourceRepository => resourceRepository.FindSourcesByType<RedisSource>(It.IsAny<IServer>(), enSourceType.RedisSource), Times.Exactly(2));
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(RedisRemoveDesignerViewModel))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(RedisRemoveDesignerViewModel))]
         public void RedisRemoveDesignerViewModel_Constructor_ModelItemIsValid_NewRedisServerSource()
         {
             var expectedId = Guid.NewGuid();

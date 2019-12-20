@@ -16,7 +16,7 @@ using Dev2.Common.Interfaces.Core.Graph;
 using Dev2.Common.Interfaces.DB;
 using Dev2.Converters.Graph.DataTable;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Framework.Converters.Graph.Ouput;
 using Unlimited.Framework.Converters.Graph.Poco;
 using Unlimited.Framework.Converters.Graph.String.Json;
@@ -25,12 +25,13 @@ using Warewolf.Core;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfComDllActivityEqualityTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_UniqueID_Equals_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -45,9 +46,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_UniqueID_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -62,9 +63,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_DisplayName_Equals_Given_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -79,9 +80,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_Equals_DisplayName_Given_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -96,9 +97,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_Equals_DisplayName_Given_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -113,9 +114,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_Method_DisplayName_IsNot_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -150,9 +151,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_Method_DisplayName_Same_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -186,9 +187,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_Method_DifferentIsObject_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -225,9 +226,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_Method_SameIsObject_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -264,9 +265,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_Method_DifferentOutputVariable_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -308,9 +309,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_Method_SameOutputVariable_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -349,9 +350,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_Method_DifferentInputs_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -398,9 +399,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_Method_SameInputs_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -449,9 +450,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_OutputDescription_SameFormat_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -512,9 +513,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_OutputDescription_DifferentFormat_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -575,9 +576,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_OutputDescription_SameDataSourceShapes_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -658,9 +659,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_OutputDescription_DifferentDataSourceShapes_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -741,9 +742,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_OutputDescription_SameJsonPathsDifferentNames_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -822,9 +823,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_OutputDescription_SameDataTableDifferentNames_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -905,9 +906,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_OutputDescription_SameStringPathDifferentNames_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -1005,9 +1006,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_OutputDescription_SamePocoPathDifferentNames_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -1085,9 +1086,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
             //---------------Test Result -----------------------
             Assert.IsTrue(equals);
         }
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_OutputDescription_SameXmlPathDifferentNames_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -1171,9 +1172,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_NameSpace_SameAssemblyLocation_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -1234,9 +1235,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_NameSpace_SameAssemblyName_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -1298,9 +1299,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
             //---------------Test Result -----------------------
             Assert.IsTrue(equals);
         }
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_NameSpace_SameFullName_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -1365,9 +1366,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_NameSpace_SameMethodName_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -1437,9 +1438,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_NameSpace_SameJsonObject_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -1508,9 +1509,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_NameSpace_DifferentAssemblyName_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -1573,9 +1574,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_NameSpace_DifferentFullName_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -1640,9 +1641,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_NameSpace_DifferentMethodName_Object_Is_not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -1709,9 +1710,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_NameSpace_DifferentJsonObject_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------

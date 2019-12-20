@@ -18,19 +18,20 @@ using Dev2.Interfaces;
 using Dev2.Runtime.WebServer;
 using Dev2.Runtime.WebServer.Responses;
 using Dev2.Web;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Storage;
 
 namespace Dev2.Tests.Runtime.WebServer
 {
-    [TestClass]
-    [TestCategory("Runtime WebServer")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime WebServer")]
     public class WebServerRequestTests
     {
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("WebServerRequest")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("WebServerRequest")]
         public void WebServerRequest_CreateResponseWriter()
         {
             var executionDto = new ExecutionDto();
@@ -52,9 +53,9 @@ namespace Dev2.Tests.Runtime.WebServer
         }
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WebServerRequest")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WebServerRequest")]
         [ExpectedException(typeof(ArgumentNullException))]
         
         public void WebServerRequest_Constructor_RequestIsNull_ThrowsArgumentNullException()
@@ -69,9 +70,9 @@ namespace Dev2.Tests.Runtime.WebServer
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WebServerRequest")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WebServerRequest")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void WebServerRequest_Constructor_BoundVariablesIsNull_ThrowsArgumentNullException()
         {
@@ -85,9 +86,9 @@ namespace Dev2.Tests.Runtime.WebServer
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WebServerRequest")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WebServerRequest")]
         public void WebServerRequest_Constructor_PropertiesInitialized()
         {
             var request = CreateHttpRequest(out string content, out NameValueCollection boundVars, out NameValueCollection queryStr, out NameValueCollection headers);
@@ -99,9 +100,9 @@ namespace Dev2.Tests.Runtime.WebServer
             VerifyProperties(request, webServerRequest, content, queryStr, boundVars);
         }
 
-        [TestMethod]
-        [Owner("Ashley Lewis")]
-        [TestCategory("WebServerRequest")]
+        [Test]
+        [Author("Ashley Lewis")]
+        [Category("WebServerRequest")]
         public void WebServerRequest_GetContentEncoding_ParseSimpleEncoding()
         {
             var Content = new StringContent("Number42", Encoding.UTF8)

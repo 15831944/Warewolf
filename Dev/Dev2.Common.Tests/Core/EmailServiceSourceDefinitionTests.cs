@@ -10,18 +10,19 @@
 
 using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.Core;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 
 namespace Dev2.Common.Tests.Core
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class EmailServiceSourceDefinitionTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(EmailServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(EmailServiceSourceDefinition))]
         public void EmailServiceSourceDefinition_Validate()
         {
             var expectedResourceID = Guid.NewGuid();
@@ -64,9 +65,9 @@ namespace Dev2.Common.Tests.Core
             Assert.AreEqual(expectedEmailTo, emailServiceSourceDefinition.EmailTo);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(EmailServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(EmailServiceSourceDefinition))]
         public void EmailServiceSourceDefinition_Equals_EmailServiceSource_Null_Expected_False()
         {
             var emailServiceSourceDefinition = new EmailServiceSourceDefinition();
@@ -77,9 +78,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(EmailServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(EmailServiceSourceDefinition))]
         public void EmailServiceSourceDefinition_Equals_EmailServiceSource_Expected_True()
         {
             var expectedResourceID = Guid.NewGuid();
@@ -116,9 +117,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(EmailServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(EmailServiceSourceDefinition))]
         public void EmailServiceSourceDefinition_ReferenceEquals_EmailServiceSource_Expected_True()
         {
             var expectedResourceID = Guid.NewGuid();
@@ -146,9 +147,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(EmailServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(EmailServiceSourceDefinition))]
         public void EmailServiceSourceDefinition_Equals_EmailServiceSource_Expected_False()
         {
             var expectedResourceID = Guid.NewGuid();
@@ -185,9 +186,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(EmailServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(EmailServiceSourceDefinition))]
         public void EmailServiceSourceDefinition_Equals_EmailServiceSourceDefinition_Null_Expected_False()
         {
             var emailServiceSourceDefinition = new EmailServiceSourceDefinition();
@@ -198,9 +199,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(EmailServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(EmailServiceSourceDefinition))]
         public void EmailServiceSourceDefinition_ReferenceEquals_EmailServiceSourceDefinition_Expected_True()
         {
             var expectedResourceID = Guid.NewGuid();
@@ -228,9 +229,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(EmailServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(EmailServiceSourceDefinition))]
         public void EmailServiceSourceDefinition_Equals_EmailServiceSourceDefinition_Expected_True()
         {
             var expectedResourceID = Guid.NewGuid();
@@ -260,9 +261,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(emailServiceSourceDefinition == emailServiceSourceDefinitionDup);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(EmailServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(EmailServiceSourceDefinition))]
         public void EmailServiceSourceDefinition_Equals_EmailServiceSourceDefinition_Expected_False()
         {
             var expectedResourceID = Guid.NewGuid();
@@ -303,9 +304,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(emailServiceSourceDefinition != emailServiceSourceDefinitionDup);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(EmailServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(EmailServiceSourceDefinition))]
         public void EmailServiceSourceDefinition_Equals_Object_Null_Expected_False()
         {
             var emailServiceSourceDefinition = new EmailServiceSourceDefinition();
@@ -316,9 +317,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(EmailServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(EmailServiceSourceDefinition))]
         public void EmailServiceSourceDefinition_Equals_Object_Expected_True()
         {
             var expectedResourceID = Guid.NewGuid();
@@ -348,9 +349,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(EmailServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(EmailServiceSourceDefinition))]
         public void EmailServiceSourceDefinition_Equals_Object_Expected_False()
         {
             var expectedResourceID = Guid.NewGuid();
@@ -390,9 +391,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(EmailServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(EmailServiceSourceDefinition))]
         public void EmailServiceSourceDefinition_Equals_Object_GetType_Expected_False()
         {
             var expectedResourceID = Guid.NewGuid();
@@ -422,9 +423,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(EmailServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(EmailServiceSourceDefinition))]
         public void EmailServiceSourceDefinition_GetHashCode_Not_Equal_To_Zero()
         {
             var expectedResourceID = Guid.NewGuid();
@@ -453,9 +454,9 @@ namespace Dev2.Common.Tests.Core
             Assert.AreNotEqual(0, hashCode);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(EmailServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(EmailServiceSourceDefinition))]
         public void EmailServiceSourceDefinition_GetHashCode_Expect_Zero()
         {
             var mockEmailSource = new Mock<IEmailSource>();

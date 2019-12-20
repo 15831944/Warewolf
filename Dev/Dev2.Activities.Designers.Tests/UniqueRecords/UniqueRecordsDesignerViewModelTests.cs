@@ -13,17 +13,18 @@ using Dev2.Activities.Designers2.UniqueRecords;
 using Dev2.Common.Interfaces.Help;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Activities.Designers.Tests.UniqueRecords
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class UniqueRecordsDesignerViewModelTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(UniqueRecordsDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(UniqueRecordsDesignerViewModel))]
         public void UniqueRecordsDesignerViewModel_ShouldCall_UpdateHelpDescriptor()
         {
             //------------Setup for test--------------------------

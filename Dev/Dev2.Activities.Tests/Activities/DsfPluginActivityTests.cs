@@ -11,17 +11,18 @@
 using Dev2.Activities;
 using Dev2.Data.TO;
 using Dev2.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.Activities.Activities
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfPluginActivityTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfPluginActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfPluginActivity))]
         public void DsfPluginActivity_ExecutionImpl_tempErrors_IsNotNull_Expect_True()
         {
             //-----------------Arrange-----------------------

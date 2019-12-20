@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Xml.Linq;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Tests.Runtime.Plugins;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Newtonsoft.Json;
 
 namespace Dev2.Tests.Runtime.ServiceModel
@@ -20,15 +20,16 @@ namespace Dev2.Tests.Runtime.ServiceModel
 
     /// <author>trevor.williams-ros</author>
     /// <date>2013/02/13</date>
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class ServicesTests
     {
         #region CreateInputsMethod
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("Service_CreateInputsMethods")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("Service_CreateInputsMethods")]
         public void Service_CreateInputsMethods_Plugin_EmptyType()
         {
             //------------Setup for test--------------------------
@@ -128,9 +129,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(typeof(object).FullName, sm.Parameters[0].TypeName);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("Service_CreateInputsMethods")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("Service_CreateInputsMethods")]
         public void Service_CreateInputsMethods_Plugin_StringType()
         {
             //------------Setup for test--------------------------
@@ -230,9 +231,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(typeof(string).FullName, sm.Parameters[0].TypeName);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("Service_CreateInputsMethods")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("Service_CreateInputsMethods")]
         public void Service_CreateInputsMethods_Plugin_NameCorrect()
         {
             //------------Setup for test--------------------------
@@ -332,9 +333,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual("EmitStringData", sm.Name);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("Service_CreateInputsMethods")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("Service_CreateInputsMethods")]
         public void Service_CreateInputsMethods_PluginEmptyToNullNotSet_EmptyToNullFalse()
         {
             //------------Setup for test--------------------------
@@ -434,9 +435,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(false, sm.Parameters[0].EmptyToNull);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("Service_CreateInputsMethods")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("Service_CreateInputsMethods")]
         public void Service_CreateInputsMethods_PluginEmptyToNullSet_EmptyToNullTrue()
         {
             //------------Setup for test--------------------------
@@ -536,9 +537,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(true, sm.Parameters[0].EmptyToNull);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("Service_CreateInputsMethods")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("Service_CreateInputsMethods")]
         public void Service_CreateInputsMethods_PluginRequiredNotSet_RequiredFalse()
         {
             //------------Setup for test--------------------------
@@ -637,9 +638,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(false, sm.Parameters[0].IsRequired);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("Service_CreateInputsMethods")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("Service_CreateInputsMethods")]
         public void Service_CreateInputsMethods_PluginRequiredSet_RequiredTrue()
         {
             //------------Setup for test--------------------------
@@ -739,9 +740,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(true, sm.Parameters[0].IsRequired);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("Service_CreateInputsMethods")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("Service_CreateInputsMethods")]
         public void Service_CreateInputsMethods_PluginDefaultValueNotSet_DefaultValueEmpty()
         {
             //------------Setup for test--------------------------
@@ -841,9 +842,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(string.Empty, sm.Parameters[0].DefaultValue);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("Service_CreateInputsMethods")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("Service_CreateInputsMethods")]
         public void Service_CreateInputsMethods_PluginDefaultValueSet_DefaultValueReturned()
         {
             //------------Setup for test--------------------------
@@ -945,9 +946,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
 
         #endregion
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("Services_Test")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("Services_Test")]
         public void Services_Test_WhenTestingPluginHavingARecordSetFieldWithEmptyName_ExpectNotAdded()
         {
             //------------Setup for test--------------------------
@@ -985,9 +986,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
             StringAssert.Contains(result[0].Fields[0].Path.SampleData, "3.1");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("Services_Test")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("Services_Test")]
         public void Services_Test_WhenTestingPluginHavingARecordSetFieldNotInOutput_ExpectNotAdded()
         {
             //------------Setup for test--------------------------
@@ -1034,9 +1035,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
             StringAssert.Contains(result[0].Fields[0].Path.SampleData, "3.1");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("Services_Test")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("Services_Test")]
         public void Services_Test_WhenWebServiceWithResponse_FetchRecordset_ExpectRecordset()
         {
             //------------Setup for test--------------------------

@@ -9,16 +9,17 @@
 */
 
 using Dev2.Common.DependencyVisualization;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests.DependencyGraph
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class NodeTest
     {
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("Node_ToString")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("Node_ToString")]
         public void Node_ToString_WhenNotBroken_ExpectStringNode()
         {
             //------------Setup for test--------------------------
@@ -32,9 +33,9 @@ namespace Dev2.Core.Tests.DependencyGraph
             StringAssert.Contains(result, expected);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("Node_ToString")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("Node_ToString")]
         public void Node_ToString_WhenBroken_ExpectStringNode()
         {
             //------------Setup for test--------------------------
@@ -48,9 +49,9 @@ namespace Dev2.Core.Tests.DependencyGraph
             StringAssert.Contains(result, expected);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("Node_ToString")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("Node_ToString")]
         public void Node_ToString_WhenNodeContainsDependencies_ExpectStringNodeWithDependenices()
         {
             //------------Setup for test--------------------------

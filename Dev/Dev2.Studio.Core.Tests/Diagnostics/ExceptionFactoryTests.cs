@@ -11,20 +11,21 @@
 using System;
 using System.Text;
 using Dev2.Studio.Factory;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Dev2.Studio.Core;
 using Dev2.Studio.Interfaces;
 
 namespace Dev2.Core.Tests.Diagnostics
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ExceptionFactoryTests
     {
         Mock<IServer> _contextModel;
         Mock<IEnvironmentConnection> _con;
 
-        [TestInitialize]
+        [SetUp]
         public void MyTestInitialize()
         {
             _contextModel = new Mock<IServer>();
@@ -40,7 +41,7 @@ namespace Dev2.Core.Tests.Diagnostics
 
         #region Create Exception
 
-        [TestMethod]
+        [Test]
         public void ExceptionFactoryCreateDefaultExceptionsExpectedCorrectExceptionsReturned()
         {
             //Initialization
@@ -55,7 +56,7 @@ namespace Dev2.Core.Tests.Diagnostics
             Assert.AreEqual(StringResources.ErrorPrefix + "Test inner Exception", vm.Exception[0].Message, "Exception view model is displaying the wrong default inner exception message");
         }
 
-        [TestMethod]
+        [Test]
         public void ExceptionFactoryCreateCriticalExceptionsExpectedCorrectExceptionsReturned()
         {
             //Initialization
@@ -77,14 +78,14 @@ namespace Dev2.Core.Tests.Diagnostics
 
         // 14th Feb 2013
         // Created by Michael to verify additional trace info is included with the sent exception for Bug 8839
-        [TestMethod]
+        [Test]
         public void GetExceptionExpectedAdditionalTraceInfo()
         {
             var exceptionResult = ExceptionFactory.CreateStringValue(GetException()).ToString();
             StringAssert.Contains(exceptionResult, "Additional Trace Info", "Error - Additional Trace Info is missing from the exception!");
         }
 
-        [TestMethod]
+        [Test]
         public void GetExceptionWithCricalExceptionExpectedCriticalInfoIncluded()
         {
             var exceptionResult = ExceptionFactory.CreateStringValue(GetException(), null, true).ToString();

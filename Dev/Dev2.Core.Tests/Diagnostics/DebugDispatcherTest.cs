@@ -14,18 +14,19 @@ using System.Threading;
 using Dev2.Common.Interfaces.Diagnostics.Debug;
 using Dev2.Common.Interfaces.Logging;
 using Dev2.Diagnostics.Debug;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json;
 
 namespace Dev2.Tests.Diagnostics
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DebugDispatcherTest
     {
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(DebugDispatcher))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(DebugDispatcher))]
         public void DebugDispatcher_AddWithNull()
         {
             var debugDispatcher = new DebugDispatcherImplementation();
@@ -37,9 +38,9 @@ namespace Dev2.Tests.Diagnostics
             Assert.AreEqual(countBefore, debugDispatcher.Count);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(DebugDispatcher))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(DebugDispatcher))]
         public void DebugDispatcher_AddWithWriter()
         {
             var debugDispatcher = new DebugDispatcherImplementation();
@@ -53,9 +54,9 @@ namespace Dev2.Tests.Diagnostics
             Assert.AreEqual(writer.Object, theWriter);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(DebugDispatcher))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(DebugDispatcher))]
         public void DebugDispatcher_AddAfterShutdown_DoesNotAdd()
         {
             var debugDispatcher = new DebugDispatcherImplementation();
@@ -73,9 +74,9 @@ namespace Dev2.Tests.Diagnostics
             Assert.AreEqual(null, theWriter);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(DebugDispatcher))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(DebugDispatcher))]
         public void DebugDispatcher_RemoveWithInvalidID()
         {
             var debugDispatcher = new DebugDispatcherImplementation();
@@ -88,9 +89,9 @@ namespace Dev2.Tests.Diagnostics
             Assert.AreEqual(countBefore, debugDispatcher.Count);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(DebugDispatcher))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(DebugDispatcher))]
         public void DebugDispatcher_RemoveWithValidID()
         {
             var debugDispatcher = new DebugDispatcherImplementation();
@@ -103,9 +104,9 @@ namespace Dev2.Tests.Diagnostics
             Assert.IsNull(theWriter);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(DebugDispatcher))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(DebugDispatcher))]
         public void DebugDispatcher_GetWithInvalidID()
         {
             var debugDispatcher = new DebugDispatcherImplementation();
@@ -119,9 +120,9 @@ namespace Dev2.Tests.Diagnostics
 
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(DebugDispatcher))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(DebugDispatcher))]
         public void DebugDispatcher_GetWithValidID()
         {
             var debugDispatcher = new DebugDispatcherImplementation();
@@ -134,9 +135,9 @@ namespace Dev2.Tests.Diagnostics
             Assert.AreSame(writer.Object, result);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(DebugDispatcher))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(DebugDispatcher))]
         public void DebugDispatcher_WriteWithNull()
         {
             var debugDispatcher = new DebugDispatcherImplementation();
@@ -146,9 +147,9 @@ namespace Dev2.Tests.Diagnostics
             Assert.IsTrue(true);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(DebugDispatcher))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(DebugDispatcher))]
         public void DebugDispatcher_Write()
         {
             var debugDispatcher = new DebugDispatcherImplementation();
@@ -184,9 +185,9 @@ namespace Dev2.Tests.Diagnostics
             writer.Verify(s => s.Write(expectedJson), Times.Exactly(3));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(DebugDispatcher))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(DebugDispatcher))]
         public void DebugDispatcher_Write_WhenRemoteInvoke_ExpectRemoteItemsAddedToRepo()
         {
             var debugDispatcher = new DebugDispatcherImplementation();
@@ -222,9 +223,9 @@ namespace Dev2.Tests.Diagnostics
             Assert.IsNotNull(items[0]);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(DebugDispatcher))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(DebugDispatcher))]
         public void DebugDispatcher_Write_IsTestExecution()
         {
             var debugDispatcher = new DebugDispatcherImplementation();
@@ -248,9 +249,9 @@ namespace Dev2.Tests.Diagnostics
             Assert.AreSame(mockState.Object, items[0]);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(DebugDispatcher))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(DebugDispatcher))]
         public void DebugDispatcher_Write_IsDebugFromWeb()
         {
             var debugDispatcher = new DebugDispatcherImplementation();
@@ -271,9 +272,9 @@ namespace Dev2.Tests.Diagnostics
             Assert.AreSame(mockState.Object, items[0]);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(DebugDispatcher))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(DebugDispatcher))]
         public void DebugDispatcher_Write_RemoteInvokeDebugItems()
         {
             var mockLogger = new Mock<ILogger>();
@@ -336,9 +337,9 @@ namespace Dev2.Tests.Diagnostics
             mockLogger.Verify(o => o.Debug("EnvironmentID: 00000000-0000-0000-0000-000000000000 Debug:", "Warewolf Debug"), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(DebugDispatcher))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(DebugDispatcher))]
         public void DebugDispatcher_Instance()
         {
             var instance1 = DebugDispatcher.Instance;

@@ -20,7 +20,7 @@ using Dev2.PerformanceCounters.Counters;
 using Dev2.Runtime.ESB.Control;
 using Dev2.Runtime.Interfaces;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Resource.Errors;
 using Warewolf.Storage;
@@ -28,11 +28,12 @@ using Warewolf.Storage.Interfaces;
 
 namespace Dev2.Tests.Runtime.ESB.Control
 {
-    [TestClass]
-    [TestCategory("Runtime ESB")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime ESB")]
     public class EsbServicesEndpointTests
     {
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void Init(TestContext context)
         {
             var pCounter = new Mock<IWarewolfPerformanceCounterLocater>();
@@ -52,8 +53,8 @@ namespace Dev2.Tests.Runtime.ESB.Control
             CustomContainer.Register<IActivityParser>(new Dev2.Activities.ActivityParser());
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
+        [Test]
+        [Author("Rory McGuire")]
         public void EsbServicesEndpoint_ExecuteWorkflow_ResourceIsNull_ExpectNothing()
         {
             var esbServicesEndpoint = new EsbServicesEndpoint();
@@ -75,11 +76,11 @@ namespace Dev2.Tests.Runtime.ESB.Control
 
             var resultId = esbServicesEndpoint.ExecuteRequest(dataObject, request, workspaceId, out var errors);
 
-            Assert.AreEqual(Guid.Empty, resultId);
+            NUnit.Framework.Assert.AreEqual(Guid.Empty, resultId);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void EsbServicesEndpoint_CreateNewEnvironmentFromInputMappings_GivenInputsDefs_ShouldCreateNewEnvWithMappings()
         {
             //---------------Set up test pack-------------------
@@ -97,8 +98,8 @@ namespace Dev2.Tests.Runtime.ESB.Control
             dataObj.Verify(o => o.PushEnvironment(It.IsAny<IExecutionEnvironment>()), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void EsbServicesEndpoint_ExecuteSubRequest_GivenValidArgs_ShouldCheckIsRemoteWorkflow()
         {
             //---------------Set up test pack-------------------
@@ -115,7 +116,7 @@ namespace Dev2.Tests.Runtime.ESB.Control
             dataObj.Setup(o => o.ServiceName).Returns("SomeName");
             var esbServicesEndpoint = new EsbServicesEndpoint();
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(esbServicesEndpoint);
+            NUnit.Framework.Assert.IsNotNull(esbServicesEndpoint);
             //---------------Execute Test ----------------------
             esbServicesEndpoint.ExecuteSubRequest(dataObj.Object, Guid.NewGuid(), "", "", out var err, 1, true);
 
@@ -123,8 +124,8 @@ namespace Dev2.Tests.Runtime.ESB.Control
             dataObj.Verify(o => o.IsRemoteWorkflow(), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void EsbServicesEndpoint_ExecuteSubRequest_GivenExecuteWorkflowAsync_ShouldCheckIsRemoteWorkflow()
         {
             //---------------Set up test pack-------------------
@@ -144,7 +145,7 @@ namespace Dev2.Tests.Runtime.ESB.Control
             dataObj.Setup(o => o.Clone()).Returns(dataObjClon.Object);
             var esbServicesEndpoint = new EsbServicesEndpoint();
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(esbServicesEndpoint);
+            NUnit.Framework.Assert.IsNotNull(esbServicesEndpoint);
             //---------------Execute Test ----------------------
 
             esbServicesEndpoint.ExecuteSubRequest(dataObj.Object, Guid.NewGuid(), "", "", out var err, 1, true);
@@ -152,11 +153,11 @@ namespace Dev2.Tests.Runtime.ESB.Control
             //---------------Test Result -----------------------
             dataObj.Verify(o => o.IsRemoteWorkflow(), Times.Once);
             var contains = err.FetchErrors().Contains(ErrorResource.ResourceNotFound);
-            Assert.IsTrue(contains);
+            NUnit.Framework.Assert.IsTrue(contains);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void EsbServicesEndpoint_ExecuteLogErrorRequest_GivenCorrectUri_ShouldNoThrowException()
         {
             //---------------Set up test pack-------------------
@@ -170,7 +171,7 @@ namespace Dev2.Tests.Runtime.ESB.Control
 
             var esbServicesEndpoint = new EsbServicesEndpoint();
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(esbServicesEndpoint);
+            NUnit.Framework.Assert.IsNotNull(esbServicesEndpoint);
             //---------------Execute Test ----------------------
             try
             {
@@ -179,7 +180,7 @@ namespace Dev2.Tests.Runtime.ESB.Control
             catch (Exception ex)
             {
                 //---------------Test Result -----------------------
-                Assert.Fail(ex.Message);
+                NUnit.Framework.Assert.Fail(ex.Message);
             }
         }
     }

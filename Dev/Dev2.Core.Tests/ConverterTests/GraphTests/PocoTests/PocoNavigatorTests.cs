@@ -12,14 +12,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Dev2.Common.Interfaces.Core.Graph;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Framework.Converters.Graph.Poco;
 using Unlimited.UnitTest.Framework.ConverterTests.GraphTests;
 
 
 namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class PocoNavigatorTests
     {
         internal PocoTestData Given()
@@ -177,7 +178,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
             return testData;
         }
 
-        [TestMethod]
+        [Test]
         public void SelectScalarValueUsingRootPathFromPrimitive_Expected_ScalarValue()
         {
             Given();
@@ -191,7 +192,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
             Assert.AreEqual(data, "1");
         }
         
-        [TestMethod]
+        [Test]
         public void SelectEnumerableValuesUsingRootPathFromPrimitive_Expected_SingleValueInEnumeration()
         {
             Given();
@@ -208,7 +209,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
             Assert.AreEqual(expected, actual);
         }
         
-        [TestMethod]
+        [Test]
         public void SelectEnumerableValuesAsRelatedUsingRootPathFromPrimitive_Expected_SingleValueInEnumeration()
         {
             Given();
@@ -226,7 +227,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
             Assert.AreEqual(expected, actual);
         }
         
-        [TestMethod]
+        [Test]
         public void SelectScalarValueUsingRootPathFromEnumerableContainingOnlyPrimitives_Expected_LastScalarValueInEnumeration()
         {
             var testData = new List<int> { 1, 2, 3 };
@@ -241,7 +242,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
             Assert.AreEqual(expected, actual);
         }
         
-        [TestMethod]
+        [Test]
         public void SelectEnumerableValuesUsingRootPathFromEnumerableContainingOnlyPrimitives_Expected_ValuesForEachValueInEnumeration()
         {
             var testData = new List<int> { 1, 2, 3 };
@@ -259,7 +260,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
             Assert.AreEqual(expected, actual);
         }
         
-        [TestMethod]
+        [Test]
         public void SelectEnumerableValuesAsRelatedUsingRootPathFromEnumerableContainingOnlyPrimitives_Expected_ValuesForEachValueInEnumeration()
         {
             var testData = new List<int> { 1, 2, 3 };
@@ -276,7 +277,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
             Assert.AreEqual(expected, actual);
         }
         
-        [TestMethod]
+        [Test]
         public void SelectScalarValueUsingScalarPathFromEnumerable_Expected_ScalarValue()
         {
             var testData = Given();
@@ -290,7 +291,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
             Assert.AreEqual(data, testData.EnumerableData.Count);
         }
         
-        [TestMethod]
+        [Test]
         public void SelectScalarValueUsingScalarPathFromReferenceType_Expected_ScalarValue()
         {
             var testData = Given();
@@ -304,7 +305,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
             Assert.AreEqual(data, testData.Name);
         }
         
-        [TestMethod]
+        [Test]
         public void SelectScalarValueUsingEnumerablePathFromReferenceType_Expected_ScalarValueFromLastItemInEnumerableCollection()
         {
             var testData = Given();
@@ -318,7 +319,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
             Assert.AreEqual(data, testData.EnumerableData.ElementAt(testData.EnumerableData.Count - 1).NestedData.Name);
         }
         
-        [TestMethod]
+        [Test]
         public void SelectScalarValueUsingEnumerablePathFromReferenceType_Where_EnumerableDataIsNull_Expected_Null()
         {
             var testData = GivenWithNoEnumerableData();
@@ -332,7 +333,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
             Assert.AreEqual(data, null);
         }
         
-        [TestMethod]
+        [Test]
         public void SelectEnumerableValuesUsingEnumerablePathFromReferenceType_Expected_ValuesFromEachItemInEnumeration()
         {
             var testData = Given();
@@ -349,7 +350,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
             Assert.AreEqual(expected, actual);
         }      
         
-        [TestMethod]
+        [Test]
         public void SelectEnumerableValuesUsingEnumerableReferenceType_Expected_ValuesFromEachItemInEnumeration()
         {
             var testData = Given();
@@ -366,7 +367,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
             Assert.AreEqual(expected, actual);
         }
         
-        [TestMethod]
+        [Test]
         public void SelectEnumerableValuesUsingEnumerablePathFromReferenceType_Where_EnumerableDataIsNull_Expected_Null()
         {
             var testData = GivenWithNoEnumerableData();
@@ -380,7 +381,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
             Assert.AreEqual(data, null);
         }
         
-        [TestMethod]
+        [Test]
         public void SelectEnumerableValuesUsingScalarPathFromEnumerable_Expected_SingleValueInEnumeration()
         {
             var testData = Given();
@@ -397,7 +398,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
             Assert.AreEqual(expected, actual);
         }
         
-        [TestMethod]
+        [Test]
         public void SelectEnumerableValuesUsingScalarPathFromReferenceType_Expected_SingleValueInEnumeration()
         {
             var testData = Given();
@@ -414,7 +415,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
             Assert.AreEqual(expected, actual);
         }
         
-        [TestMethod]
+        [Test]
         public void SelectEnumerableValuesAsRelatedFromReferenceType_Where_PathsContainAScalarPath_Expected_FlattenedDataWithValueFromScalarPathRepeatingForEachEnumeration()
         {
             var testData = GivenWithParallelAndNestedEnumerables();
@@ -432,7 +433,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
             Assert.AreEqual(expected, actual);
         }
         
-        [TestMethod]
+        [Test]
         public void SelectEnumerableValuesAsRelatedFromReferenceType_Where_PathsContainUnrelatedEnumerablePaths_Expected_FlattenedDataWithValuesFromUnrelatedEnumerablePathsAtMatchingIndexes()
         {
             var testData = GivenWithParallelAndNestedEnumerables();
@@ -482,7 +483,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
             Assert.AreEqual(expected, actual);
         }
         
-        [TestMethod]
+        [Test]
         public void SelectEnumerableValuesAsRelatedFromReferenceType_Where_PathsContainNestedEnumerablePaths_Expected_FlattenedDataWithValuesFromOuterEnumerablePathRepeatingForEveryValueFromNestedEnumerablePath()
         {
             var testData = GivenWithParallelAndNestedEnumerables();
@@ -534,7 +535,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
             Assert.AreEqual(expected, actual);
         }
         
-        [TestMethod]
+        [Test]
         public void SelectEnumerableValuesAsRelatedFromReferenceType_Where_PathsContainASinglePathWhichIsEnumerable_Expected_FlattenedDataWithValuesFromEnumerablePath()
         {
             var testData = GivenWithParallelAndNestedEnumerables();
@@ -551,7 +552,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
             Assert.AreEqual(expected, actual);
         }
         
-        [TestMethod]
+        [Test]
         public void SelectEnumerableValuesAsRelatedFromReferenceType_Where_PathsContainASinglePathWhichIsScalar_Expected_FlattenedDataWithValueFromScalarPath()
         {
             var testData = GivenWithParallelAndNestedEnumerables();

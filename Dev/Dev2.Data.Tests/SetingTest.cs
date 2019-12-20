@@ -9,15 +9,16 @@ using Dev2.Runtime.ESB.Management;
 using Dev2.Services.Security;
 using Dev2.Tests.Runtime.Services;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Data.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SetingTest
     {
-        [TestMethod]
+        [Test]
         public void Settings_ShouldAddSecurity()
         {            
             var serializer = new Dev2JsonSerializer();
@@ -44,9 +45,9 @@ namespace Dev2.Data.Tests
             var settings = serializer.Deserialize<Settings.Settings>(jsonPermissions.ToString());
 
             var serialized = settings.ToString();
-            Assert.IsNotNull(settings);
-            Assert.IsNotNull(settings.Security);
-            Assert.AreEqual(2, settings.Security.WindowsGroupPermissions.Count);
+            NUnit.Framework.Assert.IsNotNull(settings);
+            NUnit.Framework.Assert.IsNotNull(settings.Security);
+            NUnit.Framework.Assert.AreEqual(2, settings.Security.WindowsGroupPermissions.Count);
         }
     }
 }

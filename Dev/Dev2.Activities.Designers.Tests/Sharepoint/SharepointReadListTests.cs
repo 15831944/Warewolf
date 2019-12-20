@@ -6,19 +6,20 @@ using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
 using Dev2.Threading;
 using Dev2.TO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 
 namespace Dev2.Activities.Designers.Tests.Sharepoint
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SharepointReadListTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointListReadDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointListReadDesignerViewModel_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SharepointListReadDesignerViewModel_Constructor_NullModelItem_ThrowArgumentNullException()
         {
@@ -32,9 +33,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointListReadDesignerViewModel_CollectionName")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointListReadDesignerViewModel_CollectionName")]
         public void SharepointListReadDesignerViewModel_CollectionName_Property_ReturnsFilterCriteria()
         {
             //------------Setup for test--------------------------
@@ -46,9 +47,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             Assert.AreEqual("FilterCriteria", collectionName);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointListReadDesignerViewModel_WhereOptions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointListReadDesignerViewModel_WhereOptions")]
         public void SharepointListReadDesignerViewModel_WhereOptions_Constructor_ShouldBePopulatedWithCorrectOptions()
         {
             //------------Setup for test--------------------------

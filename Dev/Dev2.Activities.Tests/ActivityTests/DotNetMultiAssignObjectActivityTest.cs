@@ -11,7 +11,7 @@
 using ActivityUnitTests;
 using Dev2.Common;
 using Dev2.TO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.Activities.Statements;
 using System.Collections.ObjectModel;
 using Dev2.Interfaces;
@@ -28,13 +28,14 @@ using Dev2.Utilities;
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
 
     public class DotNetMultiAssignObjectActivityTest : BaseActivityUnitTest
     {
-        [TestMethod]
-        [Owner("Clint Stedman")]
-        [TestCategory("DsfMultiAssignObjectActivity_FunctionalityTests")]
+        [Test]
+        [Author("Clint Stedman")]
+        [Category("DsfMultiAssignObjectActivity_FunctionalityTests")]
         public void MultiAssignObjectWithValue()
         {
             var fieldCollection = new ObservableCollection<AssignObjectDTO>();
@@ -52,9 +53,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfMultiAssignObjectActivity_GetOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfMultiAssignObjectActivity_GetOutputs")]
         public void DsfMultiAssignObjectActivity_GetOutputs_Called_ShouldReturnListWithResultValueInIt()
         {
             //------------Setup for test--------------------------
@@ -68,8 +69,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("[[@test.value1]]", outputs[0]);
         }
 
-        [TestMethod]
-        [TestCategory("DsfMultiAssignObjectActivity_FunctionalityTests")]
+        [Test]
+        [Category("DsfMultiAssignObjectActivity_FunctionalityTests")]
         public void MultiAssignObjectTopLevelJSONAssign()
         {
             var fieldCollection = new ObservableCollection<AssignObjectDTO>();
@@ -90,9 +91,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected2, actual2);
         }
 
-        [TestMethod]
-        [Owner("Clint Stedman")]
-        [TestCategory("DsfMultiAssignObjectActivity_FunctionalityTests")]
+        [Test]
+        [Author("Clint Stedman")]
+        [Category("DsfMultiAssignObjectActivity_FunctionalityTests")]
         public void MultiAssignObjectWithSpecialCharsInValue()
         {
             var fieldCollection = new ObservableCollection<AssignObjectDTO>();
@@ -110,9 +111,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Clint Stedman")]
-        [TestCategory("DsfMultiAssignObjectActivity_FunctionalityTests")]
+        [Test]
+        [Author("Clint Stedman")]
+        [Category("DsfMultiAssignObjectActivity_FunctionalityTests")]
         public void MultiAssignObjectWithNewValue()
         {
             var fieldCollection = new ObservableCollection<AssignObjectDTO>();
@@ -131,9 +132,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Clint Stedman")]
-        [TestCategory("DsfMultiAssignObjectActivity_FunctionalityTests")]
+        [Test]
+        [Author("Clint Stedman")]
+        [Category("DsfMultiAssignObjectActivity_FunctionalityTests")]
         public void MultiAssignObjectWithMultipleValues()
         {
             var fieldCollection = new ObservableCollection<AssignObjectDTO>();
@@ -160,9 +161,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected4, actual4);
         }
 
-        [TestMethod]
-        [Owner("Clint Stedman")]
-        [TestCategory("DsfMultiAssignObjectActivity_FunctionalityTests")]
+        [Test]
+        [Author("Clint Stedman")]
+        [Category("DsfMultiAssignObjectActivity_FunctionalityTests")]
         public void MultiAssignObjectWithAnEmptyField()
         {
             var fieldCollection = new ObservableCollection<AssignObjectDTO>();
@@ -179,7 +180,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsTrue(actual == string.Empty);
         }
 
-        [TestMethod]
+        [Test]
         public void MultiAssignObjectDateFormat_Expected_MultiAssignObjectCorrectlySetsCorrectDateValues()
         {
             var fieldCollection = new ObservableCollection<AssignObjectDTO>();
@@ -195,9 +196,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             var a = DateTime.ParseExact(actual, GlobalConstants.Dev2DotNetDefaultDateTimeFormat, CultureInfo.InvariantCulture);
         }
 
-        [TestMethod]
-        [Owner("Clint Stedman")]
-        [TestCategory("DsfMultiAssignObjectActivity_FunctionalityTests")]
+        [Test]
+        [Author("Clint Stedman")]
+        [Category("DsfMultiAssignObjectActivity_FunctionalityTests")]
         public void MutiAssignObjectInvalidJsonObjectLeft()
         {
             var fieldCollection = new ObservableCollection<AssignObjectDTO>();
@@ -213,9 +214,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsTrue(result.Environment.HasErrors());
         }
 
-        [TestMethod]
-        [Owner("Clint Stedman")]
-        [TestCategory("DsfMultiAssignObjectActivity_FunctionalityTests")]
+        [Test]
+        [Author("Clint Stedman")]
+        [Category("DsfMultiAssignObjectActivity_FunctionalityTests")]
         public void MutiAssignObjectInvalidJsonObjectRight()
         {
             var fieldCollection = new ObservableCollection<AssignObjectDTO>();
@@ -231,9 +232,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsTrue(result.Environment.HasErrors());
         }
 
-        [TestMethod]
-        [Owner("Clint Stedman")]
-        [TestCategory("DsfMultiAssignObjectActivity_FunctionalityTests")]
+        [Test]
+        [Author("Clint Stedman")]
+        [Category("DsfMultiAssignObjectActivity_FunctionalityTests")]
         public void MultiAssignObjectWithValue4LayersDeap()
         {
             var fieldCollection = new ObservableCollection<AssignObjectDTO>();
@@ -251,9 +252,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Clint Stedman")]
-        [TestCategory("DsfMultiAssignObjectActivity_FunctionalityTests")]
+        [Test]
+        [Author("Clint Stedman")]
+        [Category("DsfMultiAssignObjectActivity_FunctionalityTests")]
         public void MultiAssignObjectWithCalculatedValue()
         {
             var fieldCollection = new ObservableCollection<AssignObjectDTO>();
@@ -271,9 +272,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Clint Stedman")]
-        [TestCategory("DsfMultiAssignObjectActivity_FunctionalityTests")]
+        [Test]
+        [Author("Clint Stedman")]
+        [Category("DsfMultiAssignObjectActivity_FunctionalityTests")]
         public void MultiAssignObjectWithCalculatedValueFromJson()
         {
             var fieldCollection = new ObservableCollection<AssignObjectDTO>();
@@ -296,9 +297,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Clint Stedman")]
-        [TestCategory("DsfMultiAssignObjectActivity_FunctionalityTests")]
+        [Test]
+        [Author("Clint Stedman")]
+        [Category("DsfMultiAssignObjectActivity_FunctionalityTests")]
         public void MultiAssignObjectArrayWithMultipleValues()
         {
             var fieldCollection = new ObservableCollection<AssignObjectDTO>();
@@ -325,9 +326,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected4, actual4);
         }
 
-        [TestMethod]
-        [Owner("Clint Stedman")]
-        [TestCategory("DsfMultiAssignObjectActivity_FunctionalityTests")]
+        [Test]
+        [Author("Clint Stedman")]
+        [Category("DsfMultiAssignObjectActivity_FunctionalityTests")]
         public void MultiAssignObjectWithCalculatedValueFromJsonArray()
         {
             var fieldCollection = new ObservableCollection<AssignObjectDTO>();
@@ -350,9 +351,9 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [Owner("Clint Stedman")]
-        [TestCategory("DsfMultiAssignObjectActivity_FunctionalityTests")]
+        [Test]
+        [Author("Clint Stedman")]
+        [Category("DsfMultiAssignObjectActivity_FunctionalityTests")]
         public void MultiAssignObjectWithJsonArrayMultiplePropertiesAtSameLevel()
         {
             var fieldCollection = new ObservableCollection<AssignObjectDTO>();
@@ -410,8 +411,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             CurrentDl = currentDL;
         }
 
-        [TestMethod]
-        [TestCategory("DsfMultiAssignObjectActivity_UpdateForEachInputs")]
+        [Test]
+        [Category("DsfMultiAssignObjectActivity_UpdateForEachInputs")]
         public void DsfMultiAssignObjectActivity_UpdateForEachInputs_WhenContainsMatchingStarAndOtherData_UpdateSuccessful()
         {
             //------------Setup for test--------------------------
@@ -436,8 +437,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Bob", collection[0].FieldValue);
         }
 
-        [TestMethod]
-        [TestCategory("DsfMultiAssignObjectActivity_UpdateForEachOutputs")]
+        [Test]
+        [Category("DsfMultiAssignObjectActivity_UpdateForEachOutputs")]
         public void DsfMultiAssignObjectActivity_UpdateForEachOutputs_WhenContainsMatchingStar_UpdateSuccessful()
         {
             //------------Setup for test--------------------------
@@ -462,8 +463,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Bob", collection[0].FieldValue);
         }
 
-        [TestMethod]
-        [TestCategory("DsfMultiAssignActivity_GetForEachInputs")]
+        [Test]
+        [Category("DsfMultiAssignActivity_GetForEachInputs")]
         public void DsfMultiAssignActivity_GetForEachInputs_Normal_UpdateSuccessful()
         {
             //------------Setup for test--------------------------
@@ -484,8 +485,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("[[result]]", inputs[0].Value);
         }
 
-        [TestMethod]
-        [TestCategory("DsfMultiAssignActivity_GetForEachOutputs")]
+        [Test]
+        [Category("DsfMultiAssignActivity_GetForEachOutputs")]
         public void DsfMultiAssignActivity_GetForEachOutputs_Normal_UpdateSuccessful()
         {
             //------------Setup for test--------------------------
@@ -507,8 +508,8 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [TestCategory("DsfMultiAssignActivity_Equality")]
+        [Test]
+        [Category("DsfMultiAssignActivity_Equality")]
         public void DsfDotNetMultiAssignObjectActivity_WhenDifferentFieldCollectionData_SHouldBeNotEqual()
         {
             var fieldCollection = new List<AssignObjectDTO>();
@@ -526,8 +527,8 @@ namespace Dev2.Tests.Activities.ActivityTests
 
             Assert.IsFalse(activity1.Equals(activity2));
         }
-        [TestMethod]
-        [TestCategory("DsfMultiAssignActivity_Equality")]
+        [Test]
+        [Category("DsfMultiAssignActivity_Equality")]
         public void DsfDotNetMultiAssignObjectActivity_WhenSameFieldCollectionData_ShouldBeEqual()
         {
             var fieldCollection = new List<AssignObjectDTO>();
@@ -554,8 +555,8 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [TestCategory("DsfMultiAssignActivity")]
+        [Test]
+        [Category("DsfMultiAssignActivity")]
         public void DsfDotNetMultiAssignObjectActivity_DebugModeAddsDebugItems()
         {
             var env = new ExecutionEnvironment();
@@ -595,8 +596,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("[[@obj.names(2).Name]]", b[1].ResultsList[1].Variable);
         }
 
-        [TestMethod]
-        [TestCategory("DsfMultiAssignActivity")]
+        [Test]
+        [Category("DsfMultiAssignActivity")]
         public void DsfDotNetMultiAssignObjectActivity_DebugModeAddsDebugItems2()
         {
             var env = new ExecutionEnvironment();
@@ -622,8 +623,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("[[vals(1).newNames]]", a[0].ResultsList[1].Variable);
         }
 
-        [TestMethod]
-        [TestCategory("DsfMultiAssignActivity")]
+        [Test]
+        [Category("DsfMultiAssignActivity")]
         public void DsfDotNetMultiAssignObjectActivity_ToNewRecordset_DebugModeAddsDebugItems()
         {
             var env = new ExecutionEnvironment();
@@ -650,9 +651,9 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("DsfMultiAssignObjectActivity_FunctionalityTests")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("DsfMultiAssignObjectActivity_FunctionalityTests")]
         public void DsfDotnetMultiAssignObject_GetState_Returns_Input_And_Outputs()
         {
             var fieldCollection = new ObservableCollection<AssignObjectDTO>

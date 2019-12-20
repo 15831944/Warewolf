@@ -14,19 +14,20 @@ using Dev2.Common.Interfaces.Infrastructure.Events;
 using Dev2.Studio.Core.AppResources.Converters;
 using Dev2.Studio.Core.Models;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Core.Tests.AppResources.Converters
 {
-    [TestClass]
-	[TestCategory("Studio Resources Core")]
+    [TestFixture]
+    [SetUpFixture]
+	[Category("Studio Resources Core")]
     public class DeployViewConnectedToVisiblityConverterTest
     {
-        [TestMethod]
-        [Owner("Jurie Smit")]
-        [TestCategory("DeployViewConnectedToVisiblityConverter")]
+        [Test]
+        [Author("Jurie Smit")]
+        [Category("DeployViewConnectedToVisiblityConverter")]
         public void DeployViewConnectedToVisiblityConverter_Convert_IsConnectedIsFalse_VisibilityIsCollapsed()
         {
             //Arrange
@@ -42,9 +43,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(Visibility.Collapsed, actual);
         }
 
-        [TestMethod]
-        [Owner("Jurie Smit")]
-        [TestCategory("DeployViewConnectedToVisiblityConverter")]
+        [Test]
+        [Author("Jurie Smit")]
+        [Category("DeployViewConnectedToVisiblityConverter")]
         public void DeployViewConnectedToVisiblityConverter_Convert_IsConnectedIsTrue_VisibilityIsCollapsed()
         {
             //Arrange
@@ -60,9 +61,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(Visibility.Visible, actual);
         }
 
-        [TestMethod]
-        [Owner("Jurie Smit")]
-        [TestCategory("DeployViewConnectedToVisiblityConverter")]
+        [Test]
+        [Author("Jurie Smit")]
+        [Category("DeployViewConnectedToVisiblityConverter")]
         public void DeployViewConnectedToVisiblityConverter_Convert_EnvironmentModelIsNull_VisibilityIsCollapsed()
         {
             //Arrange

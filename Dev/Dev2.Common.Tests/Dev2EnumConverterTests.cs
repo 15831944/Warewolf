@@ -13,16 +13,17 @@ using System.Collections.Generic;
 using Dev2.Common.ExtMethods;
 using Dev2.Common.Interfaces.Enums.Enums;
 using Dev2.Data.Interfaces.Enums;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Common.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class Dev2EnumConverterTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(Dev2EnumConverter))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(Dev2EnumConverter))]
         public void Dev2EnumConverter_ConvertEnumValueToString_AreEqual_ExpectTrue()
         {
             //----------------------Arrange-------------------------
@@ -32,9 +33,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual("Up", convertEnumValueToString);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(Dev2EnumConverter))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(Dev2EnumConverter))]
         public void Dev2EnumConverter_GetEnumFromStringDiscription_WhenDiscriptionIsNotMacthedInEnum_IsNull_ExpectTrue()
         {
             //----------------------Arrange-------------------------
@@ -44,9 +45,9 @@ namespace Dev2.Common.Tests
             Assert.IsNull(convertEnumValueToString);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(Dev2EnumConverter))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(Dev2EnumConverter))]
         public void Dev2EnumConverter_GetEnumFromStringDiscription_WhenDiscriptionIsMacthedInEnum_AreEqual_ExpectTrue()
         {
             //----------------------Arrange-------------------------
@@ -57,20 +58,20 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(discription, convertEnumValueToString.ToString());
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(Dev2EnumConverter))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(Dev2EnumConverter))]
         public void Dev2EnumConverter_GetEnumFromStringDiscription_WhenTypeIsNotEnum_ExpectInvalidOperationException()
         {
             //----------------------Arrange-------------------------
             //----------------------Act-----------------------------
             //----------------------Assert--------------------------
-            Assert.ThrowsException<InvalidOperationException>(() => Dev2EnumConverter.GetEnumFromStringDiscription("Up", typeof(object)));
+            Assert.Throws<InvalidOperationException>(() => Dev2EnumConverter.GetEnumFromStringDiscription("Up", typeof(object)));
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(Dev2EnumConverter))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(Dev2EnumConverter))]
         public void Dev2EnumConverter_ConvertEnumsTypeToStringList_GetType_AreEqual_ExpectTrue()
         {
             //----------------------Arrange-------------------------

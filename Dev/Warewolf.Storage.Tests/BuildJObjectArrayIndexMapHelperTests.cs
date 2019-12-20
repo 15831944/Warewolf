@@ -8,17 +8,18 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using WarewolfParserInterop;
 
 namespace Warewolf.Storage.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class BuildJObjectArrayIndexMapHelperTests
     {
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(BuildJObjectArrayIndexMapHelper))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(BuildJObjectArrayIndexMapHelper))]
         public void BuildJObjectArrayIndexMapHelper_Build_GivenNullExpression_DoesNotThrow()
         {
             var env = new ExecutionEnvironment();
@@ -33,9 +34,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(0, indexMap.Count);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(BuildJObjectArrayIndexMapHelper))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(BuildJObjectArrayIndexMapHelper))]
         public void BuildJObjectArrayIndexMapHelper_Build_GivenObjectWithListOfStrings_ExpectIndexForEachArrayItem()
         {
             var env = new ExecutionEnvironment();
@@ -54,9 +55,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("[[@ob.users(3).name]]", indexMap[2]);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(BuildJObjectArrayIndexMapHelper))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(BuildJObjectArrayIndexMapHelper))]
         public void BuildJObjectArrayIndexMapHelper_Build_GivenListOfStrings_ExpectIndexForEachArrayItem()
         {
             var env = new ExecutionEnvironment();
@@ -78,9 +79,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("[[@users(3).name]]", indexMap[2]);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(BuildJObjectArrayIndexMapHelper))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(BuildJObjectArrayIndexMapHelper))]
         public void BuildJObjectArrayIndexMapHelper_Build_GivenObjectWithChildThatHasListOfStrings_ExpectIndexForEachArrayItem()
         {
             var env = new ExecutionEnvironment();
@@ -99,9 +100,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual("[[@ob.user.friends(2).name]]", indexMap[1]);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(BuildJObjectArrayIndexMapHelper))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(BuildJObjectArrayIndexMapHelper))]
         public void BuildJObjectArrayIndexMapHelper_Build_GivenObjectWithChildThatHasListOfStrings_SelectNonExistentItem_ExpectNoIndexMap()
         {
             var env = new ExecutionEnvironment();

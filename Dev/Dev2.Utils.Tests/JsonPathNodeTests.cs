@@ -10,39 +10,40 @@
 
 using System;
 using Dev2.Common.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Utils.Tests
 {
 
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class JsonPathNodeTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(JsonPathNode))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(JsonPathNode))]
         public void JsonPathNode_Constractor_PathLength_IsNull_AreEqual_ExpectArgumentNullException()
         {
             //--------------------------Arrange---------------------------
             //--------------------------Act-------------------------------
             //--------------------------Assert----------------------------
-            Assert.ThrowsException<ArgumentNullException>(() => new JsonPathNode(new object(), null));
+            Assert.Throws<ArgumentNullException>(() => new JsonPathNode(new object(), null));
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(JsonPathNode))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(JsonPathNode))]
         public void JsonPathNode_Constractor_PathLength_IsZero_AreEqual_ExpectArgumentException()
         {
             //--------------------------Arrange---------------------------
             //--------------------------Act-------------------------------
             //--------------------------Assert----------------------------
-            Assert.ThrowsException<ArgumentException>(() => new JsonPathNode(new object(), string.Empty));
+            Assert.Throws<ArgumentException>(() => new JsonPathNode(new object(), string.Empty));
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(JsonPathNode))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(JsonPathNode))]
         public void JsonPathNode_Constractor_IsNotNull_AreEqual_ExpectTrue()
         {
             //--------------------------Arrange---------------------------

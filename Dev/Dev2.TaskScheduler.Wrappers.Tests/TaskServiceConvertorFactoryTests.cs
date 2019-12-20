@@ -12,7 +12,7 @@ using System;
 using System.Linq;
 using Dev2.Common.Interfaces.WindowsTaskScheduler.Wrappers;
 using Dev2.TaskScheduler.Wrappers.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Microsoft.Win32.TaskScheduler;
 using Moq;
 
@@ -20,13 +20,14 @@ using Moq;
 
 namespace Dev2.TaskScheduler.Wrappers.Test
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
      public class TaskServiceConvertorFactoryTests
     {
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_TaskServiceConvertorFactory_Sanitise")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_TaskServiceConvertorFactory_Sanitise")]
         public void TaskServiceConvertorFactory_SanitiseBoot_Test()
         {
             var fact = new TaskServiceConvertorFactory();
@@ -38,9 +39,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_TaskServiceConvertorFactory_Sanitise")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_TaskServiceConvertorFactory_Sanitise")]
         public void TaskServiceConvertorFactory_SanitiseDaily_Test()
         {
             var fact = new TaskServiceConvertorFactory();
@@ -52,9 +53,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
                                                              (a, b) => a.DaysInterval == b.DaysInterval);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_TaskServiceConvertorFactory_Sanitise")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_TaskServiceConvertorFactory_Sanitise")]
         public void TaskServiceConvertorFactory_SanitiseEvent_Test()
         {
             var fact = new TaskServiceConvertorFactory();
@@ -67,9 +68,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
         
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_TaskServiceConvertorFactory_Sanitise")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_TaskServiceConvertorFactory_Sanitise")]
         public void TaskServiceConvertorFactory_SanitiseIdle_Test()
         {
             var fact = new TaskServiceConvertorFactory();
@@ -81,9 +82,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_TaskServiceConvertorFactory_Sanitise")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_TaskServiceConvertorFactory_Sanitise")]
         public void TaskServiceConvertorFactory_SanitiseMonthly_Test()
         {
             var fact = new TaskServiceConvertorFactory();
@@ -97,9 +98,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_TaskServiceConvertorFactory_Sanitise")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_TaskServiceConvertorFactory_Sanitise")]
         public void TaskServiceConvertorFactory_SanitiseMonthlyDOW_Test()
         {
             var fact = new TaskServiceConvertorFactory();
@@ -113,9 +114,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_TaskServiceConvertorFactory_Sanitise")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_TaskServiceConvertorFactory_Sanitise")]
         public void TaskServiceConvertorFactory_SanitiseRegistration_Test()
         {
             var fact = new TaskServiceConvertorFactory();
@@ -127,9 +128,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
           
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_TaskServiceConvertorFactory_Sanitise")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_TaskServiceConvertorFactory_Sanitise")]
         public void TaskServiceConvertorFactory_SessionState_Test()
         {
             var fact = new TaskServiceConvertorFactory();
@@ -141,9 +142,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_TaskServiceConvertorFactory_Sanitise")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_TaskServiceConvertorFactory_Sanitise")]
         public void TaskServiceConvertorFactory_Time_Test()
         {
             var fact = new TaskServiceConvertorFactory();
@@ -157,9 +158,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
 
 
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_TaskServiceConvertorFactory_Sanitise")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_TaskServiceConvertorFactory_Sanitise")]
         public void TaskServiceConvertorFactory_Weekly_Test()
         {
             var fact = new TaskServiceConvertorFactory();
@@ -195,8 +196,8 @@ namespace Dev2.TaskScheduler.Wrappers.Test
             Assert.AreEqual(trig.ExecutionTimeLimit, sanitised.ExecutionTimeLimit);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateRootFolder_GivenTaskFolder_ShouldReturnDevtaskFolder()
         {
             //---------------Set up test pack-------------------
@@ -209,8 +210,8 @@ namespace Dev2.TaskScheduler.Wrappers.Test
             Assert.IsNotNull(rootFolder);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateTask_GivenTask_ShouldReturnDev2Task()
         {
             //---------------Set up test pack-------------------
@@ -223,8 +224,8 @@ namespace Dev2.TaskScheduler.Wrappers.Test
             Assert.IsNotNull(task);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateTaskDefinition_GivenTaskDefinition_ShouldReturnDev2TaskDefinition()
         {
             //---------------Set up test pack-------------------
@@ -237,8 +238,8 @@ namespace Dev2.TaskScheduler.Wrappers.Test
             Assert.IsNotNull(taskDefinition);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateActionCollection_GivenActionCollection_ShouldReturnDev2ActionCollection()
         {
             //---------------Set up test pack-------------------
@@ -251,8 +252,8 @@ namespace Dev2.TaskScheduler.Wrappers.Test
             Assert.IsNotNull(actionCollection);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateTaskSettings_GivenTaskSettings_ShouldReturnDev2TaskSettings()
         {
             //---------------Set up test pack-------------------
@@ -266,8 +267,8 @@ namespace Dev2.TaskScheduler.Wrappers.Test
             Assert.IsNotNull(taskSettings);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateTriggerCollection_GivenTriggerCollection_ShouldReturnDev2TriggerCollection()
         {
             //---------------Set up test pack-------------------
@@ -280,8 +281,8 @@ namespace Dev2.TaskScheduler.Wrappers.Test
             Assert.IsNotNull(triggerCollection);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateTaskCollection_GivenTaskCollection_ShouldReturnDev2TaskCollection()
         {
             //---------------Set up test pack-------------------
@@ -294,8 +295,8 @@ namespace Dev2.TaskScheduler.Wrappers.Test
             Assert.IsNotNull(taskCollection);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateTrigger_GivenTrigger_ShouldReturnDev2Trigger()
         {
             //---------------Set up test pack-------------------
@@ -308,8 +309,8 @@ namespace Dev2.TaskScheduler.Wrappers.Test
             Assert.IsNotNull(trigger);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateRepetitionPattern_GivenRepetitionPattern_ShouldReturnDev2RepetitionPattern()
         {
             //---------------Set up test pack-------------------
@@ -321,8 +322,8 @@ namespace Dev2.TaskScheduler.Wrappers.Test
             //---------------Test Result -----------------------
             Assert.IsNotNull(repetitionPattern);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateAction_GivenRepetitionAction_ShouldReturnDev2Action()
         {
             //---------------Set up test pack-------------------
@@ -335,8 +336,8 @@ namespace Dev2.TaskScheduler.Wrappers.Test
             Assert.IsNotNull(action);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateTaskService_GivenValidArgs_ShouldReturnCorrectly()
         {
             //---------------Set up test pack-------------------
@@ -370,8 +371,8 @@ namespace Dev2.TaskScheduler.Wrappers.Test
           
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateExecAction_GivenValidArgs_ShouldReturnCorreclty()
         {
             //---------------Set up test pack-------------------
@@ -384,8 +385,8 @@ namespace Dev2.TaskScheduler.Wrappers.Test
             Assert.IsNotNull(execAction);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateExecAction_GivenAction_ShouldReturnCorreclty()
         {
             //---------------Set up test pack-------------------
@@ -400,8 +401,8 @@ namespace Dev2.TaskScheduler.Wrappers.Test
             Assert.IsNotNull(execAction);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateTaskEvent_GivenTaskEvent_ShouldDev2TaskEvent()
         {
             //---------------Set up test pack-------------------
@@ -414,8 +415,8 @@ namespace Dev2.TaskScheduler.Wrappers.Test
             Assert.IsNotNull(taskEvent);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateTaskEventLog_Givenpath_ShouldReturnDev2TaskEventLog()
         {
             //---------------Set up test pack-------------------
@@ -427,8 +428,8 @@ namespace Dev2.TaskScheduler.Wrappers.Test
             //---------------Test Result -----------------------
             Assert.IsNotNull(taskEventLog);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateTaskService_ShouldReturnCorrectly()
         {
             //---------------Set up test pack-------------------

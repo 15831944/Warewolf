@@ -9,18 +9,19 @@
 */
 
 using Dev2.Common.Interfaces.Core.Graph;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Framework.Converters.Graph.String.Xml;
 
 
 namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.XmlTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class XmlPathSegmentTests {
 
         #region CreatePathSegment Tests
 
-        [TestMethod]
+        [Test]
         public void ToStringOnEnumerableSegment_Expected_EnumerableFormat()
         {
             var path = new XmlPath();
@@ -32,7 +33,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.XmlTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void ToStringOnScalarSegment_Expected_ScalarFormat()
         {
             var path = new XmlPath();
@@ -44,7 +45,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.XmlTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void ToStringOnEnumerableSegment_WhereEnumerablesArentConsidered_Expected_ScalarFormat()
         {
             var path = new XmlPath();
@@ -56,7 +57,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.XmlTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void ToStringOnEnumerableSegment_WhereEnumerablesAreConsidered_Expected_ScalarFormat()
         {
             var path = new XmlPath();
@@ -68,7 +69,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.XmlTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void ToStringOnScalarSegmentt_WhereEnumerablesArentConsidered__Expected_ScalarFormat()
         {
             var path = new XmlPath();
@@ -80,7 +81,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.XmlTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void ToStringOnScalarSegmentt_WhereEnumerablesAreConsidered__Expected_ScalarFormat()
         {
             var path = new XmlPath();

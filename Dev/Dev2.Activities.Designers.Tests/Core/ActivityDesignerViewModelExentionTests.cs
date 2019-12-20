@@ -7,7 +7,7 @@ using Dev2.Activities.DropBox2016.DownloadActivity;
 using Dev2.Activities.DropBox2016.DropboxFileActivity;
 using Dev2.Activities.DropBox2016.UploadActivity;
 using Dev2.Studio.Core.Activities.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Activities.Designers.Tests.Core
@@ -38,11 +38,12 @@ namespace Dev2.Activities.Designers.Tests.Core
         #endregion
     }
 
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ActivityDesignerViewModelExentionTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void OnCreation_GivenIsDraggedTrue_ShouldShowLarge()
         {
             //---------------Set up test pack-------------------
@@ -56,8 +57,8 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.IsTrue(showLarge);
             
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void OnCreation_GivenIsDraggedTrue_ShouldShowLargeOnAllTools()
         {
             //---------------Set up test pack-------------------
@@ -99,8 +100,8 @@ namespace Dev2.Activities.Designers.Tests.Core
             
         }
         
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void OnCreation_GivenIsDraggedFalse_ShouldNotShowLarge()
         {
             //---------------Set up test pack-------------------
@@ -114,8 +115,8 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.IsFalse(showLarge);
         }
         
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void OnTabChanged_GivenIsDraggedFalse_ShouldNotShowLarge()
         {
             //---------------Set up test pack-------------------

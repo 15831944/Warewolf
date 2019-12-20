@@ -8,17 +8,18 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 using Dev2.Common.SaveDialog;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Common.Tests.SaveDialogue
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ResourceNameTests
     {
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ResourceName))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ResourceName))]
         public void ResourceName_Test()
         {
             const string path = "C:\\\\ProgramData\\Warewolf\\Server Log";

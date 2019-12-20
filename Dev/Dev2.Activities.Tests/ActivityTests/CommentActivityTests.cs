@@ -15,7 +15,7 @@ using ActivityUnitTests;
 using Dev2.Common.Interfaces.Diagnostics.Debug;
 using Dev2.Common.State;
 using Dev2.Diagnostics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 
@@ -24,7 +24,8 @@ namespace Dev2.Tests.Activities.ActivityTests
     /// <summary>
     /// Summary description for DataSplitActivityTest
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class CommentActivityTests : BaseActivityUnitTest
     {
         /// <summary>
@@ -34,7 +35,7 @@ namespace Dev2.Tests.Activities.ActivityTests
         public TestContext TestContext { get; set; }
 
 
-        [TestMethod]
+        [Test]
         public void CommentGetDebugInputOutputWithText()
         {
             var act = new DsfCommentActivity { Text = "SomeText" };
@@ -71,9 +72,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(DebugItemResultType.Value, debugOutput[0].Type);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfCommentActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfCommentActivity_UpdateForEachInputs")]
         public void DsfCommentActivity_UpdateForEachInputs_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -85,9 +86,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("SomeText", act.Text);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfCommentActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfCommentActivity_UpdateForEachOutputs")]
         public void DsfCommentActivity_UpdateForEachOutputs_NullDoesNothing_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -98,9 +99,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("SomeText", act.Text);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfCommentActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfCommentActivity_UpdateForEachOutputs")]
         public void DsfCommentActivity_UpdateForEachOutputsMoreThanTwoItems_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -113,9 +114,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("SomeText", act.Text);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfCommentActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfCommentActivity_UpdateForEachOutputs")]
         public void DsfCommentActivity_UpdateForEachOutputs_UpdatesTextValue()
         {
             //------------Setup for test--------------------------
@@ -127,9 +128,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Test", act.Text);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfCommentActivity_GetForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfCommentActivity_GetForEachInputs")]
         public void DsfCommentActivity_GetForEachInputs_WhenHasExpression_ReturnsInputList()
         {
             //------------Setup for test--------------------------
@@ -140,9 +141,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(0, dsfForEachItems.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfCommentActivity_GetForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfCommentActivity_GetForEachOutputs")]
         public void DsfCommentActivity_GetForEachOutputs_WhenHasResult_ReturnsInputList()
         {
             //------------Setup for test--------------------------
@@ -155,9 +156,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("SomeText", dsfForEachItems[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DsfCommentActivity_GetState")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DsfCommentActivity_GetState")]
         public void DsfCommentActivity_GetState_ReturnsStateVariable()
         {
             //------------Setup for test--------------------------

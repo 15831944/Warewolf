@@ -22,18 +22,19 @@ using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Scheduler;
 using Dev2.TaskScheduler.Wrappers;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Microsoft.Win32.TaskScheduler;
 using Moq;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class GetScheduledResourceHistoryTest
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -45,9 +46,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -59,26 +60,26 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(AuthorizationContext.Any, resId);
         }
 
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Services_ScheduledResource_GetHistory")]
-        [TestMethod]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Services_ScheduledResource_GetHistory")]
+        [Test]
         
         public void SaveScheduledResourceTest_ServiceName()
         {
             SchedulerTestBaseStaticMethods.SaveScheduledResourceTest_ServiceName("GetScheduledResourceHistoryService", new GetScheduledResourceHistory());
         }
 
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Services_ScheduledResource_GetHistory")]
-        [TestMethod]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Services_ScheduledResource_GetHistory")]
+        [Test]
         public void Services_ScheduledResource_ReturnsDynamicService()
         {
             SchedulerTestBaseStaticMethods.GetScheduledResourcesReturnsDynamicService(new GetScheduledResourceHistory());
 
         }
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Services_ScheduledResource_GetHistory")]
-        [TestMethod]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Services_ScheduledResource_GetHistory")]
+        [Test]
         public void Services_ScheduledResourceHistory_GetValid()
         {
             var output = RunOutput(true);
@@ -91,9 +92,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(DateTime.MaxValue, lst.First().TaskHistoryOutput.EndDate);
             Assert.IsNotNull(lst.First().DebugOutput);
         }
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Services_ScheduledResource_GetHistory")]
-        [TestMethod]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Services_ScheduledResource_GetHistory")]
+        [Test]
         public void Services_ScheduledResource_GetIncorrectResources()
         {
             var output = RunOutput(false);

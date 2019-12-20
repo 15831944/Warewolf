@@ -15,18 +15,19 @@ using Dev2.Runtime.WebServer.Security;
 using Dev2.Services.Security;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.Runtime.WebServer.Security
 {
-    [TestClass]
-    [TestCategory("Runtime WebServer")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime WebServer")]
     public class AuthorizeHubAttributeTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizeHubAttribute_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizeHubAttribute_Constructor")]
         public void AuthorizeHubAttribute_Constructor_Default_ProviderIsAuthorizationProviderInstance()
         {
             //------------Setup for test--------------------------
@@ -38,9 +39,9 @@ namespace Dev2.Tests.Runtime.WebServer.Security
             Assert.AreSame(ServerAuthorizationService.Instance, attribute.Service);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizeHubAttribute_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizeHubAttribute_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void AuthorizeHubAttribute_Constructor_AuthorizationProviderIsNull_ThrowsArgumentNullException()
         {
@@ -52,9 +53,9 @@ namespace Dev2.Tests.Runtime.WebServer.Security
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizeHubAttribute_AuthorizeHubConnection")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizeHubAttribute_AuthorizeHubConnection")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void AuthorizeHubAttribute_AuthorizeHubConnection_HubDescriptorIsNull_ThrowsArgumentNullException()
         {
@@ -68,9 +69,9 @@ namespace Dev2.Tests.Runtime.WebServer.Security
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizeHubAttribute_AuthorizeHubConnection")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizeHubAttribute_AuthorizeHubConnection")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void AuthorizeHubAttribute_AuthorizeHubConnection_RequestIsNull_ThrowsArgumentNullException()
         {
@@ -84,25 +85,25 @@ namespace Dev2.Tests.Runtime.WebServer.Security
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizeHubAttribute_AuthorizeHubConnection")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizeHubAttribute_AuthorizeHubConnection")]
         public void AuthorizeHubAttribute_AuthorizeHubConnection_UserIsNotAuthenticated_ResponseIsFalse()
         {
             Verify_AuthorizeHubConnection(isAuthenticated: false, isAuthorized: false);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizeHubAttribute_AuthorizeHubConnection")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizeHubAttribute_AuthorizeHubConnection")]
         public void AuthorizeHubAttribute_AuthorizeHubConnection_UserIsAuthenticatedAndNotAuthorized_ResponseIsFalse()
         {
             Verify_AuthorizeHubConnection(isAuthenticated: true, isAuthorized: false);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizeHubAttribute_AuthorizeHubConnection")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizeHubAttribute_AuthorizeHubConnection")]
         public void AuthorizeHubAttribute_AuthorizeHubConnection_UserIsAuthenticatedAndAuthorized_ResponseIsTrue()
         {
             Verify_AuthorizeHubConnection(isAuthenticated: true, isAuthorized: true);
@@ -122,9 +123,9 @@ namespace Dev2.Tests.Runtime.WebServer.Security
             Assert.AreEqual(isAuthenticated && isAuthorized, response);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizeHubAttribute_AuthorizeHubMethodInvocation")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizeHubAttribute_AuthorizeHubMethodInvocation")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void AuthorizeHubAttribute_AuthorizeHubMethodInvocation_HubIncomingInvokerContextIsNull_ThrowsArgumentNullException()
         {
@@ -138,25 +139,25 @@ namespace Dev2.Tests.Runtime.WebServer.Security
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizeHubAttribute_AuthorizeHubMethodInvocation")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizeHubAttribute_AuthorizeHubMethodInvocation")]
         public void AuthorizeHubAttribute_AuthorizeHubMethodInvocation_UserIsNotAuthenticated_ResponseIsFalse()
         {
             Verify_AuthorizeHubMethodInvocation(isAuthenticated: false, isAuthorized: false);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizeHubAttribute_AuthorizeHubMethodInvocation")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizeHubAttribute_AuthorizeHubMethodInvocation")]
         public void AuthorizeHubAttribute_AuthorizeHubMethodInvocation_UserIsAuthenticatedAndNotAuthorized_ResponseIsFalse()
         {
             Verify_AuthorizeHubMethodInvocation(isAuthenticated: true, isAuthorized: false);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizeHubAttribute_AuthorizeHubMethodInvocation")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizeHubAttribute_AuthorizeHubMethodInvocation")]
         public void AuthorizeHubAttribute_AuthorizeHubMethodInvocation_UserIsAuthenticatedAndAuthorized_ResponseIsTrue()
         {
             Verify_AuthorizeHubMethodInvocation(isAuthenticated: true, isAuthorized: true);

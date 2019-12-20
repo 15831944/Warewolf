@@ -17,19 +17,20 @@ using Dev2.Common.Interfaces.Help;
 using Dev2.Converters;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using System;
 
 namespace Dev2.Activities.Designers.Tests.BaseConvert
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class BaseConvertTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("BaseConvertViewModel_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("BaseConvertViewModel_Constructor")]
         public void BaseConvertViewModel_Constructor_PropertiesInitialized()
         {
             //------------Setup for test--------------------------
@@ -53,9 +54,9 @@ namespace Dev2.Activities.Designers.Tests.BaseConvert
             Assert.IsTrue(viewModel.HasLargeView);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("BaseConvertViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("BaseConvertViewModel_Handle")]
         public void BaseConvertViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -76,9 +77,9 @@ namespace Dev2.Activities.Designers.Tests.BaseConvert
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("BaseConvertDesignerViewModel_ValidateCollectionItem")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("BaseConvertDesignerViewModel_ValidateCollectionItem")]
         public void BaseConvertDesignerViewModel_ValidateCollectionItem_ValidatesPropertiesOfDTO()
         {
             //------------Setup for test--------------------------

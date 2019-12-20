@@ -20,7 +20,7 @@ using Dev2.Data.Interfaces.Enums;
 using Dev2.Data.TO;
 using Dev2.DynamicServices;
 using Dev2.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Warewolf.Storage;
@@ -30,7 +30,8 @@ namespace Dev2.Tests.Activities.ActivityTests
     /// <summary>
     /// Summary description for AssignActivity
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ForEachActivityTest : BaseActivityUnitTest
     {
 
@@ -44,7 +45,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         #region Number Of Execution Tests
 
-        [TestMethod]
+        [Test]
         public void NumberOfExecutionsWithNullParamsExpectedTotalExecutions0()
         {
             SetupArguments(
@@ -58,10 +59,10 @@ namespace Dev2.Tests.Activities.ActivityTests
             coms.Verify(c => c.ExecuteSubRequest(It.IsAny<IDSFDataObject>(), It.IsAny<Guid>(), It.IsAny<string>(), It.IsAny<string>(), out errors, It.IsAny<int>(), false), Times.Exactly(0));
         }
 
-        [TestMethod]
-        [TestCategory("ForEach,IterativeExecution,UnitTest")]
+        [Test]
+        [Category("ForEach,IterativeExecution,UnitTest")]
         [Description("Test to ensure we do not regress on the iterative execution of sub-services in a workflow")]
-        [Owner("Trav")]
+        [Author("Trav")]
         public void NumberOfExecutionsWithNumericExpectedTotalExecutions2()
         {
             SetupArguments(
@@ -81,7 +82,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             coms.Verify(c => c.ExecuteSubRequest(It.IsAny<IDSFDataObject>(), It.IsAny<Guid>(), It.IsAny<string>(), It.IsAny<string>(), out errors, It.IsAny<int>(), false), Times.Exactly(2));
         }
 
-        [TestMethod]
+        [Test]
         public void NumberOfExecutionsWithNegativeNumberExpectedTotalExecutions0()
         {
             SetupArguments(
@@ -101,7 +102,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             coms.Verify(c => c.ExecuteSubRequest(It.IsAny<IDSFDataObject>(), It.IsAny<Guid>(), It.IsAny<string>(), It.IsAny<string>(), out errors, It.IsAny<int>(), false), Times.Exactly(0));
         }
 
-        [TestMethod]
+        [Test]
         public void NumberOfExecutionsWithRangeExpectedTotalExecutions5()
         {
             SetupArguments(
@@ -120,7 +121,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             coms.Verify(c => c.ExecuteSubRequest(It.IsAny<IDSFDataObject>(), It.IsAny<Guid>(), It.IsAny<string>(), It.IsAny<string>(), out errors, It.IsAny<int>(), false), Times.Exactly(5));
         }
 
-        [TestMethod]
+        [Test]
         public void NumberOfExecutionsWithReversedRangeExpectedTotalExecutions5()
         {
             SetupArguments(
@@ -139,7 +140,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             coms.Verify(c => c.ExecuteSubRequest(It.IsAny<IDSFDataObject>(), It.IsAny<Guid>(), It.IsAny<string>(), It.IsAny<string>(), out errors, It.IsAny<int>(), false), Times.Exactly(5));
         }
 
-        [TestMethod]
+        [Test]
         public void NumberOfExecutionsWithNegitiveNumberAsFromExpectedTotalExecutions15()
         {
             SetupArguments(
@@ -159,7 +160,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
+        [Test]
         public void NumberOfExecutionsWithNegitiveNumberAsToExpectedTotalExecutions0()
         {
             SetupArguments(
@@ -176,7 +177,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             coms.Verify(c => c.ExecuteSubRequest(It.IsAny<IDSFDataObject>(), It.IsAny<Guid>(), It.IsAny<string>(), It.IsAny<string>(), out errors, It.IsAny<int>(), false), Times.Exactly(0));
         }
 
-        [TestMethod]
+        [Test]
         public void NumberOfExecutionsWithCsvExpectedTotalExecutions2()
         {
             SetupArguments(
@@ -195,7 +196,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             coms.Verify(c => c.ExecuteSubRequest(It.IsAny<IDSFDataObject>(), It.IsAny<Guid>(), It.IsAny<string>(), It.IsAny<string>(), out errors, It.IsAny<int>(), false), Times.Exactly(2));
         }
 
-        [TestMethod]
+        [Test]
         public void NumberOfExecutionsWithCsvExpectedTotalExecutions4()
         {
             SetupArguments(
@@ -215,7 +216,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
+        [Test]
         public void NumberOfExecutionsWithReverseOrderCsvExpectedTotalExecutions3()
         {
             SetupArguments(
@@ -239,9 +240,9 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         #region Output Mapping Tests
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DsfForEach_UpdateDebugParentID")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DsfForEach_UpdateDebugParentID")]
         
         public void DsfForEach_UpdateDebugParentID_UniqueIdNotSameIfNestingLevelNotChanged()
 
@@ -264,9 +265,9 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DsfForEach_UpdateDebugParentID")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DsfForEach_UpdateDebugParentID")]
         
         public void DsfForEach_UpdateDebugParentID_UniqueIdNotSameIfNestingLevelIncreased()
 
@@ -290,9 +291,9 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DsfForEach_UpdateDebugParentID")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DsfForEach_UpdateDebugParentID")]
         
         public void DsfForEach_Execute_IncrementsAndChangesId_IdNotChangedIfNestingLevelIsZero()
 
@@ -313,9 +314,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             // remove test datalist ;)
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("DsfForEachActivity_Execute")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("DsfForEachActivity_Execute")]
         public void DsfForEachActivity_Execute_ServiceTestExecution_WithNoUniqueId()
         {
             var uniqueId = Guid.NewGuid();

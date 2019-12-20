@@ -22,15 +22,15 @@ using Dev2.Common.Interfaces.Threading;
 using Dev2.Common.Interfaces.Versioning;
 using Dev2.Studio.Interfaces;
 using Dev2.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using IPopupController = Dev2.Common.Interfaces.Studio.Controller.IPopupController;
-
-
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Warewolf.Studio.ViewModels.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ExplorerItemViewModelTests
     {
         #region Fields
@@ -49,7 +49,7 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         #region Test initialize
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             _serverMock = new Mock<IServer>();
@@ -74,7 +74,8 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         #region Test commands
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestRollbackCommand()
         {
             _target.ResourceId = Guid.NewGuid();
@@ -88,20 +89,21 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.RollbackCommand.Execute(null);
-            Assert.IsTrue(_target.RollbackCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.RollbackCommand.CanExecute(null));
 
             //assert
             _explorerTreeItemMock.VerifySet(it => it.AreVersionsVisible = true);
             _explorerTreeItemMock.VerifySet(it => it.ResourceName = outputDisplayName);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestDeployCommand()
         {
             //arrange
             //act
             _target.DeployCommand.Execute(null);
-            Assert.IsTrue(_target.DeployCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.DeployCommand.CanExecute(null));
 
             //assert
             _shellViewModelMock.Verify(
@@ -111,7 +113,8 @@ namespace Warewolf.Studio.ViewModels.Tests
                             x => x.All(xitem => (_target.AsList().Union(new[] { _target })).Contains(xitem)))));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestLostFocusCommand()
         {
             //arrange
@@ -119,13 +122,14 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.LostFocus.Execute(null);
-            Assert.IsTrue(_target.LostFocus.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.LostFocus.CanExecute(null));
 
             //assert
-            Assert.IsFalse(_target.IsRenaming);
+            NUnit.Framework.Assert.IsFalse(_target.IsRenaming);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestNewServerCommand()
         {
             //arrange
@@ -135,14 +139,15 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.NewServerCommand.Execute(null);
-            Assert.IsTrue(_target.NewServerCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.NewServerCommand.CanExecute(null));
 
             //assert
             _shellViewModelMock.Verify(it => it.SetActiveServer(_target.Server.EnvironmentID));
             _shellViewModelMock.Verify(it => it.NewServerSource(_target.ResourcePath));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestNewSqlServerSourceCommand()
         {
             //arrange
@@ -152,14 +157,15 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.NewSqlServerSourceCommand.Execute(null);
-            Assert.IsTrue(_target.NewSqlServerSourceCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.NewSqlServerSourceCommand.CanExecute(null));
 
             //assert
             _shellViewModelMock.Verify(it => it.SetActiveServer(_target.Server.EnvironmentID));
             _shellViewModelMock.Verify(it => it.NewSqlServerSource(_target.ResourcePath));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestNewMySqlSourceCommand()
         {
             //arrange
@@ -169,21 +175,23 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.NewMySqlSourceCommand.Execute(null);
-            Assert.IsTrue(_target.NewMySqlSourceCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.NewMySqlSourceCommand.CanExecute(null));
 
             //assert
             _shellViewModelMock.Verify(it => it.SetActiveServer(_target.Server.EnvironmentID));
             _shellViewModelMock.Verify(it => it.NewMySqlSource(_target.ResourcePath));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestIsMergeVisibleFalse()
         {
             //assert
-            Assert.IsFalse(_target.IsMergeVisible);
+            NUnit.Framework.Assert.IsFalse(_target.IsMergeVisible);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestIsMergeVisibleTrue()
         {
             _target.IsSaveDialog = false;
@@ -204,13 +212,14 @@ namespace Warewolf.Studio.ViewModels.Tests
             _explorerRepositoryMock.Setup(it => it.GetVersions(It.IsAny<Guid>())).Returns(versionInfos);
             _target.ShowVersionHistory.Execute(_target);
             //------------Assert Results-------------------------
-            Assert.IsTrue(_target.ShowVersionHistory.CanExecute(null));
-            Assert.IsTrue(_target.AreVersionsVisible);
+            NUnit.Framework.Assert.IsTrue(_target.ShowVersionHistory.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.AreVersionsVisible);
             //assert
-            Assert.IsTrue(_target.IsMergeVisible);
+            NUnit.Framework.Assert.IsTrue(_target.IsMergeVisible);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestNewPostgreSqlSourceCommand()
         {
             //arrange
@@ -220,14 +229,15 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.NewPostgreSqlSourceCommand.Execute(null);
-            Assert.IsTrue(_target.NewPostgreSqlSourceCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.NewPostgreSqlSourceCommand.CanExecute(null));
 
             //assert
             _shellViewModelMock.Verify(it => it.SetActiveServer(_target.Server.EnvironmentID));
             _shellViewModelMock.Verify(it => it.NewPostgreSqlSource(_target.ResourcePath));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestNewOracleSourceCommand()
         {
             //arrange
@@ -237,14 +247,15 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.NewOracleSourceCommand.Execute(null);
-            Assert.IsTrue(_target.NewOracleSourceCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.NewOracleSourceCommand.CanExecute(null));
 
             //assert
             _shellViewModelMock.Verify(it => it.SetActiveServer(_target.Server.EnvironmentID));
             _shellViewModelMock.Verify(it => it.NewOracleSource(_target.ResourcePath));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestNewOdbcSourceCommand()
         {
             //arrange
@@ -254,14 +265,15 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.NewOdbcSourceCommand.Execute(null);
-            Assert.IsTrue(_target.NewOdbcSourceCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.NewOdbcSourceCommand.CanExecute(null));
 
             //assert
             _shellViewModelMock.Verify(it => it.SetActiveServer(_target.Server.EnvironmentID));
             _shellViewModelMock.Verify(it => it.NewOdbcSource(_target.ResourcePath));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestNewPluginSourceCommand()
         {
             //arrange
@@ -271,14 +283,15 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.NewPluginSourceCommand.Execute(null);
-            Assert.IsTrue(_target.NewPluginSourceCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.NewPluginSourceCommand.CanExecute(null));
 
             //assert
             _shellViewModelMock.Verify(it => it.SetActiveServer(_target.Server.EnvironmentID));
             _shellViewModelMock.Verify(it => it.NewPluginSource(_target.ResourcePath));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestNewWebSourceCommand()
         {
             //arrange
@@ -288,14 +301,15 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.NewWebSourceSourceCommand.Execute(null);
-            Assert.IsTrue(_target.NewWebSourceSourceCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.NewWebSourceSourceCommand.CanExecute(null));
 
             //assert
             _shellViewModelMock.Verify(it => it.SetActiveServer(_target.Server.EnvironmentID));
             _shellViewModelMock.Verify(it => it.NewWebSource(_target.ResourcePath));
         }
 
-        [TestMethod, Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestNewRedisSourceCommand()
         {
             //arrange
@@ -305,14 +319,15 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.NewRedisSourceCommand.Execute(null);
-            Assert.IsTrue(_target.NewRedisSourceCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.NewRedisSourceCommand.CanExecute(null));
 
             //assert
             _shellViewModelMock.Verify(it => it.SetActiveServer(_target.Server.EnvironmentID));
             _shellViewModelMock.Verify(it => it.NewRedisSource(_target.ResourcePath));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestNewEmailSourceCommand()
         {
             //arrange
@@ -322,14 +337,15 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.NewEmailSourceSourceCommand.Execute(null);
-            Assert.IsTrue(_target.NewEmailSourceSourceCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.NewEmailSourceSourceCommand.CanExecute(null));
 
             //assert
             _shellViewModelMock.Verify(it => it.SetActiveServer(_target.Server.EnvironmentID));
             _shellViewModelMock.Verify(it => it.NewEmailSource(_target.ResourcePath));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestNewExchangeSourceCommand()
         {
             //arrange
@@ -339,14 +355,15 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.NewExchangeSourceSourceCommand.Execute(null);
-            Assert.IsTrue(_target.NewExchangeSourceSourceCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.NewExchangeSourceSourceCommand.CanExecute(null));
 
             //assert
             _shellViewModelMock.Verify(it => it.SetActiveServer(_target.Server.EnvironmentID));
             _shellViewModelMock.Verify(it => it.NewExchangeSource(_target.ResourcePath));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestNewRabbitMqSourceCommand()
         {
             //arrange
@@ -356,14 +373,15 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.NewRabbitMqSourceSourceCommand.Execute(null);
-            Assert.IsTrue(_target.NewRabbitMqSourceSourceCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.NewRabbitMqSourceSourceCommand.CanExecute(null));
 
             //assert
             _shellViewModelMock.Verify(it => it.SetActiveServer(_target.Server.EnvironmentID));
             _shellViewModelMock.Verify(it => it.NewRabbitMQSource(_target.ResourcePath));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestCreateNewTestCommand()
         {
             //arrange
@@ -375,13 +393,14 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.CreateTestCommand.Execute(null);
-            Assert.IsTrue(_target.CreateTestCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.CreateTestCommand.CanExecute(null));
 
             //assert
             _shellViewModelMock.Verify(it => it.CreateTest(_target.ResourceId));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestNewSharepointSourceCommand()
         {
             //arrange
@@ -391,14 +410,15 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.NewSharepointSourceSourceCommand.Execute(null);
-            Assert.IsTrue(_target.NewServerCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.NewServerCommand.CanExecute(null));
 
             //assert
             _shellViewModelMock.Verify(it => it.SetActiveServer(_target.Server.EnvironmentID));
             _shellViewModelMock.Verify(it => it.NewSharepointSource(_target.ResourcePath));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestNewDropboxSourceCommand()
         {
             //arrange
@@ -408,14 +428,15 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.NewDropboxSourceSourceCommand.Execute(null);
-            Assert.IsTrue(_target.NewServerCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.NewServerCommand.CanExecute(null));
 
             //assert
             _shellViewModelMock.Verify(it => it.SetActiveServer(_target.Server.EnvironmentID));
             _shellViewModelMock.Verify(it => it.NewDropboxSource(_target.ResourcePath));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestNewServiceCommand()
         {
             //arrange
@@ -425,14 +446,15 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.NewServiceCommand.Execute(null);
-            Assert.IsTrue(_target.NewServerCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.NewServerCommand.CanExecute(null));
 
             //assert
             _shellViewModelMock.Verify(it => it.SetActiveServer(_target.Server.EnvironmentID));
             _shellViewModelMock.Verify(it => it.NewService(_target.ResourcePath));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestContextMenuDebugCommand()
         {
             //arrange
@@ -440,14 +462,15 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.DebugCommand.Execute(null);
-            Assert.IsTrue(_target.DebugCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.DebugCommand.CanExecute(null));
 
             //assert
             _shellViewModelMock.Verify(it => it.OpenResource(_target.ResourceId, _target.Server.EnvironmentID, _target.Server));
             _shellViewModelMock.Verify(it => it.Debug());
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestDebugStudioCommand()
         {
             //arrange
@@ -457,13 +480,14 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.DebugStudioCommand.Execute(null);
-            Assert.IsTrue(_target.DebugStudioCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.DebugStudioCommand.CanExecute(null));
 
             //assert
             _shellViewModelMock.Verify(it => it.StudioDebug(_target.ResourceId, _target.Server));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void DebugBrowserCommand()
         {
             //arrange
@@ -473,13 +497,14 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.DebugBrowserCommand.Execute(null);
-            Assert.IsTrue(_target.DebugBrowserCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.DebugBrowserCommand.CanExecute(null));
 
             //assert
             _shellViewModelMock.Verify(it => it.BrowserDebug(_target.ResourceId, _target.Server));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void ScheduleCommand()
         {
             //arrange
@@ -489,13 +514,14 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.ScheduleCommand.Execute(null);
-            Assert.IsTrue(_target.ScheduleCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.ScheduleCommand.CanExecute(null));
 
             //assert
             _shellViewModelMock.Verify(it => it.NewSchedule(_target.ResourceId));
         }
 
-        [TestMethod, Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void ExplorerItemViewModel_QueueEventCommand()
         {
             //arrange
@@ -505,13 +531,14 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.QueueEventCommand.Execute(null);
-            Assert.IsTrue(_target.QueueEventCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.QueueEventCommand.CanExecute(null));
 
             //assert
             _shellViewModelMock.Verify(it => it.NewQueueEvent(_target.ResourceId));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void RunAllTestsCommand()
         {
             //arrange
@@ -521,13 +548,14 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.RunAllTestsCommand.Execute(null);
-            Assert.IsTrue(_target.RunAllTestsCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.RunAllTestsCommand.CanExecute(null));
 
             //assert
             _shellViewModelMock.Verify(it => it.RunAllTests(null, _target.ResourceId));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestViewSwaggerCommand()
         {
             //arrange
@@ -537,14 +565,15 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.ViewSwaggerCommand.Execute(null);
-            Assert.IsTrue(_target.NewServerCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.NewServerCommand.CanExecute(null));
 
             //assert
 
             _shellViewModelMock.Verify(it => it.ViewSwagger(_target.ResourceId, _target.Server));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestApisJsonCommand()
         {
             //arrange
@@ -559,14 +588,15 @@ namespace Warewolf.Studio.ViewModels.Tests
             mock.SetupGet(it => it.Connection.WebServerUri).Returns(new Uri("http://localhost:3142"));
             _target.Server = mock.Object;
             _target.ViewApisJsonCommand.Execute(null);
-            Assert.IsTrue(_target.NewServerCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.NewServerCommand.CanExecute(null));
 
             //assert
 
             _shellViewModelMock.Verify(it => it.ViewApisJson(_target.ResourcePath, new Uri("http://localhost:3142")));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestOpenCommand()
         {
             //arrange
@@ -576,14 +606,15 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.OpenCommand.Execute(null);
-            Assert.IsTrue(_target.OpenCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.OpenCommand.CanExecute(null));
 
             //assert
             _shellViewModelMock.Verify(it => it.SetActiveServer(_target.Server.EnvironmentID));
             _shellViewModelMock.Verify(it => it.OpenResource(_target.ResourceId, _target.Server.EnvironmentID, _target.Server));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestDebugCommand()
         {
             //arrange
@@ -591,14 +622,15 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.DebugCommand.Execute(null);
-            Assert.IsTrue(_target.DebugCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.DebugCommand.CanExecute(null));
 
             //assert
             _shellViewModelMock.Verify(it => it.OpenResource(_target.ResourceId, _target.Server.EnvironmentID, _target.Server));
             _shellViewModelMock.Verify(it => it.Debug());
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestRenameCommand()
         {
             //arrange
@@ -606,13 +638,14 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.RenameCommand.Execute(null);
-            Assert.IsTrue(_target.RenameCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.RenameCommand.CanExecute(null));
 
             //assert
-            Assert.IsTrue(_target.IsRenaming);
+            NUnit.Framework.Assert.IsTrue(_target.IsRenaming);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestShowDependenciesCommand()
         {
             //arrange
@@ -620,13 +653,14 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.ShowDependenciesCommand.Execute(null);
-            Assert.IsTrue(_target.ShowDependenciesCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.ShowDependenciesCommand.CanExecute(null));
 
             //assert
             _shellViewModelMock.Verify(it => it.ShowDependencies(_target.ResourceId, _target.Server, _target.IsSource));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestShowVersionHistory()
         {
             //arrange
@@ -638,16 +672,17 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.ShowVersionHistory.Execute(null);
-            Assert.IsTrue(_target.ShowVersionHistory.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.ShowVersionHistory.CanExecute(null));
 
             //Changed to False as there is now a count on the return of versions
             //assert
-            Assert.IsFalse(_target.AreVersionsVisible);
+            NUnit.Framework.Assert.IsFalse(_target.AreVersionsVisible);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ExplorerItemViewModel_ShowVersionHistory")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ExplorerItemViewModel_ShowVersionHistory")]
         public void ExplorerItemViewModel_ShowVersionHistory_HasChildren_SetPermissions()
         {
             //------------Setup for test--------------------------
@@ -681,18 +716,19 @@ namespace Warewolf.Studio.ViewModels.Tests
            
              _target.ShowVersionHistory.Execute(_target);
             //------------Assert Results-------------------------
-            Assert.IsTrue(_target.ShowVersionHistory.CanExecute(null));
-            Assert.IsTrue(_target.AreVersionsVisible);
+            NUnit.Framework.Assert.IsTrue(_target.ShowVersionHistory.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.AreVersionsVisible);
             _serverMock.Verify(server => server.GetPermissions(Guid.Empty), Times.Exactly(3));
             var canViewresource1 = _target.Children[0].CanView;
             var canViewresource2 = _target.Children[1].CanView;
             var canViewresource3 = _target.Children[2].CanView;
-            Assert.IsTrue(canViewresource1);
-            Assert.IsTrue(canViewresource2);
-            Assert.IsTrue(canViewresource3);
+            NUnit.Framework.Assert.IsTrue(canViewresource1);
+            NUnit.Framework.Assert.IsTrue(canViewresource2);
+            NUnit.Framework.Assert.IsTrue(canViewresource3);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestDeleteCommandResourceTypeVersion()
         {
             //arrange
@@ -707,13 +743,14 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.DeleteCommand.Execute(null);
-            Assert.IsTrue(_target.DeleteCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.DeleteCommand.CanExecute(null));
 
             //assert
             _explorerRepositoryMock.Verify(it => it.TryDelete(_target));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestDeleteCommandResourceTypeVersionUserDeclined()
         {
             //arrange
@@ -723,7 +760,7 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.DeleteCommand.Execute(null);
-            Assert.IsTrue(_target.DeleteCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.DeleteCommand.CanExecute(null));
 
             //assert
             _explorerRepositoryMock.Verify(it => it.TryDelete(It.IsAny<IExplorerItemViewModel>()), Times.Never);
@@ -732,7 +769,8 @@ namespace Warewolf.Studio.ViewModels.Tests
         }
 
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestDeleteCommandResourceTypeServerSourceDeleteSuccess()
         {
             //arrange
@@ -747,7 +785,7 @@ namespace Warewolf.Studio.ViewModels.Tests
             _popupControllerMock.Setup(it => it.Show(It.IsAny<IPopupMessage>())).Returns(MessageBoxResult.Yes);
 
             //act
-            Assert.IsTrue(_target.DeleteCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.DeleteCommand.CanExecute(null));
             _target.DeleteCommand.Execute(null);
 
             //assert
@@ -757,7 +795,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             studioManagerUpdateMock.Verify(it => it.FireServerSaved(It.IsAny<Guid>(), It.IsAny<bool>()));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestDeleteCommandResourceTypeServerDeleteSuccess()
         {
             //arrange
@@ -774,7 +813,7 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.DeleteCommand.Execute(null);
-            Assert.IsTrue(_target.DeleteCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.DeleteCommand.CanExecute(null));
 
             //assert
             _shellViewModelMock.Verify(it => it.CloseResource(_target.ResourceId, environmentModelMock.Object.EnvironmentID));
@@ -783,33 +822,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             studioManagerUpdateMock.Verify(it => it.FireServerSaved(It.IsAny<Guid>(), It.IsAny<bool>()));
         }
 
-        //[TestMethod,Timeout(60000)]
-        //public void TestDeleteCommandResourceTypeServerDeleteSuccess_ShowDependencies()
-        //{
-        //    //arrange
-        //    _shellViewModelMock.Setup(model => model.ShowDependencies(It.IsAny<Guid>(), It.IsAny<IServer>(), It.IsAny<bool>()));
-        //    var environmentModelMock = new Mock<IEnvironmentModel>();
-        //    environmentModelMock.SetupGet(it => it.ID).Returns(Guid.NewGuid());
-        //    _explorerRepositoryMock.Setup(it => it.Delete(_target)).Returns(new DeletedFileMetadata { IsDeleted = false, ShowDependencies = true });
-        //    _target.EnvironmentModel = environmentModelMock.Object;
-        //    _target.ResourceType = "Server";
-        //    _target.IsServer = true;
-        //    _target.ResourceId = Guid.NewGuid();
-        //    _popupControllerMock.Setup(it => it.Show(It.IsAny<IPopupMessage>())).Returns(MessageBoxResult.Yes);
-        //    var studioManagerUpdateMock = new Mock<IStudioUpdateManager>();
-        //    _serverMock.SetupGet(it => it.UpdateRepository).Returns(studioManagerUpdateMock.Object);
-
-        //    //act
-        //    _target.DeleteCommand.Execute(null);
-        //    Assert.IsTrue(_target.DeleteCommand.CanExecute(null));
-
-        //    //assert
-        //    _explorerRepositoryMock.Verify(it => it.Delete(_target), Times.Once);
-        //    _explorerTreeItemMock.Verify(it => it.RemoveChild(_target), Times.Never);
-        //}
-
-
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestOpenVersionCommandResourceTypeVersion()
         {
             //arrange
@@ -822,14 +836,14 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.OpenCommand.Execute(null);
-            Assert.IsTrue(_target.OpenCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.OpenCommand.CanExecute(null));
 
             //assert
             _shellViewModelMock.Verify(it => it.OpenVersion(_target.Parent.ResourceId, _target.VersionInfo));
         }
 
-
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestExpandCommandResourceTypeFolderSingleClick()
         {
             //arrange
@@ -838,13 +852,14 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.Expand.Execute(1);
-            Assert.IsTrue(_target.Expand.CanExecute(1));
+            NUnit.Framework.Assert.IsTrue(_target.Expand.CanExecute(1));
 
             //assert
-            Assert.IsFalse(_target.IsExpanded);
+            NUnit.Framework.Assert.IsFalse(_target.IsExpanded);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestExpandCommandResourceTypeFolderDoubleClick()
         {
             //arrange
@@ -853,13 +868,14 @@ namespace Warewolf.Studio.ViewModels.Tests
             _target.IsFolder = true;
             //act
             _target.Expand.Execute(2);
-            Assert.IsTrue(_target.Expand.CanExecute(2));
+            NUnit.Framework.Assert.IsTrue(_target.Expand.CanExecute(2));
 
             //assert
-            Assert.IsTrue(_target.IsExpanded);
+            NUnit.Framework.Assert.IsTrue(_target.IsExpanded);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestExpandCommandResourceTypeWorkflowServiceSingleClick()
         {
             //arrange
@@ -868,13 +884,14 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.Expand.Execute(1);
-            Assert.IsTrue(_target.Expand.CanExecute(1));
+            NUnit.Framework.Assert.IsTrue(_target.Expand.CanExecute(1));
 
             //assert
-            Assert.IsFalse(_target.IsExpanded);
+            NUnit.Framework.Assert.IsFalse(_target.IsExpanded);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestExpandCommandResourceTypeWorkflowServiceDoubleClick()
         {
             //arrange
@@ -883,13 +900,14 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.Expand.Execute(2);
-            Assert.IsTrue(_target.Expand.CanExecute(2));
+            NUnit.Framework.Assert.IsTrue(_target.Expand.CanExecute(2));
 
             //assert
-            Assert.IsFalse(_target.IsExpanded);
+            NUnit.Framework.Assert.IsFalse(_target.IsExpanded);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestCreateFolderCommandResourceTypeFolder()
         {
             _serverMock.Setup(server => server.UserPermissions)
@@ -920,34 +938,35 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.CreateFolderCommand.Execute(null);
-            Assert.IsTrue(_target.CreateFolderCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.CreateFolderCommand.CanExecute(null));
 
             //assert
-            Assert.IsTrue(_target.IsExpanded);
+            NUnit.Framework.Assert.IsTrue(_target.IsExpanded);
             var createdFolder = _target.Children.Single();
-            Assert.AreEqual("New Folder", createdFolder.ResourceName);
-            Assert.AreEqual("Folder", createdFolder.ResourceType);
-            Assert.AreEqual(_target.AllowResourceCheck, createdFolder.AllowResourceCheck);
-            Assert.AreEqual(_target.IsResourceChecked, createdFolder.IsResourceChecked);
-            Assert.AreEqual(_target.IsResourceUnchecked, createdFolder.IsResourceUnchecked);
-            Assert.AreEqual(_target.IsFolderChecked, createdFolder.IsFolderChecked);
-            Assert.AreEqual(_target.CanCreateFolder, createdFolder.CanCreateFolder);
-            Assert.AreEqual(_target.CanCreateSource, createdFolder.CanCreateSource);
-            Assert.AreEqual(_target.CanShowVersions, createdFolder.CanShowVersions);
-            Assert.AreEqual(_target.CanRename, createdFolder.CanRename);
-            Assert.AreEqual(_target.CanDuplicate, createdFolder.CanDuplicate);
-            Assert.AreEqual(_target.CanCreateTest, createdFolder.CanCreateTest);
-            Assert.AreEqual(_target.CanRollback, createdFolder.CanRollback);
-            Assert.AreEqual(_target.CanDeploy, createdFolder.CanDeploy);
-            Assert.AreEqual(_target.CanShowDependencies, createdFolder.CanShowDependencies);
-            Assert.AreEqual(_target.ResourcePath + "\\" + createdFolder.ResourceName, createdFolder.ResourcePath);
-            Assert.AreEqual(_target.CanCreateWorkflowService, createdFolder.CanCreateWorkflowService);
-            Assert.AreEqual(_target.ShowContextMenu, createdFolder.ShowContextMenu);
-            Assert.IsTrue(createdFolder.IsRenaming);
+            NUnit.Framework.Assert.AreEqual("New Folder", createdFolder.ResourceName);
+            NUnit.Framework.Assert.AreEqual("Folder", createdFolder.ResourceType);
+            NUnit.Framework.Assert.AreEqual(_target.AllowResourceCheck, createdFolder.AllowResourceCheck);
+            NUnit.Framework.Assert.AreEqual(_target.IsResourceChecked, createdFolder.IsResourceChecked);
+            NUnit.Framework.Assert.AreEqual(_target.IsResourceUnchecked, createdFolder.IsResourceUnchecked);
+            NUnit.Framework.Assert.AreEqual(_target.IsFolderChecked, createdFolder.IsFolderChecked);
+            NUnit.Framework.Assert.AreEqual(_target.CanCreateFolder, createdFolder.CanCreateFolder);
+            NUnit.Framework.Assert.AreEqual(_target.CanCreateSource, createdFolder.CanCreateSource);
+            NUnit.Framework.Assert.AreEqual(_target.CanShowVersions, createdFolder.CanShowVersions);
+            NUnit.Framework.Assert.AreEqual(_target.CanRename, createdFolder.CanRename);
+            NUnit.Framework.Assert.AreEqual(_target.CanDuplicate, createdFolder.CanDuplicate);
+            NUnit.Framework.Assert.AreEqual(_target.CanCreateTest, createdFolder.CanCreateTest);
+            NUnit.Framework.Assert.AreEqual(_target.CanRollback, createdFolder.CanRollback);
+            NUnit.Framework.Assert.AreEqual(_target.CanDeploy, createdFolder.CanDeploy);
+            NUnit.Framework.Assert.AreEqual(_target.CanShowDependencies, createdFolder.CanShowDependencies);
+            NUnit.Framework.Assert.AreEqual(_target.ResourcePath + "\\" + createdFolder.ResourceName, createdFolder.ResourcePath);
+            NUnit.Framework.Assert.AreEqual(_target.CanCreateWorkflowService, createdFolder.CanCreateWorkflowService);
+            NUnit.Framework.Assert.AreEqual(_target.ShowContextMenu, createdFolder.ShowContextMenu);
+            NUnit.Framework.Assert.IsTrue(createdFolder.IsRenaming);
             _explorerTooltips.Verify(it => it.SetSourceTooltips(_target.CanCreateSource));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestCanShowServerVersion()
         {
             //arrange
@@ -957,10 +976,11 @@ namespace Warewolf.Studio.ViewModels.Tests
             _target.CanShowServerVersion = !_target.CanShowServerVersion;
 
             //assert
-            Assert.IsTrue(_target.CanShowServerVersion);
+            NUnit.Framework.Assert.IsTrue(_target.CanShowServerVersion);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestCreateFolderCommandResourceTypeDbService()
         {
             //arrange
@@ -970,14 +990,15 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.CreateFolderCommand.Execute(null);
-            Assert.IsTrue(_target.CreateFolderCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.CreateFolderCommand.CanExecute(null));
 
             //assert
-            Assert.IsFalse(_target.IsExpanded);
-            Assert.IsFalse(_target.Children.Any());
+            NUnit.Framework.Assert.IsFalse(_target.IsExpanded);
+            NUnit.Framework.Assert.IsFalse(_target.Children.Any());
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestDeleteVersionCommand()
         {
             //arrange
@@ -991,13 +1012,14 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //act
             _target.DeleteVersionCommand.Execute(null);
-            Assert.IsTrue(_target.DeleteVersionCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.DeleteVersionCommand.CanExecute(null));
 
             //assert
             _explorerRepositoryMock.Verify(it => it.TryDelete(_target));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestDeleteFolderCommandExpectException()
         {
             //arrange
@@ -1017,14 +1039,14 @@ namespace Warewolf.Studio.ViewModels.Tests
             _popupControllerMock.Setup(it => it.Show(It.IsAny<IPopupMessage>())).Returns(MessageBoxResult.Yes);
 
             //act
-            Assert.IsTrue(_target.DeleteCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(_target.DeleteCommand.CanExecute(null));
             _target.DeleteCommand.Execute(null);
 
             //assert
             _explorerRepositoryMock.Verify(it => it.TryDelete(_target));
             _explorerTreeItemMock.Verify(it => it.RemoveChild(_target), Times.Never());
 
-            Assert.AreEqual(1, _target.ChildrenCount);
+            NUnit.Framework.Assert.AreEqual(1, _target.ChildrenCount);
             _explorerTreeItemMock.Verify(it => it.AddChild(_target), Times.Never);
         }
 
@@ -1032,7 +1054,8 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         #region Test equality
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestEquals()
         {
             var otherSameId = new ExplorerItemViewModel(_serverMock.Object, _explorerTreeItemMock.Object, a => { },
@@ -1045,62 +1068,66 @@ namespace Warewolf.Studio.ViewModels.Tests
             _target.ResourceId = otherSameId.ResourceId;
             _target.ResourceName = "Some res name";
 
-            Assert.IsFalse(_target.Equals(null));
-            Assert.IsTrue(_target.Equals(_target));
-            Assert.IsTrue(_target.Equals(otherSameId));
-            Assert.IsFalse(_target.Equals(otherDifferentId));
+            NUnit.Framework.Assert.IsFalse(_target.Equals(null));
+            NUnit.Framework.Assert.IsTrue(_target.Equals(_target));
+            NUnit.Framework.Assert.IsTrue(_target.Equals(otherSameId));
+            NUnit.Framework.Assert.IsFalse(_target.Equals(otherDifferentId));
 
-            Assert.IsFalse(_target.Equals((object)null));
-            Assert.IsTrue(_target.Equals((object)_target));
-            Assert.IsTrue(_target.Equals((object)otherSameId));
-            Assert.IsFalse(_target.Equals((object)otherDifferentId));
-            Assert.IsFalse(_target.Equals(otherDifferentType));
+            NUnit.Framework.Assert.IsFalse(_target.Equals((object)null));
+            NUnit.Framework.Assert.IsTrue(_target.Equals((object)_target));
+            NUnit.Framework.Assert.IsTrue(_target.Equals((object)otherSameId));
+            NUnit.Framework.Assert.IsFalse(_target.Equals((object)otherDifferentId));
+            NUnit.Framework.Assert.IsFalse(_target.Equals(otherDifferentType));
 
-            Assert.IsFalse(_target == null);
+            NUnit.Framework.Assert.IsFalse(_target == null);
             
-            Assert.IsTrue(Equals(_target, _target));
-            Assert.IsFalse(_target == otherSameId);
-            Assert.IsFalse(_target == otherDifferentId);
-            Assert.IsFalse(ReferenceEquals(_target, otherDifferentType));
+            NUnit.Framework.Assert.IsTrue(Equals(_target, _target));
+            NUnit.Framework.Assert.IsFalse(_target == otherSameId);
+            NUnit.Framework.Assert.IsFalse(_target == otherDifferentId);
+            NUnit.Framework.Assert.IsFalse(ReferenceEquals(_target, otherDifferentType));
 
-            Assert.IsTrue(_target != null);
+            NUnit.Framework.Assert.IsTrue(_target != null);
             
-            Assert.IsFalse(!Equals(_target, _target));
-            Assert.IsTrue(_target != otherSameId);
-            Assert.IsTrue(_target != otherDifferentId);
+            NUnit.Framework.Assert.IsFalse(!Equals(_target, _target));
+            NUnit.Framework.Assert.IsTrue(_target != otherSameId);
+            NUnit.Framework.Assert.IsTrue(_target != otherDifferentId);
 #pragma warning disable 252,253
-            Assert.IsTrue(_target != otherDifferentType);
+            NUnit.Framework.Assert.IsTrue(_target != otherDifferentType);
 #pragma warning restore 252,253
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestHashcode()
         {
             _target.ResourceId = Guid.NewGuid();
             _target.ResourceName = "Some res name";
 
-            Assert.AreEqual(_target.GetHashCode(), _target.ResourceId.GetHashCode());
+            NUnit.Framework.Assert.AreEqual(_target.GetHashCode(), _target.ResourceId.GetHashCode());
         }
 
         #endregion Test equality
 
         #region Test properties
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestExecuteToolTipGet()
         {
             //assert
-            Assert.IsNotNull(_target.ExecuteToolTip);
+            NUnit.Framework.Assert.IsNotNull(_target.ExecuteToolTip);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestEditToolTipGet()
         {
             //assert
-            Assert.IsNotNull(_target.EditToolTip);
+            NUnit.Framework.Assert.IsNotNull(_target.EditToolTip);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestCanDropGetFolder()
         {
             //arrange
@@ -1110,10 +1137,11 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             var actual = _target.CanDrop;
             //assert
-            Assert.IsTrue(actual);
+            NUnit.Framework.Assert.IsTrue(actual);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestCanDropGetOther()
         {
             //arrange
@@ -1122,10 +1150,11 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             var actual = _target.CanDrop;
             //assert
-            Assert.IsFalse(actual);
+            NUnit.Framework.Assert.IsFalse(actual);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestCanDropSet()
         {
             //arrange
@@ -1139,10 +1168,11 @@ namespace Warewolf.Studio.ViewModels.Tests
             _target.CanDrop = true;
 
             //assert
-            Assert.IsTrue(isCanDropChanged);
+            NUnit.Framework.Assert.IsTrue(isCanDropChanged);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestCanDragGetFolder()
         {
             //arrange
@@ -1152,10 +1182,11 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             var actual = _target.CanDrag;
             //assert
-            Assert.IsTrue(actual);
+            NUnit.Framework.Assert.IsTrue(actual);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestCommands()
         {
             //arrange
@@ -1180,26 +1211,27 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
 
             //assert
-            Assert.IsTrue(canCreateNewServiceCommand);
-            Assert.IsTrue(canCreateNewServerCommand);
-            Assert.IsTrue(canCreateNewSqlServerSourceCommand);
-            Assert.IsTrue(canCreateNewMySqlSourceCommand);
-            Assert.IsTrue(canCreateNewPostgreSqlSourceCommand);
-            Assert.IsTrue(canCreateNewOracleSourceCommand);
-            Assert.IsTrue(canCreateNewOdbcSourceCommand);
-            Assert.IsTrue(canCreateNewPluginSourceCommand);
-            Assert.IsTrue(canCreateNewWebSourceSourceCommand);
-            Assert.IsTrue(canCreateNewRedisSourceCommand);
-            Assert.IsTrue(canCreateNewEmailSourceSourceCommand);
-            Assert.IsTrue(canCreateNewExchangeSourceSourceCommand);
-            Assert.IsTrue(canCreateNewSharepointSourceSourceCommand);
-            Assert.IsTrue(canCreateNewDropboxSourceSourceCommand);
-            Assert.IsTrue(canCreateNewRabbitMqSourceSourceCommand);
-            Assert.IsTrue(canViewSwaggerCommand);
-            Assert.IsTrue(canViewApisJsonCommand);
+            NUnit.Framework.Assert.IsTrue(canCreateNewServiceCommand);
+            NUnit.Framework.Assert.IsTrue(canCreateNewServerCommand);
+            NUnit.Framework.Assert.IsTrue(canCreateNewSqlServerSourceCommand);
+            NUnit.Framework.Assert.IsTrue(canCreateNewMySqlSourceCommand);
+            NUnit.Framework.Assert.IsTrue(canCreateNewPostgreSqlSourceCommand);
+            NUnit.Framework.Assert.IsTrue(canCreateNewOracleSourceCommand);
+            NUnit.Framework.Assert.IsTrue(canCreateNewOdbcSourceCommand);
+            NUnit.Framework.Assert.IsTrue(canCreateNewPluginSourceCommand);
+            NUnit.Framework.Assert.IsTrue(canCreateNewWebSourceSourceCommand);
+            NUnit.Framework.Assert.IsTrue(canCreateNewRedisSourceCommand);
+            NUnit.Framework.Assert.IsTrue(canCreateNewEmailSourceSourceCommand);
+            NUnit.Framework.Assert.IsTrue(canCreateNewExchangeSourceSourceCommand);
+            NUnit.Framework.Assert.IsTrue(canCreateNewSharepointSourceSourceCommand);
+            NUnit.Framework.Assert.IsTrue(canCreateNewDropboxSourceSourceCommand);
+            NUnit.Framework.Assert.IsTrue(canCreateNewRabbitMqSourceSourceCommand);
+            NUnit.Framework.Assert.IsTrue(canViewSwaggerCommand);
+            NUnit.Framework.Assert.IsTrue(canViewApisJsonCommand);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestCanDragGetOther()
         {
             //arrange
@@ -1208,10 +1240,11 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             var actual = _target.CanDrag;
             //assert
-            Assert.IsTrue(actual);
+            NUnit.Framework.Assert.IsTrue(actual);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestCanDragSet()
         {
             //arrange
@@ -1225,10 +1258,11 @@ namespace Warewolf.Studio.ViewModels.Tests
             _target.CanDrag = true;
 
             //assert
-            Assert.IsTrue(isCanDragChanged);
+            NUnit.Framework.Assert.IsTrue(isCanDragChanged);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestIsExpanderVisibleNoChildren()
         {
             //arrange
@@ -1236,10 +1270,11 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             var isExpanderVisible = _target.IsExpanderVisible;
             //assert
-            Assert.IsFalse(isExpanderVisible);
+            NUnit.Framework.Assert.IsFalse(isExpanderVisible);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestIsExpanderVisibleChildrenAreVersionsVisible()
         {
             //arrange
@@ -1252,10 +1287,11 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             var isExpanderVisible = _target.IsExpanderVisible;
             //assert
-            Assert.IsFalse(isExpanderVisible);
+            NUnit.Framework.Assert.IsFalse(isExpanderVisible);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestIsExpanderVisibleChildrenAreVersionsInvisible()
         {
             //arrange
@@ -1267,10 +1303,11 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             var isExpanderVisible = _target.IsExpanderVisible;
             //assert
-            Assert.IsTrue(isExpanderVisible);
+            NUnit.Framework.Assert.IsTrue(isExpanderVisible);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestAreVersionsVisibleTrue()
         {
             //arrange
@@ -1296,26 +1333,27 @@ namespace Warewolf.Studio.ViewModels.Tests
             _target.AreVersionsVisible = true;
             //assert
             var version = (VersionViewModel)_target.Children[0];
-            Assert.AreEqual(Resources.Languages.Core.HideVersionHistoryLabel, _target.VersionHeader);
-            Assert.IsTrue(version.IsVersion);
-            Assert.AreEqual("v.someVerNum 02022013 000000 gfedew", version.ResourceName);
-            Assert.AreEqual(_target.ResourceId, version.ResourceId);
-            Assert.AreEqual(versionMock.Object.VersionNumber, version.VersionNumber);
-            Assert.AreSame(versionMock.Object, version.VersionInfo);
-            Assert.IsFalse(version.CanEdit);
-            Assert.IsFalse(version.CanCreateWorkflowService);
-            Assert.IsTrue(version.ShowContextMenu);
-            Assert.IsFalse(version.CanCreateSource);
-            Assert.IsFalse(version.AllowResourceCheck);
-            Assert.IsTrue(version.IsResourceChecked.HasValue && !version.IsResourceChecked.Value);
-            Assert.AreEqual(_target.CanDelete, version.CanDelete);
-            Assert.AreEqual("Version", version.ResourceType);
-            Assert.IsTrue(_target.IsExpanded);
-            Assert.IsTrue(isAreVersionsVisibleChanged);
-            Assert.IsTrue(isChildrenChanged);
+            NUnit.Framework.Assert.AreEqual(Resources.Languages.Core.HideVersionHistoryLabel, _target.VersionHeader);
+            NUnit.Framework.Assert.IsTrue(version.IsVersion);
+            NUnit.Framework.Assert.AreEqual("v.someVerNum 02022013 000000 gfedew", version.ResourceName);
+            NUnit.Framework.Assert.AreEqual(_target.ResourceId, version.ResourceId);
+            NUnit.Framework.Assert.AreEqual(versionMock.Object.VersionNumber, version.VersionNumber);
+            NUnit.Framework.Assert.AreSame(versionMock.Object, version.VersionInfo);
+            NUnit.Framework.Assert.IsFalse(version.CanEdit);
+            NUnit.Framework.Assert.IsFalse(version.CanCreateWorkflowService);
+            NUnit.Framework.Assert.IsTrue(version.ShowContextMenu);
+            NUnit.Framework.Assert.IsFalse(version.CanCreateSource);
+            NUnit.Framework.Assert.IsFalse(version.AllowResourceCheck);
+            NUnit.Framework.Assert.IsTrue(version.IsResourceChecked.HasValue && !version.IsResourceChecked.Value);
+            NUnit.Framework.Assert.AreEqual(_target.CanDelete, version.CanDelete);
+            NUnit.Framework.Assert.AreEqual("Version", version.ResourceType);
+            NUnit.Framework.Assert.IsTrue(_target.IsExpanded);
+            NUnit.Framework.Assert.IsTrue(isAreVersionsVisibleChanged);
+            NUnit.Framework.Assert.IsTrue(isChildrenChanged);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestDeployIsResourceCheckedDisabled()
         {
             //arrange
@@ -1332,11 +1370,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             _target.IsResourceChecked = false;
             //act
             //assert
-            Assert.IsFalse(_target.CanDeploy);
-            Assert.AreEqual(_target.CanDeploy, _target.IsResourceCheckedEnabled);
-            Assert.AreEqual(_target.DeployResourceCheckboxTooltip, Resources.Languages.Core.DeployResourceCheckboxViewPermissionError);
+            NUnit.Framework.Assert.IsFalse(_target.CanDeploy);
+            NUnit.Framework.Assert.AreEqual(_target.CanDeploy, _target.IsResourceCheckedEnabled);
+            NUnit.Framework.Assert.AreEqual(_target.DeployResourceCheckboxTooltip, Resources.Languages.Core.DeployResourceCheckboxViewPermissionError);
         }
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestDeployIsResourceCheckedEnabled_GivenView_ThenChangedToAdministrator()
         {
             //arrange
@@ -1353,12 +1392,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             _target.IsResourceChecked = false;
             //act
             //assert
-            Assert.IsTrue(_target.CanDeploy);
-            Assert.AreEqual(_target.CanDeploy, _target.IsResourceCheckedEnabled);
-            Assert.AreEqual(_target.DeployResourceCheckboxTooltip, Resources.Languages.Core.DeployResourceCheckbox);
+            NUnit.Framework.Assert.IsTrue(_target.CanDeploy);
+            NUnit.Framework.Assert.AreEqual(_target.CanDeploy, _target.IsResourceCheckedEnabled);
+            NUnit.Framework.Assert.AreEqual(_target.DeployResourceCheckboxTooltip, Resources.Languages.Core.DeployResourceCheckbox);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestDeployIsResourceCheckedEnabled_GivenAdministrator_ThenChangedToView()
         {
             //arrange
@@ -1375,12 +1415,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             _target.IsResourceChecked = false;
             //act
             //assert
-            Assert.IsTrue(_target.CanDeploy);
-            Assert.AreEqual(_target.CanDeploy, _target.IsResourceCheckedEnabled);
-            Assert.AreEqual(_target.DeployResourceCheckboxTooltip, Resources.Languages.Core.DeployResourceCheckbox);
+            NUnit.Framework.Assert.IsTrue(_target.CanDeploy);
+            NUnit.Framework.Assert.AreEqual(_target.CanDeploy, _target.IsResourceCheckedEnabled);
+            NUnit.Framework.Assert.AreEqual(_target.DeployResourceCheckboxTooltip, Resources.Languages.Core.DeployResourceCheckbox);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestAreVersionsVisibleFalse()
         {
             //arrange
@@ -1395,14 +1436,15 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             _target.AreVersionsVisible = false;
             //assert
-            Assert.IsFalse(_target.Children.Any());
-            Assert.AreEqual(Resources.Languages.Core.ShowVersionHistoryLabel, _target.VersionHeader);
+            NUnit.Framework.Assert.IsFalse(_target.Children.Any());
+            NUnit.Framework.Assert.AreEqual(Resources.Languages.Core.ShowVersionHistoryLabel, _target.VersionHeader);
 
-            Assert.IsTrue(isAreVersionsVisibleChanged);
-            Assert.IsTrue(isChildrenChanged);
+            NUnit.Framework.Assert.IsTrue(isAreVersionsVisibleChanged);
+            NUnit.Framework.Assert.IsTrue(isChildrenChanged);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestSetIsExpanderVisible()
         {
             //arrange
@@ -1411,21 +1453,23 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             _target.IsExpanderVisible = true;
             //assert
-            Assert.IsTrue(_target.IsVisible);
-            Assert.IsTrue(isExpanderVisibleChanged);
+            NUnit.Framework.Assert.IsTrue(_target.IsVisible);
+            NUnit.Framework.Assert.IsTrue(isExpanderVisibleChanged);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestChecked()
         {
             //arrange
             //act
             _target.Checked = true;
             //assert
-            Assert.IsTrue(_target.Checked);
+            NUnit.Framework.Assert.IsTrue(_target.Checked);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestIsRenaming()
         {
             //arrange
@@ -1437,11 +1481,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             _target.IsRenaming = true;
             //assert
-            Assert.IsTrue(isRenamingFired);
-            Assert.IsTrue(_target.IsRenaming);
+            NUnit.Framework.Assert.IsTrue(isRenamingFired);
+            NUnit.Framework.Assert.IsTrue(_target.IsRenaming);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestResourceNameWithoutSlashes()
         {
             //arrange
@@ -1462,13 +1507,14 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             _target.ResourceName = newName;
             //assert
-            Assert.IsTrue(isResourceNameFired);
-            Assert.IsFalse(_target.IsRenaming);
-            Assert.IsTrue(_target.ResourcePath.Contains(newName));
+            NUnit.Framework.Assert.IsTrue(isResourceNameFired);
+            NUnit.Framework.Assert.IsFalse(_target.IsRenaming);
+            NUnit.Framework.Assert.IsTrue(_target.ResourcePath.Contains(newName));
             _explorerRepositoryMock.Verify(it => it.Rename(_target, newName));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestResourceNameWithSlashes()
         {
             //arrange
@@ -1489,13 +1535,14 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             _target.ResourceName = newName;
             //assert
-            Assert.IsTrue(isResourceNameFired);
-            Assert.IsFalse(_target.IsRenaming);
-            Assert.AreEqual("Some\\SomeNewName", _target.ResourcePath);
+            NUnit.Framework.Assert.IsTrue(isResourceNameFired);
+            NUnit.Framework.Assert.IsFalse(_target.IsRenaming);
+            NUnit.Framework.Assert.AreEqual("Some\\SomeNewName", _target.ResourcePath);
             _explorerRepositoryMock.Verify(it => it.Rename(It.IsAny<ExplorerItemViewModel>(), It.IsAny<string>()));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestResourceNameDuplicate()
         {
             //arrange
@@ -1518,22 +1565,24 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             _target.ResourceName = newName;
             //assert
-            Assert.IsFalse(isResourceNameFired);
-            Assert.IsTrue(_target.IsRenaming);
-            Assert.AreEqual("Some\\someResPath", _target.ResourcePath);
-            Assert.AreEqual("someResPath", _target.ResourceName);
+            NUnit.Framework.Assert.IsFalse(isResourceNameFired);
+            NUnit.Framework.Assert.IsTrue(_target.IsRenaming);
+            NUnit.Framework.Assert.AreEqual("Some\\someResPath", _target.ResourcePath);
+            NUnit.Framework.Assert.AreEqual("someResPath", _target.ResourceName);
             _shellViewModelMock.Verify(it => it.ShowPopup(It.IsAny<IPopupMessage>()));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestActivityName()
         {
             //assert
             _target.ResourceType = "Folder";
-            Assert.IsTrue(_target.ActivityName.StartsWith("Unlimited.Applications.BusinessDesignStudio.Activities.DsfActivity"));
+            NUnit.Framework.Assert.IsTrue(_target.ActivityName.StartsWith("Unlimited.Applications.BusinessDesignStudio.Activities.DsfActivity"));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestChildrenCount()
         {
             //arrange
@@ -1567,14 +1616,15 @@ namespace Warewolf.Studio.ViewModels.Tests
             var childrenCount = _target.ChildrenCount;
 
             //assert
-            Assert.AreEqual(4, childrenCount);
+            NUnit.Framework.Assert.AreEqual(4, childrenCount);
         }
 
         #endregion Test properties
 
         #region Test methods
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestDeleteClosesWindow()
         {
             //arrange
@@ -1594,7 +1644,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             _shellViewModelMock.Verify(a => a.CloseResource(It.IsAny<Guid>(), It.IsAny<Guid>()));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestDispose()
         {
             //arrange
@@ -1609,7 +1660,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             child.Verify(a => a.Dispose());
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestFilter()
         {
             //arrange
@@ -1627,12 +1679,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             _target.Filter("someFilter");
             //assert
-            Assert.IsTrue(isChildrenChanged);
-            Assert.IsTrue(_target.IsVisible);
+            NUnit.Framework.Assert.IsTrue(isChildrenChanged);
+            NUnit.Framework.Assert.IsTrue(_target.IsVisible);
             childMock.Verify(it => it.Filter("someFilter"));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestFilterNoText()
         {
             //arrange
@@ -1651,11 +1704,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             _target.Filter("");
             //assert
-            Assert.IsTrue(isChildrenChanged);
-            Assert.IsTrue(_target.IsVisible);
+            NUnit.Framework.Assert.IsTrue(isChildrenChanged);
+            NUnit.Framework.Assert.IsTrue(_target.IsVisible);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestFilterVersion()
         {
             //arrange
@@ -1680,12 +1734,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             _target.Filter("someFilter");
             //assert
-            Assert.IsTrue(isChildrenChanged);
-            Assert.IsFalse(_target.IsVisible);
+            NUnit.Framework.Assert.IsTrue(isChildrenChanged);
+            NUnit.Framework.Assert.IsFalse(_target.IsVisible);
             childMock.Verify(it => it.Filter("someFilter"));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestFilterInvisible()
         {
             //arrange
@@ -1703,12 +1758,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             _target.Filter("1");
             //assert
-            Assert.IsTrue(isChildrenChanged);
-            Assert.IsTrue(_target.IsVisible);
+            NUnit.Framework.Assert.IsTrue(isChildrenChanged);
+            NUnit.Framework.Assert.IsTrue(_target.IsVisible);
             childMock.Verify(it => it.Filter("1"));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestFilterInvisibleNoChildren()
         {
             //arrange
@@ -1726,12 +1782,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             _target.Filter("1");
             //assert
-            Assert.IsTrue(isChildrenChanged);
-            Assert.IsFalse(_target.IsVisible);
+            NUnit.Framework.Assert.IsTrue(isChildrenChanged);
+            NUnit.Framework.Assert.IsFalse(_target.IsVisible);
             childMock.Verify(it => it.Filter("1"));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestRemoveChild()
         {
             //arrange
@@ -1748,11 +1805,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             _target.RemoveChild(child);
             //assert
-            Assert.IsFalse(_target.Children.Contains(child));
-            Assert.IsTrue(wasCalled);
+            NUnit.Framework.Assert.IsFalse(_target.Children.Contains(child));
+            NUnit.Framework.Assert.IsTrue(wasCalled);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestAddChild()
         {
             //arrange
@@ -1774,11 +1832,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             _target.AddChild(child);
             //assert
-            Assert.IsTrue(_target.Children.Contains(child));
-            Assert.IsTrue(wasCalled);
+            NUnit.Framework.Assert.IsTrue(_target.Children.Contains(child));
+            NUnit.Framework.Assert.IsTrue(wasCalled);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestSelectItem()
         {
             //arrange
@@ -1799,11 +1858,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             //assert
             childSameId.VerifySet(it => it.IsExpanded = true);
             childSameId.VerifySet(it => it.IsSelected = true);
-            Assert.IsTrue(foundActionRun);
+            NUnit.Framework.Assert.IsTrue(foundActionRun);
             childDifferentId.Verify(it => it.SelectItem(id, foundAction));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestCreateNewFolderResourceTypeDbService()
         {
             //arrange
@@ -1816,11 +1876,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             _target.CreateNewFolder();
 
             //assert
-            Assert.IsFalse(_target.IsExpanded);
-            Assert.IsFalse(_target.Children.Any());
+            NUnit.Framework.Assert.IsFalse(_target.IsExpanded);
+            NUnit.Framework.Assert.IsFalse(_target.Children.Any());
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestCreateNewFolderResourceTypeFolder()
         {
             //arrange
@@ -1849,29 +1910,30 @@ namespace Warewolf.Studio.ViewModels.Tests
             _target.CreateNewFolder();
 
             //assert
-            Assert.IsTrue(_target.IsExpanded);
+            NUnit.Framework.Assert.IsTrue(_target.IsExpanded);
             //_explorerRepositoryMock.Verify(it => it.CreateFolder(_target.ResourcePath, "New Folder", It.IsAny<Guid>()));
             var createdFolder = _target.Children.Single();
-            Assert.AreEqual("New Folder", createdFolder.ResourceName);
-            Assert.AreEqual("Folder", createdFolder.ResourceType);
-            Assert.AreEqual(_target.IsFolder, createdFolder.IsFolder);
-            Assert.AreEqual(_target.AllowResourceCheck, createdFolder.AllowResourceCheck);
-            Assert.AreEqual(_target.IsResourceChecked, createdFolder.IsResourceChecked);
-            Assert.AreEqual(_target.IsFolderChecked, createdFolder.IsFolderChecked);
-            Assert.AreEqual(_target.CanCreateFolder, createdFolder.CanCreateFolder);
-            Assert.AreEqual(_target.CanCreateSource, createdFolder.CanCreateSource);
-            Assert.AreEqual(_target.CanShowVersions, createdFolder.CanShowVersions);
-            Assert.AreEqual(_target.CanRename, createdFolder.CanRename);
-            Assert.AreEqual(_target.CanRollback, createdFolder.CanRollback);
-            Assert.AreEqual(_target.CanDeploy, createdFolder.CanDeploy);
-            Assert.AreEqual(_target.CanShowDependencies, createdFolder.CanShowDependencies);
-            Assert.AreEqual(_target.ResourcePath + "\\" + createdFolder.ResourceName, createdFolder.ResourcePath);
-            Assert.AreEqual(_target.CanCreateWorkflowService, createdFolder.CanCreateWorkflowService);
-            Assert.AreEqual(_target.ShowContextMenu, createdFolder.ShowContextMenu);
-            Assert.IsTrue(createdFolder.IsRenaming);
+            NUnit.Framework.Assert.AreEqual("New Folder", createdFolder.ResourceName);
+            NUnit.Framework.Assert.AreEqual("Folder", createdFolder.ResourceType);
+            NUnit.Framework.Assert.AreEqual(_target.IsFolder, createdFolder.IsFolder);
+            NUnit.Framework.Assert.AreEqual(_target.AllowResourceCheck, createdFolder.AllowResourceCheck);
+            NUnit.Framework.Assert.AreEqual(_target.IsResourceChecked, createdFolder.IsResourceChecked);
+            NUnit.Framework.Assert.AreEqual(_target.IsFolderChecked, createdFolder.IsFolderChecked);
+            NUnit.Framework.Assert.AreEqual(_target.CanCreateFolder, createdFolder.CanCreateFolder);
+            NUnit.Framework.Assert.AreEqual(_target.CanCreateSource, createdFolder.CanCreateSource);
+            NUnit.Framework.Assert.AreEqual(_target.CanShowVersions, createdFolder.CanShowVersions);
+            NUnit.Framework.Assert.AreEqual(_target.CanRename, createdFolder.CanRename);
+            NUnit.Framework.Assert.AreEqual(_target.CanRollback, createdFolder.CanRollback);
+            NUnit.Framework.Assert.AreEqual(_target.CanDeploy, createdFolder.CanDeploy);
+            NUnit.Framework.Assert.AreEqual(_target.CanShowDependencies, createdFolder.CanShowDependencies);
+            NUnit.Framework.Assert.AreEqual(_target.ResourcePath + "\\" + createdFolder.ResourceName, createdFolder.ResourcePath);
+            NUnit.Framework.Assert.AreEqual(_target.CanCreateWorkflowService, createdFolder.CanCreateWorkflowService);
+            NUnit.Framework.Assert.AreEqual(_target.ShowContextMenu, createdFolder.ShowContextMenu);
+            NUnit.Framework.Assert.IsTrue(createdFolder.IsRenaming);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestCreateNewFolderResourceTypeFolderNewFolder1()
         {
             //arrange
@@ -1889,11 +1951,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             _target.CreateNewFolder();
 
             //assert
-            Assert.IsTrue(_target.IsExpanded);
+            NUnit.Framework.Assert.IsTrue(_target.IsExpanded);
             //_explorerRepositoryMock.Verify(it => it.CreateFolder(_target.ResourcePath, "New Folder 1", It.IsAny<Guid>()));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestApply()
         {
             //arrange
@@ -1905,11 +1968,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             _target.Apply(action);
             //assert
-            Assert.IsTrue(actionRun);
+            NUnit.Framework.Assert.IsTrue(actionRun);
             child.Verify(it => it.Apply(It.IsAny<Action<IExplorerItemViewModel>>()));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestFilterChildrenFound()
         {
             //arrange
@@ -1923,12 +1987,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             _target.Filter(filter);
             //assert
-            Assert.IsTrue(propertyChangedRaised);
+            NUnit.Framework.Assert.IsTrue(propertyChangedRaised);
             child.Verify(it => it.Filter(filter));
-            Assert.IsTrue(_target.IsVisible);
+            NUnit.Framework.Assert.IsTrue(_target.IsVisible);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestFilterChildrenEmpty()
         {
             //arrange
@@ -1942,11 +2007,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             _target.Filter(filter);
             //assert
-            Assert.IsTrue(propertyChangedRaised);
-            Assert.IsTrue(_target.IsVisible);
+            NUnit.Framework.Assert.IsTrue(propertyChangedRaised);
+            NUnit.Framework.Assert.IsTrue(_target.IsVisible);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestAsList()
         {
             //arrange
@@ -1961,10 +2027,11 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             var result = _target.AsList();
             //assert
-            Assert.IsTrue(result.Contains(child2.Object));
+            NUnit.Framework.Assert.IsTrue(result.Contains(child2.Object));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestAsListChildrenNull()
         {
             //arrange
@@ -1972,11 +2039,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             var result = _target.AsList();
             //assert
-            Assert.IsNotNull(result);
+            NUnit.Framework.Assert.IsNotNull(result);
         }
 
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestSetPermissionsSameResource()
         {
             //arrange
@@ -1986,21 +2054,22 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             _target.SetPermissions(Permissions.Administrator);
             //assert
-            Assert.IsTrue(_target.CanEdit);
-            Assert.IsTrue(_target.CanView);
-            Assert.IsTrue(_target.CanRename);
-            Assert.IsTrue(_target.CanDuplicate);
-            Assert.IsTrue(_target.CanCreateTest);
-            Assert.IsTrue(_target.CanDelete);
-            Assert.IsTrue(_target.CanMove);
-            Assert.IsFalse(_target.CanCreateFolder);
-            Assert.IsTrue(_target.CanDeploy);
-            Assert.IsTrue(_target.CanShowVersions);
-            Assert.IsTrue(_target.CanCreateWorkflowService);
-            Assert.IsTrue(_target.CanCreateSource);
+            NUnit.Framework.Assert.IsTrue(_target.CanEdit);
+            NUnit.Framework.Assert.IsTrue(_target.CanView);
+            NUnit.Framework.Assert.IsTrue(_target.CanRename);
+            NUnit.Framework.Assert.IsTrue(_target.CanDuplicate);
+            NUnit.Framework.Assert.IsTrue(_target.CanCreateTest);
+            NUnit.Framework.Assert.IsTrue(_target.CanDelete);
+            NUnit.Framework.Assert.IsTrue(_target.CanMove);
+            NUnit.Framework.Assert.IsFalse(_target.CanCreateFolder);
+            NUnit.Framework.Assert.IsTrue(_target.CanDeploy);
+            NUnit.Framework.Assert.IsTrue(_target.CanShowVersions);
+            NUnit.Framework.Assert.IsTrue(_target.CanCreateWorkflowService);
+            NUnit.Framework.Assert.IsTrue(_target.CanCreateSource);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestNonrPermissionsSameResource()
         {
             //arrange
@@ -2010,21 +2079,22 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             _target.SetPermissions(Permissions.None);
             //assert
-            Assert.IsFalse(_target.CanEdit);
-            Assert.IsFalse(_target.CanView);
-            Assert.IsFalse(_target.CanRename);
-            Assert.IsFalse(_target.CanDuplicate);
-            Assert.IsFalse(_target.CanCreateTest);
-            Assert.IsFalse(_target.CanDelete);
-            Assert.IsFalse(_target.CanMove);
-            Assert.IsFalse(_target.CanCreateFolder);
-            Assert.IsFalse(_target.CanDeploy);
-            Assert.IsFalse(_target.CanShowVersions);
-            Assert.IsFalse(_target.CanCreateWorkflowService);
-            Assert.IsFalse(_target.CanCreateSource);
+            NUnit.Framework.Assert.IsFalse(_target.CanEdit);
+            NUnit.Framework.Assert.IsFalse(_target.CanView);
+            NUnit.Framework.Assert.IsFalse(_target.CanRename);
+            NUnit.Framework.Assert.IsFalse(_target.CanDuplicate);
+            NUnit.Framework.Assert.IsFalse(_target.CanCreateTest);
+            NUnit.Framework.Assert.IsFalse(_target.CanDelete);
+            NUnit.Framework.Assert.IsFalse(_target.CanMove);
+            NUnit.Framework.Assert.IsFalse(_target.CanCreateFolder);
+            NUnit.Framework.Assert.IsFalse(_target.CanDeploy);
+            NUnit.Framework.Assert.IsFalse(_target.CanShowVersions);
+            NUnit.Framework.Assert.IsFalse(_target.CanCreateWorkflowService);
+            NUnit.Framework.Assert.IsFalse(_target.CanCreateSource);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestSetPermissions_ContributePermission_AllowsMove()
         {
             //arrange
@@ -2033,21 +2103,22 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             _target.SetPermissions(Permissions.Contribute);
             //assert
-            Assert.IsTrue(_target.CanEdit);
-            Assert.IsTrue(_target.CanView);
-            Assert.IsTrue(_target.CanRename);
-            Assert.IsTrue(_target.CanDuplicate);
-            Assert.IsTrue(_target.CanCreateTest);
-            Assert.IsTrue(_target.CanDelete);
-            Assert.IsTrue(_target.CanMove);
-            Assert.IsFalse(_target.CanCreateFolder);
-            Assert.IsFalse(_target.CanDeploy);
-            Assert.IsTrue(_target.CanShowVersions);
-            Assert.IsTrue(_target.CanCreateWorkflowService);
-            Assert.IsTrue(_target.CanCreateSource);
+            NUnit.Framework.Assert.IsTrue(_target.CanEdit);
+            NUnit.Framework.Assert.IsTrue(_target.CanView);
+            NUnit.Framework.Assert.IsTrue(_target.CanRename);
+            NUnit.Framework.Assert.IsTrue(_target.CanDuplicate);
+            NUnit.Framework.Assert.IsTrue(_target.CanCreateTest);
+            NUnit.Framework.Assert.IsTrue(_target.CanDelete);
+            NUnit.Framework.Assert.IsTrue(_target.CanMove);
+            NUnit.Framework.Assert.IsFalse(_target.CanCreateFolder);
+            NUnit.Framework.Assert.IsFalse(_target.CanDeploy);
+            NUnit.Framework.Assert.IsTrue(_target.CanShowVersions);
+            NUnit.Framework.Assert.IsTrue(_target.CanCreateWorkflowService);
+            NUnit.Framework.Assert.IsTrue(_target.CanCreateSource);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestSetPermissionsServerPermission()
         {
             //arrange
@@ -2058,21 +2129,22 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             _target.SetPermissions(Permissions.Administrator);
             //assert
-            Assert.IsTrue(_target.CanEdit);
-            Assert.IsTrue(_target.CanView);
-            Assert.IsTrue(_target.CanRename);
-            Assert.IsTrue(_target.CanMove);
-            Assert.IsTrue(_target.CanDuplicate);
-            Assert.IsTrue(_target.CanCreateTest);
-            Assert.IsTrue(_target.CanDelete);
-            Assert.IsFalse(_target.CanCreateFolder);
-            Assert.IsTrue(_target.CanDeploy);
-            Assert.IsTrue(_target.CanShowVersions);
-            Assert.IsTrue(_target.CanCreateWorkflowService);
-            Assert.IsTrue(_target.CanCreateSource);
+            NUnit.Framework.Assert.IsTrue(_target.CanEdit);
+            NUnit.Framework.Assert.IsTrue(_target.CanView);
+            NUnit.Framework.Assert.IsTrue(_target.CanRename);
+            NUnit.Framework.Assert.IsTrue(_target.CanMove);
+            NUnit.Framework.Assert.IsTrue(_target.CanDuplicate);
+            NUnit.Framework.Assert.IsTrue(_target.CanCreateTest);
+            NUnit.Framework.Assert.IsTrue(_target.CanDelete);
+            NUnit.Framework.Assert.IsFalse(_target.CanCreateFolder);
+            NUnit.Framework.Assert.IsTrue(_target.CanDeploy);
+            NUnit.Framework.Assert.IsTrue(_target.CanShowVersions);
+            NUnit.Framework.Assert.IsTrue(_target.CanCreateWorkflowService);
+            NUnit.Framework.Assert.IsTrue(_target.CanCreateSource);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestCanViewSwaggerIsVisible()
         {
             //arrange
@@ -2084,12 +2156,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
 
             //assert
-            Assert.IsTrue(_target.IsService);
-            Assert.IsTrue(_target.CanViewSwagger);
-            Assert.IsTrue(_target.CanViewApisJson);
+            NUnit.Framework.Assert.IsTrue(_target.IsService);
+            NUnit.Framework.Assert.IsTrue(_target.CanViewSwagger);
+            NUnit.Framework.Assert.IsTrue(_target.CanViewApisJson);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestCanViewSwaggerIsNotVisible()
         {
             //arrange
@@ -2100,12 +2173,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
 
             //assert
-            Assert.IsTrue(_target.IsFolder);
-            Assert.IsFalse(_target.CanViewSwagger);
-            Assert.IsTrue(_target.CanViewApisJson);
+            NUnit.Framework.Assert.IsTrue(_target.IsFolder);
+            NUnit.Framework.Assert.IsFalse(_target.CanViewSwagger);
+            NUnit.Framework.Assert.IsTrue(_target.CanViewApisJson);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestCanViewMergeIsVisible()
         {
             //arrange
@@ -2126,11 +2200,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
 
             //assert
-            Assert.IsTrue(_target.IsService);
-            Assert.IsTrue(_target.CanMerge);
+            NUnit.Framework.Assert.IsTrue(_target.IsService);
+            NUnit.Framework.Assert.IsTrue(_target.CanMerge);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestCanViewMergeIsNotVisible()
         {
             //arrange
@@ -2141,11 +2216,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
 
             //assert
-            Assert.IsTrue(_target.IsFolder);
-            Assert.IsFalse(_target.CanMerge);
+            NUnit.Framework.Assert.IsTrue(_target.IsFolder);
+            NUnit.Framework.Assert.IsFalse(_target.CanMerge);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestCanViewApisJsonIsVisible()
         {
             //arrange
@@ -2156,12 +2232,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
 
             //assert
-            Assert.IsTrue(_target.IsFolder);
-            Assert.IsFalse(_target.CanViewSwagger);
-            Assert.IsTrue(_target.CanViewApisJson);
+            NUnit.Framework.Assert.IsTrue(_target.IsFolder);
+            NUnit.Framework.Assert.IsFalse(_target.CanViewSwagger);
+            NUnit.Framework.Assert.IsTrue(_target.CanViewApisJson);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestSetPermissionsServerPermissionFolder()
         {
             //arrange
@@ -2171,11 +2248,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             _target.SetPermissions(Permissions.Administrator);
             //assert
-            Assert.IsFalse(_target.CanEdit);
-            Assert.IsFalse(_target.CanExecute);
+            NUnit.Framework.Assert.IsFalse(_target.CanEdit);
+            NUnit.Framework.Assert.IsFalse(_target.CanExecute);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestSetPermissionsIsDeploy()
         {
             //arrange
@@ -2185,11 +2263,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             _target.SetPermissions(Permissions.DeployFrom, true);
             //assert
-            Assert.IsFalse(_target.CanEdit);
-            Assert.IsFalse(_target.CanExecute);
+            NUnit.Framework.Assert.IsFalse(_target.CanEdit);
+            NUnit.Framework.Assert.IsFalse(_target.CanExecute);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestAddSibling()
         {
             //arrange
@@ -2200,7 +2279,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             _explorerTreeItemMock.Verify(it => it.AddChild(siblingMock.Object));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public async System.Threading.Tasks.Task TestMoveAlreadyExist()
         {
             //arrange
@@ -2216,11 +2296,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             var result = await _target.MoveAsync(movedItem.Object);
             //assert
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
             _shellViewModelMock.Verify(it => it.ShowPopup(It.IsAny<IPopupMessage>()));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public async System.Threading.Tasks.Task TestMoveToFolderExists()
         {
             //arrange
@@ -2247,99 +2328,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             var result = await _target.MoveAsync(destinationMock.Object);
             //assert
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
             _explorerRepositoryMock.Verify(it => it.Move(_target, destinationMock.Object));
         }
-        //
-        //        [TestMethod,Timeout(60000)]
-        //        public async System.Threading.Tasks.Task TestMoveToFolderNotExists()
-        //        {
-        //            //arrange
-        //            var destinationMock = new Mock<IExplorerTreeItem>();
-        //            destinationMock.Setup(it => it.ResourceType).Returns("Folder");
-        //            destinationMock.SetupGet(it => it.ResourcePath).Returns("someDestPath");
-        //            var currentChildrenMock = new Mock<IExplorerItemViewModel>();
-        //            currentChildrenMock.SetupGet(it => it.ResourceName).Returns("someResourceName");
-        //            var childDestItem = new Mock<IExplorerItemViewModel>();
-        //            _target.ResourceName = "someName";
-        //            _target.ResourceType = "Folder";
-        //            _target.Children.Add(currentChildrenMock.Object);
-        //            childDestItem.SetupGet(it => it.ResourceName).Returns("someOtherName");
-        //            childDestItem.SetupGet(it => it.ResourceType).Returns("Folder");
-        //            childDestItem.SetupGet(it => it.ResourcePath).Returns("somePath");
-        //            childDestItem.SetupGet(it => it.Children).Returns(new ObservableCollection<IExplorerItemViewModel>());
-        //            destinationMock.SetupGet(it => it.Children).Returns(new ObservableCollection<IExplorerItemViewModel>()
-        //            {
-        //                childDestItem.Object
-        //            });
-        //            var studioUpdateManagerMock = new Mock<IStudioUpdateManager>();
-        //
-        //            _serverMock.SetupGet(it => it.UpdateRepository).Returns(studioUpdateManagerMock.Object);
-        //            //act
-        //            var result = await _target.Move(destinationMock.Object);
-        //            //assert
-        //            Assert.IsTrue(result);
-        //            _explorerRepositoryMock.Verify(it => it.Move(_target, destinationMock.Object));
-        //        }
-        //
-        //        [TestMethod,Timeout(60000)]
-        //        public async System.Threading.Tasks.Task TestMoveToLtFolder()
-        //        {
-        //            //arrange
-        //            var destinationMock = new Mock<IExplorerTreeItem>();
-        //            destinationMock.Setup(it => it.ResourceType).Returns("ServerSource");
-        //            destinationMock.SetupGet(it => it.ResourcePath).Returns("someDestPath");
-        //            var childDestItem = new Mock<IExplorerItemViewModel>();
-        //            childDestItem.SetupGet(it => it.ResourceName).Returns("someOtherName");
-        //            childDestItem.SetupGet(it => it.ResourceType).Returns("Folder");
-        //            childDestItem.SetupGet(it => it.ResourcePath).Returns("somePath");
-        //            childDestItem.SetupGet(it => it.Children).Returns(new ObservableCollection<IExplorerItemViewModel>());
-        //            destinationMock.SetupGet(it => it.Children).Returns(new ObservableCollection<IExplorerItemViewModel>()
-        //            {
-        //                childDestItem.Object
-        //            });
-        //            _target.ResourceName = "someName";
-        //            _target.ResourceType = "WebSource";
-        //
-        //            var studioUpdateManagerMock = new Mock<IStudioUpdateManager>();
-        //
-        //            _serverMock.SetupGet(it => it.UpdateRepository).Returns(studioUpdateManagerMock.Object);
-        //            //act
-        //            var result = await _target.Move(destinationMock.Object);
-        //            //assert
-        //            Assert.IsTrue(result);
-        //        }
-        ////
-        //        [TestMethod,Timeout(60000)]
-        //        public async System.Threading.Tasks.Task TestMoveParentNull()
-        //        {
-        //            //arrange
-        //            var destinationMock = new Mock<IExplorerTreeItem>();
-        //            destinationMock.Setup(it => it.ResourceType).Returns("DropboxSource");
-        //            destinationMock.SetupGet(it => it.ResourcePath).Returns("someDestPath");
-        //            destinationMock.SetupGet(it => it.Parent).Returns((IExplorerTreeItem)null);
-        //            var childDestItem = new Mock<IExplorerItemViewModel>();
-        //            childDestItem.SetupGet(it => it.ResourceName).Returns("someOtherName");
-        //            childDestItem.SetupGet(it => it.ResourceType).Returns("Folder");
-        //            childDestItem.SetupGet(it => it.ResourcePath).Returns("somePath");
-        //            childDestItem.SetupGet(it => it.Children).Returns(new ObservableCollection<IExplorerItemViewModel>());
-        //            destinationMock.SetupGet(it => it.Children).Returns(new ObservableCollection<IExplorerItemViewModel>()
-        //            {
-        //                childDestItem.Object
-        //            });
-        //            _target.ResourceName = "someName";
-        //            _target.ResourceType = "WebSource";
-        //
-        //            var studioUpdateManagerMock = new Mock<IStudioUpdateManager>();
-        //
-        //            _serverMock.SetupGet(it => it.UpdateRepository).Returns(studioUpdateManagerMock.Object);
-        //            //act
-        //            var result = await _target.Move(destinationMock.Object);
-        //            //assert
-        //            Assert.IsTrue(result);
-        //        }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public async System.Threading.Tasks.Task TestMoveException()
         {
             //arrange
@@ -2365,7 +2359,7 @@ namespace Warewolf.Studio.ViewModels.Tests
             //act
             var result = await _target.MoveAsync(destinationMock.Object);
             //assert
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
         #endregion Test methods

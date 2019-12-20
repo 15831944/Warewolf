@@ -11,18 +11,19 @@
 using System.Runtime.InteropServices;
 using System.Security.Principal;
 using Dev2.Services.Security.MoqInstallerActions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Infrastructure.Tests.MoqInstallerActions
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IntallerActionsForDevelopmentTest
     {
         
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("InstallerActionsForDevelopment_ExecuteInstallerActions")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("InstallerActionsForDevelopment_ExecuteInstallerActions")]
         public void InstallerActionsForDevelopment_ExecuteInstallerActions_WhenNormalOperation_ExpectGroupCreatedAndUserAdded()
         {
             var warewolfGroupOps = MoqInstallerActionFactory.CreateSecurityOperationsObject();
@@ -52,9 +53,9 @@ namespace Dev2.Infrastructure.Tests.MoqInstallerActions
             Assert.IsTrue(isAdminAMember);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("InstallerActionsForDevelopment_ExecuteInstallerActions")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("InstallerActionsForDevelopment_ExecuteInstallerActions")]
         
         public void InstallerActionsForDevelopment_ExecuteInstallerActions_WhenGroupExist_ExpectUserNotAdded()
         {

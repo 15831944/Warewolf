@@ -11,7 +11,7 @@
 using Dev2.Data.PathOperations;
 using Dev2.Infrastructure.Tests;
 using Dev2.PathOperations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.IO;
@@ -19,12 +19,13 @@ using Warewolf.Resource.Errors;
 
 namespace Dev2.Data.Tests.PathOperations
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class LogonProviderTests
     {
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("LogonProvider")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("LogonProvider")]
         public void LogonProvider_Construct()
         {
             var provider = new LogonProvider();
@@ -33,9 +34,9 @@ namespace Dev2.Data.Tests.PathOperations
             provider.DoLogon(ioPath);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("LogonProvider")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("LogonProvider")]
         public void LogonProvider_DoLogon_LogonInteractive()
         {
             bool loginReturnStatus = true;
@@ -58,9 +59,9 @@ namespace Dev2.Data.Tests.PathOperations
             mockLoginImpl.Verify(o => o.LogonUser("IntegrationTester", "dev2", password, 2, 0, out v), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("LogonProvider")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("LogonProvider")]
         public void LogonProvider_DoLogon_LogonNetwork()
         {
             bool loginReturnStatus = true;
@@ -83,9 +84,9 @@ namespace Dev2.Data.Tests.PathOperations
             mockLoginImpl.Verify(o => o.LogonUser("IntegrationTester", "dev2", password, 3, 3, out v), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("LogonProvider")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("LogonProvider")]
         public void LogonProvider_DoLogon_ErrorThrowsMessage()
         {
             var mockLoginImpl = new Mock<ILoginApi>();
@@ -111,9 +112,9 @@ namespace Dev2.Data.Tests.PathOperations
             catch (Exception e)
             {
                 hadException = true;
-                Assert.AreEqual(expectedMessage, e.Message);
+                NUnit.Framework.Assert.AreEqual(expectedMessage, e.Message);
             }
-            Assert.IsTrue(hadException, "expected exception");
+            NUnit.Framework.Assert.IsTrue(hadException, "expected exception");
 
             mockLoginImpl.Verify(o => o.LogonUser("IntegrationTester", "DEV2", password, 3, 3, out v), Times.Once);
         }

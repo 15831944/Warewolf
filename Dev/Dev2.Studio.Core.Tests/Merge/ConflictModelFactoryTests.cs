@@ -9,7 +9,7 @@ using Dev2.Data.SystemTemplates.Models;
 using Dev2.Studio.Core.Interfaces;
 using Dev2.Studio.Interfaces;
 using Dev2.ViewModels.Merge;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Activities.Statements;
@@ -19,11 +19,12 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Core.Tests.Merge
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ConflictModelFactoryTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ConflictModelFactory_Constructor_DefaultConstruction_ShouldHaveChildren()
         {
             //------------Setup for test--------------------------
@@ -36,8 +37,8 @@ namespace Dev2.Core.Tests.Merge
             Assert.IsNull(conflictModelFactory.DataListViewModel);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ConflictModelFactory_AutoProperties_tests()
         {
             //------------Setup for test--------------------------
@@ -55,8 +56,8 @@ namespace Dev2.Core.Tests.Merge
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ConflictModelFactory_IsVariablesChecked_DefaultConstruction_ShouldBeFalse()
         {
             //------------Setup for test--------------------------
@@ -77,8 +78,8 @@ namespace Dev2.Core.Tests.Merge
             Assert.IsTrue(wasCalled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ConflictModelFactory_IsWorkflowNameChecked_DefaultConstruction_ShouldBeFalse()
         {
             //------------Setup for test--------------------------
@@ -99,8 +100,8 @@ namespace Dev2.Core.Tests.Merge
             Assert.IsTrue(wasCalled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ConflictModelFactory_GivenAssignConflictNode_ShouldReturnMergeToolModel()
         {
             //------------Setup for test--------------------------
@@ -124,8 +125,8 @@ namespace Dev2.Core.Tests.Merge
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetDataList_GivenResourceModel_ShouldReturnMergeToolModel()
         {
             //------------Setup for test--------------------------
@@ -156,8 +157,8 @@ namespace Dev2.Core.Tests.Merge
             Assert.AreEqual(7, completeConflict.DataListViewModel.DataList.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetDataList_GivenEmptyResourceModel_ShouldReturnReturnEmpty()
         {
             //------------Setup for test--------------------------
@@ -189,8 +190,8 @@ namespace Dev2.Core.Tests.Merge
             Assert.AreEqual(2, completeConflict.DataListViewModel.DataList.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ConflictModelFactory_GivenDsfDecisionConflictNode_ShouldReturnMergeToolModel()
         {
             //------------Setup for test--------------------------
@@ -234,8 +235,8 @@ namespace Dev2.Core.Tests.Merge
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ConflictModelFactory_GivenServiceConflictNode_ShouldReturnMergeToolModel()
         {
             //------------Setup for test--------------------------
@@ -266,8 +267,8 @@ namespace Dev2.Core.Tests.Merge
             Assert.AreEqual("DsfActivity", mergeToolModel.MergeDescription);
             Assert.AreEqual(typeof(ServiceDesignerViewModel).FullName, ((ToolConflictItem)mergeToolModel).ActivityDesignerViewModel.GetType().FullName);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
+        [Test]
+        [Author("Candice Daniel")]
         public void ConflictModelFactory_GivenServiceConflictNode_NullResourceID()
         {
             //------------Setup for test--------------------------
@@ -299,8 +300,8 @@ namespace Dev2.Core.Tests.Merge
             Assert.AreEqual(typeof(ServiceDesignerViewModel).FullName, ((ToolConflictItem)mergeToolModel).ActivityDesignerViewModel.GetType().FullName);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ConflictModelFactory_GivenDsfSwitchConflictNode_ShouldReturnMergeToolModel()
         {
             //------------Setup for test--------------------------
@@ -347,8 +348,8 @@ namespace Dev2.Core.Tests.Merge
             Assert.AreEqual(typeof(SwitchDesignerViewModel).FullName, ((ToolConflictItem)mergeToolModel).ActivityDesignerViewModel.GetType().FullName);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ConflictModelFactory_GivenNullConflictNodeActivity_ShouldReturnNull()
         {
             //------------Setup for test--------------------------

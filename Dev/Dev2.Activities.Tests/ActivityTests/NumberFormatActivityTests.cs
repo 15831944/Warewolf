@@ -19,12 +19,13 @@ using Dev2.Common.Interfaces.Enums.Enums;
 using Dev2.Common.State;
 using Dev2.Data.Interfaces.Enums;
 using Dev2.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class NumberFormatActivityTests : BaseActivityUnitTest
     {
@@ -68,7 +69,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         #region Tests
 
-        [TestMethod]
+        [Test]
         public void Format_Where_NumberInputIsScalar_Expected_ScalarResolvedAndFormatted()
         {
             SetupArguments(ActivityStrings.NumberFormatActivity_DataList_WithData, ActivityStrings.NumberFormatActivity_DataList_Shape,
@@ -84,7 +85,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Format_Where_NumberInputIsRecordset_Expected_EveryValueIntheRecordSetIsAndFormatted()
         {
             SetupArguments(ActivityStrings.NumberFormatActivity_DataList_WithData, ActivityStrings.NumberFormatActivity_DataList_Shape,
@@ -100,7 +101,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(actualVals[1], "456");
         }
 
-        [TestMethod]
+        [Test]
         public void Format_Where_NumberInputIsRawNumber_Expected_RawNumberIsFormatted()
         {
             SetupArguments(ActivityStrings.NumberFormatActivity_DataList_WithData, ActivityStrings.NumberFormatActivity_DataList_Shape,
@@ -114,7 +115,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Format_Where_RoundingDecimalPlacesIsBlank_Expected_0DesimalPlacesAssumed()
         {
             SetupArguments(ActivityStrings.NumberFormatActivity_DataList_WithData, ActivityStrings.NumberFormatActivity_DataList_Shape,
@@ -130,7 +131,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Format_Where_ShowDecimalPlacesIsBlank_Expected_NoDecimalPlaceAdjustmentOccurs()
         {
             SetupArguments(ActivityStrings.NumberFormatActivity_DataList_WithData, ActivityStrings.NumberFormatActivity_DataList_Shape,
@@ -150,9 +151,9 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         #endregion Tests
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfNumberFormatActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfNumberFormatActivity_UpdateForEachInputs")]
         public void DsfNumberFormatActivity_UpdateForEachInputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -172,9 +173,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(decimalPlacesToShow, act.DecimalPlacesToShow);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfBaseActivity_GetOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfBaseActivity_GetOutputs")]
         public void DsfBaseActivity_GetOutputs_Called_ShouldReturnListWithResultValueInIt()
         {
             //------------Setup for test--------------------------
@@ -192,9 +193,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("[[res]]", outputs[0]);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfNumberFormatActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfNumberFormatActivity_UpdateForEachInputs")]
         public void DsfNumberFormatActivity_UpdateForEachInputs_MoreThan1Updates_Updates()
         {
             //------------Setup for test--------------------------
@@ -219,9 +220,9 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfNumberFormatActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfNumberFormatActivity_UpdateForEachOutputs")]
         public void DsfNumberFormatActivity_UpdateForEachOutputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -237,9 +238,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(result, act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfNumberFormatActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfNumberFormatActivity_UpdateForEachOutputs")]
         public void DsfNumberFormatActivity_UpdateForEachOutputs_MoreThan1Updates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -258,9 +259,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(result, act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfNumberFormatActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfNumberFormatActivity_UpdateForEachOutputs")]
         public void DsfNumberFormatActivity_UpdateForEachOutputs_1Updates_UpdateCommandResult()
         {
             //------------Setup for test--------------------------
@@ -278,9 +279,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Test", act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfNumberFormatActivity_GetForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfNumberFormatActivity_GetForEachInputs")]
         public void DsfNumberFormatActivity_GetForEachInputs_WhenHasExpression_ReturnsInputList()
         {
             //------------Setup for test--------------------------
@@ -305,9 +306,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(decimalPlacesToShow, dsfForEachItems[3].Value);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfNumberFormatActivity_GetForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfNumberFormatActivity_GetForEachOutputs")]
         public void DsfNumberFormatActivity_GetForEachOutputs_WhenHasResult_ReturnsOutputList()
         {
             //------------Setup for test--------------------------
@@ -326,9 +327,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(result, dsfForEachItems[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfNumberFormatActivity_GetState")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfNumberFormatActivity_GetState")]
         public void DsfNumberFormatActivity_GetState_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------

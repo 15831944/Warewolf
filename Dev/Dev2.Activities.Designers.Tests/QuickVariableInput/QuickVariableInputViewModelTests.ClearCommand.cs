@@ -8,15 +8,15 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Activities.Designers.Tests.QuickVariableInput
 {
     public partial class QuickVariableInputViewModelTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_ClearCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_ClearCommand")]
         public void QuickVariableInputViewModel_ClearCommand_WiredUpCorrectly()
         {
             var qviViewModel = new QuickVariableInputViewModelMock();
@@ -28,9 +28,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             Assert.IsTrue(qviViewModel.ClearCommand.CanExecute(null));
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_ClearCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_ClearCommand")]
         public void QuickVariableInputViewModel_ClearCommand_ClearsFields()
         {
             var qviViewModel = new QuickVariableInputViewModelMock

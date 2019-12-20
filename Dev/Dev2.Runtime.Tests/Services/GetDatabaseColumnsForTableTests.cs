@@ -21,21 +21,22 @@ using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Runtime.Hosting;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json;
 using Warewolf.Test.Agent;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]    
+    [TestFixture]
+    [SetUpFixture]    
     public class GetDatabaseColumnsForTableTests
     {
         public static Depends _containerOps;
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("MSSql")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("MSSql")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -47,9 +48,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("MSSql")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("MSSql")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -63,11 +64,11 @@ namespace Dev2.Tests.Runtime.Services
 
         #region Execute
 
-        [TestMethod]
+        [Test]
         [Description("Service should never get null values")]
-        [Owner("Huggs")]
+        [Author("Huggs")]
         [ExpectedException(typeof(InvalidDataContractException))]
-        [TestCategory("MSSql")]
+        [Category("MSSql")]
         public void GetDatabaseColumnsForTable_UnitTest_ExecuteWithNullValues_ExpectedInvalidDataContractException()
         {
             var esb = new GetDatabaseColumnsForTable();
@@ -75,10 +76,10 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(string.Empty, actual);
         }
 
-        [TestMethod]
+        [Test]
         [Description("Service should never get null values")]
-        [Owner("Huggs")]
-        [TestCategory("MSSql")]
+        [Author("Huggs")]
+        [Category("MSSql")]
         public void GetDatabaseColumnsForTable_UnitTest_ExecuteWithNoDatabaseInValues_ExpectedHasErrors()
         {
             var esb = new GetDatabaseColumnsForTable();
@@ -89,10 +90,10 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("No database set.", result.Errors);
         }
 
-        [TestMethod]
+        [Test]
         [Description("Service should never get null values")]
-        [Owner("Huggs")]
-        [TestCategory("MSSql")]
+        [Author("Huggs")]
+        [Category("MSSql")]
         public void GetDatabaseColumnsForTable_UnitTest_ExecuteWithNullDatabase_ExpectedHasErrors()
         {
 
@@ -104,10 +105,10 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("No database set.", result.Errors);
         }
 
-        [TestMethod]
+        [Test]
         [Description("Service should never get null values")]
-        [Owner("Huggs")]
-        [TestCategory("MSSql")]
+        [Author("Huggs")]
+        [Category("MSSql")]
         public void GetDatabaseColumnsForTable_UnitTest_ExecuteWithBlankDatabase_ExpectedHasErrors()
         {
             var esb = new GetDatabaseColumnsForTable();
@@ -118,10 +119,10 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("No database set.", result.Errors);
         }
 
-        [TestMethod]
+        [Test]
         [Description("Service should never get null values")]
-        [Owner("Huggs")]
-        [TestCategory("MSSql")]
+        [Author("Huggs")]
+        [Category("MSSql")]
         public void GetDatabaseColumnsForTable_UnitTest_ExecuteWithNoTableNameInValues_ExpectedHasErrors()
         {
 
@@ -133,10 +134,10 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("No table name set.", result.Errors);
         }
 
-        [TestMethod]
+        [Test]
         [Description("Service should never get null values")]
-        [Owner("Huggs")]
-        [TestCategory("MSSql")]
+        [Author("Huggs")]
+        [Category("MSSql")]
         public void GetDatabaseColumnsForTable_UnitTest_ExecuteWithNullTableNameExpectedHasErrors()
         {
 
@@ -148,10 +149,10 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("No table name set.", result.Errors);
         }
 
-        [TestMethod]
+        [Test]
         [Description("Service should never get null values")]
-        [Owner("Huggs")]
-        [TestCategory("MSSql")]
+        [Author("Huggs")]
+        [Category("MSSql")]
         public void GetDatabaseColumnsForTable_UnitTest_ExecuteWithBlankTableName_ExpectedHasErrors()
         {
             var esb = new GetDatabaseColumnsForTable();
@@ -163,9 +164,9 @@ namespace Dev2.Tests.Runtime.Services
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("MSSql")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("MSSql")]
         public void GetDatabaseColumnsForTable_Execute_ValidDatabaseSource_WithSchema_OnlyReturnsForThatSchema()
         {
             var parser = new Mock<IActivityParser>();
@@ -217,9 +218,9 @@ namespace Dev2.Tests.Runtime.Services
             StringAssert.Contains(result.Items[3].SqlDataType.ToString(), "NChar");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("MSSql with Invalid Schema")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("MSSql with Invalid Schema")]
         public void GetDatabaseColumnsForTable_Execute_NullSchema_ValidDatabaseSource_ReturnsFromAllSchemas()
         {
             var parser = new Mock<IActivityParser>();
@@ -266,9 +267,9 @@ namespace Dev2.Tests.Runtime.Services
             StringAssert.Contains(result.Items[2].SqlDataType.ToString(), "Int");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("MSSql with Invalid Schema")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("MSSql with Invalid Schema")]
         public void GetDatabaseColumnsForTable_Execute_EmptySchema_ValidDatabaseSource_ReturnsFromAllSchemas()
         {
             var parser = new Mock<IActivityParser>();
@@ -334,16 +335,16 @@ namespace Dev2.Tests.Runtime.Services
             return dbSource;
         }
 
-        [TestCleanup]
+        [TearDown]
         public void CleanupContainer() => _containerOps?.Dispose();
 
         #endregion
 
         #region HandlesType
 
-        [TestMethod]
-        [Owner("Huggs")]
-        [TestCategory("MSSql")]
+        [Test]
+        [Author("Huggs")]
+        [Category("MSSql")]
         public void GetDatabaseColumnsForTable_UnitTest_HandlesType_ExpectedReturnsGetDatabaseColumnsForTableService()
         {
             var esb = new GetDatabaseColumnsForTable();
@@ -355,10 +356,10 @@ namespace Dev2.Tests.Runtime.Services
 
         #region CreateServiceEntry
 
-        [TestMethod]
+        [Test]
         [Description("Service should never get null values")]
-        [Owner("Huggs")]
-        [TestCategory("MSSql")]
+        [Author("Huggs")]
+        [Category("MSSql")]
         public void GetDatabaseColumnsForTable_UnitTest_CreateServiceEntry_ExpectedReturnsDynamicService()
         {
             var esb = new GetDatabaseColumnsForTable();

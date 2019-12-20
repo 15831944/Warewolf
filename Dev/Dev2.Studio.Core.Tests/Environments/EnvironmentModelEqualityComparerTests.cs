@@ -15,17 +15,18 @@ using Dev2.Studio.Core.AppResources.DependencyInjection.EqualityComparers;
 using Dev2.Studio.Core.Models;
 using Dev2.Studio.Interfaces;
 using Dev2.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Core.Tests.Environments
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class EnvironmentModelEqualityComparerTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EnvironmentModelEqualityComparer_Instance")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EnvironmentModelEqualityComparer_Instance")]
         public void EnvironmentModelEqualityComparer_Instance_IsSingleton()
         {
             //------------Setup for test--------------------------
@@ -38,9 +39,9 @@ namespace Dev2.Core.Tests.Environments
             Assert.AreSame(comparer1, comparer2);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EnvironmentModelEqualityComparer_Equals")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EnvironmentModelEqualityComparer_Equals")]
         public void EnvironmentModelEqualityComparer_Equals_XIsNull_False()
         {
             //------------Setup for test--------------------------
@@ -58,9 +59,9 @@ namespace Dev2.Core.Tests.Environments
             Assert.IsFalse(actual);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EnvironmentModelEqualityComparer_Equals")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EnvironmentModelEqualityComparer_Equals")]
         public void EnvironmentModelEqualityComparer_Equals_YIsNull_False()
         {
             //------------Setup for test--------------------------
@@ -78,9 +79,9 @@ namespace Dev2.Core.Tests.Environments
             Assert.IsFalse(actual);
         }
         
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EnvironmentModelEqualityComparer_Equals")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EnvironmentModelEqualityComparer_Equals")]
         public void EnvironmentModelEqualityComparer_Equals_YIsEnvironmentModel_InvokesEqualsOfX()
         {
             //------------Setup for test--------------------------
@@ -96,9 +97,9 @@ namespace Dev2.Core.Tests.Environments
            environment1.Verify(e => e.Equals(environment2.Object));
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EnvironmentModelEqualityComparer_GetHashCode")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EnvironmentModelEqualityComparer_GetHashCode")]
         public void EnvironmentModelEqualityComparer_GetHashCode_InvokesGetHashCodeOfArg()
         {
             //------------Setup for test--------------------------

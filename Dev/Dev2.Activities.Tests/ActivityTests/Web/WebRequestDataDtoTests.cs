@@ -1,16 +1,17 @@
 ﻿using Dev2.Activities;
 using Dev2.Common.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 
 namespace Dev2.Tests.Activities.ActivityTests.Web
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WebRequestDataDtoTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateRequestDataDto_GivenMethodGet_ShouldReturnDtoWithMethodGet()
         {
             //---------------Set up test pack-------------------
@@ -22,8 +23,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual(webRequestDataDto.WebRequestMethod, WebRequestMethod.Get);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateRequestDataDto_GivenTypeA_ShouldReturnDtoWithTypeA()
         {
             //---------------Set up test pack-------------------
@@ -35,8 +36,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual(webRequestDataDto.Type.Expression.ToString(), "A");
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateRequestDataDto_GivenDisplayNameB_ShouldReturnDtoWithDisplayNameB()
         {
             //---------------Set up test pack-------------------

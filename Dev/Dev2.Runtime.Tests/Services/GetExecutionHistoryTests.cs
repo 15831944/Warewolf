@@ -14,7 +14,7 @@ using Dev2.Common.Interfaces.Enums;
 using Dev2.Communication;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json;
 using System;
@@ -28,12 +28,13 @@ using Warewolf.Triggers;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class GetExecutionHistoryTests
     {
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(GetExecutionHistory))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(GetExecutionHistory))]
         public void GetExecutionHistory_GetAuthorizationContextForService_Returns_Administrator()
         {
             //------------Setup for test-------------------------
@@ -43,9 +44,9 @@ namespace Dev2.Tests.Runtime.Services
             //------------Assert Results-------------------------
             Assert.AreEqual(AuthorizationContext.Administrator, authorizationContextForService);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(GetExecutionHistory))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(GetExecutionHistory))]
         public void GetExecutionHistory_CreateServiceEntry_Returns_GetExecutionHistory()
         {
             //------------Setup for test-------------------------
@@ -58,9 +59,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsFalse(string.IsNullOrEmpty(handleType));
             Assert.AreEqual(handleType, dynamicService.Name);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(GetExecutionHistory))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(GetExecutionHistory))]
         public void GetExecutionHistory_GivenEmptyArgs_Returns_ExecuteMessage()
         {
 
@@ -77,9 +78,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsNotNull(deserializedResults);
             Assert.AreEqual(0, deserializedResults.Count);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(GetExecutionHistory))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(GetExecutionHistory))]
         [ExpectedException(typeof(InvalidDataContractException))]
         public void GetExecutionHistory_GivenNullArgs_Returns_InvalidDataContractException()
         {
@@ -90,9 +91,9 @@ namespace Dev2.Tests.Runtime.Services
             var executeResults = getExecutionHistory.Execute(null, workspaceMock.Object);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(GetExecutionHistory))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(GetExecutionHistory))]
         public void GetExecutionHistory_Execute()
         {
             var stringBuilders = new Dictionary<string, StringBuilder>

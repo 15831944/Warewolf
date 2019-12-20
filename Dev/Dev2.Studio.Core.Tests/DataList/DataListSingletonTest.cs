@@ -11,13 +11,14 @@
 using System.Threading;
 using Dev2.Studio.Core;
 using Dev2.Studio.Interfaces.DataList;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Core.Tests
 {
-    [TestClass]
-    [TestCategory("Studio Datalist Core")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Studio Datalist Core")]
     public class DataListSingletonTest
     {
         public static readonly object DataListSingletonTestGuard = new object();
@@ -26,13 +27,13 @@ namespace Dev2.Core.Tests
 
         #region Additional test attributes
 
-        [TestInitialize]
+        [SetUp]
         public void Init()
         {
             Monitor.Enter(DataListSingletonTestGuard);
         }
 
-        [TestCleanup]
+        [TearDown]
         public void Cleanup()
         {
             Monitor.Exit(DataListSingletonTestGuard);
@@ -42,7 +43,7 @@ namespace Dev2.Core.Tests
 
         #region SetDataList Tests
 
-        [TestMethod]
+        [Test]
         public void SetDataList_Expected_CurrentDataListSetInSingleton()
         {
             var mockdataListViewModel = Dev2MockFactory.SetupDataListViewModel();
@@ -54,7 +55,7 @@ namespace Dev2.Core.Tests
 
         #region UpdateActiveDataList Tests
 
-        [TestMethod]
+        [Test]
         public void UpdateActiveDataList_Expected_NewActiveDataList()
         {
             var mockdataListViewModel = Dev2MockFactory.SetupDataListViewModel();

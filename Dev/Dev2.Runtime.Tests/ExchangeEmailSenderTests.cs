@@ -11,18 +11,19 @@
 using Dev2.Common.Exchange;
 using Dev2.Common.Interfaces;
 using Microsoft.Exchange.WebServices.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 
 namespace Dev2.Tests.Runtime
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ExchangeEmailSenderTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExchangeEmailSender))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExchangeEmailSender))]
         public void ExchangeEmailSender_InValid_Send_AutoDiscoverUrl_IsNullOrEmpty_ExpectServiceValidationException()
         {
             //---------------------------Arrange---------------------------
@@ -31,12 +32,12 @@ namespace Dev2.Tests.Runtime
             var exchangeEmailSender = new ExchangeEmailSender(mockExchange.Object);
             //---------------------------Act-------------------------------
             //---------------------------Assert----------------------------
-            Assert.ThrowsException<ServiceValidationException>(()=> exchangeEmailSender.Send(new ExchangeServiceFactory().Create(), new EmailMessage(new ExchangeServiceFactory().Create())));
+            NUnit.Framework.Assert.Throws<ServiceValidationException>(()=> exchangeEmailSender.Send(new ExchangeServiceFactory().Create(), new EmailMessage(new ExchangeServiceFactory().Create())));
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExchangeEmailSender))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExchangeEmailSender))]
         public void ExchangeEmailSender_InValid_Send_AutoDiscoverUrl_IsNotNullOrEmpty_ExpectUriFormatException()
         {
             //---------------------------Arrange---------------------------
@@ -47,12 +48,12 @@ namespace Dev2.Tests.Runtime
             var exchangeEmailSender = new ExchangeEmailSender(mockExchange.Object);
             //---------------------------Act-------------------------------
             //---------------------------Assert----------------------------
-            Assert.ThrowsException<UriFormatException>(()=> exchangeEmailSender.Send(new ExchangeServiceFactory().Create(), new EmailMessage(new ExchangeServiceFactory().Create())));
+            NUnit.Framework.Assert.Throws<UriFormatException>(()=> exchangeEmailSender.Send(new ExchangeServiceFactory().Create(), new EmailMessage(new ExchangeServiceFactory().Create())));
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExchangeEmailSender))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExchangeEmailSender))]
         public void ExchangeEmailSender_InValid_Send_AutoDiscoverUrl_IsNotNullOrEmpty_ExpectServiceLocalException()
         {
             //---------------------------Arrange---------------------------
@@ -63,12 +64,12 @@ namespace Dev2.Tests.Runtime
             var exchangeEmailSender = new ExchangeEmailSender(mockExchange.Object);
             //---------------------------Act-------------------------------
             //---------------------------Assert----------------------------
-            Assert.ThrowsException<ServiceLocalException>(() => exchangeEmailSender.Send(new ExchangeServiceFactory().Create(), new EmailMessage(new ExchangeServiceFactory().Create())));
+            NUnit.Framework.Assert.Throws<ServiceLocalException>(() => exchangeEmailSender.Send(new ExchangeServiceFactory().Create(), new EmailMessage(new ExchangeServiceFactory().Create())));
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExchangeEmailSender))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExchangeEmailSender))]
         public void ExchangeEmailSender_InValid_Send_AutoDiscoverUrl_IsNotNullOrEmpty_ExpectFormatException()
         {
             //---------------------------Arrange---------------------------
@@ -78,7 +79,7 @@ namespace Dev2.Tests.Runtime
             var exchangeEmailSender = new ExchangeEmailSender(mockExchange.Object);
             //---------------------------Act-------------------------------
             //---------------------------Assert----------------------------
-            Assert.ThrowsException<FormatException>(()=> exchangeEmailSender.Send(new ExchangeServiceFactory().Create(), new EmailMessage(new ExchangeServiceFactory().Create())));
+            NUnit.Framework.Assert.Throws<FormatException>(()=> exchangeEmailSender.Send(new ExchangeServiceFactory().Create(), new EmailMessage(new ExchangeServiceFactory().Create())));
         }
     }
 }

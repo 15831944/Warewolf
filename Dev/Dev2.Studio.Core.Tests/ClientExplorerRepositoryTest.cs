@@ -16,21 +16,22 @@ using Dev2.Controller;
 using Dev2.Explorer;
 using Dev2.Models;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Core.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ClientExplorerRepositoryTest
     {
 
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ClientExplorerRepository_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ClientExplorerRepository_Ctor")]
         public void ClientExplorerRepository_ClientExplorerRepository_Ctor_ExpectConnectionIsSet()
         {
             //------------Setup for test--------------------------
@@ -46,9 +47,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(rep.CommunicationControllerFactory, comFactory.Object);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ClientExplorerRepository_CreateStudioExplorerItems")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ClientExplorerRepository_CreateStudioExplorerItems")]
         public void ClientExplorerRepository_ClientExplorerRepository_ExpectLoadCalled_ExpectExecCalled()
         {
             //------------Setup for test--------------------------
@@ -73,9 +74,9 @@ namespace Dev2.Core.Tests
 
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ClientExplorerRepository_CreateFolder")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ClientExplorerRepository_CreateFolder")]
         public void ClientExplorerRepository_CreateFolder_ExpectCreateServiceCalled()
         {
             //------------Setup for test--------------------------
@@ -98,9 +99,9 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ClientExplorerRepository_RenameItem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ClientExplorerRepository_RenameItem")]
         public void ClientExplorerRepository_RenameItem_ExpectRenameServiceCalled()
         {
             //------------Setup for test--------------------------
@@ -125,9 +126,9 @@ namespace Dev2.Core.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ClientExplorerRepository_MoveItem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ClientExplorerRepository_MoveItem")]
         public void ClientExplorerRepository_MoveItem_ExpectMoveServiceCalled()
         {
             //------------Setup for test--------------------------
@@ -151,9 +152,9 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ClientExplorerRepository_DeleteItemItem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ClientExplorerRepository_DeleteItemItem")]
         public void ClientExplorerRepository_DeleteItemItem_ExpectDeleteServiceCalled()
         {
             //------------Setup for test--------------------------

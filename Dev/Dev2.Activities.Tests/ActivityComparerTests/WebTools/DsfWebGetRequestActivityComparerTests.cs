@@ -1,6 +1,6 @@
 ﻿using System;
 using Dev2.Activities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Framework.Converters.Graph.Ouput;
 using Dev2.Common.Interfaces.Core.Graph;
 using System.Collections.Generic;
@@ -10,11 +10,12 @@ using Dev2.Common.State;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfWebGetRequestActivityComparerTests
     {
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameUniqueID_EmptyWebGetRequestTools_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -29,8 +30,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentWebGetRequestToolIds_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -46,8 +47,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameWebGetRequestTool_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -62,8 +63,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_DisplayName_Value_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -78,8 +79,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_DisplayName_Value_IsNOT_Equal()
         {
             //---------------Set up test pack-------------------
@@ -94,8 +95,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_DisplayName_Value_Different_Casing_IsNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -110,8 +111,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_Result_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -127,8 +128,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
         }
 
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_Result_IsNOTEqual()
         {
             //---------------Set up test pack-------------------
@@ -143,8 +144,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_Url_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -159,8 +160,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_Url_Different_Casing_IsNOtEqual()
         {
             //---------------Set up test pack-------------------
@@ -174,8 +175,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_Url_IsNOTEqual()
         {
             //---------------Set up test pack-------------------
@@ -190,8 +191,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_Headers_IsNOTEqual()
         {
             //---------------Set up test pack-------------------
@@ -206,8 +207,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_Headers_Different_Casing_IsNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -222,8 +223,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_Headers_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -238,8 +239,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_Method_IsNOTEqual()
         {
             //---------------Set up test pack-------------------
@@ -254,8 +255,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_Method_Different_Casing_IsNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -270,8 +271,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_Method_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -286,9 +287,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfWebGetRequestActivity_GetState")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfWebGetRequestActivity_GetState")]
         public void DsfWebGetRequestActivity_GetState_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------

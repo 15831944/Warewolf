@@ -1,16 +1,17 @@
 ﻿using Dev2.Activities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.SysInfo
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfGatherSystemInformationActivityComparerTest
     {
 #pragma warning disable S3776,S1541,S134,CC0075,S1066,S1067
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentUniqueIds_ActivityTools_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -24,8 +25,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.SysInfo
             //---------------Test Result -----------------------
             Assert.IsTrue(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_EmptyActivityTools_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -40,8 +41,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.SysInfo
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_DisplayName_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -56,8 +57,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.SysInfo
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_DisplayName_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -71,8 +72,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.SysInfo
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_Text_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -88,8 +89,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.SysInfo
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_SystemInformationCollection_IsNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -118,8 +119,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.SysInfo
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_SystemInformationCollection_Different_Indexes_IsNotEqual()
         {
             //---------------Set up test pack-------------------

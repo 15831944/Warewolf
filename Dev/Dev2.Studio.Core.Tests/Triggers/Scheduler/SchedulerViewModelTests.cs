@@ -30,7 +30,7 @@ using Dev2.TaskScheduler.Wrappers;
 using Dev2.Threading;
 using Dev2.Triggers.Scheduler;
 using Dev2.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Microsoft.Win32.TaskScheduler;
 using Moq;
 using System;
@@ -44,11 +44,12 @@ using System.Windows.Controls;
 
 namespace Dev2.Core.Tests.Triggers.Scheduler
 {
-    [TestClass]
-    [TestCategory("Studio Triggers Scheduler Core")]
+    [TestFixture]
+    [SetUpFixture]
+    [NUnit.Framework.Category("Studio Triggers Scheduler Core")]
     public class SchedulerViewModelTests
     {
-        [TestInitialize]
+        [SetUp]
         public void SetupForTest()
         {
             AppUsageStats.LocalHost = "http://localhost:3142";
@@ -61,9 +62,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             CustomContainer.Register(new Mock<Microsoft.Practices.Prism.PubSubEvents.IEventAggregator>().Object);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SchedulerViewModel_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("SchedulerViewModel_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SchedulerViewModel_Constructor_NullEventAggregator_Exception()
         {
@@ -75,9 +76,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SchedulerViewModel_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("SchedulerViewModel_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SchedulerViewModel_Constructor_NullDirectoryObjectPickerDialog_Exception()
         {
@@ -89,9 +90,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SchedulerViewModel_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("SchedulerViewModel_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SchedulerViewModel_Constructor_NullPopupController_Exception()
         {
@@ -102,9 +103,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
 
             //------------Assert Results-------------------------
         }
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SchedulerViewModel_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("SchedulerViewModel_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SchedulerViewModel_Constructor_NullAsyncWorker_Exception()
         {
@@ -116,9 +117,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SchedulerViewModel_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("SchedulerViewModel_Constructor")]
         public void SchedulerViewModel_Constructor_ValidConstruction_ShouldSetProperties()
         {
             //------------Setup for test--------------------------
@@ -130,9 +131,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.IsNotNull(schdulerViewModel.Errors);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SchedulerViewModel_Constructor")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [NUnit.Framework.Category("SchedulerViewModel_Constructor")]
         public void SchedulerViewModel_Constructor_ValidConstruction_ShouldSetErrors()
         {
             //------------Setup for test--------------------------
@@ -147,9 +148,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.IsNotNull(schedulerViewModel.Errors);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SchedulerViewModel_HasDebugOutput")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [NUnit.Framework.Category("SchedulerViewModel_HasDebugOutput")]
         public void SchedulerViewModel_HasDebugOutput_ExpectedTrue()
         {
             //------------Setup for test--------------------------
@@ -164,9 +165,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.IsTrue(schedulerViewModel.HasDebugOutput);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SchedulerViewModel_Constructor")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [NUnit.Framework.Category("SchedulerViewModel_Constructor")]
         public void SchedulerViewModel_Constructor_SetDisplayName_OnlyForCoverage()
         {
             //------------Setup for test--------------------------
@@ -178,9 +179,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.AreEqual("displayName", schedulerViewModel.DisplayName);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SchedulerViewModel_Constructor")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [NUnit.Framework.Category("SchedulerViewModel_Constructor")]
         public void SchedulerViewModel_Constructor_ServerNotNull_ShouldSetDisplayName()
         {
             //------------Setup for test--------------------------
@@ -193,9 +194,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.AreEqual("Scheduler - ", schdulerViewModel.DisplayName);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SchedulerViewModel_Constructor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("SchedulerViewModel_Constructor")]
         public void SchedulerViewModel_Constructor_ValidConstruction_ShouldSetHelpText()
         {
             //------------Setup for test--------------------------
@@ -212,9 +213,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.AreEqual(expectedHelpText, schedulerViewModel.HelpText);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SchedulerViewModel_ShowError")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [NUnit.Framework.Category("SchedulerViewModel_ShowError")]
         public void SchedulerViewModel_ShowError_WithSaveError_HasErrorsTrue()
         {
             //------------Setup for test--------------------------
@@ -227,9 +228,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.IsFalse(schedulerViewModel.IsLoading);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SchedulerViewModel_ShowError")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [NUnit.Framework.Category("SchedulerViewModel_ShowError")]
         public void SchedulerViewModel_ShowError_WithNormalError_HasErrorsTrue()
         {
             //------------Setup for test--------------------------
@@ -260,9 +261,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.IsTrue(schedulerViewModel.HasErrors);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SchedulerViewModel_ClearError")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [NUnit.Framework.Category("SchedulerViewModel_ClearError")]
         public void SchedulerViewModel_ClearError_WithNormalError_HasErrorsSet()
         {
             //------------Setup for test--------------------------
@@ -297,9 +298,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.IsFalse(schedulerViewModel.HasErrors);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SchedulerViewModel_Trigger")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [NUnit.Framework.Category("SchedulerViewModel_Trigger")]
         public void SchedulerViewModel_Trigger_SetTrigger_IsDirtyTrue()
         {
             //------------Setup for test--------------------------
@@ -319,9 +320,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
         }
 
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SchedulerViewModel_Trigger")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [NUnit.Framework.Category("SchedulerViewModel_Trigger")]
         public void SchedulerViewModel_SaveCommand_AfterSave_IsDirtyFalse()
         {
             var explorerTooltips = new Mock<IExplorerTooltips>();
@@ -368,9 +369,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
         }
 
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SchedulerViewModel_Trigger")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [NUnit.Framework.Category("SchedulerViewModel_Trigger")]
         public void SchedulerViewModel_Trigger_SetTrigger_IsDirtyFalse()
         {
             //------------Setup for test--------------------------
@@ -393,9 +394,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.IsFalse(schedulerViewModel.SelectedTask.IsDirty);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SchedulerViewModel_RunAsapIfScheduleMissed")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [NUnit.Framework.Category("SchedulerViewModel_RunAsapIfScheduleMissed")]
         public void SchedulerViewModel_RunAsapIfScheduleMissed_SetRunAsapIfScheduleMissed_IsDirtyTrue()
         {
             //------------Setup for test--------------------------
@@ -411,9 +412,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.IsTrue(schedulerViewModel.RunAsapIfScheduleMissed);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SchedulerViewModel_Status")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [NUnit.Framework.Category("SchedulerViewModel_Status")]
         public void SchedulerViewModel_Status_SetStatus_IsDirtyTrue()
         {
             //------------Setup for test--------------------------
@@ -430,9 +431,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.AreEqual(SchedulerStatus.Disabled, schedulerViewModel.Status);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SchedulerViewModel_NumberOfRecordsToKeep")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [NUnit.Framework.Category("SchedulerViewModel_NumberOfRecordsToKeep")]
         public void SchedulerViewModel_NumberOfRecordsToKeep_SetNumberOfRecordsToKeepToBlank_ValueIsZero()
         {
             //------------Setup for test--------------------------
@@ -445,9 +446,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.AreEqual("0", schedulerViewModel.NumberOfRecordsToKeep);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SchedulerViewModel_NumberOfRecordsToKeep")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [NUnit.Framework.Category("SchedulerViewModel_NumberOfRecordsToKeep")]
         public void SchedulerViewModel_NumberOfRecordsToKeep_SetNumberOfRecordsToKeepToNoNumeric_ValueIsZero()
         {
             //------------Setup for test--------------------------
@@ -460,9 +461,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.AreEqual("0", schedulerViewModel.NumberOfRecordsToKeep);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SchedulerViewModel_SelectedHistory")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [NUnit.Framework.Category("SchedulerViewModel_SelectedHistory")]
         public void SchedulerViewModel_SelectedHistory_SetSelectedHistory_DebugMessageFiredTwice()
         {
             //------------Setup for test--------------------------
@@ -482,9 +483,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.IsNotNull(schedulerViewModel.SelectedHistory);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SchedulerViewModel_AccountName")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [NUnit.Framework.Category("SchedulerViewModel_AccountName")]
         public void SchedulerViewModel_AccountName_SetAccountName_IsDirty()
         {
             //------------Setup for test--------------------------
@@ -516,9 +517,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.AreEqual("someAccountName", schedulerViewModel.AccountName);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SchedulerViewModel_AccountName")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [NUnit.Framework.Category("SchedulerViewModel_AccountName")]
         public void SchedulerViewModel_AccountName_SetAccountName_SelectedTaskNull_NothingChangedOnTask()
         {
             //------------Setup for test--------------------------
@@ -551,9 +552,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.IsFalse(_accountNameChanged);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SchedulerViewModel_Password")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [NUnit.Framework.Category("SchedulerViewModel_Password")]
         public void SchedulerViewModel_Password_SetPassword_IsDirty()
         {
             //------------Setup for test--------------------------
@@ -573,9 +574,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.AreEqual("somePassword", schedulerViewModel.Password);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SchedulerViewModel_ConnectionError")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [NUnit.Framework.Category("SchedulerViewModel_ConnectionError")]
         public void SchedulerViewModel_ConnectionError_SetAndClearError_ValidErrorSetAndClear()
         {
             //------------Setup for test--------------------------
@@ -595,9 +596,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.IsFalse(schedulerViewModel.HasConnectionError);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SchedulerViewModel_SaveCommand")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("SchedulerViewModel_SaveCommand")]
         public void SchedulerViewModel_SaveCommand_UserNamePasswordNotSet_CallsGetCredentials()
         {
             //------------Setup for test--------------------------
@@ -626,9 +627,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             auth.Verify(a => a.IsAuthorized(AuthorizationContext.Administrator, null));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SchedulerViewModel_Constructor")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [NUnit.Framework.Category("SchedulerViewModel_Constructor")]
         public void SchedulerViewModel_Constructor_SetupServer_Validate()
         {
             //------------Setup for test--------------------------
@@ -666,9 +667,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.IsTrue(schedulerViewModel.CurrentEnvironment.IsConnected);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SchedulerViewModel_SaveCommand")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [NUnit.Framework.Category("SchedulerViewModel_SaveCommand")]
         public void SchedulerViewModel_SaveCommand_WithNewNameDiffToOldNameYesDialogResponse_DialogShowsConflict()
         {
             //------------Setup for test--------------------------
@@ -704,9 +705,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SchedulerViewModel_SaveCommand")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("SchedulerViewModel_SaveCommand")]
         public void SchedulerViewModel_SaveCommand_WithNewNameDiffToOldNameYesDialogResponse_OldNameChanges()
         {
             //------------Setup for test--------------------------
@@ -774,9 +775,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
         }
 
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SchedulerViewModel_SaveCommand")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [NUnit.Framework.Category("SchedulerViewModel_SaveCommand")]
         public void SchedulerViewModel_SaveCommand_WithNewNameDiffToOldNameYesDialogResponse_OldNameChangesNewTask()
         {
             //------------Setup for test--------------------------
@@ -813,9 +814,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
 
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SchedulerViewModel_SaveCommand")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [NUnit.Framework.Category("SchedulerViewModel_SaveCommand")]
         public void SchedulerViewModel_SaveCommand_ServerNotConnected_ErrorMessageSet()
         {
             //------------Setup for test--------------------------
@@ -848,9 +849,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.AreEqual(@"Error while saving: Server unreachable.", schedulerViewModel.Errors.FetchErrors().FirstOrDefault());
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SchedulerViewModel_SaveCommand")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [NUnit.Framework.Category("SchedulerViewModel_SaveCommand")]
         public void SchedulerViewModel_SaveCommand_AuthorizationFails()
         {
             //------------Setup for test--------------------------
@@ -883,9 +884,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.AreEqual(@"Error while saving: You don't have permission to schedule on this server. You need Administrator permission.", schedulerViewModel.Errors.FetchErrors().FirstOrDefault());
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SchedulerViewModel_SaveCommand")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [NUnit.Framework.Category("SchedulerViewModel_SaveCommand")]
         public void SchedulerViewModel_SaveCommand_WithNewNameDiffToOldNameNoDialogResponse_DialogShowsConflict()
         {
             //------------Setup for test--------------------------
@@ -935,9 +936,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             mockPopupController.Verify(c => c.ShowNameChangedConflict(It.IsAny<string>(), It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SchedulerViewModel_SaveCommand")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [NUnit.Framework.Category("SchedulerViewModel_SaveCommand")]
         public void SchedulerViewModel_SaveCommand_WithNewNameDiffToOldNameCancelDialogResponse_DialogShowsConflict()
         {
             //------------Setup for test--------------------------
@@ -971,9 +972,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             mockPopupController.Verify(c => c.ShowNameChangedConflict(It.IsAny<string>(), It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SchedulerViewModel_SaveCommand")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("SchedulerViewModel_SaveCommand")]
         public void SchedulerViewModel_SaveCommand_WithNewNameDiffToOldNameCancelDialogResponse_IsNewTrue_ShouldNotShowDialog()
         {
             //------------Setup for test--------------------------
@@ -1004,9 +1005,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             mockPopupController.Verify(c => c.ShowNameChangedConflict(It.IsAny<string>(), It.IsAny<string>()), Times.Never());
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SchedulerViewModel_SaveCommand")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("SchedulerViewModel_SaveCommand")]
         public void SchedulerViewModel_SaveCommand_WithNewNameDiffToOldNameCancelDialogResponse_IsNewFalse_ShouldShowDialog()
         {
             //------------Setup for test--------------------------
@@ -1042,9 +1043,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             mockPopupController.Verify(c => c.ShowNameChangedConflict(It.IsAny<string>(), It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SchedulerViewModel_SaveCommand")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("SchedulerViewModel_SaveCommand")]
         public void SchedulerViewModel_SaveCommand_UserNamePasswordSet_CallsScheduledResourceModelSave()
         {
             //------------Setup for test--------------------------
@@ -1076,9 +1077,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             mockScheduledResourceModel.Verify(model => model.Save(It.IsAny<IScheduledResource>(), out errorMessage), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SchedulerViewModel_SaveCommand")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("SchedulerViewModel_SaveCommand")]
         public void SchedulerViewModel_SaveCommand_UserNamePasswordSet_CallsIsAuthorised()
         {
             //------------Setup for test--------------------------
@@ -1108,9 +1109,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             mockScheduledResourceModel.Verify(model => model.Save(It.IsAny<IScheduledResource>(), out errorMessage), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SchedulerViewModel_SelectedTask")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("SchedulerViewModel_SelectedTask")]
         public void SchedulerViewModel_SelectedTask_SetValue_ShouldFirePropertyChangedNotifications()
         {
             //------------Setup for test--------------------------
@@ -1204,9 +1205,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             agg.Verify(a => a.Publish(It.IsAny<DebugOutputMessage>()));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SchedulerViewModel_SelectedTask")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("SchedulerViewModel_SelectedTask")]
         public void SchedulerViewModel_SelectedTask_SetValueWithHistoryTab_ShouldFirePropertyChangedNotifications()
         {
             //------------Setup for test--------------------------
@@ -1297,9 +1298,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.IsTrue(_selectedHistoryChange);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SchedulerViewModel_Name")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("SchedulerViewModel_Name")]
         public void SchedulerViewModel_Name_EmptyString_AddsErrorMessage()
         {
             //------------Setup for test--------------------------
@@ -1321,9 +1322,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.AreEqual(string.Empty, schedulerViewModel.SelectedTask.Name);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SchedulerViewModel_Name")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("SchedulerViewModel_Name")]
         public void SchedulerViewModel_Name_WasEmptyStringValidString_ClearsErrorMessage()
         {
             //------------Setup for test--------------------------
@@ -1348,9 +1349,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.AreEqual("This is a test", schedulerViewModel.SelectedTask.Name);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SchedulerViewModel_WorkflowName")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [NUnit.Framework.Category("SchedulerViewModel_WorkflowName")]
         public void SchedulerViewModel_WorkflowName_BlankName_SetsError()
         {
             //------------Setup for test--------------------------
@@ -1368,9 +1369,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.AreEqual(string.Empty, schedulerViewModel.SelectedTask.WorkflowName);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SchedulerViewModel_Name")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("SchedulerViewModel_Name")]
         public void SchedulerViewModel_Name_DuplicateName_SetsError()
         {
             //------------Setup for test--------------------------
@@ -1396,9 +1397,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.IsTrue(schedulerViewModel.SelectedTask.IsDirty);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SchedulerViewModel_Name")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("SchedulerViewModel_Name")]
         public void SchedulerViewModel_Name_NonDuplicateName_ClearsError()
         {
             //------------Setup for test--------------------------
@@ -1432,9 +1433,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
 
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SchedulerViewModel_NumberOfRecordsToKeep")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("SchedulerViewModel_NumberOfRecordsToKeep")]
         public void SchedulerViewModel_NumberOfRecordsToKeep_NotWholeNumber_KeepsOldNumber()
         {
             //------------Setup for test--------------------------
@@ -1458,9 +1459,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.AreEqual(5, schedulerViewModel.SelectedTask.NumberOfHistoryToKeep);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SchedulerViewModel_History")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("SchedulerViewModel_History")]
         public void SchedulerViewModel_History_Get_ShouldCallCreateHistoryOnScheduledResourceModel()
         {
             //------------Setup for test--------------------------
@@ -1484,9 +1485,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.IsFalse(schedulerViewModel.IsProgressBarVisible);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SchedulerViewModel_ActiveItem")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("SchedulerViewModel_ActiveItem")]
         public void SchedulerViewModel_ActiveItem_HeaderNotHistory_ShouldNotFirePropertyChangeOnHistory()
         {
             //------------Setup for test--------------------------
@@ -1509,9 +1510,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
 
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SchedulerViewModel_ActiveItem")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("SchedulerViewModel_ActiveItem")]
         public void SchedulerViewModel_ActiveItem_HeaderHistory_ShouldFirePropertyChangeOnHistory()
         {
             //------------Setup for test--------------------------
@@ -1537,9 +1538,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.IsTrue(_historyMustChange);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SchedulerViewModel_Validation")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("SchedulerViewModel_Validation")]
         public void SchedulerViewModel_Validation_NoErrorsWhenNothingSelected()
         {
             var resourceModel = new Mock<IScheduledResourceModel>();
@@ -1553,9 +1554,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.IsFalse(schedulerViewModel.HasErrors);
 
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SchedulerViewModel_Validation")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("SchedulerViewModel_Validation")]
         public void SchedulerViewModel_Validation_NoErrorOnSelected()
         {
             var resourceModel = new Mock<IScheduledResourceModel>();
@@ -1573,9 +1574,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SchedulerViewModel_Validation")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("SchedulerViewModel_Validation")]
         public void SchedulerViewModel_Validation_IfDuplicateNames()
         {
             var resourceModel = new Mock<IScheduledResourceModel>();
@@ -1597,9 +1598,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
 
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SchedulerViewModel_DeleteTask")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [NUnit.Framework.Category("SchedulerViewModel_DeleteTask")]
         public void SchedulerViewModel_DeleteTask_DeleteSecondTask_ShouldDeleteTaskFromList()
         {
             //------------Setup for test--------------------------
@@ -1652,9 +1653,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             resourceModel.Verify(a => a.DeleteSchedule(It.IsAny<IScheduledResource>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SchedulerViewModel_DeleteTask")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [NUnit.Framework.Category("SchedulerViewModel_DeleteTask")]
         public void SchedulerViewModel_DeleteTask_DeleteFirstTask_ShouldDeleteTaskFromList()
         {
             //------------Setup for test--------------------------
@@ -1687,9 +1688,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             resourceModel.Verify(a => a.DeleteSchedule(It.IsAny<IScheduledResource>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SchedulerViewModel_DeleteTask")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [NUnit.Framework.Category("SchedulerViewModel_DeleteTask")]
         public void SchedulerViewModel_DeleteTask_DeleteWithNoAdminRights_ShouldShowError()
         {
             //------------Setup for test--------------------------
@@ -1718,9 +1719,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.AreEqual(@"Error while saving: You don't have permission to schedule on this server. You need Administrator permission.", schedulerViewModel.Error);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SchedulerViewModel_DeleteTask")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [NUnit.Framework.Category("SchedulerViewModel_DeleteTask")]
         public void SchedulerViewModel_DeleteTask_DeleteWhenEnvironmentIsntConnected_ShouldShowError()
         {
             //------------Setup for test--------------------------
@@ -1749,9 +1750,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.AreEqual("Error while saving: Server unreachable.", schedulerViewModel.Error);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SchedulerViewModel_EditTrigger")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [NUnit.Framework.Category("SchedulerViewModel_EditTrigger")]
         public void SchedulerViewModel_EditTrigger_ShouldEditTheTrigger()
         {
             //------------Setup for test--------------------------
@@ -1800,9 +1801,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.AreEqual("", schedulerViewModel.TriggerText);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SchedulerViewModel_AddWorkflow")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("SchedulerViewModel_AddWorkflow")]
         public void SchedulerViewModel_AddWorkflow_WithNewTaskNameSet_WorkflowNameChangedAndNameChanged()
         {
             //------------Setup for test--------------------------
@@ -1881,9 +1882,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.AreEqual(resId, schedulerViewModel.SelectedTask.ResourceId);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SchedulerViewModel_DeActivate")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("SchedulerViewModel_DeActivate")]
         public void SchedulerViewModel_DeActivateDiscard_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -1914,9 +1915,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SchedulerViewModel_TriggerEquals")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("SchedulerViewModel_TriggerEquals")]
         public void SchedulerViewModel_TriggerEquals_Equals_ExpectTrue()
         {
             //------------Setup for test--------------------------
@@ -1935,9 +1936,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SchedulerViewModel_TriggerEquals")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("SchedulerViewModel_TriggerEquals")]
         public void SchedulerViewModel_TriggerEquals_NotEquals_ExpectFalse()
         {
             //------------Setup for test--------------------------
@@ -1955,9 +1956,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             Assert.IsFalse(SchedulerTaskManager.TriggerEquals(t, t2));
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SchedulerViewModel_DeActivate")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("SchedulerViewModel_DeActivate")]
         public void SchedulerViewModel_DeActivateCancel_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -1989,9 +1990,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SchedulerViewModel_HandleServerSelectionChangedMessage")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("SchedulerViewModel_HandleServerSelectionChangedMessage")]
         public void SchedulerViewModel_DeActivateSave_AttemptsSave()
         {
             //------------Setup for test--------------------------
@@ -2031,9 +2032,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             schedulerViewModel.DoDeactivate(true);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SchedulerViewModel_HandleServerSelectionChangedMessage")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [NUnit.Framework.Category("SchedulerViewModel_HandleServerSelectionChangedMessage")]
         public void SchedulerViewModel_FalseDeActivateSave_AttemptsSave()
         {
             //------------Setup for test--------------------------
@@ -2075,9 +2076,9 @@ namespace Dev2.Core.Tests.Triggers.Scheduler
             schedulerViewModel.DoDeactivate(false);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SchedulerViewModel_ShowSaveErrorDialog")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [NUnit.Framework.Category("SchedulerViewModel_ShowSaveErrorDialog")]
         public void SchedulerViewModel_ShowSaveErrorDialog_GivenMessage_Result()
         {
             //------------Setup for test--------------------------

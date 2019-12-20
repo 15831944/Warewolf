@@ -16,19 +16,20 @@ using System.Text;
 using ActivityUnitTests;
 using Dev2.Common.State;
 using Dev2.Utilities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DataMergeActivityTest : BaseActivityUnitTest
     {
         IList<DataMergeDTO> _mergeCollection = new List<DataMergeDTO>();
 
         #region Additional test attributes
 
-        [TestInitialize]
+        [SetUp]
         public void MyTestInitialize()
         {
             if (_mergeCollection == null)
@@ -42,7 +43,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         #region Language Tests
 
-        [TestMethod]
+        [Test]
         public void Merge_Two_Sclars_Char_Merge_Expected_Data_Merged_Together_Success()
         {
             _mergeCollection.Add(new DataMergeDTO("[[CompanyName]]", "Chars", ",", 1, "", "Left"));
@@ -54,7 +55,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Dev2,0317641234", actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Merge_Recordset_With_Star_Char_Merge_Expected_Data_Merged_Together_Success()
         {
             _mergeCollection.Add(new DataMergeDTO("[[Customers(*).FirstName]]", "Chars", ",", 1, "", "Left"));
@@ -65,7 +66,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Wallis,Barney,Trevor,Travis,Jurie,Brendon,Massimo,Ashley,Sashen,Wallis,", actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Merge_RecordsetWithStarCharMerge_Given_CharSameAsLastCharacterInEntry_Expected_DataMergedTogether()
         {
             _mergeCollection.Add(new DataMergeDTO("[[Customers(*).FirstName]]", "Chars", "s", 1, "", "Left"));
@@ -76,7 +77,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("WallissBarneysTrevorsTravissJuriesBrendonsMassimosAshleysSashensWalliss", actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Merge_Recordset_And_Scalar_Char_Merge_Expected_Data_Merged_Together_Success()
         {
             _mergeCollection.Add(new DataMergeDTO("[[Customers(4).FirstName]]", "Chars", " works at ", 1, "", "Left"));
@@ -88,7 +89,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Travis works at Dev2.", actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Merge_Two_Recordsets_Char_Merge_Expected_Data_Merged_Together_Success()
         {
             _mergeCollection.Add(new DataMergeDTO("[[Customers(*).FirstName]]", "Chars", "'s phone number is ", 1, "", "Left"));
@@ -105,7 +106,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         #region New Line Merge Tests
 
-        [TestMethod]
+        [Test]
         public void Merge_Two_Fields_In_Recordsets_NewLine_Merge_Expected_Data_Merged_Together_Success()
         {
             _mergeCollection.Add(new DataMergeDTO("[[Customers(*).FirstName]]", "Chars", ",", 1, "", "Left"));
@@ -134,7 +135,7 @@ Wallis,Buchan
 
         #region Tab Merge Tests
 
-        [TestMethod]
+        [Test]
         public void Merge_Two_Fields_In_Recordsets_Tab_Merge_Expected_Data_Merged_Together_Success()
         {
             _mergeCollection.Add(new DataMergeDTO("[[Customers(*).FirstName]]", "Chars", ",", 1, "", "Left"));
@@ -151,7 +152,7 @@ Wallis,Buchan
 
         #region No Merge Collection Tests
 
-        [TestMethod]
+        [Test]
         public void Merge_With_No_Merge_Collection_Expected_Blank_Result()
         {
             SetupArguments(ActivityStrings.DataMergeDataListWithData, ActivityStrings.DataMergeDataListShape, "[[res]]", _mergeCollection);
@@ -164,7 +165,7 @@ Wallis,Buchan
 
         #region Index Tests
 
-        [TestMethod]
+        [Test]
         public void Merge_Two_Fields_In_Recordsets_Index_Merge_Blank_Padding_Left_Align_Expected_Data_Merged_Together_Success()
         {
             _mergeCollection.Add(new DataMergeDTO("[[Customers(*).FirstName]]", "Index", "1", 1, "", "Left"));
@@ -190,7 +191,7 @@ WBuchan
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Merge_Two_Fields_In_Recordsets_Index_Merge_Char_Padding_Left_Align_Expected_Data_Merged_Together_Success()
         {
             _mergeCollection.Add(new DataMergeDTO("[[Customers(*).FirstName]]", "Index", "10", 1, "0", "Left"));
@@ -220,7 +221,7 @@ Wallis0000Buchan
             expected = new StringBuilder(expected).Replace(Environment.NewLine, "\n").Replace("\r", "").ToString();
             actual = new StringBuilder(actual).Replace(Environment.NewLine, "\n").Replace("\r", "").ToString();
         }
-        [TestMethod]
+        [Test]
         public void Merge_Two_Fields_In_Recordsets_Index_Merge_Char_Padding_Right_Align_Expected_Data_Merged_Together_Success()
         {
             _mergeCollection.Add(new DataMergeDTO("[[Customers(*).FirstName]]", "Index", "10", 1, "0", "Right"));
@@ -246,7 +247,7 @@ Wallis0000Buchan
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void MergeTwoFieldsInRecordsetsIndexWithIndexEqualToDataLengthExpectedNoDataLoss()
         {
             _mergeCollection.Add(new DataMergeDTO("[[Customers(*).FirstName]]", "Index", "6", 1, "", "Left"));
@@ -262,9 +263,9 @@ Wallis0000Buchan
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfDataMerge_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfDataMerge_Execute")]
         public void DsfDataMerge_Execute_AtValueNegativeForIndextType_HasErrorMessage()
         {
             //------------Setup for test--------------------------
@@ -283,9 +284,9 @@ Wallis0000Buchan
 
         #endregion
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfDataMergeActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfDataMergeActivity_UpdateForEachInputs")]
         public void DsfDataMergeActivity_UpdateForEachInputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -299,9 +300,9 @@ Wallis0000Buchan
             Assert.AreEqual("[[CompanyName]]", act.MergeCollection[0].InputVariable);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfDataMergeActivity_GetOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfDataMergeActivity_GetOutputs")]
         public void DsfDataMergeActivity_GetOutputs_Called_ShouldReturnListWithResultValueInIt()
         {
             //------------Setup for test--------------------------
@@ -313,9 +314,9 @@ Wallis0000Buchan
             Assert.AreEqual("[[res]]", outputs[0]);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfDataMergeActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfDataMergeActivity_UpdateForEachInputs")]
         public void DsfDataMergeActivity_UpdateForEachInputs_MoreThan1Updates_UpdatesMergeCollection()
         {
             //------------Setup for test--------------------------
@@ -333,9 +334,9 @@ Wallis0000Buchan
             Assert.AreEqual("Test2", act.MergeCollection[1].InputVariable);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfDataMergeActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfDataMergeActivity_UpdateForEachOutputs")]
         public void DsfDataMergeActivity_UpdateForEachOutputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -349,9 +350,9 @@ Wallis0000Buchan
             Assert.AreEqual("[[res]]", act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfDataMergeActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfDataMergeActivity_UpdateForEachOutputs")]
         public void DsfDataMergeActivity_UpdateForEachOutputs_MoreThan1Updates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -367,9 +368,9 @@ Wallis0000Buchan
             Assert.AreEqual("[[res]]", act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfDataMergeActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfDataMergeActivity_UpdateForEachOutputs")]
         public void DsfDataMergeActivity_UpdateForEachOutputs_1Updates_UpdateCountNumber()
         {
             //------------Setup for test--------------------------
@@ -384,9 +385,9 @@ Wallis0000Buchan
             Assert.AreEqual("Test", act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfDataMergeActivity_GetForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfDataMergeActivity_GetForEachInputs")]
         public void DsfDataMergeActivity_GetForEachInputs_WhenHasExpression_ReturnsInputList()
         {
             //------------Setup for test--------------------------
@@ -405,9 +406,9 @@ Wallis0000Buchan
             Assert.AreEqual("[[CompanyNumber]]", dsfForEachItems[1].Value);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfDataMergeActivity_GetForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfDataMergeActivity_GetForEachOutputs")]
         public void DsfDataMergeActivity_GetForEachOutputs_WhenHasResult_ReturnsInputList()
         {
             //------------Setup for test--------------------------
@@ -423,9 +424,9 @@ Wallis0000Buchan
             Assert.AreEqual("[[res]]", dsfForEachItems[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("DsfDataMergeActivity_GetForEachOutputs")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("DsfDataMergeActivity_GetForEachOutputs")]
         public void DsfDataMergeActivity_GetState_Returns_Inputs_And_Outputs()
         {
             //------------Setup for test--------------------------

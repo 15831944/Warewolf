@@ -1,14 +1,15 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 
 
 namespace Warewolf.Core.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ServiceInputTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServiceInput_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServiceInput_Constructor")]
         public void ServiceInput_Constructor_EmptyConstructor_ShouldStillConstruct()
         {
             //------------Setup for test--------------------------
@@ -24,9 +25,9 @@ namespace Warewolf.Core.Tests
             Assert.IsFalse(serviceOutputMapping.IsObject);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServiceInput_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServiceInput_Constructor")]
         public void ServiceInput_Constructor_EmptyName_ShouldStillConsturct()
         {
             //------------Setup for test--------------------------
@@ -45,9 +46,9 @@ namespace Warewolf.Core.Tests
             Assert.IsTrue(serviceOutputMapping.RequiredField);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ServiceInput_Constructor")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ServiceInput_Constructor")]
         public void ServiceInput_FullName_NameAndShortTypeName()
         {
             //------------Setup for test--------------------------
@@ -64,9 +65,9 @@ namespace Warewolf.Core.Tests
             Assert.AreEqual($"name({typeof(string).Name})", serviceOutputMapping.FullName);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ServiceInput_Constructor")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ServiceInput_Constructor")]
         public void ServiceInput_FullName_NameAndNullShortTypeName()
         {
             //------------Setup for test--------------------------
@@ -82,9 +83,9 @@ namespace Warewolf.Core.Tests
             Assert.AreEqual("name", serviceOutputMapping.FullName);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ServiceInput_Constructor")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ServiceInput_Constructor")]
         public void ServiceInput_FullName_NullNameAndShortTypeName()
         {
             //------------Setup for test--------------------------
@@ -100,9 +101,9 @@ namespace Warewolf.Core.Tests
             Assert.AreEqual("", serviceOutputMapping.FullName);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServiceInput_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServiceInput_Constructor")]
         public void ServiceInput_Constructor_EmptyValue_ShouldStillConsturct()
         {
             //------------Setup for test--------------------------
@@ -116,9 +117,9 @@ namespace Warewolf.Core.Tests
             Assert.AreEqual(mappingFrom, serviceOutputMapping.Name);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServiceInput_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServiceInput_Constructor")]
         public void ServiceInput_Constructor_WhenNameValue_ShouldConstructorScalarMappedTo()
         {
             //------------Setup for test--------------------------
@@ -132,9 +133,9 @@ namespace Warewolf.Core.Tests
             Assert.AreEqual(variableMapTo, serviceOutputMapping.Value);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServiceInput_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServiceInput_Constructor")]
         public void ServiceInput_Constructor_WhenCharInName_ShouldConstructorScalarMappedTo()
         {
             //------------Setup for test--------------------------

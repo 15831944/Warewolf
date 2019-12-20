@@ -21,18 +21,19 @@ using Dev2.Communication;
 using Dev2.Explorer;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class MoveItemsServiceTest
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -44,9 +45,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -58,9 +59,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(AuthorizationContext.Contribute, resId);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("MoveItem_HandlesType")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("MoveItem_HandlesType")]
         public void MoveItem_HandlesType_ExpectName()
         {
             //------------Setup for test--------------------------
@@ -74,9 +75,9 @@ namespace Dev2.Tests.Runtime.Services
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("MoveItemService_Execute")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("MoveItemService_Execute")]
         public void MoveItem_Execute_NullValues_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -89,9 +90,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(ExecStatus.Fail, result.Status);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("MoveItemService_Execute")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("MoveItemService_Execute")]
         public void MoveItem_Execute_ItemToRenameNotInValues_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -105,9 +106,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(ExecStatus.Fail, result.Status);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("MoveItemService_Execute")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("MoveItemService_Execute")]
         public void MoveItem_Execute_NewNameNotInDictionary_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -121,9 +122,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(ExecStatus.Fail, result.Status);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("MoveItemervice_Execute")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("MoveItemervice_Execute")]
         public void MoveItem_Execute_ItemToRenameNotServerExplorerItem_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -137,9 +138,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(ExecStatus.Fail, result.Status);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("MoveItem_Execute")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("MoveItem_Execute")]
         public void MoveItem_Execute_ExpectRename()
         {
             //------------Setup for test--------------------------
@@ -171,9 +172,9 @@ namespace Dev2.Tests.Runtime.Services
             repo.Verify(a => a.MoveItem(It.IsAny<IExplorerItem>(), It.IsAny<string>(), It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("MoveItem_HandlesType")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("MoveItem_HandlesType")]
         public void MoveItem_CreateServiceEntry_ExpectProperlyFormedDynamicService()
         {
             //------------Setup for test--------------------------

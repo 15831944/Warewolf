@@ -10,18 +10,19 @@
 
 
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.OS;
 
 namespace Warewolf.OS.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ProcessThreadListTests
     {
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(MessageToInputsMapper))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(MessageToInputsMapper))]
         public void ProcessThreadList_GivenConfig_ExpectNeedsUpdate()
         {
             var mockConfig = new Mock<IJobConfig>();
@@ -36,9 +37,9 @@ namespace Warewolf.OS.Tests
             Assert.AreEqual(newConfig, list.Config);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(MessageToInputsMapper))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(MessageToInputsMapper))]
         public void ProcessThreadList_GivenConfigHighConcurrency_ExpectLogicalProcessorCount()
         {
             var mockConfig = new Mock<IJobConfig>();
@@ -55,9 +56,9 @@ namespace Warewolf.OS.Tests
             mockProcessFactory.Verify(o => o.New(), Times.Exactly(Environment.ProcessorCount));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(MessageToInputsMapper))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(MessageToInputsMapper))]
         public void ProcessThreadList_GivenDefaultConfig_ExpectOneWorker()
         {
             var mockConfig = new Mock<IJobConfig>();
@@ -78,9 +79,9 @@ namespace Warewolf.OS.Tests
             mockProcessThread.Verify(o => o.Start(), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(MessageToInputsMapper))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(MessageToInputsMapper))]
         public void ProcessThreadList_GivenWorkerDies_ExpectOnProcessDiedCalled()
         {
             var mockConfig = new Mock<IJobConfig>();
@@ -104,9 +105,9 @@ namespace Warewolf.OS.Tests
             Assert.IsTrue(lists_OnProcessDiedCalled);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(MessageToInputsMapper))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(MessageToInputsMapper))]
         public void ProcessThreadList_GivenConfigConcurrent3_ExpectThreeWorkers()
         {
             var mockConfig = new Mock<IJobConfig>();
@@ -144,9 +145,9 @@ namespace Warewolf.OS.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(MessageToInputsMapper))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(MessageToInputsMapper))]
         public void ProcessThreadList_GivenKillCalled_ExpectAllWorkersKilled()
         {
             var mockConfig = new Mock<IJobConfig>();
@@ -188,9 +189,9 @@ namespace Warewolf.OS.Tests
             // do not expect Start() to be called again here, this logic is in ProcessThread.
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(MessageToInputsMapper))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(MessageToInputsMapper))]
         public void ProcessThreadList_GivenInvalidConfig_ExpectThreadListStopMonitoring()
         {
             var mockConfig = new Mock<IJobConfig>();
@@ -236,9 +237,9 @@ namespace Warewolf.OS.Tests
             return mockProcessThread;
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(MessageToInputsMapper))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(MessageToInputsMapper))]
         public void ProcessThreadList_GivenConfigConcurrentChanges_ExpectWorkerCountChanges()
         {
             var mockConfig = new Mock<IJobConfig>();

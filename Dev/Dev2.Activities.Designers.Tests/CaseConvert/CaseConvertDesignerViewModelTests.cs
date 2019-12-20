@@ -14,7 +14,7 @@ using Dev2.Activities.Designers2.CaseConvert;
 using Dev2.Common.Interfaces.Help;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using System;
@@ -22,12 +22,13 @@ using Dev2.TO;
 
 namespace Dev2.Activities.Designers.Tests.CaseConvert
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class CaseConvertDesignerViewModelTests
     {
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CaseConvertDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CaseConvertDesignerViewModel_Constructor")]
         public void CaseConvertDesignerViewModel_Constructor__ModelItemIsValid_ListHasFourItems()
         {
             var items = new List<CaseConvertTO> { new CaseConvertTO() };
@@ -36,9 +37,9 @@ namespace Dev2.Activities.Designers.Tests.CaseConvert
             Assert.IsTrue(viewModel.HasLargeView);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CaseConvertDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CaseConvertDesignerViewModel_Constructor")]
         public void CaseConvertDesignerViewModel_Constructor__ModelItemIsValid_CollectionNameIsSetToConvertCollection()
         {
             var items = new List<CaseConvertTO> { new CaseConvertTO() };
@@ -46,20 +47,20 @@ namespace Dev2.Activities.Designers.Tests.CaseConvert
             Assert.AreEqual("ConvertCollection", viewModel.CollectionName);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CaseConvertDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CaseConvertDesignerViewModel_Constructor")]
         public void CaseConvertDesignerViewModel_Constructor_ModelItemIsValid_ConvertCollectionHasTwoItems()
         {
             var modelItem = ModelItemUtils.CreateModelItem(new DsfCaseConvertActivity());
             var viewModel = new CaseConvertDesignerViewModel(modelItem);
             dynamic mi = viewModel.ModelItem;
-            Assert.AreEqual(2, mi.ConvertCollection.Count);
+            NUnit.Framework.Assert.AreEqual(2, mi.ConvertCollection.Count);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CaseConvertDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CaseConvertDesignerViewModel_Constructor")]
         public void CaseConvertDesignerViewModel_Constructor_ModelItemIsInitializedWith4Items_ConvertCollectionHasFourItems()
         {
             var items = new List<CaseConvertTO>
@@ -71,12 +72,12 @@ namespace Dev2.Activities.Designers.Tests.CaseConvert
             };
             var viewModel = new CaseConvertDesignerViewModel(CreateModelItem(items));
             dynamic mi = viewModel.ModelItem;
-            Assert.AreEqual(4, mi.ConvertCollection.Count);
+            NUnit.Framework.Assert.AreEqual(4, mi.ConvertCollection.Count);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("CaseConvertDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("CaseConvertDesignerViewModel_Handle")]
         public void CaseConvertDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -100,19 +101,19 @@ namespace Dev2.Activities.Designers.Tests.CaseConvert
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CaseConvertDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CaseConvertDesignerViewModel_Constructor")]
         public void CaseConvertDesignerViewModel_Constructor_ModelItemIsEmpty_ConvertCollectionHasTwoItems()
         {
             var viewModel = new CaseConvertDesignerViewModel(CreateModelItem(null));
             dynamic mi = viewModel.ModelItem;
-            Assert.AreEqual(2, mi.ConvertCollection.Count);
+            NUnit.Framework.Assert.AreEqual(2, mi.ConvertCollection.Count);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("CaseConvertDesignerViewModel_ValidateCollectionItem")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("CaseConvertDesignerViewModel_ValidateCollectionItem")]
         public void CaseConvertDesignerViewModel_ValidateCollectionItem_ValidatesPropertiesOfDTO()
         {
             //------------Setup for test--------------------------

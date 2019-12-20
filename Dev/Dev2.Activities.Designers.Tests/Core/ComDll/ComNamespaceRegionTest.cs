@@ -9,7 +9,7 @@ using Dev2.Common.Interfaces.Core;
 using Dev2.Common.Interfaces.ToolBase;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Studio.Core.Activities.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
@@ -17,12 +17,13 @@ using Moq;
 
 namespace Dev2.Activities.Designers.Tests.Core.ComDll
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ComNamespaceRegionTest
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComDllNamespaceRegion_Constructor")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComDllNamespaceRegion_Constructor")]
         public void ComDllNamespaceRegion_Constructor_Scenerio_Result()
         {
             //------------Setup for test--------------------------
@@ -38,9 +39,9 @@ namespace Dev2.Activities.Designers.Tests.Core.ComDll
             Assert.IsTrue(comNamespaceRegion.IsEnabled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComDllNamespaceRegion_ConstructorWithSelectedNamespace")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComDllNamespaceRegion_ConstructorWithSelectedNamespace")]
         public void ComDllNamespaceRegion_ConstructorWithSelectedNamespace_Scenerio_Result()
         {
             //------------Setup for test--------------------------
@@ -63,9 +64,9 @@ namespace Dev2.Activities.Designers.Tests.Core.ComDll
             Assert.IsTrue(comNamespaceRegion.CanRefresh());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComNamespaceRegion_ChangeNamespaceSomethingChanged")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComNamespaceRegion_ChangeNamespaceSomethingChanged")]
         public void ComNamespaceRegion_ChangeNamespaceSomethingChanged_ExpectedChange_Result()
         {
             //------------Setup for test--------------------------
@@ -89,9 +90,9 @@ namespace Dev2.Activities.Designers.Tests.Core.ComDll
             Assert.IsTrue(evt);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComNamespaceRegion_ChangeNamespaceSomethingChanged")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComNamespaceRegion_ChangeNamespaceSomethingChanged")]
         public void ComNamespaceRegion_ChangeNamespaceSomethingChanged_RestoreRegion_Result()
         {
             //------------Setup for test--------------------------
@@ -126,9 +127,9 @@ namespace Dev2.Activities.Designers.Tests.Core.ComDll
             dep2.Verify(a => a.RestoreRegion(clone2.Object), Times.Never);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComNamespaceRegion_ChangeNamespaceSomethingChanged")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComNamespaceRegion_ChangeNamespaceSomethingChanged")]
         public void ComNamespaceRegion_ChangeNamespaceSomethingChanged_RegionsNotRestored_Invalid()
         {
             //------------Setup for test--------------------------
@@ -163,9 +164,9 @@ namespace Dev2.Activities.Designers.Tests.Core.ComDll
             dep2.Verify(a => a.RestoreRegion(clone2.Object), Times.Never);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComNamespaceRegion_ChangeNamespaceSomethingChanged")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComNamespaceRegion_ChangeNamespaceSomethingChanged")]
         public void ComNamespaceRegion_ChangeNamespaceSomethingChanged_CloneRegion_ExpectedClone()
         {
             //------------Setup for test--------------------------
@@ -187,9 +188,9 @@ namespace Dev2.Activities.Designers.Tests.Core.ComDll
             Assert.AreEqual(((ComNamespaceRegion)cloned).SelectedNamespace, comNamespaceRegion.SelectedNamespace);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComNamespaceRegion_ChangeNamespaceSomethingChanged")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComNamespaceRegion_ChangeNamespaceSomethingChanged")]
         public void ComNamespaceRegion_ChangeNamespaceSomethingChanged_RestoreRegion_ExpectedRestore()
         {
             //------------Setup for test--------------------------
@@ -217,8 +218,8 @@ namespace Dev2.Activities.Designers.Tests.Core.ComDll
             Assert.IsFalse(comNamespaceRegion.IsEnabled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetNamespaces_GivenHasError_ShouldAddIntoErrors()
         {
             //---------------Set up test pack-------------------

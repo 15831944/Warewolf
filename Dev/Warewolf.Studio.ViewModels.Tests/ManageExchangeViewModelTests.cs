@@ -6,13 +6,14 @@ using Dev2.Common.Interfaces.Core.DynamicServices;
 using Dev2.Studio.Interfaces;
 using Dev2.Threading;
 using Microsoft.Practices.Prism.PubSubEvents;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Warewolf.Studio.ViewModels.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ManageExchangeViewModelTests
     {
         public const string TestOwner = "Bernardt Joubert";
@@ -97,9 +98,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             };
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Timeout(60000)]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ManageExchangeModel_Initialize_NewEmpty_Returns_Success()
         {
             var model = new ManageExchangeSourceViewModel();
@@ -107,9 +109,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsNotNull(model);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Timeout(60000)]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ManageExchangeModel_Initialize_Properties_Returns_Success()
         {
             var viewModel = GetViewModelFullSource();
@@ -139,9 +142,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsNotNull(viewModel.RequestServiceNameViewModel);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Timeout(60000)]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ManageexchangeModel_Initialize_Properties_Returns_Success()
         {
             var viewModel = GetViewModelWithSource();
@@ -169,9 +173,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsNull(viewModel.OkCommand);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Timeout(60000)]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ManageexchangeModel_CanTest_False_Returns_Success()
         {
             var viewModel = GetViewModelWithSource();
@@ -184,9 +189,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(viewModel.CanTest());
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Timeout(60000)]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ManageexchangeModel_CanTest_True_Returns_Success()
         {
             var viewModel = GetViewModelWithSource();
@@ -199,9 +205,10 @@ namespace Warewolf.Studio.ViewModels.Tests
         }
 
 
-        [TestMethod,Timeout(60000)]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Timeout(60000)]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ManageexchangeModel_CanSave_False_Returns_Success()
         {
             var viewModel = GetViewModelWithSource();
@@ -209,9 +216,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(viewModel.CanSave());
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Timeout(60000)]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ManageexchangeModel_CanTest_True_Returns_False()
         {
             var viewModel = GetViewModelWithSource();
@@ -221,9 +229,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(viewModel.CanTest());
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Timeout(60000)]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ManageexchangeModel_SaveConnection_Returns_False()
         {
             var viewModel = GetViewModelWithSource();
@@ -236,9 +245,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(viewModel.TestPassed);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Timeout(60000)]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ManageexchangeModel_TestConnectionWithSource_Returns_False()
         {
             var viewModel = GetViewModelWithSource();
@@ -254,9 +264,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(viewModel.TestPassed);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Timeout(60000)]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ManageexchangeModel_ToModel_Returns_True()
         {
             var viewModel = GetViewModelWithSource();
@@ -272,9 +283,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsNotNull(model.Type);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Timeout(60000)]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ManageexchangeModel_ToModel_ItemIsNull_Returns_True()
         {
             var viewModel = GetViewModelWithSource();
@@ -291,9 +303,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsNotNull(model.Type);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Timeout(60000)]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ManageexchangeModel_ToSource_Returns_True()
         {
             var viewModel = GetViewModelWithSource();
@@ -306,9 +319,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsNotNull(model.Type);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Timeout(60000)]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ManageexchangeModel_ToSource_SourceNull_Returns_True()
         {
             var viewModel = GetViewModelWithNoSource();

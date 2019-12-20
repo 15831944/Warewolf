@@ -11,7 +11,7 @@
 using System;
 using System.Threading.Tasks;
 using Dev2.SignalR.Wrappers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
@@ -22,9 +22,9 @@ namespace Dev2.Core.Tests.Network
         //Given a ServerProxy
         //When I Execute the AddDebugWriter
         //Then the EsbProxy is invoked with AddDebugWriter
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServerProxy_AddDebugWriter")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServerProxy_AddDebugWriter")]
         public void ServerProxy_AddDebugWriter_WithArgs_ShouldInvokeCorrectly()
         {
             //------------Setup for test--------------------------

@@ -9,19 +9,20 @@
 */
 
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using static Dev2.Common.Utils.JsonPathContext;
 using Moq;
 using Dev2.Common.Utils;
 
 namespace Dev2.Utils.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class InterpreterTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(Interpreter))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(Interpreter))]
         public void Interpreter_Trace_Expr_IsNull_ExpectSuccess()
         {
             //--------------------------Arrange---------------------------
@@ -38,9 +39,9 @@ namespace Dev2.Utils.Tests
             Assert.AreEqual(output, interpreter._output);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(Interpreter))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(Interpreter))]
         public void Interpreter_Trace_SystemHasMember_True_ExpectSuccess()
         {
             //--------------------------Arrange---------------------------
@@ -60,9 +61,9 @@ namespace Dev2.Utils.Tests
             Assert.AreEqual(output, interpreter._output);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(Interpreter))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(Interpreter))]
         public void Interpreter_Trace_Walk_SystemIsPrimitive_True_ExpectSuccess()
         {
             //--------------------------Arrange---------------------------
@@ -81,9 +82,9 @@ namespace Dev2.Utils.Tests
             mockJsonPathValueSystem.Verify(o => o.IsPrimitive(It.IsAny<object>()), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(Interpreter))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(Interpreter))]
         public void Interpreter_Trace_Walk_SystemIsArray_True_ExpectSuccess()
         {
             //--------------------------Arrange---------------------------
@@ -103,9 +104,9 @@ namespace Dev2.Utils.Tests
             mockJsonPathValueSystem.Verify(o => o.IsArray(It.IsAny<object>()), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(Interpreter))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(Interpreter))]
         public void Interpreter_Trace_Walk_IsObject_True_ExpectSuccess()
         {
             //--------------------------Arrange---------------------------
@@ -126,9 +127,9 @@ namespace Dev2.Utils.Tests
             mockJsonPathValueSystem.Verify(o => o.IsObject(It.IsAny<object>()), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(Interpreter))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(Interpreter))]
         public void Interpreter_Trace_Walk_IsObject_True_ContainsComma_ExpectSuccess()
         {
             //--------------------------Arrange---------------------------
@@ -149,9 +150,9 @@ namespace Dev2.Utils.Tests
             mockJsonPathValueSystem.Verify(o => o.IsObject(It.IsAny<object>()), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(Interpreter))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(Interpreter))]
         public void Interpreter_Trace_Walk_IsObject_True_ContainsCommaParentheses_ExpectSuccess()
         {
             //--------------------------Arrange---------------------------
@@ -172,9 +173,9 @@ namespace Dev2.Utils.Tests
             Assert.AreEqual(eval, interpreter._eval);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(Interpreter))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(Interpreter))]
         public void Interpreter_Trace_Eval_ContainsCommaParentheses_ExpectSuccess()
         {
             //--------------------------Arrange---------------------------
@@ -196,9 +197,9 @@ namespace Dev2.Utils.Tests
             Assert.AreEqual(output, interpreter._output);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(Interpreter))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(Interpreter))]
         public void Interpreter_Trace_Exp_ContainsColonNumber_ExpectSuccess()
         {
             //--------------------------Arrange---------------------------
@@ -220,9 +221,9 @@ namespace Dev2.Utils.Tests
             Assert.AreEqual(output, interpreter._output);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(Interpreter))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(Interpreter))]
         public void Interpreter_Trace_ParseInt_Str_IsNullOrEmpty_ExpectSuccess()
         {
             //--------------------------Arrange---------------------------
@@ -244,9 +245,9 @@ namespace Dev2.Utils.Tests
             Assert.AreEqual(output, interpreter._output);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(Interpreter))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(Interpreter))]
         public void Interpreter_Trace_ParseInt_Throw_FormatException_ExpectSuccess()
         {
             //--------------------------Arrange---------------------------
@@ -268,9 +269,9 @@ namespace Dev2.Utils.Tests
             Assert.AreEqual(output, interpreter._output);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(Interpreter))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(Interpreter))]
         public void Interpreter_Trace_Slice_Value_IsNull_ExpectSuccess()
         {
             //--------------------------Arrange---------------------------
@@ -292,9 +293,9 @@ namespace Dev2.Utils.Tests
             Assert.AreEqual(output, interpreter._output);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(Interpreter))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(Interpreter))]
         public void Interpreter_WalkFiltered_IsInvoked_ExpectSuccess()
         {
             //--------------------------Arrange---------------------------

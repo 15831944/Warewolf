@@ -17,18 +17,19 @@ using Dev2.Common.Interfaces.Security;
 using Dev2.Explorer;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FetchResourceDuplicatesTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -40,9 +41,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -54,9 +55,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(AuthorizationContext.Any, resId);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("FetchResourceDuplicates_HandlesType")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("FetchResourceDuplicates_HandlesType")]
         public void FetchResourceDuplicates_HandlesType_ExpectName()
         {
             //------------Setup for test--------------------------
@@ -66,9 +67,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("FetchResourceDuplicates", FetchResourceDuplicates.HandlesType());
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("FetchResourceDuplicates_HandlesType")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("FetchResourceDuplicates_HandlesType")]
         public void FetchResourceDuplicates_Execute_ExpectName()
         {
             //------------Setup for test--------------------------
@@ -87,9 +88,9 @@ namespace Dev2.Tests.Runtime.Services
             repo.Verify(a => a.LoadDuplicate());
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("FetchResourceDuplicates_HandlesType")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("FetchResourceDuplicates_HandlesType")]
         public void FetchResourceDuplicates_CreateServiceEntry_ExpectProperlyFormedDynamicService()
         {
             //------------Setup for test--------------------------

@@ -16,17 +16,18 @@ using Dev2.Common.Interfaces.Enums.Enums;
 using Dev2.Common.Interfaces.Help;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Activities.Designers.Tests.Random
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class RandomDesignerViewModelTests
     {
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("RandomDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("RandomDesignerViewModel_Constructor")]
         public void RandomDesignerViewModel_Constructor_ModelItemIsValid_SelectedRandomTypeIsInitialized()
         {
             var modelItem = CreateModelItem();
@@ -37,9 +38,9 @@ namespace Dev2.Activities.Designers.Tests.Random
             Assert.IsTrue(viewModel.HasLargeView);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("RandomDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("RandomDesignerViewModel_Handle")]
         public void RandomDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -55,9 +56,9 @@ namespace Dev2.Activities.Designers.Tests.Random
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("RandomDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("RandomDesignerViewModel_Constructor")]
         public void RandomDesignerViewModel_Constructor_ModelItemIsValid_RandomTypesHasThreeItems()
         {
             var modelItem = CreateModelItem();
@@ -66,9 +67,9 @@ namespace Dev2.Activities.Designers.Tests.Random
             CollectionAssert.AreEqual(expected.ToList(), viewModel.RandomTypes.ToList());
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("RandomDesignerViewModel_SetSelectedRandomType")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("RandomDesignerViewModel_SetSelectedRandomType")]
         public void RandomDesignerViewModel_SetSelectedRandomType_ValidRandomType_RandomTypeOnModelItemIsAlsoSet()
         {
             var modelItem = CreateModelItem();
@@ -78,9 +79,9 @@ namespace Dev2.Activities.Designers.Tests.Random
             Assert.AreEqual(enRandomType.Guid, viewModel.RandomType);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("RandomDesignerViewModel_SelectedRandomType")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("RandomDesignerViewModel_SelectedRandomType")]
         public void RandomDesignerViewModel_SelectedRandomType_GUID_PropertiesInitialized()
         {
             //------------Setup for test--------------------------
@@ -97,9 +98,9 @@ namespace Dev2.Activities.Designers.Tests.Random
             Assert.AreEqual("Length", viewModel.LengthContent);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("RandomDesignerViewModel_SelectedRandomType")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("RandomDesignerViewModel_SelectedRandomType")]
         public void RandomDesignerViewModel_SelectedRandomType_Numbers_PropertiesInitialized()
         {
             //------------Setup for test--------------------------
@@ -116,9 +117,9 @@ namespace Dev2.Activities.Designers.Tests.Random
             Assert.AreEqual("Range", viewModel.LengthContent);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("RandomDesignerViewModel_SelectedRandomType")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("RandomDesignerViewModel_SelectedRandomType")]
         public void RandomDesignerViewModel_SelectedRandomType_Other_PropertiesInitialized()
         {
             //------------Setup for test--------------------------

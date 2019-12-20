@@ -3,7 +3,7 @@ using Dev2.Common.Interfaces.Search;
 using Dev2.Common.Search;
 using Dev2.Studio.Core;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using TechTalk.SpecFlow;
@@ -33,7 +33,7 @@ namespace Dev2.Activities.Specs.Search
             localHost.Connect();
             if (!localHost.IsConnected)
             {
-                Assert.Fail("expected valid connection to localhost");
+                NUnit.Framework.Assert.Fail("expected valid connection to localhost");
             }
             searchValue = new Common.Search.Search();
         }
@@ -41,8 +41,8 @@ namespace Dev2.Activities.Specs.Search
         [Given(@"I have the Search View open")]
         public void GivenIHaveTheSearchViewOpen()
         {
-            Assert.IsNotNull(localHost);
-            Assert.IsNotNull(localHost.ResourceRepository);
+            NUnit.Framework.Assert.IsNotNull(localHost);
+            NUnit.Framework.Assert.IsNotNull(localHost.ResourceRepository);
         }
 
         [Given(@"I check the ""(.*)"" checkbox")]
@@ -102,7 +102,7 @@ namespace Dev2.Activities.Specs.Search
             {
                 expectedSearchResult
             };
-            Assert.IsTrue(results.Contains(expectedSearchResult));
+            NUnit.Framework.Assert.IsTrue(results.Contains(expectedSearchResult));
         }
 
         private static SearchItemType GetSearchItemType(string type)

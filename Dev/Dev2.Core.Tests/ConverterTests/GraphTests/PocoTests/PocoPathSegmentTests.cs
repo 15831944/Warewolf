@@ -9,19 +9,20 @@
 */
 
 using Dev2.Common.Interfaces.Core.Graph;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Framework.Converters.Graph.Poco;
 
 
 namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class PocoPathSegmentTests
     {
         /// <summary>
         /// To string on enumerable segment expected enumerable format returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ToStringOnEnumerableSegment_Expected_EnumerableFormat()
         {
             var path = new PocoPath();
@@ -36,7 +37,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
         /// <summary>
         /// To string on scalar segment expected scalar format returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ToStringOnScalarSegment_Expected_ScalarFormat()
         {
             var path = new PocoPath();
@@ -51,7 +52,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
         /// <summary>
         /// To string on enumerable segment where enumerables aren't considered expected scalar format returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ToStringOnEnumerableSegment_WhereEnumerablesArentConsidered_Expected_ScalarFormat()
         {
             var path = new PocoPath();
@@ -66,7 +67,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
         /// <summary>
         /// To string on enumerable segment where enumerables are considered expected scalar format returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ToStringOnEnumerableSegment_WhereEnumerablesAreConsidered_Expected_ScalarFormat()
         {
             var path = new PocoPath();
@@ -81,7 +82,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
         /// <summary>
         /// To string on scalar segment where enumerables arent considered expected scalar format returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ToStringOnScalarSegment_WhereEnumerablesArentConsidered__Expected_ScalarFormat()
         {
             var path = new PocoPath();
@@ -96,7 +97,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
         /// <summary>
         /// To string on scalar segment where enumerables are considered expected scalar format returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void ToStringOnScalarSegmentt_WhereEnumerablesAreConsidered__Expected_ScalarFormat()
         {
             var path = new PocoPath();

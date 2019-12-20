@@ -9,7 +9,7 @@ using Dev2.Studio.Interfaces;
 using Dev2.Studio.ViewModels.DataList;
 using Dev2.Studio.Views.DataList;
 using Microsoft.Practices.Prism.Mvvm;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using TechTalk.SpecFlow;
 using Warewolf.UIBindingTests.Core;

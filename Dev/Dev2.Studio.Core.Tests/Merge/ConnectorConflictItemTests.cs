@@ -6,14 +6,15 @@ using Dev2.Common;
 using Dev2.Studio.Interfaces;
 using Dev2.ViewModels.Merge;
 using Dev2.ViewModels.Merge.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Collections.Generic;
 
 namespace Dev2.Core.Tests.Merge
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ConnectorConflictItemTests
     {
         readonly Guid _grouping = Guid.Empty;
@@ -46,8 +47,8 @@ namespace Dev2.Core.Tests.Merge
             return new ConnectorConflictItem(rowList, ConflictRowList.Column.Different, _grouping, ArmDescription, _sourceUniqueIdDiff, _destinationUniqueIdDiff, KeyDiff);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void ConnectorConflictItem_Constructor()
         {
             //------------Setup for test--------------------------
@@ -65,8 +66,8 @@ namespace Dev2.Core.Tests.Merge
             Assert.IsTrue(connectorConflictItem.IsArmConnectorVisible);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void ConnectorConflictItem_Equals_Expected_True()
         {
             //------------Setup for test--------------------------
@@ -80,8 +81,8 @@ namespace Dev2.Core.Tests.Merge
             Assert.AreEqual(connectorConflictItemDiff, connectorConflictItem);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void ConnectorConflictItem_Equals_Expected_False()
         {
             //------------Setup for test--------------------------
@@ -95,8 +96,8 @@ namespace Dev2.Core.Tests.Merge
             Assert.AreNotEqual(connectorConflictItemDiff, connectorConflictItem);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void ConnectorConflictItem_IsChecked_PropertyChanged()
         {
             //------------Setup for test--------------------------

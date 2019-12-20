@@ -6,7 +6,7 @@ using Dev2.Common.Interfaces.Core.Graph;
 using Dev2.Common.Interfaces.DB;
 using Dev2.Converters.Graph.DataTable;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Framework.Converters.Graph.Ouput;
 using Unlimited.Framework.Converters.Graph.Poco;
 using Unlimited.Framework.Converters.Graph.String.Json;
@@ -15,11 +15,12 @@ using Warewolf.Core;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfDotNetDllActivityEqualityTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UniqueIDEquals_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -34,8 +35,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UniqueID_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -49,8 +50,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -65,8 +66,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -81,8 +82,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -97,8 +98,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Method_DifferentName_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -134,8 +135,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Method_SameName_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -171,8 +172,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
             Assert.IsTrue(@equals); ;
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Method_DifferentIsObject_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -210,8 +211,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Method_SameIsObject_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -249,8 +250,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Method_DifferentOutputVariable_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -290,8 +291,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Method_SameOutputVariable_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -331,8 +332,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Method_DifferentInputs_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -380,8 +381,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Method_SameInputs_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -431,8 +432,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
             Assert.IsTrue(@equals); ;
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void OutputDescription_SameFormat_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -494,8 +495,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
             Assert.IsTrue(@equals); ;
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void OutputDescription_DifferentFormat_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -557,8 +558,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
             Assert.IsFalse(@equals); ;
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void OutputDescription_SameDataSourceShapes_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -640,8 +641,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
             Assert.IsTrue(@equals); ;
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void OutputDescription_DifferentDataSourceShapes_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -723,8 +724,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
             Assert.IsFalse(@equals); ;
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void OutputDescription_SameJsonPathsDifferentNames_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -806,8 +807,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
             Assert.IsFalse(@equals); ;
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void OutputDescription_SameDataTableDifferentNames_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -889,8 +890,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
             Assert.IsFalse(@equals); ;
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void OutputDescription_SameStringPathDifferentNames_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -985,8 +986,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
             //---------------Test Result -----------------------
             Assert.IsTrue(@equals); ;
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void OutputDescription_SamePocoPathDifferentNames_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -1067,8 +1068,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
             //---------------Test Result -----------------------
             Assert.IsTrue(@equals); ;
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void OutputDescription_SameXmlPathDifferentNames_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -1150,8 +1151,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
             Assert.IsTrue(@equals); ;
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void NameSpace_SameAssemblyLocation_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -1213,8 +1214,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
             Assert.IsTrue(@equals); ;
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void NameSpace_SameAssemblyName_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -1277,8 +1278,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
             //---------------Test Result -----------------------
             Assert.IsTrue(@equals); ;
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void NameSpace_SameFullName_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -1343,8 +1344,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
             //---------------Test Result -----------------------
             Assert.IsTrue(@equals); ;
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void NameSpace_SameMethodName_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -1412,8 +1413,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
             Assert.IsTrue(@equals); ;
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void NameSpace_SameJsonObject_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -1483,8 +1484,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
             Assert.IsTrue(@equals); ;
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void NameSpace_DifferentAssemblyName_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -1547,8 +1548,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void NameSpace_DifferentFullName_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -1613,8 +1614,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void NameSpace_DifferentMethodName_Object_Is_not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -1682,8 +1683,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void NameSpace_DifferentJsonObject_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------

@@ -9,17 +9,18 @@
 */
 
 using Dev2.Data.Decisions.Operations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Data.Tests.DecisionsTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IsEqualTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("IsEqual_Invoke")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("IsEqual_Invoke")]
         public void IsEqual_Invoke_ItemsEqual_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -30,12 +31,12 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = endsWith.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("IsEqual_Invoke")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("IsEqual_Invoke")]
         public void IsEndsWith_Invoke_NotEqualItems_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -46,12 +47,12 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = endsWith.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("IsEqual_HandlesType")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("IsEqual_HandlesType")]
         public void IsEndsWith_HandlesType_ReturnsIsEndsWithType()
         {
             var expected = enDecisionType.IsEqual;
@@ -59,7 +60,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             var isEndsWith = new IsEqual();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.AreEqual(expected, isEndsWith.HandlesType());
+            NUnit.Framework.Assert.AreEqual(expected, isEndsWith.HandlesType());
         }
     }
 }

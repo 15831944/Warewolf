@@ -1,17 +1,19 @@
 ﻿using Dev2.Common.Interfaces.Search;
 using Dev2.Common.Search;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 
 namespace Warewolf.Studio.ViewModels.Tests.Search
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SearchValueTests
     {
-        [TestMethod,Timeout(60000)]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Pieter Terblanche")]
         public void SearchValue_OpenResourced_WorkflowType()
         {
             //------------Setup for test--------------------------
@@ -24,8 +26,9 @@ namespace Warewolf.Studio.ViewModels.Tests.Search
             Assert.AreEqual(SearchItemType.WorkflowName, searchValue.Type);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Pieter Terblanche")]
         public void SearchValue_OpenResourced_TestType()
         {
             //------------Setup for test--------------------------

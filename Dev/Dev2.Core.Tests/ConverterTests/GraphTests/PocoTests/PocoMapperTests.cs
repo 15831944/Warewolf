@@ -12,13 +12,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Dev2.Common.Interfaces.Core.Graph;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Framework.Converters.Graph.Poco;
 using Unlimited.UnitTest.Framework.ConverterTests.GraphTests;
 
 namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class PocoMapperTests
     {
         #region Private/Internal Methods
@@ -161,7 +162,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
             return testData;
         }
         #endregion Private/Internal Methods
-        [TestMethod]
+        [Test]
         public void MapPrimitive_Expected_PathToRoot()
         {
             var pocoMapper = new PocoMapper();
@@ -173,7 +174,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
         /// <summary>
         /// Maps the enumerable only containing primitives expected path to root.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void MapEnumerableOnlyContainingPrimitives_Expected_PathToRoot()
         {
             var pocoMapper = new PocoMapper();
@@ -183,7 +184,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
             Assert.IsTrue(paths.Any(p => p.ActualPath == "Capacity" || p.ActualPath == "Count"));
         }
 
-        [TestMethod]
+        [Test]
         public void MapEnumerable_Expected_PathToPublicPrimitiveMember()
         {
             var pocoMapper = new PocoMapper();
@@ -194,7 +195,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
             Assert.IsTrue(paths.Any(p => p.ActualPath == "Count"));
         }
 
-        [TestMethod]
+        [Test]
         public void MapEnumerableNestedInAnEnumerable_Expected_PathToPublicPrimitiveMemberOfEnumerableNestedInTheOuterEnumerable()
         {
             var pocoMapper = new PocoMapper();
@@ -205,7 +206,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
             Assert.IsTrue(paths.Any(p => p.ActualPath == "EnumerableData().EnumerableData.Count"));
         }
 
-        [TestMethod]
+        [Test]
         public void MapReferenceType_WhereGetAccessorsOfMembersThrowExceptions_Expected_PathsToExcludeThoseMembers()
         {
             var pocoMapper = new PocoMapper();
@@ -215,7 +216,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
             Assert.IsFalse(paths.Any(p => p.ActualPath == "Host"));
         }
 
-        [TestMethod]
+        [Test]
         public void MapReferenceType_Expected_PathToPublicPrimitiveMemberOfPublicReferenceMember()
         {
             var testData = Given();
@@ -226,7 +227,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
             Assert.IsTrue(paths.Any(p => p.ActualPath == "Name"));
         }
 
-        [TestMethod]
+        [Test]
         public void MapNestedReferenceType_Expected_PathToPublicPrimitiveMemberOfNestedPublicReferenceMember()
         {
             var testData = Given();
@@ -237,7 +238,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
             Assert.IsTrue(paths.Any(p => p.ActualPath == "NestedData.Name"));
         }
 
-        [TestMethod]
+        [Test]
         public void MapReferenceTypeWithinEnumerable_Expected_PathToPublicPrimitiveMemberOfPublicEnumerableMember()
         {
             var testData = Given();
@@ -248,7 +249,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
             Assert.IsTrue(paths.Any(p => p.ActualPath == "EnumerableData().Name"));
         }
 
-        [TestMethod]
+        [Test]
         public void MapReferenceTypeNestedInAnWithinEnumerable_Expected_PathToPublicPrimitiveMemberOfPublicReferenceMemberOfPublicEnumerableMember()
         {
             var testData = Given();
@@ -259,7 +260,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
             Assert.IsTrue(paths.Any(p => p.ActualPath == "EnumerableData().NestedData.Name"));
         }
 
-        [TestMethod]
+        [Test]
         public void MapEnumerable_Expected_PathToEnumerable()
         {
             var pocoMapper = new PocoMapper();
@@ -270,7 +271,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
             Assert.IsTrue(paths.Any(p => p.ActualPath == "UnnamedArray().Name"));
         }
 
-        [TestMethod]
+        [Test]
         public void MapReferenceTypeNestedEnumerableAnWithinEnumerable_Expected_PathToPublicPrimitiveMemberOfNestedPublicEnumerableMember()
         {
             var testData = GivenWithParallelAndNestedEnumerables();

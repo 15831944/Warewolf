@@ -13,17 +13,18 @@ using System.Windows;
 using Dev2.Activities.Designers2.Core.QuickVariableInput;
 using Dev2.Activities.Preview;
 using Dev2.Runtime.Configuration.ViewModels.Base;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Activities.Designers.Tests.QuickVariableInput
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public partial class QuickVariableInputViewModelTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_Constructor")]
         public void QuickVariableInputViewModel_Constructor_PreviewViewModel_NotNull()
         {
             //------------Setup for test--------------------------
@@ -36,9 +37,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             Assert.IsNotNull(previewViewModel);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_Constructor")]
         public void QuickVariableInputViewModel_Constructor_PreviewViewModel_PreviewRequestedWiredUp()
         {
             //------------Setup for test--------------------------
@@ -51,9 +52,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             Assert.AreEqual(1, qviViewModel.DoPreviewHitCount);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("QuickVariableInputViewModel_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("QuickVariableInputViewModel_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void QuickVariableInputViewModel_Constructor_NullAddToCollectionArguments_ExceptionThrown()
         {
@@ -65,9 +66,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("QuickVariableInputViewModel_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("QuickVariableInputViewModel_Constructor")]
         public void QuickVariableInputViewModel_Constructor_WithParameter_SetsDefaultPropertyValues()
         {
             //------------Setup for test--------------------------
@@ -76,7 +77,7 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
 
             //------------Assert Results-------------------------
             Assert.IsNotNull(qviViewModel);
-            Assert.IsInstanceOfType(qviViewModel, typeof(DependencyObject));
+            Assert.IsInstanceOf(qviViewModel.GetType(), typeof(DependencyObject));
             Assert.AreEqual(string.Empty, qviViewModel.SplitToken);
             Assert.AreEqual(string.Empty, qviViewModel.VariableListString);
             Assert.AreEqual(string.Empty, qviViewModel.Prefix);
@@ -97,15 +98,15 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             CollectionAssert.Contains(qviViewModel.SplitTypeList, QuickVariableInputViewModel.SplitTypeTab);
 
             Assert.IsNotNull(qviViewModel.ClearCommand);
-            Assert.IsInstanceOfType(qviViewModel.ClearCommand, typeof(DelegateCommand));
+            Assert.IsInstanceOf(qviViewModel.ClearCommand.GetType(), typeof(DelegateCommand));
             Assert.IsTrue(qviViewModel.ClearCommand.CanExecute(null));
 
             Assert.IsNotNull(qviViewModel.AddCommand);
-            Assert.IsInstanceOfType(qviViewModel.AddCommand, typeof(RelayCommand));
+            Assert.IsInstanceOf(qviViewModel.AddCommand.GetType(), typeof(RelayCommand));
             Assert.IsFalse(qviViewModel.AddCommand.CanExecute(null));
 
             Assert.IsNotNull(qviViewModel.PreviewViewModel);
-            Assert.IsInstanceOfType(qviViewModel.PreviewViewModel, typeof(PreviewViewModel));
+            Assert.IsInstanceOf(qviViewModel.PreviewViewModel.GetType(), typeof(PreviewViewModel));
             Assert.AreEqual(Visibility.Collapsed, qviViewModel.PreviewViewModel.InputsVisibility);
         }
     }

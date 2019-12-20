@@ -1,15 +1,16 @@
 ﻿using Dev2.Activities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Diagnostics;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.ExecuteCommand
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfExecuteCommandLineActivityComparerTest
     {
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentUniqueIds_ActivityTools_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -23,8 +24,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ExecuteCommand
             //---------------Test Result -----------------------
             Assert.IsTrue(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_EmptyActivityTools_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -39,8 +40,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ExecuteCommand
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_DisplayName_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -55,8 +56,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ExecuteCommand
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_DisplayName_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -70,8 +71,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ExecuteCommand
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_CommandFileName_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -86,8 +87,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ExecuteCommand
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_CommandFileName_Different_Casing_IsNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -102,8 +103,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ExecuteCommand
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_CommandFileName_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -117,8 +118,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ExecuteCommand
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }    
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_CommandResult_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -133,8 +134,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ExecuteCommand
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_CommandFileName_CommandResult_Casing_IsNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -149,8 +150,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ExecuteCommand
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_CommandResult_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -164,8 +165,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ExecuteCommand
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_CommandFileName_CommandPriority_IsNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -180,8 +181,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ExecuteCommand
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_CommandPriority_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------

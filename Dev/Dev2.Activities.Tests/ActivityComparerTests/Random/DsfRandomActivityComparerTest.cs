@@ -1,15 +1,16 @@
 ﻿using Dev2.Activities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using Dev2.Common.Interfaces.Enums;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.Random
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfRandomActivityComparerTest
     {
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentUniqueIds_ActivityTools_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -23,8 +24,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Random
             //---------------Test Result -----------------------
             Assert.IsTrue(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_EmptyActivityTools_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -39,8 +40,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Random
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_DisplayName_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -55,8 +56,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Random
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_DisplayName_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -70,8 +71,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Random
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_Length_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -86,8 +87,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Random
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_Length_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -101,8 +102,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Random
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_From_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -117,8 +118,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Random
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_From_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -133,8 +134,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Random
             Assert.IsFalse(@equals);
         }
                  
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_To_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -149,8 +150,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Random
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_To_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -165,8 +166,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Random
             Assert.IsFalse(@equals);
         }
                  
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_Result_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -181,8 +182,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Random
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_Result_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -198,8 +199,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Random
         }
                  
                  
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_RandomType_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -215,8 +216,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Random
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_RandomType_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------

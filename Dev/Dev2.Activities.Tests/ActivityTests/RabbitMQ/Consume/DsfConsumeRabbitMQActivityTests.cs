@@ -1,6 +1,6 @@
 ﻿using Dev2.Activities.RabbitMQ.Consume;
 using Dev2.Data.ServiceModel;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using RabbitMQ.Client;
 using System;
@@ -18,15 +18,17 @@ using Warewolf.Storage.Interfaces;
 using System.Reflection;
 using System.Linq;
 using Dev2.Common.State;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfConsumeRabbitMQActivityTests : BaseActivityUnitTest
     {
-        [TestMethod]
-        [Owner("Mthembu Sanele")]
-        [TestCategory("DsfConsumeRabbitMQActivity_Construct")]
+        [Test]
+        [Author("Mthembu Sanele")]
+        [Category("DsfConsumeRabbitMQActivity_Construct")]
         public void DsfConsumeRabbitMQActivity_Constructor_Should_SetsDefaultPropertyValues()
         {
             //------------Setup for test--------------------------
@@ -38,16 +40,16 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
                 Prefetch = null
             };
             //------------Assert Results-------------------------
-            Assert.IsNotNull(dsfConsumeRabbitMQActivity);
-            Assert.AreEqual("RabbitMQ Consume", dsfConsumeRabbitMQActivity.DisplayName);
-            Assert.IsTrue(string.IsNullOrEmpty(dsfConsumeRabbitMQActivity.QueueName));
-            Assert.AreEqual(Guid.Empty, dsfConsumeRabbitMQActivity.RabbitMQSourceResourceId);
-            Assert.IsNull(dsfConsumeRabbitMQActivity.Prefetch);
+            NUnit.Framework.Assert.IsNotNull(dsfConsumeRabbitMQActivity);
+            NUnit.Framework.Assert.AreEqual("RabbitMQ Consume", dsfConsumeRabbitMQActivity.DisplayName);
+            NUnit.Framework.Assert.IsTrue(string.IsNullOrEmpty(dsfConsumeRabbitMQActivity.QueueName));
+            NUnit.Framework.Assert.AreEqual(Guid.Empty, dsfConsumeRabbitMQActivity.RabbitMQSourceResourceId);
+            NUnit.Framework.Assert.IsNull(dsfConsumeRabbitMQActivity.Prefetch);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DsfConsumeRabbitMQActivity_Construct")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DsfConsumeRabbitMQActivity_Construct")]
         public void DsfConsumeRabbitMQActivity_ConstructorRC_Should_SetsDefaultPropertyValuesIsObject()
         {
             //------------Setup for test--------------------------
@@ -60,13 +62,13 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
                 Prefetch = null
             };
             //------------Assert Results-------------------------
-            Assert.IsNotNull(dsfConsumeRabbitMQActivity);
-            Assert.IsFalse(dsfConsumeRabbitMQActivity.IsObject);
+            NUnit.Framework.Assert.IsNotNull(dsfConsumeRabbitMQActivity);
+            NUnit.Framework.Assert.IsFalse(dsfConsumeRabbitMQActivity.IsObject);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DsfConsumeRabbitMQActivity_Construct")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DsfConsumeRabbitMQActivity_Construct")]
         public void DsfConsumeRabbitMQActivity_ConstructorRM_Should_SetsDefaultPropertyValuesIsObject()
         {
             //------------Setup for test--------------------------
@@ -79,24 +81,24 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
                 Prefetch = null
             };
             //------------Assert Results-------------------------
-            Assert.IsNotNull(dsfConsumeRabbitMQActivity);
-            Assert.IsFalse(dsfConsumeRabbitMQActivity.IsObject);
+            NUnit.Framework.Assert.IsNotNull(dsfConsumeRabbitMQActivity);
+            NUnit.Framework.Assert.IsFalse(dsfConsumeRabbitMQActivity.IsObject);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DsfConsumeRabbitMQActivity_Prefetch")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DsfConsumeRabbitMQActivity_Prefetch")]
         public void DsfConsumeRabbitMQActivity_Prefetch_Should_SetsDefaultPropertyValuesIsObject()
         {
             //------------Setup for test--------------------------
             //------------Execute Test---------------------------
             var dsfConsumeRabbitMQActivity = new DsfConsumeRabbitMQActivity();
             //------------Assert Results-------------------------
-            Assert.AreEqual("1", dsfConsumeRabbitMQActivity.Prefetch);
+            NUnit.Framework.Assert.AreEqual("1", dsfConsumeRabbitMQActivity.Prefetch);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void AssignResult_GivenIsObject_ShouldSetResponsemanagerIsObject()
         {
             //---------------Set up test pack-------------------
@@ -110,17 +112,17 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
                 Prefetch = null,
                 IsObject = true
             };
-            var privateObject = new PrivateObject(dsfConsumeRabbitMQActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(dsfConsumeRabbitMQActivity);
             //---------------Assert Precondition----------------
-            Assert.IsTrue(dsfConsumeRabbitMQActivity.IsObject);
+            NUnit.Framework.Assert.IsTrue(dsfConsumeRabbitMQActivity.IsObject);
             //---------------Execute Test ----------------------
             privateObject.Invoke("AssignResult", dstaObj.Object, 1);
             //---------------Test Result -----------------------
             mock.VerifySet(manager => manager.IsObject = true, Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void AssignResult_GivenIsObject_ShouldSetResponsemanagerObjectName()
         {
             //---------------Set up test pack-------------------
@@ -135,17 +137,17 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
                 IsObject = true,
                 ObjectName = "a"
             };
-            var privateObject = new PrivateObject(dsfConsumeRabbitMQActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(dsfConsumeRabbitMQActivity);
             //---------------Assert Precondition----------------
-            Assert.IsTrue(dsfConsumeRabbitMQActivity.IsObject);
+            NUnit.Framework.Assert.IsTrue(dsfConsumeRabbitMQActivity.IsObject);
             //---------------Execute Test ----------------------
             privateObject.Invoke("AssignResult", dstaObj.Object, 1);
             //---------------Test Result -----------------------
             mock.VerifySet(manager => manager.ObjectName = "a", Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void AssignResult_GivenIsObjectNoMessages_ShouldNotSetResponsemanagerPushResponeToEnvironment()
         {
             //---------------Set up test pack-------------------
@@ -162,17 +164,17 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
                 IsObject = true,
                 ObjectName = "a"
             };
-            var privateObject = new PrivateObject(dsfConsumeRabbitMQActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(dsfConsumeRabbitMQActivity);
             //---------------Assert Precondition----------------
-            Assert.IsTrue(dsfConsumeRabbitMQActivity.IsObject);
+            NUnit.Framework.Assert.IsTrue(dsfConsumeRabbitMQActivity.IsObject);
             //---------------Execute Test ----------------------
             privateObject.Invoke("AssignResult", dstaObj.Object, 1);
             //---------------Test Result -----------------------
             mock.Verify(manager => manager.PushResponseIntoEnvironment(It.IsAny<string>(), 1, dstaObj.Object, It.IsAny<bool>()), Times.Never);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void AssignResult_GivenIsObjectOneMessages_ShouldSetResponsemanagerPushResponeToEnvironment()
         {
             //---------------Set up test pack-------------------
@@ -190,17 +192,17 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
                 ObjectName = "a",
                 _messages = new List<string>(new[] { "a" })
             };
-            var privateObject = new PrivateObject(dsfConsumeRabbitMQActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(dsfConsumeRabbitMQActivity);
             //---------------Assert Precondition----------------
-            Assert.IsTrue(dsfConsumeRabbitMQActivity.IsObject);
+            NUnit.Framework.Assert.IsTrue(dsfConsumeRabbitMQActivity.IsObject);
             //---------------Execute Test ----------------------
             privateObject.Invoke("AssignResult", dstaObj.Object, 1);
             //---------------Test Result -----------------------
             mock.Verify(manager => manager.PushResponseIntoEnvironment(It.IsAny<string>(), 1, dstaObj.Object), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void AssignResult_GivenIsObjectManyMessages_ShouldSetResponsemanagerPushResponeToEnvironment()
         {
             //---------------Set up test pack-------------------
@@ -218,9 +220,9 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
                 ObjectName = "a",
                 _messages = new List<string>(new[] { "a", "b" })
             };
-            var privateObject = new PrivateObject(dsfConsumeRabbitMQActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(dsfConsumeRabbitMQActivity);
             //---------------Assert Precondition----------------
-            Assert.IsTrue(dsfConsumeRabbitMQActivity.IsObject);
+            NUnit.Framework.Assert.IsTrue(dsfConsumeRabbitMQActivity.IsObject);
             //---------------Execute Test ----------------------
             privateObject.Invoke("AssignResult", dstaObj.Object, 1);
             //---------------Test Result -----------------------
@@ -229,9 +231,9 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
 
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DsfConsumeRabbitMQActivity_Construct")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DsfConsumeRabbitMQActivity_Construct")]
         public void DsfConsumeRabbitMQActivity_ConstructorRC_Should_SetsDefaultPropertyValuesObjectName()
         {
             //------------Setup for test--------------------------
@@ -244,13 +246,13 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
                 Prefetch = null
             };
             //------------Assert Results-------------------------
-            Assert.IsNotNull(dsfConsumeRabbitMQActivity);
-            Assert.AreEqual(null, dsfConsumeRabbitMQActivity.ObjectName);
+            NUnit.Framework.Assert.IsNotNull(dsfConsumeRabbitMQActivity);
+            NUnit.Framework.Assert.AreEqual(null, dsfConsumeRabbitMQActivity.ObjectName);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DsfConsumeRabbitMQActivity_Construct")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DsfConsumeRabbitMQActivity_Construct")]
         public void DsfConsumeRabbitMQActivity_ConstructorRM_Should_SetsDefaultPropertyValuesObjectName()
         {
             //------------Setup for test--------------------------
@@ -263,13 +265,13 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
                 Prefetch = null
             };
             //------------Assert Results-------------------------
-            Assert.IsNotNull(dsfConsumeRabbitMQActivity);
-            Assert.AreEqual(null, dsfConsumeRabbitMQActivity.ObjectName);
+            NUnit.Framework.Assert.IsNotNull(dsfConsumeRabbitMQActivity);
+            NUnit.Framework.Assert.AreEqual(null, dsfConsumeRabbitMQActivity.ObjectName);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DsfConsumeRabbitMQActivity_Construct")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DsfConsumeRabbitMQActivity_Construct")]
         public void DsfConsumeRabbitMQActivity_Constructor_Should_SetsInitialiseResponseManager()
         {
             //------------Setup for test--------------------------
@@ -282,13 +284,13 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
                 Prefetch = null
             };
             //------------Assert Results-------------------------
-            Assert.IsNotNull(dsfConsumeRabbitMQActivity.ResponseManager);
-            Assert.IsTrue(ReferenceEquals(mock.Object, dsfConsumeRabbitMQActivity.ResponseManager));
+            NUnit.Framework.Assert.IsNotNull(dsfConsumeRabbitMQActivity.ResponseManager);
+            NUnit.Framework.Assert.IsTrue(ReferenceEquals(mock.Object, dsfConsumeRabbitMQActivity.ResponseManager));
         }
 
-        [TestMethod]
-        [Owner("Mthembu Sanele")]
-        [TestCategory("DsfConsumeRabbitMQActivity_Construct")]
+        [Test]
+        [Author("Mthembu Sanele")]
+        [Category("DsfConsumeRabbitMQActivity_Construct")]
         public void DsfConsumeRabbitMQActivity_ConstructorRC_Should_SetsDefaultPropertyValues()
         {
             //------------Setup for test--------------------------
@@ -301,18 +303,18 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
                 Prefetch = null
             };
             //------------Assert Results-------------------------
-            Assert.IsNotNull(dsfConsumeRabbitMQActivity);
-            Assert.AreEqual("RabbitMQ Consume", dsfConsumeRabbitMQActivity.DisplayName);
-            Assert.IsTrue(string.IsNullOrEmpty(dsfConsumeRabbitMQActivity.QueueName));
-            Assert.AreEqual(Guid.Empty, dsfConsumeRabbitMQActivity.RabbitMQSourceResourceId);
-            Assert.IsNull(dsfConsumeRabbitMQActivity.Prefetch);
-            Assert.IsNull(dsfConsumeRabbitMQActivity.Consumer);
+            NUnit.Framework.Assert.IsNotNull(dsfConsumeRabbitMQActivity);
+            NUnit.Framework.Assert.AreEqual("RabbitMQ Consume", dsfConsumeRabbitMQActivity.DisplayName);
+            NUnit.Framework.Assert.IsTrue(string.IsNullOrEmpty(dsfConsumeRabbitMQActivity.QueueName));
+            NUnit.Framework.Assert.AreEqual(Guid.Empty, dsfConsumeRabbitMQActivity.RabbitMQSourceResourceId);
+            NUnit.Framework.Assert.IsNull(dsfConsumeRabbitMQActivity.Prefetch);
+            NUnit.Framework.Assert.IsNull(dsfConsumeRabbitMQActivity.Consumer);
         }
 
 
-        [TestMethod]
-        [Owner("Mthembu Sanele")]
-        [TestCategory("DsfConsumeRabbitMQActivity_Execute")]
+        [Test]
+        [Author("Mthembu Sanele")]
+        [Category("DsfConsumeRabbitMQActivity_Execute")]
         public void PerformExecution_Given_NoSource_Should_Return_NullSourceException()
         {
             //------------Setup for test--------------------------
@@ -321,7 +323,7 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             var resourceCatalog = new Mock<IResourceCatalog>();
             resourceCatalog.Setup(r => r.GetResource<RabbitMQSource>(It.IsAny<Guid>(), It.IsAny<Guid>())).Returns<RabbitMQSource>(null);
 
-            var privateObject = new PrivateObject(dsfConsumeRabbitMQActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(dsfConsumeRabbitMQActivity);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
 
             //------------Execute Test---------------------------
@@ -329,13 +331,13 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             //------------Assert Results-------------------------
             if (privateObject.Invoke("PerformExecution", new Dictionary<string, string>()) is List<string> result)
             {
-                Assert.AreEqual(result[0], "Failure: Source has been deleted.");
+                NUnit.Framework.Assert.AreEqual(result[0], "Failure: Source has been deleted.");
             }
         }
 
-        [TestMethod]
-        [Owner("Mthembu Sanele")]
-        [TestCategory("DsfConsumeRabbitMQActivity_Execute")]
+        [Test]
+        [Author("Mthembu Sanele")]
+        [Category("DsfConsumeRabbitMQActivity_Execute")]
         public void PerformExecution_Given_Blank_QueueShould_Return_BlankQueueException_NoTimeout()
         {
             //------------Setup for test--------------------------
@@ -346,7 +348,7 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
 
             resourceCatalog.Setup(r => r.GetResource<RabbitMQSource>(It.IsAny<Guid>(), It.IsAny<Guid>())).Returns(rabbitMQSource.Object);
 
-            var privateObject = new PrivateObject(dsfConsumeRabbitMQActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(dsfConsumeRabbitMQActivity);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
 
             //------------Execute Test---------------------------
@@ -354,13 +356,13 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             //------------Assert Results-------------------------
             if (privateObject.Invoke("PerformExecution", new Dictionary<string, string>()) is List<string> result)
             {
-                Assert.AreEqual(result[0], "Failure: Queue Name is required.");
+                NUnit.Framework.Assert.AreEqual(result[0], "Failure: Queue Name is required.");
             }
         }
 
-        [TestMethod]
-        [Owner("Mthembu Sanele")]
-        [TestCategory("DsfConsumeRabbitMQActivity_Execute")]
+        [Test]
+        [Author("Mthembu Sanele")]
+        [Category("DsfConsumeRabbitMQActivity_Execute")]
         public void PerformExecution_Given_Blank_QueueShould_Return_BlankQueueException_Timeout()
         {
             //------------Setup for test--------------------------
@@ -374,7 +376,7 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
 
             resourceCatalog.Setup(r => r.GetResource<RabbitMQSource>(It.IsAny<Guid>(), It.IsAny<Guid>())).Returns(rabbitMQSource.Object);
 
-            var privateObject = new PrivateObject(dsfConsumeRabbitMQActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(dsfConsumeRabbitMQActivity);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
 
             //------------Execute Test---------------------------
@@ -382,13 +384,13 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             //------------Assert Results-------------------------
             if (privateObject.Invoke("PerformExecution", new Dictionary<string, string>()) is List<string> result)
             {
-                Assert.AreEqual(result[0], "Failure: Queue Name is required.");
+                NUnit.Framework.Assert.AreEqual(result[0], "Failure: Queue Name is required.");
             }
         }
 
-        [TestMethod]
-        [Owner("Mthembu Sanele")]
-        [TestCategory("DsfConsumeRabbitMQActivity_Execute")]
+        [Test]
+        [Author("Mthembu Sanele")]
+        [Category("DsfConsumeRabbitMQActivity_Execute")]
         public void PerformExecution_Given_NoQueue_Shouold_Return_Exception_NoTimeout()
         {
             //------------Setup for test--------------------------
@@ -399,19 +401,19 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
 
             resourceCatalog.Setup(r => r.GetResource<RabbitMQSource>(It.IsAny<Guid>(), It.IsAny<Guid>())).Returns(rabbitMQSource.Object);
 
-            var p = new PrivateObject(dsfConsumeRabbitMQActivity);
+            var p = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(dsfConsumeRabbitMQActivity);
             p.SetProperty("ResourceCatalog", resourceCatalog.Object);
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
             if (p.Invoke("PerformExecution", new Dictionary<string, string> { { "Param1", "Blah1" }, { "Param2", "Blah2" } }) is List<string> result)
             {
-                Assert.AreEqual(result[0], "Failure: Queue Name is required.");
+                NUnit.Framework.Assert.AreEqual(result[0], "Failure: Queue Name is required.");
             }
         }
 
-        [TestMethod]
-        [Owner("Mthembu Sanele")]
-        [TestCategory("DsfConsumeRabbitMQActivity_Execute")]
+        [Test]
+        [Author("Mthembu Sanele")]
+        [Category("DsfConsumeRabbitMQActivity_Execute")]
         public void PerformExecution_Given_NoQueue_Shouold_Return_Exception_NoTimeout_Timeout()
         {
             //------------Setup for test--------------------------
@@ -425,20 +427,20 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
 
             resourceCatalog.Setup(r => r.GetResource<RabbitMQSource>(It.IsAny<Guid>(), It.IsAny<Guid>())).Returns(rabbitMQSource.Object);
 
-            var p = new PrivateObject(dsfConsumeRabbitMQActivity);
+            var p = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(dsfConsumeRabbitMQActivity);
             p.SetProperty("ResourceCatalog", resourceCatalog.Object);
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
             if (p.Invoke("PerformExecution", new Dictionary<string, string> { { "Param1", "Blah1" }, { "Param2", "Blah2" } }) is List<string> result)
             {
-                Assert.AreEqual(result[0], "Failure: Queue Name is required.");
+                NUnit.Framework.Assert.AreEqual(result[0], "Failure: Queue Name is required.");
             }
         }
 
-        [TestMethod]
-        [Owner("Mthembu Sanele")]
-        [TestCategory("DsfConsumeRabbitMQActivity_Execute")]
-        [ExpectedException(typeof(Exception))]
+        [Test]
+        [Author("Mthembu Sanele")]
+        [Category("DsfConsumeRabbitMQActivity_Execute")]
+        [NUnit.Framework.ExpectedException(typeof(Exception))]
         public void PerformExecution_Given_No_Source_Should_Return_NullException()
         {
             //------------Setup for test--------------------------
@@ -452,20 +454,20 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             resourceCatalog.Setup(r => r.GetResource<RabbitMQSource>(It.IsAny<Guid>(), It.IsAny<Guid>())).Returns(rabbitMQSource.Object);
             connectionFactory.Setup(c => c.CreateConnection()).Returns<IConnection>(null);
 
-            var privateObject = new PrivateObject(dsfConsumeRabbitMQActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(dsfConsumeRabbitMQActivity);
             privateObject.SetProperty("ConnectionFactory", connectionFactory.Object);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
 
             //------------Execute Test---------------------------
             privateObject.Invoke("PerformExecution", new Dictionary<string, string> { { "QueueName", "Q1" } });
             //------------Assert Results-------------------------
-            Assert.Fail("Exception not thrown");
+            NUnit.Framework.Assert.Fail("Exception not thrown");
         }
 
 
-        [TestMethod]
-        [Owner("Mthembu Sanele")]
-        [TestCategory("DsfConsumeRabbitMQActivity_Execute")]
+        [Test]
+        [Author("Mthembu Sanele")]
+        [Category("DsfConsumeRabbitMQActivity_Execute")]
         public void DsfConsumeRabbitMQActivity_Execute_Empty_Queue_Exception()
         {
             //------------Setup for test--------------------------
@@ -484,7 +486,7 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             channel.Setup(c => c.BasicQos(0, 1, false));
             channel.Setup(c => c.BasicConsume(It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<QueueingBasicConsumer>()));
 
-            var privateObject = new PrivateObject(dsfConsumeRabbitMQActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(dsfConsumeRabbitMQActivity);
             privateObject.SetProperty("ConnectionFactory", connectionFactory.Object);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
 
@@ -495,14 +497,14 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             }
             catch (Exception ex)
             {
-                Assert.AreEqual(ex.Message, string.Format("Nothing in the Queue : {0}", queueName));
+                NUnit.Framework.Assert.AreEqual(ex.Message, string.Format("Nothing in the Queue : {0}", queueName));
             }
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DsfConsumeRabbitMQActivity_Execute")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DsfConsumeRabbitMQActivity_Execute")]
         public void DsfConsumeRabbitMQActivity_Execute_Empty_Queue_Exception_NoTimeout()
         {
             //------------Setup for test--------------------------
@@ -521,7 +523,7 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             channel.Setup(c => c.BasicQos(0, 1, false));
             channel.Setup(c => c.BasicConsume(It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<QueueingBasicConsumer>()));
 
-            var privateObject = new PrivateObject(dsfConsumeRabbitMQActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(dsfConsumeRabbitMQActivity);
             privateObject.SetProperty("ConnectionFactory", connectionFactory.Object);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
 
@@ -532,15 +534,15 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             }
             catch (Exception ex)
             {
-                Assert.AreEqual(ex.Message, string.Format("Nothing in the Queue : {0}", queueName));
+                NUnit.Framework.Assert.AreEqual(ex.Message, string.Format("Nothing in the Queue : {0}", queueName));
             }
             //------------Assert Results-------------------------
 
         }
 
-        [TestMethod]
-        [Owner("Mthembu Sanele")]
-        [TestCategory("DsfConsumeRabbitMQActivity_Execute")]
+        [Test]
+        [Author("Mthembu Sanele")]
+        [Category("DsfConsumeRabbitMQActivity_Execute")]
         public void PerformExecution_Given_DsfBaseActivity_Inputs_ReturnsInputsInTheDebug()
         {
             //------------Setup for test--------------------------
@@ -560,7 +562,7 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             channel.Setup(c => c.BasicConsume(It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<QueueingBasicConsumer>()));
             channel.Setup(c => c.BasicAck(It.IsAny<ulong>(), It.IsAny<bool>()));
 
-            var privateObject = new PrivateObject(dsfConsumeRabbitMQActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(dsfConsumeRabbitMQActivity);
             privateObject.SetProperty("ConnectionFactory", connectionFactory.Object);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
             privateObject.SetProperty("Channel", channel.Object);
@@ -576,9 +578,9 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
         }
-        [TestMethod]
-        [Owner("Mthembu Sanele")]
-        [TestCategory("DsfConsumeRabbitMQActivity_Execute")]
+        [Test]
+        [Author("Mthembu Sanele")]
+        [Category("DsfConsumeRabbitMQActivity_Execute")]
         public void DsfConsumeRabbitMQActivity_Execute_DsfBaseActivity_MethodsGivenInputs()
         {
             //------------Setup for test--------------------------
@@ -598,7 +600,7 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             channel.Setup(c => c.BasicConsume(It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<QueueingBasicConsumer>()));
             channel.Setup(c => c.BasicAck(It.IsAny<ulong>(), It.IsAny<bool>()));
 
-            var privateObject = new PrivateObject(dsfConsumeRabbitMQActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(dsfConsumeRabbitMQActivity);
             privateObject.SetProperty("ConnectionFactory", connectionFactory.Object);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
             privateObject.SetProperty("Channel", channel.Object);
@@ -620,13 +622,13 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             privateObject.Invoke("AssignResult", dataObj, It.IsAny<int>());
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.IsTrue(debugInputs.Count > 0);
-            Assert.IsTrue(debugOutputs.Count > 0);
+            NUnit.Framework.Assert.IsTrue(debugInputs.Count > 0);
+            NUnit.Framework.Assert.IsTrue(debugOutputs.Count > 0);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DsfConsumeRabbitMQActivity_Execute")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DsfConsumeRabbitMQActivity_Execute")]
         public void DsfConsumeRabbitMQActivity_ExecuteIsObject_DsfBaseActivity_MethodsGivenOjectOutput()
         {
             //------------Setup for test--------------------------
@@ -646,7 +648,7 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             channel.Setup(c => c.BasicConsume(It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<QueueingBasicConsumer>()));
             channel.Setup(c => c.BasicAck(It.IsAny<ulong>(), It.IsAny<bool>()));
 
-            var privateObject = new PrivateObject(dsfConsumeRabbitMQActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(dsfConsumeRabbitMQActivity);
             privateObject.SetProperty("ConnectionFactory", connectionFactory.Object);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
             privateObject.SetProperty("Channel", channel.Object);
@@ -669,12 +671,12 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             privateObject.Invoke("AssignResult", dataObj, It.IsAny<int>());
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.IsTrue(debugOutputs.Count > 0);
+            NUnit.Framework.Assert.IsTrue(debugOutputs.Count > 0);
         }
 
-        [TestMethod]
-        [Owner("Mthembu Sanele")]
-        [TestCategory("DsfConsumeRabbitMQActivity_Execute")]
+        [Test]
+        [Author("Mthembu Sanele")]
+        [Category("DsfConsumeRabbitMQActivity_Execute")]
         public void PerformExecution_Given_UnExisting_Queue_Returns_QeueuNotFoundException_NoTimeout()
         {
             //------------Setup for test--------------------------
@@ -694,7 +696,7 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             channel.Setup(c => c.BasicConsume(It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<QueueingBasicConsumer>()))
                 .Throws(new Exception(string.Format("Queue '{0}' not found", queueName)));
 
-            var privateObject = new PrivateObject(dsfConsumeRabbitMQActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(dsfConsumeRabbitMQActivity);
             privateObject.SetProperty("ConnectionFactory", connectionFactory.Object);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
             privateObject.SetProperty("Channel", channel.Object);
@@ -705,14 +707,14 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             }
             catch (Exception ex)
             {
-                Assert.AreEqual(ex.Message, string.Format("Queue {0} not found", queueName));
+                NUnit.Framework.Assert.AreEqual(ex.Message, string.Format("Queue {0} not found", queueName));
             }
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Mthembu Sanele")]
-        [TestCategory("DsfConsumeRabbitMQActivity_Execute")]
+        [Test]
+        [Author("Mthembu Sanele")]
+        [Category("DsfConsumeRabbitMQActivity_Execute")]
         public void PerformExecution_Given_UnExisting_Queue_Returns_QeueuNotFoundException_Timeout()
         {
             //------------Setup for test--------------------------
@@ -735,7 +737,7 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             channel.Setup(c => c.BasicConsume(It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<QueueingBasicConsumer>()))
                 .Throws(new Exception($"Queue '{queueName}' not found"));
 
-            var privateObject = new PrivateObject(dsfConsumeRabbitMQActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(dsfConsumeRabbitMQActivity);
             privateObject.SetProperty("ConnectionFactory", connectionFactory.Object);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
             privateObject.SetProperty("Channel", channel.Object);
@@ -743,19 +745,19 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             try
             {
                 privateObject.Invoke("PerformExecution", new Dictionary<string, string> { { "QueueName", queueName } });
-                Assert.Fail("no exceptions thrown");
+                NUnit.Framework.Assert.Fail("no exceptions thrown");
             }
             catch (Exception ex)
             {
-                Assert.AreEqual(ex.Message, string.Format("Queue {0} not found", queueName));
+                NUnit.Framework.Assert.AreEqual(ex.Message, string.Format("Queue {0} not found", queueName));
             }
             //------------Assert Results-------------------------
         }
 
 
-        [TestMethod]
-        [Owner("Mthembu Sanele")]
-        [TestCategory("DsfConsumeRabbitMQActivity_Execute")]
+        [Test]
+        [Author("Mthembu Sanele")]
+        [Category("DsfConsumeRabbitMQActivity_Execute")]
         public void PerformExecution_Given_ConsumeAndRequeue_From_UnExisting_Queue_ReturnQeueuNotFoundException()
         {
             //------------Setup for test--------------------------
@@ -778,7 +780,7 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             channel.Setup(c => c.BasicGet(It.IsAny<string>(), It.IsAny<bool>()))
                 .Throws(new Exception(string.Format("Queue '{0}' not found", queueName)));
 
-            var privateObject = new PrivateObject(dsfConsumeRabbitMQActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(dsfConsumeRabbitMQActivity);
             privateObject.SetProperty("ConnectionFactory", connectionFactory.Object);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
             privateObject.SetProperty("Channel", channel.Object);
@@ -791,16 +793,16 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             }
             catch (Exception ex)
             {
-                Assert.AreEqual(ex.Message, string.Format("Queue {0} not found", queueName));
+                NUnit.Framework.Assert.AreEqual(ex.Message, string.Format("Queue {0} not found", queueName));
             }
             //------------Assert Results-------------------------
         }
 
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfConsumeRabbitMQActivity_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfConsumeRabbitMQActivity_Execute")]
         public void PerformExecution_Given_ItemsInQueue_ExecuteAndReqeue_WhenExecutedMultipleTimes_ShouldNotAppend_NoTimeout()
         {
             //------------Setup for test--------------------------
@@ -822,7 +824,7 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             var basicGetResult1 = new BasicGetResult(1, true, queueName, "", 1, new BasicProperties(), Encoding.Default.GetBytes("hello"));
             var basicGetResult2 = new BasicGetResult(2, true, queueName, "", 1, new BasicProperties(), Encoding.Default.GetBytes("world"));
             channel.SetupSequence(model => model.BasicGet(queueName, It.IsAny<bool>())).Returns(basicGetResult1).Returns(basicGetResult2);
-            var privateObject = new PrivateObject(dsfConsumeRabbitMQActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(dsfConsumeRabbitMQActivity);
             privateObject.SetProperty("ConnectionFactory", connectionFactory.Object);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
             privateObject.SetProperty("QueueName", queueName);
@@ -833,12 +835,12 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             privateObject.Invoke("ExecuteTool", dataObj, 0);
             privateObject.Invoke("ExecuteTool", dataObj, 0);
             GetRecordSetFieldValueFromDataList(dataObj.Environment, "msgs", "message", out IList<string> actualRecset, out string error);
-            Assert.AreEqual(1, actualRecset.Count);
+            NUnit.Framework.Assert.AreEqual(1, actualRecset.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfConsumeRabbitMQActivity_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfConsumeRabbitMQActivity_Execute")]
         public void PerformExecution_Given_ItemsInQueue_ExecuteAndReqeue_WhenExecutedMultipleTimes_ShouldNotAppend_Timeout()
         {
             //------------Setup for test--------------------------
@@ -860,7 +862,7 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             var basicGetResult1 = new BasicGetResult(1, true, queueName, "", 1, new BasicProperties(), Encoding.Default.GetBytes("hello"));
             var basicGetResult2 = new BasicGetResult(2, true, queueName, "", 1, new BasicProperties(), Encoding.Default.GetBytes("world"));
             channel.SetupSequence(model => model.BasicGet(queueName, It.IsAny<bool>())).Returns(basicGetResult1).Returns(basicGetResult2);
-            var privateObject = new PrivateObject(dsfConsumeRabbitMQActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(dsfConsumeRabbitMQActivity);
             privateObject.SetProperty("ConnectionFactory", connectionFactory.Object);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
             privateObject.SetProperty("QueueName", queueName);
@@ -871,12 +873,12 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             privateObject.Invoke("ExecuteTool", dataObj, 0);
             privateObject.Invoke("ExecuteTool", dataObj, 0);
             GetRecordSetFieldValueFromDataList(dataObj.Environment, "msgs", "message", out IList<string> actualRecset, out string error);
-            Assert.AreEqual(1, actualRecset.Count);
+            NUnit.Framework.Assert.AreEqual(1, actualRecset.Count);
         }
 
-        [TestMethod]
-        [Owner("Mthembu Sanele")]
-        [TestCategory("DsfConsumeRabbitMQActivity_Execute")]
+        [Test]
+        [Author("Mthembu Sanele")]
+        [Category("DsfConsumeRabbitMQActivity_Execute")]
         public void PerformExecution_Given_EmptyQueue_ExecuteAndReqeue_Empty_Queue_Exception()
         {
             //------------Setup for test--------------------------
@@ -895,7 +897,7 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             channel.Setup(c => c.BasicQos(0, 1, false));
             channel.Setup(c => c.BasicConsume(It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<QueueingBasicConsumer>()));
 
-            var privateObject = new PrivateObject(dsfConsumeRabbitMQActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(dsfConsumeRabbitMQActivity);
             privateObject.SetProperty("ConnectionFactory", connectionFactory.Object);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
 
@@ -907,14 +909,14 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             }
             catch (Exception ex)
             {
-                Assert.AreEqual(ex.Message, string.Format("Nothing in the Queue : {0}", queueName));
+                NUnit.Framework.Assert.AreEqual(ex.Message, string.Format("Nothing in the Queue : {0}", queueName));
             }
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Mthembu Sanele")]
-        [TestCategory("DsfConsumeRabbitMQActivity_Execute")]
+        [Test]
+        [Author("Mthembu Sanele")]
+        [Category("DsfConsumeRabbitMQActivity_Execute")]
         [Depends(Depends.ContainerType.RabbitMQ)]
         public void PerformSerialization_ShouldNotError()
         {
@@ -937,7 +939,7 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             connectionFactory.Setup(c => c.CreateConnection()).Returns(connection.Object);
             connection.Setup(c => c.CreateModel()).Returns(channel.Object);
 
-            var privateObject = new PrivateObject(dsfConsumeRabbitMQActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(dsfConsumeRabbitMQActivity);
             privateObject.SetProperty("ConnectionFactory", connectionFactory.Object);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
             dsfConsumeRabbitMQActivity.ReQueue = true;
@@ -947,7 +949,7 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             }
             catch (Exception ex)
             {
-                Assert.AreEqual("Queue Q1 not found", ex.Message);
+                NUnit.Framework.Assert.AreEqual("Queue Q1 not found", ex.Message);
             }
             var serializer = new Dev2JsonSerializer();
 
@@ -956,19 +958,19 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             {
                 var serializedAct = serializer.SerializeToBuilder(dsfConsumeRabbitMQActivity);
                 //------------Assert Results-------------------------
-                Assert.IsNotNull(serializedAct);
+                NUnit.Framework.Assert.IsNotNull(serializedAct);
             }
             catch (Exception e)
             {
-                Assert.Fail(e.Message);
+                NUnit.Framework.Assert.Fail(e.Message);
             }
 
 
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfConsumeRabbitMQActivity_GetOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfConsumeRabbitMQActivity_GetOutputs")]
         public void DsfConsumeRabbitMQActivity_GetOutputs_ShouldIncludeResponse()
         {
             //------------Setup for test--------------------------
@@ -980,14 +982,14 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             //------------Execute Test---------------------------
             var outputs = dsfConsumeRabbitMQActivity.GetOutputs();
             //------------Assert Results-------------------------
-            Assert.IsNotNull(outputs);
-            Assert.AreEqual(2, outputs.Count);
-            Assert.AreEqual("[[data]]", outputs[0]);
-            Assert.AreEqual("[[res]]", outputs[1]);
+            NUnit.Framework.Assert.IsNotNull(outputs);
+            NUnit.Framework.Assert.AreEqual(2, outputs.Count);
+            NUnit.Framework.Assert.AreEqual("[[data]]", outputs[0]);
+            NUnit.Framework.Assert.AreEqual("[[res]]", outputs[1]);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Author("Hagashen Naidu")]
         public void DsfConsumeRabbitMQActivity_ShouldSerializeChannel_ShouldReturnFalse()
         {
             //------------Setup for test--------------------------
@@ -995,11 +997,11 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             //------------Execute Test---------------------------
             var shouldSerialize = dsfConsumeRabbitMQActivity.ShouldSerializeChannel();
             //------------Assert Results-------------------------
-            Assert.IsFalse(shouldSerialize);
+            NUnit.Framework.Assert.IsFalse(shouldSerialize);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Author("Hagashen Naidu")]
         public void DsfConsumeRabbitMQActivity_ShouldSerializeConnection_ShouldReturnFalse()
         {
             //------------Setup for test--------------------------
@@ -1007,11 +1009,11 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             //------------Execute Test---------------------------
             var shouldSerialize = dsfConsumeRabbitMQActivity.ShouldSerializeConnection();
             //------------Assert Results-------------------------
-            Assert.IsFalse(shouldSerialize);
+            NUnit.Framework.Assert.IsFalse(shouldSerialize);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Author("Hagashen Naidu")]
         public void DsfConsumeRabbitMQActivity_ShouldSerializeConnectionFactory_ShouldReturnFalse()
         {
             //------------Setup for test--------------------------
@@ -1019,11 +1021,11 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             //------------Execute Test---------------------------
             var shouldSerialize = dsfConsumeRabbitMQActivity.ShouldSerializeConnectionFactory();
             //------------Assert Results-------------------------
-            Assert.IsFalse(shouldSerialize);
+            NUnit.Framework.Assert.IsFalse(shouldSerialize);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Author("Hagashen Naidu")]
         public void DsfConsumeRabbitMQActivity_ShouldSerializeConsumer_ShouldReturnFalse()
         {
             //------------Setup for test--------------------------
@@ -1031,11 +1033,11 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             //------------Execute Test---------------------------
             var shouldSerialize = dsfConsumeRabbitMQActivity.ShouldSerializeConsumer();
             //------------Assert Results-------------------------
-            Assert.IsFalse(shouldSerialize);
+            NUnit.Framework.Assert.IsFalse(shouldSerialize);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Author("Hagashen Naidu")]
         public void DsfConsumeRabbitMQActivity_ShouldSerializeRabbitSource_ShouldReturnFalse()
         {
             //------------Setup for test--------------------------
@@ -1043,12 +1045,12 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             //------------Execute Test---------------------------
             var shouldSerialize = dsfConsumeRabbitMQActivity.ShouldSerializeRabbitSource();
             //------------Assert Results-------------------------
-            Assert.IsFalse(shouldSerialize);
+            NUnit.Framework.Assert.IsFalse(shouldSerialize);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfConsumeRabbitMQActivity_GetState")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfConsumeRabbitMQActivity_GetState")]
         public void DsfConsumeRabbitMQActivity_GetState_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------
@@ -1069,7 +1071,7 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             };
             //------------Execute Test---------------------------
             var stateItems = act.GetState();
-            Assert.AreEqual(10, stateItems.Count());
+            NUnit.Framework.Assert.AreEqual(10, stateItems.Count());
 
             var expectedResults = new[]
             {
@@ -1146,9 +1148,9 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             //------------Assert Results-------------------------
             foreach (var entry in iter)
             {
-                Assert.AreEqual(entry.expectValue.Name, entry.value.Name);
-                Assert.AreEqual(entry.expectValue.Type, entry.value.Type);
-                Assert.AreEqual(entry.expectValue.Value, entry.value.Value);
+                NUnit.Framework.Assert.AreEqual(entry.expectValue.Name, entry.value.Name);
+                NUnit.Framework.Assert.AreEqual(entry.expectValue.Type, entry.value.Type);
+                NUnit.Framework.Assert.AreEqual(entry.expectValue.Value, entry.value.Value);
             }
         }
     }

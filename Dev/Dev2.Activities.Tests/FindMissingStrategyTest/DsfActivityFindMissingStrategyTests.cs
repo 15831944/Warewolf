@@ -11,7 +11,7 @@
 using System.Collections.Generic;
 using Dev2.Factories;
 using Dev2.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.FindMissingStrategyTest
@@ -19,7 +19,8 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
     /// <summary>
     /// Summary description for DsfActivityFindMissingStrategyTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfActivityFindMissingStrategyTests
     {
         /// <summary>
@@ -33,7 +34,7 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
         // You can use the following additional attributes as you write your tests:
         //
         // Use ClassInitialize to run code before running the first test in the class
-        // [ClassInitialize()]
+        // [OneTimeSetUp]
         // public static void MyClassInitialize(TestContext testContext) { }
         //
         // Use ClassCleanup to run code after all tests in a class have run
@@ -50,7 +51,7 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
         //
         #endregion
 
-        [TestMethod]
+        [Test]
         public void GetActivityFieldsOffDsfActivityExpectedAllFindMissingFieldsToBeReturned()
         {
             var expectedOnError = new List<string> { "[[ErrorVar]]", "http://ServerName:77/Services/LogErrors?Error=[[ErrorMsg]]" };

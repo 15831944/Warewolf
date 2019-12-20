@@ -6,7 +6,7 @@ using Dev2.Interfaces;
 using Dev2.Studio.Core;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.ViewModels.DataList;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Activities.Statements;
@@ -85,8 +85,8 @@ namespace Warewolf.ToolsSpecs.Toolbox.Database.AdvancedRecordset
             var i = 0;
             foreach (var row in declaredVariables.Rows)
             {
-                Assert.AreEqual<string>(viewModel.DeclareVariables[i].Name, row["Name"]);
-                Assert.AreEqual<string>(viewModel.DeclareVariables[i].Value, row["Value"]);
+                Assert.AreEqual(viewModel.DeclareVariables[i].Name, row["Name"]);
+                Assert.AreEqual(viewModel.DeclareVariables[i].Value, row["Value"]);
                 i++;
             }
         }
@@ -166,8 +166,8 @@ namespace Warewolf.ToolsSpecs.Toolbox.Database.AdvancedRecordset
                 var outputMapping = outputMappings.ToList()[rowIdx];
                 outputMapping.MappedTo = mappedTo;
                 outputMapping.MappedFrom = mappedFrom;
-                Assert.AreEqual<string>(mappedFrom, outputMapping.MappedFrom);
-                Assert.AreEqual<string>(mappedTo, outputMapping.MappedTo);
+                Assert.AreEqual(mappedFrom, outputMapping.MappedFrom);
+                Assert.AreEqual(mappedTo, outputMapping.MappedTo);
                 rowIdx++;
             }
         }
@@ -216,7 +216,7 @@ namespace Warewolf.ToolsSpecs.Toolbox.Database.AdvancedRecordset
 
                 var recordSetValues = (recordSets as CommonFunctions.WarewolfEvalResult.WarewolfAtomListresult).Item.ToList();
 
-                Assert.AreEqual<int>(tableRows.Count, recordSetValues.Count);
+                Assert.AreEqual(tableRows.Count, recordSetValues.Count);
 
                 for (int i = 0; i < tableRows.Count; i++)
                 {

@@ -11,18 +11,19 @@
 using System.Collections.Generic;
 using Dev2.Data.Interfaces;
 using Dev2.ViewModels.Workflow;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests.Workflows
 {
-    [TestClass]
-    [TestCategory("Studio Workflows Core")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Studio Workflows Core")]
     public class DesignerDataListUtilsTest
     {
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DesignerDataListUtils_BuildDataPart")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DesignerDataListUtils_BuildDataPart")]
         public void DesignerDataListUtils_BuildDataPart_ValidScalar_ExpectInsert()
         {
             //------------Setup for test--------------------------
@@ -31,9 +32,9 @@ namespace Dev2.Core.Tests.Workflows
             Assert.AreEqual(1,unique.Count);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DesignerDataListUtils_BuildDataPart")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DesignerDataListUtils_BuildDataPart")]
         public void DesignerDataListUtils_BuildDataPart_ValidRecSet_ExpectInsert()
         {
             //------------Setup for test--------------------------
@@ -41,9 +42,9 @@ namespace Dev2.Core.Tests.Workflows
             WorkflowDesignerDataPartUtils.BuildDataPart("[[bob().a]]", unique);
             Assert.AreEqual(2, unique.Count);
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DesignerDataListUtils_BuildDataPart")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DesignerDataListUtils_BuildDataPart")]
         public void DesignerDataListUtils_BuildDataPart_ValidRecSet_NoField_ExpectInsert()
         {
             //------------Setup for test--------------------------
@@ -53,9 +54,9 @@ namespace Dev2.Core.Tests.Workflows
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DesignerDataListUtils_BuildDataPart")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DesignerDataListUtils_BuildDataPart")]
         public void DesignerDataListUtils_BuildDataPart_InvalidRecSet_ExpectInsert()
         {
             //------------Setup for test--------------------------
@@ -64,9 +65,9 @@ namespace Dev2.Core.Tests.Workflows
             Assert.AreEqual(0, unique.Count);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DesignerDataListUtils_BuildDataPart")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DesignerDataListUtils_BuildDataPart")]
         public void DesignerDataListUtils_BuildDataPart_InvalidRecSetName_ExpectInsert()
         {
             //------------Setup for test--------------------------
@@ -76,9 +77,9 @@ namespace Dev2.Core.Tests.Workflows
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DesignerDataListUtils_BuildDataPart")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DesignerDataListUtils_BuildDataPart")]
         public void DesignerDataListUtils_BuildDataPart_InvalidRecSetColumnName_ExpectInsert()
         {
             //------------Setup for test--------------------------
@@ -87,9 +88,9 @@ namespace Dev2.Core.Tests.Workflows
             Assert.AreEqual(1, unique.Count);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("DesignerDataListUtils_BuildDataPart")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("DesignerDataListUtils_BuildDataPart")]
         public void DesignerDataListUtils_BuildDataPart_InvalidJsonObjectVariable_ExpectNotInserted()
         {
             //------------Setup for test--------------------------
@@ -98,9 +99,9 @@ namespace Dev2.Core.Tests.Workflows
             Assert.AreEqual(0, unique.Count);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("DesignerDataListUtils_BuildDataPart")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("DesignerDataListUtils_BuildDataPart")]
         public void DesignerDataListUtils_BuildDataPart_InvalidJsonObjectVariable_ExpectEmpty()
         {
             //------------Setup for test--------------------------
@@ -109,9 +110,9 @@ namespace Dev2.Core.Tests.Workflows
             Assert.AreEqual(0, unique.Count);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("DesignerDataListUtils_BuildDataPart")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("DesignerDataListUtils_BuildDataPart")]
         public void DesignerDataListUtils_BuildDataPart_ValidJsonObjectVariable_ExpectInserted()
         {
             //------------Setup for test--------------------------
@@ -120,9 +121,9 @@ namespace Dev2.Core.Tests.Workflows
             Assert.AreEqual(1, unique.Count);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("DesignerDataListUtils_BuildDataPart")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("DesignerDataListUtils_BuildDataPart")]
         public void DesignerDataListUtils_BuildDataPart_InValidJsonObjectVariable_ExpectNotInserted()
         {
             //------------Setup for test--------------------------
@@ -131,9 +132,9 @@ namespace Dev2.Core.Tests.Workflows
             Assert.AreEqual(0, unique.Count);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("DesignerDataListUtils_BuildDataPart")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("DesignerDataListUtils_BuildDataPart")]
         public void DesignerDataListUtils_BuildDataPart_JsonObjectGivenVariationOfVariables()
         {
             var variables = new List<string>
@@ -161,9 +162,9 @@ namespace Dev2.Core.Tests.Workflows
             Assert.AreEqual(10, unique.Count);
         }
         
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("DesignerDataListUtils_BuildDataPart")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("DesignerDataListUtils_BuildDataPart")]
         public void DesignerDataListUtils_BuildDataPart_JsonObjectVariableStartsWithNumber_ExpectNotInserted()
         {
             //------------Setup for test--------------------------
@@ -172,9 +173,9 @@ namespace Dev2.Core.Tests.Workflows
             Assert.AreEqual(0, unique.Count);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("DesignerDataListUtils_BuildDataPart")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("DesignerDataListUtils_BuildDataPart")]
         public void DesignerDataListUtils_BuildDataPart_JsonObjectVariableAroundBrackets_ExpectNotInserted()
         {
             //------------Setup for test--------------------------

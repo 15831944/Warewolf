@@ -11,18 +11,19 @@
 using System;
 using Dev2.Intellisense.Provider;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class ProviderExtensionsTest
     {
         
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ProviderExtensions_FindTextToSearch")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ProviderExtensions_FindTextToSearch")]
         public void ProviderExtensions_FindTextToSearch_EmptyString_ExpectEmpty()
         {
             const string inputText = "";
@@ -30,62 +31,62 @@ namespace Dev2.Core.Tests
             const string expectedResult = "";
             FindTextTestHelper(caretPosition, inputText, expectedResult);
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ProviderExtensions_FindTextToSearch")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ProviderExtensions_FindTextToSearch")]
         public void ProviderExtensions_FindTextToSearch_InvalidPositionNegative_ExpectEmpty()
         {
 
             FindTextTestHelper(-1, "bob", "");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ProviderExtensions_FindTextToSearch")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ProviderExtensions_FindTextToSearch")]
         public void ProviderExtensions_FindTextToSearch_InvalidPosition_ExpectValue()
         {
 
             FindTextTestHelper(29, "bob", "bob");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ProviderExtensions_FindTextToSearch")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ProviderExtensions_FindTextToSearch")]
         public void ProviderExtensions_FindTextToSearch_ClosedBraceAfterValue_ExpectValue()
         {
 
             FindTextTestHelper(9, "[[rec.(pp)]]", "pp");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ProviderExtensions_FindTextToSearch")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ProviderExtensions_FindTextToSearch")]
         public void ProviderExtensions_FindTextToSearch_ClosedBrace_ExpectValue()
         {
 
             FindTextTestHelper(9, ")", "");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ProviderExtensions_FindTextToSearch")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ProviderExtensions_FindTextToSearch")]
         public void ProviderExtensions_FindTextToSearch_ClosedSquareBraceAfterValue_ExpectValue()
         {
 
             FindTextTestHelper(5, "[[bob]]", "[[bob");
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ProviderExtensions_FindTextToSearch")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ProviderExtensions_FindTextToSearch")]
         public void ProviderExtensions_FindTextToSearch_ClosedSquareBracePartialWord_ExpectValue()
         {
 
             FindTextTestHelper(4, "[[bob]]", "[[bo");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ProviderExtensions_FindTextToSearch")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ProviderExtensions_FindTextToSearch")]
         public void ProviderExtensions_FindTextToSearch_UnbalancedSquareBracePartialWord_ExpectValue()
         {
 
@@ -94,9 +95,9 @@ namespace Dev2.Core.Tests
 
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ProviderExtensions_FindTextToSearch")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ProviderExtensions_FindTextToSearch")]
         public void ProviderExtensions_FindTextToSearch_Spaces_ExpectValue()
         {
 
@@ -106,26 +107,26 @@ namespace Dev2.Core.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ProviderExtensions_FindTextToSearch")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ProviderExtensions_FindTextToSearch")]
         public void ProviderExtensions_FindTextToSearch_ClosedSquareBraceEmpty_ExpectEmpty()
         {
 
             FindTextTestHelper(4, "[[ ]]", "");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ProviderExtensions_FindTextToSearch")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ProviderExtensions_FindTextToSearch")]
         public void ProviderExtensions_FindTextToSearch_ClosedRoundBrace_ExpectEmpty()
         {
 
             FindTextTestHelper(2, "( )", "");
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ProviderExtensions_FindTextToSearch")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ProviderExtensions_FindTextToSearch")]
         public void ProviderExtensions_FindTextToSearch_OpenRoundBrace_ExpectCorrectRegions()
         {
 
@@ -133,9 +134,9 @@ namespace Dev2.Core.Tests
             FindTextTestHelper(1, "a( ", "a");
             FindTextTestHelper(1, "(a ", "");
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ProviderExtensions_FindTextToSearch")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ProviderExtensions_FindTextToSearch")]
         public void ProviderExtensions_FindTextToSearch_MatchingRoundBrace_ExpectCorrectRegions()
         {
 
@@ -145,9 +146,9 @@ namespace Dev2.Core.Tests
             FindTextTestHelper(7, "()([abc ()", "[abc");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ProviderExtensions_FindTextToSearch")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ProviderExtensions_FindTextToSearch")]
         public void ProviderExtensions_FindTextToSearch_SpecialCharacters_ExpectCorrectRegions()
         {
 
@@ -156,9 +157,10 @@ namespace Dev2.Core.Tests
             FindTextTestHelper(3, "(a%^)", "");
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ProviderExtensions_FindTextToSearch")]
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ProviderExtensions_FindTextToSearch")]
         public void ProviderExtensions_FindTextToSearch_NullThrowsException()
         {
 
@@ -166,9 +168,9 @@ namespace Dev2.Core.Tests
          
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ProviderExtensions_FindTextToSearch")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ProviderExtensions_FindTextToSearch")]
         public void ProviderExtensions_FindTextToSearch_UnbalalancedBoundary_ExpectValue()
         {
             FindTextTestHelper(2, "[ba )", "[b");
@@ -177,17 +179,17 @@ namespace Dev2.Core.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ProviderExtensions_FindTextToSearch")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ProviderExtensions_FindTextToSearch")]
         public void ProviderExtensions_FindTextToSearch_InputTextIsNull_EmptyString()
         {
             FindTextTestHelper(2, null, "");
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ProviderExtensions_FindTextToSearch")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ProviderExtensions_FindTextToSearch")]
         public void ProviderExtensions_FindTextToSearch_InputTextIsEmpty_EmptyString()
         {
             FindTextTestHelper(2, "", "");

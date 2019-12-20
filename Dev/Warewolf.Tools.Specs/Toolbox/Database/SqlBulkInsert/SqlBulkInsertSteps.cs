@@ -22,7 +22,7 @@ using Dev2.Interfaces;
 using Dev2.Runtime.Hosting;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.TO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 using WarewolfParserInterop;
 using Dev2.Activities.Specs.BaseTypes;
@@ -301,9 +301,9 @@ namespace Warewolf.ToolsSpecs.Toolbox.Recordset.SqlBulkInsert
 
             for(int i = 0; i < dataRows.Count; i++)
             {
-                Assert.AreEqual<string>(dataRows[i][0].ToString(), tableRows[i][0]);
-                Assert.AreEqual<string>(dataRows[i][1].ToString(), tableRows[i][1]);
-                Assert.AreEqual<string>(dataRows[i][2].ToString(), tableRows[i][2]);
+                Assert.AreEqual(dataRows[i][0].ToString(), tableRows[i][0]);
+                Assert.AreEqual(dataRows[i][1].ToString(), tableRows[i][1]);
+                Assert.AreEqual(dataRows[i][2].ToString(), tableRows[i][2]);
             }
         }
 

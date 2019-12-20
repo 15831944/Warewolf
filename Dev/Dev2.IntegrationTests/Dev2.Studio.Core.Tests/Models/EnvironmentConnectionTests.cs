@@ -14,7 +14,7 @@ using System.Xml;
 using Dev2.Communication;
 using Dev2.Network;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Dev2.Studio.Interfaces.Enums;
 using Dev2.Common.Common;
 
@@ -24,7 +24,8 @@ namespace Dev2.Integration.Tests.Dev2.Studio.Core.Tests.Models
     ///This is a result class for EnvironmentModelTest and is intended
     ///to contain all EnvironmentModelTest Unit Tests
     ///</summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class EnvironmentModelTest
     {
         /// <summary>
@@ -41,13 +42,13 @@ namespace Dev2.Integration.Tests.Dev2.Studio.Core.Tests.Models
         /// Tests that a connection can be established to the server using the 
         /// environment connection model
         /// </summary>
-        [TestMethod]
+        [Test]
         public void EnvironmentConnection_ConnectToAvailableServer_Expected_ConnectionSuccesful()
         {
             var conn = CreateConnection();
 
             conn.ConnectAsync(Guid.Empty).Wait(60000);
-            Assert.IsTrue(conn.IsConnected);
+            NUnit.Framework.Assert.IsTrue(conn.IsConnected);
             conn.Disconnect();
         }
 
@@ -58,7 +59,7 @@ namespace Dev2.Integration.Tests.Dev2.Studio.Core.Tests.Models
         /// <summary>
         /// Find Resource Service Tests
         /// </summary>
-        [TestMethod]
+        [Test]
         public void EnvironmentConnection_FindResources_Expected()
         {
             var request = CreateDataObject("FindResourceService", "*");
@@ -70,11 +71,11 @@ namespace Dev2.Integration.Tests.Dev2.Studio.Core.Tests.Models
             {
 
                 var returnData = conn.ExecuteCommand(request, Guid.Empty);
-                Assert.IsTrue(returnData.Contains("Workflow"));
+                NUnit.Framework.Assert.IsTrue(returnData.Contains("Workflow"));
             }
             else
             {
-                Assert.Fail("Unable to create a connection to the server");
+                NUnit.Framework.Assert.Fail("Unable to create a connection to the server");
             }
             conn.ConnectAsync(Guid.Empty).Wait(60000);
         }
@@ -82,7 +83,7 @@ namespace Dev2.Integration.Tests.Dev2.Studio.Core.Tests.Models
         /// <summary>
         /// AddResource Service Test 
         /// </summary>
-        [TestMethod]
+        [Test]
         public void EnvironmentConnection_AddResource_NewResource_Expected_NewResourceAddedToServer()
         {
             var xmlString = CreateDataObject("FindResourceService", "*");
@@ -92,11 +93,11 @@ namespace Dev2.Integration.Tests.Dev2.Studio.Core.Tests.Models
             if(conn.IsConnected)
             {
                 var returnData = conn.ExecuteCommand(xmlString, Guid.Empty);
-                Assert.IsTrue(returnData.Contains("Workflow"));
+                NUnit.Framework.Assert.IsTrue(returnData.Contains("Workflow"));
             }
             else
             {
-                Assert.Fail("Unable to create a connection to the server");
+                NUnit.Framework.Assert.Fail("Unable to create a connection to the server");
             }
             conn.ConnectAsync(Guid.Empty).Wait(60000);
 

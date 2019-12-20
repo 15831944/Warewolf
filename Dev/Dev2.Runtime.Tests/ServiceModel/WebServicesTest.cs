@@ -18,15 +18,16 @@ using Dev2.Runtime.ServiceModel;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Tests.Runtime.ServiceModel.Data;
 using Dev2.Tests.Runtime.XML;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Tests.Runtime.ServiceModel
 {
     // PBI 1220 - 2013.05.27 - TWR - Created
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class WebServicesTest
     {
         string _requestResponse;
@@ -34,9 +35,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
         string _requestBodyEvaluated;
         string[] _requestHeadersEvaluated;
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("Webservice_Test")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("Webservice_Test")]
         public void Webservice_Test_WhenRequestShouldTimeout_ExpectTimeoutMessage()
         {
             //------------Setup for test--------------------------
@@ -69,9 +70,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(GlobalConstants.WebServiceTimeoutMessage, result.RequestMessage);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("Webservice_Test")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("Webservice_Test")]
         public void Webservice_Test_WhenRequestShouldNotTimeout_ExpectNoMessage()
         {
             //------------Setup for test--------------------------
@@ -104,9 +105,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(string.Empty, result.RequestMessage);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("Webservice_ApplyPath")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("Webservice_ApplyPath")]
         public void Webservice_Test_WhenJsonPathSet_ExpectShapedData()
         {
             //------------Setup for test--------------------------
@@ -129,9 +130,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(expected, result.JsonPathResult);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("Webservice_ApplyPath")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("Webservice_ApplyPath")]
         public void Webservice_Test_WhenJsonPathNotSet_ExpectNoShapedData()
         {
             //------------Setup for test--------------------------
@@ -153,7 +154,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
         }
 
 
-        [TestMethod]
+        [Test]
         public void WebServicesTestWithValidArgsAndEmptyResponseExpectedExecutesRequestAndFetchesRecordset()
         {
             var serviceXml = XmlResource.Fetch("WebService");
@@ -187,7 +188,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
 
         #region CTOR
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void WebServicesContructorWithNullResourceCatalogExpectedThrowsArgumentNullException()
         {
@@ -196,7 +197,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void WebServicesContructorWithNullWebExectueExpectedThrowsArgumentNullException()
         {
@@ -209,7 +210,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
 
         #region DeserializeService
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void WebServicesDeserializeServiceWithNullJsonExpectedThrowsArgumentNullException()
         {
@@ -217,7 +218,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             services.DeserializeService(null);
         }
 
-        [TestMethod]
+        [Test]
         public void WebServicesDeserializeServiceWithInvalidJsonExpectedReturnsNewWebService()
         {
             var services = new WebServicesMock();
@@ -225,7 +226,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(result.ResourceID, Guid.Empty);
         }
 
-        [TestMethod]
+        [Test]
         public void WebServicesDeserializeServiceWithValidJsonExpectedReturnsWebService()
         {
             var xml = XmlResource.Fetch("WebService");
@@ -237,7 +238,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             WebServiceTests.VerifyEmbeddedWebService(result as WebService);
         }
 
-        [TestMethod]
+        [Test]
         public void WebServicesDeserializeServiceWithNullXmlExpectedReturnsNewWebService()
         {
             var services = new WebServicesMock();
@@ -246,7 +247,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(result.ResourceID, Guid.Empty);
         }
 
-        [TestMethod]
+        [Test]
         public void WebServicesDeserializeServiceWithValidXmlExpectedReturnsWebService()
         {
             var xml = XmlResource.Fetch("WebService");
@@ -261,7 +262,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
 
         #region Test
 
-        [TestMethod]
+        [Test]
         public void WebServicesTestWithValidArgsAndNonEmptyResponseExpectedFetchesRecordsetOnly()
         {
             var serviceXml = XmlResource.Fetch("WebService");
@@ -294,7 +295,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual("", result.Recordsets[0].Name);
         }
 
-        [TestMethod]
+        [Test]
         public void WebServicesTestWithInValidArgsExpectedReturnsResponseWithErrorMessage()
         {
             var serviceXml = XmlResource.Fetch("WebService");
@@ -317,7 +318,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
 
         #endregion
 
-        [TestMethod]
+        [Test]
         public void WebServicesTestWithValidArgsAndRecordsetFieldsExpectedDoesNotAddRecordsetFields()
         {
             //------------Setup for test--------------------------
@@ -329,7 +330,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.IsFalse(services.FetchRecordsetAddFields);
         }
 
-        [TestMethod]
+        [Test]
         public void WebServicesTestWithValidArgsAndNoRecordsetFieldsExpectedAddsRecordsetFields()
         {
             //------------Setup for test--------------------------
@@ -342,7 +343,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.IsTrue(services.FetchRecordsetAddFields);
         }
 
-        [TestMethod]
+        [Test]
         public void WebServicesTestWithValidArgsExpectedFetchesRecordset()
         {
             //------------Setup for test--------------------------
@@ -354,7 +355,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(1, services.FetchRecordsetHitCount);
         }
 
-        [TestMethod]
+        [Test]
         public void WebServicesTestWithValidArgsExpectedClearsRecordsFirst()
         {
             //------------Setup for test--------------------------
@@ -366,7 +367,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(1, services.FetchRecordsetHitCount);
         }
 
-        [TestMethod]
+        [Test]
         public void OuputDescriptionWhereRequestResponseJSONExpectValidOutputDescription()
         {
             //------------Setup for test--------------------------
@@ -382,7 +383,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
 
         }
 
-        [TestMethod]
+        [Test]
         public void OuputDescriptionWhereRequestResponseHasXMLWithElementValuesAndAttributeValues()
         {
             //------------Setup for test--------------------------
@@ -396,9 +397,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
 
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("Services_FetchRecordsetList")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("Services_FetchRecordsetList")]
         public void Services_FetchRecordsetList_WhenWebserviceWithJsonDataAndPrimitiveArrayType_ShouldNotIncludeInFieldsList()
         {
             //------------Setup for test--------------------------
@@ -411,9 +412,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(2, result.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("Services_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("Services_Execute")]
         public void Services_Execute_WhenHasJsonPath_ShouldReturnValid()
         {
             //------------Setup for test--------------------------
@@ -434,9 +435,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual("[{\"address_components\":[{\"long_name\":\"Address:\",\"short_name\":\"Address:\",\"types\":[\"point_of_interest\",\"establishment\"]}]}]", service.JsonPathResult);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("Services_Execute")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("Services_Execute")]
         public void Services_Execute_WithVariablesInAllField_ShouldUseEvaluatedValues()
         {
             //------------Setup for test--------------------------
@@ -466,7 +467,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             return _requestResponse;
         }
 
-        [TestMethod]
+        [Test]
         public void FetchRecordsetWhereRequestResponseJSONExpectValidOutputDescription()
         {
             //------------Setup for test--------------------------
@@ -482,7 +483,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(1, result.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void FetchRecordsetWhereRequestResponseXml2ExpectValidOutputDescription()
         {
             //------------Setup for test--------------------------
@@ -497,7 +498,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
         }
 
 
-        [TestMethod]
+        [Test]
         public void FetchRecordsetWhereRequestResponseXMLExpectValidOutputDescription()
         {
             //------------Setup for test--------------------------
@@ -534,7 +535,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
         }
 
 
-        [TestMethod]
+        [Test]
         public void OuputDescriptionWhereRequestResponseXMLExpectValidOutputDescription()
         {
             //------------Setup for test--------------------------

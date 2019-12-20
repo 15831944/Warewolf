@@ -16,7 +16,7 @@ using Dev2.Studio.Core;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
 using Dev2.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using TechTalk.SpecFlow;
 using Warewolf.Core;
@@ -409,8 +409,8 @@ namespace Dev2.Activities.Specs.Toolbox.Resources
                 var mappedFrom = tableRow["Mapped From"];
                 var mappedTo = tableRow["Mapped To"];
                 var outputMapping = outputMappings.ToList()[rowIdx];
-                Assert.AreEqual<string>(mappedFrom, outputMapping.MappedFrom);
-                Assert.AreEqual<string>(mappedTo, outputMapping.MappedTo);
+                Assert.AreEqual(mappedFrom, outputMapping.MappedFrom);
+                Assert.AreEqual(mappedTo, outputMapping.MappedTo);
                 rowIdx++;
             }
         }

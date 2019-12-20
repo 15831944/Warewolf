@@ -16,18 +16,19 @@ using Dev2.Activities.Designers2.DataMerge;
 using Dev2.Common.Interfaces.Help;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Activities.Designers.Tests.DataMerge
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DataMergeDesignerViewModelTests
     {
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DataMergeDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DataMergeDesignerViewModel_Constructor")]
         public void DataMergeDesignerViewModel_Constructor__ModelItemIsValid_ListHasFourItems()
         {
             var items = new List<DataMergeDTO> { new DataMergeDTO("", "None", "", 0, "", "Left") };
@@ -37,9 +38,9 @@ namespace Dev2.Activities.Designers.Tests.DataMerge
             CollectionAssert.AreEqual(expected, viewModel.ItemsList.ToList());
         } //AlignmentTypes
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DataMergeDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DataMergeDesignerViewModel_Constructor")]
         public void DataMergeDesignerViewModel_Constructor__ModelItemIsValid_AlignmentTypesHasTwoItems()
         {
             var items = new List<DataMergeDTO> { new DataMergeDTO("", "None", "", 0, "", "Left") };
@@ -49,9 +50,9 @@ namespace Dev2.Activities.Designers.Tests.DataMerge
             CollectionAssert.AreEqual(expected, viewModel.AlignmentTypes.ToList());
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DataMergeDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DataMergeDesignerViewModel_Constructor")]
         public void DataMergeDesignerViewModel_Constructor__ModelItemIsValid_CollectionNameIsSetToMergeCollection()
         {
             var items = new List<DataMergeDTO> { new DataMergeDTO() };
@@ -59,9 +60,9 @@ namespace Dev2.Activities.Designers.Tests.DataMerge
             Assert.AreEqual("MergeCollection", viewModel.CollectionName);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DataMergeDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DataMergeDesignerViewModel_Handle")]
         public void DataMergeDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -78,20 +79,20 @@ namespace Dev2.Activities.Designers.Tests.DataMerge
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DataMergeDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DataMergeDesignerViewModel_Constructor")]
         public void DataMergeDesignerViewModel_Constructor_ModelItemIsValid_MergeCollectionHasTwoItems()
         {
             var modelItem = ModelItemUtils.CreateModelItem(new DsfDataMergeActivity());
             var viewModel = new DataMergeDesignerViewModel(modelItem);
             dynamic mi = viewModel.ModelItem;
-            Assert.AreEqual(2, mi.MergeCollection.Count);
+            NUnit.Framework.Assert.AreEqual(2, mi.MergeCollection.Count);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DataMergeDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DataMergeDesignerViewModel_Constructor")]
         public void DataMergeDesignerViewModel_Constructor_ModelItemIsInitializedWith4Items_MergeCollectionHasFourItems()
         {
             var items = new List<DataMergeDTO>
@@ -101,15 +102,15 @@ namespace Dev2.Activities.Designers.Tests.DataMerge
                 new DataMergeDTO("", "None", "", 0, "", "Left"),
                 new DataMergeDTO("", "None", "", 0, "", "Left")
             };
-            //Assert.IsTrue(items.All(dto => dto.EnablePadding));
+            //NUnit.Framework.Assert.IsTrue(items.All(dto => dto.EnablePadding));
             var viewModel = new DataMergeDesignerViewModel(CreateModelItem(items));            
             dynamic mi = viewModel.ModelItem;
-            Assert.AreEqual(5, mi.MergeCollection.Count);
+            NUnit.Framework.Assert.AreEqual(5, mi.MergeCollection.Count);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("DataMergeDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("DataMergeDesignerViewModel_Constructor")]
         public void DataMergeDesignerViewModel_EnablePadding_IsTrue_ForIndex()
         {
             var items = new List<DataMergeDTO>
@@ -125,9 +126,9 @@ namespace Dev2.Activities.Designers.Tests.DataMerge
             }
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("DataMergeDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("DataMergeDesignerViewModel_Constructor")]
         public void DataMergeDesignerViewModel_New()
         {
             var items = new List<DataMergeDTO>
@@ -143,57 +144,57 @@ namespace Dev2.Activities.Designers.Tests.DataMerge
             }
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DataMergeDesignerViewModel_OnMergeTypeChanged")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DataMergeDesignerViewModel_OnMergeTypeChanged")]
         public void DataMergeDesignerViewModel_OnMergeTypeChanged_SetIndexToMergeTypeToNone_EnableAtIsSetToFalse()
         {
             VerifyMergeTypeAgaintsEnabledAt("None", false);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DataMergeDesignerViewModel_OnMergeTypeChanged")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DataMergeDesignerViewModel_OnMergeTypeChanged")]
         public void DataMergeDesignerViewModel_OnMergeTypeChanged_SetIndexToMergeTypeToTab_EnableAtIsSetToFalse()
         {
             VerifyMergeTypeAgaintsEnabledAt("Tab", false);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DataMergeDesignerViewModel_OnMergeTypeChanged")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DataMergeDesignerViewModel_OnMergeTypeChanged")]
         public void DataMergeDesignerViewModel_OnMergeTypeChanged_SetIndexToMergeTypeToNewLine_EnableAtIsSetToFalse()
         {
             VerifyMergeTypeAgaintsEnabledAt("New Line", false);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DataMergeDesignerViewModel_OnMergeTypeChanged")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DataMergeDesignerViewModel_OnMergeTypeChanged")]
         public void DataMergeDesignerViewModel_OnMergeTypeChanged_SetIndexToMergeTypeToIndex_EnableAtIsSetToTrue()
         {
             VerifyMergeTypeAgaintsEnabledAt("Index", true);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DataMergeDesignerViewModel_OnMergeTypeChanged")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DataMergeDesignerViewModel_OnMergeTypeChanged")]
         public void DataMergeDesignerViewModel_OnMergeTypeChanged_SetIndexToMergeTypeToChars_EnableAtIsSetToTrue()
         {
             VerifyMergeTypeAgaintsEnabledAt("Chars", true);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("DataMergeDesignerViewModel_OnMergeTypeChanged")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("DataMergeDesignerViewModel_OnMergeTypeChanged")]
         public void DataMergeDesignerViewModel_OnMergeTypeChanged_SetMergeTypeToChars_EnablePaddingIsSetToFalse()
         {
             VerifyMergeTypeAgaintsEnabledApdding("Chars", false);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("DataMergeDesignerViewModel_OnMergeTypeChanged")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("DataMergeDesignerViewModel_OnMergeTypeChanged")]
         public void DataMergeDesignerViewModel_OnMergeTypeChanged_SetMergeTypeToIndex_EnablePaddingIsSetToTrue()
         {
             VerifyMergeTypeAgaintsEnabledApdding("Index", true);
@@ -241,9 +242,9 @@ namespace Dev2.Activities.Designers.Tests.DataMerge
 
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataMergeDesignerViewModel_ValidateCollectionItem")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataMergeDesignerViewModel_ValidateCollectionItem")]
         public void DataMergeDesignerViewModel_ValidateCollectionItem_ValidatesPropertiesOfDTO()
         {
             //------------Setup for test--------------------------

@@ -9,15 +9,16 @@
 */
 
 using Dev2.Common.Common;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 
 namespace Dev2.Common.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class GetComputerNamesTests
     {
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void InitializeTests(TestContext testContext)
         {
             try
@@ -38,27 +39,27 @@ namespace Dev2.Common.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(GetComputerNames))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(GetComputerNames))]
         public void GetComputerNames_SecurityIdentityFactory_Get_Current_HasHosts()
         {
             var identity = new SecurityIdentityFactory().Current;
             Assert.IsNotNull(identity.GetHosts().Count >= 1, "SecurityIdentityFactory.Current should have hosts");
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(GetComputerNames))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(GetComputerNames))]
         public void GetComputerNames_ComputerNames_ExpectListOfComputerNames()
         {
 
             Assert.IsTrue(GetComputerNames.ComputerNames.Count >= 1);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(GetComputerNames))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(GetComputerNames))]
         public void GetComputerNames_ComputerNames_UpdateComputerNames()
         {
 

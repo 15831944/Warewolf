@@ -9,12 +9,13 @@ using Dev2.Providers.Errors;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
 using Dev2.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Activities.Designers.Tests.Sharepoint
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SharePointFileDownLoadViewModelTests
     {
         public const string TestOwner = "Bernardt Joubert";
@@ -26,9 +27,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             return ModelItemUtils.CreateModelItem(readListActivity);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SharepointFileDownloadDesignerViewModel_Constructor_NullModelItem_ThrowsException()
         {
@@ -41,9 +42,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             Assert.IsNull(sharepointReadFolderDesignerViewModel);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SharepointFileDownloadDesignerViewModel_Constructor_NullAsyncWorker_ThrowsException()
         {
@@ -56,9 +57,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SharePointFileDownLoadDesignerViewModel_Constructor_NullEnvironmentModel_ThrowsException()
         {
@@ -71,9 +72,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void SharePointFileDownLoadDesignerViewModel_InitilizeProperties_ReturnsSuccess()
         {
             //------------Setup for test--------------------------
@@ -89,9 +90,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void SharePointFileDownLoadDesignerViewModel_SetProperties_ReturnsSuccess()
         {
             //------------Setup for test--------------------------
@@ -118,9 +119,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void SharePointFileDownLoadDesignerViewModel_SetPropertiesNullSource_ReturnsSuccess()
         {
             //------------Setup for test--------------------------
@@ -139,9 +140,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void SharePointFileDownLoadDesignerViewModel_SetPropertiesNullLocalPath_ReturnsSuccess()
         {
             //------------Setup for test--------------------------

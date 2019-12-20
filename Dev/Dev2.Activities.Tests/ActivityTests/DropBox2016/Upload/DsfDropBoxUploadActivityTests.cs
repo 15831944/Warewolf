@@ -26,7 +26,7 @@ using Dev2.Data.TO;
 using Dev2.Diagnostics;
 using Dev2.Interfaces;
 using Dropbox.Api.Files;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Storage;
 using Warewolf.Storage.Interfaces;
@@ -35,7 +35,8 @@ using Warewolf.Storage.Interfaces;
 
 namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Upload
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfDropBoxUploadActivityTests
     {
         static DsfDropBoxUploadActivity CreateDropboxActivity()
@@ -48,9 +49,9 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Upload
             return new ExecutionEnvironment();
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_DsfDropBoxUpload_GivenNewInstance_ShouldNotBeNull()
         {
             //---------------Set up test pack-------------------
@@ -62,9 +63,9 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Upload
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_CreateNewActivity_GivenIsNew_ShouldHaveDisplayName()
         {
             //---------------Set up test pack-------------------
@@ -76,9 +77,9 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Upload
             Assert.AreEqual("Upload to Dropbox", boxUploadAcivtity.DisplayName);
 
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxUploadActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxUploadActivity))]
         public void DsfDropBoxUploadActivity_GetFindMissingType_GivenIsNew_ShouldSetDatagridAcitivity()
         {
             //---------------Set up test pack-------------------
@@ -91,8 +92,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Upload
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DsfDropBoxUploadActivity_GetDebugOutputs_GivenNullEnvironment_ShouldHaveNoDebugOutPuts()
         {
             //---------------Set up test pack-------------------
@@ -104,8 +105,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Upload
             Assert.AreEqual(0, debugOutputs.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DsfDropBoxUploadActivity_GetDebugOutputs_GivenFileMetadataIsNull_ShouldHaveNoDebugOutPuts()
         {
             //---------------Set up test pack-------------------
@@ -117,8 +118,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Upload
             Assert.AreEqual(0, debugOutputs.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DsfDropBoxUploadActivity_GetDebugOutputs_GivenFileMetadataIsNotNull_ShouldHaveOneDebugOutPuts()
         {
             //---------------Set up test pack-------------------
@@ -137,8 +138,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Upload
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DsfDropBoxUploadActivity_GetDebugOutputs_GivenWebRequestSuccess_ShouldCorrectDebugValue()
         {
             //---------------Set up test pack-------------------
@@ -161,8 +162,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Upload
             Assert.AreEqual(0, debugOutputs.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DsfDropBoxUploadActivity_ExecuteTool_GivenNoFromPath_ShouldAddError()
         {
             //---------------Set up test pack-------------------
@@ -184,8 +185,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Upload
             executionEnvironment.Verify(environment => environment.AddError("Please confirm that the correct file location has been entered"));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DsfDropBoxUploadActivity_ExecuteTool_GivenNoToPath_ShouldAddError()
         {
             //---------------Set up test pack-------------------
@@ -211,8 +212,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Upload
             executionEnvironment.Verify(environment => environment.AddError("Please confirm that the correct file destination has been entered"));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         [ExpectedException(typeof(KeyNotFoundException))]
         public void DsfDropBoxUploadActivity_PerformExecution_GivenNoPaths_ShouldThrowException()
         {
@@ -230,8 +231,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Upload
             Assert.Fail("Exception Not Throw");
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DsfDropBoxUploadActivity_PerformExecution_DropboxUploadSuccessResult_GivenPaths_ShouldPassthrough()
         {
             //---------------Set up test pack-------------------
@@ -260,8 +261,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Upload
             dropboxClient.Verify(wrapper => wrapper.UploadAsync(It.IsAny<string>(), It.IsAny<WriteMode>(), It.IsAny<bool>(), null, It.IsAny<bool>(), It.IsAny<MemoryStream>()));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DsfDropBoxUploadActivity_PerformExecution_DropboxFailureResult_GivenPaths_ShouldPassthrough()
         {
             //---------------Set up test pack-------------------
@@ -290,8 +291,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Upload
             dropboxClient.Verify(wrapper => wrapper.UploadAsync(It.IsAny<string>(), It.IsAny<WriteMode>(), It.IsAny<bool>(), null, It.IsAny<bool>(), It.IsAny<MemoryStream>()));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DsfDropBoxUploadActivity_GetDebugInputs_GivenEnvironment_ShouldhaveDebugInputs()
         {
             //---------------Set up test pack-------------------

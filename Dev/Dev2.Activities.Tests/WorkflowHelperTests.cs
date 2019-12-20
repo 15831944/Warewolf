@@ -17,16 +17,16 @@ using System.Linq;
 using System.Xml.Linq;
 using Dev2.Common;
 using Dev2.Utilities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.Activities
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WorkflowHelperTests
     {
-
-        [TestInitialize]
+        [SetUp]
         public void Init()
         {
             GlobalConstants.Resultscache.Clear();
@@ -55,14 +55,14 @@ namespace Dev2.Tests.Activities
 
         #region CreateWorkflow
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void WorkflowHelperCreateWorkflowWithNullDisplayNameExpectedThrowsArgumentNullException()
         {
             new WorkflowHelper().CreateWorkflow(null);
         }
 
-        [TestMethod]
+        [Test]
         public void WorkflowHelperCreateWorkflowWithDisplayNameExpectedReturnsActivityBuilderWithFlowChartImplementation()
         {
             const string DisplayName = "TestResource";
@@ -70,7 +70,7 @@ namespace Dev2.Tests.Activities
             var result = new WorkflowHelper().CreateWorkflow(DisplayName);
 
             Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result.Implementation, typeof(Flowchart));
+            Assert.IsInstanceOf(result.Implementation.GetType(), typeof(Flowchart));
 
             var flowChart = (Flowchart)result.Implementation;
             Assert.AreEqual(flowChart.DisplayName, DisplayName);
@@ -80,14 +80,14 @@ namespace Dev2.Tests.Activities
 
         #region SerializeWorkflow
 
-        [TestMethod]
+        [Test]
         public void WorkflowHelperSerializeWorkflowWithNullModelServiceExpectedReturnsEmptyString()
         {
             var result = new WorkflowHelper().SerializeWorkflow(null);
             Assert.AreEqual(string.Empty, result.ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void WorkflowHelperSerializeWorkflowWithModelServiceExpectedReturnsActivityXaml()
         {
             var modelService = CreateModelService();

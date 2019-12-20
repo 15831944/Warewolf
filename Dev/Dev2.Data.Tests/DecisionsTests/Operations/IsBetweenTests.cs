@@ -9,16 +9,17 @@
 */
 
 using Dev2.Data.Decisions.Operations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests.DecisionsTests.Operations
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IsBetweenTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(IsBetween))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(IsBetween))]
         public void IsBetween_Invoke_TrueIsReturned()
         {
             //init
@@ -26,12 +27,12 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //exe
             var result = isBetween.Invoke(new[] { "50", "2", "100" });
             //assert
-            Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
+            NUnit.Framework.Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(IsBetween))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(IsBetween))]
         public void IsBetween_LargerValueFirst_Invoke_TrueIsReturned()
         {
             //init
@@ -39,12 +40,12 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //exe
             var result = isBetween.Invoke(new[] { "50", "100", "2" });
             //assert
-            Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
+            NUnit.Framework.Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(IsBetween))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(IsBetween))]
         public void IsBetween_Invoke_FalseIsReturned()
         {
             //init
@@ -52,12 +53,12 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //exe
             var result = isBetween.Invoke(new[] { "100", "2", "50" });
             //assert
-            Assert.IsFalse(result, "IsBetween returned the wrong result when comparing integers");
+            NUnit.Framework.Assert.IsFalse(result, "IsBetween returned the wrong result when comparing integers");
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(IsBetween))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(IsBetween))]
         public void IsBetween_Invoke_IsFromValue_FalseIsReturned()
         {
             //init
@@ -65,12 +66,12 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //exe
             var result = isBetween.Invoke(new[] { "2", "2", "50" });
             //assert
-            Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
+            NUnit.Framework.Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(IsBetween))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(IsBetween))]
         public void IsBetween_Invoke_IsToValue_FalseIsReturned()
         {
             //init
@@ -78,12 +79,12 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //exe
             var result = isBetween.Invoke(new[] { "50", "2", "50" });
             //assert
-            Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
+            NUnit.Framework.Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(IsBetween))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(IsBetween))]
         public void IsBetween_Invoke_TrueIsReturned_DateTime()
         {
             //init
@@ -91,12 +92,12 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //exe
             var result = isBetween.Invoke(new[] { "2016/10/14", "2016/10/13", "2016/10/16" });
             //assert
-            Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
+            NUnit.Framework.Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(IsBetween))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(IsBetween))]
         public void IsBetween_LargerValueFirst_Invoke_TrueIsReturned_DateTime()
         {
             //init
@@ -104,12 +105,12 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //exe
             var result = isBetween.Invoke(new[] { "2016/10/14", "2016/10/16", "2016/10/13" });
             //assert
-            Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
+            NUnit.Framework.Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(IsBetween))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(IsBetween))]
         public void IsBetween_Invoke_FalseIsReturned_DateTime()
         {
             //init
@@ -117,12 +118,12 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //exe
             var result = isBetween.Invoke(new[] { "2016/10/17", "2016/10/13", "2016/10/16" });
             //assert
-            Assert.IsFalse(result, "IsBetween returned the wrong result when comparing integers");
+            NUnit.Framework.Assert.IsFalse(result, "IsBetween returned the wrong result when comparing integers");
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(IsBetween))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(IsBetween))]
         public void IsBetween_Invoke_IsFromValue_FalseIsReturned_DateTime()
         {
             //init
@@ -130,12 +131,12 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //exe
             var result = isBetween.Invoke(new[] { "2016/10/13", "2016/10/13", "2016/10/16" });
             //assert
-            Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
+            NUnit.Framework.Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(IsBetween))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(IsBetween))]
         public void IsBetween_Invoke_IsToValue_FalseIsReturned_DateTime()
         {
             //init
@@ -143,12 +144,12 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //exe
             var result = comparer.Invoke(new[] { "2016/10/16", "2016/10/13", "2016/10/16" });
             //assert
-            Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
+            NUnit.Framework.Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(IsBetween))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(IsBetween))]
         public void IsBetween_Invoke_Type_Null_DateTime_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -161,19 +162,19 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //------------Execute Test---------------------------
             var result = isBetween.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(IsBetween))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(IsBetween))]
         public void IsBetween_HandlesType_ReturnsType()
         {
             //------------Setup for test--------------------------
             var isBetween = new IsBetween();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.AreEqual(enDecisionType.IsBetween, isBetween.HandlesType());
+            NUnit.Framework.Assert.AreEqual(enDecisionType.IsBetween, isBetween.HandlesType());
         }
     }
 }

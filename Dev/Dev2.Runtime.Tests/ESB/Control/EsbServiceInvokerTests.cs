@@ -19,7 +19,7 @@ using Dev2.Runtime.ESB;
 using Dev2.Runtime.ESB.Control;
 using Dev2.Runtime.ESB.Execution;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Resource.Errors;
 using Warewolf.Storage.Interfaces;
@@ -28,10 +28,11 @@ using Warewolf.Storage.Interfaces;
 
 namespace Dev2.Tests.Runtime.ESB.Control
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class EsbServiceInvokerTests
     {
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void Init(TestContext context)
         {
             var pCounter = new Mock<IWarewolfPerformanceCounterLocater>();
@@ -41,9 +42,9 @@ namespace Dev2.Tests.Runtime.ESB.Control
             CustomContainer.Register(pCounter.Object);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Runtime ESB")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Runtime ESB")]
         public void OnConstruction_ShouldNotThrowException()
         {
             //---------------Set up test pack-------------------
@@ -55,12 +56,12 @@ namespace Dev2.Tests.Runtime.ESB.Control
             //---------------Execute Test ----------------------
             var invoker = new EsbServiceInvoker(channel.Object, workSpace.Object);
             //---------------Test Result -----------------------
-            Assert.IsNotNull(invoker, "Cannot create new EsbServiceInvoker object.");
+            NUnit.Framework.Assert.IsNotNull(invoker, "Cannot create new EsbServiceInvoker object.");
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Runtime ESB")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Runtime ESB")]
         public void DispatchDebugErrors_GivenObjects_ShouldWritesCorrectly()
         {
             //---------------Set up test pack-------------------
@@ -83,7 +84,7 @@ namespace Dev2.Tests.Runtime.ESB.Control
             var errors = new ErrorResultTO();
             errors.AddError("Error");
             var invoker = new EsbServiceInvoker(channel.Object, workSpace.Object);
-            var privateObject = new PrivateObject(invoker);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(invoker);
             //---------------Assert Precondition----------------
             //---------------Execute Test ----------------------
             privateObject.Invoke("DispatchDebugErrors", errors, obj.Object, StateType.Start);
@@ -100,9 +101,9 @@ namespace Dev2.Tests.Runtime.ESB.Control
             obj.VerifyGet(o => o.ClientID);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Runtime ESB")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Runtime ESB")]
         public void GenerateInvokeContainer_GivenValidArgsAndIsLocalInvokeFalse_ShouldNotThrowException()
         {
             //---------------Set up test pack-------------------
@@ -112,16 +113,16 @@ namespace Dev2.Tests.Runtime.ESB.Control
             var obj = new Mock<IDSFDataObject>();
             var invoker = new EsbServiceInvoker(channel.Object, workSpace.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(invoker);
+            NUnit.Framework.Assert.IsNotNull(invoker);
             //---------------Execute Test ----------------------
             var executionContainer = invoker.GenerateInvokeContainer(obj.Object, Guid.NewGuid(), false);
             //---------------Test Result -----------------------
-            Assert.IsNotNull(executionContainer);
+            NUnit.Framework.Assert.IsNotNull(executionContainer);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Runtime ESB")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Runtime ESB")]
         public void GenerateInvokeContainer_GivenValidArgsAndIsLocalInvokeTrueEmptyCacheNullService_ShouldReturnNull()
         {
             //---------------Set up test pack-------------------
@@ -135,19 +136,19 @@ namespace Dev2.Tests.Runtime.ESB.Control
             
 
             var invoker = new EsbServiceInvoker(channel.Object, workSpace.Object, executeRequest);
-            var privateObject = new PrivateObject(invoker);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(invoker);
             privateObject.SetField("_serviceLocator", locater.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(invoker);
+            NUnit.Framework.Assert.IsNotNull(invoker);
             //---------------Execute Test ----------------------
             var executionContainer = invoker.GenerateInvokeContainer(obj.Object, Guid.NewGuid(), true);
             //---------------Test Result -----------------------
-            Assert.IsNull(executionContainer);
+            NUnit.Framework.Assert.IsNull(executionContainer);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Runtime ESB")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Runtime ESB")]
         public void GenerateInvokeContainer_GivenValidArgsAndIsLocalInvokeTrueEmptyCacheNewService_ShouldAddToCache()
         {
             //---------------Set up test pack-------------------
@@ -178,21 +179,21 @@ namespace Dev2.Tests.Runtime.ESB.Control
             
 
             var invoker = new EsbServiceInvoker(channel.Object, workSpace.Object, executeRequest);
-            var privateObject = new PrivateObject(invoker);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(invoker);
             privateObject.SetField("_serviceLocator", locater.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(invoker);
+            NUnit.Framework.Assert.IsNotNull(invoker);
             //---------------Execute Test ----------------------
             var executionContainer = invoker.GenerateInvokeContainer(obj.Object, serviceId, true);
             //---------------Test Result -----------------------
-            Assert.IsNotNull(executionContainer);
-            Assert.IsInstanceOfType(executionContainer, typeof(PerfmonExecutionContainer));
+            NUnit.Framework.Assert.IsNotNull(executionContainer);
+            NUnit.Framework.Assert.IsInstanceOf(executionContainer.GetType(), typeof(PerfmonExecutionContainer));
             locater.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Runtime ESB")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Runtime ESB")]
         public void GenerateInvokeContainer_GivenValidArgsAndIsLocalInvokeTrueEmptyCacheNewService_IsTestExecution_ShouldAddToCache()
         {
             //---------------Set up test pack-------------------
@@ -224,21 +225,21 @@ namespace Dev2.Tests.Runtime.ESB.Control
             
 
             var invoker = new EsbServiceInvoker(channel.Object, workSpace.Object, executeRequest);
-            var privateObject = new PrivateObject(invoker);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(invoker);
             privateObject.SetField("_serviceLocator", locater.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(invoker);
+            NUnit.Framework.Assert.IsNotNull(invoker);
             //---------------Execute Test ----------------------
             var executionContainer = invoker.GenerateInvokeContainer(obj.Object, serviceId, true);
             //---------------Test Result -----------------------
-            Assert.IsNotNull(executionContainer);
-            Assert.IsInstanceOfType(executionContainer, typeof(ServiceTestExecutionContainer));
+            NUnit.Framework.Assert.IsNotNull(executionContainer);
+            NUnit.Framework.Assert.IsInstanceOf(executionContainer.GetType(), typeof(ServiceTestExecutionContainer));
             locater.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Runtime ESB")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Runtime ESB")]
         public void GenerateInvokeContainer_GivenValidArgsAndIsLocalInvokeTrueCacheContainsInternalServiceService_ShouldCorrectServiceInContainer()
         {
             //---------------Set up test pack-------------------
@@ -267,23 +268,23 @@ namespace Dev2.Tests.Runtime.ESB.Control
             
 
             var invoker = new EsbServiceInvoker(channel.Object, workSpace.Object, executeRequest);
-            var privateObject = new PrivateObject(invoker);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(invoker);
             privateObject.SetField("_serviceLocator", locater.Object);
             privateObject.SetField("_cache", _cache);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(invoker);
+            NUnit.Framework.Assert.IsNotNull(invoker);
             //---------------Execute Test ----------------------
             var executionContainer = invoker.GenerateInvokeContainer(obj.Object, newGuid, true);
             //---------------Test Result -----------------------
-            Assert.IsNotNull(executionContainer);
+            NUnit.Framework.Assert.IsNotNull(executionContainer);
             obj.VerifyGet(o => o.ResourceID);
             var condition = executionContainer is InternalServiceContainer;
-            Assert.IsTrue(condition);
+            NUnit.Framework.Assert.IsTrue(condition);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Runtime ESB")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Runtime ESB")]
         public void GenerateInvokeContainer_GivenValidArgsAndIsLocalInvokeTrueCacheContainsPerfmonExecutionService_ShouldCorrectServiceInContainer()
         {
             //---------------Set up test pack-------------------
@@ -312,31 +313,31 @@ namespace Dev2.Tests.Runtime.ESB.Control
             
 
             var invoker = new EsbServiceInvoker(channel.Object, workSpace.Object, executeRequest);
-            var privateObject = new PrivateObject(invoker);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(invoker);
             privateObject.SetField("_serviceLocator", locater.Object);
             privateObject.SetField("_cache", _cache);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(invoker);
+            NUnit.Framework.Assert.IsNotNull(invoker);
             //---------------Execute Test ----------------------
             try
             {
                 var executionContainer = invoker.GenerateInvokeContainer(obj.Object, newGuid, true);
                 //---------------Test Result -----------------------
-                Assert.IsNotNull(executionContainer);
+                NUnit.Framework.Assert.IsNotNull(executionContainer);
                 obj.VerifyGet(o => o.ResourceID);
                 var condition = executionContainer is PerfmonExecutionContainer;
-                Assert.IsTrue(condition);
+                NUnit.Framework.Assert.IsTrue(condition);
             }
             catch (Exception e)
             {
                 //Expected break for Web services, 
-                Assert.AreEqual("Root element is missing.", e.Message);
+                NUnit.Framework.Assert.AreEqual("Root element is missing.", e.Message);
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Runtime ESB")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Runtime ESB")]
         public void GenerateInvokeContainer_masterDataListId_GivenValidArgsAndIsLocalInvokeTrueCacheContainsRemoteService_ShouldCorrectServiceInContainer()
         {
             //---------------Set up test pack-------------------
@@ -371,33 +372,33 @@ namespace Dev2.Tests.Runtime.ESB.Control
             
 
             var invoker = new EsbServiceInvoker(channel.Object, workSpace.Object, executeRequest);
-            var privateObject = new PrivateObject(invoker);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(invoker);
             privateObject.SetField("_serviceLocator", locater.Object);
             privateObject.SetField("_cache", _cache);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(invoker);
+            NUnit.Framework.Assert.IsNotNull(invoker);
             //---------------Execute Test ----------------------
             try
             {
                 var executionContainer = invoker.GenerateInvokeContainer(obj.Object, "Name", true, serviceId);
                 //---------------Test Result -----------------------
-                Assert.IsNotNull(executionContainer);
+                NUnit.Framework.Assert.IsNotNull(executionContainer);
                 obj.VerifyGet(o => o.ResourceID);
                 var condition = executionContainer is InternalServiceContainer;
-                Assert.AreEqual(1, _cache.Count);
-                Assert.IsTrue(condition);
+                NUnit.Framework.Assert.AreEqual(1, _cache.Count);
+                NUnit.Framework.Assert.IsTrue(condition);
                 locater.VerifyAll();
             }
             catch (Exception e)
             {
                 //Expected break for Web services, 
-                Assert.AreEqual("Root element is missing.", e.Message);
+                NUnit.Framework.Assert.AreEqual("Root element is missing.", e.Message);
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Runtime ESB")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Runtime ESB")]
         public void GenerateInvokeContainer_masterDataListId_GivenValidArgsAndIsNotLocalInvoke_ShouldReturnRemoteExecutionContainer()
         {
             //---------------Set up test pack-------------------
@@ -416,22 +417,22 @@ namespace Dev2.Tests.Runtime.ESB.Control
             
 
             var invoker = new EsbServiceInvoker(channel.Object, workSpace.Object, executeRequest);
-            var privateObject = new PrivateObject(invoker);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(invoker);
             privateObject.SetField("_serviceLocator", locater.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(invoker);
+            NUnit.Framework.Assert.IsNotNull(invoker);
             //---------------Execute Test ----------------------
 
             var executionContainer = invoker.GenerateInvokeContainer(obj.Object, "Name", false, serviceId);
             //---------------Test Result -----------------------
-            Assert.IsNotNull(executionContainer);
+            NUnit.Framework.Assert.IsNotNull(executionContainer);
             var isRemoteWorkFlowExecution = executionContainer is RemoteWorkflowExecutionContainer;
-            Assert.IsTrue(isRemoteWorkFlowExecution);
+            NUnit.Framework.Assert.IsTrue(isRemoteWorkFlowExecution);
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Invoke_GivenNullServiceNameAndEmptyId_ShouldAddErrors()
         {
             //---------------Set up test pack-------------------
@@ -450,22 +451,22 @@ namespace Dev2.Tests.Runtime.ESB.Control
             
 
             var invoker = new EsbServiceInvoker(channel.Object, workSpace.Object, executeRequest);
-            var privateObject = new PrivateObject(invoker);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(invoker);
             privateObject.SetField("_serviceLocator", locater.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(invoker);
+            NUnit.Framework.Assert.IsNotNull(invoker);
             //---------------Execute Test ----------------------
             invoker.Invoke(obj.Object, out ErrorResultTO errorResultTO);
             //---------------Test Result -----------------------
-            Assert.IsNotNull(errorResultTO);
-            Assert.AreEqual(1, errorResultTO.FetchErrors().Count);
-            Assert.AreEqual(Resources.DynamicServiceError_ServiceNotSpecified, errorResultTO.FetchErrors().Single());
+            NUnit.Framework.Assert.IsNotNull(errorResultTO);
+            NUnit.Framework.Assert.AreEqual(1, errorResultTO.FetchErrors().Count);
+            NUnit.Framework.Assert.AreEqual(Resources.DynamicServiceError_ServiceNotSpecified, errorResultTO.FetchErrors().Single());
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Runtime ESB")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Runtime ESB")]
         public void Invoke_GivenServiceNameAndEmptyId_ShouldFindByName()
         {
             //---------------Set up test pack-------------------
@@ -485,22 +486,22 @@ namespace Dev2.Tests.Runtime.ESB.Control
             
 
             var invoker = new EsbServiceInvoker(channel.Object, workSpace.Object, executeRequest);
-            var privateObject = new PrivateObject(invoker);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(invoker);
             privateObject.SetField("_serviceLocator", locater.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(invoker);
+            NUnit.Framework.Assert.IsNotNull(invoker);
             //---------------Execute Test ----------------------
             invoker.Invoke(obj.Object, out ErrorResultTO errorResultTO);
             //---------------Test Result -----------------------
-            Assert.IsNotNull(errorResultTO);
-            Assert.AreEqual(0, errorResultTO.FetchErrors().Count);
+            NUnit.Framework.Assert.IsNotNull(errorResultTO);
+            NUnit.Framework.Assert.AreEqual(0, errorResultTO.FetchErrors().Count);
             locater.VerifyAll();
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Runtime ESB")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Runtime ESB")]
         public void Invoke_GivenIsTestExecutionServiceNameAndEmptyId_ShouldFindByNameInLocalhost()
         {
             //---------------Set up test pack-------------------
@@ -523,16 +524,16 @@ namespace Dev2.Tests.Runtime.ESB.Control
             
 
             var invoker = new EsbServiceInvoker(channel.Object, workSpace.Object, executeRequest);
-            var privateObject = new PrivateObject(invoker);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(invoker);
             privateObject.SetField("_serviceLocator", locater.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(invoker);
+            NUnit.Framework.Assert.IsNotNull(invoker);
             //---------------Execute Test ----------------------
             invoker.Invoke(obj.Object, out ErrorResultTO errorResultTO);
             //---------------Test Result -----------------------
-            Assert.IsNotNull(errorResultTO);
-            Assert.AreEqual(1, errorResultTO.FetchErrors().Count);
-            StringAssert.Contains(errorResultTO.FetchErrors().Single(), ErrorResource.ServiceNotFound);
+            NUnit.Framework.Assert.IsNotNull(errorResultTO);
+            NUnit.Framework.Assert.AreEqual(1, errorResultTO.FetchErrors().Count);
+            NUnit.Framework.StringAssert.Contains(errorResultTO.FetchErrors().Single(), ErrorResource.ServiceNotFound);
             locater.VerifyAll();
             
             var toTypes = typeof(Dev2.Data.ServiceTestModelTO);
@@ -544,17 +545,17 @@ namespace Dev2.Tests.Runtime.ESB.Control
             {
                 KnownTypes = allTypes.ToList()
             });
-            Assert.AreEqual(false, serviceTestModelTO.TestPassed);
-            Assert.AreEqual(true, serviceTestModelTO.TestInvalid);
-            Assert.AreEqual("Resource has been deleted", serviceTestModelTO.FailureMessage);
-            Assert.IsTrue(serviceTestModelTO.Result.RunTestResult == RunResult.TestResourceDeleted);
-            Assert.AreEqual("Resource has been deleted", serviceTestModelTO.Result.Message);
-            Assert.AreEqual(0, serviceTestModelTO.Result.DebugForTest.Count);
+            NUnit.Framework.Assert.AreEqual(false, serviceTestModelTO.TestPassed);
+            NUnit.Framework.Assert.AreEqual(true, serviceTestModelTO.TestInvalid);
+            NUnit.Framework.Assert.AreEqual("Resource has been deleted", serviceTestModelTO.FailureMessage);
+            NUnit.Framework.Assert.IsTrue(serviceTestModelTO.Result.RunTestResult == RunResult.TestResourceDeleted);
+            NUnit.Framework.Assert.AreEqual("Resource has been deleted", serviceTestModelTO.Result.Message);
+            NUnit.Framework.Assert.AreEqual(0, serviceTestModelTO.Result.DebugForTest.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Runtime ESB")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Runtime ESB")]
         public void Invoke_GivenIsTestExecution_ShouldResetTheActionTypeAfterTestExecution()
         {
             //---------------Set up test pack-------------------
@@ -588,19 +589,19 @@ namespace Dev2.Tests.Runtime.ESB.Control
             
 
             var invoker = new EsbServiceInvoker(channel.Object, workSpace.Object, executeRequest);
-            var privateObject = new PrivateObject(invoker);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(invoker);
             privateObject.SetField("_serviceLocator", locater.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(invoker);
+            NUnit.Framework.Assert.IsNotNull(invoker);
             //---------------Execute Test ----------------------
             invoker.Invoke(obj.Object, out ErrorResultTO errorResultTO);
             //---------------Test Result -----------------------
-            Assert.AreEqual(enActionType.Workflow, serviceAction.ActionType);
+            NUnit.Framework.Assert.AreEqual(enActionType.Workflow, serviceAction.ActionType);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Runtime ESB")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Runtime ESB")]
         public void Invoke_GivenIsFromWebServerNotWorFlow_ShouldThrowException()
         {
             //---------------Set up test pack-------------------
@@ -634,22 +635,22 @@ namespace Dev2.Tests.Runtime.ESB.Control
             
 
             var invoker = new EsbServiceInvoker(channel.Object, workSpace.Object, executeRequest);
-            var privateObject = new PrivateObject(invoker);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(invoker);
             privateObject.SetField("_serviceLocator", locater.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(invoker);
+            NUnit.Framework.Assert.IsNotNull(invoker);
             //---------------Execute Test ----------------------
 
             invoker.Invoke(obj.Object, out ErrorResultTO errorResultTO);
 
             //---------------Test Result -----------------------
-            Assert.AreEqual(1, errorResultTO.FetchErrors().Count);
-            Assert.AreEqual(ErrorResource.CanOnlyExecuteWorkflowsFromWebBrowser, errorResultTO.FetchErrors().Single());
+            NUnit.Framework.Assert.AreEqual(1, errorResultTO.FetchErrors().Count);
+            NUnit.Framework.Assert.AreEqual(ErrorResource.CanOnlyExecuteWorkflowsFromWebBrowser, errorResultTO.FetchErrors().Single());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Runtime ESB")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Runtime ESB")]
         public void Invoke_GivenInvalidAction_ShouldThrowException()
         {
             //---------------Set up test pack-------------------
@@ -683,22 +684,22 @@ namespace Dev2.Tests.Runtime.ESB.Control
             
 
             var invoker = new EsbServiceInvoker(channel.Object, workSpace.Object, executeRequest);
-            var privateObject = new PrivateObject(invoker);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(invoker);
             privateObject.SetField("_serviceLocator", locater.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(invoker);
+            NUnit.Framework.Assert.IsNotNull(invoker);
             //---------------Execute Test ----------------------
 
             invoker.Invoke(obj.Object, out ErrorResultTO errorResultTO);
 
             //---------------Test Result -----------------------
-            Assert.AreEqual(1, errorResultTO.FetchErrors().Count);
-            Assert.AreEqual(string.Format(ErrorResource.MalformedService, Guid.Empty), errorResultTO.FetchErrors().Single());
+            NUnit.Framework.Assert.AreEqual(1, errorResultTO.FetchErrors().Count);
+            NUnit.Framework.Assert.AreEqual(string.Format(ErrorResource.MalformedService, Guid.Empty), errorResultTO.FetchErrors().Single());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Runtime ESB")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Runtime ESB")]
         public void Dispose_GivenIsNew_ShouldPassThrough()
         {
             //---------------Set up test pack-------------------
@@ -720,9 +721,9 @@ namespace Dev2.Tests.Runtime.ESB.Control
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Runtime ESB")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Runtime ESB")]
         public void GenerateInvokeContainer_masterDataListId_GivenValidArgsAndIsLocalInvokeTrueCacheContainsPerfmonExecutionService_ShouldCorrectServiceInContainer()
         {
             //---------------Set up test pack-------------------
@@ -752,31 +753,31 @@ namespace Dev2.Tests.Runtime.ESB.Control
             
 
             var invoker = new EsbServiceInvoker(channel.Object, workSpace.Object, executeRequest);
-            var privateObject = new PrivateObject(invoker);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(invoker);
             privateObject.SetField("_serviceLocator", locater.Object);
             privateObject.SetField("_cache", _cache);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(invoker);
+            NUnit.Framework.Assert.IsNotNull(invoker);
             //---------------Execute Test ----------------------
             try
             {
                 var executionContainer = invoker.GenerateInvokeContainer(obj.Object, "Name", true, serviceId);
                 //---------------Test Result -----------------------
-                Assert.IsNotNull(executionContainer);
+                NUnit.Framework.Assert.IsNotNull(executionContainer);
                 obj.VerifyGet(o => o.ResourceID);
                 var condition = executionContainer is InternalServiceContainer;
-                Assert.IsTrue(condition);
+                NUnit.Framework.Assert.IsTrue(condition);
             }
             catch (Exception e)
             {
                 //Expected break for Web services, 
-                Assert.AreEqual("Root element is missing.", e.Message);
+                NUnit.Framework.Assert.AreEqual("Root element is missing.", e.Message);
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Runtime ESB")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Runtime ESB")]
         public void GetService_GivenThrowsExc_ShouldReturnNull()
         {
             //---------------Set up test pack-------------------
@@ -806,7 +807,7 @@ namespace Dev2.Tests.Runtime.ESB.Control
             
 
             var invoker = new EsbServiceInvoker(channel.Object, workSpace.Object, executeRequest);
-            var privateObject = new PrivateObject(invoker);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(invoker);
             privateObject.SetField("_serviceLocator", locater.Object);
             privateObject.SetField("_cache", _cache);
             //---------------Assert Precondition----------------
@@ -818,15 +819,15 @@ namespace Dev2.Tests.Runtime.ESB.Control
             }
             catch (Exception e)
             {
-                Assert.AreEqual("error", e.Message);
+                NUnit.Framework.Assert.AreEqual("error", e.Message);
             }
             //---------------Test Result -----------------------
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Runtime ESB")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Runtime ESB")]
         public void GetService_GivenEmptyGuid_ShouldFindByName()
         {
             //---------------Set up test pack-------------------
@@ -856,7 +857,7 @@ namespace Dev2.Tests.Runtime.ESB.Control
             
 
             var invoker = new EsbServiceInvoker(channel.Object, workSpace.Object, executeRequest);
-            var privateObject = new PrivateObject(invoker);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(invoker);
             privateObject.SetField("_serviceLocator", locater.Object);
             privateObject.SetField("_cache", _cache);
             //---------------Assert Precondition----------------
@@ -865,20 +866,20 @@ namespace Dev2.Tests.Runtime.ESB.Control
             try
             {
                 var dynamicService = privateObject.Invoke("GetService", string.Empty, Guid.Empty) as DynamicService;
-                Assert.IsNotNull(dynamicService);
+                NUnit.Framework.Assert.IsNotNull(dynamicService);
                 locater.Verify(l => l.FindService(It.IsAny<string>(), It.IsAny<Guid>()), Times.Once);
             }
             catch (Exception e)
             {
-                Assert.AreEqual("error", e.Message);
+                NUnit.Framework.Assert.AreEqual("error", e.Message);
             }
             //---------------Test Result -----------------------
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Runtime ESB")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Runtime ESB")]
         public void GetService_GivenGuid_ShouldFindByResourceId()
         {
             //---------------Set up test pack-------------------
@@ -906,7 +907,7 @@ namespace Dev2.Tests.Runtime.ESB.Control
             
 
             var invoker = new EsbServiceInvoker(channel.Object, workSpace.Object, executeRequest);
-            var privateObject = new PrivateObject(invoker);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(invoker);
             privateObject.SetField("_serviceLocator", locater.Object);
             privateObject.SetField("_cache", _cache);
             //---------------Assert Precondition----------------
@@ -915,19 +916,19 @@ namespace Dev2.Tests.Runtime.ESB.Control
             try
             {
                 var dynamicService = privateObject.Invoke("GetService", string.Empty, newGuid) as DynamicService;
-                Assert.IsNotNull(dynamicService);
+                NUnit.Framework.Assert.IsNotNull(dynamicService);
                 locater.Verify(l => l.FindService(It.IsAny<Guid>(), It.IsAny<Guid>()), Times.Once);
             }
             catch (Exception e)
             {
-                Assert.AreEqual("error", e.Message);
+                NUnit.Framework.Assert.AreEqual("error", e.Message);
             }
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Runtime ESB")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Runtime ESB")]
         public void Invoke_GivenHasErrors_ShouldReturnResult()
         {
             //---------------Set up test pack-------------------
@@ -959,7 +960,7 @@ namespace Dev2.Tests.Runtime.ESB.Control
                 Actions = new List<ServiceAction> { new ServiceAction { ActionType = enActionType.Workflow } }
             });
 
-            var privateObject = new PrivateObject(invoker);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(invoker);
             obj.SetupGet(o => o.ResourceID).Returns(newGuid);
             privateObject.SetField("_serviceLocator", locater.Object);
             //---------------Assert Precondition----------------

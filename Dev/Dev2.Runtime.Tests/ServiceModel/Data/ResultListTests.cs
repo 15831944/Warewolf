@@ -10,18 +10,19 @@
 
 using System;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Newtonsoft.Json;
 
 namespace Dev2.Tests.Runtime.ServiceModel.Data
 {
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class ResultListTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ResultList_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ResultList_Constructor")]
         public void ResultList_Constructor_Default_HasErrorsIsFalse()
         {
             //------------Setup for test--------------------------
@@ -35,9 +36,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.IsNull(resultList.Errors);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ResultList_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ResultList_Constructor")]
         public void ResultList_Constructor_ErrorFormatWithNoArgs_HasErrorsIsTrue()
         {
             //------------Setup for test--------------------------
@@ -51,9 +52,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual("Hello", resultList.Errors);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ResultList_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ResultList_Constructor")]
         public void ResultList_Constructor_ErrorFormatWithArgs_HasErrorsIsTrue()
         {
             //------------Setup for test--------------------------
@@ -67,9 +68,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual("Hello world", resultList.Errors);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ResultList_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ResultList_Constructor")]
         public void ResultList_Constructor_ExceptionIsNull_HasErrorsIsTrue()
         {
             //------------Setup for test--------------------------
@@ -83,9 +84,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual("", resultList.Errors);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ResultList_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ResultList_Constructor")]
         public void ResultList_Constructor_ExceptionIsNotNull_HasErrorsIsTrue()
         {
             //------------Setup for test--------------------------
@@ -101,9 +102,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
         }
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ResultList_ToString")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ResultList_ToString")]
         public void ResultList_ToString_Json()
         {
             //------------Setup for test--------------------------

@@ -6,19 +6,20 @@ using Dev2.Services.Security;
 using Dev2.Settings.Logging;
 using Dev2.Studio.Interfaces;
 using log4net.Config;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Configuration;
 
 namespace Dev2.Core.Tests.Settings
 {
-    [TestClass]
-    [TestCategory("Studio Settings Core")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Studio Settings Core")]
     public class LogSettingsViewModelTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("LogSettingsViewModel_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("LogSettingsViewModel_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void LogSettingsViewModel_Constructor_NullValueLoggingSettingTo_ExceptionThrown()
         {
@@ -30,9 +31,9 @@ namespace Dev2.Core.Tests.Settings
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("LogSettingsViewModel_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("LogSettingsViewModel_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void LogSettingsViewModel_Constructor_NullValueEnvironment_ExceptionThrown()
         {
@@ -44,9 +45,9 @@ namespace Dev2.Core.Tests.Settings
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("LogSettingsViewModel_ServerLogLevel")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("LogSettingsViewModel_ServerLogLevel")]
         public void LogSettingsViewModel_ServerLogLevel_Set_PropertyChangeFired()
         {
             //------------Setup for test--------------------------
@@ -68,9 +69,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsTrue(logSettingsViewModel.IsDirty);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("LogSettingsViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("LogSettingsViewModel_Handle")]
         public void LogSettingsViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------
@@ -87,9 +88,9 @@ namespace Dev2.Core.Tests.Settings
             viewModel.CloseHelpCommand.Execute(null);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("LogSettingsViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("LogSettingsViewModel_Handle")]
         public void LogSettingsViewModel_SelectedLoggingType_ShouldSelectLoggingType()
         {
             //------------Setup for test--------------------------
@@ -103,9 +104,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.AreEqual(LogLevel.FATAL, viewModel.ServerEventLogLevel);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("LogSettingsViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("LogSettingsViewModel_Handle")]
         public void LogSettingsViewModel_GetServerLogFileCommand_CanExecute()
         {
             //------------Setup for test--------------------------
@@ -118,9 +119,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsTrue(canExecute);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("LogSettingsViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("LogSettingsViewModel_Handle")]
         public void LogSettingsViewModel_GetStudioLogFileCommand_CanExecute()
         {
             //------------Setup for test--------------------------
@@ -133,9 +134,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsTrue(canExecute);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("LogSettingsViewModel_StudioLogLevel")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("LogSettingsViewModel_StudioLogLevel")]
         public void LogSettingsViewModel_StudioLogLevel_Set_PropertyChangeFired()
         {
             //------------Setup for test--------------------------
@@ -157,9 +158,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsTrue(logSettingsViewModel.IsDirty);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("LogSettingsViewModel_ServerLogMaxSize")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("LogSettingsViewModel_ServerLogMaxSize")]
         public void LogSettingsViewModel_ServerLogMaxSize_SetInt_PropertyChangeFired()
         {
             //------------Setup for test--------------------------
@@ -181,9 +182,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsTrue(logSettingsViewModel.IsDirty);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("LogSettingsViewModel_ServerLogMaxSize")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("LogSettingsViewModel_ServerLogMaxSize")]
         public void LogSettingsViewModel_ServerLogMaxSize_SetNonInt_PropertyChangeNotFired()
         {
             //------------Setup for test--------------------------
@@ -205,9 +206,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsFalse(logSettingsViewModel.IsDirty);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("LogSettingsViewModel_StudioLogMaxSize")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("LogSettingsViewModel_StudioLogMaxSize")]
         public void LogSettingsViewModel_StudioLogMaxSize_SetInt_PropertyChangeFired()
         {
             //------------Setup for test--------------------------
@@ -229,9 +230,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsTrue(logSettingsViewModel.IsDirty);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("LogSettingsViewModel_StudioFileLogLevel")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("LogSettingsViewModel_StudioFileLogLevel")]
         public void LogSettingsViewModel_StudioFileLogLevel_Construct_IsDebug()
         {
             //------------Setup for test--------------------------
@@ -243,9 +244,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.AreEqual(LogLevel.DEBUG, logSettingsViewModel.StudioFileLogLevel);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("LogSettingsViewModel_StudioFileLogLevel")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("LogSettingsViewModel_StudioFileLogLevel")]
         public void LogSettingsViewModel_StudioFileLogLevel_SetLevel_IsInfo()
         {
             //------------Setup for test--------------------------
@@ -258,9 +259,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.AreEqual(LogLevel.INFO, logSettingsViewModel.StudioFileLogLevel);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("LogSettingsViewModel_CanEdit")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("LogSettingsViewModel_CanEdit")]
         public void LogSettingsViewModel_CanEdit_Construct_IsFalse()
         {
             //------------Setup for test--------------------------
@@ -273,9 +274,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsFalse(logSettingsViewModel.CanEditStudioLogSettings);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("LogSettingsViewModel_CanEdit")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("LogSettingsViewModel_CanEdit")]
         public void LogSettingsViewModel_CanEdit_Construct_IsTrue()
         {
             //------------Setup for test--------------------------
@@ -292,9 +293,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsTrue(logSettingsViewModel.CanEditStudioLogSettings);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("LogSettingsViewModel_StudioLogMaxSize")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("LogSettingsViewModel_StudioLogMaxSize")]
         public void LogSettingsViewModel_StudioLogMaxSize_SetNonInt_PropertyChangeNotFired()
         {
             //------------Setup for test--------------------------
@@ -316,9 +317,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsFalse(logSettingsViewModel.IsDirty);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("LogSettingsViewModel_AuditsFilePath")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("LogSettingsViewModel_AuditsFilePath")]
         public void LogSettingsViewModel_AuditsFilePath_PropertyChangeFired()
         {
             //------------Setup for test--------------------------

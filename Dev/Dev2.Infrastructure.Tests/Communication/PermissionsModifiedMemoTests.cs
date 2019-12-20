@@ -9,16 +9,17 @@
 */
 
 using Dev2.Communication;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Infrastructure.Tests.Communication
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class PermissionsModifiedMemoTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("PermissionsModifiedMemo_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("PermissionsModifiedMemo_Constructor")]
         public void PermissionsModifiedMemo_Constructor_Initializes_Properties  ()
         {
             //------------Setup for test--------------------------

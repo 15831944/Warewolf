@@ -8,19 +8,20 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Threading.Tasks;
 using Warewolf.Pooling;
 
 namespace Warewolf.Common.NetStandard20.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ObjectPoolTests
     {
-        [TestMethod]
-        [TestCategory("ObjectPool")]
-        [Owner("Devaji Chotaliya")]
+        [Test]
+        [Category("ObjectPool")]
+        [Author("Devaji Chotaliya")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ObjectPool_Constructor_NullFunction_ShouldThrowException()
         {
@@ -30,9 +31,9 @@ namespace Warewolf.Common.NetStandard20.Tests
             //--------------Assert-------------------------------
         }
 
-        [TestMethod]
-        [TestCategory("ObjectPool")]
-        [Owner("Devaji Chotaliya")]
+        [Test]
+        [Category("ObjectPool")]
+        [Author("Devaji Chotaliya")]
         public void ObjectPool_AcquireReleaseObject_CheckWithParallelObjectCreation_ShouldReturnObject()
         {
             //--------------Arrange------------------------------
@@ -53,9 +54,9 @@ namespace Warewolf.Common.NetStandard20.Tests
             });
         }
 
-        [TestMethod]
-        [TestCategory("ObjectPool")]
-        [Owner("Devaji Chotaliya")]
+        [Test]
+        [Category("ObjectPool")]
+        [Author("Devaji Chotaliya")]
         public void ObjectPool_Dispose_ShouldClearObjectList()
         {
             //--------------Arrange------------------------------

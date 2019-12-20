@@ -1,15 +1,16 @@
 ﻿using Dev2.Common.State;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Linq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.DeleteRecord
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfDateTimeDifferenceActivityComparerTest
     {
-        [TestInitialize]
+        [SetUp]
         public void PreConditions()
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-ZA");
@@ -19,8 +20,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DeleteRecord
             Assert.AreEqual("en-ZA", System.Threading.Thread.CurrentThread.CurrentUICulture.Name);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentUniqueIds_ActivityTools_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -35,8 +36,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DeleteRecord
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_EmptyActivityTools_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -51,8 +52,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DeleteRecord
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DisplayName_Same_DisplayName_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -67,8 +68,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DeleteRecord
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DisplayName_Different_DisplayName_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -83,8 +84,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DeleteRecord
             Assert.IsFalse(@equals);
         }
         
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_Result_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -99,8 +100,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DeleteRecord
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_Result_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -114,8 +115,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DeleteRecord
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_Input1_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -130,8 +131,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DeleteRecord
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_Input1_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -146,8 +147,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DeleteRecord
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_Input2_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -162,8 +163,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DeleteRecord
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_Input2_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -177,8 +178,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DeleteRecord
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_InputFormat_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -193,8 +194,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DeleteRecord
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_InputFormat_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -208,8 +209,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DeleteRecord
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_OutputType_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -224,8 +225,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DeleteRecord
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_OutputType_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -240,9 +241,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DeleteRecord
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DsfDateTimeDifferenceActivity_GetState")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DsfDateTimeDifferenceActivity_GetState")]
         public void DsfDateTimeDifferenceActivity_GetState_ReturnsStateVariable()
         {
             //------------Setup for test--------------------------

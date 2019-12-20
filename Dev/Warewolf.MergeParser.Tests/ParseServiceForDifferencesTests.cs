@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.Activities.Statements;
 using System.Collections.Generic;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
@@ -15,10 +15,11 @@ using Dev2.Common.Interfaces.Diagnostics.Debug;
 
 namespace Warewolf.MergeParser.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ParseServiceForDifferencesTests
     {
-        [TestMethod]
+        [Test]
         public void GetDifferences_WhenSame_ShouldReturnNohasConflictItems()
         {
             var activityParser = new ActivityParser();
@@ -105,19 +106,19 @@ namespace Warewolf.MergeParser.Tests
 
         
 
-        [TestInitialize]
+        [SetUp]
         public void Init()
         {
 
         }
 
-        [TestCleanup]
+        [TearDown]
         public void CleanUp()
         {
             CustomContainer.DeRegister<IActivityParser>();
             CustomContainer.DeRegister<IShellViewModel>();
         }
-        [TestMethod]
+        [Test]
         public void GetDifferences_WhenDifferent_ShouldReturnhasConflictItems()
         {
             var activityParser = new ActivityParser();
@@ -214,22 +215,13 @@ namespace Warewolf.MergeParser.Tests
             Assert.AreEqual(calculateUniqueId, devActivityCurr1.UniqueID);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void Constructor_GivenNullParser_ShouldThrowException()
-        {
-            //---------------Set up test pack-------------------
-            var psd = new ServiceDifferenceParser();
-            //---------------Assert Precondition----------------
+        public void Constructor_GivenNullParser_ShouldThrowException() => new ServiceDifferenceParser();
 
-            //---------------Execute Test ----------------------
-
-            //---------------Test Result -----------------------
-
-        }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetDifferences_WhenFlatToolAddedOnRemote_ShouldNullOnLocalChart()
         {
             var activityParser = new ActivityParser();
@@ -333,8 +325,8 @@ namespace Warewolf.MergeParser.Tests
             Assert.AreEqual(calculateUniqueId, devActivityDiff2.UniqueID);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetDifferences_WhenFlatToolAddedOnLocal_ShouldNullOnRemoteChart()
         {
             var activityParser = new ActivityParser();
@@ -431,8 +423,8 @@ namespace Warewolf.MergeParser.Tests
             Assert.AreEqual(baseConvertId, devActivityCurr1.UniqueID);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetDifferences_WhenDecisionAddedOnLocal_ShouldNullOnRemoteChart()
         {
             var activityParser = new ActivityParser();
@@ -548,8 +540,8 @@ namespace Warewolf.MergeParser.Tests
             Assert.AreEqual(calculateUniqueId, devActivityCurr1.UniqueID);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetDifferences_WhenToolModifiedOnBithSides_ShouldNullOnRemoteChart()
         {
             var activityParser = new ActivityParser();
@@ -629,8 +621,8 @@ namespace Warewolf.MergeParser.Tests
             Assert.AreEqual(assignId, devActivityDiff.UniqueID);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void FlowDecision_GetDifferences_WhenFlowArmsModifiedOnBithSides_DecisionToolHasNoConflict()
         {
             var activityParser = new ActivityParser();
@@ -776,8 +768,8 @@ namespace Warewolf.MergeParser.Tests
             Assert.IsTrue(devActivityDiff1.Equals(devActivityCurr1));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void FlowDecision_GetDifferences_WhenMainDecisionModified_DecisionToolHasConflict()
         {
             var activityParser = new ActivityParser();
@@ -919,8 +911,8 @@ namespace Warewolf.MergeParser.Tests
             Assert.IsFalse(devActivityDiff1.Equals(devActivityCurr1));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void FlowDecision_GetDifferences_WhenArmToolsTheSame_DecisionHasNoConflict()
         {
             var activityParser = new ActivityParser();
@@ -1067,8 +1059,8 @@ namespace Warewolf.MergeParser.Tests
             Assert.IsTrue(devActivityDiff1.Equals(devActivityCurr1));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void FlowSwitch_GetDifferences_WhenCasesTheSame_SwitchHasNoConflict()
         {
             var activityParser = new ActivityParser();

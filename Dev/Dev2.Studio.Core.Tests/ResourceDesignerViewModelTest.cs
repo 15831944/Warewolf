@@ -12,7 +12,7 @@ using System.Text;
 using Dev2.Studio.Core.ViewModels;
 using Dev2.Studio.Interfaces;
 using Dev2.Studio.Interfaces.Enums;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Core.Tests
@@ -23,7 +23,8 @@ namespace Dev2.Core.Tests
     ///This is a result class for ResourceDesignerViewModelTest and is intended
     ///to contain all ResourceDesignerViewModelTest Unit Tests
     ///</summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ResourceDesignerViewModelTest
     {
 
@@ -35,7 +36,7 @@ namespace Dev2.Core.Tests
         ///</summary>
         public TestContext TestContext { get; set; }
 
-        [TestInitialize]
+        [SetUp]
         public void MyTestInitialize()
         {
 
@@ -55,7 +56,7 @@ namespace Dev2.Core.Tests
         /// <summary>
         /// Tests that the Default Service Definition for Services
         ///</summary>
-        [TestMethod]
+        [Test]
         public void DefaultDefinition_ServiceType_Expected_ServiceDefinitionBuiltForService()
         {
             var m = new Mock<IContextualResourceModel>();
@@ -71,7 +72,7 @@ namespace Dev2.Core.Tests
         /// <summary>
         /// Tests that the Default Service Definition for Sources
         ///</summary>
-        [TestMethod]
+        [Test]
         public void DefaultDefinition_SourceType_Expected_ServiceDefinitionBuiltForService()
         {
             var m = new Mock<IContextualResourceModel>();
@@ -91,7 +92,7 @@ namespace Dev2.Core.Tests
         /// <summary>
         ///A result for UpdateServiceDefinition
         ///</summary>
-        [TestMethod]
+        [Test]
         public void UpdateServiceDefinition()
         {
 

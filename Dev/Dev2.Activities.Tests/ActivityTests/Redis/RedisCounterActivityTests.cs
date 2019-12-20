@@ -9,13 +9,14 @@
 */
 
 using Dev2.Activities.RedisCounter;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Warewolf.Storage;
 using Warewolf.Storage.Interfaces;
 
 namespace Dev2.Tests.Activities.ActivityTests.Redis
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class RedisCounterActivityTests : BaseActivityTests
     {
         static RedisCounterActivity CreateRedisCounterActivity()
@@ -27,9 +28,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Redis
             return new ExecutionEnvironment();
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(RedisCounterActivity))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(RedisCounterActivity))]
         public void RedisCounterActivity_Equal_BothareObjects()
         {
             object redisCounterActivity = CreateRedisCounterActivity();
@@ -38,9 +39,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Redis
             Assert.IsFalse(redisActivityEqual);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(RedisCounterActivity))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(RedisCounterActivity))]
         public void RedisCounterActivity_GivenEnvironmentIsNull_ShouldHaveNoDebugOutputs()
         {
             //---------------Set up test pack-------------------

@@ -11,17 +11,18 @@
 using System.Net;
 using Dev2.Runtime.WebServer;
 using Microsoft.Owin.Builder;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Runtime.WebServer
 {
-    [TestClass]
-    [TestCategory("Runtime WebServer")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime WebServer")]
     public class WebServerStartupTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WebServerStartup_Configuration")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WebServerStartup_Configuration")]
         public void WebServerStartup_Configuration_HttpListener_InitializedCorrectly()
         {
             //------------Setup for test--------------------------

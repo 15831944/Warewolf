@@ -21,18 +21,19 @@ using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Runtime.Interfaces;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json.Serialization;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SaveRedisSourceTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SaveRedisSource))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SaveRedisSource))]
         public void SaveRedisSource_GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -43,9 +44,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SaveRedisSource))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SaveRedisSource))]
         public void SaveRedisSource_GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -56,9 +57,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(AuthorizationContext.Contribute, resId);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SaveRedisSource))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SaveRedisSource))]
         public void SaveRedisSource_HandlesType_ExpectName()
         {
             //------------Setup for test--------------------------
@@ -68,9 +69,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("SaveRedisSource", saveRedisSource.HandlesType());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SaveRedisSource))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SaveRedisSource))]
         public void SaveRedisSource_CreateServiceEntry_ExpectActions()
         {
             //------------Setup for test--------------------------
@@ -82,9 +83,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsNotNull(dynamicService.Actions);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SaveRedisSource))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SaveRedisSource))]
         public void SaveRedisSource_Execute_NullValues_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -97,9 +98,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(result.HasError);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SaveRedisSource))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SaveRedisSource))]
         public void SaveRedisSource_Execute_ResourceIDNotPresent_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -113,9 +114,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(result.HasError);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SaveRedisSource))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SaveRedisSource))]
         public void SaveRedisSource_Execute_GivenResourceDefination_ShouldSaveNewSourceReturnResourceDefinationMsg()
         {
             //---------------Set up test pack-------------------
@@ -148,9 +149,9 @@ namespace Dev2.Tests.Runtime.Services
             catalog.Verify(resourceCatalog => resourceCatalog.SaveResource(It.IsAny<Guid>(), It.IsAny<IResource>(), It.IsAny<string>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SaveRedisSource))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SaveRedisSource))]
         public void SaveRedisSource_Execute_GivenResourceDefination_GivenExising_ShouldReturnResourceDefinationMsg()
         {
             //---------------Set up test pack-------------------
@@ -184,9 +185,9 @@ namespace Dev2.Tests.Runtime.Services
             catalog.Verify(resourceCatalog => resourceCatalog.SaveResource(It.IsAny<Guid>(), redisSource, It.IsAny<string>()));
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(SaveRedisSource))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(SaveRedisSource))]
         public void SaveRedisSource_Execute_GivenResourceDefinition_ShouldSave()
         {
             //----------------------Arrange----------------------

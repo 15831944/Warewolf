@@ -14,16 +14,17 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using ActivityUnitTests;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DateTimeActivityTests : BaseActivityUnitTest
     {
-        [TestInitialize]
+        [SetUp]
         public void PreConditions()
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-ZA");
@@ -40,7 +41,7 @@ namespace Dev2.Tests.Activities.ActivityTests
         public TestContext TestContext { get; set; }
 
         //Added for BUG 9494
-        [TestMethod]
+        [Test]
         public void DateTimeUsingdWDatePartWithFullDateNameExpectedDateTimeReturnedCorrectly()
         {
             const string CurrDl = @"<root><MyTestResult></MyTestResult></root>";
@@ -63,7 +64,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
+        [Test]
         public void DateTime_NominalDateTimeInputs_Expected_DateTimeReturnedCorrectly()
         {
             const string currDL = @"<root><MyTestResult></MyTestResult></root>";
@@ -86,7 +87,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
+        [Test]
         public void DateTime_RecordSetData_Expected_EachRecordSetAppendedWithChangedDateTime()
         {
             const string currDL = @"<root><MyDateRecordSet><Date></Date></MyDateRecordSet></root>";
@@ -114,7 +115,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(secondDateTimeExpected, secondResult);
         }
 
-        [TestMethod]
+        [Test]
         public void DateTimeAddSplitsExpectedDateTimeReturnedCorrectly()
         {
             const string currDL = @"<root><MyTestResult></MyTestResult></root>";
@@ -136,9 +137,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(DsfDateTimeActivity))]
-        [Owner("Rory McGuire")]
+        [Test]
+        [Category(nameof(DsfDateTimeActivity))]
+        [Author("Rory McGuire")]
         public void DsfDateTimeActivity_ExecuteWithBlankInput_DateTimeNowIsUsed()
         {
             var startTime = DateTime.Now;
@@ -168,9 +169,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsTrue(endTime >= parsedResult && parsedResult >= startTime, $"expected a time between starting this test ({startTime}) and ({endTime}) but got: '{parsedResult}' with Start Time Timezone {startTime.ToString("zzz")}, End Time Timezone {endTime.ToString("zzz")}, and Parsed Result Timezone {parsedResult.ToString("zzz")}");
         }
 
-        [TestMethod]
-        [TestCategory(nameof(DsfDateTimeActivity))]
-        [Owner("Rory McGuire")]
+        [Test]
+        [Category(nameof(DsfDateTimeActivity))]
+        [Author("Rory McGuire")]
         public void DsfDateTimeActivity_ExecuteWithBlankInputAndMonthsOutput_OutputNotZero()
         {
             const string currDL = @"<root><MyTestResult></MyTestResult></root>";
@@ -188,9 +189,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(DateTime.Now.ToString("MMMM"), actual, "Month mismatch");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfDateTimeActivity_GetOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfDateTimeActivity_GetOutputs")]
         public void DsfDateTimeActivity_GetOutputs_Called_ShouldReturnListWithResultValueInIt()
         {
             //------------Setup for test--------------------------

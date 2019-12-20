@@ -9,16 +9,17 @@
 */
 
 using Dev2.Data.Decisions.Operations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests.DecisionsTests.Operations
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IsHexTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(IsHex))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(IsHex))]
         public void IsHex_Invoke_ItemsEqual_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -28,12 +29,12 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //------------Execute Test---------------------------
             var result = isHex.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(IsHex))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(IsHex))]
         public void IsHex_Invoke_ItemWithxEqual_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -43,12 +44,12 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //------------Execute Test---------------------------
             var result = isHex.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(IsHex))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(IsHex))]
         public void IsHex_Invoke_NotEqualItems_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -58,12 +59,12 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //------------Execute Test---------------------------
             var result = isHex.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(IsHex))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(IsHex))]
         public void IsHex_Invoke_EmptyColumns_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -73,12 +74,12 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //------------Execute Test---------------------------
             var result = isHex.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(IsHex))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(IsHex))]
         public void IsHex_HandlesType_ReturnsIsIsHexType()
         {
             var expected = enDecisionType.IsHex;
@@ -86,7 +87,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             var isisHex = new IsHex();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.AreEqual(expected, isisHex.HandlesType());
+            NUnit.Framework.Assert.AreEqual(expected, isisHex.HandlesType());
         }
     }
 }

@@ -20,7 +20,7 @@ using Dev2.Providers.Errors;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using TestingDotnetDllCascading;
 using Warewolf.Core;
@@ -29,12 +29,13 @@ using Warewolf.Testing;
 
 namespace Dev2.Activities.Designers.Tests.DotNetDll
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DotNetDllEnhancedViewModelTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DotNetDllEnhancedViewModel_Constructor")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DotNetDllEnhancedViewModel_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void DotNetDllEnhancedViewModel_Constructor_NullModelItem_Exception()
         {
@@ -44,9 +45,9 @@ namespace Dev2.Activities.Designers.Tests.DotNetDll
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DotNetDllEnhancedViewModel_Constructor")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DotNetDllEnhancedViewModel_Constructor")]
         public void DotNetDllEnhancedViewModel_Constructor_Valid_ShouldSetupViewModel()
         {
             //------------Setup for test--------------------------
@@ -82,9 +83,9 @@ namespace Dev2.Activities.Designers.Tests.DotNetDll
         
        
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DotNetDllEnhancedViewModel_ToModel")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DotNetDllEnhancedViewModel_ToModel")]
         public void DotNetDllEnhancedViewModel_ToModel()
         {
             //------------Setup for test--------------------------
@@ -103,9 +104,9 @@ namespace Dev2.Activities.Designers.Tests.DotNetDll
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DotNetDllEnhancedViewModel_ToModel")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DotNetDllEnhancedViewModel_ToModel")]
         public void DotNetDllEnhancedViewModel_ClearValidationMessage()
         {
             //------------Setup for test--------------------------
@@ -123,9 +124,9 @@ namespace Dev2.Activities.Designers.Tests.DotNetDll
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DotNetDllEnhancedViewModel_SetDisplayName")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DotNetDllEnhancedViewModel_SetDisplayName")]
         public void DotNetDllEnhancedViewModel_SetDisplayName()
         {
             //------------Setup for test--------------------------
@@ -139,13 +140,13 @@ namespace Dev2.Activities.Designers.Tests.DotNetDll
 
             //------------Assert Results-------------------------
             vm.SetDisplayName("dsfbob_builer");
-            var p = new PrivateObject(vm);
+            var p= new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(vm);
             Assert.AreEqual(p.GetProperty("DisplayName"), "DotNet DLLdsfbob_builer");
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DotNetDllEnhancedViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DotNetDllEnhancedViewModel_Handle")]
         public void DotNetDllEnhancedViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -164,9 +165,9 @@ namespace Dev2.Activities.Designers.Tests.DotNetDll
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DotNetDllEnhancedViewModel_SetDisplayName")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DotNetDllEnhancedViewModel_SetDisplayName")]
         public void DotNetDllEnhancedViewModel_ErrorMessage()
         {
             //------------Setup for test--------------------------
@@ -185,9 +186,9 @@ namespace Dev2.Activities.Designers.Tests.DotNetDll
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DotNetDllEnhancedViewModel_SetDisplayName")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DotNetDllEnhancedViewModel_SetDisplayName")]
         public void DotNetDllEnhancedViewModel_FixErrors()
         {
             //------------Setup for test--------------------------
@@ -204,9 +205,9 @@ namespace Dev2.Activities.Designers.Tests.DotNetDll
             Assert.IsTrue(vm.IsWorstErrorReadOnly);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DotNetDllEnhancedViewModel_SetDisplayName")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DotNetDllEnhancedViewModel_SetDisplayName")]
         public void DotNetDllEnhancedViewModel_UpdateWorstDesignError()
         {
             //------------Setup for test--------------------------
@@ -218,7 +219,7 @@ namespace Dev2.Activities.Designers.Tests.DotNetDll
 
             var vm = new DotNetDllEnhancedViewModel(CreateModelItemWithValues(), ps.Object);
             vm.DesignValidationErrors.Add(new ErrorInfo { Message = "bob error", ErrorType = ErrorType.Critical });
-            var p = new PrivateObject(vm);
+            var p = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(vm);
             p.Invoke("UpdateWorstError");
             var inf = p.GetProperty("WorstDesignError") as ErrorInfo;
             //------------Assert Results-------------------------
@@ -228,8 +229,8 @@ namespace Dev2.Activities.Designers.Tests.DotNetDll
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void BuildRegions_GivenNamespacesRegionHasErrors_ShouldhaveErrors()
         {
             //---------------Set up test pack-------------------
@@ -250,8 +251,8 @@ namespace Dev2.Activities.Designers.Tests.DotNetDll
             Assert.AreEqual(buildRegions.Single(region => region is INamespaceToolRegion<INamespaceItem>).Errors.Count, 1);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void LoadDotNetTool_GivenModelItemWIthValues_ShouldPopulateViewModelSourceRegionProperties()
         {
             //---------------Set up test pack-------------------
@@ -328,8 +329,8 @@ namespace Dev2.Activities.Designers.Tests.DotNetDll
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void LoadDotNetTool_GivenModelItemWIthValues_ShouldPopulateViewModelNameSpaceRegionProperties()
         {
             //---------------Set up test pack-------------------
@@ -416,8 +417,8 @@ namespace Dev2.Activities.Designers.Tests.DotNetDll
             Assert.AreEqual(namespaceItem.JsonObject, selectedNamespace.JsonObject);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void LoadDotNetTool_GivenNamespaceChanges_ShouldPopulateOutPutRegionWithObjectResult()
         {
             //---------------Set up test pack-------------------
@@ -516,8 +517,8 @@ namespace Dev2.Activities.Designers.Tests.DotNetDll
             Assert.AreEqual("JsonObject", objectResult);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ToModel_GivenNamespaceChanges_ShouldModelCorreclty()
         {
             //---------------Set up test pack-------------------
@@ -603,8 +604,8 @@ namespace Dev2.Activities.Designers.Tests.DotNetDll
             Assert.AreEqual(activity.Namespace.FullName, pluginService.Namespace.FullName);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public async Task DeleteActionCommand_GivenMethodRegion_ShouldFirePropertyChangeOnTheRegionList()
         {
             //---------------Set up test pack-------------------
@@ -705,8 +706,8 @@ namespace Dev2.Activities.Designers.Tests.DotNetDll
             Assert.IsTrue(wasCalled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void LoadDotNetTool_GivenModelItemWIthValues_ShouldPopulateViewModelConstructorRegionProperties()
         {
             //---------------Set up test pack-------------------
@@ -775,8 +776,8 @@ namespace Dev2.Activities.Designers.Tests.DotNetDll
             Assert.AreEqual(activity.Constructor.Inputs.Count, pluginConstructor.Inputs.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void LoadDotNetTool_GivenModelItemWIthValues_ShouldPopulateViewModelOutPutRegionProperties()
         {
             //---------------Set up test pack-------------------
@@ -854,8 +855,8 @@ namespace Dev2.Activities.Designers.Tests.DotNetDll
             Assert.AreEqual(true, outputsRegion.IsObjectOutputUsed);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void LoadDotNetTool_GivenModelItemWIthValues_ShouldPopulateViewModelMethodRegionProperties()
         {
             //---------------Set up test pack-------------------

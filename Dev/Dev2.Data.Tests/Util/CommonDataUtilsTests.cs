@@ -12,20 +12,22 @@ using Dev2.Data.Interfaces.Enums;
 using Dev2.Data.Util;
 using Dev2.DataList.Contract;
 using Dev2.PathOperations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Resource.Errors;
 using Warewolf.Storage;
 using Warewolf.Storage.Interfaces;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dev2.Data.Tests.Util
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class CommonDataUtilsTests
     {
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_ValidateEndPoint_EmptyPath_ExpectException()
         {
             var commonDataUtils = new CommonDataUtils();
@@ -44,16 +46,16 @@ namespace Dev2.Data.Tests.Util
             catch (Exception e)
             {
                 hadException = true;
-                Assert.AreEqual(ErrorResource.SourceCannotBeAnEmptyString, e.Message);
+                NUnit.Framework.Assert.AreEqual(ErrorResource.SourceCannotBeAnEmptyString, e.Message);
             }
-            Assert.IsTrue(hadException, "expected exception");
+            NUnit.Framework.Assert.IsTrue(hadException, "expected exception");
 
             mockEndPoint.Verify(o => o.IOPath, Times.Once);
             mockPath.Verify(o => o.Path, Times.Once);
         }
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_ValidateEndPoint_NullPath_ExpectException()
         {
             var commonDataUtils = new CommonDataUtils();
@@ -70,15 +72,15 @@ namespace Dev2.Data.Tests.Util
             catch (Exception e)
             {
                 hadException = true;
-                Assert.AreEqual(ErrorResource.SourceCannotBeAnEmptyString, e.Message);
+                NUnit.Framework.Assert.AreEqual(ErrorResource.SourceCannotBeAnEmptyString, e.Message);
             }
-            Assert.IsTrue(hadException, "expected exception");
+            NUnit.Framework.Assert.IsTrue(hadException, "expected exception");
 
             mockEndPoint.Verify(o => o.IOPath, Times.Once);
         }
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_ValidateEndPoint_ValidPath_OverwriteFalse_ExpectException()
         {
             const string expectedPath = "c:\\somePath";
@@ -102,18 +104,18 @@ namespace Dev2.Data.Tests.Util
             catch (Exception e)
             {
                 hadException = true;
-                Assert.AreEqual(ErrorResource.DestinationDirectoryExist, e.Message);
+                NUnit.Framework.Assert.AreEqual(ErrorResource.DestinationDirectoryExist, e.Message);
             }
-            Assert.IsTrue(hadException, "expected exception");
+            NUnit.Framework.Assert.IsTrue(hadException, "expected exception");
 
             mockEndPoint.Verify(o => o.IOPath, Times.Exactly(2));
             mockPath.Verify(o => o.Path, Times.Once);
 
             mockEndPoint.Verify(o => o.PathExist(mockPath.Object), Times.Once);
         }
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_ValidateEndPoint_ValidPath_Success()
         {
             const string expectedPath = "c:\\somePath";
@@ -136,9 +138,9 @@ namespace Dev2.Data.Tests.Util
 
             mockEndPoint.Verify(o => o.PathExist(mockPath.Object), Times.Once);
         }
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_ValidateEndPoint_ValidPathNotExists_Success()
         {
             const string expectedPath = "c:\\somePath";
@@ -159,7 +161,7 @@ namespace Dev2.Data.Tests.Util
             }
             catch (Exception e)
             {
-                Assert.AreEqual(ErrorResource.SourceCannotBeAnEmptyString, e.Message);
+                NUnit.Framework.Assert.AreEqual(ErrorResource.SourceCannotBeAnEmptyString, e.Message);
             }
             mockEndPoint.Verify(o => o.IOPath, Times.Exactly(2));
             mockPath.Verify(o => o.Path, Times.Once);
@@ -167,9 +169,9 @@ namespace Dev2.Data.Tests.Util
             mockEndPoint.Verify(o => o.PathExist(mockPath.Object), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_ExtractFile_NullZip_DoesNotThrow()
         {
             var commonDataUtils = new CommonDataUtils();
@@ -177,9 +179,9 @@ namespace Dev2.Data.Tests.Util
             commonDataUtils.ExtractFile(null, wrapper, null);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_ExtractFile_NoPassword()
         {
             const string path = "some path";
@@ -198,9 +200,9 @@ namespace Dev2.Data.Tests.Util
             mockZipEntry.Verify(o => o.Extract(path, FileOverwrite.No), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_ExtractFile_WithPassword_OverwriteTrue()
         {
             const string somePath = "some path";
@@ -225,9 +227,9 @@ namespace Dev2.Data.Tests.Util
             mockZipEntry.Verify(o => o.Extract(somePath, FileOverwrite.Yes), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_ExtractFile_Extract_Fails()
         {
             const string somePath = "some path";
@@ -252,9 +254,9 @@ namespace Dev2.Data.Tests.Util
             } catch (Exception e)
             {
                 hadException = true;
-                Assert.AreEqual(ErrorResource.InvalidArchivePassword, e.Message);
+                NUnit.Framework.Assert.AreEqual(ErrorResource.InvalidArchivePassword, e.Message);
             }
-            Assert.IsTrue(hadException);
+            NUnit.Framework.Assert.IsTrue(hadException);
 
             mockUnzipOpTo.VerifyGet(o => o.ArchivePassword, Times.Exactly(2));
             mockZipFileWrapper.VerifySet(o => o.Password = somePassword, Times.Once);
@@ -262,20 +264,20 @@ namespace Dev2.Data.Tests.Util
             mockZipEntry.Verify(o => o.Extract(somePath, FileOverwrite.No), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_TempFile()
         {
             var filename = CommonDataUtils.TempFile("ext");
-            Assert.IsTrue(filename.EndsWith(".ext"));
-            Assert.IsFalse(File.Exists(filename));
-            Assert.IsTrue(filename.Length > 36);
+            NUnit.Framework.Assert.IsTrue(filename.EndsWith(".ext"));
+            NUnit.Framework.Assert.IsFalse(File.Exists(filename));
+            NUnit.Framework.Assert.IsTrue(filename.Length > 36);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_ExtractZipCompressionLevel()
         {
             //---------------Set up test pack-------------------
@@ -285,13 +287,13 @@ namespace Dev2.Data.Tests.Util
             //---------------Execute Test ----------------------
 
             //---------------Test Result -----------------------
-            Assert.IsNotNull(level);
-            Assert.AreEqual(Ionic.Zlib.CompressionLevel.BestCompression, level);
+            NUnit.Framework.Assert.IsNotNull(level);
+            NUnit.Framework.Assert.AreEqual(Ionic.Zlib.CompressionLevel.BestCompression, level);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_ExtractZipCompressionLevel_UnknownLevel_ShouldUseDefault()
         {
             //---------------Set up test pack-------------------
@@ -301,13 +303,13 @@ namespace Dev2.Data.Tests.Util
             //---------------Execute Test ----------------------
 
             //---------------Test Result -----------------------
-            Assert.IsNotNull(level);
-            Assert.AreEqual(Ionic.Zlib.CompressionLevel.Default, level);
+            NUnit.Framework.Assert.IsNotNull(level);
+            NUnit.Framework.Assert.AreEqual(Ionic.Zlib.CompressionLevel.Default, level);
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CommonDataUtils_IsNotFtpTypePath()
         {
             bool IsNotFtpTypePathTest(string fileName)
@@ -319,16 +321,16 @@ namespace Dev2.Data.Tests.Util
                 return bool.Parse(value.ToString());
             }
 
-            Assert.IsTrue(IsNotFtpTypePathTest("C:\\Home\\a.txt"));
+            NUnit.Framework.Assert.IsTrue(IsNotFtpTypePathTest("C:\\Home\\a.txt"));
 
-            Assert.IsFalse(IsNotFtpTypePathTest("ftp://Home//a.txt"));
-            Assert.IsFalse(IsNotFtpTypePathTest("ftps://Home//a.txt"));
-            Assert.IsFalse(IsNotFtpTypePathTest("sftp://Home//a.txt"));
+            NUnit.Framework.Assert.IsFalse(IsNotFtpTypePathTest("ftp://Home//a.txt"));
+            NUnit.Framework.Assert.IsFalse(IsNotFtpTypePathTest("ftps://Home//a.txt"));
+            NUnit.Framework.Assert.IsFalse(IsNotFtpTypePathTest("sftp://Home//a.txt"));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_ValidateSourceAndDestinationPaths_EmptySourceThrows()
         {
             var srcPath = new Mock<IActivityIOPath>();
@@ -356,14 +358,14 @@ namespace Dev2.Data.Tests.Util
             catch (Exception e)
             {
                 hadException = true;
-                Assert.AreEqual(ErrorResource.SourceCannotBeAnEmptyString, e.Message);
+                NUnit.Framework.Assert.AreEqual(ErrorResource.SourceCannotBeAnEmptyString, e.Message);
             }
-            Assert.IsTrue(hadException, "expected exception");
+            NUnit.Framework.Assert.IsTrue(hadException, "expected exception");
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_ValidateSourceAndDestinationPaths_EmptyDestinationBecomesSource()
         {
             const string srcPathString = "C:\\Home\\a.txt";
@@ -396,16 +398,16 @@ namespace Dev2.Data.Tests.Util
             catch (Exception e)
             {
                 hadException = true;
-                Assert.AreEqual(ErrorResource.DestinationDirectoryCannotBeAChild, e.Message);
+                NUnit.Framework.Assert.AreEqual(ErrorResource.DestinationDirectoryCannotBeAChild, e.Message);
             }
-            Assert.IsTrue(hadException);
-            Assert.IsTrue(pathSet);
+            NUnit.Framework.Assert.IsTrue(hadException);
+            NUnit.Framework.Assert.IsTrue(pathSet);
             dstPath.VerifySet(o => o.Path = srcPathString, Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_ValidateSourceAndDestinationPaths_DestinationIsSubdir_Fails()
         {
             const string srcPathString = @"C:\Home\Subdir";
@@ -439,17 +441,17 @@ namespace Dev2.Data.Tests.Util
             catch (Exception e)
             {
                 hadException = true;
-                Assert.AreEqual(ErrorResource.DestinationDirectoryCannotBeAChild, e.Message);
+                NUnit.Framework.Assert.AreEqual(ErrorResource.DestinationDirectoryCannotBeAChild, e.Message);
             }
-            Assert.IsTrue(hadException);
+            NUnit.Framework.Assert.IsTrue(hadException);
 
-            Assert.IsFalse(pathSet);
+            NUnit.Framework.Assert.IsFalse(pathSet);
         }
 
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_ValidateSourceAndDestinationPaths_UncDestination()
         {
             const string srcPathString = "C:\\Home\\a.txt";
@@ -477,12 +479,12 @@ namespace Dev2.Data.Tests.Util
             var commonDataUtils = new CommonDataUtils();
             commonDataUtils.ValidateSourceAndDestinationPaths(src.Object, dst.Object);
 
-            Assert.IsFalse(pathSet);
+            NUnit.Framework.Assert.IsFalse(pathSet);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_ValidateSourceAndDestinationPaths_GivenIsPathRooted_ShouldReturnFalse()
         {
             const string txt = "C:\\Home\\a.txt";
@@ -504,24 +506,22 @@ namespace Dev2.Data.Tests.Util
 
             var commonDataUtils = new CommonDataUtils();
             commonDataUtils.ValidateSourceAndDestinationPaths(src.Object, dst.Object);
-
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_IsUncFileTypePath()
         {
-            Assert.IsTrue(CommonDataUtils.IsUncFileTypePath(@"\\Home\a.txt"));
-            Assert.IsFalse(CommonDataUtils.IsUncFileTypePath(@"\Home\a.txt"));
-            Assert.IsFalse(CommonDataUtils.IsUncFileTypePath(@"C:\Home\a.txt"));
+            NUnit.Framework.Assert.IsTrue(CommonDataUtils.IsUncFileTypePath(@"\\Home\a.txt"));
+            NUnit.Framework.Assert.IsFalse(CommonDataUtils.IsUncFileTypePath(@"\Home\a.txt"));
+            NUnit.Framework.Assert.IsFalse(CommonDataUtils.IsUncFileTypePath(@"C:\Home\a.txt"));
         }
 
-
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
-        [ExpectedException(typeof(Exception))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
+        [NUnit.Framework.ExpectedException(typeof(Exception))]
         public void CommonDataUtils_AddMissingFileDirectoryParts_GivenNullSource_ShouldReturnError()
         {
             var commonDataUtils = new CommonDataUtils();
@@ -530,14 +530,14 @@ namespace Dev2.Data.Tests.Util
             var zipPathName = Path.GetTempPath() + newFileName + ".zip";
             var scrEndPoint = ActivityIOFactory.CreateOperationEndPointFromIOPath(ActivityIOFactory.CreatePathFromString(tempFile, string.Empty, null, true, ""));
             var dstEndPoint = ActivityIOFactory.CreateOperationEndPointFromIOPath(ActivityIOFactory.CreatePathFromString(zipPathName, string.Empty, null, true, ""));
-            Assert.IsNotNull(commonDataUtils);
+            NUnit.Framework.Assert.IsNotNull(commonDataUtils);
             scrEndPoint.IOPath.Path = string.Empty;
             commonDataUtils.AddMissingFileDirectoryParts(scrEndPoint, dstEndPoint);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_AddMissingFileDirectoryParts_GivenNullDestination_ShouldReturnError()
         {
             var commonDataUtils = new CommonDataUtils();
@@ -546,14 +546,14 @@ namespace Dev2.Data.Tests.Util
             var zipPathName = Path.GetTempPath() + newFileName + ".zip";
             var scrEndPoint = ActivityIOFactory.CreateOperationEndPointFromIOPath(ActivityIOFactory.CreatePathFromString(tempFile, string.Empty, null, true, ""));
             var dstEndPoint = ActivityIOFactory.CreateOperationEndPointFromIOPath(ActivityIOFactory.CreatePathFromString(zipPathName, string.Empty, null, true, ""));
-            Assert.IsNotNull(commonDataUtils);
+            NUnit.Framework.Assert.IsNotNull(commonDataUtils);
             dstEndPoint.IOPath.Path = string.Empty;
             commonDataUtils.AddMissingFileDirectoryParts(scrEndPoint, dstEndPoint);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_AddMissingFileDirectoryParts_GivenDestinationPathIsDirectory_SourcePathIsNotDirectory()
         {
             const string file = "C:\\Home\\a.txt";
@@ -579,9 +579,9 @@ namespace Dev2.Data.Tests.Util
             dstPath.VerifySet(p => p.Path = @"C:\Home\");
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_AddMissingFileDirectoryParts_GivenDestinationPathIsDirectory_SourcePathIsFile()
         {
             const string file = "C:\\Parent\\a.txt";
@@ -609,9 +609,9 @@ namespace Dev2.Data.Tests.Util
             dstPath.VerifySet(p => p.Path = @"C:\Parent\Child\a.txt");
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_AddMissingFileDirectoryParts_GivenDestinationPathIsDirectoryOfSource_SourcePathIsDirectory()
         {
             const string file = @"C:\Parent\";
@@ -639,9 +639,9 @@ namespace Dev2.Data.Tests.Util
             dstPath.VerifySet(p => p.Path = @"C:\Parent\Child1\Child2\Parent");
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_AddMissingFileDirectoryParts_GivenDestinationPathIsDirectory_SourcePathIsDirectory()
         {
             const string file = @"C:\Parent1\";
@@ -669,9 +669,9 @@ namespace Dev2.Data.Tests.Util
             dstPath.VerifySet(p => p.Path = @"C:\Parent2\Parent1");
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_AddMissingFileDirectoryParts_GivenDestinationPathIsSubDirectory_SourcePathIsFile()
         {
             const string file = @"C:\Parent\file1.txt";
@@ -699,9 +699,9 @@ namespace Dev2.Data.Tests.Util
             dstPath.VerifySet(p => p.Path = @"C:\Parent\Child1\Child2\file1.txt");
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_AddMissingFileDirectoryParts_GivenDestinationPathIsDirectory_SourcePathIsFile1()
         {
             const string file = @"C:\Parent1\file1.txt";
@@ -729,9 +729,9 @@ namespace Dev2.Data.Tests.Util
             dstPath.VerifySet(p => p.Path = @"C:\Parent2\Child1\Child2\file1.txt");
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_CreateTmpDirectory_ShouldCreateFolderInTheCorrectLocation()
         {
             string fullName = "";
@@ -742,14 +742,14 @@ namespace Dev2.Data.Tests.Util
             var commonDataUtils = new CommonDataUtils(mockDirectoryWrapper.Object);
             var path = commonDataUtils.CreateTmpDirectory();
             //---------------Test Result -----------------------
-            Assert.AreEqual(fullName, path);
-            StringAssert.Contains(path, GlobalConstants.TempLocation);
+            NUnit.Framework.Assert.AreEqual(fullName, path);
+            NUnit.Framework.StringAssert.Contains(path, GlobalConstants.TempLocation);
             mockDirectoryWrapper.Verify(o => o.CreateDirectory(fullName), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_CreateTmpDirectory_ShouldPropagateExceptions()
         {
             var expectedException = new Exception("some exception");
@@ -766,18 +766,18 @@ namespace Dev2.Data.Tests.Util
             {
                 actualException = e;
             }
-            Assert.AreEqual(expectedException, actualException);
+            NUnit.Framework.Assert.AreEqual(expectedException, actualException);
             //---------------Test Result -----------------------
             mockDirectoryWrapper.Verify(o => o.CreateDirectory(It.IsAny<string>()), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_CreateObjectInputs_GivenRecSet_ShouldCreateObjectInput_OnTheInnerEnvToo()
         {
             var commonDataUtils = new CommonDataUtils();
-            Assert.IsNotNull(commonDataUtils);
+            NUnit.Framework.Assert.IsNotNull(commonDataUtils);
 
             var outerExeEnv = new ExecutionEnvironment();
             var recUsername = "[[rec(1).UserName]]";
@@ -786,23 +786,23 @@ namespace Dev2.Data.Tests.Util
             {
                 new Dev2Definition("Name", "UserName", "Sanele", false, "NoName", false, recUsername)
             };
-            Assert.IsNotNull(definitions);
+            NUnit.Framework.Assert.IsNotNull(definitions);
             var innerExecEnv = new ExecutionEnvironment();
             var prObj = new PrivateObject(innerExecEnv);
             var warewolfEnvironment = prObj.GetField("_env") as DataStorage.WarewolfEnvironment;
-            Assert.IsTrue(warewolfEnvironment != null && warewolfEnvironment.Scalar.Count == 0);
+            NUnit.Framework.Assert.IsTrue(warewolfEnvironment != null && warewolfEnvironment.Scalar.Count == 0);
             commonDataUtils.CreateObjectInputs(outerExeEnv, definitions, innerExecEnv, 0);
             warewolfEnvironment = prObj.GetField("_env") as DataStorage.WarewolfEnvironment;
-            Assert.IsTrue(warewolfEnvironment != null && warewolfEnvironment.Scalar.Count == 1);
+            NUnit.Framework.Assert.IsTrue(warewolfEnvironment != null && warewolfEnvironment.Scalar.Count == 1);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_CreateObjectInputs_GivenVariable_ShouldCreateObjectInput_OnTheInnerEnvToo()
         {
             var commonDataUtils = new CommonDataUtils();
-            Assert.IsNotNull(commonDataUtils);
+            NUnit.Framework.Assert.IsNotNull(commonDataUtils);
 
             var outerExeEnv = new ExecutionEnvironment();
             var recUsername = "[[UserName]]";
@@ -811,23 +811,23 @@ namespace Dev2.Data.Tests.Util
             {
                 new Dev2Definition("Name", "UserName", "Sanele", false, "NoName", false, recUsername)
             };
-            Assert.IsNotNull(definitions);
+            NUnit.Framework.Assert.IsNotNull(definitions);
             var innerExecEnv = new ExecutionEnvironment();
             var prObj = new PrivateObject(innerExecEnv);
             var warewolfEnvironment = prObj.GetField("_env") as DataStorage.WarewolfEnvironment;
-            Assert.IsTrue(warewolfEnvironment != null && warewolfEnvironment.Scalar.Count == 0);
+            NUnit.Framework.Assert.IsTrue(warewolfEnvironment != null && warewolfEnvironment.Scalar.Count == 0);
             commonDataUtils.CreateObjectInputs(outerExeEnv, definitions, innerExecEnv, 0);
             warewolfEnvironment = prObj.GetField("_env") as DataStorage.WarewolfEnvironment;
-            Assert.IsTrue(warewolfEnvironment != null && warewolfEnvironment.Scalar.Count == 1);
+            NUnit.Framework.Assert.IsTrue(warewolfEnvironment != null && warewolfEnvironment.Scalar.Count == 1);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_CreateObjectInputs_GivenJSon_ShouldCreateObjectInput_OnTheInnerEnvToo()
         {
             var commonDataUtils = new CommonDataUtils();
-            Assert.IsNotNull(commonDataUtils);
+            NUnit.Framework.Assert.IsNotNull(commonDataUtils);
 
             var outerExeEnv = new ExecutionEnvironment();
             var recUsername = "[[@Person().UserName]]";
@@ -836,23 +836,23 @@ namespace Dev2.Data.Tests.Util
             {
                 new Dev2Definition("Name", "UserName", "Sanele", false, "NoName", false, recUsername)
             };
-            Assert.IsNotNull(definitions);
+            NUnit.Framework.Assert.IsNotNull(definitions);
             var innerExecEnv = new ExecutionEnvironment();
             var prObj = new PrivateObject(innerExecEnv);
             var warewolfEnvironment = prObj.GetField("_env") as DataStorage.WarewolfEnvironment;
-            Assert.IsTrue(warewolfEnvironment != null && warewolfEnvironment.JsonObjects.Count == 0);
+            NUnit.Framework.Assert.IsTrue(warewolfEnvironment != null && warewolfEnvironment.JsonObjects.Count == 0);
             commonDataUtils.CreateObjectInputs(outerExeEnv, definitions, innerExecEnv, 0);
             warewolfEnvironment = prObj.GetField("_env") as DataStorage.WarewolfEnvironment;
-            Assert.IsTrue(warewolfEnvironment != null && warewolfEnvironment.JsonObjects.Count == 1);
+            NUnit.Framework.Assert.IsTrue(warewolfEnvironment != null && warewolfEnvironment.JsonObjects.Count == 1);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_CreateScalarInputs_ShouldMapToOuterEnvironment()
         {
             var commonDataUtils = new CommonDataUtils();
-            Assert.IsNotNull(commonDataUtils);
+            NUnit.Framework.Assert.IsNotNull(commonDataUtils);
 
             var outerExeEnv = new ExecutionEnvironment();
             outerExeEnv.Assign("[[rec(1).UserName]]", "username1 v1", 0);
@@ -864,31 +864,31 @@ namespace Dev2.Data.Tests.Util
                 new Dev2Definition("Input3", "Input3", "Input3", false, "1234", false, "4321"),
                 new Dev2Definition("UserName2", "UserName2", "UserName2", false, "NoNames", false, "[[rec(*).UserName]]"),
             };
-            Assert.IsNotNull(inputScalarList);
+            NUnit.Framework.Assert.IsNotNull(inputScalarList);
             var innerExecEnv = new ExecutionEnvironment();
-            Assert.IsNotNull(innerExecEnv);
+            NUnit.Framework.Assert.IsNotNull(innerExecEnv);
             var prObj = new PrivateObject(innerExecEnv);
             var warewolfEnvironment = prObj.GetField("_env") as DataStorage.WarewolfEnvironment;
-            Assert.AreEqual(0, warewolfEnvironment.Scalar.Count);
+            NUnit.Framework.Assert.AreEqual(0, warewolfEnvironment.Scalar.Count);
             commonDataUtils.CreateScalarInputs(outerExeEnv, inputScalarList, innerExecEnv, 0);
             warewolfEnvironment = prObj.GetField("_env") as DataStorage.WarewolfEnvironment;
-            Assert.AreEqual(4, warewolfEnvironment.Scalar.Count);
+            NUnit.Framework.Assert.AreEqual(4, warewolfEnvironment.Scalar.Count);
 
-            Assert.IsTrue(warewolfEnvironment.Scalar["UserName"].IsNothing);
+            NUnit.Framework.Assert.IsTrue(warewolfEnvironment.Scalar["UserName"].IsNothing);
 
             var v2 = warewolfEnvironment.Scalar["Input2"] as DataStorage.WarewolfAtom.DataString;
-            Assert.AreEqual("inpv2", v2.Item);
+            NUnit.Framework.Assert.AreEqual("inpv2", v2.Item);
 
             var v3 = warewolfEnvironment.Scalar["Input3"] as DataStorage.WarewolfAtom.Int;
-            Assert.AreEqual(4321, v3.Item);
+            NUnit.Framework.Assert.AreEqual(4321, v3.Item);
 
             var v4 = warewolfEnvironment.Scalar["UserName2"] as DataStorage.WarewolfAtom.DataString;
-            Assert.AreEqual("username2 v2", v4.Item);
+            NUnit.Framework.Assert.AreEqual("username2 v2", v4.Item);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_CreateRecordSetsInputs()
         {
             var mockOuterEnvironment = new Mock<IExecutionEnvironment>();
@@ -948,9 +948,9 @@ namespace Dev2.Data.Tests.Util
             mockEnv.Verify(o => o.EvalAssignFromNestedStar("[[rec(*).Name]]", It.IsAny<CommonFunctions.WarewolfEvalResult.WarewolfAtomListresult>(), 0), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_CreateRecordSetsInputs_GivenNullValue()
         {
             var outerEnvironment = new Mock<IExecutionEnvironment>();
@@ -994,22 +994,22 @@ namespace Dev2.Data.Tests.Util
             env.Verify(p => p.AssignDataShape("[[Person().Age]]"), Times.AtLeastOnce);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_GenerateDefsFromDataListForDebug_GivenNullValue()
         {
             const string trueString = "True";
             var datalist = string.Format("<DataList><Person Description=\"\" IsEditable=\"{0}\" ColumnIODirection=\"Both\" ><Name Description=\"\" IsEditable=\"{0}\" ColumnIODirection=\"Input\" /></Person></DataList>", trueString);
             var commonDataUtils = new CommonDataUtils();
             var results = commonDataUtils.GenerateDefsFromDataListForDebug(datalist, enDev2ColumnArgumentDirection.Both);
-            Assert.AreEqual(1, results.Count);
-            Assert.AreEqual("Name", results[0].Name);
+            NUnit.Framework.Assert.AreEqual(1, results.Count);
+            NUnit.Framework.Assert.AreEqual("Name", results[0].Name);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_GenerateDefsFromDataList_GivenDataList_ShouldReturnList()
         {
             const string trueString = "True";
@@ -1019,18 +1019,18 @@ namespace Dev2.Data.Tests.Util
             try
             {
                 var generateDefsFromDataList = DataListUtil.GenerateDefsFromDataList(datalist, enDev2ColumnArgumentDirection.Input);
-                Assert.IsNotNull(generateDefsFromDataList);
+                NUnit.Framework.Assert.IsNotNull(generateDefsFromDataList);
             }
             catch (Exception ex)
             {
-                Assert.Fail(ex.Message);
+                NUnit.Framework.Assert.Fail(ex.Message);
 
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_GenerateDefsFromDataList_GivenDataListAndSearchFilter_ShouldReturnList()
         {
             const string trueString = "True";
@@ -1043,15 +1043,15 @@ namespace Dev2.Data.Tests.Util
             mockSearchParameters.Setup(o => o.SearchOptions).Returns(mockSearchOptions.Object);
 
             var generateDefsFromDataList = DataListUtil.GenerateDefsFromDataList(datalist, enDev2ColumnArgumentDirection.Both, true, mockSearchParameters.Object);
-            Assert.IsNotNull(generateDefsFromDataList);
+            NUnit.Framework.Assert.IsNotNull(generateDefsFromDataList);
 
             mockSearchParameters.Verify(o => o.SearchInput, Times.AtLeastOnce);
             mockSearchParameters.Verify(o => o.SearchOptions, Times.AtLeastOnce);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_GenerateDefsFromDataList_GivenDataList_ShouldReurnListWithEntries()
         {
             const string trueString = "True";
@@ -1059,94 +1059,94 @@ namespace Dev2.Data.Tests.Util
             var datalist = string.Format("<DataList><var Description=\"\" IsEditable=\"{0}\" ColumnIODirection=\"{1}\" IsJson=\"True\" /><a Description=\"\" IsEditable=\"{0}\" ColumnIODirection=\"{1}\" /><rec Description=\"\" IsEditable=\"{0}\" ColumnIODirection=\"{1}\" ><set Description=\"\" IsEditable=\"{0}\" ColumnIODirection=\"{1}\" /></rec></DataList>", trueString, noneString);
 
             var generateDefsFromDataList = DataListUtil.GenerateDefsFromDataList(datalist, enDev2ColumnArgumentDirection.Input);
-            Assert.AreEqual(3, generateDefsFromDataList.Count);
+            NUnit.Framework.Assert.AreEqual(3, generateDefsFromDataList.Count);
 
             var expected = new Dev2Definition("@var", "", "", false, "", false, "");
-            Assert.AreEqual(expected.Name, generateDefsFromDataList[0].Name);
-            Assert.AreEqual(expected.MapsTo, generateDefsFromDataList[0].MapsTo);
-            Assert.AreEqual(expected.Value, generateDefsFromDataList[0].Value);
-            Assert.AreEqual(expected.IsEvaluated, generateDefsFromDataList[0].IsEvaluated);
-            Assert.AreEqual(expected.DefaultValue, generateDefsFromDataList[0].DefaultValue);
-            Assert.AreEqual(expected.IsRequired, generateDefsFromDataList[0].IsRequired);
-            Assert.AreEqual(expected.RawValue, generateDefsFromDataList[0].RawValue);
-            Assert.IsTrue(generateDefsFromDataList[0].IsObject);
+            NUnit.Framework.Assert.AreEqual(expected.Name, generateDefsFromDataList[0].Name);
+            NUnit.Framework.Assert.AreEqual(expected.MapsTo, generateDefsFromDataList[0].MapsTo);
+            NUnit.Framework.Assert.AreEqual(expected.Value, generateDefsFromDataList[0].Value);
+            NUnit.Framework.Assert.AreEqual(expected.IsEvaluated, generateDefsFromDataList[0].IsEvaluated);
+            NUnit.Framework.Assert.AreEqual(expected.DefaultValue, generateDefsFromDataList[0].DefaultValue);
+            NUnit.Framework.Assert.AreEqual(expected.IsRequired, generateDefsFromDataList[0].IsRequired);
+            NUnit.Framework.Assert.AreEqual(expected.RawValue, generateDefsFromDataList[0].RawValue);
+            NUnit.Framework.Assert.IsTrue(generateDefsFromDataList[0].IsObject);
 
             expected.Name = "a";
-            Assert.AreEqual(expected.Name, generateDefsFromDataList[1].Name);
-            Assert.AreEqual(expected.MapsTo, generateDefsFromDataList[1].MapsTo);
-            Assert.AreEqual(expected.Value, generateDefsFromDataList[1].Value);
-            Assert.AreEqual(expected.IsEvaluated, generateDefsFromDataList[1].IsEvaluated);
-            Assert.AreEqual(expected.DefaultValue, generateDefsFromDataList[1].DefaultValue);
-            Assert.AreEqual(expected.IsRequired, generateDefsFromDataList[1].IsRequired);
-            Assert.AreEqual(expected.RawValue, generateDefsFromDataList[1].RawValue);
+            NUnit.Framework.Assert.AreEqual(expected.Name, generateDefsFromDataList[1].Name);
+            NUnit.Framework.Assert.AreEqual(expected.MapsTo, generateDefsFromDataList[1].MapsTo);
+            NUnit.Framework.Assert.AreEqual(expected.Value, generateDefsFromDataList[1].Value);
+            NUnit.Framework.Assert.AreEqual(expected.IsEvaluated, generateDefsFromDataList[1].IsEvaluated);
+            NUnit.Framework.Assert.AreEqual(expected.DefaultValue, generateDefsFromDataList[1].DefaultValue);
+            NUnit.Framework.Assert.AreEqual(expected.IsRequired, generateDefsFromDataList[1].IsRequired);
+            NUnit.Framework.Assert.AreEqual(expected.RawValue, generateDefsFromDataList[1].RawValue);
 
             expected.Name = "set";
-            Assert.AreEqual(expected.Name, generateDefsFromDataList[2].Name);
-            Assert.AreEqual(expected.MapsTo, generateDefsFromDataList[2].MapsTo);
-            Assert.AreEqual(expected.Value, generateDefsFromDataList[2].Value);
-            Assert.AreEqual(expected.IsEvaluated, generateDefsFromDataList[2].IsEvaluated);
-            Assert.AreEqual(expected.DefaultValue, generateDefsFromDataList[2].DefaultValue);
-            Assert.AreEqual(expected.IsRequired, generateDefsFromDataList[2].IsRequired);
-            Assert.AreEqual(expected.RawValue, generateDefsFromDataList[2].RawValue);
+            NUnit.Framework.Assert.AreEqual(expected.Name, generateDefsFromDataList[2].Name);
+            NUnit.Framework.Assert.AreEqual(expected.MapsTo, generateDefsFromDataList[2].MapsTo);
+            NUnit.Framework.Assert.AreEqual(expected.Value, generateDefsFromDataList[2].Value);
+            NUnit.Framework.Assert.AreEqual(expected.IsEvaluated, generateDefsFromDataList[2].IsEvaluated);
+            NUnit.Framework.Assert.AreEqual(expected.DefaultValue, generateDefsFromDataList[2].DefaultValue);
+            NUnit.Framework.Assert.AreEqual(expected.IsRequired, generateDefsFromDataList[2].IsRequired);
+            NUnit.Framework.Assert.AreEqual(expected.RawValue, generateDefsFromDataList[2].RawValue);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_GenerateDefsFromDataListForDebug_GivenEmpty_ShouldReturnEmptyList()
         {
             var generateDefsFromDataListForDebug = DataListUtil.GenerateDefsFromDataListForDebug("", enDev2ColumnArgumentDirection.Output);
 
-            Assert.AreEqual(0, generateDefsFromDataListForDebug.Count);
+            NUnit.Framework.Assert.AreEqual(0, generateDefsFromDataListForDebug.Count);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_GenerateDefsFromDataListForDebug_GivenEmptyDataList_ShouldReturnEmptyList()
         {
             var generateDefsFromDataListForDebug = DataListUtil.GenerateDefsFromDataListForDebug("<Datalist></Datalist>", enDev2ColumnArgumentDirection.Output);
 
-            Assert.AreEqual(0, generateDefsFromDataListForDebug.Count);
+            NUnit.Framework.Assert.AreEqual(0, generateDefsFromDataListForDebug.Count);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_GenerateDefsFromDataListForDebug_GivenLoadedDataList_ShouldReturnDebugList()
         {
             const string datalist = @"<DataList><Car Description=""A recordset of information about a car"" IsEditable=""True"" ColumnIODirection=""Both"" ><Make Description=""Make of vehicle"" IsEditable=""True"" ColumnIODirection=""None"" /><Model Description=""Model of vehicle"" IsEditable=""True"" ColumnIODirection=""None"" /></Car><Country Description=""name of Country"" IsEditable=""True"" ColumnIODirection=""Both"" /><Person Description="""" IsEditable=""True"" IsJson=""True"" IsArray=""False"" ColumnIODirection=""None"" ><Age Description="""" IsEditable=""True"" IsJson=""True"" IsArray=""False"" ColumnIODirection=""None"" ></Age><Name Description="""" IsEditable=""True"" IsJson=""True"" IsArray=""False"" ColumnIODirection=""None"" ></Name><School Description="""" IsEditable=""True"" IsJson=""True"" IsArray=""False"" ColumnIODirection=""None"" ><Name Description="""" IsEditable=""True"" IsJson=""True"" IsArray=""False"" ColumnIODirection=""None"" ></Name><Location Description="""" IsEditable=""True"" IsJson=""True"" IsArray=""False"" ColumnIODirection=""None"" ></Location></School></Person></DataList>";
             var generateDefsFromDataListForDebug = DataListUtil.GenerateDefsFromDataListForDebug(datalist, enDev2ColumnArgumentDirection.Output);
 
-            Assert.AreEqual(2, generateDefsFromDataListForDebug.Count);
+            NUnit.Framework.Assert.AreEqual(2, generateDefsFromDataListForDebug.Count);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(CommonDataUtils))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(CommonDataUtils))]
         public void CommonDataUtils_GenerateDefsFromDataListForDebug_GivenLoadedDataList_ShouldReturnDebugListWithObject()
         {
             const string datalist = @"<DataList><Car Description=""A recordset of information about a car"" IsEditable=""True"" ColumnIODirection=""Both"" ><Make Description=""Make of vehicle"" IsEditable=""True"" ColumnIODirection=""None"" /><Model Description=""Model of vehicle"" IsEditable=""True"" ColumnIODirection=""None"" /></Car><Country Description=""name of Country"" IsEditable=""True"" ColumnIODirection=""Both"" IsJson=""True"" /><Person Description="""" IsEditable=""True"" IsJson=""True"" IsArray=""False"" ColumnIODirection=""None"" ><Age Description="""" IsEditable=""True"" IsJson=""True"" IsArray=""False"" ColumnIODirection=""None"" ></Age><Name Description="""" IsEditable=""True"" IsJson=""True"" IsArray=""False"" ColumnIODirection=""None"" ></Name><School Description="""" IsEditable=""True"" IsJson=""True"" IsArray=""False"" ColumnIODirection=""None"" ><Name Description="""" IsEditable=""True"" IsJson=""True"" IsArray=""False"" ColumnIODirection=""None"" ></Name><Location Description="""" IsEditable=""True"" IsJson=""True"" IsArray=""False"" ColumnIODirection=""None"" ></Location></School></Person></DataList>";
             var generateDefsFromDataListForDebug = DataListUtil.GenerateDefsFromDataListForDebug(datalist, enDev2ColumnArgumentDirection.Output);
 
-            Assert.AreEqual(2, generateDefsFromDataListForDebug.Count);
-            Assert.IsTrue(generateDefsFromDataListForDebug[0].IsRecordSet);
-            Assert.AreEqual("Car", generateDefsFromDataListForDebug[0].RecordSetName);
-            Assert.AreEqual("", generateDefsFromDataListForDebug[0].MapsTo);
-            Assert.AreEqual("", generateDefsFromDataListForDebug[0].Value);
-            Assert.IsFalse(generateDefsFromDataListForDebug[0].IsEvaluated);
-            Assert.AreEqual("", generateDefsFromDataListForDebug[0].DefaultValue);
-            Assert.IsFalse(generateDefsFromDataListForDebug[0].IsRequired);
-            Assert.AreEqual("", generateDefsFromDataListForDebug[0].RawValue);
+            NUnit.Framework.Assert.AreEqual(2, generateDefsFromDataListForDebug.Count);
+            NUnit.Framework.Assert.IsTrue(generateDefsFromDataListForDebug[0].IsRecordSet);
+            NUnit.Framework.Assert.AreEqual("Car", generateDefsFromDataListForDebug[0].RecordSetName);
+            NUnit.Framework.Assert.AreEqual("", generateDefsFromDataListForDebug[0].MapsTo);
+            NUnit.Framework.Assert.AreEqual("", generateDefsFromDataListForDebug[0].Value);
+            NUnit.Framework.Assert.IsFalse(generateDefsFromDataListForDebug[0].IsEvaluated);
+            NUnit.Framework.Assert.AreEqual("", generateDefsFromDataListForDebug[0].DefaultValue);
+            NUnit.Framework.Assert.IsFalse(generateDefsFromDataListForDebug[0].IsRequired);
+            NUnit.Framework.Assert.AreEqual("", generateDefsFromDataListForDebug[0].RawValue);
 
-            Assert.IsFalse(generateDefsFromDataListForDebug[1].IsObject);
-            Assert.AreEqual("@Country", generateDefsFromDataListForDebug[1].Name);
-            Assert.AreEqual("", generateDefsFromDataListForDebug[1].MapsTo);
-            Assert.AreEqual("", generateDefsFromDataListForDebug[1].Value);
-            Assert.IsFalse(generateDefsFromDataListForDebug[1].IsEvaluated);
-            Assert.AreEqual("", generateDefsFromDataListForDebug[1].DefaultValue);
-            Assert.IsFalse(generateDefsFromDataListForDebug[1].IsRequired);
-            Assert.AreEqual("", generateDefsFromDataListForDebug[1].RawValue);
+            NUnit.Framework.Assert.IsFalse(generateDefsFromDataListForDebug[1].IsObject);
+            NUnit.Framework.Assert.AreEqual("@Country", generateDefsFromDataListForDebug[1].Name);
+            NUnit.Framework.Assert.AreEqual("", generateDefsFromDataListForDebug[1].MapsTo);
+            NUnit.Framework.Assert.AreEqual("", generateDefsFromDataListForDebug[1].Value);
+            NUnit.Framework.Assert.IsFalse(generateDefsFromDataListForDebug[1].IsEvaluated);
+            NUnit.Framework.Assert.AreEqual("", generateDefsFromDataListForDebug[1].DefaultValue);
+            NUnit.Framework.Assert.IsFalse(generateDefsFromDataListForDebug[1].IsRequired);
+            NUnit.Framework.Assert.AreEqual("", generateDefsFromDataListForDebug[1].RawValue);
         }
 
     }

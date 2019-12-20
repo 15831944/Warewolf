@@ -17,17 +17,18 @@ using Dev2.Common.Interfaces.Enums;
 using Dev2.Communication;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DeleteTriggerQueueServiceTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DeleteTriggerQueueService))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DeleteTriggerQueueService))]
         public void DeleteTriggerQueueService_GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -38,9 +39,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resourceId);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DeleteTriggerQueueService))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DeleteTriggerQueueService))]
         public void DeleteTriggerQueueService_GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -51,9 +52,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(AuthorizationContext.Contribute, authorizationContext);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DeleteTriggerQueueService))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DeleteTriggerQueueService))]
         public void DeleteTriggerQueueService_CreateServiceEntry_ShouldReturnDynamicService()
         {
             //------------Setup for test--------------------------
@@ -65,9 +66,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("DeleteTriggerQueueService", serviceEntry.Name);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DeleteTriggerQueueService))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DeleteTriggerQueueService))]
         public void DeleteTriggerQueueService_HandlesType_ExpectType()
         {
             //------------Setup for test--------------------------
@@ -77,9 +78,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("DeleteTriggerQueueService", deleteTriggerQueueService.HandlesType());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DeleteTriggerQueueService))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DeleteTriggerQueueService))]
         [ExpectedException(typeof(InvalidDataContractException))]
         public void DeleteTriggerQueueService_GivenNullArgs_Returns_InvalidDataContractException()
         {
@@ -90,9 +91,9 @@ namespace Dev2.Tests.Runtime.Services
             deleteTriggerQueueService.Execute(null, workspaceMock.Object);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DeleteTriggerQueueService))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DeleteTriggerQueueService))]
         public void DeleteTriggerQueueService_Execute()
         {
             var serializer = new Dev2JsonSerializer();

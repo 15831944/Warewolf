@@ -9,7 +9,7 @@
 */
 
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json;
 using Serilog;
@@ -24,12 +24,13 @@ using System.Text;
 
 namespace Warewolf.Driver.Serilog.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SeriLogPublishTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(SeriLogPublisher))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(SeriLogPublisher))]
         public void SeriLogPublisher_NewPublisher_WriteToSink_UsingAny_ILogEventSink_IPML_Success()
         {
             //-------------------------Arrange------------------------------
@@ -60,9 +61,9 @@ namespace Warewolf.Driver.Serilog.Tests
             Assert.AreEqual(expected: expectedTestErrorMsg, actual: actualLogEventList[1].MessageTemplate.Text);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(SeriLogPublisher))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(SeriLogPublisher))]
         public void SeriLogPublisher_NewPublisher_WriteToSink_UsingAny_ILogEventSink_IPML_WithOutputTemplateFormat_Test_Success()
         {
             //-------------------------Arrange------------------------------
@@ -115,9 +116,9 @@ namespace Warewolf.Driver.Serilog.Tests
             Assert.AreEqual(expected: expectedTestFatalMsg, actual: actualLogEventList[2].MessageTemplate.Text);
         }
        
-        [TestMethod]  
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(SeriLogPublisher))]
+        [Test]  
+        [Author("Siphamandla Dube")]
+        [Category(nameof(SeriLogPublisher))]
         public void SeriLogPublisher_NewPublisher_Reading_LogData_From_SQLite_Success()
         {
             //-------------------------Arrange------------------------------

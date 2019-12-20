@@ -2,17 +2,18 @@
 using System.IO;
 using System.Linq;
 using Dev2.Activities.Designers2.Core;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Activities.Designers.Tests.Core
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ScriptChooserTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ScriptChooser_Constructor")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ScriptChooser_Constructor")]
         public void ScriptChooser_Constructor_Constructor_Execute()
         {
             //------------Setup for test--------------------------
@@ -23,8 +24,8 @@ namespace Dev2.Activities.Designers.Tests.Core
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ChooseScriptSources_GivenFileSource_ShouldCallPropertyChange()
         {
             //---------------Set up test pack-------------------
@@ -48,8 +49,8 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.IsTrue(wasCalled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ChooseScriptSources_GivenincludeFile_ShouldaddFileToMsg()
         {
             //---------------Set up test pack-------------------
@@ -73,8 +74,8 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.AreEqual(1, chooseScriptSources.SelectedFiles.Count());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ChooseScriptSources_GivenNoincludeFile_ShouldNotaddFileToMsg()
         {
             //---------------Set up test pack-------------------

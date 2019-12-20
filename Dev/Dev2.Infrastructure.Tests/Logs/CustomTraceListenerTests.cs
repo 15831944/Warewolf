@@ -10,17 +10,18 @@
 
 using System;
 using Dev2.Providers.Logs;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Infrastructure.Tests.Logs
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class CustomTraceListenerTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("CustomTraceListener")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("CustomTraceListener")]
         public void CustomTraceListener_Constructor_WithNullFileName_ShouldUseDefaultFileName()
         {
             //------------Setup for test--------------------------
@@ -31,9 +32,9 @@ namespace Dev2.Infrastructure.Tests.Logs
             StringAssert.Contains(loggingFileName, "Warewolf Studio.log");   
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("CustomTraceListener")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("CustomTraceListener")]
         public void CustomTraceListener_Constructor_WithEmptyFileName_ShouldUseDefaultFileName()
         {
             //------------Setup for test--------------------------
@@ -45,9 +46,9 @@ namespace Dev2.Infrastructure.Tests.Logs
 
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("CustomTraceListener")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("CustomTraceListener")]
         public void CustomTraceListener_StaticLoggingFileNameAccessed_WithEmptyFileName_ShouldUseDefaultFileName()
         {
             //------------Setup for test--------------------------
@@ -57,9 +58,9 @@ namespace Dev2.Infrastructure.Tests.Logs
             StringAssert.Contains(loggingFileName, "Warewolf Studio.log");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("CustomTraceListener")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("CustomTraceListener")]
         public void CustomTraceListener_WarewolfAppPath_ShouldContainLocalAppDataPathAndWarewolf()
         {
             //------------Setup for test--------------------------
@@ -71,9 +72,9 @@ namespace Dev2.Infrastructure.Tests.Logs
             StringAssert.Contains(warewolfAppPath, "Warewolf");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("CustomTraceListener")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("CustomTraceListener")]
         public void CustomTraceListener_StudioLogPath_ShouldContainLocalAppDataPathAndWarewolfAndStudioLogs()
         {
             //------------Setup for test--------------------------
@@ -86,9 +87,9 @@ namespace Dev2.Infrastructure.Tests.Logs
             StringAssert.Contains(warewolfAppPath, "Studio Logs");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("CustomTraceListener")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("CustomTraceListener")]
         public void CustomTraceListener_StaticLoggingFileNameAccessed_ShouldHaveFullPathAndDefaultFileName()
         {
             //------------Setup for test--------------------------
@@ -102,9 +103,9 @@ namespace Dev2.Infrastructure.Tests.Logs
             StringAssert.Contains(loggingFileName, "Warewolf Studio.log");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("CustomTraceListener")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("CustomTraceListener")]
         public void CustomTraceListener_StaticLoggingFileNameAccessed_WithFileName_ShouldHaveFullPathAndGivenFileName()
         {
             //------------Setup for test--------------------------

@@ -12,24 +12,25 @@ using System;
 using Dev2.Common.Interfaces.Diagnostics.Debug;
 using Dev2.Diagnostics;
 using Dev2.Diagnostics.Debug;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DebugOutputFilterStrategyTests
     {
         static DebugOutputFilterStrategy _debugOutputFilterStrategy;
 
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void MyTestClassInitialize(TestContext testContext)
         {
             _debugOutputFilterStrategy = new DebugOutputFilterStrategy();
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(DebugOutputFilterStrategy))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(DebugOutputFilterStrategy))]
 
         public void DebugOutputFilterStrategy_Filter_Where_ContentIsNull_Expected_False()
         {
@@ -38,9 +39,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(false, actual);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(DebugOutputFilterStrategy))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(DebugOutputFilterStrategy))]
         public void DebugOutputFilterStrategy_Filter_Where_FilterTextIsNull_Expected_False()
         {
             var actual = _debugOutputFilterStrategy.Filter("", null);
@@ -48,9 +49,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(false, actual);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(DebugOutputFilterStrategy))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(DebugOutputFilterStrategy))]
         public void DebugOutputFilterStrategy_Where_ContentIsString_And_FilterTextContainsMatch_Expected_True()
         {
             var actual = _debugOutputFilterStrategy.Filter("cake", "ak");
@@ -58,9 +59,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(true, actual);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(DebugOutputFilterStrategy))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(DebugOutputFilterStrategy))]
         public void DebugOutputFilterStrategy_Where_ContentIsString_And_FilterTextDoesntContainMatch_Expected_false()
         {
             var actual = _debugOutputFilterStrategy.Filter("cake", "123");
@@ -68,9 +69,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(false, actual);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(DebugOutputFilterStrategy))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(DebugOutputFilterStrategy))]
         public void DebugOutputFilterStrategy_Where_ContentIsDebugState_And_FilterTextMatchesNothing_Expected_False()
         {
             var debugState = new DebugState();
@@ -80,9 +81,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(false, actual);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(DebugOutputFilterStrategy))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(DebugOutputFilterStrategy))]
         public void DebugOutputFilterStrategy_Where_ContentIsDebugState_And_FilterTextMatchesActivityType_Expected_True()
         {
             var debugState = new DebugState { ActivityType = ActivityType.Workflow };
@@ -92,9 +93,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(true, actual);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(DebugOutputFilterStrategy))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(DebugOutputFilterStrategy))]
         public void DebugOutputFilterStrategy_Where_ContentIsDebugState_And_FilterTextMatchesDisplayName_Expected_True()
         {
             var debugState = new DebugState { DisplayName = "Cake" };
@@ -104,9 +105,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(true, actual);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(DebugOutputFilterStrategy))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(DebugOutputFilterStrategy))]
         public void DebugOutputFilterStrategy_Where_ContentIsDebugState_And_ActivityTypeIsStep_And_FilterTextMatchesName_Expected_True()
         {
             var debugState = new DebugState { ActivityType = ActivityType.Step, DisplayName = "Cake" };
@@ -116,9 +117,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(true, actual);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(DebugOutputFilterStrategy))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(DebugOutputFilterStrategy))]
         public void DebugOutputFilterStrategy_Where_ContentIsDebugState_And_ActivityTypeIsWorkflow_And_FilterTextMatchesServer_Expected_True()
         {
             var debugState = new DebugState { ActivityType = ActivityType.Workflow, DisplayName = "Cake" };
@@ -127,9 +128,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(true, actual);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(DebugOutputFilterStrategy))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(DebugOutputFilterStrategy))]
         public void DebugOutputFilterStrategy_Where_ContentIsDebugState_And_ActivityTypeIsStep_And_FilterTextMatchesDurration_Expected_True()
         {
             var debugState = new DebugState { ActivityType = ActivityType.Step, StartTime = new DateTime(2012, 01, 02, 1, 2, 3), EndTime = new DateTime(2012, 01, 02, 2, 2, 3) };
@@ -139,9 +140,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(true, actual);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(DebugOutputFilterStrategy))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(DebugOutputFilterStrategy))]
         public void DebugOutputFilterStrategy_Where_ContentIsDebugState_And_ActivityTypeIsWorkflow_And_FilterTextMatchesStartTime_Expected_True()
         {
             var debugState = new DebugState { ActivityType = ActivityType.Workflow, StateType = StateType.Before, StartTime = new DateTime(2012, 01, 02, 1, 2, 3) };
@@ -150,9 +151,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(true, actual);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(DebugOutputFilterStrategy))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(DebugOutputFilterStrategy))]
         public void DebugOutputFilterStrategy_Where_ContentIsDebugState_And_ActivityTypeIsWorkflow_And_FilterTextMatchesEndTime_Expected_True()
         {
             var debugState = new DebugState { ActivityType = ActivityType.Workflow, StateType = StateType.After, EndTime = new DateTime(2012, 01, 02, 2, 2, 3) };
@@ -162,9 +163,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(true, actual);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(DebugOutputFilterStrategy))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(DebugOutputFilterStrategy))]
         public void DebugOutputFilterStrategy_Where_ContentIsDebugState_And_FilterTextMatchesInputOnName_Expected_True()
         {
             var debugState = new DebugState();
@@ -178,9 +179,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(Expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(DebugOutputFilterStrategy))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(DebugOutputFilterStrategy))]
         public void DebugOutputFilterStrategy_Where_ContentIsDebugState_And_FilterTextMatchesOuputOnValue_Expected_True()
         {
             var debugState = new DebugState();
@@ -194,9 +195,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(Expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(DebugOutputFilterStrategy))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(DebugOutputFilterStrategy))]
         public void DebugOutputFilterStrategy_ActivityType_Step_And_debugState_NameNotnull_AND_debugState_Name_Contains_filterText_True()
         {
             var debugState = new DebugState { ActivityType = ActivityType.Step, Name = "Cake" };
@@ -204,9 +205,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(true, actual);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(DebugOutputFilterStrategy))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(DebugOutputFilterStrategy))]
         public void DebugOutputFilterStrategy_ActivityType_WokFlow_And_debugState_ServerNotnull_AND_debugState_Name_Contains_filterText_True()
         {
             var debugState = new DebugState { ActivityType = ActivityType.Workflow, Server = "Cake" };
@@ -214,9 +215,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(true, actual);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(DebugOutputFilterStrategy))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(DebugOutputFilterStrategy))]
         public void DebugOutputFilterStrategy_debugState_VersionNotnull_And_debugState_Version_Contains_filterText_True()
         {
             var debugState = new DebugState { Version = "Version1" };
@@ -224,9 +225,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(true, actual);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(DebugOutputFilterStrategy))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(DebugOutputFilterStrategy))]
         public void DebugOutputFilterStrategy_Where_ContentIsDebugState_And_ActivityTypeStep_And_FilterTextMatchesServer_Step_Expected_True()
         {
             var debugState = new DebugState { ActivityType = ActivityType.Step, Name = "Cake" };

@@ -3,16 +3,17 @@ using Dev2.Activities.Designers.Tests.DropBox2016;
 using Dev2.Activities.Designers2.Core;
 using Dev2.Data.ServiceModel;
 using Dev2.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Activities.Designers.Tests.Core
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DropboxSourceManagerTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void OnCreattion_GivenIsNew_ShouldShouldNotThrowException()
         {
             //---------------Set up test pack-------------------
@@ -32,8 +33,8 @@ namespace Dev2.Activities.Designers.Tests.Core
             
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void FetchSources_GivenEnvironment_ShouldReturnSources()
         {
             //---------------Set up test pack-------------------

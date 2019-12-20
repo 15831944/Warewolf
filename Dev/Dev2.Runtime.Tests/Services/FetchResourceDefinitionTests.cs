@@ -7,7 +7,7 @@ using Dev2.Communication;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Dev2.Common.Interfaces;
 using Dev2.Runtime.Interfaces;
@@ -20,13 +20,14 @@ using System.Activities;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FetchResourceDefinitionTests
     {
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnCorreclty()
         {
             //------------Setup for test--------------------------
@@ -48,9 +49,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(resourceId.ToGuid(), resId);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -71,9 +72,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("GetResourceID")]
         public void DecryptAllPasswords_ShouldReturnVerifyCall()
         {
             //------------Setup for test--------------------------
@@ -93,9 +94,9 @@ namespace Dev2.Tests.Runtime.Services
             mock.Verify(authorizer => authorizer.DecryptAllPasswords(It.IsAny<StringBuilder>()));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -112,9 +113,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(AuthorizationContext.View, resId);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DirectDeploy_HandlesType")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DirectDeploy_HandlesType")]
         public void FetchResourceDefinition_HandlesType_ExpectName()
         {
             //------------Setup for test--------------------------
@@ -131,9 +132,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("FetchResourceDefinitionService", fetchResourceDefinition.HandlesType());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DirectDeploy_CreateServiceEntry")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DirectDeploy_CreateServiceEntry")]
         public void CreateServiceEntry_PassThrough()
         {
             //------------Setup for test--------------------------
@@ -150,9 +151,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("FetchResourceDefinitionService", serviceEntry.Actions.Single().Name);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("FetchResourceDefinition_Execute")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("FetchResourceDefinition_Execute")]
         public void FetchResourceDefinition_Execute_PassThrough()
         {
             //------------Setup for test--------------------------
@@ -181,9 +182,9 @@ namespace Dev2.Tests.Runtime.Services
             mock.Verify(p => p.GetResourceDefinition(true, It.IsAny<Guid>(), It.IsAny<StringBuilder>()));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("FetchResourceDefinition_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("FetchResourceDefinition_Execute")]
         public void FetchResourceDefinition_Execute_WhenForDeployment_ShouldDecryptPassword()
         {
             var parser = new Mock<IActivityParser>();

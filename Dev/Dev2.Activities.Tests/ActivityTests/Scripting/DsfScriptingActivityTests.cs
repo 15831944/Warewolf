@@ -12,7 +12,7 @@ using System;
 using ActivityUnitTests;
 using Dev2.Activities;
 using Dev2.Common.Interfaces.Enums;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.Activities.Statements;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -29,7 +29,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
     /// Summary description for CalculateActivityTest
     /// </summary>
     [ExcludeFromCodeCoverage]
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfScriptingActivityTests : BaseActivityUnitTest
     {
         static string GetJsTmpFile()
@@ -56,7 +57,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
         ///information about and functionality for the current test run.
         ///</summary>
         public TestContext TestContext { get; set; }
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void Init(TestContext context)
         {
             try
@@ -84,7 +85,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
                 Assert.Fail(ex.Message);
             }
         }
-        [ClassCleanup]
+        [OneTimeTearDown]
         public static void Cleaner()
         {
             try
@@ -97,7 +98,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
+        [Test]
         public void DsfScriptingActivity_ShouldReturnInputs()
         {
             var activity = new DsfScriptingActivity();
@@ -111,9 +112,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             Assert.IsNotNull(debugOutputs);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetOutputs")]
         public void GetOutputs_Called_ShouldReturnListWithResultValueInIt()
         {
             //------------Setup for test--------------------------
@@ -130,7 +131,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             Assert.AreEqual(1, outputs.Count);
             Assert.AreEqual("[[scrRes]]", outputs[0]);
         }
-        [TestMethod]
+        [Test]
         public void DsfScriptingActivity_ShouldReturnResults()
         {
             var activity = new DsfScriptingActivity();
@@ -144,7 +145,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             Assert.IsNotNull(debugOutputs);
         }
 
-        [TestMethod]
+        [Test]
         public void DsfScriptingActivity_ShouldReturnDebugOutPuts()
         {
             var activity = new DsfScriptingActivity();
@@ -158,7 +159,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             Assert.IsNotNull(debugOutputs);
         }
 
-        [TestMethod]
+        [Test]
         public void DsfScriptingActivity_ShouldReturn_DebugInputs()
         {
             var activity = new DsfScriptingActivity();
@@ -173,7 +174,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
         }
 
 
-        [TestMethod]
+        [Test]
         public void DsfScriptingActivity_GivenInvalidScript_SholdReturnException()
         {
             var activity = new DsfScriptingActivity();
@@ -186,7 +187,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             var debugInputs = activity.GetDebugInputs(DataObject.Environment, 0);
             Assert.IsNotNull(debugInputs);
         }
-        [TestMethod]
+        [Test]
         public void DsfScriptingActivity_GivenInvalidScript_SholdUpdateForEachOutputs()
         {
             var activity = new DsfScriptingActivity();
@@ -202,7 +203,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             Assert.AreEqual(enScriptType.JavaScript, activity.ScriptType);
         }
 
-        [TestMethod]
+        [Test]
         public void DsfScriptingActivity_GivenInvalidScript_SholdUpdateForEachInputs()
         {
             var activity = new DsfScriptingActivity();
@@ -221,7 +222,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
 
         #region Should execute valid javascript
 
-        [TestMethod]
+        [Test]
         public void GivenExternalFile_Execute_Javascript_ShouldExecuteExternalFunction()
         {
             var activity = new DsfScriptingActivity();
@@ -233,7 +234,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             Assert.AreEqual(0, DataObject.Environment.Errors.Count);
         }
         
-        [TestMethod]
+        [Test]
         public void GivenExternalFile_Execute_Rubyscript_ShouldExecuteExternalFunction()
         {
             var activity = new DsfScriptingActivity();
@@ -245,7 +246,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             Assert.AreEqual(0, DataObject.Environment.Errors.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void ScriptingContext_GivenJavaScript_ShouldReturnJavaScriptHandleType()
         {
             var context = new ScriptingEngineRepo();
@@ -254,7 +255,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
                 Assert.AreEqual(enScriptType.Python, scriptingContext.HandlesType());
             }
         }
-        [TestMethod]
+        [Test]
         public void ScriptingContext_GivenRubyScript_ShouldReturnRubyScriptHandleType()
         {
             var context = new ScriptingEngineRepo();
@@ -264,20 +265,20 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ScriptingContext_GivenRubyScript_ShouldSetNestedClassValues()
         {
             var context = new ScriptingEngineRepo();
             var scriptingContext = context.CreateEngine(enScriptType.Ruby, new StringScriptSources()) as RubyContext;
             Assert.IsNotNull(scriptingContext);
-            var prObject = new PrivateObject(scriptingContext);
+            var prObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(scriptingContext);
             Assert.IsNotNull(prObject);
             Assert.IsNull(scriptingContext.RuntimeSetup);
             prObject.Invoke("CreateRubyEngine");
             Assert.IsNotNull(scriptingContext.RuntimeSetup);
         }
 
-        [TestMethod]
+        [Test]
         public void ScriptingContext_GivenPythonScript_ShouldReturnPythonScriptHandleType()
         {
             var context = new ScriptingEngineRepo();
@@ -288,7 +289,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
         }
         
 
-        [TestMethod]
+        [Test]
         public void GivenExternalFile_Execute_Pythonscript_ShouldExecuteExternalFunction()
         {
             var activity = new DsfScriptingActivity();
@@ -301,7 +302,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
         }
         
 
-        [TestMethod]
+        [Test]
         public void GivenFunctionNotInExternalFile_Execute_Javascript_ShouldNotExecuteFunction()
         {
             var activity = new DsfScriptingActivity();
@@ -312,7 +313,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             Assert.AreEqual(1, DataObject.Environment.Errors.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void GivenFunctionNotInExternalFile_Execute_Rubyscript_ShouldNotExecuteFunction()
         {
             var activity = new DsfScriptingActivity();
@@ -323,7 +324,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             Assert.AreEqual(1, DataObject.Environment.Errors.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void GivenFunctionNotInExternalFile_Execute_Pythonscript_ShouldNotExecuteFunction()
         {
             var activity = new DsfScriptingActivity();
@@ -335,7 +336,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
         }
         
 
-        [TestMethod]
+        [Test]
         public void GivenAnEscapeCharInString_ExecuteWithEscapeCharecters_Javascript_ShouldReturnGivenString()
         {
             SetupArguments("<DataList><testScript>\"C:\test\"</testScript><Result></Result></DataList>", "<DataList><testScript/><Result/></DataList>", "[[Result]]",
@@ -354,7 +355,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
+        [Test]
         public void GivenAnEscapeCharInString_ExecuteWithEscapeCharectersInVariable_Javascript_EscapeFalse_ShouldReturnGivenString()
         {
             SetupArguments("<DataList><testScript>\"C:\test\"</testScript><Result></Result></DataList>", "<DataList><testScript/><Result/></DataList>", "[[Result]]",
@@ -373,7 +374,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ExecuteWithValidJavascriptExpectedCorrectResultReturned()
         {
             SetupArguments("<DataList><Result>0</Result></DataList>", "<DataList><Result/></DataList>", "[[Result]]",
@@ -394,7 +395,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ExecuteWithValidJavascriptAndVariableExpectedCorrectResultReturned()
         {
             SetupArguments("<DataList><Result>0</Result></DataList>", "<DataList><Result/></DataList>", "[[Result]]", @"var i = 1 + 1;return i;", enScriptType.JavaScript);
@@ -414,7 +415,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ExecuteWithValidJavascriptWithScalarDataListRegionsInScriptExpectedCorrectResultReturned()
         {
             SetupArguments("<DataList><inputData>1</inputData><Result>0</Result></DataList>", "<DataList><inputData/><Result/></DataList>", "[[Result]]", @"var i = [[inputData]] + [[inputData]];return i;", enScriptType.JavaScript);
@@ -434,7 +435,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ExecuteWithValidJavascriptWithRecordAppendNotationDataListRegionsInScriptExpectedCorrectResultReturned()
         {
             SetupArguments("<DataList><inputData><field1>1</field1></inputData><inputData><field1>2</field1></inputData><inputData><field1>3</field1></inputData><inputData><field1>4</field1></inputData><Result>0</Result></DataList>", "<DataList><inputData><field1/></inputData><Result/></DataList>", "[[Result]]", @"var i = [[inputData().field1]] + [[inputData().field1]];return i;", enScriptType.JavaScript);
@@ -454,7 +455,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ExecuteWithValidJavascriptWithRecordStarNotationDataListRegionsInScriptExpectedCorrectResultReturned()
         {
             SetupArguments("<DataList><inputData><field1>1</field1></inputData><inputData><field1>2</field1></inputData><inputData><field1>3</field1></inputData><inputData><field1>4</field1></inputData></DataList>", "<DataList><inputData><field1/></inputData><Result><res/></Result></DataList>", "[[Result().res]]", @"var i = '[[inputData(*).field1]]';return i;", enScriptType.JavaScript);
@@ -477,7 +478,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ExecuteWithValidJavascriptWithEmptyRecordStarNotationDataListRegionsInScriptExpectedCorrectResultReturned()
         {
             SetupArguments("<DataList><inputData><field1/></inputData><Result><res/></Result></DataList>", "<DataList><inputData><field1/></inputData><Result><res/></Result></DataList>", "[[Result().res]]", @"var i = [[inputData(*).field1]] + [[inputData(*).field1]];return i;", enScriptType.JavaScript);
@@ -505,7 +506,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
 
         #region Should execute valid ruby script
         
-        [TestMethod]
+        [Test]
         public void RubytmpHost_ShouldSetDefaultValues()
         {
             var win8Pal = new RubyContext.TmpHost.Win8PAL();
@@ -513,7 +514,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             Assert.IsFalse(win8Pal.FileExists(win8Pal.CurrentDirectory));
             Assert.IsFalse(win8Pal.DirectoryExists(win8Pal.CurrentDirectory));
         }
-        [TestMethod]
+        [Test]
         public void RubyOptionsAttribute_ShouldSetDefaultValues()
         {
             var optionsAttribute = new RubyContext.OptionsAttribute();
@@ -523,7 +524,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             Assert.IsNull(optionsAttribute.Pal);
         }
 
-        [TestMethod]
+        [Test]
         public void ExecuteWithEscapeCharecters_RubyExpectedCorrectResultReturned()
         {
             SetupArguments("<DataList><Result>\"C:\test\"</Result></DataList>", "<DataList><Result/></DataList>", "[[Result]]",
@@ -544,7 +545,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ExecuteWithoutEscapeCharecters_RubyExpectedCorrectResultReturned()
         {
             SetupArguments("<DataList><Result>C:\test</Result></DataList>", "<DataList><Result/></DataList>", "[[Result]]",
@@ -565,7 +566,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ExecuteWithValidRubyExpectedCorrectResultReturned()
         {
             SetupArguments("<DataList><Result>0</Result></DataList>", "<DataList><Result/></DataList>", "[[Result]]", @"return 1+1;", enScriptType.Ruby);
@@ -585,7 +586,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ExecuteWithValidRubyAndVariableExpectedCorrectResultReturned()
         {
             SetupArguments("<DataList><Result>0</Result></DataList>", "<DataList><Result/></DataList>", "[[Result]]", @"i = 1 + 1;return i;", enScriptType.Ruby);
@@ -605,7 +606,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ExecuteWithValidRubyWithScalarDataListRegionsInScriptExpectedCorrectResultReturned()
         {
             SetupArguments("<DataList><inputData>1</inputData><Result>0</Result></DataList>", "<DataList><inputData/><Result/></DataList>", "[[Result]]", @"i = [[inputData]] + [[inputData]];return i;", enScriptType.Ruby);
@@ -625,7 +626,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ExecuteWithValidRubyWithRecordAppendNotationDataListRegionsInScriptExpectedCorrectResultReturned()
         {
             SetupArguments("<DataList><inputData><field1>1</field1></inputData><inputData><field1>2</field1></inputData><inputData><field1>3</field1></inputData><inputData><field1>4</field1></inputData><Result>0</Result></DataList>", "<DataList><inputData><field1/></inputData><Result/></DataList>", "[[Result]]", @"i = [[inputData().field1]] + [[inputData().field1]];return i;", enScriptType.Ruby);
@@ -645,7 +646,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ExecuteWithValidRubyWithRecordStarNotationDataListRegionsInScriptExpectedCorrectResultReturned()
         {
             SetupArguments("<DataList><inputData><field1>1</field1></inputData><inputData><field1>2</field1></inputData><inputData><field1>3</field1></inputData><inputData><field1>4</field1></inputData></DataList>", "<DataList><inputData><field1/></inputData><Result><res/></Result></DataList>", "[[Result().res]]", @"i = '[[inputData(*).field1]]';return i;", enScriptType.Ruby);
@@ -668,7 +669,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ExecuteWithValidRubyWithEmptyRecordStarNotationDataListRegionsInScriptExpectedCorrectResultReturned()
         {
             SetupArguments("<DataList><inputData><field1/></inputData><Result><res/></Result></DataList>", "<DataList><inputData><field1/></inputData><Result><res/></Result></DataList>", "[[Result().res]]", @"i = [[inputData(*).field1]] + [[inputData(*).field1]];return i;", enScriptType.Ruby);
@@ -688,7 +689,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ExecuteRubyWithNoReturnExpectedReturnsLastValue()
         {
             SetupArguments("<DataList><Result>0</Result></DataList>", "<DataList><Result/></DataList>", "[[Result]]", @"def Add(x,y); return x + y; end; Add(1,1);", enScriptType.Ruby);

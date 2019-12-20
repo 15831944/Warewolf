@@ -11,7 +11,7 @@ using Dev2.Common.Interfaces.ServerProxyLayer;
 using Dev2.Common.Interfaces.ToolBase;
 using Dev2.Common.Interfaces.WebService;
 using Dev2.Studio.Core.Activities.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
@@ -20,11 +20,12 @@ using Moq;
 
 namespace Dev2.Activities.Designers.Tests.Core
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WebInputRegionTest
     {
 
-        [TestMethod]
+        [Test]
         public void TestInputCtor()
         {
             var id = Guid.NewGuid();
@@ -39,7 +40,7 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.AreEqual(region.Errors.Count,0);
         }
 
-        [TestMethod]
+        [Test]
         public void TestInputCtorEmpty()
         {
             var id = Guid.NewGuid();
@@ -54,7 +55,7 @@ namespace Dev2.Activities.Designers.Tests.Core
         }
 
 
-        [TestMethod]
+        [Test]
         public void TestClone()
         {
             var id = Guid.NewGuid();
@@ -74,9 +75,9 @@ namespace Dev2.Activities.Designers.Tests.Core
             }
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WebInputRegion_RestoreFromPrevios")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("WebInputRegion_RestoreFromPrevios")]
         public void WebGetInputRegion_RestoreFromPrevios_Restore_ExpectValuesChanged()
         {
             //------------Setup for test--------------------------
@@ -102,9 +103,9 @@ namespace Dev2.Activities.Designers.Tests.Core
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WebInputRegion_RestoreFromPrevios")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("WebInputRegion_RestoreFromPrevios")]
         public void WebInputRegion_SrcChanged_UpdateValues()
         {
             //------------Setup for test--------------------------

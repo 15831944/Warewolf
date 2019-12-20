@@ -5,18 +5,19 @@ using Dev2.Common.Interfaces;
 using Dev2.Communication;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ReloadTestsTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DeleteTestHandlesType")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DeleteTestHandlesType")]
         public void ReloadTestsHandlesType_ExpectName()
         {
             //------------Setup for test--------------------------
@@ -29,9 +30,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("ReloadTestsService", deleteTest.HandlesType());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ReloadTestsExecute")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ReloadTestsExecute")]
         public void ReloadTestsExecute_NullValues_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -47,9 +48,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(result.HasError);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ReloadTestsExecute")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ReloadTestsExecute")]
         public void ReloadTestsExecute__ValidArgs_ExpectDeleteTestCalled()
         {
             //------------Setup for test--------------------------

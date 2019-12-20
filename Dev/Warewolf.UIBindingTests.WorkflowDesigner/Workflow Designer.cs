@@ -9,7 +9,7 @@
 */
 
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.Activities;
 using System.Activities.Presentation.Model;
 using System.Activities.Presentation.Services;
@@ -49,21 +49,22 @@ using Dev2.Core.Tests;
 
 namespace Warewolf.UIBindingTests.WorkflowDesigner
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class Workflow_Designer
     {
         Mock<IShellViewModel> _shellViewModelMock;
 
-        [TestInitialize]
+        [SetUp]
         public void Init()
         {
             var serverRepo = new Mock<IServerRepository>();
             CustomContainer.Register(serverRepo.Object);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("WorkflowDesignerModel_DebugInputsCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("WorkflowDesignerModel_DebugInputsCommand")]
         public void WorkflowDesignerViewModel_DebugInputsCommand_CanExecute()
         {
             //------------Setup for test--------------------------
@@ -120,9 +121,9 @@ namespace Warewolf.UIBindingTests.WorkflowDesigner
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("WorkflowDesignerModel_DebugStudioCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("WorkflowDesignerModel_DebugStudioCommand")]
         public void WorkflowDesignerViewModel_DebugStudioCommand_CanExecute()
         {
             //------------Setup for test--------------------------
@@ -176,9 +177,9 @@ namespace Warewolf.UIBindingTests.WorkflowDesigner
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("WorkflowDesignerModel_DebugBrowserCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("WorkflowDesignerModel_DebugBrowserCommand")]
         public void WorkflowDesignerViewModel_DebugBrowserCommand_CanExecute()
         {
             //------------Setup for test--------------------------
@@ -232,9 +233,9 @@ namespace Warewolf.UIBindingTests.WorkflowDesigner
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("WorkflowDesignerModel_ScheduleCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("WorkflowDesignerModel_ScheduleCommand")]
         public void WorkflowDesignerViewModel_ScheduleCommand_CanExecute()
         {
             //------------Setup for test--------------------------
@@ -288,9 +289,9 @@ namespace Warewolf.UIBindingTests.WorkflowDesigner
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("WorkflowDesignerModel_QueueEventCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("WorkflowDesignerModel_QueueEventCommand")]
         public void WorkflowDesignerViewModel_QueueEventCommand_CanExecute()
         {
             //------------Setup for test--------------------------
@@ -344,9 +345,9 @@ namespace Warewolf.UIBindingTests.WorkflowDesigner
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("WorkflowDesignerModel_TestEditorCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("WorkflowDesignerModel_TestEditorCommand")]
         public void WorkflowDesignerViewModel_TestEditorCommand_CanExecute()
         {
             //------------Setup for test--------------------------
@@ -401,9 +402,9 @@ namespace Warewolf.UIBindingTests.WorkflowDesigner
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("WorkflowDesignerModel_RunAllTestsCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("WorkflowDesignerModel_RunAllTestsCommand")]
         public void WorkflowDesignerViewModel_RunAllTestsCommand_CanExecute()
         {
             //------------Setup for test--------------------------
@@ -458,9 +459,9 @@ namespace Warewolf.UIBindingTests.WorkflowDesigner
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("WorkflowDesignerModel_DuplicateCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("WorkflowDesignerModel_DuplicateCommand")]
         public void WorkflowDesignerViewModel_DuplicateCommand_CanExecute()
         {
             //------------Setup for test--------------------------
@@ -515,9 +516,9 @@ namespace Warewolf.UIBindingTests.WorkflowDesigner
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("WorkflowDesignerModel_DeployCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("WorkflowDesignerModel_DeployCommand")]
         public void WorkflowDesignerViewModel_DeployCommand_CanExecute()
         {
             //------------Setup for test--------------------------
@@ -613,9 +614,9 @@ namespace Warewolf.UIBindingTests.WorkflowDesigner
             resourceModel.SetupProperty(model => model.WorkflowXaml);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("WorkflowDesignerModel_CanMerge")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("WorkflowDesignerModel_CanMerge")]
         public void WorkflowDesignerViewModel_CanMerge_ExpectedTrue()
         {
             //------------Setup for test--------------------------
@@ -628,9 +629,9 @@ namespace Warewolf.UIBindingTests.WorkflowDesigner
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("WorkflowDesignerModel_MergeCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("WorkflowDesignerModel_MergeCommand")]
         public void WorkflowDesignerViewModel_MergeCommand_CanExecute()
         {
             //------------Setup for test--------------------------
@@ -643,9 +644,9 @@ namespace Warewolf.UIBindingTests.WorkflowDesigner
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("WorkflowDesignerModel_ShowDependenciesCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("WorkflowDesignerModel_ShowDependenciesCommand")]
         public void WorkflowDesignerViewModel_ShowDependenciesCommand_CanExecute()
         {
             //------------Setup for test--------------------------
@@ -700,9 +701,9 @@ namespace Warewolf.UIBindingTests.WorkflowDesigner
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("WorkflowDesignerModel_ViewSwaggerCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("WorkflowDesignerModel_ViewSwaggerCommand")]
         public void WorkflowDesignerViewModel_ViewSwaggerCommand_CanExecute()
         {
             //------------Setup for test--------------------------
@@ -756,9 +757,9 @@ namespace Warewolf.UIBindingTests.WorkflowDesigner
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("WorkflowDesignerModel_CopyUrlCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("WorkflowDesignerModel_CopyUrlCommand")]
         public void WorkflowDesignerViewModel_CopyUrlCommand_CanExecute()
         {
             //------------Setup for test--------------------------
@@ -817,9 +818,9 @@ namespace Warewolf.UIBindingTests.WorkflowDesigner
 
         #region Debug Selection Changed
 
-        [TestMethod]
-        [TestCategory("WorkflowDesignerViewModel_DebugSelectionChanged")]
-        [Owner("Trevor Williams-Ros")]
+        [Test]
+        [Category("WorkflowDesignerViewModel_DebugSelectionChanged")]
+        [Author("Trevor Williams-Ros")]
         public void WorkflowDesignerViewModel_DebugSelectionChanged_NullDebugState_DoesNothing()
         {
             //----------------------- Setup -----------------------//
@@ -865,49 +866,49 @@ namespace Warewolf.UIBindingTests.WorkflowDesigner
 
 
 
-        [TestMethod]
-        [TestCategory("WorkflowDesignerViewModel_DebugSelectionChanged")]
-        [Owner("Trevor Williams-Ros")]
+        [Test]
+        [Category("WorkflowDesignerViewModel_DebugSelectionChanged")]
+        [Author("Trevor Williams-Ros")]
         public void WorkflowDesignerViewModel_DebugSelectionChanged_SingleSelectionItemNotFound_SelectsFlowchart()
         {
             Verify_DebugSelectionChanged(ActivitySelectionType.Single, typeof(Flowchart), false);
         }
 
-        [TestMethod]
-        [TestCategory("WorkflowDesignerViewModel_DebugSelectionChanged")]
-        [Owner("Trevor Williams-Ros")]
+        [Test]
+        [Category("WorkflowDesignerViewModel_DebugSelectionChanged")]
+        [Author("Trevor Williams-Ros")]
         public void WorkflowDesignerViewModel_DebugSelectionChanged_SingleSelectionItemFound_SelectsModelItem()
         {
             Verify_DebugSelectionChanged(ActivitySelectionType.Single, typeof(TestActivity));
         }
 
-        [TestMethod]
-        [TestCategory("WorkflowDesignerViewModel_DebugSelectionChanged")]
-        [Owner("Trevor Williams-Ros")]
+        [Test]
+        [Category("WorkflowDesignerViewModel_DebugSelectionChanged")]
+        [Author("Trevor Williams-Ros")]
         public void WorkflowDesignerViewModel_DebugSelectionChanged_SingleSelectionDecisionOrSwitchItemFound_SelectsDecisionOrSwitch()
         {
             Verify_DebugSelectionChanged(ActivitySelectionType.Single, typeof(FlowDecision));
         }
 
-        [TestMethod]
-        [TestCategory("WorkflowDesignerViewModel_DebugSelectionChanged")]
-        [Owner("Trevor Williams-Ros")]
+        [Test]
+        [Category("WorkflowDesignerViewModel_DebugSelectionChanged")]
+        [Author("Trevor Williams-Ros")]
         public void WorkflowDesignerViewModel_DebugSelectionChanged_AddSelection_SelectsItems()
         {
             Verify_DebugSelectionChanged(ActivitySelectionType.Add, typeof(TestActivity));
         }
 
-        [TestMethod]
-        [TestCategory("WorkflowDesignerViewModel_DebugSelectionChanged")]
-        [Owner("Trevor Williams-Ros")]
+        [Test]
+        [Category("WorkflowDesignerViewModel_DebugSelectionChanged")]
+        [Author("Trevor Williams-Ros")]
         public void WorkflowDesignerViewModel_DebugSelectionChanged_RemoveSelection_SelectsItems()
         {
             Verify_DebugSelectionChanged(ActivitySelectionType.Remove, typeof(TestActivity));
         }
 
-        [TestMethod]
-        [TestCategory("WorkflowDesignerViewModel_DebugSelectionChanged")]
-        [Owner("Trevor Williams-Ros")]
+        [Test]
+        [Category("WorkflowDesignerViewModel_DebugSelectionChanged")]
+        [Author("Trevor Williams-Ros")]
         public void WorkflowDesignerViewModel_DebugSelectionChanged_ClearSelection_DeselectsItems()
         {
             Verify_DebugSelectionChanged(ActivitySelectionType.None, typeof(TestActivity));
@@ -1071,9 +1072,9 @@ namespace Warewolf.UIBindingTests.WorkflowDesigner
 
         #endregion
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("WorkflowDesignerViewModel_InitializeViewModel")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("WorkflowDesignerViewModel_InitializeViewModel")]
         public void WorkflowDesignerViewModel_InitializeViewModel()
         {
             var eventAggregator = new EventAggregator();
@@ -1142,9 +1143,9 @@ namespace Warewolf.UIBindingTests.WorkflowDesigner
             workflowDesigner.Dispose();
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("WorkflowDesignerViewModel_HandleMessage")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("WorkflowDesignerViewModel_HandleMessage")]
         public void WorkflowDesignerViewModel_HandleMessage_EditActivity_NotNull()
         {
             //----------------------- Setup -----------------------//
@@ -1207,9 +1208,9 @@ namespace Warewolf.UIBindingTests.WorkflowDesigner
             Assert.IsNotNull(message);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("WorkflowDesignerViewModel_BuildWorkflowFields")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("WorkflowDesignerViewModel_BuildWorkflowFields")]
         public void WorkflowDesignerViewModel_BuildWorkflowFields_GetWorkflowFieldsFromFlowNodes_WithAction()
         {
             //----------------------- Setup -----------------------//
@@ -1293,9 +1294,9 @@ namespace Warewolf.UIBindingTests.WorkflowDesigner
 
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("WorkflowDesignerViewModel_BuildWorkflowFields")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("WorkflowDesignerViewModel_BuildWorkflowFields")]
         public void WorkflowDesignerViewModel_BuildWorkflowFields_GetWorkflowFieldsFromFlowNodes_NoAction()
         {
             //----------------------- Setup -----------------------//
@@ -1381,9 +1382,9 @@ namespace Warewolf.UIBindingTests.WorkflowDesigner
 
         }
 
-        [TestMethod]
-        [TestCategory("WorkflowDesignerViewModel_CanSave")]
-        [Owner("Trevor Williams-Ros")]
+        [Test]
+        [Category("WorkflowDesignerViewModel_CanSave")]
+        [Author("Trevor Williams-Ros")]
         public void WorkflowDesignerViewModel_CanSave_InvokesResourceModelIsAuthorizedForContribute()
         {
             //----------------------- Setup -----------------------//
@@ -1430,9 +1431,9 @@ namespace Warewolf.UIBindingTests.WorkflowDesigner
             resourceModel.Verify(m => m.IsAuthorized(AuthorizationContext.Contribute));
         }
 
-        [TestMethod]
-        [TestCategory("WorkflowDesignerViewModel_CanSave")]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Category("WorkflowDesignerViewModel_CanSave")]
+        [Author("Hagashen Naidu")]
         public void WorkflowDesignerViewModel_ExpandAllCommand_GetsCommand()
         {
             //----------------------- Setup -----------------------//
@@ -1476,9 +1477,9 @@ namespace Warewolf.UIBindingTests.WorkflowDesigner
             Assert.IsNotNull(expandAllCommand);
         }
 
-        [TestMethod]
-        [TestCategory("WorkflowDesignerViewModel_CanSave")]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Category("WorkflowDesignerViewModel_CanSave")]
+        [Author("Hagashen Naidu")]
         public void WorkflowDesignerViewModel_ExpandAllCommand_True_RequestExpandAll()
         {
             //----------------------- Setup -----------------------//
@@ -1523,9 +1524,9 @@ namespace Warewolf.UIBindingTests.WorkflowDesigner
             Assert.IsTrue(viewModel.RequestedExpandAll);
         }
 
-        [TestMethod]
-        [TestCategory("WorkflowDesignerViewModel_CanSave")]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Category("WorkflowDesignerViewModel_CanSave")]
+        [Author("Hagashen Naidu")]
         public void WorkflowDesignerViewModel_ExpandAllCommand_False_RequestRestoreAll()
         {
             //----------------------- Setup -----------------------//
@@ -1571,9 +1572,9 @@ namespace Warewolf.UIBindingTests.WorkflowDesigner
             Assert.IsTrue(viewModel.RequestedRestoreAll);
         }
 
-        [TestMethod]
-        [TestCategory("WorkflowDesignerViewModel_CanSave")]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Category("WorkflowDesignerViewModel_CanSave")]
+        [Author("Hagashen Naidu")]
         public void WorkflowDesignerViewModel_CollapseAllCommand_True_RequestCollapseAll()
         {
             //----------------------- Setup -----------------------//
@@ -1619,9 +1620,9 @@ namespace Warewolf.UIBindingTests.WorkflowDesigner
             Assert.IsTrue(viewModel.RequestedCollapseAll);
         }
 
-        [TestMethod]
-        [TestCategory("WorkflowDesignerViewModel_CanSave")]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Category("WorkflowDesignerViewModel_CanSave")]
+        [Author("Hagashen Naidu")]
         public void WorkflowDesignerViewModel_CollapseAllCommand_False_RequestRestoreAll()
         {
             //----------------------- Setup -----------------------//
@@ -1667,9 +1668,9 @@ namespace Warewolf.UIBindingTests.WorkflowDesigner
             Assert.IsTrue(viewModel.RequestedRestoreAll);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WorkflowDesignerModel_DoWorkspaceSave")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("WorkflowDesignerModel_DoWorkspaceSave")]
         public void WorkflowDesignerViewModel_LinkName_DataListNull_ShouldReturnUrlEmptyDataListPortion()
         {
             //------------Setup for test--------------------------
@@ -1723,9 +1724,9 @@ namespace Warewolf.UIBindingTests.WorkflowDesigner
             Assert.AreEqual(Visibility.Visible, viewModel.WorkflowLinkVisible);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WorkflowDesignerModel_DoWorkspaceSave")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("WorkflowDesignerModel_DoWorkspaceSave")]
         public void WorkflowDesignerViewModel_LinkName_HasDataListNoInputs_ShouldReturnUrlEmptyDataListPortion()
         {
             //------------Setup for test--------------------------
@@ -1785,9 +1786,9 @@ namespace Warewolf.UIBindingTests.WorkflowDesigner
             Assert.AreEqual(Visibility.Visible, viewModel.WorkflowLinkVisible);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WorkflowDesignerModel_DoWorkspaceSave")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("WorkflowDesignerModel_DoWorkspaceSave")]
         public void WorkflowDesignerViewModel_LinkName_HasDataListHasInputs_ShouldReturnUrlWithDataListPortion()
         {
             //------------Setup for test--------------------------
@@ -1852,9 +1853,9 @@ namespace Warewolf.UIBindingTests.WorkflowDesigner
             mockPopController.Verify(controller => controller.ShowNoInputsSelectedWhenClickLink(), Times.Never());
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WorkflowDesignerModel_DoWorkspaceSave")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("WorkflowDesignerModel_DoWorkspaceSave")]
         public void WorkflowDesignerViewModel_LinkName_SavedDebugData_ShouldReturnUrlWithDataListUsingSavedData()
         {
             //------------Setup for test--------------------------
@@ -1915,9 +1916,9 @@ namespace Warewolf.UIBindingTests.WorkflowDesigner
             workflowInputDataViewModel.DoSaveActions();
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WorkflowDesignerModel_DoWorkspaceSave")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("WorkflowDesignerModel_DoWorkspaceSave")]
         public void WorkflowDesignerViewModel_DoWorkspaceSave_NotNewResourceModel_ShouldCallSave()
         {
             //------------Setup for test--------------------------

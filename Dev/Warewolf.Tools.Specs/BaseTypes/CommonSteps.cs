@@ -33,7 +33,7 @@ using Dev2.Interfaces;
 using Dev2.PathOperations;
 using Dev2.Runtime.ServiceModel.Data;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Warewolf.Storage.Interfaces;

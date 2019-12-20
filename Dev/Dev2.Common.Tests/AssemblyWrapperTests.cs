@@ -8,16 +8,17 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Common.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class AssemblyWrapperTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(AssemblyWrapper))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(AssemblyWrapper))]
         public void AssemblyWrapper_Load_Using_String()
         {
             var assemblyLoader = new AssemblyWrapper();
@@ -27,9 +28,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual("Dev2.Common.dll", load.ManifestModule.Name);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(AssemblyWrapper))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(AssemblyWrapper))]
         public void AssemblyWrapper_LoadFrom_Using_String()
         {
             var assemblyLoader = new AssemblyWrapper();
@@ -39,9 +40,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual("Dev2.Common.dll", loadFrom.ManifestModule.Name);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(AssemblyWrapper))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(AssemblyWrapper))]
         public void AssemblyWrapper_Load_Using_Assembly()
         {
             var assemblyLoader = new AssemblyWrapper();
@@ -51,9 +52,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual("Dev2.Common.dll", load.ManifestModule.Name);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(AssemblyWrapper))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(AssemblyWrapper))]
         public void AssemblyWrapper_UnsafeLoadFrom_Using_String()
         {
             var assemblyLoader = new AssemblyWrapper();
@@ -63,9 +64,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual("Dev2.Common.dll", unsafeLoadFrom.ManifestModule.Name);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(AssemblyWrapper))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(AssemblyWrapper))]
         public void AssemblyWrapper_GetReferencedAssemblies_Using_Assembly()
         {
             var assemblyLoader = new AssemblyWrapper();

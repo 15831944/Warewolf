@@ -19,17 +19,18 @@ using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Runtime.Interfaces;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FindResourcesByTypeTests
     {
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(FindResourcesByType))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(FindResourcesByType))]
         public void FindResourcesByType_Execute_ExpectIQueueSource()
         {
             var expected = new IQueueSource[]
@@ -54,9 +55,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(expectedString, result.ToString());
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(FindResourcesByType))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(FindResourcesByType))]
         public void FindResourcesByType_Execute_ExpectIDb()
         {
             var expected = new IDb[]

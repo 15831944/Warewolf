@@ -9,7 +9,7 @@
 */
 
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
@@ -18,7 +18,8 @@ using System.Threading;
 
 namespace Dev2.Common.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class UtilitiesTests
     {
         class Example
@@ -31,9 +32,9 @@ namespace Dev2.Common.Tests
             public IList<Example> Children { get; set; }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Utilities))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Utilities))]
 
         public void Utilities_Flatten_GivenNull()
         {
@@ -42,9 +43,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(0, result.Count());
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Utilities))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Utilities))]
         public void Utilities_Flatten_GivenAList()
         {
             var list = new List<Example> {
@@ -64,9 +65,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual("e2", resultArray[5].Name);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Utilities))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Utilities))]
         public void Utilities_Flatten_GivenAnArray()
         {
             var list = new Example[] {
@@ -86,9 +87,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual("e2", resultArray[5].Name);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Utilities))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Utilities))]
         public void Utilities_DistinctBy()
         {
             var list1 = new List<Example> {
@@ -109,9 +110,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(list1[0], resultArray[3]);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Utilities))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Utilities))]
         public void Utilities_PerformActionInsideImpersonatedContext_GivenNullPrincipal_ShouldExecuteWithoutImpersonation()
         {
             var executed = false;
@@ -139,9 +140,9 @@ namespace Dev2.Common.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Utilities))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Utilities))]
         public void Utilities_PerformActionInsideImpersonatedContext_GivenPrincipal_ShouldExecuteWithImpersonation()
         {
             var executed = false;
@@ -160,9 +161,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(mockPrincipal.Object, Utilities.OrginalExecutingUser);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Utilities))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Utilities))]
         public void Utilities_PerformActionInsideImpersonatedContext_GivenPrincipalAlreadyImpersonated_ShouldExecuteWithImpersonation()
         {
             var executed = false;
@@ -183,9 +184,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(mockPrincipal.Object, Utilities.OrginalExecutingUser);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Utilities))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Utilities))]
         public void Utilities_PerformActionInsideImpersonatedContext_GivenPrincipal_NullActionDoesNotThrow()
         {
             var mockPrincipal = new Mock<IPrincipal>();
@@ -199,9 +200,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(mockPrincipal.Object, Utilities.OrginalExecutingUser);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Utilities))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Utilities))]
         public void Utilities_PerformActionInsideImpersonatedContext_GivenAnonymousPrincipal_ShouldTryServerUser()
         {
             var executed = false;
@@ -230,9 +231,9 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(executed);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Utilities))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Utilities))]
         public void Utilities_PerformActionInsideImpersonatedContext_TaskFailureTriesAgain()
         {
             var executed = false;
@@ -263,9 +264,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(executed);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Utilities))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Utilities))]
         public void Utilities_PerformActionInsideImpersonatedContext_TaskFailureTriesAgainAndFailsAgain_ShouldThrow()
         {
             var executedCount = 0;

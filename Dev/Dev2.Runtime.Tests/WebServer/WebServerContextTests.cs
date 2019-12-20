@@ -14,19 +14,20 @@ using System.Net.Http;
 using System.Text;
 using Dev2.Runtime.WebServer;
 using Dev2.Runtime.WebServer.Responses;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System.IO;
 
 namespace Dev2.Tests.Runtime.WebServer
 {
-    [TestClass]
-    [TestCategory("Runtime WebServer")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime WebServer")]
     public class WebServerContextTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WebServerContext")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WebServerContext")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void WebServerContext_Constructor_NullRequest_ThrowsArgumentNullException()
         {
@@ -38,9 +39,9 @@ namespace Dev2.Tests.Runtime.WebServer
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WebServerContext")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WebServerContext")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void WebServerContext_Constructor_NullRequestPaths_ThrowsArgumentNullException()
         {
@@ -52,9 +53,9 @@ namespace Dev2.Tests.Runtime.WebServer
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WebServerContext")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WebServerContext")]
         public void WebServerContext_Constructor_PropertiesInitialized()
         {
             var request = WebServerRequestTests.CreateHttpRequest(out string content, out NameValueCollection boundVars, out NameValueCollection queryStr, out NameValueCollection headers);
@@ -71,9 +72,9 @@ namespace Dev2.Tests.Runtime.WebServer
             WebServerRequestTests.VerifyProperties(request, (WebServerRequest)context.Request, content, queryStr, boundVars);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WebServerContext")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WebServerContext")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void WebServerContext_Send_ResponseIsNull_ThrowsArgumentNullException()
         {
@@ -90,9 +91,9 @@ namespace Dev2.Tests.Runtime.WebServer
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WebServerContext")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WebServerContext")]
         public void WebServerContext_Send_ResponseIsNotNull_InvokesWriteOnResponse()
         {
             //------------Setup for test--------------------------            
@@ -112,9 +113,9 @@ namespace Dev2.Tests.Runtime.WebServer
             response.Verify(r => r.Write(It.IsAny<WebServerContext>()));
         }
 
-        [TestMethod]
-        [Owner("Ashley Lewis")]
-        [TestCategory("WebServerContext")]
+        [Test]
+        [Author("Ashley Lewis")]
+        [Category("WebServerContext")]
         public void WebServerContext_Dispose_InputStreamIsClosed()
         {
             //------------Setup for test--------------------------            

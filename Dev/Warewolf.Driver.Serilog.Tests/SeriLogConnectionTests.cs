@@ -10,7 +10,7 @@
 
 
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Serilog;
 using System;
@@ -19,12 +19,13 @@ using Warewolf.Streams;
 
 namespace Warewolf.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SeriLogConnectionTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(SeriLogConnection))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(SeriLogConnection))]
         [ExpectedException(typeof(NotSupportedException), "SeriLog not supported in this mode")]
         public void SeriLogConnection_StartConsuming_Should_Throw_NotSupportedException()
         {

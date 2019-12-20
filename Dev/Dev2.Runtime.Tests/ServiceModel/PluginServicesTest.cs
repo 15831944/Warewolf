@@ -16,19 +16,20 @@ using Dev2.Tests.Runtime.Plugins;
 using Dev2.Tests.Runtime.ServiceModel.Data;
 using Dev2.Tests.Runtime.XML;
 using DummyNamespaceForTest;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Runtime.ServiceModel
 {
     // BUG 9500 - 2013.05.31 - TWR - Created
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class PluginServicesTest
     {
 
         #region CTOR
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void PluginServicesContructorWithNullResourceCatalogExpectedThrowsArgumentNullException()
         {
@@ -48,7 +49,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
 
         #region DeserializeService
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void PluginServicesDeserializeServiceWithNullJsonExpectedThrowsArgumentNullException()
         {
@@ -56,7 +57,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             services.DeserializeService(null);
         }
 
-        [TestMethod]
+        [Test]
         public void PluginServicesDeserializeServiceWithInvalidJsonExpectedReturnsNewPluginService()
         {
             var services = new PluginServicesMock();
@@ -64,7 +65,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(result.ResourceID, Guid.Empty);
         }
 
-        [TestMethod]
+        [Test]
         public void PluginServicesDeserializeServiceWithValidJsonExpectedReturnsPluginService()
         {
             var xml = XmlResource.Fetch("PluginService");
@@ -76,7 +77,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             PluginServiceTests.VerifyEmbeddedPluginService(result as PluginService);
         }
 
-        [TestMethod]
+        [Test]
         public void PluginServicesDeserializeServiceWithNullXmlExpectedReturnsNewPluginService()
         {
             var services = new PluginServicesMock();
@@ -85,7 +86,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(result.ResourceID, Guid.Empty);
         }
 
-        [TestMethod]
+        [Test]
         public void PluginServicesDeserializeServiceWithValidXmlExpectedReturnsPluginService()
         {
             var xml = XmlResource.Fetch("PluginService");
@@ -100,7 +101,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
 
         #region Namespaces
 
-        [TestMethod]
+        [Test]
         public void PluginServicesNamespacesWithNullArgsExpectedReturnsEmptyList()
         {
             var services = new PluginServices();
@@ -108,7 +109,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(0, result.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void PluginServicesNamespacesWithInvalidArgsExpectedReturnsEmptyList()
         {
             var services = new PluginServices();
@@ -116,7 +117,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(0, result.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void PluginServicesNamespacesWithValidArgsExpectedReturnsList()
         {
             var source = CreatePluginSource();
@@ -137,7 +138,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
 
         #region Methods
 
-        [TestMethod]
+        [Test]
         public void PluginServicesMethodsWithNullArgsExpectedReturnsEmptyList()
         {
             var services = new PluginServices();
@@ -145,8 +146,8 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(0, result.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void PluginServicesMethodsWithReturnsNullArgsExpectedReturnsEmptyList()
         {
             var services = new PluginServices();
@@ -154,7 +155,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(0, result.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void PluginServicesMethodsWithInvalidArgsExpectedReturnsEmptyList()
         {
             var services = new PluginServices();
@@ -162,8 +163,8 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(0, result.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void PluginServicesMethodsWithReturnsWithInvalidArgsExpectedReturnsEmptyList()
         {
             var services = new PluginServices();
@@ -171,7 +172,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(0, result.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void PluginServicesMethodsWithValidArgsExpectedReturnsList()
         {
             var service = CreatePluginService();
@@ -185,8 +186,8 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(9, result.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void PluginServicesMethodsWithReturnsWithValidArgsExpectedReturnsList()
         {
             var service = CreatePluginService();
@@ -204,7 +205,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
 
         #region Constuctors
 
-        [TestMethod]
+        [Test]
         public void PluginServicesConstuctorsWithNullArgsExpectedReturnsEmptyList()
         {
             var services = new PluginServices();
@@ -212,7 +213,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(0, result.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void PluginServicesConstuctorsWithInvalidArgsExpectedReturnsEmptyList()
         {
             var services = new PluginServices();
@@ -220,7 +221,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(0, result.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void PluginServicesConstructorsWithValidArgsExpectedReturnsList()
         {
             var service = CreatePluginService();
@@ -238,9 +239,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
 
         #region Test
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("PluginServices_Test")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("PluginServices_Test")]
         public void PluginServices_Test_WhenTestingPluginReturningBool_ExpectValidPaths()
         {
             //------------Setup for test--------------------------
@@ -264,9 +265,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
             StringAssert.Contains(result[0].Fields[0].Path.SampleData, "False");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("PluginServices_Test")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("PluginServices_Test")]
         public void PluginServices_Test_WhenTestingPluginReturningDouble_ExpectValidPaths()
         {
             //------------Setup for test--------------------------
@@ -290,9 +291,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
             StringAssert.Contains(result[0].Fields[0].Path.SampleData, "3.1");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("PluginServices_Test")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("PluginServices_Test")]
         public void PluginServices_Test_WhenTestingPluginReturningPlainString_ExpectValidPaths()
         {
             //------------Setup for test--------------------------
@@ -316,9 +317,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
             StringAssert.Contains(result[0].Fields[0].Path.SampleData, "Hello__COMMA__ bob");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("PluginServices_Test")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("PluginServices_Test")]
         public void PluginServices_Test_WhenTestingPluginReturningXmlString_ExpectValidPaths()
         {
             //------------Setup for test--------------------------
@@ -342,9 +343,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
             StringAssert.Contains(result[0].Fields[0].Path.SampleData, "Howdy__COMMA__");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("PluginServices_Test")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("PluginServices_Test")]
         public void PluginServices_Test_WhenTestingPluginReturningJsonString_ExpectValidPaths()
         {
             //------------Setup for test--------------------------
@@ -368,7 +369,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             StringAssert.Contains(result[0].Fields[0].Path.SampleData, "Howzit__COMMA__");
         }
 
-        [TestMethod]
+        [Test]
         public void PluginServicesTestWithNullArgsExpectedReturnsRecordsetWithError()
         {
             //------------Setup for test--------------------------
@@ -379,7 +380,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.IsTrue(result[0].HasErrors);
         }
 
-        [TestMethod]
+        [Test]
         public void PluginServicesTestWithInvalidArgsExpectedReturnsRecordsetWithError()
         {
             //------------Setup for test--------------------------

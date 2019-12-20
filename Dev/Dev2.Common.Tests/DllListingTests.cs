@@ -9,19 +9,20 @@
 */
 
 using Dev2.Common.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Dev2.Common.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DllListingTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DllListing))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DllListing))]
         public void DllListing_Validate()
         {
             const string expectedName = "testName";
@@ -58,9 +59,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(expectedIs32Bit, dllListing.Is32Bit);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DllListing))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DllListing))]
         public void DllListing_ReferenceEquals_DllListing_Expected_True()
         {
             const string expectedName = "testName";
@@ -78,9 +79,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DllListing))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DllListing))]
         public void DllListing_Equals_FileListing_Expected_True()
         {
             const string expectedName = "testName";
@@ -100,9 +101,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(dllListing == dllListingDup);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DllListing))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DllListing))]
         public void DllListing_Equals_FileListing_Expected_False()
         {
             const string expectedName = "testName";
@@ -128,9 +129,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(dllListing != dllListingDup);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DllListing))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DllListing))]
         public void DllListing_Equals_Object_Null_Expected_False()
         {
             var dllListing = new DllListing();
@@ -141,9 +142,9 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DllListing))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DllListing))]
         public void DllListing_Equals_Object_Expected_True()
         {
             const string expectedName = "testName";
@@ -172,9 +173,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DllListing))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DllListing))]
         public void DllListing_Equals_Object_Expected_False()
         {
             const string expectedName = "testName";
@@ -211,9 +212,9 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DllListing))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DllListing))]
         public void DllListing_Equals_Object_GetType_Expected_False()
         {
             const string expectedName = "testName";
@@ -233,9 +234,9 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DllListing))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DllListing))]
         public void DllListing_GetHashCode_Not_Equal_To_Zero()
         {
             const string expectedName = "testName";
@@ -263,9 +264,9 @@ namespace Dev2.Common.Tests
             Assert.AreNotEqual(0, hashCode);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DllListing))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DllListing))]
         public void DllListing_GetHashCode_Expect_Zero()
         {
             var dllListing = new DllListing();

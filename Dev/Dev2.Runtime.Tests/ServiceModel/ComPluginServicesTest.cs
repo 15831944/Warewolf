@@ -5,20 +5,21 @@ using Dev2.Common;
 using Dev2.Runtime.ServiceModel;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Tests.Runtime.XML;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 
 namespace Dev2.Tests.Runtime.ServiceModel
 {
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class ComPluginServicesTest
     {
 
         #region CTOR
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ComPluginServicesContructorWithNullResourceCatalogExpectedThrowsArgumentNullException()
         {
@@ -41,7 +42,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             }
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ComPluginServicesDeserializeServiceWithNullJsonExpectedThrowsArgumentNullException()
         {
@@ -49,15 +50,15 @@ namespace Dev2.Tests.Runtime.ServiceModel
             services.DeserializeService(null);
         }
 
-        [TestMethod]
+        [Test]
         public void ComPluginServicesDeserializeServiceWithInvalidJsonExpectedReturnsNewPluginService()
         {
             var services = new ComPluginServicesMock();
             var result = services.DeserializeService("{'root' : 'hello' }");
-            Assert.AreEqual(result.ResourceID, Guid.Empty);
+            NUnit.Framework.Assert.AreEqual(result.ResourceID, Guid.Empty);
         }
 
-        [TestMethod]
+        [Test]
         public void ComPluginServicesDeserializeServiceWithValidJsonExpectedReturnsPluginService()
         {
             var xml = XmlResource.Fetch("ComPluginService");
@@ -66,28 +67,28 @@ namespace Dev2.Tests.Runtime.ServiceModel
             var services = new ComPluginServicesMock();
             var result = services.DeserializeService(service.ToString());
 
-            Assert.AreEqual(Guid.Parse("89098b76-ac11-40b2-b3e8-b175314cb3bb"), service.ResourceID);
-            Assert.AreEqual("ComPluginService", service.ResourceType);
-            Assert.AreEqual(Guid.Parse("00746beb-46c1-48a8-9492-e2d20817fcd5"), service.Source.ResourceID);
-            Assert.AreEqual("ComPluginTesterSource", service.Source.ResourceName);
-            Assert.AreEqual("Dev2.Terrain.Mountain", service.Namespace);
-            Assert.AreEqual("Echo", service.Method.Name);
+            NUnit.Framework.Assert.AreEqual(Guid.Parse("89098b76-ac11-40b2-b3e8-b175314cb3bb"), service.ResourceID);
+            NUnit.Framework.Assert.AreEqual("ComPluginService", service.ResourceType);
+            NUnit.Framework.Assert.AreEqual(Guid.Parse("00746beb-46c1-48a8-9492-e2d20817fcd5"), service.Source.ResourceID);
+            NUnit.Framework.Assert.AreEqual("ComPluginTesterSource", service.Source.ResourceName);
+            NUnit.Framework.Assert.AreEqual("Dev2.Terrain.Mountain", service.Namespace);
+            NUnit.Framework.Assert.AreEqual("Echo", service.Method.Name);
 
-            Assert.AreEqual("<root>hello</root>", service.Method.Parameters.First(p => p.Name == "text").DefaultValue);
+            NUnit.Framework.Assert.AreEqual("<root>hello</root>", service.Method.Parameters.First(p => p.Name == "text").DefaultValue);
 
-            Assert.AreEqual("reverb", service.Recordsets[0].Fields.First(f => f.Name == "echo").Alias);
+            NUnit.Framework.Assert.AreEqual("reverb", service.Recordsets[0].Fields.First(f => f.Name == "echo").Alias);
         }
 
-        [TestMethod]
+        [Test]
         public void ComPluginServicesDeserializeServiceWithNullXmlExpectedReturnsNewPluginService()
         {
             var services = new ComPluginServicesMock();
             var result = (ComPluginService)services.DeserializeService(null, "ComPluginService");
 
-            Assert.AreEqual(result.ResourceID, Guid.Empty);
+            NUnit.Framework.Assert.AreEqual(result.ResourceID, Guid.Empty);
         }
 
-        [TestMethod]
+        [Test]
         public void ComPluginServicesDeserializeServiceWithValidXmlExpectedReturnsPluginService()
         {
             var xml = XmlResource.Fetch("ComPluginService");
@@ -95,39 +96,39 @@ namespace Dev2.Tests.Runtime.ServiceModel
             var services = new ComPluginServicesMock();
             var service = (ComPluginService)services.DeserializeService(xml, "ComPluginService");
 
-            Assert.AreEqual(Guid.Parse("89098b76-ac11-40b2-b3e8-b175314cb3bb"), service.ResourceID);
-            Assert.AreEqual("ComPluginService", service.ResourceType);
-            Assert.AreEqual(Guid.Parse("00746beb-46c1-48a8-9492-e2d20817fcd5"), service.Source.ResourceID);
-            Assert.AreEqual("ComPluginTesterSource", service.Source.ResourceName);
-            Assert.AreEqual("Dev2.Terrain.Mountain", service.Namespace);
-            Assert.AreEqual("Echo", service.Method.Name);
+            NUnit.Framework.Assert.AreEqual(Guid.Parse("89098b76-ac11-40b2-b3e8-b175314cb3bb"), service.ResourceID);
+            NUnit.Framework.Assert.AreEqual("ComPluginService", service.ResourceType);
+            NUnit.Framework.Assert.AreEqual(Guid.Parse("00746beb-46c1-48a8-9492-e2d20817fcd5"), service.Source.ResourceID);
+            NUnit.Framework.Assert.AreEqual("ComPluginTesterSource", service.Source.ResourceName);
+            NUnit.Framework.Assert.AreEqual("Dev2.Terrain.Mountain", service.Namespace);
+            NUnit.Framework.Assert.AreEqual("Echo", service.Method.Name);
 
-            Assert.AreEqual("<root>hello</root>", service.Method.Parameters.First(p => p.Name == "text").DefaultValue);
+            NUnit.Framework.Assert.AreEqual("<root>hello</root>", service.Method.Parameters.First(p => p.Name == "text").DefaultValue);
 
-            Assert.AreEqual("reverb", service.Recordsets[0].Fields.First(f => f.Name == "echo").Alias);
+            NUnit.Framework.Assert.AreEqual("reverb", service.Recordsets[0].Fields.First(f => f.Name == "echo").Alias);
         }
 
         #endregion
 
         #region Namespaces
 
-        [TestMethod]
+        [Test]
         public void ComPluginServicesNamespacesWithNullArgsExpectedReturnsEmptyList()
         {
             var services = new ComPluginServices();
             var result = services.Namespaces(null, Guid.Empty, Guid.Empty);
-            Assert.AreEqual(0, result.Count);
+            NUnit.Framework.Assert.AreEqual(0, result.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void ComPluginServicesNamespacesWithInvalidArgsExpectedReturnsEmptyList()
         {
             var services = new ComPluginServices();
             var result = services.Namespaces(new ComPluginSource(), Guid.Empty, Guid.Empty);
-            Assert.AreEqual(0, result.Count);
+            NUnit.Framework.Assert.AreEqual(0, result.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void ComPluginServicesNamespacesWithValidArgsExpectedReturnsList()
         {
             var source = CreatePluginSource();
@@ -139,30 +140,30 @@ namespace Dev2.Tests.Runtime.ServiceModel
             var services = new ComPluginServices();
             var result = services.Namespaces(source, workspaceID, Guid.Empty);
 
-            Assert.IsTrue(result.Count > 0);
+            NUnit.Framework.Assert.IsTrue(result.Count > 0);
         }
 
         #endregion
 
         #region Methods
 
-        [TestMethod]
+        [Test]
         public void ComPluginServicesMethodsWithNullArgsExpectedReturnsEmptyList()
         {
             var services = new ComPluginServices();
             var result = services.Methods(null, Guid.Empty, Guid.Empty);
-            Assert.AreEqual(0, result.Count);
+            NUnit.Framework.Assert.AreEqual(0, result.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void ComPluginServicesMethodsWithInvalidArgsExpectedReturnsEmptyList()
         {
             var services = new ComPluginServices();
             var result = services.Methods(new ComPluginService(), Guid.Empty, Guid.Empty);
-            Assert.AreEqual(0, result.Count);
+            NUnit.Framework.Assert.AreEqual(0, result.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void ComPluginServicesMethodsWithValidArgsExpectedReturnsList()
         {
             var service = CreatePluginService();
@@ -173,7 +174,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             var services = new ComPluginServices();
             var result = services.Methods(service, workspaceID, Guid.Empty);
 
-            Assert.IsTrue(result.Count > 5, "Not enough items in COM server method list.");
+            NUnit.Framework.Assert.IsTrue(result.Count > 5, "Not enough items in COM server method list.");
         }
 
         #endregion
@@ -181,9 +182,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
         #region Test
        
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComPluginServices_Test")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComPluginServices_Test")]
         public void ComPluginServices_Test_WhenTestingPluginReturningJsonString_ExpectValidPaths()
         {
             var pluginServices = new ComPluginServices();
@@ -197,14 +198,14 @@ namespace Dev2.Tests.Runtime.ServiceModel
             {
                 //Calls the execution correctly;
                 
-                Assert.AreEqual("[Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified", e.InnerException.Message);
+                NUnit.Framework.Assert.AreEqual("[Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified", e.InnerException.Message);
                 
             }
             
           
         }
 
-        [TestMethod]
+        [Test]
         public void PluginServicesTestWithNullArgsExpectedReturnsRecordsetWithError()
         {
             //------------Setup for test--------------------------
@@ -212,10 +213,10 @@ namespace Dev2.Tests.Runtime.ServiceModel
             //------------Execute Test---------------------------
             var result = services.Test(null, out string serializedResult);
             //------------Assert Results-------------------------
-            Assert.IsTrue(result[0].HasErrors);
+            NUnit.Framework.Assert.IsTrue(result[0].HasErrors);
         }
 
-        [TestMethod]
+        [Test]
         public void PluginServicesTestWithInvalidArgsExpectedReturnsRecordsetWithError()
         {
             //------------Setup for test--------------------------
@@ -223,7 +224,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             //------------Execute Test---------------------------
             var result = services.Test("xxx", out string serializedResult);
             //------------Assert Results-------------------------
-            Assert.IsTrue(result[0].HasErrors);
+            NUnit.Framework.Assert.IsTrue(result[0].HasErrors);
         }
 
         #endregion

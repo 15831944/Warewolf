@@ -19,20 +19,21 @@ using Dev2.Studio.Core;
 using Dev2.Studio.Core.Models;
 using Dev2.Studio.Interfaces;
 using Dev2.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Studio.ViewModels;
 
 namespace Dev2.Core.Tests.Settings
 {
-    [TestClass]
-    [TestCategory("Studio Settings Core")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Studio Settings Core")]
     public class PerfCounterViewModelTests
     {
         Mock<IServer> _mockEnvironment;
         Mock<IEnvironmentConnection> _mockConnection;
 
-        [TestInitialize]
+        [SetUp]
         public void Setup()
         {
 
@@ -46,8 +47,8 @@ namespace Dev2.Core.Tests.Settings
             CustomContainer.Register(new Mock<IShellViewModel>().Object);
         }
 
-        [TestMethod]
-        [TestCategory("PerfcounterViewModel_Constructor")]
+        [Test]
+        [Category("PerfcounterViewModel_Constructor")]
         public void PerfcounterViewModel_ServerCountersCompare_Given_Null_Server_Counters_Returns_False()
         {
             CommonSetupHelper.RegisterServerRepository();
@@ -61,7 +62,7 @@ namespace Dev2.Core.Tests.Settings
             _mockEnvironment.Setup(model => model.AuthorizationService).Returns(authorizationService.Object);
             var activeServer = new Server(Guid.NewGuid(), _mockConnection.Object);
             ServerRepository.Instance.ActiveServer = activeServer;
-            var counters = new PrivateType(typeof(PerfcounterViewModel));
+            var counters = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType(typeof(PerfcounterViewModel));
             CustomContainer.Register(new Mock<IExplorerTooltips>().Object);
             //------------Setup for test------------------------
             //------------Execute Test--------------------------
@@ -70,8 +71,8 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsNotNull(invokeStatic);
         }
 
-        [TestMethod]
-        [TestCategory("PerfcounterViewModel_Constructor")]
+        [Test]
+        [Category("PerfcounterViewModel_Constructor")]
         public void PerfcounterViewModel_Equals_Given_Null_Server_Counters_Returns_False()
         {
             CommonSetupHelper.RegisterServerRepository();
@@ -80,7 +81,7 @@ namespace Dev2.Core.Tests.Settings
             perfCounterTo.Setup(to => to.ResourceCounters).Returns(new List<IResourcePerformanceCounter>());
             perfCounterTo.Setup(to => to.NativeCounters).Returns(new List<IPerformanceCounter>());
             var perfcounterViewModel = new PerfcounterViewModel(perfCounterTo.Object, new Mock<IServer>().Object);
-            var counters = new PrivateObject(perfcounterViewModel);
+            var counters = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(perfcounterViewModel);
             //------------Setup for test--------------------------
             var ItemServerCounters = perfcounterViewModel.ServerCounters = null;
             //------------Execute Test---------------------------
@@ -89,8 +90,8 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsFalse(areEqual.Equals(true));
         }
 
-        [TestMethod]
-        [TestCategory("PerfcounterViewModel_Constructor")]
+        [Test]
+        [Category("PerfcounterViewModel_Constructor")]
         public void PerfcounterViewModel_Equals_Given_Null_Resource_Counters_Returns_False()
         {
             CommonSetupHelper.RegisterServerRepository();
@@ -99,7 +100,7 @@ namespace Dev2.Core.Tests.Settings
             perfCounterTo.Setup(to => to.ResourceCounters).Returns(new List<IResourcePerformanceCounter>());
             perfCounterTo.Setup(to => to.NativeCounters).Returns(new List<IPerformanceCounter>());
             var perfcounterViewModel = new PerfcounterViewModel(perfCounterTo.Object, new Mock<IServer>().Object);
-            var counters = new PrivateObject(perfcounterViewModel);
+            var counters = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(perfcounterViewModel);
 
             var ItemServerCounters = new List<IPerformanceCountersByMachine>();
             var ItemResourceCounters = perfcounterViewModel.ResourceCounters = null;
@@ -110,9 +111,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsFalse(areEqual.Equals(true));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("PerfcounterViewModel_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("PerfcounterViewModel_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void PerfcounterViewModel_Constructor_NullPerfCounters_ThrowsException()
         {
@@ -124,9 +125,9 @@ namespace Dev2.Core.Tests.Settings
             //------------Assert Results-------------------------
         }
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("PerfcounterViewModel_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("PerfcounterViewModel_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void PerfcounterViewModel_Constructor_NullEnvironment_ThrowsException()
         {
@@ -138,9 +139,9 @@ namespace Dev2.Core.Tests.Settings
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("PerfcounterViewModel_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("PerfcounterViewModel_Constructor")]
         public void PerfcounterViewModel_Constructor_ResourcePickerFunction_ShouldCreateResourcePicker()
         {
             //------------Setup for test--------------------------
@@ -152,9 +153,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsNotNull(perfcounterViewModel.ResourcePickerDialog);            
         }        
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("PerfcounterViewModel_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("PerfcounterViewModel_Constructor")]
         public void PerfcounterViewModel_Constructor_WithPerfCounters_ShouldSetupCollections()
         {
             //------------Setup for test--------------------------
@@ -191,9 +192,9 @@ namespace Dev2.Core.Tests.Settings
             
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("PerfcounterViewModel_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("PerfcounterViewModel_Constructor")]
         public void PerfcounterViewModel_UpdatePerfCounter_ShouldFirePropertyChange()
         {
             //------------Setup for test--------------------------
@@ -227,9 +228,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsTrue(newNewResourceCounter.IsNew);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("PerfcounterViewModel_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("PerfcounterViewModel_Constructor")]
         public void PerfcounterViewModel_UpdatePerfCounter_ResourceCounterSetCounterNameEmpty_ShouldRemoveCounter()
         {
             //------------Setup for test--------------------------
@@ -258,9 +259,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.AreEqual(1,perfcounterViewModel.ResourceCounters.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("PerfcounterViewModel_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("PerfcounterViewModel_Constructor")]
         public void PerfcounterViewModel_UpdatePerfCounter_ResourceCounterSetCounterNameNull_ShouldRemoveCounter()
         {
             //------------Setup for test--------------------------
@@ -289,9 +290,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.AreEqual(1,perfcounterViewModel.ResourceCounters.Count);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("PerfcounterViewModel_Constructor")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("PerfcounterViewModel_Constructor")]
         public void PerfcounterViewModel_UpdatePerfCounter_ResourceCounterSetCounterNameNull_IsDirtyFalse()
         {
             //------------Setup for test--------------------------
@@ -322,9 +323,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsFalse(perfcounterViewModel.IsDirty);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("PerfcounterViewModel_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("PerfcounterViewModel_Constructor")]
         public void PerfcounterViewModel_Save_ShouldUpdatePerfCounterTo()
         {
             //------------Setup for test--------------------------
@@ -382,9 +383,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.AreEqual(newResourceId, performanceCounterTo.ResourceCounters[5].ResourceId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("PerfcounterViewModel_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("PerfcounterViewModel_Constructor")]
         public void PerfcounterViewModel_UpdatePerfCounter_ResourceCounterSetDeleted_ShouldNotSaveCounter()
         {
             //------------Setup for test--------------------------
@@ -415,9 +416,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.AreEqual(1, perfcounterViewModel.ResourceCounters.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("PerfcounterViewModel_ResetCounters")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("PerfcounterViewModel_ResetCounters")]
         public void PerfcounterViewModel_ResetCounters_Command_NoError_ShouldCallCommunicationsController()
         {
             //------------Setup for test--------------------------
@@ -444,9 +445,9 @@ namespace Dev2.Core.Tests.Settings
             mockPopupController.Verify(controller => controller.Show(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<MessageBoxButton>(), It.IsAny<MessageBoxImage>(), It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>()));
         }
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("PerfcounterViewModel_ResetCounters")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("PerfcounterViewModel_ResetCounters")]
         public void PerfcounterViewModel_ResetCounters_Command_Error_ShouldCallCommunicationsController()
         {
             //------------Setup for test--------------------------
@@ -473,9 +474,9 @@ namespace Dev2.Core.Tests.Settings
             mockPopupController.Verify(controller => controller.Show(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<MessageBoxButton>(), It.IsAny<MessageBoxImage>(), It.IsAny<string>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>()));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("PerfcounterViewModel_PickResource")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("PerfcounterViewModel_PickResource")]
         public void PerfcounterViewModel_PickResource_WhenCounterNull_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -492,9 +493,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsTrue(true);
         }
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("PerfcounterViewModel_PickResource")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("PerfcounterViewModel_PickResource")]
         public void PerfcounterViewModel_PickResource_WhenNotCounterPassed_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -511,9 +512,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.IsTrue(true);
         }
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("PerfcounterViewModel_PickResource")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("PerfcounterViewModel_PickResource")]
         public void PerfcounterViewModel_PickResource_WhenCounterPassed_SetsBasedOnResource()
         {
             //------------Setup for test--------------------------
@@ -541,9 +542,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.AreEqual("Hello World",performanceCountersByResource.CounterName);
         } 
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("PerfcounterViewModel_PickResource")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("PerfcounterViewModel_PickResource")]
         public void PerfcounterViewModel_PickResource_WhenNoResource_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -570,9 +571,9 @@ namespace Dev2.Core.Tests.Settings
             Assert.AreEqual(resourceId, performanceCountersByResource.ResourceId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("PerfcounterViewModel_UpdateHelpDescriptor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("PerfcounterViewModel_UpdateHelpDescriptor")]
         public void PerfcounterViewModel_UpdateHelpDescriptor_HelpText_ShouldCallUpdateHelpText()
         {
             //------------Setup for test--------------------------

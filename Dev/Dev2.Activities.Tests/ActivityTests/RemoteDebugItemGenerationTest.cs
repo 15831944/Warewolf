@@ -19,7 +19,7 @@ using Dev2.Diagnostics.Debug;
 using Dev2.Interfaces;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Runtime.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
@@ -28,7 +28,8 @@ namespace Dev2.Tests.Activities.ActivityTests
     /// <summary>
     /// Summary description for RemoteDebugItemGenerationTest
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class RemoteDebugItemGenerationTest : BaseActivityUnitTest
     {
         /// <summary>
@@ -42,7 +43,7 @@ namespace Dev2.Tests.Activities.ActivityTests
         // You can use the following additional attributes as you write your tests:
         //
         // Use ClassInitialize to run code before running the first test in the class
-        // [ClassInitialize()]
+        // [OneTimeSetUp]
         // public static void MyClassInitialize(TestContext testContext) { }
         //
         // Use ClassCleanup to run code after all tests in a class have run
@@ -59,7 +60,7 @@ namespace Dev2.Tests.Activities.ActivityTests
         //
         #endregion
 
-        [TestMethod]
+        [Test]
         public void CanGenerateRemoteDebugItems()
         {
             var act = new DsfCountRecordsetNullHandlerActivity { RecordsetName = "[[Customers()]]", CountNumber = "[[res]]" };
@@ -80,7 +81,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(1, msgs.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void CanSerializeRemoteDebugItems()
         {
             var act = new DsfCountRecordsetNullHandlerActivity { RecordsetName = "[[Customers()]]", CountNumber = "[[res]]" };
@@ -108,7 +109,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("bob",tmp2[0].Server);
         }
 
-        [TestMethod]
+        [Test]
         public void CanFetchRemoteDebugItemsViaSystemService()
         {
             var act = new DsfCountRecordsetNullHandlerActivity { RecordsetName = "[[Customers()]]", CountNumber = "[[res]]" };

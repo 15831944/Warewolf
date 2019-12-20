@@ -11,16 +11,17 @@
 using Dev2.Common.DateAndTime;
 using Dev2.Common.DateAndTime.TO;
 using Dev2.Common.Interfaces.Core.Convertors.DateAndTime;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Globalization;
 
 namespace Dev2.Common.Tests.DateAndTime
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class StandardDateTimeFormatterTests
     {
-        [TestInitialize]
+        [SetUp]
         public void PreConditions()
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-ZA");
@@ -30,9 +31,9 @@ namespace Dev2.Common.Tests.DateAndTime
             Assert.AreEqual("en-ZA", System.Threading.Thread.CurrentThread.CurrentUICulture.Name);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(StandardDateTimeFormatter))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(StandardDateTimeFormatter))]
         public void StandardDateTimeFormatter_TryFormat_DateTime_SystemRegionDefaultFormat()
         {
             IDateTimeOperationTO dateTimeOperationTO = new DateTimeOperationTO
@@ -53,9 +54,9 @@ namespace Dev2.Common.Tests.DateAndTime
             Assert.AreEqual("", errorMsg);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(StandardDateTimeFormatter))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(StandardDateTimeFormatter))]
         public void StandardDateTimeFormatter_TryFormat_DateTime_Empty_SystemRegionDefaultFormat()
         {
             var format = System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat;
@@ -79,9 +80,9 @@ namespace Dev2.Common.Tests.DateAndTime
             Assert.AreEqual("", errorMsg);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(StandardDateTimeFormatter))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(StandardDateTimeFormatter))]
         public void StandardDateTimeFormatter_DateOnly_TryFormat_TimeModifierType_Empty()
         {
             IDateTimeOperationTO dateTimeOperationTO = new DateTimeOperationTO
@@ -102,9 +103,9 @@ namespace Dev2.Common.Tests.DateAndTime
             Assert.AreEqual("", errorMsg);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(StandardDateTimeFormatter))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(StandardDateTimeFormatter))]
         public void StandardDateTimeFormatter_DateOnly_TryFormat_TimeModifierType_AddYears()
         {
             IDateTimeOperationTO dateTimeOperationTO = new DateTimeOperationTO
@@ -125,9 +126,9 @@ namespace Dev2.Common.Tests.DateAndTime
             Assert.AreEqual("", errorMsg);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(StandardDateTimeFormatter))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(StandardDateTimeFormatter))]
         public void StandardDateTimeFormatter_DateOnly_TryFormat_TimeModifierType_SubtractYears()
         {
             IDateTimeOperationTO dateTimeOperationTO = new DateTimeOperationTO
@@ -148,9 +149,9 @@ namespace Dev2.Common.Tests.DateAndTime
             Assert.AreEqual("", errorMsg);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(StandardDateTimeFormatter))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(StandardDateTimeFormatter))]
         public void StandardDateTimeFormatter_DateOnly_TryFormat_TimeModifierType_AddMonths()
         {
             IDateTimeOperationTO dateTimeOperationTO = new DateTimeOperationTO
@@ -171,9 +172,9 @@ namespace Dev2.Common.Tests.DateAndTime
             Assert.AreEqual("", errorMsg);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(StandardDateTimeFormatter))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(StandardDateTimeFormatter))]
         public void StandardDateTimeFormatter_DateOnly_TryFormat_TimeModifierType_SubtractMonths()
         {
             IDateTimeOperationTO dateTimeOperationTO = new DateTimeOperationTO
@@ -194,9 +195,9 @@ namespace Dev2.Common.Tests.DateAndTime
             Assert.AreEqual("", errorMsg);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(StandardDateTimeFormatter))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(StandardDateTimeFormatter))]
         public void StandardDateTimeFormatter_DateOnly_TryFormat_TimeModifierType_AddDays()
         {
             IDateTimeOperationTO dateTimeOperationTO = new DateTimeOperationTO
@@ -217,9 +218,9 @@ namespace Dev2.Common.Tests.DateAndTime
             Assert.AreEqual("", errorMsg);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(StandardDateTimeFormatter))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(StandardDateTimeFormatter))]
         public void StandardDateTimeFormatter_DateOnly_TryFormat_TimeModifierType_SubtractDays()
         {
             IDateTimeOperationTO dateTimeOperationTO = new DateTimeOperationTO
@@ -240,9 +241,9 @@ namespace Dev2.Common.Tests.DateAndTime
             Assert.AreEqual("", errorMsg);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(StandardDateTimeFormatter))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(StandardDateTimeFormatter))]
         public void StandardDateTimeFormatter_DateAndTime_TryFormat_TimeModifierType_AddHours()
         {
             IDateTimeOperationTO dateTimeOperationTO = new DateTimeOperationTO
@@ -263,9 +264,9 @@ namespace Dev2.Common.Tests.DateAndTime
             Assert.AreEqual("", errorMsg);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(StandardDateTimeFormatter))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(StandardDateTimeFormatter))]
         public void StandardDateTimeFormatter_DateAndTime_TryFormat_TimeModifierType_SubtractHours()
         {
             IDateTimeOperationTO dateTimeOperationTO = new DateTimeOperationTO
@@ -286,9 +287,9 @@ namespace Dev2.Common.Tests.DateAndTime
             Assert.AreEqual("", errorMsg);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(StandardDateTimeFormatter))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(StandardDateTimeFormatter))]
         public void StandardDateTimeFormatter_DateAndTime_TryFormat_TimeModifierType_AddMinutes()
         {
             IDateTimeOperationTO dateTimeOperationTO = new DateTimeOperationTO
@@ -309,9 +310,9 @@ namespace Dev2.Common.Tests.DateAndTime
             Assert.AreEqual("", errorMsg);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(StandardDateTimeFormatter))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(StandardDateTimeFormatter))]
         public void StandardDateTimeFormatter_DateAndTime_TryFormat_TimeModifierType_SubtractMinutes()
         {
             IDateTimeOperationTO dateTimeOperationTO = new DateTimeOperationTO
@@ -332,9 +333,9 @@ namespace Dev2.Common.Tests.DateAndTime
             Assert.AreEqual("", errorMsg);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(StandardDateTimeFormatter))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(StandardDateTimeFormatter))]
         public void StandardDateTimeFormatter_DateAndTime_TryFormat_TimeModifierType_AddSeconds()
         {
             IDateTimeOperationTO dateTimeOperationTO = new DateTimeOperationTO
@@ -355,9 +356,9 @@ namespace Dev2.Common.Tests.DateAndTime
             Assert.AreEqual("", errorMsg);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(StandardDateTimeFormatter))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(StandardDateTimeFormatter))]
         public void StandardDateTimeFormatter_DateAndTime_TryFormat_TimeModifierType_SubtractSeconds()
         {
             IDateTimeOperationTO dateTimeOperationTO = new DateTimeOperationTO
@@ -378,9 +379,9 @@ namespace Dev2.Common.Tests.DateAndTime
             Assert.AreEqual("", errorMsg);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(StandardDateTimeFormatter))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(StandardDateTimeFormatter))]
         public void StandardDateTimeFormatter_DateAndTime_TryFormat_TimeModifierType_AddMilliSeconds()
         {
             IDateTimeOperationTO dateTimeOperationTO = new DateTimeOperationTO
@@ -401,9 +402,9 @@ namespace Dev2.Common.Tests.DateAndTime
             Assert.AreEqual("", errorMsg);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(StandardDateTimeFormatter))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(StandardDateTimeFormatter))]
         public void StandardDateTimeFormatter_DateAndTime_TryFormat_TimeModifierType_SubtractMilliSeconds()
         {
             IDateTimeOperationTO dateTimeOperationTO = new DateTimeOperationTO
@@ -424,9 +425,9 @@ namespace Dev2.Common.Tests.DateAndTime
             Assert.AreEqual("", errorMsg);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(StandardDateTimeFormatter))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(StandardDateTimeFormatter))]
         public void StandardDateTimeFormatter_DateAndTime_TryFormat_TimeModifierType_AddHours_AM_To_PM()
         {
             IDateTimeOperationTO dateTimeOperationTO = new DateTimeOperationTO
@@ -447,9 +448,9 @@ namespace Dev2.Common.Tests.DateAndTime
             Assert.AreEqual("", errorMsg);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(StandardDateTimeFormatter))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(StandardDateTimeFormatter))]
         public void StandardDateTimeFormatter_DateAndTime_TryFormat_TimeModifierType_AddHours_PM_To_AM()
         {
             IDateTimeOperationTO dateTimeOperationTO = new DateTimeOperationTO

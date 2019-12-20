@@ -1,6 +1,6 @@
 ﻿using Dev2.Activities;
 using Dev2.Tests.Activities.ActivityTests;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +8,12 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.Switch
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfSwitchActivityComparerTest
     {
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Empty_SwitchActivity_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -25,8 +26,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Switch
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentResult_SwitchActivity_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -41,8 +42,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Switch
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameResult_Different_Casing_SwitchActivity_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -57,8 +58,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Switch
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameSwitch_SwitchActivity_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -73,8 +74,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Switch
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentSwitch_SwitchActivity_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -89,8 +90,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Switch
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameSwitch_Different_Casing_SwitchActivity_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -105,8 +106,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Switch
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameResult_SwitchActivity_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -122,8 +123,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Switch
         }
 
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameSwitches_DifferentArmCount_SwitchActivity_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -141,8 +142,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Switch
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameSwitches_DifferentIndexes_SwitchActivity_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -160,8 +161,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Switch
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentSwitches_SwitchActivity_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -178,8 +179,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Switch
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameSwitches_SwitchActivity_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -195,8 +196,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Switch
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameInner_SwitchActivity_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -219,8 +220,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Switch
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentInner_SwitchActivity_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -248,8 +249,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Switch
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentDefault_SwitchActivity_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -266,8 +267,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Switch
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameDefault_DifferentIndexes_SwitchActivity_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -284,8 +285,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Switch
             //---------------Test Result -----------------------
             Assert.IsTrue(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameDefault_SwitchActivity_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -301,8 +302,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Switch
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
+        [Test]
+        [Author("Rory McGuire")]
         public void Equals_Given_DifferentErrorVariable_SwitchActivity_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -322,8 +323,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Switch
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Rory McGuire")]
+        [Test]
+        [Author("Rory McGuire")]
         public void Equals_Given_DifferentErrorWorkflow_SwitchActivity_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -343,8 +344,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Switch
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Rory McGuire")]
+        [Test]
+        [Author("Rory McGuire")]
         public void Equals_Given_DifferentIsEndedOnError_SwitchActivity_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -364,8 +365,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Switch
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Rory McGuire")]
+        [Test]
+        [Author("Rory McGuire")]
         public void Equals_Given_DifferentDisplayName_SwitchActivity_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -386,9 +387,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Switch
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DsfFlowSwitchActivity_GetState")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DsfFlowSwitchActivity_GetState")]
         public void DsfFlowSwitchActivity_GetState_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------

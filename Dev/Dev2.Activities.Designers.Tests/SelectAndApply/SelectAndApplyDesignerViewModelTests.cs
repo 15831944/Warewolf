@@ -4,7 +4,7 @@ using Dev2.Common.Interfaces.Help;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Core.Interfaces;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Activities;
@@ -13,12 +13,13 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Activities.Designers.Tests.SelectAndApply
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SelectAndApplyDesignerViewModelTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SelectAndApplyDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SelectAndApplyDesignerViewModel))]
         public void SelectAndApplyDesignerViewModel_DataFuncDisplayName_DataFuncIcon()
         {
             var mockMainViewModel = new Mock<IShellViewModel>();
@@ -36,9 +37,9 @@ namespace Dev2.Activities.Designers.Tests.SelectAndApply
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SelectAndApplyDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SelectAndApplyDesignerViewModel))]
         public void SelectAndApplyDesignerViewModel_NullDataFunc()
         {
             var mockMainViewModel = new Mock<IShellViewModel>();
@@ -55,9 +56,9 @@ namespace Dev2.Activities.Designers.Tests.SelectAndApply
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SelectAndApplyDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SelectAndApplyDesignerViewModel))]
         public void SelectAndApplyDesignerViewModel_ShouldCall_UpdateHelpDescriptor()
         {
             //------------Setup for test--------------------------

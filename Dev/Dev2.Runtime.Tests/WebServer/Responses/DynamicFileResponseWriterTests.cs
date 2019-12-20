@@ -13,17 +13,18 @@ using System.Collections.Specialized;
 using System.Net.Http;
 using Dev2.Runtime.WebServer;
 using Dev2.Runtime.WebServer.Responses;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Runtime.WebServer.Responses
 {
-    [TestClass]
-    [TestCategory("Runtime WebServer")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime WebServer")]
     public class DynamicFileResponseWriterTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DynamicFileResponseWriter_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DynamicFileResponseWriter_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void DynamicFileResponseWriter_Constructor_LayoutFileIsNull_ThrowsArgumentNullException()
         {
@@ -35,9 +36,9 @@ namespace Dev2.Tests.Runtime.WebServer.Responses
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DynamicFileResponseWriter_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DynamicFileResponseWriter_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void DynamicFileResponseWriter_Constructor_ContentPathTokenIsNull_ThrowsArgumentNullException()
         {
@@ -49,9 +50,9 @@ namespace Dev2.Tests.Runtime.WebServer.Responses
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DynamicFileResponseWriter_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DynamicFileResponseWriter_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void DynamicFileResponseWriter_Constructor_ContentPathIsNull_ThrowsArgumentNullException()
         {
@@ -64,9 +65,9 @@ namespace Dev2.Tests.Runtime.WebServer.Responses
         }
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DynamicFileResponseWriter_Write")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DynamicFileResponseWriter_Write")]
         public void DynamicFileResponseWriter_Write_WebServerContext_WritesContent()
         {
             try
@@ -86,7 +87,7 @@ namespace Dev2.Tests.Runtime.WebServer.Responses
 
                 //------------Assert Results-------------------------
                 Assert.AreEqual(ContentTypes.Html, context.ResponseMessage.Content.Headers.ContentType);
-                Assert.IsInstanceOfType(context.ResponseMessage.Content, typeof(StringContent));
+                Assert.IsInstanceOf(context.ResponseMessage.Content.GetType(), typeof(StringContent));
                 var task = context.ResponseMessage.Content.ReadAsStringAsync();
                 task.Wait();
 

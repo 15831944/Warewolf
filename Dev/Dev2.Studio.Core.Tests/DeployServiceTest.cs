@@ -16,12 +16,13 @@ using Dev2.Providers.Events;
 using Dev2.Studio.Core.InterfaceImplementors;
 using Dev2.Studio.Core.Models;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Core.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DeployServiceTest
     {
         #region Test Variables
@@ -33,21 +34,21 @@ namespace Dev2.Core.Tests
 
         #region Deploy Tests
 
-        [TestMethod]
+        [Test]
         public void DeployToEnvironmentWithZeroModels()
         {
             _numModels = 0;
             Run();
         }
 
-        [TestMethod]
+        [Test]
         public void DeployToEnvironmentWithMultipleModels()
         {
             _numModels = 3;
             Run();
         }
 
-        [TestMethod]
+        [Test]
         public void DeployToEnvironmentWithNullModels()
         {
             _numModels = -1;
@@ -85,8 +86,8 @@ namespace Dev2.Core.Tests
             envMock.Verify(e => e.ResourceRepository.DeployResource(It.IsAny<IResourceModel>(), It.IsAny<string>()), Times.Exactly(_numModels));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Deploy_GivenFalse_ShouldDeployResourcesOnly()
         {
             //---------------Set up test pack-------------------
@@ -120,8 +121,8 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Deploy_Giventrue_ShouldDeployResourcesAndTests()
         {
             //---------------Set up test pack-------------------

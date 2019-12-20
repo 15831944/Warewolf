@@ -1,13 +1,14 @@
 ﻿using Dev2.Core.Tests.Merge.Utils;
 using Dev2.ViewModels.Merge;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests.Merge
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ConflictRowListTests : MergeTestUtils
     {
-        [TestMethod]
+        [Test]
         public void ConflictRowList_Constructor()
         {
             var conflictRowList = CreateConflictRowList();

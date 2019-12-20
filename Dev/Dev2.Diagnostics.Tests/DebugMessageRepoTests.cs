@@ -1,14 +1,15 @@
 ﻿using System;
 using Dev2.Diagnostics.Debug;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Diagnostics.Test
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DebugMessageRepoTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Constructor_GivenIsNew_ShouldInitiase()
         {
             //---------------Set up test pack-------------------
@@ -22,8 +23,8 @@ namespace Dev2.Diagnostics.Test
             Assert.IsTrue(ReferenceEquals(instance, webDebugMessageRepo));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void AddDebugItem_GivenValidArgs_ShouldAdd1Item()
         {
             //---------------Set up test pack-------------------
@@ -40,8 +41,8 @@ namespace Dev2.Diagnostics.Test
             Assert.AreEqual(1, fetchDebugItems.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void AddDebugItem_GivenValidArgsAndSessions_ShouldNotMixUpDebugStates()
         {
             //---------------Set up test pack-------------------
@@ -66,8 +67,8 @@ namespace Dev2.Diagnostics.Test
             Assert.AreEqual(1, fetchDebugItems.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void AddDebugItem_GivenKeyExists_ShouldNotMixUpDebugStates()
         {
             //---------------Set up test pack-------------------

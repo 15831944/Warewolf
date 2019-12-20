@@ -17,7 +17,7 @@ using Dev2.Providers.Validation.Rules;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
 using Dev2.Validation;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
@@ -25,124 +25,125 @@ namespace Dev2.Activities.Designers.Tests.FindRecordsMultipleCriteria
 {
     // OnSearchTypeChanged moved from FindRecordsTO tests
     
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FindRecordsMultipleCriteriaTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
         public void FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged_Equal_RequiresCriteriaInput_IsCriteriaEnabledTrue()
         {
             Verify_OnSearchTypeChanged_IsSearchCriteriaEnabled("=", true, false);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
         public void FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged_NotContains_RequiresCriteriaInput_IsCriteriaEnabledTrue()
         {
             Verify_OnSearchTypeChanged_IsSearchCriteriaEnabled("Doesn't Contain", true, false);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
         public void FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged_Contains_RequiresCriteriaInput_IsCriteriaEnabledTrue()
         {
             Verify_OnSearchTypeChanged_IsSearchCriteriaEnabled("Contains", true, false);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
         public void FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged_NotEqual_RequiresCriteriaInput_IsCriteriaEnabledTrue()
         {
             Verify_OnSearchTypeChanged_IsSearchCriteriaEnabled("<> (Not Equal)", true, false);
 
         }
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
         public void FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged_EndsWith_RequiresCriteriaInput_IsCriteriaEnabledTrue()
         {
             Verify_OnSearchTypeChanged_IsSearchCriteriaEnabled("Ends With", true, false);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
         public void FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged_StartsWith_RequiresCriteriaInput_IsCriteriaEnabledTrue()
         {
             Verify_OnSearchTypeChanged_IsSearchCriteriaEnabled("Starts With", true, false);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
         public void FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged_Regex_RequiresCriteriaInput_IsCriteriaEnabledTrue()
         {
             Verify_OnSearchTypeChanged_IsSearchCriteriaEnabled("Is Regex", true, false);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
         public void FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged_GreaterThan_RequiresCriteriaInput_IsCriteriaEnabledTrue()
         {
             Verify_OnSearchTypeChanged_IsSearchCriteriaEnabled(">", true, false);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
         public void FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged_LessThan_RequiresCriteriaInput_IsCriteriaEnabledTrue()
         {
             Verify_OnSearchTypeChanged_IsSearchCriteriaEnabled("<", true, false);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
         public void FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged_LessThanEqual_RequiresCriteriaInput_IsCriteriaEnabledTrue()
         {
             Verify_OnSearchTypeChanged_IsSearchCriteriaEnabled("<=", true, false);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
         public void FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged_GreaterThanEqual_RequiresCriteriaInput_IsCriteriaEnabledTrue()
         {
             Verify_OnSearchTypeChanged_IsSearchCriteriaEnabled(">=", true, false);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
         public void FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged_NotInRequiresCriteriaInputList_IsCriteriaEnabledFalseSearchCriteriaEmptyString()
         {
             Verify_OnSearchTypeChanged_IsSearchCriteriaEnabled("Is Numeric", false, true);
         }
 
-        [TestMethod]
-        [Owner("Robin van den Heever")]
-        [TestCategory("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
+        [Test]
+        [Author("Robin van den Heever")]
+        [Category("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
         public void FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged_IndexObjectIsnotZero()
         {
             Verify_OnSearchTypeChanged_IsSearchCriteriaEnabled("Is Numeric", false, true, -1);
         }
 
-        [TestMethod]
-        [Owner("Robin van den Heever")]
-        [TestCategory("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
+        [Test]
+        [Author("Robin van den Heever")]
+        [Category("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
         public void FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged_InRequiresCriteriaInputList_IsCriteriaEnabledFalseSearchCriteriaInBetween()
         {
             Verify_OnSearchTypeChanged_IsSearchCriteriaEnabled("Is Between", false, true);
         }
 
-        [TestMethod]
-        [Owner("Robin van den Heever")]
-        [TestCategory("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
+        [Test]
+        [Author("Robin van den Heever")]
+        [Category("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
         public void FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged_InRequiresCriteriaInputList_IsCriteriaEnabledFalseSearchCriteriaNotBetween()
         {
             Verify_OnSearchTypeChanged_IsSearchCriteriaEnabled("Not Between", false, true);
@@ -172,9 +173,9 @@ namespace Dev2.Activities.Designers.Tests.FindRecordsMultipleCriteria
             Assert.AreEqual(isSearchCriteriaBlank, string.IsNullOrEmpty(findRecordsTO.SearchCriteria));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("FindRecordsMultipleCriteriaViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("FindRecordsMultipleCriteriaViewModel_Handle")]
         public void FindRecordsMultipleCriteriaViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------   
@@ -198,9 +199,9 @@ namespace Dev2.Activities.Designers.Tests.FindRecordsMultipleCriteria
         }
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged")]
         public void FindRecordsMultipleCriteriaViewModel_OnSearchTypeChanged_IndexOutOfBounds_DoesNothing()
         {
             Verify_OnSearchTypeChanged_IndexOutOfBounds_DoesNothing(-2);
@@ -237,9 +238,9 @@ namespace Dev2.Activities.Designers.Tests.FindRecordsMultipleCriteria
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("FindRecordsMultipleCriteriaViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("FindRecordsMultipleCriteriaViewModel_Constructor")]
         public void FindRecordsMultipleCriteriaViewModel_Constructor_PropertiesInitialized()
         {
             //------------Setup for test--------------------------
@@ -260,9 +261,9 @@ namespace Dev2.Activities.Designers.Tests.FindRecordsMultipleCriteria
             Assert.AreEqual(0, viewModel.TitleBarToggles.Count);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("FindRecordsMultipleCriteriaDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("FindRecordsMultipleCriteriaDesignerViewModel_ValidateThis")]
         public void FindRecordsMultipleCriteriaDesignerViewModel_ValidateThis_FieldsToSearchIsNotEmptyAndResultNotEmpty_DoesNotHaveErrors()
         {
             //------------Setup for test--------------------------
@@ -279,9 +280,9 @@ namespace Dev2.Activities.Designers.Tests.FindRecordsMultipleCriteria
             Assert.IsNull(viewModel.Errors);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("FindRecordsMultipleCriteriaDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("FindRecordsMultipleCriteriaDesignerViewModel_ValidateThis")]
         public void FindRecordsMultipleCriteriaDesignerViewModel_ValidateThis_FieldsToSearchAndResultIsEmptyOrWhiteSpace_DoesHaveErrors()
         {
             //------------Setup for test--------------------------
@@ -301,9 +302,9 @@ namespace Dev2.Activities.Designers.Tests.FindRecordsMultipleCriteria
             StringAssert.Contains(viewModel.Errors[2].Message, Warewolf.Resource.Errors.ErrorResource.FindRecordsInFieldsResultNotNullErrorTest);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("FindRecordsMultipleCriteriaDesignerViewModel_GetRuleSet")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("FindRecordsMultipleCriteriaDesignerViewModel_GetRuleSet")]
         public void FindRecordsMultipleCriteriaDesignerViewModel_GetRuleSet_OnFieldsToSearch_GetsFourRules()
         {
             //------------Setup for test--------------------------
@@ -313,18 +314,18 @@ namespace Dev2.Activities.Designers.Tests.FindRecordsMultipleCriteria
             SetDataListString(viewModel);
             //------------Execute Test---------------------------
             var rulesSet = viewModel.GetRuleSet("FieldsToSearch");
-          
+
             //------------Assert Results-------------------------
             Assert.IsNotNull(rulesSet);
-            Assert.IsInstanceOfType(rulesSet.Rules[0], typeof(IsStringEmptyOrWhiteSpaceRule));
-            Assert.IsInstanceOfType(rulesSet.Rules[1], typeof(IsValidExpressionRule));
-            Assert.IsInstanceOfType(rulesSet.Rules[2], typeof(HasNoDuplicateEntriesRule));
-            Assert.IsInstanceOfType(rulesSet.Rules[3], typeof(HasNoIndexsInRecordsetsRule));
+            Assert.IsInstanceOf(rulesSet.Rules[0].GetType(), typeof(IsStringEmptyOrWhiteSpaceRule));
+            Assert.IsInstanceOf(rulesSet.Rules[1].GetType(), typeof(IsValidExpressionRule));
+            Assert.IsInstanceOf(rulesSet.Rules[2].GetType(), typeof(HasNoDuplicateEntriesRule));
+            Assert.IsInstanceOf(rulesSet.Rules[3].GetType(), typeof(HasNoIndexsInRecordsetsRule));
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("FindRecordsMultipleCriteriaDesignerViewModel_GetRuleSet")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("FindRecordsMultipleCriteriaDesignerViewModel_GetRuleSet")]
         public void FindRecordsMultipleCriteriaDesignerViewModel_GetRuleSet_OnResult_GetsFourRules()
         {
             //------------Setup for test--------------------------
@@ -336,14 +337,14 @@ namespace Dev2.Activities.Designers.Tests.FindRecordsMultipleCriteria
             var rulesSet = viewModel.GetRuleSet("Result");
             //------------Assert Results-------------------------
             Assert.IsNotNull(rulesSet);
-            Assert.IsInstanceOfType(rulesSet.Rules[0], typeof(IsStringEmptyOrWhiteSpaceRule));
-            Assert.IsInstanceOfType(rulesSet.Rules[1], typeof(IsValidExpressionRule));
+            Assert.IsInstanceOf(rulesSet.Rules[0].GetType(), typeof(IsStringEmptyOrWhiteSpaceRule));
+            Assert.IsInstanceOf(rulesSet.Rules[1].GetType(), typeof(IsValidExpressionRule));
         }
 
 
-        [TestMethod]
-        [Owner("Robin van den Heever")]
-        [TestCategory("FindRecordsMultipleCriteriaDesignerViewModel_ValidateCollectionItem")]
+        [Test]
+        [Author("Robin van den Heever")]
+        [Category("FindRecordsMultipleCriteriaDesignerViewModel_ValidateCollectionItem")]
         public void FindRecordsMultipleCriteriaDesignerViewModel_ValidateCollectionItem_ValidatesPropertiesOfTO()
         {
             //------------Setup for test--------------------------
@@ -395,9 +396,9 @@ namespace Dev2.Activities.Designers.Tests.FindRecordsMultipleCriteria
 
 
 
-        [TestMethod]
-        [Owner("Robin van den Heever")]
-        [TestCategory("FindRecordsMultipleCriteriaDesignerViewModel_ValidateCollectionItem")]
+        [Test]
+        [Author("Robin van den Heever")]
+        [Category("FindRecordsMultipleCriteriaDesignerViewModel_ValidateCollectionItem")]
         public void FindRecordsMultipleCriteriaDesignerViewModel_ValidateCollectionItem_ValidatesPropertiesOfTO_StarInRecordSetShouldNotError()
         {
             //------------Setup for test--------------------------
@@ -431,7 +432,7 @@ namespace Dev2.Activities.Designers.Tests.FindRecordsMultipleCriteria
             //------------Assert Results-------------------------
             Assert.AreEqual(4, viewModel.Errors.Count);
 
-             
+
             StringAssert.Contains(viewModel.Errors[0].Message, Warewolf.Resource.Errors.ErrorResource.FindRecordsFromNotNullErrorTest);
             Verify_IsFocused(dtoModelItem5, viewModel.Errors[0].Do, "IsFromFocused");
 

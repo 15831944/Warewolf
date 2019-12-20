@@ -1,12 +1,13 @@
 using System;
 using System.Collections.Generic;
 using Dev2.Common.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Warewolf.Studio.ViewModels.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ManageComPluginSourceModelTests
     {
         #region Fields
@@ -22,7 +23,7 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         #region Test initialize
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             _updateRepositoryMock = new Mock<IStudioUpdateManager>();
@@ -35,7 +36,8 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         #region Test methods
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestGetDllListings()
         {
             //arrange
@@ -52,7 +54,8 @@ namespace Warewolf.Studio.ViewModels.Tests
         }
 
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestSavePlugin()
         {
             //arrange
@@ -69,7 +72,8 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         #region Test properties
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestServerName()
         {
             //act
@@ -79,7 +83,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual(_serverName, value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestComPluginSourceServerNameBrackets()
         {
             //arrange  

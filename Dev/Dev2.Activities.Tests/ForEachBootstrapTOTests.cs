@@ -1,6 +1,6 @@
 ﻿using Dev2.Data.Interfaces.Enums;
 using Dev2.Data.TO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities.Value_Objects;
 using Warewolf.Storage;
@@ -8,12 +8,13 @@ using Warewolf.Storage.Interfaces;
 
 namespace Dev2.Tests.Activities
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ForEachBootstrapTOTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ForEachBootstrapTO_Constructor")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ForEachBootstrapTO_Constructor")]
         public void ForEachBootstrapTO_Constructor_IsNewCsvNoValue_AddError()
         {
             //------------Setup for test--------------------------
@@ -27,9 +28,9 @@ namespace Dev2.Tests.Activities
             Assert.AreEqual(1, errors.FetchErrors().Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ForEachBootstrapTO_Constructor")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ForEachBootstrapTO_Constructor")]
         public void ForEachBootstrapTO_Constructor_IsNewCsvValue_NoError()
         {
             //------------Setup for test--------------------------
@@ -44,9 +45,9 @@ namespace Dev2.Tests.Activities
             Assert.AreEqual(forEachBootstrapTO.ExeType, enForEachExecutionType.Scalar);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ForEachBootstrapTO_Constructor")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ForEachBootstrapTO_Constructor")]
         public void ForEachBootstrapTO_Constructor_IsNewRecordSetNoValue_AddError()
         {
             //------------Setup for test--------------------------
@@ -59,9 +60,9 @@ namespace Dev2.Tests.Activities
             Assert.IsNotNull(errors);
             Assert.AreEqual(1, errors.FetchErrors().Count);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ForEachBootstrapTO_Constructor")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ForEachBootstrapTO_Constructor")]
         public void ForEachBootstrapTO_Constructor_IsNewRecordSetNoValueNoInVaribaleList_AddError()
         {
             //------------Setup for test--------------------------
@@ -77,9 +78,9 @@ namespace Dev2.Tests.Activities
             Assert.AreEqual(1, errors.FetchErrors().Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ForEachBootstrapTO_Constructor")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ForEachBootstrapTO_Constructor")]
         public void ForEachBootstrapTO_Constructor_IsNewRecordSetValue_NoError()
         {
             //------------Setup for test--------------------------
@@ -94,9 +95,9 @@ namespace Dev2.Tests.Activities
             Assert.AreEqual(0, errors.FetchErrors().Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ForEachBootstrapTO_Constructor")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ForEachBootstrapTO_Constructor")]
         public void ForEachBootstrapTO_Constructor_IsNewInRangeNoValue_AddError()
         {
             //------------Setup for test--------------------------
@@ -110,9 +111,9 @@ namespace Dev2.Tests.Activities
             Assert.AreEqual(1, errors.FetchErrors().Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ForEachBootstrapTO_Constructor")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ForEachBootstrapTO_Constructor")]
         public void ForEachBootstrapTO_Constructor_IsNewInRangeMinValueOnly_AddError()
         {
             //------------Setup for test--------------------------
@@ -126,9 +127,9 @@ namespace Dev2.Tests.Activities
             Assert.AreEqual(1, errors.FetchErrors().Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ForEachBootstrapTO_Constructor")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ForEachBootstrapTO_Constructor")]
         public void ForEachBootstrapTO_Constructor_IsNewInRangeMinAndMax_NoError()
         {
             //------------Setup for test--------------------------

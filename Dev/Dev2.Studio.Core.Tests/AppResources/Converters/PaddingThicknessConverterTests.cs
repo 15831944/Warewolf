@@ -11,18 +11,19 @@
 using System.Globalization;
 using System.Windows;
 using Dev2.AppResources.Converters;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests.AppResources.Converters
 {
-    [TestClass]
-	[TestCategory("Studio Resources Core")]
+    [TestFixture]
+    [SetUpFixture]
+	[Category("Studio Resources Core")]
     
     public class PaddingThicknessConverterTests
     {
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("PaddingThicknessConverter_Convert")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("PaddingThicknessConverter_Convert")]
         public void PaddingThicknessConverter_Convert_WhenInputIsEmpty_ReturnsAZeroThicknessValue()
         {
             //------------Setup for test--------------------------
@@ -35,9 +36,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(new Thickness(0, 0, 0, 0), result);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("PaddingThicknessConverter_Convert")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("PaddingThicknessConverter_Convert")]
         public void PaddingThicknessConverter_Convert_WhenInputHasData_ReturnsAValidThicknessValue()
         {
             //------------Setup for test--------------------------

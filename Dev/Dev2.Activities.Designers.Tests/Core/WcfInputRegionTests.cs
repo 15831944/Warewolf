@@ -25,27 +25,28 @@ using Dev2.Studio.Interfaces;
 using Dev2.Studio.Interfaces.DataList;
 using Dev2.Studio.ViewModels.DataList;
 using Dev2.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Core;
 
 
 namespace Dev2.Activities.Designers.Tests.Core
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WcfInputRegionTests
     {
         const string AppLocalhost = "http://localhost:3142";
 
-        [TestInitialize]
+        [SetUp]
         public void Initialize()
         {
             AppUsageStats.LocalHost = AppLocalhost;
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("WcfInputRegion_Constructor")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("WcfInputRegion_Constructor")]
         public void WcfInputRegion_Constructor_Scenerio_Result()
         {
             var id = Guid.NewGuid();
@@ -61,9 +62,9 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.AreEqual(region.Errors.Count, 0);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("WcfInputRegion_Constructor")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("WcfInputRegion_Constructor")]
         public void WcfInputRegion_Constructor_TestInput_ConstructorEmpty()
         {
             var src = new Mock<IWcfServiceModel>();
@@ -74,9 +75,9 @@ namespace Dev2.Activities.Designers.Tests.Core
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("WcfInputRegion_TestClone")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("WcfInputRegion_TestClone")]
         public void WcfInputRegion_TestClone()
         {
             var id = Guid.NewGuid();
@@ -96,9 +97,9 @@ namespace Dev2.Activities.Designers.Tests.Core
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("WcfInputRegion_Test")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("WcfInputRegion_Test")]
         public void WcfInputRegion_Test_InputAddHeader_ExpectHeightChanges()
         {
             var id = Guid.NewGuid();
@@ -112,9 +113,9 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.AreEqual(region.IsEnabled, false);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("WcfInputRegion_Test")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("WcfInputRegion_Test")]
         public void WcfInputRegion_Test_InputAddHeader_ExpectHeightChangesPastThree()
         {
             var id = Guid.NewGuid();
@@ -129,9 +130,9 @@ namespace Dev2.Activities.Designers.Tests.Core
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("WcfInputRegion_RestoreFromPrevious")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("WcfInputRegion_RestoreFromPrevious")]
         public void WcfInputRegion_RestoreFromPrevious_Restore_ExpectValuesChanged()
         {
             //------------Setup for test--------------------------
@@ -153,9 +154,9 @@ namespace Dev2.Activities.Designers.Tests.Core
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("WcfInputRegion_SourceChanged")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("WcfInputRegion_SourceChanged")]
         public void WcfInputRegion_SourceChanged_UpdateValues()
         {
             //------------Setup for test--------------------------
@@ -173,8 +174,8 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.AreEqual(region.Inputs.Count, 0);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UpdateOnActionSelection_GivenHasInputs_ShouldWriteToActiveDatalist()
         {
             //---------------Set up test pack-------------------
@@ -215,8 +216,8 @@ namespace Dev2.Activities.Designers.Tests.Core
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UpdateOnActionSelection_GivenHasInputs_ShouldWriteToActiveDatalistAndPopulatesInputValues()
         {
             //---------------Set up test pack-------------------

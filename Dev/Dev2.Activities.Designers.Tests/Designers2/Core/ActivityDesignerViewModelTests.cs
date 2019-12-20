@@ -31,27 +31,28 @@ using Dev2.Studio.Interfaces;
 using Dev2.Studio.ViewModels.Workflow;
 using Dev2.Threading;
 using Dev2.Utilities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Moq.Protected;
 
 
 namespace Dev2.Activities.Designers.Tests.Designers2.Core
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ActivityDesignerViewModelTests
     {
-        [TestInitialize]
+        [SetUp]
         public void Init()
         {
             var serverRepo = new Mock<IServerRepository>();
             CustomContainer.Register(serverRepo.Object);
         }
 
-        [TestMethod]
-        [TestCategory("ActivityDesignerViewModel_UnitTest")]
+        [Test]
+        [Category("ActivityDesignerViewModel_UnitTest")]
         [Description("Base activity view model can initialize")]
-        [Owner("Ashley Lewis")]
+        [Author("Ashley Lewis")]
         public void ActivityDesignerViewModel_Constructor_EmptyModelItem_ViewModelConstructed()
         {
             //init
@@ -61,12 +62,12 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             var vm = new TestActivityDesignerViewModel(mockModel.Object);
 
             //assert
-            Assert.IsInstanceOfType(vm, typeof(ActivityDesignerViewModel), "Activity view model base cannot initialize");
+            Assert.IsInstanceOf(vm.GetType(), typeof(ActivityDesignerViewModel), "Activity view model base cannot initialize");
         }
 
-        [TestMethod]
-        [TestCategory("ActivityDesignerViewModel_ShowHelp")]
-        [Owner("Tshepo Ntlhokoa")]
+        [Test]
+        [Category("ActivityDesignerViewModel_ShowHelp")]
+        [Author("Tshepo Ntlhokoa")]
         public void ActivityDesignerViewModel_ShowHelp_SetToTrue_SetInitialFocusIsCalled()
         {
             var mockModel = new Mock<ModelItem>();
@@ -87,9 +88,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
          * REMOVED ADD HELP TOGGLE TEST. THE HELP TOGGLE ON THE DESIGNERS HAVE BEEN REMOVED
         */
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityDesignerViewModel_Collapse")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityDesignerViewModel_Collapse")]
         public void ActivityDesignerViewModel_Collapse_SmallViewActive()
         {
             //------------Setup for test--------------------------
@@ -103,9 +104,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.IsTrue(viewModel.IsSmallViewActive);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("ActivityDesignerViewModel_Collapse")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("ActivityDesignerViewModel_Collapse")]
         public void ActivityDesignerViewModel_Collapse_HelpButtonGetsRemovedOnCollapse()
         {
             //------------Setup for test--------------------------
@@ -134,9 +135,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.AreEqual(1, viewModel.TitleBarToggles.Count);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityDesignerViewModel_Restore")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityDesignerViewModel_Restore")]
         public void ActivityDesignerViewModel_RestoreFromPreviouslyViewedLargeView_LargeViewActive()
         {
             //------------Setup for test--------------------------
@@ -150,9 +151,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.IsFalse(viewModel.ShowLarge);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityDesignerViewModel_Expand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityDesignerViewModel_Expand")]
         public void ActivityDesignerViewModel_Expand_LargeViewActive()
         {
             //------------Setup for test--------------------------
@@ -166,9 +167,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.IsTrue(viewModel.ShowLarge);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityDesignerViewModel_ThumbVisibility")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityDesignerViewModel_ThumbVisibility")]
         public void ActivityDesignerViewModel_ThumbVisibility_IsSelectedAndSmallViewNotActive_Visible()
         {
             //------------Setup for test--------------------------
@@ -181,9 +182,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.AreEqual(Visibility.Visible, viewModel.ThumbVisibility);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityDesignerViewModel_ThumbVisibility")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityDesignerViewModel_ThumbVisibility")]
         public void ActivityDesignerViewModel_ThumbVisibility_IsSelectedAndSmallViewActive_Collapsed()
         {
             //------------Setup for test--------------------------
@@ -197,9 +198,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.AreEqual(Visibility.Collapsed, viewModel.ThumbVisibility);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityDesignerViewModel_ConnectorVisibility")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityDesignerViewModel_ConnectorVisibility")]
         public void ActivityDesignerViewModel_ConnectorVisibility_IsSelectedAndSmallViewNotActive_Collapsed()
         {
             //------------Setup for test--------------------------
@@ -212,9 +213,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.AreEqual(Visibility.Collapsed, viewModel.ConnectorVisibility);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityDesignerViewModel_ConnectorVisibility")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityDesignerViewModel_ConnectorVisibility")]
         public void ActivityDesignerViewModel_ConnectorVisibility_IsSelectedAndSmallViewActive_Visible()
         {
             //------------Setup for test--------------------------
@@ -228,9 +229,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.AreEqual(Visibility.Visible, viewModel.ConnectorVisibility);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityDesignerViewModel_TitleBarTogglesVisibility")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityDesignerViewModel_TitleBarTogglesVisibility")]
         public void ActivityDesignerViewModel_TitleBarTogglesVisibility_IsSelected_Visible()
         {
             //------------Setup for test--------------------------
@@ -243,9 +244,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.AreEqual(Visibility.Visible, viewModel.TitleBarTogglesVisibility);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityDesignerViewModel_TitleBarTogglesVisibility")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityDesignerViewModel_TitleBarTogglesVisibility")]
         public void ActivityDesignerViewModel_TitleBarTogglesVisibility_NotIsSelected_Collapsed()
         {
             //------------Setup for test--------------------------
@@ -258,9 +259,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.AreEqual(Visibility.Collapsed, viewModel.TitleBarTogglesVisibility);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityDesignerViewModel_ZIndexPosition")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityDesignerViewModel_ZIndexPosition")]
         public void ActivityDesignerViewModel_ZIndexPosition_IsSelected_Front()
         {
             //------------Setup for test--------------------------
@@ -273,9 +274,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.AreEqual(ZIndexPosition.Front, viewModel.ZIndexPosition);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityDesignerViewModel_ZIndexPosition")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityDesignerViewModel_ZIndexPosition")]
         public void ActivityDesignerViewModel_ZIndexPosition_NotIsSelected_Back()
         {
             //------------Setup for test--------------------------
@@ -288,9 +289,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.AreEqual(ZIndexPosition.Back, viewModel.ZIndexPosition);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityDesignerViewModel_ThumbVisibility")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityDesignerViewModel_ThumbVisibility")]
         public void ActivityDesignerViewModel_ThumbVisibility_IsMouseOverAndSmallViewNotActive_Visible()
         {
             //------------Setup for test--------------------------
@@ -303,9 +304,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.AreEqual(Visibility.Visible, viewModel.ThumbVisibility);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityDesignerViewModel_ThumbVisibility")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityDesignerViewModel_ThumbVisibility")]
         public void ActivityDesignerViewModel_ThumbVisibility_IsMouseOverAndSmallViewActive_Collapsed()
         {
             //------------Setup for test--------------------------
@@ -319,9 +320,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.AreEqual(Visibility.Collapsed, viewModel.ThumbVisibility);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityDesignerViewModel_ConnectorVisibility")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityDesignerViewModel_ConnectorVisibility")]
         public void ActivityDesignerViewModel_ConnectorVisibility_IsMouseOverAndSmallViewNotActive_Collapsed()
         {
             //------------Setup for test--------------------------
@@ -334,9 +335,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.AreEqual(Visibility.Collapsed, viewModel.ConnectorVisibility);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityDesignerViewModel_ConnectorVisibility")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityDesignerViewModel_ConnectorVisibility")]
         public void ActivityDesignerViewModel_ConnectorVisibility_IsMouseOverAndSmallViewActive_Visible()
         {
             //------------Setup for test--------------------------
@@ -350,9 +351,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.AreEqual(Visibility.Visible, viewModel.ConnectorVisibility);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityDesignerViewModel_TitleBarTogglesVisibility")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityDesignerViewModel_TitleBarTogglesVisibility")]
         public void ActivityDesignerViewModel_TitleBarTogglesVisibility_IsMouseOver_Visible()
         {
             //------------Setup for test--------------------------
@@ -365,9 +366,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.AreEqual(Visibility.Visible, viewModel.TitleBarTogglesVisibility);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityDesignerViewModel_TitleBarTogglesVisibility")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityDesignerViewModel_TitleBarTogglesVisibility")]
         public void ActivityDesignerViewModel_TitleBarTogglesVisibility_NotIsMouseOver_Collapsed()
         {
             //------------Setup for test--------------------------
@@ -380,9 +381,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.AreEqual(Visibility.Collapsed, viewModel.TitleBarTogglesVisibility);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityDesignerViewModel_ZIndexPosition")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityDesignerViewModel_ZIndexPosition")]
         public void ActivityDesignerViewModel_ZIndexPosition_IsMouseOver_Front()
         {
             //------------Setup for test--------------------------
@@ -395,9 +396,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.AreEqual(ZIndexPosition.Front, viewModel.ZIndexPosition);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityDesignerViewModel_ZIndexPosition")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityDesignerViewModel_ZIndexPosition")]
         public void ActivityDesignerViewModel_ZIndexPosition_NotIsMouseOver_Back()
         {
             //------------Setup for test--------------------------

@@ -9,31 +9,23 @@
 */
 
 
-using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json;
-using Warewolf.Common;
-using Warewolf.Configuration;
 using Warewolf.VirtualFileSystem;
-using Warewolf.Web;
 
 namespace Warewolf.Configuration
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ConfigSettingsBaseTests
     {
         private const int DefaultSomeInt = 123;
         private const string DefaultSomeString = "some string";
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ConfigSettingsBaseForTesting))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ConfigSettingsBaseForTesting))]
         public void ConfigSettingsBase_SaveIfNotExists_ShouldCreateFileWithDefaults()
         {
             var path = "somepath.json";
@@ -51,9 +43,9 @@ namespace Warewolf.Configuration
             mockFile.Verify(o => o.WriteAllText(path, expectedData), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ConfigSettingsBaseForTesting))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ConfigSettingsBaseForTesting))]
         public void ConfigSettingsBase_Load_GivenNoConfigFile_ExpectDefaults()
         {
             var path = "somepath.json";
@@ -70,9 +62,9 @@ namespace Warewolf.Configuration
             Assert.AreEqual(DefaultSomeString, config.SomeString);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ConfigSettingsBaseForTesting))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ConfigSettingsBaseForTesting))]
         [ExpectedException(typeof(JsonReaderException))]
         public void ConfigSettingsBase_Load_GivenInvalidConfigFile_ExpectException()
         {
@@ -92,9 +84,9 @@ namespace Warewolf.Configuration
             Assert.AreEqual(DefaultSomeString, config.SomeString);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ConfigSettingsBaseForTesting))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ConfigSettingsBaseForTesting))]
         public void ConfigSettingsBase_PropertyChanges_ShouldCreateFileWithChanges()
         {
             var path = "somepath.json";

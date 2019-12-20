@@ -10,19 +10,20 @@
 
 using System;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Framework.Converters.Graph.String.Json;
 
 
 namespace Dev2.Tests.Runtime.ServiceModel.Data
 {
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class RecordsetListHelperTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("RecordsetListHelper_SplitRecordsetAndFieldNames")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("RecordsetListHelper_SplitRecordsetAndFieldNames")]
         public void RecordsetListHelper_SplitRecordsetAndFieldNames_WhenPathContainsEndingRecordset_SingleLevel_ShouldConvertToField()
         {
             //------------Setup for test--------------------------
@@ -35,9 +36,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual("AnotherRecset", splitRecordsetAndFieldNames.Item2);
         }  
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("RecordsetListHelper_SplitRecordsetAndFieldNames")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("RecordsetListHelper_SplitRecordsetAndFieldNames")]
         public void RecordsetListHelper_SplitRecordsetAndFieldNames_WhenPathContainsEndingField_SingleLevel_ShouldConvertToField()
         {
             //------------Setup for test--------------------------
@@ -50,9 +51,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual("AnotherRecset", splitRecordsetAndFieldNames.Item2);
         }        
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("RecordsetListHelper_SplitRecordsetAndFieldNames")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("RecordsetListHelper_SplitRecordsetAndFieldNames")]
         public void RecordsetListHelper_SplitRecordsetAndFieldNames_WhenPathContainsEndingRecordset_MultiLevel_ShouldConvertToField()
         {
             //------------Setup for test--------------------------
@@ -65,9 +66,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual("AndAnotherRecset", splitRecordsetAndFieldNames.Item2);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("RecordsetListHelper_SplitRecordsetAndFieldNames")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("RecordsetListHelper_SplitRecordsetAndFieldNames")]
         public void RecordsetListHelper_SplitRecordsetAndFieldNames_WhenPathContainsEndingField_MultiLevel_ShouldConvertToField()
         {
             //------------Setup for test--------------------------
@@ -80,9 +81,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual("AndAnotherRecset", splitRecordsetAndFieldNames.Item2);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("RecordsetListHelper_SplitRecordsetAndFieldNames")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("RecordsetListHelper_SplitRecordsetAndFieldNames")]
         public void RecordsetListHelper_SplitRecordsetAndFieldNames_WhenPathContainsScalar_SingleLevel_ShouldConvertToField()
         {
             //------------Setup for test--------------------------

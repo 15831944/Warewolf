@@ -42,7 +42,7 @@ using Dev2.Studio.ViewModels.Workflow;
 using Dev2.Threading;
 using Dev2.Utilities;
 using Dev2.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Moq.Protected;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
@@ -56,15 +56,16 @@ using Dev2.Instrumentation;
 
 namespace Dev2.Core.Tests.Workflows
 {
-    [TestClass]
-    [TestCategory("Studio Workflows Core")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Studio Workflows Core")]
     public partial class WorkflowDesignerUnitTest
     {
         static bool _isDesignerInited;
 
         #region Remove Unused Tests
 
-        [TestMethod]
+        [Test]
         public void RemoveAllUnusedDataListObjectsWithItemsNotUsedExpectedItemsRemoved()
         {
             var eventAggregator = new EventAggregator();
@@ -93,7 +94,7 @@ namespace Dev2.Core.Tests.Workflows
 
         }
 
-        [TestMethod]
+        [Test]
         public void SetModelToDirtyAndExpectThatItemsWillBeAdded()
         {
             var explorerTooltips = new Mock<IExplorerTooltips>();
@@ -128,7 +129,7 @@ namespace Dev2.Core.Tests.Workflows
             Assert.AreEqual(6, dataListViewModel.ScalarCollection.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void SetModelToCleanAndExpectThatNoItemsWillBeAdded()
         {
             var eventAggregator = new EventAggregator();
@@ -160,7 +161,7 @@ namespace Dev2.Core.Tests.Workflows
             Assert.AreEqual(6, dataListViewModel.ScalarCollection.Count);
 
         }
-        [TestMethod]
+        [Test]
         public void MissingPartsMessageOnlySentWhenThereWorkToDoExpect1Call()
         {
             // Set up event agg
@@ -189,7 +190,7 @@ namespace Dev2.Core.Tests.Workflows
 
         #region AddMode Missing DataList Items        
 
-        [TestMethod]
+        [Test]
         public void GetDecisionElementsWithMissmatchedBracketsInADecisionFieldExpectedCorrectVariableGottenFromDecision()
         {
             //Execute
@@ -206,7 +207,7 @@ namespace Dev2.Core.Tests.Workflows
 
         }
 
-        [TestMethod]
+        [Test]
         public void GetDecisionElementsWhenItemAlreadyInDataListShouldStillReturnInList()
         {
             //Execute
@@ -232,7 +233,7 @@ namespace Dev2.Core.Tests.Workflows
             Assert.AreEqual("[[RecSet().f1]]", actual[0], "Find missing found an invalid variable in a decision");
         }
 
-        [TestMethod]
+        [Test]
         public void GetDecisionElementsWhenItemAlreadyInDataListShouldNotReturnRecsetIfScalar()
         {
             //Execute
@@ -265,7 +266,7 @@ namespace Dev2.Core.Tests.Workflows
             expected = new StringBuilder(expected).Replace(Environment.NewLine, "\n").Replace("\r", "").ToString();
             actual = new StringBuilder(actual).Replace(Environment.NewLine, "\n").Replace("\r", "").ToString();
         }
-        [TestMethod]
+        [Test]
         public void GetDecisionElementsWhenItemAlreadyInDataListShouldNotReturnRecsetIfScalarNonExistent()
         {
             //Execute
@@ -296,7 +297,7 @@ namespace Dev2.Core.Tests.Workflows
 
         #region Set Unused DataList Items
 
-        [TestMethod]
+        [Test]
         public void FindUnusedDataListItemsWithUnusedDataListItemsExpectedItemsToBeSetToNotUsed()
         {
             var eventAggregator = new EventAggregator();
@@ -1057,9 +1058,9 @@ namespace Dev2.Core.Tests.Workflows
 
         #region UpdateMode Resource Message Handler
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WorkflowDesignerViewModel_BuildDataPart")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("WorkflowDesignerViewModel_BuildDataPart")]
         public void WorkflowDesignerViewModel_BuildDataPart_ValidItem_ShouldAddItemToDataList()
         {
             //------------Setup for test--------------------------
@@ -1081,9 +1082,9 @@ namespace Dev2.Core.Tests.Workflows
             Assert.AreEqual(10, dataListItemModels.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WorkflowDesignerViewModel_BuildDataPart")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("WorkflowDesignerViewModel_BuildDataPart")]
         public void WorkflowDesignerViewModel_BuildDataPart_InValidItems_ShouldNotAddItemToDataList()
         {
             //------------Setup for test--------------------------
@@ -1123,9 +1124,9 @@ namespace Dev2.Core.Tests.Workflows
 
         #region InitializeDesigner
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("WorkflowDesigner_Initialize")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("WorkflowDesigner_Initialize")]
         public void WorkflowDesigner_Initialize_WhenWorkflowXamlNull_ExpectWorkflowXamlFetch()
         {
 
@@ -1161,9 +1162,9 @@ namespace Dev2.Core.Tests.Workflows
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("WorkflowDesigner_Initialize")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("WorkflowDesigner_Initialize")]
         public void WorkflowDesigner_Initialize_WhenWorkflowXamlNullAndFetchFails_ExpectNewWorkflow()
         {
             var serverRepo = new Mock<IServerRepository>();
@@ -1240,7 +1241,7 @@ namespace Dev2.Core.Tests.Workflows
             Assert.IsTrue(ok2);
         }
         
-        [TestMethod]
+        [Test]
         public void WorkflowDesignerViewModelInitializeDesignerExpectedInitializesFramework45Properties()
         {
             var repo = new Mock<IResourceRepository>();
@@ -1284,7 +1285,7 @@ namespace Dev2.Core.Tests.Workflows
         }
 
         // BUG 9304 - 2013.05.08 - TWR - .NET 4.5 upgrade
-        [TestMethod]
+        [Test]
         public void WorkflowDesignerViewModelInitializeDesignerExpectedInvokesWorkflowHelper()
         {
             var repo = new Mock<IResourceRepository>();
@@ -1319,7 +1320,7 @@ namespace Dev2.Core.Tests.Workflows
 
         #region CTOR
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void WorkflowDesignerViewModel_UnitTest_ConstructorWithNullWorkflowHelper_ThrowsArgumentNullException()
         {
@@ -1335,7 +1336,7 @@ namespace Dev2.Core.Tests.Workflows
 
         #region ServiceDefinition
 
-        [TestMethod]
+        [Test]
         public void WorkflowDesignerViewModelServiceDefinitionExpectedInvokesWorkflowHelperSerializeWorkflow()
         {
             var serverRepo = new Mock<IServerRepository>();
@@ -1367,7 +1368,7 @@ namespace Dev2.Core.Tests.Workflows
 
         #region CheckIfRemoteWorkflowTests
 
-        [TestMethod]
+        [Test]
         public void CheckIfRemoteWorkflowAndSetPropertiesExpectedServiceUriToBeNull()
         {
             const string ServiceUri = "http://localhost:1234/";
@@ -1426,7 +1427,7 @@ namespace Dev2.Core.Tests.Workflows
 
         }
 
-        [TestMethod]
+        [Test]
         public void CheckIfRemoteWorkflowAndSetPropertiesExpectedServiceUriToBeLocalHost()
         {
             const string ServiceUri = "http://localhost:1234/";
@@ -1487,7 +1488,7 @@ namespace Dev2.Core.Tests.Workflows
             Assert.AreEqual(resourceEnvironmentID, activity.ServiceServer);
         }
 
-        [TestMethod]
+        [Test]
         public void CheckIfRemoteWorkflowAndSetPropertiesExpectedResourceTypeToBeUnknown()
         {
             var explorerTooltips = new Mock<IExplorerTooltips>();
@@ -1515,19 +1516,19 @@ namespace Dev2.Core.Tests.Workflows
 
         #region ModelServiceModelChanged
 
-        [TestMethod]
+        [Test]
         public void WorkflowDesignerViewModelModelServiceModelChangedWithNextReferencingSelfExpectedClearsNext()
         {
             TestModelServiceModelChangedSelfReference(true);
         }
 
-        [TestMethod]
+        [Test]
         public void WorkflowDesignerViewModelModelServiceModelChangedWithNextReferencingOtherExpectedDoesNotClearNext()
         {
             TestModelServiceModelChangedSelfReference(false);
         }
 
-        [TestMethod]
+        [Test]
         public void WorkflowDesignerViewModelTestStartNodeNotDoubleConnect()
         {
             #region Setup view model constructor parameters
@@ -1587,9 +1588,9 @@ namespace Dev2.Core.Tests.Workflows
             prop.Verify(p => p.SetValue(It.IsAny<DsfActivity>()), Times.Never());
         }
 
-        [TestMethod]
-        [TestCategory("WorkflowDesignerViewModel_DragOnToForEach")]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Category("WorkflowDesignerViewModel_DragOnToForEach")]
+        [Author("Hagashen Naidu")]
 
         public void WorkflowDesignerViewModel_PerformAddItems_ForEachActivity_DragOnRemoteWorkflow()
 
@@ -1673,9 +1674,9 @@ namespace Dev2.Core.Tests.Workflows
             Assert.AreEqual(remoteServerID, setValue.ServiceServer);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WorkflowDesignerViewModel_HandleSaveUnsavedWorkflow")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("WorkflowDesignerViewModel_HandleSaveUnsavedWorkflow")]
         public void WorkflowDesignerViewModel_HandleSaveUnsavedWorkflow_MessageWithArgs_Saves()
         {
             //------------Setup for test--------------------------
@@ -1764,9 +1765,9 @@ namespace Dev2.Core.Tests.Workflows
 
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WorkflowDesignerViewModel_HandleSaveUnsavedWorkflow")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("WorkflowDesignerViewModel_HandleSaveUnsavedWorkflow")]
         public void WorkflowDesignerViewModel_HandleSaveUnsavedWorkflow_MessageWithArgs_OpenTab_Saves()
         {
             //------------Setup for test--------------------------
@@ -1850,10 +1851,10 @@ namespace Dev2.Core.Tests.Workflows
 
         }
 
-        [TestMethod]
-        [TestCategory("WorkflowDesignerViewModel_PerformAddItems")]
+        [Test]
+        [Category("WorkflowDesignerViewModel_PerformAddItems")]
         [Description("WorkflowDesigner assigns new unique id on copy paste of an activity/tool")]
-        [Owner("Ashley Lewis")]
+        [Author("Ashley Lewis")]
         public void WorkflowDesignerViewModel_PerformAddItems_ModelItemWithUniqueID_NewIDAssigned()
         {
             var notExpected = Guid.NewGuid().ToString();
@@ -1913,10 +1914,10 @@ namespace Dev2.Core.Tests.Workflows
             Assert.AreNotEqual(notExpected, dev2Activity.UniqueID, "Activity ID not changed");
         }
 
-        [TestMethod]
-        [TestCategory("WorkflowDesignerViewModel_PerformAddItems")]
+        [Test]
+        [Category("WorkflowDesignerViewModel_PerformAddItems")]
         [Description("WorkflowDesigner assigns new unique id on copy paste of an activity/tool")]
-        [Owner("Ashley Lewis")]
+        [Author("Ashley Lewis")]
         public void WorkflowDesignerViewModel_PerformAddItems_ModelItemWithUniqueID_NotPaste_ShouldKeepID()
         {
             var expectedId = Guid.NewGuid().ToString();
@@ -1977,10 +1978,10 @@ namespace Dev2.Core.Tests.Workflows
             Assert.AreEqual(expectedId, dev2Activity.UniqueID, "Activity ID not changed");
         }
 
-        [TestMethod]
-        [TestCategory("WorkflowDesignerViewModel_PerformAddItems")]
+        [Test]
+        [Category("WorkflowDesignerViewModel_PerformAddItems")]
         [Description("WorkflowDesigner assigns new unique id on copy paste of an activity/tool")]
-        [Owner("Ashley Lewis")]
+        [Author("Ashley Lewis")]
         public void WorkflowDesignerViewModel_PerformAddItems_ModelItemWithUniqueID_Paste_ShouldNotKeepID()
         {
             var expectedId = Guid.NewGuid().ToString();
@@ -2041,9 +2042,9 @@ namespace Dev2.Core.Tests.Workflows
             Assert.AreNotEqual(expectedId, dev2Activity.UniqueID, "Activity ID not changed");
         }
 
-        [TestMethod]
-        [TestCategory("WorkflowDesignerViewModel_PerformAddItems")]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category("WorkflowDesignerViewModel_PerformAddItems")]
+        [Author("Pieter Terblanche")]
         public void WorkflowDesignerViewModel_PerformAddItems_ModelItemWithDsfDecision_DecisionHandled()
 
         {
@@ -2110,9 +2111,9 @@ namespace Dev2.Core.Tests.Workflows
             Assert.IsNotNull(actual.Content);
         }
 
-        [TestMethod]
-        [TestCategory("WorkflowDesignerViewModel_PerformAddItems")]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category("WorkflowDesignerViewModel_PerformAddItems")]
+        [Author("Pieter Terblanche")]
         public void WorkflowDesignerViewModel_PerformAddItems_ModelItemWithDsfSwitch_SwitchHandled()
 
         {
@@ -2177,9 +2178,9 @@ namespace Dev2.Core.Tests.Workflows
             Assert.IsNotNull(actual.Content);
         }
 
-        [TestMethod]
-        [TestCategory("WorkflowDesignerViewModel_PerformAddItems")]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category("WorkflowDesignerViewModel_PerformAddItems")]
+        [Author("Pieter Terblanche")]
         public void WorkflowDesignerViewModel_PerformAddItems_ModelItemWithFlowStepWithServiceName_FlowStepHandled()
         {
             CustomContainer.DeRegister<IApplicationTracker>();
@@ -2247,9 +2248,9 @@ namespace Dev2.Core.Tests.Workflows
             Assert.IsNotNull(actual);
         }
 
-        [TestMethod]
-        [TestCategory("WorkflowDesignerViewModel_PerformAddItems")]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category("WorkflowDesignerViewModel_PerformAddItems")]
+        [Author("Pieter Terblanche")]
         public void WorkflowDesignerViewModel_PerformAddItems_ModelItemWithFlowStepWithoutServiceName_FlowStepHandled()
 
         {
@@ -2322,9 +2323,9 @@ namespace Dev2.Core.Tests.Workflows
             Assert.IsNotNull(actual);
         }
 
-        [TestMethod]
-        [TestCategory("WorkflowDesignerViewModel_PerformAddItems")]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category("WorkflowDesignerViewModel_PerformAddItems")]
+        [Author("Pieter Terblanche")]
         public void WorkflowDesignerViewModel_PerformAddItems_ApplyForDrop_DropNotHandled()
 
         {
@@ -2461,7 +2462,7 @@ namespace Dev2.Core.Tests.Workflows
             wfd.Dispose();
         }
 
-        [TestMethod]
+        [Test]
         [Description("When the model changes we mark the resource as unsaved")]
         [Timeout(60000)]
         public void WorkflowDesignerViewModel_UnitTest_ViewModelModelChanged_ExpectMarksResourceIsWorkflowSavedFalse()
@@ -2529,8 +2530,8 @@ namespace Dev2.Core.Tests.Workflows
             Assert.IsFalse(resourceModel.Object.IsWorkflowSaved);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
+        [Test]
+        [Author("Travis Frisinger")]
         [Timeout(60000)]
         public void WorkflowDesignerViewModel_UnitTest_ViewModelModelChanged_ExpectLoadFromServerDoesNotReflectEdit()
         {
@@ -2603,8 +2604,8 @@ namespace Dev2.Core.Tests.Workflows
             Assert.AreEqual(StringResources.xmlServiceDefinition, resourceModel.Object.WorkflowXaml.ToString());
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
+        [Test]
+        [Author("Travis Frisinger")]
         [Timeout(60000)]
         public void WorkflowDesignerViewModel_UnitTest_ViewModelModelChanged_ExpectFirstFocusDoesNotReflectEdit()
         {
@@ -2674,9 +2675,9 @@ namespace Dev2.Core.Tests.Workflows
             Assert.IsTrue(resourceModel.Object.ResourceName.IndexOf("*", StringComparison.Ordinal) < 0);
         }
 
-        [TestMethod]
+        [Test]
         [Timeout(60000)]
-        [Owner("Travis Frisinger")]
+        [Author("Travis Frisinger")]
         public void WorkflowDesignerViewModel_UnitTest_ViewModelModelChanged_DataListNotNull_ExpectFirstFocusDoesNotReflectEdit()
         {
             #region Setup viewModel
@@ -2745,9 +2746,9 @@ namespace Dev2.Core.Tests.Workflows
             Assert.IsFalse(resourceModel.Object.IsWorkflowSaved);
         }
 
-        [TestMethod]
+        [Test]
         [Timeout(60000)]
-        [Owner("Travis Frisinger")]
+        [Author("Travis Frisinger")]
         public void WorkflowDesignerViewModel_UnitTest_ViewModelModelChanged_DataListDifferent_ExpectFirstFocusDoesNotReflectEdit()
         {
             #region Setup viewModel
@@ -2817,7 +2818,7 @@ namespace Dev2.Core.Tests.Workflows
             Assert.IsFalse(resourceModel.Object.IsWorkflowSaved);
         }
 
-        [TestMethod]
+        [Test]
         [Description("When the xaml changes after a redo we mark the resource as unsaved")]
         public void WorkflowDesignerViewModel_UnitTest_RedoWithXAMLDifferent_ExpectMarksResourceIsWorkflowSavedFalse()
         {

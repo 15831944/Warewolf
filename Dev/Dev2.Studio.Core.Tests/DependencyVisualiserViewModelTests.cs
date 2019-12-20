@@ -10,17 +10,18 @@ using Dev2.Communication;
 using Dev2.Studio.Controller;
 using Dev2.Studio.Interfaces;
 using Dev2.Studio.ViewModels.DependencyVisualization;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Studio.ViewModels;
 
 namespace Dev2.Core.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DependencyVisualiserViewModelTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Constructor_GivenAggregator_ShouldInitializePopupController()
         {
             //---------------Set up test pack-------------------
@@ -32,14 +33,14 @@ namespace Dev2.Core.Tests
             var fieldInfo = typeof(DependencyVisualiserViewModel).GetField("_popupController", BindingFlags.Instance | BindingFlags.NonPublic);
             //---------------Test Result -----------------------
             Assert.IsNotNull(fieldInfo);
-            Assert.IsInstanceOfType(fieldInfo.GetValue(dependencyVisualiserViewModel), typeof(PopupController));
+            Assert.IsInstanceOf(fieldInfo.GetValue(dependencyVisualiserViewModel).GetType(), typeof(PopupController));
             Assert.IsFalse(dependencyVisualiserViewModel.HasVariables);
             Assert.IsFalse(dependencyVisualiserViewModel.HasDebugOutput);
             Assert.IsFalse(dependencyVisualiserViewModel.TextVisibility);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void AvailableWidth_GivenIsSet_ShouldNotifyOfPropertyChange()
         {
             //---------------Set up test pack-------------------
@@ -63,8 +64,8 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void AvailableHeight_GivenIsSet_ShouldNotifyOfPropertyChange()
         {
             //---------------Set up test pack-------------------
@@ -88,8 +89,8 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetDependsOnMe_GivenIsSet_ShouldNotifyOfPropertyChange()
         {
             //---------------Set up test pack-------------------
@@ -113,8 +114,8 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void AllNodes_GivenIsSet_ShouldNotifyOfPropertyChange()
         {
             //---------------Set up test pack-------------------
@@ -139,8 +140,8 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetDependsOnOther_GivenIsSet_ShouldNotifyOfPropertyChange()
         {
             //---------------Set up test pack-------------------
@@ -170,8 +171,8 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(wasGetDependsOnMeCalled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ResourceModel_GivenIsSet_ShouldNotifyOfPropertyChange()
         {
             //---------------Set up test pack-------------------
@@ -215,8 +216,8 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(wasDisplayNameCalled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void NestingLevel_GivenIsSet_ShouldNotifyOfPropertyChange()
         {
             //---------------Set up test pack-------------------
@@ -255,8 +256,8 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(wasNestingLevelCalled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DisplayName_GivenDependsOnMe_ShouldBuildDisplayNameCorrectly()
         {
             //---------------Set up test pack-------------------
@@ -290,8 +291,8 @@ namespace Dev2.Core.Tests
             //---------------Test Result -----------------------
             Assert.AreEqual("Dependency - a", dependencyVisualiserViewModel.DisplayName);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DisplayName_GivenNotDependsOnMe_ShouldBuildDisplayNameCorrectly()
         {
             //---------------Set up test pack-------------------
@@ -326,8 +327,8 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("a*Dependencies", dependencyVisualiserViewModel.DisplayName);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void FavoritesLabel_GivenIsSet_ShouldNotifyOfPropertyChange()
         {
             //---------------Set up test pack-------------------
@@ -361,8 +362,8 @@ namespace Dev2.Core.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetItems_GivenEmptyNodes_ShouldZeroExploreNodes()
         {
             //---------------Set up test pack-------------------
@@ -395,8 +396,8 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(0, itemNodeViewModels.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetItems_GivenNodesAndChilrenWithDependencies_ShouldReturnNodesAndChildDependencies()
         {
             //---------------Set up test pack-------------------

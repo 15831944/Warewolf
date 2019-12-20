@@ -1,15 +1,16 @@
 ﻿using Dev2.Common.State;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Linq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.DateTime
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfDateTimeActivityComparerTest
     {
-        [TestInitialize]
+        [SetUp]
         public void PreConditions()
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-ZA");
@@ -19,8 +20,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DateTime
             Assert.AreEqual("en-ZA", System.Threading.Thread.CurrentThread.CurrentUICulture.Name);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentUniqueIds_ActivityTools_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -35,8 +36,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DateTime
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_EmptyActivityTools_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -51,8 +52,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DateTime
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DisplayName_Same_DisplayName_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -67,8 +68,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DateTime
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DisplayName_Different_DisplayName_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -83,8 +84,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DateTime
             Assert.IsFalse(@equals);
         }
         
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_Result_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -99,8 +100,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DateTime
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_Result_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -114,8 +115,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DateTime
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_OutputFormat_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -130,8 +131,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DateTime
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_OutputFormat_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -146,8 +147,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DateTime
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_InputFormat_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -162,8 +163,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DateTime
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_InputFormat_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -178,8 +179,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DateTime
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_TimeModifierAmount_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -194,8 +195,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DateTime
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_TimeModifierAmount_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -209,8 +210,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DateTime
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_TimeModifierType_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -225,8 +226,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DateTime
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_TimeModifierType_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -240,8 +241,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DateTime
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_DateTime_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -256,8 +257,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DateTime
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_DateTime_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -271,8 +272,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DateTime
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_TimeModifierAmountDisplay_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -287,8 +288,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DateTime
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_TimeModifierAmountDisplay_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -303,9 +304,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DateTime
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DsfDateTimeActivity_GetState")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DsfDateTimeActivity_GetState")]
         public void DsfDateTimeActivity_GetState_ReturnsStateVariable()
         {
             //------------Setup for test--------------------------

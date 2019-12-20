@@ -1,4 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System;
 using System.Collections.ObjectModel;
 using Dev2.Common.Interfaces;
@@ -11,7 +11,8 @@ using Dev2.ConnectionHelpers;
 
 namespace Warewolf.Studio.ViewModels.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DeployDestinationViewModelTests
     {
         #region Fields
@@ -28,7 +29,7 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         #region Test initialize
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             var explorerTooltips = new Mock<IExplorerTooltips>();
@@ -75,7 +76,8 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         #region Test properties
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestMinSupportedVersion()
         {
             //arrange
@@ -93,7 +95,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual(Version.Parse(version), actual);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestServerVersion()
         {
             //arrange
@@ -111,7 +114,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual(Version.Parse(version), actual);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestIsLoading()
         {
             //arrange
@@ -130,8 +134,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(isIsLoadingChanged);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void DeployTests_GivenIsSet_ShouldFireOnPropertyChanged()
         {
             //---------------Set up test pack-------------------

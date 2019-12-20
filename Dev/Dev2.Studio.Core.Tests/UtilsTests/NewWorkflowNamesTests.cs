@@ -9,14 +9,15 @@
 */
 
 using Dev2.Studio.Core.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests.UtilsTests
 {
     /// <summary>
     /// Summary description for NewWorkflowNamesTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class NewWorkflowNamesTests
     {
         /// <summary>
@@ -30,7 +31,7 @@ namespace Dev2.Core.Tests.UtilsTests
         // You can use the following additional attributes as you write your tests:
         //
         // Use ClassInitialize to run code before running the first test in the class
-        // [ClassInitialize()]
+        // [OneTimeSetUp]
         // public static void MyClassInitialize(TestContext testContext) { }
         //
         // Use ClassCleanup to run code after all tests in a class have run
@@ -50,7 +51,7 @@ namespace Dev2.Core.Tests.UtilsTests
 
         #region Complex Test
 
-        [TestMethod]
+        [Test]
         public void CanFunctionNormallyWithMixedAddRemoveOdd()
         {
             var workflowNames = new NewWorkflowNames();
@@ -73,7 +74,7 @@ namespace Dev2.Core.Tests.UtilsTests
             Assert.AreEqual("Unsaved 1", next);
         }
 
-        [TestMethod]
+        [Test]
         public void CanFunctionNormallyWithMixedAddRemoveEven()
         {
             var workflowNames = new NewWorkflowNames();
@@ -100,7 +101,7 @@ namespace Dev2.Core.Tests.UtilsTests
 
         #region AddMode Tests
 
-        [TestMethod]
+        [Test]
         public void NewWorkflowNamesAddNewNameToHashSetExpectedNameToBeAdded()
         {
             var workflowNames = new NewWorkflowNames();
@@ -115,7 +116,7 @@ namespace Dev2.Core.Tests.UtilsTests
 
         #region Remove Tests
 
-        [TestMethod]
+        [Test]
         public void NewWorkflowNamesRemoveExistingNameFromHashSetExpectedNameToBeRemoved()
         {
             var workflowNames = new NewWorkflowNames();
@@ -125,7 +126,7 @@ namespace Dev2.Core.Tests.UtilsTests
             Assert.IsFalse(workflowNames.Contains(name));
         }
 
-        [TestMethod]
+        [Test]
         public void NewWorkflowNamesRemoveNonExistingNameFromHashSetExpectedReturnOfFalse()
         {
             var workflowNames = new NewWorkflowNames();
@@ -138,7 +139,7 @@ namespace Dev2.Core.Tests.UtilsTests
 
         #region Contains Tests
 
-        [TestMethod]
+        [Test]
         public void NewWorkflowNamesContainsNameWhenNameExistsInHashSetExpectedReturnOfTrue()
         {
             var workflowNames = new NewWorkflowNames();
@@ -147,7 +148,7 @@ namespace Dev2.Core.Tests.UtilsTests
             Assert.IsTrue(workflowNames.Contains(name));
         }
 
-        [TestMethod]
+        [Test]
         public void NewWorkflowNamesContainsNameWhenNameDoesntExistsInHashSetExpectedReturnOfFalse()
         {
             var workflowNames = new NewWorkflowNames();
@@ -159,7 +160,7 @@ namespace Dev2.Core.Tests.UtilsTests
 
         #region GetNext Tests
 
-        [TestMethod]
+        [Test]
         public void NewWorkflowNamesGetNextNameWhenOneExistsInHashSetExpectedReturnNewWorkflow2()
         {
             var workflowNames = new NewWorkflowNames();
@@ -169,7 +170,7 @@ namespace Dev2.Core.Tests.UtilsTests
             Assert.AreEqual("Unsaved 2", workflowNames.GetNext());
         }
 
-        [TestMethod]
+        [Test]
         public void NewWorkflowNamesGetNextNameWhenManyExistInHashSetAndGapAtTeoExpectedReturnNewWorkflow2()
         {
             var workflowNames = new NewWorkflowNames();

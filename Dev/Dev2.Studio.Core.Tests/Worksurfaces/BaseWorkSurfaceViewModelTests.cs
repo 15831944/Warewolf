@@ -11,19 +11,20 @@
 using System;
 using Caliburn.Micro;
 using Dev2.Studio.ViewModels.WorkSurface;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Core.Tests
 {
-    [TestClass]
-    [TestCategory("Studio Worksurfaces Core")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Studio Worksurfaces Core")]
     public class BaseWorkSurfaceViewModelTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("BaseWorkSurfaceViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("BaseWorkSurfaceViewModel_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void BaseWorkSurfaceViewModel_Constructor_NullEventPublisher_ThrowsArgumentNullException()
         {
@@ -35,9 +36,9 @@ namespace Dev2.Core.Tests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("BaseWorkSurfaceViewModel_CanSave")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("BaseWorkSurfaceViewModel_CanSave")]
         public void BaseWorkSurfaceViewModel_CanSave_ReturnsTrue()
         {
             //------------Setup for test--------------------------

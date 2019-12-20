@@ -11,18 +11,19 @@
 using System;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.OS;
 
 namespace Dev2.Common.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ExternalProcessExecutorTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExternalProcessExecutor))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExternalProcessExecutor))]
         public void ExternalProcessExecutor_Start_ProcessStartInfo_VerifyCalls_ToBeOnce_ExpectTrue()
         {
             //---------------------Arrange-------------------------
@@ -40,9 +41,9 @@ namespace Dev2.Common.Tests
             mockProcessWrapper.Verify(o => o.Start(It.IsAny<ProcessStartInfo>()), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExternalProcessExecutor))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExternalProcessExecutor))]
         public void ExternalProcessExecutor_Start_OpenInBrowser_VerifyCalls_ToBeOnce_ExpectTrue()
         {
             //---------------------Arrange-------------------------
@@ -57,9 +58,9 @@ namespace Dev2.Common.Tests
             mockProcessWrapper.Verify(o => o.Start(uri.ToString()), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExternalProcessExecutor))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExternalProcessExecutor))]
         public void ExternalProcessExecutor_Start_Catch_TimeoutException_VerifyAll_ExpectTrue()
         {
             //---------------------Arrange-------------------------
@@ -76,9 +77,9 @@ namespace Dev2.Common.Tests
             mockProcessWrapper.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExternalProcessExecutor))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExternalProcessExecutor))]
         public void ExternalProcessExecutor_Start_Catch_COMException_VerifyAll_ExpectTrue()
         {
             //---------------------Arrange-------------------------

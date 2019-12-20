@@ -10,19 +10,20 @@ using Dev2.Common.Interfaces.ServerProxyLayer;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
 using Dev2.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Core;
 using Warewolf.Studio.ViewModels;
 
 namespace Dev2.Activities.Designers.Tests.Oracle
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class TestOracleViewModel
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Oracle_MethodName")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Oracle_MethodName")]
         public void Oracle_MethodName_ValidateExpectErrors()
         {
             //------------Setup for test--------------------------
@@ -55,9 +56,9 @@ namespace Dev2.Activities.Designers.Tests.Oracle
             Assert.AreEqual(2, oracle.DesignValidationErrors.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Oracle_MethodName")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Oracle_MethodName")]
         public void Oracle_MethodName_ClearErrors()
         {
             //------------Setup for test--------------------------
@@ -89,9 +90,9 @@ namespace Dev2.Activities.Designers.Tests.Oracle
             Assert.AreEqual(oracle.DesignValidationErrors.Count, 1);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Oracle_MethodName")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Oracle_MethodName")]
         public void Oracle_Ctor_EmptyModelItem()
         {
             //------------Setup for test--------------------------
@@ -124,9 +125,9 @@ namespace Dev2.Activities.Designers.Tests.Oracle
             Assert.IsTrue(oracle.ErrorRegion.IsEnabled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Oracle_MethodName")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Oracle_MethodName")]
         public void Oracle_TestActionSetSource()
         {
             //------------Setup for test--------------------------
@@ -162,9 +163,9 @@ namespace Dev2.Activities.Designers.Tests.Oracle
             Assert.IsTrue(oracle.ErrorRegion.IsEnabled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Oracle_MethodName")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Oracle_MethodName")]
         public void Oracle_TestActionSetSourceAndTestClickOkHasMappings()
         {
             //------------Setup for test--------------------------
@@ -211,9 +212,9 @@ namespace Dev2.Activities.Designers.Tests.Oracle
             Assert.AreEqual(0, oracle.ManageServiceInputViewModel.Errors.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Oracle_MethodName")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Oracle_MethodName")]
         public void Oracle_TestActionSetSourceAndTestClickOkHasMappingsErrorFromServer()
         {
             //------------Setup for test--------------------------
@@ -255,9 +256,9 @@ namespace Dev2.Activities.Designers.Tests.Oracle
             Assert.AreNotEqual(0, oracle.ManageServiceInputViewModel.Errors.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Oracle_Handle")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Oracle_Handle")]
         public void Oracle_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------   
@@ -292,9 +293,9 @@ namespace Dev2.Activities.Designers.Tests.Oracle
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Oracle_MethodName")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Oracle_MethodName")]
         public void Oracle_TestActionSetSourceAndTestClickOkHasHeaders()
         {
             //------------Setup for test--------------------------
@@ -341,9 +342,9 @@ namespace Dev2.Activities.Designers.Tests.Oracle
             Assert.IsTrue(oracle.ManageServiceInputViewModel.InputArea.Inputs.First().Name == "[[a]]");
             Assert.AreEqual(0, oracle.ManageServiceInputViewModel.Errors.Count);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Oracle_MethodName")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Oracle_MethodName")]
         public void Oracle_TestActionSetSourceAndTestClickOkHasQueryStringAndHeaders()
         {
             //------------Setup for test--------------------------
@@ -393,9 +394,9 @@ namespace Dev2.Activities.Designers.Tests.Oracle
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Oracle_Refresh")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Oracle_Refresh")]
         public void Oracle_Refresh_ShouldLoadRefreshActions()
         {
             //------------Setup for test--------------------------
@@ -431,9 +432,9 @@ namespace Dev2.Activities.Designers.Tests.Oracle
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Oracle_TestAction")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Oracle_TestAction")]
         public void Oracle_TestActionSetSourceHasRecSet()
         {
             //------------Setup for test--------------------------
@@ -481,9 +482,9 @@ namespace Dev2.Activities.Designers.Tests.Oracle
             Assert.IsTrue(mySql.ManageServiceInputViewModel.InputArea.Inputs.Last().Name == "[[a]]");
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("Oracle_MethodName")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("Oracle_MethodName")]
         public void Oracle_VerifyCommandTimeout()
         {
             //------------Setup for test--------------------------

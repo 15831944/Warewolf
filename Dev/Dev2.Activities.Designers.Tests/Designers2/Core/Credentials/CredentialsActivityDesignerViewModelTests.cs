@@ -15,19 +15,20 @@ using Dev2.Studio.Core;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
 using Dev2.Studio.Interfaces.DataList;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Activities.Designers.Tests.Designers2.Core.Credentials
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class CredentialsActivityDesignerViewModelTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("CredentialsActivityDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("CredentialsActivityDesignerViewModel_Constructor")]
         public void CredentialsActivityDesignerViewModel_Constructor_Properties_Initialized()
         {
             //------------Setup for test-------------------------
@@ -40,41 +41,41 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core.Credentials
             Assert.AreEqual(0, viewModel.TitleBarToggles.Count);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("CredentialsActivityDesignerViewModel_ValidateUserNameAndPassword")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("CredentialsActivityDesignerViewModel_ValidateUserNameAndPassword")]
         public void CredentialsActivityDesignerViewModel_ValidateUserNameAndPassword_UserNameAndPasswordBlank_NoErrors()
         {
             Verify_ValidateUserNameAndPassword("", "", true, null);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("CredentialsActivityDesignerViewModel_ValidateUserNameAndPassword")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("CredentialsActivityDesignerViewModel_ValidateUserNameAndPassword")]
         public void CredentialsActivityDesignerViewModel_ValidateUserNameAndPassword_UserNameIsNotBlankAndPasswordIsBlank_HasErrors()
         {
             Verify_ValidateUserNameAndPassword("aaaa", "", true, Warewolf.Resource.Errors.ErrorResource.CredentialsPasswordNotNullErrorTest);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("CredentialsActivityDesignerViewModel_ValidateUserNameAndPassword")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("CredentialsActivityDesignerViewModel_ValidateUserNameAndPassword")]
         public void CredentialsActivityDesignerViewModel_ValidateUserNameAndPassword_UserNameIsBlankAndPasswordIsNotBlank_HasErrors()
         {
             Verify_ValidateUserNameAndPassword("", "xxx", false, Warewolf.Resource.Errors.ErrorResource.CredentialsUsernameNotNullErrorTest);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("CredentialsActivityDesignerViewModel_ValidateUserNameAndPassword")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("CredentialsActivityDesignerViewModel_ValidateUserNameAndPassword")]
         public void CredentialsActivityDesignerViewModel_ValidateUserNameAndPassword_UserNameAndPasswordAreNotBlank_NoErrors()
         {
             Verify_ValidateUserNameAndPassword("aaa", "xxx", false, null);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("CredentialsActivityDesignerViewModel_ValidateUserNameAndPassword")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("CredentialsActivityDesignerViewModel_ValidateUserNameAndPassword")]
         public void CredentialsActivityDesignerViewModel_ValidateUserNameAndPassword_UserNameIsInvalidExpression_HasErrors()
         {
             Verify_ValidateUserNameAndPassword("a]]", "", false, Warewolf.Resource.Errors.ErrorResource.CredentialsUsernameInvalidExpressionErrorTest);
@@ -115,9 +116,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core.Credentials
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("CredentialsActivityDesignerViewModel_UpdateErrors")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("CredentialsActivityDesignerViewModel_UpdateErrors")]
         public void CredentialsActivityDesignerViewModel_UpdateErrors_ErrorsPropertyIsNotNull_ErrorsAreAdded()
         {
             //------------Setup for test--------------------------
@@ -142,9 +143,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core.Credentials
             Assert.AreEqual(3, viewModel.Errors.Count);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("CredentialsActivityDesignerViewModel_UpdateErrors")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("CredentialsActivityDesignerViewModel_UpdateErrors")]
         public void CredentialsActivityDesignerViewModel_UpdateErrors_ErrorsParameterIsEmptyList_ErrorsAreNotAdded()
         {
             //------------Setup for test--------------------------
@@ -165,9 +166,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core.Credentials
             Assert.AreEqual(1, viewModel.Errors.Count);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("CredentialsActivityDesignerViewModel_UpdateErrors")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("CredentialsActivityDesignerViewModel_UpdateErrors")]
         public void CredentialsActivityDesignerViewModel_UpdateErrors_ErrorsParameterIsNull_ErrorsAreNotAdded()
         {
             //------------Setup for test--------------------------

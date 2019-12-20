@@ -1,14 +1,15 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace WarewolfParsingTest
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class TestAst
     {
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DataStorage_AtomEquality")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DataStorage_AtomEquality")]
         public void DataStorage_AtomEquality_TestEquality()
         {
             //------------Setup for test--------------------------
@@ -43,9 +44,9 @@ namespace WarewolfParsingTest
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DataStorage_AtomEquality")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DataStorage_AtomEquality")]
         public void DataStorage_GetDecimalPlaces()
         {
            Assert.AreEqual(1,DataStorage.GetDecimalPlaces(123.4));
@@ -53,59 +54,59 @@ namespace WarewolfParsingTest
 
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DataStorage_AtomEquality")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DataStorage_AtomEquality")]
         public void DataStorage_GetDecimalPlaces_BigNumber()
         {
             Assert.AreEqual(9, DataStorage.GetDecimalPlaces(123.456789111));
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DataStorage_AtomEquality")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DataStorage_AtomEquality")]
         public void DataStorage_TryParseAtom()
         {
             Assert.IsTrue(DataStorage.tryParseAtom("1").IsInt);
         }
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DataStorage_AtomEquality")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DataStorage_AtomEquality")]
         public void DataStorage_TryParseAtom_LineBreakOne()
         {
             Assert.IsFalse(DataStorage.tryParseAtom("1\r").IsInt);
         }
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DataStorage_AtomEquality")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DataStorage_AtomEquality")]
         public void DataStorage_TryParseAtom_LineBreakTwo()
         {
             Assert.IsFalse(DataStorage.tryParseAtom("1\n").IsInt);
         }
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DataStorage_AtomEquality")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DataStorage_AtomEquality")]
         public void DataStorage_TryParseAtom_LineBreakThree()
         {
             Assert.IsFalse(DataStorage.tryParseAtom("1\r\n").IsInt);
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DataStorage_AtomEquality")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DataStorage_AtomEquality")]
         public void DataStorage_TryParseAtomFl()
         {
             Assert.IsTrue(DataStorage.tryParseAtom("1.1").IsFloat);
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DataStorage_AtomEquality")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DataStorage_AtomEquality")]
         public void DataStorage_TryParseAtomStr()
         {
             Assert.IsTrue(DataStorage.tryParseAtom("1.s1").IsDataString);
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DataStorage_AtomEquality")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DataStorage_AtomEquality")]
         public void DataStorage_AtomEquality_TestEqualityAtoms()
         {
             //------------Setup for test--------------------------
@@ -138,9 +139,9 @@ namespace WarewolfParsingTest
         }
 
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("DataStorage_AtomComparison")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("DataStorage_AtomComparison")]
         public void DataStorage_AtomComparison_TestComparisonAtoms()
         {
             //------------Setup for test--------------------------
@@ -166,8 +167,8 @@ namespace WarewolfParsingTest
 
             Assert.IsTrue(DataStorage.CompareAtoms(bob, string1) > 0);
             Assert.IsTrue(DataStorage.CompareAtoms(string1, bob) < 0);
-            Assert.ThrowsException<DataStorage.WarewolfInvalidComparisonException>(() => DataStorage.CompareAtoms(bob, int1));
-            Assert.ThrowsException<DataStorage.WarewolfInvalidComparisonException>(() => DataStorage.CompareAtoms(int1, bob));
+            Assert.Throws<DataStorage.WarewolfInvalidComparisonException>(() => DataStorage.CompareAtoms(bob, int1));
+            Assert.Throws<DataStorage.WarewolfInvalidComparisonException>(() => DataStorage.CompareAtoms(int1, bob));
             //------------Assert Results-------------------------
         }
     }

@@ -1,16 +1,17 @@
 using System.Net;
 using System.Net.Http;
 using Dev2.Activities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Activities.ActivityTests.Web
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class HttpClientCredentialManagerTests
     {
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void SetCredentialOnHandler_GivenHandlerIsNull_ShouldReturnNull()
         {
             //---------------Set up test pack-------------------
@@ -21,8 +22,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             //---------------Test Result -----------------------
             Assert.IsNull(httpClientHandler);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void SetCredentialOnHandler_GivenHandlerIsNotNull_ShouldReturnHttpHandler()
         {
             //---------------Set up test pack-------------------
@@ -36,8 +37,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.IsNotNull(httpClientHandler);
         } 
         
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void SetCredentialOnHandler_GivenSourceIsAnonymousAuth_ShouldReturnHttpHandlerWithNoCredentials()
         {
             //---------------Set up test pack-------------------
@@ -51,8 +52,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.IsNotNull(httpClientHandler);
         } 
         
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void SetCredentialOnHandler_GivenSourceIsUserAuth_ShouldReturnHttpHandlerWithCredentials()
         {
             //---------------Set up test pack-------------------

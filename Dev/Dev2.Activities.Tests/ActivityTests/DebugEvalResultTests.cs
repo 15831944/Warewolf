@@ -1,15 +1,16 @@
 ﻿using Dev2.Activities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Storage.Interfaces;
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DebugEvalResultTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DebugEvalResult_GivenIsNew_ShouldSetValues()
         {
             //---------------Set up test pack-------------------
@@ -28,8 +29,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("[[scalar]]", variable);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DebugEvalResult_GivenIsNewAndIsJSonArray_ShouldSetObjectArray()
         {
             //---------------Set up test pack-------------------
@@ -48,8 +49,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("[[@scalar()]]", variable);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DebugEvalResult_GivenObjectIsJSonArray_ShouldSetObjectArray()
         {
             //---------------Set up test pack-------------------

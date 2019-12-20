@@ -4,15 +4,16 @@ using Dev2.Activities.Designers2.Service;
 using Dev2.Common.Interfaces.Infrastructure.Providers.Errors;
 using Dev2.Providers.Errors;
 using Dev2.Services;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Activities.Designers.Tests.Service
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ValidationMemoManagerTests
     {
-        [TestMethod]
+        [Test]
         public void ValidationMemoManager_UpdateWorstError_WorstErrorIsFirstCriticalError()
         {
             //------------Setup for test-------------------------
@@ -23,7 +24,7 @@ namespace Dev2.Activities.Designers.Tests.Service
             Assert.AreEqual(ErrorType.Critical, validationMemoManager.WorstError, "Worst error is not updated to first critical error");
         }
 
-        [TestMethod]
+        [Test]
         public void ValidationMemoManager_UpdateLastValidationMemoWithSourceNotFoundError_UpdatesToSourceNotFoundError()
         {
             //------------Setup for test-------------------------

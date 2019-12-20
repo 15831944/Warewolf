@@ -21,7 +21,7 @@ using Dev2.Runtime;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Runtime.ServiceModel.Esb.Brokers.Plugin;
 using DummyNamespaceForTest;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -29,16 +29,17 @@ using TestingDotnetDllCascading;
 
 namespace Dev2.Tests.Runtime.ESB.Plugin
 {
-    [TestClass]
-    [TestCategory("Runtime ESB")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime ESB")]
     public class PluginRuntimeHandlerTest
     {
 
         #region FetchNamespaceListObject
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("PluginRuntimeHandler_FetchNamespaceListObject")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("PluginRuntimeHandler_FetchNamespaceListObject")]
         public void PluginRuntimeHandler_FetchNamespaceListObject_WhenValidDll_ExpectNamespaces()
         {
             //------------Setup for test--------------------------
@@ -48,13 +49,13 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             {
                 var result = isolated.Value.FetchNamespaceListObject(source);
                 //------------Assert Results-------------------------
-                Assert.IsTrue(result.Count > 0);
+                NUnit.Framework.Assert.IsTrue(result.Count > 0);
             }
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("PluginRuntimeHandler_FetchNamespaceListObject")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("PluginRuntimeHandler_FetchNamespaceListObject")]
         public void PluginRuntimeHandler_FetchNamespaceListObjectWithJsonObjects_WhenValidDll_ExpectNamespaces()
         {
             //------------Setup for test--------------------------
@@ -64,13 +65,13 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             {
                 var result = isolated.Value.FetchNamespaceListObjectWithJsonObjects(source);
                 //------------Assert Results-------------------------
-                Assert.IsTrue(result.Count > 0);
+                NUnit.Framework.Assert.IsTrue(result.Count > 0);
             }
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("PluginRuntimeHandler_FetchNamespaceListObject")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("PluginRuntimeHandler_FetchNamespaceListObject")]
         [ExpectedException(typeof(NullReferenceException))]
         public void PluginRuntimeHandler_FetchNamespaceListObject_WhenNullDll_ExpectException()
         {
@@ -84,9 +85,9 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("PluginRuntimeHandler_FetchNamespaceListObject")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("PluginRuntimeHandler_FetchNamespaceListObject")]
         [ExpectedException(typeof(NullReferenceException))]
         public void PluginRuntimeHandler_FetchNamespaceListObjectWithJsonObjects_WhenNullDll_ExpectException()
         {
@@ -100,9 +101,9 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("PluginRuntimeHandler_FetchNamespaceListObject")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("PluginRuntimeHandler_FetchNamespaceListObject")]
         [ExpectedException(typeof(NullReferenceException))]
         public void PluginRuntimeHandler_FetchNamespaceListObject_WhenNullLocationInSource_ExpectException()
         {
@@ -114,9 +115,9 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             }
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("PluginRuntimeHandler_FetchNamespaceListObject")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("PluginRuntimeHandler_FetchNamespaceListObject")]
         [ExpectedException(typeof(NullReferenceException))]
         public void PluginRuntimeHandler_FetchNamespaceListObjectWithJsonObjects_WhenNullLocationInSource_ExpectException()
         {
@@ -128,9 +129,9 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             }
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("PluginRuntimeHandler_FetchNamespaceListObject")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("PluginRuntimeHandler_FetchNamespaceListObject")]
         [ExpectedException(typeof(NullReferenceException))]
         public void PluginRuntimeHandler_FetchNamespaceListObject_WhenNullLocationAndInvalidSourceID_ExpectException()
         {
@@ -143,9 +144,9 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("PluginRuntimeHandler_FetchNamespaceListObject")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("PluginRuntimeHandler_FetchNamespaceListObject")]
         [ExpectedException(typeof(NullReferenceException))]
         public void PluginRuntimeHandler_FetchNamespaceListObjectWithJsonObjects_WhenNullLocationAndInvalidSourceID_ExpectException()
         {
@@ -158,8 +159,8 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         [ExpectedException(typeof(BadImageFormatException))]
         public void FetchNamespaceListObject_GivenThrowsBadFormatExceptionError_ShouldRethrowBadFormatException()
         {
@@ -176,8 +177,8 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             pluginRuntimeHandler.FetchNamespaceListObject(source);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         [ExpectedException(typeof(BadImageFormatException))]
         public void FetchNamespaceListObjectWithJsonObjects_GivenThrowsBadFormatExceptionError_ShouldRethrowBadFormatException()
         {
@@ -198,9 +199,9 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
 
         #region ValidatePlugin
 
-        //[TestMethod]
-        //[Owner("Travis Frisinger")]
-        //[TestCategory("PluginRuntimeHandler_ValidatePlugin")]
+        //[Test]
+        //[Author("Travis Frisinger")]
+        //[Category("PluginRuntimeHandler_ValidatePlugin")]
         //public void PluginRuntimeHandler_ValidatePlugin_WhenValidDll_ExpectBlankMessage()
         //{
         //    //------------Setup for test--------------------------
@@ -211,12 +212,12 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
         //    var result = pluginRuntimeHandler.ValidatePlugin(source.AssemblyLocation);
 
         //    //------------Assert Results-------------------------
-        //    StringAssert.Contains(result, string.Empty);
+        //    NUnit.Framework.StringAssert.Contains(result, string.Empty);
         //}
 
-        //[TestMethod]
-        //[Owner("Travis Frisinger")]
-        //[TestCategory("PluginRuntimeHandler_ValidatePlugin")]
+        //[Test]
+        //[Author("Travis Frisinger")]
+        //[Category("PluginRuntimeHandler_ValidatePlugin")]
         //public void PluginRuntimeHandler_ValidatePlugin_WhenNotADll_ExpectErrorMessage()
         //{
         //    //------------Setup for test--------------------------
@@ -227,12 +228,12 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
         //    var result = pluginRuntimeHandler.ValidatePlugin(source.AssemblyLocation + ".foo");
 
         //    //------------Assert Results-------------------------
-        //    StringAssert.Contains(result, "Not a Dll file");
+        //    NUnit.Framework.StringAssert.Contains(result, "Not a Dll file");
         //}
 
-        //[TestMethod]
-        //[Owner("Travis Frisinger")]
-        //[TestCategory("PluginRuntimeHandler_ValidatePlugin")]
+        //[Test]
+        //[Author("Travis Frisinger")]
+        //[Category("PluginRuntimeHandler_ValidatePlugin")]
         //public void PluginRuntimeHandler_ValidatePlugin_WhenGacDll_ExpectBlankMessage()
         //{
         //    //------------Setup for test--------------------------
@@ -242,7 +243,7 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
         //    var result = pluginRuntimeHandler.ValidatePlugin("GAC:mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089");
 
         //    //------------Assert Results-------------------------
-        //    StringAssert.Contains(result, string.Empty);
+        //    NUnit.Framework.StringAssert.Contains(result, string.Empty);
         //}
 
 
@@ -250,9 +251,9 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
 
         #region ListNamespaces
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("PluginRuntimeHandler_ListNamespaces")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("PluginRuntimeHandler_ListNamespaces")]
         public void PluginRuntimeHandler_ListNamespaces_WhenValidLocation_ExpectNamespaces()
         {
             //------------Setup for test--------------------------
@@ -261,13 +262,13 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             using (Isolated<PluginRuntimeHandler> isolated = new Isolated<PluginRuntimeHandler>())
             {
                 var result = isolated.Value.ListNamespaces(source.AssemblyLocation, "Foo");
-                Assert.IsNotNull(result);
+                NUnit.Framework.Assert.IsNotNull(result);
             }
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("PluginRuntimeHandler_ListNamespaces")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("PluginRuntimeHandler_ListNamespaces")]
         [ExpectedException(typeof(NullReferenceException))]
         public void PluginRuntimeHandler_ListNamespaces_WhenNullLocation_ExpectException()
         {
@@ -279,9 +280,9 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             }
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("PluginRuntimeHandler_ListNamespaces")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("PluginRuntimeHandler_ListNamespaces")]
         public void PluginRuntimeHandler_ListNamespaces_WhenInvalidLocation_ExpectNoResults()
         {
             //------------Setup for test--------------------------
@@ -289,13 +290,13 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             using (Isolated<PluginRuntimeHandler> isolated = new Isolated<PluginRuntimeHandler>())
             {
                 var result = isolated.Value.ListNamespaces("z:\foo\asm.dll", "Foo");
-                Assert.IsFalse(result.Any());
+                NUnit.Framework.Assert.IsFalse(result.Any());
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("PluginRuntimeHandler_ListMethods")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("PluginRuntimeHandler_ListMethods")]
         public void PluginRuntimeHandler_ListMethods_WhenInvalidLocation_ExpectNoResults()
         {
             //------------Setup for test--------------------------
@@ -303,13 +304,13 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             using (Isolated<PluginRuntimeHandler> isolated = new Isolated<PluginRuntimeHandler>())
             {
                 var result = isolated.Value.ListMethods("z:\foo\asm.dll", "asm.dll", "asm.dll");
-                Assert.IsFalse(result.Any());
+                NUnit.Framework.Assert.IsFalse(result.Any());
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("PluginRuntimeHandler_ListMethods")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("PluginRuntimeHandler_ListMethods")]
         public void PluginRuntimeHandler_ListConstructors_WhenInvalidLocation_ExpectNoResults()
         {
             //------------Setup for test--------------------------
@@ -317,13 +318,13 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             using (Isolated<PluginRuntimeHandler> isolated = new Isolated<PluginRuntimeHandler>())
             {
                 var result = isolated.Value.ListConstructors("z:\foo\asm.dll", "asm.dll", "asm.dll");
-                Assert.IsFalse(result.Any());
+                NUnit.Framework.Assert.IsFalse(result.Any());
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("PluginRuntimeHandler_ListMethods")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("PluginRuntimeHandler_ListMethods")]
         public void PluginRuntimeHandler_ListMethods_WhenValidLocation_ExpectResults()
         {
             //------------Setup for test--------------------------
@@ -333,13 +334,13 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
                 var fullName = Assembly.GetExecutingAssembly().Location;
                 var dllName = Path.GetFileName(fullName);
                 var result = isolated.Value.ListMethods(fullName, dllName, typeof(Main).FullName);
-                Assert.IsTrue(result.Any());
+                NUnit.Framework.Assert.IsTrue(result.Any());
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("PluginRuntimeHandler_ListMethods")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("PluginRuntimeHandler_ListMethods")]
         public void PluginRuntimeHandler_ListConstructors_WhenValidLocation_ExpectResults()
         {
             //------------Setup for test--------------------------
@@ -349,13 +350,13 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
                 var fullName = Assembly.GetExecutingAssembly().Location;
                 var dllName = Path.GetFileName(fullName);
                 var result = isolated.Value.ListConstructors(fullName, dllName, typeof(Main).FullName);
-                Assert.IsTrue(result.Any());
+                NUnit.Framework.Assert.IsTrue(result.Any());
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("PluginRuntimeHandler_ListMethodsWithReturns")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("PluginRuntimeHandler_ListMethodsWithReturns")]
         public void PluginRuntimeHandler_ListMethodsWithReturns_WhenValidLocation_ExpectResults()
         {
             //------------Setup for test--------------------------
@@ -365,13 +366,13 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
                 var fullName = Assembly.GetExecutingAssembly().Location;
                 var dllName = Path.GetFileName(fullName);
                 var result = isolated.Value.ListMethodsWithReturns(fullName, dllName, typeof(Main).FullName);
-                Assert.IsTrue(result.Any());
+                NUnit.Framework.Assert.IsTrue(result.Any());
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("PluginRuntimeHandler_ListMethodsWithReturns")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("PluginRuntimeHandler_ListMethodsWithReturns")]
         public void PluginRuntimeHandler_ListMethodsWithReturns_WhenValidLocationAndVoid_ExpectResultsWithVoidMethod()
         {
             //------------Setup for test--------------------------
@@ -381,14 +382,14 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
                 var fullName = Assembly.GetExecutingAssembly().Location;
                 var dllName = Path.GetFileName(fullName);
                 var result = isolated.Value.ListMethodsWithReturns(fullName, dllName, typeof(Main).FullName);
-                Assert.IsTrue(result.Any());
-                Assert.IsTrue(result.Any(method => method.IsVoid));
+                NUnit.Framework.Assert.IsTrue(result.Any());
+                NUnit.Framework.Assert.IsTrue(result.Any(method => method.IsVoid));
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("PluginRuntimeHandler_ListMethodsWithReturns")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("PluginRuntimeHandler_ListMethodsWithReturns")]
         public void PluginRuntimeHandler_ListMethodsWithReturns_WhenValidLocationAndIsProperty_ExpectResultsWithPropertyMethod()
         {
             //------------Setup for test--------------------------
@@ -398,14 +399,14 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
                 var fullName = Assembly.GetExecutingAssembly().Location;
                 var dllName = Path.GetFileName(fullName);
                 var result = isolated.Value.ListMethodsWithReturns(fullName, dllName, typeof(Main).FullName);
-                Assert.IsTrue(result.Any());
-                Assert.IsTrue(result.Any(method => method.IsProperty));
+                NUnit.Framework.Assert.IsTrue(result.Any());
+                NUnit.Framework.Assert.IsTrue(result.Any(method => method.IsProperty));
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("PluginRuntimeHandler_ListMethodsWithReturns")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("PluginRuntimeHandler_ListMethodsWithReturns")]
         public void PluginRuntimeHandler_ListMethodsWithReturns_WhenListFoods_ExpectJSonArrayReturnType()
         {
             //------------Setup for test--------------------------
@@ -415,18 +416,18 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
                 var fullName = Assembly.GetExecutingAssembly().Location;
                 var dllName = Path.GetFileName(fullName);
                 var result = isolated.Value.ListMethodsWithReturns(fullName, dllName, typeof(Main).FullName);
-                Assert.IsTrue(result.Any());
+                NUnit.Framework.Assert.IsTrue(result.Any());
                 var serviceMethods = result.Where(method => !method.IsVoid);
                 var condition = serviceMethods.Any(method => method.Dev2ReturnType.Contains("["));
-                Assert.IsTrue(condition);
+                NUnit.Framework.Assert.IsTrue(condition);
             }
         }
 
         #endregion
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("PluginRuntimeHandler_CreateInstance")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("PluginRuntimeHandler_CreateInstance")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void PluginRuntimeHandler_CreateInstance_WhenNullParameters_ExpectException()
         {
@@ -438,9 +439,9 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("PluginRuntimeHandler_CreateInstance")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("PluginRuntimeHandler_CreateInstance")]
         public void PluginRuntimeHandler_CreateInstance_WhenHuman_ExpectHumanStringObject()
         {
             //------------Setup for test--------------------------
@@ -466,13 +467,13 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
                 });
 
                 var deserializeToObject = instance.ObjectString.DeserializeToObject(type, new KnownTypesBinder() { KnownTypes = new List<Type>(type.Assembly.ExportedTypes) });
-                Assert.IsNotNull(deserializeToObject);
+                NUnit.Framework.Assert.IsNotNull(deserializeToObject);
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("PluginRuntimeHandler_CreateInstance")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("PluginRuntimeHandler_CreateInstance")]
         public void PluginRuntimeHandler_CreateInstance_WhenHumanWithInputs_ExpectHumanStringObjectWithInputs()
         {
             //------------Setup for test--------------------------
@@ -510,17 +511,17 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
                 if (deserializeToObject is Human firstOrDefault)
                 {
 
-                    Assert.AreEqual("Jimmy", firstOrDefault.Name);
+                    NUnit.Framework.Assert.AreEqual("Jimmy", firstOrDefault.Name);
                 }
-                Assert.IsNotNull(deserializeToObject);
+                NUnit.Framework.Assert.IsNotNull(deserializeToObject);
             }
         }
 
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("PluginRuntimeHandler_Run")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("PluginRuntimeHandler_Run")]
         public void PluginRuntimeHandler_Run_WhenObjectStringIsNotNull_ExpectRunsCorrectly()
         {
             //------------Setup for test--------------------------
@@ -552,18 +553,18 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
                 var instance = isolated.Value.CreateInstance(pluginInvokeArgs);
 
                 var deserializeToObject = instance.ObjectString.DeserializeToObject(type, new KnownTypesBinder() { KnownTypes = new List<Type>(type.Assembly.ExportedTypes) });
-                Assert.IsNotNull(deserializeToObject);
+                NUnit.Framework.Assert.IsNotNull(deserializeToObject);
                 instance.Args = pluginInvokeArgs;
                 var dev2MethodInfo = instance.Args.MethodsToRun.First();
                 var run = isolated.Value.Run(dev2MethodInfo, instance, out string stringOBj);
-                Assert.IsNotNull(run);
-                StringAssert.Contains(stringOBj, "Default");
+                NUnit.Framework.Assert.IsNotNull(run);
+                NUnit.Framework.StringAssert.Contains(stringOBj, "Default");
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("PluginRuntimeHandler_Run")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("PluginRuntimeHandler_Run")]
         public void PluginRuntimeHandler_Run_WhenHasInnerError_ExpectInerErrors()
         {
             //------------Setup for test--------------------------
@@ -605,15 +606,15 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
 
             var dev2MethodInfo = pluginInvokeArgs.MethodsToRun.First();
             var run = handler.Run(dev2MethodInfo, pluginExecutionDto, out string stringOBj);
-            Assert.IsNotNull(run);
-            Assert.IsTrue(run.HasError);
-            Assert.IsFalse(string.IsNullOrEmpty(run.ErrorMessage));
+            NUnit.Framework.Assert.IsNotNull(run);
+            NUnit.Framework.Assert.IsTrue(run.HasError);
+            NUnit.Framework.Assert.IsFalse(string.IsNullOrEmpty(run.ErrorMessage));
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("PluginRuntimeHandler_Test")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("PluginRuntimeHandler_Test")]
         public void PluginRuntimeHandler_Test_WhenHasInnerError_ExpectInerErrors()
         {
             //------------Setup for test--------------------------
@@ -650,14 +651,14 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             mock.Setup(loader => loader.TryLoadAssembly(It.IsAny<string>(), It.IsAny<string>(), out loadedAssembly))
                 .Throws(exception);
             var run = handler.Test(pluginInvokeArgs, out string stringOBj);
-            Assert.IsNull(run);
-            Assert.IsTrue(string.IsNullOrEmpty(stringOBj));
+            NUnit.Framework.Assert.IsNull(run);
+            NUnit.Framework.Assert.IsTrue(string.IsNullOrEmpty(stringOBj));
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("PluginRuntimeHandler_Run")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("PluginRuntimeHandler_Run")]
         [ExpectedException(typeof(AccessViolationException))]
         public void PluginRuntimeHandler_Run_WhenHasError_ExpectErrors()
         {
@@ -705,9 +706,9 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("PluginRuntimeHandler_CreateInstance")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("PluginRuntimeHandler_CreateInstance")]
         public void PluginRuntimeHandler_Run_WhenClassIsStatic_ExpectRunsCorrectly()
         {
             //------------Setup for test--------------------------
@@ -731,14 +732,14 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
 
                 };
                 var instance = isolated.Value.CreateInstance(pluginInvokeArgs);
-                Assert.IsTrue(string.IsNullOrEmpty(instance.ObjectString));
-                Assert.IsTrue(instance.IsStatic);
+                NUnit.Framework.Assert.IsTrue(string.IsNullOrEmpty(instance.ObjectString));
+                NUnit.Framework.Assert.IsTrue(instance.IsStatic);
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("PluginRuntimeHandler_CreateInstance")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("PluginRuntimeHandler_CreateInstance")]
         public void PluginRuntimeHandler_Run_WhenClassIsStatic_ExpectRunsMethodsCorrectly()
         {
             //------------Setup for test--------------------------
@@ -764,15 +765,15 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
                 var instance = isolated.Value.CreateInstance(pluginInvokeArgs);
                 instance.Args = pluginInvokeArgs;
                 isolated.Value.Run(svc.MethodsToRun.First(), instance, out string str);
-                Assert.IsTrue(string.IsNullOrEmpty(str));
-                Assert.IsTrue(instance.IsStatic);
+                NUnit.Framework.Assert.IsTrue(string.IsNullOrEmpty(str));
+                NUnit.Framework.Assert.IsTrue(instance.IsStatic);
             }
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("PluginRuntimeHandler_CreateInstance")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("PluginRuntimeHandler_CreateInstance")]
         public void PluginRuntimeHandler_Run_WhenClassIsSealed_ExpectRunsCorrectly()
         {
             //------------Setup for test--------------------------
@@ -796,14 +797,14 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
 
                 };
                 var instance = isolated.Value.CreateInstance(pluginInvokeArgs);
-                Assert.IsTrue(!string.IsNullOrEmpty(instance.ObjectString));
-                Assert.IsFalse(instance.IsStatic);
+                NUnit.Framework.Assert.IsTrue(!string.IsNullOrEmpty(instance.ObjectString));
+                NUnit.Framework.Assert.IsFalse(instance.IsStatic);
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("PluginRuntimeHandler_ExecuteConstructor")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("PluginRuntimeHandler_ExecuteConstructor")]
         public void PluginRuntimeHandler_ExecuteConstructor_WhenClassIsSealed_ExpectRunsCorrectly()
         {
             //------------Setup for test--------------------------
@@ -830,14 +831,14 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
                 {
                     Args = pluginInvokeArgs
                 });
-                Assert.IsTrue(!string.IsNullOrEmpty(instance.ObjectString));
-                Assert.IsFalse(instance.IsStatic);
+                NUnit.Framework.Assert.IsTrue(!string.IsNullOrEmpty(instance.ObjectString));
+                NUnit.Framework.Assert.IsFalse(instance.IsStatic);
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("PluginRuntimeHandler_Test")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("PluginRuntimeHandler_Test")]
         public void PluginRuntimeHandler_Test_WhenValid_ExpectRunsCorrectly()
         {
             //------------Setup for test--------------------------
@@ -872,19 +873,19 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
 
             };
             var instance = isolated.Test(pluginInvokeArgs, out string jresult);
-            Assert.IsTrue(!string.IsNullOrEmpty(jresult));
+            NUnit.Framework.Assert.IsTrue(!string.IsNullOrEmpty(jresult));
             var count = instance.DataSourceShapes.Count;
-            Assert.AreEqual(1, count);
+            NUnit.Framework.Assert.AreEqual(1, count);
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetPropertiesJObject_GivenOracleCommand_ShouldRetunWithTwoProperties()
         {
             //---------------Set up test pack-------------------
             var runtimeHandler = typeof(PluginRuntimeHandler);
-            var type = new PrivateType(runtimeHandler);
+            var type = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType(runtimeHandler);
 #pragma warning disable 618
             var type1 = typeof(OracleCommand);
 #pragma warning restore 618
@@ -893,19 +894,19 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             //---------------Execute Test ----------------------
             var jObject = invokeStatic as JObject;
             //---------------Test Result -----------------------
-            Assert.IsNotNull(jObject);
+            NUnit.Framework.Assert.IsNotNull(jObject);
             var hasValues = jObject.HasValues;
-            Assert.IsTrue(hasValues);
-            Assert.AreEqual(8, jObject.Count);
+            NUnit.Framework.Assert.IsTrue(hasValues);
+            NUnit.Framework.Assert.AreEqual(8, jObject.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetPropertiesJObject_GivenOracleCommand_ShouldHaveCorrectShape()
         {
             //---------------Set up test pack-------------------
             var runtimeHandler = typeof(PluginRuntimeHandler);
-            var type = new PrivateType(runtimeHandler);
+            var type = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType(runtimeHandler);
 #pragma warning disable 618
             var type1 = typeof(OracleCommand);
 #pragma warning restore 618
@@ -913,19 +914,19 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             var invokeStatic = type.InvokeStatic("GetPropertiesJObject", type1);
             //---------------Execute Test ----------------------
             var jObject = invokeStatic as JObject;
-            Assert.IsNotNull(jObject);
+            NUnit.Framework.Assert.IsNotNull(jObject);
             var hasValues = jObject.HasValues;
-            Assert.IsTrue(hasValues);
-            Assert.AreEqual(8, jObject.Count);
+            NUnit.Framework.Assert.IsTrue(hasValues);
+            NUnit.Framework.Assert.AreEqual(8, jObject.Count);
             //---------------Test Result -----------------------
             const string str = "{\"CommandText\":\"\",\"CommandTimeout\":\"\",\"CommandType\":\"\",\"Connection\":\"\",\"DesignTimeVisible\":\"\",\"Transaction\":\"\",\"UpdatedRowSource\":\"\",\"Site\":\"\"}";
             var s = jObject.ToString(Formatting.None);
-            Assert.AreEqual(str, s);
+            NUnit.Framework.Assert.AreEqual(str, s);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("PluginRuntimeHandler_AdjustPluginResult")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("PluginRuntimeHandler_AdjustPluginResult")]
         public void PluginRuntimeHandler_AdjustPluginResult_WhenClassIsSealed_ExpectRunsCorrectly()
         {
             //------------Setup for test--------------------------
@@ -939,7 +940,7 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             //------------Execute Test---------------------------
             var runtimeHandler = new PluginRuntimeHandler();
             var resultAdgusted = methodInfo.Invoke(runtimeHandler, new[] { result, memberInfo });
-            Assert.AreEqual("<PrimitiveReturnValue>string</PrimitiveReturnValue>", resultAdgusted);
+            NUnit.Framework.Assert.AreEqual("<PrimitiveReturnValue>string</PrimitiveReturnValue>", resultAdgusted);
         }
 
 

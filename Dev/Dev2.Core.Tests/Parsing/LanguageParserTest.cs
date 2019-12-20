@@ -12,23 +12,24 @@ using System.Collections.Generic;
 using Dev2.Common.Interfaces.Data;
 using Dev2.DataList.Contract;
 using Dev2.Tests.Properties;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Unlimited.UnitTest.Framework.Parsing
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class LanguageParserTest
     {
 
         #region Additional Test Attributes
 
-        [TestInitialize]
+        [SetUp]
         public void LanguageTestInitialize()
         {
 
         }
 
-        [TestCleanup]
+        [TearDown]
         public void LanguageTestCleanup()
         {
         }
@@ -38,7 +39,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
         #region Input Parse Tests
 
         // Travis Added : PBI 5779
-        [TestMethod]
+        [Test]
         public void Parse_InputMappingWithEmptyToNullTrue_Expected_InputCreateWithPropertyEmptyToNullSetTrue()
         {
             var inputs = DataListFactory.CreateInputParser().Parse(TestStrings.inputsWithEmptyToNullTrue);
@@ -47,7 +48,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
         }
 
         // Travis Added : PBI 5779
-        [TestMethod]
+        [Test]
         public void InputMappingWithEmptyToNullFalse_Expected_InputCreateWithPropertyEmptyToNullSetFalse()
         {
             var inputs = DataListFactory.CreateInputParser().Parse(TestStrings.inputsWithEmptyToNullFalse);
@@ -56,7 +57,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
         }
 
         // Sashen Added : PBI 5779
-        [TestMethod]
+        [Test]
         public void Parse_EmptyToNullAttributeNotInXML_InputMappingWithEmptyToFalse()
         {
             var inputs = DataListFactory.CreateInputParser().Parse(TestStrings.inputsWithEmptyToNullNotInXML);
@@ -64,7 +65,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.IsTrue(inputs.Count == 2 && !inputs[0].EmptyToNull);
         }
 
-        [TestMethod]
+        [Test]
         public void TestInputMappingExtactScalars()
         {
             var inputs = DataListFactory.CreateInputParser().Parse(TestStrings.sampleActivityInputScalar);
@@ -72,7 +73,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.IsTrue(inputs.Count == 2 && inputs[0].Name == "fname");
         }
 
-        [TestMethod]
+        [Test]
         public void TestInputMappingExtractRecordSet()
         {
             var inputs = DataListFactory.CreateInputParser().Parse(TestStrings.sampleActivityInputRecordSet);
@@ -80,7 +81,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.IsTrue(inputs.Count == 1 && inputs[0].Name == "Person");
         }
 
-        [TestMethod]
+        [Test]
         public void TestInputMappingExtractMixed()
         {
             var inputs = DataListFactory.CreateInputParser().Parse(TestStrings.sampleActivityInputMixed);
@@ -88,7 +89,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.IsTrue(inputs.Count == 2);
         }
 
-        [TestMethod]
+        [Test]
         public void TestInputMappingExtractRequiredRegions()
         {
             var inputs = DataListFactory.CreateInputParser().Parse(TestStrings.inputMappingRequiredRegion);

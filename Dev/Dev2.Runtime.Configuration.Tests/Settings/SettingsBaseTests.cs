@@ -11,95 +11,96 @@
 using System;
 using System.Data;
 using System.Xml.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Runtime.Configuration.Tests.Settings
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SettingsBaseTests
     {
         #region CTOR
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ConstructorWithNullSettingsNameExpectedThrowsArgumentNullException()
         {
             var settings = new SettingsBaseMock(null, null);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ConstructorWithNullDisplayNameExpectedThrowsArgumentNullException()
         {
             var settings = new SettingsBaseMock("xx", null, null);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ConstructorWithNullWebServerUriExpectedThrowsArgumentNullException()
         {
             var settings = new SettingsBaseMock("xx", "xxx", null);
         }
 
-        [TestMethod]
+        [Test]
         public void ConstructorWithValidNameArgumentsExpectedSetsProperties()
         {
             var settings = new SettingsBaseMock("x", "y", "localhost");
-            Assert.AreEqual("x", settings.SettingName);
-            Assert.AreEqual("y", settings.DisplayName);
-            Assert.AreEqual("localhost", settings.WebServerUri);
+            NUnit.Framework.Assert.AreEqual("x", settings.SettingName);
+            NUnit.Framework.Assert.AreEqual("y", settings.DisplayName);
+            NUnit.Framework.Assert.AreEqual("localhost", settings.WebServerUri);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(NoNullAllowedException))]
         public void ConstructorWithInvalidXmlArgumentExpectedThrowsNoNullAllowedException()
         {
             var settings = new SettingsBaseMock(new XElement("x", new XElement("y"), new XElement("z")), "webserverUri");
         }
 
-        [TestMethod]
+        [Test]
         public void ConstructorWithValidXmlArgumentExpectedInitializesAllProperties()
         {
             var xml = new XElement("Settings", new XAttribute("DisplayName", "hello"));
             var settings = new SettingsBaseMock(xml, "localhost");
 
-            Assert.AreEqual("hello", settings.DisplayName);
-            Assert.AreEqual(xml.Name, settings.SettingName);
-            Assert.AreEqual("localhost", settings.WebServerUri);
+            NUnit.Framework.Assert.AreEqual("hello", settings.DisplayName);
+            NUnit.Framework.Assert.AreEqual(xml.Name, settings.SettingName);
+            NUnit.Framework.Assert.AreEqual("localhost", settings.WebServerUri);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(NoNullAllowedException))]
         public void ConstructorWithValidXmlArgumentNullWebserverExpectedException()
         {
             var xml = new XElement("Settings", new XAttribute("DisplayName", "hello"));
             var settings = new SettingsBaseMock(xml, null);
 
-            Assert.AreEqual("hello", settings.DisplayName);
-            Assert.AreEqual(xml.Name, settings.SettingName);
+            NUnit.Framework.Assert.AreEqual("hello", settings.DisplayName);
+            NUnit.Framework.Assert.AreEqual(xml.Name, settings.SettingName);
         }
 
         #endregion
 
         #region ToXmlExpectedReturnsXml
 
-        [TestMethod]
+        [Test]
         public void ToXmlExpectedReturnsXml()
         {
             var settings = new SettingsBaseMock("x", "y", "localhost");
             var result = settings.ToXml();
-            Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(XElement));
+            NUnit.Framework.Assert.IsNotNull(result);
+            NUnit.Framework.Assert.IsInstanceOf(result.GetType(), typeof(XElement));
         }
 
-        [TestMethod]
+        [Test]
         public void ToXmlExpectedSerializesEachProperty()
         {
             var settings = new SettingsBaseMock("x", "y", "localhost");
 
             var result = settings.ToXml();
-            Assert.AreEqual(settings.SettingName, result.Name);
-            Assert.AreEqual(settings.DisplayName, result.AttributeSafe("DisplayName"));
+            NUnit.Framework.Assert.AreEqual(settings.SettingName, result.Name);
+            NUnit.Framework.Assert.AreEqual(settings.DisplayName, result.AttributeSafe("DisplayName"));
         }
 
         #endregion

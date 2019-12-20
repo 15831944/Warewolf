@@ -9,17 +9,16 @@
 */
 
 using Dev2.Validation;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Activities.Validation
 {
-    [TestClass ]
+    [TestFixture]
     public class IsSingleRecordSetRuleTests
     {
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("IsSingeRecordSetRule_Check")]
-
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("IsSingeRecordSetRule_Check")]
         public void IsSingeRecordSetRule_Check_Single_ExpectNull()
 
         {
@@ -32,10 +31,9 @@ namespace Dev2.Tests.Activities.Validation
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("IsSingeRecordSetRule_Check")]
-
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("IsSingeRecordSetRule_Check")]
         public void IsSingeRecordSetRule_Ctor_Single_Expectmessage_Has_Default()
 
         {
@@ -47,10 +45,9 @@ namespace Dev2.Tests.Activities.Validation
             Assert.IsNull(isSingeRecordSetRule.Check());
             //------------Assert Results-------------------------
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("IsSingeRecordSetRule_Check")]
-
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("IsSingeRecordSetRule_Check")]
         public void IsSingeRecordSetRule_Check_SingleNested_ExpectNull()
 
         {
@@ -63,10 +60,9 @@ namespace Dev2.Tests.Activities.Validation
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("IsSingeRecordSetRule_Check")]
-
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("IsSingeRecordSetRule_Check")]
         public void IsSingeRecordSetRule_Check_TwoIndexes_ExpectError()
 
         {
@@ -76,10 +72,9 @@ namespace Dev2.Tests.Activities.Validation
             Assert.AreEqual(Warewolf.Resource.Errors.ErrorResource.IsSingeRecordSortFieldInvalidErrorTest, isSingeRecordSetRule.ErrorText);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("IsSingeRecordSetRule_Check")]
-
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("IsSingeRecordSetRule_Check")]
         public void IsSingeRecordSetRule_Check_NoColumSpecified_ExpectError()
 
         {
@@ -89,12 +84,10 @@ namespace Dev2.Tests.Activities.Validation
             Assert.AreEqual(Warewolf.Resource.Errors.ErrorResource.IsSingeRecordSortFieldInvalidErrorTest, isSingeRecordSetRule.ErrorText);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("IsSingeRecordSetRule_Check")]
-
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("IsSingeRecordSetRule_Check")]
         public void IsSingeRecordSetRule_Check_NoColumSpecifiedStar_ExpectError()
-
         {
             //------------Setup for test--------------------------
             var isSingeRecordSetRule = new IsSingleRecordSetRule(() => "[[rec(*)]]");
@@ -102,10 +95,9 @@ namespace Dev2.Tests.Activities.Validation
             Assert.AreEqual(Warewolf.Resource.Errors.ErrorResource.IsSingeRecordSortFieldInvalidErrorTest, isSingeRecordSetRule.ErrorText);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("IsSingeRecordSetRule_Check")]
-
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("IsSingeRecordSetRule_Check")]
         public void IsSingeRecordSetRule_Check_TwoIndexes_ExpectErrorNoComma()
 
         {

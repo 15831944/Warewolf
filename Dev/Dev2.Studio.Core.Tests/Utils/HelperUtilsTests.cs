@@ -12,28 +12,29 @@
 using Dev2.Common.Interfaces.Studio.Controller;
 using Dev2.Studio.Controller;
 using Dev2.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Windows;
 
 namespace Dev2.Core.Tests.Utils
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class HelperUtilsTests
     {
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("HelperUtils")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("HelperUtils")]
         public void HelperUtils_GetStudioLogSettingsConfigFile()
         {
             var settingsConfigFile = HelperUtils.GetStudioLogSettingsConfigFile();
             Assert.IsTrue(settingsConfigFile.Contains("Settings.config"));
         }
        
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("HelperUtils")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("HelperUtils")]
         public void HelperUtils_SanitizePath()
         {            
             var path = "C:\\\\ProgramData\\Warewolf\\Server Log";
@@ -41,9 +42,9 @@ namespace Dev2.Core.Tests.Utils
             var resCat = HelperUtils.SanitizePath(path, resourceName);
             Assert.AreEqual("C:\\ProgramData\\Warewolf\\Server Log\\warewolf-Server.log", resCat);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("HelperUtils")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("HelperUtils")]
         public void HelperUtils_SanitizePath_StartsWith_Backslash_Root()
         {
             var path = "root\\\\Warewolf\\Server Log";
@@ -51,9 +52,9 @@ namespace Dev2.Core.Tests.Utils
             var resCat = HelperUtils.SanitizePath(path, resourceName);
             Assert.AreEqual("Warewolf\\Server Log\\warewolf-Server.log", resCat);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("HelperUtils")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("HelperUtils")]
         public void HelperUtils_SanitizePath_StartsWith_Backslash()
         {
             var path = "\\\\Warewolf\\Server Log";
@@ -61,9 +62,9 @@ namespace Dev2.Core.Tests.Utils
             var resCat = HelperUtils.SanitizePath(path, resourceName);
             Assert.AreEqual("\\Warewolf\\Server Log\\warewolf-Server.log", resCat);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("HelperUtils")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("HelperUtils")]
         public void HelperUtils_SanitizePath_Equals_Root()
         {
             var path = "root";
@@ -71,9 +72,9 @@ namespace Dev2.Core.Tests.Utils
             var resCat = HelperUtils.SanitizePath(path, resourceName);
             Assert.AreEqual("warewolf-Server.log", resCat);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("HelperUtils")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("HelperUtils")]
         public void HelperUtils_SanitizePath_Empty_ReturnNothing()
         {
             var resourceName = "warewolf-Server.log";
@@ -81,18 +82,18 @@ namespace Dev2.Core.Tests.Utils
             Assert.AreEqual("", resCat);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("HelperUtils")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("HelperUtils")]
         public void HelperUtils_GetServerLogSettingsConfigFile()
         {
             var serverLogSettingsConfigFile = HelperUtils.GetServerLogSettingsConfigFile();
             Assert.IsTrue(serverLogSettingsConfigFile.Contains("warewolf-Server.log"));
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory("HelperUtils")]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category("HelperUtils")]
         public void HelperUtils_ShowTrustRelationshipError_ShowTrustRelationshipError_AreEqual_Expect()
         {
             //-----------------------Arrange--------------------------

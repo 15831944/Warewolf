@@ -21,18 +21,19 @@ using Dev2.Communication;
 using Dev2.Explorer;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class CreateFolderTest
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -44,9 +45,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -58,9 +59,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(AuthorizationContext.Contribute, resId);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("CreateFolder_HandlesType")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("CreateFolder_HandlesType")]
         public void CreateFolder_HandlesType_ExpectName()
         {
             //------------Setup for test--------------------------
@@ -74,9 +75,9 @@ namespace Dev2.Tests.Runtime.Services
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("CreateFolder_Execute")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("CreateFolder_Execute")]
         public void CreateFolder_Execute_ExpectCreateCalled()
         {
             //------------Setup for test--------------------------
@@ -100,9 +101,9 @@ namespace Dev2.Tests.Runtime.Services
             repo.Verify(a => a.AddItem(It.IsAny<IExplorerItem>(), It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("CreateFolder_HandlesType")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("CreateFolder_HandlesType")]
         public void CreateFolder_CreateServiceEntry_ExpectProperlyFormedDynamicService()
         {
             //------------Setup for test--------------------------

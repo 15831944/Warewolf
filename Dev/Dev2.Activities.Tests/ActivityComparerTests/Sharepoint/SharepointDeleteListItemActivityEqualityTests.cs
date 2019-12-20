@@ -5,15 +5,16 @@ using Dev2.Activities.Sharepoint;
 using Dev2.Common.State;
 using Dev2.TO;
 using Dev2.Utilities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SharepointDeleteListItemActivityEqualityTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UniqueIDEquals_EmptySharepoint_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -28,8 +29,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UniqueIDDifferent_EmptySharepoint_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -44,8 +45,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -60,8 +61,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -76,8 +77,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -92,8 +93,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DeleteCount_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -108,8 +109,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DeleteCount_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -124,8 +125,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DeleteCount_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -140,8 +141,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void SharepointList_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -156,8 +157,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void SharepointList_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -172,8 +173,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void SharepointList_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -189,8 +190,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void SharepointServerResourceId_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -205,8 +206,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void SharepointServerResourceId_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -221,8 +222,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ReadListItems_Same_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -237,8 +238,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ReadListItems_Same_Object_IsEqual_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -266,8 +267,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             //---------------Test Result -----------------------
             Assert.IsTrue(@equals);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ReadListItems_Same_DifferentIndexNumbers_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -298,8 +299,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ReadListItems_Same_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -333,8 +334,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void FilterCriteria_Same_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -364,8 +365,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void FilterCriteria_Same_Object_IsEqual_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -402,8 +403,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             //---------------Test Result -----------------------
             Assert.IsTrue(@equals);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void FilterCriteria_Same_DifferentIndexNumbers_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -434,8 +435,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void FilterCriteria_Same_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -466,8 +467,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void RequireAllCriteriaToMatch_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -484,8 +485,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void RequireAllCriteriaToMatch_Same_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -502,8 +503,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
+        [Test]
+        [Author("Candice Daniel")]
         public void SharepointDeleteListItemActivity_GetState()
         {
             //---------------Set up test pack-------------------

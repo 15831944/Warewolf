@@ -7,18 +7,19 @@ using Dev2.Communication;
 using Dev2.PerformanceCounters.Management;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FetchPerformanceCountersTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -30,9 +31,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -44,9 +45,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(AuthorizationContext.Any, resId);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FetchPerformanceCounters_HandlesType")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("FetchPerformanceCounters_HandlesType")]
         public void FetchPerformanceCounters_HandlesType_Get_ReturnsKnownString()
         {
             //------------Setup for test--------------------------
@@ -58,9 +59,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(fetchPerformanceCounters.HandlesType(), "FetchPerformanceCounters");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FetchPerformanceCounters_HandlesType")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("FetchPerformanceCounters_HandlesType")]
         public void FetchPerformanceCounters_HandlesType_Get_DynamicServiceEntry()
         {
             //------------Setup for test--------------------------
@@ -74,9 +75,9 @@ namespace Dev2.Tests.Runtime.Services
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FetchPerformanceCounters_Manager")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("FetchPerformanceCounters_Manager")]
 
         public void FetchPerformanceCounters_Manager_ExceptionIfContainerNotRegistered()
         {
@@ -86,15 +87,15 @@ namespace Dev2.Tests.Runtime.Services
             //------------Execute Test---------------------------
 
             //------------Assert Results-------------------------
-            var p = new PrivateObject(fetchPerformanceCounters);
+            var p = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(fetchPerformanceCounters);
             var nll =   p.GetProperty("Manager");
             Assert.IsNull(nll);
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FetchPerformanceCounters_Manager")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("FetchPerformanceCounters_Manager")]
         public void FetchPerformanceCounters_Manager_ValueIfRegistered()
         {
 
@@ -106,15 +107,15 @@ namespace Dev2.Tests.Runtime.Services
             //------------Execute Test---------------------------
 
             //------------Assert Results-------------------------
-            var p = new PrivateObject(fetchPerformanceCounters);
+            var p = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(fetchPerformanceCounters);
             Assert.IsNotNull( p.GetProperty("Manager"));
            Assert.IsTrue(ReferenceEquals( mng.Object, p.GetProperty("Manager")));
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FetchPerformanceCounters_Manager")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("FetchPerformanceCounters_Manager")]
 
         public void FetchPerformanceCounters_Manager_ExecuteReturnsAValidTo()
         {

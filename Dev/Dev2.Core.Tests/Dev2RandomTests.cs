@@ -16,11 +16,12 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Dev2.Common;
 using Dev2.Common.Interfaces.Enums;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     [ExcludeFromCodeCoverage]
     public class Dev2RandomTests
     {
@@ -38,7 +39,7 @@ namespace Dev2.Tests
         //
         // You can use the following additional attributes as you write your tests:
         //
-        //[ClassInitialize]
+        //[OneTimeSetUp]
         //public static void ClassInitialize(TestContext testContext) { }
         //
         // Use ClassCleanup to run code after all tests in a class have run
@@ -58,21 +59,21 @@ namespace Dev2.Tests
         #region Successfully Generate Random Strings
 
         //Moved to working test because of BUG 9506
-        [TestMethod]
+        [Test]
         public void GenerateNumsWithFromIsGreaterThanToExpectedValidNumber()
         {
             int.TryParse(_dev2Random.GetRandom(enRandomType.Numbers, -1, 100, 5), out int res);
             Assert.IsTrue(res >= 5 && res <= 100, "Did not generate the right random number.");
         }
 
-        [TestMethod]
+        [Test]
         public void GenerateNumsWithFromIsGreaterThanToExpectedValidNumberForZeroFrom()
         {
             int.TryParse(_dev2Random.GetRandom(enRandomType.Numbers, -1, 0, 5), out int res);
             Assert.IsTrue(res >= 0 && res <= 5, "Did not generate the right random number.");
         }
 
-        [TestMethod]
+        [Test]
         public void GenerateWithGuidExpectedValidGuid()
         {
             var result = _dev2Random.GetRandom(enRandomType.Guid, -1, -1, -1);
@@ -80,14 +81,14 @@ namespace Dev2.Tests
             Assert.AreNotEqual(Guid.Empty, tryParse, "Generated an empty Guid");
         }
 
-        [TestMethod]
+        [Test]
         public void GenerateNumsWithFromIsGreaterThanToExpectedValidNumbersWithDecimalRange()
         {
             double.TryParse(_dev2Random.GetRandom(enRandomType.Numbers, -1, 0.01, 0.1), out double res);
             Assert.IsTrue(res >= 0.01 && res <= 0.1, "Did not generate the right random number.");
         }
 
-        [TestMethod]
+        [Test]
         public void GenerateWithLettersExpectedLettersGenerated()
         {
             var result = _dev2Random.GetRandom(enRandomType.Letters, 5000, -1, -1);
@@ -97,7 +98,7 @@ namespace Dev2.Tests
             Assert.IsTrue(result.Contains('z'), "Dev2Random did not generate a 'z' in 5000 letters");
         }
 
-        [TestMethod]
+        [Test]
         public void GenerateWithNumbersExpectedNumbersGeneratedForRangeLargerThanIntegerForPositiveCase()
         {
             const double MoreThanMaxInt = (double)int.MaxValue + 1;
@@ -107,7 +108,7 @@ namespace Dev2.Tests
             Assert.IsTrue(result >= MoreThanMaxInt, "Dev2Random generated a number below the specified range");
         }
 
-        [TestMethod]
+        [Test]
         public void GenerateWithNumbersExpectedNumbersGeneratedForRangeLargerThanIntegerForNegativeCase()
         {
             const double LessThanMinInt = (double)int.MinValue - 1;
@@ -118,7 +119,7 @@ namespace Dev2.Tests
         }
 
         //http://www.hanselman.com/blog/WhyYouCantDoubleParseDoubleMaxValueToStringOrSystemOverloadExceptionsWhenUsingDoubleParse.aspx
-        [TestMethod]
+        [Test]
         public void GenerateWithNumbersExpectedNumbersMaximumDoubleRange()
         {
             const double MinDouble = double.MinValue;
@@ -139,7 +140,7 @@ namespace Dev2.Tests
         }
 
 
-        [TestMethod]
+        [Test]
         public void GenerateWithNumbersExpectedNumbersMaximumDoubleRangeNoDecimals()
         {
             const double MinDouble = 0d;
@@ -150,7 +151,7 @@ namespace Dev2.Tests
         }
 
 
-        [TestMethod]
+        [Test]
         public void GenerateWithNumbersExpectedNumbersGenerated()
         {
             var result = _dev2Random.GetRandom(enRandomType.Numbers, -1, 0, 5000);
@@ -158,7 +159,7 @@ namespace Dev2.Tests
             Assert.IsTrue(int.Parse(result) >= 0, "Dev2Random generated a number below the specified range");
         }
 
-        [TestMethod]
+        [Test]
         public void GenerateWithLettersAndNumbersExpectedLettersAndNumbersGenerated()
         {
             var result = _dev2Random.GetRandom(enRandomType.LetterAndNumbers, 5000, 0, 26);
@@ -170,14 +171,14 @@ namespace Dev2.Tests
 
         #region Fail to Generate Random Strings
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void GenerateCharsWithNegativeRangeExpectedArgException()
         {
             _dev2Random.GetRandom(enRandomType.Letters, -5, -1, -1);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void GenerateMixedWithNegativeExpectedArgException()
         {
@@ -188,7 +189,7 @@ namespace Dev2.Tests
 
         #region Test Randomness (going for 60% uniqueness)
 
-        [TestMethod]
+        [Test]
         public void GenerateWithOneLetter10TimesExpectedDifferentLettersEachTime()
         {
             //Initialize
@@ -211,7 +212,7 @@ namespace Dev2.Tests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void GenerateWithNumber10TimesExpectedDifferentNumbersEachTime()
         {
             //Initialize
@@ -234,7 +235,7 @@ namespace Dev2.Tests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void GenerateWithOneLetterOrNumber10TimesExpectedDifferentNumberAndLettersEachTime()
         {
             //Initialize

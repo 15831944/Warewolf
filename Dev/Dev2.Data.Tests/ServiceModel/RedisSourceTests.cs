@@ -11,42 +11,43 @@ using System;
 using System.Xml.Linq;
 using Dev2.Data.ServiceModel;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests.ServiceModel
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class RedisSourceTests
     {
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(RedisSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(RedisSource))]
         public void RedisSource_Validate_DefaultValues()
         {
             var redisSource = new RedisSource();
-            Assert.IsTrue(redisSource.IsSource);
-            Assert.IsFalse(redisSource.IsService);
-            Assert.IsFalse(redisSource.IsFolder);
-            Assert.IsFalse(redisSource.IsReservedService);
-            Assert.IsFalse(redisSource.IsServer);
-            Assert.IsFalse(redisSource.IsResourceVersion);
+            NUnit.Framework.Assert.IsTrue(redisSource.IsSource);
+            NUnit.Framework.Assert.IsFalse(redisSource.IsService);
+            NUnit.Framework.Assert.IsFalse(redisSource.IsFolder);
+            NUnit.Framework.Assert.IsFalse(redisSource.IsReservedService);
+            NUnit.Framework.Assert.IsFalse(redisSource.IsServer);
+            NUnit.Framework.Assert.IsFalse(redisSource.IsResourceVersion);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(RedisSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(RedisSource))]
         public void RedisSource_Constructor_Validate_DefaultValues()
         {
             var redisSource = new RedisSource();
-            Assert.IsNotNull(redisSource.ResourceID);
-            Assert.AreEqual(Guid.Empty, redisSource.ResourceID);
-            Assert.AreEqual(nameof(RedisSource), redisSource.ResourceType);
-            Assert.AreEqual("6379", redisSource.Port);
-            Assert.AreEqual(AuthenticationType.Anonymous, redisSource.AuthenticationType);
+            NUnit.Framework.Assert.IsNotNull(redisSource.ResourceID);
+            NUnit.Framework.Assert.AreEqual(Guid.Empty, redisSource.ResourceID);
+            NUnit.Framework.Assert.AreEqual(nameof(RedisSource), redisSource.ResourceType);
+            NUnit.Framework.Assert.AreEqual("6379", redisSource.Port);
+            NUnit.Framework.Assert.AreEqual(AuthenticationType.Anonymous, redisSource.AuthenticationType);
 
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(RedisSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(RedisSource))]
         public void RedisSource_Validate_ToXml_AuthenticationType_Anonymous()
         {
             const string xmlString = @"<Source ID=""1a82a341-b678-4992-a25a-39cdd57198d4"" Name=""Example Redis Source"" ResourceType=""RedisSource"" IsValid=""false"" 
@@ -64,15 +65,15 @@ namespace Dev2.Data.Tests.ServiceModel
             var result = redisSource.ToXml();
 
             var redisSourceWithXml = new RedisSource(result);
-            Assert.AreEqual(nameof(RedisSource), redisSourceWithXml.ResourceType);
-            Assert.AreEqual("6379", redisSourceWithXml.Port);
-            Assert.AreEqual("localhost", redisSourceWithXml.HostName);
-            Assert.AreEqual("", redisSourceWithXml.Password);
-            Assert.AreEqual(AuthenticationType.Anonymous, redisSourceWithXml.AuthenticationType);
+            NUnit.Framework.Assert.AreEqual(nameof(RedisSource), redisSourceWithXml.ResourceType);
+            NUnit.Framework.Assert.AreEqual("6379", redisSourceWithXml.Port);
+            NUnit.Framework.Assert.AreEqual("localhost", redisSourceWithXml.HostName);
+            NUnit.Framework.Assert.AreEqual("", redisSourceWithXml.Password);
+            NUnit.Framework.Assert.AreEqual(AuthenticationType.Anonymous, redisSourceWithXml.AuthenticationType);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(RedisSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(RedisSource))]
         public void RedisSource_Validate_ToXml_AuthenticationType_Password()
         {
             const string xmlString = @"<Source ID=""1a82a341-b678-4992-a25a-39cdd57198d4"" Name=""Example Redis Source"" ResourceType=""RedisSource"" IsValid=""false"" 
@@ -90,11 +91,11 @@ namespace Dev2.Data.Tests.ServiceModel
             var result = redisSource.ToXml();
 
             var redisSourceWithXml = new RedisSource(result);
-            Assert.AreEqual(nameof(RedisSource), redisSourceWithXml.ResourceType);
-            Assert.AreEqual("6379", redisSourceWithXml.Port);
-            Assert.AreEqual("localhost", redisSourceWithXml.HostName);
-            Assert.AreEqual("test123", redisSourceWithXml.Password);
-            Assert.AreEqual(AuthenticationType.Password, redisSourceWithXml.AuthenticationType);
+            NUnit.Framework.Assert.AreEqual(nameof(RedisSource), redisSourceWithXml.ResourceType);
+            NUnit.Framework.Assert.AreEqual("6379", redisSourceWithXml.Port);
+            NUnit.Framework.Assert.AreEqual("localhost", redisSourceWithXml.HostName);
+            NUnit.Framework.Assert.AreEqual("test123", redisSourceWithXml.Password);
+            NUnit.Framework.Assert.AreEqual(AuthenticationType.Password, redisSourceWithXml.AuthenticationType);
         }
     }
 }

@@ -10,15 +10,16 @@
 
 using Dev2.Common.Interfaces.Interfaces;
 using Dev2.Data.Interfaces.Enums;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class GatherSystemInformationTOTests
     {
-        [TestMethod]
+        [Test]
         public void GatherSystemInformationTOShouldImplementIDev2TOFn()
         {
             //------------Setup for test--------------------------
@@ -26,10 +27,10 @@ namespace Dev2.Tests
             //------------Execute Test---------------------------
             var informationTO = new GatherSystemInformationTO();
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(informationTO,typeof(IDev2TOFn));
+            Assert.IsInstanceOf(informationTO.GetType(),typeof(IDev2TOFn));
         }
 
-        [TestMethod]
+        [Test]
         public void ConstructorWhereParametersExpectSetsProperties()
         {
             //------------Setup for test--------------------------
@@ -48,9 +49,9 @@ namespace Dev2.Tests
 
         #region CanAdd Tests
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("GatherSystemInformationTO_CanAdd")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("GatherSystemInformationTO_CanAdd")]
         public void GatherSystemInformationTO_CanAdd_ResultEmpty_ReturnFalse()
         {
             //------------Setup for test--------------------------
@@ -60,9 +61,9 @@ namespace Dev2.Tests
             Assert.IsFalse(gatherSystemInformationTO.CanAdd());
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("GatherSystemInformationTO_CanAdd")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("GatherSystemInformationTO_CanAdd")]
         public void GatherSystemInformationTO_CanAdd_ResultHasData_ReturnTrue()
         {
             //------------Setup for test--------------------------
@@ -76,9 +77,9 @@ namespace Dev2.Tests
 
         #region CanRemove Tests
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("GatherSystemInformationTO_CanRemove")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("GatherSystemInformationTO_CanRemove")]
         public void GatherSystemInformationTO_CanRemove_ResultEmpty_ReturnTrue()
         {
             //------------Setup for test--------------------------
@@ -88,9 +89,9 @@ namespace Dev2.Tests
             Assert.IsTrue(gatherSystemInformationTO.CanRemove());
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("GatherSystemInformationTO_CanRemove")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("GatherSystemInformationTO_CanRemove")]
         public void GatherSystemInformationTO_CanRemove_ResultWithData_ReturnFalse()
         {
             //------------Setup for test--------------------------

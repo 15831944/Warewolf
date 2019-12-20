@@ -1,15 +1,16 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System.Collections.Generic;
 using Dev2.Common.Interfaces.Toolbox;
 using Moq;
 
 namespace Warewolf.Studio.ViewModels.ToolBox.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ToolBoxCategoryViewModelTests
     {
-
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestToolBoxCategoryViewModel()
         {
             //arrange

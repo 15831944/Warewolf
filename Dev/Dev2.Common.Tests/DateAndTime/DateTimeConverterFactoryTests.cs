@@ -10,14 +10,15 @@
 
 using Dev2.Common.DateAndTime;
 using Dev2.Common.DateAndTime.TO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Common.Tests.DateAndTime
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DateTimeConverterFactoryTests
     {
-        [TestInitialize]
+        [SetUp]
         public void PreConditions()
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-ZA");
@@ -27,9 +28,9 @@ namespace Dev2.Common.Tests.DateAndTime
             Assert.AreEqual("en-ZA", System.Threading.Thread.CurrentThread.CurrentUICulture.Name);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DateTimeConverterFactory))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DateTimeConverterFactory))]
         public void DateTimeConverterFactory_CreateFormatter()
         {
             var formatter = DateTimeConverterFactory.CreateFormatter();
@@ -37,9 +38,9 @@ namespace Dev2.Common.Tests.DateAndTime
             Assert.AreEqual(typeof(DateTimeFormatter), formatter.GetType());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DateTimeConverterFactory))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DateTimeConverterFactory))]
         public void DateTimeConverterFactory_CreateStandardFormatter()
         {
             var standardFormatter = DateTimeConverterFactory.CreateStandardFormatter();
@@ -47,9 +48,9 @@ namespace Dev2.Common.Tests.DateAndTime
             Assert.AreEqual(typeof(StandardDateTimeFormatter), standardFormatter.GetType());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DateTimeConverterFactory))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DateTimeConverterFactory))]
         public void DateTimeConverterFactory_CreateParser()
         {
             var parser = DateTimeConverterFactory.CreateParser();
@@ -57,9 +58,9 @@ namespace Dev2.Common.Tests.DateAndTime
             Assert.AreEqual(typeof(Dev2DateTimeParser), parser.GetType());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DateTimeConverterFactory))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DateTimeConverterFactory))]
         public void DateTimeConverterFactory_CreateStandardParser()
         {
             var standardParser = DateTimeConverterFactory.CreateStandardParser();
@@ -67,9 +68,9 @@ namespace Dev2.Common.Tests.DateAndTime
             Assert.AreEqual(typeof(StandardDateTimeParser), standardParser.GetType());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DateTimeConverterFactory))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DateTimeConverterFactory))]
         public void DateTimeConverterFactory_CreateComparer()
         {
             var comparer = DateTimeConverterFactory.CreateComparer();
@@ -77,9 +78,9 @@ namespace Dev2.Common.Tests.DateAndTime
             Assert.AreEqual(typeof(DateTimeComparer), comparer.GetType());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DateTimeConverterFactory))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DateTimeConverterFactory))]
         public void DateTimeConverterFactory_CreateStandardComparer()
         {
             var standardComparer = DateTimeConverterFactory.CreateStandardComparer();
@@ -87,9 +88,9 @@ namespace Dev2.Common.Tests.DateAndTime
             Assert.AreEqual(typeof(StandardDateTimeComparer), standardComparer.GetType());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DateTimeConverterFactory))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DateTimeConverterFactory))]
         public void DateTimeConverterFactory_CreateDateTimeDiffTO()
         {
             const string input1 = "input1";
@@ -106,9 +107,9 @@ namespace Dev2.Common.Tests.DateAndTime
             Assert.AreEqual(typeof(DateTimeDiffTO), dateTimeDiffTO.GetType());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DateTimeConverterFactory))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DateTimeConverterFactory))]
         public void DateTimeConverterFactory_CreateDateTimeTO()
         {
             //string result

@@ -16,7 +16,7 @@ using Dev2.Communication;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using TechTalk.SpecFlow;
 
@@ -135,7 +135,7 @@ namespace Dev2.Activities.Specs.Toolbox.Resources.Web
         [Then(@"Put Header is Enabled")]
         public void ThenHeaderIsEnabled()
         {
-            Assert.AreEqual<int>(1, GetViewModel().InputArea.Headers.Count);
+            Assert.AreEqual(1, GetViewModel().InputArea.Headers.Count);
         }
 
         [Then(@"Put Header appears as")]
@@ -218,7 +218,7 @@ namespace Dev2.Activities.Specs.Toolbox.Resources.Web
         public void ThenPutUrlAs(string url)
         {
             var webServicePutViewModel = GetViewModel();
-            Assert.AreEqual<string>(url, webServicePutViewModel.InputArea.RequestUrl);
+            Assert.AreEqual(url, webServicePutViewModel.InputArea.RequestUrl);
         }
 
         [Then(@"I add Put Header as")]
@@ -280,7 +280,7 @@ namespace Dev2.Activities.Specs.Toolbox.Resources.Web
         public void ThenPutResponseAppearsAs(string response)
         {
             var webServicePutViewModel = GetViewModel();
-            Assert.AreEqual<string>(response, webServicePutViewModel.ManageServiceInputViewModel.TestResults);
+            Assert.AreEqual(response, webServicePutViewModel.ManageServiceInputViewModel.TestResults);
         }
 
         [Then(@"Put Mappings is Disabled")]
@@ -399,7 +399,7 @@ namespace Dev2.Activities.Specs.Toolbox.Resources.Web
             {
                 if (vm.OutputsRegion.Outputs != null)
                 {
-                    Assert.AreEqual<int>(vm.OutputsRegion.Outputs.Count, 0);
+                    Assert.AreEqual(vm.OutputsRegion.Outputs.Count, 0);
                 }
             }
             else
@@ -407,8 +407,8 @@ namespace Dev2.Activities.Specs.Toolbox.Resources.Web
                 var matched = table.Rows.Zip(vm.OutputsRegion.Outputs, (a, b) => new Tuple<TableRow, IServiceOutputMapping>(a, b));
                 foreach (var a in matched)
                 {
-                    Assert.AreEqual<string>(a.Item1[0], a.Item2.MappedFrom);
-                    Assert.AreEqual<string>(a.Item1[1], a.Item2.MappedTo);
+                    Assert.AreEqual(a.Item1[0], a.Item2.MappedFrom);
+                    Assert.AreEqual(a.Item1[1], a.Item2.MappedTo);
 
                 }
             }

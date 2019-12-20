@@ -1,15 +1,16 @@
 ﻿using System;
 using Dev2.Activities.Exchange;
 using Dev2.Common.Interfaces.Core;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfExchangeNewEmailActivityComparerTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void UniqueIDEquals_EmptyDropBoxDeleteActivities_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -24,8 +25,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void UniqueID_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -39,8 +40,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             //---------------Test Result -----------------------
             Assert.IsFalse(equals);
         }
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void Equals_Given_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -55,8 +56,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void IsHtml_Same_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -73,8 +74,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void IsNotHtml_Same_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -91,8 +92,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void Equals_Given_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -107,8 +108,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void Equals_Given_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -122,8 +123,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             //---------------Test Result -----------------------
             Assert.IsFalse(equals);
         }
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void Result_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -138,8 +139,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void Result_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -154,8 +155,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void Result_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -170,8 +171,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void To_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -186,8 +187,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void To_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -202,8 +203,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void DeletePath_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -219,8 +220,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
         }
 
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void Cc_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -235,8 +236,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void Cc_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -251,8 +252,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void Cc_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -268,8 +269,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
         }
 
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void Bcc_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -284,8 +285,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void Bcc_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -300,8 +301,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void Bcc_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -316,8 +317,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void Subject_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -332,8 +333,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void Subject_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -348,8 +349,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void Subject_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -365,8 +366,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
         }
 
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void Attachments_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -381,8 +382,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void Attachments_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -397,8 +398,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void Attachments_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -414,8 +415,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
         }
 
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void Body_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -430,8 +431,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void BodyDifferent_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -446,8 +447,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void Body_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -462,8 +463,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void SavedSource_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -480,8 +481,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void SavedSource_Same_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -498,8 +499,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
+        [Test]
+        [Author("Rory McGuire")]
         public void Null_Objects_Not_Equal_Same_Object_Equal()
         {
             //---------------Set up test pack-------------------

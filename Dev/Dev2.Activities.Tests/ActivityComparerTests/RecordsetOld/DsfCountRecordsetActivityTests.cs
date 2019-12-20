@@ -1,14 +1,15 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.RecordsetOld
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfCountRecordsetActivityTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UniqueIDEquals_EmptyCountRecordset_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -23,8 +24,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RecordsetOld
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UniqueIDDifferent_EmptyCountRecordset_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -38,8 +39,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RecordsetOld
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -54,8 +55,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RecordsetOld
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -70,8 +71,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RecordsetOld
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -86,8 +87,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RecordsetOld
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void RecordsetName_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -102,8 +103,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RecordsetOld
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void RecordsetName_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -118,8 +119,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RecordsetOld
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void RecordsetName_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -134,8 +135,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RecordsetOld
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CountNumber_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -150,8 +151,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RecordsetOld
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CountNumber_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -166,8 +167,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RecordsetOld
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CountNumber_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------

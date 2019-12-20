@@ -9,19 +9,20 @@
 */
 
 using Dev2.Data.Decisions.Operations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests.DecisionsTests
 {
     /// <summary>
     /// Summary description for NotStartsWithTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class NotStartsWithTests
     {
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("NotStartsWith_Invoke")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("NotStartsWith_Invoke")]
         public void NotStartsWith_Invoke_DoesStartWith_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -35,12 +36,12 @@ namespace Dev2.Data.Tests.DecisionsTests
             var result = notStartsWith.Invoke(cols);
 
             //------------Assert Results-------------------------
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("NotStartsWith_Invoke")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("NotStartsWith_Invoke")]
         public void NotStartsWith_Invoke_DoesntStartWith_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -53,12 +54,12 @@ namespace Dev2.Data.Tests.DecisionsTests
             var result = notStartsWith.Invoke(cols);
 
             //------------Assert Results-------------------------
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthmembu")]
-        [TestCategory("NotStartsWith_HandlesType")]
+        [Test]
+        [Author("Sanele Mthmembu")]
+        [Category("NotStartsWith_HandlesType")]
         public void NotStartsWith_HandlesType_ReturnsNotStartWithType()
         {
             var startsWith = enDecisionType.NotStartsWith;
@@ -66,7 +67,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             var notStartsWith = new NotStartsWith();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.AreEqual(startsWith, notStartsWith.HandlesType());
+            NUnit.Framework.Assert.AreEqual(startsWith, notStartsWith.HandlesType());
         }
     }
 }

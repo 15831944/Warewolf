@@ -14,7 +14,7 @@ using Dev2.Diagnostics;
 using Dev2.Interfaces;
 using Dev2.Runtime.Interfaces;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using TestingDotnetDllCascading;
 using Warewolf.Core;
@@ -25,11 +25,12 @@ using Warewolf.Storage.Interfaces;
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfEnhancedDotNetDllActivityTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Constructor_GivenIsNew_ShouldHaveCorrectValues()
         {
             //---------------Set up test pack-------------------
@@ -42,8 +43,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("DotNet DLL", activity.DisplayName);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenNoNamespace_ShouldAddError()
         {
             //---------------Set up test pack-------------------
@@ -60,8 +61,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(1, err.FetchErrors().Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenNoMethod_ShouldAddError()
         {
             //---------------Set up test pack-------------------
@@ -86,8 +87,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(1, err.FetchErrors().Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenNoMethodNameSpace_ShouldPassThough()
         {
             //---------------Set up test pack-------------------
@@ -125,8 +126,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(0, err.FetchErrors().Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenIsExistingObject_ShouldEvalFromEnvironment()
         {
             //---------------Set up test pack-------------------
@@ -174,8 +175,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(0, activity.MethodsToRun.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenNullValues_ShouldExecuteMethodUsingNulls()
         {
             //---------------Set up test pack-------------------
@@ -249,8 +250,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsTrue(any);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenEmptyIsNull_ShouldExecuteWithNull()
         {
             //---------------Set up test pack-------------------
@@ -319,8 +320,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             var methodResult = activity.MethodsToRun.Single().MethodResult;
             Assert.AreEqual("Null value passed", methodResult);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenEmptyIsNullFalse_ShouldExecuteWithEmptyString()
         {
             //---------------Set up test pack-------------------
@@ -391,8 +392,8 @@ namespace Dev2.Tests.Activities.ActivityTests
 
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenNoConstructor_ShouldDefaultEmptyConstructor()
         {
             //---------------Set up test pack-------------------
@@ -437,8 +438,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsNotNull(activity.ConstructorInputs);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenValidArgs_ShouldReturnValidData()
         {
             //---------------Set up test pack-------------------
@@ -484,8 +485,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(0, err.FetchErrors().Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Author("Hagashen Naidu")]
         public void Execute_GivenValidArgs_ListType_ToObject_ShouldReturnValidData()
         {
             //---------------Set up test pack-------------------
@@ -537,8 +538,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             StringAssert.Contains(values[2], "Chicken");
         }
        
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Author("Hagashen Naidu")]
         public void Execute_GivenValidArgs_ListType_ToRecordset_ShouldReturnValidData()
         {
             //---------------Set up test pack-------------------
@@ -588,8 +589,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("215561475", jContainer[2].ToString());
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Author("Hagashen Naidu")]
         public void Execute_GivenValidArgs_ListType_ToScalar_ShouldReturnValidData()
         {
             //---------------Set up test pack-------------------
@@ -637,8 +638,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("1284561478,228561478,215561475", jContainer.Item.ToString());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenExistingObject_ShouldUseExistingObject()
         {
             //---------------Set up test pack-------------------
@@ -695,8 +696,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Name:Micky, Surname:Mouse, FoodName:Lettuce", methodResult);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenParameters_ShouldUseExistingObject()
         {
             //---------------Set up test pack-------------------
@@ -765,8 +766,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Name:Micky, Surname:Mouse, FoodName:Lettuce", methodResult);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetFindMissingType_GivenActivity_ShouldReturnDatgrid()
         {
             //---------------Set up test pack-------------------
@@ -779,8 +780,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(enFindMissingType.DataGridActivity, activity.GetFindMissingType());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void BuildConstructorInputs_GivenConstructor_ShouldConstructorDebug()
         {
             //---------------Set up test pack-------------------
@@ -847,8 +848,8 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void BuildConstructorOutput_GivenConstructorWithOutput_ShouldConstructorDebug()
         {
             //---------------Set up test pack-------------------
@@ -914,8 +915,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsNotNull(constructorValue);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void BuildMethodInputs_GivenActionsWithInputs_ShouldActionsInputDebug()
         {
             //---------------Set up test pack-------------------
@@ -985,8 +986,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("John", value);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void BuildMethodOutputs_GivenMethodOutput_ShouldDebugOutput()
         {
             //---------------Set up test pack-------------------
@@ -1059,8 +1060,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             StringAssert.Contains(val, "John");
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void BuildMethodOutputs_GivenMethodIsvoid_ShouldReturnNone()
         {
             //---------------Set up test pack-------------------
@@ -1139,8 +1140,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             StringAssert.Contains(val, "None");
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenHasIncorrectExistingTypeObjectSelected_ShouldAddCorrectError()
         {
             //---------------Set up test pack-------------------
@@ -1217,8 +1218,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             var single = err.FetchErrors().Single();
             StringAssert.Contains(single, "is not compatible with");
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
+        [Test]
+        [Author("Candice Daniel")]
         public void Execute_GivenValidArgs_ListType_ToObject_ShouldReturnValidData_IsServiceTestExecution()
         {
             //---------------Set up test pack-------------------

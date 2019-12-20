@@ -20,16 +20,17 @@ using Dev2.PerformanceCounters.Counters;
 using Dev2.Runtime.Interfaces;
 using Dev2.Runtime.WebServer;
 using Dev2.Runtime.WebServer.Handlers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.Runtime.WebServer
 {
-    [TestClass]
-    [TestCategory("Runtime WebServer")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime WebServer")]
     public class WebGetRequestHandlerTest
     {
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void Init(TestContext context)
         {
             var pCounter = new Mock<IWarewolfPerformanceCounterLocater>();
@@ -39,9 +40,9 @@ namespace Dev2.Tests.Runtime.WebServer
             CustomContainer.Register(pCounter.Object);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("WebGetRequestHandler_ProcessRequest")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("WebGetRequestHandler_ProcessRequest")]
         public void WebGetRequestHandler_ProcessRequest_WhenValidUserContext_ExpectExecution()
         {
             //------------Setup for test--------------------------
@@ -85,9 +86,9 @@ namespace Dev2.Tests.Runtime.WebServer
         }
 
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("WebGetRequestHandler_ProcessRequest")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("WebGetRequestHandler_ProcessRequest")]
         public void WebGetRequestHandler_ProcessRequest_WhenValidUserContextWhenNullDataListID_ExpectExecution()
         {
             //------------Setup for test--------------------------

@@ -16,18 +16,19 @@ using Dev2.Studio.Core.Messages;
 using Dev2.Studio.Interfaces;
 using Dev2.Studio.Views.ResourceManagement;
 using Dev2.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Core.Tests.Utils
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ResourceChangeHandlerTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ResourceChangeHandler_Construct")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ResourceChangeHandler_Construct")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ResourceChangeHandler_Constructor_WithNullEventPublisher_ThrowsArgumentNullException()
         {
@@ -37,9 +38,9 @@ namespace Dev2.Core.Tests.Utils
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ResourceChangeHandler_ShowResourceChanged")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ResourceChangeHandler_ShowResourceChanged")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ResourceChangeHandlerShowResourceChanged_WithNullResource_ThrowsArgumentNullException()
         {
@@ -50,9 +51,9 @@ namespace Dev2.Core.Tests.Utils
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ResourceChangeHandler_ShowResourceChanged")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ResourceChangeHandler_ShowResourceChanged")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ResourceChangeHandler_ShowResourceChanged_WithNullList_ThrowsArgumentNullException()
         {
@@ -63,9 +64,9 @@ namespace Dev2.Core.Tests.Utils
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ResourceChangeHandler_ShowResourceChanged")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ResourceChangeHandler_ShowResourceChanged")]
         public void ResourceChangeHandler_ShowResourceChanged_WithOneDependant_FiresAddWorkSurfaceMessageMessage()
         {
             //------------Setup for test--------------------------
@@ -94,9 +95,9 @@ namespace Dev2.Core.Tests.Utils
             shell.Verify(model => model.OpenResourceAsync(It.IsAny<Guid>(), server.Object));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ResourceChangeHandler_ShowResourceChanged")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ResourceChangeHandler_ShowResourceChanged")]
         public void ResourceChangeHandler_ShowResourceChanged_WithMoreThanOneDependant_FiresShowReverseDependencyVisualizerMessage()
         {
             //------------Setup for test--------------------------

@@ -11,7 +11,7 @@
 using System;
 using Dev2.Data.MathOperations;
 using Dev2.MathOperations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Dev2.Common;
 
 namespace Dev2.Tests.MathOperationTest
@@ -19,7 +19,8 @@ namespace Dev2.Tests.MathOperationTest
     /// <summary>
     /// Summary description for FunctionEvaluatorTest
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FunctionEvaluatorTest
     {
         IFunctionEvaluator _eval = MathOpsFactory.CreateFunctionEvaluator();
@@ -34,7 +35,7 @@ namespace Dev2.Tests.MathOperationTest
         /// <summary>
         /// Tests that integer literals passed to the function evaluator with no data list regions are evaluated correctly.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void TryEvaluateFunction_LiteralsPassedToFunction_EvaluationReturnsCorrectly()
         {
             const string expression = @"Sum(10, 10)";
@@ -55,7 +56,7 @@ namespace Dev2.Tests.MathOperationTest
         /// Tests that invalid tokens passed to the function evaluator with no data list regions are evaluated as a syntax error
         /// and that the syntax error is correctly returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void TryEvaluateFunction_InvalidExpression_ErrorPopulatedAndReturned()
         {
             const string expression = @"Sum(10, 10,asdasd)";
@@ -76,7 +77,7 @@ namespace Dev2.Tests.MathOperationTest
         /// Tests that parenthesis with no preceding function name with an invalid token are interpretted as a syntax error
         /// and that the error is correctly returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void TryEvaluateFunction_NoExpression_ErrorPopulatedAndReturnedWithErrorDetailingProblem()
         {
             const string expression = @"(10, 10,asdasd)";
@@ -97,7 +98,7 @@ namespace Dev2.Tests.MathOperationTest
         /// Tests that a simple sequence of integer literals and binary integer operations are evaluated correctly by the function
         /// evaluator.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void TryEvaluateFunction_UnaryOperation_Expected_SuccesfulUnaryOperation()
         {
             const string expression = @"10 + 10 - 10";
@@ -114,7 +115,7 @@ namespace Dev2.Tests.MathOperationTest
         /// Tests that a mixed expression containing binary integer literals and function calls evaluates as expected and that no error
         /// is encountered for an expected valid input expression.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void TryEvaluateFunction_MixedUnaryAndFunctions_Expected_EvaluationSucessful()
         {
             const string expression = @"Average(10 + 10, 20*2, 30/2)";
@@ -135,7 +136,7 @@ namespace Dev2.Tests.MathOperationTest
         /// Tests that an expression containing integer literals and function calls evaluates as an error given that the input expression is syntacticly correct
         /// but contains an unknown function identifier.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void TryEvaluateFunction_FunctionDoesNotExist_Expected_ErrorResponseStatingFunctionNotExist()
         {
             const string expression = @"thisDoesNotExist(12,1234,567)";
@@ -155,7 +156,7 @@ namespace Dev2.Tests.MathOperationTest
         /// <summary>
         /// Tests that an expression that accesses the date capabilities of infrigistics evaluates correctly.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void TryEvaluateFunction_DateFunction_Expected_EvaluationOfDateCorrect()
         {
             var date = new DateTime(2012, 2, 2);
@@ -177,7 +178,7 @@ namespace Dev2.Tests.MathOperationTest
         /// <summary>
         /// Tests that an expression that accesses the date capabilities of infrigistics evaluates correctly.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void TryEvaluateFunction_DateFunction_Expected_EvaluationOfDateCorrect_DotnetFormat()
         {
             var date = new DateTime(2012, 2, 2);
@@ -200,7 +201,7 @@ namespace Dev2.Tests.MathOperationTest
         /// Tests that an expression that accesses the date capabilities of infrigistics mixed with string literal date format results in
         /// a valid evaluation.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void TryEvaluateFunction_YearFunction_Expected_EvaluationOfDateCorrect()
         {
             const string expression = @"Year(""1989/02/01"")";
@@ -221,7 +222,7 @@ namespace Dev2.Tests.MathOperationTest
         /// Tests that an expression that accesses the date capabilities of infrigistics mixed with string literal date format results in
         /// a valid evaluation.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FindFirstLetter_OfWord_Should_ReturnCorrectly()
         {
             var expression = "LEFT(\"Nkosinathi\",1)&IF(ISERROR(FIND(\" \",\"Nkosinathi\",1)),\"\",MID(\"Nkosinathi\",FIND(\" \",\"Nkosinathi\",1)+1,1))&IF(ISERROR(FIND(\" \",\"Nkosinathi\",FIND(\" \",\"Nkosinathi\",1)+1)),\"\",MID(\"Nkosinathi\",FIND(\" \",\"Nkosinathi\",FIND(\" \",\"Nkosinathi\",1)+1)+1,1))";
@@ -255,7 +256,7 @@ namespace Dev2.Tests.MathOperationTest
         /// Tests that the imaginary square root function of the infrigistics library evaluates correctly when used with
         /// a unary operator and an integer literal.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void TryEvaluateFunction_ImSqrt_Expected_EvaluatioReturnsCorrectResult()
         {
             const string expression = @"Imsqrt(-1)";
@@ -276,7 +277,7 @@ namespace Dev2.Tests.MathOperationTest
         /// <summary>
         /// 
         /// </summary>
-        [TestMethod]
+        [Test]
         public void TryEvaluateFunction_Oct2Dec_Expected_EvaluationReturnsCorrectResult()
         {
             const string expression = @"Oct2Dec(764)";
@@ -294,7 +295,7 @@ namespace Dev2.Tests.MathOperationTest
 
         }
 
-        [TestMethod]
+        [Test]
         public void TryEvaluateFunction_ComplexCalculation_Expected_EvaluatioReturnsCorrectResult()
         {
             const string expression = @"Sum(Average(Abs(-100), Min(10,20,2,30,200)), Max(200,300,400)) + 250";

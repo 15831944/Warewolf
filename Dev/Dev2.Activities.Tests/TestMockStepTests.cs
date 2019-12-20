@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using Dev2.Common.Interfaces;
 using Dev2.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Warewolf.Storage;
 
 namespace Dev2.Tests.Activities
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class TestMockStepTests
     {
-        [TestMethod]
+        [Test]
         public void TestMockStep_ServiceTestOutputs_HaveOutput()
         {
             var originalAct = new Mock<DsfActivityAbstract<string>>();
@@ -38,7 +39,7 @@ namespace Dev2.Tests.Activities
             Assert.AreEqual(theValue, results[0]);
         }
 
-        [TestMethod]
+        [Test]
         public void TestMockStep_Equality()
         {
             var act = new TestMockStep();
@@ -53,9 +54,9 @@ namespace Dev2.Tests.Activities
             Assert.IsFalse(act.Equals(act1));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestMockStep_GetState")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestMockStep_GetState")]
         public void TestMockStep_GetState_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------

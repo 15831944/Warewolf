@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 using Dev2.Common;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Integration.Tests.Server_Refresh
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SqlParallelRunStressTests
     {
-        [TestMethod]
+        [Test]
         public void TestUsingQlinkTrailerCreationWorkflow()
         {
             var url1 = "http://localhost:3142/secure/QLINK/WriteProcess/QlinkTrailerCreation.tests";
@@ -30,26 +31,26 @@ namespace Dev2.Integration.Tests.Server_Refresh
                     var stringResult = b.Result.Replace(Environment.NewLine, "").Replace(" ", "");
 
                     var hasTestResult = stringResult.Contains(item1.ToString());
-                    Assert.IsTrue(hasTestResult);
+                    NUnit.Framework.Assert.IsTrue(hasTestResult);
                     var hasTestResult1 = stringResult.Contains(item2.ToString());
-                    Assert.IsTrue(hasTestResult1);
+                    NUnit.Framework.Assert.IsTrue(hasTestResult1);
                     var hasTestResult2 = stringResult.Contains(item3.ToString());
-                    Assert.IsTrue(hasTestResult2);
+                    NUnit.Framework.Assert.IsTrue(hasTestResult2);
                     var hasTestResult3 = stringResult.Contains(item4.ToString());
-                    Assert.IsTrue(hasTestResult3);
+                    NUnit.Framework.Assert.IsTrue(hasTestResult3);
                     var hasTestResult4 = stringResult.Contains(item5.ToString());
-                    Assert.IsTrue(hasTestResult4);
+                    NUnit.Framework.Assert.IsTrue(hasTestResult4);
                 }
                 catch (Exception ex)
                 {
-                    Assert.Fail(ex.StackTrace);
+                    NUnit.Framework.Assert.Fail(ex.StackTrace);
                 }
 
             });
             Task.WaitAll(list.ToArray());
         }
 
-        [TestMethod]
+        [Test]
         public void Run_a_Tests_to_Verify_ParallelSqlExecutionONAllDatabaseTools()
         {
             var url1 = "http://localhost:3142/secure/AllDatabaseTests.tests";
@@ -72,7 +73,7 @@ namespace Dev2.Integration.Tests.Server_Refresh
             {
                 list[a - 1].ContinueWith((b) =>
                   {
-                      StringAssert.Contains(b.Result, "\"Result\": \"Passed\"");
+                      NUnit.Framework.StringAssert.Contains(b.Result, "\"Result\": \"Passed\"");
                   }
                 );
 

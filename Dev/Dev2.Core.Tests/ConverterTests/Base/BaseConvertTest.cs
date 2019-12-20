@@ -10,27 +10,20 @@
 
 using Dev2.Common.Interfaces.Core.Convertors.Base;
 using Dev2.Converters;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.ConverterTests.Base
 {
-    /// <summary>
-    /// PBI : 1204 - Base Convert Test
-    /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class BaseConvertTest
     {
-
         static readonly Dev2BaseConversionFactory Fac = new Dev2BaseConversionFactory();
         public static object TestGuard = new object();
 
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
         public TestContext TestContext { get; set; }
 
-        [TestMethod]
+        [Test]
         
         public void Factory_Can_Create_Converter_Expected_HexConverter()
         {
@@ -41,7 +34,7 @@ namespace Dev2.Tests.ConverterTests.Base
 
 
         #region Text Test
-        [TestMethod]
+        [Test]
         public void Broker_Can_Convert_Formats_Expected_Text_to_Text()
         {
             var from = Fac.CreateConverter(enDev2BaseConvertType.Text);
@@ -56,7 +49,7 @@ namespace Dev2.Tests.ConverterTests.Base
             Assert.AreEqual(expected, result);
         }
 
-        [TestMethod]
+        [Test]
         public void Broker_Can_Convert_Formats_Expected_Text_to_Hex()
         {
             var from = Fac.CreateConverter(enDev2BaseConvertType.Text);
@@ -71,7 +64,7 @@ namespace Dev2.Tests.ConverterTests.Base
             Assert.AreEqual(expected, result);
         }
 
-        [TestMethod]
+        [Test]
         public void Broker_Can_Convert_Formats_Expected_Text_to_Base64()
         {
             var to = Fac.CreateConverter(enDev2BaseConvertType.Base64);
@@ -86,7 +79,7 @@ namespace Dev2.Tests.ConverterTests.Base
             Assert.AreEqual(expected, result);
         }
 
-        [TestMethod]
+        [Test]
         public void Broker_Can_Convert_Formats_Expected_Text_to_Binary()
         {
             var to = Fac.CreateConverter(enDev2BaseConvertType.Binary);
@@ -103,7 +96,7 @@ namespace Dev2.Tests.ConverterTests.Base
         #endregion
 
         #region hex test
-        [TestMethod]
+        [Test]
         public void Broker_Can_Convert_Formats_Expected_Hex_to_Hex()
         {
             var to = Fac.CreateConverter(enDev2BaseConvertType.Hex);
@@ -119,7 +112,7 @@ namespace Dev2.Tests.ConverterTests.Base
             Assert.AreEqual(expected, result);
         }
 
-        [TestMethod]
+        [Test]
         public void Broker_Can_Convert_Formats_Expected_Hex_to_Text()
         {
             var to = Fac.CreateConverter(enDev2BaseConvertType.Text);
@@ -134,7 +127,7 @@ namespace Dev2.Tests.ConverterTests.Base
             Assert.AreEqual(expected, result);
         }
 
-        [TestMethod]
+        [Test]
         public void Broker_Can_Convert_Formats_No_Leading0x_Expected_Hex_to_Text()
         {
             var to = Fac.CreateConverter(enDev2BaseConvertType.Text);
@@ -149,7 +142,7 @@ namespace Dev2.Tests.ConverterTests.Base
             Assert.AreEqual(expected, result);
         }
 
-        [TestMethod]
+        [Test]
         public void Broker_Can_Convert_Formats_Expected_Hex_to_Binary()
         {
             var to = Fac.CreateConverter(enDev2BaseConvertType.Binary);
@@ -164,7 +157,7 @@ namespace Dev2.Tests.ConverterTests.Base
             Assert.AreEqual(expected, result);
         }
 
-        [TestMethod]
+        [Test]
         public void Broker_Can_Convert_Formats_Expected_Hex_to_Base64()
         {
             var to = Fac.CreateConverter(enDev2BaseConvertType.Base64);
@@ -181,7 +174,7 @@ namespace Dev2.Tests.ConverterTests.Base
         #endregion
 
         #region Base64 Test
-        [TestMethod]
+        [Test]
         public void Broker_Can_Convert_Formats_Expected_Base64_to_Base64()
         {
             var to = Fac.CreateConverter(enDev2BaseConvertType.Base64);
@@ -196,7 +189,7 @@ namespace Dev2.Tests.ConverterTests.Base
             Assert.AreEqual(expected, result);
         }
 
-        [TestMethod]
+        [Test]
         public void Broker_Can_Convert_Formats_Expected_Base64_to_Text()
         {
             var to = Fac.CreateConverter(enDev2BaseConvertType.Text);
@@ -211,7 +204,7 @@ namespace Dev2.Tests.ConverterTests.Base
             Assert.AreEqual(expected, result);
         }
 
-        [TestMethod]
+        [Test]
         public void Broker_Can_Convert_Formats_Expected_Base64_to_Hex()
         {
             var to = Fac.CreateConverter(enDev2BaseConvertType.Hex);
@@ -226,7 +219,7 @@ namespace Dev2.Tests.ConverterTests.Base
             Assert.AreEqual(expected, result);
         }
 
-        [TestMethod]
+        [Test]
         public void Broker_Can_Convert_Formats_Expected_Base64_to_Binary()
         {
             var to = Fac.CreateConverter(enDev2BaseConvertType.Binary);
@@ -244,7 +237,7 @@ namespace Dev2.Tests.ConverterTests.Base
         #endregion
 
         #region Binary Test
-        [TestMethod]
+        [Test]
         public void Broker_Can_Convert_Formats_Expected_Binary_to_Binary()
         {
             var to = Fac.CreateConverter(enDev2BaseConvertType.Binary);
@@ -259,7 +252,7 @@ namespace Dev2.Tests.ConverterTests.Base
             Assert.AreEqual(expected, result);
         }
 
-        [TestMethod]
+        [Test]
         public void Broker_Can_Convert_Formats_Expected_Binary_to_Text()
         {
             var to = Fac.CreateConverter(enDev2BaseConvertType.Text);
@@ -274,7 +267,7 @@ namespace Dev2.Tests.ConverterTests.Base
             Assert.AreEqual(expected, result);
         }
 
-        [TestMethod]
+        [Test]
         public void Broker_Can_Convert_Formats_Expected_Binary_to_Hex()
         {
             var to = Fac.CreateConverter(enDev2BaseConvertType.Hex);
@@ -289,7 +282,7 @@ namespace Dev2.Tests.ConverterTests.Base
             Assert.AreEqual(expected, result);
         }
 
-        [TestMethod]
+        [Test]
         public void Broker_Can_Convert_Formats_Expected_Binary_to_Base64()
         {
             var to = Fac.CreateConverter(enDev2BaseConvertType.Base64);
@@ -307,7 +300,7 @@ namespace Dev2.Tests.ConverterTests.Base
         #endregion
 
         #region negative test
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(BaseTypeException))]
         public void Format_MisMatch_Binary_Expect_Exception()
         {
@@ -320,7 +313,7 @@ namespace Dev2.Tests.ConverterTests.Base
             broker.Convert(payload);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(BaseTypeException))]
         public void Format_MisMatch_Base64_Expect_Exception()
         {
@@ -333,7 +326,7 @@ namespace Dev2.Tests.ConverterTests.Base
             broker.Convert(payload);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(BaseTypeException))]
         public void Format_MisMatch_Hex_Expect_Exception()
         {

@@ -4,12 +4,13 @@ using System.Windows.Media;
 
 using Dev2.Common.Interfaces.Help;
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Warewolf.Studio.ViewModels.Help.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class HelpDescriptorViewModelTests
     {
         #region Fields
@@ -24,7 +25,7 @@ namespace Warewolf.Studio.ViewModels.Help.Tests
 
         #region Test initialize
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             _descriptorMock = new Mock<IHelpDescriptor>();
@@ -37,7 +38,8 @@ namespace Warewolf.Studio.ViewModels.Help.Tests
 
         #region Test construction
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestHelpDescriptorViewModel()
         {
@@ -48,7 +50,8 @@ namespace Warewolf.Studio.ViewModels.Help.Tests
 
         #region Test properties
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestName()
         {
             //arrange
@@ -62,7 +65,8 @@ namespace Warewolf.Studio.ViewModels.Help.Tests
             Assert.AreEqual(nameText, value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestDescription()
         {
             //arrange
@@ -76,7 +80,8 @@ namespace Warewolf.Studio.ViewModels.Help.Tests
             Assert.AreEqual(descriptionText, value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestIcon()
         {
             //arrange
@@ -90,7 +95,8 @@ namespace Warewolf.Studio.ViewModels.Help.Tests
             Assert.AreSame(expectedIcon, value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestIsEnabled()
         {
             //arrange

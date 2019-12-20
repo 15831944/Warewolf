@@ -13,15 +13,16 @@ using System.Activities.Statements;
 using System.Collections.Generic;
 using System.Globalization;
 using Dev2.Tests.Activities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace ActivityUnitTests.ActivityTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DateTimeDifferenceTests : BaseActivityUnitTest
     {
-        [TestInitialize]
+        [SetUp]
         public void PreConditions()
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-ZA");
@@ -35,7 +36,7 @@ namespace ActivityUnitTests.ActivityTests
 
         #region Positive Test Cases
 
-        [TestMethod]
+        [Test]
         public void Positive_With_Normal_Params_Expected_Positive()
         {
             SetupArguments(
@@ -56,7 +57,7 @@ namespace ActivityUnitTests.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Positive_UsingRecorsetWithStar_Expected_Positive()
         {
             SetupArguments(
@@ -78,7 +79,7 @@ namespace ActivityUnitTests.ActivityTests
             Assert.AreEqual("9090", results[2]);
         }
 
-        [TestMethod]
+        [Test]
         public void Blank_InputFormat_Expected_Error()
         {
             SetupArguments(
@@ -99,9 +100,9 @@ namespace ActivityUnitTests.ActivityTests
             Assert.AreEqual(expected, actual,error);
         }
 
-        [TestMethod]
-        [TestCategory("DateTimeDifferenceUnitTest")]
-        [Owner("Massimo Guerrera")]
+        [Test]
+        [Category("DateTimeDifferenceUnitTest")]
+        [Author("Massimo Guerrera")]
 
         public void DateTimeDifference_DateTimeDifferenceUnitTest_ExecuteWithBlankInput_DateTimeNowIsUsed()
 
@@ -127,9 +128,9 @@ namespace ActivityUnitTests.ActivityTests
 
         #endregion Error Test Cases
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfDateTimeDifferenceActivity_GetOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfDateTimeDifferenceActivity_GetOutputs")]
         public void DsfDateTimeDifferenceActivity_GetOutputs_Called_ShouldReturnListWithResultValueInIt()
         {
             //------------Setup for test--------------------------

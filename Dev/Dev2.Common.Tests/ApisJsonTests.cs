@@ -10,16 +10,17 @@
 
 using System;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Common.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ApisJsonTests
     {
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ApisJson))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ApisJson))]
         public void ApisJson_Construct()
         {
             var p = GetDefaultInstance();
@@ -38,9 +39,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(0, p.GetHashCode());
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ApisJson))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ApisJson))]
         public void ApisJson_ConstructWithValues()
         {
             var singleApis = new List<SingleApi>();
@@ -64,9 +65,9 @@ namespace Dev2.Common.Tests
             Assert.AreNotEqual(0, p.GetHashCode());
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ApisJson))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ApisJson))]
         public void ApisJson_Equals_IsFalse()
         {
             var id = new SingleApi();
@@ -80,9 +81,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(ob1 != ob2);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ApisJson))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ApisJson))]
         public void ApisJson_Equals_IsTrue()
         {
             var id = new SingleApi();
@@ -96,9 +97,9 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(ob1 != ob2);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ApisJson))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ApisJson))]
         public void ApisJson_SameEquals_IsTrue()
         {
             var id = new SingleApi();
@@ -109,9 +110,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(ob1.Equals((object)ob1));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ApisJson))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ApisJson))]
         public void ApisJson_Equals_Null_IsFalse()
         {
             var id = new SingleApi();
@@ -122,9 +123,9 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(ob1.Equals((object)null));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ApisJson))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ApisJson))]
         public void ApisJson_HashCode()
         {
             var id = new SingleApi();
@@ -134,9 +135,9 @@ namespace Dev2.Common.Tests
             Assert.AreNotEqual(0, ob1.GetHashCode());
         }
 
-       [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ApisJson))]
+       [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ApisJson))]
         public void ApisJson_Equals_DifferentType_IsFalse()
         {
             var ob1 = GetInstance(new List<SingleApi>(), new List<IncludeApi>(), new List<MaintainerApi>());

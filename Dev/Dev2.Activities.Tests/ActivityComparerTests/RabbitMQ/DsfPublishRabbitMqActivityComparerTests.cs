@@ -2,15 +2,16 @@
 using Dev2.Activities.RabbitMQ.Publish;
 using Dev2.Common.ExtMethods;
 using Dev2.Data.ServiceModel;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.RabbitMQ
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfPublishRabbitMqActivityComparerTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UniqueIDEquals_EmptyPublishRabbitMQ_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -25,8 +26,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RabbitMQ
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UniqueIDDifferent_EmptyPublishRabbitMQ_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -41,8 +42,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RabbitMQ
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Result_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -57,8 +58,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RabbitMQ
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Result_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -73,8 +74,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RabbitMQ
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Result_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -89,8 +90,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RabbitMQ
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void QueueName_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -105,8 +106,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RabbitMQ
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void QueueName_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -121,8 +122,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RabbitMQ
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void QueueName_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -137,8 +138,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RabbitMQ
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Message_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -153,8 +154,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RabbitMQ
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Message_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -169,8 +170,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RabbitMQ
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Message_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -185,8 +186,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RabbitMQ
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ObjectName_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -201,8 +202,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RabbitMQ
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -217,8 +218,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RabbitMQ
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -233,8 +234,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RabbitMQ
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void RabbitMQSourceResourceId_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -249,8 +250,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RabbitMQ
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void RabbitMQSourceResourceId_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -265,8 +266,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RabbitMQ
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void RabbitMQSourceResourceId_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -281,8 +282,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RabbitMQ
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_Same_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -300,8 +301,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RabbitMQ
         }
        
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsDurable_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -318,8 +319,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RabbitMQ
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsDurable_Same_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -336,8 +337,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RabbitMQ
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsExclusive_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -354,8 +355,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RabbitMQ
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsExclusive_Same_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -372,8 +373,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RabbitMQ
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsAutoDelete_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -390,8 +391,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RabbitMQ
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsAutoDelete_Same_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -408,8 +409,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RabbitMQ
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void RabbitSource_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -426,8 +427,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.RabbitMQ
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void RabbitSource_Same_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------

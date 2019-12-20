@@ -14,19 +14,20 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Common;
 using Warewolf.Web;
 
 namespace Warewolf.Web.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WebRequestForwarderTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(IHttpClientFactory))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(IHttpClientFactory))]
         public void HttpClientFactory_ProcessMessage_Success()
         {
             //-----------------------------Arrange------------------------------
@@ -48,9 +49,9 @@ namespace Warewolf.Web.Tests
             mockHttpClientFactory.Verify(o => o.New(It.IsAny<Uri>(), It.IsAny<string>(), It.IsAny<string>()), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(IHttpClientFactory))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(IHttpClientFactory))]
         public void HttpClientFactory_New_String_With_Username_Password_Success()
         {
             //-----------------------------Arrange------------------------------
@@ -65,9 +66,9 @@ namespace Warewolf.Web.Tests
             mockHttpClientFactory.Verify(o => o.New("http://warewolf.io", "Bob", "TheBuilder"), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(IHttpClientFactory))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(IHttpClientFactory))]
         public void HttpClientFactory_New_Uri_With_Username_Password_Success()
         {
             //-----------------------------Arrange------------------------------
@@ -83,9 +84,9 @@ namespace Warewolf.Web.Tests
             mockHttpClientFactory.Verify(o => o.New(uri, "Bob", "TheBuilder"), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(IHttpClientFactory))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(IHttpClientFactory))]
         public void HttpClientFactory_New_String_With_Username_Password_HasCredentails_True()
         {
             //-----------------------------Arrange------------------------------
@@ -100,9 +101,9 @@ namespace Warewolf.Web.Tests
             Assert.IsTrue(client.HasCredentials);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(IHttpClientFactory))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(IHttpClientFactory))]
         public void HttpClientFactory_New_Uri_With_Username_Password_HasCredentails_True()
         {
             //-----------------------------Arrange------------------------------

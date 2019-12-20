@@ -9,17 +9,18 @@
 */
 
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Microsoft.Win32.TaskScheduler;
 
 namespace Dev2.TaskScheduler.Wrappers.Test
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class Dev2TaskServiceTest
     {
         TaskFolder _folder;
         TaskService _service;
-        [TestInitialize]
+        [SetUp]
         public void Init()
         {
 
@@ -31,7 +32,7 @@ namespace Dev2.TaskScheduler.Wrappers.Test
 
         }
 
-        [TestCleanup]
+        [TearDown]
         public void Cleanup()
         {
 
@@ -47,18 +48,18 @@ namespace Dev2.TaskScheduler.Wrappers.Test
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2TaskServiceTest_Constructor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2TaskServiceTest_Constructor")]
         public void TaskShedulerWrapper_Dev2TaskServiceTest_Constructor()
         {
             var service = new Dev2TaskService(new TaskServiceConvertorFactory());
             Assert.IsNotNull(service.Instance);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2TaskServiceTest_PassThrough")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2TaskServiceTest_PassThrough")]
         public void TaskShedulerWrapper_Dev2TaskServiceTest_PassThrough()
         {
             using (var service = new Dev2TaskService(new TaskServiceConvertorFactory()))
@@ -69,9 +70,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
            
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("TaskShedulerWrapper_Dev2TaskServiceTest_GetUnexistingFolder")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("TaskShedulerWrapper_Dev2TaskServiceTest_GetUnexistingFolder")]
         public void TaskShedulerWrapper_Dev2TaskServiceTest_GetUnexistingFolder()
         {
             using (var service = new Dev2TaskService(new TaskServiceConvertorFactory()))
@@ -82,9 +83,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
             }
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2TaskServiceTest_GetFolder")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2TaskServiceTest_GetFolder")]
         public void TaskShedulerWrapper_Dev2TaskServiceTest_GetFolder()
         {
             using (var service = new Dev2TaskService(new TaskServiceConvertorFactory()))
@@ -93,9 +94,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
             }
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2TaskServiceTest_GetTask")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2TaskServiceTest_GetTask")]
         public void TaskShedulerWrapper_Dev2TaskServiceTest_GetTask()
         {
             using (var service = new Dev2TaskService(new TaskServiceConvertorFactory()))

@@ -9,16 +9,17 @@
 */
 
 using Dev2.Data.Decisions.Operations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests.DecisionsTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IsRegExTests
     {
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("IsRegEx_Invoke")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("IsRegEx_Invoke")]
         public void GivenSomeString_IsRegEx_Invoke_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -29,12 +30,12 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = isRegEx.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("IsRegEx_Invoke")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("IsRegEx_Invoke")]
         public void IsRegEx_Invoke_IsRegEx_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -45,12 +46,12 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = notStartsWith.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthmembu")]
-        [TestCategory("IsRegEx_HandlesType")]
+        [Test]
+        [Author("Sanele Mthmembu")]
+        [Category("IsRegEx_HandlesType")]
         public void IsRegEx_HandlesType_ReturnsIsRegExType()
         {
             var decisionType = enDecisionType.IsRegEx;
@@ -58,7 +59,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             var isRegEx = new IsRegEx();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.AreEqual(decisionType, isRegEx.HandlesType());
+            NUnit.Framework.Assert.AreEqual(decisionType, isRegEx.HandlesType());
         }
     }
 }

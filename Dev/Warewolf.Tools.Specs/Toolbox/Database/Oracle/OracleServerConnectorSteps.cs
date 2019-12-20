@@ -5,7 +5,7 @@ using Dev2.Common.Interfaces.DB;
 using Dev2.Common.Interfaces.ServerProxyLayer;
 using Dev2.Common.Interfaces.ToolBase;
 using Dev2.Studio.Core.Activities.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -504,8 +504,8 @@ namespace Dev2.Activities.Specs.Toolbox.Resources
                 var mappedFrom = tableRow["Mapped From"];
                 var mappedTo = tableRow["Mapped To"];
                 var outputMapping = outputMappings.ToList()[rowIdx];
-                Assert.AreEqual<string>(mappedFrom, outputMapping.MappedFrom);
-                Assert.AreEqual<string>(mappedTo, outputMapping.MappedTo);
+                Assert.AreEqual(mappedFrom, outputMapping.MappedFrom);
+                Assert.AreEqual(mappedTo, outputMapping.MappedTo);
                 rowIdx++;
             }
         }

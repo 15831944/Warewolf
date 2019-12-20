@@ -28,18 +28,19 @@ using Dev2.Data.TO;
 using Dev2.Interfaces;
 using Dev2.Tests.Activities.ActivityTests.DropBox2016;
 using Dropbox.Api.Files;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Storage.Interfaces;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfDropBoxDeleteActivityComparerTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxDeleteActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxDeleteActivity))]
         public void DsfDropBoxDeleteActivity_UniqueIDEquals_EmptyDropBoxDeleteActivities_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -54,9 +55,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxDeleteActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxDeleteActivity))]
         public void DsfDropBoxDeleteActivity_UniqueID_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -70,9 +71,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             //---------------Test Result -----------------------
             Assert.IsFalse(equals);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxDeleteActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxDeleteActivity))]
         public void DsfDropBoxDeleteActivity_Equals_Given_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -87,9 +88,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxDeleteActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxDeleteActivity))]
         public void DsfDropBoxDeleteActivity_Equals_Given_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -104,9 +105,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxDeleteActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxDeleteActivity))]
         public void DsfDropBoxDeleteActivity_Equals_Given_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -120,9 +121,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             //---------------Test Result -----------------------
             Assert.IsFalse(equals);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxDeleteActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxDeleteActivity))]
         public void DsfDropBoxDeleteActivity_Result_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -137,9 +138,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxDeleteActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxDeleteActivity))]
         public void DsfDropBoxDeleteActivity_Result_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -154,9 +155,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxDeleteActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxDeleteActivity))]
         public void DsfDropBoxDeleteActivity_Result_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -171,9 +172,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxDeleteActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxDeleteActivity))]
         public void DsfDropBoxDeleteActivity_DeletePath_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -188,9 +189,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxDeleteActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxDeleteActivity))]
         public void DsfDropBoxDeleteActivity_DeletePath_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -205,9 +206,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxDeleteActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxDeleteActivity))]
         public void DsfDropBoxDeleteActivity_DeletePath_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -222,9 +223,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxDeleteActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxDeleteActivity))]
         public void DsfDropBoxDeleteActivity_DropBoxSource_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -253,9 +254,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxDeleteActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxDeleteActivity))]
         public void DsfDropBoxDeleteActivity_DropBoxSource_Same_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -285,9 +286,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DsfDropBoxDeleteActivity))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DsfDropBoxDeleteActivity))]
         public void DsfDropBoxDeleteActivity_GetState_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------
@@ -349,9 +350,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(DsfDropBoxDeleteActivity))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(DsfDropBoxDeleteActivity))]
         [ExpectedException(typeof(KeyNotFoundException))]
         public void DsfDropBoxDeleteActivity_PerformExecution_GivenNoPaths_ShouldThrowException()
         {
@@ -368,9 +369,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDeleteActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDeleteActivity))]
         public void DsfDropBoxDeleteActivity_PerformExecution_DropboxUploadSuccessResult_GivenPaths_ExpectSuccess()
         {
             //---------------Set up test pack-------------------
@@ -397,9 +398,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.AreEqual("Success", listPerfomBaseExecution);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDeleteActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDeleteActivity))]
         [ExpectedException(typeof(Exception))]
         public void DsfDropBoxDeleteActivity_PerformExecution_DropboxUploadSuccessResult_GivenPaths_ExpectException()
         {
@@ -431,9 +432,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDeleteActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDeleteActivity))]
         public void DsfDropBoxDeleteActivity_ObjectEquals_IsFalse_ExpectFalse()
         {
             //-----------------------Arrange----------------------------
@@ -454,9 +455,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDeleteActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDeleteActivity))]
         public void DsfDropBoxDeleteActivity_ObjectEquals_IsTrue_ExpectTrue()
         {
             //-----------------------Arrange----------------------------
@@ -477,9 +478,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDeleteActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDeleteActivity))]
         public void DsfDropBoxDeleteActivity_ObjectEquals_IsNotExpectedObject_ExpectFalse()
         {
             //-----------------------Arrange----------------------------
@@ -496,9 +497,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDeleteActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDeleteActivity))]
         public void DsfDropBoxDeleteActivity_Equals_ExpectFalse()
         {
             //-----------------------Arrange----------------------------
@@ -516,9 +517,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDeleteActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDeleteActivity))]
         public void DsfDropBoxDeleteActivity_Equals_IsNull_ExpectFalse()
         {
             //-----------------------Arrange----------------------------
@@ -535,9 +536,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDeleteActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDeleteActivity))]
         public void DsfDropBoxDeleteActivity_Equals_IsEqual_ExpectTrue()
         {
             //-----------------------Arrange----------------------------
@@ -547,9 +548,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsTrue(dsfDropBoxDeleteAcivtity.Equals(dsfDropBoxDeleteAcivtity));
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDeleteActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDeleteActivity))]
         public void DsfDropBoxDeleteActivity_GetHashCode_Properties_NotNull_ExpertTrue()
         {
             //--------------------------Arrange----------------------------
@@ -572,9 +573,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDeleteActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDeleteActivity))]
         public void DsfDropBoxDeleteActivity_GetHashCode_Properties_IsNull_ExpertTrue()
         {
             //--------------------------Arrange----------------------------
@@ -592,9 +593,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDeleteActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDeleteActivity))]
         public void DsfDropBoxDeleteActivity_ExecuteTool_GivenNoFromPath_ShouldAddError()
         {
             //---------------Set up test pack-------------------
@@ -616,9 +617,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             executionEnvironment.Verify(environment => environment.AddError("Please confirm that the correct file location has been entered"));
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDeleteActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDeleteActivity))]
         public void DsfDropBoxDeleteActivity_ExecuteTool_GivenNoToPath_ShouldAddError()
         {
             //---------------Set up test pack-------------------
@@ -643,9 +644,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             datObj.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDeleteActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDeleteActivity))]
         public void DsfDropBoxDeleteActivity_GetFindMissingType_ExpectStaticActivity()
         {
             //---------------Set up test pack-------------------

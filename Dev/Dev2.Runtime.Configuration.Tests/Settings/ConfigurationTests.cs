@@ -13,23 +13,24 @@ using System.Linq;
 using System.Xml.Linq;
 using Dev2.Runtime.Configuration.Settings;
 using Dev2.Runtime.Configuration.Tests.XML;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Runtime.Configuration.Tests.Settings
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ConfigurationTests
     {
         #region CTOR
 
-        [TestMethod]
+        [Test]
         public void ConstructorWithDefaultExpectedInitializesAllProperties()
         {
             var config = new Configuration.Settings.Configuration("localhost");
             ValidateInitializesAllProperties(config);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ConstructorWithNullXmlExpectedThrowsArgumentNullException()
         {
@@ -38,7 +39,7 @@ namespace Dev2.Runtime.Configuration.Tests.Settings
             
         } 
         
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ConstructorWithNullWebServerUriExpectedThrowsArgumentNullException()
         {
@@ -48,7 +49,7 @@ namespace Dev2.Runtime.Configuration.Tests.Settings
         }
         
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void ConstructorWithInvalidXmlVersionExpectedThrowsArgumentException()
         {
@@ -57,7 +58,7 @@ namespace Dev2.Runtime.Configuration.Tests.Settings
             
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ConstructorWithInvalidXmlExpectedThrowsArgumentNullException()
         {
@@ -66,14 +67,14 @@ namespace Dev2.Runtime.Configuration.Tests.Settings
             
         }
 
-        [TestMethod]
+        [Test]
         public void ConstructorWithValidXmlArgumentExpectedInitializesAllProperties()
         {
             var config = new Configuration.Settings.Configuration(XmlResource.Fetch("Settings"));
             ValidateInitializesAllProperties(config);
         }       
         
-        [TestMethod]
+        [Test]
         public void ConstructorWithValidXmlNullWebServerUriArgumentExpectedThrowsArgumentNullException()
         {
             var config = new Configuration.Settings.Configuration(XmlResource.Fetch("Settings"));
@@ -84,16 +85,16 @@ namespace Dev2.Runtime.Configuration.Tests.Settings
 
         #region ToXmlExpectedReturnsXml
 
-        [TestMethod]
+        [Test]
         public void ToXmlExpectedReturnsXml()
         {
             var config = new Configuration.Settings.Configuration("localhost");
             var result = config.ToXml();
-            Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(XElement));
+            NUnit.Framework.Assert.IsNotNull(result);
+            NUnit.Framework.Assert.IsInstanceOf(result.GetType(), typeof(XElement));
         }
 
-        [TestMethod]
+        [Test]
         public void ToXmlExpectedInvokesToXmlForEachProperty()
         {
             var config = new Configuration.Settings.Configuration("localhost");
@@ -113,61 +114,61 @@ namespace Dev2.Runtime.Configuration.Tests.Settings
                     
                     var actual = result.Element(settings.SettingName).ToString(SaveOptions.DisableFormatting);
                     
-                    Assert.AreEqual(expected, actual);
+                    NUnit.Framework.Assert.AreEqual(expected, actual);
                 }
                 else if((version = value as Version) != null)
                 {
                     var actual = result.AttributeSafe(property.Name);
                     var expected = version.ToString(2);
-                    Assert.AreEqual(expected, actual);
+                    NUnit.Framework.Assert.AreEqual(expected, actual);
                 }
             }
         }
 
-        [TestMethod]
+        [Test]
         public void HasErrorReturnsFalse()
         {
             var config = new Configuration.Settings.Configuration(XmlResource.Fetch("Settings"));
-            Assert.IsFalse(config.HasError);
+            NUnit.Framework.Assert.IsFalse(config.HasError);
         }
 
-        [TestMethod]
+        [Test]
         public void HasErrorReturnsTrueWhenLoggingError()
         {
             var config = new Configuration.Settings.Configuration(XmlResource.Fetch("Settings"));
             config.Logging.Error = "Error";
-            Assert.IsTrue(config.HasError);
+            NUnit.Framework.Assert.IsTrue(config.HasError);
         }
 
-        [TestMethod]
+        [Test]
         public void HasErrorReturnsTrueWhenSecurityError()
         {
             var config = new Configuration.Settings.Configuration(XmlResource.Fetch("Settings"));
             config.Security.Error = "Error";
-            Assert.IsTrue(config.HasError);
+            NUnit.Framework.Assert.IsTrue(config.HasError);
         }
 
-        [TestMethod]
+        [Test]
         public void HasErrorReturnsTrueWhenBackupError()
         {
             var config = new Configuration.Settings.Configuration(XmlResource.Fetch("Settings"));
             config.Backup.Error = "Error";
-            Assert.IsTrue(config.HasError);
+            NUnit.Framework.Assert.IsTrue(config.HasError);
         }
 
-        [TestMethod]
+        [Test]
         public void LoggingSettingChangedExpectsHasChangesTrueWhenNotInitializating()
         {
             var config = new Configuration.Settings.Configuration(XmlResource.Fetch("Settings"));
             config.Logging.IsDataAndTimeLogged = true;
-            Assert.IsTrue(config.HasChanges);
+            NUnit.Framework.Assert.IsTrue(config.HasChanges);
         }
 
-        [TestMethod]
+        [Test]
         public void LoggingSettingChangedExpectsHasChangesFalseWhenInitializating()
         {
             var config = new Configuration.Settings.Configuration(XmlResource.Fetch("Settings"));
-            Assert.IsFalse(config.HasChanges);
+            NUnit.Framework.Assert.IsFalse(config.HasChanges);
         }
 
         #endregion
@@ -185,7 +186,7 @@ namespace Dev2.Runtime.Configuration.Tests.Settings
 
             foreach(var value in properties.Select(property => property.GetValue(config)))
             {
-                Assert.IsNotNull(value);
+                NUnit.Framework.Assert.IsNotNull(value);
             }
         }
 

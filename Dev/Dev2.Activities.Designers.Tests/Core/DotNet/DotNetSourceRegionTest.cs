@@ -6,18 +6,19 @@ using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.Core;
 using Dev2.Common.Interfaces.ToolBase;
 using Dev2.Studio.Core.Activities.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Activities.Designers.Tests.Core.DotNet
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DotNetSourceRegionTest
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DotNetSourceRegion_Constructor")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DotNetSourceRegion_Constructor")]
         public void DotNetSourceRegion_Constructor_Scenerio_Result()
         {
             //------------Setup for test--------------------------
@@ -32,9 +33,9 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.IsTrue(region.IsEnabled);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DotNetSourceRegion_ConstructorWithSelectedSource")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DotNetSourceRegion_ConstructorWithSelectedSource")]
         public void DotNetSourceRegion_ConstructorWithSelectedSource_Scenerio_Result()
         {
             //------------Setup for test--------------------------
@@ -52,9 +53,9 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.IsTrue(region.CanEditSource());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DotNetSourceRegion_ChangeSourceSomethingChanged")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DotNetSourceRegion_ChangeSourceSomethingChanged")]
         public void DotNetSourceRegion_ChangeSourceSomethingChanged_ExpectedChange_Result()
         {
             //------------Setup for test--------------------------
@@ -75,9 +76,9 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.IsTrue(evt);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DotNetSourceRegion_ChangeSourceSomethingChanged")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DotNetSourceRegion_ChangeSourceSomethingChanged")]
         public void DotNetSourceRegion_ChangeSourceSomethingChanged_RestoreRegion_Result()
         {
             //------------Setup for test--------------------------
@@ -108,9 +109,9 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             dep2.Verify(a => a.RestoreRegion(clone2.Object), Times.Never);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DotNetSourceRegion_ChangeSourceSomethingChanged")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DotNetSourceRegion_ChangeSourceSomethingChanged")]
         public void DotNetSourceRegion_ChangeSourceSomethingChanged_RegionsNotRestored_Invalid()
         {
             //------------Setup for test--------------------------
@@ -141,9 +142,9 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             dep2.Verify(a => a.RestoreRegion(clone2.Object), Times.Never);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DotNetSourceRegion_ChangeSourceSomethingChanged")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DotNetSourceRegion_ChangeSourceSomethingChanged")]
         public void DotNetSourceRegion_ChangeSourceSomethingChanged_CloneRegion_ExpectedClone()
         {
             //------------Setup for test--------------------------
@@ -163,9 +164,9 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.AreEqual(((DotNetSourceRegion)cloned).SelectedSource, region.SelectedSource);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DotNetSourceRegion_ChangeSourceSomethingChanged")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DotNetSourceRegion_ChangeSourceSomethingChanged")]
         public void DotNetSourceRegion_ChangeSourceSomethingChanged_RestoreRegion_ExpectedRestore()
         {
             //------------Setup for test--------------------------

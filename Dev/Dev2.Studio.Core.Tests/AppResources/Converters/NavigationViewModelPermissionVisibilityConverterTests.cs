@@ -12,18 +12,19 @@ using System.Globalization;
 using System.Windows;
 using Dev2.Common.Interfaces.Security;
 using Dev2.Studio.AppResources.Converters;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests.AppResources.Converters
 {
-    [TestClass]
-	[TestCategory("Studio Resources Core")]
+    [TestFixture]
+    [SetUpFixture]
+	[Category("Studio Resources Core")]
     public class NavigationViewModelPermissionVisibilityConverterTests
     {
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("NavigationViewModelPermissionVisibilityConverter_Convert")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("NavigationViewModelPermissionVisibilityConverter_Convert")]
         public void NavigationViewModelPermissionVisibilityConverter_Constructor_Properties_Initialized()
         {
             //------------Setup for test--------------------------
@@ -35,9 +36,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(converter.DefaultValue, Visibility.Collapsed);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("NavigationViewModelPermissionVisibilityConverter_ConvertBack")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("NavigationViewModelPermissionVisibilityConverter_ConvertBack")]
         public void NavigationViewModelPermissionVisibilityConverter_ConvertBack_ReturnsNull()
         {
             //------------Setup for test--------------------------
@@ -50,9 +51,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(converter.DefaultValue, actual);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("NavigationViewModelPermissionVisibilityConverter_Convert")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("NavigationViewModelPermissionVisibilityConverter_Convert")]
         public void NavigationViewModelPermissionVisibilityConverter_Convert_ValueIsNull_DefaultValue()
         {
             //------------Setup for test--------------------------
@@ -65,9 +66,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.IsNull(actual);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("NavigationViewModelPermissionVisibilityConverter_Convert")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("NavigationViewModelPermissionVisibilityConverter_Convert")]
         public void NavigationViewModelPermissionVisibilityConverter_Convert_RequiredPermissionIsNoneAndUserPermissionIsViewOrExecute_Collapsed()
         {
             Verify_Convert(Permissions.None, Permissions.View, Visibility.Collapsed);
@@ -82,9 +83,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Verify_Convert(Permissions.None, Permissions.Execute | Permissions.DeployFrom, Visibility.Collapsed);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("NavigationViewModelPermissionVisibilityConverter_Convert")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("NavigationViewModelPermissionVisibilityConverter_Convert")]
         public void NavigationViewModelPermissionVisibilityConverter_Convert_RequiredPermissionIsNoneAndUserPermissionIsNotViewOrExecute_Visible()
         {
             Verify_Convert(Permissions.None, Permissions.None, Visibility.Visible);
@@ -92,9 +93,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Verify_Convert(Permissions.None, Permissions.DeployTo, Visibility.Visible);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("NavigationViewModelPermissionVisibilityConverter_Convert")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("NavigationViewModelPermissionVisibilityConverter_Convert")]
         public void NavigationViewModelPermissionVisibilityConverter_Convert_RequiredPermissionIsViewAndUserPermissionIsView_Visible()
         {
             Verify_Convert(Permissions.View, Permissions.View, Visibility.Visible);
@@ -106,9 +107,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Verify_Convert(Permissions.View, Permissions.View | Permissions.DeployFrom, Visibility.Visible);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("NavigationViewModelPermissionVisibilityConverter_Convert")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("NavigationViewModelPermissionVisibilityConverter_Convert")]
         public void NavigationViewModelPermissionVisibilityConverter_Convert_RequiredPermissionIsViewAndUserPermissionIsNotView_Collapsed()
         {
             Verify_Convert(Permissions.View, Permissions.None, Visibility.Collapsed);
@@ -117,9 +118,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Verify_Convert(Permissions.View, Permissions.DeployTo, Visibility.Collapsed);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("NavigationExecuteModelPermissionVisibilityConverter_Convert")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("NavigationExecuteModelPermissionVisibilityConverter_Convert")]
         public void NavigationViewModelPermissionVisibilityConverter_Convert_RequiredPermissionIsExecuteAndUserPermissionIsExecute_Visible()
         {
             Verify_Convert(Permissions.Execute, Permissions.Execute, Visibility.Visible);
@@ -131,9 +132,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Verify_Convert(Permissions.Execute, Permissions.Execute | Permissions.DeployFrom, Visibility.Visible);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("NavigationExecuteModelPermissionVisibilityConverter_Convert")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("NavigationExecuteModelPermissionVisibilityConverter_Convert")]
         public void NavigationViewModelPermissionVisibilityConverter_Convert_RequiredPermissionIsExecuteAndUserPermissionIsNotExecute_Collapsed()
         {
             Verify_Convert(Permissions.Execute, Permissions.None, Visibility.Collapsed);

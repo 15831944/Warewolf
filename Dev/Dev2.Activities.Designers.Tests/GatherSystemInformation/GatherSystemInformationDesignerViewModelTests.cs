@@ -15,18 +15,19 @@ using Dev2.Common.Interfaces.Help;
 using Dev2.Data.Interfaces.Enums;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 
 namespace Dev2.Activities.Designers.Tests.GatherSystemInformation
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class GatherSystemInformationDesignerViewModelTests
     {
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("GatherSystemInformationDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("GatherSystemInformationDesignerViewModel_Constructor")]
         public void GatherSystemInformationDesignerViewModel_Constructor_ModelItemIsValid_ListHasFourItems()
         {
             var items = new List<GatherSystemInformationTO> { new GatherSystemInformationTO() };
@@ -35,9 +36,9 @@ namespace Dev2.Activities.Designers.Tests.GatherSystemInformation
             Assert.IsTrue(viewModel.HasLargeView);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("GatherSystemInformationDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("GatherSystemInformationDesignerViewModel_Handle")]
         public void GatherSystemInformationDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -55,9 +56,9 @@ namespace Dev2.Activities.Designers.Tests.GatherSystemInformation
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("GatherSystemInformationDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("GatherSystemInformationDesignerViewModel_Constructor")]
         public void GatherSystemInformationDesignerViewModel_Constructor_ModelItemIsValid_CollectionNameIsSetToSystemInformationCollection()
         {
             var items = new List<GatherSystemInformationTO> { new GatherSystemInformationTO() };
@@ -65,20 +66,20 @@ namespace Dev2.Activities.Designers.Tests.GatherSystemInformation
             Assert.AreEqual("SystemInformationCollection", viewModel.CollectionName);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("GatherSystemInformationDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("GatherSystemInformationDesignerViewModel_Constructor")]
         public void GatherSystemInformationDesignerViewModel_Constructor_ModelItemIsValid_SystemInformationCollectionHasTwoItems()
         {
             var modelItem = ModelItemUtils.CreateModelItem(new DsfGatherSystemInformationActivity());
             var viewModel = new GatherSystemInformationDesignerViewModel(modelItem);
             dynamic mi = viewModel.ModelItem;
-            Assert.AreEqual(2, mi.SystemInformationCollection.Count);
+            NUnit.Framework.Assert.AreEqual(2, mi.SystemInformationCollection.Count);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("GatherSystemInformationDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("GatherSystemInformationDesignerViewModel_Constructor")]
         public void GatherSystemInformationDesignerViewModel_Constructor_ModelItemIsInitializedWith4Items_SystemInformationCollectionHasFourItems()
         {
             var items = new List<GatherSystemInformationTO>
@@ -90,13 +91,13 @@ namespace Dev2.Activities.Designers.Tests.GatherSystemInformation
             };
             var viewModel = new GatherSystemInformationDesignerViewModel(CreateModelItem(items));
             dynamic mi = viewModel.ModelItem;
-            Assert.AreEqual(5, mi.SystemInformationCollection.Count);
+            NUnit.Framework.Assert.AreEqual(5, mi.SystemInformationCollection.Count);
         }
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("GatherSysInfoDesignerViewModel_ValidateCollectionItem")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("GatherSysInfoDesignerViewModel_ValidateCollectionItem")]
         public void GatherSysInfoDesignerViewModel_ValidateCollectionItem_ValidatesPropertiesOfDTO()
         {
             //------------Setup for test--------------------------

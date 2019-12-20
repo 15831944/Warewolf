@@ -12,18 +12,19 @@ using System;
 using System.Data;
 using System.Linq;
 using Dev2.Converters.Graph.DataTable;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Tests.ConverterTests.GraphTests.DataTable_Test
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DataTableMapperTest
     {
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DataTableMapper_Map")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DataTableMapper_Map")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void DataTableMapper_Map_WhenNull_ExpectNull()
         {
@@ -34,9 +35,9 @@ namespace Dev2.Tests.ConverterTests.GraphTests.DataTable_Test
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DataTableMapper_Map")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DataTableMapper_Map")]
         public void DataTableMapper_Map_WhenValidDataTable_ExpectValidPaths()
         {
             //------------Setup for test--------------------------
@@ -63,9 +64,9 @@ namespace Dev2.Tests.ConverterTests.GraphTests.DataTable_Test
             Assert.AreEqual("b__COMMA__d__COMMA__f", result[1].SampleData);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DataTableMapper_Map")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DataTableMapper_Map")]
         public void DataTableMapper_Map_WhenValidDataTableWithHTMLData_ExpectValidPaths()
         {
             //------------Setup for test--------------------------

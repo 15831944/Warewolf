@@ -1,13 +1,14 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Common.Tests.Utils
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ExternalProcessBrowserTests
     {
-        [TestMethod]
+        [Test]
         public void ExternalProcessBrowser_With_ProcessTimout()
         {
             var mockedUrl = new Mock<Uri>("https://warewolf.io");
@@ -16,7 +17,7 @@ namespace Dev2.Common.Tests.Utils
             processExecutor.OpenInBrowser(mockedUrl.Object);
         }
 
-        [TestMethod]
+        [Test]
         public void ExternalProcessBrowser_With_ComException()
         {
             var mockedUrl = new Mock<Uri>("https://warewolf.io");

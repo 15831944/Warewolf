@@ -15,19 +15,20 @@ using Dev2.Studio.Core;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
 using Dev2.Studio.Interfaces.DataList;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Activities.Designers.Tests.Designers2.Core.FileActivityDesigner
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FileActivityDesignerViewModelTests
     {
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("FileActivityDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("FileActivityDesignerViewModel_Constructor")]
         public void FileActivityDesignerViewModelConstructorPropertiesInitialized()
         {
             //------------Setup for test-------------------------
@@ -48,9 +49,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core.FileActivityDesigner
         }
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("FileActivityDesignerViewModel_ValidateInputPath")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("FileActivityDesignerViewModel_ValidateInputPath")]
         public void FileActivityDesignerViewModelValidateInputPathInvokesValidatePathDone()
         {
             //------------Setup for test-------------------------      
@@ -72,9 +73,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core.FileActivityDesigner
 
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("FileActivityDesignerViewModel_ValidateOutputPath")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("FileActivityDesignerViewModel_ValidateOutputPath")]
         public void FileActivityDesignerViewModelValidateOutputPathInvokesValidatePathDone()
         {
             //------------Setup for test-------------------------  
@@ -96,9 +97,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core.FileActivityDesigner
 
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("FileActivityDesignerViewModel_ValidateInputAndOutputPaths")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("FileActivityDesignerViewModel_ValidateInputAndOutputPaths")]
         public void FileActivityDesignerViewModelValidateInputAndOutputPathsInvokesBothDone()
         {
             //------------Setup for test-------------------------         
@@ -118,9 +119,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core.FileActivityDesigner
             Assert.AreEqual(1, viewModel.ValidateOutputPathHitCount);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("FileActivityDesignerViewModel_ValidatePath")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("FileActivityDesignerViewModel_ValidatePath")]
         public void FileActivityDesignerViewModelValidatePathPathIsEmptyAndIsNotRequiredNoErrors()
         {
             //------------Setup for test-------------------------
@@ -134,9 +135,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core.FileActivityDesigner
             Assert.IsNull(viewModel.Errors);
         }
 
-        [TestMethod]
-        [Owner("Robin van den Heever")]
-        [TestCategory("FileActivityDesignerViewModel_ValidatePath")]
+        [Test]
+        [Author("Robin van den Heever")]
+        [Category("FileActivityDesignerViewModel_ValidatePath")]
         public void FileActivityDesignerViewModelValidatePathPathIsEmptyAndIsRequiredHasErrors()
         {
             var path = string.Empty;
@@ -161,9 +162,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core.FileActivityDesigner
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("FileActivityDesignerViewModel_ValidatePath")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("FileActivityDesignerViewModel_ValidatePath")]
         public void FileActivityDesignerViewModelValidatePathPathIsNotValidUriAndDoesNotExistHasErrors()
         {
             var path = Guid.NewGuid().ToString();
@@ -188,9 +189,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core.FileActivityDesigner
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("FileActivityDesignerViewModel_ValidatePath")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("FileActivityDesignerViewModel_ValidatePath")]
         public void FileActivityDesignerViewModelValidatePathPathIsNotValidUriAndDoesExistNoErrors()
         {
             const string Path = "C:\\";
@@ -202,9 +203,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core.FileActivityDesigner
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("FileActivityDesignerViewModel_ValidatePath")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("FileActivityDesignerViewModel_ValidatePath")]
         public void FileActivityDesignerViewModelValidatePathPathIsValidUriAndSchemIsNotValidHasErrors()
         {
             const string Path = "http://";
@@ -229,9 +230,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core.FileActivityDesigner
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("FileActivityDesignerViewModel_ValidatePath")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("FileActivityDesignerViewModel_ValidatePath")]
         public void FileActivityDesignerViewModelValidatePathPathIsValidUriAndSchemIsValidNoErrors()
         {
             foreach (var scheme in FileActivityDesignerViewModel.ValidUriSchemes)
@@ -243,9 +244,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core.FileActivityDesigner
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("FileActivityDesignerViewModel_ValidatePath")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("FileActivityDesignerViewModel_ValidatePath")]
         public void FileActivityDesignerViewModelValidatePathPathIsInvalidExpressionHasErrors()
         {
             const string Path = "a]]";
@@ -272,9 +273,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core.FileActivityDesigner
 
         bool _onErrorAssigned;
 
-        [TestMethod]
-        [Owner("Robin van den Heever")]
-        [TestCategory("FileActivityDesignerViewModel_ValidatePath")]
+        [Test]
+        [Author("Robin van den Heever")]
+        [Category("FileActivityDesignerViewModel_ValidatePath")]
         public void FileActivityDesignerViewModelValidateUrlError()
         {
             const string Path = "htp://www.cowbell.co.za";
@@ -300,9 +301,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core.FileActivityDesigner
             }
         }
 
-        [TestMethod]
-        [Owner("Robin van den Heever")]
-        [TestCategory("FileActivityDesignerViewModel_ValidateFileContent")]
+        [Test]
+        [Author("Robin van den Heever")]
+        [Category("FileActivityDesignerViewModel_ValidateFileContent")]
         public void FileActivityDesignerViewModelVerifyValidateFileContentEmptyPass()
         {
             var content = string.Empty;
@@ -313,9 +314,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core.FileActivityDesigner
         }
 
 
-        [TestMethod]
-        [Owner("Robin van den Heever")]
-        [TestCategory("FileActivityDesignerViewModel_ValidateFileContent")]
+        [Test]
+        [Author("Robin van den Heever")]
+        [Category("FileActivityDesignerViewModel_ValidateFileContent")]
         public void FileActivityDesignerViewModelVerifyValidateFileContentPass()
         {
             const string Content = "File Contents Stored Here";
@@ -326,9 +327,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core.FileActivityDesigner
         }
 
 
-        [TestMethod]
-        [Owner("Robin van den Heever")]
-        [TestCategory("FileActivityDesignerViewModel_ValidateFileContent")]
+        [Test]
+        [Author("Robin van den Heever")]
+        [Category("FileActivityDesignerViewModel_ValidateFileContent")]
         public void FileActivityDesignerViewModelVerifyValidateFileContentValidExpressionPass()
         {
             const string Content = "File [[contains]] Stored Here";
@@ -338,9 +339,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core.FileActivityDesigner
         }
 
 
-        [TestMethod]
-        [Owner("Robin van den Heever")]
-        [TestCategory("FileActivityDesignerViewModel_ValidateFileContent")]
+        [Test]
+        [Author("Robin van den Heever")]
+        [Category("FileActivityDesignerViewModel_ValidateFileContent")]
         public void FileActivityDesignerViewModelVerifyValidateFileContentInValidExpressionPass()
         {
             const string Content = "File [[contains&]] Stored Here";
@@ -355,9 +356,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core.FileActivityDesigner
             Assert.IsTrue(_onErrorAssigned);
         }
 
-        [TestMethod]
-        [Owner("Robin van den Heever")]
-        [TestCategory("FileActivityDesignerViewModel_ValidateArchivePassword")]
+        [Test]
+        [Author("Robin van den Heever")]
+        [Category("FileActivityDesignerViewModel_ValidateArchivePassword")]
         public void FileActivityDesignerViewModelValidateArchivePasswordPass()
         {
             const string Password = "Password";
@@ -367,9 +368,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core.FileActivityDesigner
         }
 
 
-        [TestMethod]
-        [Owner("Robin van den Heever")]
-        [TestCategory("FileActivityDesignerViewModel_ValidateArchivePassword")]
+        [Test]
+        [Author("Robin van den Heever")]
+        [Category("FileActivityDesignerViewModel_ValidateArchivePassword")]
         public void FileActivityDesignerViewModelValidateArchiveNoPasswordPass()
         {
             var password = String.Empty;
@@ -379,9 +380,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core.FileActivityDesigner
         }
 
 
-        [TestMethod]
-        [Owner("Robin van den Heever")]
-        [TestCategory("FileActivityDesignerViewModel_ValidateArchivePassword")]
+        [Test]
+        [Author("Robin van den Heever")]
+        [Category("FileActivityDesignerViewModel_ValidateArchivePassword")]
         public void FileActivityDesignerViewModelValidateArchiveVariablePasswordPass()
         {
             const string Password = "[[password]]";
@@ -391,9 +392,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core.FileActivityDesigner
         }
 
 
-        [TestMethod]
-        [Owner("Robin van den Heever")]
-        [TestCategory("FileActivityDesignerViewModel_ValidateArchivePassword")]
+        [Test]
+        [Author("Robin van den Heever")]
+        [Category("FileActivityDesignerViewModel_ValidateArchivePassword")]
         public void FileActivityDesignerViewModelValidateArchiveVariablePasswordFail()
         {
             const string Password = "[[password&]]";
@@ -401,7 +402,7 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core.FileActivityDesigner
             const string ExpectedMessageFormat = "Label - Variable name [[password&]] contains invalid character(s). Only use alphanumeric _ and - ";
 
             var viewModel = VerifyValidateArchivePassword(Password, ExpectedResult);
-            
+
             Assert.AreEqual(1, viewModel.Errors.Count);
             var error = viewModel.Errors[0];
             Assert.AreEqual(string.Format(ExpectedMessageFormat), error.Message);
@@ -410,9 +411,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core.FileActivityDesigner
         }
 
 
-        [TestMethod]
-        [Owner("Robin van den Heever")]
-        [TestCategory("FileActivityDesignerViewModel_ValidateFileContent")]
+        [Test]
+        [Author("Robin van den Heever")]
+        [Category("FileActivityDesignerViewModel_ValidateFileContent")]
         public void FileActivityDesignerViewModelValidateFileContent()
         {
             //------------Setup for test-------------------------  
@@ -437,9 +438,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core.FileActivityDesigner
         }
 
 
-        [TestMethod]
-        [Owner("Robin van den Heever")]
-        [TestCategory("FileActivityDesignerViewModel_ValidateFileContent")]
+        [Test]
+        [Author("Robin van den Heever")]
+        [Category("FileActivityDesignerViewModel_ValidateFileContent")]
         public void FileActivityDesignerViewModelValidatePassword()
         {
             //------------Setup for test-------------------------  

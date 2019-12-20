@@ -16,17 +16,18 @@ using Dev2.Runtime.WebServer.Hubs;
 using Dev2.Runtime.WebServer.Security;
 using Dev2.Services.Security;
 using Microsoft.AspNet.SignalR.Hubs;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Runtime.WebServer.Security
 {
-    [TestClass]
-    [TestCategory("Runtime WebServer")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime WebServer")]
     public class AuthorizationRequestHelperTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizationRequestHelper_GetAuthorizationRequest")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizationRequestHelper_GetAuthorizationRequest")]
         public void AuthorizationRequestHelper_GetAuthorizationRequest_HttpActionContext_RequestTypeIsParsedCorrectly()
         {
             Verify_RequestType(() =>
@@ -42,9 +43,9 @@ namespace Dev2.Tests.Runtime.WebServer.Security
             });
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizationRequestHelper_GetAuthorizationRequest")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizationRequestHelper_GetAuthorizationRequest")]
         public void AuthorizationRequestHelper_GetAuthorizationRequest_HubDescriptor_RequestTypeIsParsedCorrectly()
         {
             Verify_RequestType(() =>
@@ -54,9 +55,9 @@ namespace Dev2.Tests.Runtime.WebServer.Security
             }, WebServerRequestType.HubConnect);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizationRequestHelper_GetAuthorizationRequest")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizationRequestHelper_GetAuthorizationRequest")]
         public void AuthorizationRequestHelper_GetAuthorizationRequest_IHubIncomingInvokerContext_RequestTypeIsParsedCorrectly()
         {
             Verify_RequestType(() =>

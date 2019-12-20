@@ -4,7 +4,7 @@ using System.Data;
 using System.Reflection;
 using Dev2.Common.Interfaces.DB;
 using Dev2.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Core;
 using Warewolf.Storage.Interfaces;
@@ -13,11 +13,12 @@ using Warewolf.Storage.Interfaces;
 
 namespace Dev2.Services.Execution.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DatabaseServiceExecutionTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void OnConstruction_GivenDataObject_ShouldConstruct()
         {
             //---------------Set up test pack-------------------
@@ -30,8 +31,8 @@ namespace Dev2.Services.Execution.Tests
             Assert.IsNotNull(newDatabaseServiceExecution, "Cannot create new DatabaseServiceExecution object.");
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void TranslateDataTableToEnvironment_Given3PopulatedOutPuts_ShouldMappAll()
         {
             //---------------Set up test pack-------------------
@@ -56,8 +57,8 @@ namespace Dev2.Services.Execution.Tests
             env.Verify(environment => environment.HasRecordSet(It.IsAny<string>()), Times.Exactly(3));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void TranslateDataTableToEnvironment_Given3OneEmptyPopulatedOutPuts_ShouldMapp2()
         {
             //---------------Set up test pack-------------------

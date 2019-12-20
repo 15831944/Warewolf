@@ -13,7 +13,7 @@ using Dev2.Activities;
 using Dev2.FindMissingStrategies;
 using Dev2.Factories;
 using Dev2.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 
@@ -22,12 +22,13 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
     /// <summary>
     /// Summary description for SequenceActivityFindMissingStrategyTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SequenceActivityFindMissingStrategyTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SequenceActivityFindMissingStrategy_GetActivityFields")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SequenceActivityFindMissingStrategy_GetActivityFields")]
         public void SequenceActivityFindMissingStrategy_GetActivityFields_WithAssignAndDataMerge_ReturnsAllVariables()
         {
             //------------Setup for test--------------------------
@@ -53,9 +54,9 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
             CollectionAssert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SequenceActivityFindMissingStrategy_GetActivityFields")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SequenceActivityFindMissingStrategy_GetActivityFields")]
         public void SequenceActivityFindMissingStrategy_GetActivityFields_WithAssignAndDecision_ReturnsAllVariables()
         {
             //------------Setup for test--------------------------

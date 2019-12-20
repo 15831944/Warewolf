@@ -21,18 +21,19 @@ using Dev2.Common.Interfaces.Security;
 using Dev2.Common.Interfaces.Wrappers;
 using Dev2.Services.Security;
 using Dev2.Services.Security.MoqInstallerActions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Infrastructure.Tests.Services.Security
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class AuthorizationServiceBaseTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizationServiceBase_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizationServiceBase_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void AuthorizationServiceBase_Constructor_SecurityServiceIsNull_ThrowsArgumentNullException()
         {
@@ -46,9 +47,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizationServiceBase_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizationServiceBase_Constructor")]
         public void AuthorizationServiceBase_Constructor_PermissionsChangedEvent_WiredUp()
         {
             //------------Setup for test--------------------------
@@ -64,9 +65,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.AreEqual(1, authorizationService.RaisePermissionsChangedHitCount);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("AuthorizationServiceBase_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("AuthorizationServiceBase_Constructor")]
         public void AuthorizationServiceBase_Constructor_PermissionsModifiedEventSubscribedTwice_OnlyOneEventIsWiredUp()
         {
             //------------Setup for test--------------------------
@@ -82,9 +83,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.AreEqual(1, authorizationService.RaisePermissionsModifiedHitCount);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizationServiceBase_IsAuthorized")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizationServiceBase_IsAuthorized")]
         public void AuthorizationServiceBase_IsAuthorized_UserIsInResourceRoleAndResourceToBeVerifiedIsNull_False()
         {
             //------------Setup for test--------------------------
@@ -105,9 +106,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsFalse(authorized);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizationServiceBase_IsAuthorized")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizationServiceBase_IsAuthorized")]
         public void AuthorizationServiceBase_IsAuthorized_UserIsNotInRole_False()
         {
             //------------Setup for test--------------------------
@@ -131,9 +132,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizationServiceBase_IsAuthorized")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizationServiceBase_IsAuthorized")]
         public void AuthorizationServiceBase_IsAuthorized_UserIsInServerRoleAndHasPermissions_True()
         {
             //------------Setup for test--------------------------
@@ -159,9 +160,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizationServiceBase_IsAuthorized")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizationServiceBase_IsAuthorized")]
         public void AuthorizationServiceBase_IsAuthorized_UserIsInServerRoleAndDoesNotHavePermissions_False()
         {
             //------------Setup for test--------------------------
@@ -187,9 +188,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizationServiceBase_IsAuthorized")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizationServiceBase_IsAuthorized")]
         public void AuthorizationServiceBase_IsAuthorized_UserIsInResourceRoleAndHasPermissions_True()
         {
             //------------Setup for test--------------------------
@@ -216,9 +217,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizationServiceBase_IsAuthorized")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizationServiceBase_IsAuthorized")]
         public void AuthorizationServiceBase_IsAuthorized_UserIsInResourceRoleAndDoesNotHavePermissions_False()
         {
             //------------Setup for test--------------------------
@@ -245,9 +246,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             }
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("AuthorizationServiceBase_IsAuthorized")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("AuthorizationServiceBase_IsAuthorized")]
         public void AuthorizationServiceBase_IsAuthorized_HasDefaultGuestPermissions_False()
         {
             //------------Setup for test--------------------------
@@ -274,9 +275,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             }
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("AuthorizationServiceBase_IsAuthorized")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("AuthorizationServiceBase_IsAuthorized")]
         public void AuthorizationServiceBase_IsAuthorized_HasDefaultGuestPermissions_WithGivenPermission_True()
         {
             //------------Setup for test--------------------------
@@ -303,9 +304,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizationServiceBase_IsAuthorized")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizationServiceBase_IsAuthorized")]
         public void AuthorizationServiceBase_IsAuthorized_UserIsInTwoRolesAndOneRoleDeniesAccess_True()
         {
             //------------Setup for test--------------------------
@@ -334,9 +335,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizationServiceBase_IsAuthorizedToConnect")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizationServiceBase_IsAuthorizedToConnect")]
         public void AuthorizationServiceBase_IsAuthorizedToConnect_UserHasPermissions_True()
         {
             //------------Setup for test--------------------------
@@ -358,9 +359,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsTrue(authorized);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("AuthorizationServiceBase_IsAuthorizedToConnect")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("AuthorizationServiceBase_IsAuthorizedToConnect")]
         public void AuthorizationServiceBase_IsAuthorizedToConnect_ToRemoteServer_WithOnlyBuiltInAdminGroup_UserNotAuthorized()
         {
             //------------Setup for test--------------------------
@@ -382,9 +383,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsFalse(authorized);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("AuthorizationServiceBase_IsAuthorizedToConnect")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("AuthorizationServiceBase_IsAuthorizedToConnect")]
         public void AuthorizationServiceBase_IsAuthorizedToConnect_ToLocalServer_WithOnlyBuiltInAdminGroup_UserIsAuthorized()
         {
             //------------Setup for test--------------------------
@@ -407,9 +408,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsTrue(authorized);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("AuthorizationServiceBase_AdministratorsMembersOfWarewolfGroup_WhenAdministratorsMembersOfTheGroup")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("AuthorizationServiceBase_AdministratorsMembersOfWarewolfGroup_WhenAdministratorsMembersOfTheGroup")]
         public void AuthorizationServiceBase_IsAuthorizedToConnect_ToLocalServer_AdministratorsMembersOfWarewolfGroup_WhenAdministratorsMembersOfTheGroup_ExpectTrue()
         {
             //------------Setup for test--------------------------
@@ -457,9 +458,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsTrue(isMember);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory("AuthorizationServiceBase_AdministratorsMembersOfWarewolfGroup_WhenAdministratorsMembersOfTheGroup")]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category("AuthorizationServiceBase_AdministratorsMembersOfWarewolfGroup_WhenAdministratorsMembersOfTheGroup")]
         public void AuthorizationServiceBase_IsAuthorizedToConnect_ToLocalServer_AdministratorsMembersOfWarewolfGroup_WhenNonAdministratorsAreNotMembersOfTheGroup_ExpectFalse()
         {
             //------------Setup for test--------------------------
@@ -496,9 +497,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("AuthorizationServiceBase_AdministratorsMembersOfWarewolfGroup_WhenAdministratorsMembersOfTheGroup")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("AuthorizationServiceBase_AdministratorsMembersOfWarewolfGroup_WhenAdministratorsMembersOfTheGroup")]
         public void AuthorizationServiceBase_IsAuthorizedToConnect_ToLocalServer_AdministratorsMembersOfWarewolfGroup_WhenAdministratorsAreNotMembersOfTheGroup_ExpectFalse()
         {
             //------------Setup for test--------------------------
@@ -536,9 +537,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
         }
 
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("AuthorizationServiceBase_IsAuthorizedToConnect_WhenNotDirectlyInWarewolfGroup")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("AuthorizationServiceBase_IsAuthorizedToConnect_WhenNotDirectlyInWarewolfGroup")]
         public void AuthorizationServiceBase_IsAuthorizedToConnect_ToLocalServer_WithBuiltInAdminstratorsOnlyWarewolfAdministratorsGroupMember_UserIsAuthorized()
         {
             //------------Setup for test--------------------------
@@ -571,9 +572,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsTrue(authorized);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("AuthorizationServiceBase_IsAuthorizedToConnect")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("AuthorizationServiceBase_IsAuthorizedToConnect")]
         public void AuthorizationServiceBase_IsAuthorizedToConnect_ToLocalServerWithNullIdentityName_WithOnlyBuiltInAdminGroup_UserIsNotAuthorized()
         {
             //------------Setup for test--------------------------
@@ -595,9 +596,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsFalse(authorized);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizationServiceBase_IsAuthorizedToConnect")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizationServiceBase_IsAuthorizedToConnect")]
         public void AuthorizationServiceBase_IsAuthorizedToConnect_UserHasNoPermissions_False()
         {
             //------------Setup for test--------------------------
@@ -619,9 +620,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsFalse(authorized);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("AuthorizationServiceBase_IsAuthorizedToConnect")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("AuthorizationServiceBase_IsAuthorizedToConnect")]
         public void AuthorizationServiceBase_IsAuthorizedToConnect_HasDefaultGuestPermissions_False()
         {
             var securityPermission = WindowsGroupPermission.CreateGuests();
@@ -641,9 +642,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsFalse(authorized);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("AuthorizationServiceBase_IsAuthorizedToConnect")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("AuthorizationServiceBase_IsAuthorizedToConnect")]
         public void AuthorizationServiceBase_IsAuthorizedToConnect_HasPermissionGivenInDefaultGuest_True()
         {
             var securityPermission = WindowsGroupPermission.CreateGuests();
@@ -663,9 +664,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsTrue(authorized);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizationServiceBase_Remove")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizationServiceBase_Remove")]
         public void AuthorizationServiceBase_Remove_InvokesSecurityService()
         {
             //------------Setup for test--------------------------
@@ -726,9 +727,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory("AuthorizationServiceBase_AdministratorsMembersOfWarewolfGroup_WhenAdministratorsMembersOfTheGroup")]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category("AuthorizationServiceBase_AdministratorsMembersOfWarewolfGroup_WhenAdministratorsMembersOfTheGroup")]
         public void AuthorizationServiceBase_IsAuthorizedToConnect_ToLocalServer_AdministratorsMembersOfWarewolfGroup_WhenMemberOfAdministrator_ExpectTrue()
         {
             //------------Setup for test--------------------------

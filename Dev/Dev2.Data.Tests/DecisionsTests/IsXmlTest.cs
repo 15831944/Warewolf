@@ -1,14 +1,15 @@
 using Dev2.Data.Decisions.Operations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests.DecisionsTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IsXmlTests
     {
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("IsXml_Invoke")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("IsXml_Invoke")]
         public void GivenSomeString_IsXml_Invoke_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -18,12 +19,12 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = isXml.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("IsXml_Invoke")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("IsXml_Invoke")]
         public void IsXml_Invoke_IsXml_ReturnsTrue()
         {
             const string xmlFragment = @"<InnerError>Index #0
@@ -47,12 +48,12 @@ Procedure:
             cols[0] = xmlFragment;
             //------------Execute Test---------------------------
             var result = notStartsWith.Invoke(cols);
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthmembu")]
-        [TestCategory("IsXml_HandlesType")]
+        [Test]
+        [Author("Sanele Mthmembu")]
+        [Category("IsXml_HandlesType")]
         public void IsXml_HandlesType_ReturnsIsXmlType()
         {
             var decisionType = enDecisionType.IsXML;
@@ -60,7 +61,7 @@ Procedure:
             var isXml = new IsXml();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.AreEqual(decisionType, isXml.HandlesType());
+            NUnit.Framework.Assert.AreEqual(decisionType, isXml.HandlesType());
         }
     }
 }

@@ -12,17 +12,18 @@ using System;
 using Dev2.Common.Interfaces.Infrastructure.Providers.Errors;
 using Dev2.Providers.Errors;
 using Dev2.Providers.Validation.Rules;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class RuleSetTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("RuleSet_Construct")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("RuleSet_Construct")]
         public void RuleSet_Construct_Construct_NoException()
         {
             //------------Setup for test--------------------------
@@ -33,9 +34,9 @@ namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
             Assert.AreEqual(0, ruleSet.Rules.Count);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("RuleSet_Construct")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("RuleSet_Construct")]
         public void RuleSet_Construct_ConstructWithRules_RulesAdded()
         {
             //------------Setup for test--------------------------
@@ -47,9 +48,9 @@ namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
             Assert.AreEqual(1, ruleSet.Rules.Count);
         }      
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("RuleSet_Validate")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("RuleSet_Validate")]
         public void RuleSet_Validate_EmptyList_ReturnTrue()
         {
             //------------Setup for test--------------------------
@@ -61,9 +62,9 @@ namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
             Assert.AreEqual(0, validateRules.Count);
         }        
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("RuleSet_AddRule")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("RuleSet_AddRule")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void RuleSet_AddRule_Null_ExceptionThrown()
         {
@@ -74,9 +75,9 @@ namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("RuleSet_AddRule")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("RuleSet_AddRule")]
         public void RuleSet_AddRule_Rule_AddsToRuleList()
         {
             //------------Setup for test--------------------------
@@ -87,9 +88,9 @@ namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
             Assert.AreEqual(1, ruleSet.Rules.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("RuleSet_Validate")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("RuleSet_Validate")]
         public void RuleSet_Validate_WithNullRule_ReturnsValueOfCheck()
         {
             //------------Setup for test--------------------------
@@ -101,9 +102,9 @@ namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
             Assert.AreEqual(0, validateRules.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("RuleSet_Validate")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("RuleSet_Validate")]
         public void RuleSet_Validate_WithNotNullRule_ReturnsValueOfCheck()
         {
             //------------Setup for test--------------------------
@@ -115,9 +116,9 @@ namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
             Assert.AreEqual(1, validateRules.Count);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("RuleSet_ValidateRules")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("RuleSet_ValidateRules")]
         public void RuleSet_ValidateRules_WithRule_AssignsArgsToRuleAndReturnsValueOfCheck()
         {
             //------------Setup for test--------------------------

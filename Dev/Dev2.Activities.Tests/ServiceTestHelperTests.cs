@@ -17,7 +17,7 @@ using Dev2.Common.Interfaces;
 using Dev2.Data;
 using Dev2.Diagnostics.Debug;
 using Dev2.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Warewolf.Storage.Interfaces;
@@ -25,12 +25,13 @@ using Warewolf.Storage.Interfaces;
 
 namespace Dev2.Tests.Activities
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ServiceTestHelperTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestHelper_UpdateDebugStateWithAssertions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestHelper_UpdateDebugStateWithAssertions")]
         public void TestHelper_UpdateDebugStateWithAssertions_NotServiceTestExecution_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -46,9 +47,9 @@ namespace Dev2.Tests.Activities
             Assert.IsNull(serviceTestStepTO.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestHelper_UpdateDebugStateWithAssertions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestHelper_UpdateDebugStateWithAssertions")]
         public void TestHelper_UpdateDebugStateWithAssertions_NullServiceSteps_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -59,9 +60,9 @@ namespace Dev2.Tests.Activities
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestHelper_UpdateDebugStateWithAssertions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestHelper_UpdateDebugStateWithAssertions")]
         public void TestHelper_UpdateDebugStateWithAssertions_MockServiceSteps_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -77,9 +78,9 @@ namespace Dev2.Tests.Activities
             Assert.IsNull(serviceTestStepTO.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestHelper_UpdateDebugStateWithAssertions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestHelper_UpdateDebugStateWithAssertions")]
         public void TestHelper_UpdateDebugStateWithAssertions_AssertStepIDNotMatching_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -95,9 +96,9 @@ namespace Dev2.Tests.Activities
             Assert.IsNull(serviceTestStepTO.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestHelper_UpdateDebugStateWithAssertions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestHelper_UpdateDebugStateWithAssertions")]
         public void TestHelper_UpdateDebugStateWithAssertions_AssertStepForEach_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -113,9 +114,9 @@ namespace Dev2.Tests.Activities
             Assert.IsNull(serviceTestStepTO.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestHelper_UpdateDebugStateWithAssertions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestHelper_UpdateDebugStateWithAssertions")]
         public void TestHelper_UpdateDebugStateWithAssertions_AssertStepSelectAndApply_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -131,9 +132,9 @@ namespace Dev2.Tests.Activities
             Assert.IsNull(serviceTestStepTO.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestHelper_UpdateDebugStateWithAssertions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestHelper_UpdateDebugStateWithAssertions")]
         public void TestHelper_UpdateDebugStateWithAssertions_AssertStepSequence_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -149,9 +150,9 @@ namespace Dev2.Tests.Activities
             Assert.IsNull(serviceTestStepTO.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestHelper_UpdateDebugStateWithAssertions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestHelper_UpdateDebugStateWithAssertions")]
         public void TestHelper_UpdateDebugStateWithAssertions_AssertStepNullOutputs_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -167,9 +168,9 @@ namespace Dev2.Tests.Activities
             Assert.IsNull(serviceTestStepTO.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestHelper_UpdateDebugStateWithAssertions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestHelper_UpdateDebugStateWithAssertions")]
         public void TestHelper_UpdateDebugStateWithAssertions_AssertStepNoOutputs_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -185,9 +186,9 @@ namespace Dev2.Tests.Activities
             Assert.IsNull(serviceTestStepTO.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestHelper_UpdateDebugStateWithAssertions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestHelper_UpdateDebugStateWithAssertions")]
         public void TestHelper_UpdateDebugStateWithAssertions_AssertNoDebugItems_NullResult_SetResultInvalid()
         {
             //------------Setup for test--------------------------
@@ -212,9 +213,9 @@ namespace Dev2.Tests.Activities
             Assert.AreEqual(RunResult.TestInvalid,serviceTestStepTO.Result.RunTestResult);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestHelper_UpdateDebugStateWithAssertions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestHelper_UpdateDebugStateWithAssertions")]
         public void TestHelper_UpdateDebugStateWithAssertions_AssertNoDebugItems_Result_SetResultInvalid()
         {
             //------------Setup for test--------------------------
@@ -240,9 +241,9 @@ namespace Dev2.Tests.Activities
             Assert.AreEqual(RunResult.TestInvalid,serviceTestStepTO.Result.RunTestResult);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestHelper_UpdateDebugStateWithAssertions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestHelper_UpdateDebugStateWithAssertions")]
         public void TestHelper_UpdateDebugStateWithAssertions_AssertNoDebugStates_NullResult_SetResultInvalid()
         {
             //------------Setup for test--------------------------
@@ -269,9 +270,9 @@ namespace Dev2.Tests.Activities
             Assert.AreEqual(RunResult.TestInvalid,serviceTestStepTO.Result.RunTestResult);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestHelper_UpdateDebugStateWithAssertions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestHelper_UpdateDebugStateWithAssertions")]
         public void TestHelper_UpdateDebugStateWithAssertions_AssertNoDebugStates_Result_SetResultInvalid()
         {
             //------------Setup for test--------------------------
@@ -299,9 +300,9 @@ namespace Dev2.Tests.Activities
             Assert.AreEqual(RunResult.TestInvalid,serviceTestStepTO.Result.RunTestResult);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestHelper_UpdateDebugStateWithAssertions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestHelper_UpdateDebugStateWithAssertions")]
         public void TestHelper_UpdateDebugStateWithAssertions_AssertWithStates_Result_SetResultPassed()
         {
             //------------Setup for test--------------------------
@@ -334,9 +335,9 @@ namespace Dev2.Tests.Activities
             Assert.AreEqual(RunResult.TestPassed,serviceTestStepTO.Result.RunTestResult);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestHelper_UpdateDebugStateWithAssertions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestHelper_UpdateDebugStateWithAssertions")]
         public void TestHelper_UpdateDebugStateWithAssertions_AssertWithStates_MultipleValuesForCriteria_Result_SetResultPassed()
         {
             //------------Setup for test--------------------------
@@ -371,9 +372,9 @@ namespace Dev2.Tests.Activities
             Assert.AreEqual(RunResult.TestPassed,serviceTestStepTO.Result.RunTestResult);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestHelper_UpdateDebugStateWithAssertions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestHelper_UpdateDebugStateWithAssertions")]
         public void TestHelper_UpdateDebugStateWithAssertions_DebugDataObject_AssertWithStates_Result_SetResultPassed()
         {
             //------------Setup for test--------------------------
@@ -410,9 +411,9 @@ namespace Dev2.Tests.Activities
             Assert.AreEqual("Passed",debugState.AssertResultList[0].ResultsList[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestHelper_UpdateDebugStateWithAssertions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestHelper_UpdateDebugStateWithAssertions")]
         public void TestHelper_UpdateDebugStateWithAssertions_DebugDataObject_NoVariable_AssertWithStates_Result_SetResultPassed()
         {
             //------------Setup for test--------------------------
@@ -448,9 +449,9 @@ namespace Dev2.Tests.Activities
             Assert.AreEqual("Invalid: Nothing to assert.", debugState.AssertResultList[0].ResultsList[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestHelper_UpdateDebugStateWithAssertions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestHelper_UpdateDebugStateWithAssertions")]
         public void TestHelper_UpdateDebugStateWithAssertions_NullStepOutputs_AssertWithStates_Result_SetResultPassed()
         {
             //------------Setup for test--------------------------
@@ -477,9 +478,9 @@ namespace Dev2.Tests.Activities
             Assert.AreEqual(RunResult.TestPassed,serviceTestStepTO.Result.RunTestResult);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestHelper_UpdateDebugStateWithAssertions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestHelper_UpdateDebugStateWithAssertions")]
         public void TestHelper_UpdateDebugStateWithAssertions_AssertWithStates_Result_SetOutputResultPassed()
         {
             //------------Setup for test--------------------------
@@ -512,9 +513,9 @@ namespace Dev2.Tests.Activities
             Assert.AreEqual(RunResult.TestPassed,serviceTestStepTO.StepOutputs[0].Result.RunTestResult);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestHelper_UpdateDebugStateWithAssertions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestHelper_UpdateDebugStateWithAssertions")]
         public void TestHelper_UpdateDebugStateWithAssertions_AssertWithStates_Result_SetResultFailed()
         {
             //------------Setup for test--------------------------
@@ -547,9 +548,9 @@ namespace Dev2.Tests.Activities
             Assert.AreEqual(RunResult.TestFailed,serviceTestStepTO.Result.RunTestResult);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestHelper_UpdateDebugStateWithAssertions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestHelper_UpdateDebugStateWithAssertions")]
         public void TestHelper_UpdateDebugStateWithAssertions_AssertWithStates_Result_SetOutputResultFailed()
         {
             //------------Setup for test--------------------------
@@ -582,9 +583,9 @@ namespace Dev2.Tests.Activities
             Assert.AreEqual(RunResult.TestFailed,serviceTestStepTO.StepOutputs[0].Result.RunTestResult);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestHelper_UpdateDebugStateWithAssertions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestHelper_UpdateDebugStateWithAssertions")]
         public void TestHelper_UpdateDebugStateWithAssertions_AssertWithStates_EmptyVariable_SetResultInvalid()
         {
             //------------Setup for test--------------------------
@@ -617,9 +618,9 @@ namespace Dev2.Tests.Activities
             Assert.AreEqual(RunResult.TestInvalid,serviceTestStepTO.Result.RunTestResult);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestHelper_UpdateDebugStateWithAssertions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestHelper_UpdateDebugStateWithAssertions")]
         public void TestHelper_UpdateDebugStateWithAssertions_AssertWithStates_EmptyVariable_SetOutputResultInvalid()
         {
             //------------Setup for test--------------------------
@@ -652,9 +653,9 @@ namespace Dev2.Tests.Activities
             Assert.AreEqual(RunResult.TestInvalid, serviceTestStepTO.StepOutputs[0].Result.RunTestResult);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestHelper_UpdateDebugStateWithAssertions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestHelper_UpdateDebugStateWithAssertions")]
         public void TestHelper_UpdateDebugStateWithAssertions_AssertWithStates_EmptyValue_SetResultInvalid()
         {
             //------------Setup for test--------------------------
@@ -687,9 +688,9 @@ namespace Dev2.Tests.Activities
             Assert.AreEqual(RunResult.TestFailed,serviceTestStepTO.Result.RunTestResult);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestHelper_UpdateDebugStateWithAssertions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestHelper_UpdateDebugStateWithAssertions")]
         public void TestHelper_UpdateDebugStateWithAssertions_AssertWithStates_EmptyValue_SetOutputResultInvalid()
         {
             //------------Setup for test--------------------------
@@ -722,9 +723,9 @@ namespace Dev2.Tests.Activities
             Assert.AreEqual(RunResult.TestFailed, serviceTestStepTO.StepOutputs[0].Result.RunTestResult);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestHelper_UpdateDebugStateWithAssertions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestHelper_UpdateDebugStateWithAssertions")]
         public void TestHelper_UpdateDebugStateWithAssertions_AssertWithStates_EmptyVariableWithValue_SetResultInvalid()
         {
             //------------Setup for test--------------------------
@@ -757,9 +758,9 @@ namespace Dev2.Tests.Activities
             Assert.AreEqual(RunResult.TestInvalid,serviceTestStepTO.Result.RunTestResult);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestHelper_UpdateDebugStateWithAssertions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestHelper_UpdateDebugStateWithAssertions")]
         public void TestHelper_UpdateDebugStateWithAssertions_AssertWithStates_EmptyVariableWithValue_SetOutputResultInvalid()
         {
             //------------Setup for test--------------------------
@@ -792,9 +793,9 @@ namespace Dev2.Tests.Activities
             Assert.AreEqual(RunResult.TestInvalid, serviceTestStepTO.StepOutputs[0].Result.RunTestResult);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestHelper_UpdateDebugStateWithAssertions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestHelper_UpdateDebugStateWithAssertions")]
         public void TestHelper_UpdateDebugStateWithAssertions_AssertWithStates_EmptyVariableEmptyValue_SetResultInvalid()
         {
             //------------Setup for test--------------------------
@@ -827,9 +828,9 @@ namespace Dev2.Tests.Activities
             Assert.AreEqual(RunResult.TestPassed,serviceTestStepTO.Result.RunTestResult);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestHelper_UpdateDebugStateWithAssertions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("TestHelper_UpdateDebugStateWithAssertions")]
         public void TestHelper_UpdateDebugStateWithAssertions_AssertWithStates_EmptyVariableEmptyValue_SetOutputResultInvalid()
         {
             //------------Setup for test--------------------------

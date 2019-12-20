@@ -9,16 +9,17 @@
 */
 
 using Dev2.Data.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class XmlHelperTest
     {
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(XmlHelper))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(XmlHelper))]
         public void XmlHelper_IsXml_GivenValidXml_ShouldReturnTrue()
         {
             //---------------Set up test pack-------------------
@@ -38,36 +39,36 @@ Procedure:
    at Dev2.Services.Execution.DatabaseServiceExecution.SqlExecution(ErrorResultTO errors, Object& executeService) in c:\Development\Dev\Dev2.Services.Execution\DatabaseServiceExecution.cs:line 118</InnerError>";
             var isXml = XmlHelper.IsXml(XmlFragment, out bool isFragment, out bool isHtml);
             //---------------Test Result -----------------------
-            Assert.IsTrue(isXml);
+            NUnit.Framework.Assert.IsTrue(isXml);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(XmlHelper))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(XmlHelper))]
         public void XmlHelper_IsXml_GivenValidIvalidXml_ShouldReturnFalse()
         {
             //---------------Set up test pack-------------------
             const string XmlFragment = @"HHHHHHH";
             var isXml = XmlHelper.IsXml(XmlFragment, out bool isFragment, out bool isHtml);
             //---------------Test Result -----------------------
-            Assert.IsFalse(isXml);
+            NUnit.Framework.Assert.IsFalse(isXml);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(XmlHelper))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(XmlHelper))]
         public void XmlHelper_IsXml_TryProcessAllNodes_IsHtml()
         {
             //---------------Set up test pack-------------------
             const string HTMLFragment = @"<html><body></body></html>";
             var isXml = XmlHelper.IsXml(HTMLFragment, out bool isFragment, out bool isHtml);
             //---------------Test Result -----------------------
-            Assert.IsFalse(isXml);
+            NUnit.Framework.Assert.IsFalse(isXml);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(XmlHelper))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(XmlHelper))]
         public void XmlHelper_ToCleanXml_GivenDirtXmlWithToStripTags_ShouldReuturnCleanXml()
         {
             //---------------Set up test pack-------------------
@@ -75,12 +76,12 @@ Procedure:
             //---------------Execute Test ----------------------
             var cleanXml = xml.ToCleanXml();
             //---------------Test Result -----------------------
-            Assert.AreEqual("Hello world", cleanXml);
+            NUnit.Framework.Assert.AreEqual("Hello world", cleanXml);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(XmlHelper))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(XmlHelper))]
         public void XmlHelper_ToCleanXml_GivenDirtXmlWithnaughtyTags_ShouldReuturnNoData()
         {
             //---------------Set up test pack-------------------
@@ -88,12 +89,12 @@ Procedure:
             //---------------Execute Test ----------------------
             var cleanXml = xml.ToCleanXml();
             //---------------Test Result -----------------------
-            Assert.AreEqual("", cleanXml);
+            NUnit.Framework.Assert.AreEqual("", cleanXml);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(XmlHelper))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(XmlHelper))]
         public void XmlHelper_ToCleanXml_GivenDirtXmlWithnaughtyTagsAndValid_ShouldReuturnCleanXml()
         {
             //---------------Set up test pack-------------------
@@ -101,12 +102,12 @@ Procedure:
             //---------------Execute Test ----------------------
             var cleanXml = xml.ToCleanXml();
             //---------------Test Result -----------------------
-            Assert.AreEqual("<Person></Person>", cleanXml);
+            NUnit.Framework.Assert.AreEqual("<Person></Person>", cleanXml);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(XmlHelper))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(XmlHelper))]
         public void XmlHelper_ToCleanXml_NotisXml_NotisFragment_NotisHtml_ShouldReuturnCleanXml()
         {
             //---------------Set up test pack-------------------
@@ -114,7 +115,7 @@ Procedure:
             //---------------Execute Test ----------------------
             var cleanXml = xml.ToCleanXml();
             //---------------Test Result -----------------------
-            Assert.AreEqual("<ADL><![CDATA[some stuff]]></ADL>", cleanXml);
+            NUnit.Framework.Assert.AreEqual("<ADL><![CDATA[some stuff]]></ADL>", cleanXml);
         }
        
     }

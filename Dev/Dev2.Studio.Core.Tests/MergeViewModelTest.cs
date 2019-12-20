@@ -16,12 +16,13 @@ using Dev2.Studio.Interfaces.Enums;
 using Dev2.ViewModels;
 using Dev2.ViewModels.Merge;
 using Microsoft.Practices.Prism.Mvvm;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Core.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class MergeViewModelTest
     {
         private const string ResourceName = "MergeResource";
@@ -107,7 +108,7 @@ namespace Dev2.Core.Tests
             return connection;
         }
 
-        [TestInitialize]
+        [SetUp]
         public void Init()
         {
             var newServerRepo = new Mock<IServerRepository>();
@@ -128,9 +129,9 @@ namespace Dev2.Core.Tests
             CustomContainer.Register(_mockParseServiceForDifferences.Object);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MergeViewModel_GetView")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MergeViewModel_GetView")]
         public void MergeViewModel_GetView_ReturnsIView_NotNull()
         {
             //------------Setup for test--------------------------
@@ -167,9 +168,9 @@ namespace Dev2.Core.Tests
             Assert.IsNotNull(view);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MergeViewModel_DoDeactivate")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MergeViewModel_DoDeactivate")]
         public void MergeViewModel_DoDeactivate_CanSave_ExpectedFalse()
         {
             //------------Setup for test--------------------------
@@ -217,9 +218,9 @@ namespace Dev2.Core.Tests
             _shellViewModel.Verify(model => model.HelpViewModel.UpdateHelpText(It.IsAny<string>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MergeViewModel_OnDispose")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MergeViewModel_OnDispose")]
         public void MergeViewModel_OnDispose_ViewModel_Dispose()
         {
             //------------Setup for test--------------------------
@@ -255,9 +256,9 @@ namespace Dev2.Core.Tests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MergeViewModel_PropertyChanged")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MergeViewModel_PropertyChanged")]
         public void MergeViewModel_PropertyChanged_DisplayName_IsTrue()
         {
             //------------Setup for test--------------------------
@@ -303,9 +304,9 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(vm.IsDirty);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MergeViewModel_PropertyChanged")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MergeViewModel_PropertyChanged")]
         public void MergeViewModel_PropertyChanged_DataListViewModel_IsTrue()
         {
             //------------Setup for test--------------------------
@@ -352,9 +353,9 @@ namespace Dev2.Core.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MergeViewModel_DoDeactivate")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MergeViewModel_DoDeactivate")]
         public void MergeViewModel_DoDeactivate_CanSave_ExpectedTrue()
         {
             //------------Setup for test--------------------------
@@ -413,9 +414,9 @@ namespace Dev2.Core.Tests
             popupController.Verify(controller => controller.Show(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<MessageBoxButton>(), MessageBoxImage.Information, "", false, false, true, false, false, false), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MergeViewModel_DoDeactivate")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MergeViewModel_DoDeactivate")]
         public void MergeViewModel_DoDeactivate_CanSave_MessageBoxYes()
         {
             //------------Setup for test--------------------------
@@ -470,9 +471,9 @@ namespace Dev2.Core.Tests
             Assert.IsNull(vm.HelpText);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MergeViewModel_DoDeactivate")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MergeViewModel_DoDeactivate")]
         public void MergeViewModel_DoDeactivate_CanSave_MessageBoxNo()
         {
             //------------Setup for test--------------------------

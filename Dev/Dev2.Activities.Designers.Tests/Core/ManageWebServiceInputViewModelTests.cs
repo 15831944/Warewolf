@@ -6,19 +6,20 @@ using Dev2.Common;
 using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.DB;
 using Dev2.Studio.Core.Activities.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Warewolf.Core;
 
 
 
 namespace Dev2.Activities.Designers.Tests.Core
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ManageWebServiceInputViewModelTests
     {
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("OutputsRegion_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("OutputsRegion_Ctor")]
         public void ManageWebServiceInputViewModel_Ctor()
         {
             var mod = new MyWebModel();
@@ -41,9 +42,9 @@ namespace Dev2.Activities.Designers.Tests.Core
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("OutputsRegion_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("OutputsRegion_Ctor")]
         public void ManageWebServiceInputViewModel_TestAction()
         {
             var called = false;
@@ -76,9 +77,9 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.IsTrue(calledOk);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Webget_MethodName")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Webget_MethodName")]
         public void ManageWebServiceInputViewModel_TestActionSetSourceAndTest()
         {
             //------------Setup for test--------------------------
@@ -98,9 +99,9 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.IsTrue(inputview.OutputArea.Outputs.Count>0);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Webget_MethodName")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Webget_MethodName")]
         public void ManageWebServiceInputViewModel_TestActionSetSourceAndTest_ExistingContent()
         {
             //------------Setup for test--------------------------
@@ -132,9 +133,9 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.AreEqual(2, webget.InputArea.Headers.Count);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Webget_MethodName")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Webget_MethodName")]
         public void ManageWebServiceInputViewModel_PropertyChangedHandler()
         {
             //------------Setup for test--------------------------
@@ -154,9 +155,9 @@ namespace Dev2.Activities.Designers.Tests.Core
 
 
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Webget_MethodName")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Webget_MethodName")]
         public void ManageWebServiceInputViewModelCloneRegion_ReturnsNull()
         {
             //------------Setup for test--------------------------
@@ -175,9 +176,9 @@ namespace Dev2.Activities.Designers.Tests.Core
             
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Webget_MethodName")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Webget_MethodName")]
         public void ManageWebServiceInputViewModelTestAction_Exception()
         {
             //------------Setup for test--------------------------
@@ -197,9 +198,9 @@ namespace Dev2.Activities.Designers.Tests.Core
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Webget_MethodName")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Webget_MethodName")]
         public void ManageWebServiceInputViewModelOkAction_Exception()
         {
             //------------Setup for test--------------------------
@@ -219,9 +220,9 @@ namespace Dev2.Activities.Designers.Tests.Core
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Webget_MethodName")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Webget_MethodName")]
         public void ManageWebServiceInputViewModel_RestoreRegion_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -240,9 +241,9 @@ namespace Dev2.Activities.Designers.Tests.Core
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Webget_MethodName")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Webget_MethodName")]
         public void ManageWebServiceInputViewModel_TestActionSetSourceAndTestClickOk()
         {
             //------------Setup for test--------------------------
@@ -271,9 +272,9 @@ namespace Dev2.Activities.Designers.Tests.Core
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Webget_MethodName")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Webget_MethodName")]
         public void ManageWebServiceInputViewModel_TestActionSetSourceAndTestClickPaste()
         {
             //------------Setup for test--------------------------
@@ -291,9 +292,9 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.IsTrue(inputview.PasteResponseVisible);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Webget_MethodName")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Webget_MethodName")]
         public void ManageWebServiceInputViewModel_TestActionSetSourceAndTestClickClose()
         {
             //------------Setup for test--------------------------
@@ -316,9 +317,9 @@ namespace Dev2.Activities.Designers.Tests.Core
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("OutputsRegion_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("OutputsRegion_Ctor")]
         public void ManageWebServiceInputViewModel_Properties()
         {
             var mod = new MyWebModel();

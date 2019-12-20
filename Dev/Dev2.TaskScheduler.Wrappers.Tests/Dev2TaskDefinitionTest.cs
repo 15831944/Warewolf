@@ -13,28 +13,29 @@ using System.Linq;
 using Dev2.Common;
 using Dev2.Common.Interfaces.WindowsTaskScheduler.Wrappers;
 using Dev2.TaskScheduler.Wrappers.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Microsoft.Win32.TaskScheduler;
 using Moq;
 
 namespace Dev2.TaskScheduler.Wrappers.Test
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class Dev2TaskDefinitionTest
     {
 
         Mock<ITaskServiceConvertorFactory> _factory;
         TaskService _service;
-        [TestInitialize]
+        [SetUp]
         public void Init()
         {
             _factory = new Mock<ITaskServiceConvertorFactory>();
             _service = new TaskService();
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2TaskDefinitionTest_Construct")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2TaskDefinitionTest_Construct")]
         public void Dev2TaskDefinitionTest_Construction_Test()
         {
             using (var native = _service.NewTask()) 
@@ -45,9 +46,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
                 Assert.AreEqual(defn.XmlText, native.XmlText);
             }
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2TaskDefinitionTest_ValidTask")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2TaskDefinitionTest_ValidTask")]
         public void Dev2TaskDefinitionTest_IsValid_TestValid()
         {
             var native = _service.NewTask();
@@ -58,9 +59,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
             Assert.IsTrue(defn.IsValidDev2Task());
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2TaskDefinitionTest_InValidTaskArgs")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2TaskDefinitionTest_InValidTaskArgs")]
         public void Dev2TaskDefinitionTest_IsValid_TestInValidArgs()
         {
             var native = _service.NewTask();
@@ -70,9 +71,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
             var defn = new Dev2TaskDefinition(factory, native);
             Assert.IsFalse(defn.IsValidDev2Task());
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2TaskDefinitionTest_InValidTaskPath")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2TaskDefinitionTest_InValidTaskPath")]
         public void Dev2TaskDefinitionTest_IsValid_TestInValidPath()
         {
             var native = _service.NewTask();
@@ -83,9 +84,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
             Assert.IsFalse(defn.IsValidDev2Task());
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2TaskDefinitionTest_InValidAction")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2TaskDefinitionTest_InValidAction")]
         public void Dev2TaskDefinitionTest_IsValid_TestInValidAction()
         {
             var native = _service.NewTask();
@@ -97,9 +98,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2TaskDefinitionTest_NoActions")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2TaskDefinitionTest_NoActions")]
         public void Dev2TaskDefinitionTest_IsValid_TestNoAction()
         {
             var native = _service.NewTask();
@@ -111,27 +112,27 @@ namespace Dev2.TaskScheduler.Wrappers.Test
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2TaskDefinitionTest_PassThroughActions")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2TaskDefinitionTest_PassThroughActions")]
         public void Dev2TaskDefinitionTest_Actions()
         {
              AssertPassThrough((a,b)=>a.Actions==b.Actions.Instance);
           
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2TaskDefinitionTest_PassThroughTriggers")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2TaskDefinitionTest_PassThroughTriggers")]
         public void Dev2TaskDefinitionTest_Triggers()
         {
              AssertPassThrough((a, b) => a.Triggers == b.Triggers.Instance);
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2TaskDefinitionTest_PassThroughSettings")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2TaskDefinitionTest_PassThroughSettings")]
         public void Dev2TaskDefinitionTest_Settings()
         {
              AssertPassThrough((a, b) => a.Settings == b.Settings.Instance);
@@ -139,18 +140,18 @@ namespace Dev2.TaskScheduler.Wrappers.Test
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2TaskDefinitionTest_PassThroughSettings")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2TaskDefinitionTest_PassThroughSettings")]
         public void Dev2TaskDefinitionTest_Data()
         {
             AssertPassThrough((a, b) => ReferenceEquals( a.Data ,b.Data));
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2TaskDefinitionTest_Action")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2TaskDefinitionTest_Action")]
         public void Dev2TaskDefinitionTest_Action()
         {
            AssertPassThrough((a, b) => a.Actions.First().Id== b.Action.Instance.Id);
@@ -158,18 +159,18 @@ namespace Dev2.TaskScheduler.Wrappers.Test
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2TaskDefinitionTest_Trigger")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2TaskDefinitionTest_Trigger")]
         public void Dev2TaskDefinitionTest_Trigger()
         {
             AssertPassThrough((a, b) => a.Triggers.First().Id== b.Trigger.Instance.Id);
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2TaskDefinitionTest_AddTrigger")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2TaskDefinitionTest_AddTrigger")]
         public void Dev2TaskDefinitionTest_Addrigger()
         {
             var defn = AssertPassThrough((a, b) => a.Triggers.First().Id == b.Trigger.Instance.Id);
@@ -177,9 +178,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
             Assert.AreEqual(defn.Triggers.Count(),2);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2TaskDefinitionTest_AddAction")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2TaskDefinitionTest_AddAction")]
         public void Dev2TaskDefinitionTest_ActionAdd()
         {
             var defn = AssertPassThrough((a, b) => a.Triggers.First().Id == b.Trigger.Instance.Id);

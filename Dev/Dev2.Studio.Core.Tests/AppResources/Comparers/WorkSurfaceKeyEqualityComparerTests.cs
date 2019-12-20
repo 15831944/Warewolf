@@ -16,26 +16,27 @@ using Dev2.Studio.Core;
 using Dev2.Studio.Interfaces;
 using Dev2.Studio.Interfaces.Enums;
 using Dev2.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Dev2.Factory;
 using Dev2.Studio.AppResources.Comparers;
 
 namespace Dev2.Core.Tests.AppResources.Comparers
 {
-    [TestClass]
-	[TestCategory("Studio Resources Core")]
+    [TestFixture]
+    [SetUpFixture]
+	[Category("Studio Resources Core")]
     public class WorkSurfaceKeyEqualityComparerTests
     {
         public TestContext TestContext { get; set; }
 
-        [TestInitialize]
+        [SetUp]
         public void Initialize()
         {
             AppUsageStats.LocalHost = "http://localhost:3142";
         }
 
-        [TestMethod]
+        [Test]
         public void CreateKeysExpectedKeysCreated()
         {
             var resId = Guid.NewGuid();
@@ -63,7 +64,7 @@ namespace Dev2.Core.Tests.AppResources.Comparers
             }
         }
 
-        [TestMethod]
+        [Test]
         public void CreateShowDependencyKeysExpectedKeysCreated()
         {
             var resId = Guid.NewGuid();
@@ -88,7 +89,7 @@ namespace Dev2.Core.Tests.AppResources.Comparers
             }
         }
 
-        [TestMethod]
+        [Test]
         public void CreateKeysWithDebugStateExpectedKeysCreatedWhenNoWorkspaceID()
         {
             var resId = Guid.NewGuid();
@@ -113,7 +114,7 @@ namespace Dev2.Core.Tests.AppResources.Comparers
 
         }
 
-        [TestMethod]
+        [Test]
         public void CreateKeysWithDebugStateExpectedKeysCreatedWhenHasWorkspaceID()
         {
             var resId = Guid.NewGuid();

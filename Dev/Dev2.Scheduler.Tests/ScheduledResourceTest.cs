@@ -10,18 +10,19 @@
 
 using System;
 using Dev2.Common.Interfaces.Scheduler.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Scheduler.Test
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ScheduledResourceTest
     {
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ScheduledResource_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ScheduledResource_Ctor")]
         public void ScheduledResource_Constructor()
         {
 
@@ -35,9 +36,9 @@ namespace Dev2.Scheduler.Test
             Assert.AreEqual("rory", res.WorkflowName);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ScheduledResource_Properties")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ScheduledResource_Properties")]
         public void ScheduledResource_Properties()
         {
 

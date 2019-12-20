@@ -2,11 +2,12 @@
 using System.Windows;
 
 using FontAwesome.WPF;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Warewolf.Studio.ViewModels.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class MessageBoxViewModelTests
     {
         #region Fields
@@ -30,7 +31,7 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         #region Test initialize
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             _message = "someMessage";
@@ -64,7 +65,8 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         #region Test properties
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestTitle()
         {
             //arrange
@@ -80,7 +82,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(_changedProperties.Contains("Title"));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestIsError()
         {
             //arrange
@@ -96,7 +99,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(_changedProperties.Contains("IsError"));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestIsInfo()
         {
             //arrange
@@ -112,7 +116,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(_changedProperties.Contains("IsInfo"));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestIsQuestion()
         {
             //arrange
@@ -128,7 +133,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(_changedProperties.Contains("IsQuestion"));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestIsDuplicatesVisible()
         {
             //arrange
@@ -144,7 +150,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(_changedProperties.Contains("IsDuplicatesVisible"));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestUrlsFound()
         {
             //arrange
@@ -161,7 +168,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(_changedProperties.Contains("UrlsFound"));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestButtons()
         {
             //arrange
@@ -180,7 +188,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(_changedProperties.Contains("IsOkButtonVisible"));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestMessage()
         {
             //arrange
@@ -196,7 +205,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(_changedProperties.Contains("Message"));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestIsDependenciesButtonVisible()
         {
             //arrange
@@ -210,7 +220,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual(expectedValue, value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestIsDeleteAnywayButtonVisible()
         {
             //arrange
@@ -224,7 +235,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual(expectedValue, value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestIsApplyToAllCheckboxVisible()
         {
             //arrange
@@ -238,7 +250,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual(expectedValue, value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestIsNoButtonVisibleYesNo()
         {
             //arrange
@@ -251,7 +264,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestIsNoButtonVisibleYesNoCancel()
         {
             //arrange
@@ -264,7 +278,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestIsNoButtonVisibleOKCancel()
         {
             //arrange
@@ -277,7 +292,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestIsYesButtonVisibleYesNo()
         {
             //arrange
@@ -290,7 +306,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestIsYesButtonVisibleYesNoCancel()
         {
             //arrange
@@ -303,7 +320,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestIsYesButtonVisibleOKCancel()
         {
             //arrange
@@ -316,7 +334,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestIsCancelButtonVisibleYesNo()
         {
             //arrange
@@ -329,7 +348,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestIsCancelButtonVisibleYesNoCancel()
         {
             //arrange
@@ -342,7 +362,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestIsCancelButtonVisibleOKCancel()
         {
             //arrange
@@ -355,7 +376,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestIsOkButtonVisibleYesNo()
         {
             //arrange
@@ -368,7 +390,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestIsOkButtonVisibleOK()
         {
             //arrange
@@ -381,7 +404,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestIsOkButtonVisibleOKCancel()
         {
             //arrange
@@ -398,7 +422,8 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         #region Test properties
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestYes()
         {
             //act
@@ -408,7 +433,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual(MessageBoxResult.Yes, _target.Result);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestNo()
         {
             //act
@@ -418,7 +444,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual(MessageBoxResult.No, _target.Result);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestCancel()
         {
             //act
@@ -428,7 +455,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual(MessageBoxResult.Cancel, _target.Result);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestOk()
         {
             //act

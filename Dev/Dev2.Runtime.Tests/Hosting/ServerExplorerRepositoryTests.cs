@@ -27,15 +27,16 @@ using Dev2.Explorer;
 using Dev2.Runtime.Hosting;
 using Dev2.Runtime.Interfaces;
 using Dev2.Services.Security;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 
 namespace Dev2.Tests.Runtime.Hosting
 {
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class ServerExplorerRepositoryTests
     {
         class Config : ServerExplorerRepository.IConfig
@@ -60,9 +61,10 @@ namespace Dev2.Tests.Runtime.Hosting
             public string WorkspacePath { get; set; }
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_Constructor")]
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_Constructor")]
         public void ServerExplorerRepository_Constructor_AssertCatalogueNull_ExpectException()
         {
              //------------Setup for test--------------------------
@@ -78,9 +80,10 @@ namespace Dev2.Tests.Runtime.Hosting
 
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ServerExplorerRepository_Constructor")]
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ServerExplorerRepository_Constructor")]
         public void ServerExplorerRepository_Constructor_AssertTestCatalogueNull_ExpectException()
         {
              //------------Setup for test--------------------------
@@ -94,9 +97,10 @@ namespace Dev2.Tests.Runtime.Hosting
             
 
         }
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_Constructor")]
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_Constructor")]
         public void ServerExplorerRepository_Constructor_AssertfactoryNull_ExpectException()
         {
              //------------Setup for test--------------------------
@@ -110,9 +114,10 @@ namespace Dev2.Tests.Runtime.Hosting
             
 
         }
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_Constructor")]
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_Constructor")]
         public void ServerExplorerRepository_Constructor_AssertDirectoryNull_ExpectException()
         {
              //------------Setup for test--------------------------
@@ -128,9 +133,9 @@ namespace Dev2.Tests.Runtime.Hosting
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_Load")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_Load")]
         public void ServerExplorerRepository_Load_AssertRootLevelIsFolder_ExpectFolder()
         {
              //------------Setup for test--------------------------
@@ -157,15 +162,15 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var root = serverExplorerRepository.Load(Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual("Folder", root.ResourceType);
-            Assert.AreEqual(2, root.Children.Count);
-            Assert.AreEqual("Services", root.Children.First().DisplayName);
-            Assert.AreEqual("Bobs", root.Children[1].DisplayName);
+            NUnit.Framework.Assert.AreEqual("Folder", root.ResourceType);
+            NUnit.Framework.Assert.AreEqual(2, root.Children.Count);
+            NUnit.Framework.Assert.AreEqual("Services", root.Children.First().DisplayName);
+            NUnit.Framework.Assert.AreEqual("Bobs", root.Children[1].DisplayName);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_Load")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_Load")]
         public void ServerExplorerRepository_LoadFiltered_AssertRootLevelIsFolder_ExpectFolder()
         {
               //------------Setup for test--------------------------
@@ -192,14 +197,14 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var root = serverExplorerRepository.Load("Folder", Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual("Folder", root.ResourceType);
-            Assert.AreEqual(root.Permissions, Permissions.Contribute);
+            NUnit.Framework.Assert.AreEqual("Folder", root.ResourceType);
+            NUnit.Framework.Assert.AreEqual(root.Permissions, Permissions.Contribute);
             factory.Verify(a => a.CreateRootExplorerItem("Folder", It.IsAny<string>(), It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_Load")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_Load")]
         public void ServerExplorerRepository_Load_FilteredTypeAndPath_AssertRootLevelIsFolder_ExpectFolder()
         {
              //------------Setup for test--------------------------
@@ -226,13 +231,13 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var root = serverExplorerRepository.Load("Folder", "monkey");
             //------------Assert Results-------------------------
-            Assert.AreEqual("Folder", root.ResourceType);
+            NUnit.Framework.Assert.AreEqual("Folder", root.ResourceType);
             factory.Verify(a => a.CreateRootExplorerItem("Folder", It.IsAny<string>(), It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_RenameItem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_RenameItem")]
         public void ServerExplorerRepository_RenameItem_AssertFolderFails_ExpectErrorMessage()
         {
              //------------Setup for test--------------------------
@@ -253,16 +258,16 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.RenameItem(explorerItem, "bob", Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual("Requested folder does not exist on server. Folder: bob", result.Message);
-            Assert.AreEqual(ExecStatus.NoMatch, result.Status);
+            NUnit.Framework.Assert.AreEqual("Requested folder does not exist on server. Folder: bob", result.Message);
+            NUnit.Framework.Assert.AreEqual(ExecStatus.NoMatch, result.Status);
         }
 
 
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_RenameItem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_RenameItem")]
         public void ServerExplorerRepository_RenameItem_AssertItemCallCorrectMethods_ExpectErrorMessage()
         {
              //------------Setup for test--------------------------
@@ -289,14 +294,14 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.RenameItem(explorerItem, "dave", Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual("moo", result.Message);
-            Assert.AreEqual(result.Status, ExecStatus.AccessViolation);
+            NUnit.Framework.Assert.AreEqual("moo", result.Message);
+            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.AccessViolation);
             catalogue.Verify(a => a.RenameResource(It.IsAny<Guid>(), guid, "dave","bob"));
             catalogue.Verify(a => a.GetResourceList(It.IsAny<Guid>()));
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_RenameItem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_RenameItem")]
         public void ServerExplorerRepository_RenameItem_DuplicateExists_AssertItemCallCorrectMethods_ExpectErrorMessage()
         {
             //------------Setup for test--------------------------
@@ -326,15 +331,15 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.RenameItem(explorerItem, "dave", Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual("There is an item that exists with the same name and path", result.Message);
-            Assert.AreEqual(result.Status, ExecStatus.Fail);
+            NUnit.Framework.Assert.AreEqual("There is an item that exists with the same name and path", result.Message);
+            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Fail);
 
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_MoveItem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_MoveItem")]
         public void ServerExplorerRepository_MoveItem_AssertItemCallCorrectMethods_ExpectErrorMessage()
         {
             //------------Setup for test--------------------------
@@ -364,15 +369,15 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.MoveItem(explorerItem, "dave", Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual("There is an item that exists with the same name and path", result.Message);
-            Assert.AreEqual(result.Status, ExecStatus.Fail);
+            NUnit.Framework.Assert.AreEqual("There is an item that exists with the same name and path", result.Message);
+            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Fail);
             catalogue.Verify(a => a.RenameCategory(It.IsAny<Guid>(), "bob", "dave", It.IsAny<List<IResource>>()), Times.Exactly(0));
             catalogue.Verify(a => a.GetResourceList(It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_MoveItem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_MoveItem")]
         public void ServerExplorerRepository_MoveItem_ResourceDoesNotexist_ExpectErrorMessage()
         {
             //------------Setup for test--------------------------.
@@ -403,16 +408,16 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.MoveItem(explorerItem, "dave", Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual("moo", result.Message);
-            Assert.AreEqual(result.Status, ExecStatus.AccessViolation);
+            NUnit.Framework.Assert.AreEqual("moo", result.Message);
+            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.AccessViolation);
             catalogue.Verify(a => a.RenameCategory(It.IsAny<Guid>(), "bob", "dave", It.IsAny<List<IResource>>()));
             catalogue.Verify(a => a.GetResourceList(It.IsAny<Guid>()));
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_MoveItem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_MoveItem")]
         public void ServerExplorerRepository_MoveItem_ResourceDoesExistSubFolder_ExpectSuccess()
         {
             //------------Setup for test--------------------------.
@@ -443,16 +448,16 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.MoveItem(explorerItem, "dave", Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual("moo", result.Message);
-            Assert.AreEqual(result.Status, ExecStatus.Success);
+            NUnit.Framework.Assert.AreEqual("moo", result.Message);
+            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Success);
             catalogue.Verify(a => a.RenameCategory(It.IsAny<Guid>(), "bob\\dave", "dave", It.IsAny<List<IResource>>()));
             catalogue.Verify(a => a.GetResourceList(It.IsAny<Guid>()));
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_DeleteItem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_DeleteItem")]
         public void ServerExplorerRepository_DeleteItem_AssertItemCallCorrectMethods_ExpectErrorMessage()
         {
             //------------Setup for test--------------------------
@@ -476,14 +481,14 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.DeleteItem(explorerItem, Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual("bob", result.Message);
-            Assert.AreEqual(result.Status, ExecStatus.DuplicateMatch);
+            NUnit.Framework.Assert.AreEqual("bob", result.Message);
+            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.DuplicateMatch);
             catalogue.Verify(a => a.DeleteResource(It.IsAny<Guid>(), guid, "DbSource"));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ServerExplorerRepository_DeleteItem")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ServerExplorerRepository_DeleteItem")]
         public void ServerExplorerRepository_DeleteItem_DeleteTests_ExpectErrorMessage()
         {
             //------------Setup for test--------------------------
@@ -508,14 +513,14 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.DeleteItem(explorerItem, Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual("bob", result.Message);
-            Assert.AreEqual(result.Status, ExecStatus.DuplicateMatch);
+            NUnit.Framework.Assert.AreEqual("bob", result.Message);
+            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.DuplicateMatch);
             catalogue.Verify(a => a.DeleteResource(It.IsAny<Guid>(), guid, "DbSource"));
             testCatalogue.Verify(catalog => catalog.DeleteAllTests(It.IsAny<Guid>()), Times.Once);
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_DeleteItem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_DeleteItem")]
         public void ServerExplorerRepository_DeleteItemFolder_AssertItemCallCorrectMethods_ExpectErrorMessage()
         {
             //------------Setup for test--------------------------
@@ -538,13 +543,13 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.DeleteItem(explorerItem, Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual("Requested folder does not exist on server. Folder: bob", result.Message);
-            Assert.AreEqual(result.Status, ExecStatus.Fail);
+            NUnit.Framework.Assert.AreEqual("Requested folder does not exist on server. Folder: bob", result.Message);
+            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Fail);
 
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_RenameFolder")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_RenameFolder")]
         public void ServerExplorerRepository_RenameFolder_AssertResourcesAreRenames_FolderRenamedCatalogueSaved()
         {
             //------------Setup for test--------------------------
@@ -575,14 +580,14 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = serverExplorerRepository.RenameFolder("monkey", "moocowimpi", Guid.NewGuid());
 
             //------------Assert Results-------------------------
-            Assert.AreEqual("Error Renaming", result.Message);
-            Assert.AreEqual(result.Status, ExecStatus.Fail);
+            NUnit.Framework.Assert.AreEqual("Error Renaming", result.Message);
+            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Fail);
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_RenameFolder")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_RenameFolder")]
         public void ServerExplorerRepository_RenameFolder_AssertResourcesAreRenames_EmptyFolderRenamed()
         {
             //------------Setup for test--------------------------
@@ -613,13 +618,13 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = serverExplorerRepository.RenameFolder("monkey", "moocowimpi", Guid.NewGuid());
 
             //------------Assert Results-------------------------
-            Assert.AreEqual("Error Renaming", result.Message);
-            Assert.AreEqual(result.Status, ExecStatus.Fail);
+            NUnit.Framework.Assert.AreEqual("Error Renaming", result.Message);
+            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Fail);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_RenameFolder")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_RenameFolder")]
         public void ServerExplorerRepository_RenameFolder_AssertResourcesAreRenames_HasVersions_ExpectVersionCopied()
         {
             //------------Setup for test--------------------------
@@ -650,15 +655,15 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = serverExplorerRepository.RenameFolder("monkey", "moocowimpi", Guid.NewGuid());
 
             //------------Assert Results-------------------------
-            Assert.AreEqual("Requested folder does not exist on server. Folder: monkey", result.Message);
-            Assert.AreEqual(result.Status, ExecStatus.NoMatch);
+            NUnit.Framework.Assert.AreEqual("Requested folder does not exist on server. Folder: monkey", result.Message);
+            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.NoMatch);
         }
 
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_RenameFolder")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_RenameFolder")]
         public void ServerExplorerRepository_RenameFolder_ResourceRenameSuccess_OldFolderDeleted()
         {
             //------------Setup for test--------------------------
@@ -689,13 +694,13 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = serverExplorerRepository.RenameFolder("monkey", "moocowimpi", Guid.NewGuid());
 
             //------------Assert Results-------------------------
-            Assert.AreEqual("Requested folder does not exist on server. Folder: monkey", result.Message);
-            Assert.AreEqual(result.Status, ExecStatus.NoMatch);
+            NUnit.Framework.Assert.AreEqual("Requested folder does not exist on server. Folder: monkey", result.Message);
+            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.NoMatch);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServerExplorerRepository_RenameFolder")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServerExplorerRepository_RenameFolder")]
         public void ServerExplorerRepository_RenameFolder_ResourceCatalogFailure_ErrorReturnedNoDelete()
         {
             //------------Setup for test--------------------------
@@ -726,13 +731,13 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = serverExplorerRepository.RenameFolder("monkey", "moocowimpi", Guid.NewGuid());
 
             //------------Assert Results-------------------------
-            Assert.AreEqual("Error Renaming", result.Message);
-            Assert.AreEqual(result.Status, ExecStatus.Fail);
+            NUnit.Framework.Assert.AreEqual("Error Renaming", result.Message);
+            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Fail);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_RenameItem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_RenameItem")]
         public void ServerExplorerRepository_RenameFolder_FolderDoesNotexist_ExpectFailureMessage()
         {
             //------------Setup for test--------------------------
@@ -748,14 +753,14 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.RenameFolder("monkey", "moocowimpi", Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual("Requested folder does not exist on server. Folder: monkey", result.Message);
-            Assert.AreEqual(result.Status, ExecStatus.NoMatch);
+            NUnit.Framework.Assert.AreEqual("Requested folder does not exist on server. Folder: monkey", result.Message);
+            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.NoMatch);
 
         }
         
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_RenameItem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_RenameItem")]
         public void ServerExplorerRepository_CreateItem_FolderExists_ExpectFailureMessage()
         {
             //------------Setup for test--------------------------
@@ -773,14 +778,14 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.AddItem(item, Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual("Requested folder already exists on server.", result.Message);
-            Assert.AreEqual(result.Status, ExecStatus.Fail);
+            NUnit.Framework.Assert.AreEqual("Requested folder already exists on server.", result.Message);
+            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Fail);
             sync.Verify(m => m.AddItemMessage(It.IsAny<IExplorerItem>()), Times.Never());
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_RenameItem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_RenameItem")]
         public void ServerExplorerRepository_CreateItem_InvalidItemType_ExpectErrorResult()
         {
             //------------Setup for test--------------------------
@@ -798,15 +803,15 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.AddItem(item, Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual("Only user resources can be added from this repository", result.Message);
-            Assert.AreEqual(result.Status, ExecStatus.Fail);
+            NUnit.Framework.Assert.AreEqual("Only user resources can be added from this repository", result.Message);
+            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Fail);
             sync.Verify(m => m.AddItemMessage(It.IsAny<IExplorerItem>()), Times.Never());
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_RenameItem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_RenameItem")]
         public void ServerExplorerRepository_CreateItem_ValidFolder_ExpectCreatedFolder()
         {
             //------------Setup for test--------------------------
@@ -827,16 +832,16 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.AddItem(item, Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual("", result.Message);
-            Assert.AreEqual(result.Status, ExecStatus.Success);
+            NUnit.Framework.Assert.AreEqual("", result.Message);
+            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Success);
             dir.Verify(a => a.Exists(It.IsAny<string>()));
             dir.Verify(a => a.CreateIfNotExists(It.IsAny<string>()));
             sync.Verify(m => m.AddItemMessage(It.IsAny<IExplorerItem>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_RenameItem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_RenameItem")]
         public void ServerExplorerRepository_CreateItem_FileSystemException_ExpectErrorMessageFromException()
         {
             //------------Setup for test--------------------------
@@ -854,16 +859,16 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.AddItem(item, Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual("bobe", result.Message);
-            Assert.AreEqual(result.Status, ExecStatus.Fail);
+            NUnit.Framework.Assert.AreEqual("bobe", result.Message);
+            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Fail);
             dir.Verify(a => a.Exists(It.IsAny<string>()));
             dir.Verify(a => a.CreateIfNotExists(It.IsAny<string>()));
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_DeleteFolder")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_DeleteFolder")]
         public void ServerExplorerRepository_DeleteFolder_NestedItems_ExpectFailureMessage()
         {
             //------------Setup for test--------------------------
@@ -880,14 +885,14 @@ namespace Dev2.Tests.Runtime.Hosting
             res.Setup(a => a.GetResourcePath(It.IsAny<Guid>())).Returns("bob");
             var result = serverExplorerRepository.DeleteFolder("bob", false, Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual("Requested folder does not exist on server. Folder: " + "bob", result.Message);
-            Assert.AreEqual(result.Status, ExecStatus.Fail);
+            NUnit.Framework.Assert.AreEqual("Requested folder does not exist on server. Folder: " + "bob", result.Message);
+            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Fail);
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_DeleteFolder")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_DeleteFolder")]
         public void ServerExplorerRepository_DeleteFolder_NonExistent_ExpectFailureMessage()
         {
             //------------Setup for test--------------------------
@@ -903,13 +908,13 @@ namespace Dev2.Tests.Runtime.Hosting
             res.Setup(a => a.GetResourcePath(It.IsAny<Guid>())).Returns("bob");
             var result = serverExplorerRepository.DeleteFolder("bob", false, Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual("Requested folder does not exist on server. Folder: " + "bob", result.Message);
-            Assert.AreEqual(result.Status, ExecStatus.Fail);
+            NUnit.Framework.Assert.AreEqual("Requested folder does not exist on server. Folder: " + "bob", result.Message);
+            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Fail);
 
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_DeleteFolder")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_DeleteFolder")]
         public void ServerExplorerRepository_DeleteFolder_Root_ExpectFailureMessage()
         {
             //------------Setup for test--------------------------
@@ -926,14 +931,14 @@ namespace Dev2.Tests.Runtime.Hosting
             res.Setup(a => a.GetResourcePath(It.IsAny<Guid>())).Returns("bob");
             var result = serverExplorerRepository.DeleteFolder("  ", false, Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual("You may not delete the root path", result.Message);
-            Assert.AreEqual(result.Status, ExecStatus.Fail);
+            NUnit.Framework.Assert.AreEqual("You may not delete the root path", result.Message);
+            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Fail);
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_DeleteFolder")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_DeleteFolder")]
         public void ServerExplorerRepository_DeleteFolder_NestedItemsRecursive_ExpectDeletion()
         {
             //------------Setup for test--------------------------
@@ -955,15 +960,15 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.DeleteFolder("bob", true, Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual("", result.Message);
-            Assert.AreEqual(result.Status, ExecStatus.Success);
+            NUnit.Framework.Assert.AreEqual("", result.Message);
+            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Success);
             dir.Verify(a => a.Delete(It.IsAny<string>(), true));
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ServerExplorerRepository_DeleteFolder")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ServerExplorerRepository_DeleteFolder")]
         public void ServerExplorerRepository_DeleteFolder_NestedItemsRecursiveWithTests_ExpectTestsDeletion()
         {
             //------------Setup for test--------------------------
@@ -986,16 +991,16 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.DeleteFolder("bob", true, Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual("", result.Message);
-            Assert.AreEqual(result.Status, ExecStatus.Success);
+            NUnit.Framework.Assert.AreEqual("", result.Message);
+            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Success);
             dir.Verify(a => a.Delete(It.IsAny<string>(), true));
             testCatalogue.Verify(catalog => catalog.DeleteAllTests(guid), Times.Once);
 
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("ServerExplorerRepository_DeleteFolder")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("ServerExplorerRepository_DeleteFolder")]
         public void ServerExplorerRepository_DeleteFolder_NestedItemsRecursive_MultipleItemsToDelete_ExpectDeletion()
         {
             //------------Setup for test--------------------------
@@ -1029,15 +1034,15 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.DeleteFolder("bob", true, Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual("", result.Message);
-            Assert.AreEqual(ExecStatus.Success, result.Status);
+            NUnit.Framework.Assert.AreEqual("", result.Message);
+            NUnit.Framework.Assert.AreEqual(ExecStatus.Success, result.Status);
             dir.Verify(a => a.Delete(It.IsAny<string>(), true));
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_DeleteFolder")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_DeleteFolder")]
         public void ServerExplorerRepository_DeleteFolder_NestedItemsRecursiveFilesystemError_ExpectError()
         {
             //------------Setup for test--------------------------
@@ -1060,15 +1065,15 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.DeleteFolder("bob", true, Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual("moon", result.Message);
-            Assert.AreEqual(result.Status, ExecStatus.Fail);
+            NUnit.Framework.Assert.AreEqual("moon", result.Message);
+            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Fail);
             dir.Verify(a => a.Delete(It.IsAny<string>(), true));
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_DeleteFolder")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_DeleteFolder")]
         public void ServerExplorerRepository_DeleteFolder_NestedItemsRecursiveNestedFails_ExpectFailue()
         {
             //------------Setup for test--------------------------
@@ -1091,15 +1096,15 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = serverExplorerRepository.DeleteFolder("bob", true, Guid.NewGuid());
             //------------Assert Results-------------------------
             dir.Verify(a => a.Delete(It.IsAny<string>(), true), Times.Once());
-            Assert.AreEqual(ExecStatus.Success, result.Status);
-            Assert.AreEqual("", result.Message);
+            NUnit.Framework.Assert.AreEqual(ExecStatus.Success, result.Status);
+            NUnit.Framework.Assert.AreEqual("", result.Message);
 
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
         [ExpectedException(typeof(ArgumentNullException))]
-        [TestCategory("ServerExplorerRepository_MessageSubscription")]
+        [Category("ServerExplorerRepository_MessageSubscription")]
         public void ServerExplorerRepository_MessageSubscription_ParamIsNull_ThrowsException()
         {
             //------------Setup for test--------------------------
@@ -1113,9 +1118,9 @@ namespace Dev2.Tests.Runtime.Hosting
             repo.MessageSubscription(null);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_AddItem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_AddItem")]
         public void ServerExplorerRepository_AddItem_VerifyNullThrowsException()
         {
             //------------Setup for test--------------------------
@@ -1127,15 +1132,15 @@ namespace Dev2.Tests.Runtime.Hosting
             var sync = new Mock<IExplorerRepositorySync>();
             var repo = new ServerExplorerRepository(new Config(catalogue.Object, factory.Object, dir.Object, new FileWrapper(), testCatalogue.Object), sync.Object);
             var res = repo.AddItem(null, Guid.NewGuid());
-            Assert.AreEqual(ExecStatus.Fail, res.Status);
-            Assert.AreEqual("Item to add was null", res.Message);
+            NUnit.Framework.Assert.AreEqual(ExecStatus.Fail, res.Status);
+            NUnit.Framework.Assert.AreEqual("Item to add was null", res.Message);
             
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_RenameItem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_RenameItem")]
         public void ServerExplorerRepository_RenameItem_VerifyNullThrowsException()
         {
             //------------Setup for test--------------------------
@@ -1147,15 +1152,15 @@ namespace Dev2.Tests.Runtime.Hosting
             var sync = new Mock<IExplorerRepositorySync>();
             var repo = new ServerExplorerRepository(new Config(catalogue.Object, factory.Object, dir.Object, new FileWrapper(), testCatalogue.Object), sync.Object);
             var res = repo.RenameItem(null, "bob", Guid.NewGuid());
-            Assert.AreEqual(ExecStatus.Fail, res.Status);
-            Assert.AreEqual("Item to rename was null", res.Message);
+            NUnit.Framework.Assert.AreEqual(ExecStatus.Fail, res.Status);
+            NUnit.Framework.Assert.AreEqual("Item to rename was null", res.Message);
             
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerRepository_DeleteItem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerRepository_DeleteItem")]
         public void ServerExplorerRepository_AddItem_VerifyDeleteThrowsException()
         {
             //------------Setup for test--------------------------
@@ -1167,8 +1172,8 @@ namespace Dev2.Tests.Runtime.Hosting
             var sync = new Mock<IExplorerRepositorySync>();
             var repo = new ServerExplorerRepository(new Config(catalogue.Object, factory.Object, dir.Object, new FileWrapper(), testCatalogue.Object), sync.Object);
             var res = repo.DeleteItem(null, Guid.NewGuid());
-            Assert.AreEqual(ExecStatus.Fail, res.Status);
-            Assert.AreEqual("Item to delete was null", res.Message);
+            NUnit.Framework.Assert.AreEqual(ExecStatus.Fail, res.Status);
+            NUnit.Framework.Assert.AreEqual("Item to delete was null", res.Message);
             
 
         }

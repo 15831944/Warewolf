@@ -9,19 +9,20 @@
 */
 
 using CommandLine;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using QueueWorker;
 using System;
 using System.Linq;
 
 namespace Warewolf.QueueWorker.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class QueueWorkerArgsTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(QueueWorker))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(QueueWorker))]
         public void QueueWorker_Args_ParseSuccess()
         {
             var processArgs = new Args();

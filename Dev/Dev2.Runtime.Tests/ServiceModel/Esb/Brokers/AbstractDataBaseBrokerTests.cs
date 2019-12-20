@@ -14,18 +14,19 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.Runtime.ServiceModel.Esb.Brokers
 {
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class AbstractDataBaseBrokerTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AbstractDataBaseBroker_GetServiceMethods")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AbstractDataBaseBroker_GetServiceMethods")]
         [ExpectedException(typeof(ArgumentNullException))]
 
         public void AbstractDataBaseBroker_GetServiceMethods_DbSourceIsNull_ThrowsArgumentNullException()
@@ -43,9 +44,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Esb.Brokers
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("AbstractDataBaseBroker_GetServiceMethods")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("AbstractDataBaseBroker_GetServiceMethods")]
 
         public void AbstractDataBaseBroker_GetServiceMethods_WhenNotCached_FreshResults()
 
@@ -62,9 +63,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Esb.Brokers
             Assert.AreEqual(0, result.Count);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("AbstractDataBaseBroker_GetServiceMethods")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("AbstractDataBaseBroker_GetServiceMethods")]
 
         public void AbstractDataBaseBroker_GetServiceMethods_WhenCached_CachedResults()
 
@@ -93,9 +94,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Esb.Brokers
             Assert.AreEqual("bob", result[0].Name);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("AbstractDataBaseBroker_GetServiceMethods")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("AbstractDataBaseBroker_GetServiceMethods")]
 
         public void AbstractDataBaseBroker_GetServiceMethods_WhenCachedNoRefreshRequested_FreshResults()
 
@@ -120,9 +121,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Esb.Brokers
             Assert.AreEqual(0, result.Count);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AbstractDataBaseBroker_TestService")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AbstractDataBaseBroker_TestService")]
         [ExpectedException(typeof(ArgumentNullException))]
 
         public void AbstractDataBaseBroker_TestService_DbServiceIsNull_ThrowsArgumentNullException()
@@ -138,9 +139,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Esb.Brokers
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AbstractDataBaseBroker_TestService")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AbstractDataBaseBroker_TestService")]
         [ExpectedException(typeof(ArgumentNullException))]
 
         public void AbstractDataBaseBroker_TestService_DbServiceWithNullSource_ThrowsArgumentNullException()
@@ -158,9 +159,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Esb.Brokers
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AbstractDataBaseBroker_TestService")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AbstractDataBaseBroker_TestService")]
 
         public void AbstractDataBaseBroker_TestService_InvokesDbServiceMethodInsideTransaction_Done()
 
@@ -240,9 +241,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Esb.Brokers
             Assert.AreEqual("row1__COMMA__row2__COMMA__", result.DataSourceShapes[0].Paths[1].SampleData);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AbstractDataBaseBroker_GetDatabases")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AbstractDataBaseBroker_GetDatabases")]
         [ExpectedException(typeof(ArgumentNullException))]
 
         public void AbstractDataBaseBroker_GetDatabases_DbSourceIsNull_ThrowsArgumentNullException()
@@ -257,9 +258,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Esb.Brokers
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AbstractDataBaseBroker_GetDatabases")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AbstractDataBaseBroker_GetDatabases")]
 
         public void AbstractDataBaseBroker_GetDatabases_InvokesDbServerFetchDatabases_Done()
 

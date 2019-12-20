@@ -14,16 +14,17 @@ using Dev2.Data.Interfaces;
 using Dev2.Data.Interfaces.Enums;
 using Dev2.Studio.InterfaceImplementors;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Core.Tests.IntellisenseProvider
 {
-    [TestClass]
-    [TestCategory("Intellisense Provider Core")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Intellisense Provider Core")]
     public class DateTimeIntellisenseProviderTests
     {
-        [TestInitialize]
+        [SetUp]
         public void PreConditions()
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-ZA");
@@ -33,9 +34,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual("en-ZA", System.Threading.Thread.CurrentThread.CurrentUICulture.Name);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DateTimeIntellisenseProvider_Construct")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DateTimeIntellisenseProvider_Construct")]
         public void DateTimeIntellisenseProvider_Construct_DefaultPropertiesAreSet()
         {
             var provider = new DateTimeIntellisenseProvider();
@@ -47,9 +48,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.IsFalse(provider.Optional);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("DateTimeIntellisenseProvider_GetIntellisenseResults")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("DateTimeIntellisenseProvider_GetIntellisenseResults")]
         public void DateTimeIntellisenseProvider_GetIntellisenseResults_PartialMethodMatch_ClosestMatchesReturned()
         {
             var context = new IntellisenseProviderContext
@@ -66,9 +67,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(4, results.Count);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DateTimeIntellisenseProvider_Constructor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DateTimeIntellisenseProvider_Constructor")]
         public void DateTimeIntellisenseProvider_Constructor_Create_ExpectCorrectMembers()
         {
             //------------Setup for test--------------------------
@@ -80,9 +81,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.IsNotNull(dateTimeIntellisenseProvider.Optional);
             Assert.IsTrue(dateTimeIntellisenseProvider.IntellisenseResults.Count > 0);
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DateTimeIntellisenseProvider_Constructor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DateTimeIntellisenseProvider_Constructor")]
         public void DateTimeIntellisenseProvider_Constructor_Parameters_ExpectCorrectMembers()
         {
             //------------Setup for test--------------------------
@@ -98,9 +99,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(res.Object, dateTimeIntellisenseProvider.IntellisenseResults[0]);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DateTimeIntellisenseProvider_Constructor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DateTimeIntellisenseProvider_Constructor")]
         public void DateTimeIntellisenseProvider_Dispose()
         {
             //------------Setup for test--------------------------
@@ -113,9 +114,10 @@ namespace Dev2.Core.Tests.IntellisenseProvider
 
         }
 
-        [TestMethod, ExpectedException(typeof(NotSupportedException))]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DateTimeIntellisenseProvider_PerformInsertion")]
+        [Test]
+        [ExpectedException(typeof(NotSupportedException))]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DateTimeIntellisenseProvider_PerformInsertion")]
         public void DateTimeIntellisenseProvider_PerformInsertion_ExpectException()
         {
             //------------Setup for test--------------------------
@@ -137,9 +139,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DateTimeIntellisenseProvider_PerformInsertion")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DateTimeIntellisenseProvider_PerformInsertion")]
         public void DateTimeIntellisenseProvider_InLiteralRegion_NotInRegion_ExpectFalse()
         {
             //------------Assert Results-------------------------
@@ -150,9 +152,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.IsFalse(DateTimeIntellisenseProvider.InLiteralRegion(@"2012\\\''''01\01", 9));
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DateTimeIntellisenseProvider_PerformInsertion")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DateTimeIntellisenseProvider_PerformInsertion")]
         public void DateTimeIntellisenseProvider_InLiteralRegion_InRegion_ExpectTrue()
         {
             //------------Assert Results-------------------------
@@ -160,9 +162,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DateTimeIntellisenseProvider_GetIntellisenseResultsImpl")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DateTimeIntellisenseProvider_GetIntellisenseResultsImpl")]
         public void DateTimeIntellisenseProvider_GetIntellisenseResultsImpl_EntireResultSet()
         {
             //------------Setup for test--------------------------
@@ -186,9 +188,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DateTimeIntellisenseProvider_GetIntellisenseResults")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DateTimeIntellisenseProvider_GetIntellisenseResults")]
         public void DateTimeIntellisenseProvider_GetIntellisenseResults_ErrorResult_ExpectNoResult()
         {
             //------------Setup for test--------------------------
@@ -221,9 +223,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(count, 1); // check that there was stuff to add
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DefaultIntellisenseProvider_DateTimeIntellisenseProvider")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DefaultIntellisenseProvider_DateTimeIntellisenseProvider")]
         public void DateTimeIntellisenseProvider_GetIntellisenseResults_ContextIsNull_ResultCountIsZero()
         {
             //------------Execute Test---------------------------
@@ -232,9 +234,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(0, getResults.Count);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DateTimeIntellisenseProvider_GetIntellisenseResults")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DateTimeIntellisenseProvider_GetIntellisenseResults")]
         public void DateTimeIntellisenseProvider_GetIntellisenseResults_ErrorResult_ExpectResultIfInClosedRegion()
         {
             //------------Setup for test--------------------------
@@ -267,9 +269,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(count, 1); // check that there was stuff to add
 
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DateTimeIntellisenseProvider_GetIntellisenseResults")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DateTimeIntellisenseProvider_GetIntellisenseResults")]
         public void DateTimeIntellisenseProvider_GetIntellisenseResults_ErrorResult_ExpectResultIfNonErrorType()
         {
             //------------Setup for test--------------------------

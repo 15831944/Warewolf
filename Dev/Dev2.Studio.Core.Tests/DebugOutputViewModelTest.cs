@@ -28,7 +28,7 @@ using Dev2.Studio.Core.Messages;
 using Dev2.Studio.Diagnostics;
 using Dev2.Studio.Interfaces;
 using Dev2.Studio.ViewModels.Diagnostics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Dev2.Studio.Interfaces.Enums;
 
@@ -36,7 +36,8 @@ using Dev2.Studio.Interfaces.Enums;
 namespace Dev2.Core.Tests
 {
     [ExcludeFromCodeCoverage]
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public partial class DebugOutputViewModelTest
     {
@@ -52,14 +53,14 @@ namespace Dev2.Core.Tests
         static readonly Guid _firstResourceID = Guid.NewGuid();
         public static Mock<IPopupController> _popupController;
 
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void ClassInitialize(TestContext testContext)
         {
             CreateFullExportsAndVm();
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void DebugOutputViewModel_DefaultPropertyStates()
         {
             var vm = new DebugOutputViewModel(new Mock<IEventPublisher>().Object, GetEnvironmentRepository(),
@@ -93,14 +94,14 @@ namespace Dev2.Core.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void GivenEnvironmentIdAndServerLocalhost_AddItemToTreeShould_SetServerAsRemoteEnvironmentModelName()
         {
             var endTime = DateTime.Now;
             var localhost = "localhost";
             var vm = DebugOutputViewModelMock();
-            var privateObject = new PrivateObject(vm);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(vm);
             Assert.IsNotNull(privateObject);
 
             var contentItems = privateObject.GetField("_contentItems") as List<IDebugState>;
@@ -124,8 +125,8 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(string.Equals(localhost, content.Object.Server));
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void GivenEsbServiceInvoker_AppendShould_Return()
         {
             var vm = new DebugOutputViewModel(new Mock<IEventPublisher>().Object, GetEnvironmentRepository(),
@@ -143,8 +144,8 @@ namespace Dev2.Core.Tests
             vm.Append(dbgS.Object);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void GivenStartState_AppendShould_Return()
         {
             var vm = DebugOutputViewModelMock();
@@ -163,8 +164,8 @@ namespace Dev2.Core.Tests
             vm.Append(dbgS.Object);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Given_AppendShould_()
         {
             var vm = new DebugOutputViewModel(new Mock<IEventPublisher>().Object, GetEnvironmentRepository(),
@@ -181,8 +182,8 @@ namespace Dev2.Core.Tests
             vm.Append(dbgS.Object);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Given_ShowOptionCommandShould_ShowOptions()
         {
             var vm = new DebugOutputViewModel(new Mock<IEventPublisher>().Object, GetEnvironmentRepository(),
@@ -203,8 +204,8 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(vm.SkipOptionsCommandExecute);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void GivenShowOptions_ShowOptionCommandShould_ShowOptions()
         {
             var vm = new DebugOutputViewModel(new Mock<IEventPublisher>().Object, GetEnvironmentRepository(),
@@ -223,8 +224,8 @@ namespace Dev2.Core.Tests
             vm.ShowOptionsCommand.Execute(null);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void GivenPayload_ExpandAllShould_BeSucessful()
         {
             var mock1 = new Mock<IDebugState>();
@@ -262,8 +263,8 @@ namespace Dev2.Core.Tests
             vm.ExpandAll(mockDebugTree);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void GivenRootItems_DisposeShould_ClearRootItems()
         {
             var vm = DebugOutputViewModelMock();
@@ -274,7 +275,7 @@ namespace Dev2.Core.Tests
         }
 
 
-        [TestMethod]
+        [Test]
         public void DebugOutputViewModel_CanOpenNonNullOrEmptyMoreLinkLineItem()
         {
             var lineItem = new Mock<IDebugLineItem>();
@@ -285,7 +286,7 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(vm.CanOpenMoreLink(lineItem.Object).Equals(true));
         }
 
-        [TestMethod]
+        [Test]
         public void DebugOutputViewModel_CantOpenEmptyMoreLinkLineItem()
         {
             var vm = new DebugOutputViewModel(new Mock<IEventPublisher>().Object, GetEnvironmentRepository(),
@@ -296,7 +297,7 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(vm.CanOpenMoreLink(lineItem.Object).Equals(false));
         }
 
-        [TestMethod]
+        [Test]
         public void DebugOutputViewModel_CantOpenNullMoreLinkLineItem()
         {
             var vm = new DebugOutputViewModel(new Mock<IEventPublisher>().Object, GetEnvironmentRepository(),
@@ -306,7 +307,7 @@ namespace Dev2.Core.Tests
         }
 
 
-        [TestMethod]
+        [Test]
         public void DebugOutputViewModel_AppendErrorExpectErrorMessageAppended()
         {
             var mock1 = new Mock<IDebugState>();
@@ -341,8 +342,8 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(root.HasError.GetValueOrDefault(false));
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void GivenSuccessAsSearchText_ShouldReturnSuccessFromMessage()
         {
             var vm = DebugOutputViewModelMock();
@@ -350,8 +351,8 @@ namespace Dev2.Core.Tests
             vm.SearchText = "Success";
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void GivenNewValueForDepthMinAndMax_ShouldSetNewValue()
         {
             var vm = DebugOutputViewModelMock();
@@ -365,8 +366,8 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(vm.DepthMin == newAssignedVal && vm.DepthMax == newAssignedVal);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Clear_ShouldResetTheRoot()
         {
             var vm = DebugOutputViewModelMock();
@@ -376,13 +377,13 @@ namespace Dev2.Core.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void GivenStateTypeIsDuration_AddItemToTree_ShouldNotAddItem()
         {
             var endTime = DateTime.Now;
             var vm = DebugOutputViewModelMock();
-            var privateObject = new PrivateObject(vm);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(vm);
             Assert.IsNotNull(privateObject);
 
             var contentItems = privateObject.GetField("_contentItems") as List<IDebugState>;
@@ -401,7 +402,7 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(countBefore, contentItems.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void DebugOutputViewModel_AppendNestedDebugstatesExpectNestedInRootItems()
         {
             var mock1 = new Mock<IDebugState>();
@@ -434,7 +435,7 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(firstChild.Content.ParentID.Equals(_firstResourceID));
         }
 
-        [TestMethod]
+        [Test]
         public void DebugOutputViewModel_AppendWhenDebugStateStoppedShouldNotWriteItems()
         {
             var mock1 = new Mock<IDebugState>();
@@ -455,7 +456,7 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(0, vm.RootItems.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void DebugOutputViewModel_AppendWhenDebugStateFinishedShouldNotWriteItems()
         {
             var mock1 = new Mock<IDebugState>();
@@ -476,10 +477,10 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(0, vm.RootItems.Count);
         }
 
-        [TestMethod]
-        [TestCategory("DebugOutputViewModel_AppendItem")]
+        [Test]
+        [Category("DebugOutputViewModel_AppendItem")]
         [Description("DebugOutputViewModel AppendItem must not append item when DebugStatus is finished.")]
-        [Owner("Jurie Smit")]
+        [Author("Jurie Smit")]
         public void DebugOutputViewModel_AppendWhenDebugStateFinishedShouldNotWriteItems_ItemIsMessage()
         {
 
@@ -509,10 +510,10 @@ namespace Dev2.Core.Tests
             Assert.IsNotNull(root);
         }
 
-        [TestMethod]
-        [TestCategory("DebugOutputViewModel_OpenItem")]
+        [Test]
+        [Category("DebugOutputViewModel_OpenItem")]
         [Description("DebugOutputViewModel OpenItem must set the DebugState's properties.")]
-        [Owner("Trevor Williams-Ros")]
+        [Author("Trevor Williams-Ros")]
         public void DebugOutputViewModel_OpenItemWithRemoteEnvironment_OpensResourceFromRemoteEnvironment()
         {
 
@@ -552,9 +553,9 @@ namespace Dev2.Core.Tests
             mockShellViewModel.Verify(viewModel => viewModel.OpenResource(It.IsAny<Guid>(), It.IsAny<Guid>(),It.IsAny<IServer>()));
         }
 
-        [TestMethod]
-        [Owner("Ashley Lewis")]
-        [TestCategory("DebugOutputViewModel_OpenItem")]
+        [Test]
+        [Author("Ashley Lewis")]
+        [Category("DebugOutputViewModel_OpenItem")]
         public void DebugOutputViewModel_OpenItem_NullEnvironmentIDInDebugState_NoUnhandledExceptions()
         {
             //------------Execute Test---------------------------
@@ -571,10 +572,10 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(true, "There where unhandled exceptions");
         }
 
-        [TestMethod]
-        [TestCategory("DebugOutputViewModel_AppendItem")]
+        [Test]
+        [Category("DebugOutputViewModel_AppendItem")]
         [Description("DebugOutputViewModel appendItem must set Debugstatus to finished when DebugItem is final step.")]
-        [Owner("Jurie Smit")]
+        [Author("Jurie Smit")]
         public void DebugOutputViewModel_AppendItemFinalStep_DebugStatusFinished()
         {
             //*********************Setup********************
@@ -592,10 +593,10 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(vm.DebugStatus, DebugStatus.Finished);
         }
 
-        [TestMethod]
-        [TestCategory("DebugOutputViewModel_AppendItem")]
+        [Test]
+        [Category("DebugOutputViewModel_AppendItem")]
         [Description("DebugOutputViewModel appendItem must set Debugstatus to finished when DebugItem is final step.")]
-        [Owner("Jurie Smit")]
+        [Author("Jurie Smit")]
         public void DebugOutputViewModel_AppendItemNotFinalStep_DebugStatusUnchanced()
         {
             //*********************Setup********************
@@ -615,7 +616,7 @@ namespace Dev2.Core.Tests
         #region PendingQueue
 
         // BUG 9735 - 2013.06.22 - TWR : added
-        [TestMethod]
+        [Test]
         public void DebugOutputViewModel_PendingQueueExpectedQueuesMessagesAndFlushesWhenFinishedProcessing()
         {
 
@@ -643,9 +644,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(10, vm.ContentItemCount);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DebugOutputViewModel_Append")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DebugOutputViewModel_Append")]
         public void DebugOutputViewModel_Append_WhenDebugIsInFinishedState_MessageIsAddedBeforeAndAfterLastItem()
         {
 
@@ -669,14 +670,14 @@ namespace Dev2.Core.Tests
             vm.Append(state.Object);
 
             Assert.AreEqual(3, vm.RootItems.Count);
-            Assert.IsInstanceOfType(vm.RootItems[0], typeof(DebugStringTreeViewItemViewModel));
-            Assert.IsInstanceOfType(vm.RootItems[1], typeof(DebugStateTreeViewItemViewModel));
-            Assert.IsInstanceOfType(vm.RootItems[2], typeof(DebugStringTreeViewItemViewModel));
+            Assert.IsInstanceOf(vm.RootItems[0].GetType(), typeof(DebugStringTreeViewItemViewModel));
+            Assert.IsInstanceOf(vm.RootItems[1].GetType(), typeof(DebugStateTreeViewItemViewModel));
+            Assert.IsInstanceOf(vm.RootItems[2].GetType(), typeof(DebugStringTreeViewItemViewModel));
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DebugOutputViewModel_Append")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DebugOutputViewModel_Append")]
         public void DebugOutputViewModel_Append_WhenDebugIsInStoppingState_ZeroItemsAddedToTree()
         {
 
@@ -777,9 +778,9 @@ namespace Dev2.Core.Tests
             return connection;
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DebugOutputViewModel_IsStopping")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DebugOutputViewModel_IsStopping")]
         public void DebugOutputViewModel_IsStopping_ReflectsDebugStatus()
         {
             //------------Setup for test--------------------------
@@ -796,9 +797,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(viewModel.IsStopping);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DebugOutputViewModel_IsProcessing")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DebugOutputViewModel_IsProcessing")]
         public void DebugOutputViewModel_IsProcessing_ReflectsDebugStatus()
         {
             //------------Setup for test--------------------------
@@ -825,9 +826,9 @@ namespace Dev2.Core.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DebugOutputViewModel_DebugText")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DebugOutputViewModel_DebugText")]
         public void DebugOutputViewModel_DebugText_ReflectsDebugStatus()
         {
             //------------Setup for test--------------------------
@@ -844,9 +845,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("Debug", viewModel.DebugText);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DebugOutputViewModel_DebugStatus")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DebugOutputViewModel_DebugStatus")]
         public void DebugOutputViewModel_DebugStatus_Executing_PublishesDebugSelectionChangedEventArgs()
         {
             //------------Setup for test--------------------------
@@ -877,9 +878,9 @@ namespace Dev2.Core.Tests
             CollectionAssert.AreEqual(expectedProps, actualProps);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DebugOutputViewModel_SelectAll")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DebugOutputViewModel_SelectAll")]
         public void DebugOutputViewModel_SelectAll_Execute_PublishesClearSelection()
         {
             //------------Setup for test--------------------------
@@ -904,9 +905,9 @@ namespace Dev2.Core.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DebugOutputViewModel_SelectAll")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DebugOutputViewModel_SelectAll")]
         public void DebugOutputViewModel_SelectAll_Execute_AllDebugStateItemsSelected()
         {
             //------------Setup for test--------------------------
@@ -943,9 +944,9 @@ namespace Dev2.Core.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Ashley Lewis")]
-        [TestCategory("DebugOutputViewModel_Constructor")]
+        [Test]
+        [Author("Ashley Lewis")]
+        [Category("DebugOutputViewModel_Constructor")]
         public void DebugOutputViewModel_Constructor_ViewModelSessionIDAndEnvironmentRepoProperlyInitialized()
         {
             var mockedEnvRepo = new Mock<IServerRepository>();
@@ -960,9 +961,9 @@ namespace Dev2.Core.Tests
                 "Environment Repo not initialized");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DebugOutputViewModel_ProcessingText")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DebugOutputViewModel_ProcessingText")]
         public void DebugOutputViewModel_ProcessingText_ShouldReturnDescriptionOfDebugStatus()
         {
             //------------Setup for test--------------------------
@@ -976,8 +977,8 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("Ready", processingText);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void AddNewTestCommand_GivenIsNew_ShouldNotExecute()
         {
             //---------------Set up test pack-------------------
@@ -991,8 +992,8 @@ namespace Dev2.Core.Tests
             //---------------Test Result -----------------------
             Assert.IsFalse(canExecute);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void AddNewTestCommand_GivenIsNewNoresourceCommand_ShouldNotExecute()
         {
             //---------------Set up test pack-------------------
@@ -1006,8 +1007,8 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(canExecute);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ShowDebugStatus_GivenHasChanged_ShouldFirePropertyChanged()
         {
             //---------------Set up test pack-------------------
@@ -1029,8 +1030,8 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(wasCalled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ShowAssertResult_GivenHasChanged_ShouldFirePropertyChanged()
         {
             //---------------Set up test pack-------------------
@@ -1052,8 +1053,8 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(wasCalled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ShowOutputs_GivenHasChanged_ShouldFirePropertyChanged()
         {
             //---------------Set up test pack-------------------
@@ -1074,8 +1075,8 @@ namespace Dev2.Core.Tests
             //---------------Test Result -----------------------
             Assert.IsTrue(wasCalled);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ShowInputs_GivenHasChanged_ShouldFirePropertyChanged()
         {
             //---------------Set up test pack-------------------
@@ -1097,8 +1098,8 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(wasCalled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ShowDuration_GivenHasChanged_ShouldFirePropertyChanged()
         {
             //---------------Set up test pack-------------------
@@ -1119,8 +1120,8 @@ namespace Dev2.Core.Tests
             //---------------Test Result -----------------------
             Assert.IsTrue(wasCalled);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ShowTime_GivenHasChanged_ShouldFirePropertyChanged()
         {
             //---------------Set up test pack-------------------
@@ -1142,8 +1143,8 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(wasCalled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ShowServer_GivenHasChanged_ShouldFirePropertyChanged()
         {
             //---------------Set up test pack-------------------
@@ -1165,8 +1166,8 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(wasCalled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Constructor_GivenIsResourceModel_ShouldSetField()
         {
             //---------------Set up test pack-------------------
@@ -1185,8 +1186,8 @@ namespace Dev2.Core.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CanAddNewTest_GivenNoContextualResourceModel_ShouldReturnFalse()
         {
             //---------------Set up test pack-------------------
@@ -1206,8 +1207,8 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(bool.Parse(invoke.ToString()));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CanAddNewTest_GivenContextualResourceModelNoRootItems_ShouldReturnfalse()
         {
             //---------------Set up test pack-------------------
@@ -1227,8 +1228,8 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(bool.Parse(invoke.ToString()));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CanAddNewTest_GivenContextualResourceModelAndRootItems_ShouldReturnTrue()
         {
             //---------------Set up test pack-------------------
@@ -1249,8 +1250,8 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(bool.Parse(invoke.ToString()));
         }
 
-        [TestMethod]
-        [Owner("Hagshen Naidu")]
+        [Test]
+        [Author("Hagshen Naidu")]
         public void CanAddNewTest_GivenIsTestView_ShouldReturnTrue()
         {
             //---------------Set up test pack-------------------
@@ -1271,8 +1272,8 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(execute);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void AddNewTest_GivenEventAggregator_ShouldPublishCorrectly()
         {
             //---------------Set up test pack-------------------
@@ -1291,7 +1292,7 @@ namespace Dev2.Core.Tests
             mock.Verify(aggregator => aggregator.Publish(It.IsAny<IMessage>()), Times.Once);
         }
 
-        [TestMethod]
+        [Test]
         public void TestUpdateHelpDescriptor()
         {
             //arrange

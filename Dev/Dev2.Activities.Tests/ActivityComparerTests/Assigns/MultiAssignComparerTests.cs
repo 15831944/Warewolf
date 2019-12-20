@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.Assigns
 
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class MultiAssignComparerTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UniqueIDEquals_EmptyAssigns_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -25,8 +26,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Assigns
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UniqueIDDifferent_EmptyAssigns_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -41,8 +42,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Assigns
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -57,8 +58,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Assigns
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -73,8 +74,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Assigns
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -89,8 +90,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Assigns
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void FieldsCollectionSame_EmptyAssigns_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -105,8 +106,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Assigns
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void FieldsCollectionSame_EmptyAssigns_IsEqual_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -134,8 +135,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Assigns
             //---------------Test Result -----------------------
             Assert.IsTrue(equals);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void FieldsCollectionSameDifferentIndexNumbers_EmptyAssigns_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -166,8 +167,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Assigns
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void FieldsCollectionSame_EmptyAssigns_IsNotEqual_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -196,8 +197,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Assigns
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UpdateAllOccurrences_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -228,8 +229,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Assigns
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UpdateAllOccurrences_Same_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -261,8 +262,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Assigns
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateBookmark_Same_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -296,8 +297,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Assigns
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ServiceHost_Same_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -331,8 +332,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Assigns
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ServiceHost_Same_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -366,8 +367,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Assigns
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateBookmark_Same_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------

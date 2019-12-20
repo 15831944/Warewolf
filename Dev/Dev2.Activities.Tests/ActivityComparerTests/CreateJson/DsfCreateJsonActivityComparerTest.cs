@@ -1,7 +1,7 @@
 ﻿using Dev2.Common.State;
 using Dev2.Communication;
 using Dev2.TO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Activities;
 using System.Collections.Generic;
@@ -10,11 +10,12 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.CreateJson
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfCreateJsonActivityComparerTest
     {
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentUniqueIds_ActivityTools_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -28,8 +29,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.CreateJson
             //---------------Test Result -----------------------
             Assert.IsTrue(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_EmptyActivityTools_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -43,8 +44,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.CreateJson
             //---------------Test Result -----------------------
             Assert.IsTrue(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_DisplayName_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -59,8 +60,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.CreateJson
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_DisplayName_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -75,8 +76,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.CreateJson
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_JsonString_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -91,8 +92,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.CreateJson
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_JsonString_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -107,8 +108,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.CreateJson
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_JsonMappings_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -124,8 +125,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.CreateJson
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_JsonMappings_DifferentIndexes_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -161,8 +162,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.CreateJson
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_JsonMappings_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -191,9 +192,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.CreateJson
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DsfCreateJsonActivity_GetState")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DsfCreateJsonActivity_GetState")]
         public void DsfCreateJsonActivity_GetState_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------

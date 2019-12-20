@@ -16,7 +16,7 @@ using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Studio.Core;
 using Dev2.Studio.Interfaces;
 using Dev2.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 using Warewolf.Test.Agent;
 using Warewolf.Studio.ViewModels;
@@ -55,7 +55,7 @@ namespace Dev2.Activities.Specs.Sources
             }
             if (pingReply.Status != IPStatus.Success)
             {
-                Assert.Fail(server + " is unavailable");
+                NUnit.Framework.Assert.Fail(server + " is unavailable");
             }
         }
 
@@ -174,7 +174,7 @@ namespace Dev2.Activities.Specs.Sources
         public void ThenTheResultIs(string p0)
         {
             var result = ScenarioContext.Current.Get<string>("result");
-            Assert.AreEqual(p0, result);
+            NUnit.Framework.Assert.AreEqual(p0, result);
         }
 
         [Given(@"User as ""(.*)""")]

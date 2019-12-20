@@ -10,7 +10,7 @@
 
 using Dev2.Common.Interfaces.WindowsTaskScheduler.Wrappers;
 using Dev2.TaskScheduler.Wrappers.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Microsoft.Win32.TaskScheduler;
 using Moq;
 
@@ -20,7 +20,8 @@ namespace Dev2.TaskScheduler.Wrappers.Test
     /// <summary>
     /// Test thatthe wrappers are passing through the correct values
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class Dev2ActionCollectionTest
     {
         ActionCollection _nativeInstance;
@@ -28,7 +29,7 @@ namespace Dev2.TaskScheduler.Wrappers.Test
         TaskService _nativeService;
         Mock<ITaskServiceConvertorFactory> _taskServiceConvertorFactory;
 
-        [TestInitialize]
+        [SetUp]
         public void Init()
         {
             _taskServiceConvertorFactory = new Mock<ITaskServiceConvertorFactory>();
@@ -40,9 +41,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
 
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2ActionCollectionTest_Mutate")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2ActionCollectionTest_Mutate")]
         public void Dev2ActionCollection_Insert_Add()
         {
             var collection = CreateCollection();
@@ -55,9 +56,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
 
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2ActionCollectionTest_utilitymethods")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2ActionCollectionTest_utilitymethods")]
         public void Dev2ActionCollection_ContainsType()
         {
             var collection = CreateCollection();
@@ -77,9 +78,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
 
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2ActionCollectionEnumerate")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2ActionCollectionEnumerate")]
         public void Dev2ActionCollection_Enumerate()
         {
             var collection = new Dev2ActionCollection(_taskServiceConvertorFactory.Object, _nativeInstance);

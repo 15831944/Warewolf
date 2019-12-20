@@ -16,19 +16,20 @@ using Dev2.Common.Interfaces.Infrastructure.SharedModels;
 using Dev2.Explorer;
 using Dev2.Runtime.WebServer.Hubs;
 using Microsoft.AspNet.SignalR.Hubs;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.Runtime.WebServer.Hubs
 {
-    [TestClass]
-    [TestCategory("Runtime WebServer")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime WebServer")]
     
     public class EsbHubTests
     {
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("EsbHub_AddItemMessage")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("EsbHub_AddItemMessage")]
         public void EsbHub_AddItemMessage_ItemHasData_ItemAddedMessageIsPublished()
         {
             //------------Setup for test--------------------------
@@ -53,9 +54,9 @@ namespace Dev2.Tests.Runtime.WebServer.Hubs
             Assert.IsTrue(messagePublished);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("EsbHub_AddItemMessage")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("EsbHub_AddItemMessage")]
         public void EsbHub_AddItemMessage_ItemIsNull_ItemAddedMessageIsNotPublished()
         {
             //------------Setup for test--------------------------

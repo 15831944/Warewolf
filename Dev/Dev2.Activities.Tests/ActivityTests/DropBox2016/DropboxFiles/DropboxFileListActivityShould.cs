@@ -15,7 +15,7 @@ using Dev2.Common;
 using Dev2.Common.Interfaces;
 using Dev2.Data.ServiceModel;
 using Dev2.Diagnostics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -29,7 +29,8 @@ using System.Net.Http;
 
 namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.DropboxFiles
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
 
     public class DropboxFileListActivityShould
     {
@@ -43,8 +44,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.DropboxFiles
             return new ExecutionEnvironment();
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DsfDropboxFileList_GivenNewInstance_ShouldNotBeNull()
         {
             //---------------Set up test pack-------------------
@@ -55,8 +56,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.DropboxFiles
             Assert.IsNotNull(dropboxFileListActivity);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateNewActivity_GivenIsNew_ShouldHaveDisplayName()
         {
             //---------------Set up test pack-------------------
@@ -68,8 +69,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.DropboxFiles
             Assert.AreEqual("List Dropbox Contents", dropboxFileListActivity.DisplayName);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetFindMissingType_GivenIsNew_ShouldSetStaticActivity()
         {
             //---------------Set up test pack-------------------
@@ -81,8 +82,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.DropboxFiles
             Assert.AreEqual(enFindMissingType.StaticActivity, enFindMissingType);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetDebugInputs_GivenEnvironmentIsNull_ShouldHaveNoDebugOutputs()
         {
             //---------------Set up test pack-------------------
@@ -94,8 +95,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.DropboxFiles
             Assert.AreEqual(0, debugInputs.Count());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetDebugInputs_GivenEnvironmentMockEnvironmentAndFromPath_ShouldHaveOneDebugOutputs()
         {
             //---------------Set up test pack-------------------
@@ -109,8 +110,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.DropboxFiles
             Assert.AreEqual(4, debugInputs.Count());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetDebugOutputs_GivenWebRequestSuccess_ShouldCorrectDebugValue()
         {
             //---------------Set up test pack-------------------
@@ -129,8 +130,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.DropboxFiles
             Assert.AreEqual(0, debugOutputs.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetDebugOutputs_GivenFileMetadataIsNotNull_ShouldHaveOneDebugOutPuts()
         {
             //---------------Set up test pack-------------------
@@ -149,8 +150,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.DropboxFiles
             Assert.AreEqual(1, debugOutputs.Count());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ExecuteTool_GivenPaths_ShouldExecuteTool()
         {
             //---------------Set up test pack-------------------
@@ -169,8 +170,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.DropboxFiles
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void PerformExecution_GivenNoPaths_ShouldReturnSuccess()
         {
             //---------------Set up test pack-------------------
@@ -204,8 +205,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.DropboxFiles
             Assert.AreEqual(execution, GlobalConstants.DropBoxSuccess);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void PerformExecution_GivenPath_ShouldReturnSuccess()
         {
             //---------------Set up test pack-------------------
@@ -237,8 +238,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.DropboxFiles
             Assert.AreEqual(execution, GlobalConstants.DropBoxSuccess);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void PerformExecution_GivenPathAndIncludeFolders_ShouldLoadFolders()
         {
             //---------------Set up test pack-------------------
@@ -272,8 +273,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.DropboxFiles
             Assert.AreEqual(3, dropboxFileListActivity.Files.Count());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void PerformExecution_GivenPathAndIsFilesAndFoldersSelected_ShouldLoadFoldersAndFiles()
         {
             //---------------Set up test pack-------------------
@@ -307,8 +308,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.DropboxFiles
             Assert.AreEqual(3, dropboxFileListActivity.Files.Count());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void
             PerformExecution_GivenPathAndIsFilesAndFoldersSelectedAndIncludeDeleted_ShouldLoadFoldersAndFilesAndDeleted()
         {
@@ -344,8 +345,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.DropboxFiles
             Assert.AreEqual(4, dropboxFileListActivity.Files.Count());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void PerformExecution_GivenPathAndIncludeDeleted_ShouldLoadDeletedFiles()
         {
             //---------------Set up test pack-------------------
@@ -379,8 +380,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.DropboxFiles
             Assert.AreEqual(1, dropboxFileListActivity.Files.Count());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void PerformExecution_GivenPathNotIncludeFolders_ShouldLoadNotLoadFolders()
         {
             //---------------Set up test pack-------------------
@@ -413,8 +414,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.DropboxFiles
             Assert.AreEqual(0, dropboxFileListActivity.Files.Count());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void PerformExecution_GivenHasError_ShouldReturnExceptionMessage()
         {
             try
@@ -445,8 +446,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.DropboxFiles
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ExecuteTool_GivenNoToPath_ShouldExecuteTool()
         {
             //---------------Set up test pack-------------------
@@ -465,8 +466,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.DropboxFiles
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Clint Stedman")]
+        [Test]
+        [Author("Clint Stedman")]
         [ExpectedException(typeof(Exception))]
         public void PerformExecution_GivenHasError_ShouldReturnDropboxFailureResult()
         {
@@ -498,8 +499,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.DropboxFiles
             Assert.Fail("Exception Not Throw");
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         [ExpectedException(typeof(Exception))]
         public void PerformExecution_GivenNoToPath_ShouldPassesThrough()
         {
@@ -527,8 +528,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.DropboxFiles
             mockExecutor.Verify(executor => executor.ExecuteTask(It.IsAny<IDropboxClient>()));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetDebugInputs_GivenValues_ShouldAddDebugInputs()
         {
             //---------------Set up test pack-------------------

@@ -10,7 +10,7 @@ using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Runtime.Interfaces;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using TestingDotnetDllCascading;
 
@@ -18,12 +18,13 @@ using TestingDotnetDllCascading;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FetchPluginConstructorTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -35,9 +36,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -49,8 +50,8 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(AuthorizationContext.Any, resId);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void HandlesType_GivenPluginConstructorService_ShouldRuturnCorrectly()
         {
             //---------------Set up test pack-------------------
@@ -62,8 +63,8 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("FetchPluginConstructors", handlesType);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenTestInputs_ShouldReturnConstructorList()
         {
             //---------------Set up test pack-------------------
@@ -108,8 +109,8 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(3, deserializeToObject.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenHasContructorWithInputs_ShouldReturnCorrectInputs()
         {
             //---------------Set up test pack-------------------
@@ -169,8 +170,8 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(typeof(string), Type.GetType(typeName));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenHasContructorWithInputs_ShouldReturnCorrectConstructorName()
         {
             //---------------Set up test pack-------------------
@@ -230,8 +231,8 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(expectedName2, constructorName2);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenHasError_ShouldReturnErrorState()
         {
             //---------------Set up test pack-------------------

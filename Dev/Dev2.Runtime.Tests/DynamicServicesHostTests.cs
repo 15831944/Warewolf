@@ -18,12 +18,13 @@ using Dev2.Common;
 using Dev2.DynamicServices.Test.XML;
 using Dev2.Runtime.Security;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Dev2.DynamicServices.Test
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DynamicServicesHostTests
     {
         const int VersionNo = 9999;
@@ -56,7 +57,7 @@ namespace Dev2.DynamicServices.Test
 
         static bool _isInitialized;
 
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void ClassInitialize(TestContext testContext)
         {
             //
@@ -141,7 +142,7 @@ namespace Dev2.DynamicServices.Test
             }
         }
 
-        [ClassCleanup]
+        [OneTimeTearDown]
         public static void ClassCleanup()
         {
             //if(Directory.Exists(_servicesPath))
@@ -155,7 +156,7 @@ namespace Dev2.DynamicServices.Test
         #region SyncTo
 
         //Commented out because it was decided that all the local files should be kept
-        //[TestMethod]
+        //[Test]
         //public void SyncTo_Where_DeleteIsTrue_And_FileDeletedFromSource_Expected_FileDeletedInDestination()
         //{
         //    IWorkspace workspaceSource = _testInstance.Get(Guid.NewGuid());
@@ -175,10 +176,10 @@ namespace Dev2.DynamicServices.Test
         //    int expected = workspaceSource.Host.Services.Count;
         //    int actual = workspaceDestination.Host.Services.Count;
 
-        //    Assert.IsFalse(destFile.Exists);
+        //    NUnit.Framework.Assert.IsFalse(destFile.Exists);
         //}
 
-        [TestMethod]
+        [Test]
         public void SyncTo_Where_DeleteIsFalse_And_FileDeletedFromSource_Expected_FileNotDeletedInDestination()
         {
             IWorkspace workspaceSource = _testInstance.Get(Guid.NewGuid());
@@ -195,10 +196,10 @@ namespace Dev2.DynamicServices.Test
 
             destFile.Refresh();
 
-            Assert.IsTrue(destFile.Exists);
+            NUnit.Framework.Assert.IsTrue(destFile.Exists);
         }
 
-        [TestMethod]
+        [Test]
         public void SyncTo_Where_OverrideIsTrue_Expected_FileInDestinationOverridden()
         {
             IWorkspace workspaceSource = _testInstance.Get(Guid.NewGuid());
@@ -226,10 +227,10 @@ namespace Dev2.DynamicServices.Test
             long expected = sourceFile.Length;
             long actual = destFile.Length;
 
-            Assert.AreEqual(expected, actual);
+            NUnit.Framework.Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void SyncTo_Where_OverrideIsFalse_Expected_FileInDestinationUnchanged()
         {
             IWorkspace workspaceSource = _testInstance.Get(Guid.NewGuid());
@@ -259,10 +260,10 @@ namespace Dev2.DynamicServices.Test
             long expected = originalFileSize;
             long actual = destFile.Length;
 
-            Assert.AreEqual(expected, actual);
+            NUnit.Framework.Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void SyncTo_Where_FilesToIgnoreAreSpecified_Expected_IgnoredFilesArentCopied()
         {
             IWorkspace workspaceSource = _testInstance.Get(Guid.NewGuid());
@@ -282,10 +283,10 @@ namespace Dev2.DynamicServices.Test
 
             destFile.Refresh();
 
-            Assert.IsFalse(destFile.Exists);
+            NUnit.Framework.Assert.IsFalse(destFile.Exists);
         }
 
-        [TestMethod]
+        [Test]
         public void SyncTo_Where_FilesToIgnoreAreSpecified_Expected_IgnoredFilesArentDeleted()
         {
             IWorkspace workspaceSource = _testInstance.Get(Guid.NewGuid());
@@ -305,10 +306,10 @@ namespace Dev2.DynamicServices.Test
 
             destFile.Refresh();
 
-            Assert.IsTrue(destFile.Exists);
+            NUnit.Framework.Assert.IsTrue(destFile.Exists);
         }
 
-        [TestMethod]
+        [Test]
         public void SyncTo_Where_DestinationDirectoryDoesntExist_Expected_DestinationDirectoryCreated()
         {
             IWorkspace workspaceSource = _testInstance.Get(Guid.NewGuid());
@@ -319,14 +320,14 @@ namespace Dev2.DynamicServices.Test
             workspaceSource.Host.SyncTo(tmpDir.FullName, false, false);
 
             tmpDir.Refresh();
-            Assert.IsTrue(tmpDir.Exists);
+            NUnit.Framework.Assert.IsTrue(tmpDir.Exists);
         }
 
         #endregion
 
         #region RestoreResources
 
-        [TestMethod]
+        [Test]
         public void DynamicServicesHost_RestoreResourcesWithOneSignedAndOneUnsignedService_Expected_LoadsSignedService()
         {
             // Class initialization copies 2 services one signed, one unsigned.
@@ -336,12 +337,12 @@ namespace Dev2.DynamicServices.Test
             var signedService = host.Services.Find(s => s.Name == ServiceName);
             var unsignedService = host.Services.Find(s => s.Name == ServiceNameUnsigned);
 
-            Assert.IsNotNull(signedService);
-            Assert.IsNull(unsignedService);
+            NUnit.Framework.Assert.IsNotNull(signedService);
+            NUnit.Framework.Assert.IsNull(unsignedService);
         }
 
 
-        [TestMethod]
+        [Test]
         public void DynamicServicesHost_RestoreResources_Expected_LoadsSource()
         {
             // Class initialization copies 1 source
@@ -350,10 +351,10 @@ namespace Dev2.DynamicServices.Test
 
             var source = host.Sources.Find(s => s.Name == SourceName);
 
-            Assert.IsNotNull(source);
+            NUnit.Framework.Assert.IsNotNull(source);
         }
 
-        [TestMethod]
+        [Test]
         public void DynamicServicesHost_RestoreResources_WithSourceWithoutID_Expected_InjectsID()
         {
             // Class initialization copies 1 source
@@ -362,14 +363,14 @@ namespace Dev2.DynamicServices.Test
 
             var source = host.Sources.Find(s => s.Name == SourceName);
 
-            Assert.AreNotEqual(source.ID, Guid.Empty);
+            NUnit.Framework.Assert.AreNotEqual(source.ID, Guid.Empty);
         }
 
         #endregion
 
         #region SaveResources
 
-        [TestMethod]
+        [Test]
         public void DynamicServicesHost_SaveResources_WithUnsignedService_Expected_SignsFile()
         {
             var host = _workspace.Host;
@@ -381,10 +382,10 @@ namespace Dev2.DynamicServices.Test
             var signedXml = File.ReadAllText(Path.Combine(_servicesPath, ServiceName + ".bite"));
             var isValid = HostSecurityProvider.Instance.VerifyXml(signedXml);
 
-            Assert.IsTrue(isValid);
+            NUnit.Framework.Assert.IsTrue(isValid);
         }
 
-        [TestMethod]
+        [Test]
         public void DynamicServicesHost_SaveResources_WithSourceWithoutID_Expected_SourceSavedWithID()
         {
             var host = _workspace.Host;
@@ -397,26 +398,26 @@ namespace Dev2.DynamicServices.Test
             var xml = XElement.Load(Path.Combine(_sourcesPath, SourceName + ".bite"));
             var attr = xml.Attributes("ID").ToList();
 
-            Assert.AreEqual(1, attr.Count);
+            NUnit.Framework.Assert.AreEqual(1, attr.Count);
         }
         #endregion
 
         #region RollbackResources
 
-        [TestMethod]
+        [Test]
         public void DynamicServicesHost_RollbackResourcesWithUnsignedVersion_Expected_DoesNotRollback()
         {
             var host = _workspace.Host;
             var rolledBack = host.RollbackResource(ServiceNameUnsigned, VersionNo);
-            Assert.IsFalse(rolledBack);
+            NUnit.Framework.Assert.IsFalse(rolledBack);
         }
 
-        [TestMethod]
+        [Test]
         public void DynamicServicesHost_RollbackResourcesWithSignedVersion_Expected_DoesRollback()
         {
             var host = _workspace.Host;
             var rolledBack = host.RollbackResource(ServiceName, VersionNo);
-            Assert.IsTrue(rolledBack);
+            NUnit.Framework.Assert.IsTrue(rolledBack);
         }
 
         #endregion

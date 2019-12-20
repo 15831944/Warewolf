@@ -9,15 +9,16 @@
 */
 
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Framework.Converters.Graph.String.Json;
 
 namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class JsonMapperTests
     {
-        [TestMethod]
+        [Test]
         public void MapJson_GivenPrimitive_Expected_RootPrimitivePath()
         {
             var jsonMapper = new JsonMapper();
@@ -28,7 +29,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
             Assert.AreEqual("String", paths.FirstOrDefault().ToString(), "JSON mapper cannot parse JSON primitives.");
         }
 
-        [TestMethod]
+        [Test]
         public void MapJson_GivenPrimitiveEnumerable_Expected_RootPrimitivePath()
         {
             var jsonMapper = new JsonMapper();
@@ -42,7 +43,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
             Assert.IsTrue(condition);
         }
         
-        [TestMethod]
+        [Test]
         public void MapJson_GivenComplexObject_Expected_CorrectPaths()
         {
             var jsonMapper = new JsonMapper();

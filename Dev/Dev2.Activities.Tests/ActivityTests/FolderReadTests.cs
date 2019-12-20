@@ -11,7 +11,7 @@
 using System;
 using System.Collections.Generic;
 using ActivityUnitTests;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Dev2.Common.Interfaces.Wrappers;
 using Dev2.Common.Wrappers;
@@ -25,7 +25,8 @@ namespace Dev2.Tests.Activities.ActivityTests
     /// <summary>
     /// Summary description for DateTimeDifferenceTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FolderReadTests : BaseActivityUnitTest
     {
         string _inputPath;
@@ -36,8 +37,8 @@ namespace Dev2.Tests.Activities.ActivityTests
         ///</summary>
         public TestContext TestContext { get; set; }
         
-        [TestMethod]
-        [TestCategory("DsfFolderRead_UpdateForEachInputs")]
+        [Test]
+        [Category("DsfFolderRead_UpdateForEachInputs")]
         public void DsfFolderRead_Execute_Expecting_No_Out_Puts_Has_1_Empty_Record()
         {
             //------------Setup for test--------------------------
@@ -54,8 +55,8 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [TestCategory("DsfFolderRead_UpdateForEachInputs")]
+        [Test]
+        [Category("DsfFolderRead_UpdateForEachInputs")]
         public void DsfFolderRead_Execute_Expecting_No_Out_Puts_Has_1_Empty_Record1()
         {
             //------------Setup for test--------------------------
@@ -71,13 +72,13 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsTrue(0 < DataObject.Environment.GetLength("RecordSet"));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfFolderRead_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfFolderRead_UpdateForEachInputs")]
         public void DsfFolderRead_UpdateForEachInputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
-            var inputPath = string.Concat(TestContext.TestRunDirectory, "\\", "[[CompanyName]]");
+            var inputPath = string.Concat(Environment.CurrentDirectory, "\\", "[[CompanyName]]");
             var act = new DsfFolderRead { InputPath = inputPath, Result = "[[res]]" };
 
             //------------Execute Test---------------------------
@@ -86,13 +87,13 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(inputPath, act.InputPath);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfFolderRead_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfFolderRead_UpdateForEachInputs")]
         public void DsfFolderRead_UpdateForEachInputs_MoreThan1Updates_DoesNothing()
         {
             //------------Setup for test--------------------------
-            var inputPath = string.Concat(TestContext.TestRunDirectory, "\\", "[[CompanyName]]");
+            var inputPath = string.Concat(Environment.CurrentDirectory, "\\", "[[CompanyName]]");
             var act = new DsfFolderRead { InputPath = inputPath, Result = "[[res]]" };
 
             var tuple1 = new Tuple<string, string>("Test", "Test");
@@ -103,13 +104,13 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(inputPath, act.InputPath);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfFolderRead_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfFolderRead_UpdateForEachInputs")]
         public void DsfFolderRead_UpdateForEachInputs_1Update_UpdateInputPath()
         {
             //------------Setup for test--------------------------
-            var inputPath = string.Concat(TestContext.TestRunDirectory, "\\", "[[CompanyName]]");
+            var inputPath = string.Concat(Environment.CurrentDirectory, "\\", "[[CompanyName]]");
             var act = new DsfFolderRead { InputPath = inputPath, Result = "[[res]]" };
 
             var tuple1 = new Tuple<string, string>("Test", "Test");
@@ -119,28 +120,28 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Test", act.InputPath);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfFolderRead_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfFolderRead_UpdateForEachOutputs")]
         public void DsfFolderRead_UpdateForEachOutputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
             const string result = "[[res]]";
-            var act = new DsfFolderRead { InputPath = string.Concat(TestContext.TestRunDirectory, "\\", "[[CompanyName]]"), Result = result };
+            var act = new DsfFolderRead { InputPath = string.Concat(Environment.CurrentDirectory, "\\", "[[CompanyName]]"), Result = result };
 
             act.UpdateForEachOutputs(null);
             //------------Assert Results-------------------------
             Assert.AreEqual(result, act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfFolderRead_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfFolderRead_UpdateForEachOutputs")]
         public void DsfFolderRead_UpdateForEachOutputs_MoreThan1Updates_DoesNothing()
         {
             //------------Setup for test--------------------------
             const string result = "[[res]]";
-            var act = new DsfFolderRead { InputPath = string.Concat(TestContext.TestRunDirectory, "\\", "[[CompanyName]]"), Result = result };
+            var act = new DsfFolderRead { InputPath = string.Concat(Environment.CurrentDirectory, "\\", "[[CompanyName]]"), Result = result };
 
             var tuple1 = new Tuple<string, string>("Test", "Test");
             var tuple2 = new Tuple<string, string>("Test2", "Test2");
@@ -150,14 +151,14 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(result, act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfFolderRead_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfFolderRead_UpdateForEachOutputs")]
         public void DsfFolderRead_UpdateForEachOutputs_1Updates_UpdateCommandResult()
         {
             //------------Setup for test--------------------------
             const string result = "[[res]]";
-            var act = new DsfFolderRead { InputPath = string.Concat(TestContext.TestRunDirectory, "\\", "[[CompanyName]]"), Result = result };
+            var act = new DsfFolderRead { InputPath = string.Concat(Environment.CurrentDirectory, "\\", "[[CompanyName]]"), Result = result };
 
             var tuple1 = new Tuple<string, string>("[[res]]", "Test");
             //------------Execute Test---------------------------
@@ -166,13 +167,13 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Test", act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfFolderRead_GetForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfFolderRead_GetForEachInputs")]
         public void DsfFolderRead_GetForEachInputs_WhenHasExpression_ReturnsInputList()
         {
             //------------Setup for test--------------------------
-            var inputPath = string.Concat(TestContext.TestRunDirectory, "\\", "[[CompanyName]]");
+            var inputPath = string.Concat(Environment.CurrentDirectory, "\\", "[[CompanyName]]");
             var act = new DsfFolderRead { InputPath = inputPath, Result = "[[res]]" };
 
             //------------Execute Test---------------------------
@@ -183,14 +184,14 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(inputPath, dsfForEachItems[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfFolderRead_GetForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfFolderRead_GetForEachOutputs")]
         public void DsfFolderRead_GetForEachOutputs_WhenHasResult_ReturnsOutputList()
         {
             //------------Setup for test--------------------------
             const string result = "[[res]]";
-            var act = new DsfFolderRead { InputPath = string.Concat(TestContext.TestRunDirectory, "\\", "[[CompanyName]]"), Result = result };
+            var act = new DsfFolderRead { InputPath = string.Concat(Environment.CurrentDirectory, "\\", "[[CompanyName]]"), Result = result };
 
             //------------Execute Test---------------------------
             var dsfForEachItems = act.GetForEachOutputs();
@@ -200,9 +201,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(result, dsfForEachItems[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DsfFolderRead_GetState")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DsfFolderRead_GetState")]
         public void DsfFolderRead_GetState_IsFilesSelected_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------
@@ -283,9 +284,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DsfFolderRead_GetState")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DsfFolderRead_GetState")]
         public void DsfFolderRead_GetState_IsFoldersSelected_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------
@@ -366,9 +367,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DsfFolderRead_GetState")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DsfFolderRead_GetState")]
         public void DsfFolderRead_GetState_IsFilesAndFoldersSelected_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------
@@ -449,7 +450,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestCleanup]
+        [TearDown]
         public void DeleteDir()
         {
             if (!string.IsNullOrEmpty(_inputPath) && dirHelper.Exists(_inputPath))

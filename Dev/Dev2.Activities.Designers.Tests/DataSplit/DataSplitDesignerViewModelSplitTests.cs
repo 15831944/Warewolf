@@ -15,19 +15,20 @@ using Dev2.Activities.Designers2.DataSplit;
 using Dev2.Common.Interfaces.Help;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 
 namespace Dev2.Activities.Designers.Tests.DataSplit
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DataSplitDesignerViewModelSplitTests
     {
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DataSplitDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DataSplitDesignerViewModel_Constructor")]
         public void DataSplitDesignerViewModel_Constructor__ModelItemIsValid_ListHasFourItems()
         {
             var items = new List<DataSplitDTO> { new DataSplitDTO() };
@@ -35,9 +36,9 @@ namespace Dev2.Activities.Designers.Tests.DataSplit
             Assert.AreEqual(6, viewModel.ItemsList.Count);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DataSplitDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DataSplitDesignerViewModel_Constructor")]
         public void DataSplitDesignerViewModel_Constructor__ModelItemIsValid_CollectionNameIsSetToResultsCollection()
         {
             var items = new List<DataSplitDTO> { new DataSplitDTO() };
@@ -45,20 +46,20 @@ namespace Dev2.Activities.Designers.Tests.DataSplit
             Assert.AreEqual("ResultsCollection", viewModel.CollectionName);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DataSplitDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DataSplitDesignerViewModel_Constructor")]
         public void DataSplitDesignerViewModel_Constructor_ModelItemIsValid_ResultsCollectionHasTwoItems()
         {
             var modelItem = ModelItemUtils.CreateModelItem(new DsfDataSplitActivity());
             var viewModel = new DataSplitDesignerViewModel(modelItem);
             dynamic mi = viewModel.ModelItem;
-            Assert.AreEqual(2, mi.ResultsCollection.Count);
+            NUnit.Framework.Assert.AreEqual(2, mi.ResultsCollection.Count);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DataSplitDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DataSplitDesignerViewModel_Handle")]
         public void DataSplitDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -75,9 +76,9 @@ namespace Dev2.Activities.Designers.Tests.DataSplit
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DataSplitDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DataSplitDesignerViewModel_Constructor")]
         public void DataSplitDesignerViewModel_Constructor_ModelItemIsInitializedWith4Items_ResultsCollectionHasFourItems()
         {
             var items = new List<DataSplitDTO>
@@ -89,12 +90,12 @@ namespace Dev2.Activities.Designers.Tests.DataSplit
             };
             var viewModel = new DataSplitDesignerViewModel(CreateModelItem(items));
             dynamic mi = viewModel.ModelItem;
-            Assert.AreEqual(5, mi.ResultsCollection.Count);
+            NUnit.Framework.Assert.AreEqual(5, mi.ResultsCollection.Count);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DataSplitDesignerViewModel_OnSplitTypeChanged")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DataSplitDesignerViewModel_OnSplitTypeChanged")]
         public void DataSplitDesignerViewModel_OnSplitTypeChanged_EnableAt_SetCorrectly()
         {
             VerifySplitTypeAgainstEnabledAt(DataSplitDTO.SplitTypeIndex, true);
@@ -117,9 +118,9 @@ namespace Dev2.Activities.Designers.Tests.DataSplit
             Assert.AreEqual(expectedEnableAt, actualEnableAt);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataSplitDesignerViewModel_OnSplitTypeChanged")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataSplitDesignerViewModel_OnSplitTypeChanged")]
         public void DataSplitDesignerViewModel_OnSplitTypeChanged_IsEscapeCharEnabled_SetCorrectly()
         {
             VerifySplitTypeAgainstIsEscapeCharEnabled(DataSplitDTO.SplitTypeIndex, false);
@@ -158,9 +159,9 @@ namespace Dev2.Activities.Designers.Tests.DataSplit
             return modelItem;
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataSplitDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataSplitDesignerViewModel_ValidateThis")]
         public void DataSplitDesignerViewModel_ValidateThis_SourceStringIsNotEmpty_DoesNotHaveErrors()
         {
             //------------Setup for test--------------------------
@@ -183,9 +184,9 @@ namespace Dev2.Activities.Designers.Tests.DataSplit
             Assert.IsNull(viewModel.Errors);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataSplitDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataSplitDesignerViewModel_ValidateThis")]
         public void DataSplitDesignerViewModel_ValidateThis_SourceStringIsEmptyOrWhiteSpace_DoesHaveErrors()
         {
             //------------Setup for test--------------------------
@@ -209,9 +210,9 @@ namespace Dev2.Activities.Designers.Tests.DataSplit
         }
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataSplitDesignerViewModel_ValidateCollectionItem")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataSplitDesignerViewModel_ValidateCollectionItem")]
         public void DataSplitDesignerViewModel_ValidateCollectionItem_ValidatesPropertiesOfDTO()
         {
             //------------Setup for test--------------------------
@@ -255,9 +256,9 @@ namespace Dev2.Activities.Designers.Tests.DataSplit
             Assert.IsTrue(modelItem.GetProperty<bool>(isFocusedPropertyName));
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataSplitDesignerViewModel_ProcessDirectionGroup")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataSplitDesignerViewModel_ProcessDirectionGroup")]
         public void DataSplitDesignerViewModel_ProcessDirectionGroup_IsUnique()
         {
             //------------Setup for test--------------------------

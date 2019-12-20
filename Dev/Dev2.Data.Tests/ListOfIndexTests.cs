@@ -9,17 +9,18 @@
 */
 
 using Dev2.Data.Binary_Objects;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.Collections.Generic;
 
 namespace Dev2.Data.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ListOfIndexTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ListOfIndex))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ListOfIndex))]
         public void ListOfIndex_Count_AreEqual_ExpectTrue()
         {
             //-----------------------Arrange------------------------
@@ -32,12 +33,12 @@ namespace Dev2.Data.Tests
             var listOfIndex = new ListOfIndex(indexes);
             //-----------------------Act----------------------------
             //-----------------------Assert-------------------------
-            Assert.AreEqual(4 , listOfIndex.Count());
+            NUnit.Framework.Assert.AreEqual(4 , listOfIndex.Count());
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ListOfIndex))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ListOfIndex))]
         public void ListOfIndex_GetMaxIndex_AreEqual_ExpectTrue()
         {
             //-----------------------Arrange------------------------
@@ -50,12 +51,12 @@ namespace Dev2.Data.Tests
             var listOfIndex = new ListOfIndex(indexes);
             //-----------------------Act----------------------------
             //-----------------------Assert-------------------------
-            Assert.AreEqual(15, listOfIndex.GetMaxIndex());
+            NUnit.Framework.Assert.AreEqual(15, listOfIndex.GetMaxIndex());
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ListOfIndex))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ListOfIndex))]
         public void ListOfIndex_SetProperty_AreEqual_SetPropertyValue_ExpectTrue()
         {
             //-----------------------Arrange------------------------
@@ -71,9 +72,9 @@ namespace Dev2.Data.Tests
                 MinValue = 15
             };
             //-----------------------Assert-------------------------
-            Assert.AreEqual(15, listOfIndex.MinValue);
-            Assert.AreEqual(25, listOfIndex.MaxValue);
-            Assert.AreEqual(4, listOfIndex.Indexes.Count);
+            NUnit.Framework.Assert.AreEqual(15, listOfIndex.MinValue);
+            NUnit.Framework.Assert.AreEqual(25, listOfIndex.MaxValue);
+            NUnit.Framework.Assert.AreEqual(4, listOfIndex.Indexes.Count);
         }
     }
 }

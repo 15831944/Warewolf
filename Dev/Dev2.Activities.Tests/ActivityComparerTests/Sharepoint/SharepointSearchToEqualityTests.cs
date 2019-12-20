@@ -1,16 +1,17 @@
 ﻿using Dev2.Common.Interfaces.Core;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.TO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SharepointSearchToEqualityTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_EmptyTos_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -24,8 +25,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_FieldNames__Object_Is_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -39,8 +40,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_DiffentFieldNames_Object_Is_Not_IsEqual_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -54,8 +55,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_DiffentFieldNames_Object_Is_Not_IsEqua()
         {
             //---------------Set up test pack-------------------
@@ -69,8 +70,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_SearchType__Object_Is_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -84,8 +85,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_DiffentSearchType_Object_Is_Not_IsEqual_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -99,8 +100,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_DiffentSearchType_Object_Is_Not_IsEqua()
         {
             //---------------Set up test pack-------------------
@@ -115,8 +116,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_InternalName__Object_Is_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -130,8 +131,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_DiffentInternalName_Object_Is_Not_IsEqual_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -145,8 +146,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_DiffentInternalName_Object_Is_Not_IsEqua()
         {
             //---------------Set up test pack-------------------
@@ -160,8 +161,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_From__Object_Is_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -175,8 +176,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_DiffentFrom_Object_Is_Not_IsEqual_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -190,8 +191,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_DiffentTo_Object_Is_Not_IsEqua()
         {
             //---------------Set up test pack-------------------
@@ -205,8 +206,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_To__Object_Is_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -220,8 +221,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_DiffentTo_Object_Is_Not_IsEqual_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -234,8 +235,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_DiffentValueToMatch_Object_Is_Not_IsEqua()
         {
             //---------------Set up test pack-------------------
@@ -249,8 +250,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_ValueToMatch__Object_Is_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -264,8 +265,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_DiffentValueToMatch_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -279,8 +280,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_DiffentFrom_Object_Is_Not_IsEqua()
         {
             //---------------Set up test pack-------------------
@@ -295,8 +296,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsSearchCriteriaEnabled_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -312,8 +313,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsSearchCriteriaEnabled_Same_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -329,8 +330,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Inserted_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -346,8 +347,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Inserted_Same_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -362,8 +363,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             //---------------Test Result -----------------------
             Assert.IsTrue(@equals);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsSearchCriteriaFocused_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -379,8 +380,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsSearchCriteriaFocused_Same_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -396,7 +397,7 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
+        [Test]
         public void SavedSource_Null_Object_Is_NotEqual()
         {
             //---------------Set up test pack-------------------
@@ -409,7 +410,7 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsFalse(sharePointServiceSourceDefinition.Equals(null), "Equals operator can't compare to null.");
         }
 
-        [TestMethod]
+        [Test]
         public void SavedSource_Itself_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -422,7 +423,7 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsTrue(sharePointServiceSourceDefinition.Equals(sharePointServiceSourceDefinition), "Equals operator can't compare to itself.");
         }
 
-        [TestMethod]
+        [Test]
         public void SavedSource_DifferentType_Is_NotEqual()
         {
             //---------------Set up test pack-------------------
@@ -440,7 +441,7 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsFalse(sharePointServiceSourceDefinition.Equals(differentObject), "Equals operator can't compare to differently typed object.");
         }
 
-        [TestMethod]
+        [Test]
         public void EqualsOperator_WithEqualObjects_AreEqual()
         {
             var firstEmailServiceSourceDefinition = new SharePointServiceSourceDefinition
@@ -463,7 +464,7 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
             Assert.IsTrue(firstEmailServiceSourceDefinition == secondEmailServiceSourceDefinition, "Equals operator doesnt work.");
         }
 
-        [TestMethod]
+        [Test]
         public void NotEqualsOperator_WithNotEqualObjects_AreNotEqual()
         {
             var firstEmailServiceSourceDefinition = new SharePointServiceSourceDefinition

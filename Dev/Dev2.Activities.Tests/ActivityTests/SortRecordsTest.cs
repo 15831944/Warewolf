@@ -15,7 +15,7 @@ using System.Linq;
 using ActivityUnitTests;
 using Dev2.Common.State;
 using Dev2.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.ActivityTests
@@ -23,7 +23,8 @@ namespace Dev2.Tests.Activities.ActivityTests
     /// <summary>
     /// Summary description for SortRecordsTest
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class SortRecordsTest : BaseActivityUnitTest
     {
@@ -33,9 +34,9 @@ namespace Dev2.Tests.Activities.ActivityTests
         ///</summary>
         public TestContext TestContext { get; set; }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetOutputs")]
         public void GetOutputs_Called_ShouldReturnListWithResultValueInIt()
         {
             //------------Setup for test--------------------------
@@ -49,7 +50,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         #region Forward Sort Tests
 
-        [TestMethod]
+        [Test]
         public void FieldSpecifiedSortForwards_Numeric_Expected_Recordset_Sorted_Top_To_Bottom()
         {
             TestStartNode = new FlowStep
@@ -84,7 +85,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
 
 
-        [TestMethod]
+        [Test]
         public void String_ForwardSort_String_Expected_RecordSetSortedAscending()
         {
             TestStartNode = new FlowStep
@@ -117,7 +118,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             CollectionAssert.AreEqual(expected, actual, new ActivityUnitTests.Utils.StringComparer());
         }
 
-        [TestMethod]
+        [Test]
         public void NoFieldSpecifiedSortForwards_Expected_No_Change()
         {
             SetupArguments(
@@ -140,7 +141,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         #region Backward Sort Tests
 
-        [TestMethod]
+        [Test]
         public void FieldSpecifiedSortBackwards_Expected_Recordset_Sorted_Bottom_To_Top()
         {
 
@@ -160,7 +161,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             CollectionAssert.AreEqual(expected, actual, new ActivityUnitTests.Utils.StringComparer());
         }
 
-        [TestMethod]
+        [Test]
         public void NoFieldSpecifiedSortBackwards_Expected_Reverse_Order()
         {
             SetupArguments(
@@ -182,7 +183,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         #region Negative Test Cases
 
-        [TestMethod]
+        [Test]
         public void RecordsetDoesntExist_Expected_No_Change()
         {
             SetupArguments(
@@ -201,7 +202,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             CollectionAssert.AreEqual(expected, actual, new ActivityUnitTests.Utils.StringComparer());
         }
 
-        [TestMethod]
+        [Test]
         public void FieldDoesntExistInRecordset_Expected_No_Change()
         {
             SetupArguments(
@@ -221,7 +222,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             CollectionAssert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Error_Handled_Correctly()
         {
             TestStartNode = new FlowStep
@@ -244,9 +245,9 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSortRecordsActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSortRecordsActivity_UpdateForEachInputs")]
         public void DsfSortRecordsActivity_UpdateForEachInputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -261,9 +262,9 @@ namespace Dev2.Tests.Activities.ActivityTests
 
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSortRecordsActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSortRecordsActivity_UpdateForEachInputs")]
         public void DsfSortRecordsActivity_UpdateForEachInputs_MoreThan1Updates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -278,9 +279,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Test2", act.SortField);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSortRecordsActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSortRecordsActivity_UpdateForEachInputs")]
         public void DsfSortRecordsActivity_UpdateForEachInputs_1Update_UpdateInputPath()
         {
             //------------Setup for test--------------------------
@@ -294,9 +295,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Test", act.SortField);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSortRecordsActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSortRecordsActivity_UpdateForEachOutputs")]
         public void DsfSortRecordsActivity_UpdateForEachOutputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -308,9 +309,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(SortField, act.SortField);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSortRecordsActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSortRecordsActivity_UpdateForEachOutputs")]
         public void DsfSortRecordsActivity_UpdateForEachOutputs_MoreThan1Updates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -325,9 +326,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(SortField, act.SortField);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSortRecordsActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSortRecordsActivity_UpdateForEachOutputs")]
         public void DsfSortRecordsActivity_UpdateForEachOutputs_1Updates_UpdateCommandResult()
         {
             //------------Setup for test--------------------------
@@ -341,9 +342,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Test", act.SortField);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSortRecordsActivity_GetForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSortRecordsActivity_GetForEachInputs")]
         public void DsfSortRecordsActivity_GetForEachInputs_WhenHasExpression_ReturnsInputList()
         {
             //------------Setup for test--------------------------
@@ -358,9 +359,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(SortField, dsfForEachItems[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSortRecordsActivity_GetForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSortRecordsActivity_GetForEachOutputs")]
         public void DsfSortRecordsActivity_GetForEachOutputs_WhenHasResult_ReturnsOutputList()
         {
             //------------Setup for test--------------------------
@@ -375,9 +376,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(SortField, dsfForEachItems[0].Value);
         }
  
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DsfSortRecordsActivity_Execute")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DsfSortRecordsActivity_Execute")]
         public void DsfSortRecordsActivity_Execute_GetDebugOutputs_ExpectCorrectCount()
         {
             TestStartNode = new FlowStep
@@ -403,9 +404,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(10,debugOut[0].ResultsList.Count);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DsfSortRecordsActivity_Execute")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DsfSortRecordsActivity_Execute")]
         public void DsfSortRecordsActivity_Execute_SingleRecordSetRuleCalled_ExpectNoResultsSortFieldIncorrect()
         {
             TestStartNode = new FlowStep
@@ -427,9 +428,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(0, debugOut.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSortRecordsActivity_GetState")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSortRecordsActivity_GetState")]
         public void DsfSortRecordsActivity_GetState_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------

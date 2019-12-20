@@ -13,18 +13,19 @@ using Dev2.Common.Interfaces.Security;
 using Dev2.Studio.Core.Factories;
 using Dev2.Studio.Interfaces;
 using Dev2.Studio.Interfaces.Enums;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Core.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ResourceModelFactoryTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ResourceModelFactory_CreateResourceModel")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ResourceModelFactory_CreateResourceModel")]
         public void ResourceModelFactory_CreateResourceModel_UserPermissions_Contribute()
         {
             Verify_CreateResourceModel_UserPermissions(environmentModel => ResourceModelFactory.CreateResourceModel(environmentModel));
@@ -33,80 +34,80 @@ namespace Dev2.Core.Tests
             Verify_CreateResourceModel_UserPermissions(environmentModel => ResourceModelFactory.CreateResourceModel(environmentModel, "WorkflowService", "resourceName", "displayName"));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ResourceModelFactory_CreateResourceModel")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ResourceModelFactory_CreateResourceModel")]
         public void ResourceModelFactory_CreateResourceModel_WorkflowService()
         {
             Verify_CreateResourceModel_ResourceType(environmentModel => ResourceModelFactory.CreateResourceModel(environmentModel, "WorkflowService", "displayName"), ResourceType.WorkflowService, "displayName", "", "WorkflowService");
             Verify_CreateResourceModel_ResourceType(environmentModel => ResourceModelFactory.CreateResourceModel(environmentModel, "WorkflowService", "resourceName", "displayName"), ResourceType.WorkflowService, "displayName", "resourceName", "WorkflowService");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ResourceModelFactory_CreateResourceModel")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ResourceModelFactory_CreateResourceModel")]
         public void ResourceModelFactory_CreateResourceModel_OauthSource()
         {
             Verify_CreateResourceModel_ResourceType(environmentModel => ResourceModelFactory.CreateResourceModel(environmentModel, "DropboxSource", "SelectedOauthSource"), ResourceType.Source, "SelectedOauthSource", "", "DropboxSource");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ResourceModelFactory_CreateResourceModel")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ResourceModelFactory_CreateResourceModel")]
         public void ResourceModelFactory_CreateResourceModel_ResourceService()
         {
             Verify_CreateResourceModel_ResourceType(environmentModel => ResourceModelFactory.CreateResourceModel(environmentModel, "ResourceService", "displayName"), ResourceType.Service, "PluginService", "", "PluginService");
             Verify_CreateResourceModel_ResourceType(environmentModel => ResourceModelFactory.CreateResourceModel(environmentModel, "ResourceService", "resourceName", "displayName"), ResourceType.Service, "PluginService", "resourceName", "PluginService");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ResourceModelFactory_CreateResourceModel")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ResourceModelFactory_CreateResourceModel")]
         public void ResourceModelFactory_CreateResourceModel_WebService()
         {
             Verify_CreateResourceModel_ResourceType(environmentModel => ResourceModelFactory.CreateResourceModel(environmentModel, "WebService", "displayName"), ResourceType.Service, "displayName", "", "WebService");
             Verify_CreateResourceModel_ResourceType(environmentModel => ResourceModelFactory.CreateResourceModel(environmentModel, "WebService", "resourceName", "displayName"), ResourceType.Service, "displayName", "resourceName", "WebService");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ResourceModelFactory_CreateResourceModel")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ResourceModelFactory_CreateResourceModel")]
         public void ResourceModelFactory_CreateResourceModel_Server()
         {
             Verify_CreateResourceModel_ResourceType(environmentModel => ResourceModelFactory.CreateResourceModel(environmentModel, "Server", "displayName"), ResourceType.Server, "displayName", "", "ServerSource");
             Verify_CreateResourceModel_ResourceType(environmentModel => ResourceModelFactory.CreateResourceModel(environmentModel, "Server", "resourceName", "displayName"), ResourceType.Server, "displayName", "resourceName", "ServerSource");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ResourceModelFactory_CreateResourceModel")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ResourceModelFactory_CreateResourceModel")]
         public void ResourceModelFactory_CreateResourceModel_DbSource()
         {
             Verify_CreateResourceModel_ResourceType(environmentModel => ResourceModelFactory.CreateResourceModel(environmentModel, "DbSource", "displayName"), ResourceType.Source, "displayName", "", "DbSource");
             Verify_CreateResourceModel_ResourceType(environmentModel => ResourceModelFactory.CreateResourceModel(environmentModel, "DbSource", "resourceName", "displayName"), ResourceType.Source, "displayName", "resourceName", "DbSource");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ResourceModelFactory_CreateResourceModel")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ResourceModelFactory_CreateResourceModel")]
         public void ResourceModelFactory_CreateResourceModel_ResourceSource()
         {
             Verify_CreateResourceModel_ResourceType(environmentModel => ResourceModelFactory.CreateResourceModel(environmentModel, "ResourceSource", "displayName"), ResourceType.Source, "Plugin", "", "PluginSource");
             Verify_CreateResourceModel_ResourceType(environmentModel => ResourceModelFactory.CreateResourceModel(environmentModel, "ResourceSource", "resourceName", "displayName"), ResourceType.Source, "Plugin", "resourceName", "PluginSource");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ResourceModelFactory_CreateResourceModel")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ResourceModelFactory_CreateResourceModel")]
         public void ResourceModelFactory_CreateResourceModel_WebSource()
         {
             Verify_CreateResourceModel_ResourceType(environmentModel => ResourceModelFactory.CreateResourceModel(environmentModel, "WebSource", "displayName"), ResourceType.Source, "displayName", "", "WebSource");
             Verify_CreateResourceModel_ResourceType(environmentModel => ResourceModelFactory.CreateResourceModel(environmentModel, "WebSource", "resourceName", "displayName"), ResourceType.Source, "displayName", "resourceName", "WebSource");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ResourceModelFactory_CreateResourceModel")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ResourceModelFactory_CreateResourceModel")]
         public void ResourceModelFactory_CreateResourceModel_EmailSource()
         {
             Verify_CreateResourceModel_ResourceType(environmentModel => ResourceModelFactory.CreateResourceModel(environmentModel, "EmailSource", "displayName"), ResourceType.Source, "displayName", "", "EmailSource");

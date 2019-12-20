@@ -16,17 +16,18 @@ using Dev2.Runtime.ServiceModel.Data;
 using Dev2.SignalR.Wrappers;
 using Dev2.SignalR.Wrappers.New;
 using Dev2.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Core.Tests.Network
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public partial class ServerProxyTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServerProxy_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServerProxy_Constructor")]
         public void ServerProxy_Constructor_DefaultConstruction_ShouldHaveEsbProxy()
         {
             //------------Setup for test--------------------------
@@ -38,9 +39,9 @@ namespace Dev2.Core.Tests.Network
             Assert.IsNotNull(serverProxy.EsbProxy);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServerProxy_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServerProxy_Constructor")]
         public void ServerProxy_Constructor_ParameterUserNamePasswordWebserverURI_ShouldHaveEsbProxy()
         {
             //------------Setup for test--------------------------
@@ -55,9 +56,9 @@ namespace Dev2.Core.Tests.Network
             Assert.AreEqual(AuthenticationType.User, serverProxy.AuthenticationType);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServerProxy_ExecuteCommand")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServerProxy_ExecuteCommand")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ServerProxy_ExecuteCommand_WhenNullPayload_ExceptionThrown()
         {
@@ -68,9 +69,9 @@ namespace Dev2.Core.Tests.Network
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServerProxy_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServerProxy_Constructor")]
         public void ServerProxy_Constructor_DefaultConstruction_ShouldHaveEsbProxyWithSendMemoSubscription()
         {
             //------------Setup for test--------------------------
@@ -81,9 +82,9 @@ namespace Dev2.Core.Tests.Network
             Assert.IsNotNull(subscription);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServerProxy_StateChange")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServerProxy_StateChange")]
         public void ServerProxy_StateChange_FromConnectedToReconnecting_IsAuthorizedFalse()
         {
             //------------Setup for test--------------------------
@@ -103,9 +104,9 @@ namespace Dev2.Core.Tests.Network
             Assert.IsTrue(_permissionsChangedFired);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServerProxy_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServerProxy_Constructor")]
         public void ServerProxy_Constructor_DefaultConstruction_ShouldHaveEsbProxyWithSendDebugStateSubscription()
         {
             //------------Setup for test--------------------------
@@ -116,9 +117,9 @@ namespace Dev2.Core.Tests.Network
             Assert.IsNotNull(subscription);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerProxy_Connect")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerProxy_Connect")]
         public void ServerProxy_ConnectSetsId()
         {
             //------------Setup for test--------------------------
@@ -141,9 +142,10 @@ namespace Dev2.Core.Tests.Network
             Assert.AreEqual(x,serverProxy.ID);
         }
         
-        [TestMethod, Timeout(3000)]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServerProxy_IsLocalhost")]
+        [Test]
+        [Timeout(3000)]
+        [Author("Hagashen Naidu")]
+        [Category("ServerProxy_IsLocalhost")]
         public void ServerProxy_IsLocalHost_DisplayNamelocalhost_ReturnTrue()
         {
             //------------Setup for test--------------------------
@@ -158,9 +160,10 @@ namespace Dev2.Core.Tests.Network
             Assert.IsTrue(isLocalHost);
         }
 
-        [TestMethod, Timeout(3000)]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServerProxy_IsLocalhost")]
+        [Test]
+        [Timeout(3000)]
+        [Author("Hagashen Naidu")]
+        [Category("ServerProxy_IsLocalhost")]
         public void ServerProxy_IsLocalHost_DisplayNameLoCaLhOst_ReturnTrue()
         {
             //------------Setup for test--------------------------
@@ -175,9 +178,10 @@ namespace Dev2.Core.Tests.Network
             Assert.IsTrue(isLocalHost);
         }
 
-        [TestMethod, Timeout(3000)]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServerProxy_IsLocalhost")]
+        [Test]
+        [Timeout(3000)]
+        [Author("Hagashen Naidu")]
+        [Category("ServerProxy_IsLocalhost")]
         public void ServerProxy_IsLocalHost_DisplayNamelocalhostConnected_ReturnTrue()
         {
             //------------Setup for test--------------------------
@@ -192,9 +196,10 @@ namespace Dev2.Core.Tests.Network
             Assert.IsTrue(isLocalHost);
         }
 
-        [TestMethod, Timeout(3000)]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServerProxy_IsLocalhost")]
+        [Test]
+        [Timeout(3000)]
+        [Author("Hagashen Naidu")]
+        [Category("ServerProxy_IsLocalhost")]
         public void ServerProxy_IsLocalHost_DisplayNamelocalhost2_ReturnFalse()
         {
             //------------Setup for test--------------------------
@@ -209,9 +214,10 @@ namespace Dev2.Core.Tests.Network
             Assert.IsFalse(isLocalHost);
         }
 
-        [TestMethod, Timeout(3000)]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServerProxy_IsLocalhost")]
+        [Test]
+        [Timeout(3000)]
+        [Author("Hagashen Naidu")]
+        [Category("ServerProxy_IsLocalhost")]
         public void ServerProxy_IsLocalHost_DisplayNameEmpty_ReturnFalse()
         {
             //------------Setup for test--------------------------
@@ -226,9 +232,10 @@ namespace Dev2.Core.Tests.Network
             Assert.IsFalse(isLocalHost);
         }
         
-        [TestMethod, Timeout(3000)]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServerProxy_IsLocalhost")]
+        [Test]
+        [Timeout(3000)]
+        [Author("Hagashen Naidu")]
+        [Category("ServerProxy_IsLocalhost")]
         public void ServerProxy_IsLocalHost_DisplayNameNull_ReturnFalse()
         {
             //------------Setup for test--------------------------

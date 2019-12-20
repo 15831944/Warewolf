@@ -21,22 +21,23 @@ using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Scheduler;
 using Dev2.TaskScheduler.Wrappers;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Microsoft.Win32.TaskScheduler;
 using Moq;
 using Newtonsoft.Json;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class GetScheduledResourcesTest
     {
 
 
         Mock<IServerSchedulerFactory> _factory;
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -48,9 +49,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -63,9 +64,9 @@ namespace Dev2.Tests.Runtime.Services
         }
 
 
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Services_ScheduledResource_Get")]
-        [TestMethod]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Services_ScheduledResource_Get")]
+        [Test]
 
         public void GetScheduledResources_Execute_ReturnsScheduledResources()
 
@@ -79,9 +80,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(result.Count, 1);
             Assert.AreEqual("a", result.First().Name);
         }
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Services_ScheduledResource_Get")]
-        [TestMethod]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Services_ScheduledResource_Get")]
+        [Test]
         public void GetScheduledResources_ServiceName()
         {
             var esbMethod = new GetScheduledResources();
@@ -89,9 +90,9 @@ namespace Dev2.Tests.Runtime.Services
 
 
         }
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Services_ScheduledResource_Get")]
-        [TestMethod]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Services_ScheduledResource_Get")]
+        [Test]
         public void GetScheduledResourcesReturnsDynamicService()
         {
             var esb = new GetScheduledResources();
@@ -107,9 +108,9 @@ namespace Dev2.Tests.Runtime.Services
         }
 
 
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Services_ScheduledResource_Get")]
-        [TestMethod]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Services_ScheduledResource_Get")]
+        [Test]
         public void GetScheduledResources_Execute_ReturnsTrigger()
         {
             var output = RunOutput();

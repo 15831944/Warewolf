@@ -10,17 +10,18 @@
 
 using System.Windows;
 using Dev2.CustomControls.Converters;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests.AppResources.Converters
 {
-    [TestClass]
-	[TestCategory("Studio Resources Core")]
+    [TestFixture]
+    [SetUpFixture]
+	[Category("Studio Resources Core")]
     public class EmptyStringToVisibilityConverterTests
     {
-        [TestMethod]
-        [Owner("Jurie Smit")]
-        [TestCategory("EmptyStringToVisibilityConverter")]
+        [Test]
+        [Author("Jurie Smit")]
+        [Category("EmptyStringToVisibilityConverter")]
         [Description("When a string is empty, expect true when istrueisempty equals true")]
         public void EmptyStringToVisibilityConverter_UnitTest_CollapsedWhenEmptyStringEmpty_ExpectsCollapsed()
         {
@@ -31,9 +32,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Jurie Smit")]
-        [TestCategory("EmptyStringToVisibilityConverter")]
+        [Test]
+        [Author("Jurie Smit")]
+        [Category("EmptyStringToVisibilityConverter")]
         [Description("When a string is null, expect true when istrueisempty equals true")]
         public void EmptyStringToVisibilityConverter_UnitTest_CollapsedWhenEmptyStringNull_ExpectsCollapsed()
         {
@@ -44,9 +45,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Jurie Smit")]
-        [TestCategory("EmptyStringToVisibilityConverter")]
+        [Test]
+        [Author("Jurie Smit")]
+        [Category("EmptyStringToVisibilityConverter")]
         [Description("When a string is white space, expect true when istrueisempty equals true")]
         public void EmptyStringToVisibilityConverter_UnitTest_CollapsedWhenEmptyStringWhiteSpace_ExpectsCollapsed()
         {
@@ -57,9 +58,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Jurie Smit")]
-        [TestCategory("EmptyStringToVisibilityConverter")]
+        [Test]
+        [Author("Jurie Smit")]
+        [Category("EmptyStringToVisibilityConverter")]
         [Description("When a string is not empty, null or whitespace, expect false when istrueisempty equals true")]
         public void EmptyStringToVisibilityConverter_UnitTest_CollapsedWhenEmptyStringValue_ExpectsVisible()
         {
@@ -70,9 +71,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Jurie Smit")]
-        [TestCategory("EmptyStringToVisibilityConverter")]
+        [Test]
+        [Author("Jurie Smit")]
+        [Category("EmptyStringToVisibilityConverter")]
         [Description("When a string is empty, expect dalse when istrueisempty equals falsee")]
         public void EmptyStringToVisibilityConverter_UnitTest_VisibleWhenEmptyStringEmpty_ExpectsVisible()
         {
@@ -83,9 +84,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Jurie Smit")]
-        [TestCategory("EmptyStringToVisibilityConverter")]
+        [Test]
+        [Author("Jurie Smit")]
+        [Category("EmptyStringToVisibilityConverter")]
         [Description("When a string is null, expect false when istrueisempty equals false")]
         public void
             EmptyStringToVisibilityConverter_UnitTest_VisibleWhenEmptyStringNull_ExpectsVisible()
@@ -97,9 +98,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Jurie Smit")]
-        [TestCategory("EmptyStringToVisibilityConverter")]
+        [Test]
+        [Author("Jurie Smit")]
+        [Category("EmptyStringToVisibilityConverter")]
         [Description("When a string is white space, expect false when istrueisempty equals false")]
         public void EmptyStringToVisibilityConverter_UnitTest_VisibleWhenEmptyStringWhiteSpace_ExpectsVisible()
         {
@@ -110,9 +111,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Jurie Smit")]
-        [TestCategory("EmptyStringToVisibilityConverter")]
+        [Test]
+        [Author("Jurie Smit")]
+        [Category("EmptyStringToVisibilityConverter")]
         [Description("When a string is not empty, null or whitespace, expect true when istrueisempty equals false")]
         public void EmptyStringToVisibilityConverter_UnitTest_VisibleWhenEmptyStringValue_ExpectsCollapsed()
         {

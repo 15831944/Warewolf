@@ -15,16 +15,17 @@ using System.Text;
 using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.Enums;
 using Dev2.Runtime.ESB.Management.Services;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 // ReSharper disable InconsistentNaming
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class GetFilesTest
     {
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void HandlesType_Returns_GetFiles()
         {
             //------------Setup for test-------------------------
@@ -34,8 +35,8 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("GetFiles", getFiles.HandlesType());
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void GetResourceID_Returns_EmptyGuid()
         {
             //------------Setup for test-------------------------
@@ -46,8 +47,8 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resourceID);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void GetAuthorizationContextForService_Returns_Any()
         {
             //------------Setup for test-------------------------
@@ -58,8 +59,8 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(AuthorizationContext.Any, authorizationContextForService);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void BuildFileListing_Given_FileInfo_Returns_NewFileListing()
         {
             //------------Setup for test-------------------------

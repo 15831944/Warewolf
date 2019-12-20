@@ -18,7 +18,7 @@ using Dev2.Interfaces;
 using Dev2.Runtime.Interfaces;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Runtime.ServiceModel.Esb.Brokers.ComPlugin;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -29,12 +29,13 @@ using Warewolf.Storage;
 
 namespace Dev2.Tests.Activities.Activities
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfComDllActivityTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_Method_IsNull_Expect_Error()
         {
             var mockEsbChannel = new Mock<IEsbChannel>();
@@ -49,9 +50,9 @@ namespace Dev2.Tests.Activities.Activities
         }
 
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_ExecutionImpl_Inputs_IsNull_Catch_Expect_Error()
         {
             //-----------------------Arrange---------------------
@@ -78,9 +79,9 @@ namespace Dev2.Tests.Activities.Activities
             Assert.AreEqual("Object reference not set to an instance of an object.", errorResult.FetchErrors()[0]);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_ExecutionImpl_Catch_Common_IsNotNull_Expect_NoError()
         {
             //-----------------------Arrange---------------------
@@ -131,9 +132,9 @@ namespace Dev2.Tests.Activities.Activities
             Assert.AreEqual(0, errorResult.FetchErrors().Count);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_TryExecute_injectVal_IsNull_Expect_NoError()
         {
             //-----------------------Arrange---------------------
@@ -192,9 +193,9 @@ namespace Dev2.Tests.Activities.Activities
             Assert.AreEqual(0, errorResult.FetchErrors().Count);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_GetHashCode_IsNotNull_Expect_True()
         {
             //-----------------------Arrange---------------------
@@ -205,9 +206,9 @@ namespace Dev2.Tests.Activities.Activities
             Assert.IsNotNull(hashCode);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_Equals_IsNotNull_Expect_True()
         {
             //-----------------------Arrange---------------------
@@ -218,9 +219,9 @@ namespace Dev2.Tests.Activities.Activities
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_Equals_IsNull_Expect_False()
         {
             //-----------------------Arrange---------------------
@@ -231,9 +232,9 @@ namespace Dev2.Tests.Activities.Activities
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_Equals_NotSame_Expect_False()
         {
             //-----------------------Arrange---------------------
@@ -244,9 +245,9 @@ namespace Dev2.Tests.Activities.Activities
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_ObjectEquals_NotSame_Expect_False()
         {
             //-----------------------Arrange---------------------
@@ -259,9 +260,9 @@ namespace Dev2.Tests.Activities.Activities
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfComDllActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfComDllActivity))]
         public void DsfComDllActivity_ObjectEquals_IsNull_Expect_False()
         {
             //-----------------------Arrange---------------------

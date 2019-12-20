@@ -9,16 +9,17 @@
 */
 
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class RuleBaseTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("Rule_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("Rule_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
 
         public void Rule_Constructor_GetValueIsNull_ThrowsArgumentNullException()
@@ -35,9 +36,9 @@ namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
         }
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("Rule_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("Rule_Constructor")]
 
         public void Rule_Constructor_GetValueIsNotNull_PropertiesInitialized()
 
@@ -54,9 +55,9 @@ namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
         }
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("Rule_CreatError")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("Rule_CreatError")]
 
         public void Rule_CreatError_ReturnsNonNullError()
 

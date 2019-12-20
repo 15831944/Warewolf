@@ -19,18 +19,19 @@ using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Scheduler;
 using Dev2.TaskScheduler.Wrappers;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Microsoft.Win32.TaskScheduler;
 using Moq;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DeleteScheduledResourceTest
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -42,9 +43,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -57,34 +58,34 @@ namespace Dev2.Tests.Runtime.Services
         }
 
 
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Services_ScheduledResource_Delete")]
-        [TestMethod]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Services_ScheduledResource_Delete")]
+        [Test]
         public void DeleteResourceTest_ServiceName()
         {
             SchedulerTestBaseStaticMethods.SaveScheduledResourceTest_ServiceName("DeleteScheduledResourceService", new DeleteScheduledResource());
         }
 
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Services_ScheduledResource_Delete")]
-        [TestMethod]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Services_ScheduledResource_Delete")]
+        [Test]
         public void DeleteResourcesReturnsDynamicService()
         {
             SchedulerTestBaseStaticMethods.GetScheduledResourcesReturnsDynamicService(new DeleteScheduledResource());
 
         }
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Services_ScheduledResource_Delete")]
-        [TestMethod]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Services_ScheduledResource_Delete")]
+        [Test]
         public void ScheduledResource_DeleteValid()
         {
             var output = RunOutput(true);
             Assert.AreEqual(false, output.HasError);
 
         }
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Services_ScheduledResource_Delete")]
-        [TestMethod]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Services_ScheduledResource_Delete")]
+        [Test]
         public void ScheduledResource_DeleteInValid()
         {
             var output = RunOutput(false);

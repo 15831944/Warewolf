@@ -27,7 +27,7 @@ using Dev2.Studio.Interfaces.DataList;
 using Dev2.Studio.Interfaces.Enums;
 using Dev2.Studio.ViewModels.Diagnostics;
 using Dev2.Studio.ViewModels.Workflow;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Dev2.Studio.ViewModels.WorkSurface;
 using Dev2.Common.Interfaces.Studio.Controller;
@@ -35,7 +35,8 @@ using Dev2.Services.Security;
 
 namespace Dev2.Core.Tests.Workflows
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WorkflowInputDataViewModelTests
     {
         readonly Guid _resourceID = Guid.Parse("2b975c6d-670e-49bb-ac4d-fb1ce578f66a");
@@ -44,9 +45,9 @@ namespace Dev2.Core.Tests.Workflows
 
         public TestContext TestContext { get; set; }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         public void WorkflowInputDataViewModel_LoadInputs_BlankDataList_Expected_Blank_Inputs()
         {
             var mockResouce = GetMockResource();
@@ -59,9 +60,9 @@ namespace Dev2.Core.Tests.Workflows
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         public void WorkflowInputDataViewModel_Save_EmptyDataList_Expected_NoErrors()
         {
             var popupController = new Mock<IPopupController>();
@@ -80,9 +81,9 @@ namespace Dev2.Core.Tests.Workflows
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         public void WorkflowInputDataViewModel_OkCommand_IsInError_Expected_ErrorShown()
         {
             var popupController = new Mock<IPopupController>();
@@ -99,9 +100,9 @@ namespace Dev2.Core.Tests.Workflows
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         public void WorkflowInputDataViewModel_ViewInBrowserCommand_IsInError_Expected_ErrorNotShown()
         {
             var popupController = new Mock<IPopupController>();
@@ -119,9 +120,9 @@ namespace Dev2.Core.Tests.Workflows
         }
 
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         public void WorkflowInputDataViewModel_ViewInBrowser_Expected_ErrorNotShown()
         {
             var popupController = new Mock<IPopupController>();
@@ -140,9 +141,9 @@ namespace Dev2.Core.Tests.Workflows
         }
 
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         public void WorkflowInputDataViewModel_ViewInBrowser_Expected_ErrorShown()
         {
             var popupController = new Mock<IPopupController>();
@@ -159,9 +160,9 @@ namespace Dev2.Core.Tests.Workflows
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         public void WorkflowInputDataViewModel_Close_Updates_WorkflowLink()
         {
             var mockResouce = GetMockResource();
@@ -183,9 +184,9 @@ namespace Dev2.Core.Tests.Workflows
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         public void WorkflowInputDataViewModel_Cancel_NullDataList_Expected_NoErrors()
         {
             var mockResouce = GetMockResource();
@@ -198,9 +199,9 @@ namespace Dev2.Core.Tests.Workflows
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         public void WorkflowInputDataViewModel_LoadInputs_NullDataList_Expected_Blank_Inputs()
         {
             var mockResouce = GetMockResource();
@@ -212,9 +213,9 @@ namespace Dev2.Core.Tests.Workflows
             }
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         [ExpectedException(typeof(ArgumentNullException))]
         public void WorkflowInputDataViewModel_Create_NullResourceModel_ThrowException()
         {
@@ -224,9 +225,9 @@ namespace Dev2.Core.Tests.Workflows
             }
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         public void WorkflowInputDataViewModel_Create_WithResourceModel_IsValid()
         {
             //------------Setup for test--------------------------
@@ -240,9 +241,9 @@ namespace Dev2.Core.Tests.Workflows
             }
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         public void WorkflowInputDataViewModel_SetWorkflowInputData_AddRow_WhenNotAllColumnsInput_ExpectNewRowWithOnlyInputColumns()
         {
             //------------Setup for test--------------------------
@@ -283,9 +284,9 @@ namespace Dev2.Core.Tests.Workflows
             }
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         public void WorkflowInputDataViewModel_SetWorkflowInputData_AddBlankRow_WhenNotAllColumnsInput_ExpectNewRowWithOnlyInputColumns()
         {
             //------------Setup for test--------------------------
@@ -324,9 +325,9 @@ namespace Dev2.Core.Tests.Workflows
             }
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         public void WorkflowInputDataViewModel_SetWorkflowInputData_RemoveRow_WhenNotAllColumnsInput_ExpectRowRemoved()
         {
             //------------Setup for test--------------------------
@@ -369,9 +370,9 @@ namespace Dev2.Core.Tests.Workflows
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         public void WorkflowInputDataViewModel_SetWorkflowInputData_RemoveRow_WhenNotAllColumnsInput_ExpectRowRemoved2()
         {
             //------------Setup for test--------------------------
@@ -427,9 +428,9 @@ namespace Dev2.Core.Tests.Workflows
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         public void WorkflowInputDataViewModel_SetWorkflowInputData_RemoveRow_WhenNotAllColumnsInput_ExpectRowRemoved4()
         {
             //------------Setup for test--------------------------
@@ -484,9 +485,9 @@ namespace Dev2.Core.Tests.Workflows
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         public void WorkflowInputDataViewModel_SetWorkflowInputData_RemoveRow_WhenNotAllColumnsInput_ExpectRowRemoved3()
         {
             //------------Setup for test--------------------------
@@ -544,9 +545,9 @@ namespace Dev2.Core.Tests.Workflows
             }
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         public void WorkflowInputDataViewModel_SetWorkflowInputData_GetNexRow_WhenNotAllColumnsInput_ExpectRowRemoved()
         {
             //------------Setup for test--------------------------
@@ -585,9 +586,9 @@ namespace Dev2.Core.Tests.Workflows
             }
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         public void WorkflowInputDataViewModel_SetWorkflowInputData_GetPreviousRow_WhenNotAllColumnsInput_ExpectRowRemoved()
         {
             //------------Setup for test--------------------------
@@ -626,9 +627,9 @@ namespace Dev2.Core.Tests.Workflows
             }
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         public void WorkflowInputDataViewModel_SetWorkflowInputData_GetPreviousRow_NotFound_ExpectItem()
         {
             //------------Setup for test--------------------------
@@ -666,9 +667,9 @@ namespace Dev2.Core.Tests.Workflows
             }
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         public void WorkflowInputDataViewModel_SetWorkflowInputData_GetPreviousRow_Null_ExpectNull()
         {
             //------------Setup for test--------------------------
@@ -706,9 +707,9 @@ namespace Dev2.Core.Tests.Workflows
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         public void WorkflowInputDataViewModel_SetXmlData_WithObjectAndRecordSet()
         {
             //------------Setup for test--------------------------
@@ -751,9 +752,9 @@ namespace Dev2.Core.Tests.Workflows
             }
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         public void WorkflowInputDataViewModel_SetWorkflowInputData_AddRow_WhenAddingScalarAndNotAllColumnsHaveInput_ExpectNoNewInputs()
         {
             //------------Setup for test--------------------------
@@ -793,9 +794,9 @@ namespace Dev2.Core.Tests.Workflows
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         public void WorkflowInputDataViewModel_CloseInputExpectFinishMessage()
         {
             var debugVM = CreateDebugOutputViewModel();
@@ -815,9 +816,9 @@ namespace Dev2.Core.Tests.Workflows
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         public void WorkflowInputDataViewModel_Constructor_DebugTO_Initialized()
         {
             //------------Setup for test--------------------------
@@ -856,9 +857,9 @@ namespace Dev2.Core.Tests.Workflows
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         public void WorkflowInputDataViewModel_ExecuteWorkflow_InvokesSendExecuteRequest()
         {
             //------------Setup for test--------------------------
@@ -906,9 +907,9 @@ namespace Dev2.Core.Tests.Workflows
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         public void WorkflowInputDataViewModel_ExecuteWorkflowViewInBrowser_InvokesSendViewInBrowserRequest_RecSet()
         {
             //------------Setup for test--------------------------
@@ -950,9 +951,9 @@ namespace Dev2.Core.Tests.Workflows
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         public void WorkflowInputDataViewModel_ExecuteWorkflowViewInBrowser_InvokesSendViewInBrowserRequest_ScalarsOnly()
         {
             //------------Setup for test--------------------------
@@ -995,9 +996,9 @@ namespace Dev2.Core.Tests.Workflows
             }
         }
 
-        [TestMethod]
-        [Owner("Devaji Chotaliya")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Devaji Chotaliya")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         public void WorkflowInputDataViewModel_ExecuteWorkflowViewInBrowser_CheckInputDataWithSpecialCharacters_InvokesSendViewInBrowserRequest_RecSet()
         {
             //------------Setup for test--------------------------
@@ -1038,9 +1039,9 @@ namespace Dev2.Core.Tests.Workflows
             }
         }
 
-        [TestMethod]
-        [Owner("Devaji Chotaliya")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Devaji Chotaliya")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         public void WorkflowInputDataViewModel_ExecuteWorkflowViewInBrowser_CheckInputDataWithSpecialCharacters_InvokesSendViewInBrowserRequest_ScalarsOnly()
         {
             //------------Setup for test--------------------------
@@ -1082,9 +1083,9 @@ namespace Dev2.Core.Tests.Workflows
             }
         }
 
-        [TestMethod]
-        [Owner("Devaji Chotaliya")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Devaji Chotaliya")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         public void WorkflowInputDataViewModel_ViewInBrowser_CheckWorkflowInputDataLimits_InvokeSendViewInBrowserRequest_Expected_MaximumDataLimitsWarningNotShown()
         {
             //------------Setup for test--------------------------
@@ -1127,9 +1128,9 @@ namespace Dev2.Core.Tests.Workflows
             }
         }
 
-        [TestMethod]
-        [Owner("Devaji Chotaliya")]
-        [TestCategory(nameof(WorkflowInputDataViewModel))]
+        [Test]
+        [Author("Devaji Chotaliya")]
+        [Category(nameof(WorkflowInputDataViewModel))]
         public void WorkflowInputDataViewModel_ViewInBrowser_CheckWorkflowInputDataLimits_Expected_MaximumDataLimitsWarningShown()
         {
             var popupController = new Mock<IPopupController>();

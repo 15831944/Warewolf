@@ -13,12 +13,13 @@ using Dev2.Data.ServiceModel;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Core.Messages;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Activities.Designers.Tests.DropBox2016.Download
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
 
     public class DropBoxDownloadViewModelTest
     {
@@ -36,9 +37,9 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Download
             return modelItem;
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DropBoxDownloadViewModel_Construct")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DropBoxDownloadViewModel_Construct")]
         public void DropboxDownload_DropBoxDownloadViewModel_Construct_GivenNewInstance_ShouldBeActivityViewModel()
         {
             //------------Setup for test--------------------------
@@ -49,12 +50,12 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Download
             Assert.IsFalse(dropBoxDownloadViewModel.ShowLarge);
             Assert.AreEqual(dropBoxDownloadViewModel.ThumbVisibility, Visibility.Collapsed);
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(dropBoxDownloadViewModel, typeof(ActivityDesignerViewModel));
+            Assert.IsInstanceOf(dropBoxDownloadViewModel.GetType(), typeof(ActivityDesignerViewModel));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DropBoxDownloadViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DropBoxDownloadViewModel_Handle")]
         public void DropBoxDownloadViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -71,14 +72,14 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Download
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DropboxDownload_Sources_GivenANewDropBoxViewModel_ShouldHaveNotBeNull()
         {
             //---------------Set up test pack-------------------
             var downloadViewModel = CreateMockViewModel();
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOfType(downloadViewModel, typeof(ActivityDesignerViewModel));
+            Assert.IsInstanceOf(downloadViewModel.GetType(), typeof(ActivityDesignerViewModel));
             //---------------Execute Test ----------------------
             Assert.IsNotNull(downloadViewModel.Sources);
             //---------------Test Result -----------------------
@@ -86,8 +87,8 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Download
 
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DropboxDownload_ToPath_GivenActivityIsNew_ShouldBeNullOrEmpty()
         {
             //---------------Set up test pack-------------------
@@ -97,8 +98,8 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Download
             //---------------Test Result -----------------------
             Assert.IsTrue(string.IsNullOrEmpty(downloadViewModel.ToPath));
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DropboxDownload_FromPath_GivenActivityIsNew_ShouldBeNullOrEmpty()
         {
             //---------------Set up test pack-------------------
@@ -110,8 +111,8 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Download
             Assert.IsTrue(string.IsNullOrEmpty(downloadViewModel.FromPath));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DropboxDownload_Result_GivenActivityIsNew_ShouldBeNullOrEmpty()
         {
             //---------------Set up test pack-------------------
@@ -123,8 +124,8 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Download
             Assert.IsTrue(string.IsNullOrEmpty(downloadViewModel.Result));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DropboxDownload_SelectedSourceName_GivenActivityIsNewAndNoSourceSelected_ShouldBeNullOrEmpty()
         {
             //---------------Set up test pack-------------------
@@ -139,9 +140,9 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Download
 
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("SelectedOperation_EditSource")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("SelectedOperation_EditSource")]
         public void DropboxDownload_downloadViewModel_EditSourcePublishesMessage()
         {
             var agg = new Mock<IEventAggregator>();
@@ -160,9 +161,9 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Download
             CustomContainer.DeRegister<IShellViewModel>();
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("SelectedOperation_EditSource")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("SelectedOperation_EditSource")]
         public void DropboxDownload_downloadViewModel_EditSourceOnlyAvailableIfSourceSelected()
         {
             var agg = new Mock<IEventAggregator>();
@@ -176,9 +177,9 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Download
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("SelectedOperation_EditSource")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("SelectedOperation_EditSource")]
         public void DropboxDownload_downloadViewModel_EditSourceAvailableIfSourceSelected()
         {
             var agg = new Mock<IEventAggregator>();
@@ -191,8 +192,8 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Download
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DropboxDownload_ToPath_GivenIsSet_ShouldSetModelItemProperty()
         {
             var agg = new Mock<IEventAggregator>();
@@ -213,8 +214,8 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Download
             Assert.AreEqual("A", modelPropertyValue);
         }
         
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DropboxDownload_Frompath_GivenIsSet_ShouldSetModelItemProperty()
         {
             var agg = new Mock<IEventAggregator>();
@@ -235,8 +236,8 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Download
             Assert.AreEqual("A", modelPropertyValue);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DropboxDownload_Result_GivenIsSet_ShouldSetModelItemProperty()
         {
             var agg = new Mock<IEventAggregator>();
@@ -257,8 +258,8 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Download
             Assert.AreEqual("A", modelPropertyValue);
         }  
         
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DropboxDownload_OverwriteFile_GivenIsSet_ShouldSetModelItemProperty()
         {
             var agg = new Mock<IEventAggregator>();
@@ -280,8 +281,8 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Download
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DropboxDownload_CreateOAuthSource_GivenCanPublish_ShouldResfreshSources()
         {
             var agg = new Mock<IEventAggregator>();
@@ -305,8 +306,8 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Download
             Assert.AreEqual(2, mockVM.Sources.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DropboxDownload_CreateOAuthSource_GivenCanPublish_ShouldPublish()
         {
             var res = new Mock<IResourceRepository>();

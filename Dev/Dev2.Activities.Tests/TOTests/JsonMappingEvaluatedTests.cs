@@ -12,18 +12,19 @@ using System;
 using Dev2.DynamicServices;
 using Dev2.TO;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Tests.Activities.TOTests
 {
 
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class JsonMappingEvaluatedTests
     {
-        [TestMethod]
-        [Owner("Kerneels Roos")]
-        [TestCategory("JsonMappingEvaluated_Constructor")]
+        [Test]
+        [Author("Kerneels Roos")]
+        [Category("JsonMappingEvaluated_Constructor")]
         public void JsonMappingEvaluated_Constructor_SetsProperties()
         {
             //------------Setup for test--------------------------

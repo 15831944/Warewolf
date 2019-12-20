@@ -17,19 +17,20 @@ using Dev2.Common.Interfaces.Diagnostics.Debug;
 using Dev2.Common.State;
 using Dev2.Factories;
 using Dev2.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 
 namespace Dev2.Tests.Activities.FindMissingStrategyTest
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfNativeActivityFindMissingStrategyTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DsfNativeActivity_FindMissing")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DsfNativeActivity_FindMissing")]
         public void DsfNativeActivity_FindMissing_FindsCorrectProperties()
         {
             //------------Setup for test--------------------------

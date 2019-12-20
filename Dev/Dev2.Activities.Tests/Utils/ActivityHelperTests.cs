@@ -18,7 +18,7 @@ using Dev2.Data.SystemTemplates.Models;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Core.Messages;
 using Dev2.Utilities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Activities.Presentation.Model;
@@ -29,12 +29,13 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.Utils
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ActivityHelperTests
     {
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ActivityHelper))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ActivityHelper))]
         public void ActivityHelper_Dev2Decision_SetArmTextDefaults_SetArmText_SetDisplayName()
         {
             //---------------Set up test pack-------------------
@@ -110,9 +111,9 @@ namespace Dev2.Tests.Activities.Utils
             }
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ActivityHelper))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ActivityHelper))]
         public void ActivityHelper_Dev2Decision_Null_FalseArmText_SetArmText()
         {
             //---------------Set up test pack-------------------
@@ -137,9 +138,9 @@ namespace Dev2.Tests.Activities.Utils
             }
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ActivityHelper))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ActivityHelper))]
         public void ActivityHelper_Dev2Decision_Null_TrueArmText_SetArmText()
         {
             //---------------Set up test pack-------------------
@@ -164,9 +165,9 @@ namespace Dev2.Tests.Activities.Utils
             }
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ActivityHelper))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ActivityHelper))]
         public void ActivityHelper_WithKeyProperty_SetSwitchKeyProperty_Dev2Switch()
         {
             var uniqueId = Guid.NewGuid().ToString();
@@ -195,9 +196,9 @@ namespace Dev2.Tests.Activities.Utils
             }
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ActivityHelper))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ActivityHelper))]
         public void ActivityHelper_SetSwitchKeyProperty_Dev2Switch()
         {
             //---------------Set up test pack-------------------
@@ -271,9 +272,9 @@ namespace Dev2.Tests.Activities.Utils
             }
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ActivityHelper))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ActivityHelper))]
         public void ActivityHelper_InjectExpression_Dev2SwitchIsNull_ReturnNull()
         {
             //---------------Set up test pack-------------------
@@ -304,9 +305,9 @@ namespace Dev2.Tests.Activities.Utils
             Assert.IsNull(expr);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ActivityHelper))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ActivityHelper))]
         public void ActivityHelper_InjectExpression_Dev2DecisionStackIsNull_ReturnNull()
         {
             //---------------Set up test pack-------------------
@@ -329,9 +330,9 @@ namespace Dev2.Tests.Activities.Utils
             Assert.IsNull(expr);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ActivityHelper))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ActivityHelper))]
         public void ActivityHelper_Dev2Switch_ExtractData_Null()
         {
             var inner2 = new DsfFlowSwitchActivity
@@ -342,9 +343,9 @@ namespace Dev2.Tests.Activities.Utils
             Assert.AreEqual("Dev2.Data.Decision.Dev2DataListDecisionHandler.Instance.FetchSwitchData", val);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ActivityHelper))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ActivityHelper))]
         public void ActivityHelper_ExtractData_ExpectResult()
         {
             var expressionText = string.Join("", GlobalConstants.InjectedSwitchDataFetch,
@@ -355,9 +356,9 @@ namespace Dev2.Tests.Activities.Utils
             Assert.AreEqual("aaaaaaa", val);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ActivityHelper))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ActivityHelper))]
         public void ActivityHelper_InjectExpression_Dev2Switch()
         {
             //---------------Set up test pack-------------------
@@ -436,9 +437,9 @@ namespace Dev2.Tests.Activities.Utils
             }
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ActivityHelper))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ActivityHelper))]
         public void ActivityHelper_InjectExpression_Dev2DecisionStack()
         {
             //---------------Set up test pack-------------------

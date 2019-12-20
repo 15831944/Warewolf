@@ -21,17 +21,18 @@ using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Runtime.Interfaces;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class GetVersionTest
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -43,9 +44,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -57,9 +58,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(AuthorizationContext.Any, resId);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("GetVersions_HandlesType")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("GetVersions_HandlesType")]
 
         public void GetVersions_HandlesType_ExpectName()
 
@@ -75,9 +76,9 @@ namespace Dev2.Tests.Runtime.Services
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("GetVersions_Execute_InvalidDictionary")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("GetVersions_Execute_InvalidDictionary")]
         public void GetVersions_Execute_ExpectException()
         {
             //------------Setup for test--------------------------
@@ -88,9 +89,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(ExecStatus.Fail, serialiser.Deserialize<ExplorerRepositoryResult>(ax).Status);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("GetVersions_Execute_InvalidDictionary")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("GetVersions_Execute_InvalidDictionary")]
         public void GetVersions_Execute_ExpectException_NoArgs()
         {
             //------------Setup for test--------------------------
@@ -101,9 +102,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(ExecStatus.Fail, serialiser.Deserialize<ExplorerRepositoryResult>(ax).Status);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("GetVersions_Execute_InvalidDictionary")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("GetVersions_Execute_InvalidDictionary")]
         public void GetVersions_Execute_ExpectSuccess_DbType()
         {
             //------------Setup for test--------------------------
@@ -135,9 +136,9 @@ namespace Dev2.Tests.Runtime.Services
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("GetVersions_Execute_InvalidDictionary")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("GetVersions_Execute_InvalidDictionary")]
         public void GetVersions_Execute_ExpectSuccess_NonDbType()
         {
             //------------Setup for test--------------------------
@@ -169,9 +170,9 @@ namespace Dev2.Tests.Runtime.Services
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("GetVersions_HandlesType")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("GetVersions_HandlesType")]
         public void GetVersions_CreateServiceEntry_ExpectProperlyFormedDynamicService()
         {
             //------------Setup for test--------------------------

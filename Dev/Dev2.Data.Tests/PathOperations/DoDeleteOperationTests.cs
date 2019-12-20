@@ -13,17 +13,18 @@ using Dev2.Common.Common;
 using Dev2.Data.Interfaces;
 using Dev2.Data.PathOperations;
 using Dev2.Data.PathOperations.Operations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Data.Tests.PathOperations
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DoDeleteOperationTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoDeleteOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoDeleteOperation))]
         public void DoDeleteOperation_ExecuteOperation_CTOR1Param_ImpersonatedUser_IsNull_ExpectFalse()
         {
             //---------------------------Arrange---------------------------
@@ -31,12 +32,12 @@ namespace Dev2.Data.Tests.PathOperations
             //---------------------------Act-------------------------------
             var doDeleteOperation = new DoDeleteOperation(mockActivityIOPath.Object);
             //---------------------------Assert----------------------------
-            Assert.IsFalse(doDeleteOperation.ExecuteOperation());
+            NUnit.Framework.Assert.IsFalse(doDeleteOperation.ExecuteOperation());
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoDeleteOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoDeleteOperation))]
         public void DoDeleteOperation_ExecuteOperation_CTOR2Param_ImpersonatedUser_IsNull_ExpectFalse()
         {
             //---------------------------Arrange---------------------------
@@ -45,12 +46,12 @@ namespace Dev2.Data.Tests.PathOperations
             //---------------------------Act-------------------------------
             var doDeleteOperation = new DoDeleteOperation(mockActivityIOPath.Object, mockDev2LogonProvider.Object);
             //---------------------------Assert----------------------------
-            Assert.IsFalse(doDeleteOperation.ExecuteOperation());
+            NUnit.Framework.Assert.IsFalse(doDeleteOperation.ExecuteOperation());
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoDeleteOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoDeleteOperation))]
         public void DoDeleteOperation_ExecuteOperation_CTOR3Param_ExecuteOperationWithAuth_Catch_ExpectFalse()
         {
             //---------------------------Arrange---------------------------
@@ -61,12 +62,12 @@ namespace Dev2.Data.Tests.PathOperations
             //---------------------------Act-------------------------------
             var doDeleteOperation = new DoDeleteOperation(mockDeleteHelper.Object, mockActivityIOPath.Object, mockDev2LogonProvider.Object, (arg1, arg2) => mockWindowsImpersonationContext.Object);
             //---------------------------Assert----------------------------
-            Assert.IsFalse(doDeleteOperation.ExecuteOperation());
+            NUnit.Framework.Assert.IsFalse(doDeleteOperation.ExecuteOperation());
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoDeleteOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoDeleteOperation))]
         public void DoDeleteOperation_ExecuteOperationWithAuth_CTOR3Param_ImpersonatedUser_IsNull_ExpectTrue()
         {
             //---------------------------Arrange---------------------------
@@ -87,12 +88,12 @@ namespace Dev2.Data.Tests.PathOperations
 
             mockDeleteHelper.Verify(o => o.Delete(serverLogFile), Times.Once);
 
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(DoDeleteOperation))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(DoDeleteOperation))]
         public void DoDeleteOperation_ExecuteOperationWithAuth_CTOR3Param_DeleteHelperThrows_ReturnFalse()
         {
             //---------------------------Arrange---------------------------
@@ -113,12 +114,12 @@ namespace Dev2.Data.Tests.PathOperations
 
             mockDeleteHelper.Verify(o => o.Delete(serverLogFile), Times.Once);
 
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoDeleteOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoDeleteOperation))]
         public void DoDeleteOperation_ExecuteOperationWithAuth_CTOR3Param_ImpersonatedUser_IsNull_ExpectException()
         {
             //---------------------------Arrange---------------------------
@@ -134,7 +135,7 @@ namespace Dev2.Data.Tests.PathOperations
             //---------------------------Act-------------------------------
             var doDeleteOperation = new DoDeleteOperation(mockDeleteHelper.Object, mockActivityIOPath.Object, mockDev2LogonProvider.Object, (arg1, arg2) => mockWindowsImpersonationContext.Object);
             //---------------------------Assert----------------------------
-            Assert.IsFalse(doDeleteOperation.ExecuteOperation());
+            NUnit.Framework.Assert.IsFalse(doDeleteOperation.ExecuteOperation());
         }
     }
 }

@@ -3,14 +3,15 @@ using Dev2.Activities.DropBox2016.DeleteActivity;
 using Dev2.Activities.DropBox2016.Result;
 using Dev2.Common.Interfaces.Wrappers;
 using Dropbox.Api.Files;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 
 namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Delete
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DropBoxDeleteTests
     {
         Mock<IDropBoxDelete> CreateDropboxDeleteMock()
@@ -22,9 +23,9 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Delete
             return mock;
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DropboxDelete_CreateDropboxActivity")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DropboxDelete_CreateDropboxActivity")]
         public void DropboxDelete_CreateDropboxActivity_GivenIsNew_ShouldNotBeNull()
         {
             //------------Setup for test--------------------------
@@ -36,9 +37,9 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Delete
             Assert.IsNotNull(dropBoxDelete);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DropboxDelete_ExecuteTask")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DropboxDelete_ExecuteTask")]
         public void DropboxDelete_ExecuteTask_GivenDropBoxDelete_ShouldReturnFileMetadata()
         {
             //------------Setup for test--------------------------
@@ -53,9 +54,9 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Delete
         }
         
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DropboxDelete_CreateDropboxActivity")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DropboxDelete_CreateDropboxActivity")]
         [ExpectedException(typeof(ArgumentException))]
         public void DropboxDelete_CreateDropboxActivity_GivenMissingDeletePath_ShouldBeInValid()
         {
@@ -63,9 +64,9 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Delete
             var dropBoxDelete = new DropboxDelete("");
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DropboxDelete_CreateDropboxActivity")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DropboxDelete_CreateDropboxActivity")]
         [ExpectedException(typeof(ArgumentException))]
         public void DropboxDelete_CreateDropboxActivity_GivenInvalidThenExecute_ShouldReturnFailureResult()
         {

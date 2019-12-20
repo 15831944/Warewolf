@@ -12,7 +12,7 @@ using Dev2.Activities.Designers2.Core;
 using Dev2.Activities.Designers2.MultiAssignObject;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.TO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System.Activities.Presentation.Model;
 using Dev2.Common.Interfaces.Help;
@@ -22,36 +22,37 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Activities.Designers.Tests.MultiAssignObjectTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class MultiAssignObjectViewModelTests
     {
-        [TestMethod]
-        [Owner("Clint Stedman")]
-        [TestCategory("DsfMultiAssignObjectActivityViewModel_Construct")]
+        [Test]
+        [Author("Clint Stedman")]
+        [Category("DsfMultiAssignObjectActivityViewModel_Construct")]
         public void DsfMultiAssignObjectActivityViewModel_Construct_IsInstanceOfActivityViewModelBase_True()
         {
             //------------Setup for test--------------------------
             //------------Execute Test---------------------------
             var dsfMultiAssignObjectActivityViewModel = CreateDsfMultiAssignObjectActivityViewModel();
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(dsfMultiAssignObjectActivityViewModel, typeof(ActivityDesignerViewModel));
+            Assert.IsInstanceOf(dsfMultiAssignObjectActivityViewModel.GetType(), typeof(ActivityDesignerViewModel));
         }
 
-        [TestMethod]
-        [Owner("Clint Stedman")]
-        [TestCategory("DsfMultiAssignObjectActivityViewModel_Construct")]
+        [Test]
+        [Author("Clint Stedman")]
+        [Category("DsfMultiAssignObjectActivityViewModel_Construct")]
         public void DsfMultiAssignObjectActivityViewModel_Construct_IsInstanceOfActivityCollectionViewModelBaseOfActivityDTO_True()
         {
             //------------Setup for test--------------------------
             //------------Execute Test---------------------------
             var dsfMultiAssignObjectActivityViewModel = CreateDsfMultiAssignObjectActivityViewModel();
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(dsfMultiAssignObjectActivityViewModel, typeof(ActivityCollectionDesignerViewModel<AssignObjectDTO>));
+            Assert.IsInstanceOf(dsfMultiAssignObjectActivityViewModel.GetType(), typeof(ActivityCollectionDesignerViewModel<AssignObjectDTO>));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MultiAssignObjectActivityViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MultiAssignObjectActivityViewModel_Handle")]
         public void MultiAssignObjectActivityViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -67,9 +68,9 @@ namespace Dev2.Activities.Designers.Tests.MultiAssignObjectTests
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Clint Stedman")]
-        [TestCategory("MultiAssignObjectActivityViewModel_Constructor")]
+        [Test]
+        [Author("Clint Stedman")]
+        [Category("MultiAssignObjectActivityViewModel_Constructor")]
         
         public void MultiAssignObjectActivityViewModel_Constructor_CollectionNameInitialized()
 
@@ -89,9 +90,9 @@ namespace Dev2.Activities.Designers.Tests.MultiAssignObjectTests
             Assert.AreEqual(ExpectedCollectionName, vm.CollectionName, "Collection Name not initialized on Multi Assign load");
         }
 
-        [TestMethod]
-        [Owner("Clint Stedman")]
-        [TestCategory("MultiAssignObjectActivityViewModel_ErrorsProperty")]
+        [Test]
+        [Author("Clint Stedman")]
+        [Category("MultiAssignObjectActivityViewModel_ErrorsProperty")]
         public void MultiAssignObjectActivityViewModel_ErrorsProperty_Constructor_IsNull()
         {
             //------------Setup for test--------------------------

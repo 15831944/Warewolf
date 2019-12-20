@@ -9,7 +9,7 @@
 */
 
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.Collections.ObjectModel;
 using CubicOrange.Windows.Forms.ActiveDirectory;
 using Dev2.Common.Interfaces.Scheduler.Interfaces;
@@ -26,12 +26,13 @@ using System.Collections.Generic;
 
 namespace Warewolf.UIBindingTests.Scheduler
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class Scheduler
     {
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SchedulerViewModel_CreateNewTask")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("SchedulerViewModel_CreateNewTask")]
         public void SchedulerViewModel_CreateNewTask_ShouldAddTaskToListWithDefaultSettings_OnlyAllowOneDirtyTask()
         {
             //------------Setup for test--------------------------
@@ -79,9 +80,9 @@ namespace Warewolf.UIBindingTests.Scheduler
             popupController.Verify(a => a.Show("Please save currently edited Task(s) before creating a new one.", "Save before continuing", MessageBoxButton.OK, MessageBoxImage.Error, null, false, true, false, false, false, false));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SchedulerViewModel_CreateNewTask")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SchedulerViewModel_CreateNewTask")]
         public void SchedulerViewModel_CreateNewTask_ServerDown_ShouldShowPopup()
         {
             //------------Setup for test--------------------------

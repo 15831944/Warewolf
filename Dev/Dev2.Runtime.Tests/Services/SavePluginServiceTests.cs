@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Dev2.Common.Interfaces.Enums;
 using Dev2.Runtime.ESB.Management.Services;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Data;
@@ -18,12 +18,13 @@ using Dev2.Common.Interfaces.DB;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SavePluginServiceTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -35,9 +36,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -49,9 +50,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(AuthorizationContext.Contribute, resId);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("SavePluginService_HandlesType")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("SavePluginService_HandlesType")]
         public void SavePluginService_HandlesType_ExpectName()
         {
             //------------Setup for test--------------------------
@@ -64,9 +65,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("SavePluginService", SavePluginService.HandlesType());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("SavePluginService_Execute")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("SavePluginService_Execute")]
         public void SavePluginService_Execute_NullValues_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -79,9 +80,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(result.HasError);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("SavePluginService_Execute")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("SavePluginService_Execute")]
         public void SavePluginService_Execute_ResourceIDNotPresent_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -95,9 +96,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(result.HasError);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("SavePluginService_Execute")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("SavePluginService_Execute")]
         public void SavePluginService_Execute_ResourceIDNotGuid_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -111,9 +112,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(result.HasError);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("SavePluginService_Execute")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("SavePluginService_Execute")]
         public void SavePluginService_Execute_TestDefinitionsNotInValues_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -127,9 +128,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(result.HasError);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("SavePluginService_Execute")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("SavePluginService_Execute")]
         public void SavePluginService_Execute_ItemToDeleteNotListOfServiceTestTO_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -143,8 +144,8 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(result.HasError);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenNoSource_ShouldReturnNoSourceMsg()
         {
             //---------------Set up test pack-------------------
@@ -180,8 +181,8 @@ namespace Dev2.Tests.Runtime.Services
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenNullSource_ShouldReturnNullSourceMsg()
         {
             //------------Setup for test--------------------------

@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ActivityUnitTests;
 using Dev2.Common.State;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.ActivityTests
@@ -21,7 +21,8 @@ namespace Dev2.Tests.Activities.ActivityTests
     /// <summary>
     /// Summary description for DateTimeDifferenceTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FileWriteTests : BaseActivityUnitTest
     {
 
@@ -36,15 +37,15 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfFileWrite_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfFileWrite_UpdateForEachInputs")]
         public void DsfFileWrite_UpdateForEachInputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
-            var inputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]].txt");
-            var outputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
+            var inputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]].txt");
+            var outputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
             var act = new DsfFileWrite { FileContents = inputPath, OutputPath = outputPath, Result = "[[CompanyName]]" };
 
             //------------Execute Test---------------------------
@@ -54,15 +55,15 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(outputPath, act.OutputPath);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfFileWrite_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfFileWrite_UpdateForEachInputs")]
         public void DsfFileWrite_UpdateForEachInputs_MoreThan1Updates_Updates()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
-            var inputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]].txt");
-            var outputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
+            var inputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]].txt");
+            var outputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
             var act = new DsfFileWrite { FileContents = inputPath, OutputPath = outputPath, Result = "[[CompanyName]]" };
 
             var tuple1 = new Tuple<string, string>(outputPath, "Test");
@@ -75,30 +76,30 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfFileWrite_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfFileWrite_UpdateForEachOutputs")]
         public void DsfFileWrite_UpdateForEachOutputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
             const string result = "[[CompanyName]]";
-            var act = new DsfFileWrite { FileContents = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]].txt"), OutputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt"), Result = result };
+            var act = new DsfFileWrite { FileContents = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]].txt"), OutputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt"), Result = result };
 
             act.UpdateForEachOutputs(null);
             //------------Assert Results-------------------------
             Assert.AreEqual(result, act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfFileWrite_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfFileWrite_UpdateForEachOutputs")]
         public void DsfFileWrite_UpdateForEachOutputs_MoreThan1Updates_DoesNothing()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
             const string result = "[[CompanyName]]";
-            var act = new DsfFileWrite { FileContents = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]].txt"), OutputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt"), Result = result };
+            var act = new DsfFileWrite { FileContents = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]].txt"), OutputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt"), Result = result };
 
             var tuple1 = new Tuple<string, string>("Test", "Test");
             var tuple2 = new Tuple<string, string>("Test2", "Test2");
@@ -108,15 +109,15 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(result, act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfFileWrite_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfFileWrite_UpdateForEachOutputs")]
         public void DsfFileWrite_UpdateForEachOutputs_1Updates_UpdateResult()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
-            var inputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]].txt");
-            var outputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
+            var inputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]].txt");
+            var outputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
             var act = new DsfFileWrite { FileContents = inputPath, OutputPath = outputPath, Result = "[[CompanyName]]" };
 
             var tuple1 = new Tuple<string, string>("[[CompanyName]]", "Test");
@@ -126,15 +127,15 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Test", act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfFileWrite_GetForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfFileWrite_GetForEachInputs")]
         public void DsfFileWrite_GetForEachInputs_WhenHasExpression_ReturnsInputList()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
-            var inputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]].txt");
-            var outputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
+            var inputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]].txt");
+            var outputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
             var act = new DsfFileWrite { FileContents = inputPath, OutputPath = outputPath, Result = "[[CompanyName]]" };
 
             //------------Execute Test---------------------------
@@ -147,15 +148,15 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(inputPath, dsfForEachItems[1].Value);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfFileWrite_GetForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfFileWrite_GetForEachOutputs")]
         public void DsfFileWrite_GetForEachOutputs_WhenHasResult_ReturnsOutputList()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
             const string result = "[[CompanyName]]";
-            var act = new DsfFileWrite { FileContents = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]].txt"), OutputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt"), Result = result };
+            var act = new DsfFileWrite { FileContents = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]].txt"), OutputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt"), Result = result };
 
             //------------Execute Test---------------------------
             var dsfForEachItems = act.GetForEachOutputs();
@@ -165,9 +166,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(result, dsfForEachItems[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("DsfFileWrite_GetState")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("DsfFileWrite_GetState")]
         public void DsfFileWrite_GetState_ReturnsStateVariable()
         {
             var act = new DsfFileWrite {

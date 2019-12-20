@@ -13,26 +13,27 @@ using Dev2.Studio.Core;
 using Dev2.Studio.Core.InterfaceImplementors;
 using Dev2.Studio.Interfaces;
 using Dev2.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Core.Tests.Environments
 {
     // BUG 9276 : TWR : 2013.04.19 - refactored so that we share environments
 
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ServerProviderTest
     {
 
         #region Initialization/Cleanup
 
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void MyClassInitialize(TestContext testContext)
         {
             EnviromentRepositoryTest.MyClassInitialize(testContext);
         }
 
-        [TestInitialize]
+        [SetUp]
         public void MyTestInitialize()
         {
             AppUsageStats.LocalHost = "http://localhost:3142";
@@ -42,7 +43,7 @@ namespace Dev2.Core.Tests.Environments
 
         #region Instance
 
-        [TestMethod]
+        [Test]
         public void ServerProviderInstanceExpectedReturnsNonNull()
         {
             var provider = ServerProvider.Instance;
@@ -53,7 +54,7 @@ namespace Dev2.Core.Tests.Environments
 
         #region Load
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ServerProviderLoadWithNullEnvironmentRepositoryExpectedThrowsArgumentNullException()
         {
@@ -61,13 +62,13 @@ namespace Dev2.Core.Tests.Environments
             provider.Load(null);
         }
 
-        [TestMethod]
+        [Test]
         public void ServerProviderLoadWithEnvironmentRepositoryExpectedAllServersInEnvironmentRepository()
         {
             TestLoad(false);
         }
 
-        [TestMethod]
+        [Test]
         public void ServerProviderLoadWithNoParametersExpectedExpectedAllServersInEnvironmentRepository()
         {
             TestLoad(true);

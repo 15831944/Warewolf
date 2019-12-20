@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Globalization;
 using Dev2.CustomControls.Converters;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.CustomControls.Tests.Converters
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IsValidDateTimeConverterTests
     {
-        [TestInitialize]
+        [SetUp]
         public void PreConditions()
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-ZA");
@@ -19,8 +20,8 @@ namespace Dev2.CustomControls.Tests.Converters
             Assert.AreEqual("en-ZA", System.Threading.Thread.CurrentThread.CurrentUICulture.Name);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Convert_GivenNotDateTime_ShouldReturnFalse()
         {
             //---------------Set up test pack-------------------
@@ -32,8 +33,8 @@ namespace Dev2.CustomControls.Tests.Converters
             Assert.IsFalse(bool.Parse(convert.ToString()));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Convert_GivenDateTime_ShouldReturnTrue()
         {
             //---------------Set up test pack-------------------
@@ -47,8 +48,8 @@ namespace Dev2.CustomControls.Tests.Converters
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ConvertBack_GivenAnyArgs_ShouldThrowException()
         {
             //---------------Set up test pack-------------------

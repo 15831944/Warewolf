@@ -6,19 +6,20 @@ using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.Core;
 using Dev2.Common.Interfaces.ToolBase;
 using Dev2.Studio.Core.Activities.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 
 namespace Dev2.Activities.Designers.Tests.Core.ComDll
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ComSourceRegionTest
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComSourceRegion_Constructor")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComSourceRegion_Constructor")]
         public void ComSourceRegion_Constructor_Scenerio_Result()
         {
             //------------Setup for test--------------------------
@@ -33,9 +34,9 @@ namespace Dev2.Activities.Designers.Tests.Core.ComDll
             Assert.IsTrue(region.IsEnabled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComSourceRegion_ConstructorWithSelectedSource")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComSourceRegion_ConstructorWithSelectedSource")]
         public void ComSourceRegion_ConstructorWithSelectedSource_Scenerio_Result()
         {
             //------------Setup for test--------------------------
@@ -53,9 +54,9 @@ namespace Dev2.Activities.Designers.Tests.Core.ComDll
             Assert.IsTrue(region.CanEditSource());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComSourceRegion_ChangeSourceSomethingChanged")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComSourceRegion_ChangeSourceSomethingChanged")]
         public void ComSourceRegion_ChangeSourceSomethingChanged_ExpectedChange_Result()
         {
             //------------Setup for test--------------------------
@@ -76,9 +77,9 @@ namespace Dev2.Activities.Designers.Tests.Core.ComDll
             Assert.IsTrue(evt);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComSourceRegion_ChangeSourceSomethingChanged")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComSourceRegion_ChangeSourceSomethingChanged")]
         public void ComSourceRegion_ChangeSourceSomethingChanged_RestoreRegion_Result()
         {
             //------------Setup for test--------------------------
@@ -109,9 +110,9 @@ namespace Dev2.Activities.Designers.Tests.Core.ComDll
             dep2.Verify(a => a.RestoreRegion(clone2.Object), Times.Never);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComSourceRegion_ChangeSourceSomethingChanged")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComSourceRegion_ChangeSourceSomethingChanged")]
         public void ComSourceRegion_ChangeSourceSomethingChanged_RegionsNotRestored_Invalid()
         {
             //------------Setup for test--------------------------
@@ -142,9 +143,9 @@ namespace Dev2.Activities.Designers.Tests.Core.ComDll
             dep2.Verify(a => a.RestoreRegion(clone2.Object), Times.Never);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComSourceRegion_ChangeSourceSomethingChanged")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComSourceRegion_ChangeSourceSomethingChanged")]
         public void ComSourceRegion_ChangeSourceSomethingChanged_CloneRegion_ExpectedClone()
         {
             //------------Setup for test--------------------------
@@ -164,9 +165,9 @@ namespace Dev2.Activities.Designers.Tests.Core.ComDll
             Assert.AreEqual(((ComSourceRegion)cloned).SelectedSource, region.SelectedSource);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComSourceRegion_ChangeSourceSomethingChanged")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComSourceRegion_ChangeSourceSomethingChanged")]
         public void ComSourceRegion_ChangeSourceSomethingChanged_RestoreRegion_ExpectedRestore()
         {
             //------------Setup for test--------------------------

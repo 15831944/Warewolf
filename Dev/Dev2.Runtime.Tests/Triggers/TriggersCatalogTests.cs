@@ -12,7 +12,7 @@ using Dev2.Common.Interfaces.Communication;
 using Dev2.Common.Interfaces.Data;
 using Dev2.Common.Interfaces.Wrappers;
 using Dev2.Runtime.Hosting;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.IO;
@@ -23,7 +23,8 @@ using Warewolf.Triggers;
 
 namespace Dev2.Tests.Runtime.Triggers
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class TriggersCatalogTests
     {
         public static string QueueTriggersPath
@@ -34,9 +35,9 @@ namespace Dev2.Tests.Runtime.Triggers
                 return resourcePath;
             }
         }
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(TriggersCatalog))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(TriggersCatalog))]
         public void TriggersCatalog_Constructor_TestPathDoesNotExist_ShouldCreateIt()
         {
             //------------Setup for test--------------------------
@@ -55,9 +56,9 @@ namespace Dev2.Tests.Runtime.Triggers
             mockDirectory.Verify(o => o.CreateIfNotExists(queueTriggersPath), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(TriggersCatalog))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(TriggersCatalog))]
         public void TriggersCatalog_SaveTriggerQueue_ShouldSave()
         {
             var queueTriggersPath = QueueTriggersPath;
@@ -79,9 +80,9 @@ namespace Dev2.Tests.Runtime.Triggers
             mockFile.Verify(file => file.WriteAllText(path, It.IsAny<string>()), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(TriggersCatalog))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(TriggersCatalog))]
         public void TriggersCatalog_SaveTriggerQueue_WhenHasTriggerId_ShouldSave_NotUpdateTriggerId()
         {
             var queueTriggersPath = QueueTriggersPath;
@@ -146,9 +147,9 @@ namespace Dev2.Tests.Runtime.Triggers
             Assert.AreEqual(0, triggerCatalog.Queues.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(TriggersCatalog))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(TriggersCatalog))]
         public void TriggersCatalog_DeleteTrigger_ShouldOnlyDeleteRequestedTrigger()
         {
             var queueTriggersPath = QueueTriggersPath;
@@ -173,9 +174,9 @@ namespace Dev2.Tests.Runtime.Triggers
             mockFile.Verify(file => file.Delete(path), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(TriggersCatalog))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(TriggersCatalog))]
         public void TriggersCatalog_LoadQueueTriggerFromFile()
         {
             var directoryWrapper = new Mock<IDirectory>().Object;
@@ -196,9 +197,9 @@ namespace Dev2.Tests.Runtime.Triggers
             Assert.AreEqual(expectedTrigger, actual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(TriggersCatalog))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(TriggersCatalog))]
         public void TriggersCatalog_PathFromResourceId()
         {
             var triggerId = Guid.NewGuid().ToString();
@@ -207,18 +208,18 @@ namespace Dev2.Tests.Runtime.Triggers
             Assert.AreEqual(expectedPath, path);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(TriggersCatalog))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(TriggersCatalog))]
         public void TriggersCatalog_Instance()
         {
             var catalogInstance = TriggersCatalog.Instance;
             Assert.IsNotNull(catalogInstance);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(TriggersCatalog))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(TriggersCatalog))]
         public void TriggersCatalog_FileSystemWatcher_Created()
         {
             var directory = "some path";
@@ -251,9 +252,9 @@ namespace Dev2.Tests.Runtime.Triggers
             Assert.AreEqual(triggerId, catalog.Queues[0].TriggerId);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(TriggersCatalog))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(TriggersCatalog))]
         public void TriggersCatalog_FileSystemWatcher_Changed()
         {
             var directory = "some path";
@@ -286,9 +287,9 @@ namespace Dev2.Tests.Runtime.Triggers
             Assert.AreEqual(triggerId, catalog.Queues[0].TriggerId);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(TriggersCatalog))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(TriggersCatalog))]
         public void TriggersCatalog_FileSystemWatcher_Deleted()
         {
             var directory = "some path";
@@ -321,9 +322,9 @@ namespace Dev2.Tests.Runtime.Triggers
             Assert.AreEqual(triggerId, catalog.Queues[0].TriggerId);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(TriggersCatalog))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(TriggersCatalog))]
         public void TriggersCatalog_FileSystemWatcher_Renamed()
         {
             var directory = "some path";
@@ -357,9 +358,9 @@ namespace Dev2.Tests.Runtime.Triggers
             Assert.AreEqual(triggerId, catalog.Queues[0].TriggerId);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(TriggersCatalog))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(TriggersCatalog))]
         public void TriggersCatalog_FileSystemWatcher_Error()
         {
             var directory = "some path";

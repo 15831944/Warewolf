@@ -26,7 +26,7 @@ using Dev2.Studio.Interfaces;
 using Dev2.Studio.ViewModels.DataList;
 using Dev2.Threading;
 using Dev2.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -41,13 +41,14 @@ using Warewolf.Auditing;
 
 namespace Warewolf.Trigger.Queue.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class TriggerQueueViewTests
     {
         Mock<IResource> _mockQueueSource;
         Guid _queueResourceId = Guid.NewGuid();
 
-        [TestInitialize]
+        [SetUp]
         public void SetupForTest()
         {
             AppUsageStats.LocalHost = "http://localhost:3142";
@@ -91,9 +92,9 @@ namespace Warewolf.Trigger.Queue.Tests
             mockServer.Setup(server => server.ResourceRepository).Returns(mockResourceRepository.Object);
             return new TriggerQueueView(mockServer.Object, new SynchronousAsyncWorker());
         }
-        [TestMethod]
-        [TestCategory(nameof(TriggerQueueView))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(TriggerQueueView))]
+        [Author("Pieter Terblanche")]
         public void TriggerQueueView_QueueSources()
         {
             var triggerQueueView = CreateViewModel();
@@ -105,9 +106,9 @@ namespace Warewolf.Trigger.Queue.Tests
             Assert.AreEqual(2, triggerQueueView.QueueSources.Count);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(TriggerQueueView))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(TriggerQueueView))]
+        [Author("Pieter Terblanche")]
         public void TriggerQueueView_DeadLetterQueueSources()
         {
             var triggerQueueView = CreateViewModel();
@@ -144,9 +145,9 @@ namespace Warewolf.Trigger.Queue.Tests
             return expectedOptions;
         }
 
-        [TestMethod]
-        [TestCategory(nameof(TriggerQueueView))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(TriggerQueueView))]
+        [Author("Pieter Terblanche")]
         public void TriggerQueueView_QueueNames()
         {
             var resourceId = Guid.NewGuid();
@@ -198,9 +199,9 @@ namespace Warewolf.Trigger.Queue.Tests
             Assert.AreEqual(0, optionTwo.Default);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(TriggerQueueView))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(TriggerQueueView))]
+        [Author("Pieter Terblanche")]
         public void TriggerQueueView_DeadLetterQueues()
         {
             var resourceId = Guid.NewGuid();
@@ -272,9 +273,9 @@ namespace Warewolf.Trigger.Queue.Tests
             mockApplicationAdapter.Verify(model => model.TryFindResource("OptionAutocompleteStyle"), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(TriggerQueueView))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(TriggerQueueView))]
         public void TriggerQueueView_Equals_Other_IsNull_Expect_False()
         {
             var triggerQueueView = CreateViewModel();
@@ -282,9 +283,9 @@ namespace Warewolf.Trigger.Queue.Tests
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(TriggerQueueView))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(TriggerQueueView))]
         public void TriggerQueueView_ReferenceEquals_Match_Expect_True()
         {
             var mockServer = new Mock<IServer>();
@@ -297,9 +298,9 @@ namespace Warewolf.Trigger.Queue.Tests
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(TriggerQueueView))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(TriggerQueueView))]
         public void TriggerQueueView_Equals_MisMatch_Expect_False()
         {
             var mockServer = new Mock<IServer>();
@@ -334,9 +335,9 @@ namespace Warewolf.Trigger.Queue.Tests
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(TriggerQueueView))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(TriggerQueueView))]
         public void TriggerQueueView_Defaults_For_Coverage_To_Remove()
         {
             var mockServer = new Mock<IServer>();
@@ -365,9 +366,9 @@ namespace Warewolf.Trigger.Queue.Tests
             Assert.IsTrue(triggerQueueView.IsNewQueue);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(TriggerQueueView))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(TriggerQueueView))]
         public void TriggerQueueView_Item_IsDirty_True()
         {
             var mockServer = new Mock<IServer>();
@@ -394,9 +395,9 @@ namespace Warewolf.Trigger.Queue.Tests
             Assert.AreEqual("TriggerQueueName *", triggerQueueViewItem.NameForDisplay);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(TriggerQueueView))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(TriggerQueueView))]
+        [Author("Pieter Terblanche")]
         public void TriggerQueueView_WorkflowName()
         {
             var triggerQueueView = CreateViewModel();
@@ -409,9 +410,9 @@ namespace Warewolf.Trigger.Queue.Tests
             Assert.AreEqual(workflowName, triggerQueueView.WorkflowName);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(TriggerQueueView))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(TriggerQueueView))]
+        [Author("Pieter Terblanche")]
         public void TriggerQueueView_Concurrency()
         {
             var triggerQueueView = CreateViewModel();
@@ -424,9 +425,9 @@ namespace Warewolf.Trigger.Queue.Tests
             Assert.AreEqual(concurrency, triggerQueueView.Concurrency);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(TriggerQueueView))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(TriggerQueueView))]
+        [Author("Pieter Terblanche")]
         public void TriggerQueueView_Concurrency_Negative_NotAllowed()
         {
             var triggerQueueView = CreateViewModel();
@@ -438,9 +439,9 @@ namespace Warewolf.Trigger.Queue.Tests
             Assert.AreEqual(0, triggerQueueView.Concurrency);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(TriggerQueueView))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(TriggerQueueView))]
+        [Author("Pieter Terblanche")]
         public void TriggerQueueView_UserName()
         {
             var triggerQueueView = CreateViewModel();
@@ -453,9 +454,9 @@ namespace Warewolf.Trigger.Queue.Tests
             Assert.AreEqual("someAccountName", triggerQueueView.UserName);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(TriggerQueueView))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(TriggerQueueView))]
+        [Author("Pieter Terblanche")]
         public void TriggerQueueView_Password()
         {
             var triggerQueueView = CreateViewModel();
@@ -520,9 +521,9 @@ namespace Warewolf.Trigger.Queue.Tests
             return moqModel.Object;
         }
 
-        [TestMethod]
-        [TestCategory(nameof(TriggerQueueView))]
-        [Owner("Candice Daniel")]
+        [Test]
+        [Category(nameof(TriggerQueueView))]
+        [Author("Candice Daniel")]
         public void TriggerQueueView_QueueEvents_Get_Xml_Datalist_InputsFromWorkflow_VerifyCommand_Success()
         {
             var popupController = new Mock<IPopupController>();
@@ -577,9 +578,9 @@ namespace Warewolf.Trigger.Queue.Tests
             popupController.Verify(controller => controller.Show(StringResources.DataInput_Error, StringResources.DataInput_Error_Title, System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error, string.Empty, false, true, false, false, false, false), Times.Never);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(TriggerQueueView))]
-        [Owner("Candice Daniel")]
+        [Test]
+        [Category(nameof(TriggerQueueView))]
+        [Author("Candice Daniel")]
         public void TriggerQueueView_QueueEvents_Get_Xml_DataList_InputsFromWorkflow_VerifyCommand_InvalidData_ShowInvalidDataPopupMessage()
         {
             var popupController = new Mock<IPopupController>();
@@ -617,9 +618,9 @@ namespace Warewolf.Trigger.Queue.Tests
             popupController.Verify(controller => controller.Show(StringResources.DataInput_Error, StringResources.DataInput_Error_Title, System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error, string.Empty, false, true, false, false, false, false), Times.Once);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(TriggerQueueView))]
-        [Owner("Candice Daniel")]
+        [Test]
+        [Category(nameof(TriggerQueueView))]
+        [Author("Candice Daniel")]
         public void TriggerQueueView_QueueEvents_Get_Json_Datalist_InputsFromWorkflow_VerifyCommand_Success()
         {
             var popupController = new Mock<IPopupController>();
@@ -658,9 +659,9 @@ namespace Warewolf.Trigger.Queue.Tests
             Assert.IsFalse(triggerQueueView.VerifyFailed);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(TriggerQueueView))]
-        [Owner("Candice Daniel")]
+        [Test]
+        [Category(nameof(TriggerQueueView))]
+        [Author("Candice Daniel")]
         public void TriggerQueueView_QueueEvents_Get_ComplexObject_InputsFromWorkflow_VerifyCommand_Success()
         {
             var popupController = new Mock<IPopupController>();
@@ -704,9 +705,9 @@ namespace Warewolf.Trigger.Queue.Tests
             popupController.Verify(controller => controller.Show(StringResources.DataInput_Error, StringResources.DataInput_Error_Title, System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Error, string.Empty, false, true, false, false, false, false), Times.Never);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(TriggerQueueView))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(TriggerQueueView))]
+        [Author("Pieter Terblanche")]
         public void TriggerQueueView_History_IsHistoryExpanded_False()
         {
             var triggerQueueView = CreateViewModel();
@@ -715,9 +716,9 @@ namespace Warewolf.Trigger.Queue.Tests
             Assert.AreEqual(0, triggerQueueView.History.Count);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(TriggerQueueView))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(TriggerQueueView))]
+        [Author("Pieter Terblanche")]
         public void TriggerQueueView_History_IsHistoryExpanded_True()
         {
             var resourceId = Guid.NewGuid();
@@ -748,9 +749,9 @@ namespace Warewolf.Trigger.Queue.Tests
             mockResourceRepository.Verify(resourceRepository => resourceRepository.GetTriggerQueueHistory(resourceId), Times.Exactly(1));
         }
 
-        [TestMethod]
-        [TestCategory(nameof(TriggerQueueView))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(TriggerQueueView))]
+        [Author("Pieter Terblanche")]
         public void TriggerQueueView_MapEntireMessage()
         {
             var triggerQueueView = CreateViewModel();
@@ -762,9 +763,9 @@ namespace Warewolf.Trigger.Queue.Tests
             Assert.IsFalse(triggerQueueView.MapEntireMessage);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(TriggerQueueView))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(TriggerQueueView))]
+        [Author("Pieter Terblanche")]
         public void TriggerQueueView_ToModel()
         {
             var mockOption = new Mock<IOption>();
@@ -804,9 +805,9 @@ namespace Warewolf.Trigger.Queue.Tests
             Assert.AreEqual(triggerQueue.Inputs.Count, triggerQueueView.Inputs.Count);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(TriggerQueueView))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(TriggerQueueView))]
+        [Author("Pieter Terblanche")]
         public void TriggerQueueView_SetItem()
         {
             var mockServer = new Mock<IServer>();

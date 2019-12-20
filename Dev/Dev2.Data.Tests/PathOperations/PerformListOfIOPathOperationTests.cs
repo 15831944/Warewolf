@@ -12,7 +12,7 @@ using Dev2.Common.Interfaces.Wrappers;
 using Dev2.Data.Interfaces;
 using Dev2.Data.Interfaces.Enums;
 using Dev2.Data.PathOperations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -20,12 +20,13 @@ using System.IO;
 
 namespace Dev2.Data.Tests.PathOperations
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class PerformListOfIOPathOperationTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(PerformListOfIOPathOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(PerformListOfIOPathOperation))]
         public void PerformListOfIOPathOperation_AppendBackSlashes_Path_Null_ExpectNullReferenceException()
         {
             //-----------------------Arrange------------------------
@@ -34,12 +35,12 @@ namespace Dev2.Data.Tests.PathOperations
             var mockDirectory = new Mock<IDirectory>();
             //-----------------------Act----------------------------
             //-----------------------Assert-------------------------
-            Assert.ThrowsException<NullReferenceException>(()=> PerformListOfIOPathOperation.AppendBackSlashes(mockActivityIOPath.Object, mockFileWrapper.Object, mockDirectory.Object));
+            NUnit.Framework.Assert.Throws<NullReferenceException>(()=> PerformListOfIOPathOperation.AppendBackSlashes(mockActivityIOPath.Object, mockFileWrapper.Object, mockDirectory.Object));
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(PerformListOfIOPathOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(PerformListOfIOPathOperation))]
         public void PerformListOfIOPathOperation_AppendBackSlashes_With_CTOR_Path_Null_ExpectNullReferenceException()
         {
             //-----------------------Arrange------------------------
@@ -51,12 +52,12 @@ namespace Dev2.Data.Tests.PathOperations
             var performListOfIOPathOperation = new TestPerformListOfIOPathOperation((arg1, arg2) => mockWindowsImpersonationContext.Object);
             //-----------------------Act----------------------------
             //-----------------------Assert-------------------------
-            Assert.ThrowsException<NullReferenceException>(() => PerformListOfIOPathOperation.AppendBackSlashes(mockActivityIOPath.Object, mockFileWrapper.Object, mockDirectory.Object));
+            NUnit.Framework.Assert.Throws<NullReferenceException>(() => PerformListOfIOPathOperation.AppendBackSlashes(mockActivityIOPath.Object, mockFileWrapper.Object, mockDirectory.Object));
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(PerformListOfIOPathOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(PerformListOfIOPathOperation))]
         public void PerformListOfIOPathOperation_AppendBackSlashes_Path_IsNotNull_ExpectNullReferenceException()
         {
             //-----------------------Arrange------------------------
@@ -71,12 +72,12 @@ namespace Dev2.Data.Tests.PathOperations
             var appendBackSlashes = PerformListOfIOPathOperation.AppendBackSlashes(mockActivityIOPath.Object, mockFileWrapper.Object, mockDirectory.Object);
             //-----------------------Assert-------------------------
             mockActivityIOPath.VerifyAll();
-            Assert.AreEqual(path+"\\", appendBackSlashes);
+            NUnit.Framework.Assert.AreEqual(path+"\\", appendBackSlashes);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(PerformListOfIOPathOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(PerformListOfIOPathOperation))]
         public void PerformListOfIOPathOperation_AppendBackSlashes_Path_IsNotDirectory_ExpectTrue()
         {
             //-----------------------Arrange------------------------
@@ -91,12 +92,12 @@ namespace Dev2.Data.Tests.PathOperations
             var appendBackSlashes = PerformListOfIOPathOperation.AppendBackSlashes(mockActivityIOPath.Object, mockFileWrapper.Object, mockDirectory.Object);
             //-----------------------Assert-------------------------
             mockActivityIOPath.VerifyAll();
-            Assert.AreEqual(path, appendBackSlashes);
+            NUnit.Framework.Assert.AreEqual(path, appendBackSlashes);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(PerformListOfIOPathOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(PerformListOfIOPathOperation))]
         public void PerformListOfIOPathOperation_AppendBackSlashes_Path_IsDirectory_DirectoryExist_And_IsNotStarWildCard_ExpectTrue()
         {
             //-----------------------Arrange------------------------
@@ -114,12 +115,12 @@ namespace Dev2.Data.Tests.PathOperations
             //-----------------------Assert-------------------------
             mockActivityIOPath.VerifyAll();
             mockFileWrapper.VerifyAll();
-            Assert.AreEqual(path+"\\", appendBackSlashes);
+            NUnit.Framework.Assert.AreEqual(path+"\\", appendBackSlashes);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(PerformListOfIOPathOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(PerformListOfIOPathOperation))]
         public void PerformListOfIOPathOperation_AppendBackSlashes_Path_IsDirectory_DirectoryExist_And_IsNotStarWildCard_EndsWithBackSlash_ExpectTrue()
         {
             //-----------------------Arrange------------------------
@@ -134,12 +135,12 @@ namespace Dev2.Data.Tests.PathOperations
             var appendBackSlashes = PerformListOfIOPathOperation.AppendBackSlashes(mockActivityIOPath.Object, mockFileWrapper.Object, mockDirectory.Object);
             //-----------------------Assert-------------------------
             mockActivityIOPath.VerifyAll();
-            Assert.AreEqual(path, appendBackSlashes);
+            NUnit.Framework.Assert.AreEqual(path, appendBackSlashes);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(PerformListOfIOPathOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(PerformListOfIOPathOperation))]
         public void PerformListOfIOPathOperation_AddDirsToResults_DirsToAdd_NoDirs_ExpectTrue()
         {
             //-----------------------Arrange------------------------
@@ -148,12 +149,12 @@ namespace Dev2.Data.Tests.PathOperations
             //-----------------------Act----------------------------
             var appendBackSlashes = PerformListOfIOPathOperation.AddDirsToResults(enumerableString, mockActivityIOPath.Object);
             //-----------------------Assert-------------------------
-            Assert.AreEqual(0, appendBackSlashes.Count);
+            NUnit.Framework.Assert.AreEqual(0, appendBackSlashes.Count);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(PerformListOfIOPathOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(PerformListOfIOPathOperation))]
         public void PerformListOfIOPathOperation_AddDirsToResults_DirsToAdd_WithInValidDirs_ExpectIOException()
         {
             //-----------------------Arrange------------------------
@@ -163,12 +164,12 @@ namespace Dev2.Data.Tests.PathOperations
             enumerableString.Add("testDir2");
             //-----------------------Act----------------------------
             //-----------------------Assert-------------------------
-            Assert.ThrowsException<IOException>(() => PerformListOfIOPathOperation.AddDirsToResults(enumerableString, mockActivityIOPath.Object));
+            NUnit.Framework.Assert.Throws<IOException>(() => PerformListOfIOPathOperation.AddDirsToResults(enumerableString, mockActivityIOPath.Object));
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(PerformListOfIOPathOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(PerformListOfIOPathOperation))]
         public void PerformListOfIOPathOperation_AddDirsToResults_DirsToAdd_WithValidDirs_ExpectTrue()
         {
             //-----------------------Arrange------------------------
@@ -179,14 +180,14 @@ namespace Dev2.Data.Tests.PathOperations
             //-----------------------Act----------------------------
             var addDirsToResults = PerformListOfIOPathOperation.AddDirsToResults(enumerableString, mockActivityIOPath.Object);
             //-----------------------Assert-------------------------
-            Assert.AreEqual(2,addDirsToResults.Count);
-            Assert.AreEqual("ftp://testParth/logger1.log", addDirsToResults[0].Path);
-            Assert.AreEqual("c://testParth/logger2.log", addDirsToResults[1].Path);
+            NUnit.Framework.Assert.AreEqual(2,addDirsToResults.Count);
+            NUnit.Framework.Assert.AreEqual("ftp://testParth/logger1.log", addDirsToResults[0].Path);
+            NUnit.Framework.Assert.AreEqual("c://testParth/logger2.log", addDirsToResults[1].Path);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(PerformListOfIOPathOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(PerformListOfIOPathOperation))]
         public void PerformListOfIOPathOperation_GetDirectoriesForType_Pattern_IsNullOrEmpty_IsNotNull_ExpectTrue()
         {
             //-----------------------Arrange------------------------
@@ -197,12 +198,12 @@ namespace Dev2.Data.Tests.PathOperations
             //-----------------------Act----------------------------
             var getDirectoriesForType = PerformListOfIOPathOperation.GetDirectoriesForType(path, pattern, ReadTypes.Files, mockDirectory.Object);
             //-----------------------Assert-------------------------
-            Assert.IsNotNull(getDirectoriesForType);
+            NUnit.Framework.Assert.IsNotNull(getDirectoriesForType);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(PerformListOfIOPathOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(PerformListOfIOPathOperation))]
         public void PerformListOfIOPathOperation_GetDirectoriesForType_Pattern_IsNotNullOrEmpty_And_ReadTypesFolders_IsNotNull_ExpectTrue()
         {
             //-----------------------Arrange------------------------
@@ -213,12 +214,12 @@ namespace Dev2.Data.Tests.PathOperations
             //-----------------------Act----------------------------
             var getDirectoriesForType = PerformListOfIOPathOperation.GetDirectoriesForType(path, pattern, ReadTypes.Folders, mockDirectory.Object);
             //-----------------------Assert-------------------------
-            Assert.IsNotNull(getDirectoriesForType);
+            NUnit.Framework.Assert.IsNotNull(getDirectoriesForType);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(PerformListOfIOPathOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(PerformListOfIOPathOperation))]
         public void PerformListOfIOPathOperation_GetDirectoriesForType_Pattern_IsNotNullOrEmpty_And_ReadTypesFilesAndFolders_IsNotNull_ExpectTrue()
         {
             //-----------------------Arrange------------------------
@@ -229,13 +230,13 @@ namespace Dev2.Data.Tests.PathOperations
             //-----------------------Act----------------------------
             var getDirectoriesForType = PerformListOfIOPathOperation.GetDirectoriesForType(path, pattern, ReadTypes.FilesAndFolders, mockDirectory.Object);
             //-----------------------Assert-------------------------
-            Assert.IsNotNull(getDirectoriesForType);
+            NUnit.Framework.Assert.IsNotNull(getDirectoriesForType);
         }
 
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(PerformListOfIOPathOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(PerformListOfIOPathOperation))]
         public void PerformListOfIOPathOperation_GetDirectoriesForType_Pattern_IsNullOrEmpty_And_ReadTypesFiles_IsNotNull_ExpectTrue()
         {
             //-----------------------Arrange------------------------
@@ -245,12 +246,12 @@ namespace Dev2.Data.Tests.PathOperations
             //-----------------------Act----------------------------
             var getDirectoriesForType = PerformListOfIOPathOperation.GetDirectoriesForType(path, string.Empty, ReadTypes.Files, mockDirectory.Object);
             //-----------------------Assert-------------------------
-            Assert.IsNotNull(getDirectoriesForType);
+            NUnit.Framework.Assert.IsNotNull(getDirectoriesForType);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(PerformListOfIOPathOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(PerformListOfIOPathOperation))]
         public void PerformListOfIOPathOperation_GetDirectoriesForType_Pattern_IsNullOrEmpty_And_ReadTypesFolders_IsNotNull_ExpectTrue()
         {
             //-----------------------Arrange------------------------
@@ -260,12 +261,12 @@ namespace Dev2.Data.Tests.PathOperations
             //-----------------------Act----------------------------
             var getDirectoriesForType = PerformListOfIOPathOperation.GetDirectoriesForType(path, string.Empty, ReadTypes.Folders, mockDirectory.Object);
             //-----------------------Assert-------------------------
-            Assert.IsNotNull(getDirectoriesForType);
+            NUnit.Framework.Assert.IsNotNull(getDirectoriesForType);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(PerformListOfIOPathOperation))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(PerformListOfIOPathOperation))]
         public void PerformListOfIOPathOperation_GetDirectoriesForType_Pattern_IsNullOrEmpty_And_ReadTypesFilesAndFolders_IsNotNull_ExpectTrue()
         {
             //-----------------------Arrange------------------------
@@ -275,7 +276,7 @@ namespace Dev2.Data.Tests.PathOperations
             //-----------------------Act----------------------------
             var getDirectoriesForType = PerformListOfIOPathOperation.GetDirectoriesForType(path, string.Empty, ReadTypes.FilesAndFolders, mockDirectory.Object);
             //-----------------------Assert-------------------------
-            Assert.IsNotNull(getDirectoriesForType);
+            NUnit.Framework.Assert.IsNotNull(getDirectoriesForType);
         }
 
         class TestPerformListOfIOPathOperation : PerformListOfIOPathOperation

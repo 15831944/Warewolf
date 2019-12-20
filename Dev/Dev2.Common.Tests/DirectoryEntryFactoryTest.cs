@@ -9,18 +9,18 @@
 */
 
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Dev2.Common.Interfaces.Wrappers;
 using Dev2.Common.Wrappers;
 
 namespace Dev2.Common.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class DirectoryEntryFactoryTest
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DirectoryEntryFactory))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DirectoryEntryFactory))]
         public void DirectoryEntryFactory_EntryNameAndMachineName_AreEqual()
         {
             //-----------------Arrage------------------
@@ -40,9 +40,10 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(count > 0);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DirectoryEntryFactory))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DirectoryEntryFactory))]
+        [ExpectedException(typeof(ObjectDisposedException))]
         public void DirectoryEntryFactory_DirectoryEntry_IsDisposed()
         {
             //-----------------Arrage------------------
@@ -56,13 +57,11 @@ namespace Dev2.Common.Tests
             //----------------Test if it does dispose-----------
             //----------------Act-------------------------------
             entry.Dispose();
-            //----------------Assert-------------------------------
-            Assert.ThrowsException<ObjectDisposedException>(()=>entry.Name);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DirectoryEntryFactory))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DirectoryEntryFactory))]
         public void DirectoryEntryFactory_DirectoryEntryPath_IsTrue()
         {
             //-----------------Arrage------------------

@@ -15,18 +15,19 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using Dev2.AppResources.Converters;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests.AppResources.Converters
 {
-    [TestClass]
-	[TestCategory("Studio Resources Core")]
+    [TestFixture]
+    [SetUpFixture]
+	[Category("Studio Resources Core")]
     
     public class GridRowNumberConverterTests
     {
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("GridRowNumberConverter_Convert")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("GridRowNumberConverter_Convert")]
         public void GridRowNumberConverter_Convert_WhenInputIsEmpty_ReturnsAZero()
         {
             //------------Setup for test--------------------------
@@ -42,9 +43,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(0, result);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("GridRowNumberConverter_Convert")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("GridRowNumberConverter_Convert")]
         public void GridRowNumberConverter_Convert_WhenInputNotDataGridRow_ReturnsMinus1()
         {
             //------------Setup for test--------------------------
@@ -60,9 +61,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(-1, result);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("GridRowNumberConverter_Convert")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("GridRowNumberConverter_Convert")]
         public void GridRowNumberConverter_Convert_WhenValidRow_ReturnsRowIndex()
         {
             var converter = new GridRowNumberConverter();
@@ -87,9 +88,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(1, result);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("GridRowNumberConverter_Convert")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("GridRowNumberConverter_Convert")]
         public void GridRowNumberConverter_Convert_WhenNotFirstOne_ReturnsRowIndex()
         {
             var converter = new GridRowNumberConverter();

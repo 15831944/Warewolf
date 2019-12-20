@@ -1,14 +1,15 @@
 using Dev2.Data.Decisions.Operations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests.DecisionsTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IsNotNullTests
     {
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("IsNotNull_Invoke")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("IsNotNull_Invoke")]
         public void GivenSomeString_IsNotNull_Invoke_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -18,16 +19,16 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = isNotNull.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
             //------------Execute Test---------------------------
             result = isNotNull.Invoke(null);
             //------------Assert Results-------------------------
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("IsNotNull_Invoke")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("IsNotNull_Invoke")]
         public void IsNotNull_Invoke_IsNotNull_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -37,12 +38,12 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = notStartsWith.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthmembu")]
-        [TestCategory("IsNotNull_HandlesType")]
+        [Test]
+        [Author("Sanele Mthmembu")]
+        [Category("IsNotNull_HandlesType")]
         public void IsNotNull_HandlesType_ReturnsIsNotNullType()
         {
             var decisionType = enDecisionType.IsNotNull;
@@ -50,7 +51,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             var isNotNull = new IsNotNull();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.AreEqual(decisionType, isNotNull.HandlesType());
+            NUnit.Framework.Assert.AreEqual(decisionType, isNotNull.HandlesType());
         }
     }
 }

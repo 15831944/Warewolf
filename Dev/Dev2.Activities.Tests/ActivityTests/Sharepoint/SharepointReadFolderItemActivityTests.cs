@@ -9,13 +9,15 @@ using Dev2.Common.State;
 using Dev2.Data.ServiceModel;
 using Dev2.DynamicServices;
 using Dev2.Runtime.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using static Dev2.Tests.Activities.ActivityTests.Sharepoint.SharepointCopyFileActivityTests;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SharepointReadFolderItemActivityTests : BaseActivityUnitTest
     {
         SharepointReadFolderItemActivity CreateActivity()
@@ -23,21 +25,21 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
             return new SharepointReadFolderItemActivity();
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SharepointFileUploadActivity_Construct")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SharepointFileUploadActivity_Construct")]
         public void SharepointFileUploadActivity_Construct_GivenInstance_ShouldNotBeNull()
         {
             //------------Setup for test--------------------------
             var sharepointReadFolderItemActivity = CreateActivity();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.IsNotNull(sharepointReadFolderItemActivity);
+            NUnit.Framework.Assert.IsNotNull(sharepointReadFolderItemActivity);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SharepointFileUpload_Execute")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SharepointFileUpload_Execute")]
         public void SharepointSource_DoesNotExist_OnResourceCatalog_ShouldSetSharepointSource_ToGuidEmpty()
         {
             //------------Setup for test--------------------------
@@ -56,21 +58,21 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
             var resourceCatalog = new Mock<IResourceCatalog>();
             var mockSharepointSource = new Mock<SharepointSource>();
 
-            var privateObject = new PrivateObject(sharepointReadFolderItemActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(sharepointReadFolderItemActivity);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
             sharepointReadFolderItemActivity.SharepointSource = mockSharepointSource.Object;
 
-            Assert.AreEqual(resourceId, sharepointReadFolderItemActivity.SharepointServerResourceId);
+            NUnit.Framework.Assert.AreEqual(resourceId, sharepointReadFolderItemActivity.SharepointServerResourceId);
 
             //------------Execute Test---------------------------
             privateObject.Invoke("ExecuteTool", dataObj, 0);
 
-            Assert.AreEqual(Guid.Empty, sharepointReadFolderItemActivity.SharepointServerResourceId);
+            NUnit.Framework.Assert.AreEqual(Guid.Empty, sharepointReadFolderItemActivity.SharepointServerResourceId);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SharepointFileUpload_Execute")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SharepointFileUpload_Execute")]
         public void SharepointSource_Exists_OnResourceCatalog_BlankRecordSet_IsFilesSelected()
         {
             //------------Setup for test--------------------------
@@ -99,7 +101,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
 
             resourceCatalog.Setup(r => r.GetResource<SharepointSource>(It.IsAny<Guid>(), It.IsAny<Guid>())).Returns(mockSharepointSource);
 
-            var privateObject = new PrivateObject(sharepointReadFolderItemActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(sharepointReadFolderItemActivity);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
             sharepointReadFolderItemActivity.SharepointSource = mockSharepointSource;
 
@@ -107,13 +109,13 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
             privateObject.Invoke("ExecuteTool", dataObj, 0);
             //------------Assert Result--------------------------
             GetRecordSetFieldValueFromDataList(dataObj.Environment, "Files", "Name", out IList<string> result, out string error);
-            Assert.IsNotNull(result);
-            Assert.AreEqual("Success", result[0]);
+            NUnit.Framework.Assert.IsNotNull(result);
+            NUnit.Framework.Assert.AreEqual("Success", result[0]);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SharepointFileUpload_Execute")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SharepointFileUpload_Execute")]
         public void SharepointSource_Exists_OnResourceCatalog_BlankRecordSet_IsFoldersSelected()
         {
             //------------Setup for test--------------------------
@@ -142,7 +144,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
 
             resourceCatalog.Setup(r => r.GetResource<SharepointSource>(It.IsAny<Guid>(), It.IsAny<Guid>())).Returns(mockSharepointSource);
 
-            var privateObject = new PrivateObject(sharepointReadFolderItemActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(sharepointReadFolderItemActivity);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
             sharepointReadFolderItemActivity.SharepointSource = mockSharepointSource;
 
@@ -150,13 +152,13 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
             privateObject.Invoke("ExecuteTool", dataObj, 0);
             //------------Assert Result--------------------------
             GetRecordSetFieldValueFromDataList(dataObj.Environment, "Files", "Name", out IList<string> result, out string error);
-            Assert.IsNotNull(result);
-            Assert.AreEqual("Success", result[0]);
+            NUnit.Framework.Assert.IsNotNull(result);
+            NUnit.Framework.Assert.AreEqual("Success", result[0]);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SharepointFileUpload_Execute")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SharepointFileUpload_Execute")]
         public void SharepointSource_Exists_OnResourceCatalog_BlankRecordSet_IsFilesAndFoldersSelected()
         {
             //------------Setup for test--------------------------
@@ -186,7 +188,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
 
             resourceCatalog.Setup(r => r.GetResource<SharepointSource>(It.IsAny<Guid>(), It.IsAny<Guid>())).Returns(mockSharepointSource);
 
-            var privateObject = new PrivateObject(sharepointReadFolderItemActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(sharepointReadFolderItemActivity);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
             sharepointReadFolderItemActivity.SharepointSource = mockSharepointSource;
 
@@ -194,14 +196,14 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
             privateObject.Invoke("ExecuteTool", dataObj, 0);
             //------------Assert Result--------------------------
             GetRecordSetFieldValueFromDataList(dataObj.Environment, "Files", "Name", out IList<string> result, out string error);
-            Assert.IsNotNull(result);
-            Assert.AreEqual("Success", result[0]);
-            Assert.AreEqual("Success", result[1]);
+            NUnit.Framework.Assert.IsNotNull(result);
+            NUnit.Framework.Assert.AreEqual("Success", result[0]);
+            NUnit.Framework.Assert.AreEqual("Success", result[1]);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SharepointFileUpload_Execute")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SharepointFileUpload_Execute")]
         public void SharepointSource_Exists_OnResourceCatalog_StarRecordSet_IsFilesSelected()
         {
             //------------Setup for test--------------------------
@@ -230,7 +232,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
 
             resourceCatalog.Setup(r => r.GetResource<SharepointSource>(It.IsAny<Guid>(), It.IsAny<Guid>())).Returns(mockSharepointSource);
 
-            var privateObject = new PrivateObject(sharepointReadFolderItemActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(sharepointReadFolderItemActivity);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
             sharepointReadFolderItemActivity.SharepointSource = mockSharepointSource;
 
@@ -238,13 +240,13 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
             privateObject.Invoke("ExecuteTool", dataObj, 0);
             //------------Assert Result--------------------------
             GetRecordSetFieldValueFromDataList(dataObj.Environment, "Files", "Name", out IList<string> result, out string error);
-            Assert.IsNotNull(result);
-            Assert.AreEqual("Success", result[0]);
+            NUnit.Framework.Assert.IsNotNull(result);
+            NUnit.Framework.Assert.AreEqual("Success", result[0]);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SharepointFileUpload_Execute")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SharepointFileUpload_Execute")]
         public void SharepointSource_Exists_OnResourceCatalog_StarRecordSet_IsFoldersSelected()
         {
             //------------Setup for test--------------------------
@@ -273,7 +275,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
 
             resourceCatalog.Setup(r => r.GetResource<SharepointSource>(It.IsAny<Guid>(), It.IsAny<Guid>())).Returns(mockSharepointSource);
 
-            var privateObject = new PrivateObject(sharepointReadFolderItemActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(sharepointReadFolderItemActivity);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
             sharepointReadFolderItemActivity.SharepointSource = mockSharepointSource;
 
@@ -281,13 +283,13 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
             privateObject.Invoke("ExecuteTool", dataObj, 0);
             //------------Assert Result--------------------------
             GetRecordSetFieldValueFromDataList(dataObj.Environment, "Files", "Name", out IList<string> result, out string error);
-            Assert.IsNotNull(result);
-            Assert.AreEqual("Success", result[0]);
+            NUnit.Framework.Assert.IsNotNull(result);
+            NUnit.Framework.Assert.AreEqual("Success", result[0]);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SharepointFileUpload_Execute")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SharepointFileUpload_Execute")]
         public void SharepointSource_Exists_OnResourceCatalog_StarRecordSet_IsFilesAndFoldersSelected()
         {
             //------------Setup for test--------------------------
@@ -317,7 +319,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
 
             resourceCatalog.Setup(r => r.GetResource<SharepointSource>(It.IsAny<Guid>(), It.IsAny<Guid>())).Returns(mockSharepointSource);
 
-            var privateObject = new PrivateObject(sharepointReadFolderItemActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(sharepointReadFolderItemActivity);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
             sharepointReadFolderItemActivity.SharepointSource = mockSharepointSource;
 
@@ -325,15 +327,15 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
             privateObject.Invoke("ExecuteTool", dataObj, 0);
             //------------Assert Result--------------------------
             GetRecordSetFieldValueFromDataList(dataObj.Environment, "Files", "Name", out IList<string> result, out string error);
-            Assert.IsNotNull(result);
-            Assert.AreEqual("Success", result[0]);
-            Assert.AreEqual("Success", result[1]);
+            NUnit.Framework.Assert.IsNotNull(result);
+            NUnit.Framework.Assert.AreEqual("Success", result[0]);
+            NUnit.Framework.Assert.AreEqual("Success", result[1]);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SharepointFileUpload_Execute")]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SharepointFileUpload_Execute")]
+        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
         public void SharepointFileUploadActivity_ValidateRequest_SharepointServerResourceId_EmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -352,7 +354,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
 
             resourceCatalog.Setup(r => r.GetResource<SharepointSource>(It.IsAny<Guid>(), It.IsAny<Guid>())).Returns(mockSharepointSource.Object);
 
-            var privateObject = new PrivateObject(sharepointReadFolderItemActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(sharepointReadFolderItemActivity);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
             sharepointReadFolderItemActivity.SharepointSource = mockSharepointSource.Object;
 
@@ -360,9 +362,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
             privateObject.Invoke("ValidateRequest");
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("SharepointReadFolderItemActivity_GetState")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("SharepointReadFolderItemActivity_GetState")]
         public void SharepointReadFolderItemActivity_GetState_IsFilesSelected()
         {
             //------------Setup for test--------------------------
@@ -394,7 +396,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
 
             resourceCatalog.Setup(r => r.GetResource<SharepointSource>(It.IsAny<Guid>(), It.IsAny<Guid>())).Returns(mockSharepointSource);
 
-            var privateObject = new PrivateObject(sharepointReadFolderItemActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(sharepointReadFolderItemActivity);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
             sharepointReadFolderItemActivity.SharepointSource = mockSharepointSource;
 
@@ -442,7 +444,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
             };
             //---------------Test Result -----------------------
             var stateItems = sharepointReadFolderItemActivity.GetState();
-            Assert.AreEqual(6, stateItems.Count());
+            NUnit.Framework.Assert.AreEqual(6, stateItems.Count());
             var iter = stateItems.Select(
                 (item, index) => new
                 {
@@ -454,15 +456,15 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
             //------------Assert Results-------------------------
             foreach (var entry in iter)
             {
-                Assert.AreEqual(entry.expectValue.Name, entry.value.Name);
-                Assert.AreEqual(entry.expectValue.Type, entry.value.Type);
-                Assert.AreEqual(entry.expectValue.Value, entry.value.Value);
+                NUnit.Framework.Assert.AreEqual(entry.expectValue.Name, entry.value.Name);
+                NUnit.Framework.Assert.AreEqual(entry.expectValue.Type, entry.value.Type);
+                NUnit.Framework.Assert.AreEqual(entry.expectValue.Value, entry.value.Value);
             }
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("SharepointReadFolderItemActivity_GetState")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("SharepointReadFolderItemActivity_GetState")]
         public void SharepointReadFolderItemActivity_GetState_IsFoldersSelected()
         {
             //------------Setup for test--------------------------
@@ -494,7 +496,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
 
             resourceCatalog.Setup(r => r.GetResource<SharepointSource>(It.IsAny<Guid>(), It.IsAny<Guid>())).Returns(mockSharepointSource);
 
-            var privateObject = new PrivateObject(sharepointReadFolderItemActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(sharepointReadFolderItemActivity);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
             sharepointReadFolderItemActivity.SharepointSource = mockSharepointSource;
 
@@ -542,7 +544,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
             };
             //---------------Test Result -----------------------
             var stateItems = sharepointReadFolderItemActivity.GetState();
-            Assert.AreEqual(6, stateItems.Count());
+            NUnit.Framework.Assert.AreEqual(6, stateItems.Count());
             var iter = stateItems.Select(
                 (item, index) => new
                 {
@@ -554,15 +556,15 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
             //------------Assert Results-------------------------
             foreach (var entry in iter)
             {
-                Assert.AreEqual(entry.expectValue.Name, entry.value.Name);
-                Assert.AreEqual(entry.expectValue.Type, entry.value.Type);
-                Assert.AreEqual(entry.expectValue.Value, entry.value.Value);
+                NUnit.Framework.Assert.AreEqual(entry.expectValue.Name, entry.value.Name);
+                NUnit.Framework.Assert.AreEqual(entry.expectValue.Type, entry.value.Type);
+                NUnit.Framework.Assert.AreEqual(entry.expectValue.Value, entry.value.Value);
             }
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("SharepointReadFolderItemActivity_GetState")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("SharepointReadFolderItemActivity_GetState")]
         public void SharepointReadFolderItemActivity_GetState_IsFilesAndFoldersSelected()
         {
             //------------Setup for test--------------------------
@@ -596,7 +598,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
 
             resourceCatalog.Setup(r => r.GetResource<SharepointSource>(It.IsAny<Guid>(), It.IsAny<Guid>())).Returns(mockSharepointSource);
 
-            var privateObject = new PrivateObject(sharepointReadFolderItemActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(sharepointReadFolderItemActivity);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
             sharepointReadFolderItemActivity.SharepointSource = mockSharepointSource;
 
@@ -644,7 +646,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
             };
             //---------------Test Result -----------------------
             var stateItems = sharepointReadFolderItemActivity.GetState();
-            Assert.AreEqual(6, stateItems.Count());
+            NUnit.Framework.Assert.AreEqual(6, stateItems.Count());
             var iter = stateItems.Select(
                 (item, index) => new
                 {
@@ -656,15 +658,15 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
             //------------Assert Results-------------------------
             foreach (var entry in iter)
             {
-                Assert.AreEqual(entry.expectValue.Name, entry.value.Name);
-                Assert.AreEqual(entry.expectValue.Type, entry.value.Type);
-                Assert.AreEqual(entry.expectValue.Value, entry.value.Value);
+                NUnit.Framework.Assert.AreEqual(entry.expectValue.Name, entry.value.Name);
+                NUnit.Framework.Assert.AreEqual(entry.expectValue.Type, entry.value.Type);
+                NUnit.Framework.Assert.AreEqual(entry.expectValue.Value, entry.value.Value);
             }
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("SharepointReadFolderItemActivity_GetState")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("SharepointReadFolderItemActivity_GetState")]
         public void SharepointReadFolderItemActivity_GetState_NoneSelected()
         {
             //------------Setup for test--------------------------
@@ -696,7 +698,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
 
             resourceCatalog.Setup(r => r.GetResource<SharepointSource>(It.IsAny<Guid>(), It.IsAny<Guid>())).Returns(mockSharepointSource);
 
-            var privateObject = new PrivateObject(sharepointReadFolderItemActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(sharepointReadFolderItemActivity);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
             sharepointReadFolderItemActivity.SharepointSource = mockSharepointSource;
 
@@ -744,7 +746,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
             };
             //---------------Test Result -----------------------
             var stateItems = sharepointReadFolderItemActivity.GetState();
-            Assert.AreEqual(6, stateItems.Count());
+            NUnit.Framework.Assert.AreEqual(6, stateItems.Count());
             var iter = stateItems.Select(
                 (item, index) => new
                 {
@@ -756,9 +758,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
             //------------Assert Results-------------------------
             foreach (var entry in iter)
             {
-                Assert.AreEqual(entry.expectValue.Name, entry.value.Name);
-                Assert.AreEqual(entry.expectValue.Type, entry.value.Type);
-                Assert.AreEqual(entry.expectValue.Value, entry.value.Value);
+                NUnit.Framework.Assert.AreEqual(entry.expectValue.Name, entry.value.Name);
+                NUnit.Framework.Assert.AreEqual(entry.expectValue.Type, entry.value.Type);
+                NUnit.Framework.Assert.AreEqual(entry.expectValue.Value, entry.value.Value);
             }
         }
     }

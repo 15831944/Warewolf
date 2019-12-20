@@ -14,46 +14,47 @@ using Dev2.Activities.Designers2.MultiAssign;
 using Dev2.Common.Interfaces.Help;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 
 namespace Dev2.Activities.Designers.Tests.MultiAssignTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class MultiAssignViewModelTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfMultiAssignActivityViewModel_Construct")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfMultiAssignActivityViewModel_Construct")]
         public void DsfMultiAssignActivityViewModel_Construct_IsInstanceOfActivityViewModelBase_True()
         {
             //------------Setup for test--------------------------
             //------------Execute Test---------------------------
             var dsfMultiAssignActivityViewModel = CreateDsfMultiAssignActivityViewModel();
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(dsfMultiAssignActivityViewModel, typeof(ActivityDesignerViewModel));
+            Assert.IsInstanceOf(dsfMultiAssignActivityViewModel.GetType(), typeof(ActivityDesignerViewModel));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DsfMultiAssignActivityViewModel_Construct")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DsfMultiAssignActivityViewModel_Construct")]
         public void DsfMultiAssignActivityViewModel_Construct_ShouldHaveCorrectDisplayName()
         {
             //------------Setup for test--------------------------
             var dsfMultiAssignActivityViewModel = CreateDsfMultiAssignActivityViewModel();
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOfType(dsfMultiAssignActivityViewModel, typeof(ActivityDesignerViewModel));
+            Assert.IsInstanceOf(dsfMultiAssignActivityViewModel.GetType(), typeof(ActivityDesignerViewModel));
             //------------Execute Test---------------------------
             var displayName = dsfMultiAssignActivityViewModel.ModelItem.GetProperty<string>("DisplayName");
             //------------Assert Results-------------------------
             Assert.AreEqual("Assign (0)", displayName);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DsfMultiAssignActivityViewModel_Construct")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DsfMultiAssignActivityViewModel_Construct")]
         public void DsfMultiAssignActivityViewModel_AddNewRow_ShouldUpdateDisplayName()
         {
             //------------Setup for test--------------------------
@@ -62,7 +63,7 @@ namespace Dev2.Activities.Designers.Tests.MultiAssignTests
             var activityDto = new ActivityDTO("[[a]]", "Value", 2);
             dsfMultiAssignActivityViewModel.ModelItemCollection.Add(ModelItemUtils.CreateModelItem(activityDto));
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOfType(dsfMultiAssignActivityViewModel, typeof(ActivityDesignerViewModel));
+            Assert.IsInstanceOf(dsfMultiAssignActivityViewModel.GetType(), typeof(ActivityDesignerViewModel));
             Assert.AreEqual("Assign (0)", displayName);
             //------------Execute Test---------------------------
             dsfMultiAssignActivityViewModel.UpdateDisplayName();
@@ -72,21 +73,21 @@ namespace Dev2.Activities.Designers.Tests.MultiAssignTests
 
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfMultiAssignActivityViewModel_Construct")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfMultiAssignActivityViewModel_Construct")]
         public void DsfMultiAssignActivityViewModel_Construct_IsInstanceOfActivityCollectionViewModelBaseOfActivityDTO_True()
         {
             //------------Setup for test--------------------------
             //------------Execute Test---------------------------
             var dsfMultiAssignActivityViewModel = CreateDsfMultiAssignActivityViewModel();
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(dsfMultiAssignActivityViewModel, typeof(ActivityCollectionDesignerViewModel<ActivityDTO>));
+            Assert.IsInstanceOf(dsfMultiAssignActivityViewModel.GetType(), typeof(ActivityCollectionDesignerViewModel<ActivityDTO>));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MultiAssignActivityViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MultiAssignActivityViewModel_Handle")]
         public void MultiAssignActivityViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -102,9 +103,9 @@ namespace Dev2.Activities.Designers.Tests.MultiAssignTests
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [TestCategory("MultiAssignActivityViewModel_Constructor")]
-        [Owner("Ashley Lewis")]
+        [Test]
+        [Category("MultiAssignActivityViewModel_Constructor")]
+        [Author("Ashley Lewis")]
         
         public void MultiAssignActivityViewModel_Constructor_CollectionNameInitialized()
 
@@ -123,9 +124,9 @@ namespace Dev2.Activities.Designers.Tests.MultiAssignTests
             Assert.AreEqual(ExpectedCollectionName, vm.CollectionName, "Collection Name not initialized on Multi Assign load");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("MultiAssignActivityViewModel_ErrorsProperty")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("MultiAssignActivityViewModel_ErrorsProperty")]
         public void MultiAssignActivityViewModel_ErrorsProperty_Constructor_IsNull()
         {
             //------------Setup for test--------------------------

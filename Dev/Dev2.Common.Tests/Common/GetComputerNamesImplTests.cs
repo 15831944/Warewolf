@@ -9,7 +9,7 @@
 */
 
 using Dev2.Common.Common;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -17,10 +17,11 @@ using System.Security.Principal;
 
 namespace Dev2.Common.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class GetComputerNamesImplTests
     {
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void InitializeTests(TestContext testContext)
         {
             try
@@ -41,9 +42,9 @@ namespace Dev2.Common.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(GetComputerNames))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(GetComputerNames))]
         public void GetComputerNames_GetComputerNamesImpl_ComputerNames_ShouldBeMoreThanZero()
         {
             var mockSecurityIdentityFactory = new Mock<ISecurityIdentityFactory>();
@@ -57,9 +58,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(c >= 1, "ComputerNames count should be greater than 1");
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(GetComputerNames))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(GetComputerNames))]
         public void GetComputerNames_GetComputerNamesImpl_UpdateComputerNamesList()
         {
             var expectedList = new List<string>();
@@ -79,9 +80,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(GetComputerNames.ComputerNames.Count >= 1, "ComputerNames count should be greater than 1");
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(GetComputerNames))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(GetComputerNames))]
         public void GetComputerNames_GetWindowsDomainOrWorkgroupNameFromUserName_GivenDomainUser()
         {
             var result = SecurityIdentityForWindows.GetWindowsDomainOrWorkgroupName(@"WinDomain\IntegrationTester");
@@ -89,9 +90,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual("WinDomain", result);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(GetComputerNames))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(GetComputerNames))]
         public void GetComputerNames_GetWindowsDomainOrWorkgroupNameFromUserName()
         {
             var result = SecurityIdentityForWindows.GetWindowsDomainOrWorkgroupName("");

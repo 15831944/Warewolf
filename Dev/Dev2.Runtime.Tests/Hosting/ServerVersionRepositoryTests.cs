@@ -17,7 +17,7 @@ using Dev2.Common.Interfaces.Wrappers;
 using Dev2.Runtime.Hosting;
 using Dev2.Runtime.Interfaces;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Dev2.Common;
 using System.IO;
@@ -28,13 +28,14 @@ using Dev2.Common.Interfaces.Versioning;
 
 namespace Dev2.Tests.Runtime.Hosting
 {
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class ServerVersionRepositoryTests
     {
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerVersionRepostory_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerVersionRepostory_Ctor")]
         [ExpectedException(typeof(ArgumentNullException))]
 
         public void ServerVersionRepostory_Ctor_Null_strategy()
@@ -54,11 +55,11 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var items = serverVersionRepostory.GetVersions(resourceId);
             //------------Assert Results-------------------------
-            Assert.AreEqual(0, items.Count);
+            NUnit.Framework.Assert.AreEqual(0, items.Count);
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerVersionRepostory_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerVersionRepostory_Ctor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ServerVersionRepostory_Ctor_Null_Cataloguey()
         {
@@ -78,11 +79,11 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var items = serverVersionRepostory.GetVersions(resourceId);
             //------------Assert Results-------------------------
-            Assert.AreEqual(0, items.Count);
+            NUnit.Framework.Assert.AreEqual(0, items.Count);
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerVersionRepostory_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerVersionRepostory_Ctor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ServerVersionRepostory_Ctor_Null_dir()
         {
@@ -102,11 +103,11 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var items = serverVersionRepostory.GetVersions(resourceId);
             //------------Assert Results-------------------------
-            Assert.AreEqual(0, items.Count);
+            NUnit.Framework.Assert.AreEqual(0, items.Count);
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerVersionRepostory_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerVersionRepostory_Ctor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ServerVersionRepostory_Ctor_Null_Path()
         {
@@ -125,11 +126,11 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var items = serverVersionRepostory.GetVersions(resourceId);
             //------------Assert Results-------------------------
-            Assert.AreEqual(0, items.Count);
+            NUnit.Framework.Assert.AreEqual(0, items.Count);
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerVersionRepostory_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerVersionRepostory_Ctor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ServerVersionRepostory_Ctor_Null_File()
         {
@@ -149,7 +150,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var items = serverVersionRepostory.GetVersions(resourceId);
             //------------Assert Results-------------------------
-            Assert.AreEqual(0, items.Count);
+            NUnit.Framework.Assert.AreEqual(0, items.Count);
         }
 
 
@@ -159,9 +160,9 @@ namespace Dev2.Tests.Runtime.Hosting
             return serverVersionRepostory;
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerVersionRepostory_GetVersions")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerVersionRepostory_GetVersions")]
         public void ServerVersionRepostory_GetVersions_CatologueHasNoResource_ReturnEmpty()
         {
 #pragma warning disable 168
@@ -179,13 +180,13 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var items = serverVersionRepostory.GetVersions(resourceId);
             //------------Assert Results-------------------------
-            Assert.AreEqual(0, items.Count);
+            NUnit.Framework.Assert.AreEqual(0, items.Count);
 
 
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerVersionRepostory_GetVersions")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerVersionRepostory_GetVersions")]
         public void ServerVersionRepostory_GetVersions_CatologueResource_ResourceIsNotVersioned()
         {
 
@@ -205,12 +206,12 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var items = serverVersionRepostory.GetVersions(resourceId);
             //------------Assert Results-------------------------
-            Assert.AreEqual(0, items.Count);
+            NUnit.Framework.Assert.AreEqual(0, items.Count);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerVersionRepostory_GetVersions")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerVersionRepostory_GetVersions")]
         public void ServerVersionRepostory_GetVersions_CatologueResource_ResourceIsVersioned()
         {
 
@@ -233,13 +234,13 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var items = serverVersionRepostory.GetVersions(resourceId);
             //------------Assert Results-------------------------
-            Assert.AreEqual(2, items.Count);
+            NUnit.Framework.Assert.AreEqual(2, items.Count);
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerVersionRepostory_GetVersions")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerVersionRepostory_GetVersions")]
         public void ServerVersionRepostory_StoreVersion_CatologueResource_ResourceIsVersioned()
         {
             //------------Setup for test--------------------------
@@ -274,9 +275,9 @@ namespace Dev2.Tests.Runtime.Hosting
             dir.Verify(a => a.CreateIfNotExists(It.IsAny<string>()));
             strat.Verify(p => p.GetCurrentVersion(It.IsAny<IResource>(), It.IsAny<IVersionInfo>(), It.IsAny<string>(), It.IsAny<string>()));
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerVersionRepostory_GetVersions")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerVersionRepostory_GetVersions")]
         public void ServerVersionRepostory_StoreVersion_CatologueResource_ResourceIsNotVersioned()
         {
 
@@ -309,9 +310,9 @@ namespace Dev2.Tests.Runtime.Hosting
             file.Verify(a => a.Copy(It.IsAny<string>(), It.IsAny<string>()), Times.Never());
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerVersionRepostory_Rollback")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerVersionRepostory_Rollback")]
         [ExpectedException(typeof(VersionNotFoundException))]
         public void ServerVersionRepostory_Rollback_VersionDoesNotExist()
         {
@@ -347,9 +348,9 @@ namespace Dev2.Tests.Runtime.Hosting
 
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerVersionRepostory_Rollback")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerVersionRepostory_Rollback")]
         public void ServerVersionRepostory_Rollback_VersionDoesExist_DifferentNames()
         {
             var strat = new Mock<IVersionStrategy>();
@@ -382,15 +383,15 @@ namespace Dev2.Tests.Runtime.Hosting
             var res = serverVersionRepostory.RollbackTo(resourceId, "2");
 
             //------------Assert Results-------------------------
-            Assert.AreEqual(res.VersionHistory.Count, 1);
+            NUnit.Framework.Assert.AreEqual(res.VersionHistory.Count, 1);
             cat.Verify(a => a.SaveResource(Guid.Empty, It.IsAny<StringBuilder>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()));
             cat.Verify(a => a.DeleteResource(Guid.Empty, "moon", "WorkflowService", false));
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerVersionRepostory_Rollback")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerVersionRepostory_Rollback")]
         public void ServerVersionRepostory_Rollback_VersionDoesExist_SameName()
         {
             var strat = new Mock<IVersionStrategy>();
@@ -423,14 +424,14 @@ namespace Dev2.Tests.Runtime.Hosting
             var res = serverVersionRepostory.RollbackTo(resourceId, "2");
 
             //------------Assert Results-------------------------
-            Assert.AreEqual(res.VersionHistory.Count, 1);
+            NUnit.Framework.Assert.AreEqual(res.VersionHistory.Count, 1);
             cat.Verify(a => a.SaveResource(Guid.Empty, It.IsAny<StringBuilder>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()));
             cat.Verify(a => a.DeleteResource(Guid.Empty, "moon", "Unknown", false), Times.Never());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("ServerVersionRepostory_Rollback")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("ServerVersionRepostory_Rollback")]
         public void ServerVersionRepostory_Rollback_Version_GetSavePath()
         {
             var strat = new Mock<IVersionStrategy>();
@@ -465,13 +466,13 @@ namespace Dev2.Tests.Runtime.Hosting
             var res = serverVersionRepostory.RollbackTo(resourceId, "2");
 
             //------------Assert Results-------------------------
-            Assert.AreEqual(1, res.VersionHistory.Count);
+            NUnit.Framework.Assert.AreEqual(1, res.VersionHistory.Count);
             cat.Verify(a => a.SaveResource(Guid.Empty, It.IsAny<StringBuilder>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()));
             cat.Verify(a => a.DeleteResource(Guid.Empty, "moon", "Unknown", false), Times.Never());
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerVersionRepostory_Rollback")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerVersionRepostory_Rollback")]
         public void ServerVersionRepostory_Delete_VersionDoesExist()
         {
 
@@ -503,14 +504,14 @@ namespace Dev2.Tests.Runtime.Hosting
             var filedel = "2_" + dt.Ticks + "_jjj";
 
             //------------Assert Results-------------------------
-            Assert.AreEqual(res.Count, 1);
+            NUnit.Framework.Assert.AreEqual(res.Count, 1);
             file.Verify(a => a.Delete(filedel));
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerVersionRepostory_Delete")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerVersionRepostory_Delete")]
         public void ServerVersionRepostory_Delete_VersionDoesNotExist()
         {
 
@@ -539,7 +540,7 @@ namespace Dev2.Tests.Runtime.Hosting
             var filedel = versionId.ToString() + "_2_" + dt.Ticks + "_jjj";
 
             //------------Assert Results-------------------------
-            Assert.AreEqual(res.Count, 0);
+            NUnit.Framework.Assert.AreEqual(res.Count, 0);
             file.Verify(a => a.Delete(filedel), Times.Never());
 
         }

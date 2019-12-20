@@ -3,17 +3,18 @@ using System.Linq;
 using ActivityUnitTests;
 using Dev2.Activities.Scripting;
 using Dev2.Common.Interfaces.Enums;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Warewolf.Core;
 
 
 namespace Dev2.Tests.Activities.ActivityTests.Scripting
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfPythonActivityTests : BaseActivityUnitTest
     {
-        [ClassCleanup]
+        [OneTimeTearDown]
         public static void Cleaner()
         {
             try
@@ -26,8 +27,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
         }
         
       
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Attribute_GivenIsNew_ShouldhaveCorrectValues()
         {
             //---------------Set up test pack-------------------
@@ -44,8 +45,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             Assert.AreEqual("Python", toolDescriptorInfo.Name );
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void OnConstruction_GivenType_ShouldInheritCorrectly()
         {
             //---------------Set up test pack-------------------
@@ -55,17 +56,17 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             //---------------Execute Test ----------------------
 
             //---------------Test Result -----------------------
-            Assert.IsInstanceOfType(act, typeof(DsfActivityAbstract<string>));
+            Assert.IsInstanceOf(act.GetType(), typeof(DsfActivityAbstract<string>));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_GivenIsNew_ShouldSetJavascript()
         {
             //---------------Set up test pack-------------------
             var act = new DsfPythonActivity();
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOfType(act, typeof(DsfActivityAbstract<string>));
+            Assert.IsInstanceOf(act.GetType(), typeof(DsfActivityAbstract<string>));
             //---------------Execute Test ----------------------
             var displayName = act.DisplayName;
             //---------------Test Result -----------------------
@@ -73,14 +74,14 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Script_GivenIsNew_ShouldBeEmpty()
         {
             //---------------Set up test pack-------------------
             var act = new DsfPythonActivity();
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOfType(act, typeof(DsfActivityAbstract<string>));
+            Assert.IsInstanceOf(act.GetType(), typeof(DsfActivityAbstract<string>));
             //---------------Execute Test ----------------------
             var displayName = act.Script;
             //---------------Test Result -----------------------
@@ -88,8 +89,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ScriptType_GivenIsNew_ShouldSetJavascript()
         {
             //---------------Set up test pack-------------------

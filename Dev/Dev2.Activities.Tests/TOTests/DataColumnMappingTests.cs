@@ -9,16 +9,18 @@
 */
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.TO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Activities.TOTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DataColumnMappingTests
     {
-        [TestMethod, DeploymentItem("EnableDocker.txt")]
-        [Owner("Candice Daniel")]
-        [TestCategory("DataColumnMapping")]
+        [Test]
+        [DeploymentItem("EnableDocker.txt")]
+        [Author("Candice Daniel")]
+        [Category("DataColumnMapping")]
         public void DataColumnMapping_GivenObject_Equal_False()
         {
             var dataColumn = new DataColumnMapping { };
@@ -26,9 +28,10 @@ namespace Dev2.Tests.Activities.TOTests
             var dataColumnEqual = dataColumn.Equals(other);
             Assert.IsFalse(dataColumnEqual);
         }
-        [TestMethod, DeploymentItem("EnableDocker.txt")]
-        [Owner("Candice Daniel")]
-        [TestCategory("DataColumnMapping")]
+        [Test]
+        [DeploymentItem("EnableDocker.txt")]
+        [Author("Candice Daniel")]
+        [Category("DataColumnMapping")]
         public void DataColumnMapping_GivenObject_Equal_Null()
         {
             object dataColumn = new DataColumnMapping { };
@@ -36,9 +39,10 @@ namespace Dev2.Tests.Activities.TOTests
             var dataColumnEqual = dataColumn.Equals(other);
             Assert.IsFalse(dataColumnEqual);
         }
-        [TestMethod, DeploymentItem("EnableDocker.txt")]
-        [Owner("Candice Daniel")]
-        [TestCategory("DataColumnMapping")]
+        [Test]
+        [DeploymentItem("EnableDocker.txt")]
+        [Author("Candice Daniel")]
+        [Category("DataColumnMapping")]
         public void DataColumnMapping_GivenObject_Equals_ShouldReturnTrue()
         {
             object dataColumn = new DataColumnMapping { };
@@ -46,9 +50,10 @@ namespace Dev2.Tests.Activities.TOTests
             var dataColumnEqual = dataColumn.Equals(other);
             Assert.IsTrue(dataColumnEqual);
         }
-        [TestMethod, DeploymentItem("EnableDocker.txt")]
-        [Owner("Candice Daniel")]
-        [TestCategory("DataColumnMapping")]
+        [Test]
+        [DeploymentItem("EnableDocker.txt")]
+        [Author("Candice Daniel")]
+        [Category("DataColumnMapping")]
         public void DataColumnMapping_GivenObjectDataColumnMapping_Equals_ShouldReturnTrue()
         {
             object dataColumn = new DataColumnMapping { };
@@ -57,9 +62,10 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(dataColumnEqual);
         }
 
-        [TestMethod, DeploymentItem("EnableDocker.txt")]
-        [Owner("Candice Daniel")]
-        [TestCategory("DataColumnMapping")]
+        [Test]
+        [DeploymentItem("EnableDocker.txt")]
+        [Author("Candice Daniel")]
+        [Category("DataColumnMapping")]
         public void DataColumnMapping_GetHashCode()
         {
             var dataColumnMapping = new DataColumnMapping()
@@ -79,9 +85,10 @@ namespace Dev2.Tests.Activities.TOTests
             var actual = dataColumnMapping.GetHashCode();
             Assert.AreNotEqual(0, actual);
         }
-        [TestMethod, DeploymentItem("EnableDocker.txt")]
-        [Owner("Candice Daniel")]
-        [TestCategory("DataColumnMapping")]
+        [Test]
+        [DeploymentItem("EnableDocker.txt")]
+        [Author("Candice Daniel")]
+        [Category("DataColumnMapping")]
         public void DataColumnMapping_Inserted()
         {
             var dataColumnMapping = new DataColumnMapping()
@@ -92,9 +99,10 @@ namespace Dev2.Tests.Activities.TOTests
             };
             Assert.AreEqual(true, dataColumnMapping.Inserted);
         }
-        [TestMethod, DeploymentItem("EnableDocker.txt")]
-        [Owner("Candice Daniel")]
-        [TestCategory("DataColumnMapping")]
+        [Test]
+        [DeploymentItem("EnableDocker.txt")]
+        [Author("Candice Daniel")]
+        [Category("DataColumnMapping")]
         public void DataColumnMapping_Validate_NoRulesSetup()
         {
             var dataColumnMapping = new DataColumnMapping()
@@ -103,9 +111,10 @@ namespace Dev2.Tests.Activities.TOTests
             };
             Assert.AreEqual(0, dataColumnMapping.GetRuleSet("InputColumn", "").Rules.Count);
         }
-        [TestMethod, DeploymentItem("EnableDocker.txt")]
-        [Owner("Candice Daniel")]
-        [TestCategory("DataColumnMapping")]
+        [Test]
+        [DeploymentItem("EnableDocker.txt")]
+        [Author("Candice Daniel")]
+        [Category("DataColumnMapping")]
         public void DataColumnMapping_ClearRow()
         {
             var dataColumnMapping = new DataColumnMapping()
@@ -116,9 +125,10 @@ namespace Dev2.Tests.Activities.TOTests
             dataColumnMapping.ClearRow();
             Assert.IsFalse(string.IsNullOrEmpty(dataColumnMapping.InputColumn));
         }
-        [TestMethod, DeploymentItem("EnableDocker.txt")]
-        [Owner("Candice Daniel")]
-        [TestCategory("DataColumnMapping")]
+        [Test]
+        [DeploymentItem("EnableDocker.txt")]
+        [Author("Candice Daniel")]
+        [Category("DataColumnMapping")]
         public void DataColumnMapping_CanAdd_CanRemove()
         {
             var dataColumnMapping = new DataColumnMapping()
@@ -130,9 +140,10 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsFalse(canAdd);
             Assert.IsFalse(canRemove);
         }
-        [TestMethod, DeploymentItem("EnableDocker.txt")]
-        [Owner("Candice Daniel")]
-        [TestCategory("DataColumnMapping")]
+        [Test]
+        [DeploymentItem("EnableDocker.txt")]
+        [Author("Candice Daniel")]
+        [Category("DataColumnMapping")]
         public void DataColumnMapping_Equal_True()
         {
             var dataColumn = new DataColumnMapping { };
@@ -140,18 +151,20 @@ namespace Dev2.Tests.Activities.TOTests
             var dataColumnEqual = dataColumn.Equals(other);
             Assert.IsTrue(dataColumnEqual);
         }
-        [TestMethod, DeploymentItem("EnableDocker.txt")]
-        [Owner("Candice Daniel")]
-        [TestCategory("DataColumnMapping")]
+        [Test]
+        [DeploymentItem("EnableDocker.txt")]
+        [Author("Candice Daniel")]
+        [Category("DataColumnMapping")]
         public void DataColumnMapping_Equal_Null()
         {
             var dataColumn = new DataColumnMapping { };
             var dataColumnEqual = dataColumn.Equals(null);
             Assert.IsFalse(dataColumnEqual);
         }
-        [TestMethod, DeploymentItem("EnableDocker.txt")]
-        [Owner("Candice Daniel")]
-        [TestCategory("DataColumnMapping")]
+        [Test]
+        [DeploymentItem("EnableDocker.txt")]
+        [Author("Candice Daniel")]
+        [Category("DataColumnMapping")]
         public void DataColumnMapping_Equal_OutputColumn_Null()
         {
             var dataColumnMapping = new DataColumnMapping()
@@ -165,9 +178,10 @@ namespace Dev2.Tests.Activities.TOTests
             var dataColumnEqual = dataColumnMapping.Equals(other);
             Assert.IsTrue(dataColumnEqual);
         }
-        [TestMethod, DeploymentItem("EnableDocker.txt")]
-        [Owner("Candice Daniel")]
-        [TestCategory("DataColumnMapping")]
+        [Test]
+        [DeploymentItem("EnableDocker.txt")]
+        [Author("Candice Daniel")]
+        [Category("DataColumnMapping")]
         public void DataColumnMapping_Equal_OutputColumn_notNull()
         {
             var dataColumnMapping = new DataColumnMapping()
@@ -201,9 +215,10 @@ namespace Dev2.Tests.Activities.TOTests
             var dataColumnEqual = dataColumnMapping.Equals(other);
             Assert.IsTrue(dataColumnEqual);
         }
-        [TestMethod, DeploymentItem("EnableDocker.txt")]
-        [Owner("Candice Daniel")]
-        [TestCategory("DataColumnMapping")]
+        [Test]
+        [DeploymentItem("EnableDocker.txt")]
+        [Author("Candice Daniel")]
+        [Category("DataColumnMapping")]
         public void DataColumnMapping_GetHashCode_Return0()
         {
             var dataColumnMapping = new DataColumnMapping()
@@ -216,9 +231,10 @@ namespace Dev2.Tests.Activities.TOTests
             var actual = dataColumnMapping.GetHashCode();
             Assert.AreEqual(0, actual);
         }
-        [TestMethod, DeploymentItem("EnableDocker.txt")]
-        [Owner("Candice Daniel")]
-        [TestCategory("DataColumnMapping")]
+        [Test]
+        [DeploymentItem("EnableDocker.txt")]
+        [Author("Candice Daniel")]
+        [Category("DataColumnMapping")]
         public void DataColumnMapping_Equal_ColumnsDifferent_ReturnFalse()
         {
             var dataColumnMapping = new DataColumnMapping()

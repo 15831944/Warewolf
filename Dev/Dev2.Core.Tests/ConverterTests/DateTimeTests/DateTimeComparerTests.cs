@@ -10,7 +10,7 @@
 
 using Dev2.Common.DateAndTime;
 using Dev2.Common.Interfaces.Core.Convertors.DateAndTime;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Tests.ConverterTests.DateTimeTests
@@ -18,10 +18,11 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
     /// <summary>
     /// Summary description for DateTimeComparerTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DateTimeComparerTests
     {
-        [TestInitialize]
+        [SetUp]
         public void PreConditions()
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-ZA");
@@ -54,7 +55,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
 
         #region Years Tests
 
-        [TestMethod]
+        [Test]
         public void TryCompare_Years_Negative_Years_Expected_NegativeOne_Years()
         {
             _input2 = "2010/06/05 08:20:30:124 AM";
@@ -65,7 +66,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             Assert.IsTrue(result == "-1");
         }
      
-        [TestMethod]
+        [Test]
         public void TryCompare_Years_Equal_Expected_One_Years()
         {
             _outputType = "Years";
@@ -75,7 +76,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             Assert.IsTrue(result == "1");
         }
         
-        [TestMethod]
+        [Test]
         public void TryCompare_Years_One_Short_Expected_Zero_Years()
         {
             _input2 = "2012/06/05 08:20:30:122 AM";
@@ -86,7 +87,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             Assert.IsTrue(result == "0");
         }
         
-        [TestMethod]
+        [Test]
         public void TryCompare_Years_One_Over_Expected_One_Years()
         {
             _input2 = "2012/06/05 08:20:30:124 AM";
@@ -101,7 +102,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
 
         #region Months Tests
 
-        [TestMethod]
+        [Test]
         public void TryCompare_Months_Negative_Expected_NegativeOne_Months()
         {
             _input2 = "2011/05/05 08:20:30:123 AM";
@@ -112,7 +113,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             Assert.IsTrue(result == "-1");
         }
         
-        [TestMethod]
+        [Test]
         public void TryCompare_Months_Equal_Expected_One_Months()
         {
             _input2 = "2011/07/05 08:20:30:123 AM";
@@ -123,7 +124,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             Assert.IsTrue(result == "1");
         }
         
-        [TestMethod]
+        [Test]
         public void TryCompare_Months_One_Short_Expected_Zero_Months()
         {
             _input2 = "2011/07/05 08:20:30:122 AM";
@@ -135,7 +136,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         }
 
         
-        [TestMethod]
+        [Test]
         public void TryCompare_Months_One_Over_Expected_One_Months()
         {
             _input2 = "2011/07/05 08:20:30:124 AM";
@@ -150,7 +151,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
 
         #region Days Tests
 
-        [TestMethod]
+        [Test]
         public void TryCompare_Days_Negative_Expected_NegativeOne_Days()
         {
             _input2 = "2011/06/04 08:20:30:123 AM";
@@ -161,7 +162,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             Assert.IsTrue(result == "-1");
         }
 
-        [TestMethod]
+        [Test]
         public void TryCompare_Days_Equal_Expected_One_Days()
         {
             _input2 = "2011/06/06 08:20:30:123 AM";
@@ -172,7 +173,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             Assert.IsTrue(result == "1");
         }
 
-        [TestMethod]
+        [Test]
         public void TryCompare_Days_One_Short_Expected_Zero_Days()
         {
             _input2 = "2011/06/06 08:20:30:122 AM";
@@ -184,7 +185,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         }
 
 
-        [TestMethod]
+        [Test]
         public void TryCompare_Days_One_Over_Expected_One_Days()
         {
             _input2 = "2011/06/06 08:20:30:124 AM";
@@ -199,7 +200,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
 
         #region Weeks Tests
 
-        [TestMethod]
+        [Test]
         public void TryCompare_Weeks_Negative_Expected_NegativeOne_Weeks()
         {
             _input2 = "2011/05/28 08:20:30:123 AM";
@@ -210,7 +211,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             Assert.AreEqual("-2",result);
         }
 
-        [TestMethod]
+        [Test]
         public void TryCompare_Weeks_Equal_Expected_One_Weeks()
         {
             _input2 = "2011/06/12 08:20:30:123 AM";
@@ -221,7 +222,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             Assert.IsTrue(result == "1");
         }
 
-        [TestMethod]
+        [Test]
         public void TryCompare_Weeks_One_Short_Expected_Zero_Weeks()
         {
             _input2 = "2011/06/12 08:20:30:122 AM";
@@ -233,7 +234,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         }
 
 
-        [TestMethod]
+        [Test]
         public void TryCompare_Weeks_One_Over_Expected_One_Weeks()
         {
             _input2 = "2011/06/12 08:20:30:124 AM";
@@ -248,7 +249,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
 
         #region Hours Tests
 
-        [TestMethod]
+        [Test]
         public void TryCompare_Hours_Negative_Expected_NegativeOne_Hours()
         {
             _input2 = "2011/06/05 07:20:30:123 AM";
@@ -259,7 +260,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             Assert.IsTrue(result == "-1");
         }
 
-        [TestMethod]
+        [Test]
         public void TryCompare_Hours_Equal_Expected_One_Hours()
         {
             _input2 = "2011/06/05 09:20:30:123 AM";
@@ -270,7 +271,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             Assert.IsTrue(result == "1");
         }
 
-        [TestMethod]
+        [Test]
         public void TryCompare_Hours_One_Short_Expected_Zero_Hours()
         {
             _input2 = "2011/06/05 09:20:30:122 AM";
@@ -282,7 +283,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         }
 
 
-        [TestMethod]
+        [Test]
         public void TryCompare_Hours_One_Over_Expected_One_Hours()
         {
             _input2 = "2011/06/05 09:20:30:124 AM";
@@ -297,7 +298,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
 
         #region Minutes Tests
 
-        [TestMethod]
+        [Test]
         public void TryCompare_Minutes_Negative_Expected_NegativeOne_Minutes()
         {
             _input2 = "2011/06/05 08:19:30:123 AM";
@@ -308,7 +309,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             Assert.IsTrue(result == "-1");
         }
 
-        [TestMethod]
+        [Test]
         public void TryCompare_Minutes_Equal_Expected_One_Minutes()
         {
             _input2 = "2011/06/05 08:21:30:123 AM";
@@ -319,7 +320,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             Assert.IsTrue(result == "1");
         }
 
-        [TestMethod]
+        [Test]
         public void TryCompare_Minutes_One_Short_Expected_Zero_Minutes()
         {
             _input2 = "2011/06/05 08:21:30:122 AM";
@@ -331,7 +332,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         }
 
 
-        [TestMethod]
+        [Test]
         public void TryCompare_Minutes_One_Over_Expected_One_Minutes()
         {
             _input2 = "2011/06/05 08:21:30:124 AM";
@@ -346,7 +347,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
 
         #region Seconds Tests
 
-        [TestMethod]
+        [Test]
         public void TryCompare_Seconds_Negative_Expected_NegativeOne_Seconds()
         {
             _input2 = "2011/06/05 08:20:29:123 AM";
@@ -357,7 +358,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             Assert.IsTrue(result == "-1");
         }
 
-        [TestMethod]
+        [Test]
         public void TryCompare_Seconds_Equal_Expected_One_Seconds()
         {
             _input2 = "2011/06/05 08:20:31:123 AM";
@@ -368,7 +369,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             Assert.IsTrue(result == "1");
         }
 
-        [TestMethod]
+        [Test]
         public void TryCompare_Seconds_One_Short_Expected_Zero_Seconds()
         {
             _input2 = "2011/06/05 08:20:31:122 AM";
@@ -380,7 +381,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         }
 
 
-        [TestMethod]
+        [Test]
         public void TryCompare_Seconds_One_Over_Expected_One_Seconds()
         {
             _input2 = "2011/06/05 08:20:31:124 AM";
@@ -395,7 +396,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
 
         #region SplitSeconds Tests
 
-        [TestMethod]
+        [Test]
         public void TryCompare_SplitSeconds_Equal_Expected_Zero_SplitSeconds()
         {
             _input2 = "2011/06/05 08:20:30:123 AM";
@@ -406,7 +407,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             Assert.IsTrue(result == "0");
         }
 
-        [TestMethod]
+        [Test]
         public void TryCompare_SplitSeconds_One_Short_Expected_Zero_SplitSeconds()
         {
             _input2 = "2011/06/05 08:20:30:122 AM";
@@ -418,7 +419,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         }
 
 
-        [TestMethod]
+        [Test]
         public void TryCompare_SplitSeconds_One_Over_Expected_One_SplitSeconds()
         {
             _input2 = "2011/06/05 08:20:30:124 AM";

@@ -4,13 +4,14 @@ using System.Windows.Media;
 
 using Dev2.Common.Interfaces.Help;
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 using Moq;
 
 namespace Warewolf.Studio.ViewModels.Help.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class HelpWindowViewModelTests
     {
         #region Fields
@@ -26,7 +27,7 @@ namespace Warewolf.Studio.ViewModels.Help.Tests
 
         #region Test initialize
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             _defaultViewModelMock = new Mock<IHelpDescriptorViewModel>();
@@ -40,14 +41,16 @@ namespace Warewolf.Studio.ViewModels.Help.Tests
 
         #region Test construction
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestHelpWindowViewModelNullDefaultViewModel()
         {
             new HelpWindowViewModel(null, _modelMock.Object);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestHelpWindowViewModelNullModel()
         {
@@ -58,7 +61,8 @@ namespace Warewolf.Studio.ViewModels.Help.Tests
 
         #region Test properties
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestHelpText()
         {
             //arrange
@@ -72,7 +76,8 @@ namespace Warewolf.Studio.ViewModels.Help.Tests
             Assert.AreEqual(expectedValue, value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestHelpName()
         {
             //arrange
@@ -86,7 +91,8 @@ namespace Warewolf.Studio.ViewModels.Help.Tests
             Assert.AreEqual(expectedValue, value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestHelpImage()
         {
             //arrange
@@ -100,7 +106,8 @@ namespace Warewolf.Studio.ViewModels.Help.Tests
             Assert.AreSame(expectedValue, value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestHelpModel()
         {
             //act
@@ -110,7 +117,8 @@ namespace Warewolf.Studio.ViewModels.Help.Tests
             Assert.AreSame(_modelMock.Object, value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestCurrentHelpText()
         {
             //arrange
@@ -128,7 +136,8 @@ namespace Warewolf.Studio.ViewModels.Help.Tests
             Assert.AreSame(expectedValueMock.Object, value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestWebPageVisible()
         {
             //arrange
@@ -148,7 +157,8 @@ namespace Warewolf.Studio.ViewModels.Help.Tests
 
         #region Test methods
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestUpdateHelpTextEmpty()
         {
             //act
@@ -158,7 +168,8 @@ namespace Warewolf.Studio.ViewModels.Help.Tests
             Assert.IsFalse(string.IsNullOrWhiteSpace(_target.HelpText));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestUpdateHelpTextNonEmpty()
         {
             //act
@@ -169,7 +180,8 @@ namespace Warewolf.Studio.ViewModels.Help.Tests
             Assert.IsTrue(_target.HelpText.Contains("someText"));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestOnHelpTextReceived()
         {
             //arrange
@@ -181,11 +193,12 @@ namespace Warewolf.Studio.ViewModels.Help.Tests
             _modelMock.Raise(it => it.OnHelpTextReceived += null, _target, helpDescriptorMock.Object);
 
             //assert
-            Assert.IsInstanceOfType(_target.CurrentHelpText, typeof(HelpDescriptorViewModel));
+            Assert.IsInstanceOf(_target.CurrentHelpText.GetType(), typeof(HelpDescriptorViewModel));
             Assert.AreEqual(expectedName, _target.CurrentHelpText.Name);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestOnHelpTextReceivedException()
         {
@@ -196,7 +209,8 @@ namespace Warewolf.Studio.ViewModels.Help.Tests
             Assert.AreSame(_defaultViewModelMock.Object, _target.CurrentHelpText);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestDispose()
         {
             //arrange

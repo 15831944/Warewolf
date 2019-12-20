@@ -10,16 +10,17 @@
 
 using Dev2.Activities.Utils;
 using Dev2.Common.Interfaces.Core.DynamicServices;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Activities.Designers.Tests.UtilTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ActivityTypeToActionTypeConverterTests
     {
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("ActivityTypeToActionTypeConverter_ConvertToActionType")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("ActivityTypeToActionTypeConverter_ConvertToActionType")]
         public void ActivityTypeToActionTypeConverter_ConvertToActionType_ConvertWorkflow_ExpectedWorkflowEnum()
         {
             //------------Execute Test---------------------------
@@ -28,9 +29,9 @@ namespace Dev2.Activities.Designers.Tests.UtilTests
             Assert.AreEqual(enActionType.Workflow, actionType);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("ActivityTypeToActionTypeConverter_ConvertToActionType")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("ActivityTypeToActionTypeConverter_ConvertToActionType")]
         public void ActivityTypeToActionTypeConverter_ConvertToActionType_ConvertWebService_ExpectedWebServiceEnum()
         {
             //------------Execute Test---------------------------
@@ -39,9 +40,9 @@ namespace Dev2.Activities.Designers.Tests.UtilTests
             Assert.AreEqual(enActionType.InvokeWebService, actionType);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("ActivityTypeToActionTypeConverter_ConvertToActionType")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("ActivityTypeToActionTypeConverter_ConvertToActionType")]
         public void ActivityTypeToActionTypeConverter_ConvertToActionType_ConvertPluginService_ExpectedPluginServiceEnum()
         {
             //------------Execute Test---------------------------
@@ -50,9 +51,9 @@ namespace Dev2.Activities.Designers.Tests.UtilTests
             Assert.AreEqual(enActionType.Plugin, actionType);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("ActivityTypeToActionTypeConverter_ConvertToActionType")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("ActivityTypeToActionTypeConverter_ConvertToActionType")]
         public void ActivityTypeToActionTypeConverter_ConvertToActionType_ConvertDbService_ExpectedDbServiceEnum()
         {
             //------------Execute Test---------------------------

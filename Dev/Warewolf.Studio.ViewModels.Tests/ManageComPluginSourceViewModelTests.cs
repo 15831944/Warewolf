@@ -11,13 +11,15 @@ using Dev2.Common.SaveDialog;
 using Dev2.Common.Interfaces.Threading;
 using Dev2.Studio.Interfaces;
 using Microsoft.Practices.Prism.PubSubEvents;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Studio.Core;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Warewolf.Studio.ViewModels.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ManageComPluginSourceViewModelTests
     {
         #region Fields
@@ -56,7 +58,7 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         #region Test initialize
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             _updateManagerMock = new Mock<IManageComPluginSourceModel>();
@@ -138,40 +140,45 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         #region Test construction
 
-        [TestMethod,Timeout(60000)]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
         public void TestManagePluginSourceViewModelAsyncWorkerNull()
         {
             //act
             new ManageComPluginSourceViewModel(_updateManagerMock.Object, _aggregatorMock.Object, null);
         }
 
-        [TestMethod,Timeout(60000)]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
         public void TestManagePluginSourceViewModelUpdateManagerNull()
         {
             //act
             new ManageComPluginSourceViewModel(null, _aggregatorMock.Object, _asyncWorkerMock.Object);
         }
 
-        [TestMethod,Timeout(60000)]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
         public void TestManagePluginSourceViewModelAggregatorNull()
         {
             //act
             new ManageComPluginSourceViewModel(_updateManagerMock.Object, null, _asyncWorkerMock.Object);
         }
 
-        [TestMethod,Timeout(60000)]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
         public void TestManagePluginSourceViewModelRequestServiceNameViewModelNull()
         {
             //act
             new ManageComPluginSourceViewModel(_updateManagerMock.Object, null, _aggregatorMock.Object, _asyncWorkerMock.Object);
         }
 
-        [TestMethod,Timeout(60000)]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
         public void TestManagePluginSourceViewModePluginSourceNull()
         {
             //act
@@ -182,7 +189,8 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         #region Test commands
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestOkCommandCanExecuteAssemblyNameIsEmpty()
         {
             //arrange
@@ -194,10 +202,11 @@ namespace Warewolf.Studio.ViewModels.Tests
             var result = _target.OkCommand.CanExecute(null);
 
             //assert
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestOkCommandCanExecuteSelectedDllIsNull()
         {
             //arrange
@@ -207,10 +216,11 @@ namespace Warewolf.Studio.ViewModels.Tests
             var result = _target.OkCommand.CanExecute(null);
 
             //assert
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestOkCommandCanExecuteAssemblyNameIsNotGacDll()
         {
 
@@ -226,10 +236,11 @@ namespace Warewolf.Studio.ViewModels.Tests
             var result = _target.OkCommand.CanExecute(null);
 
             //assert
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestOkCommandExecutePluginSourceNullPathNull()
         {
             //arrange
@@ -246,16 +257,17 @@ namespace Warewolf.Studio.ViewModels.Tests
             _targetRequestServiceNameViewModel.OkCommand.Execute(null);
 
             //assert
-            Assert.IsTrue(_changedPropertiesRequestServiceNameViewModel.Contains("Header"));
-            Assert.AreNotEqual(Guid.NewGuid(), _targetRequestServiceNameViewModel.Item.Id);
-            Assert.AreEqual(expectedName, _targetRequestServiceNameViewModel.Item.ResourceName);
-            Assert.AreEqual(expectedName, _targetRequestServiceNameViewModel.ResourceName);
-            Assert.AreSame(selectedDllMock.Object, _targetRequestServiceNameViewModel.Item.SelectedDll);
-            Assert.AreEqual(_targetRequestServiceNameViewModel.HeaderText, _targetRequestServiceNameViewModel.ResourceName);
-            Assert.AreEqual(_targetRequestServiceNameViewModel.Header, _targetRequestServiceNameViewModel.ResourceName);
+            NUnit.Framework.Assert.IsTrue(_changedPropertiesRequestServiceNameViewModel.Contains("Header"));
+            NUnit.Framework.Assert.AreNotEqual(Guid.NewGuid(), _targetRequestServiceNameViewModel.Item.Id);
+            NUnit.Framework.Assert.AreEqual(expectedName, _targetRequestServiceNameViewModel.Item.ResourceName);
+            NUnit.Framework.Assert.AreEqual(expectedName, _targetRequestServiceNameViewModel.ResourceName);
+            NUnit.Framework.Assert.AreSame(selectedDllMock.Object, _targetRequestServiceNameViewModel.Item.SelectedDll);
+            NUnit.Framework.Assert.AreEqual(_targetRequestServiceNameViewModel.HeaderText, _targetRequestServiceNameViewModel.ResourceName);
+            NUnit.Framework.Assert.AreEqual(_targetRequestServiceNameViewModel.Header, _targetRequestServiceNameViewModel.ResourceName);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestOkCommandExecutePluginSourceNull()
         {
             //arrange
@@ -273,16 +285,17 @@ namespace Warewolf.Studio.ViewModels.Tests
             _targetRequestServiceNameViewModel.OkCommand.Execute(null);
 
             //assert
-            Assert.IsTrue(_changedPropertiesRequestServiceNameViewModel.Contains("Header"));
-            Assert.AreNotEqual(Guid.NewGuid(), _targetRequestServiceNameViewModel.Item.Id);
-            Assert.AreEqual(expectedName, _targetRequestServiceNameViewModel.Item.ResourceName);
-            Assert.AreEqual(expectedName, _targetRequestServiceNameViewModel.ResourceName);
-            Assert.AreSame(selectedDllMock.Object, _targetRequestServiceNameViewModel.Item.SelectedDll);
-            Assert.AreEqual(_targetRequestServiceNameViewModel.HeaderText, _targetRequestServiceNameViewModel.ResourceName);
-            Assert.AreEqual(_targetRequestServiceNameViewModel.Header, _targetRequestServiceNameViewModel.ResourceName);
+            NUnit.Framework.Assert.IsTrue(_changedPropertiesRequestServiceNameViewModel.Contains("Header"));
+            NUnit.Framework.Assert.AreNotEqual(Guid.NewGuid(), _targetRequestServiceNameViewModel.Item.Id);
+            NUnit.Framework.Assert.AreEqual(expectedName, _targetRequestServiceNameViewModel.Item.ResourceName);
+            NUnit.Framework.Assert.AreEqual(expectedName, _targetRequestServiceNameViewModel.ResourceName);
+            NUnit.Framework.Assert.AreSame(selectedDllMock.Object, _targetRequestServiceNameViewModel.Item.SelectedDll);
+            NUnit.Framework.Assert.AreEqual(_targetRequestServiceNameViewModel.HeaderText, _targetRequestServiceNameViewModel.ResourceName);
+            NUnit.Framework.Assert.AreEqual(_targetRequestServiceNameViewModel.Header, _targetRequestServiceNameViewModel.ResourceName);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestOkCommandExecute()
         {
             //arrange
@@ -301,20 +314,22 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //assert
             _updateManagerMock.Verify(it=>it.Save(It.IsAny<IComPluginSource>()));
-            Assert.IsTrue(_changedPropertiesPluginSource.Contains("Header"));
+            NUnit.Framework.Assert.IsTrue(_changedPropertiesPluginSource.Contains("Header"));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestCancelCommandCanExecute()
         {
             //act
             var result = _target.CancelCommand.CanExecute(null);
 
             //assert
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestCancelPluginSourceCommandExecute()
         {
             //arrange
@@ -326,20 +341,22 @@ namespace Warewolf.Studio.ViewModels.Tests
             _target.CancelCommand.Execute(null);
 
             //assert
-            Assert.IsTrue(closeActionInvoked);
+            NUnit.Framework.Assert.IsTrue(closeActionInvoked);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestClearSearchTextCommandCanExecute()
         {
             //act
             var result = _target.ClearSearchTextCommand.CanExecute(null);
 
             //assert
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestClearSearchTextCommandExecute()
         {
             //arrange
@@ -349,20 +366,22 @@ namespace Warewolf.Studio.ViewModels.Tests
             _target.ClearSearchTextCommand.Execute(null);
 
             //assert
-            Assert.IsTrue(string.IsNullOrEmpty(_target.SearchTerm));
+            NUnit.Framework.Assert.IsTrue(string.IsNullOrEmpty(_target.SearchTerm));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestRefreshCommandCanExecute()
         {
             //act
             var result = _target.RefreshCommand.CanExecute(null);
 
             //assert
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestRefreshCommandExecute()
         {
             //arrange    
@@ -379,16 +398,17 @@ namespace Warewolf.Studio.ViewModels.Tests
             _target.RefreshCommand.Execute(null);
 
             //assert
-            Assert.IsFalse(_target.IsLoading);
-            Assert.IsTrue(_target.DllListings.Any(it => it.FullName == fileListingName1));
-            Assert.IsTrue(_target.DllListings.Any(it => it.FullName == fileListingName2));
+            NUnit.Framework.Assert.IsFalse(_target.IsLoading);
+            NUnit.Framework.Assert.IsTrue(_target.DllListings.Any(it => it.FullName == fileListingName1));
+            NUnit.Framework.Assert.IsTrue(_target.DllListings.Any(it => it.FullName == fileListingName2));
         }
 
         #endregion Test commands
 
         #region Test methods
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestToModel()
         {
             //arrange
@@ -403,11 +423,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             var result = _target.ToModel();
 
             //assert
-            Assert.AreEqual(expectedName, result.ResourceName);
-            Assert.AreSame(selectedDllMock.Object, result.SelectedDll);
+            NUnit.Framework.Assert.AreEqual(expectedName, result.ResourceName);
+            NUnit.Framework.Assert.AreSame(selectedDllMock.Object, result.SelectedDll);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestToModelSource()
         {
             //arrange
@@ -418,10 +439,11 @@ namespace Warewolf.Studio.ViewModels.Tests
             var result = _targetPluginSource.ToModel();
 
             //assert
-            Assert.AreEqual(_pluginSourceMock.Object.ResourceName, result.ResourceName);
+            NUnit.Framework.Assert.AreEqual(_pluginSourceMock.Object.ResourceName, result.ResourceName);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestFromModelFileSystem()
         {
             //arrange
@@ -449,10 +471,11 @@ namespace Warewolf.Studio.ViewModels.Tests
             dllListingMock.VerifySet(it => it.IsExpanded = true);
             dllListingMock.VerifySet(it => it.IsExpanded = true);
             dllListingMock.VerifySet(it => it.IsSelected = true);
-            Assert.AreSame(dllListingMock.Object, _targetPluginSource.SelectedDll);
+            NUnit.Framework.Assert.AreSame(dllListingMock.Object, _targetPluginSource.SelectedDll);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestSavePluginSourceNullPathNull()
         {
             //arrange
@@ -469,16 +492,17 @@ namespace Warewolf.Studio.ViewModels.Tests
             _targetRequestServiceNameViewModel.Save();
 
             //assert
-            Assert.IsTrue(_changedPropertiesRequestServiceNameViewModel.Contains("Header"));
-            Assert.AreNotEqual(Guid.NewGuid(), _targetRequestServiceNameViewModel.Item.Id);
-            Assert.AreEqual(expectedName, _targetRequestServiceNameViewModel.Item.ResourceName);
-            Assert.AreEqual(expectedName, _targetRequestServiceNameViewModel.ResourceName);
-            Assert.AreSame(selectedDllMock.Object, _targetRequestServiceNameViewModel.Item.SelectedDll);
-            Assert.AreEqual(_targetRequestServiceNameViewModel.HeaderText, _targetRequestServiceNameViewModel.ResourceName);
-            Assert.AreEqual(_targetRequestServiceNameViewModel.Header, _targetRequestServiceNameViewModel.ResourceName);
+            NUnit.Framework.Assert.IsTrue(_changedPropertiesRequestServiceNameViewModel.Contains("Header"));
+            NUnit.Framework.Assert.AreNotEqual(Guid.NewGuid(), _targetRequestServiceNameViewModel.Item.Id);
+            NUnit.Framework.Assert.AreEqual(expectedName, _targetRequestServiceNameViewModel.Item.ResourceName);
+            NUnit.Framework.Assert.AreEqual(expectedName, _targetRequestServiceNameViewModel.ResourceName);
+            NUnit.Framework.Assert.AreSame(selectedDllMock.Object, _targetRequestServiceNameViewModel.Item.SelectedDll);
+            NUnit.Framework.Assert.AreEqual(_targetRequestServiceNameViewModel.HeaderText, _targetRequestServiceNameViewModel.ResourceName);
+            NUnit.Framework.Assert.AreEqual(_targetRequestServiceNameViewModel.Header, _targetRequestServiceNameViewModel.ResourceName);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestSavePluginSourceNull()
         {
             //arrange
@@ -499,18 +523,19 @@ namespace Warewolf.Studio.ViewModels.Tests
             _targetRequestServiceNameViewModel.Save();
 
             //assert
-            Assert.IsTrue(_changedPropertiesRequestServiceNameViewModel.Contains("Header"));
-            Assert.AreNotEqual(Guid.NewGuid(), _targetRequestServiceNameViewModel.Item.Id);
-            Assert.AreEqual(expectedName, _targetRequestServiceNameViewModel.Item.ResourceName);
-            Assert.AreEqual(expectedName, _targetRequestServiceNameViewModel.ResourceName);
-            Assert.AreSame(selectedDllMock.Object, _targetRequestServiceNameViewModel.Item.SelectedDll);
-            Assert.AreEqual(_targetRequestServiceNameViewModel.HeaderText, _targetRequestServiceNameViewModel.ResourceName);
-            Assert.AreEqual(_targetRequestServiceNameViewModel.Header, _targetRequestServiceNameViewModel.ResourceName);
+            NUnit.Framework.Assert.IsTrue(_changedPropertiesRequestServiceNameViewModel.Contains("Header"));
+            NUnit.Framework.Assert.AreNotEqual(Guid.NewGuid(), _targetRequestServiceNameViewModel.Item.Id);
+            NUnit.Framework.Assert.AreEqual(expectedName, _targetRequestServiceNameViewModel.Item.ResourceName);
+            NUnit.Framework.Assert.AreEqual(expectedName, _targetRequestServiceNameViewModel.ResourceName);
+            NUnit.Framework.Assert.AreSame(selectedDllMock.Object, _targetRequestServiceNameViewModel.Item.SelectedDll);
+            NUnit.Framework.Assert.AreEqual(_targetRequestServiceNameViewModel.HeaderText, _targetRequestServiceNameViewModel.ResourceName);
+            NUnit.Framework.Assert.AreEqual(_targetRequestServiceNameViewModel.Header, _targetRequestServiceNameViewModel.ResourceName);
             _updateManagerMock.Verify(a=>a.Save(It.IsAny<IComPluginSource>()));
-            Assert.IsTrue(correctGuid);
+            NUnit.Framework.Assert.IsTrue(correctGuid);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestSave()
         {
             //arrange
@@ -530,10 +555,11 @@ namespace Warewolf.Studio.ViewModels.Tests
             //assert
             _pluginSourceMock.VerifySet(it => it.SelectedDll = It.IsAny<IFileListing>());
             _updateManagerMock.Verify(it => it.Save(It.IsAny<IComPluginSource>()));
-            Assert.IsTrue(_changedPropertiesPluginSource.Contains("Header"));
+            NUnit.Framework.Assert.IsTrue(_changedPropertiesPluginSource.Contains("Header"));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestCanSaveAssemblyNameIsEmpty()
         {
             //arrange
@@ -545,10 +571,11 @@ namespace Warewolf.Studio.ViewModels.Tests
             var result = _target.CanSave();
 
             //assert
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestCanSaveSelectedDllIsNull()
         {
             //arrange
@@ -558,10 +585,11 @@ namespace Warewolf.Studio.ViewModels.Tests
             var result = _target.CanSave();
 
             //assert
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestCanSaveAssemblyNameIsNotGacDll()
         {
             //arrange
@@ -575,10 +603,11 @@ namespace Warewolf.Studio.ViewModels.Tests
             var result = _target.CanSave();
 
             //assert
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestCanSaveDll()
         {
             //arrange
@@ -593,12 +622,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             var result = _target.CanSave();
 
             //assert
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DeploySourceExplorerViewModel_Ctor_valid")]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DeploySourceExplorerViewModel_Ctor_valid")]
         public void TestDispose()
         {
             var vm = new ManageComPluginSourceViewModel();
@@ -610,7 +640,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             ns.Verify(a => a.Dispose());
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestUpdateHelpDescriptor()
         {
             //arrange
@@ -631,7 +662,8 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         #region Test properties
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestRequestServiceNameViewModel()
         {
             //arrange
@@ -642,30 +674,33 @@ namespace Warewolf.Studio.ViewModels.Tests
             var value = _target.GetRequestServiceNameViewModel();
 
             //asert
-            Assert.AreSame(expectedValueMock.Object, value);
+            NUnit.Framework.Assert.AreSame(expectedValueMock.Object, value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestRequestServiceNameViewModelNull()
         {
             //act
             var value = _targetPluginSource.GetRequestServiceNameViewModel();
 
             //asert
-            Assert.IsNull(value);
+            NUnit.Framework.Assert.IsNull(value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestRequestServiceNameViewModelNotNull()
         {
             //act
             var value = _targetRequestServiceNameViewModel.GetRequestServiceNameViewModel();
 
             //asert
-            Assert.AreSame(_requestServiceNameViewModelMock.Object, value);
+            NUnit.Framework.Assert.AreSame(_requestServiceNameViewModelMock.Object, value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestHeaderText()
         {
             //arrange
@@ -677,12 +712,13 @@ namespace Warewolf.Studio.ViewModels.Tests
             var value = _target.HeaderText;
 
             //asert
-            Assert.AreEqual(expectedValue, value);
-            Assert.IsTrue(_changedProperties.Contains("HeaderText"));
-            Assert.IsTrue(_changedProperties.Contains("Header"));
+            NUnit.Framework.Assert.AreEqual(expectedValue, value);
+            NUnit.Framework.Assert.IsTrue(_changedProperties.Contains("HeaderText"));
+            NUnit.Framework.Assert.IsTrue(_changedProperties.Contains("Header"));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestResourceName()
         {
             //arrange
@@ -694,13 +730,14 @@ namespace Warewolf.Studio.ViewModels.Tests
             var value = _target.ResourceName;
 
             //asert
-            Assert.AreEqual(expectedValue, value);
-            Assert.IsTrue(_changedProperties.Contains(expectedValue));
-            Assert.AreEqual(expectedValue, _target.Header);
-            Assert.AreEqual(expectedValue, _target.HeaderText);
+            NUnit.Framework.Assert.AreEqual(expectedValue, value);
+            NUnit.Framework.Assert.IsTrue(_changedProperties.Contains(expectedValue));
+            NUnit.Framework.Assert.AreEqual(expectedValue, _target.Header);
+            NUnit.Framework.Assert.AreEqual(expectedValue, _target.HeaderText);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestResourceNameLocalhost()
         {
             //arrange
@@ -718,13 +755,14 @@ namespace Warewolf.Studio.ViewModels.Tests
             var value = _target.ResourceName;
 
             //asert
-            Assert.AreEqual(expectedValue, value);
-            Assert.IsTrue(_changedProperties.Contains(expectedValue));
-            Assert.AreEqual(expectedValue, _target.Header);
-            Assert.AreEqual(expectedValue, _target.HeaderText);
+            NUnit.Framework.Assert.AreEqual(expectedValue, value);
+            NUnit.Framework.Assert.IsTrue(_changedProperties.Contains(expectedValue));
+            NUnit.Framework.Assert.AreEqual(expectedValue, _target.Header);
+            NUnit.Framework.Assert.AreEqual(expectedValue, _target.HeaderText);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestResourceNameSource()
         {
             //arrange
@@ -740,13 +778,14 @@ namespace Warewolf.Studio.ViewModels.Tests
             var value = _targetPluginSource.ResourceName;
 
             //asert
-            Assert.AreEqual(expectedValue, value);
-            Assert.IsTrue(_changedPropertiesPluginSource.Contains(expectedValue));
-            Assert.AreEqual(expectedHeader, _targetPluginSource.Header);
-            Assert.AreEqual(expectedHeaderText, _targetPluginSource.HeaderText);
+            NUnit.Framework.Assert.AreEqual(expectedValue, value);
+            NUnit.Framework.Assert.IsTrue(_changedPropertiesPluginSource.Contains(expectedValue));
+            NUnit.Framework.Assert.AreEqual(expectedHeader, _targetPluginSource.Header);
+            NUnit.Framework.Assert.AreEqual(expectedHeaderText, _targetPluginSource.HeaderText);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestResourceNameLocalhostSource()
         {
             //arrange
@@ -768,13 +807,14 @@ namespace Warewolf.Studio.ViewModels.Tests
             var value = _targetPluginSource.ResourceName;
 
             //asert
-            Assert.AreEqual(expectedValue, value);
-            Assert.IsTrue(_changedPropertiesPluginSource.Contains(expectedValue));
-            Assert.AreEqual(expectedHeader, _targetPluginSource.Header);
-            Assert.AreEqual(expectedHeaderText, _targetPluginSource.HeaderText);
+            NUnit.Framework.Assert.AreEqual(expectedValue, value);
+            NUnit.Framework.Assert.IsTrue(_changedPropertiesPluginSource.Contains(expectedValue));
+            NUnit.Framework.Assert.AreEqual(expectedHeader, _targetPluginSource.Header);
+            NUnit.Framework.Assert.AreEqual(expectedHeaderText, _targetPluginSource.HeaderText);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestAssemblyName()
         {
             //arrange
@@ -788,13 +828,14 @@ namespace Warewolf.Studio.ViewModels.Tests
             var value = _target.AssemblyName;
 
             //asert
-            Assert.AreSame(expectedValue, value);
-            Assert.AreSame(selectedDllMock.Object, _target.SelectedDll);
-            Assert.IsTrue(_changedProperties.Contains("Header"));
-            Assert.IsTrue(_changedProperties.Contains("AssemblyName"));
+            NUnit.Framework.Assert.AreSame(expectedValue, value);
+            NUnit.Framework.Assert.AreSame(selectedDllMock.Object, _target.SelectedDll);
+            NUnit.Framework.Assert.IsTrue(_changedProperties.Contains("Header"));
+            NUnit.Framework.Assert.IsTrue(_changedProperties.Contains("AssemblyName"));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestSelectedDll()
         {
             //arrange
@@ -808,11 +849,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             var value = _target.SelectedDll;
 
             //asert
-            Assert.AreSame(expectedValueMock.Object, value);
-            Assert.IsTrue(_changedProperties.Contains("SelectedDll"));
+            NUnit.Framework.Assert.AreSame(expectedValueMock.Object, value);
+            NUnit.Framework.Assert.IsTrue(_changedProperties.Contains("SelectedDll"));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestName()
         {
             //arrange
@@ -824,11 +866,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             var value = _target.Name;
 
             //asert
-            Assert.AreEqual(expectedValue, value);
-            Assert.AreEqual(expectedValue, _target.ResourceName);
+            NUnit.Framework.Assert.AreEqual(expectedValue, value);
+            NUnit.Framework.Assert.AreEqual(expectedValue, _target.ResourceName);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestDllListings()
         {
             //arrange
@@ -840,11 +883,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             var value = _target.DllListings;
 
             //asert
-            Assert.AreSame(expectedValue, value);
-            Assert.IsTrue(_changedProperties.Contains("DllListings"));
+            NUnit.Framework.Assert.AreSame(expectedValue, value);
+            NUnit.Framework.Assert.IsTrue(_changedProperties.Contains("DllListings"));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestIsLoading()
         {
             //arrange
@@ -856,11 +900,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             var value = _target.IsLoading;
 
             //asert
-            Assert.AreEqual(expectedValue, value);
-            Assert.IsTrue(_changedProperties.Contains("IsLoading"));
+            NUnit.Framework.Assert.AreEqual(expectedValue, value);
+            NUnit.Framework.Assert.IsTrue(_changedProperties.Contains("IsLoading"));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [NUnit.Framework.Timeout(60000)]
         public void TestSearchTerm()
         {
             //arrange
@@ -883,12 +928,12 @@ namespace Warewolf.Studio.ViewModels.Tests
             var value = _target.SearchTerm;
 
             //asert
-            Assert.AreEqual(expectedValue, value);
-            Assert.IsTrue(_changedProperties.Contains("DllListings"));
-            Assert.IsTrue(_changedProperties.Contains("SearchTerm"));
+            NUnit.Framework.Assert.AreEqual(expectedValue, value);
+            NUnit.Framework.Assert.IsTrue(_changedProperties.Contains("DllListings"));
+            NUnit.Framework.Assert.IsTrue(_changedProperties.Contains("SearchTerm"));
 
-            Assert.AreEqual(1,_target.DllListings.Count);
-            Assert.AreEqual(expectedValue, _target.DllListings[0].Name);
+            NUnit.Framework.Assert.AreEqual(1,_target.DllListings.Count);
+            NUnit.Framework.Assert.AreEqual(expectedValue, _target.DllListings[0].Name);
 
             expectedValue = "";
             //act
@@ -896,11 +941,11 @@ namespace Warewolf.Studio.ViewModels.Tests
             value = _target.SearchTerm;
 
             //asert
-            Assert.AreEqual(expectedValue, value);
-            Assert.IsTrue(_changedProperties.Contains("DllListings"));
-            Assert.IsTrue(_changedProperties.Contains("SearchTerm"));
+            NUnit.Framework.Assert.AreEqual(expectedValue, value);
+            NUnit.Framework.Assert.IsTrue(_changedProperties.Contains("DllListings"));
+            NUnit.Framework.Assert.IsTrue(_changedProperties.Contains("SearchTerm"));
 
-            Assert.AreEqual(3, _target.DllListings.Count);
+            NUnit.Framework.Assert.AreEqual(3, _target.DllListings.Count);
         }
 
         #endregion Test properties

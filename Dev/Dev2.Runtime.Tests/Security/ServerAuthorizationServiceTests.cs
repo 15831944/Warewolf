@@ -13,7 +13,7 @@ using Dev2.Communication;
 using Dev2.Runtime.Security;
 using Dev2.Services.Security;
 using Microsoft.AspNet.SignalR.Hosting;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -22,14 +22,15 @@ using Dev2.Common.Interfaces.Enums;
 
 namespace Dev2.Tests.Runtime.Security
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ServerAuthorizationServiceTests
     {
         
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ServerAuthorizationService_Instance")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ServerAuthorizationService_Instance")]
         public void ServerAuthorizationService_Instance_Singleton()
         {
             //------------Setup for test--------------------------
@@ -39,12 +40,12 @@ namespace Dev2.Tests.Runtime.Security
             var instance2 = ServerAuthorizationService.Instance;
 
             //------------Assert Results-------------------------
-            Assert.AreSame(instance1, instance2);
+            NUnit.Framework.Assert.AreSame(instance1, instance2);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ServerAuthorizationService_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ServerAuthorizationService_Constructor")]
         public void ServerAuthorizationService_Constructor_PermissionsChangedEvent_ClearsCachedRequests()
         {
             //------------Setup for test--------------------------
@@ -60,18 +61,18 @@ namespace Dev2.Tests.Runtime.Security
             request.Setup(r => r.QueryString[It.IsAny<string>()]).Returns(string.Empty);
 
             authorizationService.IsAuthorized(request.Object);
-            Assert.AreEqual(1, authorizationService.CachedRequestCount);
+            NUnit.Framework.Assert.AreEqual(1, authorizationService.CachedRequestCount);
 
             //------------Execute Test---------------------------
             securityService.Raise(m => m.PermissionsChanged += null, EventArgs.Empty);
 
             //------------Assert Results-------------------------
-            Assert.AreEqual(0, authorizationService.CachedRequestCount);
+            NUnit.Framework.Assert.AreEqual(0, authorizationService.CachedRequestCount);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ServerAuthorizationService_IsAuthorized")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ServerAuthorizationService_IsAuthorized")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ServerAuthorizationService_IsAuthorized_RequestIsNull_ThrowsArgumentNullException()
         {
@@ -86,9 +87,9 @@ namespace Dev2.Tests.Runtime.Security
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ServerAuthorizationService_IsAuthorized")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ServerAuthorizationService_IsAuthorized")]
         public void ServerAuthorizationService_IsAuthorized_RequestWhenNotAllowedButResultsPendingAndHubConnect_AuthorizationCalculatedAndNotCachedIsTrue()
         {
             //------------Setup for test--------------------------
@@ -107,7 +108,7 @@ namespace Dev2.Tests.Runtime.Security
             request.Setup(r => r.RequestType).Returns(WebServerRequestType.HubConnect);
             request.Setup(r => r.QueryString[It.IsAny<string>()]).Returns(string.Empty);
 
-            Assert.AreEqual(0, authorizationService.CachedRequestCount);
+            NUnit.Framework.Assert.AreEqual(0, authorizationService.CachedRequestCount);
 
             //------------Execute Test---------------------------
             var result = authorizationService.IsAuthorized(request.Object);
@@ -117,13 +118,13 @@ namespace Dev2.Tests.Runtime.Security
 
             //------------Assert Results-------------------------
             securityService.VerifyGet(p => p.Permissions, Times.AtLeast(1));
-            Assert.AreEqual(0, authorizationService.CachedRequestCount);
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.AreEqual(0, authorizationService.CachedRequestCount);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ServerAuthorizationService_IsAuthorized")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ServerAuthorizationService_IsAuthorized")]
         public void ServerAuthorizationService_IsAuthorized_RequestWhenNotAllowedButResultsPendingAndPayloadFetch_AuthorizationCalculatedAndNotCachedIsTrue()
         {
             //------------Setup for test--------------------------
@@ -142,7 +143,7 @@ namespace Dev2.Tests.Runtime.Security
             request.Setup(r => r.RequestType).Returns(WebServerRequestType.EsbFetchExecutePayloadFragment);
             request.Setup(r => r.QueryString[It.IsAny<string>()]).Returns(string.Empty);
 
-            Assert.AreEqual(0, authorizationService.CachedRequestCount);
+            NUnit.Framework.Assert.AreEqual(0, authorizationService.CachedRequestCount);
 
             //------------Execute Test---------------------------
             var result = authorizationService.IsAuthorized(request.Object);
@@ -152,13 +153,13 @@ namespace Dev2.Tests.Runtime.Security
 
             //------------Assert Results-------------------------
             securityService.VerifyGet(p => p.Permissions, Times.AtLeast(1));
-            Assert.AreEqual(0, authorizationService.CachedRequestCount);
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.AreEqual(0, authorizationService.CachedRequestCount);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ServerAuthorizationService_IsAuthorized")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ServerAuthorizationService_IsAuthorized")]
         public void ServerAuthorizationService_IsAuthorized_RequestWhenNotAllowedNoResultsPendingAndHubConnect_AuthorizationCalculatedAndNotCachedIsFalse()
         {
             //------------Setup for test--------------------------
@@ -174,20 +175,20 @@ namespace Dev2.Tests.Runtime.Security
             request.Setup(r => r.RequestType).Returns(WebServerRequestType.HubConnect);
             request.Setup(r => r.QueryString[It.IsAny<string>()]).Returns(string.Empty);
 
-            Assert.AreEqual(0, authorizationService.CachedRequestCount);
+            NUnit.Framework.Assert.AreEqual(0, authorizationService.CachedRequestCount);
 
             //------------Execute Test---------------------------
             var result = authorizationService.IsAuthorized(request.Object);
 
             //------------Assert Results-------------------------
             securityService.VerifyGet(p => p.Permissions, Times.AtLeast(1));
-            Assert.AreEqual(0, authorizationService.CachedRequestCount);
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.AreEqual(0, authorizationService.CachedRequestCount);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ServerAuthorizationService_IsAuthorized")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ServerAuthorizationService_IsAuthorized")]
         public void ServerAuthorizationService_IsAuthorized_RequestWhenNotAllowedButResultsPendingAndNotHubConnect_AuthorizationCalculatedAndNotCachedIsFalse()
         {
             //------------Setup for test--------------------------
@@ -206,7 +207,7 @@ namespace Dev2.Tests.Runtime.Security
             request.Setup(r => r.RequestType).Returns(WebServerRequestType.EsbWrite);
             request.Setup(r => r.QueryString[It.IsAny<string>()]).Returns(string.Empty);
 
-            Assert.AreEqual(0, authorizationService.CachedRequestCount);
+            NUnit.Framework.Assert.AreEqual(0, authorizationService.CachedRequestCount);
 
             //------------Execute Test---------------------------
             var result = authorizationService.IsAuthorized(request.Object);
@@ -216,13 +217,13 @@ namespace Dev2.Tests.Runtime.Security
 
             //------------Assert Results-------------------------
             securityService.VerifyGet(p => p.Permissions, Times.AtLeast(1));
-            Assert.AreEqual(1, authorizationService.CachedRequestCount);
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.AreEqual(1, authorizationService.CachedRequestCount);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ServerAuthorizationService_IsAuthorized")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ServerAuthorizationService_IsAuthorized")]
         public void ServerAuthorizationService_IsAuthorized_RequestIsFirstTime_AuthorizationCalculatedAndCached()
         {
             //------------Setup for test--------------------------
@@ -237,19 +238,19 @@ namespace Dev2.Tests.Runtime.Security
             request.Setup(r => r.RequestType).Returns(WebServerRequestType.WebGet);
             request.Setup(r => r.QueryString[It.IsAny<string>()]).Returns(string.Empty);
 
-            Assert.AreEqual(0, authorizationService.CachedRequestCount);
+            NUnit.Framework.Assert.AreEqual(0, authorizationService.CachedRequestCount);
 
             //------------Execute Test---------------------------
             authorizationService.IsAuthorized(request.Object);
 
             //------------Assert Results-------------------------
             securityService.VerifyGet(p => p.Permissions, Times.AtLeast(1));
-            Assert.AreEqual(1, authorizationService.CachedRequestCount);
+            NUnit.Framework.Assert.AreEqual(1, authorizationService.CachedRequestCount);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ServerAuthorizationService_IsAuthorized")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ServerAuthorizationService_IsAuthorized")]
         public void ServerAuthorizationService_IsAuthorized_RequestIsSecondTime_CachedAuthorizationUsed()
         {
             //------------Setup for test--------------------------
@@ -266,19 +267,19 @@ namespace Dev2.Tests.Runtime.Security
 
             authorizationService.IsAuthorized(request.Object);
             securityService.VerifyGet(p => p.Permissions, Times.AtLeast(1));
-            Assert.AreEqual(1, authorizationService.CachedRequestCount);
+            NUnit.Framework.Assert.AreEqual(1, authorizationService.CachedRequestCount);
 
             //------------Execute Test---------------------------
             authorizationService.IsAuthorized(request.Object);
 
             //------------Assert Results-------------------------
             securityService.VerifyGet(p => p.Permissions, Times.AtLeast(1));
-            Assert.AreEqual(1, authorizationService.CachedRequestCount);
+            NUnit.Framework.Assert.AreEqual(1, authorizationService.CachedRequestCount);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServerAuthorizationService_IsAuthorized")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServerAuthorizationService_IsAuthorized")]
         public void ServerAuthorizationService_IsAuthorized_TimedOutPeriodExpired_ShouldNotGetFromCache()
         {
             //------------Setup for test--------------------------
@@ -295,18 +296,18 @@ namespace Dev2.Tests.Runtime.Security
             authorizationService.IsAuthorized(request.Object);
             //-------------Assert Preconditions-------------------
             securityService.VerifyGet(p => p.Permissions, Times.AtLeast(1));
-            Assert.AreEqual(1, authorizationService.CachedRequestCount);
+            NUnit.Framework.Assert.AreEqual(1, authorizationService.CachedRequestCount);
             //------------Execute Test---------------------------
             Thread.Sleep(1200);
             authorizationService.IsAuthorized(request.Object);
             //------------Assert Results-------------------------
             securityService.VerifyGet(p => p.Permissions, Times.AtLeast(1));
-            Assert.AreEqual(1, authorizationService.CachedRequestCount);
+            NUnit.Framework.Assert.AreEqual(1, authorizationService.CachedRequestCount);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServerAuthorizationService_IsAuthorized")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServerAuthorizationService_IsAuthorized")]
         public void ServerAuthorizationService_IsAuthorized_WithinTimedOutPeriod_ShouldGetFromCache()
         {
             //------------Setup for test--------------------------
@@ -323,17 +324,17 @@ namespace Dev2.Tests.Runtime.Security
             authorizationService.IsAuthorized(request.Object);
             //-------------Assert Preconditions-------------------
             securityService.VerifyGet(p => p.Permissions, Times.AtLeast(1));
-            Assert.AreEqual(1, authorizationService.CachedRequestCount);
+            NUnit.Framework.Assert.AreEqual(1, authorizationService.CachedRequestCount);
             //------------Execute Test---------------------------
             authorizationService.IsAuthorized(request.Object);
             //------------Assert Results-------------------------
             securityService.VerifyGet(p => p.Permissions, Times.AtLeast(1));
-            Assert.AreEqual(1, authorizationService.CachedRequestCount);
+            NUnit.Framework.Assert.AreEqual(1, authorizationService.CachedRequestCount);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ServerAuthorizationService_IsAuthorized")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ServerAuthorizationService_IsAuthorized")]
         public void ServerAuthorizationService_IsAuthorized_WebInvokeService_CorrectAuthorizations()
         {
             var resourceID = Guid.NewGuid();
@@ -360,9 +361,9 @@ namespace Dev2.Tests.Runtime.Security
             Verify_IsAuthorized(requests);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ServerAuthorizationService_IsAuthorized")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ServerAuthorizationService_IsAuthorized")]
         public void ServerAuthorizationService_IsAuthorized_WebGetXXX_CorrectAuthorizations()
         {
             const string ResourceID = "ed44bc30-7bf0-4b64-a3a3-ad2c15e8eb23";
@@ -390,9 +391,9 @@ namespace Dev2.Tests.Runtime.Security
             Verify_IsAuthorized(requests);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ServerAuthorizationService_IsAuthorized")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ServerAuthorizationService_IsAuthorized")]
         public void ServerAuthorizationService_IsAuthorized_WebExecuteOrBookmarkWorkflow_CorrectAuthorizations()
         {
             var queryString = new Mock<INameValueCollection>();
@@ -409,9 +410,9 @@ namespace Dev2.Tests.Runtime.Security
             Verify_IsAuthorized(requests);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ServerAuthorizationService_IsAuthorized")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ServerAuthorizationService_IsAuthorized")]
         public void ServerAuthorizationService_IsAuthorized_HubConnect_CorrectAuthorizations()
         {
             var queryString = new Mock<INameValueCollection>();
@@ -425,9 +426,9 @@ namespace Dev2.Tests.Runtime.Security
             Verify_IsAuthorized(requests);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ServerAuthorizationService_IsAuthorized")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ServerAuthorizationService_IsAuthorized")]
         public void ServerAuthorizationService_IsAuthorized_EsbXXX_CorrectAuthorizations()
         {
             var queryString = new Mock<INameValueCollection>();
@@ -509,13 +510,13 @@ namespace Dev2.Tests.Runtime.Security
             var authorized = authorizationService.IsAuthorized(authorizationRequest);
 
             //------------Assert Results-------------------------
-            Assert.AreEqual(expected, authorized, string.Format("\nUserIsInRole: {0}\nAllowed: {1}\nConfig: {2}\nIsServer: {3}\nURL: {4}",
+            NUnit.Framework.Assert.AreEqual(expected, authorized, string.Format("\nUserIsInRole: {0}\nAllowed: {1}\nConfig: {2}\nIsServer: {3}\nURL: {4}",
                 authorizationRequest.UserIsInRole, allowedPermissions, configPermissions.Permissions, configPermissions.IsServer, authorizationRequest.Url));
         }
 
-        [TestMethod]
-        [Owner("Clint Stedman")]
-        [TestCategory("ServerAuthorizationService_IsAuthorized")]
+        [Test]
+        [Author("Clint Stedman")]
+        [Category("ServerAuthorizationService_IsAuthorized")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ServerAuthorizationService_IsAuthorized_ResourceIsNull_ThrowsArgumentNullException()
         {

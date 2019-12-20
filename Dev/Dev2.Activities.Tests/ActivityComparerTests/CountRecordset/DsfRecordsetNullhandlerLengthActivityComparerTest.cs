@@ -1,14 +1,15 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.CountRecords
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfRecordsetNullhandlerLengthActivityComparerTest
     {
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentUniqueIds_ActivityTools_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -23,8 +24,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.CountRecords
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_EmptyActivityTools_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -39,8 +40,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.CountRecords
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DisplayName_Same_DisplayName_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -55,8 +56,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.CountRecords
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DisplayName_Different_DisplayName_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -70,8 +71,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.CountRecords
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_RecordsetName_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -86,8 +87,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.CountRecords
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_RecordsetName_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -102,8 +103,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.CountRecords
             Assert.IsFalse(@equals);
         }
         
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_RecordsLength_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -118,8 +119,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.CountRecords
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_RecordsLength_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -134,8 +135,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.CountRecords
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_TreatNullAsZero_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -150,8 +151,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.CountRecords
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_TreatNullAsZero_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------

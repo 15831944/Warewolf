@@ -1,14 +1,15 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using Dev2.Runtime.ESB.Management.Services;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WorkflowResumeTests
     {       
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("WorkflowResume_Execute")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("WorkflowResume_Execute")]
         public void WorkflowResume_Returns_HandleType_WorkflowResume()
         {
             //------------Setup for test--------------------------

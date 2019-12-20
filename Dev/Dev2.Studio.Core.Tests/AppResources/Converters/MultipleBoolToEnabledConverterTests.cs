@@ -9,17 +9,18 @@
 */
 
 using Dev2.CustomControls.Converters;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests.AppResources.Converters
 {
-    [TestClass]
-	[TestCategory("Studio Resources Core")]
+    [TestFixture]
+    [SetUpFixture]
+	[Category("Studio Resources Core")]
     public class MultipleBoolToEnabledConverterTests
     {
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("MultipleBoolToEnabledConverter_Convert")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("MultipleBoolToEnabledConverter_Convert")]
         public void MultipleBoolToEnabledConverter_Convert_WithTrueTrueFalse_ReturnsFalse()
         {
             var multipleBoolToEnabledConverter = new MultipleBoolToEnabledConverter();
@@ -29,9 +30,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(false, actual);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("MultipleBoolToEnabledConverter_Convert")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("MultipleBoolToEnabledConverter_Convert")]
         public void MultipleBoolToEnabledConverter_Convert_WithTrueTrueTrue_ReturnsTrue()
         {
             var multipleBoolToEnabledConverter = new MultipleBoolToEnabledConverter();
@@ -41,9 +42,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(true, actual);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("MultipleBoolToEnabledConverter_Convert")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("MultipleBoolToEnabledConverter_Convert")]
         public void MultipleBoolToEnabledConverter_Convert_WithTrueTrueNull_ReturnsTrue()
         {
             var multipleBoolToEnabledConverter = new MultipleBoolToEnabledConverter();

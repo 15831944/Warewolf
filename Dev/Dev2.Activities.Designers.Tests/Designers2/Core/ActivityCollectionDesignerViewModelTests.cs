@@ -17,19 +17,20 @@ using Dev2.Activities.Designers2.Core;
 using Dev2.Common.Interfaces.Infrastructure.Providers.Errors;
 using Dev2.Providers.Errors;
 using Dev2.Studio.Core.Activities.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Moq.Protected;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Activities.Designers.Tests.Designers2.Core
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ActivityCollectionDesignerViewModelTests
     {
-        [TestMethod]
-        [TestCategory("ActivityCollectionDesignerViewModel_Constructor")]
-        [Owner("Trevor Williams-Ros")]
+        [Test]
+        [Category("ActivityCollectionDesignerViewModel_Constructor")]
+        [Author("Trevor Williams-Ros")]
         
         public void ActivityCollectionDesignerViewModel_Constructor_NoRows_TwoBlankRowsAdded()
 
@@ -41,9 +42,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             VerifyCollection(vm, 2, allRowsBlank: true);
         }
 
-        [TestMethod]
-        [TestCategory("ActivityCollectionDesignerViewModel_Constructor")]
-        [Owner("Trevor Williams-Ros")]
+        [Test]
+        [Category("ActivityCollectionDesignerViewModel_Constructor")]
+        [Author("Trevor Williams-Ros")]
         
         public void ActivityCollectionDesignerViewModel_Constructor_OneBlankRow_OneBlankRowAdded()
 
@@ -55,9 +56,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             VerifyCollection(vm, 2, allRowsBlank: true);
         }
 
-        [TestMethod]
-        [TestCategory("ActivityCollectionDesignerViewModel_Constructor")]
-        [Owner("Trevor Williams-Ros")]
+        [Test]
+        [Category("ActivityCollectionDesignerViewModel_Constructor")]
+        [Author("Trevor Williams-Ros")]
         
         public void ActivityCollectionDesignerViewModel_Constructor_TwoBlankRows_NoRowAdded()
 
@@ -70,9 +71,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             VerifyCollection(vm, 2, allRowsBlank: true);
         }
 
-        [TestMethod]
-        [TestCategory("ActivityCollectionDesignerViewModel_Constructor")]
-        [Owner("Trevor Williams-Ros")]
+        [Test]
+        [Category("ActivityCollectionDesignerViewModel_Constructor")]
+        [Author("Trevor Williams-Ros")]
         
         public void ActivityCollectionDesignerViewModel_Constructor_NoBlankRows_BlankRowAdded()
 
@@ -105,9 +106,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             }
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ActivityCollectionDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ActivityCollectionDesignerViewModel_Constructor")]
         public void ActivityCollectionDesignerViewModel_Constructor_ValidModelItem_InstanceOfQuickVariableInputViewModelCreated()
         {
             var collectionsViewModel = new TestActivityDesignerCollectionViewModelItemsInitialized(CreateModelItem(0));
@@ -116,9 +117,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
 
 
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ActivityCollectionDesignerViewModel_Validate")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ActivityCollectionDesignerViewModel_Validate")]
         public void ActivityCollectionDesignerViewModel_Validate_NoErrorsFound_IsValidIsTrue()
         {
             var collectionsViewModel = new TestActivityDesignerCollectionViewModelItemsInitialized(CreateModelItem(4));
@@ -126,9 +127,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.IsTrue(collectionsViewModel.IsValid);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ActivityCollectionDesignerViewModel_ExecuteShowErrorsCommand")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ActivityCollectionDesignerViewModel_ExecuteShowErrorsCommand")]
         public void ActivityCollectionDesignerViewModel_ExecuteShowErrorsCommand_ShowErrorsIsTrue_ShowErrorsIsSetToFalse()
         {
             var mockModelItem = GenerateMockModelItem();
@@ -140,9 +141,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.IsFalse(collectionsViewModel.ShowErrors);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ActivityCollectionDesignerViewModel_ExecuteShowHelpToggleCommand")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ActivityCollectionDesignerViewModel_ExecuteShowHelpToggleCommand")]
         public void ActivityCollectionDesignerViewModel_ExecuteShowHelpToggleCommand_ShowHelpIsFalse_ShowHelpIsSetToTrue()
         {
             var mockModelItem = GenerateMockModelItem();
@@ -153,9 +154,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.IsTrue(collectionsViewModel.ShowHelp);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ActivityCollectionDesignerViewModel_ExecuteShowHelpToggleCommand")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ActivityCollectionDesignerViewModel_ExecuteShowHelpToggleCommand")]
         public void ActivityCollectionDesignerViewModel_ExecuteShowHelpToggleCommand_ShowHelpIsTrue_ShowHelpIsSetToFalse()
         {
             var mockModelItem = GenerateMockModelItem();
@@ -165,9 +166,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.IsFalse(collectionsViewModel.ShowHelp);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ActivityCollectionDesignerViewModel_ToggleQuickVariableInput")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ActivityCollectionDesignerViewModel_ToggleQuickVariableInput")]
         public void ActivityCollectionDesignerViewModel_ToggleQuickVariableInput_ShowThenClose_SmallViewIsDisplayed()
         {
             var mockModelItem = GenerateMockModelItem();
@@ -181,9 +182,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.IsFalse(collectionsViewModel.ShowLarge);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ActivityCollectionDesignerViewModel_ToggleLargeView")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ActivityCollectionDesignerViewModel_ToggleLargeView")]
         public void ActivityCollectionDesignerViewModel_ToggleLargeView_ShowThenClose_SmallViewIsDisplayed()
         {
             var mockModelItem = GenerateMockModelItem();
@@ -196,9 +197,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.IsFalse(collectionsViewModel.ShowQuickVariableInput);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ActivityCollectionDesignerViewModel_PreviousViewIsQuickvariableInput")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ActivityCollectionDesignerViewModel_PreviousViewIsQuickvariableInput")]
         public void ActivityCollectionDesignerViewModel_ShowLarge_PreviousViewIsQuickvariableInput_ShowQuickVariableInputIsSetToFalse()
         {
             var mockModelItem = GenerateMockModelItem();
@@ -210,9 +211,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.IsFalse(collectionsViewModel.ShowQuickVariableInput);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ActivityCollectionDesignerViewModel_PreviousViewIsShowLarge")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ActivityCollectionDesignerViewModel_PreviousViewIsShowLarge")]
         public void ActivityCollectionDesignerViewModel_ShowLarge_PreviousViewIsShowLarge_ShowLargeIsSetToFalse()
         {
             var mockModelItem = GenerateMockModelItem();
@@ -224,9 +225,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.IsFalse(collectionsViewModel.ShowLarge);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityCollectionDesignerViewModel_Collapse")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityCollectionDesignerViewModel_Collapse")]
         public void ActivityCollectionDesignerViewModel_Collapse_SmallViewActive()
         {
             //------------Setup for test--------------------------
@@ -243,9 +244,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.IsTrue(viewModel.ShowSmall);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityCollectionDesignerViewModel_Restore")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityCollectionDesignerViewModel_Restore")]
         public void ActivityCollectionDesignerViewModel_RestoreFromPreviouslyViewedQuickVariableInput_QuickVariableInputActive()
         {
             //------------Setup for test--------------------------
@@ -263,9 +264,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.IsFalse(viewModel.ShowLarge);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityCollectionDesignerViewModel_Restore")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityCollectionDesignerViewModel_Restore")]
         public void ActivityCollectionDesignerViewModel_RestoreFromPreviouslyViewedLargeView_LargeViewActive()
         {
             //------------Setup for test--------------------------
@@ -283,9 +284,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.IsFalse(viewModel.ShowQuickVariableInput);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityCollectionDesignerViewModel_Restore")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityCollectionDesignerViewModel_Restore")]
         public void ActivityCollectionDesignerViewModel_RestoreFromPreviouslyViewedSmallView_SmallViewActive()
         {
             //------------Setup for test--------------------------
@@ -303,9 +304,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.IsTrue(viewModel.ShowSmall);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityCollectionDesignerViewModel_AddTitleBarQuickVariableInputToggle")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityCollectionDesignerViewModel_AddTitleBarQuickVariableInputToggle")]
         public void ActivityCollectionDesignerViewModel_AddTitleBarQuickVariableInputToggle_Added()
         {
             //------------Setup for test--------------------------
@@ -320,9 +321,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
 
             var toggle = viewModel.TitleBarToggles[0];
 
-            //Assert.AreEqual("pack://application:,,,/Dev2.Activities.Designers;component/Images/ServiceQuickVariableInput-32.png", toggle.CollapseImageSourceUri);
+            //NUnit.Framework.Assert.AreEqual("pack://application:,,,/Dev2.Activities.Designers;component/Images/ServiceQuickVariableInput-32.png", toggle.CollapseImageSourceUri);
             Assert.AreEqual("Close Quick Variable Input", toggle.CollapseToolTip);
-            //Assert.AreEqual("pack://application:,,,/Dev2.Activities.Designers;component/Images/ServiceQuickVariableInput-32.png", toggle.ExpandImageSourceUri);
+            //NUnit.Framework.Assert.AreEqual("pack://application:,,,/Dev2.Activities.Designers;component/Images/ServiceQuickVariableInput-32.png", toggle.ExpandImageSourceUri);
             Assert.AreEqual("Open Quick Variable Input", toggle.ExpandToolTip);
             Assert.AreEqual("QuickVariableInputToggle", toggle.AutomationID);
 
@@ -333,9 +334,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.AreEqual(BindingMode.TwoWay, binding.Mode);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityCollectionDesignerViewModel_UpdateDisplayName")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityCollectionDesignerViewModel_UpdateDisplayName")]
         public void ActivityCollectionDesignerViewModel_UpdateDisplayName_OldDisplayNameHasOpeningAndClosingBrackets_BracketsRemovedAndReadded()
         {
             //------------Setup for test--------------------------
@@ -354,9 +355,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.AreEqual(string.Format("Activity ({0})", ItemCount - 1), actual);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityCollectionDesignerViewModel_AddToCollection")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityCollectionDesignerViewModel_AddToCollection")]
         public void ActivityCollectionDesignerViewModel_AddToCollection_OverwriteTrue_CollectionClearedAndNewItemsAdded()
         {
             //------------Setup for test--------------------------
@@ -378,7 +379,7 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             //------------Assert Results-------------------------
             
             var mic = viewModel.ModelItem.Properties[viewModel.CollectionName].Collection;
-            
+
 
             // Extra blank row is also added
             Assert.AreEqual(ExpectedItemCount + 1, viewModel.ItemCount);
@@ -401,9 +402,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityCollectionDesignerViewModel_ChangeDtoProperty")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityCollectionDesignerViewModel_ChangeDtoProperty")]
         public void ActivityCollectionDesignerViewModel_ChangeDtoProperty_CausesCustomActionsToFire()
         {
             //------------Setup for test--------------------------
@@ -429,9 +430,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.IsTrue(viewModel.CustomActionCalled);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityCollectionDesignerViewModel_AddToCollection")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityCollectionDesignerViewModel_AddToCollection")]
         public void ActivityCollectionDesignerViewModel_AddToCollection_OverwriteFalseAndNonBlankRows_ItemsInserted()
         {
             //------------Setup for test--------------------------
@@ -467,14 +468,14 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.AreSame(items[2], mic[4].GetCurrentValue());
             VerifyItem(mic[4], 5, "", "");
 
-            
+
 
             Assert.AreEqual(string.Format("Activity ({0})", ExpectedItemCount - 1), viewModel.ModelItem.GetProperty("DisplayName"));
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityCollectionDesignerViewModel_AddToCollection")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityCollectionDesignerViewModel_AddToCollection")]
         public void ActivityCollectionDesignerViewModel_AddToCollection_OverwriteFalseAndTwoBlankRows_ItemsAdded()
         {
             //------------Setup for test--------------------------
@@ -507,14 +508,14 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.AreSame(items[0], mic[2].GetCurrentValue());
             VerifyItem(mic[2], 3, "", "");
 
-            
+
 
             Assert.AreEqual(string.Format("Activity ({0})", ExpectedItemCount - 1), viewModel.ModelItem.GetProperty("DisplayName"));
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityCollectionDesignerViewModel_UpdateItem")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityCollectionDesignerViewModel_UpdateItem")]
         public void ActivityCollectionDesignerViewModel_UpdateItem_MakesRowBlankAndIndexNumberInBounds_RowNotRemoved()
         {
             Verify_UpdateItem_MakesRowBlankAndIndexNumberInBounds_RowNotRemoved(4, 1);
@@ -561,9 +562,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityCollectionDesignerViewModel_UpdateItem")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityCollectionDesignerViewModel_UpdateItem")]
         public void ActivityCollectionDesignerViewModel_UpdateItem_MakesRowBlankAndIndexNumberOutOfBounds_RowNotRemoved()
         {
             Verify_UpdateItem_MakesRowBlankAndIndexNumberOutOfBounds_RowNotRemoved(3, -1);    // before first row
@@ -606,9 +607,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityCollectionDesignerViewModel_UpdateItem")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityCollectionDesignerViewModel_UpdateItem")]
         public void ActivityCollectionDesignerViewModel_UpdateItem_RowCountIsTwoAndMakesFirstRowBlank_RowNotRemoved()
         {
             //------------Setup for test--------------------------
@@ -647,9 +648,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityCollectionDesignerViewModel_UpdateItem")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityCollectionDesignerViewModel_UpdateItem")]
         public void ActivityCollectionDesignerViewModel_UpdateItem_RowCountIsTwoBlanksAndMakesSecondRowNonBlank_NoRowsAddedOrRemoved()
         {
             //------------Setup for test--------------------------
@@ -674,18 +675,18 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Verify_CollectionUnchanged(items, viewModel);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityCollectionDesignerViewModel_UpdateItem")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityCollectionDesignerViewModel_UpdateItem")]
         public void ActivityCollectionDesignerViewModel_UpdateItem_MakesRowNotBlankAndLastRowIsBlank_RowNotAdded()
         {
             Verify_UpdateItem_MakesRowNotBlank(3, 1, false);
             Verify_UpdateItem_MakesRowNotBlank(3, 2, false);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityCollectionDesignerViewModel_UpdateItem")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityCollectionDesignerViewModel_UpdateItem")]
         public void ActivityCollectionDesignerViewModel_UpdateItem_MakesLastBlankRowNotBlank_RowAdded()
         {
             Verify_UpdateItem_MakesRowNotBlank(3, 3, true);
@@ -736,9 +737,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityCollectionDesignerViewModel_CanRemoveAt")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityCollectionDesignerViewModel_CanRemoveAt")]
         public void ActivityCollectionDesignerViewModel_CanRemoveAt_AnyIndexWhenTwoRows_False()
         {
             var items = CreateItemsList(2);
@@ -746,9 +747,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Verify_CanRemoveAt(items, 2, false);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityCollectionDesignerViewModel_CanRemoveAt")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityCollectionDesignerViewModel_CanRemoveAt")]
         public void ActivityCollectionDesignerViewModel_CanRemoveAt_IndexIsNotLastRow_True()
         {
             var items = CreateItemsList(3);
@@ -761,9 +762,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Verify_CanRemoveAt(items, 3, true);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityCollectionDesignerViewModel_CanRemoveAt")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityCollectionDesignerViewModel_CanRemoveAt")]
         public void ActivityCollectionDesignerViewModel_CanRemoveAt_IndexIsLastRow_False()
         {
             var items = CreateItemsList(2);
@@ -789,9 +790,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.AreEqual(expected, result);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityCollectionDesignerViewModel_CanInsertAt")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityCollectionDesignerViewModel_CanInsertAt")]
         public void ActivityCollectionDesignerViewModel_CanInsertAt_IndexIsLastRow_False()
         {
             var items = CreateItemsList(2);
@@ -804,9 +805,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Verify_CanInsertAt(items, 4, false);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityCollectionDesignerViewModel_CanInsertAt")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityCollectionDesignerViewModel_CanInsertAt")]
         public void ActivityCollectionDesignerViewModel_CanInsertAt_AnyIndexWhenTwoRowsOrLess_False()
         {
             var items = CreateItemsList(1);
@@ -830,9 +831,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Assert.AreEqual(expected, result);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityCollectionDesignerViewModel_RemoveAt")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityCollectionDesignerViewModel_RemoveAt")]
         public void ActivityCollectionDesignerViewModel_RemoveAt_AnyIndexWhenTwoRows_DoesNotRemoveRow()
         {
             var items = CreateItemsList(2);
@@ -846,9 +847,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Verify_CollectionUnchanged(items, viewModel);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityCollectionDesignerViewModel_RemoveAt")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityCollectionDesignerViewModel_RemoveAt")]
         public void ActivityCollectionDesignerViewModel_RemoveAt_AnyIndexExceptLastWhenThreeOrMoreRows_RemovesRow()
         {
             Verify_RemoveAt_RemovesRow(3, 1);
@@ -898,9 +899,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityCollectionDesignerViewModel_InsertAt")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityCollectionDesignerViewModel_InsertAt")]
         public void ActivityCollectionDesignerViewModel_InsertAt_AnyIndexExceptLastWhenThreeOrMoreRows_InsertsRow()
         {
             Verify_InsertsAt_InsertsRow(3, 1);
@@ -916,9 +917,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Verify_InsertsAt_InsertsRow(5, 4);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityCollectionDesignerViewModel_InsertAt")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityCollectionDesignerViewModel_InsertAt")]
         public void ActivityCollectionDesignerViewModel_InsertAt_AnyIndexWhenTwoRows_DoesNotInsertRow()
         {
             var items = CreateItemsList(2);
@@ -932,9 +933,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             Verify_CollectionUnchanged(items, viewModel);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityCollectionDesignerViewModel_InsertAt")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityCollectionDesignerViewModel_InsertAt")]
         public void ActivityCollectionDesignerViewModel_InsertAt_LastIndexWhenThreeOrMoreRows_DoesNotInsertRow()
         {
             Verify_InsertAt_LastIndex_DoesNotInsertRow(3);
@@ -973,7 +974,7 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             {
                 //var expectedIndexNumber = i + 1;
                 var dto = (ActivityDTO)mic[i].GetCurrentValue();
-                //Assert.AreEqual(expectedIndexNumber, dto.IndexNumber);
+                //NUnit.Framework.Assert.AreEqual(expectedIndexNumber, dto.IndexNumber);
 
                 if(i != indexNumber - 1)
                 {
@@ -988,9 +989,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityCollectionDesignerViewModel_OnDTOPropertyChanged")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityCollectionDesignerViewModel_OnDTOPropertyChanged")]
         public void ActivityCollectionDesignerViewModel_OnDTOPropertyChanged_OnlyListensForCanRemoveProperty()
         {
             //------------Setup for test--------------------------
@@ -1006,9 +1007,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
         }
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityCollectionDesignerViewModel_OnSelectionChanged")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityCollectionDesignerViewModel_OnSelectionChanged")]
         public void ActivityCollectionDesignerViewModel_OnSelectionChanged_OldRowIsBlank_RowRemoved()
         {
             Verify_OnSelectionChanged_OldRowIsBlank_RowRemoved(4, 1);
@@ -1059,9 +1060,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
         }
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityCollectionDesignerViewModel_OnSelectionChanged")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityCollectionDesignerViewModel_OnSelectionChanged")]
         public void ActivityCollectionDesignerViewModel_OnSelectionChanged_OldRowIsNotBlank_RowNotRemoved()
         {
             Verify_OnSelectionChanged_OldRowIsNotBlank_RowNotRemoved(4, 1);
@@ -1095,7 +1096,7 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
 
         static void VerifyItem(ModelItem modelItem, int indexNumber, string fieldName, string fieldValue)
         {
-            
+
             Assert.AreEqual(indexNumber, modelItem.Properties["IndexNumber"].ComputedValue);
             Assert.AreEqual(fieldName, modelItem.Properties["FieldName"].ComputedValue);
             Assert.AreEqual(fieldValue, modelItem.Properties["FieldValue"].ComputedValue);
@@ -1228,9 +1229,9 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             return result;
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActivityCollectionDesignerViewModel_Validate")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActivityCollectionDesignerViewModel_Validate")]
         public void ActivityCollectionDesignerViewModel_Validate_InvokesSubMethodsAndUpdatesErrors()
         {
             //------------Setup for test--------------------------

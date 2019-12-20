@@ -10,17 +10,18 @@
 
 using System;
 using Dev2.Communication;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Infrastructure.Tests.Communication
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class MemoTests
     {
-        [TestMethod]
+        [Test]
         [Description("Constructor must initialize Date to now.")]
-        [TestCategory("UnitTest")]
-        [Owner("Trevor Williams-Ros")]
+        [Category("UnitTest")]
+        [Author("Trevor Williams-Ros")]
         
         public void MemoConstructor_UnitTest_Date_Now()
 
@@ -31,10 +32,10 @@ namespace Dev2.Infrastructure.Tests.Communication
             Assert.IsTrue(expected,string.Format("The date should be close to date time now as it is set in the constructor to DateTime.Now. But got{0}", diff));
         }
 
-        [TestMethod]
+        [Test]
         [Description("DateString must return the Date property formatted as yyyy-MM-dd.HH.mm.ss.ffff.")]
-        [TestCategory("UnitTest")]
-        [Owner("Trevor Williams-Ros")]
+        [Category("UnitTest")]
+        [Author("Trevor Williams-Ros")]
 
         public void MemoDateString_UnitTest_Format_Correct()
 
@@ -43,10 +44,10 @@ namespace Dev2.Infrastructure.Tests.Communication
             Assert.AreEqual(memo.Date.ToString("yyyy-MM-dd.HH.mm.ss.ffff"), memo.DateString);
         }
 
-        [TestMethod]
+        [Test]
         [Description("Equals to null returns false.")]
-        [TestCategory("UnitTest")]
-        [Owner("Trevor Williams-Ros")]
+        [Category("UnitTest")]
+        [Author("Trevor Williams-Ros")]
 
         public void MemoEquals_UnitTest_Null_False()
 
@@ -56,10 +57,10 @@ namespace Dev2.Infrastructure.Tests.Communication
             Assert.IsFalse(result);
         }
 
-        [TestMethod]
+        [Test]
         [Description("Equals to another type returns false.")]
-        [TestCategory("UnitTest")]
-        [Owner("Trevor Williams-Ros")]
+        [Category("UnitTest")]
+        [Author("Trevor Williams-Ros")]
 
         public void MemoEquals_UnitTest_OtherType_False()
 
@@ -69,10 +70,10 @@ namespace Dev2.Infrastructure.Tests.Communication
             Assert.IsFalse(result);
         }
 
-        [TestMethod]
+        [Test]
         [Description("Equals to same type but different ID returns false.")]
-        [TestCategory("UnitTest")]
-        [Owner("Trevor Williams-Ros")]
+        [Category("UnitTest")]
+        [Author("Trevor Williams-Ros")]
 
         public void MemoEquals_UnitTest_SameTypeAndDifferentID_False()
 
@@ -83,10 +84,10 @@ namespace Dev2.Infrastructure.Tests.Communication
             Assert.IsFalse(result);
         }
 
-        [TestMethod]
+        [Test]
         [Description("Equals to same type and same ID returns true.")]
-        [TestCategory("UnitTest")]
-        [Owner("Trevor Williams-Ros")]
+        [Category("UnitTest")]
+        [Author("Trevor Williams-Ros")]
 
         public void MemoEquals_UnitTest_SameTypeAndSameID_True()
 
@@ -97,10 +98,10 @@ namespace Dev2.Infrastructure.Tests.Communication
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
+        [Test]
         [Description("GetHashCode returns hash code of ID property.")]
-        [TestCategory("UnitTest")]
-        [Owner("Trevor Williams-Ros")]
+        [Category("UnitTest")]
+        [Author("Trevor Williams-Ros")]
 
         public void MemoGetHashCode_UnitTest_Result_HashCodeOfID()
 

@@ -10,16 +10,17 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Warewolf.Storage.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WarewolfAtomIteratorTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(WarewolfAtomIterator))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(WarewolfAtomIterator))]
         public void WarewolfAtomIterator_GetLength_ShouldBeEqualToMaxVal_AreEqual_ExpectTrue()
         {
             //-------------------------Arrange--------------------------
@@ -31,9 +32,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(0, length);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(WarewolfAtomIterator))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(WarewolfAtomIterator))]
         public void WarewolfAtomIterator_GetNextValue_AreEqual_ExpectTrue()
         {
             //-------------------------Arrange--------------------------
@@ -50,9 +51,9 @@ namespace Warewolf.Storage.Tests
             Assert.AreEqual(listResult.First(), value);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(WarewolfAtomIterator))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(WarewolfAtomIterator))]
         public void WarewolfAtomIterator_GetNextValue_IsNotNull_ExpectTrue()
         {
             //-------------------------Arrange--------------------------
@@ -64,9 +65,9 @@ namespace Warewolf.Storage.Tests
             Assert.IsNotNull(warewolfAtomIterator);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(WarewolfAtomIterator))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(WarewolfAtomIterator))]
         public void WarewolfAtomIterator_HasMoreData_GivenEmptyListResult_ExpectFalse()
         {
             //-------------------------Arrange--------------------------

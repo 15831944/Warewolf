@@ -1,14 +1,15 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.PathOperations
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfFileWriteComparerTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UniqueIDEquals_EmptyFileRead_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -23,8 +24,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.PathOperations
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UniqueIDDifferent_EmptyFileRead_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -39,8 +40,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.PathOperations
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void FileContents_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -55,8 +56,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.PathOperations
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void FileContents_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -71,8 +72,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.PathOperations
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void FileContents_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -87,8 +88,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.PathOperations
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -103,8 +104,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.PathOperations
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -119,8 +120,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.PathOperations
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -135,8 +136,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.PathOperations
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void OutputPath_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -151,8 +152,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.PathOperations
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void OutputPath_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -167,8 +168,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.PathOperations
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void OutputPath_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -183,8 +184,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.PathOperations
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Username_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -199,8 +200,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.PathOperations
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Username_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -215,8 +216,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.PathOperations
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Username_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -231,8 +232,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.PathOperations
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void PrivateKeyFile_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -247,8 +248,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.PathOperations
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void PrivateKeyFile_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -263,8 +264,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.PathOperations
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void PrivateKeyFile_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -278,8 +279,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.PathOperations
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Password_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -294,8 +295,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.PathOperations
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Password_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -310,8 +311,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.PathOperations
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Password_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -326,8 +327,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.PathOperations
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Append_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -344,8 +345,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.PathOperations
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Append_Same_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -361,8 +362,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.PathOperations
             //---------------Test Result -----------------------
             Assert.IsTrue(@equals);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Overwrite_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -379,8 +380,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.PathOperations
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Overwrite_Same_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -397,8 +398,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.PathOperations
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void AppendTop_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -415,8 +416,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.PathOperations
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void AppendTop_Same_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -433,8 +434,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.PathOperations
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void AppendBottom_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -451,8 +452,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.PathOperations
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void AppendBottom_Same_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------

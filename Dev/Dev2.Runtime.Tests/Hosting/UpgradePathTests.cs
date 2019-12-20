@@ -11,17 +11,18 @@
 using System;
 using System.Xml.Linq;
 using Dev2.Runtime.Hosting;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Runtime.Hosting
 {
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class UpgradePathTests
     {
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("UpgradePath_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("UpgradePath_Ctor")]
         [ExpectedException(typeof(ArgumentNullException))]
 
         public void UpgradePath_Ctor_NullParamsFrom_ExpectException()
@@ -35,9 +36,9 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("UpgradePath_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("UpgradePath_Ctor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void UpgradePath_Ctor_NullParamsTo_ExpectException()
         {
@@ -49,9 +50,9 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("UpgradePath_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("UpgradePath_Ctor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void UpgradePath_Ctor_NullParamsUpgrade_ExpectException()
         {
@@ -64,9 +65,9 @@ namespace Dev2.Tests.Runtime.Hosting
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("UpgradePath_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("UpgradePath_Ctor")]
 
         public void UpgradePath_CanUpgrade_NoVersion_ExpectTrue()
         {
@@ -76,12 +77,12 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
 
             //------------Assert Results-------------------------
-            Assert.IsTrue(upgrade.CanUpgrade(XElement.Parse("<a></a>")));
+            NUnit.Framework.Assert.IsTrue(upgrade.CanUpgrade(XElement.Parse("<a></a>")));
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("UpgradePath_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("UpgradePath_Ctor")]
 
         public void UpgradePath_CanUpgrade_NoVersion_ExpectFalse()
         {
@@ -91,12 +92,12 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
 
             //------------Assert Results-------------------------
-            Assert.IsFalse(upgrade.CanUpgrade(XElement.Parse("<a ServerVersion=\"3.4.5.6\"></a>")));
+            NUnit.Framework.Assert.IsFalse(upgrade.CanUpgrade(XElement.Parse("<a ServerVersion=\"3.4.5.6\"></a>")));
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("UpgradePath_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("UpgradePath_Ctor")]
 
         public void UpgradePath_CanUpgrade_Boundary_ExpectFalse()
         {
@@ -106,12 +107,12 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
 
             //------------Assert Results-------------------------
-            Assert.IsFalse(upgrade.CanUpgrade(XElement.Parse("<a ServerVersion=\"2.0.0.0\"></a>")));
+            NUnit.Framework.Assert.IsFalse(upgrade.CanUpgrade(XElement.Parse("<a ServerVersion=\"2.0.0.0\"></a>")));
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("UpgradePath_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("UpgradePath_Ctor")]
 
         public void UpgradePath_CanUpgrade_UpperBoundary_ExpectFalse()
         {
@@ -121,7 +122,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
 
             //------------Assert Results-------------------------
-            Assert.IsFalse(upgrade.CanUpgrade(XElement.Parse("<a ServerVersion=\"1.0.0.0\"></a>")));
+            NUnit.Framework.Assert.IsFalse(upgrade.CanUpgrade(XElement.Parse("<a ServerVersion=\"1.0.0.0\"></a>")));
         }
     
     }

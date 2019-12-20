@@ -9,19 +9,20 @@
 */
 
 using Dev2.Common.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Dev2.Common.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FileListingTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(FileListing))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(FileListing))]
         public void FileListing_Validate()
         {
             const string expectedName = "testName";
@@ -52,9 +53,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual("childNameTwo", fileListing.Children.ToList()[1].Name);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(FileListing))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(FileListing))]
         public void FileListing_ReferenceEquals_FileListing_Expected_True()
         {
             const string expectedName = "testName";
@@ -72,9 +73,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(FileListing))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(FileListing))]
         public void FileListing_Equals_FileListing_Expected_True()
         {
             const string expectedName = "testName";
@@ -94,9 +95,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(fileListing == fileListingDup);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(FileListing))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(FileListing))]
         public void FileListing_Equals_FileListing_Expected_False()
         {
             const string expectedName = "testName";
@@ -122,9 +123,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(fileListing != fileListingDup);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(FileListing))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(FileListing))]
         public void FileListing_Equals_Object_Null_Expected_False()
         {
             var fileListing = new FileListing();
@@ -135,9 +136,9 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(FileListing))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(FileListing))]
         public void FileListing_Equals_Object_Expected_True()
         {
             const string expectedName = "testName";
@@ -166,9 +167,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(FileListing))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(FileListing))]
         public void FileListing_Equals_Object_Expected_False()
         {
             const string expectedName = "testName";
@@ -205,9 +206,9 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(FileListing))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(FileListing))]
         public void FileListing_Equals_Object_GetType_Expected_False()
         {
             const string expectedName = "testName";
@@ -227,9 +228,9 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(FileListing))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(FileListing))]
         public void FileListing_GetHashCode_Not_Equal_To_Zero()
         {
             const string expectedName = "testName";
@@ -257,9 +258,9 @@ namespace Dev2.Common.Tests
             Assert.AreNotEqual(0, hashCode);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(FileListing))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(FileListing))]
         public void FileListing_GetHashCode_Expect_Zero()
         {
             var fileListing = new FileListing();

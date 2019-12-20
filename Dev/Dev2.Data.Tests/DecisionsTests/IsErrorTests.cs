@@ -9,16 +9,17 @@
 */
 
 using Dev2.Data.Decisions.Operations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests.DecisionsTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IsErrorTests
     {
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("IsError_Invoke")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("IsError_Invoke")]
         public void GivenSomeString_IsError_Invoke_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -28,12 +29,12 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = isError.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("IsError_Invoke")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("IsError_Invoke")]
         public void IsError_Invoke_IsError_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -43,12 +44,12 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = isError.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthmembu")]
-        [TestCategory("IsError_HandlesType")]
+        [Test]
+        [Author("Sanele Mthmembu")]
+        [Category("IsError_HandlesType")]
         public void IsError_HandlesType_ReturnsIsErrorType()
         {
             var decisionType = enDecisionType.IsError;
@@ -56,7 +57,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             var isError = new IsError();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.AreEqual(decisionType, isError.HandlesType());
+            NUnit.Framework.Assert.AreEqual(decisionType, isError.HandlesType());
         }
     }
 }

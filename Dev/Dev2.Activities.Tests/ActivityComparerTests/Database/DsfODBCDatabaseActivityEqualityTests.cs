@@ -1,16 +1,17 @@
 ﻿using System;
 using Dev2.Activities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.Collections.Generic;
 using Warewolf.Core;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.Database
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfODBCDatabaseActivityEqualityTests
     {
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void UniqueIDEquals_EmptyOdbcDatabase_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -25,8 +26,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Database
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void UniqueIDDifferent_EmptyOdbcDatabase_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -41,8 +42,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Database
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_SourceId_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -58,8 +59,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Database
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_SourceId_IsNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -76,8 +77,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Database
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_DisplayName_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -92,8 +93,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Database
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_DisplayName_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -107,8 +108,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Database
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_CommandText_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -123,8 +124,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Database
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_CommandText_Different_Casing_IsNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -139,8 +140,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Database
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_CommandText_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -155,8 +156,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Database
             Assert.IsFalse(@equals);
         }
         
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentInputs_ActivityTools_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -176,8 +177,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Database
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameInputsDifferentIndexes_ActivityTools_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -202,8 +203,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Database
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameInputs_ActivityTools_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -219,8 +220,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Database
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentOutputs_ActivityTools_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -238,8 +239,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Database
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameOutputs_DifferentIndexes_ActivityTools_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -264,8 +265,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Database
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameOutputs_ActivityTools_AreEqual()
         {
             //---------------Set up test pack-------------------

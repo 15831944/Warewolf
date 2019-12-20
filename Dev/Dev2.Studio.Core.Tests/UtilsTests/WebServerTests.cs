@@ -13,18 +13,19 @@ using System.Text;
 using Dev2.Studio.Core.Network;
 using Dev2.Studio.Interfaces;
 using Dev2.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Core.Tests.UtilsTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WebServerTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("Webserver_Send")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("Webserver_Send")]
         public void Webserver_Send_ValidParameters_ShouldMakeCallToExecuteCommand()
         {
             //------------Setup for test--------------------------
@@ -43,9 +44,9 @@ namespace Dev2.Core.Tests.UtilsTests
             mockConnection.Verify(connection => connection.ExecuteCommand(It.IsAny<StringBuilder>(), It.IsAny<Guid>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("Webserver_Send")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("Webserver_Send")]
         public void Webserver_Send_NullResource_ShouldNotMakeCallToExecuteCommand()
         {
             //------------Setup for test--------------------------
@@ -64,9 +65,9 @@ namespace Dev2.Core.Tests.UtilsTests
             mockConnection.Verify(connection => connection.ExecuteCommand(It.IsAny<StringBuilder>(), It.IsAny<Guid>()), Times.Never());
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("Webserver_Send")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("Webserver_Send")]
         public void Webserver_Send_NullEnvironment_ShouldNotMakeCallToExecuteCommand()
         {
             //------------Setup for test--------------------------
@@ -83,9 +84,9 @@ namespace Dev2.Core.Tests.UtilsTests
             mockConnection.Verify(connection => connection.ExecuteCommand(It.IsAny<StringBuilder>(), It.IsAny<Guid>()), Times.Never());
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("Webserver_Send")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("Webserver_Send")]
         public void Webserver_Send_NullEnvironmentNotConnected_ShouldNotMakeCallToExecuteCommand()
         {
             //------------Setup for test--------------------------
@@ -104,9 +105,9 @@ namespace Dev2.Core.Tests.UtilsTests
             mockConnection.Verify(connection => connection.ExecuteCommand(It.IsAny<StringBuilder>(), It.IsAny<Guid>()), Times.Never());
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("Webserver_Send")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("Webserver_Send")]
         public void Webserver_Send_NullEnvironmentConnectionNull_ShouldNotMakeCallToExecuteCommand()
         {
             //------------Setup for test--------------------------

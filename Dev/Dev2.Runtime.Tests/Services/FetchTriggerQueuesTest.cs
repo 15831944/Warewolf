@@ -15,20 +15,21 @@ using Dev2.Common.Interfaces.Enums;
 using Dev2.Communication;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Trigger.Queue;
 using Warewolf.Triggers;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FetchTriggerQueuesTest
     {
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(FetchTriggerQueues))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(FetchTriggerQueues))]
         public void FetchTriggerQueues_GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -40,9 +41,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(FetchTriggerQueues))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(FetchTriggerQueues))]
         public void FetchTriggerQueues_GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -54,9 +55,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(AuthorizationContext.Contribute, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(FetchTriggerQueues))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(FetchTriggerQueues))]
         public void FetchTriggerQueues_HandlesType_ExpectName()
         {
             //------------Setup for test--------------------------
@@ -70,9 +71,9 @@ namespace Dev2.Tests.Runtime.Services
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(FetchTriggerQueues))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(FetchTriggerQueues))]
         public void FetchTriggerQueues_Execute_ExpectTestList()
         {
             //------------Setup for test--------------------------

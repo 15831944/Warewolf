@@ -12,13 +12,14 @@ using System;
 using Dev2.Common;
 using Dev2.Common.Common;
 using Dev2.Common.Interfaces.StringTokenizer.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 
 namespace Dev2.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class TokenizerTest
     {
         const string Search = "AB-CD-DE-FG-HI";
@@ -26,7 +27,7 @@ namespace Dev2.Tests
         
         #region Fwd Test
 
-        [TestMethod]
+        [Test]
         public void Single_Token_Op_Fwd()
         {
             var dtb = new Dev2TokenizerBuilder { ToTokenize = Search.ToStringBuilder() };
@@ -45,7 +46,7 @@ namespace Dev2.Tests
             Assert.AreEqual("ABCDDEFGHI", result);
         }
 
-        [TestMethod]
+        [Test]
         public void Two_Token_Op_Fwd()
         {
             var dtb = new Dev2TokenizerBuilder { ToTokenize = Search2.ToStringBuilder() };
@@ -64,7 +65,7 @@ namespace Dev2.Tests
             Assert.AreEqual("  -CD- -CD", result);
         }
 
-        [TestMethod]
+        [Test]
         public void Three_Token_Op_Fwd()
         {
             var dtb = new Dev2TokenizerBuilder { ToTokenize = Search2.ToStringBuilder() };
@@ -84,7 +85,7 @@ namespace Dev2.Tests
             Assert.AreEqual("  CD- CD", result);
         }
 
-        [TestMethod]
+        [Test]
         public void Token_Op_With_Token_Fwd()
         {
             var dtb = new Dev2TokenizerBuilder { ToTokenize = Search.ToStringBuilder() };
@@ -104,7 +105,7 @@ namespace Dev2.Tests
             Assert.AreEqual("AB-CD-DE-FG-HI", result);
         }
 
-        [TestMethod]
+        [Test]
         public void Index_Op_Fwd()
         {
             var dtb = new Dev2TokenizerBuilder { ToTokenize = Search.ToStringBuilder() };
@@ -124,7 +125,7 @@ namespace Dev2.Tests
             Assert.AreEqual(" AB -C D- DE -F G- HI", result);
         }
 
-        [TestMethod]
+        [Test]
         public void Eof_Op_Fwd()
         {
             var dtb = new Dev2TokenizerBuilder { ToTokenize = Search.ToStringBuilder() };
@@ -147,7 +148,7 @@ namespace Dev2.Tests
             Assert.IsTrue(cnt == 1);
         }
         
-        [TestMethod]
+        [Test]
         public void More_Then_One_Op_Fwd()
         {
             var dtb = new Dev2TokenizerBuilder { ToTokenize = Search.ToStringBuilder() };
@@ -172,7 +173,7 @@ namespace Dev2.Tests
         }
 
 
-        [TestMethod]
+        [Test]
         public void Token_And_Index_Op_Fwd()
         {
             var dtb = new Dev2TokenizerBuilder { ToTokenize = Search.ToStringBuilder() };
@@ -197,7 +198,7 @@ namespace Dev2.Tests
 
         #region Backward Test
 
-        [TestMethod]
+        [Test]
         public void Single_Token_Op_Bwd()
         {
             var dtb = new Dev2TokenizerBuilder
@@ -221,7 +222,7 @@ namespace Dev2.Tests
             Assert.AreEqual(".HI.FG.DE.CD.AB", result);
         }
 
-        [TestMethod]
+        [Test]
         public void Two_Token_Op_Bwd()
         {
             var dtb = new Dev2TokenizerBuilder
@@ -245,7 +246,7 @@ namespace Dev2.Tests
             Assert.AreEqual(".CD.CD-A.A", result);
         }
 
-        [TestMethod]
+        [Test]
         public void Three_Token_Op_Bwd()
         {
             var dtb = new Dev2TokenizerBuilder
@@ -269,7 +270,7 @@ namespace Dev2.Tests
             Assert.AreEqual(".CD.CD-", result);
         }
 
-        [TestMethod]
+        [Test]
         public void Token_Op_With_Token_Bwd()
         {
             var dtb = new Dev2TokenizerBuilder
@@ -293,7 +294,7 @@ namespace Dev2.Tests
             Assert.AreEqual(".-HI.-FG.-DE.-CD.AB", result);
         }
 
-        [TestMethod]
+        [Test]
         public void Index_Op_Bwd()
         {
             var dtb = new Dev2TokenizerBuilder
@@ -317,7 +318,7 @@ namespace Dev2.Tests
             Assert.AreEqual(".HI.G-.-F.DE.D-.-C.AB", result);
         }
 
-        [TestMethod]
+        [Test]
         public void Eof_Op_Bwd()
         {
             var dtb = new Dev2TokenizerBuilder
@@ -344,7 +345,7 @@ namespace Dev2.Tests
             Assert.IsTrue(cnt == 1);
         }
 
-        [TestMethod]
+        [Test]
         public void Token_And_Index_Op_Bwd()
         {
             var dtb = new Dev2TokenizerBuilder
@@ -372,7 +373,7 @@ namespace Dev2.Tests
         #endregion
 
         #region Negative Test
-        [TestMethod]
+        [Test]
         public void Empty_String_Error()
         {
             var dtb = new Dev2TokenizerBuilder { ToTokenize = string.Empty.ToStringBuilder() };

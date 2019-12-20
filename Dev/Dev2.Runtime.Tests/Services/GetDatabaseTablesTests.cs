@@ -21,7 +21,7 @@ using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Runtime.Hosting;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json;
 using Warewolf.Test.Agent;
@@ -29,12 +29,13 @@ using System.Linq;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
-    [TestCategory("MSSql Get Database Tables")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("MSSql Get Database Tables")]
     public class GetDatabaseTablesTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Author("Hagashen Naidu")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -46,8 +47,8 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Author("Hagashen Naidu")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -61,9 +62,9 @@ namespace Dev2.Tests.Runtime.Services
 
         #region Execute
 
-        [TestMethod]
+        [Test]
         [Description("Service should never get null values")]
-        [Owner("Huggs")]
+        [Author("Huggs")]
         [ExpectedException(typeof(InvalidDataContractException))]
         public void GetDatabaseTables_UnitTest_ExecuteWithNullValues_ExpectedInvalidDataContractException()
         {
@@ -72,9 +73,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(string.Empty, actual);
         }
 
-        [TestMethod]
+        [Test]
         [Description("Service should never get null values")]
-        [Owner("Huggs")]
+        [Author("Huggs")]
         public void GetDatabaseTables_UnitTest_ExecuteWithNoDatabaseInValues_ExpectedInvalidHasErrors()
         {
             var esb = new GetDatabaseTables();
@@ -86,9 +87,9 @@ namespace Dev2.Tests.Runtime.Services
         }
 
 
-        [TestMethod]
+        [Test]
         [Description("Service should never get null values")]
-        [Owner("Huggs")]
+        [Author("Huggs")]
         public void GetDatabaseTables_UnitTest_ExecuteWithBlankDatabase_ExpectHasErrors()
         {
             var esb = new GetDatabaseTables();
@@ -99,9 +100,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("No database set.", result.Errors);
         }
 
-        [TestMethod]
+        [Test]
         [Description("Service should never get null values")]
-        [Owner("Huggs")]
+        [Author("Huggs")]
         public void GetDatabaseTables_UnitTest_ExecuteWithDatabaseNotValidJson_ExpectedHasErrors()
         {
             var esb = new GetDatabaseTables();
@@ -112,9 +113,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("Invalid JSON data for Database parameter. Exception: Unexpected character encountered while parsing value: T. Path '', line 0, position 0.", result.Errors);
         }
 
-        [TestMethod]
+        [Test]
         [Description("Service should never get null values")]
-        [Owner("Huggs")]
+        [Author("Huggs")]
         public void GetDatabaseTables_UnitTest_ExecuteWithNotDbSourceJson_ExpectedHasErrors()
         {
             const string someJsonData = "{Val:1}";
@@ -126,8 +127,8 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("Invalid Database source", result.Errors);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Author("Hagashen Naidu")]
         public void GetDatabaseTables_Execute_ValidDatabaseSource()
         {
             var parser = new Mock<IActivityParser>();
@@ -158,8 +159,8 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("Warewolf", warewolfCityTable.Schema);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
         public void GetDatabaseTables_Execute_InValidDatabaseName()
         {
             var parser = new Mock<IActivityParser>();
@@ -205,15 +206,15 @@ namespace Dev2.Tests.Runtime.Services
             return dbSource;
         }
 
-        [TestCleanup]
+        [TearDown]
         public void CleanupContainer() => GetDatabaseColumnsForTableTests._containerOps?.Dispose();
 
         #endregion
 
         #region HandlesType
 
-        [TestMethod]
-        [Owner("Huggs")]
+        [Test]
+        [Author("Huggs")]
         public void GetDatabaseTables_UnitTest_HandlesType_ExpectedReturnsGetDatabaseTablesService()
         {
             var esb = new GetDatabaseTables();
@@ -225,9 +226,9 @@ namespace Dev2.Tests.Runtime.Services
 
         #region CreateServiceEntry
 
-        [TestMethod]
+        [Test]
         [Description("Service should never get null values")]
-        [Owner("Huggs")]
+        [Author("Huggs")]
         public void GetDatabaseTables_UnitTest_CreateServiceEntry_ExpectedReturnsDynamicService()
         {
             var esb = new GetDatabaseTables();

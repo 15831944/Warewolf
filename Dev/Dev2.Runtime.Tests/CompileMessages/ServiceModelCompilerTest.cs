@@ -12,7 +12,7 @@ using System;
 using System.Text;
 using Dev2.Common.Interfaces.Infrastructure.SharedModels;
 using Dev2.Runtime.Compiler;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Tests.Runtime.CompileMessages
@@ -20,11 +20,12 @@ namespace Dev2.Tests.Runtime.CompileMessages
     /// <summary>
     /// Summary description for ServiceModelCompilerTest
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ServiceModelCompilerTest
     {
 
-        [TestMethod]
+        [Test]
         public void CanCompileWorkflowAndDetectMappingCountChange()
         {
             var smc = new ServiceModelCompiler();
@@ -37,15 +38,15 @@ namespace Dev2.Tests.Runtime.CompileMessages
 
             var msgs = smc.Compile(sID, ServerCompileMessageType.WorkflowMappingChangeRule, new StringBuilder(PreStr), new StringBuilder(PostStr));
 
-            Assert.AreEqual(1, msgs.Count);
-            Assert.AreEqual(CompileMessageType.MappingChange, msgs[0].MessageType);
+            NUnit.Framework.Assert.AreEqual(1, msgs.Count);
+            NUnit.Framework.Assert.AreEqual(CompileMessageType.MappingChange, msgs[0].MessageType);
             var expected = @"<Args><Input>[{""Name"":""a"",""MapsTo"":"""",""Value"":"""",""IsRecordSet"":false,""RecordSetName"":"""",""IsEvaluated"":false,""DefaultValue"":"""",""IsRequired"":false,""RawValue"":"""",""EmptyToNull"":false,""IsTextResponse"":false,""IsObject"":false,""IsJsonArray"":false},{""Name"":""b"",""MapsTo"":"""",""Value"":"""",""IsRecordSet"":false,""RecordSetName"":"""",""IsEvaluated"":false,""DefaultValue"":"""",""IsRequired"":false,""RawValue"":"""",""EmptyToNull"":false,""IsTextResponse"":false,""IsObject"":false,""IsJsonArray"":false}]</Input><Output>[{""Name"":""a"",""MapsTo"":"""",""Value"":"""",""IsRecordSet"":false,""RecordSetName"":"""",""IsEvaluated"":false,""DefaultValue"":"""",""IsRequired"":false,""RawValue"":"""",""EmptyToNull"":false,""IsTextResponse"":false,""IsObject"":false,""IsJsonArray"":false},{""Name"":""b"",""MapsTo"":"""",""Value"":"""",""IsRecordSet"":false,""RecordSetName"":"""",""IsEvaluated"":false,""DefaultValue"":"""",""IsRequired"":false,""RawValue"":"""",""EmptyToNull"":false,""IsTextResponse"":false,""IsObject"":false,""IsJsonArray"":false}]</Output></Args>";
             var actual = msgs[0].MessagePayload;
             FixBreaks(ref expected, ref actual);
-            Assert.AreEqual(expected, actual);
+            NUnit.Framework.Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void CanCompileWorkflowAndDetectMappingNameChange()
         {
             var smc = new ServiceModelCompiler();
@@ -58,15 +59,15 @@ namespace Dev2.Tests.Runtime.CompileMessages
 
             var msgs = smc.Compile(sID, ServerCompileMessageType.WorkflowMappingChangeRule, new StringBuilder(PreStr), new StringBuilder(PostStr));
 
-            Assert.AreEqual(1, msgs.Count);
-            Assert.AreEqual(CompileMessageType.MappingChange, msgs[0].MessageType);
+            NUnit.Framework.Assert.AreEqual(1, msgs.Count);
+            NUnit.Framework.Assert.AreEqual(CompileMessageType.MappingChange, msgs[0].MessageType);
             var expected = @"<Args><Input>[{""Name"":""A"",""MapsTo"":"""",""Value"":"""",""IsRecordSet"":false,""RecordSetName"":"""",""IsEvaluated"":false,""DefaultValue"":"""",""IsRequired"":false,""RawValue"":"""",""EmptyToNull"":false,""IsTextResponse"":false,""IsObject"":false,""IsJsonArray"":false}]</Input><Output>[{""Name"":""A"",""MapsTo"":"""",""Value"":"""",""IsRecordSet"":false,""RecordSetName"":"""",""IsEvaluated"":false,""DefaultValue"":"""",""IsRequired"":false,""RawValue"":"""",""EmptyToNull"":false,""IsTextResponse"":false,""IsObject"":false,""IsJsonArray"":false}]</Output></Args>";
             var actual = msgs[0].MessagePayload;
             FixBreaks(ref expected, ref actual);
-            Assert.AreEqual(expected, actual);
+            NUnit.Framework.Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void CanCompileWorkflowAndDetectMappingChangeWhenIODirectionChanges()
         {
             var smc = new ServiceModelCompiler();
@@ -79,12 +80,12 @@ namespace Dev2.Tests.Runtime.CompileMessages
 
             var msgs = smc.Compile(sID, ServerCompileMessageType.WorkflowMappingChangeRule, new StringBuilder(PreStr), new StringBuilder(PostStr));
 
-            Assert.AreEqual(1, msgs.Count);
-            Assert.AreEqual(CompileMessageType.MappingChange, msgs[0].MessageType);
+            NUnit.Framework.Assert.AreEqual(1, msgs.Count);
+            NUnit.Framework.Assert.AreEqual(CompileMessageType.MappingChange, msgs[0].MessageType);
             var expected = @"<Args><Input>[{""Name"":""a"",""MapsTo"":"""",""Value"":"""",""IsRecordSet"":false,""RecordSetName"":"""",""IsEvaluated"":false,""DefaultValue"":"""",""IsRequired"":false,""RawValue"":"""",""EmptyToNull"":false,""IsTextResponse"":false,""IsObject"":false,""IsJsonArray"":false},{""Name"":""b"",""MapsTo"":"""",""Value"":"""",""IsRecordSet"":false,""RecordSetName"":"""",""IsEvaluated"":false,""DefaultValue"":"""",""IsRequired"":false,""RawValue"":"""",""EmptyToNull"":false,""IsTextResponse"":false,""IsObject"":false,""IsJsonArray"":false}]</Input><Output>[]</Output></Args>";
             var actual = msgs[0].MessagePayload;
             FixBreaks(ref expected, ref actual);
-            Assert.AreEqual(expected, actual);
+            NUnit.Framework.Assert.AreEqual(expected, actual);
         }
 
         void FixBreaks(ref string expected, ref string actual)

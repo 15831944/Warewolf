@@ -1,14 +1,15 @@
 using Dev2.Data.Decisions.Operations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests.DecisionsTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IsTextTests
     {
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("IsText_Invoke")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("IsText_Invoke")]
         public void GivenNumber_IsText_Invoke_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -18,17 +19,17 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = isText.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
             //------------Execute Test---------------------------
             var emptyString = new[] { string.Empty };
             result = isText.Invoke(emptyString);
             //------------Assert Results-------------------------
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("IsText_Invoke")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("IsText_Invoke")]
         public void IsText_Invoke_IsText_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -38,12 +39,12 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = notStartsWith.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthmembu")]
-        [TestCategory("IsText_HandlesType")]
+        [Test]
+        [Author("Sanele Mthmembu")]
+        [Category("IsText_HandlesType")]
         public void IsText_HandlesType_ReturnsIsTextType()
         {
             var decisionType = enDecisionType.IsText;
@@ -51,7 +52,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             var isText = new IsText();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.AreEqual(decisionType, isText.HandlesType());
+            NUnit.Framework.Assert.AreEqual(decisionType, isText.HandlesType());
         }
     }
 }

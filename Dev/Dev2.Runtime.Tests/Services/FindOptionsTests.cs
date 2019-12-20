@@ -15,7 +15,7 @@ using Dev2.Common.Serializers;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Runtime.Interfaces;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -25,12 +25,13 @@ using Warewolf.Options;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FindOptionsTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(FindOptions))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(FindOptions))]
         public void FindOptions_CreateServiceEntry_Returns_Options()
         {
             //------------Setup for test-------------------------
@@ -44,9 +45,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(handleType, dynamicService.Name);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(FindOptions))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(FindOptions))]
         [ExpectedException(typeof(ArgumentNullException))]
         public void FindOptions_GivenEmptyArgs_Returns_ArgumentNullException()
         {
@@ -58,9 +59,9 @@ namespace Dev2.Tests.Runtime.Services
             findOptions.Execute(requestArgs, workspaceMock.Object);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(FindOptions))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(FindOptions))]
         [ExpectedException(typeof(InvalidDataContractException))]
         public void FindOptions_GivenNullArgs_Returns_InvalidDataContractException()
         {
@@ -71,9 +72,9 @@ namespace Dev2.Tests.Runtime.Services
             findOptions.Execute(null, workspaceMock.Object);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(FindOptions))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(FindOptions))]
         public void FindOptions_Execute_SelectedSourceId_RabbitMq_ShouldHaveOptions()
         {
             //------------Setup for test-------------------------
@@ -97,12 +98,12 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsNotNull(deserializedResults);
             Assert.AreEqual(1,deserializedResults.Count);
             Assert.AreEqual("Durable", deserializedResults[0].Name);
-            Assert.IsInstanceOfType(deserializedResults[0], typeof(OptionBool));
+            Assert.IsInstanceOf(deserializedResults[0].GetType(), typeof(OptionBool));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(FindOptions))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(FindOptions))]
         public void FindOptions_Execute_SelectedSourceId_NotRabbitMq_ShouldHaveEmptyResult()
         {
             //------------Setup for test-------------------------

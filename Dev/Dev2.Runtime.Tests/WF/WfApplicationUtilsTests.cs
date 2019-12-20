@@ -23,23 +23,24 @@ using Dev2.Interfaces;
 using Dev2.Runtime.ESB.WF;
 using Dev2.Runtime.Interfaces;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Storage.Interfaces;
 
 namespace Dev2.Tests.Runtime.WF
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WfApplicationUtilsTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(WfApplicationUtils))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(WfApplicationUtils))]
         public void WfApplicationUtils_GetDebugValues_GivenGiven2Values_ShouldReturnTwoDebugValueItems()
         {
             //---------------Set up test pack-------------------
             var wfApplicationUtils = new WfApplicationUtils();
-            var privateObject = new PrivateObject(wfApplicationUtils);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(wfApplicationUtils);
             var objMock = new Mock<IDSFDataObject>();
             IList<IDev2Definition> definitions = new List<IDev2Definition>
             {
@@ -55,14 +56,14 @@ namespace Dev2.Tests.Runtime.WF
             Assert.AreEqual(2, debugItems.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(WfApplicationUtils))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(WfApplicationUtils))]
         public void WfApplicationUtils_GetDebugValues_GivenDuplicateDefs_ShouldReturnDistinctValues()
         {
             //---------------Set up test pack-------------------
             var wfApplicationUtils = new WfApplicationUtils();
-            var privateObject = new PrivateObject(wfApplicationUtils);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(wfApplicationUtils);
             var objMock = new Mock<IDSFDataObject>();
             IList<IDev2Definition> definitions = new List<IDev2Definition>
             {
@@ -78,14 +79,14 @@ namespace Dev2.Tests.Runtime.WF
             Assert.AreEqual(1, debugItems.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(WfApplicationUtils))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(WfApplicationUtils))]
         public void WfApplicationUtils_GetDebugValues_GivenDefinations_ShouldAddBracketsToValues()
         {
             //---------------Set up test pack-------------------
             var wfApplicationUtils = new WfApplicationUtils();
-            var privateObject = new PrivateObject(wfApplicationUtils);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(wfApplicationUtils);
             var objMock = new Mock<IDSFDataObject>();
             IList<IDev2Definition> definitions = new List<IDev2Definition>
             {
@@ -102,14 +103,14 @@ namespace Dev2.Tests.Runtime.WF
             Assert.AreEqual(1, count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(WfApplicationUtils))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(WfApplicationUtils))]
         public void WfApplicationUtils_GetDebugValues_GivenRecSetDefinations_ShouldAddRecNotationToValues()
         {
             //---------------Set up test pack-------------------
             var wfApplicationUtils = new WfApplicationUtils();
-            var privateObject = new PrivateObject(wfApplicationUtils);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(wfApplicationUtils);
             var objMock = new Mock<IDSFDataObject>();
             IList<IDev2Definition> definitions = new List<IDev2Definition>
             {
@@ -126,9 +127,9 @@ namespace Dev2.Tests.Runtime.WF
             Assert.AreEqual(1, count);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(WfApplicationUtils))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(WfApplicationUtils))]
         public void WfApplicationUtils_GetVariableName_GetDebugValues_Value_IsJsonArray_ShouldAddRecNotationToValues()
         {
             //---------------Set up test pack-------------------
@@ -147,7 +148,7 @@ namespace Dev2.Tests.Runtime.WF
             var errorResultTO = new ErrorResultTO();
             //---------------Assert Precondition----------------
             //---------------Execute Test ----------------------
-            var privateObject = new PrivateObject(wfApplicationUtils);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(wfApplicationUtils);
             var debugItems = privateObject.Invoke("GetDebugValues", definitions, mockDSFDataObject.Object, errorResultTO) as List<DebugItem>;
             //---------------Test Result -----------------------
             Assert.IsNotNull(debugItems);
@@ -156,9 +157,9 @@ namespace Dev2.Tests.Runtime.WF
             Assert.AreEqual(1, count);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(WfApplicationUtils))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(WfApplicationUtils))]
         public void WfApplicationUtils_GetVariableName_GetDebugValues_Value_IsJsonArrayAndRecordSetName_NotNull_ShouldAddRecNotationToValues()
         {
             //---------------Set up test pack-------------------
@@ -178,7 +179,7 @@ namespace Dev2.Tests.Runtime.WF
             var errorResultTO = new ErrorResultTO();
             //---------------Assert Precondition----------------
             //---------------Execute Test ----------------------
-            var privateObject = new PrivateObject(wfApplicationUtils);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(wfApplicationUtils);
             var debugItems = privateObject.Invoke("GetDebugValues", definitions, mockDSFDataObject.Object, errorResultTO) as List<DebugItem>;
             //---------------Test Result -----------------------
             Assert.IsNotNull(debugItems);
@@ -187,14 +188,14 @@ namespace Dev2.Tests.Runtime.WF
             Assert.AreEqual(1, count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(WfApplicationUtils))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(WfApplicationUtils))]
         public void WfApplicationUtils_FindServiceShape_GivenNoResource_ShouldEmptyShape()
         {
             //---------------Set up test pack-------------------
             var wfApplicationUtils = new WfApplicationUtils();
-            var privateObject = new PrivateObject(wfApplicationUtils);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(wfApplicationUtils);
             var catLog = new Mock<IResourceCatalog>();
             catLog.Setup(catalog => catalog.GetResource(It.IsAny<Guid>(), It.IsAny<Guid>())).Returns(default(IResource));
             privateObject.SetField("_lazyCat", catLog.Object);
@@ -206,14 +207,14 @@ namespace Dev2.Tests.Runtime.WF
             Assert.AreEqual("<DataList></DataList>", shape);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(WfApplicationUtils))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(WfApplicationUtils))]
         public void WfApplicationUtils_FindServiceShape_GivenResource_ShouldReturnShape()
         {
             //---------------Set up test pack-------------------
             var wfApplicationUtils = new WfApplicationUtils();
-            var privateObject = new PrivateObject(wfApplicationUtils);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(wfApplicationUtils);
             var catLog = new Mock<IResourceCatalog>();
             IResource dropBoxSource = new DropBoxSource
             {
@@ -232,9 +233,9 @@ namespace Dev2.Tests.Runtime.WF
             Assert.AreEqual("SomeValue", shape);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(WfApplicationUtils))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(WfApplicationUtils))]
         public void WfApplicationUtils_DispatchDebugState_GivenValidParams_ShouldNotThrowException()
         {
             //---------------Set up test pack-------------------
@@ -256,9 +257,9 @@ namespace Dev2.Tests.Runtime.WF
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(WfApplicationUtils))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(WfApplicationUtils))]
         public void WfApplicationUtils_DispatchDebugState_GetDebugState_HasRemote_ShouldNotThrowException()
         {
             //---------------Set up test pack-------------------
@@ -281,9 +282,9 @@ namespace Dev2.Tests.Runtime.WF
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(WfApplicationUtils))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(WfApplicationUtils))]
         public void WfApplicationUtils_DispatchDebugState_GivenValidParamsAndIsDebugMode_ShouldWriteUsingDebugDispactcher()
         {
             //---------------Set up test pack-------------------
@@ -297,7 +298,7 @@ namespace Dev2.Tests.Runtime.WF
             var mockObj = new Mock<IDSFDataObject>();
             mockObj.Setup(o => o.Environment).Returns(envMock.Object);
             mockObj.Setup(o => o.IsDebugMode()).Returns(true);
-            var privateObject = new PrivateObject(wfApplicationUtils);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(wfApplicationUtils);
             privateObject.SetField("_getDebugDispatcher", mock.Object);
             //---------------Assert Precondition----------------
             //---------------Execute Test ----------------------
@@ -319,9 +320,9 @@ namespace Dev2.Tests.Runtime.WF
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(WfApplicationUtils))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(WfApplicationUtils))]
         public void WfApplicationUtils_TryWriteDebug_WriteDebug_Environment_NotHasErrors_ShouldWriteUsingDebugDispactcher()
         {
             //---------------Set up test pack-------------------
@@ -341,7 +342,7 @@ namespace Dev2.Tests.Runtime.WF
             mockDSFDataObject.Setup(o => o.IsDebugMode()).Returns(true);
             mockDSFDataObject.Setup(o => o.ResourceID).Returns(new Guid("fa4b4786-67d9-414f-8c2e-17673fdcef48"));
 
-            var privateObject = new PrivateObject(wfApplicationUtils);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(wfApplicationUtils);
             privateObject.SetField("_getDebugDispatcher", mockDebugDispatcherFunc.Object);
             //---------------Assert Precondition----------------
             //---------------Execute Test ----------------------
@@ -363,9 +364,9 @@ namespace Dev2.Tests.Runtime.WF
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(WfApplicationUtils))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(WfApplicationUtils))]
         public void WfApplicationUtils_TryWriteDebug_WriteDebug_Environment_HasErrors_ShouldWriteUsingDebugDispactcher()
         {
             //---------------Set up test pack-------------------
@@ -386,7 +387,7 @@ namespace Dev2.Tests.Runtime.WF
             mockDSFDataObject.Setup(o => o.ResourceID).Returns(new Guid("fa4b4786-67d9-414f-8c2e-17673fdcef48"));
             mockDSFDataObject.Setup(o => o.Environment.HasErrors()).Returns(true);
 
-            var privateObject = new PrivateObject(wfApplicationUtils);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(wfApplicationUtils);
             privateObject.SetField("_getDebugDispatcher", mockDebugDispatcherFunc.Object);
             //---------------Assert Precondition----------------
             //---------------Execute Test ----------------------
@@ -408,9 +409,9 @@ namespace Dev2.Tests.Runtime.WF
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(WfApplicationUtils))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(WfApplicationUtils))]
         public void WfApplicationUtils_DispatchDebugState_GivenValidParamsAndIntergoateInputs_ShouldWriteUsingDebugDispactcher()
         {
             //---------------Set up test pack-------------------
@@ -424,7 +425,7 @@ namespace Dev2.Tests.Runtime.WF
             var mockObj = new Mock<IDSFDataObject>();
             mockObj.Setup(o => o.Environment).Returns(envMock.Object);
             mockObj.Setup(o => o.IsDebugMode()).Returns(true);
-            var privateObject = new PrivateObject(wfApplicationUtils);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(wfApplicationUtils);
             privateObject.SetField("_getDebugDispatcher", mock.Object);
             //---------------Assert Precondition----------------
             //---------------Execute Test ----------------------
@@ -441,9 +442,9 @@ namespace Dev2.Tests.Runtime.WF
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(WfApplicationUtils))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(WfApplicationUtils))]
         public void WfApplicationUtils_DispatchDebugState_GivenValidParamsAndIntergoateOutputs_ShouldWriteUsingDebugDispactcher_GetResourceForDatalist()
         {
             //---------------Set up test pack-------------------
@@ -471,7 +472,7 @@ namespace Dev2.Tests.Runtime.WF
             var mockObj = new Mock<IDSFDataObject>();
             mockObj.Setup(o => o.Environment).Returns(envMock.Object);
             mockObj.Setup(o => o.IsDebugMode()).Returns(true);
-            var privateObject = new PrivateObject(wfApplicationUtils);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(wfApplicationUtils);
             privateObject.SetField("_getDebugDispatcher", mock.Object);
             privateObject.SetField("_lazyCat", catLog.Object);
             //---------------Assert Precondition----------------

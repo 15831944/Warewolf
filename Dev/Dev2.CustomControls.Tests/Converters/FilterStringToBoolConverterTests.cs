@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Globalization;
 using Dev2.CustomControls.Converters;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.CustomControls.Tests.Converters
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FilterStringToBoolConverterTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Convert_GivenEmptyValue_ShouldReturnCorrectly()
         {
             //---------------Set up test pack-------------------
@@ -30,8 +31,8 @@ namespace Dev2.CustomControls.Tests.Converters
           
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Convert_GivenValue_ShouldReturnCorrectly()
         {
             //---------------Set up test pack-------------------

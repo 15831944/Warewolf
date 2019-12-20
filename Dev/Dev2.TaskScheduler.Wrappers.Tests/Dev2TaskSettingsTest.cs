@@ -10,19 +10,20 @@
 
 using System;
 using System.Diagnostics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Microsoft.Win32.TaskScheduler;
 
 
 namespace Dev2.TaskScheduler.Wrappers.Test
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class Dev2TaskSettingsTest
     {
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2RepetitionPattern_PassThrough")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2RepetitionPattern_PassThrough")]
         public void TaskShedulerWrapper_Dev2TaskSettings_PassThrough()
         {
             var service = new TaskService();

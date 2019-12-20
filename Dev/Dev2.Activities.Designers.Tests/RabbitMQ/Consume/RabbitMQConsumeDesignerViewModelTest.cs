@@ -3,7 +3,7 @@ using Dev2.Activities.Designers2.RabbitMQ.Consume;
 using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.RabbitMQ;
 using Dev2.Studio.Core.Activities.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Activities.Presentation.Model;
@@ -18,12 +18,13 @@ using Dev2.Studio.Interfaces;
 
 namespace Dev2.Activities.Designers.Tests.RabbitMQ.Consume
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class RabbitMQConsumeDesignerViewModelTest
     {
-        [TestMethod]
-        [Owner("Mthembu Sanele")]
-        [TestCategory("RabbitMQConsumeDesignerViewModelTest_Constructor")]
+        [Test]
+        [Author("Mthembu Sanele")]
+        [Category("RabbitMQConsumeDesignerViewModelTest_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void RabbitMQConsumeDesignerViewModel_Constructor_NullModelItem_ThrowsException()
         {
@@ -34,9 +35,9 @@ namespace Dev2.Activities.Designers.Tests.RabbitMQ.Consume
             Assert.IsNull(vm);
         }
 
-        [TestMethod]
-        [Owner("Mthembu Sanele")]
-        [TestCategory("RabbitMQConsumeDesignerViewModelTest_Constructor")]
+        [Test]
+        [Author("Mthembu Sanele")]
+        [Category("RabbitMQConsumeDesignerViewModelTest_Constructor")]
         public void RabbitMQConsumeDesignerViewModel_Constructor_Properties()
         {
             var model = new Mock<IRabbitMQSourceModel>();
@@ -61,9 +62,9 @@ namespace Dev2.Activities.Designers.Tests.RabbitMQ.Consume
             Assert.AreEqual((ushort)2, ushort.Parse(vm.Prefetch));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("RabbitMQConsumeDesignerViewModelTest_IsObject")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("RabbitMQConsumeDesignerViewModelTest_IsObject")]
         public void RabbitMQConsumeDesignerViewModel_IsObject_Default()
         {
             var model = new Mock<IRabbitMQSourceModel>();
@@ -76,9 +77,9 @@ namespace Dev2.Activities.Designers.Tests.RabbitMQ.Consume
             Assert.IsFalse(vm.IsObject);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("RabbitMQConsumeDesignerViewModelTest_IsObject")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("RabbitMQConsumeDesignerViewModelTest_IsObject")]
         public void RabbitMQConsumeDesignerViewModel_IsObject_IsChanged()
         {
             var shellVm = new Mock<IShellViewModel>();
@@ -90,7 +91,7 @@ namespace Dev2.Activities.Designers.Tests.RabbitMQ.Consume
             var consumeRabbitMqActivity = new DsfConsumeRabbitMQActivity();
             var modelItem = ModelItemUtils.CreateModelItem(consumeRabbitMqActivity);
             var vm = new RabbitMQConsumeDesignerViewModel(modelItem, model.Object) { IsObject = true };
-           
+
             //------------Assert Results-------------------------
             Assert.IsTrue(vm.IsObject);
             Assert.IsTrue(consumeRabbitMqActivity.IsObject);
@@ -98,9 +99,9 @@ namespace Dev2.Activities.Designers.Tests.RabbitMQ.Consume
 
      
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("RabbitMQConsumeDesignerViewModelTest_ObjectName")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("RabbitMQConsumeDesignerViewModelTest_ObjectName")]
         public void RabbitMQConsumeDesignerViewModel_ObjectName_IsChanged()
         {
             var shellVm = new Mock<IShellViewModel>();
@@ -113,16 +114,16 @@ namespace Dev2.Activities.Designers.Tests.RabbitMQ.Consume
            
             var modelItem = ModelItemUtils.CreateModelItem(consumeRabbitMqActivity);
             var vm = new RabbitMQConsumeDesignerViewModel(modelItem, model.Object) { IsObject = true, ObjectName = "[[@Home]]" };
-           
+
             //------------Assert Results-------------------------
             Assert.IsTrue(vm.IsObject);
             Assert.IsTrue(consumeRabbitMqActivity.IsObject);
             Assert.AreEqual("[[@Home]]", consumeRabbitMqActivity.ObjectName);
         }
 
-        [TestMethod]
-        [Owner("Mthembu Sanele")]
-        [TestCategory("RabbitMQConsumeDesignerViewModelTest_Constructor")]
+        [Test]
+        [Author("Mthembu Sanele")]
+        [Category("RabbitMQConsumeDesignerViewModelTest_Constructor")]
         public void RabbitMQConsumeDesignerViewModel_Create_NewRabbitMQSource()
         {
             var model = new Mock<IRabbitMQSourceModel>();
@@ -130,7 +131,7 @@ namespace Dev2.Activities.Designers.Tests.RabbitMQ.Consume
 
             //------------Execute Test---------------------------
             var vm = new RabbitMQConsumeDesignerViewModel(CreateModelItem(), model.Object);
-            var privateObject = new PrivateObject(vm);
+            var privateObject= new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(vm);
             privateObject.Invoke("NewRabbitMQSource");
 
             //------------Assert Results-------------------------
@@ -138,9 +139,9 @@ namespace Dev2.Activities.Designers.Tests.RabbitMQ.Consume
 
         }
 
-        [TestMethod]
-        [Owner("Mthembu Sanele")]
-        [TestCategory("RabbitMQConsumeDesignerViewModelTest_Constructor")]
+        [Test]
+        [Author("Mthembu Sanele")]
+        [Category("RabbitMQConsumeDesignerViewModelTest_Constructor")]
         public void RabbitMQConsumeDesignerViewModel_Constructor_Given_A_Model_Should_SetupCommonViewModelProperties()
         {
             //------------Setup for test--------------------------
@@ -157,9 +158,9 @@ namespace Dev2.Activities.Designers.Tests.RabbitMQ.Consume
             Assert.IsNotNull(vm.RabbitMQSources);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("RabbitMQConsumeDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("RabbitMQConsumeDesignerViewModel_Handle")]
         public void RabbitMQConsumeDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -175,9 +176,9 @@ namespace Dev2.Activities.Designers.Tests.RabbitMQ.Consume
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Mthembu Sanele")]
-        [TestCategory("RabbitMQConsumeDesignerViewModelTest_Constructor")]
+        [Test]
+        [Author("Mthembu Sanele")]
+        [Category("RabbitMQConsumeDesignerViewModelTest_Constructor")]
         public void RabbitMQConsumeDesignerViewModel_Constructor1()
         {
             //------------Setup for test--------------------------
@@ -209,9 +210,9 @@ namespace Dev2.Activities.Designers.Tests.RabbitMQ.Consume
             Assert.AreEqual(vm.IsPrefetchFocused, false);
         }
 
-        [TestMethod]
-        [Owner("Mthembu Sanele")]
-        [TestCategory("RabbitMQConsumeDesignerViewModelTest_Validate")]
+        [Test]
+        [Author("Mthembu Sanele")]
+        [Category("RabbitMQConsumeDesignerViewModelTest_Validate")]
         public void RabbitMQConsumeDesignerViewModel_Validate_With_No_QueueName_ShouldBreakRule()
         {
             //------------Setup for test--------------------------
@@ -230,9 +231,9 @@ namespace Dev2.Activities.Designers.Tests.RabbitMQ.Consume
             Assert.IsTrue(errors.Any(info => info.Message == Warewolf.Resource.Errors.ErrorResource.RabbitMqQueueNameNotNullErrorTest));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("RabbitMQConsumeDesignerViewModelTest_Validate")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("RabbitMQConsumeDesignerViewModelTest_Validate")]
         public void RabbitMQConsumeDesignerViewModel_Validate_With_No_Prefetch_ShouldBreakRule()
         {
             //------------Setup for test--------------------------
@@ -251,9 +252,9 @@ namespace Dev2.Activities.Designers.Tests.RabbitMQ.Consume
             Assert.IsTrue(errors.Any(info => info.Message == Warewolf.Resource.Errors.ErrorResource.RabbitMqPrefetchNotNullErrorTest));
         }
 
-        [TestMethod]
-        [Owner("Mthembu Sanele")]
-        [TestCategory("RabbitMQConsumeDesignerViewModelTest_Validate")]
+        [Test]
+        [Author("Mthembu Sanele")]
+        [Category("RabbitMQConsumeDesignerViewModelTest_Validate")]
         public void RabbitMQConsumeDesignerViewModel_Validate_With_No_RabbitMQ_Source_ShouldBreakRule()
         {
             //------------Setup for test--------------------------
@@ -271,9 +272,9 @@ namespace Dev2.Activities.Designers.Tests.RabbitMQ.Consume
             Assert.IsTrue(errors.Any(info => info.Message == Warewolf.Resource.Errors.ErrorResource.RabbitMqSourceNotNullErrorTest));
         }
 
-        [TestMethod]
-        [Owner("Mthembu Sanele")]
-        [TestCategory("RabbitMQConsumeDesignerViewModelTest_Commands")]
+        [Test]
+        [Author("Mthembu Sanele")]
+        [Category("RabbitMQConsumeDesignerViewModelTest_Commands")]
         public void RabbitMQConsumeDesignerViewModel_EditRabbitMQSourceCommand_ShouldCallOpenResource()
         {
             //------------Setup for test--------------------------

@@ -9,12 +9,13 @@ using Dev2.Providers.Errors;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
 using Dev2.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Activities.Designers.Tests.Sharepoint
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SharePointReadFolderViewModelTests
     {
         public const string TestOwner = "Bernardt Joubert";
@@ -31,9 +32,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             return ModelItemUtils.CreateModelItem(folderActivity);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SharepointReadFolderDesignerViewModel_Constructor_NullModelItem_ThrowsException()
         {
@@ -46,9 +47,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             Assert.IsNull(sharepointReadFolderDesignerViewModel);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SharepointReadFolderDesignerViewModel_Constructor_NullAsyncWorker_ThrowsException()
         {
@@ -61,9 +62,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SharepointReadFolderDesignerViewModel_Constructor_NullEnvironmentModel_ThrowsException()
         {
@@ -76,9 +77,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void SharepointReadFolderDesignerViewModel_InitilizeProperties_ReturnsSuccess()
         {
             //------------Setup for test--------------------------
@@ -94,9 +95,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void SharepointReadFolderDesignerViewModel_GetProperties_ReturnsSuccess()
         {
             //------------Setup for test--------------------------
@@ -117,9 +118,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void SharepointReadFolderDesignerViewModel_ValidInputs_ReturnsSuccess()
         {
             //------------Setup for test--------------------------
@@ -140,9 +141,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void SharepointReadFolderDesignerViewModel_SetProperties_ReturnsSuccess()
         {
             //------------Setup for test--------------------------

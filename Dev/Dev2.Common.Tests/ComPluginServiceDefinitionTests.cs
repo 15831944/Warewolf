@@ -12,17 +12,18 @@ using System;
 using System.Collections.Generic;
 using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.DB;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Common.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ComPluginServiceDefinitionTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ComPluginServiceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ComPluginServiceDefinition))]
         public void ComPluginServiceDefinition_Validate_Defaults()
         {
             const string expectedName = "name";

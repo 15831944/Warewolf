@@ -20,7 +20,7 @@ using Dev2.Studio.Core;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
 using Dev2.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using TechTalk.SpecFlow;
 using Warewolf.Core;
@@ -28,6 +28,7 @@ using Warewolf.Test.Agent;
 using Warewolf.Studio.ViewModels;
 using Warewolf.Tools.Specs.Toolbox.Database;
 using Dev2.Common;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dev2.Activities.Specs.Toolbox.Resources
 {
@@ -107,13 +108,13 @@ namespace Dev2.Activities.Specs.Toolbox.Resources
         public void GivenSourceIsEnabled()
         {
             var viewModel = GetViewModel();
-            Assert.IsTrue(viewModel.SourceRegion.IsEnabled);
+            NUnit.Framework.Assert.IsTrue(viewModel.SourceRegion.IsEnabled);
         }
         [Given(@"Action is Disabled")]
         public void GivenActionIsDisabled()
         {
             var viewModel = GetViewModel();
-            Assert.IsFalse(viewModel.ActionRegion.IsEnabled);
+            NUnit.Framework.Assert.IsFalse(viewModel.ActionRegion.IsEnabled);
         }
 
         [Given(@"Inputs is Disabled")]
@@ -123,7 +124,7 @@ namespace Dev2.Activities.Specs.Toolbox.Resources
         {
             var viewModel = GetViewModel();
             var hasNoInputs = viewModel.InputArea.Inputs == null || viewModel.InputArea.Inputs.Count == 0 || !viewModel.InputArea.IsEnabled;
-            Assert.IsTrue(hasNoInputs);
+            NUnit.Framework.Assert.IsTrue(hasNoInputs);
         }
 
         [Given(@"Outputs is Disabled")]
@@ -133,7 +134,7 @@ namespace Dev2.Activities.Specs.Toolbox.Resources
         {
             var viewModel = GetViewModel();
             var hasNoOutputs = viewModel.OutputsRegion.Outputs == null || viewModel.OutputsRegion.Outputs.Count == 0 || !viewModel.OutputsRegion.IsEnabled;
-            Assert.IsTrue(hasNoOutputs);
+            NUnit.Framework.Assert.IsTrue(hasNoOutputs);
         }
 
         [Given(@"Validate is Disabled")]
@@ -141,7 +142,7 @@ namespace Dev2.Activities.Specs.Toolbox.Resources
         public void GivenValidateIsDisabled()
         {
             var viewModel = GetViewModel();
-            Assert.IsFalse(viewModel.TestInputCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsFalse(viewModel.TestInputCommand.CanExecute(null));
         }
 
         [Given(@"Sql Server Action is Enabled")]
@@ -150,7 +151,7 @@ namespace Dev2.Activities.Specs.Toolbox.Resources
         public void ThenActionIsEnabled()
         {
             var viewModel = GetViewModel();
-            Assert.IsTrue(viewModel.ActionRegion.IsEnabled);
+            NUnit.Framework.Assert.IsTrue(viewModel.ActionRegion.IsEnabled);
         }
 
         [Given(@"Sql Server Inputs Are Enabled")]
@@ -160,7 +161,7 @@ namespace Dev2.Activities.Specs.Toolbox.Resources
         {
             var viewModel = GetViewModel();
             var hasInputs = viewModel.InputArea.Inputs != null || viewModel.InputArea.IsEnabled;
-            Assert.IsTrue(hasInputs);
+            NUnit.Framework.Assert.IsTrue(hasInputs);
         }
 
         [Given(@"Validate Sql Server is Enabled")]
@@ -169,7 +170,7 @@ namespace Dev2.Activities.Specs.Toolbox.Resources
         public void ThenValidateIsEnabled()
         {
             var viewModel = GetViewModel();
-            Assert.IsTrue(viewModel.TestInputCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(viewModel.TestInputCommand.CanExecute(null));
         }
 
         [Given(@"Sql Server Inputs appear as")]
@@ -185,8 +186,8 @@ namespace Dev2.Activities.Specs.Toolbox.Resources
                 var value = row["Value"];
                 var serviceInputs = viewModel.InputArea.Inputs.ToList();
                 var serviceInput = serviceInputs[rowNum];
-                Assert.AreEqual<string>(inputValue, serviceInput.Name);
-                Assert.AreEqual<string>(value, serviceInput.Value);
+                NUnit.Framework.Assert.AreEqual(inputValue, serviceInput.Name);
+                NUnit.Framework.Assert.AreEqual(value, serviceInput.Value);
                 rowNum++;
             }
         }
@@ -220,14 +221,14 @@ namespace Dev2.Activities.Specs.Toolbox.Resources
             }
             var proxyLayer = _scenarioContext.Get<StudioServerProxy>("proxyLayer");
             var vm = GetViewModel();
-            Assert.IsNotNull(vm.SourceRegion);
+            NUnit.Framework.Assert.IsNotNull(vm.SourceRegion);
             var dbSources = proxyLayer.QueryManagerProxy.FetchDbSources().ToList();
-            Assert.IsNotNull(dbSources, "dbSources is null");
+            NUnit.Framework.Assert.IsNotNull(dbSources, "dbSources is null");
             var dbSource = dbSources.Single(source => source.Name == sourceName);
-            Assert.IsNotNull(dbSource, "Source is null");
+            NUnit.Framework.Assert.IsNotNull(dbSource, "Source is null");
             vm.SourceRegion.SelectedSource = dbSource;
             SetDbSource(activityName, dbSource);
-            Assert.IsNotNull(vm.SourceRegion.SelectedSource);
+            NUnit.Framework.Assert.IsNotNull(vm.SourceRegion.SelectedSource);
         }
 
         [AfterScenario]
@@ -237,11 +238,11 @@ namespace Dev2.Activities.Specs.Toolbox.Resources
         public void GivenISelectAsServerActionFor(string actionName, string activityName)
         {
             var vm = GetViewModel();
-            Assert.IsNotNull(vm.ActionRegion);
-            Assert.IsNotNull(vm.ActionRegion.Actions, "No Actions were generated for source: " + vm.SourceRegion.SelectedSource);
+            NUnit.Framework.Assert.IsNotNull(vm.ActionRegion);
+            NUnit.Framework.Assert.IsNotNull(vm.ActionRegion.Actions, "No Actions were generated for source: " + vm.SourceRegion.SelectedSource);
             vm.ActionRegion.SelectedAction = vm.ActionRegion.Actions.FirstOrDefault(p => p.Name == actionName);
             SetDbAction(activityName, actionName);
-            Assert.IsNotNull(vm.ActionRegion.SelectedAction);
+            NUnit.Framework.Assert.IsNotNull(vm.ActionRegion.SelectedAction);
         }
 
         [Given(@"Sql Command Timeout is ""(.*)"" milliseconds for ""(.*)""")]
@@ -250,7 +251,7 @@ namespace Dev2.Activities.Specs.Toolbox.Resources
         public void GivenSqlCommandTimeoutIsMillisecondsFor(int timeout, string activityName)
         {
             var vm = GetViewModel();
-            Assert.IsNotNull(vm);
+            NUnit.Framework.Assert.IsNotNull(vm);
             SetCommandTimeout(activityName, timeout);
             vm.InputArea.CommandTimeout = timeout;
         }
@@ -319,16 +320,16 @@ namespace Dev2.Activities.Specs.Toolbox.Resources
         public void GivenSourceIs(string sourceName)
         {
             var selectedSource = GetViewModel().SourceRegion.SelectedSource;
-            Assert.IsNotNull(selectedSource);
-            Assert.AreEqual<string>(sourceName, selectedSource.Name);
+            NUnit.Framework.Assert.IsNotNull(selectedSource);
+            NUnit.Framework.Assert.AreEqual(sourceName, selectedSource.Name);
         }
 
         [Given(@"Sql Server Action is ""(.*)""")]
         public void GivenActionIs(string actionName)
         {
             var selectedProcedure = GetViewModel().ActionRegion.SelectedAction;
-            Assert.IsNotNull(selectedProcedure);
-            Assert.AreEqual<string>(actionName, selectedProcedure.Name);
+            NUnit.Framework.Assert.IsNotNull(selectedProcedure);
+            NUnit.Framework.Assert.AreEqual(actionName, selectedProcedure.Name);
         }
 
         [When(@"I Select ""(.*)"" as Source")]
@@ -398,7 +399,7 @@ namespace Dev2.Activities.Specs.Toolbox.Resources
                 var rows = GetViewModel().ManageServiceInputViewModel.TestResults.Rows;
                 var dataRow = rows[rowIdx];
                 var dataRowValue = dataRow[0].ToString();
-                Assert.AreEqual<string>(outputValue, dataRowValue);
+                NUnit.Framework.Assert.AreEqual(outputValue, dataRowValue);
                 rowIdx++;
             }
         }
@@ -407,15 +408,15 @@ namespace Dev2.Activities.Specs.Toolbox.Resources
         public void ThenOutputsAppearAs(Table table)
         {
             var outputMappings = GetViewModel().OutputsRegion.Outputs;
-            Assert.IsNotNull(outputMappings);
+            NUnit.Framework.Assert.IsNotNull(outputMappings);
             var rowIdx = 0;
             foreach (var tableRow in table.Rows)
             {
                 var mappedFrom = tableRow["Mapped From"];
                 var mappedTo = tableRow["Mapped To"];
                 var outputMapping = outputMappings.ToList()[rowIdx];
-                Assert.AreEqual<string>(mappedFrom, outputMapping.MappedFrom);
-                Assert.AreEqual<string>(mappedTo, outputMapping.MappedTo);
+                NUnit.Framework.Assert.AreEqual(mappedFrom, outputMapping.MappedFrom);
+                NUnit.Framework.Assert.AreEqual(mappedTo, outputMapping.MappedTo);
                 rowIdx++;
             }
         }
@@ -425,7 +426,7 @@ namespace Dev2.Activities.Specs.Toolbox.Resources
         {
             if (!string.IsNullOrEmpty(recsetName))
             {
-                Assert.AreEqual<string>(recsetName, GetViewModel().OutputsRegion.RecordsetName);
+                NUnit.Framework.Assert.AreEqual(recsetName, GetViewModel().OutputsRegion.RecordsetName);
             }
         }
 
@@ -500,9 +501,9 @@ namespace Dev2.Activities.Specs.Toolbox.Resources
         public void GivenContainsFromServerWithMappingAs(string p0, string p1, string p2, Table table)
         {
             var viewModel = GetViewModel();
-            Assert.IsNotNull(viewModel);
-            Assert.IsTrue(viewModel.SourceRegion.Sources.Any(p => p.ServerName == p2));
-            Assert.IsNotNull(table);
+            NUnit.Framework.Assert.IsNotNull(viewModel);
+            NUnit.Framework.Assert.IsTrue(viewModel.SourceRegion.Sources.Any(p => p.ServerName == p2));
+            NUnit.Framework.Assert.IsNotNull(table);
         }
 
 
@@ -510,7 +511,7 @@ namespace Dev2.Activities.Specs.Toolbox.Resources
         public void WhenIsExecuted(string p0)
         {
             GetViewModel().ManageServiceInputViewModel.TestCommand.Execute(null);
-            Assert.IsTrue(true);
+            NUnit.Framework.Assert.IsTrue(true);
         }
 
         [Then(@"The Sql Server step ""(.*)"" in Workflow ""(.*)"" debug outputs appear as")]
@@ -519,20 +520,20 @@ namespace Dev2.Activities.Specs.Toolbox.Resources
             var viewModel = GetViewModel().ErrorRegion.Errors;
             if (table != null && viewModel.Count > 0)
             {
-                Assert.IsTrue(table.Rows[0].Values.ToString() == p0);
+                NUnit.Framework.Assert.IsTrue(table.Rows[0].Values.ToString() == p0);
             }
         }
 
         [Then(@"the workflow containing the Sql Server connector has ""(.*)"" execution error")]
         public void ThenTheSqlsERVERWorkflowExecutionHasError(string p0)
         {
-            Assert.IsNotNull(GetViewModel().ManageServiceInputViewModel.Errors);
+            NUnit.Framework.Assert.IsNotNull(GetViewModel().ManageServiceInputViewModel.Errors);
         }
 
         [Given(@"And ""(.*)"" contains ""(.*)"" from server ""(.*)"" with Mapping To as")]
         public void GivenAndContainsFromServerWithMappingToAs(string p0, string p1, string p2, Table table)
         {
-            Assert.IsTrue(true);
+            NUnit.Framework.Assert.IsTrue(true);
         }
 
         #region Private Methods
@@ -583,9 +584,9 @@ namespace Dev2.Activities.Specs.Toolbox.Resources
                     _commonSteps.ThenTheDebugOutputAs(table, SelectResults.ToList(), isDataMergeDebug);
                     return;
                 }
-                Assert.Fail(outputState.Outputs.ToList() + " debug outputs found on " + workflowName + " does not include " + toolName + ".");
+                NUnit.Framework.Assert.Fail(outputState.Outputs.ToList() + " debug outputs found on " + workflowName + " does not include " + toolName + ".");
             }
-            Assert.Fail("No debug output found for " + workflowName + ".");
+            NUnit.Framework.Assert.Fail("No debug output found for " + workflowName + ".");
         }
 
         [Given(@"I click Test")]
@@ -632,7 +633,7 @@ namespace Dev2.Activities.Specs.Toolbox.Resources
                 textToValidate = Environment.NewLine;
             }
             var innerWfHasErrorState = debugStates.FirstOrDefault(state => state.HasError && state.DisplayName.Equals(workflowName));
-            Assert.IsNotNull(innerWfHasErrorState);
+            NUnit.Framework.Assert.IsNotNull(innerWfHasErrorState);
             if (!string.IsNullOrEmpty(nonContainedText))
             {
                 var allErrors = string.Empty;
@@ -640,7 +641,7 @@ namespace Dev2.Activities.Specs.Toolbox.Resources
                 {
                     allErrors = item.ErrorMessage + Environment.NewLine;
                 }
-                Assert.IsTrue(debugStates.Any(p => !p.ErrorMessage.Contains(textToValidate)));
+                NUnit.Framework.Assert.IsTrue(debugStates.Any(p => !p.ErrorMessage.Contains(textToValidate)));
             }
         }
 

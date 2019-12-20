@@ -14,22 +14,23 @@ using Dev2.Runtime;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Runtime.ServiceModel.Esb.Brokers.ComPlugin;
 using DummyNamespaceForTest;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 
 namespace Dev2.Tests.Runtime.ESB.ComPlugin
 {
-    [TestClass]
-    [TestCategory("Runtime ESB")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime ESB")]
     public class ComPluginServiceExecutionFactoryTest
     {
         public TestContext TestContext { get; set; }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("PluginServiceExecutionFactory_GetNamespaces")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("PluginServiceExecutionFactory_GetNamespaces")]
         public void PluginRuntimeHandler_GetNamespaces_WhenValidDll_ExpectNamespaces()
         {
             //------------Setup for test--------------------------
@@ -39,13 +40,13 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
             {
                 var result = ComPluginServiceExecutionFactory.GetNamespaces(source);
                 //------------Assert Results-------------------------
-                Assert.IsTrue(result.Count > 0);
+                NUnit.Framework.Assert.IsTrue(result.Count > 0);
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("PluginServiceExecutionFactory_GetNamespaces")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("PluginServiceExecutionFactory_GetNamespaces")]
         [ExpectedException(typeof(NullReferenceException))]
         public void PluginRuntimeHandler_GetNamespaces_WhenNullDll_ExpectException()
         {
@@ -55,8 +56,8 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
 
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         [DeploymentItem("Warewolf.COMIPC.exe")]
         public void ListMethods_GivenAdodbConnection_ShouldContainOpen()
         {
@@ -65,13 +66,13 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
             //---------------Assert Precondition----------------
             //---------------Execute Test ----------------------
             var ns = ComPluginServiceExecutionFactory.GetNamespaces(new ComPluginSource { ClsId = adodbConGuid });
-            Assert.IsNotNull(ns);
+            NUnit.Framework.Assert.IsNotNull(ns);
             
             var result = ComPluginServiceExecutionFactory.GetMethods(adodbConGuid,true);
             //------------Assert Results-------------------------
             var openMethod = result.First(method => method.Name.ToUpper() == "open".ToUpper());
             //---------------Test Result -----------------------
-            Assert.IsNotNull(openMethod);
+            NUnit.Framework.Assert.IsNotNull(openMethod);
         }
         
         #region Helper Methods

@@ -13,19 +13,20 @@ using System.Collections.Generic;
 using System.Xml.Linq;
 using Dev2.Common.Interfaces.Data;
 using Dev2.Runtime.Hosting;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.Runtime.Hosting
 {
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class ResourceUpgraderTests
     {
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
         [ExpectedException(typeof(ArgumentNullException ))]
-        [TestCategory("ResourceUpgrader_Ctor")]
+        [Category("ResourceUpgrader_Ctor")]
         public void ResourceUpgrader_Ctor_NulParams_ExpectError()
         {
             //------------Setup for test--------------------------
@@ -37,21 +38,21 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ResourceUpgrader_Properties")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ResourceUpgrader_Properties")]
         public void ResourceUpgrader_Properties()
         {
             //------------Setup for test--------------------------
             var path = new List<IUpgradePath>();
             var a = new ResourceUpgrader(path);
-            Assert.AreEqual(path,a.AvailableUpgrades);
+            NUnit.Framework.Assert.AreEqual(path,a.AvailableUpgrades);
 
 
         }
-         [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ResourceUpgrader_Ctor")]
+         [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ResourceUpgrader_Ctor")]
         public void ResourceUpgrader_Upgrade_NoDictionary()
         {
             //------------Setup for test--------------------------
@@ -61,12 +62,12 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
            var upgraded = a.UpgradeResource(XElement.Parse("<a></a>"), new Version(1, 2),x=>{});
             //------------Assert Results-------------------------
-           Assert.AreEqual(upgraded.ToString(), "<a></a>");
+           NUnit.Framework.Assert.AreEqual(upgraded.ToString(), "<a></a>");
         }
 
-               [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ResourceUpgrader_Ctor")]
+               [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ResourceUpgrader_Ctor")]
         public void ResourceUpgrader_Upgrade_EmptyDictionary()
         {
             //------------Setup for test--------------------------
@@ -76,12 +77,12 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var upgraded = a.UpgradeResource(XElement.Parse("<a></a>"), new Version(1, 2), x => { });
             //------------Assert Results-------------------------
-            Assert.AreEqual(upgraded.ToString(), "<a></a>");
+            NUnit.Framework.Assert.AreEqual(upgraded.ToString(), "<a></a>");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ResourceUpgrader_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ResourceUpgrader_Ctor")]
         public void ResourceUpgrader_Upgrade_HasDictionaryDictionary()
         {
             //------------Setup for test--------------------------
@@ -102,11 +103,11 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var upgraded = upgrader.UpgradeResource(source, new Version(1, 2), x => { });
             //------------Assert Results-------------------------
-            Assert.AreEqual(upgraded.ToString(), "<b ServerVersion=\"" +upgrader.GetType().Assembly.GetName().Version + "\"></b>");
+            NUnit.Framework.Assert.AreEqual(upgraded.ToString(), "<b ServerVersion=\"" +upgrader.GetType().Assembly.GetName().Version + "\"></b>");
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ResourceUpgrader_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ResourceUpgrader_Ctor")]
         public void ResourceUpgrader_Upgrade_HasDictionary_TwoUpgrades()
         {
             //------------Setup for test--------------------------
@@ -135,11 +136,11 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var upgraded = upgrader.UpgradeResource(source, new Version(1, 2), x => { });
             //------------Assert Results-------------------------
-            Assert.AreEqual(upgraded.ToString(), "<c ServerVersion=\"" + upgrader.GetType().Assembly.GetName().Version + "\"></c>");
+            NUnit.Framework.Assert.AreEqual(upgraded.ToString(), "<c ServerVersion=\"" + upgrader.GetType().Assembly.GetName().Version + "\"></c>");
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ResourceUpgrader_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ResourceUpgrader_Ctor")]
         public void ResourceUpgrader_Upgrade_HasDictionary_TwoUpgrades_Only1Matches()
         {
             //------------Setup for test--------------------------
@@ -168,7 +169,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var upgraded = upgrader.UpgradeResource(source, new Version(1, 2), x => { });
             //------------Assert Results-------------------------
-            Assert.AreEqual(upgraded.ToString(), "<b ServerVersion=\"" + upgrader.GetType().Assembly.GetName().Version + "\"></b>");
+            NUnit.Framework.Assert.AreEqual(upgraded.ToString(), "<b ServerVersion=\"" + upgrader.GetType().Assembly.GetName().Version + "\"></b>");
         }
 
     }

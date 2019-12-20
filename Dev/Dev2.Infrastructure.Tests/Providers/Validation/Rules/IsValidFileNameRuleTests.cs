@@ -12,16 +12,17 @@ using System;
 using System.Globalization;
 using System.IO;
 using Dev2.Providers.Validation.Rules;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IsValidFileNameRuleTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("IsValidFileNameRule_Check")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("IsValidFileNameRule_Check")]
         public void IsValidFileNameRule_Check_ItemIsValid_ResultIsNull()
         {
             Verify_Check(true, @"c:\errors1.png");
@@ -35,9 +36,9 @@ namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
             Verify_Check(true, @"C:\Users\barney.buchan\Desktop\debug.log");
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("IsValidFileNameRule_Check")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("IsValidFileNameRule_Check")]
         public void IsValidFileNameRule_Check_ItemIsNotValid_ResultIsError()
         {
             Verify_Check(false, @"c:\log");

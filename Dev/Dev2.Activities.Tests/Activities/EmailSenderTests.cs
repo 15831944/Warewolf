@@ -10,18 +10,19 @@
 
 using Dev2.Activities;
 using Dev2.Common.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System.Net.Mail;
 
 namespace Dev2.Tests.Activities.Activities
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class EmailSenderTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(EmailSender))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(EmailSender))]
         public void EmailSender_Validate_Send()
         {
             var mailMessage = new MailMessage();

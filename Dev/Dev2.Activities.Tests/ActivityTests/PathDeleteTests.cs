@@ -14,7 +14,7 @@ using System.Linq;
 using ActivityUnitTests;
 using Dev2.Common.State;
 using Dev2.Diagnostics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.ActivityTests
@@ -22,7 +22,8 @@ namespace Dev2.Tests.Activities.ActivityTests
     /// <summary>
     /// Summary description for DateTimeDifferenceTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class PathDeleteTests : BaseActivityUnitTest
     {
@@ -37,13 +38,13 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         #region GetDebugInputs/Outputs
 
-        [TestMethod]
-        [Owner("Ashley Lewis")]
-        [TestCategory("DsfPathDelete_Execution")]
+        [Test]
+        [Author("Ashley Lewis")]
+        [Category("DsfPathDelete_Execution")]
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void DsfPathDelete_Execution_FileNotFound_DebugOutputErrorMessageRelevant()
         {
-            var dsfPathDelete = new DsfPathDelete { InputPath = TestContext.TestRunDirectory + "\\some file that doesnt exist.txt", Result = "[[res]]" };
+            var dsfPathDelete = new DsfPathDelete { InputPath = Environment.CurrentDirectory + "\\some file that doesnt exist.txt", Result = "[[res]]" };
 
             //------------Execute Test---------------------------
             var result = CheckPathOperationActivityDebugInputOutput(dsfPathDelete, "<ADL><FileNames><Name></Name></FileNames><res></res></ADL>",
@@ -58,14 +59,14 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         #endregion
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfPathDelete_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfPathDelete_UpdateForEachInputs")]
         public void DsfPathDelete_UpdateForEachInputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
-            var inputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
+            var inputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
             var act = new DsfPathDelete { InputPath = inputPath, Result = "[[CompanyName]]" };
 
             //------------Execute Test---------------------------
@@ -74,15 +75,15 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(inputPath, act.InputPath);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfPathDelete_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfPathDelete_UpdateForEachInputs")]
         public void DsfPathDelete_UpdateForEachInputs_MoreThan1Updates_DoesNotUpdates()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
-            var path = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]].txt");
-            var inputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
+            var path = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]].txt");
+            var inputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
             var act = new DsfPathDelete { InputPath = inputPath, Result = "[[CompanyName]]" };
 
             var tuple1 = new Tuple<string, string>(inputPath, "Test");
@@ -93,14 +94,14 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(inputPath, act.InputPath);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfPathDelete_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfPathDelete_UpdateForEachInputs")]
         public void DsfPathDelete_UpdateForEachInputs_1Update_Updates()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
-            var inputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
+            var inputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
             var act = new DsfPathDelete { InputPath = inputPath, Result = "[[CompanyName]]" };
 
             var tuple1 = new Tuple<string, string>(inputPath, "Test");
@@ -111,30 +112,30 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfPathDelete_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfPathDelete_UpdateForEachOutputs")]
         public void DsfPathDelete_UpdateForEachOutputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
             const string result = "[[CompanyName]]";
-            var act = new DsfPathDelete { InputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt"), Result = result };
+            var act = new DsfPathDelete { InputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt"), Result = result };
 
             act.UpdateForEachOutputs(null);
             //------------Assert Results-------------------------
             Assert.AreEqual(result, act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfPathDelete_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfPathDelete_UpdateForEachOutputs")]
         public void DsfPathDelete_UpdateForEachOutputs_MoreThan1Updates_DoesNothing()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
             const string result = "[[CompanyName]]";
-            var act = new DsfPathDelete { InputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt"), Result = result };
+            var act = new DsfPathDelete { InputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt"), Result = result };
 
             var tuple1 = new Tuple<string, string>("Test", "Test");
             var tuple2 = new Tuple<string, string>("Test2", "Test2");
@@ -144,14 +145,14 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(result, act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfPathDelete_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfPathDelete_UpdateForEachOutputs")]
         public void DsfPathDelete_UpdateForEachOutputs_1Updates_UpdateResult()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
-            var inputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
+            var inputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
             var act = new DsfPathDelete { InputPath = inputPath, Result = "[[CompanyName]]" };
 
             var tuple1 = new Tuple<string, string>("[[CompanyName]]", "Test");
@@ -161,14 +162,14 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Test", act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfPathDelete_GetForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfPathDelete_GetForEachInputs")]
         public void DsfPathDelete_GetForEachInputs_WhenHasExpression_ReturnsInputList()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
-            var inputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
+            var inputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
             var act = new DsfPathDelete { InputPath = inputPath, Result = "[[CompanyName]]" };
 
             //------------Execute Test---------------------------
@@ -179,15 +180,15 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(inputPath, dsfForEachItems[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfPathDelete_GetForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfPathDelete_GetForEachOutputs")]
         public void DsfPathDelete_GetForEachOutputs_WhenHasResult_ReturnsOutputList()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
             const string result = "[[CompanyName]]";
-            var act = new DsfPathDelete { InputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt"), Result = result };
+            var act = new DsfPathDelete { InputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt"), Result = result };
 
             //------------Execute Test---------------------------
             var dsfForEachItems = act.GetForEachOutputs();
@@ -197,9 +198,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(result, dsfForEachItems[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DsfPathDelete_GetState")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DsfPathDelete_GetState")]
         public void DsfPathDelete_GetState_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------

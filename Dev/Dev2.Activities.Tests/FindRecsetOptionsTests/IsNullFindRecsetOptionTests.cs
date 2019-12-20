@@ -1,16 +1,17 @@
 using System.Collections.Generic;
 using Dev2.DataList;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Tests.Activities.FindRecsetOptionsTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IsNullFindRecsetOptionTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("RsOpIsNull_CreateFunc")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("RsOpIsNull_CreateFunc")]
         public void RsOpIsNull_CreateFunc_WhenNull_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -23,9 +24,9 @@ namespace Dev2.Tests.Activities.FindRecsetOptionsTests
             Assert.IsTrue(isNull);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("RsOpIsNull_CreateFunc")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("RsOpIsNull_CreateFunc")]
         public void RsOpIsNull_CreateFunc_WhenNotNull_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -38,9 +39,9 @@ namespace Dev2.Tests.Activities.FindRecsetOptionsTests
             Assert.IsFalse(isNull);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("RsOpIsNull_HandlesType")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("RsOpIsNull_HandlesType")]
         public void RsOpIsNull_HandlesType_ReturnsIsNULL()
         {
             //------------Setup for test--------------------------

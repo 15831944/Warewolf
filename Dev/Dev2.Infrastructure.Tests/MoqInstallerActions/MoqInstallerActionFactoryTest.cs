@@ -9,21 +9,22 @@
 */
 
 using Dev2.Services.Security.MoqInstallerActions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Infrastructure.Tests.MoqInstallerActions
 {
     /// <summary>
     /// Summary description for MoqInstallerActionFactoryTest
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class MoqInstallerActionFactoryTest
     {
         
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("MoqInstallerActionFactory_CreateInstallerActions")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("MoqInstallerActionFactory_CreateInstallerActions")]
         public void MoqInstallerActionFactory_CreateInstallerActions_WhenCreatingNew_ExpectNewObject()
         {
             //------------Execute Test---------------------------
@@ -33,9 +34,9 @@ namespace Dev2.Infrastructure.Tests.MoqInstallerActions
             Assert.IsNotNull(result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("MoqInstallerActionFactory_CreateSecurityOperationsObject")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("MoqInstallerActionFactory_CreateSecurityOperationsObject")]
         public void MoqInstallerActionFactory_CreateSecurityOperationsObject_WhenCreatingNew_ExpectNewObject()
         {
             //------------Execute Test---------------------------

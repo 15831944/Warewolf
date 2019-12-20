@@ -2,15 +2,16 @@
 using Dev2.Common.DependencyVisualization;
 using Dev2.Common.ExtMethods;
 using Dev2.Common.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests.DependencyGraph
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class GraphTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Constructor_GivenTitle_ShouldSetTitleAndDefaults()
         {
             //---------------Set up test pack-------------------
@@ -28,8 +29,8 @@ namespace Dev2.Core.Tests.DependencyGraph
             Assert.AreEqual("a", title);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ToString_GivenNodes_ShouldBuildGraphXml()
         {
             //---------------Set up test pack-------------------
@@ -52,8 +53,8 @@ namespace Dev2.Core.Tests.DependencyGraph
             Assert.IsTrue(containsGraph);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CheckForCircularDependencies_GivenNodes_ShouldAddNewCircularDependencies()
         {
             //---------------Set up test pack-------------------

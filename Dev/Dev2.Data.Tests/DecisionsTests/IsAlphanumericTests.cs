@@ -1,14 +1,15 @@
 using Dev2.Data.Decisions.Operations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests.DecisionsTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IsAlphanumericTests
     {
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("IsAlphanumeric_Invoke")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("IsAlphanumeric_Invoke")]
         public void IsAlphanumeric_Invoke_DoesEndWith_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -18,12 +19,12 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = isAlphanumeric.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("IsAlphanumeric_Invoke")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("IsAlphanumeric_Invoke")]
         public void IsAlphanumeric_Invoke_DoesntEndWith_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -33,14 +34,14 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = isAlphanumeric.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
             result = isAlphanumeric.Invoke(new[] { string.Empty});
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthmembu")]
-        [TestCategory("IsAlphanumeric_HandlesType")]
+        [Test]
+        [Author("Sanele Mthmembu")]
+        [Category("IsAlphanumeric_HandlesType")]
         public void IsAlphanumeric_HandlesType_ReturnsIsAlphanumericType()
         {
             var expected = enDecisionType.IsAlphanumeric;
@@ -48,7 +49,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             var isAlphanumeric = new IsAlphanumeric();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.AreEqual(expected, isAlphanumeric.HandlesType());
+            NUnit.Framework.Assert.AreEqual(expected, isAlphanumeric.HandlesType());
         }
     }
 }

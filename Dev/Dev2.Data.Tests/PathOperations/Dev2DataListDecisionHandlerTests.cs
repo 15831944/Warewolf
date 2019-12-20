@@ -1,24 +1,25 @@
 using System;
 using Dev2.Data.Decision;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Warewolf.Storage;
 
 namespace Dev2.Data.Tests.PathOperations
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class Dev2DataListDecisionHandlerTests
     {
-        [TestMethod]
+        [Test]
         public void Dev2DataListDecisionHandler_ShouldHaveInstance()
         {
-            Assert.IsNotNull(Dev2DataListDecisionHandler.Instance);
+            NUnit.Framework.Assert.IsNotNull(Dev2DataListDecisionHandler.Instance);
         }
 
-        [TestMethod]
+        [Test]
         public void Dev2DataListDecisionHandler_AssEnvironment_ShouldIncreaseEnvironmentsCount()
         {
             var instance = Dev2DataListDecisionHandler.Instance;
-            Assert.IsNotNull(instance);
+            NUnit.Framework.Assert.IsNotNull(instance);
             instance.AddEnvironment(Guid.NewGuid(), new ExecutionEnvironment());
         }
     }

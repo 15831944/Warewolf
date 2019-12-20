@@ -11,17 +11,18 @@
 using System;
 using Dev2.Common.Interfaces.Infrastructure.Providers.Errors;
 using Dev2.Providers.Errors;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Infrastructure.Tests.Providers.Errors
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class ActionableErrorInfoTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActionableErrorInfo_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActionableErrorInfo_Constructor")]
         public void ActionableErrorInfo_Constructor_NoParameters_DoesNotInitializeProperties()
         {
             //------------Setup for test--------------------------           
@@ -38,9 +39,9 @@ namespace Dev2.Infrastructure.Tests.Providers.Errors
             Assert.IsNull(actionableErrorInfo.StackTrace);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ActionableErrorInfo_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ActionableErrorInfo_Constructor")]
         public void ActionableErrorInfo_Constructor_WithErrorInfo_InitializesProperties()
         {
             //------------Setup for test--------------------------

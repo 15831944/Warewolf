@@ -9,15 +9,16 @@
 */
 
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Data.Tests.BinaryDataList
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IndexIteratorTest
     {
-        [TestMethod]
+        [Test]
         public void CanIteratorNormally()
         {
             var gaps = new HashSet<int>();
@@ -29,10 +30,10 @@ namespace Dev2.Data.Tests.BinaryDataList
                 cnt++;
             }
 
-            Assert.AreEqual(cnt, 100);
+            NUnit.Framework.Assert.AreEqual(cnt, 100);
         }
 
-        [TestMethod]
+        [Test]
         public void CanIteratorWithGapAt1()
         {
             var gaps = new HashSet<int>(new List<int>{1});
@@ -50,11 +51,11 @@ namespace Dev2.Data.Tests.BinaryDataList
                 cnt++;
             }
 
-            Assert.AreEqual(cnt, maxValue - gaps.Count);
-            Assert.AreEqual(2, firstIdx);
+            NUnit.Framework.Assert.AreEqual(cnt, maxValue - gaps.Count);
+            NUnit.Framework.Assert.AreEqual(2, firstIdx);
         }
 
-        [TestMethod]
+        [Test]
         public void CanIteratorWithGapAt1_PlusGapsEvery10()
         {
             var gaps = new HashSet<int>(new List<int> { 1, 11, 21, 31, 41, 51, 61, 71, 81, 91 });
@@ -72,46 +73,46 @@ namespace Dev2.Data.Tests.BinaryDataList
                 cnt++;
             }
 
-            Assert.AreEqual(cnt, maxValue - gaps.Count);
-            Assert.AreEqual(2, firstIdx);
+            NUnit.Framework.Assert.AreEqual(cnt, maxValue - gaps.Count);
+            NUnit.Framework.Assert.AreEqual(2, firstIdx);
         }
 
-        [TestMethod]
+        [Test]
         public void MaxValueIsCorrectWhenCurrentValueInGaps()
         {
             var gaps = new HashSet<int>(new List<int> { 2 });
             var ii = new IndexIterator(gaps, 2);
 
 
-            Assert.AreEqual(1,ii.MaxIndex());
+            NUnit.Framework.Assert.AreEqual(1,ii.MaxIndex());
         }
 
 
-        [TestMethod]
-        [TestCategory("IndexIterator,UnitTest")]
-        [Owner("Travis")]
+        [Test]
+        [Category("IndexIterator,UnitTest")]
+        [Author("Travis")]
         [Description("A test to ensure we quite visiting this 1 based indexing issue ;)")]
         public void IsEmptyIsCorrectWhenTwoElementAndIndex2Removed()
         {
             var gaps = new HashSet<int>(new List<int> { 2 });
             var ii = new IndexIterator(gaps, 2);
 
-            Assert.AreEqual(1, ii.MaxIndex());
-            Assert.IsFalse(ii.IsEmpty);
+            NUnit.Framework.Assert.AreEqual(1, ii.MaxIndex());
+            NUnit.Framework.Assert.IsFalse(ii.IsEmpty);
         }
 
 
-        [TestMethod]
-        [TestCategory("IndexIterator,UnitTest")]
-        [Owner("Travis")]
+        [Test]
+        [Category("IndexIterator,UnitTest")]
+        [Author("Travis")]
         [Description("A test to ensure we quite visiting this 1 based indexing issue ;)")]
         public void IsEmptyIsCorrectWhenThreeElementAndIndex2And3Removed()
         {
             var gaps = new HashSet<int>(new List<int> { 2,3 });
             var ii = new IndexIterator(gaps, 3);
 
-            Assert.AreEqual(1, ii.MaxIndex());
-            Assert.IsFalse(ii.IsEmpty);
+            NUnit.Framework.Assert.AreEqual(1, ii.MaxIndex());
+            NUnit.Framework.Assert.IsFalse(ii.IsEmpty);
         }
     }
 }

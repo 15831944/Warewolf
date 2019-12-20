@@ -20,7 +20,7 @@ using Dev2.Core.Tests.Utils;
 using Dev2.Studio.Core;
 using Dev2.Studio.ViewModels.DataList;
 using Dev2.UI;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Dev2.Common.Interfaces;
 using Dev2.Studio.Interfaces;
@@ -30,11 +30,12 @@ using Dev2.Instrumentation;
 namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
 
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IntellisenseTextBoxTests
     {
 
-        [TestInitialize]
+        [SetUp]
         public void MyTestInitialize()
         {
             var mockDataListViewModel = new Mock<IDataListViewModel>();
@@ -44,7 +45,7 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
             CustomContainer.Register(new Mock<IPopupController>().Object);
         }
 
-        [TestCleanup]
+        [TearDown]
         public void MyTestCleanup()
         {
             SynchronizationContext.SetSynchronizationContext(null);
@@ -55,7 +56,7 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
      
 
 
-        [TestMethod]
+        [Test]
         public void IntellisenseBoxDoesntCrashWhenGettingResultsGivenAProviderThatThrowsAnException()
         {
             var intellisenseProvider = new Mock<IIntellisenseProvider>();
@@ -72,7 +73,7 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
         }
 
         //BUG 8761
-        [TestMethod]
+        [Test]
         public void IntellisenseBoxDoesntCrashWhenInsertingResultsGivenAProviderThatThrowsAnException()
         {
             var intellisenseProvider = new Mock<IIntellisenseProvider>();
@@ -91,8 +92,8 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
             //The desired result is that an exception isn't thrown
         }
 
-        [TestMethod]
-        [TestCategory("Intellisense Textbox Visual Tree")]
+        [Test]
+        [Category("Intellisense Textbox Visual Tree")]
         public void TextContaningTabIsPasedIntoAnIntellisenseTextBoxExpectedTabInsertedEventIsRaised()
         {
             var eventRaised = false;
@@ -118,7 +119,7 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
 
         }
 
-        [TestMethod]
+        [Test]
         public void TextContaningNoTabIsPasedIntoAnIntellisenseTextBoxExpectedTabInsertedEventNotRaised()
         {
             var preserveClipboard = System.Windows.Clipboard.GetText();
@@ -148,8 +149,8 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
 
         #endregion Test Initialization
 
-        [TestMethod]
-        [TestCategory("Intellisense Textbox Visual Tree")]
+        [Test]
+        [Category("Intellisense Textbox Visual Tree")]
         public void InsertItemExpectedTextboxTextChangedAndErrorStatusUpdated()
         {
             var mockDataListViewModel = new Mock<IDataListViewModel>();
@@ -175,9 +176,9 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
             Assert.AreEqual(true, textBox.HasError, "Expected [ True ] But got [ " + textBox.HasError + " ]");
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("IntellisenseTextBoxTests_SetText")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("IntellisenseTextBoxTests_SetText")]
         public void IntellisenseTextBoxTests_SetText_FilterTypeIsRecordsetFieldsButTextIsScalar_ToolTipHasErrorMessage()
         {
             var mockDataListViewModel = new Mock<IDataListViewModel>();
@@ -194,9 +195,9 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
             Assert.IsTrue(textBox.HasError);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("IntellisenseTextBoxTests_SetText")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("IntellisenseTextBoxTests_SetText")]
         public void IntellisenseTextBoxTests_SetText_FilterTypeIsRecordsetFieldsAndTextIsRecordset_ToolTipHasNoErrorMessage()
         {
             var textBox = new IntellisenseTextBox { FilterType = enIntellisensePartType.RecordsetFields };
@@ -204,9 +205,9 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
             Assert.IsFalse(textBox.HasError);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("IntellisenseTextBox_KeyDown")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("IntellisenseTextBox_KeyDown")]
         public void IntellisenseTextBox_KeyDown_CannotWrapInBracketsWhenNotFSix()
         {
             //------------Setup for test--------------------------
@@ -218,9 +219,9 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
             Assert.IsTrue(textBox.WrapInBrackets);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("IntellisenseTextBox_OnPreviewKeyDown")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("IntellisenseTextBox_OnPreviewKeyDown")]
         public void GivenAnExpression_IntellisenseTextBox_AddBracketsToExpression_ShouldAddBrackets()
         {
             //------------Setup for test--------------------------
@@ -238,9 +239,9 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("IntellisenseTextBox_OnPreviewKeyDown")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("IntellisenseTextBox_OnPreviewKeyDown")]
         public void GivenAnExpression_IntellisenseTextBox_SetAppendTextBasedOnSelection()
         {
             //------------Setup for test--------------------------
@@ -255,9 +256,9 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("IntellisenseTextBox_OnPreviewKeyDown")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("IntellisenseTextBox_OnPreviewKeyDown")]
         public void GivenJsonExpression_IntellisenseTextBox_AddBracketsToExpression_ShouldAddBrackets()
         {
             //------------Setup for test--------------------------
@@ -275,9 +276,9 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("IntellisenseTextBox_KeyDown")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("IntellisenseTextBox_KeyDown")]
         public void IntellisenseTextBox_KeyDown_CannotCauseWrapInBrackets_WhenWrapInBrackets()
         {
 
@@ -295,9 +296,9 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
             Assert.AreEqual("var()", textBox.Text);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("IntellisenseTextBox_KeyDown")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("IntellisenseTextBox_KeyDown")]
         public void IntellisenseTextBox_KeyDown_CannotCauseWrapInBrackets_WhenNotWrapInBrackets()
         {
             //------------Setup for test--------------------------
@@ -309,8 +310,8 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
         }
 
 
-        [TestMethod]
-        [TestCategory("Intellisense Textbox Visual Tree")]
+        [Test]
+        [Category("Intellisense Textbox Visual Tree")]
         public void InsertItemExpectedTextboxTextChanged_InvalidSyntax_ErrorStatusUpdated()
         {
             const string ExpectedText = "[[City(1.Name]]";
@@ -339,8 +340,8 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
             Assert.IsTrue(textBox.HasError, "Expected [ True ] But got [ " + textBox.HasError + " ]");
         }
 
-        [TestMethod]
-        [TestCategory("Intellisense Textbox Visual Tree")]
+        [Test]
+        [Category("Intellisense Textbox Visual Tree")]
         public void InsertItemExpectedTextboxTextChanged_SpaceInFieldName_ErrorStatusUpdated()
         {
             const string ExpectedText = "[[City(). Name]]";
@@ -369,9 +370,9 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
             Assert.IsTrue(textBox.HasError, "Expected [ True ] But got [ " + textBox.HasError + " ]");
         }
 
-         [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("IntellisenseTextBoxTests_SetText")]
+         [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("IntellisenseTextBoxTests_SetText")]
         public void IntellisenseTextBoxTests_SetText_FilterTypeIsScalarsOnlyAndTextIsScalar_ToolTipHasNoErrorMessage()
         {
             var textBox = new IntellisenseTextBox { FilterType = enIntellisensePartType.ScalarsOnly };
@@ -380,9 +381,9 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
         }
 
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("IntellisenseTextBoxTests_SetText")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("IntellisenseTextBoxTests_SetText")]
         public void IntellisenseTextBoxTests_SetText_FilterTypeIsScalarsOnlyButTextIsRecordset_ToolTipHaErrorMessage()
         {
 
@@ -401,10 +402,10 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
 
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("IntellisenseTextBox_InsertItem")]
-        [TestCategory("Intellisense Textbox Visual Tree")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("IntellisenseTextBox_InsertItem")]
+        [Category("Intellisense Textbox Visual Tree")]
         public void IntellisenseTextBox_InsertItem_InsertDateTimeParts_InsertsCorrectly()
         {
             //------------Setup for test--------------------------            
@@ -425,10 +426,10 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
             Assert.AreEqual("ddyyyy", textBox.Text);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("IntellisenseTextBox_InsertItem")]
-        [TestCategory("Intellisense Textbox Visual Tree")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("IntellisenseTextBox_InsertItem")]
+        [Category("Intellisense Textbox Visual Tree")]
         public void IntellisenseTextBox_InsertItem_AppendDateTimePartsWithSpace_InsertsCorrectly()
         {
             //------------Setup for test--------------------------            
@@ -449,10 +450,10 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
             Assert.AreEqual("dd yyyy", textBox.Text);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("IntellisenseTextBox_InsertItem")]
-        [TestCategory("Intellisense Textbox Visual Tree")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("IntellisenseTextBox_InsertItem")]
+        [Category("Intellisense Textbox Visual Tree")]
         public void IntellisenseTextBox_InsertItem_AppendDateTimePartsWithDifferentCase_InsertsCorrectly()
         {
             //------------Setup for test--------------------------            
@@ -473,9 +474,9 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
             Assert.AreEqual("dd yyyy", textBox.Text);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("IntellisenseTextBox_Text")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("IntellisenseTextBox_Text")]
         public void IntellisenseTextBox_Text_NotLatinCharacter_ShowMessageBox_TextMadeEmpty()
         {
             //------------Setup for test--------------------------            
@@ -494,10 +495,10 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
             mockPopupController.Verify(controller => controller.ShowInvalidCharacterMessage(It.IsAny<string>()), Times.AtLeastOnce());
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("IntellisenseTextBox_InsertItem")]
-        [TestCategory("Intellisense Textbox Visual Tree")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("IntellisenseTextBox_InsertItem")]
+        [Category("Intellisense Textbox Visual Tree")]
         public void IntellisenseTextBox_InsertItem_InsertDateTimePartsIn_InsertsCorrectly()
         {
             //------------Setup for test--------------------------            
@@ -519,9 +520,9 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("IntellisenseTextBox_KeyDown")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("IntellisenseTextBox_KeyDown")]
         public void IntellisenseTextBox_Properties_Not_SetTo_Null()
         {
             //------------Setup for test--------------------------
@@ -545,7 +546,7 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
             Assert.IsFalse(textBox.HasError);
         }
 
-        [TestMethod]
+        [Test]
         public void IntellisenseBox_GivenWrappedInBrackets_AStringWithNoBrackets_Should_AddBrackets()
         {
             var textBoxTest = new IntellisenseTextBoxTestHelper { WrapInBrackets = true };
@@ -555,7 +556,7 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
             Assert.AreEqual("[[Variable]]", textBoxTest.Text);
         }
 
-        [TestMethod]
+        [Test]
         public void IntellisenseBox_OnPreviewKeyDown_GivenI_Hit_Enter_Key_And_AlloInsertLine_Is_True_Should_AddLine()
         {
             var mockPresentationSource = new Mock<PresentationSource>();
@@ -572,7 +573,7 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
             Assert.IsFalse(testHelper.HasError);
         }
 
-        [TestMethod]
+        [Test]
         public void IntellisenseBox_OnPreviewKeyDown_Given_EnterKey_And_AllowInsertLineIsTrueButLineCountIsEqualToMaximumLine_ShouldNotAddLine()
         {
             var mockPresentationSource = new Mock<PresentationSource>();
@@ -591,7 +592,7 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
             Assert.IsFalse(testHelper.HasError);
             Assert.IsFalse(testHelper.TextBox.Text.Contains("\r\n"));
         }
-        [TestMethod]
+        [Test]
         public void IntellisenseBox_OnPreviewKeyDown_GivenI_Hit_Tab_Key_Should_AppendText()
         {
             var mockPresentationSource = new Mock<PresentationSource>();
@@ -610,7 +611,7 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
             Assert.IsFalse(testHelper.TextBox.Text.Contains("\r\n"));
         }        
 
-        [TestMethod]
+        [Test]
         public void IntellisenseBox_GivenMultipleValidVariables_HasNoError()
         {
             var textBoxTest = new IntellisenseTextBoxTestHelper { AllowMultipleVariables = true };
@@ -620,7 +621,7 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
             Assert.AreEqual(textBoxTest.DefaultText, textBoxTest.ToolTip);
         }
 
-        [TestMethod]
+        [Test]
         public void IntellisenseBox_GivenInvalidVariables_ScalarHasError_LogsTracking()
         {
             var _applicationTrackerMock = new Mock<IApplicationTracker>();
@@ -632,7 +633,7 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
             var textBoxTest = new IntellisenseTextBox { AllowMultipleVariables = true };
             textBoxTest.Text = "\"[[Var!]]\"";
 
-            var privateObj = new PrivateObject(textBoxTest);
+            var privateObj = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(textBoxTest);
             var results = privateObj.Invoke("LostFocusImpl");
 
             Assert.IsTrue(textBoxTest.HasError);
@@ -640,7 +641,7 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
             _applicationTrackerMock.Verify(controller => controller.TrackCustomEvent(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.AtLeastOnce());
         }
 
-        [TestMethod]
+        [Test]
         public void IntellisenseBox_GivenInvalidVariables_RecordsetHasError_LogsTracking()
         {
             var _applicationTrackerMock = new Mock<IApplicationTracker>();
@@ -652,7 +653,7 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
             var textBoxTest = new IntellisenseTextBox { AllowMultipleVariables = true };
             textBoxTest.Text = "\"[[Var()!]]\"";
 
-            var privateObj = new PrivateObject(textBoxTest);
+            var privateObj = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(textBoxTest);
             var results = privateObj.Invoke("LostFocusImpl");
 
             Assert.IsTrue(textBoxTest.HasError);
@@ -660,7 +661,7 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
             _applicationTrackerMock.Verify(controller => controller.TrackCustomEvent(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.AtLeastOnce());
         }
 
-        [TestMethod]
+        [Test]
         public void IntellisenseBox_GivenInvalidVariables_JsonObjectHasError_LogsTracking()
         {
             var _applicationTrackerMock = new Mock<IApplicationTracker>();
@@ -672,7 +673,7 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
             var textBoxTest = new IntellisenseTextBox { FilterType = enIntellisensePartType.JsonObject };
             textBoxTest.Text = "\"[[obj!]]\"";
 
-            var privateObj = new PrivateObject(textBoxTest);
+            var privateObj = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(textBoxTest);
             var results = privateObj.Invoke("LostFocusImpl");
 
             Assert.IsTrue(textBoxTest.HasError);
@@ -680,7 +681,7 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
             _applicationTrackerMock.Verify(controller => controller.TrackCustomEvent(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()), Times.AtLeastOnce());
         }
 
-        [TestMethod]
+        [Test]
         public void IntellisenseBox_Function_HasIsCalcMode_SetTo_True()
         {
             var textBoxTest = new IntellisenseTextBoxTestHelper { AllowUserCalculateMode = true };
@@ -691,9 +692,9 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
             Assert.IsTrue(textBoxTest.IsInCalculateMode);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("IntellisenseTextBoxTests_SetText")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("IntellisenseTextBoxTests_SetText")]
         public void IntellisenseTextBoxTests_SetText_FilterTypeIsAllAndTextIsRecordset_ToolTipHasNoErrorMessage()
         {
             var textBox = new IntellisenseTextBox { FilterType = enIntellisensePartType.None };
@@ -701,9 +702,9 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
             Assert.IsFalse(textBox.HasError);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("IntellisenseTextBoxTests_SetText")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("IntellisenseTextBoxTests_SetText")]
         public void IntellisenseTextBoxTests_SetText_FilterTypeIsRecodsetFieldsAndTextMultipleRecordSetFields_ToolTipHasNoErrorMessage()
         {
             var textBox = new IntellisenseTextBox
@@ -716,9 +717,9 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
         }
         
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("IntellisenseTextBoxTests_ValidateText")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("IntellisenseTextBoxTests_ValidateText")]
         public void IntellisenseTextBoxTests_ValidateText_FilterTypeIsJsonObjectAndTextIsJson_ToolTipHasNoErrorMessage()
         {
             var textBox = new IntellisenseTextBox { FilterType = enIntellisensePartType.JsonObject };
@@ -726,9 +727,9 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
             Assert.IsFalse(textBox.HasError);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("IntellisenseTextBoxTests_ValidateText")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("IntellisenseTextBoxTests_ValidateText")]
         public void IntellisenseTextBoxTests_ValidateText_FilterTypeIsJsonObjectAndTextIsScalar_ToolTipHasNoErrorMessage()
         {
             var mockPresentationSource =new Mock<PresentationSource>();
@@ -738,9 +739,9 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("IntellisenseTextBoxTests_SetText")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("IntellisenseTextBoxTests_SetText")]
         public void IntellisenseTextBoxTests_SetText_InvalidJsonArrayIndex_ShouldError()
         {
             var mockDataListViewModel = new Mock<IDataListViewModel>();

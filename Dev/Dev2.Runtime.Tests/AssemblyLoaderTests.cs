@@ -5,17 +5,18 @@ using System.Linq;
 using System.Reflection;
 using Dev2.Common.Interfaces;
 using Dev2.Runtime.ServiceModel.Esb.Brokers.Plugin;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using TestingDotnetDllCascading;
 
 namespace Dev2.Tests.Runtime
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class AssemblyLoaderTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Constructor_InitializesDefaults()
         {
             //---------------Set up test pack-------------------
@@ -23,11 +24,11 @@ namespace Dev2.Tests.Runtime
             //---------------Assert Precondition----------------
             //---------------Execute Test ----------------------
             //---------------Test Result -----------------------
-            Assert.IsNotNull(assemblyLoader);
+            NUnit.Framework.Assert.IsNotNull(assemblyLoader);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Constructor_Dependency_InitializesDefaults()
         {
             //---------------Set up test pack-------------------
@@ -36,10 +37,10 @@ namespace Dev2.Tests.Runtime
             //---------------Assert Precondition----------------
             //---------------Execute Test ----------------------
             //---------------Test Result -----------------------
-            Assert.IsNotNull(assemblyLoader);
+            NUnit.Framework.Assert.IsNotNull(assemblyLoader);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void TryLoadAssemblyGac_GivenReturnsNull_ShouldNotLoadAssembly()
         {
             //---------------Set up test pack-------------------
@@ -50,17 +51,17 @@ namespace Dev2.Tests.Runtime
             mock.Setup(wrapper => wrapper.Load(It.IsAny<string>()));
             var assemblyLoader = new AssemblyLoader(mock.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(assemblyLoader);
+            NUnit.Framework.Assert.IsNotNull(assemblyLoader);
             //---------------Execute Test ----------------------
             var tryLoadAssembly = assemblyLoader.TryLoadAssembly(dirtyname, "", out Assembly assembly);
             //---------------Test Result -----------------------
-            Assert.IsFalse(tryLoadAssembly);
-            Assert.IsNull(assembly);
+            NUnit.Framework.Assert.IsFalse(tryLoadAssembly);
+            NUnit.Framework.Assert.IsNull(assembly);
             mock.Verify(wrapper => wrapper.Load(It.IsAny<string>()));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void TryLoadAssemblyGac_GivenDirtyPath_ShouldUseCleanPath()
         {
             //---------------Set up test pack-------------------
@@ -72,17 +73,17 @@ namespace Dev2.Tests.Runtime
                 .Callback<string>((a) =>
                     {
                         var load1 = Assembly.Load(a);
-                        Assert.IsNotNull(load1);
+                        NUnit.Framework.Assert.IsNotNull(load1);
                     });
             mock.Setup(wrapper => wrapper.Load("")).Throws(new Exception());
             var assemblyLoader = new AssemblyLoader(mock.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(assemblyLoader);
+            NUnit.Framework.Assert.IsNotNull(assemblyLoader);
             //---------------Execute Test ----------------------
             var tryLoadAssembly = assemblyLoader.TryLoadAssembly(dirtyname, "", out Assembly assembly);
             //---------------Test Result -----------------------
-            Assert.IsFalse(tryLoadAssembly);
-            Assert.IsNull(assembly);
+            NUnit.Framework.Assert.IsFalse(tryLoadAssembly);
+            NUnit.Framework.Assert.IsNull(assembly);
             mock.Verify(wrapper => wrapper.Load(cleanName));
         }
 
@@ -91,8 +92,8 @@ namespace Dev2.Tests.Runtime
             return "GAC:" + name + ", processorArchitecture=x86";
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void TryLoadAssemblyGac_GivenDirtyPath_ShouldCleanPathAndLoadAssembly()
         {
             //---------------Set up test pack-------------------
@@ -107,17 +108,17 @@ namespace Dev2.Tests.Runtime
             mock.Setup(wrapper => wrapper.Load("")).Throws(new Exception());
             var assemblyLoader = new AssemblyLoader(mock.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(assemblyLoader);
+            NUnit.Framework.Assert.IsNotNull(assemblyLoader);
             //---------------Execute Test ----------------------
             var tryLoadAssembly = assemblyLoader.TryLoadAssembly(dirtyname, "", out Assembly assembly);
             //---------------Test Result -----------------------
-            Assert.IsTrue(tryLoadAssembly);
-            Assert.IsNotNull(assembly);
+            NUnit.Framework.Assert.IsTrue(tryLoadAssembly);
+            NUnit.Framework.Assert.IsNotNull(assembly);
             mock.Verify(wrapper => wrapper.Load(cleanName));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void TryLoadAssemblyGac_GivenDirtyPath_ShouldLoadReferencedAssemblies()
         {
             //---------------Set up test pack-------------------
@@ -133,18 +134,18 @@ namespace Dev2.Tests.Runtime
             mock.Setup(wrapper => wrapper.Load("")).Throws(new Exception());
             var assemblyLoader = new AssemblyLoader(mock.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(assemblyLoader);
+            NUnit.Framework.Assert.IsNotNull(assemblyLoader);
             //---------------Execute Test ----------------------
             var tryLoadAssembly = assemblyLoader.TryLoadAssembly(dirtyname, "", out Assembly assembly);
             //---------------Test Result -----------------------
-            Assert.IsTrue(tryLoadAssembly);
-            Assert.IsNotNull(assembly);
+            NUnit.Framework.Assert.IsTrue(tryLoadAssembly);
+            NUnit.Framework.Assert.IsNotNull(assembly);
             mock.Verify(wrapper => wrapper.Load(cleanName), Times.Exactly(1));
             mock.Verify(wrapper => wrapper.Load(It.IsAny<AssemblyName>()), Times.AtLeast(2));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void TryLoadAssemblyGac_GivenLoadsCorreclty_ShouldAddAssembliesTo_loadedAssemblies()
         {
             //---------------Set up test pack-------------------
@@ -164,22 +165,22 @@ namespace Dev2.Tests.Runtime
             var assemblyLoader = new AssemblyLoader(mock.Object);
             var fieldInfo = typeof(AssemblyLoader).GetField("_loadedAssemblies", BindingFlags.Instance | BindingFlags.NonPublic);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(fieldInfo);
-            Assert.IsNotNull(assemblyLoader);
+            NUnit.Framework.Assert.IsNotNull(fieldInfo);
+            NUnit.Framework.Assert.IsNotNull(assemblyLoader);
             //---------------Execute Test ----------------------
             var value = (List<string>)fieldInfo.GetValue(assemblyLoader);
-            Assert.AreEqual(0, value.Count);
+            NUnit.Framework.Assert.AreEqual(0, value.Count);
             assemblyLoader.TryLoadAssembly(dirtyname, "", out Assembly assembly);
             value = (List<string>)fieldInfo.GetValue(assemblyLoader);
             //---------------Test Result -----------------------
-            Assert.IsTrue(value.Count > 2);
+            NUnit.Framework.Assert.IsTrue(value.Count > 2);
             mock.Verify(wrapper => wrapper.Load(It.IsAny<AssemblyName>()), Times.AtLeast(2));
             mock.Verify(wrapper => wrapper.GetReferencedAssemblies(load), Times.Once);
        
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void TryLoadAssembly_GivenLoadsCorreclty_ShouldAddAssembliesTo_loadedAssemblies()
         {
             //---------------Set up test pack-------------------
@@ -187,7 +188,7 @@ namespace Dev2.Tests.Runtime
             var type = human.GetType();
             var humanAssembly = type.Assembly;
             var location = humanAssembly.Location;
-            Assert.IsNotNull(location);
+            NUnit.Framework.Assert.IsNotNull(location);
             var load = Assembly.LoadFrom(location);
 
             var referencedAssemblies = load.GetReferencedAssemblies();
@@ -209,22 +210,22 @@ namespace Dev2.Tests.Runtime
             var assemblyLoader = new AssemblyLoader(mock.Object);
             var fieldInfo = typeof(AssemblyLoader).GetField("_loadedAssemblies", BindingFlags.Instance | BindingFlags.NonPublic);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(fieldInfo);
-            Assert.IsNotNull(assemblyLoader);
+            NUnit.Framework.Assert.IsNotNull(fieldInfo);
+            NUnit.Framework.Assert.IsNotNull(assemblyLoader);
             //---------------Execute Test ----------------------
             var value = (List<string>)fieldInfo.GetValue(assemblyLoader);
-            Assert.AreEqual(0, value.Count);
+            NUnit.Framework.Assert.AreEqual(0, value.Count);
             assemblyLoader.TryLoadAssembly(location, type.FullName, out Assembly assembly);
             value = (List<string>)fieldInfo.GetValue(assemblyLoader);
             //---------------Test Result -----------------------
-            Assert.AreEqual(1, value.Count);
+            NUnit.Framework.Assert.AreEqual(1, value.Count);
             mock.Verify(wrapper => wrapper.Load(It.IsAny<AssemblyName>()), Times.Exactly(1));
             mock.Verify(wrapper => wrapper.GetReferencedAssemblies(load), Times.Once);
             mock.Verify(wrapper => wrapper.Load(a1));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         [ExpectedException(typeof(BadImageFormatException))]
         public void TryLoadAssemblyGac_GivenThrowsBadFormat_Shouldrethrow()
         {
@@ -237,7 +238,7 @@ namespace Dev2.Tests.Runtime
             mock.Setup(wrapper => wrapper.Load("")).Throws(new BadImageFormatException());
             var assemblyLoader = new AssemblyLoader(mock.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(assemblyLoader);
+            NUnit.Framework.Assert.IsNotNull(assemblyLoader);
             //---------------Execute Test ----------------------
             assemblyLoader.TryLoadAssembly(dirtyname, "", out Assembly assembly);
             //---------------Test Result -----------------------
@@ -246,24 +247,24 @@ namespace Dev2.Tests.Runtime
 
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void TryLoadAssembly_GivenReturnsNull_ShouldNotLoadAssembly()
         {
             //---------------Set up test pack-------------------
             var assemblyLoader = new AssemblyLoader();
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(assemblyLoader);
+            NUnit.Framework.Assert.IsNotNull(assemblyLoader);
             //---------------Execute Test ----------------------
             var human = new Human();
             var location = human.GetType().Assembly.Location;
             var tryLoadAssembly = assemblyLoader.TryLoadAssembly(location, "", out Assembly assembly);
             //---------------Test Result -----------------------
-            Assert.IsTrue(tryLoadAssembly);
-            Assert.IsNotNull(assembly);
+            NUnit.Framework.Assert.IsTrue(tryLoadAssembly);
+            NUnit.Framework.Assert.IsNotNull(assembly);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         [ExpectedException(typeof(BadImageFormatException))]
         public void TryLoadAssembly_GivenThrowsBadFormat_Shouldrethrow()
         {
@@ -275,14 +276,14 @@ namespace Dev2.Tests.Runtime
             mock.Setup(wrapper => wrapper.Load("")).Throws(new BadImageFormatException());
             var assemblyLoader = new AssemblyLoader(mock.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(assemblyLoader);
+            NUnit.Framework.Assert.IsNotNull(assemblyLoader);
             //---------------Execute Test ----------------------
             assemblyLoader.TryLoadAssembly(location, "", out Assembly assembly);
             //---------------Test Result -----------------------
 
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void TryLoadAssembly_GivenThrowsExceptionForPathDll_ShouldThrowLoadUnsafely()
         {
             //---------------Set up test pack-------------------
@@ -294,17 +295,17 @@ namespace Dev2.Tests.Runtime
             mock.Setup(wrapper => wrapper.UnsafeLoadFrom(location)).Returns(loadedAssembly);
             var assemblyLoader = new AssemblyLoader(mock.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(assemblyLoader);
+            NUnit.Framework.Assert.IsNotNull(assemblyLoader);
             //---------------Execute Test ----------------------
             var tryLoadAssembly = assemblyLoader.TryLoadAssembly(location, "", out Assembly assembly);
             //---------------Test Result -----------------------
-            Assert.IsTrue(tryLoadAssembly);
-            Assert.IsNotNull(assembly);
+            NUnit.Framework.Assert.IsTrue(tryLoadAssembly);
+            NUnit.Framework.Assert.IsNotNull(assembly);
             mock.Verify(wrapper => wrapper.LoadFrom(location));
             mock.Verify(wrapper => wrapper.UnsafeLoadFrom(location));
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void TryLoadAssembly_GivenUnsafeLoadFromThrows_ShouldGetAssmbly()
         {
             //---------------Set up test pack-------------------
@@ -318,19 +319,19 @@ namespace Dev2.Tests.Runtime
             mock.Setup(wrapper => wrapper.GetAssembly(type)).Returns(loadedAssembly);
             var assemblyLoader = new AssemblyLoader(mock.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(assemblyLoader);
+            NUnit.Framework.Assert.IsNotNull(assemblyLoader);
             //---------------Execute Test ----------------------
             var tryLoadAssembly = assemblyLoader.TryLoadAssembly(location, type.FullName, out Assembly assembly);
             //---------------Test Result -----------------------
-            Assert.IsTrue(tryLoadAssembly);
-            Assert.IsNotNull(assembly);
+            NUnit.Framework.Assert.IsTrue(tryLoadAssembly);
+            NUnit.Framework.Assert.IsNotNull(assembly);
             mock.Verify(wrapper => wrapper.LoadFrom(location));
             mock.Verify(wrapper => wrapper.UnsafeLoadFrom(location));
             mock.Verify(wrapper => wrapper.GetAssembly(type));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         [ExpectedException(typeof(BadImageFormatException))]
         public void TryLoadAssembly_GivenUnsafeLoadFromThrowsBadFormat_ShouldRethrow()
         {
@@ -345,7 +346,7 @@ namespace Dev2.Tests.Runtime
             mock.Setup(wrapper => wrapper.GetAssembly(type)).Throws(new BadImageFormatException());
             var assemblyLoader = new AssemblyLoader(mock.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(assemblyLoader);
+            NUnit.Framework.Assert.IsNotNull(assemblyLoader);
             //---------------Execute Test ----------------------
             assemblyLoader.TryLoadAssembly(location, type.FullName, out Assembly assembly);
             //---------------Test Result -----------------------

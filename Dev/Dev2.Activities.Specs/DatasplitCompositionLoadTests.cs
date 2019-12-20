@@ -4,19 +4,20 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Dev2.DynamicServices;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Activities.Specs
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DatasplitCompositionLoadTests
     {
         protected string CurrentDl { get; set; }
 
-        [TestMethod]
+        [Test]
         [DeploymentItem("LargeRowsDataSplit.txt")]
-        [TestCategory("CompositionLoadTests")]
+        [Category("CompositionLoadTests")]
         public void LargeRows_SplitOnNewLine_ShouldSplitCorrectly()
         {
             IList<DataSplitDTO> resultsCollection = new List<DataSplitDTO>();
@@ -30,7 +31,7 @@ namespace Dev2.Activities.Specs
             {
                 sourceString = File.ReadAllText("Out\\LargeRowsDataSplit.txt");
             }
-            Assert.IsFalse(string.IsNullOrEmpty(sourceString), "Cannot find Deployment Item LargeRowsDataSplit.txt");
+            NUnit.Framework.Assert.IsFalse(string.IsNullOrEmpty(sourceString), "Cannot find Deployment Item LargeRowsDataSplit.txt");
             var act = new DsfDataSplitActivity { SourceString = sourceString, ResultsCollection = resultsCollection, SkipBlankRows = true };
             var dataObject = new DsfDataObject("", Guid.Empty)
             {
@@ -40,8 +41,8 @@ namespace Dev2.Activities.Specs
 
             var totalCount = dataObject.Environment.GetCount("rec");
             var res = dataObject.Environment.Eval("[[rec().data]]", 0) as CommonFunctions.WarewolfEvalResult.WarewolfAtomListresult;
-            Assert.AreEqual("0827373254", res.Item.First().ToString());
-            Assert.AreEqual(8300000, totalCount, CurrentDl);
+            NUnit.Framework.Assert.AreEqual("0827373254", res.Item.First().ToString());
+            NUnit.Framework.Assert.AreEqual(8300000, totalCount, CurrentDl);
         }
     }
 }

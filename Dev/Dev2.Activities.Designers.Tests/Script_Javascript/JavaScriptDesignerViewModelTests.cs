@@ -16,13 +16,14 @@ using System.Text;
 using Dev2.Activities.Scripting;
 using Dev2.Runtime.Configuration.ViewModels.Base;
 using Dev2.Studio.Core.Activities.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 
 namespace Dev2.Activities.Designers.Tests.Script_Javascript
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class JavaScriptDesignerViewModelTests
     {
 
@@ -38,7 +39,7 @@ namespace Dev2.Activities.Designers.Tests.Script_Javascript
         ///information about and functionality for the current test run.
         ///</summary>
         public TestContext TestContext { get; set; }
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void Init(TestContext context)
         {
             try
@@ -64,7 +65,7 @@ namespace Dev2.Activities.Designers.Tests.Script_Javascript
                 Assert.Fail(ex.Message);
             }
         }
-        [ClassCleanup]
+        [OneTimeTearDown]
         public static void Cleaner()
         {
             try
@@ -77,9 +78,9 @@ namespace Dev2.Activities.Designers.Tests.Script_Javascript
             }
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ScriptDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ScriptDesignerViewModel_Constructor")]
         public void ScriptDesignerViewModel_Constructor_PropertiesInitialized()
         {
             var modelItem = CreateModelItem();
@@ -89,21 +90,21 @@ namespace Dev2.Activities.Designers.Tests.Script_Javascript
         }
 
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ScriptDesignerViewModel_SelectedScriptType")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ScriptDesignerViewModel_SelectedScriptType")]
         public void ScriptDesignerViewModel_SelectedScriptType_JavaScript_PropertiesInitialized()
         {
             var modelItem = CreateModelItem();
             var viewModel = new TestJavaScriptDesignerViewModel(modelItem);
             Assert.IsTrue(viewModel.EscapeScript);
-            Assert.IsTrue(string.IsNullOrEmpty(viewModel.IncludeFile));            
+            Assert.IsTrue(string.IsNullOrEmpty(viewModel.IncludeFile));
             Assert.AreEqual("JavaScript Syntax", viewModel.ScriptTypeDefaultText);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ScriptDesignerViewModel_SelectedScriptType")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ScriptDesignerViewModel_SelectedScriptType")]
         public void ScriptDesignerViewModel_ChooseDirectoryShould_ReturnFile()
         {
             var modelItem = CreateModelItem();

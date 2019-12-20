@@ -9,7 +9,7 @@
 */
 
 using Dev2.Data.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Activities.Statements;
 using System.Collections.Generic;
@@ -150,7 +150,7 @@ namespace Dev2.Activities.Specs.Toolbox.Data.Assign
                 }
                 else
                 {
-                    Assert.AreEqual<string>(recordSetValues[0], value);
+                    Assert.AreEqual(recordSetValues[0], value);
                 }
             }
             else

@@ -17,7 +17,7 @@ using Dev2.Studio.Factory;
 using Dev2.Studio.Interfaces.DataList;
 using Dev2.Studio.Interfaces.Enums;
 using Dev2.Studio.ViewModels.DataList;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests
 {
@@ -28,7 +28,8 @@ namespace Dev2.Core.Tests
     ///This is a result class for InputOutputViewModelTest and is intended
     ///to contain all InputOutputViewModelTest Unit Tests
     ///</summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class InputOutputViewModelTest
     {
 
@@ -49,7 +50,7 @@ namespace Dev2.Core.Tests
         //You can use the following additional attributes as you write your tests:
         //
         //Use ClassInitialize to run code before running the first result in the class
-        //[ClassInitialize()]
+        //[OneTimeSetUp]
         //public static void MyClassInitialize(TestContext testContext)
         //{
         //}
@@ -61,7 +62,7 @@ namespace Dev2.Core.Tests
         //}
         //
         //Use TestInitialize to run code before running each result
-        [TestInitialize]
+        [SetUp]
         public void MyTestInitialize()
         {
             var testObject = new InputOutputViewModelTestObject();
@@ -87,7 +88,7 @@ namespace Dev2.Core.Tests
 
 
         // Travis  : PBI 5779
-        [TestMethod]
+        [Test]
         public void InputOutputMappingViewModel_DefaultWithEmptyToNull_Expect_EmptyToNullString()
         {
             const string name = "vehicleColor";
@@ -103,7 +104,7 @@ namespace Dev2.Core.Tests
 
 
         // Travis  : PBI 5779
-        [TestMethod]
+        [Test]
         public void InputOutputMappingViewModel_DefaultWithEmptyToNull_Expect_EmptyString()
         {
             const string name = "vehicleColor";
@@ -118,7 +119,7 @@ namespace Dev2.Core.Tests
         }
 
         // Travis  : PBI 5779
-        [TestMethod]
+        [Test]
         public void InputOutputMappingViewModel_DefaultWithEmptyToNullDefaultValueSet_Expect_DefaultValue()
         {
             const string name = "vehicleColor";
@@ -136,7 +137,7 @@ namespace Dev2.Core.Tests
         /// <summary>
         ///A result for DisplayName
         ///</summary>
-        [TestMethod]
+        [Test]
         public void InputOutputMappingViewModel_DisplayName()
         {
 
@@ -144,7 +145,7 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("testRecSetName(*).vehicleColor", actual);
         }
 
-        [TestMethod]
+        [Test]
         public void InputOutputMappingViewModel_DisplayNameScalarEmptyStringRecordSet_Expected_ScalarNotationSetAsDisplayName()
         {
             var testObject = new InputOutputViewModelTestObject { RecordSetName = string.Empty };
@@ -156,7 +157,7 @@ namespace Dev2.Core.Tests
 
         #region Tests Currently Containing unknown expecteds
 
-        [TestMethod]
+        [Test]
         public void InputOutputMappingViewModel_DisplayNameRecordSet_Expected_DisplayNameIsRecordSetNotation()
         {
             var testObject = new InputOutputViewModelTestObject { Name = string.Empty, RecordSetName = "TestRC", Value = "val" };
@@ -168,7 +169,7 @@ namespace Dev2.Core.Tests
 
         //BUG - This test replicates a big issue with the logic in the Input Mapper creation
 
-        //[TestMethod]
+        //[Test]
         //public void DisplayNameRecordSetNullField_Expected_ValueIsNotRecordSet() {
         //    InputOutputViewModelTestObject testObject = new InputOutputViewModelTestObject();
         //    testObject.RecordSetName = null;
@@ -185,7 +186,7 @@ namespace Dev2.Core.Tests
         /// <summary>
         ///A result for MapsTo
         ///</summary>
-        [TestMethod]
+        [Test]
         public void InputOutputMappingViewModel_MapsTo_ValueSupplied_Expected_MapsToFieldcorrectlySet()
         {
             const string expected = "testMapsTo";
@@ -193,7 +194,7 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void InputOutputMappingViewModel_MapsTo_EmptyValueSupplied_Expected_MapsToFieldcorrectlySet()
         {
             var testObject = new InputOutputViewModelTestObject { MapsTo = string.Empty };
@@ -210,7 +211,7 @@ namespace Dev2.Core.Tests
         /// <summary>
         ///A result for Name
         ///</summary>
-        [TestMethod]
+        [Test]
         public void InputOutputMappingViewModel_Name_ValueSuppliedForName_Expected_NamePropertySetToValueSupplied()
         {
             const string expected = "vehicleColor";
@@ -220,7 +221,7 @@ namespace Dev2.Core.Tests
 
 
         // Not too sure what the expected is here
-        //[TestMethod]
+        //[Test]
         //public void Name_EmptyValueSupplied_Expected() {
         //    InputOutputViewModelTestObject testObject = new InputOutputViewModelTestObject();
         //    testObject.Name = string.Empty;
@@ -237,7 +238,7 @@ namespace Dev2.Core.Tests
         /// <summary>
         ///A result for SelectedDataListItem
         ///</summary>
-        [TestMethod]
+        [Test]
         public void InputOutputMappingViewModel_InputOutputMappingViewModel_SelectedDataListItem()
         {
             var actual = _inputOutputViewModel.Value;
@@ -247,7 +248,7 @@ namespace Dev2.Core.Tests
         /// <summary>
         ///A result for Value
         ///</summary>
-        [TestMethod]
+        [Test]
         public void InputOutputMappingViewModel_InputOutputMappingViewModel_Value()
         {
             const string expected = "vehicleColor";
@@ -259,14 +260,14 @@ namespace Dev2.Core.Tests
 
         #region GetGenerationTO Tests
 
-        [TestMethod]
+        [Test]
         public void InputOutputMappingViewModel_GetGenerationTO_ValidViewModel_Expected_Dev2DefinitionCreatedFromInputOutputViewModel()
         {
             var dev2Definition = _inputOutputViewModel.GetGenerationTO();
             Assert.IsTrue(dev2Definition != null);
         }
 
-        [TestMethod]
+        [Test]
         public void InputOutputMappingViewModel_GetGenerationTO_InvalidViewModel_Expected_NullDev2DefinitionCreated()
         {
             var testObject = new InputOutputViewModelTestObject { Name = null };
@@ -278,9 +279,9 @@ namespace Dev2.Core.Tests
 
         #endregion GetGenerationTO Tests
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("InputOutputMappingViewModel_MapsTo")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("InputOutputMappingViewModel_MapsTo")]
         public void InputOutputMappingViewModel_MapsTo_UpdateDataListWithJsonObject_IsObject()
         {
             var testEnvironmentModel = ResourceModelTest.CreateMockEnvironment();
@@ -322,9 +323,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(viewModel.RequiredMissing);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("InputOutputMappingViewModel_MapsTo")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("InputOutputMappingViewModel_MapsTo")]
         public void InputOutputMappingViewModel_MapsTo_ChangedToNonEmptyAndRequiredIsFalse_RequireMissingFalse()
         {
             //------------Setup for test--------------------------
@@ -341,9 +342,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(viewModel.RequiredMissing);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("InputOutputMappingViewModel_MapsTo")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("InputOutputMappingViewModel_MapsTo")]
         public void InputOutputMappingViewModel_MapsTo_ChangedToNonEmptyAndRequiredIsTrue_RequireMissingFalse()
         {
             //------------Setup for test--------------------------
@@ -360,9 +361,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(viewModel.RequiredMissing);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("InputOutputMappingViewModel_MapsTo")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("InputOutputMappingViewModel_MapsTo")]
         public void InputOutputMappingViewModel_MapsTo_ChangedToEmptyAndRequiredIsFalse_RequireMissingFalse()
         {
             //------------Setup for test--------------------------
@@ -379,9 +380,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(viewModel.RequiredMissing);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("InputOutputMappingViewModel_MapsTo")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("InputOutputMappingViewModel_MapsTo")]
         public void InputOutputMappingViewModel_MapsTo_ChangedToEmptyAndRequiredIsTrue_RequireMissingTrue()
         {
             //------------Setup for test--------------------------

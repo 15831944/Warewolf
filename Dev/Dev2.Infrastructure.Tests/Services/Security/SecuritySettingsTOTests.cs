@@ -10,19 +10,20 @@
 
 using System.Collections.Generic;
 using Dev2.Services.Security;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Infrastructure.Tests.Services.Security
 {
     /// <summary>
     /// Summary description for SecuritySettingsTOTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SecuritySettingsTOTests
     {
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SecuritySettingsTO_Contructor")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("SecuritySettingsTO_Contructor")]
         public void SecuritySettingsTO_Contructor_CallBasicCtor_WindowsGroupPermissionsEmpty()
         {
             //------------Execute Test---------------------------
@@ -32,9 +33,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.AreEqual(0, securitySettingsTO.WindowsGroupPermissions.Count);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SecuritySettingsTO_Contructor")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("SecuritySettingsTO_Contructor")]
         public void SecuritySettingsTO_Contructor_CallOverloadedCtor_WindowsGroupPermissionsEmpty()
         {
             //------------Setup for test--------------------------

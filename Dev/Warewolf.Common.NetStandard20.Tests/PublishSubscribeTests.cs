@@ -9,19 +9,20 @@
 */
 
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System.Threading;
 using System.Text;
 
 namespace Warewolf.Streams
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class PublishSubscribeTests
     {
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(IPublisher))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(IPublisher))]
         public void IPublisher_IConsumer_GivenDeserializedData_ExpectConsumeCalled()
         {
             var publishedValue = new S("hello");

@@ -12,19 +12,20 @@ using System.Activities.Presentation.Model;
 using Dev2.Common.Interfaces.Help;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Activities.Designers.Tests.RecordsLength
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class RecordsLengthDesignerViewModelTests
     {
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("RecordsLengthDesignerViewModel_SetRecordsetNameValue")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("RecordsLengthDesignerViewModel_SetRecordsetNameValue")]
         public void RecordsLengthDesignerViewModel_SetRecordsetNameValue_ModelItemIsValid_RecordSetOnModelItemIsSet()
         {
             var modelItem = CreateModelItem();
@@ -36,9 +37,9 @@ namespace Dev2.Activities.Designers.Tests.RecordsLength
             Assert.IsTrue(viewModel.HasLargeView);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("RecordsLengthDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("RecordsLengthDesignerViewModel_Handle")]
         public void RecordsLengthDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      

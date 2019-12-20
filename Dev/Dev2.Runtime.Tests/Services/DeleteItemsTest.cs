@@ -21,18 +21,19 @@ using Dev2.Communication;
 using Dev2.Explorer;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DeleteItemsTest
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -44,9 +45,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -58,9 +59,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(AuthorizationContext.Contribute, resId);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DeleteItem_HandlesType")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DeleteItem_HandlesType")]
         public void DeleteItem_HandlesType_ExpectName()
         {
             //------------Setup for test--------------------------
@@ -73,9 +74,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("DeleteItemService", deleteItem.HandlesType());
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DeleteItemService_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DeleteItemService_Execute")]
         public void DeleteItem_Execute_NullValues_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -88,9 +89,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(ExecStatus.Fail, result.Status);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DeleteItemService_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DeleteItemService_Execute")]
         public void DeleteItem_Execute_ItemToDeleteNotInValues_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -104,9 +105,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(ExecStatus.Fail, result.Status);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DeleteItemService_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DeleteItemService_Execute")]
         public void DeleteItem_Execute_ItemToDeleteNotServerExplorerItem_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -120,9 +121,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(ExecStatus.Fail, result.Status);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("deleteItem_Execute")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("deleteItem_Execute")]
         public void DeleteItem_Execute_ExpectName()
         {
             //------------Setup for test--------------------------
@@ -143,9 +144,9 @@ namespace Dev2.Tests.Runtime.Services
             repo.Verify(a => a.DeleteItem(It.IsAny<IExplorerItem>(), It.IsAny<Guid>()));
         }
         
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("deleteItem_CreateEntry")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("deleteItem_CreateEntry")]
         public void DeleteItem_CreateServiceEntry_ExpectProperlyFormedDynamicService()
         {
             //------------Setup for test--------------------------

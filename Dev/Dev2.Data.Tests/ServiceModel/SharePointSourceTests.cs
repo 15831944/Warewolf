@@ -13,32 +13,33 @@ using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.Infrastructure.SharedModels;
 using Dev2.Data.ServiceModel;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Data.Tests.ServiceModel
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SharePointSourceTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SharepointSource))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SharepointSource))]
         public void SharePointSource_Validate_DefaultValues()
         {
             var sharepointSource = new SharepointSource();
 
-            Assert.IsTrue(sharepointSource.IsSource);
-            Assert.IsFalse(sharepointSource.IsService);
-            Assert.IsFalse(sharepointSource.IsFolder);
-            Assert.IsFalse(sharepointSource.IsReservedService);
-            Assert.IsFalse(sharepointSource.IsServer);
-            Assert.IsFalse(sharepointSource.IsResourceVersion);
+            NUnit.Framework.Assert.IsTrue(sharepointSource.IsSource);
+            NUnit.Framework.Assert.IsFalse(sharepointSource.IsService);
+            NUnit.Framework.Assert.IsFalse(sharepointSource.IsFolder);
+            NUnit.Framework.Assert.IsFalse(sharepointSource.IsReservedService);
+            NUnit.Framework.Assert.IsFalse(sharepointSource.IsServer);
+            NUnit.Framework.Assert.IsFalse(sharepointSource.IsResourceVersion);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SharepointSource))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SharepointSource))]
         [Ignore("Incompatible with the latest version of Moq.")]
         public void SharePointSource_Validate_LoadLists()
         {
@@ -59,14 +60,14 @@ namespace Dev2.Data.Tests.ServiceModel
             var sharepointSource = new SharepointSource(mockSharepointHelperFactory.Object);
 
             var sharepointList = sharepointSource.LoadLists();
-            Assert.AreEqual(2, sharepointList.Count);
-            Assert.AreEqual("SharepointFullName", sharepointList[0].FullName);
-            Assert.AreEqual("SharepointFullNameDup", sharepointList[1].FullName);
+            NUnit.Framework.Assert.AreEqual(2, sharepointList.Count);
+            NUnit.Framework.Assert.AreEqual("SharepointFullName", sharepointList[0].FullName);
+            NUnit.Framework.Assert.AreEqual("SharepointFullNameDup", sharepointList[1].FullName);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SharepointSource))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SharepointSource))]
         [Ignore("Incompatible with the latest version of Moq.")]
         public void SharePointSource_Validate_LoadFieldsForList()
         {
@@ -90,40 +91,40 @@ namespace Dev2.Data.Tests.ServiceModel
             var sharepointSource = new SharepointSource(mockSharepointHelperFactory.Object);
 
             var sharepointList = sharepointSource.LoadFieldsForList(listName);
-            Assert.AreEqual(2, sharepointList.Count);
-            Assert.AreEqual("SharepointName", sharepointList[0].Name);
-            Assert.AreEqual("SharepointNameDup", sharepointList[1].Name);
+            NUnit.Framework.Assert.AreEqual(2, sharepointList.Count);
+            NUnit.Framework.Assert.AreEqual("SharepointName", sharepointList[0].Name);
+            NUnit.Framework.Assert.AreEqual("SharepointNameDup", sharepointList[1].Name);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SharepointSource))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SharepointSource))]
         public void SharePointSource_ShouldHaveConstructorAndSetDefaultValues()
         {
             var sharepointSource = new SharepointSource();
-            Assert.IsNotNull(sharepointSource);
-            Assert.AreEqual("SharepointServerSource", sharepointSource.ResourceType);
+            NUnit.Framework.Assert.IsNotNull(sharepointSource);
+            NUnit.Framework.Assert.AreEqual("SharepointServerSource", sharepointSource.ResourceType);
             sharepointSource.AuthenticationType = AuthenticationType.User;
             var xElement = sharepointSource.ToXml();
-            Assert.IsNotNull(xElement);
+            NUnit.Framework.Assert.IsNotNull(xElement);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SharepointSource))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SharepointSource))]
         public void SharePointSource_GivenNoURL_TestConnection_ShouldReturn()
         {
             var sharepointSource = new SharepointSource();
-            Assert.IsNotNull(sharepointSource);
-            Assert.AreEqual("SharepointServerSource", sharepointSource.ResourceType);
+            NUnit.Framework.Assert.IsNotNull(sharepointSource);
+            NUnit.Framework.Assert.AreEqual("SharepointServerSource", sharepointSource.ResourceType);
             sharepointSource.AuthenticationType = AuthenticationType.User;
             var testConnection = sharepointSource.TestConnection();
-            Assert.IsTrue(testConnection.Contains("Test Failed"));
+            NUnit.Framework.Assert.IsTrue(testConnection.Contains("Test Failed"));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SharepointSource))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SharepointSource))]
         public void SharePointSource_GivenXelement_ShouldHaveConstructorAndSetDefaultValues()
         {
             const string conStr = @"<Source ID=""2aa3fdba-e0c3-47dd-8dd5-e6f24aaf5c7a"" Name=""test server"" Type=""Dev2Server"" ConnectionString=""AppServerUri=http://178.63.172.163:3142/dsf;WebServerPort=3142;AuthenticationType=Public;UserName=;Password="" Version=""1.0"" ResourceType=""Server"" ServerID=""51a58300-7e9d-4927-a57b-e5d700b11b55"">
@@ -148,9 +149,9 @@ namespace Dev2.Data.Tests.ServiceModel
 
             var xElement = XElement.Parse(conStr);
             var sharepointSource = new SharepointSource(xElement);
-            Assert.IsNotNull(sharepointSource);
-            Assert.IsNotNull(sharepointSource.ResourceID);
-            Assert.AreEqual("SharepointServerSource", sharepointSource.ResourceType);
+            NUnit.Framework.Assert.IsNotNull(sharepointSource);
+            NUnit.Framework.Assert.IsNotNull(sharepointSource.ResourceID);
+            NUnit.Framework.Assert.AreEqual("SharepointServerSource", sharepointSource.ResourceType);
         }
     }
 }

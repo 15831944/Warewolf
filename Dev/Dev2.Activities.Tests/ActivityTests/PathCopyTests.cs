@@ -17,7 +17,7 @@ using Dev2.Common.State;
 using Dev2.Data.Interfaces;
 using Dev2.Diagnostics;
 using Dev2.Tests.Activities.Mocks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.ActivityTests
@@ -25,7 +25,8 @@ namespace Dev2.Tests.Activities.ActivityTests
     /// <summary>
     /// Summary description for DateTimeDifferenceTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class PathCopyTests : BaseActivityUnitTest
     {
@@ -36,16 +37,16 @@ namespace Dev2.Tests.Activities.ActivityTests
         ///</summary>
         public TestContext TestContext { get; set; }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfPathCopy_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfPathCopy_UpdateForEachInputs")]
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void DsfPathCopy_UpdateForEachInputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
-            var inputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]].txt");
-            var outputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
+            var inputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]].txt");
+            var outputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
             var act = new DsfPathCopy { InputPath = inputPath, OutputPath = outputPath, Result = "[[CompanyName]]" };
 
             //------------Execute Test---------------------------
@@ -55,15 +56,15 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(outputPath, act.OutputPath);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfPathCopy_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfPathCopy_UpdateForEachInputs")]
         public void DsfPathCopy_UpdateForEachInputs_MoreThan1Updates_Updates()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
-            var inputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]].txt");
-            var outputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
+            var inputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]].txt");
+            var outputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
             var act = new DsfPathCopy { InputPath = inputPath, OutputPath = outputPath, Result = "[[CompanyName]]" };
 
             var tuple1 = new Tuple<string, string>(outputPath, "Test");
@@ -76,30 +77,30 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfPathCopy_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfPathCopy_UpdateForEachOutputs")]
         public void DsfPathCopy_UpdateForEachOutputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
             const string result = "[[CompanyName]]";
-            var act = new DsfPathCopy { InputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]].txt"), OutputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt"), Result = result };
+            var act = new DsfPathCopy { InputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]].txt"), OutputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt"), Result = result };
 
             act.UpdateForEachOutputs(null);
             //------------Assert Results-------------------------
             Assert.AreEqual(result, act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfPathCopy_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfPathCopy_UpdateForEachOutputs")]
         public void DsfPathCopy_UpdateForEachOutputs_MoreThan1Updates_DoesNothing()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
             const string result = "[[CompanyName]]";
-            var act = new DsfPathCopy { InputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]].txt"), OutputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt"), Result = result };
+            var act = new DsfPathCopy { InputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]].txt"), OutputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt"), Result = result };
 
             var tuple1 = new Tuple<string, string>("Test", "Test");
             var tuple2 = new Tuple<string, string>("Test2", "Test2");
@@ -109,15 +110,15 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(result, act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfPathCopy_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfPathCopy_UpdateForEachOutputs")]
         public void DsfPathCopy_UpdateForEachOutputs_1Updates_UpdateResult()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
-            var inputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]].txt");
-            var outputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
+            var inputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]].txt");
+            var outputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
             var act = new DsfPathCopy { InputPath = inputPath, OutputPath = outputPath, Result = "[[CompanyName]]" };
 
             var tuple1 = new Tuple<string, string>("[[CompanyName]]", "Test");
@@ -127,15 +128,15 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Test", act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfPathCopy_GetForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfPathCopy_GetForEachInputs")]
         public void DsfPathCopy_GetForEachInputs_WhenHasExpression_ReturnsInputList()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
-            var inputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]].txt");
-            var outputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
+            var inputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]].txt");
+            var outputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
             var act = new DsfPathCopy { InputPath = inputPath, OutputPath = outputPath, Result = "[[CompanyName]]" };
 
             //------------Execute Test---------------------------
@@ -148,15 +149,15 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(outputPath, dsfForEachItems[1].Value);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfPathCopy_GetForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfPathCopy_GetForEachOutputs")]
         public void DsfPathCopy_GetForEachOutputs_WhenHasResult_ReturnsOutputList()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
             const string result = "[[CompanyName]]";
-            var act = new DsfPathCopy { InputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]].txt"), OutputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt"), Result = result };
+            var act = new DsfPathCopy { InputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]].txt"), OutputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt"), Result = result };
 
             //------------Execute Test---------------------------
             var dsfForEachItems = act.GetForEachOutputs();
@@ -166,13 +167,13 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(result, dsfForEachItems[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DsfPathCopy_Execute")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DsfPathCopy_Execute")]
         public void Copy_Execute_Workflow_SourceFile_And_DestinationFile_Has_Separate_Passwords_Both_Passwords_Are_Sent_To_OperationBroker()
         {
             var fileNames = new List<string>();
-            fileNames.Add(Path.Combine(TestContext.TestRunDirectory, Guid.NewGuid() + ".txt"));
+            fileNames.Add(Path.Combine(Environment.CurrentDirectory, Guid.NewGuid() + ".txt"));
 
             foreach(string fileName in fileNames)
             {
@@ -188,7 +189,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             var act = new DsfPathCopy
                 {
                     InputPath = @"c:\OldFile.txt",
-                    OutputPath = Path.Combine(TestContext.TestRunDirectory, "NewName.txt"),
+                    OutputPath = Path.Combine(Environment.CurrentDirectory, "NewName.txt"),
                     Result = "[[res]]",
                     DestinationUsername = "destUName",
                     DestinationPassword = "destPWord",
@@ -206,9 +207,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(activityOperationBrokerMock.Source.IOPath.Username, "uName");
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DsfPathCopy_Construct")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DsfPathCopy_Construct")]
         public void Copy_Construct_Object_Must_Be_OfType_IDestinationUsernamePassword()
         {
             var pathCopy = new DsfPathCopy();
@@ -217,9 +218,9 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("DsfPathCopy_GetState")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("DsfPathCopy_GetState")]
         public void DsfPathCopy_GetState_ReturnsStateVariable()
         {
             var act = new DsfPathCopy

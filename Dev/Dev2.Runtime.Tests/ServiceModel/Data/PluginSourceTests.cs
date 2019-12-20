@@ -12,22 +12,23 @@ using System;
 using System.Xml.Linq;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Tests.Runtime.XML;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Tests.Runtime.ServiceModel
 
 {
     // BUG 9500 - 2013.05.31 - TWR : added proper testing
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class PluginSourceTests
     {
   
 
         #region CTOR
 
-        [TestMethod]
+        [Test]
         public void PluginSourceContructorWithDefaultExpectedInitializesProperties()
         {
             var source = new PluginSource();
@@ -35,14 +36,14 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual("PluginSource", source.ResourceType);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void PluginSourceContructorWithNullXmlExpectedThrowsArgumentNullException()
         {
             var source = new PluginSource(null);
         }
 
-        [TestMethod]
+        [Test]
         public void PluginSourceContructorWithInvalidXmlExpectedDoesNotThrowExceptionAndInitializesProperties()
         {
             var xml = new XElement("root");
@@ -52,7 +53,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual("PluginSource", source.ResourceType);
         }
 
-        [TestMethod]
+        [Test]
         public void PluginSourceContructorWithValidXmlExpectedInitializesProperties()
         {
             var xml = XmlResource.Fetch("PluginSource");
@@ -68,7 +69,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
 
         #region ToXml
 
-        [TestMethod]
+        [Test]
         public void PluginSourceToXmlExpectedSerializesProperties()
         {
             var expected = new PluginSource
@@ -86,7 +87,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(expected.AssemblyName, actual.AssemblyName);
         }
 
-        [TestMethod]
+        [Test]
         public void PluginSourceToXmlWithNullPropertiesExpectedSerializesPropertiesAsEmpty()
         {
             var expected = new PluginSource

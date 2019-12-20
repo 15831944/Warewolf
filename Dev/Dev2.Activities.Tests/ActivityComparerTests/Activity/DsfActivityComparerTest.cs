@@ -1,5 +1,5 @@
 ﻿using Dev2.Common.Interfaces.Core;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +8,12 @@ using Warewolf.Core;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfActivityComparerTest
     {
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentUniqueIds_ActivityTools_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -27,8 +28,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_EmptyActivityTools_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -43,8 +44,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentInputs_ActivityTools_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -62,8 +63,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameInputsDifferentIndexes_ActivityTools_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -88,8 +89,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameInputs_ActivityTools_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -105,8 +106,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentOutputs_ActivityTools_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -124,8 +125,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameOutputs_DifferentIndexes_ActivityTools_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -150,8 +151,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameOutputs_ActivityTools_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -167,8 +168,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentServiceUri_ActivityTools_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -183,8 +184,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameServiceUri_ActivityTools_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -199,8 +200,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentRunWorkflowAsync_ActivityTools_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -214,8 +215,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameRunWorkflowAsync_ActivityTools_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -230,8 +231,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentIsObject_ActivityTools_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -246,8 +247,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameIsObject_ActivityTools_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -262,8 +263,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameCategory_ActivityTools_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -279,8 +280,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
         }
 
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameCategory_Different_Casing_ActivityTools_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -295,8 +296,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentCategory_ActivityTools_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -311,8 +312,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Empty_ActivityDto_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -326,8 +327,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameFieldName_ActivityDto_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -340,8 +341,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             //---------------Test Result -----------------------
             Assert.IsTrue(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentFieldName_ActivityDto_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -355,8 +356,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameFieldValue_ActivityDto_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -370,8 +371,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentFieldValue_ActivityDto_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -385,8 +386,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameIndexNumber_ActivityDto_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -399,8 +400,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             //---------------Test Result -----------------------
             Assert.IsTrue(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameIsFieldNameFocused_ActivityDto_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -414,8 +415,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentIsFieldNameFocused_ActivityDto_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -428,8 +429,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameErrorMessage_ActivityDto_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -443,8 +444,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentErrorMessage_ActivityDto_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -458,8 +459,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameWatermarkTextVariable_ActivityDto_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -473,8 +474,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentWatermarkTextVariable_ActivityDto_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -489,8 +490,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
         }
 
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameWatermarkTextValue_ActivityDto_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -504,8 +505,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentWatermarkTextValue_ActivityDto_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -519,8 +520,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameInserted_ActivityDto_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -534,8 +535,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DisfferentInserted_ActivityDto_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -549,8 +550,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentOutList_ActivityDto_AreNOTEqual()
         {
             //---------------Set up test pack-------------------
@@ -566,8 +567,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameOutList_DifferentIndexes_ActivityDto_AreNOTEqual()
         {
             //---------------Set up test pack-------------------
@@ -583,8 +584,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameOutList_ActivityDto_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -599,7 +600,7 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
+        [Test]
         public void SavedSource_Null_Object_Is_NotEqual()
         {
             //---------------Set up test pack-------------------
@@ -612,7 +613,7 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsFalse(wcfServiceSourceDefinition.Equals(null), "Equals operator can't compare to null.");
         }
 
-        [TestMethod]
+        [Test]
         public void SavedSource_Itself_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -625,7 +626,7 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsTrue(wcfServiceSourceDefinition.Equals(wcfServiceSourceDefinition), "Equals operator can't compare to itself.");
         }
 
-        [TestMethod]
+        [Test]
         public void SavedSource_DifferentType_Is_NotEqual()
         {
             //---------------Set up test pack-------------------
@@ -639,7 +640,7 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsFalse(wcfServiceSourceDefinition.Equals(differentObject), "Equals operator can't compare to differently typed object.");
         }
 
-        [TestMethod]
+        [Test]
         public void EqualsOperator_WithEqualObjects_AreEqual()
         {
             var firstWcfServiceSourceDefinition = new WcfServiceSourceDefinition { EndpointUrl = "bravo" };
@@ -647,7 +648,7 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsTrue(firstWcfServiceSourceDefinition == secondWcfServiceSourceDefinition, "Equals operator doesnt work.");
         }
 
-        [TestMethod]
+        [Test]
         public void NotEqualsOperator_WithNotEqualObjects_AreNotEqual()
         {
             var firstWcfServiceSourceDefinition = new WcfServiceSourceDefinition { EndpointUrl = "bravo" };
@@ -655,9 +656,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
             Assert.IsTrue(firstWcfServiceSourceDefinition != secondWcfServiceSourceDefinition, "Not equals operator doesnt work.");
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DsfActivity_GetState")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DsfActivity_GetState")]
         public void DsfActivity_GetState_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------

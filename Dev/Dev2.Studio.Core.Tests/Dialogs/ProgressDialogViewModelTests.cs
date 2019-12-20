@@ -10,18 +10,19 @@
 
 using System;
 using Dev2.CustomControls.Progress;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests.Dialogs
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class ProgressDialogViewModelTests
     {
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
         [ExpectedException(typeof(ArgumentNullException))]
-        [TestCategory("ProgressDialogViewModel_CTOR")]
+        [Category("ProgressDialogViewModel_CTOR")]
         public void ProgressDialogViewModel_CTOR_CancelActionIsNull_Exception()
         {
 
@@ -29,10 +30,10 @@ namespace Dev2.Core.Tests.Dialogs
 
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
         [ExpectedException(typeof(ArgumentNullException))]
-        [TestCategory("ProgressDialogViewModel_CTOR")]
+        [Category("ProgressDialogViewModel_CTOR")]
         public void ProgressDialogViewModel_CTOR_ShowDialogActionIsNull_Exception()
         {
             
@@ -40,10 +41,10 @@ namespace Dev2.Core.Tests.Dialogs
             
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
         [ExpectedException(typeof(ArgumentNullException))]
-        [TestCategory("ProgressDialogViewModel_CTOR")]
+        [Category("ProgressDialogViewModel_CTOR")]
         public void ProgressDialogViewModel_CTOR_ClosegActionIsNull_Exception()
         {
             
@@ -51,9 +52,9 @@ namespace Dev2.Core.Tests.Dialogs
             
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ProgressDialogViewModel_CancelCommand")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ProgressDialogViewModel_CancelCommand")]
         public void ProgressDialogViewModel_CancelCommand_CancelCommandExecuted_CallsCancelAction()
         {
             //------------Setup for test--------------------------
@@ -65,9 +66,9 @@ namespace Dev2.Core.Tests.Dialogs
             Assert.IsTrue(cancelActionCalled);
         }
         
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ProgressDialogViewModel_Close")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ProgressDialogViewModel_Close")]
         public void ProgressDialogViewModel_Close_Executed_CallsCloseAction()
         {
             //------------Setup for test--------------------------
@@ -79,9 +80,9 @@ namespace Dev2.Core.Tests.Dialogs
             Assert.IsTrue(closeActionCalled);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ProgressDialogViewModel_Show")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ProgressDialogViewModel_Show")]
         public void ProgressDialogViewModel_Show_Executed_CallsCloseAction()
         {
             //------------Setup for test--------------------------
@@ -93,9 +94,9 @@ namespace Dev2.Core.Tests.Dialogs
             Assert.IsTrue(showActionCalled);
         }
            
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ProgressDialogViewModel_StatusChanged")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ProgressDialogViewModel_StatusChanged")]
         public void ProgressDialogViewModel_StatusChanged_Exected_SetsLabelAndProgressValue()
         {
             //------------Setup for test--------------------------

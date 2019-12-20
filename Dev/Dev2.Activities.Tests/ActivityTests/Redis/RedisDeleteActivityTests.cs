@@ -13,14 +13,15 @@ using System.Collections.Generic;
 using Dev2.Activities.RedisRemove;
 using Dev2.Data.ServiceModel;
 using Dev2.Runtime.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Storage;
 using Warewolf.Storage.Interfaces;
 
 namespace Dev2.Tests.Activities.ActivityTests.Redis
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class RedisRemoveActivityTests : BaseActivityTests
     {
         static RedisRemoveActivity CreateRedisRemoveActivity()
@@ -32,9 +33,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Redis
             return new ExecutionEnvironment();
         }
        
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(RedisRemoveActivity))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(RedisRemoveActivity))]
         public void RedisRemoveActivity_Equal_BothareObjects()
         {
             object RedisRemoveActivity = CreateRedisRemoveActivity();
@@ -43,9 +44,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Redis
             Assert.IsFalse(redisActivityEqual);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(RedisRemoveActivity))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(RedisRemoveActivity))]
         public void RedisRemoveActivity_GivenEnvironmentIsNull_ShouldHaveNoDebugOutputs()
         {
             //---------------Set up test pack-------------------

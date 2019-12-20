@@ -19,13 +19,14 @@ using Dev2.Communication;
 using Dev2.Runtime.ESB.Management;
 using Dev2.Runtime.Execution;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class TerminateExecutionTest
     {
         static readonly Guid WorkspaceID = Guid.Parse("34c0ce48-1f02-4a47-ad51-19ee3789ed4c");
@@ -33,19 +34,19 @@ namespace Dev2.Tests.Runtime.Services
         static readonly object SyncRoot = new object();
         const string HandleType = "TerminateExecutionService";
 
-        [TestInitialize]
+        [SetUp]
         public void TerminateExecutionInit()
         {
             Monitor.Enter(SyncRoot);
         }
 
-        [TestCleanup]
+        [TearDown]
         public void TerminateExecutionCleanup()
         {
             Monitor.Exit(SyncRoot);
         }
 
-        [TestMethod]
+        [Test]
         public void CreateServiceEntryExpectsDynamicService()
         {
             var terminateExecution = new TerminateExecution();
@@ -55,7 +56,7 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("<DataList><Roles ColumnIODirection=\"Input\"/><ResourceID ColumnIODirection=\"Input\"/><Dev2System.ManagmentServicePayload ColumnIODirection=\"Both\"></Dev2System.ManagmentServicePayload></DataList>", ds.DataListSpecification.ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void ExecuteExpectSuccessResult()
         {
             var service = GetExecutableService();
@@ -70,7 +71,7 @@ namespace Dev2.Tests.Runtime.Services
 
         }
 
-        [TestMethod]
+        [Test]
         public void ExecuteExpectFailResultIfNoServiceExist()
         {
             const string Expected = "Message: Failed to stop the workflow execution. It may have completed already.";
@@ -83,7 +84,7 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Expected, obj.Message.ToString());
         }
 
-        [TestMethod]
+        [Test]
         public void TwoServicesAddedExpectServiceWithOneAssociatedServiceFromRepository()
         {
             var service1 = GetExecutableService();
@@ -95,7 +96,7 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(service != null && service.AssociatedServices.Count == 1);
         }
 
-        [TestMethod]
+        [Test]
         public void ThreeServicesAddedOneRemovedExpectsTwoInRepository()
         {
             var guid = Guid.NewGuid();
@@ -116,9 +117,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(0, service.AssociatedServices.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -130,9 +131,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------

@@ -8,17 +8,18 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Tests.Activities.TOTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class CaseConvertDTOTests
     {
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("CaseConvertDTO_Constructor")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("CaseConvertDTO_Constructor")]
         public void CaseConvertDTO_Constructor_FullConstructor_DefaultValues()
         {
             //------------Setup for test--------------------------
@@ -33,9 +34,9 @@ namespace Dev2.Tests.Activities.TOTests
 
         #region CanAdd Tests
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("CaseConvertTO_CanAdd")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("CaseConvertTO_CanAdd")]
         public void CaseConvertTO_CanAdd_StringToConvertEmpty_ReturnFalse()
         {
             //------------Setup for test--------------------------
@@ -45,9 +46,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsFalse(caseConvertTO.CanAdd());
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("CaseConvertTO_CanAdd")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("CaseConvertTO_CanAdd")]
         public void CaseConvertTO_CanAdd_StringToConvertnHasData_ReturnTrue()
         {
             //------------Setup for test--------------------------
@@ -57,7 +58,7 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(caseConvertTO.CanAdd());
         }
 
-        [TestMethod]
+        [Test]
         public void CaseConvertTO_GetRuleSet_StringToConvert_ReturnsStringToConvertRule()
         {
             //------------Setup for test--------------------------
@@ -69,7 +70,7 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.AreEqual(1, ruleSet.Rules.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void CaseConvertTO_ClearRow_StringToConvert_ReturnsStringToConvertRule()
         {
             //------------Setup for test--------------------------
@@ -82,7 +83,7 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.AreEqual(string.Empty, caseConvertTO.Result);
         }
 
-        [TestMethod]
+        [Test]
         public void CaseConvertTO_GetRuleSet_ConvertType_ReturnsNoRule()
         {
             //------------Setup for test--------------------------
@@ -98,9 +99,9 @@ namespace Dev2.Tests.Activities.TOTests
 
         #region CanRemove Tests
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("CaseConvertTO_CanRemove")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("CaseConvertTO_CanRemove")]
         public void CaseConvertTO_CanRemove_StringToConvertEmpty_ReturnTrue()
         {
             //------------Setup for test--------------------------
@@ -110,9 +111,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(caseConvertTO.CanRemove());
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("CaseConvertTO_CanRemove")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("CaseConvertTO_CanRemove")]
         public void CaseConvertTO_CanRemove_StringToConvertWithData_ReturnFalse()
         {
             //------------Setup for test--------------------------

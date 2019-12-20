@@ -9,11 +9,12 @@
 */
 
 using System.Xml.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Runtime.Configuration.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ExtensionMethodsTests
     {
         const string AttributeName = "say";
@@ -28,27 +29,27 @@ namespace Dev2.Runtime.Configuration.Tests
 
         #region AttributeSafe
 
-        [TestMethod]
+        [Test]
         public void AttributeSafeWithInvalidArgumentsReturnsEmptyString()
         {
             var result = ExtensionMethods.AttributeSafe(null, null);
-            Assert.AreEqual(string.Empty, result);
+            NUnit.Framework.Assert.AreEqual(string.Empty, result);
 
             var elem = CreateXml();
             result = elem.AttributeSafe(null);
-            Assert.AreEqual(string.Empty, result);
+            NUnit.Framework.Assert.AreEqual(string.Empty, result);
             result = elem.AttributeSafe(string.Empty);
-            Assert.AreEqual(string.Empty, result);
+            NUnit.Framework.Assert.AreEqual(string.Empty, result);
             result = elem.AttributeSafe("y");
-            Assert.AreEqual(string.Empty, result);
+            NUnit.Framework.Assert.AreEqual(string.Empty, result);
         }
 
-        [TestMethod]
+        [Test]
         public void AttributeSafeWithValidArgumentsReturnsAttributeValue()
         {
             var elem = CreateXml();
             var result = elem.AttributeSafe(AttributeName);
-            Assert.AreEqual(AttributeValue, result);
+            NUnit.Framework.Assert.AreEqual(AttributeValue, result);
         }
 
         #endregion

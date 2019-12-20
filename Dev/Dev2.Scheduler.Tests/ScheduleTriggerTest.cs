@@ -10,18 +10,19 @@
 
 using System.Collections.Generic;
 using Dev2.Common.Interfaces.WindowsTaskScheduler.Wrappers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Microsoft.Win32.TaskScheduler;
 using Moq;
 
 namespace Dev2.Scheduler.Test
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ScheduleTriggerTest
     {
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskSheduler_ ScheduleTrigger_Constructor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskSheduler_ ScheduleTrigger_Constructor")]
         public void ScheduleTrigger_AssertConstructor()
         {
             var t = new Mock<ITrigger>();
@@ -42,9 +43,9 @@ namespace Dev2.Scheduler.Test
             Assert.AreEqual(trigger.State, TaskState.Disabled);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskSheduler_ ScheduleTrigger_Constructor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskSheduler_ ScheduleTrigger_Constructor")]
         public void ScheduleTrigger_AssertTriggerDeserialise()
         {
             var t = new Mock<ITrigger>();

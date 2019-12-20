@@ -8,16 +8,17 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Common.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IntellisenseStringResultTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(IntellisenseStringResult))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(IntellisenseStringResult))]
         public void IntellisenseStringResult_Validate()
         {
             const string expectedResult = "some result";

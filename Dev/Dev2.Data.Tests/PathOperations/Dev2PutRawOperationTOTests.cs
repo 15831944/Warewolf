@@ -10,17 +10,18 @@
 
 using Dev2.PathOperations;
 using Dev2.Data.Interfaces.Enums;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Data.Tests.PathOperations
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class Dev2PutRawOperationTOTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("Dev2PutRawOperationTO_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("Dev2PutRawOperationTO_Constructor")]
         public void Dev2PutRawOperation_Constructor_TakesContentsAndWriteTypeEnum()
         {
             //------------Setup for test--------------------------
@@ -29,12 +30,12 @@ namespace Dev2.Data.Tests.PathOperations
             //------------Execute Test---------------------------
             var dev2PutRawOperation = new Dev2PutRawOperationTO(WriteType,Contents);
             //------------Assert Results-------------------------
-            Assert.IsNotNull(dev2PutRawOperation);
+            NUnit.Framework.Assert.IsNotNull(dev2PutRawOperation);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("Dev2PutRawOperationTO_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("Dev2PutRawOperationTO_Constructor")]
         public void Dev2PutRawOperationTO_Constructor_GivenParameter_ShouldSetProperties()
         {
             //------------Setup for test--------------------------
@@ -43,8 +44,8 @@ namespace Dev2.Data.Tests.PathOperations
             //------------Execute Test---------------------------
             var dev2PutRawOperation = new Dev2PutRawOperationTO(WriteType, Contents);
             //------------Assert Results-------------------------
-            Assert.AreEqual(WriteType,dev2PutRawOperation.WriteType);
-            Assert.AreEqual(Contents,dev2PutRawOperation.FileContents);
+            NUnit.Framework.Assert.AreEqual(WriteType,dev2PutRawOperation.WriteType);
+            NUnit.Framework.Assert.AreEqual(Contents,dev2PutRawOperation.FileContents);
         }
     }
 }

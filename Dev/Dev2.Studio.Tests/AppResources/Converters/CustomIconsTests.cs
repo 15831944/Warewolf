@@ -1,15 +1,16 @@
 ﻿using System;
 using Dev2.Common;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Studio.Tests.AppResources.Converters
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class CustomIconsTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(CustomIcons))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(CustomIcons))]
         public void CustomIcons_Error_Is_ExpectValue()
         {
             //-------------------Arrange---------------------
@@ -20,9 +21,9 @@ namespace Dev2.Studio.Tests.AppResources.Converters
             Assert.AreEqual(customIconsError, CustomIcons.Error);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(CustomIcons))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(CustomIcons))]
         public void CustomIcons_Information_Is_ExpectValue()
         {
             //-------------------Arrange---------------------
@@ -33,9 +34,9 @@ namespace Dev2.Studio.Tests.AppResources.Converters
             Assert.AreEqual(customIconsInformation, CustomIcons.Information);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(CustomIcons))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(CustomIcons))]
         public void CustomIcons_Question_Is_ExpectValue()
         {
             //-------------------Arrange---------------------
@@ -46,9 +47,9 @@ namespace Dev2.Studio.Tests.AppResources.Converters
             Assert.AreEqual(customIconsQuestion, CustomIcons.Question);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(CustomIcons))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(CustomIcons))]
         public void CustomIcons_Warning_Is_ExpectValue()
         {
             //-------------------Arrange---------------------

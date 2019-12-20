@@ -10,25 +10,26 @@
 
 using System;
 using Dev2.Runtime.Configuration.ViewModels.Base;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Runtime.Configuration.Tests.ViewModels
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class RelayCommandTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(RelayCommand))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(RelayCommand))]
         [ExpectedException(typeof(ArgumentNullException))]
         public void RelayCommand_Constructor_ActionIsNull_ThrowsException()
         {
             new RelayCommand(null);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(RelayCommand))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(RelayCommand))]
         public void RelayCommand_Execute_PassingAnObject_ObjectPassedToAction()
         {
             //------------Setup for test--------------------------
@@ -40,14 +41,14 @@ namespace Dev2.Runtime.Configuration.Tests.ViewModels
             //------------Execute Test---------------------------
             relayCommand.Execute(new { Name = "Tshepo", Surname = "Ntlhokoa" });
             //------------Assert Results-------------------------
-            Assert.IsNotNull(prop);
-            Assert.AreEqual("Tshepo", prop.Name);
-            Assert.AreEqual("Ntlhokoa", prop.Surname);
+            NUnit.Framework.Assert.IsNotNull(prop);
+            NUnit.Framework.Assert.AreEqual("Tshepo", prop.Name);
+            NUnit.Framework.Assert.AreEqual("Ntlhokoa", prop.Surname);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(RelayCommand))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(RelayCommand))]
         public void RelayCommand_CanExecute_WhenConstructedWithAPredicate_PredicateIsCalled()
         {
             //------------Setup for test--------------------------
@@ -60,13 +61,13 @@ namespace Dev2.Runtime.Configuration.Tests.ViewModels
             //------------Execute Test---------------------------
             var canExecute = relayCommand.CanExecute(null);
             //------------Assert Results-------------------------
-            Assert.IsTrue(canExecuteWasCalled);
-            Assert.IsTrue(canExecute);
+            NUnit.Framework.Assert.IsTrue(canExecuteWasCalled);
+            NUnit.Framework.Assert.IsTrue(canExecute);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(RelayCommand))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(RelayCommand))]
         public void RelayCommand_CanExecute_WhenConstructedWithoutAPredicate_ReturnsTrueAsADefault()
         {
             //------------Setup for test--------------------------
@@ -74,12 +75,12 @@ namespace Dev2.Runtime.Configuration.Tests.ViewModels
             //------------Execute Test---------------------------
             var canExecute = relayCommand.CanExecute(null);
             //------------Assert Results-------------------------
-            Assert.IsTrue(canExecute);
+            NUnit.Framework.Assert.IsTrue(canExecute);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(RelayCommand))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(RelayCommand))]
         public void RelayCommand_RaiseCanExecuteChanged_EventNotTriggered_isDelegateCalled_ExpectFalse()
         {
             //------------Setup for test--------------------------
@@ -89,12 +90,12 @@ namespace Dev2.Runtime.Configuration.Tests.ViewModels
             //------------Execute Test---------------------------
             relayCommand.RaiseCanExecuteChanged();
             //------------Assert Results-------------------------
-            Assert.IsFalse(isDelegateCalled);
+            NUnit.Framework.Assert.IsFalse(isDelegateCalled);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(RelayCommand))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(RelayCommand))]
         public void RelayCommand_RaiseCanExecuteChanged_EventTriggered_isDelegateCalled_ExpectTrue()
         {
             //------------Setup for test--------------------------
@@ -105,7 +106,7 @@ namespace Dev2.Runtime.Configuration.Tests.ViewModels
             relayCommand.CanExecuteChanged += (s, MouseEventArgs) => { isDelegateCalled = true; };
             relayCommand.RaiseCanExecuteChanged();
             //------------Assert Results-------------------------
-            Assert.IsTrue(isDelegateCalled);
+            NUnit.Framework.Assert.IsTrue(isDelegateCalled);
         }
     }
 }

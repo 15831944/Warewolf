@@ -4,16 +4,17 @@ using System.Text;
 using Dev2.Common.Interfaces.Enums;
 using Dev2.Communication;
 using Dev2.Runtime.ESB.Management.Services;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class GetServerInformationTest
     {
-        [TestMethod]
-        [Owner("Peter Bezuidenhout")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Peter Bezuidenhout")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -25,9 +26,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Peter Bezuidenhout")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Peter Bezuidenhout")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -39,9 +40,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(AuthorizationContext.Any, resId);
         }
 
-        [TestMethod]
-        [Owner("Peter Bezuidenhout")]
-        [TestCategory("GetServerInformation_HandlesType")]
+        [Test]
+        [Author("Peter Bezuidenhout")]
+        [Category("GetServerInformation_HandlesType")]
         
         public void GetServerInformation_HandlesType_ExpectName()
 
@@ -56,9 +57,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("GetServerInformation", getInformation.HandlesType());
         }
 
-        [TestMethod]
-        [Owner("Peter Bezuidenhout")]
-        [TestCategory("GetServerInformation_Execute")]
+        [Test]
+        [Author("Peter Bezuidenhout")]
+        [Category("GetServerInformation_Execute")]
         public void GetServerInformation_Execute_NullValuesParameter_ErrorResult()
         {
             //------------Setup for test--------------------------

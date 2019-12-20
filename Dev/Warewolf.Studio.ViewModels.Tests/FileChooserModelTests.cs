@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using System.IO;
 using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.Wrappers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Warewolf.Studio.ViewModels.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FileChooserModelTests
     {
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory(" FileChooserModel_Ctor")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Leon Rajindrapersadh")]
+        [Category(" FileChooserModel_Ctor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void FileChooserModel_Ctor_Null_ExpectException()
         {
@@ -26,9 +28,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(" FileChooserModel_Ctor")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
+        [Category(" FileChooserModel_Ctor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void FileChooserModel_CtorFilter_NullQueryManager_ExpectException()
         {
@@ -42,9 +45,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(" FileChooserModel_Ctor")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
+        [Category(" FileChooserModel_Ctor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void FileChooserModel_CtorFilter_NullFilter_ExpectException()
         {
@@ -58,9 +62,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(" FileChooserModel_Ctor")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
+        [Category(" FileChooserModel_Ctor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void FileChooserModel_CtorFilter_Null_NotNull()
         {
@@ -74,9 +79,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory(" FileChooserModel_Ctor")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Leon Rajindrapersadh")]
+        [Category(" FileChooserModel_Ctor")]
         public void FileChooserModel_Ctor_NotNull()
         {
             //------------Setup for test--------------------------
@@ -87,9 +93,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory(" FileChooserModel_GetDrives")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Leon Rajindrapersadh")]
+        [Category(" FileChooserModel_GetDrives")]
         public void FileChooserModel_GetDrivesExpectPassThrough()
         {
             //------------Setup for test--------------------------
@@ -106,9 +113,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual(drives[1].Name, @"d:\");
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(" FileChooserModel_GetDrives")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
+        [Category(" FileChooserModel_GetDrives")]
         public void FileChooserModel_GetDrivesAndFilterExpectPassThrough()
         {
             //------------Setup for test--------------------------
@@ -131,9 +139,10 @@ namespace Warewolf.Studio.ViewModels.Tests
         }
 
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory(" FileChooserModel_GetFiles")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Leon Rajindrapersadh")]
+        [Category(" FileChooserModel_GetFiles")]
         public void FileChooserModel_GetFilesExpectPassThrough()
         {
             //------------Setup for test--------------------------

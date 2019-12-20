@@ -11,17 +11,18 @@
 using System;
 using System.Runtime.InteropServices;
 using Dev2.Services.Security.MoqInstallerActions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Infrastructure.Tests.MoqInstallerActions
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WarewolfSecurityOperationsTest
     {
         
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("WarewolfSecurityOperations_AddWarewolfGroup")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("WarewolfSecurityOperations_AddWarewolfGroup")]
         public void WarewolfSecurityOperations_AddWarewolfGroup_ExpectGroupAdded()
         {
             var grpOps = MoqInstallerActionFactory.CreateSecurityOperationsObject();
@@ -32,9 +33,9 @@ namespace Dev2.Infrastructure.Tests.MoqInstallerActions
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("WarewolfSecurityOperations_DoesWarewolfGroupExist")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("WarewolfSecurityOperations_DoesWarewolfGroupExist")]
         public void WarewolfSecurityOperationsDoesWarewolfGroupExistWhenGroupDoesNotExistExpectFalse()
         {
             //------------Setup for test--------------------------
@@ -48,9 +49,9 @@ namespace Dev2.Infrastructure.Tests.MoqInstallerActions
             Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("WarewolfSecurityOperations_DoesWarewolfGroupExist")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("WarewolfSecurityOperations_DoesWarewolfGroupExist")]
         public void WarewolfSecurityOperations_DoesWarewolfGroupExist_WhenGroupDoesExist_ExpectTrue()
         {
             //------------Setup for test--------------------------
@@ -65,9 +66,9 @@ namespace Dev2.Infrastructure.Tests.MoqInstallerActions
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("WarewolfSecurityOperations_DeleteGroup")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("WarewolfSecurityOperations_DeleteGroup")]
         public void WarewolfSecurityOperations_DeleteGroupWorks_WhenGroupExist_ExpectGroupDeleted()
         {
             //------------Setup for test--------------------------
@@ -83,9 +84,9 @@ namespace Dev2.Infrastructure.Tests.MoqInstallerActions
             // Will throw exception on failure ;)
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("WarewolfSecurityOperations_AddWarewolfGroupToAdministrators")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("WarewolfSecurityOperations_AddWarewolfGroupToAdministrators")]
         public void WarewolfSecurityOperations_AddWarewolfGroupToAdministrators_WhenNotAMember_ExpectNotAdded()
         {
             //------------Setup for test--------------------------
@@ -102,9 +103,9 @@ namespace Dev2.Infrastructure.Tests.MoqInstallerActions
             Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("WarewolfSecurityOperations_AddWarewolfGroupToAdministrators")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("WarewolfSecurityOperations_AddWarewolfGroupToAdministrators")]
         public void WarewolfSecurityOperations_AddWarewolfGroupToAdministrators_WhenNotAlreadyMember_ExpectAdministratorsMemberOfWarewolf()
         {
             //------------Setup for test--------------------------
@@ -133,9 +134,9 @@ namespace Dev2.Infrastructure.Tests.MoqInstallerActions
             Assert.IsTrue(result);
         }
         
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("WarewolfSecurityOperations_DeleteGroup")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("WarewolfSecurityOperations_DeleteGroup")]
         public void WarewolfSecurityOperations_IsUserInGroup_WhenUserNotPresent_ExpectFalse()
         {
             //------------Setup for test--------------------------
@@ -148,9 +149,9 @@ namespace Dev2.Infrastructure.Tests.MoqInstallerActions
             Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("WarewolfSecurityOperations_DeleteGroup")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("WarewolfSecurityOperations_DeleteGroup")]
         public void WarewolfSecurityOperations_AddLocalUserToWarewolfGroup_WhenUserNotPresent_ExpectUserAdded()
         {
             //------------Setup for test--------------------------
@@ -170,9 +171,9 @@ namespace Dev2.Infrastructure.Tests.MoqInstallerActions
         }
 
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("WarewolfSecurityOperations_DeleteGroup")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("WarewolfSecurityOperations_DeleteGroup")]
         public void WarewolfSecurityOperations_FormatUserForInsert_WhenLocalUser_ExpectUserFormated()
         {
             //------------Setup for test--------------------------
@@ -185,9 +186,9 @@ namespace Dev2.Infrastructure.Tests.MoqInstallerActions
             StringAssert.Contains(result, "WinNT://MyPC/Guest");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("WarewolfSecurityOperations_DeleteGroup")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("WarewolfSecurityOperations_DeleteGroup")]
         public void WarewolfSecurityOperations_FormatUserForInsert_WhenDomainUser_ExpectUserFormated()
         {
             //------------Setup for test--------------------------
@@ -203,9 +204,9 @@ namespace Dev2.Infrastructure.Tests.MoqInstallerActions
 
         #region Exception Test
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("WarewolfSecurityOperations_AddUserToWarewolf")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("WarewolfSecurityOperations_AddUserToWarewolf")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void WarewolfSecurityOperations_AddUserToWarewolfGroup_WhenUserNull_ExpectException()
         {
@@ -216,9 +217,9 @@ namespace Dev2.Infrastructure.Tests.MoqInstallerActions
             warewolfGroupOps.AddUserToWarewolf(null);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("WarewolfSecurityOperations_FormatUserForInsert")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("WarewolfSecurityOperations_FormatUserForInsert")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void WarewolfSecurityOperations_FormatUserForInsert_WhenNullUser_ExpectException()
         {
@@ -229,9 +230,9 @@ namespace Dev2.Infrastructure.Tests.MoqInstallerActions
             warewolfGroupOps.FormatUserForInsert(null, null);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("WarewolfSecurityOperations_FormatUserForInsert")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("WarewolfSecurityOperations_FormatUserForInsert")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void WarewolfSecurityOperations_FormatUserForInsert_WhenNullMachineName_ExpectException()
         {
@@ -242,9 +243,9 @@ namespace Dev2.Infrastructure.Tests.MoqInstallerActions
             warewolfGroupOps.FormatUserForInsert("testUser", null);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("WarewolfSecurityOperations_DeleteGroup")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("WarewolfSecurityOperations_DeleteGroup")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void WarewolfSecurityOperations_IsUserInGroup_WhenUserNotPresent_ExpectException()
         {

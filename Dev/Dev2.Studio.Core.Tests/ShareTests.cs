@@ -10,17 +10,18 @@
 
 using System;
 using Dev2.Intellisense.Helper;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ShareTests
     {
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Share_Constructor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Share_Constructor")]
         public void Share_Constructor_Construct_ExpectValid()
         {
             //------------Setup for test--------------------------
@@ -33,9 +34,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(@"\\a\b",share.ToString());
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Share_IsFileSystem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Share_IsFileSystem")]
         public void Share_IsFileSystem_ExpectValid()
         {
             //------------Setup for test--------------------------
@@ -48,9 +49,9 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(share.IsFileSystem);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Share_IsFileSystem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Share_IsFileSystem")]
         public void Share_IsFileSystem_IPC_ExpectFalse()
         {
             //------------Setup for test--------------------------
@@ -63,9 +64,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(share.IsFileSystem);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Share_IsFileSystem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Share_IsFileSystem")]
         public void Share_IsFileSystem_Special_ExpectFalse()
         {
             //------------Setup for test--------------------------
@@ -78,9 +79,9 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(share.IsFileSystem);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Share_IsFileSystem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Share_IsFileSystem")]
         public void Share_IsFileSystem_DeviveType_ExpectFalse()
         {
             //------------Setup for test--------------------------
@@ -94,9 +95,9 @@ namespace Dev2.Core.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Share_IsFileSystem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Share_IsFileSystem")]
         public void Share_Constructor_IPC_ExpectCorrectType()
         {
             //------------Setup for test--------------------------
@@ -111,9 +112,9 @@ namespace Dev2.Core.Tests
 
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Share_IsFileSystem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Share_IsFileSystem")]
         public void Share_ToString_BlankServer_ExpectLocalName()
         {
             //------------Setup for test--------------------------

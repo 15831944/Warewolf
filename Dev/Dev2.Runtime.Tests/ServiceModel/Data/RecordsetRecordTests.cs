@@ -12,7 +12,7 @@ using System;
 using System.Collections.Generic;
 using Dev2.Runtime;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Newtonsoft.Json;
 
 namespace Dev2.Tests.Runtime.ServiceModel.Data
@@ -22,20 +22,21 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
 
     /// <author>trevor.williams-ros</author>
     /// <date>2013/02/13</date>
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class RecordsetRecordTests
     {
         #region CTOR
 
-        [TestMethod]
+        [Test]
         public void ConstructorWithNoParametersExpectedCreatesEmpty()
         {
             var record = new RecordsetRecord();
             Assert.AreEqual(0, record.Count);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ConstructorWithNullExpectedThrowsArgumentNullException()
         {
@@ -44,7 +45,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             
         }
 
-        [TestMethod]
+        [Test]
         public void ConstructorWithRecordsetCellsExpectedAddsRecordsetCells()
         {
             var cells = new[]
@@ -62,7 +63,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
 
         #region AddRange
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void AddRangeWithNullExpectedThrowsArgumentNullException()
         {
@@ -70,7 +71,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             record.AddRange(null);
         }
 
-        [TestMethod]
+        [Test]
         public void AddRangeWithRecordsetCellsExpectedAddsRecordsetCells()
         {
             var record = new RecordsetRecord();
@@ -88,7 +89,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
 
         #region Add
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void AddWithNullExpectedThrowsArgumentNullException()
         {
@@ -96,7 +97,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             record.Add(null);
         }
 
-        [TestMethod]
+        [Test]
         public void AddWithRecordsetCellExpectedAddsRecordsetCell()
         {
             var record = new RecordsetRecord();
@@ -111,7 +112,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
 
         #region Clear
 
-        [TestMethod]
+        [Test]
         public void ClearWithCellsExpectedRemovesCells()
         {
             var record = new RecordsetRecord(new[]
@@ -128,7 +129,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
 
         #region JsonSerialization
 
-        [TestMethod]
+        [Test]
         public void JsonSerializationExpectedDoesNotImplementIEnumerable()
         {
             var record = new RecordsetRecord();
@@ -136,7 +137,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.IsNull(enumerable);
         }
 
-        [TestMethod]
+        [Test]
         public void JsonSerializationExpectedIncludesLabel()
         {
             var record = new RecordsetRecord

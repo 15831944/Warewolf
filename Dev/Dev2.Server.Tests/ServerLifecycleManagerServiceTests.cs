@@ -13,7 +13,7 @@ using Dev2.Common.Common;
 using Dev2.Common.Interfaces.Wrappers;
 using Dev2.Runtime.Interfaces;
 using Dev2.Runtime.WebServer;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System.Collections.Generic;
 using System.Net;
@@ -24,12 +24,13 @@ using WarewolfCOMIPC.Client;
 
 namespace Dev2.Server.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ServerLifecycleManagerServiceTests
     {
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ServerLifecycleManagerService))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ServerLifecycleManagerService))]
         public void ServerLifecycleManagerService_Construct()
         {
             using (var service = new ServerLifecycleManagerService())
@@ -38,9 +39,9 @@ namespace Dev2.Server.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ServerLifecycleManagerService))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ServerLifecycleManagerService))]
         public void ServerLifecycleManagerService_Construct_Sets_ServerInteractive_False()
         {
             var mockServerLifeManager = new Mock<IServerLifecycleManager>();
@@ -51,9 +52,9 @@ namespace Dev2.Server.Tests
             mockServerLifeManager.Verify();
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ServerLifecycleManagerService))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ServerLifecycleManagerService))]
         public void ServerLifecycleManagerService_OnStart_Runs_Server()
         {
             var mockServerLifeManager = new Mock<IServerLifecycleManager>();
@@ -68,9 +69,9 @@ namespace Dev2.Server.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ServerLifecycleManagerService))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ServerLifecycleManagerService))]
         public void ServerLifecycleManagerService_OnStop_Stops_Server()
         {
             var mockServerLifeManager = new Mock<IServerLifecycleManager>();
@@ -84,9 +85,9 @@ namespace Dev2.Server.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ServerLifecycleManagerService))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ServerLifecycleManagerService))]
         public void ServerLifecycleManagerService_Dispose_Disposes_IServerLifecycleManager()
         {
             var mockServerLifeManager = new Mock<IServerLifecycleManager>();
@@ -101,9 +102,9 @@ namespace Dev2.Server.Tests
             mockServerLifeManager.Verify(o => o.Dispose(), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ServerLifecycleManager))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ServerLifecycleManager))]
         public void ServerLifecycleManager_OpenCOMStream_Fails()
         {
             //------------------------Arrange------------------------
@@ -121,9 +122,9 @@ namespace Dev2.Server.Tests
             mockSerLifeCycleWorker.Verify();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ServerLifecycleManager))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ServerLifecycleManager))]
         public void ServerLifecycleManager_IsServerOnline_True()
         {
             //------------------------Arrange------------------------
@@ -181,9 +182,9 @@ namespace Dev2.Server.Tests
             mockSerLifeCycleWorker.Verify();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ServerLifecycleManager))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ServerLifecycleManager))]
         public void ServerLifecycleManager_Verify_QueueProcessMonitorStart_IsServerOnline_True()
         {
             //------------------------Arrange------------------------
@@ -245,9 +246,9 @@ namespace Dev2.Server.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ServerLifecycleManager))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ServerLifecycleManager))]
         public void ServerLifecycleManager_IsServerOnline_False()
         {
             //------------------------Arrange------------------------
@@ -302,9 +303,9 @@ namespace Dev2.Server.Tests
             mockSerLifeCycleWorker.Verify();
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(ServerLifecycleManager))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(ServerLifecycleManager))]
         public void ServerLifecycleMananger_Run_ReturnsTask()
         {
             //------------------------Arrange------------------------
@@ -348,7 +349,7 @@ namespace Dev2.Server.Tests
             {
                 var t = serverLifeCycleManager.Run(items);
                 //------------------------Assert-------------------------
-                Assert.IsInstanceOfType(t, typeof(Task));
+                Assert.IsInstanceOf(t.GetType(), typeof(Task));
 
             }
         }

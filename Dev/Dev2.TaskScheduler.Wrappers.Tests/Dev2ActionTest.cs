@@ -9,23 +9,24 @@
 */
 
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Microsoft.Win32.TaskScheduler;
 
 namespace Dev2.TaskScheduler.Wrappers.Test
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class Dev2ActionTest
     {
-        [TestInitialize]
+        [SetUp]
         public void Init()
         {
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2Action_Construct")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2Action_Construct")]
         public void TaskShedulerWrapper_Dev2Action_Construct()
         {
             using ( Microsoft.Win32.TaskScheduler.Action act = new ExecAction("bob","dave","jane"))

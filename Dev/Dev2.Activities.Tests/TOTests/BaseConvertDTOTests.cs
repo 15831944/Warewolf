@@ -8,7 +8,7 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Tests.Activities.TOTests
@@ -16,12 +16,13 @@ namespace Dev2.Tests.Activities.TOTests
     /// <summary>
     /// Summary description for BaseConvertDTOTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class BaseConvertDtoTests
     {
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("BaseConvertDTO_Constructor")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("BaseConvertDTO_Constructor")]
         public void BaseConvertDTO_Constructor_FullConstructor_DefaultValues()
         {
             //------------Setup for test--------------------------
@@ -37,9 +38,9 @@ namespace Dev2.Tests.Activities.TOTests
 
         #region CanAdd Tests
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("BaseConvertTO_CanAdd")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("BaseConvertTO_CanAdd")]
         public void BaseConvertTO_CanAdd_FromExpressionEmpty_ReturnFalse()
         {
             //------------Setup for test--------------------------
@@ -49,9 +50,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsFalse(baseConvertTO.CanAdd());
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("BaseConvertTO_CanAdd")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("BaseConvertTO_CanAdd")]
         public void BaseConvertTO_CanAdd_FromExpressionHasData_ReturnTrue()
         {
             //------------Setup for test--------------------------
@@ -65,9 +66,9 @@ namespace Dev2.Tests.Activities.TOTests
 
         #region CanRemove Tests
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("BaseConvertTO_CanRemove")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("BaseConvertTO_CanRemove")]
         public void BaseConvertTO_CanRemove_FromExpressionEmpty_ReturnTrue()
         {
             //------------Setup for test--------------------------
@@ -77,9 +78,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(baseConvertTO.CanRemove());
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("BaseConvertTO_CanRemove")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("BaseConvertTO_CanRemove")]
         public void BaseConvertTO_CanRemove_FromExpressionWithData_ReturnFalse()
         {
             //------------Setup for test--------------------------

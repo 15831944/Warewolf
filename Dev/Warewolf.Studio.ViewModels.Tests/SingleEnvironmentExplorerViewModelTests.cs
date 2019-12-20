@@ -1,11 +1,12 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using System;
 using Dev2.Studio.Interfaces;
 using Moq;
 
 namespace Warewolf.Studio.ViewModels.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SingleEnvironmentExplorerViewModelTests
     {
         #region Fields
@@ -21,7 +22,7 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         #region Test initialize
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             _selectedId = Guid.NewGuid();
@@ -39,7 +40,8 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         #region Test properties
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestSearchTextUnchanged()
         {
             //arrange
@@ -58,7 +60,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(isSearchTextChanged);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestSearchText()
         {
             //arrange
@@ -83,7 +86,8 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         #region Test commands
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestRefreshCommand()
         {
             //arrange
@@ -98,7 +102,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             _environmentViewModelMock.Verify(it => it.Filter(It.IsAny<Func<IExplorerItemViewModel, bool>>()));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestRefreshCommandFilterByTypeFalse()
         {
             //arrange
@@ -114,7 +119,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             _environmentViewModelMock.Verify(it => it.Filter(It.IsAny<Func<IExplorerItemViewModel, bool>>()));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestRefreshCommandEmptySearch()
         {
             //arrange

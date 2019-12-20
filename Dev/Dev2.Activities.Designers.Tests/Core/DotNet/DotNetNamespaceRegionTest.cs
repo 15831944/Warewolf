@@ -9,19 +9,20 @@ using Dev2.Common.Interfaces.Core;
 using Dev2.Common.Interfaces.ToolBase;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Studio.Core.Activities.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 
 namespace Dev2.Activities.Designers.Tests.Core.DotNet
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DotNetNamespaceRegionTest
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DotNetNamespaceRegion_Constructor")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DotNetNamespaceRegion_Constructor")]
         public void DotNetNamespaceRegion_Constructor_Scenerio_Result()
         {
             //------------Setup for test--------------------------
@@ -37,9 +38,9 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.IsTrue(dotNetNamespaceRegion.IsEnabled);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DotNetNamespaceRegion_ConstructorWithSelectedNamespace")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DotNetNamespaceRegion_ConstructorWithSelectedNamespace")]
         public void DotNetNamespaceRegion_ConstructorWithSelectedNamespace_Scenerio_Result()
         {
             //------------Setup for test--------------------------
@@ -62,9 +63,9 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.IsTrue(dotNetNamespaceRegion.CanRefresh());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DotNetNamespaceRegion_ChangeNamespaceSomethingChanged")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DotNetNamespaceRegion_ChangeNamespaceSomethingChanged")]
         public void DotNetNamespaceRegion_ChangeNamespaceSomethingChanged_ExpectedChange_Result()
         {
             //------------Setup for test--------------------------
@@ -88,9 +89,9 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.IsTrue(evt);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DotNetNamespaceRegion_ChangeNamespaceSomethingChanged")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DotNetNamespaceRegion_ChangeNamespaceSomethingChanged")]
         public void DotNetNamespaceRegion_ChangeNamespaceSomethingChanged_RestoreRegion_Result()
         {
             //------------Setup for test--------------------------
@@ -125,9 +126,9 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             dep2.Verify(a => a.RestoreRegion(clone2.Object), Times.Never);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DotNetNamespaceRegion_ChangeNamespaceSomethingChanged")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DotNetNamespaceRegion_ChangeNamespaceSomethingChanged")]
         public void DotNetNamespaceRegion_ChangeNamespaceSomethingChanged_RegionsNotRestored_Invalid()
         {
             //------------Setup for test--------------------------
@@ -162,9 +163,9 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             dep2.Verify(a => a.RestoreRegion(clone2.Object), Times.Never);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DotNetNamespaceRegion_ChangeNamespaceSomethingChanged")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DotNetNamespaceRegion_ChangeNamespaceSomethingChanged")]
         public void DotNetNamespaceRegion_ChangeNamespaceSomethingChanged_CloneRegion_ExpectedClone()
         {
             //------------Setup for test--------------------------
@@ -186,9 +187,9 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.AreEqual(((DotNetNamespaceRegion)cloned).SelectedNamespace, dotNetNamespaceRegion.SelectedNamespace);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DotNetNamespaceRegion_ChangeNamespaceSomethingChanged")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DotNetNamespaceRegion_ChangeNamespaceSomethingChanged")]
         public void DotNetNamespaceRegion_ChangeNamespaceSomethingChanged_RestoreRegion_ExpectedRestore()
         {
             //------------Setup for test--------------------------
@@ -216,8 +217,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.IsFalse(dotNetNamespaceRegion.IsEnabled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetNamespaces_GivenHasError_ShouldAddIntoErrors()
         {
             //---------------Set up test pack-------------------

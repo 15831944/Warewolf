@@ -17,7 +17,7 @@ using Dev2.Common.Interfaces.Threading;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Studio.Interfaces;
 using Microsoft.Practices.Prism.PubSubEvents;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -26,7 +26,8 @@ using System.Threading.Tasks;
 
 namespace Warewolf.Studio.ViewModels.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ManageSqliteSourceViewModelTests
     {
         Mock<IManageDatabaseSourceModel> _updateManagerMock;
@@ -44,7 +45,7 @@ namespace Warewolf.Studio.ViewModels.Tests
         ManageSqliteSourceViewModel _targetUpdateManagerAggregatorDbSource;
         ManageSqliteSourceViewModel _targetUpdateManagerRequestServiceName;
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             _asyncWorkerMock = new Mock<IAsyncWorker>();
@@ -112,9 +113,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             _changedUpdateManagerRequestServiceName = new List<string>();
 
         }
-        [TestMethod, Timeout(60000)]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ManageSqliteSourceViewModel))]
+        [Test]
+        [Timeout(60000)]
+        [Author("Candice Daniel")]
+        [Category(nameof(ManageSqliteSourceViewModel))]
 
         public void ManageSqliteSourceViewModel_UpdateManagerThrowsExceptionWithInnerException()
         {
@@ -132,9 +134,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(_targetUpdateManagerRequestServiceName.TestPassed);
             Assert.AreEqual(expectedExceptionMessage, _targetUpdateManagerRequestServiceName.TestMessage);
         }
-        [TestMethod, Timeout(60000)]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ManageSqliteSourceViewModel))]
+        [Test]
+        [Timeout(60000)]
+        [Author("Candice Daniel")]
+        [Category(nameof(ManageSqliteSourceViewModel))]
         public void ManageSqliteSourceViewModel_TestUpdateHelpDescriptor()
         {
             var mainViewModelMock = new Mock<IShellViewModel>();
@@ -147,9 +150,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             helpViewModelMock.Verify(it => it.UpdateHelpText(helpText));
         }
 
-        [TestMethod, Timeout(60000)]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ManageSqliteSourceViewModel))]
+        [Test]
+        [Timeout(60000)]
+        [Author("Candice Daniel")]
+        [Category(nameof(ManageSqliteSourceViewModel))]
         public void ManageSqliteSourceViewModel_TestName()
         {
             var expectedValue = "someName";
@@ -160,9 +164,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual(expectedValue, _targetAsyncWorker.ResourceName);
         }
 
-        [TestMethod, Timeout(60000)]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ManageSqliteSourceViewModel))]
+        [Test]
+        [Timeout(60000)]
+        [Author("Candice Daniel")]
+        [Category(nameof(ManageSqliteSourceViewModel))]
         public void ManageSqliteSourceViewModel_TestToModelItemNull()
         {
             //arrange
@@ -199,9 +204,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual(gd, value.Id);
 
         }
-        [TestMethod, Timeout(60000)]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ManageSqliteSourceViewModel))]
+        [Test]
+        [Timeout(60000)]
+        [Author("Candice Daniel")]
+        [Category(nameof(ManageSqliteSourceViewModel))]
         public void ManageSqliteSourceViewModel_TestToModeldbSourceIsNotNull_idIsNull()
         {
             //arrange
@@ -238,9 +244,10 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         }
 
-        [TestMethod, Timeout(60000)]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ManageSqliteSourceViewModel))]
+        [Test]
+        [Timeout(60000)]
+        [Author("Candice Daniel")]
+        [Category(nameof(ManageSqliteSourceViewModel))]
         public void ManageSqliteSourceViewModel_TestHeaderText()
         {
             var expectedValue = "someHeaderText";
@@ -252,9 +259,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(_changedPropertiesAsyncWorker.Contains("Header"));
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ManageSqliteSourceViewModel))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ManageSqliteSourceViewModel))]
         public void ManageSqliteSourceViewModel_dbSourceNotNull()
         {
             var expectedId = Guid.NewGuid();

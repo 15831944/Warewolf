@@ -13,42 +13,43 @@ using System.Collections.Generic;
 using System.Xml.Linq;
 using Dev2.Common.Interfaces.Core.DynamicServices;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Newtonsoft.Json;
 
 
 namespace Dev2.Tests.Runtime.ServiceModel
 
 {
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class DbSourceTests
     {
         #region ToString Tests
 
-        [TestMethod]
+        [Test]
         public void ToStringFullySetupObjectExpectedJsonSerializedObjectReturnedAsString()
         {
             var testDbSource = SetupDefaultDbSource();
             var actualDbSourceToString = testDbSource.ToString();
             var expected = JsonConvert.SerializeObject(testDbSource);
-            Assert.AreEqual(expected, actualDbSourceToString);
+            NUnit.Framework.Assert.AreEqual(expected, actualDbSourceToString);
         }
 
-        [TestMethod]
+        [Test]
         public void ToStringEmptyObjectExpected()
         {
             var testDbSource = new DbSource();
             var actualSerializedDbSource = testDbSource.ToString();
             var expected = JsonConvert.SerializeObject(testDbSource);
-            Assert.AreEqual(expected, actualSerializedDbSource);
+            NUnit.Framework.Assert.AreEqual(expected, actualSerializedDbSource);
         }
 
         #endregion ToString Tests
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DbSource_ConnectionString")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DbSource_ConnectionString")]
         public void DbSource_ConnectionString_NotNamedInstance_ShouldUsePortNumber()
         {
             //------------Setup for test--------------------------
@@ -63,12 +64,12 @@ namespace Dev2.Tests.Runtime.ServiceModel
             //------------Execute Test---------------------------
             var connectionString = dbSource.ConnectionString;
             //------------Assert Results-------------------------
-            StringAssert.Contains(connectionString,",1433");
+            NUnit.Framework.StringAssert.Contains(connectionString,",1433");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DbSource_ConnectionString")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DbSource_ConnectionString")]
         public void DbSource_ConnectionString_NamedInstanceDefaultPort_ShouldNotUsePort()
         {
             //------------Setup for test--------------------------
@@ -84,12 +85,12 @@ namespace Dev2.Tests.Runtime.ServiceModel
             var connectionString = dbSource.ConnectionString;
             //------------Assert Results-------------------------
             var contains = connectionString.Contains(",1433");
-            Assert.IsFalse(contains);
+            NUnit.Framework.Assert.IsFalse(contains);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DbSource_ConnectionString")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DbSource_ConnectionString")]
         public void DbSource_ConnectionString_NamedInstanceNotDefaultPort_ShouldUsePort()
         {
             //------------Setup for test--------------------------
@@ -105,12 +106,12 @@ namespace Dev2.Tests.Runtime.ServiceModel
             var connectionString = dbSource.ConnectionString;
             //------------Assert Results-------------------------
             var contains = connectionString.Contains(",2011");
-            Assert.IsTrue(contains);
+            NUnit.Framework.Assert.IsTrue(contains);
         }
 
         #region ToXml Tests
 
-        [TestMethod]
+        [Test]
         public void ToXmlAllPropertiesSetupExpectedXElementContainingAllObjectInformation()
         {
             var testDbSource = SetupDefaultDbSource();
@@ -122,14 +123,14 @@ namespace Dev2.Tests.Runtime.ServiceModel
             {
                 if(attribEnum.Current.Name == "Name")
                 {
-                    Assert.AreEqual("TestResourceIMadeUp", attribEnum.Current.Value);
+                    NUnit.Framework.Assert.AreEqual("TestResourceIMadeUp", attribEnum.Current.Value);
                     break;
                 }
             }
-            Assert.IsNull(workflowXamlDefintion);
+            NUnit.Framework.Assert.IsNull(workflowXamlDefintion);
         }
 
-        [TestMethod]
+        [Test]
         public void ToXmlEmptyObjectExpectedXElementContainingNoInformationRegardingSource()
         {
             var testDbSource = new DbSource();
@@ -141,7 +142,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             {
                 if(attribEnum.Current.Name == "Name")
                 {
-                    Assert.AreEqual(string.Empty, attribEnum.Current.Value);
+                    NUnit.Framework.Assert.AreEqual(string.Empty, attribEnum.Current.Value);
                     break;
                 }
             }

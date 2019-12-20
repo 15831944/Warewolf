@@ -8,24 +8,25 @@ using Dev2.Common.Interfaces.ServerProxyLayer;
 using Dev2.Common.Interfaces.ToolBase;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Activities.Designers.Tests.Core
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ViewPropertyBuilderTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ViewPropertyBuilder_Constructor()
         {
             var act = new ViewPropertyBuilder() { };
             Assert.IsNotNull(act);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void BuildProperties_GivenNullValues_ExpectNoError()
         {
 
@@ -39,8 +40,8 @@ namespace Dev2.Activities.Designers.Tests.Core
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void BuildProperties_GivenActionRegionNullValues_ExpectNoError()
         {
 
@@ -55,8 +56,8 @@ namespace Dev2.Activities.Designers.Tests.Core
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void BuildProperties_GivenActionAndSourceRegionRegionNullValues_ExpectNoError()
         {
 
@@ -71,8 +72,8 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.AreEqual(0, keyValuePairs.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void BuildProperties_GivenActionSourceTypeRegionRegionNullValues_ExpectNoError()
         {
 
@@ -87,8 +88,8 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.AreEqual(0, keyValuePairs.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void BuildProperties_GivenActionSourceTypeRegionRegionNullValues_ExpectNoError_DefinedValues()
         {
 

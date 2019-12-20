@@ -10,16 +10,17 @@
 
 using Dev2.Common.Interfaces;
 using Dev2.Data.TO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests.TO
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IntellisenseFilterOpsTOTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(IntellisenseFilterOpsTO))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(IntellisenseFilterOpsTO))]
         public void IntellisenseFilterOpsTO_SetProperty_IsEqual_SetValue()
         {
             //-----------------------Arrange------------------------
@@ -28,8 +29,8 @@ namespace Dev2.Data.Tests.TO
             intellisenseFilterOpsTO.FilterCondition = "TestFilterCondition";
             intellisenseFilterOpsTO.FilterType = enIntellisensePartType.JsonObject;
             //-----------------------Assert-------------------------
-            Assert.AreEqual("TestFilterCondition", intellisenseFilterOpsTO.FilterCondition);
-            Assert.AreEqual(enIntellisensePartType.JsonObject, intellisenseFilterOpsTO.FilterType);
+            NUnit.Framework.Assert.AreEqual("TestFilterCondition", intellisenseFilterOpsTO.FilterCondition);
+            NUnit.Framework.Assert.AreEqual(enIntellisensePartType.JsonObject, intellisenseFilterOpsTO.FilterType);
         }
     }
 }

@@ -24,7 +24,7 @@ using Dev2.Runtime.Security;
 using Dev2.Tests.Runtime.Hosting;
 using Dev2.Tests.Runtime.XML;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
@@ -33,7 +33,8 @@ namespace Dev2.DynamicServices.Test
     /// <summary>
     /// Summary description for WorkspaceTest
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WorkspaceTest
     {
         const string ServiceName = "Calculate_RecordSet_Subtract";
@@ -46,13 +47,13 @@ namespace Dev2.DynamicServices.Test
 
         #region TestInitialize/Cleanup
 
-        [TestInitialize]
+        [SetUp]
         public void MyTestInitialize()
         {
             Monitor.Enter(MonitorLock);
         }
 
-        [TestCleanup]
+        [TearDown]
         public void MyTestCleanup()
         {
             Monitor.Exit(MonitorLock);
@@ -63,7 +64,7 @@ namespace Dev2.DynamicServices.Test
         #region Update
 
 
-        [TestMethod]
+        [Test]
         public void CanUpdateWorkspaceItemAndRespectIsLocalOption()
         {
             //Lock because of access to resourcatalog
@@ -85,7 +86,7 @@ namespace Dev2.DynamicServices.Test
             }
         }
 
-        [TestMethod]
+        [Test]
         public void VerifyXmlSpeedTest()
         {
 
@@ -131,7 +132,7 @@ namespace Dev2.DynamicServices.Test
 
         #region Delete
 
-        [TestMethod]
+        [Test]
         public void DeleteDecreasesItemCountByOne()
         {
             // this will add           
@@ -144,7 +145,7 @@ namespace Dev2.DynamicServices.Test
 
         }
 
-        [TestMethod]
+        [Test]
         public void DeleteNullItemExpectedNoOperationPerformed()
         {
             var repositoryInstance = SetupRepo(out Guid workspaceID);
@@ -157,7 +158,7 @@ namespace Dev2.DynamicServices.Test
 
         #region Save
 
-        [TestMethod]
+        [Test]
         public void SaveWithNewWorkspaceIncreasesItemCountByOne()
         {
             var repositoryInstance = SetupRepo(out Guid workspaceID);
@@ -168,7 +169,7 @@ namespace Dev2.DynamicServices.Test
             Assert.AreEqual(expected, repositoryInstance.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void SaveWithNullWorkspaceIncreasesItemCountByOne()
         {
             var repositoryInstance = SetupRepo(out Guid workspaceID);
@@ -182,7 +183,7 @@ namespace Dev2.DynamicServices.Test
         #region CTOR Tests
 
         // PBI 9363 - 2013.05.29 - TWR: Added 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void WorkspaceRepositoryWithNullResourceCatalogExpectedThrowsArgumentNullException()
         {
@@ -191,7 +192,7 @@ namespace Dev2.DynamicServices.Test
         }
 
         // PBI 9363 - 2013.05.29 - TWR: Added 
-        [TestMethod]
+        [Test]
         public void WorkspaceRepositoryWithResourceCatalogExpectedDoesNotLoadResources()
         {
             var catalog = new Mock<IResourceCatalog>();
@@ -204,14 +205,14 @@ namespace Dev2.DynamicServices.Test
         }
 
 
-        [TestMethod]
+        [Test]
         public void ServerWorkspaceCreatedAfterInstantiation()
         {
             var repositoryInstance = SetupRepo(out Guid workspaceID);
             Assert.IsNotNull(repositoryInstance.ServerWorkspace);
         }
 
-        [TestMethod]
+        [Test]
         public void ServerWorkspaceCreatedWithServerWorkspaceID()
         {
             var repositoryInstance = SetupRepo(out Guid workspaceID);
@@ -222,7 +223,7 @@ namespace Dev2.DynamicServices.Test
 
         #region Get Tests
 
-        [TestMethod]
+        [Test]
         public void GetWithEmptyGuidReturnsServerWorkspace()
         {
             var repositoryInstance = SetupRepo(out Guid workspaceID);
@@ -230,7 +231,7 @@ namespace Dev2.DynamicServices.Test
             Assert.AreSame(repositoryInstance.ServerWorkspace, result);
         }
 
-        [TestMethod]
+        [Test]
         public void GetWithServerWorkspaceIDReturnsServerWorkspace()
         {
             var repositoryInstance = SetupRepo(out Guid workspaceID);
@@ -238,7 +239,7 @@ namespace Dev2.DynamicServices.Test
             Assert.AreSame(repositoryInstance.ServerWorkspace, result);
         }
 
-        [TestMethod]
+        [Test]
         public void GetWithNewWorkspaceIDIncreasesItemCountByOne()
         {
             var repositoryInstance = SetupRepo(out Guid workspaceID);
@@ -247,7 +248,7 @@ namespace Dev2.DynamicServices.Test
             Assert.AreEqual(expected, repositoryInstance.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void GetWithForceReloadsWorkspace()
         {
             var repositoryInstance = SetupRepo(out Guid workspaceID);

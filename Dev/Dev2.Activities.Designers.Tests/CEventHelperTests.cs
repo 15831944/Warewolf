@@ -9,20 +9,21 @@
 */
 
 using Dev2.Activities.Designers2.Core;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Activities.Designers.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class CEventHelperTests
     {
         int _i;
 
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("CEventHelper_RemoveAll")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("CEventHelper_RemoveAll")]
 
         public void CEventHelper_RemoveAll_RemoveAll_ExpectRemoved()
 
@@ -41,9 +42,9 @@ namespace Dev2.Activities.Designers.Tests
             Assert.AreEqual(_i,2);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("CEventHelper_RemoveAll")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("CEventHelper_RemoveAll")]
         
         public void CEventHelper_RemoveAll_Null()
 
@@ -52,9 +53,9 @@ namespace Dev2.Activities.Designers.Tests
             CEventHelper.RemoveAllEventHandlers(null);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("CEventHelper_RemoveAll")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("CEventHelper_RemoveAll")]
 
         public void CEventHelper_RemoveAll_Static_ExpectNothingRemoved()
 

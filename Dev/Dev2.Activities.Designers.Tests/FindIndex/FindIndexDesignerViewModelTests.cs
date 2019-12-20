@@ -14,18 +14,19 @@ using System.Linq;
 using Dev2.Common.Interfaces.Help;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Activities.Designers.Tests.FindIndex
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FindIndexDesignerViewModelTests
     {
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("FindIndexDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("FindIndexDesignerViewModel_Constructor")]
         public void FindIndexDesignerViewModel_Constructor_ModelItemIsValid_SelectedIndexIsInitialized()
         {
             var modelItem = CreateModelItem();
@@ -35,9 +36,9 @@ namespace Dev2.Activities.Designers.Tests.FindIndex
             Assert.IsTrue(viewModel.HasLargeView);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("FindIndexDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("FindIndexDesignerViewModel_Constructor")]
         public void FindIndexDesignerViewModel_Constructor_ModelItemIsValid_IndexListHasThreeItems()
         {
             var modelItem = CreateModelItem();
@@ -50,9 +51,9 @@ namespace Dev2.Activities.Designers.Tests.FindIndex
             CollectionAssert.AreEqual(expectedDirections, viewModel.DirectionList.ToList());
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("FindIndexDesignerViewModel_SetSelectedIndex")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("FindIndexDesignerViewModel_SetSelectedIndex")]
         public void FindIndexDesignerViewModel_SetSelectedIndex_ValidIndex_IndexOnModelItemIsAlsoSet()
         {
             var modelItem = CreateModelItem();
@@ -62,9 +63,9 @@ namespace Dev2.Activities.Designers.Tests.FindIndex
             Assert.AreEqual(ExpectedValue, viewModel.Index);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("FindDirectionDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("FindDirectionDesignerViewModel_Constructor")]
         public void FindDirectionDesignerViewModel_Constructor_ModelItemIsValid_SelectedDirectionIsInitialized()
         {
             var modelItem = CreateModelItem();
@@ -73,9 +74,9 @@ namespace Dev2.Activities.Designers.Tests.FindIndex
             Assert.AreEqual("Left to Right", viewModel.SelectedDirection);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("FindDirectionDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("FindDirectionDesignerViewModel_Constructor")]
         public void FindDirectionDesignerViewModel_Constructor_ModelItemIsValid_DirectionListHasTowItems()
         {
             var modelItem = CreateModelItem();
@@ -84,9 +85,9 @@ namespace Dev2.Activities.Designers.Tests.FindIndex
             Assert.AreEqual(2, viewModel.DirectionList.Count);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("FindDirectionDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("FindDirectionDesignerViewModel_Handle")]
         public void FindDirectionDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -104,9 +105,9 @@ namespace Dev2.Activities.Designers.Tests.FindIndex
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("FindDirectionDesignerViewModel_SetSelectedDirection")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("FindDirectionDesignerViewModel_SetSelectedDirection")]
         public void FindDirectionDesignerViewModel_SetSelectedDirection_ValidDirection_DirectionOnModelItemIsAlsoSet()
         {
             var modelItem = CreateModelItem();

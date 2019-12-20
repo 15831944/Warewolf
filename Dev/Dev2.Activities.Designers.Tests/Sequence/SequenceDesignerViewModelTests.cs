@@ -21,25 +21,26 @@ using Dev2.Common;
 using Dev2.Common.Interfaces.Help;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 
 namespace Dev2.Activities.Designers.Tests.Sequence
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SequenceDesignerViewModelTests
     {
-        [TestInitialize]
+        [SetUp]
         public void MyTestInitialize()
         {
             AttributesToAvoidReplicating.Add(typeof(UIPermissionAttribute));
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SequenceDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("SequenceDesignerViewModel_Constructor")]
         public void SequenceDesignerViewModel_Constructor_SetSmallViewItem_AlwaysReturnsNull()
         {
             //------------Setup for test--------------------------
@@ -51,9 +52,9 @@ namespace Dev2.Activities.Designers.Tests.Sequence
             Assert.IsNull(sequenceDesignerViewModel.SmallViewItem, "This item should always be null");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SequenceDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SequenceDesignerViewModel_Constructor")]
         public void SequenceDesignerViewModel_Constructor_Constructed_IsInstanceOfActivityDesignerViewModel()
         {
             //------------Setup for test--------------------------
@@ -64,13 +65,13 @@ namespace Dev2.Activities.Designers.Tests.Sequence
             sequenceDesignerViewModel.Validate();
             //------------Assert Results-------------------------
             Assert.IsNotNull(sequenceDesignerViewModel);
-            Assert.IsInstanceOfType(sequenceDesignerViewModel, typeof(ActivityDesignerViewModel));
+            Assert.IsInstanceOf(sequenceDesignerViewModel.GetType(), typeof(ActivityDesignerViewModel));
             Assert.AreEqual("Created Sequence", sequenceDesignerViewModel.ModelItem.GetProperty("DisplayName"));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SequenceDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SequenceDesignerViewModel_Handle")]
         public void SequenceDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -86,9 +87,9 @@ namespace Dev2.Activities.Designers.Tests.Sequence
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SequenceDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SequenceDesignerViewModel_Constructor")]
         public void SequenceDesignerViewModel_Constructor_Constructed_HasHelpLargeViewToogle()
         {
             //------------Setup for test--------------------------
@@ -101,9 +102,9 @@ namespace Dev2.Activities.Designers.Tests.Sequence
             Assert.AreEqual(0, sequenceDesignerViewModel.TitleBarToggles.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SequenceDesignerViewModel_ActivityNames")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SequenceDesignerViewModel_ActivityNames")]
         public void SequenceDesignerViewModel_ActivityNames_WhenNewSequence_HasEmptyList()
         {
             //------------Setup for test--------------------------
@@ -115,9 +116,9 @@ namespace Dev2.Activities.Designers.Tests.Sequence
             Assert.AreEqual(0, activityNames.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SequenceDesignerViewModel_ActivityNames")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SequenceDesignerViewModel_ActivityNames")]
         public void SequenceDesignerViewModel_ActivityNames_WhenLessThan4_HasAllNames()
         {
             //------------Setup for test--------------------------
@@ -135,9 +136,9 @@ namespace Dev2.Activities.Designers.Tests.Sequence
             Assert.AreEqual(dsfFindRecordsMultipleCriteriaActivity.DisplayName, activityNames[1]);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SequenceDesignerViewModel_ActivityNames")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SequenceDesignerViewModel_ActivityNames")]
         public void SequenceDesignerViewModel_ActivityNames_When4_HasAllNames()
         {
             //------------Setup for test--------------------------
@@ -161,9 +162,9 @@ namespace Dev2.Activities.Designers.Tests.Sequence
             Assert.AreEqual(dsfBaseConvertActivity.DisplayName, activityNames[3]);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SequenceDesignerViewModel_ActivityNames")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SequenceDesignerViewModel_ActivityNames")]
         public void SequenceDesignerViewModel_ActivityNames_WhenMoreThan4_Has4NamesLastItemEllipsis()
         {
             //------------Setup for test--------------------------
@@ -196,9 +197,9 @@ namespace Dev2.Activities.Designers.Tests.Sequence
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SequenceDesignerViewModel_SetSmallViewItem")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SequenceDesignerViewModel_SetSmallViewItem")]
         public void SequenceDesignerViewModel_SetSmallViewItem_WhenValidModelItem_ActivityAdded()
         {
             //------------Setup for test--------------------------
@@ -215,9 +216,9 @@ namespace Dev2.Activities.Designers.Tests.Sequence
             Assert.AreEqual(3, dsfSequenceActivity.Activities.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SequenceDesignerViewModel_SetSmallViewItem")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SequenceDesignerViewModel_SetSmallViewItem")]
         public void SequenceDesignerViewModel_SetSmallViewItem_WhenModelItemSequence_ActivityNotAdded()
         {
             //------------Setup for test--------------------------
@@ -234,9 +235,9 @@ namespace Dev2.Activities.Designers.Tests.Sequence
             Assert.AreEqual(2, dsfSequenceActivity.Activities.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SequenceDesignerViewModel_SetSmallViewItem")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SequenceDesignerViewModel_SetSmallViewItem")]
         public void SequenceDesignerViewModel_SetSmallViewItem_WhenModelItemDsfActivity_ActivityNotAdded()
         {
             //------------Setup for test--------------------------
@@ -253,9 +254,9 @@ namespace Dev2.Activities.Designers.Tests.Sequence
             Assert.AreEqual(2, dsfSequenceActivity.Activities.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SequenceDesignerViewModel_SetSmallViewItem")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SequenceDesignerViewModel_SetSmallViewItem")]
         public void SequenceDesignerViewModel_SetSmallViewItem_WhenModelItemDsfPluginActivity_ActivityNotAdded()
         {
             //------------Setup for test--------------------------
@@ -272,9 +273,9 @@ namespace Dev2.Activities.Designers.Tests.Sequence
             Assert.AreEqual(3, dsfSequenceActivity.Activities.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SequenceDesignerViewModel_SetSmallViewItem")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SequenceDesignerViewModel_SetSmallViewItem")]
         public void SequenceDesignerViewModel_SetSmallViewItem_WhenModelItemDsfDbServiceActivity_ActivityNotAdded()
         {
             //------------Setup for test--------------------------
@@ -291,9 +292,9 @@ namespace Dev2.Activities.Designers.Tests.Sequence
             Assert.AreEqual(3, dsfSequenceActivity.Activities.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SequenceDesignerViewModel_DoDrop")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SequenceDesignerViewModel_DoDrop")]
         public void SequenceDesignerViewModel_DoDrop_WhenNoFormats_ActivityNotAdded()
         {
             //------------Setup for test--------------------------
@@ -312,9 +313,9 @@ namespace Dev2.Activities.Designers.Tests.Sequence
             Assert.AreEqual(2, dsfSequenceActivity.Activities.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SequenceDesignerViewModel_DoDrop")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SequenceDesignerViewModel_DoDrop")]
         public void SequenceDesignerViewModel_DoDrop_WhenFormatDoesNotContainModelItemFormat_ActivityNotAdded()
         {
             //------------Setup for test--------------------------
@@ -334,9 +335,9 @@ namespace Dev2.Activities.Designers.Tests.Sequence
             Assert.AreEqual(2, dsfSequenceActivity.Activities.Count);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SequenceDesignerViewModel_DoDrop")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("SequenceDesignerViewModel_DoDrop")]
         public void SequenceDesignerViewModel_DoDrop_WhenModelItemsFormatHasMultipleItems_ActivitiesAdded()
         {
             //------------Setup for test--------------------------
@@ -356,9 +357,9 @@ namespace Dev2.Activities.Designers.Tests.Sequence
             Assert.AreEqual(4, dsfSequenceActivity.Activities.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SequenceDesignerViewModel_DoDrop")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SequenceDesignerViewModel_DoDrop")]
         public void SequenceDesignerViewModel_DoDrop_WhenModelItemsFormatHasSingleItem_ActivitiesAdded()
         {
             //------------Setup for test--------------------------
@@ -378,9 +379,9 @@ namespace Dev2.Activities.Designers.Tests.Sequence
             Assert.AreEqual(3, dsfSequenceActivity.Activities.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SequenceDesignerViewModel_SetModelItemForServiceTypes")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SequenceDesignerViewModel_SetModelItemForServiceTypes")]
         public void SequenceDesignerViewModel_SetModelItemForServiceTypes_DataObjectNull_NothingAddedToDataObject()
         {
             //------------Setup for test--------------------------
@@ -395,9 +396,9 @@ namespace Dev2.Activities.Designers.Tests.Sequence
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SequenceDesignerViewModel_SetModelItemForServiceTypes")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SequenceDesignerViewModel_SetModelItemForServiceTypes")]
         public void SequenceDesignerViewModel_SetModelItemForServiceTypes_Data_NothingAddedToDataObject()
         {
             //------------Setup for test--------------------------
@@ -413,9 +414,9 @@ namespace Dev2.Activities.Designers.Tests.Sequence
             Assert.IsFalse(dataPresent);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SequenceDesignerViewModel_SetModelItemForServiceTypes")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SequenceDesignerViewModel_SetModelItemForServiceTypes")]
         public void SequenceDesignerViewModel_SetModelItemForServiceTypes_DataNotHaveDataContext_NothingAddedToDataObject()
         {
             //------------Setup for test--------------------------
@@ -441,9 +442,9 @@ namespace Dev2.Activities.Designers.Tests.Sequence
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SequenceDesignerViewModel_SetModelItemForServiceTypes")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SequenceDesignerViewModel_SetModelItemForServiceTypes")]
         public void SequenceDesignerViewModel_SetModelItemForServiceTypes_HasExplorerItemInDataObject_Adds()
         {
             //------------Setup for test--------------------------
@@ -471,9 +472,9 @@ namespace Dev2.Activities.Designers.Tests.Sequence
             Assert.IsFalse(dataPresent);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SequenceDesignerViewModel_SetModelItemForServiceTypes")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SequenceDesignerViewModel_SetModelItemForServiceTypes")]
         public void SequenceDesignerViewModel_SetModelItemForServiceTypes_DataHaveDataContextNotResourceModel_NothingAddedToDataObject()
         {
             //------------Setup for test--------------------------
@@ -488,9 +489,9 @@ namespace Dev2.Activities.Designers.Tests.Sequence
             var dataPresent = dataObject.GetDataPresent(DragDropHelper.ModelItemDataFormat);
             Assert.IsFalse(dataPresent);
         }
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SequenceDesignerViewModel_SetModelItemForServiceTypes")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SequenceDesignerViewModel_SetModelItemForServiceTypes")]
         public void SequenceDesignerViewModel_SetModelItemForServiceTypes_DataHaveDataContextNotResourceModel_NothingAddedToUpgradedExplorerItemModelFormatDataObject()
         {
             //------------Setup for test--------------------------

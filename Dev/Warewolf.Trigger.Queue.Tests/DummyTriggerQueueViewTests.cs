@@ -13,15 +13,16 @@ using Dev2.ConnectionHelpers;
 using Dev2.Core.Tests.Environments;
 using Dev2.Studio.Interfaces;
 using Dev2.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Warewolf.Trigger.Queue.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DummyTriggerQueueViewTests
     {
-        [TestInitialize]
+        [SetUp]
         public void SetupForTest()
         {
             AppUsageStats.LocalHost = "http://localhost:3142";
@@ -43,9 +44,9 @@ namespace Warewolf.Trigger.Queue.Tests
             serverRepo.Setup(r => r.All()).Returns(new[] { targetEnv.Object });
             CustomContainer.Register(serverRepo.Object);
         }
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DummyTriggerQueueView))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DummyTriggerQueueView))]
         public void DummyTriggerQueueView_Default()
         {
             var mockServer = new Mock<IServer>();

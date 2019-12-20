@@ -19,19 +19,20 @@ using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Scheduler;
 using Dev2.TaskScheduler.Wrappers;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Microsoft.Win32.TaskScheduler;
 using Moq;
 
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SaveScheduledResourceTest
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -43,9 +44,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -57,53 +58,53 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(AuthorizationContext.Contribute, resId);
         }
 
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Services_ScheduledResource_Save")]
-        [TestMethod]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Services_ScheduledResource_Save")]
+        [Test]
         public void SaveScheduledResourceTest_ServiceName()
         {
             SchedulerTestBaseStaticMethods.SaveScheduledResourceTest_ServiceName("SaveScheduledResourceService", new SaveScheduledResource());
         }
 
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Services_ScheduledResource_Save")]
-        [TestMethod]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Services_ScheduledResource_Save")]
+        [Test]
         public void GetScheduledResourcesReturnsDynamicService()
         {
             SchedulerTestBaseStaticMethods.GetScheduledResourcesReturnsDynamicService(new SaveScheduledResource());
 
         }
 
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Services_ScheduledResource_Save")]
-        [TestMethod]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Services_ScheduledResource_Save")]
+        [Test]
         public void ScheduledResource_Save_Valid()
         {
             var output = RunOutput(true, true, false);
             Assert.AreEqual(false, output.HasError);
 
         }
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Services_ScheduledResource_Save")]
-        [TestMethod]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Services_ScheduledResource_Save")]
+        [Test]
         public void ScheduledResource_Save_InValid()
         {
             var output = RunOutput(false, true, false);
             Assert.AreEqual(true, output.HasError);
             Assert.AreEqual("No Resource Selected", output.Message.ToString());
         }
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Services_ScheduledResource_Save")]
-        [TestMethod]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Services_ScheduledResource_Save")]
+        [Test]
         public void ScheduledResource_Save_InValidUserCred()
         {
             var output = RunOutput(true, false, false);
             Assert.AreEqual(true, output.HasError);
 
         }
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Services_ScheduledResource_Save")]
-        [TestMethod]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Services_ScheduledResource_Save")]
+        [Test]
         public void ScheduledResource_Save_InValidDeleteExisting()
         {
             var output = RunOutput(true, true, true);

@@ -1,13 +1,14 @@
 using Dev2.Data.Decisions.Operations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests.Operations
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class Dev2DecisionFactoryTests
     {
-        [TestMethod]
-        [Owner("Sanele Mthmembu")]        
+        [Test]
+        [Author("Sanele Mthmembu")]        
         public void GivenIsLessThanDev2DecisionFactory_HandleType_ShouldReturnIsLessThan()
         {
             var decisionType = enDecisionType.IsLessThan;
@@ -16,16 +17,16 @@ namespace Dev2.Data.Tests.Operations
             //------------Execute Test---------------------------
             var fetchDecisionFunction = decisionFactory.FetchDecisionFunction(decisionType);             
             //------------Assert Results-------------------------
-            Assert.AreEqual(decisionType, fetchDecisionFunction.HandlesType());
+            NUnit.Framework.Assert.AreEqual(decisionType, fetchDecisionFunction.HandlesType());
         }
-        [TestMethod]
-        [Owner("Sanele Mthmembu")]        
+        [Test]
+        [Author("Sanele Mthmembu")]        
         public void Dev2DecisionFactory_Instance_ShouldHaveAStaticInstance()
         {            
             //------------Setup for test--------------------------
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.IsNotNull(Dev2DecisionFactory.Instance());            
+            NUnit.Framework.Assert.IsNotNull(Dev2DecisionFactory.Instance());            
         }
     }
 }

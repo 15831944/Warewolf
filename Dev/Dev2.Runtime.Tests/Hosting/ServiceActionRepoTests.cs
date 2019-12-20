@@ -1,18 +1,19 @@
 ﻿using System;
 using Dev2.DynamicServices;
 using Dev2.Runtime.Hosting;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Tests.Runtime.Hosting
 {
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class ServiceActionRepoTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServiceActionRepo_AddToCache")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServiceActionRepo_AddToCache")]
         public void ServiceActionRepo_AddToCache_WhenNotExisting_ShouldAdd()
         {
             //------------Setup for test--------------------------
@@ -22,13 +23,13 @@ namespace Dev2.Tests.Runtime.Hosting
             ServiceActionRepo.Instance.AddToCache(id, ds);
             //------------Assert Results-------------------------
             var readDs = ServiceActionRepo.Instance.ReadCache(id);
-            Assert.IsNotNull(readDs);
-            Assert.AreEqual("Ds 1",readDs.DisplayName);
+            NUnit.Framework.Assert.IsNotNull(readDs);
+            NUnit.Framework.Assert.AreEqual("Ds 1",readDs.DisplayName);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServiceActionRepo_AddToCache")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServiceActionRepo_AddToCache")]
         public void ServiceActionRepo_AddToCache_WhenIdExists_ShouldReplace()
         {
             //------------Setup for test--------------------------
@@ -40,14 +41,14 @@ namespace Dev2.Tests.Runtime.Hosting
             ServiceActionRepo.Instance.AddToCache(id, ds2);
             //------------Assert Results-------------------------
             var readDs = ServiceActionRepo.Instance.ReadCache(id);
-            Assert.IsNotNull(readDs);
-            Assert.AreEqual("Ds 2",readDs.DisplayName);
+            NUnit.Framework.Assert.IsNotNull(readDs);
+            NUnit.Framework.Assert.AreEqual("Ds 2",readDs.DisplayName);
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServiceActionRepo_AddToCache")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServiceActionRepo_AddToCache")]
         public void ServiceActionRepo_ReadFromCache_WhenNotExisting_ShouldReturnNull()
         {
             //------------Setup for test--------------------------
@@ -57,12 +58,12 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var readDs = ServiceActionRepo.Instance.ReadCache(Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.IsNull(readDs);
+            NUnit.Framework.Assert.IsNull(readDs);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServiceActionRepo_AddToCache")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServiceActionRepo_AddToCache")]
         public void ServiceActionRepo_ReadFromCache_WhenExisting_ShouldReturnDynamicService()
         {
             //------------Setup for test--------------------------
@@ -72,13 +73,13 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var readDs = ServiceActionRepo.Instance.ReadCache(id);
             //------------Assert Results-------------------------
-            Assert.IsNotNull(readDs);
-            Assert.AreEqual("Ds 1", readDs.DisplayName);
+            NUnit.Framework.Assert.IsNotNull(readDs);
+            NUnit.Framework.Assert.AreEqual("Ds 1", readDs.DisplayName);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServiceActionRepo_RemoveFromCache")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServiceActionRepo_RemoveFromCache")]
         public void ServiceActionRepo_RemoveFromCache_WhenIdExists_ShouldRemove()
         {
             //------------Setup for test--------------------------
@@ -92,10 +93,10 @@ namespace Dev2.Tests.Runtime.Hosting
             ServiceActionRepo.Instance.RemoveFromCache(id);
             //------------Assert Results-------------------------
             var readDs = ServiceActionRepo.Instance.ReadCache(id);
-            Assert.IsNull(readDs);
+            NUnit.Framework.Assert.IsNull(readDs);
             var readDs2 = ServiceActionRepo.Instance.ReadCache(id2);
-            Assert.IsNull(readDs);
-            Assert.AreEqual("Ds 2", readDs2.DisplayName);
+            NUnit.Framework.Assert.IsNull(readDs);
+            NUnit.Framework.Assert.AreEqual("Ds 2", readDs2.DisplayName);
         }
     }
 }

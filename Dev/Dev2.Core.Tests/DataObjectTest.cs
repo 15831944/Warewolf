@@ -19,22 +19,24 @@ using Dev2.Data.Interfaces.Enums;
 using Dev2.DynamicServices;
 using Dev2.Interfaces;
 using Dev2.Web;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Storage;
 using Warewolf.Storage.Interfaces;
 using System.Security.Principal;
 using Dev2.Runtime.ESB.Execution;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dev2.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DataObjectTest
     {
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DsfDataObject_IsRemoteWorkflow")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DsfDataObject_IsRemoteWorkflow")]
         public void DsfDataOBject_IsRemoteWorkflow_WhenOverrideNotSet_ExpectTrue()
         {
             //------------Setup for test--------------------------
@@ -45,11 +47,11 @@ namespace Dev2.Tests
             var result = dataObject.IsRemoteWorkflow();
 
             //------------Assert Results-------------------------
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void PopEnvironment_GivenHasNoEnvironments_ShouldNotSetEnvironment()
         {
             //---------------Set up test pack-------------------
@@ -60,17 +62,17 @@ namespace Dev2.Tests
             var privateObject = new PrivateObject(dataObject);
             var field = privateObject.GetField("_environments", BindingFlags.Instance | BindingFlags.NonPublic) as ConcurrentStack<IExecutionEnvironment>;
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(dataObject.Environment);
-            Assert.IsNotNull(field);
-            Assert.AreEqual(0, field.Count);
+            NUnit.Framework.Assert.IsNotNull(dataObject.Environment);
+            NUnit.Framework.Assert.IsNotNull(field);
+            NUnit.Framework.Assert.AreEqual(0, field.Count);
             //---------------Execute Test ----------------------
             dataObject.PopEnvironment();
             //---------------Test Result -----------------------
-            Assert.AreEqual(dataObject.Environment, mock.Object);
+            NUnit.Framework.Assert.AreEqual(dataObject.Environment, mock.Object);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void PopEnvironment_GivenNoEnvironments_ShouldSetEnvironment()
         {
             //---------------Set up test pack-------------------
@@ -81,19 +83,19 @@ namespace Dev2.Tests
             var privateObject = new PrivateObject(dataObject);
             var field = privateObject.GetField("_environments", BindingFlags.Instance | BindingFlags.NonPublic) as ConcurrentStack<IExecutionEnvironment>;
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(dataObject.Environment);
-            Assert.IsNotNull(field);
-            Assert.AreEqual(0, field.Count);
+            NUnit.Framework.Assert.IsNotNull(dataObject.Environment);
+            NUnit.Framework.Assert.IsNotNull(field);
+            NUnit.Framework.Assert.AreEqual(0, field.Count);
             //---------------Execute Test ----------------------
             dataObject.PushEnvironment(new ExecutionEnvironment());
             dataObject.PopEnvironment();
             //---------------Test Result -----------------------
-            Assert.AreEqual(dataObject.Environment, mock.Object);
+            NUnit.Framework.Assert.AreEqual(dataObject.Environment, mock.Object);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DsfDataObject_IsRemoteWorkflow")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DsfDataObject_IsRemoteWorkflow")]
         public void DsfDataOBject_IsRemoteWorkflow_WhenOverrideSet_ExpectFalse()
         {
             //------------Setup for test--------------------------
@@ -105,12 +107,12 @@ namespace Dev2.Tests
             var result = dataObject.IsRemoteWorkflow();
 
             //------------Assert Results-------------------------
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DsfDataObject_IsRemoteWorkflow")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DsfDataObject_IsRemoteWorkflow")]
         public void DsfDataOBject_IsRemoteWorkflow_WhenOverrideSetAndEmptyGuid_ExpectFalse()
         {
             //------------Setup for test--------------------------
@@ -122,12 +124,12 @@ namespace Dev2.Tests
             var result = dataObject.IsRemoteWorkflow();
 
             //------------Assert Results-------------------------
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DsfDataObject_IsRemoteWorkflow")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DsfDataObject_IsRemoteWorkflow")]
         public void DsfDataOBject_IsRemoteWorkflow_WhenOverrideNotSetAndEmptyGuid_ExpectFalse()
         {
             //------------Setup for test--------------------------
@@ -138,13 +140,13 @@ namespace Dev2.Tests
             var result = dataObject.IsRemoteWorkflow();
 
             //------------Assert Results-------------------------
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DsfDataObject_RawPayload")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DsfDataObject_RawPayload")]
         public void DsfDataObject_RawPayload_WhenNull_ExpectEmptyString()
         {
             //------------Setup for test--------------------------
@@ -154,23 +156,23 @@ namespace Dev2.Tests
             var result = dataObject.RawPayload;
 
             //------------Assert Results-------------------------
-            Assert.AreEqual(string.Empty, result.ToString(), "RawPayload did not return and empty string");
+            NUnit.Framework.Assert.AreEqual(string.Empty, result.ToString(), "RawPayload did not return and empty string");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DsfDataObject_NestingLevel")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DsfDataObject_NestingLevel")]
         public void DsfDataObject_NestingLevel_Get_Set_ExpectCorrectGetSet()
         {
             //------------Setup for test--------------------------
             IDSFDataObject dataObject = new DsfDataObject(string.Empty, Guid.NewGuid());
             dataObject.ForEachNestingLevel = 3;
-            Assert.AreEqual(dataObject.ForEachNestingLevel, 3);
+            NUnit.Framework.Assert.AreEqual(dataObject.ForEachNestingLevel, 3);
 
         }
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DsfDataObjectz_RawPayload")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DsfDataObjectz_RawPayload")]
         public void DsfDataObjectz_RawPayload_WhenNotNull_ExpectRawPayload()
         {
             //------------Setup for test--------------------------
@@ -180,12 +182,12 @@ namespace Dev2.Tests
             var result = dataObject.RawPayload.ToString();
 
             //------------Assert Results-------------------------
-            StringAssert.Contains(result, "foo");
+            NUnit.Framework.StringAssert.Contains(result, "foo");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DsfDataObject_Clone")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DsfDataObject_Clone")]
         public void DsfDataObject_Clone_NormalClone_FullDuplicationForProperties()
         {
             var executingUser = new Mock<IPrincipal>().Object;
@@ -261,83 +263,83 @@ namespace Dev2.Tests
 
             // check counts, then check values
             var properties = typeof(IDSFDataObject).GetProperties();
-            Assert.AreEqual(72, properties.Length);
+            NUnit.Framework.Assert.AreEqual(72, properties.Length);
 
             // now check each value to ensure it transfered
-            Assert.AreEqual(dataObject.BookmarkExecutionCallbackID, clonedObject.BookmarkExecutionCallbackID);
-            Assert.AreEqual(dataObject.CurrentBookmarkName, clonedObject.CurrentBookmarkName);
-            Assert.AreEqual(dataObject.DataList, clonedObject.DataList);
-            Assert.AreEqual(dataObject.DataListID, clonedObject.DataListID);
-            Assert.AreEqual(dataObject.DatalistInMergeDepth, clonedObject.DatalistInMergeDepth);
-            Assert.AreEqual(dataObject.DatalistInMergeID, clonedObject.DatalistInMergeID);
-            Assert.AreEqual(dataObject.DatalistInMergeType, clonedObject.DatalistInMergeType);
-            Assert.AreEqual(dataObject.DatalistOutMergeDepth, clonedObject.DatalistOutMergeDepth);
-            Assert.AreEqual(dataObject.DatalistOutMergeFrequency, clonedObject.DatalistOutMergeFrequency);
-            Assert.AreEqual(dataObject.DatalistOutMergeID, clonedObject.DatalistOutMergeID);
-            Assert.AreEqual(dataObject.DatalistOutMergeType, clonedObject.DatalistOutMergeType);
-            Assert.AreEqual(dataObject.DebugSessionID, clonedObject.DebugSessionID);
-            Assert.AreEqual(dataObject.EnvironmentID, clonedObject.EnvironmentID);
-            Assert.AreEqual(dataObject.VersionNumber, clonedObject.VersionNumber);
-            Assert.AreEqual(dataObject.ExecutingUser, clonedObject.ExecutingUser);
-            Assert.AreEqual(dataObject.ExecutionCallbackID, clonedObject.ExecutionCallbackID);
-            Assert.AreEqual(dataObject.ExecutionOrigin, clonedObject.ExecutionOrigin);
-            Assert.AreEqual(dataObject.ExecutionOriginDescription, clonedObject.ExecutionOriginDescription);
-            Assert.AreEqual(dataObject.ForceDeleteAtNextNativeActivityCleanup, clonedObject.ForceDeleteAtNextNativeActivityCleanup);
-            Assert.AreEqual(dataObject.IsDataListScoped, clonedObject.IsDataListScoped);
-            Assert.AreEqual(dataObject.IsDebug, clonedObject.IsDebug);
-            Assert.AreEqual(dataObject.IsFromWebServer, clonedObject.IsFromWebServer);
-            Assert.AreEqual(dataObject.IsOnDemandSimulation, clonedObject.IsOnDemandSimulation);
-            Assert.AreEqual(dataObject.IsRemoteInvoke, clonedObject.IsRemoteInvoke);
-            Assert.AreEqual(dataObject.IsRemoteInvokeOverridden, clonedObject.IsRemoteInvokeOverridden);
-            Assert.AreEqual(dataObject.NumberOfSteps, clonedObject.NumberOfSteps);
-            Assert.AreEqual(dataObject.OriginalInstanceID, clonedObject.OriginalInstanceID);
-            Assert.AreEqual(dataObject.ParentInstanceID, clonedObject.ParentInstanceID);
-            Assert.AreEqual(dataObject.ParentServiceName, clonedObject.ParentServiceName);
-            Assert.AreEqual(dataObject.ParentThreadID, clonedObject.ParentThreadID);
-            Assert.AreEqual(dataObject.ParentWorkflowInstanceId, clonedObject.ParentWorkflowInstanceId);
-            Assert.AreEqual(dataObject.RawPayload, clonedObject.RawPayload);
-            Assert.AreEqual(dataObject.RemoteDebugItems, clonedObject.RemoteDebugItems);
-            Assert.AreEqual(dataObject.RemoteInvoke, clonedObject.RemoteInvoke);
-            Assert.AreEqual(dataObject.RemoteNonDebugInvoke, clonedObject.RemoteNonDebugInvoke);
-            Assert.AreEqual(dataObject.RemoteInvokeResultShape, clonedObject.RemoteInvokeResultShape);
-            Assert.AreEqual(dataObject.RemoteInvokerID, clonedObject.RemoteInvokerID);
-            Assert.AreEqual(dataObject.RemoteServiceType, clonedObject.RemoteServiceType);
-            Assert.AreEqual(dataObject.ResourceID, clonedObject.ResourceID);
-            Assert.AreEqual(dataObject.ReturnType, clonedObject.ReturnType);
-            Assert.AreEqual(dataObject.ServerID, clonedObject.ServerID);
-            Assert.AreEqual(dataObject.ClientID, clonedObject.ClientID);
-            Assert.AreEqual(dataObject.ServiceName, clonedObject.ServiceName);
-            Assert.AreEqual(dataObject.WorkflowInstanceId, clonedObject.WorkflowInstanceId);
-            Assert.AreEqual(dataObject.WorkflowResumeable, clonedObject.WorkflowResumeable);
-            Assert.AreEqual(dataObject.WorkspaceID, clonedObject.WorkspaceID);
-            Assert.AreEqual(dataObject.ThreadsToDispose, clonedObject.ThreadsToDispose);
-            Assert.AreEqual(dataObject.ParentID, clonedObject.ParentID);
-            Assert.AreEqual(dataObject.RunWorkflowAsync, clonedObject.RunWorkflowAsync);
-            Assert.AreEqual(dataObject.IsDebugNested, clonedObject.IsDebugNested);
-            Assert.AreEqual(dataObject.ForEachNestingLevel, clonedObject.ForEachNestingLevel);
-            Assert.AreEqual(dataObject.StopExecution, clonedObject.StopExecution);
-            Assert.AreEqual(dataObject.SourceResourceID, clonedObject.SourceResourceID);
-            Assert.AreEqual(dataObject.TestName, clonedObject.TestName);
-            Assert.AreEqual(dataObject.IsServiceTestExecution, clonedObject.IsServiceTestExecution);
-            Assert.AreEqual(dataObject.IsDebugFromWeb, clonedObject.IsDebugFromWeb);
-            Assert.AreNotEqual(dataObject.ServiceTest, clonedObject.ServiceTest);
-            Assert.AreEqual(dataObject.ServiceTest.TestName, clonedObject.ServiceTest.TestName);
-            Assert.AreEqual(dataObject.IsSubExecution, clonedObject.IsSubExecution);
-            Assert.AreEqual(dataObject.WebUrl, clonedObject.WebUrl);
-            Assert.AreEqual(dataObject.QueryString, clonedObject.QueryString);
-            Assert.AreEqual(dataObject.ExecutingUser, clonedObject.ExecutingUser);
-            Assert.AreEqual(dataObject.StateNotifier, clonedObject.StateNotifier);
-            Assert.AreNotEqual(dataObject.Settings, clonedObject.Settings);
-            Assert.AreEqual(dataObject.Settings.KeepLogsForDays, clonedObject.Settings.KeepLogsForDays);
-            Assert.AreNotEqual(dataObject.AuthCache, clonedObject.AuthCache);
-            Assert.AreEqual(dataObject.ExecutionException, clonedObject.ExecutionException);
+            NUnit.Framework.Assert.AreEqual(dataObject.BookmarkExecutionCallbackID, clonedObject.BookmarkExecutionCallbackID);
+            NUnit.Framework.Assert.AreEqual(dataObject.CurrentBookmarkName, clonedObject.CurrentBookmarkName);
+            NUnit.Framework.Assert.AreEqual(dataObject.DataList, clonedObject.DataList);
+            NUnit.Framework.Assert.AreEqual(dataObject.DataListID, clonedObject.DataListID);
+            NUnit.Framework.Assert.AreEqual(dataObject.DatalistInMergeDepth, clonedObject.DatalistInMergeDepth);
+            NUnit.Framework.Assert.AreEqual(dataObject.DatalistInMergeID, clonedObject.DatalistInMergeID);
+            NUnit.Framework.Assert.AreEqual(dataObject.DatalistInMergeType, clonedObject.DatalistInMergeType);
+            NUnit.Framework.Assert.AreEqual(dataObject.DatalistOutMergeDepth, clonedObject.DatalistOutMergeDepth);
+            NUnit.Framework.Assert.AreEqual(dataObject.DatalistOutMergeFrequency, clonedObject.DatalistOutMergeFrequency);
+            NUnit.Framework.Assert.AreEqual(dataObject.DatalistOutMergeID, clonedObject.DatalistOutMergeID);
+            NUnit.Framework.Assert.AreEqual(dataObject.DatalistOutMergeType, clonedObject.DatalistOutMergeType);
+            NUnit.Framework.Assert.AreEqual(dataObject.DebugSessionID, clonedObject.DebugSessionID);
+            NUnit.Framework.Assert.AreEqual(dataObject.EnvironmentID, clonedObject.EnvironmentID);
+            NUnit.Framework.Assert.AreEqual(dataObject.VersionNumber, clonedObject.VersionNumber);
+            NUnit.Framework.Assert.AreEqual(dataObject.ExecutingUser, clonedObject.ExecutingUser);
+            NUnit.Framework.Assert.AreEqual(dataObject.ExecutionCallbackID, clonedObject.ExecutionCallbackID);
+            NUnit.Framework.Assert.AreEqual(dataObject.ExecutionOrigin, clonedObject.ExecutionOrigin);
+            NUnit.Framework.Assert.AreEqual(dataObject.ExecutionOriginDescription, clonedObject.ExecutionOriginDescription);
+            NUnit.Framework.Assert.AreEqual(dataObject.ForceDeleteAtNextNativeActivityCleanup, clonedObject.ForceDeleteAtNextNativeActivityCleanup);
+            NUnit.Framework.Assert.AreEqual(dataObject.IsDataListScoped, clonedObject.IsDataListScoped);
+            NUnit.Framework.Assert.AreEqual(dataObject.IsDebug, clonedObject.IsDebug);
+            NUnit.Framework.Assert.AreEqual(dataObject.IsFromWebServer, clonedObject.IsFromWebServer);
+            NUnit.Framework.Assert.AreEqual(dataObject.IsOnDemandSimulation, clonedObject.IsOnDemandSimulation);
+            NUnit.Framework.Assert.AreEqual(dataObject.IsRemoteInvoke, clonedObject.IsRemoteInvoke);
+            NUnit.Framework.Assert.AreEqual(dataObject.IsRemoteInvokeOverridden, clonedObject.IsRemoteInvokeOverridden);
+            NUnit.Framework.Assert.AreEqual(dataObject.NumberOfSteps, clonedObject.NumberOfSteps);
+            NUnit.Framework.Assert.AreEqual(dataObject.OriginalInstanceID, clonedObject.OriginalInstanceID);
+            NUnit.Framework.Assert.AreEqual(dataObject.ParentInstanceID, clonedObject.ParentInstanceID);
+            NUnit.Framework.Assert.AreEqual(dataObject.ParentServiceName, clonedObject.ParentServiceName);
+            NUnit.Framework.Assert.AreEqual(dataObject.ParentThreadID, clonedObject.ParentThreadID);
+            NUnit.Framework.Assert.AreEqual(dataObject.ParentWorkflowInstanceId, clonedObject.ParentWorkflowInstanceId);
+            NUnit.Framework.Assert.AreEqual(dataObject.RawPayload, clonedObject.RawPayload);
+            NUnit.Framework.Assert.AreEqual(dataObject.RemoteDebugItems, clonedObject.RemoteDebugItems);
+            NUnit.Framework.Assert.AreEqual(dataObject.RemoteInvoke, clonedObject.RemoteInvoke);
+            NUnit.Framework.Assert.AreEqual(dataObject.RemoteNonDebugInvoke, clonedObject.RemoteNonDebugInvoke);
+            NUnit.Framework.Assert.AreEqual(dataObject.RemoteInvokeResultShape, clonedObject.RemoteInvokeResultShape);
+            NUnit.Framework.Assert.AreEqual(dataObject.RemoteInvokerID, clonedObject.RemoteInvokerID);
+            NUnit.Framework.Assert.AreEqual(dataObject.RemoteServiceType, clonedObject.RemoteServiceType);
+            NUnit.Framework.Assert.AreEqual(dataObject.ResourceID, clonedObject.ResourceID);
+            NUnit.Framework.Assert.AreEqual(dataObject.ReturnType, clonedObject.ReturnType);
+            NUnit.Framework.Assert.AreEqual(dataObject.ServerID, clonedObject.ServerID);
+            NUnit.Framework.Assert.AreEqual(dataObject.ClientID, clonedObject.ClientID);
+            NUnit.Framework.Assert.AreEqual(dataObject.ServiceName, clonedObject.ServiceName);
+            NUnit.Framework.Assert.AreEqual(dataObject.WorkflowInstanceId, clonedObject.WorkflowInstanceId);
+            NUnit.Framework.Assert.AreEqual(dataObject.WorkflowResumeable, clonedObject.WorkflowResumeable);
+            NUnit.Framework.Assert.AreEqual(dataObject.WorkspaceID, clonedObject.WorkspaceID);
+            NUnit.Framework.Assert.AreEqual(dataObject.ThreadsToDispose, clonedObject.ThreadsToDispose);
+            NUnit.Framework.Assert.AreEqual(dataObject.ParentID, clonedObject.ParentID);
+            NUnit.Framework.Assert.AreEqual(dataObject.RunWorkflowAsync, clonedObject.RunWorkflowAsync);
+            NUnit.Framework.Assert.AreEqual(dataObject.IsDebugNested, clonedObject.IsDebugNested);
+            NUnit.Framework.Assert.AreEqual(dataObject.ForEachNestingLevel, clonedObject.ForEachNestingLevel);
+            NUnit.Framework.Assert.AreEqual(dataObject.StopExecution, clonedObject.StopExecution);
+            NUnit.Framework.Assert.AreEqual(dataObject.SourceResourceID, clonedObject.SourceResourceID);
+            NUnit.Framework.Assert.AreEqual(dataObject.TestName, clonedObject.TestName);
+            NUnit.Framework.Assert.AreEqual(dataObject.IsServiceTestExecution, clonedObject.IsServiceTestExecution);
+            NUnit.Framework.Assert.AreEqual(dataObject.IsDebugFromWeb, clonedObject.IsDebugFromWeb);
+            NUnit.Framework.Assert.AreNotEqual(dataObject.ServiceTest, clonedObject.ServiceTest);
+            NUnit.Framework.Assert.AreEqual(dataObject.ServiceTest.TestName, clonedObject.ServiceTest.TestName);
+            NUnit.Framework.Assert.AreEqual(dataObject.IsSubExecution, clonedObject.IsSubExecution);
+            NUnit.Framework.Assert.AreEqual(dataObject.WebUrl, clonedObject.WebUrl);
+            NUnit.Framework.Assert.AreEqual(dataObject.QueryString, clonedObject.QueryString);
+            NUnit.Framework.Assert.AreEqual(dataObject.ExecutingUser, clonedObject.ExecutingUser);
+            NUnit.Framework.Assert.AreEqual(dataObject.StateNotifier, clonedObject.StateNotifier);
+            NUnit.Framework.Assert.AreNotEqual(dataObject.Settings, clonedObject.Settings);
+            NUnit.Framework.Assert.AreEqual(dataObject.Settings.KeepLogsForDays, clonedObject.Settings.KeepLogsForDays);
+            NUnit.Framework.Assert.AreNotEqual(dataObject.AuthCache, clonedObject.AuthCache);
+            NUnit.Framework.Assert.AreEqual(dataObject.ExecutionException, clonedObject.ExecutionException);
         }
 
         #region Debug Mode Test
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DataObject_IsDebugMode")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DataObject_IsDebugMode")]
         public void DataObject_IsDebugMode_IsDebugIsTrueAndRunWorkflowAsyncIsTrue_IsDebugModeIsFalse()
         {
             //------------Setup for test--------------------------
@@ -347,12 +349,12 @@ namespace Dev2.Tests
             //------------Execute Test---------------------------
             var isDebug = dataObject.IsDebugMode();
             //------------Assert Results-------------------------
-            Assert.IsFalse(isDebug);
+            NUnit.Framework.Assert.IsFalse(isDebug);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DataObject_IsDebugMode")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DataObject_IsDebugMode")]
         public void DataObject_IsDebugMode_IsDebugIsTrueAndRunWorkflowAsyncIsTrue_RemoteInvokeNotDebug()
         {
             //------------Setup for test--------------------------
@@ -363,11 +365,11 @@ namespace Dev2.Tests
             //------------Execute Test---------------------------
             var isDebug = dataObject.IsDebugMode();
             //------------Assert Results-------------------------
-            Assert.IsFalse(isDebug);
+            NUnit.Framework.Assert.IsFalse(isDebug);
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DataObject_IsDebugMode")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DataObject_IsDebugMode")]
         public void DataObject_IsDebugMode_IsDebugIsTrueAndRunWorkflowAsyncIsTrue_RemoteInvokeNotDebugRemote()
         {
             //------------Setup for test--------------------------
@@ -379,13 +381,13 @@ namespace Dev2.Tests
             //------------Execute Test---------------------------
             var isDebug = dataObject.IsDebugMode();
             //------------Assert Results-------------------------
-            Assert.IsTrue(isDebug);
+            NUnit.Framework.Assert.IsTrue(isDebug);
         }
 
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DataObject_IsDebugMode")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DataObject_IsDebugMode")]
         public void DataObject_IsDebugMode_IsDebugIsTrueAndRunWorkflowAsyncIsFalse_IsDebugModeIsTrue()
         {
             //------------Setup for test--------------------------
@@ -395,12 +397,12 @@ namespace Dev2.Tests
             //------------Execute Test---------------------------
             var isDebug = dataObject.IsDebugMode();
             //------------Assert Results-------------------------
-            Assert.IsTrue(isDebug);
+            NUnit.Framework.Assert.IsTrue(isDebug);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DataObject_IsDebugMode")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DataObject_IsDebugMode")]
         public void DataObject_IsDebugMode_RemoteInvokeIsTrueAndRunWorkflowAsyncIsTrue_IsDebugModeIsFalse()
         {
             //------------Setup for test--------------------------
@@ -410,12 +412,12 @@ namespace Dev2.Tests
             //------------Execute Test---------------------------
             var isDebug = dataObject.IsDebugMode();
             //------------Assert Results-------------------------
-            Assert.IsFalse(isDebug);
+            NUnit.Framework.Assert.IsFalse(isDebug);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DataObject_IsDebugMode")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DataObject_IsDebugMode")]
         public void DataObject_IsDebugMode_RemoteInvokeIsTrueAndRunWorkflowAsyncIsFalse_IsDebugModeIsTrue()
         {
             //------------Setup for test--------------------------
@@ -425,16 +427,16 @@ namespace Dev2.Tests
             //------------Execute Test---------------------------
             var isDebug = dataObject.IsDebugMode();
             //------------Assert Results-------------------------
-            Assert.IsTrue(isDebug);
+            NUnit.Framework.Assert.IsTrue(isDebug);
         }
 
         #endregion
 
         #region Constructor Test
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DataObject_Ctor")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DataObject_Ctor")]
         public void DataObject_Ctor_WhenXmlStringContainsAllButDataMergePropertiesSet_ExpectParseAndSet()
         {
             //------------Setup for test--------------------------
@@ -468,37 +470,37 @@ namespace Dev2.Tests
             var dataObjct = new DsfDataObject(xmlStr, Guid.NewGuid(), "<x>1</x>");
 
             //------------Assert Results-------------------------
-            Assert.IsTrue(dataObjct.IsDebug);
-            StringAssert.Contains(dataObjct.DebugSessionID.ToString(), debugID.ToString());
-            StringAssert.Contains(dataObjct.EnvironmentID.ToString(), envID.ToString());
-            StringAssert.Contains(dataObjct.VersionNumber.ToString(), versionNumber);
-            Assert.IsTrue(dataObjct.IsOnDemandSimulation);
-            StringAssert.Contains(dataObjct.ParentServiceName, "TestParentService");
-            StringAssert.Contains(dataObjct.ExecutionCallbackID.ToString(), exeID.ToString());
-            StringAssert.Contains(dataObjct.BookmarkExecutionCallbackID.ToString(), bookmarkID.ToString());
-            StringAssert.Contains(dataObjct.ParentInstanceID, parentID.ToString());
-            Assert.AreEqual(5, dataObjct.NumberOfSteps, "Wrong number of steps");
-            StringAssert.Contains(dataObjct.CurrentBookmarkName, "MyBookmark");
-            StringAssert.Contains(dataObjct.WorkflowInstanceId.ToString(), instID.ToString());
-            Assert.IsTrue(dataObjct.IsDataListScoped);
-            StringAssert.Contains(dataObjct.ServiceName, "MyTestService");
-            StringAssert.Contains(dataObjct.RawPayload.ToString(), xmlStr);
+            NUnit.Framework.Assert.IsTrue(dataObjct.IsDebug);
+            NUnit.Framework.StringAssert.Contains(dataObjct.DebugSessionID.ToString(), debugID.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.EnvironmentID.ToString(), envID.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.VersionNumber.ToString(), versionNumber);
+            NUnit.Framework.Assert.IsTrue(dataObjct.IsOnDemandSimulation);
+            NUnit.Framework.StringAssert.Contains(dataObjct.ParentServiceName, "TestParentService");
+            NUnit.Framework.StringAssert.Contains(dataObjct.ExecutionCallbackID.ToString(), exeID.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.BookmarkExecutionCallbackID.ToString(), bookmarkID.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.ParentInstanceID, parentID.ToString());
+            NUnit.Framework.Assert.AreEqual(5, dataObjct.NumberOfSteps, "Wrong number of steps");
+            NUnit.Framework.StringAssert.Contains(dataObjct.CurrentBookmarkName, "MyBookmark");
+            NUnit.Framework.StringAssert.Contains(dataObjct.WorkflowInstanceId.ToString(), instID.ToString());
+            NUnit.Framework.Assert.IsTrue(dataObjct.IsDataListScoped);
+            NUnit.Framework.StringAssert.Contains(dataObjct.ServiceName, "MyTestService");
+            NUnit.Framework.StringAssert.Contains(dataObjct.RawPayload.ToString(), xmlStr);
 
             // Default Data Merge Checks
-            StringAssert.Contains(dataObjct.DatalistOutMergeID.ToString(), Guid.Empty.ToString());
-            StringAssert.Contains(dataObjct.DatalistOutMergeType.ToString(), enDataListMergeTypes.Intersection.ToString());
-            StringAssert.Contains(dataObjct.DatalistOutMergeDepth.ToString(), Common.Interfaces.DataList.Contract.enTranslationDepth.Data_With_Blank_OverWrite.ToString());
-            StringAssert.Contains(dataObjct.DatalistOutMergeFrequency.ToString(), DataListMergeFrequency.OnCompletion.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.DatalistOutMergeID.ToString(), Guid.Empty.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.DatalistOutMergeType.ToString(), enDataListMergeTypes.Intersection.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.DatalistOutMergeDepth.ToString(), Common.Interfaces.DataList.Contract.enTranslationDepth.Data_With_Blank_OverWrite.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.DatalistOutMergeFrequency.ToString(), DataListMergeFrequency.OnCompletion.ToString());
 
-            StringAssert.Contains(dataObjct.DatalistInMergeID.ToString(), Guid.Empty.ToString());
-            StringAssert.Contains(dataObjct.DatalistInMergeType.ToString(), enDataListMergeTypes.Intersection.ToString());
-            StringAssert.Contains(dataObjct.DatalistInMergeDepth.ToString(), Common.Interfaces.DataList.Contract.enTranslationDepth.Data_With_Blank_OverWrite.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.DatalistInMergeID.ToString(), Guid.Empty.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.DatalistInMergeType.ToString(), enDataListMergeTypes.Intersection.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.DatalistInMergeDepth.ToString(), Common.Interfaces.DataList.Contract.enTranslationDepth.Data_With_Blank_OverWrite.ToString());
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DataObject_Ctor")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DataObject_Ctor")]
         public void DataObject_Ctor_WhenXmlStringgDoesNotHaveIsDebugModeSetButHasBDSDebugModeSet_ExpectParseAndSetAndIsDebugStillTrue()
         {
             //------------Setup for test--------------------------
@@ -532,37 +534,37 @@ namespace Dev2.Tests
             var dataObjct = new DsfDataObject(xmlStr, Guid.NewGuid(), "<x>1</x>");
 
             //------------Assert Results-------------------------
-            Assert.IsTrue(dataObjct.IsDebug);
-            StringAssert.Contains(dataObjct.DebugSessionID.ToString(), debugID.ToString());
-            StringAssert.Contains(dataObjct.EnvironmentID.ToString(), envID.ToString());
-            StringAssert.Contains(dataObjct.VersionNumber.ToString(), versionNumber);
-            Assert.IsTrue(dataObjct.IsOnDemandSimulation);
-            StringAssert.Contains(dataObjct.ParentServiceName, "TestParentService");
-            StringAssert.Contains(dataObjct.ExecutionCallbackID.ToString(), exeID.ToString());
-            StringAssert.Contains(dataObjct.BookmarkExecutionCallbackID.ToString(), bookmarkID.ToString());
-            StringAssert.Contains(dataObjct.ParentInstanceID, parentID.ToString());
-            Assert.AreEqual(5, dataObjct.NumberOfSteps, "Wrong number of steps");
-            StringAssert.Contains(dataObjct.CurrentBookmarkName, "MyBookmark");
-            StringAssert.Contains(dataObjct.WorkflowInstanceId.ToString(), instID.ToString());
-            Assert.IsTrue(dataObjct.IsDataListScoped);
-            StringAssert.Contains(dataObjct.ServiceName, "MyTestService");
-            StringAssert.Contains(dataObjct.RawPayload.ToString(), xmlStr);
+            NUnit.Framework.Assert.IsTrue(dataObjct.IsDebug);
+            NUnit.Framework.StringAssert.Contains(dataObjct.DebugSessionID.ToString(), debugID.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.EnvironmentID.ToString(), envID.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.VersionNumber.ToString(), versionNumber);
+            NUnit.Framework.Assert.IsTrue(dataObjct.IsOnDemandSimulation);
+            NUnit.Framework.StringAssert.Contains(dataObjct.ParentServiceName, "TestParentService");
+            NUnit.Framework.StringAssert.Contains(dataObjct.ExecutionCallbackID.ToString(), exeID.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.BookmarkExecutionCallbackID.ToString(), bookmarkID.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.ParentInstanceID, parentID.ToString());
+            NUnit.Framework.Assert.AreEqual(5, dataObjct.NumberOfSteps, "Wrong number of steps");
+            NUnit.Framework.StringAssert.Contains(dataObjct.CurrentBookmarkName, "MyBookmark");
+            NUnit.Framework.StringAssert.Contains(dataObjct.WorkflowInstanceId.ToString(), instID.ToString());
+            NUnit.Framework.Assert.IsTrue(dataObjct.IsDataListScoped);
+            NUnit.Framework.StringAssert.Contains(dataObjct.ServiceName, "MyTestService");
+            NUnit.Framework.StringAssert.Contains(dataObjct.RawPayload.ToString(), xmlStr);
 
             // Default Data Merge Checks
-            StringAssert.Contains(dataObjct.DatalistOutMergeID.ToString(), Guid.Empty.ToString());
-            StringAssert.Contains(dataObjct.DatalistOutMergeType.ToString(), enDataListMergeTypes.Intersection.ToString());
-            StringAssert.Contains(dataObjct.DatalistOutMergeDepth.ToString(), Common.Interfaces.DataList.Contract.enTranslationDepth.Data_With_Blank_OverWrite.ToString());
-            StringAssert.Contains(dataObjct.DatalistOutMergeFrequency.ToString(), DataListMergeFrequency.OnCompletion.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.DatalistOutMergeID.ToString(), Guid.Empty.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.DatalistOutMergeType.ToString(), enDataListMergeTypes.Intersection.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.DatalistOutMergeDepth.ToString(), Common.Interfaces.DataList.Contract.enTranslationDepth.Data_With_Blank_OverWrite.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.DatalistOutMergeFrequency.ToString(), DataListMergeFrequency.OnCompletion.ToString());
 
-            StringAssert.Contains(dataObjct.DatalistInMergeID.ToString(), Guid.Empty.ToString());
-            StringAssert.Contains(dataObjct.DatalistInMergeType.ToString(), enDataListMergeTypes.Intersection.ToString());
-            StringAssert.Contains(dataObjct.DatalistInMergeDepth.ToString(), Common.Interfaces.DataList.Contract.enTranslationDepth.Data_With_Blank_OverWrite.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.DatalistInMergeID.ToString(), Guid.Empty.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.DatalistInMergeType.ToString(), enDataListMergeTypes.Intersection.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.DatalistInMergeDepth.ToString(), Common.Interfaces.DataList.Contract.enTranslationDepth.Data_With_Blank_OverWrite.ToString());
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DataObject_Ctor")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DataObject_Ctor")]
         public void DataObject_Ctor_WhenXmlStringDoesNotHaveBookmarkExecutionCallbackIDSet_ExpectParseAndSet()
         {
             //------------Setup for test--------------------------
@@ -594,37 +596,37 @@ namespace Dev2.Tests
             var dataObjct = new DsfDataObject(xmlStr, Guid.NewGuid(), "<x>1</x>");
 
             //------------Assert Results-------------------------
-            Assert.IsTrue(dataObjct.IsDebug);
-            StringAssert.Contains(dataObjct.DebugSessionID.ToString(), debugID.ToString());
-            StringAssert.Contains(dataObjct.EnvironmentID.ToString(), envID.ToString());
-            StringAssert.Contains(dataObjct.VersionNumber.ToString(), versionNumber);
-            Assert.IsTrue(dataObjct.IsOnDemandSimulation);
-            StringAssert.Contains(dataObjct.ParentServiceName, "TestParentService");
-            StringAssert.Contains(dataObjct.ExecutionCallbackID.ToString(), exeID.ToString());
-            StringAssert.Contains(dataObjct.BookmarkExecutionCallbackID.ToString(), exeID.ToString());
-            StringAssert.Contains(dataObjct.ParentInstanceID, parentID.ToString());
-            Assert.AreEqual(5, dataObjct.NumberOfSteps, "Wrong number of steps");
-            StringAssert.Contains(dataObjct.CurrentBookmarkName, "MyBookmark");
-            StringAssert.Contains(dataObjct.WorkflowInstanceId.ToString(), instID.ToString());
-            Assert.IsTrue(dataObjct.IsDataListScoped);
-            StringAssert.Contains(dataObjct.ServiceName, "MyTestService");
-            StringAssert.Contains(dataObjct.RawPayload.ToString(), xmlStr);
+            NUnit.Framework.Assert.IsTrue(dataObjct.IsDebug);
+            NUnit.Framework.StringAssert.Contains(dataObjct.DebugSessionID.ToString(), debugID.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.EnvironmentID.ToString(), envID.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.VersionNumber.ToString(), versionNumber);
+            NUnit.Framework.Assert.IsTrue(dataObjct.IsOnDemandSimulation);
+            NUnit.Framework.StringAssert.Contains(dataObjct.ParentServiceName, "TestParentService");
+            NUnit.Framework.StringAssert.Contains(dataObjct.ExecutionCallbackID.ToString(), exeID.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.BookmarkExecutionCallbackID.ToString(), exeID.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.ParentInstanceID, parentID.ToString());
+            NUnit.Framework.Assert.AreEqual(5, dataObjct.NumberOfSteps, "Wrong number of steps");
+            NUnit.Framework.StringAssert.Contains(dataObjct.CurrentBookmarkName, "MyBookmark");
+            NUnit.Framework.StringAssert.Contains(dataObjct.WorkflowInstanceId.ToString(), instID.ToString());
+            NUnit.Framework.Assert.IsTrue(dataObjct.IsDataListScoped);
+            NUnit.Framework.StringAssert.Contains(dataObjct.ServiceName, "MyTestService");
+            NUnit.Framework.StringAssert.Contains(dataObjct.RawPayload.ToString(), xmlStr);
 
             // Default Data Merge Checks
-            StringAssert.Contains(dataObjct.DatalistOutMergeID.ToString(), Guid.Empty.ToString());
-            StringAssert.Contains(dataObjct.DatalistOutMergeType.ToString(), enDataListMergeTypes.Intersection.ToString());
-            StringAssert.Contains(dataObjct.DatalistOutMergeDepth.ToString(), Common.Interfaces.DataList.Contract.enTranslationDepth.Data_With_Blank_OverWrite.ToString());
-            StringAssert.Contains(dataObjct.DatalistOutMergeFrequency.ToString(), DataListMergeFrequency.OnCompletion.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.DatalistOutMergeID.ToString(), Guid.Empty.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.DatalistOutMergeType.ToString(), enDataListMergeTypes.Intersection.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.DatalistOutMergeDepth.ToString(), Common.Interfaces.DataList.Contract.enTranslationDepth.Data_With_Blank_OverWrite.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.DatalistOutMergeFrequency.ToString(), DataListMergeFrequency.OnCompletion.ToString());
 
-            StringAssert.Contains(dataObjct.DatalistInMergeID.ToString(), Guid.Empty.ToString());
-            StringAssert.Contains(dataObjct.DatalistInMergeType.ToString(), enDataListMergeTypes.Intersection.ToString());
-            StringAssert.Contains(dataObjct.DatalistInMergeDepth.ToString(), Common.Interfaces.DataList.Contract.enTranslationDepth.Data_With_Blank_OverWrite.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.DatalistInMergeID.ToString(), Guid.Empty.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.DatalistInMergeType.ToString(), enDataListMergeTypes.Intersection.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.DatalistInMergeDepth.ToString(), Common.Interfaces.DataList.Contract.enTranslationDepth.Data_With_Blank_OverWrite.ToString());
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DataObject_Ctor")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DataObject_Ctor")]
         public void DataObject_Ctor_WhenXmlStringContainsAllIncludingDataMergePropertiesSet_ExpectParseAndSet()
         {
             //------------Setup for test--------------------------
@@ -667,31 +669,31 @@ namespace Dev2.Tests
             var dataObjct = new DsfDataObject(xmlStr, Guid.NewGuid(), "<x>1</x>");
 
             //------------Assert Results-------------------------
-            Assert.IsTrue(dataObjct.IsDebug);
-            StringAssert.Contains(dataObjct.DebugSessionID.ToString(), debugID.ToString());
-            StringAssert.Contains(dataObjct.EnvironmentID.ToString(), envID.ToString());
-            StringAssert.Contains(dataObjct.VersionNumber.ToString(), versionNumber);
-            Assert.IsTrue(dataObjct.IsOnDemandSimulation);
-            StringAssert.Contains(dataObjct.ParentServiceName, "TestParentService");
-            StringAssert.Contains(dataObjct.ExecutionCallbackID.ToString(), exeID.ToString());
-            StringAssert.Contains(dataObjct.BookmarkExecutionCallbackID.ToString(), bookmarkID.ToString());
-            StringAssert.Contains(dataObjct.ParentInstanceID, parentID.ToString());
-            Assert.AreEqual(5, dataObjct.NumberOfSteps, "Wrong number of steps");
-            StringAssert.Contains(dataObjct.CurrentBookmarkName, "MyBookmark");
-            StringAssert.Contains(dataObjct.WorkflowInstanceId.ToString(), instID.ToString());
-            Assert.IsTrue(dataObjct.IsDataListScoped);
-            StringAssert.Contains(dataObjct.ServiceName, "MyTestService");
-            StringAssert.Contains(dataObjct.RawPayload.ToString(), xmlStr);
+            NUnit.Framework.Assert.IsTrue(dataObjct.IsDebug);
+            NUnit.Framework.StringAssert.Contains(dataObjct.DebugSessionID.ToString(), debugID.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.EnvironmentID.ToString(), envID.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.VersionNumber.ToString(), versionNumber);
+            NUnit.Framework.Assert.IsTrue(dataObjct.IsOnDemandSimulation);
+            NUnit.Framework.StringAssert.Contains(dataObjct.ParentServiceName, "TestParentService");
+            NUnit.Framework.StringAssert.Contains(dataObjct.ExecutionCallbackID.ToString(), exeID.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.BookmarkExecutionCallbackID.ToString(), bookmarkID.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.ParentInstanceID, parentID.ToString());
+            NUnit.Framework.Assert.AreEqual(5, dataObjct.NumberOfSteps, "Wrong number of steps");
+            NUnit.Framework.StringAssert.Contains(dataObjct.CurrentBookmarkName, "MyBookmark");
+            NUnit.Framework.StringAssert.Contains(dataObjct.WorkflowInstanceId.ToString(), instID.ToString());
+            NUnit.Framework.Assert.IsTrue(dataObjct.IsDataListScoped);
+            NUnit.Framework.StringAssert.Contains(dataObjct.ServiceName, "MyTestService");
+            NUnit.Framework.StringAssert.Contains(dataObjct.RawPayload.ToString(), xmlStr);
 
             // Data Merge Checks
-            StringAssert.Contains(dataObjct.DatalistOutMergeID.ToString(), mergeIDOut.ToString());
-            StringAssert.Contains(dataObjct.DatalistOutMergeType.ToString(), enDataListMergeTypes.Union.ToString());
-            StringAssert.Contains(dataObjct.DatalistOutMergeDepth.ToString(), Common.Interfaces.DataList.Contract.enTranslationDepth.Data.ToString());
-            StringAssert.Contains(dataObjct.DatalistOutMergeFrequency.ToString(), DataListMergeFrequency.OnCompletion.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.DatalistOutMergeID.ToString(), mergeIDOut.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.DatalistOutMergeType.ToString(), enDataListMergeTypes.Union.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.DatalistOutMergeDepth.ToString(), Common.Interfaces.DataList.Contract.enTranslationDepth.Data.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.DatalistOutMergeFrequency.ToString(), DataListMergeFrequency.OnCompletion.ToString());
 
-            StringAssert.Contains(dataObjct.DatalistInMergeID.ToString(), mergeIDIn.ToString());
-            StringAssert.Contains(dataObjct.DatalistInMergeType.ToString(), enDataListMergeTypes.Union.ToString());
-            StringAssert.Contains(dataObjct.DatalistInMergeDepth.ToString(), Common.Interfaces.DataList.Contract.enTranslationDepth.Data.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.DatalistInMergeID.ToString(), mergeIDIn.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.DatalistInMergeType.ToString(), enDataListMergeTypes.Union.ToString());
+            NUnit.Framework.StringAssert.Contains(dataObjct.DatalistInMergeDepth.ToString(), Common.Interfaces.DataList.Contract.enTranslationDepth.Data.ToString());
 
         }
 

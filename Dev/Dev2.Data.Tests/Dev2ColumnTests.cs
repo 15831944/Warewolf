@@ -1,23 +1,24 @@
 using Dev2.Data.Interfaces.Enums;
 using Dev2.DataList.Contract;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class Dev2ColumnTests
     {
-        [TestMethod]
+        [Test]
         public void GivenUnEqualColumns_Dev2Column_ShoudEquals_ShouldReturnFalse()
         {
             var dev2Column = DataListFactory.CreateDev2Column("Column1", "Column1Description", true,
                 enDev2ColumnArgumentDirection.None);
             var other = DataListFactory.CreateDev2Column("OtherColumn", "OtherColumnDescription", true,
                 enDev2ColumnArgumentDirection.None);
-            Assert.IsNotNull(dev2Column);
-            Assert.IsFalse(dev2Column.Equals(other));
+            NUnit.Framework.Assert.IsNotNull(dev2Column);
+            NUnit.Framework.Assert.IsFalse(dev2Column.Equals(other));
             var dev2Column2 = dev2Column;
-            Assert.IsTrue(dev2Column == dev2Column2);
+            NUnit.Framework.Assert.IsTrue(dev2Column == dev2Column2);
         }
     }
 }

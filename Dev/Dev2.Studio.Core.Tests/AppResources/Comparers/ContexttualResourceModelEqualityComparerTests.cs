@@ -11,18 +11,19 @@
 using System;
 using Dev2.Studio.Core.AppResources.DependencyInjection.EqualityComparers;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Core.Tests.AppResources.Comparers
 {
-    [TestClass]
-	[TestCategory("Studio Resources Core")]
+    [TestFixture]
+    [SetUpFixture]
+	[Category("Studio Resources Core")]
     public class ContexttualResourceModelEqualityComparerTests
     {
-        [TestMethod]
-        [Owner("Ashley Lewis")]
-        [TestCategory("ContexttualResourceModelEqualityComparer_Equals")]
+        [Test]
+        [Author("Ashley Lewis")]
+        [Category("ContexttualResourceModelEqualityComparer_Equals")]
         public void ContexttualResourceModelEqualityComparer_Equals_EnvironmentDifferent_NotEqual()
         {
             const string resourceName = "Resource Name";
@@ -50,9 +51,9 @@ namespace Dev2.Core.Tests.AppResources.Comparers
             Assert.IsFalse(actual, "Equity comparer found contextual resources with different environments to be equal");
         }
 
-        [TestMethod]
-        [Owner("Ashley Lewis")]
-        [TestCategory("ContexttualResourceModelEqualityComparer_Equals")]
+        [Test]
+        [Author("Ashley Lewis")]
+        [Category("ContexttualResourceModelEqualityComparer_Equals")]
         public void ContexttualResourceModelEqualityComparer_Equals_EnvironmentNotDifferent_AreEqual()
         {
             const string resourceName = "Resource Name";

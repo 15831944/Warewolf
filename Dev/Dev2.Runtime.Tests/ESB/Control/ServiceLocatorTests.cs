@@ -8,7 +8,7 @@ using Dev2.DynamicServices.Objects;
 using Dev2.Runtime.ESB.Control;
 using Dev2.Runtime.Hosting;
 using Dev2.Runtime.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Resource.Errors;
 
@@ -16,18 +16,19 @@ using Warewolf.Resource.Errors;
 
 namespace Dev2.Tests.Runtime.ESB.Control
 {
-    [TestClass]
-    [TestCategory("Runtime ESB")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime ESB")]
     public class ServiceLocatorTests
     {
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void Init(TestContext context)
         {
             var pCounter = new Mock<IWarewolfPerformanceCounterLocater>();
             CustomContainer.Register(pCounter.Object);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Construnct_ShouldNotThrowException()
         {
             //---------------Set up test pack-------------------
@@ -37,17 +38,17 @@ namespace Dev2.Tests.Runtime.ESB.Control
             //---------------Execute Test ----------------------
             var locator = new ServiceLocator();
             //---------------Test Result -----------------------
-            Assert.IsNotNull(locator, "Cannot create new ServiceLocator object.");
+            NUnit.Framework.Assert.IsNotNull(locator, "Cannot create new ServiceLocator object.");
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void FindService_GivenNullServiceName_ShouldThrowExpection()
         {
             //---------------Set up test pack-------------------
             var locator = new ServiceLocator();
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(locator);
+            NUnit.Framework.Assert.IsNotNull(locator);
             //---------------Execute Test ----------------------
             try
             {
@@ -57,18 +58,18 @@ namespace Dev2.Tests.Runtime.ESB.Control
             {
                 //---------------Test Result -----------------------
                 var isValidExc = e is InvalidDataException;
-                Assert.IsTrue(isValidExc);
-                Assert.AreEqual(ErrorResource.ServiceIsNull, e.Message);
+                NUnit.Framework.Assert.IsTrue(isValidExc);
+                NUnit.Framework.Assert.AreEqual(ErrorResource.ServiceIsNull, e.Message);
             }
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void FindService_GivenEmptyServiceName_ShouldThrowExpection()
         {
             //---------------Set up test pack-------------------
             var locator = new ServiceLocator();
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(locator);
+            NUnit.Framework.Assert.IsNotNull(locator);
             //---------------Execute Test ----------------------
             try
             {
@@ -78,13 +79,13 @@ namespace Dev2.Tests.Runtime.ESB.Control
             {
                 //---------------Test Result -----------------------
                 var isValidExc = e is InvalidDataException;
-                Assert.IsTrue(isValidExc);
-                Assert.AreEqual(ErrorResource.ServiceIsNull, e.Message);
+                NUnit.Framework.Assert.IsTrue(isValidExc);
+                NUnit.Framework.Assert.AreEqual(ErrorResource.ServiceIsNull, e.Message);
             }
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Author("Hagashen Naidu")]
         public void FindService_GivenServiceName_ReturnsNull_ShouldUpdatePerfCounter()
         {
             //---------------Set up test pack-------------------
@@ -96,19 +97,19 @@ namespace Dev2.Tests.Runtime.ESB.Control
             var recCat = new Mock<IResourceCatalog>();
             recCat.Setup(catalog => catalog.GetDynamicObjects<DynamicService>(Guid.Empty, "service")).Returns(new List<DynamicService> { null });
             var locator = new ServiceLocator();
-            var privateObject = new PrivateObject(locator);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(locator);
             privateObject.SetField("_resourceCatalog", recCat.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(locator);
+            NUnit.Framework.Assert.IsNotNull(locator);
             //---------------Execute Test ----------------------
             var dynamicService = locator.FindService("service", Guid.Empty);
             recCat.Verify(catalog => catalog.GetDynamicObjects<DynamicService>(Guid.Empty, "service"));
             mockPerformanceCounter.Verify(counter => counter.Increment());
-            Assert.IsNull(dynamicService);
+            NUnit.Framework.Assert.IsNull(dynamicService);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void FindService_GivenServiceName_ShouldReturnsCorreclty()
         {
             //---------------Set up test pack-------------------
@@ -116,26 +117,26 @@ namespace Dev2.Tests.Runtime.ESB.Control
             var service = new DynamicService();
             recCat.Setup(catalog => catalog.GetDynamicObjects<DynamicService>(Guid.Empty, "service")).Returns(new List<DynamicService> {service});
             var locator = new ServiceLocator();
-            var privateObject = new PrivateObject(locator);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(locator);
             privateObject.SetField("_resourceCatalog", recCat.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(locator);
+            NUnit.Framework.Assert.IsNotNull(locator);
             //---------------Execute Test ----------------------
             try
             {
                 var dynamicService = locator.FindService("service", Guid.Empty);
                 recCat.Verify(catalog => catalog.GetDynamicObjects<DynamicService>(Guid.Empty, "service"));
-                Assert.IsNotNull(dynamicService);
+                NUnit.Framework.Assert.IsNotNull(dynamicService);
             }
             catch (Exception e)
             {
                 //---------------Test Result -----------------------
-               Assert.Fail(e.Message);
+               NUnit.Framework.Assert.Fail(e.Message);
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void FindService_GivenServiceName_InCache_ShouldReturnFromCache()
         {
             //---------------Set up test pack-------------------
@@ -147,18 +148,18 @@ namespace Dev2.Tests.Runtime.ESB.Control
             recCat.Setup(catalog => catalog.GetResource(Guid.Empty, "service")).Returns(res.Object);
             ServiceActionRepo.Instance.AddToCache(resourceId, new DynamicService());
             var locator = new ServiceLocator();
-            var privateObject = new PrivateObject(locator);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(locator);
             privateObject.SetField("_resourceCatalog", recCat.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(locator);
+            NUnit.Framework.Assert.IsNotNull(locator);
             //---------------Execute Test ----------------------
             var dynamicService = locator.FindService("service", Guid.Empty);
             recCat.Verify(catalog => catalog.GetDynamicObjects<DynamicService>(Guid.Empty, "service"),Times.Never());
-            Assert.IsNotNull(dynamicService);
+            NUnit.Framework.Assert.IsNotNull(dynamicService);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void FindService_GivenServiceID_InCache_ShouldReturnFromCache()
         {
             //---------------Set up test pack-------------------
@@ -169,25 +170,25 @@ namespace Dev2.Tests.Runtime.ESB.Control
             recCat.Setup(catalog => catalog.GetDynamicObjects<DynamicService>(Guid.Empty, resourceId)).Returns(new List<DynamicService>() { new DynamicService() });
             ServiceActionRepo.Instance.AddToCache(resourceId,new DynamicService());
             var locator = new ServiceLocator();
-            var privateObject = new PrivateObject(locator);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(locator);
             privateObject.SetField("_resourceCatalog", recCat.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(locator);
+            NUnit.Framework.Assert.IsNotNull(locator);
             //---------------Execute Test ----------------------
             try
             {
                 var dynamicService = locator.FindService(resourceId, Guid.Empty);
                 recCat.Verify(catalog => catalog.GetDynamicObjects<DynamicService>(Guid.Empty,resourceId),Times.Never());
-                Assert.IsNotNull(dynamicService);
+                NUnit.Framework.Assert.IsNotNull(dynamicService);
             }
             catch (Exception e)
             {
                 //---------------Test Result -----------------------
-                Assert.Fail(e.Message);
+                NUnit.Framework.Assert.Fail(e.Message);
             }
         }
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Author("Hagashen Naidu")]
         public void FindService_GivenResourceID_ReturnsNull_ShouldUpdatePerfCounter()
         {
             //---------------Set up test pack-------------------
@@ -200,32 +201,32 @@ namespace Dev2.Tests.Runtime.ESB.Control
             var recCat = new Mock<IResourceCatalog>();
             recCat.Setup(catalog => catalog.GetDynamicObjects<DynamicService>(Guid.Empty, resourceId)).Returns(new List<DynamicService> { null });
             var locator = new ServiceLocator();
-            var privateObject = new PrivateObject(locator);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(locator);
             privateObject.SetField("_resourceCatalog", recCat.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(locator);
+            NUnit.Framework.Assert.IsNotNull(locator);
             //---------------Execute Test ----------------------
             try
             {
                 var dynamicService = locator.FindService(resourceId, Guid.Empty);
                 recCat.Verify(catalog => catalog.GetDynamicObjects<DynamicService>(Guid.Empty, resourceId));
                 mockPerformanceCounter.Verify(counter => counter.Increment());
-                Assert.IsNull(dynamicService);
+                NUnit.Framework.Assert.IsNull(dynamicService);
             }
             catch (Exception e)
             {
                 //---------------Test Result -----------------------
-                Assert.Fail(e.Message);
+                NUnit.Framework.Assert.Fail(e.Message);
             }
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void FindService_GivenNullserviceID_ShouldThrowExpection_serviceID()
         {
             //---------------Set up test pack-------------------
             var locator = new ServiceLocator();
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(locator);
+            NUnit.Framework.Assert.IsNotNull(locator);
             //---------------Execute Test ----------------------
             try
             {
@@ -235,14 +236,14 @@ namespace Dev2.Tests.Runtime.ESB.Control
             {
                 //---------------Test Result -----------------------
                 var isValidExc = e is InvalidDataException;
-                Assert.IsTrue(isValidExc);
-                Assert.AreEqual(ErrorResource.ServiceIsNull, e.Message);
+                NUnit.Framework.Assert.IsTrue(isValidExc);
+                NUnit.Framework.Assert.AreEqual(ErrorResource.ServiceIsNull, e.Message);
             }
         }
       
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void FindService_GivenServiceName_ShouldReturnsCorreclty_serviceID()
         {
             //---------------Set up test pack-------------------
@@ -253,32 +254,32 @@ namespace Dev2.Tests.Runtime.ESB.Control
             service.Actions = new List<ServiceAction> { serviceAction };
             recCat.Setup(catalog => catalog.GetDynamicObjects<DynamicService>(Guid.Empty, newGuid)).Returns(new List<DynamicService> {service});
             var locator = new ServiceLocator();
-            var privateObject = new PrivateObject(locator);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(locator);
             privateObject.SetField("_resourceCatalog", recCat.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(locator);
+            NUnit.Framework.Assert.IsNotNull(locator);
             //---------------Execute Test ----------------------
             try
             {
                 var dynamicService = locator.FindService(newGuid, Guid.Empty);
                 recCat.Verify(catalog => catalog.GetDynamicObjects<DynamicService>(Guid.Empty, newGuid));
-                Assert.IsNotNull(dynamicService);
-                Assert.AreEqual(newGuid,serviceAction.ServiceID);
+                NUnit.Framework.Assert.IsNotNull(dynamicService);
+                NUnit.Framework.Assert.AreEqual(newGuid,serviceAction.ServiceID);
             }
             catch (Exception e)
             {
                 //---------------Test Result -----------------------
-               Assert.Fail(e.Message);
+               NUnit.Framework.Assert.Fail(e.Message);
             }
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void FindSourceByName_GivenNullServicename_ShouldThrowExpection()
         {
             //---------------Set up test pack-------------------
             var locator = new ServiceLocator();
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(locator);
+            NUnit.Framework.Assert.IsNotNull(locator);
             //---------------Execute Test ----------------------
             try
             {
@@ -288,14 +289,14 @@ namespace Dev2.Tests.Runtime.ESB.Control
             {
                 //---------------Test Result -----------------------
                 var isValidExc = e is InvalidDataException;
-                Assert.IsTrue(isValidExc);
-                Assert.AreEqual(ErrorResource.ServiceIsNull, e.Message);
+                NUnit.Framework.Assert.IsTrue(isValidExc);
+                NUnit.Framework.Assert.AreEqual(ErrorResource.ServiceIsNull, e.Message);
             }
         }
       
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void FindSourceByName_GivenServiceName_ShouldReturnsCorreclty_serviceID()
         {
             //---------------Set up test pack-------------------
@@ -303,21 +304,21 @@ namespace Dev2.Tests.Runtime.ESB.Control
             const string resourceName = "SourceName";
             recCat.Setup(catalog => catalog.GetDynamicObjects<Source>(Guid.Empty, resourceName)).Returns(new List<Source>() {new Source()  });
             var locator = new ServiceLocator();
-            var privateObject = new PrivateObject(locator);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(locator);
             privateObject.SetField("_resourceCatalog", recCat.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(locator);
+            NUnit.Framework.Assert.IsNotNull(locator);
             //---------------Execute Test ----------------------
             try
             {
                 var dynamicService = locator.FindSourceByName(resourceName, Guid.Empty);
                 recCat.Verify(catalog => catalog.GetDynamicObjects<Source>(Guid.Empty, resourceName));
-                Assert.IsNotNull(dynamicService);
+                NUnit.Framework.Assert.IsNotNull(dynamicService);
             }
             catch (Exception e)
             {
                 //---------------Test Result -----------------------
-               Assert.Fail(e.Message);
+               NUnit.Framework.Assert.Fail(e.Message);
             }
         }
     }

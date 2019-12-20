@@ -1,16 +1,18 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Warewolf.Storage;
 using WarewolfParserInterop;
 
 namespace WarewolfParsingTest
 {
-    [TestClass] 
+    [TestFixture]
+    [SetUpFixture] 
     public class SortTest
     {
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Sort_SortRecset")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Sort_SortRecset")]
         public void Sort_SortRecset_ExpectSortedRecset()
         {
             //------------Setup for test--------------------------
@@ -22,11 +24,11 @@ namespace WarewolfParsingTest
 
            var res = CommonFunctions.evalResultToString(EvaluationFunctions.eval(env2, 0, false, "[[Rec(*).a]]"));
 
-            Assert.AreEqual("1,2,2,3",res);
+            NUnit.Framework.Assert.AreEqual("1,2,2,3",res);
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("Sort_SortRecset")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("Sort_SortRecset")]
         public void Sort_SortRecset_ExpectSortedRecset_desc()
         {
             //------------Setup for test--------------------------
@@ -38,12 +40,11 @@ namespace WarewolfParsingTest
 
             var res = CommonFunctions.evalResultToString( EvaluationFunctions.eval(env2, 0, false, "[[Rec(*).a]]"));
 
-            Assert.AreEqual("3,2,2,1", res);
+            NUnit.Framework.Assert.AreEqual("3,2,2,1", res);
         }
 
         public static DataStorage.WarewolfEnvironment CreateEnvironmentWithData()
         {
-
             var env = new ExecutionEnvironment();
             env.Assign("[[Rec(1).a]]", "1", 0);
             env.Assign("[[Rec(2).a]]", "2", 0);

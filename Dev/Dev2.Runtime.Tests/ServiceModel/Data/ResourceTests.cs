@@ -19,19 +19,20 @@ using Dev2.Common.Interfaces.Infrastructure.Providers.Errors;
 using Dev2.Providers.Errors;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Tests.Runtime.XML;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Tests.Runtime.ServiceModel.Data
 {
 
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class ResourceTests
     {
         #region Equals
 
-        [TestMethod]
+        [Test]
         public void EqualsWithSameItemKeyExpectedReturnsTrue()
         {
             var key = new Resource();
@@ -41,7 +42,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
+        [Test]
         public void EqualsWithNullExpectedReturnsFalse()
         {
             var key = new Resource();
@@ -51,7 +52,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.IsFalse(result);
         }
 
-        [TestMethod]
+        [Test]
         public void EqualsWithDifferentItemKeyHavingSamePropertiesExpectedReturnsTrue()
         {
             var key = new Resource();
@@ -63,7 +64,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
 
         }
 
-        [TestMethod]
+        [Test]
         public void EqualsWithDifferentItemKeyHavingDifferentPropertiesExpectedReturnsFalse()
         {
             var key = new Resource();
@@ -74,7 +75,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.IsFalse(result);
         }
 
-        [TestMethod]
+        [Test]
         public void EqualsWithObjectExpectedReturnsFalse()
         {
             var key = new Resource();
@@ -83,7 +84,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
         }
         #endregion
 
-        [TestMethod]
+        [Test]
         public void ConstructWhereValidXMLExpectResource()
         {
             //------------Setup for test--------------------------
@@ -99,7 +100,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual("WorkflowService", resource.ResourceType);
         }
 
-        [TestMethod]
+        [Test]
         
         public void ToXMLWhereValidResourceWIthErrorInfoDataIsValidFalse()
         {
@@ -126,7 +127,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual("Critical", errorMessageElement.Attribute("ErrorType").Value);
         }
 
-        [TestMethod]
+        [Test]
         public void ConstructWhereValidResourceXMLWIthErrorInfoDataIsValidFalse()
         {
             //------------Setup for test--------------------------
@@ -144,7 +145,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual(FixType.None, resource.Errors[1].FixType);
         }
 
-        [TestMethod]
+        [Test]
         public void ConstructWhereValidXMLWithOneDependenciesExpectResourceWithOneItemInTree()
         {
             //------------Setup for test--------------------------
@@ -162,7 +163,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual(new Guid("7bce06ec-778d-4a64-9dfe-1a826785f0b0"), resourceForTreeChild1.UniqueID);
         }
 
-        [TestMethod]
+        [Test]
         public void ConstructWhereValidXMLWithMultipleDependenciesExpectResourceWithGreaterThanOneItemInTree()
         {
             //------------Setup for test--------------------------
@@ -184,7 +185,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual("WorkflowService", resourceForTreeChild1.ResourceType);
         }
 
-        [TestMethod]
+        [Test]
         public void ConstructWhereValidXMLWithMultipleServiceDependencyExpectResourceWithServiceDependency_Plugin()
         {
             //------------Setup for test--------------------------
@@ -203,7 +204,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual("PluginService", resourceForTreeService.ResourceType);
         }
 
-        [TestMethod]
+        [Test]
         public void ConstructWhereValidXMLWithMultipleServiceDependencyExpectResourceWithServiceDependency_PublishRabbitMQ()
         {
             //------------Setup for test--------------------------
@@ -222,7 +223,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual("RabbitMQSource", resourceForTreeService.ResourceType);
         }
         
-        [TestMethod]
+        [Test]
         public void ConstructWhereValidXMLWithMultipleServiceDependencyExpectResourceWithServiceDependency_SqlServer()
         {
             //------------Setup for test--------------------------
@@ -241,7 +242,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual("DbService", resourceForTreeService.ResourceType);
         }
         
-        [TestMethod]
+        [Test]
         public void ConstructWhereValidXMLWithMultipleServiceDependencyExpectResourceWithServiceDependency_MySqlServer()
         {
             //------------Setup for test--------------------------
@@ -260,7 +261,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual("DbService", resourceForTreeService.ResourceType);
         }
         
-        [TestMethod]
+        [Test]
         public void ConstructWhereValidXMLWithMultipleServiceDependencyExpectResourceWithServiceDependency_WebGet()
         {
             //------------Setup for test--------------------------
@@ -280,7 +281,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
         }
 
 
-        [TestMethod]
+        [Test]
         public void ConstructWhereValidXMLFromResourceWithOneDependenciesExpectResourceWithOneItemInTree()
         {
             //------------Setup for test--------------------------
@@ -298,7 +299,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual(new Guid("7bce06ec-778d-4a64-9dfe-1a826785f0b0"), resourceForTreeRoot.UniqueID);
         }
 
-        [TestMethod]
+        [Test]
         public void Construct_UnitTest_LoadDependenciesWhereHasRemoteWorkflowDependency_ExpectedRemoteServerDependencyAdded()
         {
             //------------Setup for test--------------------------
@@ -315,9 +316,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual("Server", serverDependency.ResourceType);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("Resource_LoadDependencies")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("Resource_LoadDependencies")]
         public void Resource_LoadDependencies_HasEmailSource_ShouldHaveEmailSourceInDepencyList()
         {
             //------------Setup for test--------------------------
@@ -332,9 +333,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual("988e1146-ddb8-456d-8a01-4377a707605b", resource.Dependencies[0].ResourceID.ToString());
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("Resource_LoadDependencies")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("Resource_LoadDependencies")]
         public void Resource_LoadDependencies_HasDatabaseSourceFromSqlBulkInsertTool_ShouldHaveDatabaseSourceInDepencyList()
         {
             //------------Setup for test--------------------------
@@ -349,9 +350,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual("62505a00-b304-4ac0-a55c-50ce85111f16", resource.Dependencies[1].ResourceID.ToString());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Resource_LoadDependencies")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Resource_LoadDependencies")]
         public void Resource_LoadDependencies_HasWebSourceFromWebPutTool_ShouldHaveWebSourceInDepencyList()
         {
             //------------Setup for test--------------------------
@@ -364,9 +365,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual(1, resource.Dependencies.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Resource_LoadDependencies")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Resource_LoadDependencies")]
         public void Resource_LoadDependencies_HasWebSourceFromWebDeleteTool_ShouldHaveWebSourceInDepencyList()
         {
             //------------Setup for test--------------------------
@@ -379,9 +380,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual(1, resource.Dependencies.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Resource_LoadDependencies")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Resource_LoadDependencies")]
         public void Resource_LoadDependencies_HasWebSourceFromWebPostTool_ShouldHaveWebSourceInDepencyList()
         {
             //------------Setup for test--------------------------
@@ -394,9 +395,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual(1, resource.Dependencies.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Resource_LoadDependencies")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Resource_LoadDependencies")]
         public void Resource_LoadDependencies_HasWebSourceFromWebGetTool_ShouldHaveWebSourceInDepencyList()
         {
             //------------Setup for test--------------------------
@@ -409,9 +410,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual(1, resource.Dependencies.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("Resource_LoadDependencies")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("Resource_LoadDependencies")]
         public void Resource_LoadDependencies_HasSharepointSourceFromSharepointCopyTool_ShouldHaveSharepointSourceInDepencyList()
         {
             //------------Setup for test--------------------------
@@ -425,9 +426,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("Resource_XmlConstructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("Resource_XmlConstructor")]
         public void Resource_XmlConstructor_Invoked_ShouldLoadDataList()
         {
             #region DataList String
@@ -556,9 +557,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("Resource_XmlConstructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("Resource_XmlConstructor")]
         public void Resource_XmlConstructor_Invoked_ServiceShouldHaveInputsAndOutputs()
         {
             var inputs = "<Inputs>" +
@@ -591,9 +592,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual(outputs, actual);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("Resource_XmlConstructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("Resource_XmlConstructor")]
         public void Resource_XmlConstructor_Invoked_ServiceNoInputsShouldHaveInputsAndOutputs()
         {
             //------------Setup for test--------------------------
@@ -607,8 +608,8 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.IsFalse(String.IsNullOrEmpty(resource.Outputs));
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Resource_Given_ResourceType_Is_Null_Sets_IsServer_To_False()
         {
             //------------Setup for test-------------------------
@@ -618,8 +619,8 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.IsFalse(resource.IsServer);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Resource_Given_ResourceType_Is_Dev2Server_Sets_IsServer_To_True()
         {
             //------------Setup for test-------------------------
@@ -632,8 +633,8 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.IsTrue(resource.IsServer);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Resource_Given_ResourceType_Is_ComPluginSource_Sets_IsServer_To_False()
         {
             //------------Setup for test-------------------------
@@ -1746,7 +1747,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
         #region ParseProperties
 
         // PBI 5656 - 2013.05.20 - TWR - Created
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ResourceParsePropertiesWithNullStringExpectedThrowsArgumentNullException()
         {
@@ -1754,7 +1755,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
         }
 
         // PBI 5656 - 2013.05.20 - TWR - Created
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ResourceParsePropertiesWithNullPropertiesExpectedThrowsArgumentNullException()
         {
@@ -1762,7 +1763,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
         }
 
         // PBI 5656 - 2013.05.20 - TWR - Created
-        [TestMethod]
+        [Test]
         public void ResourceParsePropertiesWithInvalidPropertiesExpectedSafelyIgnoresInvalidProperties()
         {
             const string TestStr = "address=http://www.webservicex.net/globalweather.asmx/GetCitiesByCountry?CountryName=South%20Africa;AuthenticationType=Anonymous";
@@ -1777,7 +1778,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
         }
 
         // PBI 5656 - 2013.05.20 - TWR - Created
-        [TestMethod]
+        [Test]
         public void ResourceParsePropertiesWithValidPropertiesExpectedParsesProperties()
         {
             const string Address = "http://www.webservicex.net/globalweather.asmx/GetCitiesByCountry?CountryName=South%20Africa";

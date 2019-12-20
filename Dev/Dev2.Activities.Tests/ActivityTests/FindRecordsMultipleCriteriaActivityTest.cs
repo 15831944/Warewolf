@@ -13,34 +13,27 @@ using System.Activities.Statements;
 using System.Collections.Generic;
 using System.Linq;
 using ActivityUnitTests;
-using Dev2.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Warewolf.Storage.Interfaces;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
-    
-    /// <summary>
-    /// Summary description for FindRecordsActivityTest
-    /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FindRecordsMultipleCriteriaActivityTest : BaseActivityUnitTest
     {
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext { get; set; }
+        public NUnit.Framework.TestContext TestContext { get; set; }
 
         #region Additional test attributes
 
         #endregion
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfFindRecordsMultipleCriteriaActivity_GetOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfFindRecordsMultipleCriteriaActivity_GetOutputs")]
         public void DsfFindRecordsMultipleCriteriaActivity_GetOutputs_Called_ShouldReturnListWithResultValueInIt()
         {
             //------------Setup for test--------------------------
@@ -54,12 +47,12 @@ namespace Dev2.Tests.Activities.ActivityTests
             //------------Execute Test---------------------------
             var outputs = act.GetOutputs();
             //------------Assert Results-------------------------
-            Assert.AreEqual(1, outputs.Count);
-            Assert.AreEqual("[[Result().res]]", outputs[0]);
+            NUnit.Framework.Assert.AreEqual(1, outputs.Count);
+            NUnit.Framework.Assert.AreEqual("[[Result().res]]", outputs[0]);
         }
 
 
-        [TestMethod]
+        [Test]
         public void FindRecordsMulitpleCriteriaActivity_WithTextInMatchField_Expected_NoResults()
         {
             TestStartNode = new FlowStep
@@ -125,11 +118,11 @@ namespace Dev2.Tests.Activities.ActivityTests
             var result = ExecuteProcess();
             GetRecordSetFieldValueFromDataList(result.Environment, "Result", "res", out IList<string> actual, out string error);
 
-            Assert.AreEqual(1, actual.Count);
-            Assert.AreEqual("-1", actual[0]);
+            NUnit.Framework.Assert.AreEqual(1, actual.Count);
+            NUnit.Framework.Assert.AreEqual("-1", actual[0]);
         }
 
-        [TestMethod]
+        [Test]
         public void FindRecordsMulitpleCriteriaActivity_FindWithMultipleCriteriaExpectAllTrue_Expected_NoResults()
         {
             TestStartNode = new FlowStep
@@ -197,13 +190,13 @@ namespace Dev2.Tests.Activities.ActivityTests
             var result = ExecuteProcess();
             GetRecordSetFieldValueFromDataList(result.Environment, "Result", "res", out IList<string> actual, out string error);
 
-            Assert.AreEqual(1, actual.Count);
-            Assert.AreEqual("-1", actual[0]);
+            NUnit.Framework.Assert.AreEqual(1, actual.Count);
+            NUnit.Framework.Assert.AreEqual("-1", actual[0]);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfFindRecordsMultipleCriteriaActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfFindRecordsMultipleCriteriaActivity_UpdateForEachInputs")]
         public void DsfFindRecordsMultipleCriteriaActivity_UpdateForEachInputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -217,13 +210,13 @@ namespace Dev2.Tests.Activities.ActivityTests
             //------------Execute Test---------------------------
             act.UpdateForEachInputs(null);
             //------------Assert Results-------------------------
-            Assert.AreEqual("/", act.ResultsCollection[0].SearchCriteria);
-            Assert.AreEqual("[[Customers(*).DOB]]", act.FieldsToSearch);
+            NUnit.Framework.Assert.AreEqual("/", act.ResultsCollection[0].SearchCriteria);
+            NUnit.Framework.Assert.AreEqual("[[Customers(*).DOB]]", act.FieldsToSearch);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfFindRecordsMultipleCriteriaActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfFindRecordsMultipleCriteriaActivity_UpdateForEachInputs")]
         public void DsfFindRecordsMultipleCriteriaActivity_UpdateForEachInputs_MoreThan1Updates_UpdatesMergeCollection()
         {
             //------------Setup for test--------------------------
@@ -239,13 +232,13 @@ namespace Dev2.Tests.Activities.ActivityTests
             //------------Execute Test---------------------------
             act.UpdateForEachInputs(new List<Tuple<string, string>> { tuple1, tuple2 });
             //------------Assert Results-------------------------
-            Assert.AreEqual("Test", act.ResultsCollection[0].SearchCriteria);
-            Assert.AreEqual("Test2", act.FieldsToSearch);
+            NUnit.Framework.Assert.AreEqual("Test", act.ResultsCollection[0].SearchCriteria);
+            NUnit.Framework.Assert.AreEqual("Test2", act.FieldsToSearch);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfFindRecordsMultipleCriteriaActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfFindRecordsMultipleCriteriaActivity_UpdateForEachOutputs")]
         public void DsfFindRecordsMultipleCriteriaActivity_UpdateForEachOutputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -259,12 +252,12 @@ namespace Dev2.Tests.Activities.ActivityTests
             //------------Execute Test---------------------------
             act.UpdateForEachOutputs(null);
             //------------Assert Results-------------------------
-            Assert.AreEqual("[[res]]", act.Result);
+            NUnit.Framework.Assert.AreEqual("[[res]]", act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfFindRecordsMultipleCriteriaActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfFindRecordsMultipleCriteriaActivity_UpdateForEachOutputs")]
         public void DDsfFindRecordsMultipleCriteriaActivity_UpdateForEachOutputs_MoreThan1Updates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -280,12 +273,12 @@ namespace Dev2.Tests.Activities.ActivityTests
             //------------Execute Test---------------------------
             act.UpdateForEachOutputs(new List<Tuple<string, string>> { tuple1, tuple2 });
             //------------Assert Results-------------------------
-            Assert.AreEqual("[[res]]", act.Result);
+            NUnit.Framework.Assert.AreEqual("[[res]]", act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfFindRecordsMultipleCriteriaActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfFindRecordsMultipleCriteriaActivity_UpdateForEachOutputs")]
         public void DsfFindRecordsMultipleCriteriaActivity_UpdateForEachOutputs_1Updates_UpdateResult()
         {
             //------------Setup for test--------------------------
@@ -300,12 +293,12 @@ namespace Dev2.Tests.Activities.ActivityTests
             //------------Execute Test---------------------------
             act.UpdateForEachOutputs(new List<Tuple<string, string>> { tuple1 });
             //------------Assert Results-------------------------
-            Assert.AreEqual("Test", act.Result);
+            NUnit.Framework.Assert.AreEqual("Test", act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfFindRecordsMultipleCriteriaActivity_GetForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfFindRecordsMultipleCriteriaActivity_GetForEachInputs")]
         public void DsfFindRecordsMultipleCriteriaActivity_GetForEachInputs_WhenHasExpression_ReturnsInputList()
         {
             //------------Setup for test--------------------------
@@ -319,16 +312,16 @@ namespace Dev2.Tests.Activities.ActivityTests
             //------------Execute Test---------------------------
             var dsfForEachItems = act.GetForEachInputs();
             //------------Assert Results-------------------------
-            Assert.AreEqual(2, dsfForEachItems.Count);
-            Assert.AreEqual("[[Customers(*).DOB]]", dsfForEachItems[0].Name);
-            Assert.AreEqual("[[Customers(*).DOB]]", dsfForEachItems[0].Value);
-            Assert.AreEqual("/", dsfForEachItems[1].Name);
-            Assert.AreEqual("/", dsfForEachItems[1].Value);
+            NUnit.Framework.Assert.AreEqual(2, dsfForEachItems.Count);
+            NUnit.Framework.Assert.AreEqual("[[Customers(*).DOB]]", dsfForEachItems[0].Name);
+            NUnit.Framework.Assert.AreEqual("[[Customers(*).DOB]]", dsfForEachItems[0].Value);
+            NUnit.Framework.Assert.AreEqual("/", dsfForEachItems[1].Name);
+            NUnit.Framework.Assert.AreEqual("/", dsfForEachItems[1].Value);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfFindRecordsMultipleCriteriaActivity_GetForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfFindRecordsMultipleCriteriaActivity_GetForEachOutputs")]
         public void DsfFindRecordsMultipleCriteriaActivity_GetForEachOutputs_WhenHasResult_ReturnsInputList()
         {
             //------------Setup for test--------------------------
@@ -342,18 +335,18 @@ namespace Dev2.Tests.Activities.ActivityTests
             //------------Execute Test---------------------------
             var dsfForEachItems = act.GetForEachOutputs();
             //------------Assert Results-------------------------
-            Assert.AreEqual(1, dsfForEachItems.Count);
-            Assert.AreEqual("[[res]]", dsfForEachItems[0].Name);
-            Assert.AreEqual("[[res]]", dsfForEachItems[0].Value);
+            NUnit.Framework.Assert.AreEqual(1, dsfForEachItems.Count);
+            NUnit.Framework.Assert.AreEqual("[[res]]", dsfForEachItems[0].Name);
+            NUnit.Framework.Assert.AreEqual("[[res]]", dsfForEachItems[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void AddResultDebugInputs_Sets_Operand_To_EmptyString()
         {
             //------------Setup for test-------------------------
             var activity = new DsfFindRecordsMultipleCriteriaActivity();
-            var privateObject = new PrivateObject(activity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(activity);
             IEnumerable<FindRecordsTO> resultsCollection = new List<FindRecordsTO>
             {
                 new FindRecordsTO {SearchCriteria = "1", IndexNumber = 1, SearchType = "="}
@@ -366,7 +359,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             privateObject.Invoke("AddResultDebugInputs", args);
             //------------Assert Results-------------------------
             var debugInputs = activity.GetDebugInputs(environment.Object, 0);
-            Assert.IsTrue(debugInputs.Single().ResultsList.All(p=>p.Operator == ""));
+            NUnit.Framework.Assert.IsTrue(debugInputs.Single().ResultsList.All(p=>p.Operator == ""));
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Dev2.Common.State;
 using Dev2.Utilities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,11 +8,12 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.NumberFormat
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfFindRecordsMultipleCriteriaActivityComparerTest
     {
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentUniqueIds_ActivityTools_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -26,8 +27,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.NumberFormat
             //---------------Test Result -----------------------
             Assert.IsTrue(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_EmptyActivityTools_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -42,8 +43,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.NumberFormat
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DisplayName_Same_DisplayName_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -58,8 +59,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.NumberFormat
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DisplayName_Different_DisplayName_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -73,8 +74,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.NumberFormat
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Result_Same_Result_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -89,8 +90,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.NumberFormat
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Result_Different_Result_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -105,8 +106,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.NumberFormat
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_FieldsToSearch_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -121,8 +122,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.NumberFormat
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_FieldsToSearch_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -137,8 +138,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.NumberFormat
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_StartIndex_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -153,8 +154,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.NumberFormat
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_StartIndex_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -171,8 +172,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.NumberFormat
 
 
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_MatchCase_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -187,8 +188,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.NumberFormat
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_MatchCase_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -204,8 +205,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.NumberFormat
         }
 
         
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_RequireAllTrue_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -220,8 +221,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.NumberFormat
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_RequireAllTrue_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -237,8 +238,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.NumberFormat
         }
 
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_RequireAllFieldsToMatch_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -253,8 +254,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.NumberFormat
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_RequireAllFieldsToMatch_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -269,8 +270,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.NumberFormat
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_ResultsCollection_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -286,8 +287,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.NumberFormat
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_ResultsCollection_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -316,8 +317,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.NumberFormat
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_ResultsCollection_Different_Indexes_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -357,9 +358,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.NumberFormat
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfFindRecordsMultipleCriteriaActivity_GetState")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfFindRecordsMultipleCriteriaActivity_GetState")]
         public void DsfFindRecordsMultipleCriteriaActivity_GetState_ReturnsStateVariable()
         {
             var resultsCol = new List<FindRecordsTO>

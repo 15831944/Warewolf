@@ -12,18 +12,19 @@ using Dev2.Common.Interfaces.Wrappers;
 using Dev2.Data.Interfaces;
 using Dev2.Data.PathOperations;
 using Dev2.Data.PathOperations.Operations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 
 namespace Dev2.Data.Tests.PathOperations
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DoCreateDirectoryTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoCreateDirectory))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoCreateDirectory))]
         public void DoCreateDirectory_ExecuteOperation_ImpersonatedUser_IsNull_ExpectArgumentNullException()
         {
             //---------------------------Arrange--------------------------
@@ -36,12 +37,12 @@ namespace Dev2.Data.Tests.PathOperations
             //---------------------------Act------------------------------
             //---------------------------Assert---------------------------
             mockDev2CRUDOperationTO.VerifyAll();
-            Assert.ThrowsException<ArgumentNullException>(() => doCreateDirectory.ExecuteOperation());
+            NUnit.Framework.Assert.Throws<ArgumentNullException>(() => doCreateDirectory.ExecuteOperation());
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoCreateDirectory))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoCreateDirectory))]
         public void DoCreateDirectory_ExecuteOperation_ImpersonatedUser_IsNull_ExpectTrue()
         {
             //---------------------------Arrange--------------------------
@@ -55,12 +56,12 @@ namespace Dev2.Data.Tests.PathOperations
             //---------------------------Act------------------------------
             var isExecuteOperation = doCreateDirectory.ExecuteOperation();
             //---------------------------Assert---------------------------
-            Assert.IsTrue(isExecuteOperation);
+            NUnit.Framework.Assert.IsTrue(isExecuteOperation);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoCreateDirectory))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoCreateDirectory))]
         public void DoCreateDirectory_ExecuteOperation_ImpersonatedUser_IsNotNull_ExpectTrue()
         {
             //---------------------------Arrange--------------------------
@@ -75,12 +76,12 @@ namespace Dev2.Data.Tests.PathOperations
             //---------------------------Act------------------------------
             var isExecuteOperation = doCreateDirectory.ExecuteOperation();
             //---------------------------Assert---------------------------
-            Assert.IsTrue(isExecuteOperation);
+            NUnit.Framework.Assert.IsTrue(isExecuteOperation);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoCreateDirectory))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoCreateDirectory))]
         public void DoCreateDirectory_ExecuteOperation_ImpersonatedUser_IsNotNull_RequiresOverwrite_True_ExpectTrue()
         {
             //---------------------------Arrange--------------------------
@@ -98,12 +99,12 @@ namespace Dev2.Data.Tests.PathOperations
             var isExecuteOperation = doCreateDirectory.ExecuteOperation();
             //---------------------------Assert---------------------------
             mockDev2CRUDOperationTO.VerifyAll();
-            Assert.IsTrue(isExecuteOperation);
+            NUnit.Framework.Assert.IsTrue(isExecuteOperation);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoCreateDirectory))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoCreateDirectory))]
         public void DoCreateDirectory_ExecuteOperation_ImpersonatedUser_IsNotNull_RequiresOverwrite_True_ExecuteOperationWithAuthDirectoryExist_True_ExpectTrue()
         {
             //---------------------------Arrange--------------------------
@@ -126,12 +127,12 @@ namespace Dev2.Data.Tests.PathOperations
             mockDirectory.VerifyAll();
             mockActivityIOPath.VerifyAll();
             mockDev2CRUDOperationTO.VerifyAll();
-            Assert.IsTrue(isExecuteOperation);
+            NUnit.Framework.Assert.IsTrue(isExecuteOperation);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoCreateDirectory))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoCreateDirectory))]
         public void DoCreateDirectory_ExecuteOperation_ImpersonatedUser_IsNull_RequiresOverwrite_True_ExecuteOperationWithAuthDirectoryExist_True_ExpectTrue()
         {
             //---------------------------Arrange--------------------------
@@ -151,7 +152,7 @@ namespace Dev2.Data.Tests.PathOperations
             //---------------------------Assert---------------------------
             mockDev2CRUDOperationTO.VerifyAll();
             mockDirectory.VerifyAll();
-            Assert.IsTrue(isExecuteOperation);
+            NUnit.Framework.Assert.IsTrue(isExecuteOperation);
         }
     }
 }

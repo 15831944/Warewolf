@@ -16,23 +16,24 @@ using Dev2.Common.Interfaces.Studio.Controller;
 using Dev2.Studio.Interfaces;
 using Dev2.Studio.Views.Workflow;
 using Dev2.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Studio.ViewModels;
 
 namespace Dev2.Core.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class DragDropHelpersTests
     {
-        [TestInitialize]
+        [SetUp]
         public void MyTestInitialize()
         {
             AttributesToAvoidReplicating.Add(typeof(UIPermissionAttribute));
         }
 
-        [TestMethod]
+        [Test]
         public void DragDropHelpers_PreventDrop_NullDataObject_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -43,7 +44,7 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(canDoDrop);
         }
 
-        [TestMethod]
+        [Test]
         public void DragDropHelpers_PreventDrop_NoFormats_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -54,7 +55,7 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(canDoDrop);
         }
 
-        [TestMethod]
+        [Test]
         public void DragDropHelpers_PreventDrop_FormatsReturnsNotResourceTreeViewModelOrWorkflowItemTypeNameFormat_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -66,7 +67,7 @@ namespace Dev2.Core.Tests
         }
 
 
-        [TestMethod]
+        [Test]
         public void DragDropHelpers_PreventDrop_GetDataReturnsNull_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -77,7 +78,7 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(canDoDrop);
         }
 
-        [TestMethod]
+        [Test]
         public void DragDropHelpers_PreventDrop_GetDataReturnsNonExplorerItemModel_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -93,7 +94,7 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(canDoDrop);
         }
 
-        [TestMethod]
+        [Test]
         public void DragDropHelpers_PreventDrop_GetDataReturnsExplorerItemModelWorkflowService_ReturnsFalse()
         {
             var explorerTooltips = new Mock<IExplorerTooltips>();
@@ -117,9 +118,9 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(canDoDrop);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DragDropHelpers_PreventDrop")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DragDropHelpers_PreventDrop")]
         public void DragDropHelpers_PreventDrop_LocalResourceOnRemoteDesignSurface_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -143,9 +144,9 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(canDoDrop);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DragDropHelpers_PreventDrop")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DragDropHelpers_PreventDrop")]
         public void DragDropHelpers_PreventDrop_EmptyService_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -164,9 +165,9 @@ namespace Dev2.Core.Tests
             //------------Assert Results-------------------------
             Assert.IsFalse(canDoDrop);
         }
-        [TestMethod]
-        [Owner("Massimo.Guerrera")]
-        [TestCategory("DragDropHelpers_PreventDrop")]
+        [Test]
+        [Author("Massimo.Guerrera")]
+        [Category("DragDropHelpers_PreventDrop")]
         public void DragDropHelpers_PreventDrop_GetDataReturnsExplorerItemModelSource_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -180,9 +181,9 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(canDoDrop);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DragDropHelpers_PreventDrop")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DragDropHelpers_PreventDrop")]
         public void DragDropHelpers_PreventDrop_DropResourceOntoItself_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -215,9 +216,9 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(canDoDrop);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DragDropHelpers_PreventDrop")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DragDropHelpers_PreventDrop")]
         public void DragDropHelpers_PreventDrop_UserIsNotAuthorized_True()
         {
             //------------Setup for test--------------------------

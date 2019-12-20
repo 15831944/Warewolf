@@ -15,19 +15,20 @@ using System.Text;
 using Dev2.Common.Interfaces.Wrappers;
 using Dev2.Data.Interfaces;
 using Dev2.PathOperations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Ionic.Zip;
 using Dev2.Common.Wrappers;
 
 namespace Dev2.Data.Tests.PathOperations
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ActivityIOBrokerMainDriverTests
     {
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ActivityIOBrokerMainDriver))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ActivityIOBrokerMainDriver))]
         public void ActivityIOBrokerMainDriver_RemoveTmpFile()
         {
             //---------------Set up test pack-------------------
@@ -41,9 +42,9 @@ namespace Dev2.Data.Tests.PathOperations
             file.Verify(o => o.Delete("some file"), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ActivityIOBrokerMainDriver))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ActivityIOBrokerMainDriver))]
         public void ActivityIOBrokerMainDriver_RemoveTmpFile_GivenEmptyFile_ShouldThrowAndLogException()
         {
             var exception = new Exception("empty file name");
@@ -62,16 +63,16 @@ namespace Dev2.Data.Tests.PathOperations
             catch (Exception e)
             {
                 hadException = true;
-                Assert.AreEqual(exception, e);
+                NUnit.Framework.Assert.AreEqual(exception, e);
             }
-            Assert.IsTrue(hadException);
+            NUnit.Framework.Assert.IsTrue(hadException);
 
             file.Verify(o => o.Delete(""), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ActivityIOBrokerMainDriver))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ActivityIOBrokerMainDriver))]
         public void ActivityIOBrokerMainDriver_WriteToRemoteTempStorage_AppendBottom_GivenPutFails_ExpectFailure()
         {
 
@@ -102,18 +103,18 @@ namespace Dev2.Data.Tests.PathOperations
                     args.Setup(o => o.FileContents).Returns("some file content");
                     var result = driver.WriteToRemoteTempStorage(mockDst.Object, args.Object, tmpfile);
 
-                    Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, result);
+                    NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, result);
 
                     args.Verify(o => o.FileContents, Times.Once);
                 }
                 var contents = File.ReadAllText(somePath);
 
-                Assert.AreEqual("some text", contents);
+                NUnit.Framework.Assert.AreEqual("some text", contents);
 
                 somePathExists = File.Exists(somePath);
-                Assert.IsTrue(somePathExists);
+                NUnit.Framework.Assert.IsTrue(somePathExists);
                 tmpfileExists = File.Exists(tmpfile);
-                Assert.IsTrue(tmpfileExists);
+                NUnit.Framework.Assert.IsTrue(tmpfileExists);
             }
             finally
             {
@@ -122,9 +123,9 @@ namespace Dev2.Data.Tests.PathOperations
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ActivityIOBrokerMainDriver))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ActivityIOBrokerMainDriver))]
         public void ActivityIOBrokerMainDriver_WriteToRemoteTempStorage_AppendBottom()
         {
 
@@ -155,18 +156,18 @@ namespace Dev2.Data.Tests.PathOperations
                     args.Setup(o => o.FileContents).Returns("some file content");
                     var result = driver.WriteToRemoteTempStorage(dst, args.Object, tmpfile);
 
-                    Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
+                    NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
 
                     args.Verify(o => o.FileContents, Times.Once);
                 }
                 var contents = File.ReadAllText(somePath);
 
-                Assert.AreEqual("some textsome file content", contents);
+                NUnit.Framework.Assert.AreEqual("some textsome file content", contents);
 
                 somePathExists = File.Exists(somePath);
-                Assert.IsTrue(somePathExists);
+                NUnit.Framework.Assert.IsTrue(somePathExists);
                 tmpfileExists = File.Exists(tmpfile);
-                Assert.IsTrue(tmpfileExists);
+                NUnit.Framework.Assert.IsTrue(tmpfileExists);
             }
             finally
             {
@@ -175,9 +176,9 @@ namespace Dev2.Data.Tests.PathOperations
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ActivityIOBrokerMainDriver))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ActivityIOBrokerMainDriver))]
         public void ActivityIOBrokerMainDriver_WriteToRemoteTempStorage_AppendTop()
         {
             var somePath = Path.GetTempFileName();
@@ -202,25 +203,25 @@ namespace Dev2.Data.Tests.PathOperations
             args.Setup(o => o.FileContents).Returns("some file content");
             var result = driver.WriteToRemoteTempStorage(mockDst.Object, args.Object, tmpfile);
 
-            Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
+            NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
 
             var contents = File.ReadAllText(tmpfile);
 
-            Assert.AreEqual("some file content234", contents);
+            NUnit.Framework.Assert.AreEqual("some file content234", contents);
 
             args.Verify(o => o.FileContents, Times.Once);
             mockDst.VerifyAll();
             mockFile.VerifyAll();
 
-            Assert.IsTrue(File.Exists(somePath));
-            Assert.IsTrue(File.Exists(tmpfile));
+            NUnit.Framework.Assert.IsTrue(File.Exists(somePath));
+            NUnit.Framework.Assert.IsTrue(File.Exists(tmpfile));
             File.Delete(somePath);
             File.Delete(tmpfile);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ActivityIOBrokerMainDriver))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ActivityIOBrokerMainDriver))]
         public void ActivityIOBrokerMainDriver_WriteToRemoteTempStorage_AppendDefault()
         {
 
@@ -253,18 +254,18 @@ namespace Dev2.Data.Tests.PathOperations
                     args.Setup(o => o.FileContents).Returns("some file content");
                     var result = driver.WriteToRemoteTempStorage(dst, args.Object, tmpfile);
 
-                    Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
+                    NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
 
                     args.Verify(o => o.FileContents, Times.Exactly(2));
                 }
                 var contents = File.ReadAllText(somePath);
 
-                Assert.AreEqual("some file content", contents);
+                NUnit.Framework.Assert.AreEqual("some file content", contents);
 
                 somePathExists = File.Exists(somePath);
-                Assert.IsTrue(somePathExists);
+                NUnit.Framework.Assert.IsTrue(somePathExists);
                 tmpfileExists = File.Exists(tmpfile);
-                Assert.IsTrue(tmpfileExists);
+                NUnit.Framework.Assert.IsTrue(tmpfileExists);
             }
             finally
             {
@@ -273,9 +274,9 @@ namespace Dev2.Data.Tests.PathOperations
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ActivityIOBrokerMainDriver))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ActivityIOBrokerMainDriver))]
         public void ActivityIOBrokerMainDriver_WriteToRemoteTempStorage_AppendDefault_Base64()
         {
 
@@ -308,18 +309,18 @@ namespace Dev2.Data.Tests.PathOperations
                     args.Setup(o => o.FileContents).Returns(@"Content-Type:BASE64c29tZSBmaWxlIGNvbnRlbnQ=");
                     var result = driver.WriteToRemoteTempStorage(dst, args.Object, tmpfile);
 
-                    Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
+                    NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
 
                     args.Verify(o => o.FileContents, Times.Exactly(2));
                 }
                 var contents = File.ReadAllText(somePath);
 
-                Assert.AreEqual("some file content", contents);
+                NUnit.Framework.Assert.AreEqual("some file content", contents);
 
                 somePathExists = File.Exists(somePath);
-                Assert.IsTrue(somePathExists);
+                NUnit.Framework.Assert.IsTrue(somePathExists);
                 tmpfileExists = File.Exists(tmpfile);
-                Assert.IsTrue(tmpfileExists);
+                NUnit.Framework.Assert.IsTrue(tmpfileExists);
             }
             finally
             {
@@ -328,9 +329,9 @@ namespace Dev2.Data.Tests.PathOperations
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ActivityIOBrokerMainDriver))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ActivityIOBrokerMainDriver))]
         public void ActivityIOBrokerMainDriver_WriteToLocalTempStorage_AppendBottom()
         {
 
@@ -368,12 +369,12 @@ namespace Dev2.Data.Tests.PathOperations
                 }
                 var contents = File.ReadAllText(tmpfile);
 
-                Assert.AreEqual("some textsome file content", contents);
+                NUnit.Framework.Assert.AreEqual("some textsome file content", contents);
 
                 somePathExists = File.Exists(somePath);
-                Assert.IsTrue(somePathExists);
+                NUnit.Framework.Assert.IsTrue(somePathExists);
                 tmpfileExists = File.Exists(tmpfile);
-                Assert.IsTrue(tmpfileExists);
+                NUnit.Framework.Assert.IsTrue(tmpfileExists);
             }
             finally
             {
@@ -382,9 +383,9 @@ namespace Dev2.Data.Tests.PathOperations
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ActivityIOBrokerMainDriver))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ActivityIOBrokerMainDriver))]
         public void ActivityIOBrokerMainDriver_WriteToLocalTempStorage_AppendTop()
         {
 
@@ -421,12 +422,12 @@ namespace Dev2.Data.Tests.PathOperations
                 }
                 var contents = File.ReadAllText(tmpfile);
 
-                Assert.AreEqual("some file contentsome text", contents);
+                NUnit.Framework.Assert.AreEqual("some file contentsome text", contents);
 
                 somePathExists = File.Exists(somePath);
-                Assert.IsTrue(somePathExists);
+                NUnit.Framework.Assert.IsTrue(somePathExists);
                 tmpfileExists = File.Exists(tmpfile);
-                Assert.IsTrue(tmpfileExists);
+                NUnit.Framework.Assert.IsTrue(tmpfileExists);
             }
             finally
             {
@@ -435,9 +436,9 @@ namespace Dev2.Data.Tests.PathOperations
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ActivityIOBrokerMainDriver))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ActivityIOBrokerMainDriver))]
         public void ActivityIOBrokerMainDriver_WriteToLocalTempStorage_Overwrite()
         {
 
@@ -469,12 +470,12 @@ namespace Dev2.Data.Tests.PathOperations
                 }
                 var contents = File.ReadAllText(tmpfile);
 
-                Assert.AreEqual("some file content", contents);
+                NUnit.Framework.Assert.AreEqual("some file content", contents);
 
                 somePathExists = File.Exists(somePath);
-                Assert.IsTrue(somePathExists);
+                NUnit.Framework.Assert.IsTrue(somePathExists);
                 tmpfileExists = File.Exists(tmpfile);
-                Assert.IsTrue(tmpfileExists);
+                NUnit.Framework.Assert.IsTrue(tmpfileExists);
             }
             finally
             {
@@ -483,9 +484,9 @@ namespace Dev2.Data.Tests.PathOperations
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void ActivityIOBrokerMainDriver_MoveTmpFileToDestination_GiventmpFile()
         {
             //---------------Set up test pack-------------------
@@ -513,7 +514,7 @@ namespace Dev2.Data.Tests.PathOperations
                     });
 
                 var result = driver.MoveTmpFileToDestination(dst.Object, tempFileName);
-                Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
+                NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
 
             }
             finally
@@ -522,9 +523,9 @@ namespace Dev2.Data.Tests.PathOperations
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void ActivityIOBrokerMainDriver_MoveTmpFileToDestination_GivenDirectoryCreateFails_ShouldFail()
         {
             //---------------Set up test pack-------------------
@@ -548,7 +549,7 @@ namespace Dev2.Data.Tests.PathOperations
                     });
 
                 var result = driver.MoveTmpFileToDestination(dst.Object, tempFileName);
-                Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, result);
+                NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, result);
 
             }
             finally
@@ -557,9 +558,9 @@ namespace Dev2.Data.Tests.PathOperations
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void ActivityIOBrokerMainDriver_MoveTmpFileToDestination_GivenPutFails_ShouldFail()
         {
             //---------------Set up test pack-------------------
@@ -583,7 +584,7 @@ namespace Dev2.Data.Tests.PathOperations
                     });
 
                 var result = driver.MoveTmpFileToDestination(dst.Object, tempFileName);
-                Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, result);
+                NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, result);
 
             }
             finally
@@ -592,9 +593,9 @@ namespace Dev2.Data.Tests.PathOperations
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void ActivityIOBrokerMainDriver_ZipFileToALocalTempFile_RequiresTmpStorage_ExpectSuccess()
         {
             var mockFile = new Mock<IFile>();
@@ -611,7 +612,7 @@ namespace Dev2.Data.Tests.PathOperations
 
             var filename = driver.ZipFileToALocalTempFile(mockSrc.Object, mockArgs.Object);
 
-            Assert.IsTrue(ZipFile.IsZipFile(filename));
+            NUnit.Framework.Assert.IsTrue(ZipFile.IsZipFile(filename));
             driver.RemoveAllTmpFiles();
 
             mockSrc.Verify(o => o.RequiresLocalTmpStorage(), Times.Once);
@@ -621,9 +622,9 @@ namespace Dev2.Data.Tests.PathOperations
             mockCommon.Verify(o => o.ExtractZipCompressionLevel("compressionLevel"), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void ActivityIOBrokerMainDriver_ZipFileToALocalTempFile_RequiresTmpStorage_False_ExpectSuccess()
         {
             var mockFile = new Mock<IFile>();
@@ -648,9 +649,9 @@ namespace Dev2.Data.Tests.PathOperations
 
                 var filename = driver.ZipFileToALocalTempFile(mockSrc.Object, mockArgs.Object);
 
-                Assert.IsTrue(ZipFile.IsZipFile(filename));
+                NUnit.Framework.Assert.IsTrue(ZipFile.IsZipFile(filename));
                 driver.RemoveAllTmpFiles();
-                Assert.IsFalse(File.Exists(tmpDirectory));
+                NUnit.Framework.Assert.IsFalse(File.Exists(tmpDirectory));
 
                 mockSrc.Verify(o => o.RequiresLocalTmpStorage(), Times.Once);
                 mockSrc.Verify(o => o.IOPath.Path, Times.Exactly(2));

@@ -21,18 +21,19 @@ using Dev2.Communication;
 using Dev2.Explorer;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
   namespace Dev2.Tests.Runtime.Services
   {
-        [TestClass]
+        [TestFixture]
+    [SetUpFixture]
         public class GetVersionsTest
         {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -44,9 +45,9 @@ using Moq;
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -58,9 +59,9 @@ using Moq;
             Assert.AreEqual(AuthorizationContext.Any, resId);
         }
 
-        [TestMethod]
-            [Owner("Leon Rajindrapersadh")]
-            [TestCategory("GetVersions_HandlesType")]
+        [Test]
+            [Author("Leon Rajindrapersadh")]
+            [Category("GetVersions_HandlesType")]
             public void GetVersions_HandlesType_ExpectName()
             {
                 //------------Setup for test--------------------------
@@ -73,9 +74,9 @@ using Moq;
                 Assert.AreEqual("GetVersions", getVersions.HandlesType());
             }
 
-            [TestMethod]
-            [Owner("Leon Rajindrapersadh")]
-            [TestCategory("GetVersions_Execute")]
+            [Test]
+            [Author("Leon Rajindrapersadh")]
+            [Category("GetVersions_Execute")]
             public void GetVersions_Execute_NullValuesParameter_ErrorResult()
             {
                 //------------Setup for test--------------------------
@@ -88,9 +89,9 @@ using Moq;
             Assert.AreEqual(ExecStatus.Fail, result.Status);
             }
 
-            [TestMethod]
-            [Owner("Leon Rajindrapersadh")]
-            [TestCategory("GetVersions_HandlesType")]
+            [Test]
+            [Author("Leon Rajindrapersadh")]
+            [Category("GetVersions_HandlesType")]
             public void GetVersions_Execute_ExpectName()
             {
                 //------------Setup for test--------------------------
@@ -110,9 +111,9 @@ using Moq;
                 Assert.AreEqual(serializer.Deserialize<IList<IExplorerItem>>(ax.ToString())[0].ResourceId, item.ResourceId);
             }
 
-            [TestMethod]
-            [Owner("Leon Rajindrapersadh")]
-            [TestCategory("GetVersions_HandlesType")]
+            [Test]
+            [Author("Leon Rajindrapersadh")]
+            [Category("GetVersions_HandlesType")]
             public void GetVersions_CreateServiceEntry_ExpectProperlyFormedDynamicService()
             {
                 //------------Setup for test--------------------------

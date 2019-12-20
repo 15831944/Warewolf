@@ -15,7 +15,7 @@ using System.Linq;
 using Dev2.Activities;
 using Dev2.Common.Interfaces;
 using Dev2.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 using Warewolf.Tools.Specs.BaseTypes;
 

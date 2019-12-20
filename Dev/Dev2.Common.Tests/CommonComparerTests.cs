@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Common.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class CommonComparerTests
     {
-        [TestMethod]
+        [Test]
         public void GetEqualityComparer_GivenEquals_GetHashCode()
         {
             var personComparer = EqualityFactory.GetEqualityComparer<Person>(
@@ -30,7 +31,7 @@ namespace Dev2.Common.Tests
 
         }
 
-        [TestMethod]
+        [Test]
         public void GetComparer_StringComparer()
         {
             var characterNames = new List<string>
@@ -57,7 +58,7 @@ namespace Dev2.Common.Tests
 
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(NotImplementedException))]
         public void GetComparer_isEquality()
         {

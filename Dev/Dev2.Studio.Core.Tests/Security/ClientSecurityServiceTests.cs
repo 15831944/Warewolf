@@ -22,17 +22,18 @@ using Dev2.Providers.Events;
 using Dev2.Security;
 using Dev2.Services.Security;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Core.Tests.Security
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ClientSecurityServiceTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ClientSecurityService_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ClientSecurityService_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ClientSecurityService_Constructor_EnvironmentConnectionIsNull_ThrowsArgumentNullException()
         {
@@ -44,17 +45,17 @@ namespace Dev2.Core.Tests.Security
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ClientSecurityService_EnvironmentConnection")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ClientSecurityService_EnvironmentConnection")]
         public void ClientSecurityService_EnvironmentConnection_NetworkStateChangedToOnline_DoesNotInvokeRead()
         {
             Verify_EnvironmentConnection_NetworkStateChanged(NetworkState.Offline, NetworkState.Online);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ClientSecurityService_EnvironmentConnection")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ClientSecurityService_EnvironmentConnection")]
         public void ClientSecurityService_EnvironmentConnection_NetworkStateChangedToOffline_DoesNotInvokeRead()
         {
             Verify_EnvironmentConnection_NetworkStateChanged(NetworkState.Online, NetworkState.Offline);
@@ -101,9 +102,9 @@ namespace Dev2.Core.Tests.Security
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ClientSecurityService_Read")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ClientSecurityService_Read")]
         public void ClientSecurityService_Read_DoesInvokeReadAsync()
         {
             //------------Setup for test--------------------------
@@ -129,9 +130,9 @@ namespace Dev2.Core.Tests.Security
             Assert.AreEqual(1, clientSecurityService.ReadAsyncHitCount);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ClientSecurityService_WritePermissions")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ClientSecurityService_WritePermissions")]
         public void ClientSecurityService_WritePermissions_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -149,9 +150,9 @@ namespace Dev2.Core.Tests.Security
             connection.Verify(c => c.ExecuteCommand(It.IsAny<StringBuilder>(), It.IsAny<Guid>()), Times.Never());
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("ClientSecurityService_OnDispose")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("ClientSecurityService_OnDispose")]
         public void ClientSecurityService_OnDispose_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -166,9 +167,9 @@ namespace Dev2.Core.Tests.Security
             Assert.IsTrue(true);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ClientSecurityService_PermissionsModified")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ClientSecurityService_PermissionsModified")]
         public void ClientSecurityService_PermissionsModified_NewPermissionsReceived_ShouldReplaceCurrentPermissions()
         {
             //------------Setup for test--------------------------

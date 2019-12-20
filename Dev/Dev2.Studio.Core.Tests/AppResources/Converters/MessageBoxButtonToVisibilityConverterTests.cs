@@ -12,17 +12,18 @@ using System;
 using System.Windows;
 using System.Windows.Data;
 using Dev2.Studio.AppResources.Converters;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests.AppResources.Converters
 {
-    [TestClass]
-	[TestCategory("Studio Resources Core")]
+    [TestFixture]
+    [SetUpFixture]
+	[Category("Studio Resources Core")]
     public class MessageBoxButtonToVisibilityConverterTests
     {
         #region Tests
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(NotImplementedException))]
         public void ConvertBackExpectedNotImplementedException()
         {
@@ -30,7 +31,7 @@ namespace Dev2.Core.Tests.AppResources.Converters
             messageBoxButtonToVisibilityConverter.ConvertBack(null, null, null, null);
         }
 
-        [TestMethod]
+        [Test]
         public void ConvertWhereValueIsNullExpectedNothing()
         {
             var messageBoxButtonToVisibilityConverter = new MessageBoxButtonToVisibilityConverter();
@@ -40,7 +41,7 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(expected, actual, "When the value is null binding.donothing is expected");
         }
 
-        [TestMethod]
+        [Test]
         public void ConvertWhereParameterIsNullExpectedNothing()
         {
             var messageBoxButtonToVisibilityConverter = new MessageBoxButtonToVisibilityConverter();
@@ -50,7 +51,7 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(expected, actual, "When the parameter is null binding.donothing is expected");
         }
 
-        [TestMethod]
+        [Test]
         public void ConvertWhereValueIsUnexpectedTypeExpectedNothing()
         {
             var messageBoxButtonToVisibilityConverter = new MessageBoxButtonToVisibilityConverter();
@@ -60,7 +61,7 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(expected, actual, "When the value is an unexpected type binding.donothing is expected");
         }
 
-        [TestMethod]
+        [Test]
         public void ConvertWhereParameterIsUnexpectedTypeExpectedNothing()
         {
             var messageBoxButtonToVisibilityConverter = new MessageBoxButtonToVisibilityConverter();
@@ -72,7 +73,7 @@ namespace Dev2.Core.Tests.AppResources.Converters
 
         #region Ok Button Visibility
 
-        [TestMethod]
+        [Test]
         public void ConvertWhereValueIsOkCancelAndParameterIsOkTypeExpectedVisible()
         {
             var messageBoxButtonToVisibilityConverter = new MessageBoxButtonToVisibilityConverter();
@@ -82,7 +83,7 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(expected, actual, "This compination of value and parameter should result in Visibility.Visible.");
         }
 
-        [TestMethod]
+        [Test]
         public void ConvertWhereValueIsOkAndParameterIsOkTypeExpectedVisible()
         {
             var messageBoxButtonToVisibilityConverter = new MessageBoxButtonToVisibilityConverter();
@@ -92,7 +93,7 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(expected, actual, "This compination of value and parameter should result in Visibility.Visible.");
         }
 
-        [TestMethod]
+        [Test]
         public void ConvertWhereValueIsYesNoAndParameterIsOkExpectedVisible()
         {
             var messageBoxButtonToVisibilityConverter = new MessageBoxButtonToVisibilityConverter();
@@ -106,7 +107,7 @@ namespace Dev2.Core.Tests.AppResources.Converters
 
         #region Cancel Button Visibility
 
-        [TestMethod]
+        [Test]
         public void ConvertWhereValueIsOkCancelAndParameterIsCancelTypeExpectedVisible()
         {
             var messageBoxButtonToVisibilityConverter = new MessageBoxButtonToVisibilityConverter();
@@ -116,7 +117,7 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(expected, actual, "This compination of value and parameter should result in Visibility.Visible.");
         }
 
-        [TestMethod]
+        [Test]
         public void ConvertWhereValueIsYesNoCancelAndParameterIsCancelTypeExpectedVisible()
         {
             var messageBoxButtonToVisibilityConverter = new MessageBoxButtonToVisibilityConverter();
@@ -126,7 +127,7 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(expected, actual, "This compination of value and parameter should result in Visibility.Visible.");
         }
 
-        [TestMethod]
+        [Test]
         public void ConvertWhereValueIsYesNoAndParameterIsCancelExpectedVisible()
         {
             var messageBoxButtonToVisibilityConverter = new MessageBoxButtonToVisibilityConverter();
@@ -140,7 +141,7 @@ namespace Dev2.Core.Tests.AppResources.Converters
 
         #region Yes Button Visibility
 
-        [TestMethod]
+        [Test]
         public void ConvertWhereValueIsYesNoAndParameterIsYesTypeExpectedVisible()
         {
             var messageBoxButtonToVisibilityConverter = new MessageBoxButtonToVisibilityConverter();
@@ -150,7 +151,7 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(expected, actual, "This compination of value and parameter should result in Visibility.Visible.");
         }
 
-        [TestMethod]
+        [Test]
         public void ConvertWhereValueIsYesNoCancelAndParameterIsYesTypeExpectedVisible()
         {
             var messageBoxButtonToVisibilityConverter = new MessageBoxButtonToVisibilityConverter();
@@ -160,7 +161,7 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(expected, actual, "This compination of value and parameter should result in Visibility.Visible.");
         }
 
-        [TestMethod]
+        [Test]
         public void ConvertWhereValueIsOKCancelAndParameterIsYesExpectedVisible()
         {
             var messageBoxButtonToVisibilityConverter = new MessageBoxButtonToVisibilityConverter();
@@ -174,7 +175,7 @@ namespace Dev2.Core.Tests.AppResources.Converters
 
         #region Yes Button Visibility
 
-        [TestMethod]
+        [Test]
         public void ConvertWhereValueIsYesNoAndParameterIsNoTypeExpectedVisible()
         {
             var messageBoxButtonToVisibilityConverter = new MessageBoxButtonToVisibilityConverter();
@@ -184,7 +185,7 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(expected, actual, "This compination of value and parameter should result in Visibility.Visible.");
         }
 
-        [TestMethod]
+        [Test]
         public void ConvertWhereValueIsYesNoCancelAndParameterIsNoTypeExpectedVisible()
         {
             var messageBoxButtonToVisibilityConverter = new MessageBoxButtonToVisibilityConverter();
@@ -194,7 +195,7 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(expected, actual, "This compination of value and parameter should result in Visibility.Visible.");
         }
 
-        [TestMethod]
+        [Test]
         public void ConvertWhereValueIsOKCancelAndParameterIsNoExpectedVisible()
         {
             var messageBoxButtonToVisibilityConverter = new MessageBoxButtonToVisibilityConverter();

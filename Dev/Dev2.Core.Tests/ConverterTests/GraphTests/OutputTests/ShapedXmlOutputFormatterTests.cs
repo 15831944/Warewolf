@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
 using Dev2.Common.Interfaces.Core.Graph;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Framework.Converters.Graph;
 using Unlimited.Framework.Converters.Graph.Ouput;
 using Unlimited.Framework.Converters.Graph.Poco;
@@ -24,7 +24,8 @@ using Unlimited.UnitTest.Framework.ConverterTests.GraphTests;
 
 namespace Dev2.Tests.ConverterTests.GraphTests.OutputTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     [ExcludeFromCodeCoverage]
     public class ShapedXmlOutputFormatterTests
     {
@@ -282,7 +283,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.OutputTests
         /// <summary>
         /// Format with scalar in output description from json expected XML with scalar value.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatWithScalarInOutputDescriptionFromJson_Expected_XmlWithScalarValue()
         {
             var testData = GivenJson();
@@ -307,7 +308,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.OutputTests
         /// <summary>
         /// Format with non existant scalar in output description from json expected XML with emptycalar value.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatWithNonExistantScalarInOutputDescriptionFromJson_Expected_XmlWithEmptycalarValue()
         {
             var testData = GivenJson();
@@ -332,7 +333,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.OutputTests
         /// <summary>
         /// Format with scalar in output description from XML expected XML with scalar value.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatWithScalarInOutputDescriptionFromXml_Expected_XmlWithScalarValue()
         {
             var testData = GivenXml();
@@ -357,7 +358,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.OutputTests
         /// <summary>
         /// Format with non existant scalar in output description from XML expected XML with empty scalar value.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatWithNonExistantScalarInOutputDescriptionFromXml_Expected_XmlWithEmptyScalarValue()
         {
             var testData = GivenXml();
@@ -382,7 +383,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.OutputTests
         /// <summary>
         /// Format with scalar in output description from reference type expected XML with scalar value.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatWithScalarInOutputDescriptionFromReferenceType_Expected_XmlWithScalarValue()
         {
             var testData = GivenPocoWithParallelAndNestedEnumerables();
@@ -407,7 +408,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.OutputTests
         /// <summary>
         /// Format with non existant scalar in output description from reference type expected XML with empty scalar value.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatWithNonExistantScalarInOutputDescriptionFromReferenceType_Expected_XmlWithEmptyScalarValue()
         {
             var testData = GivenPocoWithParallelAndNestedEnumerables();
@@ -434,7 +435,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.OutputTests
         /// <summary>
         /// Format the with enumerable in output description from json expected XML with recordset values.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatWithEnumerableInOutputDescriptionFromJson_Expected_XmlWithRecordsetValues()
         {
             var testData = GivenJson();
@@ -464,7 +465,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.OutputTests
         /// <summary>
         /// Format with non existant enumerable in output description from json expected XML with empty recordset values.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatWithNonExistantEnumerableInOutputDescriptionFromJson_Expected_XmlWithEmptyRecordsetValues()
         {
             var testData = GivenJson();
@@ -491,7 +492,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.OutputTests
         /// <summary>
         /// Format with nested enumerables in output description from json expected XML with recordset values.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatWithNestedEnumerablesInOutputDescriptionFromJson_Expected_XmlWithRecordsetValues()
         {
             var testData = GivenJson();
@@ -537,7 +538,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.OutputTests
         /// <summary>
         /// Format with non existant nested enumerables in output description from json expected XML with empty recordset values.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatWithNonExistantNestedEnumerablesInOutputDescriptionFromJson_Expected_XmlWithEmptyRecordsetValues()
         {
             var testData = GivenJson();
@@ -583,7 +584,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.OutputTests
         /// <summary>
         /// Format with unrelated enumerables in output description from json expected XML with recordset values.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatWithUnrelatedEnumerablesInOutputDescriptionFromJson_Expected_XmlWithRecordsetValues()
         {
             var testData = GivenJson();
@@ -633,7 +634,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.OutputTests
         /// <summary>
         /// Format with unrelated and nested enumerables in output description from json expected XML with recordset values.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatWithUnrelatedAndNestedEnumerablesInOutputDescriptionFromJson_Expected_XmlWithRecordsetValues()
         {
             var testData = GivenJson();
@@ -688,7 +689,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.OutputTests
         /// <summary>
         /// Format with enumerable in output description from XML expected XML with recordset values.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatWithEnumerableInOutputDescriptionFromXml_Expected_XmlWithRecordsetValues()
         {
             var testData = GivenXml();
@@ -718,7 +719,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.OutputTests
         /// <summary>
         /// Format with non existant enumerable in output description from XML expected XML with empty recordset values.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatWithNonExistantEnumerableInOutputDescriptionFromXml_Expected_XmlWithEmptyRecordsetValues()
         {
             var testData = GivenXml();
@@ -745,7 +746,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.OutputTests
         /// <summary>
         /// Format with nested enumerables in output description from XML expected XML with recordset values.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatWithNestedEnumerablesInOutputDescriptionFromXml_Expected_XmlWithRecordsetValues()
         {
             var testData = GivenXml();
@@ -791,7 +792,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.OutputTests
         /// <summary>
         /// Format with non existant nested enumerables in output description from XML expected XML with empty recordset values.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatWithNonExistantNestedEnumerablesInOutputDescriptionFromXml_Expected_XmlWithEmptyRecordsetValues()
         {
             var testData = GivenXml();
@@ -827,7 +828,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.OutputTests
         /// <summary>
         /// Format with unrelated enumerables in output description from XML expected XML with recordset values.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatWithUnrelatedEnumerablesInOutputDescriptionFromXml_Expected_XmlWithRecordsetValues()
         {
             var testData = GivenXml();
@@ -877,7 +878,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.OutputTests
         /// <summary>
         /// Format with unrelated and nested enumerables in output description from XML expected XML with recordset values.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatWithUnrelatedAndNestedEnumerablesInOutputDescriptionFromXml_Expected_XmlWithRecordsetValues()
         {
             var testData = GivenXml();
@@ -932,7 +933,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.OutputTests
         /// <summary>
         /// Format with enumerable in output description from reference type expected XML with recordset values.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatWithEnumerableInOutputDescriptionFromReferenceType_Expected_XmlWithRecordsetValues()
         {
             var testData = GivenPocoWithParallelAndNestedEnumerables();
@@ -962,7 +963,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.OutputTests
         /// <summary>
         /// Format with non existant enumerable in output description from reference type expected XML with empty recordset values.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatWithNonExistantEnumerableInOutputDescriptionFromReferenceType_Expected_XmlWithEmptyRecordsetValues()
         {
             var testData = GivenPocoWithParallelAndNestedEnumerables();
@@ -992,7 +993,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.OutputTests
         /// <summary>
         /// Format with nested enumerables in output description from reference type_ expected_ XML with recordset values.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatWithNestedEnumerablesInOutputDescriptionFromReferenceType_Expected_XmlWithRecordsetValues()
         {
             var testData = GivenPocoWithParallelAndNestedEnumerables();
@@ -1038,7 +1039,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.OutputTests
         /// <summary>
         /// Format with non existant nested enumerables in output description from reference type expected XML with empty recordset values.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatWithNonExistantNestedEnumerablesInOutputDescriptionFromReferenceType_Expected_XmlWithEmptyRecordsetValues()
         {
             var testData = GivenPocoWithParallelAndNestedEnumerables();
@@ -1084,7 +1085,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.OutputTests
         /// <summary>
         /// Format with unrelated enumerables in output description from reference type expected XML with recordset values.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatWithUnrelatedEnumerablesInOutputDescriptionFromReferenceType_Expected_XmlWithRecordsetValues()
         {
             var testData = GivenPocoWithParallelAndNestedEnumerables();
@@ -1135,7 +1136,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.OutputTests
         /// <summary>
         /// Format with unrelated and nested enumerables in output description from reference type expected XML with recordset values.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatWithUnrelatedAndNestedEnumerablesInOutputDescriptionFromReferenceType_Expected_XmlWithRecordsetValues()
         {
             var testData = GivenPocoWithParallelAndNestedEnumerables();
@@ -1194,7 +1195,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.OutputTests
         /// <summary>
         /// Format with multiple output expressions in output description from json expected XML with recordset values and a scalar value.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatWithMultipleOutputExpressionsInOutputDescriptionFromJson_Expected_XmlWithRecordsetValuesAndAScalarValue()
         {
             var testData = GivenJson();
@@ -1248,7 +1249,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.OutputTests
         /// <summary>
         /// Format with multiple output expressions in output description from XML expected XML with recordset values and A scalar value.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatWithMultipleOutputExpressionsInOutputDescriptionFromXml_Expected_XmlWithRecordsetValuesAndAScalarValue()
         {
             var testData = GivenXml();
@@ -1302,7 +1303,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.OutputTests
         /// <summary>
         /// Format with multiple output expressions in output description from reference type expected XML with recordset values and A scalar value.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void FormatWithMultipleOutputExpressionsInOutputDescriptionFromReferenceType_Expected_XmlWithRecordsetValuesAndAScalarValue()
         {
             var testData = GivenPocoWithParallelAndNestedEnumerables();

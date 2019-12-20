@@ -10,19 +10,20 @@
 
 using System.Data;
 using Dev2.Activities.SqlBulkInsert;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SqlBulkInserterTests
     {
         
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("SqlBulkInserter_Constructor")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("SqlBulkInserter_Constructor")]
         public void SqlBulkInserter_Constructor_WhenCreatingNew_ExpectValidObject()
         {
             //------------Setup for test--------------------------
@@ -34,9 +35,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsNotNull(bulkInserter);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("SqlBulkInserter_Insert")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("SqlBulkInserter_Insert")]
         public void SqlBulkInserter_Insert_WhenInsertingTableData_ExpectInsertSuccess()
         {
             //------------Setup for test--------------------------
@@ -52,9 +53,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("SqlBulkInserter_Insert")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("SqlBulkInserter_Insert")]
         public void SqlBulkInserter_Insert_WhenInsertingTableData_ExpectInsertFailure()
         {
             //------------Setup for test--------------------------
@@ -70,9 +71,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("SqlBulkInserter_Insert")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("SqlBulkInserter_Insert")]
         public void SqlBulkInserter_Insert_WhenInsertingNullTableData_ExpectInsertFailure()
         {
             //------------Setup for test--------------------------

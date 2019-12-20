@@ -18,7 +18,7 @@ using System.Linq;
 using ActivityUnitTests;
 using Dev2.Activities;
 using Dev2.Common.State;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Tests.Activities.ActivityTests
@@ -26,7 +26,8 @@ namespace Dev2.Tests.Activities.ActivityTests
     /// <summary>
     /// Summary description for CountRecordsTest
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ExecuteCommandLineTest : BaseActivityUnitTest
     {
         /// <summary>
@@ -36,7 +37,7 @@ namespace Dev2.Tests.Activities.ActivityTests
         public TestContext TestContext { get; set; }
         public const string CommandLineToolName = "ConsoleAppToTestExecuteCommandLineActivity.exe";
 
-        [TestMethod]
+        [Test]
         public void ExecuteCommandLineShouldHaveInputProperty()
         {
             //------------Setup for test--------------------------
@@ -48,9 +49,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(randomString, activity.CommandFileName);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfExecuteCommandLineActivity_GetOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfExecuteCommandLineActivity_GetOutputs")]
         public void DsfExecuteCommandLineActivity_GetOutputs_Called_ShouldReturnListWithResultValueInIt()
         {
             //------------Setup for test--------------------------
@@ -67,7 +68,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             return new Random().Next(0, 1000).ToString(CultureInfo.InvariantCulture);
         }
 
-        [TestMethod]
+        [Test]
         public void ExecuteCommandLineShouldHaveCommandResultProperty()
         {
             //------------Setup for test--------------------------
@@ -79,13 +80,13 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(randomString, activity.CommandResult);
         }
 
-        [TestMethod]
+        [Test]
         [DeploymentItem(CommandLineToolName)]
         public void OnExecuteWhereConsoleDoesNothingExpectNothingForResult()
         {
             //------------Setup for test--------------------------
             var activity = new DsfExecuteCommandLineActivity();
-            activity.CommandFileName = "\"" + TestContext.DeploymentDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe\" output";
+            activity.CommandFileName = "\"" + TestContext.TestDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe\" output";
             activity.CommandResult = "[[Result]]";
             TestStartNode = new FlowStep
             {
@@ -100,14 +101,14 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("This is output from the user", actual, "Executing an exe with execute commandline activity did not return the expected output.");
         }
 
-        [TestMethod]
+        [Test]
         public void OnExecuteWhereConsolePathHasSpacesIsNotWrappedInQuotesExpectError()
         {
             //------------Setup for test--------------------------
             const string ExeName = "ConsoleAppToTestExecuteCommandLineActivity.exe";
-            var destDir = Path.Combine(TestContext.DeploymentDirectory, Guid.NewGuid() + " Temp");
+            var destDir = Path.Combine(TestContext.TestDirectory, Guid.NewGuid() + " Temp");
 
-            var sourceFile = Path.Combine(TestContext.DeploymentDirectory, ExeName);
+            var sourceFile = Path.Combine(TestContext.TestDirectory, ExeName);
             if (!File.Exists(sourceFile))
             {
                 sourceFile = Path.Combine(Environment.CurrentDirectory, ExeName);
@@ -133,12 +134,12 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsTrue(res);
         }
 
-        [TestMethod]
+        [Test]
         public void OnExecuteWhereConsolePathHasNoSpacesIsNotWrappedInQuotesExpectSuccess()
         {
             //------------Setup for test--------------------------
             var activity = new DsfExecuteCommandLineActivity();
-            var toolPath = TestContext.DeploymentDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe";
+            var toolPath = TestContext.TestDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe";
             if (!File.Exists(toolPath))
             {
                 toolPath = Environment.CurrentDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe";
@@ -166,7 +167,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             StringAssert.Contains(actual, "");
         }
 
-        [TestMethod]
+        [Test]
         public void OnExecute_WhereConsolePathStartsWithExplorer_ShouldError()
         {
             //------------Setup for test--------------------------
@@ -188,7 +189,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             StringAssert.Contains(fetchErrors, "Cannot execute explorer from tool.");
         }
 
-        [TestMethod]
+        [Test]
         public void OnExecute_WhereConsolePathStartsWithCmd_ShouldError()
         {
             //------------Setup for test--------------------------
@@ -211,12 +212,12 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
+        [Test]
         public void OnExecuteWhereConsoleOutputsWithArgsWrappedInQuotesExpectSuccess()
         {
             //------------Setup for test--------------------------
             var activity = new DsfExecuteCommandLineActivity();
-            var toolPath = TestContext.DeploymentDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe";
+            var toolPath = TestContext.TestDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe";
             if (!File.Exists(toolPath))
             {
                 toolPath = Environment.CurrentDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe";
@@ -245,12 +246,12 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
+        [Test]
         public void OnExecuteWhereConsoleOutputsExpectOutputForResult()
         {
             //------------Setup for test--------------------------
             var activity = new DsfExecuteCommandLineActivity();
-            var toolPath = TestContext.DeploymentDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe";
+            var toolPath = TestContext.TestDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe";
             if (!File.Exists(toolPath))
             {
                 toolPath = Environment.CurrentDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe";
@@ -279,7 +280,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
+        [Test]
         public void OnExecuteWhereConsoleOutputsExpectOutputForResultCmddirc()
         {
             //------------Setup for test--------------------------
@@ -304,7 +305,7 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
+        [Test]
         public void OnExecuteWhereConsoleOutputsExpectOutputForResultExplorer()
         {
             //------------Setup for test--------------------------
@@ -327,12 +328,12 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
+        [Test]
         public void OnExecuteWhereConsoleErrorsExpectErrorInDatalist()
         {
             // ------------Setup for test--------------------------
             var activity = new DsfExecuteCommandLineActivity();
-            var toolPath = TestContext.DeploymentDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe";
+            var toolPath = TestContext.TestDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe";
             if (!File.Exists(toolPath))
             {
                 toolPath = Environment.CurrentDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe";
@@ -357,12 +358,12 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
+        [Test]
         public void OnExecuteWhereOutputToRecordWithNoIndexWithConsoleOutputsExpectOutputForResultAppendedToRecordsets()
         {
             //------------Setup for test--------------------------
             var activity = new DsfExecuteCommandLineActivity();
-            var toolPath = TestContext.DeploymentDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe";
+            var toolPath = TestContext.TestDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe";
             if (!File.Exists(toolPath))
             {
                 toolPath = Environment.CurrentDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe";
@@ -392,12 +393,12 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
+        [Test]
         public void OnExecuteWhereOutputToRecordWithStarIndexWithConsoleOutputsExpectOutputForResultOverwriteToRecordsets()
         {
             //------------Setup for test--------------------------
             var activity = new DsfExecuteCommandLineActivity();
-            var toolPath = TestContext.DeploymentDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe";
+            var toolPath = TestContext.TestDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe";
             if (!File.Exists(toolPath))
             {
                 toolPath = Environment.CurrentDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe";
@@ -428,12 +429,12 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
+        [Test]
         public void OnExecuteWhereOutputToRecordWithSpecificIndexWithConsoleOutputsExpectOutputForResultInsertsToRecordsets()
         {
             //------------Setup for test--------------------------
             var activity = new DsfExecuteCommandLineActivity();
-            var toolPath = TestContext.DeploymentDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe";
+            var toolPath = TestContext.TestDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe";
             if (!File.Exists(toolPath))
             {
                 toolPath = Environment.CurrentDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe";
@@ -460,12 +461,12 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
+        [Test]
         public void OnExecuteWhereMultipleInputFromRecordSetWithOutputToRecordSetExpectOutputResultsToMultipleRowsInRecordSet()
         {
             //------------Setup for test--------------------------
             var activity = new DsfExecuteCommandLineActivity();
-            var toolPath = TestContext.DeploymentDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe";
+            var toolPath = TestContext.TestDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe";
             if (!File.Exists(toolPath))
             {
                 toolPath = Environment.CurrentDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe";
@@ -488,12 +489,12 @@ namespace Dev2.Tests.Activities.ActivityTests
             CollectionAssert.AreEqual(expected, actual, new ActivityUnitTests.Utils.StringComparer());
         }
 
-        [TestMethod]
+        [Test]
         public void OnExecuteWhereMultipleInputFromRecordSetWithOutputToScalarExpectOutputResultOfLastCommandinScalar()
         {
             //------------Setup for test--------------------------
             var activity = new DsfExecuteCommandLineActivity();
-            var toolPath = TestContext.DeploymentDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe";
+            var toolPath = TestContext.TestDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe";
             if (!File.Exists(toolPath))
             {
                 toolPath = Environment.CurrentDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe";
@@ -514,13 +515,13 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
         
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfExecuteCommandLineActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfExecuteCommandLineActivity_UpdateForEachInputs")]
         public void DsfExecuteCommandLineActivity_UpdateForEachInputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
-            var command1 = "\"" + TestContext.DeploymentDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe\" output";
+            var command1 = "\"" + TestContext.TestDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe\" output";
             var act = new DsfExecuteCommandLineActivity { CommandFileName = command1, CommandResult = "[[OutVar1]]", CommandPriority = ProcessPriorityClass.RealTime };
 
             //------------Execute Test---------------------------
@@ -530,13 +531,13 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(ProcessPriorityClass.RealTime, act.CommandPriority);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfExecuteCommandLineActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfExecuteCommandLineActivity_UpdateForEachInputs")]
         public void DsfExecuteCommandLineActivity_UpdateForEachInputs_MoreThan1Updates_DoesNothing()
         {
             //------------Setup for test--------------------------
-            var command1 = "\"" + TestContext.DeploymentDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe\" output";
+            var command1 = "\"" + TestContext.TestDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe\" output";
             var act = new DsfExecuteCommandLineActivity { CommandFileName = command1, CommandResult = "[[OutVar1]]", CommandPriority = ProcessPriorityClass.RealTime };
 
             var tuple1 = new Tuple<string, string>("Test", "Test");
@@ -550,13 +551,13 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(ProcessPriorityClass.High, act.CommandPriority);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfExecuteCommandLineActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfExecuteCommandLineActivity_UpdateForEachInputs")]
         public void DsfExecuteCommandLineActivity_UpdateForEachInputs_UpdatesNotMatching_DoesNotUpdateRecordsetName()
         {
             //------------Setup for test--------------------------
-            var command1 = "\"" + TestContext.DeploymentDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe\" output";
+            var command1 = "\"" + TestContext.TestDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe\" output";
             var act = new DsfExecuteCommandLineActivity { CommandFileName = command1, CommandResult = "[[OutVar1]]", CommandPriority = ProcessPriorityClass.RealTime };
 
             var tuple1 = new Tuple<string, string>("Test", "Test");
@@ -567,13 +568,13 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(ProcessPriorityClass.RealTime, act.CommandPriority);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfExecuteCommandLineActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfExecuteCommandLineActivity_UpdateForEachOutputs")]
         public void DsfExecuteCommandLineActivity_UpdateForEachOutputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
-            var command1 = "\"" + TestContext.DeploymentDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe\" output";
+            var command1 = "\"" + TestContext.TestDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe\" output";
             const string result = "[[OutVar1]]";
             var act = new DsfExecuteCommandLineActivity { CommandFileName = command1, CommandResult = result };
 
@@ -582,13 +583,13 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(result, act.CommandResult);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfExecuteCommandLineActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfExecuteCommandLineActivity_UpdateForEachOutputs")]
         public void DsfExecuteCommandLineActivity_UpdateForEachOutputs_MoreThan1Updates_DoesNothing()
         {
             //------------Setup for test--------------------------
-            var command1 = "\"" + TestContext.DeploymentDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe\" output";
+            var command1 = "\"" + TestContext.TestDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe\" output";
             const string result = "[[OutVar1]]";
             var act = new DsfExecuteCommandLineActivity { CommandFileName = command1, CommandResult = result };
 
@@ -600,13 +601,13 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(result, act.CommandResult);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfExecuteCommandLineActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfExecuteCommandLineActivity_UpdateForEachOutputs")]
         public void DsfExecuteCommandLineActivity_UpdateForEachOutputs_1Updates_UpdateCommandResult()
         {
             //------------Setup for test--------------------------
-            var command1 = "\"" + TestContext.DeploymentDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe\" output";
+            var command1 = "\"" + TestContext.TestDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe\" output";
             const string result = "[[OutVar1]]";
             var act = new DsfExecuteCommandLineActivity { CommandFileName = command1, CommandResult = result };
 
@@ -617,14 +618,14 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Test", act.CommandResult);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfExecuteCommandLineActivity_GetForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfExecuteCommandLineActivity_GetForEachInputs")]
         public void DsfExecuteCommandLineActivity_GetForEachInputs_WhenHasExpression_ReturnsInputList()
         {
             //------------Setup for test--------------------------
             const ProcessPriorityClass commandPriority = ProcessPriorityClass.RealTime;
-            var command1 = "\"" + TestContext.DeploymentDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe\" output";
+            var command1 = "\"" + TestContext.TestDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe\" output";
             var act = new DsfExecuteCommandLineActivity { CommandFileName = command1, CommandResult = "[[OutVar1]]", CommandPriority = commandPriority };
 
             //------------Execute Test---------------------------
@@ -637,13 +638,13 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(commandPriority.ToString(), dsfForEachItems[1].Value);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfExecuteCommandLineActivity_GetForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfExecuteCommandLineActivity_GetForEachOutputs")]
         public void DsfExecuteCommandLineActivity_GetForEachOutputs_WhenHasResult_ReturnsOutputList()
         {
             //------------Setup for test--------------------------
-            var command1 = "\"" + TestContext.DeploymentDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe\" output";
+            var command1 = "\"" + TestContext.TestDirectory + "\\ConsoleAppToTestExecuteCommandLineActivity.exe\" output";
             const string result = "[[OutVar1]]";
             var act = new DsfExecuteCommandLineActivity { CommandFileName = command1, CommandResult = result };
 
@@ -666,9 +667,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             CurrentDl = currentDl;
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DsfExecuteCommandLineActivity_Priority")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DsfExecuteCommandLineActivity_Priority")]
         public void DsfExecuteCommandLineActivity_Priority_Initialization_Normal()
         {
             //------------Setup for test--------------------------
@@ -682,9 +683,9 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsExecuteCommandLineActivity_GetState")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsExecuteCommandLineActivity_GetState")]
         public void DsExecuteCommandLineActivity_GetState_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------

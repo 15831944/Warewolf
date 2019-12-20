@@ -1,7 +1,7 @@
 ﻿using Dev2.Common;
 using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.ToolBase;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Collections.ObjectModel;
@@ -9,12 +9,13 @@ using System.Linq;
 
 namespace Dev2.Activities.Designers.Tests.Core
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WebServiceHeaderBuilderTests
     {
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("WebServiceHeaderBuilder")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("WebServiceHeaderBuilder")]
         public void WebServiceHeaderBuilder_GivenNoHeadersNoContent_PassThrouh()
         {
             //------------Setup for test--------------------------
@@ -26,9 +27,9 @@ namespace Dev2.Activities.Designers.Tests.Core
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("WebServiceHeaderBuilder")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("WebServiceHeaderBuilder")]
         public void WebServiceHeaderBuilder_GivenNormalText_PassAddNoHeaders()
         {
             //------------Setup for test--------------------------
@@ -44,9 +45,9 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.IsNull(newMock.Object.Headers);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("WebServiceHeaderBuilder")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("WebServiceHeaderBuilder")]
         public void WebServiceHeaderBuilder_GivenNormalTextJson_PassAddHeaders()
         {
             //------------Setup for test--------------------------
@@ -68,9 +69,9 @@ namespace Dev2.Activities.Designers.Tests.Core
         }
 
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("WebServiceHeaderBuilder")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("WebServiceHeaderBuilder")]
         public void WebServiceHeaderBuilder_GivenNormalTextXml_PassAddHeaders()
         {
             //------------Setup for test--------------------------
@@ -91,9 +92,9 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.AreEqual(1, countContentTypes);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("WebServiceHeaderBuilder")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("WebServiceHeaderBuilder")]
         public void WebServiceHeaderBuilder_GivenHasExistingXmlHeaderAndCOntentIsXml_PassAddNoHeaders()
         {
             //------------Setup for test--------------------------
@@ -118,9 +119,9 @@ namespace Dev2.Activities.Designers.Tests.Core
 
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("WebServiceHeaderBuilder")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("WebServiceHeaderBuilder")]
         public void WebServiceHeaderBuilder_GivenHasExistingJsonHeaderAndContentIsJson_PassAddNoHeaders()
         {
             //------------Setup for test--------------------------
@@ -145,9 +146,9 @@ namespace Dev2.Activities.Designers.Tests.Core
 
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("WebServiceHeaderBuilder")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("WebServiceHeaderBuilder")]
         public void WebServiceHeaderBuilder_GivenEmptyHeaders_SetHeaders()
         {
             //------------Setup for test--------------------------

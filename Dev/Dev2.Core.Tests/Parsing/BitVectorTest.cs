@@ -10,14 +10,15 @@
 
 using System;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Parsing
 {
     /// <summary>
     /// Summary description for BitVectorTest
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class BitVectorTest
     {
         TestContext testContextInstance;
@@ -43,7 +44,7 @@ namespace Dev2.Tests.Parsing
         // You can use the following additional attributes as you write your tests:
         //
         // Use ClassInitialize to run code before running the first test in the class
-        // [ClassInitialize()]
+        // [OneTimeSetUp]
         // public static void MyClassInitialize(TestContext testContext) { }
         //
         // Use ClassCleanup to run code after all tests in a class have run
@@ -60,7 +61,7 @@ namespace Dev2.Tests.Parsing
         //
         #endregion
 
-        [TestMethod]
+        [Test]
         public void BitVector_Set_Test()
         {
             var bArray = new BitVector();

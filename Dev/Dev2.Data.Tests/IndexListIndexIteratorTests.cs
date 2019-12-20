@@ -1,43 +1,45 @@
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IndexListIndexIteratorTests
     {        
-        [TestMethod]
+        [Test]
         public void IndexListIndexIterator_ShouldHaveConstructor()
         {
             var indexes = new List<int> {1, 2, 3};
             var indexListIndexIterator = new IndexListIndexIterator(indexes);
-            Assert.IsNotNull(indexListIndexIterator);
+            NUnit.Framework.Assert.IsNotNull(indexListIndexIterator);
         }
            
-        [TestMethod]
+        [Test]
         public void IndexListIndexIterator_MaxIndex_ShouldReturnLastIndex()
         {
             var indexes = new List<int> {1, 2, 3};
             var indexListIndexIterator = new IndexListIndexIterator(indexes);
-            Assert.IsNotNull(indexListIndexIterator);
+            NUnit.Framework.Assert.IsNotNull(indexListIndexIterator);
             var maxIndex = indexListIndexIterator.MaxIndex();
-            Assert.AreEqual(3, maxIndex);
+            NUnit.Framework.Assert.AreEqual(3, maxIndex);
         }
 
-        [TestMethod]
+        [Test]
         public void IndexListIndexIterator_HasMore_ShouldReturnTrue()
         {
             var indexes = new List<int> {1, 2, 3};
             var indexListIndexIterator = new IndexListIndexIterator(indexes);
-            Assert.IsNotNull(indexListIndexIterator);
+            NUnit.Framework.Assert.IsNotNull(indexListIndexIterator);
             var prObj = new PrivateObject(indexListIndexIterator);
-            Assert.IsFalse(indexListIndexIterator.IsEmpty);
+            NUnit.Framework.Assert.IsFalse(indexListIndexIterator.IsEmpty);
             var current = (int) prObj.GetField("_current");
-            Assert.IsNotNull(current);
-            Assert.AreEqual(0, current);
-            Assert.IsTrue(indexListIndexIterator.HasMore());
+            NUnit.Framework.Assert.IsNotNull(current);
+            NUnit.Framework.Assert.AreEqual(0, current);
+            NUnit.Framework.Assert.IsTrue(indexListIndexIterator.HasMore());
             var fetchNextIndex = indexListIndexIterator.FetchNextIndex();
-            Assert.AreEqual(1, fetchNextIndex);
+            NUnit.Framework.Assert.AreEqual(1, fetchNextIndex);
         }
     }
 }

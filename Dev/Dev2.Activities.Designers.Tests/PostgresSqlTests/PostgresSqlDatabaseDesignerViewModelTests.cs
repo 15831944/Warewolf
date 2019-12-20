@@ -14,13 +14,14 @@ using Dev2.Common.Interfaces.ToolBase.Database;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Warewolf.Core;
 
 
 namespace Dev2.Activities.Designers.Tests.PostgresSqlTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class PostgresSqlDatabaseDesignerViewModelTests
     {
         public const string TestOwner = "Bernardt Joubert";
@@ -35,9 +36,9 @@ namespace Dev2.Activities.Designers.Tests.PostgresSqlTests
             return new PostgreSqlDatabaseDesignerViewModel(ModelItemUtils.CreateModelItem(act), mod, new SynchronousAsyncWorker(), new ViewPropertyBuilder());
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void PostgresSql_Instantiate_New_ReturnsNewViewModel()
         {
             var model = GetViewModel();
@@ -46,9 +47,9 @@ namespace Dev2.Activities.Designers.Tests.PostgresSqlTests
         }
 
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void PostgreSql_MethodName_ValidateExpectErrors()
         {
             //------------Setup for test--------------------------
@@ -60,9 +61,9 @@ namespace Dev2.Activities.Designers.Tests.PostgresSqlTests
             Assert.AreEqual(2, model.DesignValidationErrors.Count);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void PostgreSql_MethodName_ClearErrors()
         {
             //------------Setup for test--------------------------
@@ -76,9 +77,9 @@ namespace Dev2.Activities.Designers.Tests.PostgresSqlTests
             Assert.AreEqual(model.DesignValidationErrors.Count, 1);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void PostgreSql_TestActionSetSource()
         {
             //------------Setup for test--------------------------
@@ -98,9 +99,9 @@ namespace Dev2.Activities.Designers.Tests.PostgresSqlTests
             Assert.IsTrue(model.ErrorRegion.IsEnabled);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void PostgreSql_TestActionSetSourceAndTestClickOkHasMappings()
         {
             //------------Setup for test--------------------------
@@ -127,9 +128,9 @@ namespace Dev2.Activities.Designers.Tests.PostgresSqlTests
             Assert.IsTrue(model.ManageServiceInputViewModel.InputArea.IsEnabled);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void PostgreSql_TestActionSetSourceAndTestClickOkHasMappingsErrorFromServer()
         {
             //------------Setup for test--------------------------
@@ -153,9 +154,9 @@ namespace Dev2.Activities.Designers.Tests.PostgresSqlTests
             Assert.IsTrue(model.ErrorRegion.IsEnabled);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void PostgreSql_TestActionSetSourceAndTestClickOkHasHeaders()
         {
             //------------Setup for test--------------------------
@@ -186,9 +187,9 @@ namespace Dev2.Activities.Designers.Tests.PostgresSqlTests
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SqlServer_Refresh")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SqlServer_Refresh")]
         public void PostgreSql_Refresh_ShouldLoadRefreshActions()
         {
             //------------Setup for test--------------------------
@@ -206,9 +207,9 @@ namespace Dev2.Activities.Designers.Tests.PostgresSqlTests
             Assert.AreEqual(1, sqlServer.ActionRegion.Actions.Count);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void PostgreSql_TestActionSetSourceAndTestClickOkHasQueryStringAndHeaders()
         {
             //------------Setup for test--------------------------
@@ -241,9 +242,9 @@ namespace Dev2.Activities.Designers.Tests.PostgresSqlTests
             Assert.IsTrue(model.ManageServiceInputViewModel.InputArea.Inputs.Last().Name == "[[a]]");
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("PostgreServer_MethodName")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("PostgreServer_MethodName")]
         public void SQLServer_VerifyCommandTimeout()
         {
             //------------Setup for test--------------------------

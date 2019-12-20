@@ -4,19 +4,21 @@ using System.Data;
 using System.Data.SqlClient;
 using Dev2.Common.Interfaces.Services.Sql;
 using Dev2.Services.Sql;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dev2.Sql.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class OracleServerTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("OracleServer_Connect")]
-        [ExpectedException(typeof(ArgumentNullException))]
-        [DeploymentItem("Oracle.ManagedDataAccess.dll")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("OracleServer_Connect")]
+        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [NUnit.Framework.DeploymentItem("Oracle.ManagedDataAccess.dll")]
         
         public void OracleServer_Connect_ConnectionStringIsNull_ThrowsArgumentNullException()
     
@@ -36,11 +38,11 @@ namespace Dev2.Sql.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("OracleServer_Connect")]
-        [ExpectedException(typeof(ArgumentException))]
-        [DeploymentItem("Oracle.ManagedDataAccess.dll")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("OracleServer_Connect")]
+        [NUnit.Framework.ExpectedException(typeof(ArgumentException))]
+        [NUnit.Framework.DeploymentItem("Oracle.ManagedDataAccess.dll")]
         
         public void OracleServer_Connect_ConnectionStringIsInvalid_ThrowsArgumentException()
     
@@ -60,11 +62,11 @@ namespace Dev2.Sql.Tests
             }
         }
         
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("OracleServer_FetchDataTable")]
-        [ExpectedException(typeof(ArgumentNullException))]
-        [DeploymentItem("Oracle.ManagedDataAccess.dll")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("OracleServer_FetchDataTable")]
+        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [NUnit.Framework.DeploymentItem("Oracle.ManagedDataAccess.dll")]
         
         public void OracleServer_FetchDataTable_CommandIsNull_ThrowsArgumentNullException()
     
@@ -84,11 +86,11 @@ namespace Dev2.Sql.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("OracleServer_FetchDatabases")]
-        [ExpectedException(typeof(Exception))]
-        [DeploymentItem("Oracle.ManagedDataAccess.dll")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("OracleServer_FetchDatabases")]
+        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [NUnit.Framework.DeploymentItem("Oracle.ManagedDataAccess.dll")]
         
         public void OracleServer_FetchDatabases_ConnectionNotInitialized_ThrowsConnectFirstException()
     
@@ -108,11 +110,11 @@ namespace Dev2.Sql.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("OracleServer_FetchStoredProcedures")]
-        [ExpectedException(typeof(ArgumentNullException))]
-        [DeploymentItem("Oracle.ManagedDataAccess.dll")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("OracleServer_FetchStoredProcedures")]
+        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [NUnit.Framework.DeploymentItem("Oracle.ManagedDataAccess.dll")]
         
         public void OracleServer_FetchStoredProcedures_FunctionProcessorIsNull_ThrowsArgumentNullException()
     
@@ -137,9 +139,9 @@ namespace Dev2.Sql.Tests
         
         
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("OracleServer_FetchDataTable_addParams")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("OracleServer_FetchDataTable_addParams")]
         
         public void OracleServer_FetchDataTable_AddParams_VerifyAllAdded()
     
@@ -173,7 +175,7 @@ namespace Dev2.Sql.Tests
                 var param = new IDbDataParameter[] { new SqlParameter("a", "a"), new SqlParameter("b", "b") };
 
                 OracleServer.AddParameters(mockCommand.Object,param);
-                Assert.AreEqual(2,added.Count);
+                NUnit.Framework.Assert.AreEqual(2,added.Count);
 
 
                 //------------Assert Results-------------------------
@@ -184,9 +186,9 @@ namespace Dev2.Sql.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("OracleServer_FetchDataTable_addParams")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("OracleServer_FetchDataTable_addParams")]
         
         public void OracleServer_FetchDataTable_ConnectionsString()
     
@@ -216,7 +218,7 @@ namespace Dev2.Sql.Tests
                 pvt.SetField("_command", mockCommand.Object);
                 //------------Execute Test---------------------------
 
-                Assert.AreEqual("bob", sqlServer.ConnectionString);
+                NUnit.Framework.Assert.AreEqual("bob", sqlServer.ConnectionString);
 
             }
             finally
@@ -225,9 +227,9 @@ namespace Dev2.Sql.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("OracleServer_FetchDataTable_addParams")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("OracleServer_FetchDataTable_addParams")]
         
         public void OracleServer_FetchDataTable_ConnectionsStringNull()
     
@@ -252,7 +254,7 @@ namespace Dev2.Sql.Tests
             var sqlServer = new OracleServer(factory.Object);
             try
             {
-                Assert.IsNull( sqlServer.ConnectionString);
+                NUnit.Framework.Assert.IsNull( sqlServer.ConnectionString);
 
             }
             finally
@@ -261,9 +263,9 @@ namespace Dev2.Sql.Tests
             }
         }
         
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("OracleServer_FetchDataTable_addParams")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("OracleServer_FetchDataTable_addParams")]
         
         public void OracleServer_CreateCommand_CreateCommand()
     
@@ -304,9 +306,9 @@ namespace Dev2.Sql.Tests
         }
 
         
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("OracleServer_IsTableValueFunction")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("OracleServer_IsTableValueFunction")]
         
         public void OracleServer_IsTableValueFunction_InvalidRow()
     
@@ -315,14 +317,14 @@ namespace Dev2.Sql.Tests
 
         
             //------------Execute Test---------------------------
-            Assert.IsFalse(  SqlServer.IsTableValueFunction(null,null));
+            NUnit.Framework.Assert.IsFalse(  SqlServer.IsTableValueFunction(null,null));
 
             //------------Assert Results-------------------------
        
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("OracleServer_IsFunction")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("OracleServer_IsFunction")]
 
         
         public void OracleServer_IsFunction_InvalidRow()
@@ -332,14 +334,14 @@ namespace Dev2.Sql.Tests
 
 
             //------------Execute Test---------------------------
-            Assert.IsFalse(SqlServer.IsFunction(null, null));
+            NUnit.Framework.Assert.IsFalse(SqlServer.IsFunction(null, null));
 
             //------------Assert Results-------------------------
 
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("OracleServer_IsSp")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("OracleServer_IsSp")]
         
         public void OracleServer_IsSP_InvalidRow()
     
@@ -348,7 +350,7 @@ namespace Dev2.Sql.Tests
 
 
             //------------Execute Test---------------------------
-            Assert.IsFalse(SqlServer.IsStoredProcedure(null, null));
+            NUnit.Framework.Assert.IsFalse(SqlServer.IsStoredProcedure(null, null));
 
             //------------Assert Results-------------------------
 
@@ -357,10 +359,10 @@ namespace Dev2.Sql.Tests
 
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("OracleServer_CreateCommand")]
-        [ExpectedException(typeof(Exception))]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("OracleServer_CreateCommand")]
+        [NUnit.Framework.ExpectedException(typeof(Exception))]
         
         public void OracleServer_CreateCommand_ConnectionNotInitialized_ThrowsConnectFirstException()
     

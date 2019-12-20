@@ -9,7 +9,7 @@
 */
 
 using Dev2.Web2.Controllers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json;
 using System;
@@ -23,12 +23,13 @@ using Warewolf.Auditing;
 
 namespace Dev2.Web.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class AuditControllerTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(AuditController))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(AuditController))]
         public void AuditController_Resuming_Workflow_Given_UnAuthorizedUser_Authentication()
         {
             //---------------------------------Arrange---------------------------------------
@@ -63,11 +64,11 @@ namespace Dev2.Web.Tests
                 controller.ControllerContext = new ControllerContext(mockContext.Object, new RouteData(), controller);
 
                 //----------------------------Assert---------------------------------------
-                Assert.ThrowsException<Exception>(() => controller.PerformResume(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), url));
+                Assert.Throws<Exception>(() => controller.PerformResume(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), url));
             };
         }
 
-        [TestMethod]
+        [Test]
         public void AuditController_Resuming_Workflow_Does_Not_Require_Authentication_Given_allowLogIn_Is_False()
         {
             var request = new Mock<HttpRequestBase>();
@@ -89,9 +90,9 @@ namespace Dev2.Web.Tests
             Assert.AreEqual(1, controller.TempData.Count);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(AuditController))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(AuditController))]
         public void AuditController_AuditList_JsonDataString_Invalid_Json_ShouldReturn_EmptyModel()
         {
             //----------------------------Arrange-----------------------------
@@ -101,17 +102,17 @@ namespace Dev2.Web.Tests
                 var result = controller.AuditList("invalidJson");
                 
                 //-------------------Assert-----------------------------------
-                Assert.IsInstanceOfType(result, typeof(ActionResult));
-                Assert.IsInstanceOfType(result, typeof(PartialViewResult));
+                Assert.IsInstanceOf(result.GetType(), typeof(ActionResult));
+                Assert.IsInstanceOf(result.GetType(), typeof(PartialViewResult));
 
                 var partialViewResult = (PartialViewResult)result; 
                 Assert.AreEqual("AuditList", partialViewResult.ViewName);
             };
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(AuditController))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(AuditController))]
         public void AuditController_AuditList_JsonDataString_Valid_Json_ShouldReturn_EmptyModel()
         {
             //----------------------------Arrange-----------------------------
@@ -136,8 +137,8 @@ namespace Dev2.Web.Tests
                 var result = controller.AuditList(expectedAudits);
 
                 //-------------------Assert-----------------------------------
-                Assert.IsInstanceOfType(result, typeof(ActionResult));
-                Assert.IsInstanceOfType(result, typeof(PartialViewResult));
+                Assert.IsInstanceOf(result.GetType(), typeof(ActionResult));
+                Assert.IsInstanceOf(result.GetType(), typeof(PartialViewResult));
 
                 var partialViewResult = (PartialViewResult)result;
                 Assert.AreEqual("AuditList", partialViewResult.ViewName);

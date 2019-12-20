@@ -2,15 +2,16 @@
 using System.Activities;
 using Dev2;
 using Dev2.Activities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Warewolf.ResourceManagement.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ResourceActivityCacheTests
     {
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Constructor_NullParser_ShouldThrowException()
         {
@@ -18,7 +19,7 @@ namespace Warewolf.ResourceManagement.Tests
             Assert.IsNull(resourceActivityCache);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Constructor_NullCache_ShouldThrowException()
         {
@@ -26,7 +27,7 @@ namespace Warewolf.ResourceManagement.Tests
             Assert.IsNull(resourceActivityCache);
         }
 
-        [TestMethod]
+        [Test]
         public void Parse_WhenNotInCache_ShouldAdd()
         {
             var parser = new Mock<IActivityParser>();
@@ -40,7 +41,7 @@ namespace Warewolf.ResourceManagement.Tests
             Assert.IsTrue(resourceActivityCache.Cache.ContainsKey(resourceId));
         }
 
-        [TestMethod]
+        [Test]
         public void HasInCache_WhenInCache_ShouldReturnTrue()
         {
             var parser = new Mock<IActivityParser>();
@@ -52,7 +53,7 @@ namespace Warewolf.ResourceManagement.Tests
             Assert.IsTrue(resourceActivityCache.HasActivityInCache(resourceId));            
         }
 
-        [TestMethod]
+        [Test]
         public void HasInCache_WhenNotInCache_ShouldReturnFalse()
         {
             var parser = new Mock<IActivityParser>();
@@ -64,7 +65,7 @@ namespace Warewolf.ResourceManagement.Tests
             Assert.IsFalse(resourceActivityCache.HasActivityInCache(Guid.NewGuid()));
         }
 
-        [TestMethod]
+        [Test]
         public void Parse_WhenInCache_ShouldNotAdd()
         {
             var parser = new Mock<IActivityParser>();
@@ -82,7 +83,7 @@ namespace Warewolf.ResourceManagement.Tests
             Assert.IsTrue(resourceActivityCache.Cache.ContainsKey(resourceId));
         }
 
-        [TestMethod]
+        [Test]
         public void Remove_WhenInCache_ShouldRemove()
         {
             var parser = new Mock<IActivityParser>();

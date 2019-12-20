@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading;
 using ActivityUnitTests;
 using Dev2.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using System.Globalization;
 using Dev2.Common;
@@ -13,14 +13,15 @@ using Dev2.Common.State;
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DotNetAggregateCalculateActivityTest : BaseActivityUnitTest
     {
         public TestContext TestContext { get; set; }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("DsfCalculateActivity_OnExecute")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("DsfCalculateActivity_OnExecute")]
         public void DotNetAggregateCalculateActivity_OnExecute_GetCurrentDateTime_ResultContainsMilliseconds()
         {
             TestStartNode = new FlowStep
@@ -49,7 +50,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsTrue(res.Millisecond != 0);
         }
 
-        [TestMethod]
+        [Test]
         public void CalculateActivity_ValidFunction_Expected_EvalPerformed()
         {
 
@@ -70,9 +71,9 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfAggregateCalculateActivity_GetOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfAggregateCalculateActivity_GetOutputs")]
         public void DsfAggregateCalculateActivity_GetOutputs_Called_ShouldReturnListWithResultValueInIt()
         {
             //------------Setup for test--------------------------
@@ -84,7 +85,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("[[result]]", outputs[0]);
         }
 
-        [TestMethod]
+        [Test]
         public void CalculateActivity_SimpleFunctionHandling_Expected_EvalPerformed()
         {
 
@@ -105,7 +106,7 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
         // SN - 07-09-2012 - Commented out until intellisense issue is patched up
-        [TestMethod]
+        [Test]
         public void CalculateActivity_CommaSeperatedArgs_Expected_EvalPerformed()
         {
 
@@ -126,7 +127,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void CalculateActivity_ValidFunction_Expected_EvalPerformed_ValidDateTimeFunction()
         {
 
@@ -146,7 +147,7 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
         //Bug 6438
-        [TestMethod]
+        [Test]
         public void CalculateActivity_ConcatenateScalar_Expected_EvalPerformed()
         {
             TestStartNode = new FlowStep
@@ -165,7 +166,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
             Assert.AreEqual(expected, actual);
         }
-        [TestMethod]
+        [Test]
         public void CalculateActivity_RightScalar_Expected_EvalPerformed()
         {
             TestStartNode = new FlowStep
@@ -184,7 +185,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
             Assert.AreEqual(expected, actual);
         }
-        [TestMethod]
+        [Test]
         public void CalculateActivity_LeftScalar_Expected_EvalPerformed()
         {
             TestStartNode = new FlowStep
@@ -204,7 +205,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void CalculateActivity_ConcatenateRecSet_Expected_EvalPerformed()
         {
             TestStartNode = new FlowStep
@@ -225,7 +226,7 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
         // Bug 8467 - Travis.Frisinger
-        [TestMethod]
+        [Test]
         public void CalculateActivity_RecordsetWithStar_Expected_SumOf10()
         {
             TestStartNode = new FlowStep
@@ -245,7 +246,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void CalculateActivity_MultRecordsetWithStar_Expected_SumOf20()
         {
             TestStartNode = new FlowStep
@@ -265,7 +266,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void CalculateActivity_MultRecordsetWithStar_WhenMissingValuesError_Expected_SumOf20()
         {
             TestStartNode = new FlowStep
@@ -287,9 +288,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfCalculateActivity_GetForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfCalculateActivity_GetForEachInputs")]
         public void DsfCalculateActivity_GetForEachInputs_NullContext_EmptyList()
         {
             //------------Setup for test--------------------------
@@ -300,9 +301,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsFalse(dsfForEachItems.Any());
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfCalculateActivity_GetForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfCalculateActivity_GetForEachInputs")]
         public void DsfCalculateActivity_GetForEachInputs_WhenHasExpression_ReturnsInputList()
         {
             //------------Setup for test--------------------------
@@ -316,9 +317,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expression, dsfForEachItems[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfCalculateActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfCalculateActivity_UpdateForEachInputs")]
         public void DsfCalculateActivity_UpdateForEachInputs_GivenNullUpdates_DoNothing()
         {
             //------------Setup for test--------------------------
@@ -331,9 +332,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expression, act.Expression);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfCalculateActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfCalculateActivity_UpdateForEachInputs")]
         public void DsfCalculateActivity_UpdateForEachInputs_GivenMoreThanOneUpdates_DoNothing()
         {
             //------------Setup for test--------------------------
@@ -348,9 +349,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expression, act.Expression);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfCalculateActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfCalculateActivity_UpdateForEachInputs")]
         public void DsfCalculateActivity_UpdateForEachInputs_GivenOneUpdate_UpdatesExpressionToItem2InTuple()
         {
             //------------Setup for test--------------------------
@@ -364,9 +365,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Test", act.Expression);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfCalculateActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfCalculateActivity_UpdateForEachOutputs")]
         public void DsfCalculateActivity_UpdateForEachOutputs_GivenNullUpdates_DoNothing()
         {
             //------------Setup for test--------------------------
@@ -379,9 +380,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expression, act.Expression);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfCalculateActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfCalculateActivity_UpdateForEachOutputs")]
         public void DsfCalculateActivity_UpdateForEachOutputs_GivenMoreThanOneUpdates_DoNothing()
         {
             //------------Setup for test--------------------------
@@ -396,9 +397,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expression, act.Expression);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfCalculateActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfCalculateActivity_UpdateForEachOutputs")]
         public void DsfCalculateActivity_UpdateForEachOutputs_GivenOneUpdate_UpdatesExpressionToItem2InTuple()
         {
             //------------Setup for test--------------------------
@@ -413,9 +414,9 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("DsfDotNetAggregateCalculateActivity_Equality")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("DsfDotNetAggregateCalculateActivity_Equality")]
         public void DsfDotNetAggregateCalculateActivity_Equal()
         {
             //------------Setup for test--------------------------
@@ -428,9 +429,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsTrue(act1.Equals(act2));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("DsfDotNetAggregateCalculateActivity_Equality")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("DsfDotNetAggregateCalculateActivity_Equality")]
         public void DsfDotNetAggregateCalculateActivity_NotEqual()
         {
             //------------Setup for test--------------------------
@@ -444,9 +445,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsFalse(act1.Equals(act2));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DsfDotNetAggregateCalculateActivity_GetState")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DsfDotNetAggregateCalculateActivity_GetState")]
         public void DsfDotNetAggregateCalculateActivity_GetState_ReturnsStateVariable()
         {
             //------------Setup for test--------------------------

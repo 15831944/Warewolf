@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Dev2.Activities.Designers2.Core.Source;
 using Dev2.Common.Interfaces.WebService;
 using Moq;
@@ -16,12 +16,13 @@ namespace Dev2.Activities.Designers.Tests.Core
     /// <summary>
     /// Summary description for SharepointReadListTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WebSourceRegionTest
     {
 
 
-        [TestMethod]
+        [Test]
         public void Ctor()
         {
             var src = new Mock<IWebServiceModel>();
@@ -30,7 +31,7 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.AreEqual(1,region.Errors.Count);
             Assert.IsTrue(region.IsEnabled);
         }
-        [TestMethod]
+        [Test]
         public void CtorWitSelectedSrc()
         {
             var id = Guid.NewGuid();
@@ -43,7 +44,7 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.IsTrue(region.CanEditSource());
         }
 
-        [TestMethod]
+        [Test]
         public void ChangeSrcExpectSomethingChanged()
         {
             var id = Guid.NewGuid();
@@ -59,7 +60,7 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.IsTrue(Evt);
         }
 
-        [TestMethod]
+        [Test]
         public void ChangeSelectedSource_ExpectRegionsRestored()
         {
             var id = Guid.NewGuid();
@@ -85,7 +86,7 @@ namespace Dev2.Activities.Designers.Tests.Core
             dep2.Verify(a => a.RestoreRegion(clone2.Object));
         }
 
-        [TestMethod]
+        [Test]
         public void ChangeSelectedSource_ExpectRegionsNotRestoredInvalid()
         {
             var id = Guid.NewGuid();
@@ -111,7 +112,7 @@ namespace Dev2.Activities.Designers.Tests.Core
             dep2.Verify(a => a.RestoreRegion(clone2.Object), Times.Never);
         }
 
-        [TestMethod]
+        [Test]
         public void CloneRegionExpectClone()
         {
             var id = Guid.NewGuid();
@@ -125,7 +126,7 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.AreEqual(((WebSourceRegion) cloned).SelectedSource,region.SelectedSource);
         }
 
-        [TestMethod]
+        [Test]
         public void Restore_Region_ExpectRestore()
         {
             var id = Guid.NewGuid();
@@ -144,7 +145,7 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.AreEqual(region.SelectedSource,s2);
         }
 
-        [TestMethod]
+        [Test]
         public void SavedSource_Null_Object_Is_NotEqual()
         {
             //---------------Set up test pack-------------------
@@ -157,7 +158,7 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.IsFalse(webServiceSourceDefinition.Equals(null), "Equals operator can't compare to null.");
         }
 
-        [TestMethod]
+        [Test]
         public void SavedSource_Itself_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -170,7 +171,7 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.IsTrue(webServiceSourceDefinition.Equals(webServiceSourceDefinition), "Equals operator can't compare to itself.");
         }
 
-        [TestMethod]
+        [Test]
         public void SavedSource_DifferentType_Is_NotEqual()
         {
             //---------------Set up test pack-------------------
@@ -184,7 +185,7 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.IsFalse(webServiceSourceDefinition.Equals(differentObject), "Equals operator can't compare to differently typed object.");
         }
 
-        [TestMethod]
+        [Test]
         public void EqualsOperator_WithEqualObjects_AreEqual()
         {
             var firstWebServiceSourceDefinition = new WebServiceSourceDefinition { Name = "bravo" };
@@ -192,7 +193,7 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.IsTrue(firstWebServiceSourceDefinition == secondWebServiceSourceDefinition, "Equals operator doesnt work.");
         }
 
-        [TestMethod]
+        [Test]
         public void NotEqualsOperator_WithNotEqualObjects_AreNotEqual()
         {
             var firstWebServiceSourceDefinition = new WebServiceSourceDefinition { Name = "bravo" };

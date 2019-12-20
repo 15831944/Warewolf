@@ -14,20 +14,21 @@ using Caliburn.Micro;
 using Dev2.Studio.Core.Activities.Interegators;
 using Dev2.Studio.Core.Models;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 
 namespace Dev2.Core.Tests.Activities
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WorkflowPropertyInterigatorTest
     {
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("WorkflowPropertyInterigator_SetActivityProperties")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("WorkflowPropertyInterigator_SetActivityProperties")]
         public void WorkflowPropertyInterigator_SetActivityProperties_WhenNullXmlPayload_ExpectSomePropertiesSet()
         {
             //------------Setup for test--------------------------
@@ -47,9 +48,9 @@ namespace Dev2.Core.Tests.Activities
             Assert.AreEqual("My Env", activity.FriendlySourceName.Expression.ToString());
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("WorkflowPropertyInterigator_SetActivityProperties")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("WorkflowPropertyInterigator_SetActivityProperties")]
         public void WorkflowPropertyInterigator_SetActivityProperties_WhenNotNullXmlPayload_ExpectAllPropertiesSet()
         {
             //------------Setup for test--------------------------
@@ -70,9 +71,9 @@ namespace Dev2.Core.Tests.Activities
             Assert.AreEqual("a:\\help.txt", activity.HelpLink.Expression.ToString());
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("WorkflowPropertyInterigator_SetActivityProperties")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("WorkflowPropertyInterigator_SetActivityProperties")]
         public void WorkflowPropertyInterigator_SetActivityProperties_WhenNotNullXmlPayloadButNullProperty_ExpectAllPropertiesSet()
         {
             //------------Setup for test--------------------------

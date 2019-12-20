@@ -9,16 +9,17 @@
 */
 
 using Dev2.Validation;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Activities.Validation
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IsSingleValueRuleTests
     {
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("IsSingleValueRule_Check")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("IsSingleValueRule_Check")]
         
         public void IsSingleValueRule_Check_Single_ExpectNull()
 
@@ -32,9 +33,9 @@ namespace Dev2.Tests.Activities.Validation
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("IsSingleValueRule_Check")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("IsSingleValueRule_Check")]
         
         public void IsSingleValueRule_Check_Scalar_ExpectNull()
 
@@ -48,9 +49,9 @@ namespace Dev2.Tests.Activities.Validation
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("IsSingleValueRule_Check")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("IsSingleValueRule_Check")]
         
         public void IsSingleValueRule_Ctor_Single_Expectmessage_Has_Default()
 
@@ -63,9 +64,9 @@ namespace Dev2.Tests.Activities.Validation
             Assert.IsNull(isSingleValueRule.Check());
             //------------Assert Results-------------------------
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("IsSingleValueRule_Check")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("IsSingleValueRule_Check")]
         
         public void IsSingleValueRule_Check_SingleNested_ExpectNull()
 
@@ -79,9 +80,9 @@ namespace Dev2.Tests.Activities.Validation
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("IsSingleValueRule_Check")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("IsSingleValueRule_Check")]
         
         public void IsSingleValueRule_Check_TwoIndexes_ExpectError()
 
@@ -92,9 +93,9 @@ namespace Dev2.Tests.Activities.Validation
             Assert.AreEqual(Warewolf.Resource.Errors.ErrorResource.IsSingeValueResultFieldInvalidErrorTest, isSingleValueRule.ErrorText);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("IsSingleValueRule_Check")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("IsSingleValueRule_Check")]
         
         public void IsSingleValueRule_Check_Two_Scalars_ExpectError()
 
@@ -105,9 +106,9 @@ namespace Dev2.Tests.Activities.Validation
             Assert.AreEqual(Warewolf.Resource.Errors.ErrorResource.IsSingeValueResultFieldInvalidErrorTest, isSingleValueRule.ErrorText);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("IsSingleValueRule_Check")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("IsSingleValueRule_Check")]
         
         public void IsSingleValueRule_Check_NoColumSpecified_ExpectError()
 
@@ -118,9 +119,9 @@ namespace Dev2.Tests.Activities.Validation
             Assert.AreEqual(Warewolf.Resource.Errors.ErrorResource.IsSingeValueResultFieldInvalidErrorTest, isSingleValueRule.ErrorText);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("IsSingleValueRule_Check")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("IsSingleValueRule_Check")]
         
         public void IsSingleValueRule_Check_NoColumSpecifiedStar_ExpectError()
 
@@ -131,9 +132,9 @@ namespace Dev2.Tests.Activities.Validation
             Assert.AreEqual(Warewolf.Resource.Errors.ErrorResource.IsSingeValueResultFieldInvalidErrorTest, isSingleValueRule.ErrorText);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("IsSingleValueRule_Check")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("IsSingleValueRule_Check")]
         
         public void IsSingleValueRule_Check_TwoIndexes_ExpectErrorNoComma()
 

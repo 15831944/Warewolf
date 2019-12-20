@@ -6,7 +6,7 @@ using Dev2.Studio.Core.Factories;
 using Dev2.Studio.Core.Messages;
 using Dev2.Studio.Interfaces;
 using Dev2.Utilities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Activities.Presentation;
@@ -23,9 +23,9 @@ namespace Dev2.Core.Tests.Workflows
 {
     public partial class WorkflowDesignerUnitTest
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("Studio Workflows Core")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("Studio Workflows Core")]
         public void AddItem_Given_MergeToolModel_VerifyCalls()
         {
             //------------Setup for test--------------------------

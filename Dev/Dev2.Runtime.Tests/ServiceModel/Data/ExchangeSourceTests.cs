@@ -2,7 +2,7 @@
 using Dev2.Common.Interfaces.Core.DynamicServices;
 using Dev2.Runtime.ServiceModel.Data;
 using Microsoft.Exchange.WebServices.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,8 +11,9 @@ using System.Collections.Generic;
 
 namespace Dev2.Tests.Runtime.ServiceModel
 {
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class ExchangeSourceTests
     {
         public const string TestOwner = "Bernardt Joubert";
@@ -31,31 +32,31 @@ namespace Dev2.Tests.Runtime.ServiceModel
             };
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ToStringFullySetupObjectExpectedJsonSerializedObjectReturnedAsString()
         {
             var testDbSource = SetupDefaultSource();
             var actualDbSourceToString = testDbSource.ToString();
             var expected = JsonConvert.SerializeObject(testDbSource);
-            Assert.AreEqual(expected, actualDbSourceToString);
+            NUnit.Framework.Assert.AreEqual(expected, actualDbSourceToString);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ToStringEmptyObjectExpected()
         {
             var testDbSource = new ExchangeSource();
             var actualSerializedDbSource = testDbSource.ToString();
             var expected = JsonConvert.SerializeObject(testDbSource);
-            Assert.AreEqual(expected, actualSerializedDbSource);
+            NUnit.Framework.Assert.AreEqual(expected, actualSerializedDbSource);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeSource_SetUpProerties_ReturnsNoErrors()
         {
             var testDbSource = new ExchangeSource
@@ -73,32 +74,32 @@ namespace Dev2.Tests.Runtime.ServiceModel
                 Password = "test"
             };
 
-            Assert.IsNotNull(testDbSource.DataList);
-            Assert.IsNotNull(testDbSource.EmailFrom);
-            Assert.IsNotNull(testDbSource.EmailTo);
-            Assert.IsNotNull(testDbSource.Path);
-            Assert.IsNotNull(testDbSource.TestFromAddress);
-            Assert.IsNotNull(testDbSource.Type);
-            Assert.IsNotNull(testDbSource.Timeout);
-            Assert.IsNotNull(testDbSource.TestToAddress);
-            Assert.IsNotNull(testDbSource.UserName);
-            Assert.IsNotNull(testDbSource.Password);
+            NUnit.Framework.Assert.IsNotNull(testDbSource.DataList);
+            NUnit.Framework.Assert.IsNotNull(testDbSource.EmailFrom);
+            NUnit.Framework.Assert.IsNotNull(testDbSource.EmailTo);
+            NUnit.Framework.Assert.IsNotNull(testDbSource.Path);
+            NUnit.Framework.Assert.IsNotNull(testDbSource.TestFromAddress);
+            NUnit.Framework.Assert.IsNotNull(testDbSource.Type);
+            NUnit.Framework.Assert.IsNotNull(testDbSource.Timeout);
+            NUnit.Framework.Assert.IsNotNull(testDbSource.TestToAddress);
+            NUnit.Framework.Assert.IsNotNull(testDbSource.UserName);
+            NUnit.Framework.Assert.IsNotNull(testDbSource.Password);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeSource_Equals()
         {
             var testDbSource = new ExchangeSource();
             var result = testDbSource.Equals(testDbSource);
 
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ToXmlAllPropertiesSetupExpectedXElementContainingAllObjectInformation()
         {
             var testDbSource = SetupDefaultSource();
@@ -110,16 +111,16 @@ namespace Dev2.Tests.Runtime.ServiceModel
             {
                 if (attribEnum.Current.Name == "Name")
                 {
-                    Assert.AreEqual("TestResourceIMadeUp", attribEnum.Current.Value);
+                    NUnit.Framework.Assert.AreEqual("TestResourceIMadeUp", attribEnum.Current.Value);
                     break;
                 }
             }
-            Assert.IsNull(workflowXamlDefintion);
+            NUnit.Framework.Assert.IsNull(workflowXamlDefintion);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ToXmlEmptyObjectExpectedXElementContainingNoInformationRegardingSource()
         {
             var testDbSource = new ExchangeSource();
@@ -131,27 +132,27 @@ namespace Dev2.Tests.Runtime.ServiceModel
             {
                 if (attribEnum.Current.Name == "Name")
                 {
-                    Assert.AreEqual(string.Empty, attribEnum.Current.Value);
+                    NUnit.Framework.Assert.AreEqual(string.Empty, attribEnum.Current.Value);
                     break;
                 }
             }
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ToXmlRegardingSource()
         {
             var testDbSource = SetupDefaultSource();
             var expectedXml = testDbSource.ToXml();
 
             testDbSource = new ExchangeSource(expectedXml);
-            Assert.IsNotNull(testDbSource);
+            NUnit.Framework.Assert.IsNotNull(testDbSource);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeSource_Send_Success()
         {
             var testDbSource = SetupDefaultSource();
@@ -167,12 +168,12 @@ namespace Dev2.Tests.Runtime.ServiceModel
 
             testDbSource.Send(new FakeEmailSender(), message);
 
-            Assert.IsNotNull(message.Body);
-            Assert.IsNotNull(message.Attachments);
-            Assert.IsNotNull(message.BcCs);
-            Assert.IsNotNull(message.CCs);
-            Assert.IsNotNull(message.Subject);
-            Assert.IsNotNull(message.Tos);
+            NUnit.Framework.Assert.IsNotNull(message.Body);
+            NUnit.Framework.Assert.IsNotNull(message.Attachments);
+            NUnit.Framework.Assert.IsNotNull(message.BcCs);
+            NUnit.Framework.Assert.IsNotNull(message.CCs);
+            NUnit.Framework.Assert.IsNotNull(message.Subject);
+            NUnit.Framework.Assert.IsNotNull(message.Tos);
         }
     }
 

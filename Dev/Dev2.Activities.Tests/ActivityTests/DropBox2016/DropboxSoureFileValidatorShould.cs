@@ -1,6 +1,6 @@
 ﻿using System;
 using Dev2.Activities.DropBox2016;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Activities.ActivityTests.DropBox2016
 {
@@ -15,11 +15,12 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016
         public static readonly string PathToolLong = @"c:\fffffffffffffffffffffffffffffffffff\gfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgf\ggggggggggggggggg\fffffffffffffff\ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggfffffffffffffffffffffffffffffffffff\gfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgfgf\ggggggggggggggggg\fffffffffffffff\gggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg";
     }
 
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DropboxSoureFileValidatorShould
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Construct_GivenFilePath_ShouldNotBeNull()
         {
             //---------------Set up test pack-------------------
@@ -30,8 +31,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016
             Assert.IsNotNull(dropboxSoureFileValidator);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         [ExpectedException(typeof(ArgumentException))]
         public void Validate_GivenEmpty_ShouldThrowArgumentNull()
         {
@@ -44,8 +45,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016
             Assert.Fail("Exception not thrown");
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         [ExpectedException(typeof(ArgumentException))]
         public void Validate_GivenNull_ShouldThrowArgumentNull()
         {
@@ -58,8 +59,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016
             Assert.Fail("Exception not thrown");
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         [ExpectedException(typeof(ArgumentException))]
         public void Validate_GivenEmptyExcplicit_ShouldThrowArgumentNull()
         {
@@ -72,8 +73,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016
             Assert.Fail("Exception not thrown");
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         [ExpectedException(typeof(NotSupportedException))]
         public void Validate_GivenInvalid_ShouldThrowNotSupportedException()
         {
@@ -86,8 +87,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016
             Assert.Fail("Exception not thrown");
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Validate_GivenTooLong_ShouldThrowPathTooLongException()
         {
             //---------------Set up test pack-------------------
@@ -99,8 +100,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016
             // EXPECTED NO EXCEPTION THROWN ON .NET FRAMEWORK 4.7
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         [ExpectedException(typeof(NotSupportedException))]
         public void Validate_GivenPathInValidWithColon_ShouldThrowPathTooLongException()
         {

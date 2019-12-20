@@ -11,16 +11,17 @@
 using System;
 using System.Globalization;
 using Dev2.Providers.Validation.Rules;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IsValidEmailAddressRuleTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("IsValidEmailAddressRule_Check")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("IsValidEmailAddressRule_Check")]
         public void IsValidEmailAddressRule_Check_ItemIsValid_ResultIsNull()
         {
             Verify_Check(true, @"someone@this.co");
@@ -30,9 +31,9 @@ namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
             Verify_Check(true, @"someone@this.co.za", @"someone@that.co.za");
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("IsValidEmailAddressRule_Check")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("IsValidEmailAddressRule_Check")]
         public void IsValidEmailAddressRule_Check_ItemIsNotValid_ResultIsError()
         {
             Verify_Check(false, @"someone@this.c");

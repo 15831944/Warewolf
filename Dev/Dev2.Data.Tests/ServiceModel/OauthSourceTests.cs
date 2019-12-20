@@ -1,34 +1,35 @@
 using System.Xml.Linq;
 using Dev2.Data.ServiceModel;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests.ServiceModel
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class OauthSourceTests
     {
-        [TestMethod]
+        [Test]
         public void OauthSource_ShouldContructorAndDefaultValuiesSet()
         {
             OauthSource oauthSource = new DropBoxSource();
-            Assert.IsNotNull(oauthSource);
-            Assert.IsTrue(oauthSource.IsSource);
-            Assert.IsFalse(oauthSource.IsService);
-            Assert.IsFalse(oauthSource.IsFolder);
-            Assert.IsFalse(oauthSource.IsReservedService);
-            Assert.IsFalse(oauthSource.IsServer);
-            Assert.IsFalse(oauthSource.IsResourceVersion);
+            NUnit.Framework.Assert.IsNotNull(oauthSource);
+            NUnit.Framework.Assert.IsTrue(oauthSource.IsSource);
+            NUnit.Framework.Assert.IsFalse(oauthSource.IsService);
+            NUnit.Framework.Assert.IsFalse(oauthSource.IsFolder);
+            NUnit.Framework.Assert.IsFalse(oauthSource.IsReservedService);
+            NUnit.Framework.Assert.IsFalse(oauthSource.IsServer);
+            NUnit.Framework.Assert.IsFalse(oauthSource.IsResourceVersion);
         }
 
-        [TestMethod]
+        [Test]
         public void OauthSource_ToXml_ShouldContructorAndDefaultValuiesSet()
         {
             OauthSource oauthSource = new DropBoxSource();
-            Assert.IsNotNull(oauthSource);
+            NUnit.Framework.Assert.IsNotNull(oauthSource);
             var xElement = oauthSource.ToXml();
-            Assert.IsNotNull(xElement);
+            NUnit.Framework.Assert.IsNotNull(xElement);
         }
-        [TestMethod]
+        [Test]
         public void GivenXelement_DropBox_ShouldHaveContructorAndDefaultValuiesSet()
         {
             const string conStr = @"<Source ID=""2aa3fdba-e0c3-47dd-8dd5-e6f24aaf5c7a"" Name=""test server"" Type=""Dev2Server"" ConnectionString=""AppServerUri=http://178.63.172.163:3142/dsf;WebServerPort=3142;AuthenticationType=Public;UserName=;Password="" Version=""1.0"" ResourceType=""Server"" ServerID=""51a58300-7e9d-4927-a57b-e5d700b11b55"">
@@ -53,9 +54,9 @@ namespace Dev2.Data.Tests.ServiceModel
 
             var element = XElement.Parse(conStr);
             OauthSource oauthSource = new DropBoxSource(element);
-            Assert.IsNotNull(oauthSource);
+            NUnit.Framework.Assert.IsNotNull(oauthSource);
             var xElement = oauthSource.ToXml();
-            Assert.IsNotNull(xElement);
+            NUnit.Framework.Assert.IsNotNull(xElement);
         }
     }
 }

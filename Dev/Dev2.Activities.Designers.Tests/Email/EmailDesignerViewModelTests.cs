@@ -28,26 +28,27 @@ using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Core.Messages;
 using Dev2.Studio.Interfaces;
 using Dev2.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Activities.Designers.Tests.Email
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class EmailDesignerViewModelTests
     {
         const string AppLocalhost = "http://localhost:3142";
 
-        [TestInitialize]
+        [SetUp]
         public void Initialize()
         {
             AppUsageStats.LocalHost = AppLocalhost;
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void EmailDesignerViewModel_Constructor_AsyncWorkerIsNull_ThrowsArgumentNullException()
         {
@@ -61,9 +62,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void EmailDesignerViewModel_Constructor_EnvironmentModelIsNull_ThrowsArgumentNullException()
         {
@@ -77,9 +78,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void EmailDesignerViewModel_Constructor_EventAggregatorIsNull_ThrowsArgumentNullException()
         {
@@ -93,9 +94,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_Constructor")]
         public void EmailDesignerViewModel_Constructor_ModelItemIsNew_InitializesProperties()
         {
             //------------Setup for test--------------------------
@@ -132,9 +133,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Assert.IsFalse(propertyChanged);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("EmailDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("EmailDesignerViewModel_Handle")]
         public void EmailDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -158,9 +159,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_Constructor")]
         public void EmailDesignerViewModel_Constructor_ModelItemIsNotNew_InitializesProperties()
         {
             //------------Setup for test--------------------------
@@ -200,9 +201,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Assert.IsFalse(propertyChanged);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_Constructor")]
         public void EmailDesignerViewModel_Constructor_DoesNotAutoCopyEmailSourceUserNameIntoFromAccount()
         {
             Verify_Constructor_DoesNotAutoCopyEmailSourceUserNameIntoFromAccount("test@mydomain.com");
@@ -234,9 +235,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Assert.AreEqual(expectedFromAccount, fromAccount);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_EditEmailSource")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_EditEmailSource")]
         public void EmailDesignerViewModel_EditEmailSource_PublishesShowEditResourceWizardMessage()
         {
             //------------Setup for test--------------------------
@@ -264,9 +265,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             CustomContainer.DeRegister<IShellViewModel>();
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_CreateEmailSource")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_CreateEmailSource")]
         public void EmailDesignerViewModel_CreateEmailSource_PublishesShowNewResourceWizard()
         {
             //------------Setup for test--------------------------
@@ -296,9 +297,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             mockShellViewModel.Verify(model => model.NewEmailSource(It.IsAny<string>()));
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_CreateEmailSource")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_CreateEmailSource")]
         public void EmailDesignerViewModel_SetEmailSource_FiresEditEmailSourceCommand_CanExecuteChanged()
         {
             //------------Setup for test--------------------------
@@ -329,9 +330,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Assert.AreEqual(1, hitCount);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_ChooseAttachments")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_ChooseAttachments")]
         public void EmailDesignerViewModel_ChooseAttachments_PublishesFileChooserMessage()
         {
             //------------Setup for test--------------------------
@@ -350,9 +351,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             eventPublisher.Verify(p => p.Publish(It.IsAny<FileChooserMessage>()));
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_ChooseAttachments")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_ChooseAttachments")]
         public void EmailDesignerViewModel_ChooseAttachments_SelectedFilesIsNotNull_AddsFilesToAttachments()
         {
             var selectedFiles = new List<string> { @"c:\tmp2.txt", @"c:\logs\errors2.log" };
@@ -387,9 +388,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Assert.AreEqual(string.Join(";", expectedFiles), attachments);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_ChooseAttachments")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_ChooseAttachments")]
         public void EmailDesignerViewModel_ChooseAttachments_SelectedFilesIsNotNull_SelectedNewFilesToAttachments()
         {
             var selectedFiles = new List<string> { @"c:\tmp2.txt", @"c:\logs\errors2.log" };
@@ -424,9 +425,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Assert.AreEqual(string.Join(";", selectedFiles), attachments);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_ChooseAttachments")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_ChooseAttachments")]
         public void EmailDesignerViewModel_ChooseAttachments_SelectedFilesIsNull_DoesAddNotFilesToAttachments()
         {
             //------------Setup for test--------------------------
@@ -454,9 +455,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Assert.AreEqual(string.Join(";", expectedFiles), attachments);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("EmailDesignerViewModel_TestEmailCommand")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("EmailDesignerViewModel_TestEmailCommand")]
         public void EmailDesignerViewModel_TestEmailCommand_WhenFromAddressIsVariable_ShouldBeError()
         {
             //------------Setup for test--------------------------
@@ -506,9 +507,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Assert.IsTrue(viewModel.IsFromAccountFocused);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("EmailDesignerViewModel_TestEmailCommand")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("EmailDesignerViewModel_TestEmailCommand")]
         public void EmailDesignerViewModel_TestEmailCommand_WhenToAddressIsBlank_ShouldBeError()
         {
             //------------Setup for test--------------------------
@@ -558,9 +559,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Assert.IsTrue(viewModel.IsToFocused);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("EmailDesignerViewModel_TestEmailCommand")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("EmailDesignerViewModel_TestEmailCommand")]
         public void EmailDesignerViewModel_TestEmailCommand_WhenToAddressIsVariable_ShouldBeError()
         {
             //------------Setup for test--------------------------
@@ -610,9 +611,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Assert.IsTrue(viewModel.IsFromAccountFocused);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_ValidateThis")]
         public void EmailDesignerViewModel_ValidateThis_EmailSourceIsNull_DoesHaveErrors()
         {
             var activity = new DsfSendEmailActivity
@@ -629,9 +630,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Verify_ValidateThis(activity, Warewolf.Resource.Errors.ErrorResource.EmailSourceNotNullErrorTest, EmailDesignerViewModel.IsEmailSourceFocusedProperty, false);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_ValidateThis")]
         public void EmailDesignerViewModel_ValidateThis_RecipientsIsEmpty_DoesHaveErrors()
         {
             var activity = new DsfSendEmailActivity
@@ -648,9 +649,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Verify_ValidateThis(activity, "Please supply at least one of the following: 'To', 'Cc' or 'Bcc'", EmailDesignerViewModel.IsToFocusedProperty);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_ValidateThis")]
         public void EmailDesignerViewModel_ValidateThis_RecipientsToIsNotEmpty_DoesHaveNotErrors()
         {
             var activity = new DsfSendEmailActivity
@@ -667,9 +668,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Verify_ValidateThis(activity);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_ValidateThis")]
         public void EmailDesignerViewModel_ValidateThis_RecipientsCcIsNotEmpty_DoesHaveNotErrors()
         {
             var activity = new DsfSendEmailActivity
@@ -686,9 +687,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Verify_ValidateThis(activity);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_ValidateThis")]
         public void EmailDesignerViewModel_ValidateThis_RecipientsBccIsNotEmpty_DoesHaveNotErrors()
         {
             var activity = new DsfSendEmailActivity
@@ -705,9 +706,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Verify_ValidateThis(activity);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_ValidateThis")]
         public void EmailDesignerViewModel_ValidateThis_SubjectAndBodyIsEmpty_DoesHaveErrors()
         {
             var activity = new DsfSendEmailActivity
@@ -724,9 +725,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Verify_ValidateThis(activity, "Please supply at least one of the following: 'Subject' or 'Body'", EmailDesignerViewModel.IsSubjectFocusedProperty);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_ValidateThis")]
         public void EmailDesignerViewModel_ValidateThis_SubjectIsNotEmpyAndBodyIsEmpty_DoesNotHaveErrors()
         {
             var activity = new DsfSendEmailActivity
@@ -743,9 +744,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Verify_ValidateThis(activity);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_ValidateThis")]
         public void EmailDesignerViewModel_ValidateThis_SubjectIsEmpyAndBodyIsNotEmpty_DoesNotHaveErrors()
         {
             var activity = new DsfSendEmailActivity
@@ -762,9 +763,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Verify_ValidateThis(activity);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_ValidateThis")]
         public void EmailDesignerViewModel_ValidateThis_FromAccountIsNotValidExpression_DoesHaveErrors()
         {
             var activity = new DsfSendEmailActivity
@@ -781,9 +782,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Verify_ValidateThis(activity, Warewolf.Resource.Errors.ErrorResource.EmailFromAccountInvalidExpressionErrorTest, EmailDesignerViewModel.IsFromAccountFocusedProperty);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_ValidateThis")]
         public void EmailDesignerViewModel_ValidateThis_FromAccountIsValidExpression_DoesNotHaveErrors()
         {
             var activity = new DsfSendEmailActivity
@@ -800,9 +801,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Verify_ValidateThis(activity);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_ValidateThis")]
         public void EmailDesignerViewModel_ValidateThis_FromAccountIsNotValidEmailAddress_DoesHaveErrors()
         {
             var activity = new DsfSendEmailActivity
@@ -819,9 +820,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Verify_ValidateThis(activity, "'From Account' contains an invalid email address", EmailDesignerViewModel.IsFromAccountFocusedProperty);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_ValidateThis")]
         public void EmailDesignerViewModel_ValidateThis_FromAccountIsValidAndPasswordBlank_DoesHaveErrors()
         {
             var activity = new DsfSendEmailActivity
@@ -838,9 +839,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Verify_ValidateThis(activity, Warewolf.Resource.Errors.ErrorResource.EmailPasswordNotNullErrorTest, EmailDesignerViewModel.IsPasswordFocusedProperty);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_ValidateThis")]
         public void EmailDesignerViewModel_ValidateThis_ToIsNotValidExpression_DoesHaveErrors()
         {
             var activity = new DsfSendEmailActivity
@@ -857,9 +858,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Verify_ValidateThis(activity, Warewolf.Resource.Errors.ErrorResource.EmailToInvalidExpressionErrorTest, EmailDesignerViewModel.IsToFocusedProperty);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_ValidateThis")]
         public void EmailDesignerViewModel_ValidateThis_ToIsValidExpression_DoesNotHaveErrors()
         {
             var activity = new DsfSendEmailActivity
@@ -876,9 +877,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Verify_ValidateThis(activity);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_ValidateThis")]
         public void EmailDesignerViewModel_ValidateThis_ToIsNotValidEmailAddress_DoesHaveErrors()
         {
             var activity = new DsfSendEmailActivity
@@ -895,9 +896,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Verify_ValidateThis(activity, "'To' contains an invalid email address", EmailDesignerViewModel.IsToFocusedProperty);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_ValidateThis")]
         public void EmailDesignerViewModel_ValidateThis_CcIsNotValidExpression_DoesHaveErrors()
         {
             var activity = new DsfSendEmailActivity
@@ -914,9 +915,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Verify_ValidateThis(activity, Warewolf.Resource.Errors.ErrorResource.EmailCcInvalidExpressionErrorTest, EmailDesignerViewModel.IsCcFocusedProperty);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_ValidateThis")]
         public void EmailDesignerViewModel_ValidateThis_CcIsValidExpression_DoesNotHaveErrors()
         {
             var activity = new DsfSendEmailActivity
@@ -933,9 +934,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Verify_ValidateThis(activity);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_ValidateThis")]
         public void EmailDesignerViewModel_ValidateThis_CcIsNotValidEmailAddress_DoesHaveErrors()
         {
             var activity = new DsfSendEmailActivity
@@ -952,9 +953,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Verify_ValidateThis(activity, "'Cc' contains an invalid email address", EmailDesignerViewModel.IsCcFocusedProperty);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_ValidateThis")]
         public void EmailDesignerViewModel_ValidateThis_BccIsNotValidExpression_DoesHaveErrors()
         {
             var activity = new DsfSendEmailActivity
@@ -971,9 +972,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Verify_ValidateThis(activity, Warewolf.Resource.Errors.ErrorResource.EmailBccInvalidExpressionErrorTest, EmailDesignerViewModel.IsBccFocusedProperty);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_ValidateThis")]
         public void EmailDesignerViewModel_ValidateThis_BccIsValidExpression_DoesNotHaveErrors()
         {
             var activity = new DsfSendEmailActivity
@@ -990,9 +991,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Verify_ValidateThis(activity);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_ValidateThis")]
         public void EmailDesignerViewModel_ValidateThis_BccIsNotValidEmailAddress_DoesHaveErrors()
         {
             var activity = new DsfSendEmailActivity
@@ -1009,9 +1010,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Verify_ValidateThis(activity, "'Bcc' contains an invalid email address", EmailDesignerViewModel.IsBccFocusedProperty);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_ValidateThis")]
         public void EmailDesignerViewModel_ValidateThis_AttachmentsIsNotValidExpression_DoesHaveErrors()
         {
             var activity = new DsfSendEmailActivity
@@ -1028,9 +1029,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Verify_ValidateThis(activity, Warewolf.Resource.Errors.ErrorResource.EmailAttachmentsInvalidExpressionErrorTest, EmailDesignerViewModel.IsAttachmentsFocusedProperty);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_ValidateThis")]
         public void EmailDesignerViewModel_ValidateThis_AttachmentsIsValidExpression_DoesNotHaveErrors()
         {
             var activity = new DsfSendEmailActivity
@@ -1047,9 +1048,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Verify_ValidateThis(activity);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_ValidateThis")]
         public void EmailDesignerViewModel_ValidateThis_AttachmentsIsNotValidFileName_DoesHaveErrors()
         {
             var activity = new DsfSendEmailActivity
@@ -1098,9 +1099,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("EmailDesignerViewModel_Handles")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("EmailDesignerViewModel_Handles")]
         public void EmailDesignerViewModel_Handles_UpdateResourceMessage_EmailSourceIsUpdated()
         {
             //------------Setup for test--------------------------
@@ -1144,9 +1145,9 @@ namespace Dev2.Activities.Designers.Tests.Email
             Assert.AreEqual(updatedEmailSource.Password, selectedSource.Password);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("EmailDesignerViewModel_Handles")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("EmailDesignerViewModel_Handles")]
         public void EmailDesignerViewModel_Handles_UpdateResourceMessageResourceIdAreNotTheSame_EmailSourceIsNotUpdated()
         {
             //------------Setup for test--------------------------

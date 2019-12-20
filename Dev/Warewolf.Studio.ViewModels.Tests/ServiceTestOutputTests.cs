@@ -4,18 +4,20 @@ using Dev2.BussinessLogic;
 using Dev2.Common.Interfaces;
 using Dev2.DataList;
 using Dev2.DataList.Contract;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 
 namespace Warewolf.Studio.ViewModels.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ServiceTestOutputTests
     {
-        [TestMethod,Timeout(60000)]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestOutput_Constructor")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Hagashen Naidu")]
+        [Category("TestOutput_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestOutput_Constructor_WhenNullVariable_ShouldThrowException()
         {
@@ -27,9 +29,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestOutput_Constructor")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Hagashen Naidu")]
+        [Category("TestOutput_Constructor")]
         public void TestOutput_Constructor_WhenValidParameters_ShouldSetProperties()
         {
             //------------Setup for test--------------------------
@@ -41,9 +44,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual("someValue", input.Value);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestOutput_Constructor")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Hagashen Naidu")]
+        [Category("TestOutput_Constructor")]
         public void TestOutput_Variable_WhenSet_ShouldFirePropertyChange()
         {
             //------------Setup for test--------------------------
@@ -62,9 +66,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(_wasCalled);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("TestOutput_Constructor")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Hagashen Naidu")]
+        [Category("TestOutput_Constructor")]
         public void TestOutput_Value_WhenSet_ShouldFirePropertyChange()
         {
             //------------Setup for test--------------------------
@@ -83,8 +88,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(_wasCalled);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void TestOutput_TestInvalid_WhenSet_ShouldFirePropertyChange()
         {
             //------------Setup for test--------------------------
@@ -106,8 +112,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(_wasCalled);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void TestOutput_TestFailing_WhenSet_ShouldFirePropertyChange()
         {
             //------------Setup for test--------------------------
@@ -129,8 +136,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(_wasCalled);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void TestOutput_TestPassed_WhenSet_ShouldFirePropertyChange()
         {
             //------------Setup for test--------------------------
@@ -152,8 +160,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(_wasCalled);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void TestOutput_TestPending_WhenSet_ShouldFirePropertyChange()
         {
             //------------Setup for test--------------------------
@@ -174,8 +183,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             //------------Assert Results-------------------------
             Assert.IsTrue(_wasCalled);
         }
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void TestOutput_Result_WhenSet_ShouldFirePropertyChange_TestPassed()
         {
             //------------Setup for test--------------------------
@@ -198,8 +208,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(input.TestFailing);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void TestOutput_Result_WhenSet_ShouldFirePropertyChange_TestFailing()
         {
             //------------Setup for test--------------------------
@@ -222,8 +233,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(input.TestPassed);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void TestOutput_Result_WhenSet_ShouldFirePropertyChange_TestInvalid()
         {
             //------------Setup for test--------------------------
@@ -246,8 +258,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(input.TestPassed);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void TestOutput_Result_WhenSet_ShouldFirePropertyChange_TestInvalid_TestResourceDeleted()
         {
             //------------Setup for test--------------------------
@@ -270,8 +283,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(input.TestPassed);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void TestOutput_Result_WhenSet_ShouldFirePropertyChange_TestInvalid_TestResourcePathUpdated()
         {
             //------------Setup for test--------------------------
@@ -294,8 +308,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(input.TestPassed);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void TestOutput_Result_WhenSet_ShouldFirePropertyChange_TestPending()
         {
             //------------Setup for test--------------------------
@@ -318,8 +333,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(input.TestPassed);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void UpdateMatchVisibility_GivenOption1_ShouldSetUpCorrectly()
         {
             //---------------Set up test pack-------------------
@@ -334,8 +350,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual(input.IsBetweenCriteriaVisible, false);
             Assert.AreEqual(input.IsSinglematchCriteriaVisible, false);
         }
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void UpdateMatchVisibility_GivenOption3_ShouldSetUpCorrectly()
         {
             //---------------Set up test pack-------------------

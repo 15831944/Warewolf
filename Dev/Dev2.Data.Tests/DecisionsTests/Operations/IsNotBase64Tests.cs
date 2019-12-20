@@ -9,19 +9,20 @@
 */
 
 using Dev2.Data.Decisions.Operations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests.DecisionsTests.Operations
 {
     /// <summary>
     /// Is Not Bse64 Decision
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IsNotBase64Tests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(IsNotBase64))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(IsNotBase64))]
         public void IsNotBase64_Invoke_ItemsEqual_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -31,12 +32,12 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //------------Execute Test---------------------------
             var result = endsWith.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(IsNotBase64))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(IsNotBase64))]
         public void IsNotBase64_Invoke_NotEqualItems_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -46,12 +47,12 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //------------Execute Test---------------------------
             var result = endsWith.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(IsNotBase64))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(IsNotBase64))]
         public void IsNotBase64_Invoke_EmptyColumns_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -61,12 +62,12 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //------------Execute Test---------------------------
             var result = endsWith.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(IsNotBase64))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(IsNotBase64))]
         public void IsNotBase64_HandlesType_ReturnsIsEndsWithType()
         {
             var expected = enDecisionType.IsNotBase64;
@@ -74,7 +75,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             var isEndsWith = new IsNotBase64();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.AreEqual(expected, isEndsWith.HandlesType());
+            NUnit.Framework.Assert.AreEqual(expected, isEndsWith.HandlesType());
         }
     }
 }

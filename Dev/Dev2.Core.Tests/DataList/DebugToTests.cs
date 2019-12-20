@@ -2,18 +2,19 @@
 using System.IO;
 using Dev2.Data;
 using Dev2.Session;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.DataList
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DebugToTests
     {
        
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DebugTO_Cleanup")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DebugTO_Cleanup")]
         public void DebugTO_ValuesCorrect()
         {
             // bootstrap
@@ -39,9 +40,9 @@ namespace Dev2.Tests.DataList
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DebugTO_Cleanup")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DebugTO_Cleanup")]
         public void DebugTO_Copy_ValuesCorrect()
         {
             var to = new DebugTO();
@@ -60,9 +61,9 @@ namespace Dev2.Tests.DataList
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DebugTO_Cleanup")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DebugTO_Cleanup")]
         public void DebugTO_CopyFrom_ValuesCorrect()
         {
             var to = new DebugTO();

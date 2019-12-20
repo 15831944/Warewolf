@@ -9,7 +9,7 @@ using Dev2.Common.Interfaces.Core;
 using Dev2.Common.Interfaces.ToolBase;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Studio.Core.Activities.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
@@ -17,12 +17,13 @@ using Moq;
 
 namespace Dev2.Activities.Designers.Tests.Core.ComDll
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ComActionRegionTest
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComActionRegion_Constructor")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComActionRegion_Constructor")]
         public void ComActionRegion_Constructor_Scenerio_Result()
         {
             //------------Setup for test--------------------------
@@ -44,9 +45,9 @@ namespace Dev2.Activities.Designers.Tests.Core.ComDll
             Assert.IsTrue(dotNetActionRegion.IsEnabled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComActionRegion_ConstructorWithSelectedAction")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComActionRegion_ConstructorWithSelectedAction")]
         public void ComActionRegion_ConstructorWithSelectedAction_Scenerio_Result()
         {
             //------------Setup for test--------------------------
@@ -77,9 +78,9 @@ namespace Dev2.Activities.Designers.Tests.Core.ComDll
             Assert.IsTrue(dotNetActionRegion.CanRefresh());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("ComActionRegion_ChangedSelectedAction")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("ComActionRegion_ChangedSelectedAction")]
         public void ComActionRegion_ChangeSelectedAction_Scenerio_Result()
         {
             //------------Setup for test--------------------------
@@ -127,9 +128,9 @@ namespace Dev2.Activities.Designers.Tests.Core.ComDll
             Assert.IsTrue(dotNetActionRegion.CanRefresh());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComActionRegion_ChangeActionSomethingChanged")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComActionRegion_ChangeActionSomethingChanged")]
         public void ComActionRegion_ChangeActionSomethingChanged_ExpectedChange_Result()
         {
             //------------Setup for test--------------------------
@@ -157,9 +158,9 @@ namespace Dev2.Activities.Designers.Tests.Core.ComDll
             Assert.IsTrue(evt);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComActionRegion_ChangeActionSomethingChanged")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComActionRegion_ChangeActionSomethingChanged")]
         public void ComActionRegion_ChangeActionSomethingChanged_RestoreRegion_Result()
         {
             //------------Setup for test--------------------------
@@ -198,9 +199,9 @@ namespace Dev2.Activities.Designers.Tests.Core.ComDll
             dep2.Verify(a => a.RestoreRegion(clone2.Object), Times.Never);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComActionRegion_ChangeActionSomethingChanged")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComActionRegion_ChangeActionSomethingChanged")]
         public void ComActionRegion_ChangeActionSomethingChanged_RegionsNotRestored_Invalid()
         {
             //------------Setup for test--------------------------
@@ -239,9 +240,9 @@ namespace Dev2.Activities.Designers.Tests.Core.ComDll
             dep2.Verify(a => a.RestoreRegion(clone2.Object), Times.Never);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComActionRegion_ChangeActionSomethingChanged")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComActionRegion_ChangeActionSomethingChanged")]
         public void ComActionRegion_ChangeActionSomethingChanged_CloneRegion_ExpectedClone()
         {
             //------------Setup for test--------------------------
@@ -267,9 +268,9 @@ namespace Dev2.Activities.Designers.Tests.Core.ComDll
             Assert.AreEqual(((ComActionRegion)cloned).SelectedAction, dotNetActionRegion.SelectedAction);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ComActionRegion_ChangeActionSomethingChanged")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ComActionRegion_ChangeActionSomethingChanged")]
         public void ComActionRegion_ChangeActionSomethingChanged_RestoreRegion_ExpectedRestore()
         {
             //------------Setup for test--------------------------

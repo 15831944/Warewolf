@@ -23,13 +23,14 @@ using Dev2.Studio.Interfaces;
 using Dev2.Studio.Interfaces.DataList;
 using Dev2.Threading;
 using Dev2.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Activities.Designers.Tests.Exchange.Email
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ExchangeEmailDesignerViewModelTests
     {
         public const string TestOwner = "Bernardt Joubert";
@@ -37,7 +38,7 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
 
         const string AppLocalhost = "http://localhost:3142";
 
-        [TestInitialize]
+        [SetUp]
         public void Initialize()
         {
             AppUsageStats.LocalHost = AppLocalhost;
@@ -123,9 +124,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             return testEmailDesignerViewModel;
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ExchangeEmailDesignerViewModel_Constructor_AsyncWorkerIsNull_ThrowsArgumentNullException()
         {
@@ -139,9 +140,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ExchangeEmailDesignerViewModel_Constructor_EnvironmentModelIsNull_ThrowsArgumentNullException()
         {
@@ -155,9 +156,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ExchangeEmailDesignerViewModel_Constructor_EventAggregatorIsNull_ThrowsArgumentNullException()
         {
@@ -171,9 +172,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_Constructor_ModelItemIsNew_InitializesProperties()
         {
             //------------Setup for test--------------------------
@@ -202,9 +203,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             Assert.IsTrue(propertyChanged);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("ExchangeEmailDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("ExchangeEmailDesignerViewModel_Handle")]
         public void ExchangeEmailDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -224,9 +225,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_Constructor_ModelItemIsNotNew_InitializesProperties()
         {
             //------------Setup for test--------------------------
@@ -260,9 +261,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             Assert.IsTrue(propertyChanged);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_Constructor_DoesNotAutoCopyEmailSourceUserNameIntoFromAccount()
         {
             Verify_Constructor_DoesNotAutoCopyEmailSourceUserNameIntoFromAccount("test@mydomain.com");
@@ -292,9 +293,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             Assert.AreEqual(to, toReceipient);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_ChooseAttachments_PublishesFileChooserMessage()
         {
             //------------Setup for test--------------------------
@@ -312,17 +313,17 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             eventPublisher.Verify(p => p.Publish(It.IsAny<FileChooserMessage>()));
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_ChooseAttachments_SelectedFilesIsNotNull_AddsFilesToAttachments()
         {
             Verify_ChooseAttachments(new List<string> { @"c:\tmp2.txt", @"c:\logs\errors2.log" });
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_ChooseAttachments_SelectedFilesIsNull_DoesAddNotFilesToAttachments()
         {
             Verify_ChooseAttachments(null);
@@ -362,9 +363,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
         }
 
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_TestEmail_Valid_ReturnsSucccess()
         {
             var modelItem = CreateModelItem();
@@ -377,9 +378,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             viewModel.TestEmailAccount();
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_ValidateViewModelProperties_ReturnsNoError()
         {
             var modelItem = CreateModelItem();
@@ -418,9 +419,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
 
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_ValidateThis_RunCommands_RetrunsSuccess()
         {
             var modelItem = CreateModelItem();
@@ -439,9 +440,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
 
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_TestEmail_NullTo_RetrunsErrors()
         {
             var modelItem = CreateNullToModelItem();
@@ -456,9 +457,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             Assert.IsNotNull(viewModel.SourceRegion.SelectedSource);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_TestEmail_ErrorIsNotNull_RetrunsErrors()
         {
             var modelItem = CreateFullToModelItem();
@@ -480,9 +481,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             Assert.IsNotNull(viewModel.SourceRegion.SelectedSource);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_TestEmail_ErrorIsNull_RetrunsErrors()
         {
             var modelItem = CreateFullToModelItem();
@@ -501,9 +502,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
         }
 
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_TestEmail_RetrunsErrors()
         {
             var modelItem = CreateFullToModelItem();
@@ -518,9 +519,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             Assert.IsNotNull(viewModel.SourceRegion.SelectedSource);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_UpdateHelperText_RetrunsSuccess()
         {
             var modelItem = CreateModelItem();
@@ -533,9 +534,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             Assert.IsNull(viewModel.HelpText);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_ValidateThis_RecipientsIsEmpty_DoesHaveErrors()
         {
             var activity = new DsfExchangeEmailActivity
@@ -550,9 +551,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             Verify_ValidateThis(activity, "Please supply at least one of the following: 'To', 'Cc' or 'Bcc'", ExchangeEmailDesignerViewModel.IsToFocusedProperty);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_ValidateThis_RecipientsToIsNotEmpty_DoesHaveNotErrors()
         {
             var activity = new DsfExchangeEmailActivity
@@ -567,9 +568,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             Verify_ValidateThis(activity);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_ValidateThis_RecipientsCcIsNotEmpty_DoesHaveNotErrors()
         {
             var activity = new DsfExchangeEmailActivity
@@ -584,9 +585,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             Verify_ValidateThis(activity);
         }
         
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_ValidateThis_RecipientsBccIsNotEmpty_DoesHaveNotErrors()
         {
             var activity = new DsfExchangeEmailActivity
@@ -601,9 +602,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             Verify_ValidateThis(activity);
     }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_ValidateThis_SubjectAndBodyIsEmpty_DoesHaveErrors()
         {
             var activity = new DsfExchangeEmailActivity
@@ -618,9 +619,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             Verify_ValidateThis(activity, "Please supply at least one of the following: 'Subject' or 'Body'", ExchangeEmailDesignerViewModel.IsSubjectFocusedProperty);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_ValidateThis_SubjectIsNotEmpyAndBodyIsEmpty_DoesNotHaveErrors()
         {
             var activity = new DsfExchangeEmailActivity
@@ -635,9 +636,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             Verify_ValidateThis(activity);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_ValidateThis_SubjectIsEmpyAndBodyIsNotEmpty_DoesNotHaveErrors()
         {
             var activity = new DsfExchangeEmailActivity
@@ -652,9 +653,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             Verify_ValidateThis(activity);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_ValidateThis_ToIsNotValidExpression_DoesHaveErrors()
         {
             var activity = new DsfExchangeEmailActivity
@@ -669,9 +670,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             Verify_ValidateThis(activity, Warewolf.Resource.Errors.ErrorResource.EmailToInvalidExpressionErrorTest, ExchangeEmailDesignerViewModel.IsToFocusedProperty);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_ValidateThis_ToIsValidExpression_DoesNotHaveErrors()
         {
             var activity = new DsfExchangeEmailActivity
@@ -686,9 +687,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             Verify_ValidateThis(activity);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_ValidateThis_ToIsNotValidEmailAddress_DoesHaveErrors()
         {
             var activity = new DsfExchangeEmailActivity
@@ -703,9 +704,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             Verify_ValidateThis(activity, "'To' contains an invalid email address", ExchangeEmailDesignerViewModel.IsToFocusedProperty);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_ValidateThis_CcIsNotValidExpression_DoesHaveErrors()
         {
             var activity = new DsfExchangeEmailActivity
@@ -720,9 +721,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             Verify_ValidateThis(activity, Warewolf.Resource.Errors.ErrorResource.EmailCcInvalidExpressionErrorTest, ExchangeEmailDesignerViewModel.IsCcFocusedProperty);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_ValidateThis_CcIsValidExpression_DoesNotHaveErrors()
         {
             var activity = new DsfExchangeEmailActivity
@@ -737,9 +738,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             Verify_ValidateThis(activity);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_ValidateThis_CcIsNotValidEmailAddress_DoesHaveErrors()
         {
             var activity = new DsfExchangeEmailActivity
@@ -754,9 +755,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             Verify_ValidateThis(activity, "'Cc' contains an invalid email address", ExchangeEmailDesignerViewModel.IsCcFocusedProperty);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_ValidateThis_BccIsNotValidExpression_DoesHaveErrors()
         {
             var activity = new DsfExchangeEmailActivity
@@ -771,9 +772,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             Verify_ValidateThis(activity, Warewolf.Resource.Errors.ErrorResource.EmailBccInvalidExpressionErrorTest, ExchangeEmailDesignerViewModel.IsBccFocusedProperty);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_ValidateThis_BccIsValidExpression_DoesNotHaveErrors()
         {
             var activity = new DsfExchangeEmailActivity
@@ -788,9 +789,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             Verify_ValidateThis(activity);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_ValidateThis_BccIsNotValidEmailAddress_DoesHaveErrors()
         {
             var activity = new DsfExchangeEmailActivity
@@ -805,9 +806,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             Verify_ValidateThis(activity, "'Bcc' contains an invalid email address", ExchangeEmailDesignerViewModel.IsBccFocusedProperty);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_ValidateThis_AttachmentsIsNotValidExpression_DoesHaveErrors()
         {
             var activity = new DsfExchangeEmailActivity
@@ -822,9 +823,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             Verify_ValidateThis(activity, Warewolf.Resource.Errors.ErrorResource.EmailAttachmentsInvalidExpressionErrorTest, ExchangeEmailDesignerViewModel.IsAttachmentsFocusedProperty);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_ValidateThis_AttachmentsIsValidExpression_DoesNotHaveErrors()
         {
             var activity = new DsfExchangeEmailActivity
@@ -839,9 +840,9 @@ namespace Dev2.Activities.Designers.Tests.Exchange.Email
             Verify_ValidateThis(activity);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void ExchangeEmailDesignerViewModel_ValidateThis_AttachmentsIsNotValidFileName_DoesHaveErrors()
         {
             var activity = new DsfExchangeEmailActivity

@@ -1,15 +1,16 @@
 using Dev2.Activities.DropBox2016.Result;
 using Dropbox.Api.Files;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Activities.ActivityTests.DropBox2016
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
 
     public class DropboxUploadSuccessResultShould
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ConstructDropBoxSuccessResult_GivenFileMetadata_ShouldRetunNewSuccessResult()
         {
             //---------------Set up test pack-------------------
@@ -21,8 +22,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016
             Assert.IsNotNull(successResult);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void failureResult_GivenException_ShouldRetunNewFailureResult()
         {
             //---------------Set up test pack-------------------

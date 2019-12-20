@@ -9,17 +9,18 @@
 */
 
 using Dev2.Validation;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Activities.Validation
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class IsValidExpressionRuleTests
     {
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("IsValidExpressionRule_Check")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("IsValidExpressionRule_Check")]
         public void IsValidExpressionRule_Check_InvalidVariable_RaisesError()
         {
             //------------Setup for test--------------------------
@@ -31,9 +32,9 @@ namespace Dev2.Tests.Activities.Validation
             Assert.AreEqual("Variable name [[res#]] contains invalid character(s). Only use alphanumeric _ and - ", errorInfo.Message);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("IsValidExpressionRule_Check")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("IsValidExpressionRule_Check")]
         public void IsValidExpressionRule_Check_ValidVariable_RaisesNoError()
         {
             //------------Setup for test--------------------------
@@ -44,9 +45,9 @@ namespace Dev2.Tests.Activities.Validation
             Assert.IsNull(result);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("IsValidExpressionRule_Check")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("IsValidExpressionRule_Check")]
         public void IsValidExpressionRule_Check_VariableIsEmptyString_RaisesNoError()
         {
             //------------Setup for test--------------------------
@@ -57,9 +58,9 @@ namespace Dev2.Tests.Activities.Validation
             Assert.IsNull(result);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("IsValidExpressionRule_Check")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("IsValidExpressionRule_Check")]
         public void IsValidExpressionRule_Check_MalformedVariable_RaisesAnError()
         {
             //------------Setup for test--------------------------
@@ -71,9 +72,9 @@ namespace Dev2.Tests.Activities.Validation
             Assert.AreEqual(Warewolf.Resource.Errors.ErrorResource.IsValidExpressionRuleErrorTest, errorInfo.Message);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("IsValidExpressionRule_Check")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("IsValidExpressionRule_Check")]
         public void IsValidExpressionRule_Check_VariableExpressionIsValid_ReturnsNoError()
         {
             //------------Setup for test--------------------------
@@ -88,9 +89,9 @@ namespace Dev2.Tests.Activities.Validation
             Assert.IsNull(errorInfo);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("IsValidExpressionRule_Check")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("IsValidExpressionRule_Check")]
         public void IsValidExpressionRule_Check_VariableExpressionHasAnUnderscore_ReturnsAnError()
         {
             //------------Setup for test--------------------------
@@ -108,9 +109,9 @@ namespace Dev2.Tests.Activities.Validation
 
 
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("IsValidExpressionRule_Check")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("IsValidExpressionRule_Check")]
         public void IsValidExpressionRule_Check_ExpressionWithPlainTextIsValid_ReturnsNoError()
         {
             //------------Setup for test--------------------------
@@ -128,9 +129,9 @@ namespace Dev2.Tests.Activities.Validation
 
 
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("IsValidExpressionRule_Check")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("IsValidExpressionRule_Check")]
         public void IsValidExpressionRule_Check_RecordsetExpressionIsValid_ReturnsNoError()
         {
             //------------Setup for test--------------------------
@@ -145,9 +146,9 @@ namespace Dev2.Tests.Activities.Validation
             Assert.IsNull(errorInfo);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("IsValidExpressionRule_Check")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("IsValidExpressionRule_Check")]
         public void IsValidExpressionRule_Check_VaribaleExpressionHasSpecialCharacter_ReturnsAnError()
         {
             //------------Setup for test--------------------------
@@ -163,9 +164,9 @@ namespace Dev2.Tests.Activities.Validation
             Assert.AreEqual("MyVar - Variable name [[a$]] contains invalid character(s). Only use alphanumeric _ and - ", errorInfo.Message);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("IsValidExpressionRule_Check")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("IsValidExpressionRule_Check")]
         public void IsValidExpressionRule_Check_RecordsetExpressionHasSpecialCharacter_ReturnsAnError()
         {
             //------------Setup for test--------------------------
@@ -181,9 +182,9 @@ namespace Dev2.Tests.Activities.Validation
             Assert.AreEqual("MyRecSet - Recordset name [[rec#]] contains invalid character(s). Only use alphanumeric _ and - ", errorInfo.Message);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("IsValidExpressionRule_Check")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("IsValidExpressionRule_Check")]
         public void IsValidExpressionRule_Check_RecordsetHasANegativeIndex_ReturnsAnError()
         {
             //------------Setup for test--------------------------
@@ -199,9 +200,9 @@ namespace Dev2.Tests.Activities.Validation
             Assert.AreEqual(Warewolf.Resource.Errors.ErrorResource.IsValidExpressionRuleIndexZeroErrorTest, errorInfo.Message);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("IsValidExpressionRule_Check")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("IsValidExpressionRule_Check")]
         public void IsValidExpressionRule_Check_RecordsetHasAnInvalidIndex_ReturnsAnError()
         {
             //------------Setup for test--------------------------

@@ -18,7 +18,7 @@ using Dev2.Common.Interfaces.Enums;
 using Dev2.Communication;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Data;
 using Warewolf.Options;
@@ -26,12 +26,13 @@ using Warewolf.Triggers;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SaveTriggerQueueServiceTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SaveTriggerQueueService))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SaveTriggerQueueService))]
         public void SaveTriggerQueueService_GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -42,9 +43,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resourceId);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SaveTriggerQueueService))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SaveTriggerQueueService))]
         public void SaveTriggerQueueService_GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -55,9 +56,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(AuthorizationContext.Contribute, authorizationContext);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SaveTriggerQueueService))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SaveTriggerQueueService))]
         public void SaveTriggerQueueService_CreateServiceEntry_ShouldReturnDynamicService()
         {
             //------------Setup for test--------------------------
@@ -69,9 +70,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("SaveTriggerQueueService", serviceEntry.Name);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SaveTriggerQueueService))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SaveTriggerQueueService))]
         public void SaveTriggerQueueService_HandlesType_ExpectType()
         {
             //------------Setup for test--------------------------
@@ -81,9 +82,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("SaveTriggerQueueService", saveTriggerQueueService.HandlesType());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SaveTriggerQueueService))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SaveTriggerQueueService))]
         [ExpectedException(typeof(InvalidDataContractException))]
         public void SaveTriggerQueueService_GivenNullArgs_Returns_InvalidDataContractException()
         {
@@ -94,9 +95,9 @@ namespace Dev2.Tests.Runtime.Services
             saveTriggerQueueService.Execute(null, workspaceMock.Object);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SaveTriggerQueueService))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SaveTriggerQueueService))]
         public void SaveTriggerQueueService_Execute()
         {
             var serializer = new Dev2JsonSerializer();

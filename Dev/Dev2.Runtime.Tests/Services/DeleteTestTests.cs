@@ -6,18 +6,19 @@ using Dev2.Common.Interfaces.Enums;
 using Dev2.Communication;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DeleteTestTests
     {
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("GetResourceID")]
         public void GetResourceID_GivenArgsWithResourceId_ShouldReturnResourceIdFromArgs()
         {
             //------------Setup for test--------------------------
@@ -36,9 +37,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(resId, resourceID);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -50,9 +51,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -63,9 +64,9 @@ namespace Dev2.Tests.Runtime.Services
             //------------Assert Results-------------------------
             Assert.AreEqual(AuthorizationContext.Contribute, resId);
         }
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DeleteTestHandlesType")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DeleteTestHandlesType")]
         public void DeleteTestHandlesType_ExpectName()
         {
             //------------Setup for test--------------------------
@@ -78,9 +79,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("DeleteTest", deleteTest.HandlesType());
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DeleteTestExecute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DeleteTestExecute")]
         public void DeleteTestExecute_NullValues_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -93,9 +94,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(result.HasError);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DeleteTestExecute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DeleteTestExecute")]
         public void DeleteTestExecute_ResourceIDNotPresent_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -109,9 +110,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(result.HasError);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DeleteTestExecute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DeleteTestExecute")]
         public void DeleteTestExecute_ResourceIDNotGuid_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -125,9 +126,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(result.HasError);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DeleteTestExecute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DeleteTestExecute")]
         public void DeleteTestExecute_TestNameNotPresent_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -142,9 +143,9 @@ namespace Dev2.Tests.Runtime.Services
         }
         
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DeleteTestExecute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DeleteTestExecute")]
         public void DeleteTestExecute__ValidArgs_ExpectDeleteTestCalled()
         {
             //------------Setup for test--------------------------
@@ -173,9 +174,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("TestToDelete",testName);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DeleteTestExecute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DeleteTestExecute")]
         public void DeleteTestExecute__ValidArgsPermitted_ExpectDeleteTestCalled()
         {
             //------------Setup for test--------------------------

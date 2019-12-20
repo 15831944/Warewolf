@@ -12,18 +12,19 @@ using System;
 using Dev2.Common.Interfaces.Infrastructure.Providers.Errors;
 using Dev2.Providers.Errors;
 using Dev2.Providers.Validation.Rules;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ComposableRuleTest
     {
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ComposeAbleRule_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ComposeAbleRule_Ctor")]
         [ExpectedException(typeof(ArgumentNullException))]
 
         public void ComposeAbleRule_Null()
@@ -33,9 +34,9 @@ namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
             new ComposableRule<string>(null);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ComposeAbleRule_Or")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ComposeAbleRule_Or")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ComposeAbleRule_Or_Null()
         {
@@ -43,9 +44,9 @@ namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
             new ComposableRule<string>(new Rule1(()=>"")).Or(null);
         }
         
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ComposeAbleRule_Check")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ComposeAbleRule_Check")]
         public void ComposeAbleRule_SingleCondition()
         {
             //------------Setup for test--------------------------
@@ -54,9 +55,9 @@ namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
 
         }
         
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ComposeAbleRule_Or")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ComposeAbleRule_Or")]
         public void ComposeAbleRule_Or_ConditionSatisfied()
         {
             //------------Setup for test--------------------------
@@ -65,9 +66,9 @@ namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ComposeAbleRule_Or")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ComposeAbleRule_Or")]
         public void ComposeAbleRule_Or_FirstConditionSatisfied()
         {
             //------------Setup for test--------------------------
@@ -77,9 +78,9 @@ namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ComposeAbleRule_Or")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ComposeAbleRule_Or")]
         public void ComposeAbleRule_Or_NoConditionSatisfied_Three()
         {
             //------------Setup for test--------------------------
@@ -89,9 +90,9 @@ namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ComposeAbleRule_Or")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ComposeAbleRule_Or")]
         public void ComposeAbleRule_Or_ConditionSatisfied_Three()
         {
             //------------Setup for test--------------------------
@@ -101,9 +102,9 @@ namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ComposeAbleRule_Or")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ComposeAbleRule_Or")]
         public void ComposeAbleRule_Or_ConditionSatisfied_Three_NullReturned()
         {
             //------------Setup for test--------------------------

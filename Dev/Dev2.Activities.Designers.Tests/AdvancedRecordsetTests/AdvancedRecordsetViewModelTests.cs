@@ -10,7 +10,7 @@ using Dev2.Common.Interfaces.ServerProxyLayer;
 using Dev2.Common.Interfaces.ToolBase.Database;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System.Linq;
 using Dev2.Studio.ViewModels.DataList;
@@ -22,13 +22,14 @@ using System.Collections.ObjectModel;
 
 namespace Dev2.Activities.Designers.Tests.AdvancedRecordset
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class AdvancedRecordsetViewModelTests
     {
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("AdvancedRecordset")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("AdvancedRecordset")]
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AdvancedRecordsetViewModel_MethodName_ClearErrors()
         {
@@ -63,9 +64,9 @@ namespace Dev2.Activities.Designers.Tests.AdvancedRecordset
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("AdvancedRecordset")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("AdvancedRecordset")]
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AdvancedRecordsetViewModel_ValidateSql_ReturnCorrectFormat()
         {
@@ -112,9 +113,9 @@ namespace Dev2.Activities.Designers.Tests.AdvancedRecordset
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("AdvancedRecordset")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("AdvancedRecordset")]
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AdvancedRecordsetViewModel_ValidateSql_ShowsCorrectErrorFormat()
         {
@@ -163,9 +164,9 @@ namespace Dev2.Activities.Designers.Tests.AdvancedRecordset
             }
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("AdvancedRecordset")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("AdvancedRecordset")]
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AdvancedRecordsetViewModel_TestActionSetSourceAndTestClickOkHasMappingsErrorFromServer()
         {
@@ -202,9 +203,9 @@ namespace Dev2.Activities.Designers.Tests.AdvancedRecordset
                 Assert.IsTrue(advancedRecordset.ErrorRegion.IsEnabled);
             }
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("AdvancedRecordset")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("AdvancedRecordset")]
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AdvancedRecordsetViewModel_ParseTSQL_SelectStatementWithAllias_1_ReturnOutputs()
         {
@@ -256,9 +257,9 @@ namespace Dev2.Activities.Designers.Tests.AdvancedRecordset
                 Assert.AreEqual("address_id", viewModel.OutputsRegion.Outputs.Last().MappedFrom);
             }
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("AdvancedRecordset")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("AdvancedRecordset")]
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AdvancedRecordsetViewModel_ParseTSQL_SelectStatementWithAllias_2_ReturnOutputs()
         {
@@ -315,9 +316,9 @@ namespace Dev2.Activities.Designers.Tests.AdvancedRecordset
                 Assert.AreEqual("address", viewModel.OutputsRegion.Outputs.Last().MappedFrom);
             }
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("AdvancedRecordset")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("AdvancedRecordset")]
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AdvancedRecordsetViewModel_ParseTSQL_SelectStatementWithAllias_3_ReturnOutputs()
         {
@@ -370,9 +371,9 @@ namespace Dev2.Activities.Designers.Tests.AdvancedRecordset
             }
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("AdvancedRecordset")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("AdvancedRecordset")]
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AdvancedRecordsetViewModel_ParseTSQL_SelectStatementWithAllias_4_ReturnOutputs()
         {
@@ -424,9 +425,9 @@ namespace Dev2.Activities.Designers.Tests.AdvancedRecordset
                 Assert.AreEqual("Address", viewModel.OutputsRegion.Outputs.Last().MappedFrom);
             }
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("AdvancedRecordset")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("AdvancedRecordset")]
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AdvancedRecordsetViewModel_ParseTSQL_SelectStatementWithAllias_6_ReturnOutputs()
         {
@@ -485,9 +486,9 @@ namespace Dev2.Activities.Designers.Tests.AdvancedRecordset
                 Assert.AreEqual("addr", viewModel.OutputsRegion.Outputs.Last().MappedFrom);
             }
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("AdvancedRecordset")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("AdvancedRecordset")]
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AdvancedRecordsetViewModel_ParseTSQL_SelectStatementWithAllias_5_ReturnOutputs()
         {
@@ -538,9 +539,9 @@ namespace Dev2.Activities.Designers.Tests.AdvancedRecordset
                 Assert.AreEqual("records_affected", viewModel.OutputsRegion.Outputs.First().MappedFrom);
             }
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("AdvancedRecordset")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("AdvancedRecordset")]
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AdvancedRecordsetViewModel_ParseTSQL_SelectStatementWithAllias_7_ReturnOutputs()
         {
@@ -598,10 +599,10 @@ namespace Dev2.Activities.Designers.Tests.AdvancedRecordset
             }
         }
         
-        [TestMethod]
-        [Owner("Candice Daniel")]
+        [Test]
+        [Author("Candice Daniel")]
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
-        [TestCategory("AdvancedRecordset")]
+        [Category("AdvancedRecordset")]
         public void AdvancedRecordsetViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -635,9 +636,9 @@ namespace Dev2.Activities.Designers.Tests.AdvancedRecordset
         }
 
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("AdvancedRecordset")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("AdvancedRecordset")]
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AdvancedRecordsetViewModel_SelectStatement_WhenTwoRecordsetsDifferentCased_Should_ReturnOutputs()
         {
@@ -695,9 +696,9 @@ namespace Dev2.Activities.Designers.Tests.AdvancedRecordset
             }
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("AdvancedRecordset")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("AdvancedRecordset")]
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AdvancedRecordsetViewModel_SelectStatement_WhenJoinedTwoRecordsetsDifferentCased_Should_ReturnOutputs()
         {

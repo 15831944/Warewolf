@@ -18,7 +18,7 @@ using Dev2.Data.Interfaces;
 using Dev2.Diagnostics;
 using Dev2.Tests.Activities.Mocks;
 using Dev2.Utilities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.ActivityTests
@@ -26,7 +26,8 @@ namespace Dev2.Tests.Activities.ActivityTests
     /// <summary>
     /// Summary description for DateTimeDifferenceTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
 
     public class PathRenameTests : BaseActivityUnitTest
     {
@@ -39,15 +40,15 @@ namespace Dev2.Tests.Activities.ActivityTests
 
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfPathRename_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfPathRename_UpdateForEachInputs")]
         public void DsfPathRename_UpdateForEachInputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
-            var inputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]].txt");
-            var outputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
+            var inputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]].txt");
+            var outputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
             var act = new DsfPathRename { InputPath = inputPath, OutputPath = outputPath, Result = "[[CompanyName]]" };
 
             //------------Execute Test---------------------------
@@ -57,15 +58,15 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(outputPath, act.OutputPath);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfPathRename_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfPathRename_UpdateForEachInputs")]
         public void DsfPathRename_UpdateForEachInputs_MoreThan1Updates_Updates()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
-            var inputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]].txt");
-            var outputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
+            var inputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]].txt");
+            var outputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
             var act = new DsfPathRename { InputPath = inputPath, OutputPath = outputPath, Result = "[[CompanyName]]" };
 
             var tuple1 = new Tuple<string, string>(outputPath, "Test");
@@ -78,9 +79,9 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfPathRename_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfPathRename_UpdateForEachOutputs")]
         public void DsfPathRename_UpdateForEachOutputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -88,8 +89,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             const string result = "[[CompanyName]]";
             var act = new DsfPathRename
             {
-                InputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]].txt"),
-                OutputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt"),
+                InputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]].txt"),
+                OutputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt"),
                 Result = result
             };
 
@@ -98,9 +99,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(result, act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfPathRename_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfPathRename_UpdateForEachOutputs")]
         public void DsfPathRename_UpdateForEachOutputs_MoreThan1Updates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -108,8 +109,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             const string result = "[[CompanyName]]";
             var act = new DsfPathRename
             {
-                InputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]].txt"),
-                OutputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt"),
+                InputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]].txt"),
+                OutputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt"),
                 Result = result
             };
 
@@ -121,15 +122,15 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(result, act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfPathRename_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfPathRename_UpdateForEachOutputs")]
         public void DsfPathRename_UpdateForEachOutputs_1Updates_UpdateResult()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
-            var inputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]].txt");
-            var outputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
+            var inputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]].txt");
+            var outputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
             var act = new DsfPathRename { InputPath = inputPath, OutputPath = outputPath, Result = "[[CompanyName]]" };
 
             var tuple1 = new Tuple<string, string>("[[CompanyName]]", "Test");
@@ -139,15 +140,15 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Test", act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfPathRename_GetForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfPathRename_GetForEachInputs")]
         public void DsfPathRename_GetForEachInputs_WhenHasExpression_ReturnsInputList()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
-            var inputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]].txt");
-            var outputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
+            var inputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]].txt");
+            var outputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
             var act = new DsfPathRename { InputPath = inputPath, OutputPath = outputPath, Result = "[[CompanyName]]" };
 
             //------------Execute Test---------------------------
@@ -160,9 +161,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(outputPath, dsfForEachItems[1].Value);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfPathRename_GetForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfPathRename_GetForEachOutputs")]
         public void DsfPathRename_GetForEachOutputs_WhenHasResult_ReturnsOutputList()
         {
             //------------Setup for test--------------------------
@@ -170,8 +171,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             const string result = "[[CompanyName]]";
             var act = new DsfPathRename
             {
-                InputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]].txt"),
-                OutputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt"),
+                InputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]].txt"),
+                OutputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt"),
                 Result = result
             };
 
@@ -183,15 +184,15 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(result, dsfForEachItems[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DsfPathRename_Execute")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DsfPathRename_Execute")]
         public void Rename_Execute_Workflow_SourceFile_And_DestinationFile_Has_Separate_Passwords_Both_Passwords_Are_Sent_To_OperationBroker()
         {
             var fileNames = new List<string>
                 {
-                    Path.Combine(TestContext.TestRunDirectory, Guid.NewGuid() + ".txt"),
-                    Path.Combine(TestContext.TestRunDirectory, Guid.NewGuid() + ".txt")
+                    Path.Combine(Environment.CurrentDirectory, Guid.NewGuid() + ".txt"),
+                    Path.Combine(Environment.CurrentDirectory, Guid.NewGuid() + ".txt")
                 };
 
             foreach (string fileName in fileNames)
@@ -207,7 +208,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             var act = new DsfPathRename
             {
                 InputPath = @"c:\OldFile.txt",
-                OutputPath = Path.Combine(TestContext.TestRunDirectory, "NewName.txt"),
+                OutputPath = Path.Combine(Environment.CurrentDirectory, "NewName.txt"),
                 Result = "[[res]]",
                 DestinationUsername = "destUName",
                 DestinationPassword = "destPWord",
@@ -225,24 +226,24 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(activityOperationBrokerMock.Source.IOPath.Username, "uName");
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DsfPathRename_Construct")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DsfPathRename_Construct")]
         public void Rename_Construct_Object_Must_Be_OfType_IDestinationUsernamePassword()
         {
             var pathRename = new DsfPathRename();
             IDestinationUsernamePassword password = pathRename;
             Assert.IsNotNull(password);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("DsfPathRename_GetState()")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("DsfPathRename_GetState()")]
         public void DsfPathRename_GetState()
         {
             var fileNames = new List<string>
                 {
-                    Path.Combine(TestContext.TestRunDirectory, Guid.NewGuid() + ".txt"),
-                    Path.Combine(TestContext.TestRunDirectory, Guid.NewGuid() + ".txt")
+                    Path.Combine(Environment.CurrentDirectory, Guid.NewGuid() + ".txt"),
+                    Path.Combine(Environment.CurrentDirectory, Guid.NewGuid() + ".txt")
                 };
 
             foreach (string fileName in fileNames)
@@ -255,7 +256,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
             var activityOperationBrokerMock = new ActivityOperationBrokerMock();
             var inputPath = @"c:\OldFile.txt";
-            var outputPath = Path.Combine(TestContext.TestRunDirectory, "NewName.txt");
+            var outputPath = Path.Combine(Environment.CurrentDirectory, "NewName.txt");
             var result = "[[res]]";
             var destinationUsername = "[[DestUsername]]";
             var destinationPassword = "[[DestPassword]]";

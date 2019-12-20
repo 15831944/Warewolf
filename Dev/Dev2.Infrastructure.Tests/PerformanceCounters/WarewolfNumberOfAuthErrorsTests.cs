@@ -1,18 +1,19 @@
 ﻿using Dev2.Common;
 using Dev2.Common.Interfaces.Monitoring;
 using Dev2.PerformanceCounters.Counters;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System.Linq;
 
 namespace Dev2.Infrastructure.Tests.PerformanceCounters
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WarewolfNumberOfAuthErrorsTests
     {
         const string CounterName = "Count of Not Authorised errors";
 
-        [TestMethod]
+        [Test]
         public void WarewolfNumberOfAuthErrors_Construct()
         {
             var mockPerformanceCounterFactory = new Mock<IRealPerformanceCounterFactory>();
@@ -27,7 +28,7 @@ namespace Dev2.Infrastructure.Tests.PerformanceCounters
             }
         }
 
-        [TestMethod]
+        [Test]
         public void WarewolfNumberOfAuthErrors_CreationData_Valid()
         {
             var mockPerformanceCounterFactory = new Mock<IRealPerformanceCounterFactory>();
@@ -44,7 +45,7 @@ namespace Dev2.Infrastructure.Tests.PerformanceCounters
         }
 
 
-        [TestMethod]
+        [Test]
         public void WarewolfNumberOfAuthErrors_Reset_ClearsCounter()
         {
             var mockPerformanceCounterFactory = new Mock<IRealPerformanceCounterFactory>();
@@ -59,7 +60,7 @@ namespace Dev2.Infrastructure.Tests.PerformanceCounters
             mockCounter.VerifySet(o => o.RawValue = 0, Times.Once);
         }
 
-        [TestMethod]
+        [Test]
         public void WarewolfNumberOfAuthErrors_Increment_CallsUnderlyingCounter()
         {
             var mockPerformanceCounterFactory = new Mock<IRealPerformanceCounterFactory>();
@@ -74,7 +75,7 @@ namespace Dev2.Infrastructure.Tests.PerformanceCounters
             mockCounter.Verify(o => o.Increment(), Times.Once);
         }
 
-        [TestMethod]
+        [Test]
         public void WarewolfNumberOfAuthErrors_IncrementBy_CallsUnderlyingCounter()
         {
             var mockPerformanceCounterFactory = new Mock<IRealPerformanceCounterFactory>();
@@ -89,7 +90,7 @@ namespace Dev2.Infrastructure.Tests.PerformanceCounters
             mockCounter.Verify(o => o.IncrementBy(1234), Times.Once);
         }
 
-        [TestMethod]
+        [Test]
         public void WarewolfNumberOfAuthErrors_Setup_CreatesCounter()
         {
             var mockPerformanceCounterFactory = new Mock<IRealPerformanceCounterFactory>();
@@ -102,7 +103,7 @@ namespace Dev2.Infrastructure.Tests.PerformanceCounters
             mockPerformanceCounterFactory.Verify(o => o.New(GlobalConstants.Warewolf, CounterName, GlobalConstants.GlobalCounterName), Times.Once);
         }
 
-        [TestMethod]
+        [Test]
         public void WarewolfNumberOfAuthErrors_Decrement_CallsUnderlyingCounter()
         {
             var mockPerformanceCounterFactory = new Mock<IRealPerformanceCounterFactory>();

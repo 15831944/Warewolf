@@ -8,7 +8,7 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json;
 using Serilog;
@@ -21,13 +21,14 @@ using Warewolf.Logging;
 
 namespace Warewolf.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SeriLogConsumerTests
     {
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(SeriLogConsumer))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(SeriLogConsumer))]
         public void SeriLogConsumer_Consume_Success()
         {
             //------------------------------Arrange-----------------------------
@@ -58,9 +59,9 @@ namespace Warewolf.Tests
             Assert.AreEqual(expected: ConsumerResult.Success, actual: response.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(SeriLogConsumer))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(SeriLogConsumer))]
         public void SeriLogConsumer_Consume_InfoMessage_ShouldCall_Information()
         {
             //------------------------------Arrange-----------------------------
@@ -90,9 +91,9 @@ namespace Warewolf.Tests
             mockLoggerPublisher.Verify(p => p.Info(It.IsAny<string>(), It.IsAny<object[]>()), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(SeriLogConsumer))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(SeriLogConsumer))]
         public void SeriLogConsumer_Consume_WarningMessage_ShouldCall_Warning()
         {
             //------------------------------Arrange-----------------------------
@@ -123,9 +124,9 @@ namespace Warewolf.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(SeriLogConsumer))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(SeriLogConsumer))]
         public void SeriLogConsumer_Consume_ErrorMessage_ShouldCall_Error()
         {
             //------------------------------Arrange-----------------------------
@@ -156,9 +157,9 @@ namespace Warewolf.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(SeriLogConsumer))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(SeriLogConsumer))]
         public void SeriLogConsumer_Consume_FatalMessage_ShouldCall_Fatal()
         {
             //------------------------------Arrange-----------------------------
@@ -188,9 +189,9 @@ namespace Warewolf.Tests
             mockLoggerPublisher.Verify(p => p.Fatal(It.IsAny<string>(), It.IsAny<object[]>()), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(SeriLogConsumer))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(SeriLogConsumer))]
         public void SeriLogConsumer_Consume_NotMatchingType_ShouldCall_Debug()
         {
             //------------------------------Arrange-----------------------------

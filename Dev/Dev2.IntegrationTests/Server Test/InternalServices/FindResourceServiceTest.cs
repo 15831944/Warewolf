@@ -9,7 +9,7 @@
 */
 
 using Dev2.Common;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Newtonsoft.Json.Linq;
 using System;
 using System.IO;
@@ -22,7 +22,8 @@ namespace Dev2.Integration.Tests.Dev2.Application.Server.Tests.InternalServices
     /// <summary>
     /// Summary description for FindResourceServiceTest
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FindResourceServiceTest
     {
         #region Additional test attributes
@@ -30,7 +31,7 @@ namespace Dev2.Integration.Tests.Dev2.Application.Server.Tests.InternalServices
         // You can use the following additional attributes as you write your tests:
         //
         // Use ClassInitialize to run code before running the first test in the class
-        // [ClassInitialize()]
+        // [OneTimeSetUp]
         // public static void MyClassInitialize(TestContext testContext) { }
         //
         // Use ClassCleanup to run code after all tests in a class have run
@@ -47,7 +48,7 @@ namespace Dev2.Integration.Tests.Dev2.Application.Server.Tests.InternalServices
         //
         #endregion
 
-        [TestMethod]
+        [Test]
         public void ExecutionWithStar_ExpectedValidXML()
         {
 
@@ -56,10 +57,10 @@ namespace Dev2.Integration.Tests.Dev2.Application.Server.Tests.InternalServices
             var result = TestHelper.PostDataToWebserver(path);
 
             var json = Newtonsoft.Json.JsonConvert.DeserializeObject<JArray>(result);
-            Assert.IsNotNull(json);
+            NUnit.Framework.Assert.IsNotNull(json);
         }
 
-        [TestMethod]
+        [Test]
         public void ExecutionWithNoStartNode_ExpectedInvalidValidResult()
         {
 
@@ -75,11 +76,11 @@ namespace Dev2.Integration.Tests.Dev2.Application.Server.Tests.InternalServices
                 result = errorContent.ReadToEnd();
             }
 
-            Assert.IsTrue(result.Contains("The workflow must have at least one service or activity connected to the Start Node."));
-            Assert.IsTrue(result.Contains(GlobalConstants.NoStartNodeError));
+            NUnit.Framework.Assert.IsTrue(result.Contains("The workflow must have at least one service or activity connected to the Start Node."));
+            NUnit.Framework.Assert.IsTrue(result.Contains(GlobalConstants.NoStartNodeError));
         }
 
-        [TestMethod]
+        [Test]
         public void ExecutionWithSource_ExpectedValidXML()
         {
 
@@ -88,10 +89,10 @@ namespace Dev2.Integration.Tests.Dev2.Application.Server.Tests.InternalServices
             var result = TestHelper.PostDataToWebserver(path);
 
             var json = Newtonsoft.Json.JsonConvert.DeserializeObject<JArray>(result);
-            Assert.IsNotNull(json);
+            NUnit.Framework.Assert.IsNotNull(json);
         }
 
-        [TestMethod]
+        [Test]
         public void ExecutionWithWorkflowService_ExpectedValidXML()
         {
 
@@ -100,10 +101,10 @@ namespace Dev2.Integration.Tests.Dev2.Application.Server.Tests.InternalServices
             var result = TestHelper.PostDataToWebserver(path);
 
             var json = Newtonsoft.Json.JsonConvert.DeserializeObject<JArray>(result);
-            Assert.IsNotNull(json);
+            NUnit.Framework.Assert.IsNotNull(json);
         }
 
-        [TestMethod]
+        [Test]
         public void ExecutionWithActivity_ExpectedValidXML()
         {
 
@@ -112,7 +113,7 @@ namespace Dev2.Integration.Tests.Dev2.Application.Server.Tests.InternalServices
             var result = TestHelper.PostDataToWebserver(path);
 
             var json = Newtonsoft.Json.JsonConvert.DeserializeObject<JArray>(result);
-            Assert.IsNotNull(json);
+            NUnit.Framework.Assert.IsNotNull(json);
         }
     }
 }

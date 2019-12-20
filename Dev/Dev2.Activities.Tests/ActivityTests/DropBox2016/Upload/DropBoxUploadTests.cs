@@ -13,13 +13,14 @@ using Dev2.Activities.DropBox2016.Result;
 using Dev2.Activities.DropBox2016.UploadActivity;
 using Dev2.Common.Interfaces.Wrappers;
 using Dropbox.Api.Files;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Upload
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
 
     public class DropBoxUploadTests
     {
@@ -33,9 +34,9 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Upload
         }
 
 
-        [TestMethod]
-        [Owner("Siphamndla Dube")]
-        [TestCategory(nameof(DropBoxUpload))]
+        [Test]
+        [Author("Siphamndla Dube")]
+        [Category(nameof(DropBoxUpload))]
         public void DropBoxUpload_CreateDropBoxActivity_GivenIsNew_ShouldNotBeNull()
         {
             //---------------Set up test pack-------------------
@@ -46,9 +47,9 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Upload
             Assert.IsNotNull(dropBoxUpload);
         }
 
-        [TestMethod]
-        [Owner("Siphamndla Dube")]
-        [TestCategory(nameof(DropBoxUpload))]
+        [Test]
+        [Author("Siphamndla Dube")]
+        [Category(nameof(DropBoxUpload))]
         public void DropBoxUpload_ExecuteTask_GivenDropBoxUpload_ShouldReturnFileMetadata()
         {
             //---------------Set up test pack-------------------
@@ -62,9 +63,9 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Upload
         }
         
       
-        [TestMethod]
-        [Owner("Siphamndla Dube")]
-        [TestCategory(nameof(DropBoxUpload))]
+        [Test]
+        [Author("Siphamndla Dube")]
+        [Category(nameof(DropBoxUpload))]
         [ExpectedException(typeof(ArgumentException))]
         public void DropBoxUpload_CreateNewDropboxUpload_GivenMissingFromPath_ExpectArgumentException()
         {
@@ -75,9 +76,9 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Upload
         } 
         
         
-        [TestMethod]
-        [Owner("Siphamndla Dube")]
-        [TestCategory(nameof(DropBoxUpload))]
+        [Test]
+        [Author("Siphamndla Dube")]
+        [Category(nameof(DropBoxUpload))]
         public void DropBoxUpload_ExecuteTask_IsDropboxFailureResult_ExpectTrue()
         {
             //---------------Set up test pack-------------------
@@ -88,7 +89,7 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Upload
             var metadata = dropBoxUpload.ExecuteTask(It.IsAny<IDropboxClient>());
             //---------------Test Result -----------------------
             Assert.IsNotNull(metadata);
-            Assert.IsInstanceOfType(metadata,typeof(DropboxFailureResult));
+            Assert.IsInstanceOf(metadata.GetType(),typeof(DropboxFailureResult));
         }
 
        

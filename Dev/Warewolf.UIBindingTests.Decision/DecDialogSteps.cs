@@ -7,7 +7,7 @@ using Dev2.Data.SystemTemplates.Models;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.TO;
 using Microsoft.Practices.Prism.Mvvm;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using TechTalk.SpecFlow;
 using Warewolf.UIBindingTests.Core;

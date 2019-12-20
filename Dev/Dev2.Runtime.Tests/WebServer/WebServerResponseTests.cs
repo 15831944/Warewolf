@@ -12,17 +12,18 @@ using System;
 using System.Linq;
 using System.Net.Http;
 using Dev2.Runtime.WebServer;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Runtime.WebServer
 {
-    [TestClass]
-    [TestCategory("Runtime WebServer")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime WebServer")]
     public class WebServerResponseTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WebServerResponse_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WebServerResponse_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void WebServerResponse_Constructor_ResponseIsNull_ThrowsArgumentNullException()
         {
@@ -34,9 +35,9 @@ namespace Dev2.Tests.Runtime.WebServer
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WebServerResponse_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WebServerResponse_Constructor")]
         public void WebServerResponse_Constructor_ResponseIsNotNull_PropertiesInitialized()
         {
             //------------Setup for test--------------------------
@@ -54,9 +55,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual("true",accessControlList[0]);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WebServerResponse_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WebServerResponse_Constructor")]
         public void WebServerResponse_Constructor_ResponseWithOrigin_PropertiesInitialized()
         {
             //------------Setup for test--------------------------

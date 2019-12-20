@@ -18,7 +18,7 @@ using Dev2.Activities.Utils;
 using Dev2.Common.Interfaces.PopupController;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
@@ -26,18 +26,19 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Core.Tests.Activities
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ForEachDesignerUtilsTests
     {
-        [TestInitialize]
+        [SetUp]
         public void MyTestInitialize()
         {
             AttributesToAvoidReplicating.Add(typeof(UIPermissionAttribute));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ForeachActivityDesignerUtils_LimitDragDropOptions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ForeachActivityDesignerUtils_LimitDragDropOptions")]
         public void ForeachActivityDesignerUtils_LimitDragDropOptions_NoFormats_EnableDrop()
         {
             //------------Setup for test--------------------------
@@ -50,9 +51,9 @@ namespace Dev2.Core.Tests.Activities
             Assert.IsTrue(dropEnabled);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ForeachActivityDesignerUtils_LimitDragDropOptions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ForeachActivityDesignerUtils_LimitDragDropOptions")]
         public void ForeachActivityDesignerUtils_LimitDragDropOptions_NoWorkflowItemTypeNameFormatAndNoModelItemFormat_EnableDrop()
         {
             //------------Setup for test--------------------------
@@ -65,9 +66,9 @@ namespace Dev2.Core.Tests.Activities
             Assert.IsTrue(dropEnabled);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ForeachActivityDesignerUtils_LimitDragDropOptions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ForeachActivityDesignerUtils_LimitDragDropOptions")]
         public void ForeachActivityDesignerUtils_LimitDragDropOptions_ModelItemFormat_Decision_DropPrevented()
         {
             //------------Setup for test--------------------------
@@ -83,9 +84,9 @@ namespace Dev2.Core.Tests.Activities
             Assert.IsFalse(dropEnabled);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("ForeachActivityDesignerUtils_LimitDragDropOptions")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("ForeachActivityDesignerUtils_LimitDragDropOptions")]
         public void ForeachActivityDesignerUtils_LimitDragDropOptions_ModelItemsFormat_WithDecisionAndCount_DropPrevented()
         {
             //------------Setup for test--------------------------
@@ -100,9 +101,9 @@ namespace Dev2.Core.Tests.Activities
             Assert.IsFalse(dropEnabled);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("ForeachActivityDesignerUtils_LimitDragDropOptions")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("ForeachActivityDesignerUtils_LimitDragDropOptions")]
         public void ForeachActivityDesignerUtils_LimitDragDropOptions_ModelItemsFormat_WithSwitchAndCount_DropPrevented()
         {
             //------------Setup for test--------------------------
@@ -117,9 +118,9 @@ namespace Dev2.Core.Tests.Activities
             Assert.IsFalse(dropEnabled);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ForeachActivityDesignerUtils_LimitDragDropOptions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ForeachActivityDesignerUtils_LimitDragDropOptions")]
         public void ForeachActivityDesignerUtils_LimitDragDropOptions_ModelItemFormat_Switch_DropPrevented()
         {
             //------------Setup for test--------------------------
@@ -134,9 +135,9 @@ namespace Dev2.Core.Tests.Activities
             //------------Assert Results-------------------------
             Assert.IsFalse(dropEnabled);
         }
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ForeachActivityDesignerUtils_LimitDragDropOptions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ForeachActivityDesignerUtils_LimitDragDropOptions")]
         public void ForeachActivityDesignerUtils_LimitDragDropOptions_ModelItemFormat_NotDecision_DropNotPrevented()
         {
             //------------Setup for test--------------------------
@@ -150,9 +151,9 @@ namespace Dev2.Core.Tests.Activities
             Assert.IsTrue(dropEnabled);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ForeachActivityDesignerUtils_LimitDragDropOptions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ForeachActivityDesignerUtils_LimitDragDropOptions")]
         public void ForeachActivityDesignerUtils_LimitDragDropOptions_ModelItemFormat_NotSwitch_DropNotPrevented()
         {
             //------------Setup for test--------------------------
@@ -166,9 +167,9 @@ namespace Dev2.Core.Tests.Activities
             Assert.IsTrue(dropEnabled);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ForeachActivityDesignerUtils_LimitDragDropOptions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ForeachActivityDesignerUtils_LimitDragDropOptions")]
         public void ForeachActivityDesignerUtils_LimitDragDropOptions_WorkflowItemTypeNameFormat_Decision_DropPrevented()
         {
             //------------Setup for test--------------------------
@@ -184,9 +185,9 @@ namespace Dev2.Core.Tests.Activities
             Assert.IsFalse(dropEnabled);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ForeachActivityDesignerUtils_LimitDragDropOptions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ForeachActivityDesignerUtils_LimitDragDropOptions")]
         public void ForeachActivityDesignerUtils_LimitDragDropOptions_WorkflowItemTypeNameFormat_Switch_DropPrevented()
         {
             //------------Setup for test--------------------------
@@ -201,9 +202,9 @@ namespace Dev2.Core.Tests.Activities
             //------------Assert Results-------------------------
             Assert.IsFalse(dropEnabled);
         }
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ForeachActivityDesignerUtils_LimitDragDropOptions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ForeachActivityDesignerUtils_LimitDragDropOptions")]
         public void ForeachActivityDesignerUtils_LimitDragDropOptions_WorkflowItemTypeNameFormat_NotDecision_DropNotPrevented()
         {
             //------------Setup for test--------------------------
@@ -217,9 +218,9 @@ namespace Dev2.Core.Tests.Activities
             Assert.IsTrue(dropEnabled);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ForeachActivityDesignerUtils_LimitDragDropOptions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ForeachActivityDesignerUtils_LimitDragDropOptions")]
         public void ForeachActivityDesignerUtils_LimitDragDropOptions_WorkflowItemTypeNameFormat_NotSwitch_DropNotPrevented()
         {
             //------------Setup for test--------------------------
@@ -235,9 +236,9 @@ namespace Dev2.Core.Tests.Activities
 
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ForeachActivityDesignerUtils_LimitDragDropOptions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ForeachActivityDesignerUtils_LimitDragDropOptions")]
         public void ForeachActivityDesignerUtils_LimitDragDropOptions_ModelItemFormat_DecisionModelItem_DropPrevented()
         {
             //------------Setup for test--------------------------
@@ -252,9 +253,9 @@ namespace Dev2.Core.Tests.Activities
             Assert.IsFalse(dropEnabled);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ForeachActivityDesignerUtils_LimitDragDropOptions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ForeachActivityDesignerUtils_LimitDragDropOptions")]
         public void ForeachActivityDesignerUtils_LimitDragDropOptions_ModelItemFormat_SwitchModelItem_DropPrevented()
         {
             //------------Setup for test--------------------------
@@ -270,9 +271,9 @@ namespace Dev2.Core.Tests.Activities
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ForeachActivityDesignerUtils_LimitDragDropOptions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ForeachActivityDesignerUtils_LimitDragDropOptions")]
         public void ForeachActivityDesignerUtils_LimitDragDropOptions_ModelItemFormat_NotSwitchDecision_DropNotPrevented()
         {
             //------------Setup for test--------------------------
@@ -287,9 +288,9 @@ namespace Dev2.Core.Tests.Activities
             Assert.IsTrue(dropEnabled);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ForeachActivityDesignerUtils_LimitDragDropOptions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ForeachActivityDesignerUtils_LimitDragDropOptions")]
         public void ForeachActivityDesignerUtils_LimitDragDropOptions_WorkflowItemTypeNameFormat_DecisionModelItem_DropPrevented()
         {
             //------------Setup for test--------------------------
@@ -304,9 +305,9 @@ namespace Dev2.Core.Tests.Activities
             Assert.IsFalse(dropEnabled);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ForeachActivityDesignerUtils_LimitDragDropOptions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ForeachActivityDesignerUtils_LimitDragDropOptions")]
         public void ForeachActivityDesignerUtils_LimitDragDropOptions_WorkflowItemTypeNameFormat_SwitchModelItem_DropPrevented()
         {
             //------------Setup for test--------------------------
@@ -325,9 +326,9 @@ namespace Dev2.Core.Tests.Activities
             mock.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ForeachActivityDesignerUtils_LimitDragDropOptions")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ForeachActivityDesignerUtils_LimitDragDropOptions")]
         public void ForeachActivityDesignerUtils_LimitDragDropOptions_WorkflowItemTypeNameFormat_NotSwitchDecisionModelItem_DropNotPrevented()
         {
             //------------Setup for test--------------------------
@@ -343,9 +344,9 @@ namespace Dev2.Core.Tests.Activities
         }
 
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("ForeachActivityDesignerUtils_LimitDragDropOptions")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("ForeachActivityDesignerUtils_LimitDragDropOptions")]
         public void ForeachActivityDesignerUtils_LimitDragDropOptions_ModelItemFormat_SelectAndApplyModelItem_DropPrevented()
         {
             //------------Setup for test--------------------------
@@ -361,9 +362,9 @@ namespace Dev2.Core.Tests.Activities
             Assert.IsFalse(dropEnabled);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("ForeachActivityDesignerUtils_LimitDragDropOptions")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("ForeachActivityDesignerUtils_LimitDragDropOptions")]
         public void ForeachActivityDesignerUtils_LimitDragDropOptions_WorkflowItemTypeNameFormat_SelectAndApplyModelItem_DropPrevented()
         {
             //------------Setup for test--------------------------

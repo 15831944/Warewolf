@@ -9,15 +9,15 @@
 */
 
 using Dev2.Activities.Designers2.Core.QuickVariableInput;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Activities.Designers.Tests.QuickVariableInput
 {
     public partial class QuickVariableInputViewModelTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_ValidationErrors")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_ValidationErrors")]
         public void QuickVariableInputViewModel_ValidationErrors_ErrorInPrefix_ContainsError()
         {
             var qviViewModel = new QuickVariableInputViewModel((source, overwrite) => { })
@@ -34,9 +34,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             Assert.IsTrue(qviViewModel.IsPrefixFocused);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_ValidationErrors")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_ValidationErrors")]
         public void QuickVariableInputViewModel_ValidationErrors_InvalidCharsInPrefixTwoDots_ContainsError()
         {
             var qviViewModel = new QuickVariableInputViewModel((source, overwrite) => { })
@@ -53,9 +53,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             Assert.IsTrue(qviViewModel.IsPrefixFocused);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_ValidationErrors")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_ValidationErrors")]
         public void QuickVariableInputViewModel_ValidationErrors_InvalidCharsInPrefix_ContainsError()
         {
             var qviViewModel = new QuickVariableInputViewModel((source, overwrite) => { })
@@ -92,9 +92,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             Assert.IsTrue(qviViewModel.IsPrefixFocused);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_ValidationErrors")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_ValidationErrors")]
         public void QuickVariableInputViewModel_ValidationErrors_InvalidCharsInSuffix_ContainsError()
         {
             var qviViewModel = new QuickVariableInputViewModel((source, overwrite) => { })
@@ -121,9 +121,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             Assert.IsTrue(qviViewModel.IsSuffixFocused);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_ValidationErrors")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_ValidationErrors")]
         public void QuickVariableInputViewModel_ValidationErrors_NegativeNumberForIndexSplit_ContainsError()
         {
             var qviViewModel = new QuickVariableInputViewModel((source, overwrite) => { })
@@ -140,9 +140,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             Assert.IsTrue(qviViewModel.IsSplitOnFocused);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_ValidationErrors")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_ValidationErrors")]
         public void QuickVariableInputViewModel_ValidationErrors_DecimalNumberForIndexSplit_ContainsError()
         {
             var qviViewModel = new QuickVariableInputViewModel((source, overwrite) => { })
@@ -159,9 +159,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             Assert.IsTrue(qviViewModel.IsSplitOnFocused);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_ValidationErrors")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_ValidationErrors")]
         public void QuickVariableInputViewModel_ValidationErrors_TextForIndexSplit_ContainsError()
         {
             var qviViewModel = new QuickVariableInputViewModel((source, overwrite) => { })
@@ -178,9 +178,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             Assert.IsTrue(qviViewModel.IsSplitOnFocused);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_ValidationErrors")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_ValidationErrors")]
         public void QuickVariableInputViewModel_ValidationErrors_BlankValueForCharSplit_ContainsError()
         {
             var qviViewModel = new QuickVariableInputViewModel((source, overwrite) => { })
@@ -197,9 +197,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             Assert.IsTrue(qviViewModel.IsSplitOnFocused);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_ValidationErrors")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_ValidationErrors")]
         public void QuickVariableInputViewModel_ValidationErrors_BlankValueInVariableList_ContainsError()
         {
             var qviViewModel = new QuickVariableInputViewModel((source, overwrite) => { })
@@ -216,9 +216,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             Assert.IsTrue(qviViewModel.IsVariableListFocused);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_ValidationErrors")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_ValidationErrors")]
         public void QuickVariableInputViewModel_ValidationErrors_FunnyRecordsetNotationInPrefix_ContainsError()
         {
             var qviViewModel = new QuickVariableInputViewModel((source, overwrite) => { })
@@ -235,9 +235,9 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             Assert.IsTrue(qviViewModel.IsPrefixFocused);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QuickVariableInputViewModel_ValidationErrors")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QuickVariableInputViewModel_ValidationErrors")]
         public void QuickVariableInputViewModel_ValidationErrors_SetsHelpErrors()
         {
             var qviViewModel = new QuickVariableInputViewModel((source, overwrite) => { })

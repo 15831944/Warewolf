@@ -14,19 +14,20 @@ using System.Linq;
 using System.Windows;
 using Dev2.Common;
 using FontAwesome.WPF;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Warewolf.Studio.Core.Popup;
 using Warewolf.Studio.ViewModels;
 using PopupController = Dev2.Studio.Controller.PopupController;
 
 namespace Dev2.Core.Tests
 {
-    [TestClass]    
+    [TestFixture]
+    [SetUpFixture]    
     public class PopupControllerTests
     {
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("PopupController_ShowDeleteConfirmation")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("PopupController_ShowDeleteConfirmation")]
         public void PopupController_ShowDeleteConfirmation_SetProperties_AllPropertiesDisplayed()
         {
             //------------Setup for test--------------------------
@@ -60,9 +61,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("Are you sure you want to delete " + NameOfItemBeingDeleted + "?", description);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("PopupController_ShowDeleteVersionMessage")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("PopupController_ShowDeleteVersionMessage")]
         public void PopupController_ShowDeleteVersionMessage_SetProperties_AllPropertiesDisplayed()
         {
             //------------Setup for test--------------------------
@@ -96,9 +97,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("Are you sure you want to delete " + NameOfItemBeingDeleted + "?", description);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("PopupController_ShowDeployConflict")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("PopupController_ShowDeployConflict")]
         public void PopupController_ShowDeployConflict_SetProperties_AllPropertiesDisplayed()
         {
             //------------Setup for test--------------------------
@@ -146,9 +147,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(Description, description);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("PopupController_ShowDeployEmptyServer")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("PopupController_ShowDeployEmptyServer")]
         public void PopupController_ShowDeployEmptyServer_SetProperties_AllPropertiesDisplayed()
         {
             //------------Setup for test--------------------------
@@ -186,9 +187,9 @@ namespace Dev2.Core.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("PopupController_ShowDeployEmptyFolder")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("PopupController_ShowDeployEmptyFolder")]
         public void PopupController_ShowDeployEmptyFolder_SetProperties_AllPropertiesDisplayed()
         {
             //------------Setup for test--------------------------
@@ -226,9 +227,9 @@ namespace Dev2.Core.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("PopupController_ShowDeployConflict")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("PopupController_ShowDeployConflict")]
         public void PopupController_ShowDeployConflictTwo_SetProperties_AllPropertiesDisplayed()
         {
             //------------Setup for test--------------------------
@@ -276,9 +277,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(Description, description);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("PopupController_ShowDeployNameConflict")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("PopupController_ShowDeployNameConflict")]
         public void PopupController_ShowDeployNameConflict_SetProperties_AllPropertiesDisplayed()
         {
             //------------Setup for test--------------------------
@@ -317,9 +318,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(popupController.IsQuestion);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("PopupController_ShowDeployResourceNameConflict")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("PopupController_ShowDeployResourceNameConflict")]
         public void PopupController_ShowDeployResourceNameConflict_SetProperties_AllPropertiesDisplayed()
         {
             //------------Setup for test--------------------------
@@ -366,9 +367,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(popupController.IsQuestion);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("PopupController_ShowDeployServerMinVersionConflict")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("PopupController_ShowDeployServerMinVersionConflict")]
         public void PopupController_ShowDeployServerMinVersionConflict_SetProperties_AllPropertiesDisplayed()
         {
             //------------Setup for test--------------------------
@@ -419,9 +420,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(popupController.IsQuestion);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("PopupController_ShowDeployServerVersionConflict")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("PopupController_ShowDeployServerVersionConflict")]
         public void PopupController_ShowDeployServerVersionConflict_SetProperties_AllPropertiesDisplayed()
         {
             //------------Setup for test--------------------------
@@ -471,9 +472,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(popupController.IsQuestion);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("PopupController_ShowRollbackVersionMessage")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("PopupController_ShowRollbackVersionMessage")]
         public void PopupController_ShowRollbackVersionMessage_SetProperties_AllPropertiesDisplayed()
         {
             //------------Setup for test--------------------------
@@ -514,9 +515,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(popupController.IsQuestion);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("PopupController_GetDeleteConfirmation")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("PopupController_GetDeleteConfirmation")]
         public void PopupController_GetDeleteConfirmation_SetProperties_AllPropertiesDisplayed()
         {
             //------------Setup for test--------------------------
@@ -538,9 +539,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(popup.IsQuestion);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("PopupController_GetDuplicateMessage")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("PopupController_GetDuplicateMessage")]
         public void PopupController_GetDuplicateMessage_SetProperties_AllPropertiesDisplayed()
         {
             //------------Setup for test--------------------------
@@ -562,9 +563,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(popup.IsQuestion);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("PopupController_GetDuplicateResources")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("PopupController_GetDuplicateResources")]
         public void PopupController_GetDuplicateResources_SetProperties_AllPropertiesDisplayed()
         {
             //------------Setup for test--------------------------
@@ -611,9 +612,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(popupController.IsQuestion);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("PopupController_ShowServerNotConnected")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("PopupController_ShowServerNotConnected")]
         public void PopupController_ShowServerNotConnected_SetProperties_AllPropertiesDisplayed()
         {
             //------------Setup for test--------------------------
@@ -654,9 +655,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(popupController.IsQuestion);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("PopupController_ShowInstallationErrorOccurred")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("PopupController_ShowInstallationErrorOccurred")]
         public void PopupController_ShowInstallationErrorOccurred_SetProperties_AllPropertiesDisplayed()
         {
             //------------Setup for test--------------------------
@@ -694,9 +695,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(popupController.IsQuestion);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("PopupController_ShowConnectServerVersionConflict")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("PopupController_ShowConnectServerVersionConflict")]
         public void PopupController_ShowConnectServerVersionConflict_SetProperties_AllPropertiesDisplayed()
         {
             //------------Setup for test--------------------------
@@ -741,9 +742,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(popupController.IsQuestion);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("PopupController_ShowConnectionTimeoutConfirmation")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("PopupController_ShowConnectionTimeoutConfirmation")]
         public void PopupController_ShowConnectionTimeoutConfirmation_SetProperties_AllPropertiesDisplayed()
         {
             //------------Setup for test--------------------------
@@ -787,9 +788,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(popupController.IsQuestion);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("PopupController_ShowPopupMessage")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("PopupController_ShowPopupMessage")]
         public void PopupController_ShowPopupMessage_SetProperties_AllPropertiesDisplayed()
         {
             //------------Setup for test--------------------------
@@ -837,9 +838,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(popupController.IsQuestion);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("PopupController_ShowCorruptTaskResult")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("PopupController_ShowCorruptTaskResult")]
         public void PopupController_ShowCorruptTaskResult_SetProperties_AllPropertiesDisplayed()
         {
             //------------Setup for test--------------------------
@@ -879,9 +880,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(expectedDescription, description);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("PopupController_ShowExceptionViewAppreciation")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("PopupController_ShowExceptionViewAppreciation")]
         public void PopupController_ShowExceptionViewAppreciation_SetProperties_AllPropertiesDisplayed()
         {
             //------------Setup for test--------------------------
@@ -918,9 +919,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(expectedDescription, description);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("PopupController_ShowNameChangedConflict")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("PopupController_ShowNameChangedConflict")]
         public void PopupController_ShowNameChangedConflict_SetProperties_AllPropertiesDisplayed()
         {
             //------------Setup for test--------------------------
@@ -967,9 +968,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(MessageBoxImage.Information, imageType);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("PopupController_ShowNotConnected")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("PopupController_ShowNotConnected")]
         public void PopupController_ShowNotConnected_SetProperties_AllPropertiesDisplayed()
         {
             //------------Setup for test--------------------------
@@ -1006,9 +1007,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(MessageBoxImage.Error, imageType);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("PopupController_ShowSaveErrorDialog")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("PopupController_ShowSaveErrorDialog")]
         public void PopupController_ShowSaveErrorDialog_SetProperties_AllPropertiesDisplayed()
         {
             //------------Setup for test--------------------------
@@ -1045,9 +1046,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(MessageBoxImage.Error, imageType);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("PopupController_ShowSchedulerCloseConfirmation")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("PopupController_ShowSchedulerCloseConfirmation")]
         public void PopupController_ShowSchedulerCloseConfirmation_SetProperties_AllPropertiesDisplayed()
         {
             //------------Setup for test--------------------------
@@ -1090,9 +1091,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(MessageBoxImage.Information, imageType);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("PopupController_ShowSettingsCloseConfirmation")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("PopupController_ShowSettingsCloseConfirmation")]
         public void PopupController_ShowSettingsCloseConfirmation_SetProperties_AllPropertiesDisplayed()
         {
             //------------Setup for test--------------------------
@@ -1135,9 +1136,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(MessageBoxImage.Information, imageType);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("PopupController_ShowTasksCloseConfirmation")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("PopupController_ShowTasksCloseConfirmation")]
         public void PopupController_ShowTasksCloseConfirmation_SetProperties_AllPropertiesDisplayed()
         {
             //------------Setup for test--------------------------
@@ -1180,9 +1181,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(MessageBoxImage.Information, imageType);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("PopupController_ShowNoInputsSelectedWhenClickLink")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("PopupController_ShowNoInputsSelectedWhenClickLink")]
         public void PopupController_ShowNoInputsSelectedWhenClickLink_SetProperties_AllPropertiesDisplayed()
         {
             //------------Setup for test--------------------------
@@ -1224,9 +1225,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(GlobalConstants.Dev2MessageBoxNoInputsWhenHyperlinkClickedDialog, dontShowAgainKey);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("PopupController_ShowInvalidCharacterMessagek")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("PopupController_ShowInvalidCharacterMessagek")]
         public void PopupController_ShowInvalidCharacterMessage_SetProperties_AllPropertiesDisplayed()
         {
             //------------Setup for test--------------------------

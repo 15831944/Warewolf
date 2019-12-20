@@ -12,22 +12,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Dev2.Common.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json.Linq;
 using Warewolf.Storage.Interfaces;
 using WarewolfParserInterop;
-
-
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Warewolf.Storage.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ScopedEnvironmentTests
     {
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_Setup_Constructor_ExpectEquals()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -37,14 +37,14 @@ namespace Warewolf.Storage.Tests
 
             var p = new PrivateObject(scopedEnvironment);
 
-            Assert.AreEqual(_mockEnv.Object, p.GetField("_inner"));
-            Assert.AreEqual("bob", p.GetField("_datasource").ToString());
-            Assert.AreEqual("builder", p.GetField("_alias").ToString());
+            NUnit.Framework.Assert.AreEqual(_mockEnv.Object, p.GetField("_inner"));
+            NUnit.Framework.Assert.AreEqual("bob", p.GetField("_datasource").ToString());
+            NUnit.Framework.Assert.AreEqual("builder", p.GetField("_alias").ToString());
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_Eval_Basic_ExpectEvalReplaced()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -55,9 +55,9 @@ namespace Warewolf.Storage.Tests
             _mockEnv.Verify(a => a.Eval("[[Person(*)]]", 0, false, false));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_Eval_ThrowsIfNotExists()
         {
             var scopedEnvironment = new ScopedEnvironment(new ExecutionEnvironment(), "[[Person(*)]]", "[[list]]");
@@ -65,16 +65,16 @@ namespace Warewolf.Storage.Tests
             try
             {
                 scopedEnvironment.Eval("[[a]]", 0, true);
-                Assert.Fail("expected exception variable not found");
+                NUnit.Framework.Assert.Fail("expected exception variable not found");
             } catch (Exception e)
             {
-                Assert.AreEqual("variable not found", e.Message);
+                NUnit.Framework.Assert.AreEqual("variable not found", e.Message);
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_Eval_ExpectNoReplacement_IfNoAlias()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -85,9 +85,9 @@ namespace Warewolf.Storage.Tests
             _mockEnv.Verify(a => a.Eval("[[b]]", 0, false, false));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_EvalStrict_Basic_ExpectEvalStrictReplaced()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -98,9 +98,9 @@ namespace Warewolf.Storage.Tests
             _mockEnv.Verify(a => a.EvalStrict("[[Person(*)]]", 0));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_EvalStrict_ExpectNoReplacement_IfNoAlias()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -111,9 +111,9 @@ namespace Warewolf.Storage.Tests
             _mockEnv.Verify(a => a.EvalStrict("[[b]]", 0));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_Assign_Basic_ExpectAssignReplaced()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -124,9 +124,9 @@ namespace Warewolf.Storage.Tests
             _mockEnv.Verify(a => a.Assign("[[Person(*)]]", "bob", 0));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_Assign_HasUpdateValue_ExpectAssignReplaced()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -137,9 +137,9 @@ namespace Warewolf.Storage.Tests
             _mockEnv.Verify(a => a.Assign("[[Person(1)]]", "bob", 0));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_Assign_HasUpdateValue_ExpectAssignReplacedOnRight()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -150,9 +150,9 @@ namespace Warewolf.Storage.Tests
             _mockEnv.Verify(a => a.Assign("[[Person(1)]]", "[[Person(1)]]", 0));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_Assign_ExpectNoReplacement_IfNoAlias()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -163,9 +163,9 @@ namespace Warewolf.Storage.Tests
             _mockEnv.Verify(a => a.Assign("[[b]]", "bob", 0));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_AssignWithFrame_Basic_ExpectAssignWithFrameReplaced()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -178,12 +178,12 @@ namespace Warewolf.Storage.Tests
 
             scopedEnvironment.AssignWithFrame(new AssignValue("[[a]]", "bob"), 0);
 
-            Assert.IsTrue(replaced);
+            NUnit.Framework.Assert.IsTrue(replaced);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_AssignWithFrame_ListArgument()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -196,12 +196,12 @@ namespace Warewolf.Storage.Tests
 
             scopedEnvironment.AssignWithFrame(new List<IAssignValue> { new AssignValue("[[a]]", "bob") }, 0);
 
-            Assert.IsTrue(ok);
+            NUnit.Framework.Assert.IsTrue(ok);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_AssignStrict()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -212,9 +212,9 @@ namespace Warewolf.Storage.Tests
             _mockEnv.Verify(a => a.AssignStrict("[[Person(*)]]", "bob", 0), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_AssignWithFrame_ExpectNoReplacement_IfNoAlias()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -227,12 +227,12 @@ namespace Warewolf.Storage.Tests
 
             scopedEnvironment.AssignWithFrame(new AssignValue("[[b]]", "bob"), 0);
 
-            Assert.IsFalse(replaced);
+            NUnit.Framework.Assert.IsFalse(replaced);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_GetLength_ExpectEquals()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -241,12 +241,12 @@ namespace Warewolf.Storage.Tests
 
             var length = scopedEnvironment.GetLength("[[a]]");
 
-            Assert.AreEqual(length, 1);
+            NUnit.Framework.Assert.AreEqual(length, 1);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_GetObjectLength_ExpectEquals()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -255,12 +255,12 @@ namespace Warewolf.Storage.Tests
 
             var length = scopedEnvironment.GetObjectLength("[[a]]");
 
-            Assert.AreEqual(length, 1);
+            NUnit.Framework.Assert.AreEqual(length, 1);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_GetCount_ExpectEquals()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -269,12 +269,12 @@ namespace Warewolf.Storage.Tests
 
             var length = scopedEnvironment.GetCount("[[a]]");
 
-            Assert.AreEqual(length, 1);
+            NUnit.Framework.Assert.AreEqual(length, 1);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_EvalRecordSetIndexes_Basic_ExpectAssignWithFrameReplaced()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -287,12 +287,12 @@ namespace Warewolf.Storage.Tests
 
             scopedEnvironment.AssignWithFrame(new AssignValue("[[a]]", "bob"), 0);
 
-            Assert.IsTrue(replaced);
+            NUnit.Framework.Assert.IsTrue(replaced);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_EvalRecordSetIndexes()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -305,12 +305,12 @@ namespace Warewolf.Storage.Tests
 
             scopedEnvironment.AssignWithFrame(new AssignValue("[[a]]", "bob"), 0);
 
-            Assert.IsTrue(replaced);
+            NUnit.Framework.Assert.IsTrue(replaced);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_EvalRecordSetIndexesTest()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -318,9 +318,9 @@ namespace Warewolf.Storage.Tests
             SetupReplacementFunction(scopedEnvironment, new List<string>() { "[[a]]" }, new List<string> { "[[Person(1)]]" }, a => a.EvalRecordSetIndexes("[[a]]", 1));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_EvalRecordSetIndexesTestNegative()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -329,9 +329,9 @@ namespace Warewolf.Storage.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_EvalAsListOfStringsTest()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -340,9 +340,9 @@ namespace Warewolf.Storage.Tests
 
 
         }
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_EvalAsListOfStringsTestNegative()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -351,9 +351,9 @@ namespace Warewolf.Storage.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_EvalAssignFromNestedStarTest()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -362,9 +362,9 @@ namespace Warewolf.Storage.Tests
 
 
         }
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_EvalAssignFromNestedStarTestNegative()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -374,9 +374,9 @@ namespace Warewolf.Storage.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_EvalAssignFromNestedLastTest()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -385,9 +385,9 @@ namespace Warewolf.Storage.Tests
 
 
         }
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_EvalAssignFromNestedLastTestNegative()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -396,9 +396,9 @@ namespace Warewolf.Storage.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_EvalAssignFromNestedNumericTest()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -407,9 +407,9 @@ namespace Warewolf.Storage.Tests
 
 
         }
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_EvalAssignFromNestedNumericTestNegative()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -418,9 +418,9 @@ namespace Warewolf.Storage.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_EvalDeleteTest()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -429,9 +429,9 @@ namespace Warewolf.Storage.Tests
 
 
         }
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_EvalDeleteTestNegative()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -440,9 +440,9 @@ namespace Warewolf.Storage.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_SortRecordSetTest()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -451,9 +451,9 @@ namespace Warewolf.Storage.Tests
 
 
         }
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_SortRecordSetTestNegative()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -462,9 +462,9 @@ namespace Warewolf.Storage.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_EvalAsListTest()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -473,9 +473,9 @@ namespace Warewolf.Storage.Tests
 
 
         }
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_EvalAsListTestNegative()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -484,9 +484,9 @@ namespace Warewolf.Storage.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_EvalWhereTest()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -495,9 +495,9 @@ namespace Warewolf.Storage.Tests
 
 
         }
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_EvalWhereTestNegative()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -506,9 +506,9 @@ namespace Warewolf.Storage.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_ApplyUpdateTestNegative()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -518,9 +518,9 @@ namespace Warewolf.Storage.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_EvalToExpressionTest()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -529,9 +529,9 @@ namespace Warewolf.Storage.Tests
 
 
         }
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_EvalToExpressionTestNegative()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -540,9 +540,9 @@ namespace Warewolf.Storage.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_EvalForDataMergeTest()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -550,9 +550,9 @@ namespace Warewolf.Storage.Tests
             SetupReplacementFunction(scopedEnvironment, new List<string>() { "[[a]]" }, new List<string> { "[[Person(1)]]" }, a => a.EvalForDataMerge("[[a]]", 1));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_EvalForDataMergeTestNegative()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -561,9 +561,9 @@ namespace Warewolf.Storage.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_HasRecordSet_expectPassThrough()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -571,9 +571,9 @@ namespace Warewolf.Storage.Tests
             scopedEnvironment.HasRecordSet("a");
             _mockEnv.Verify(a => a.HasRecordSet("a"));
         }
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_CommitAssign_expectPassThrough()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -581,9 +581,9 @@ namespace Warewolf.Storage.Tests
             scopedEnvironment.CommitAssign();
             _mockEnv.Verify(a => a.CommitAssign());
         }
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_ToStar_expectPassThrough()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -591,9 +591,9 @@ namespace Warewolf.Storage.Tests
             scopedEnvironment.ToStar("[[a]]");
             _mockEnv.Verify(a => a.ToStar("[[Person(*)]]"));
         }
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_Errors_expectPassThrough()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -603,9 +603,9 @@ namespace Warewolf.Storage.Tests
             _mockEnv.Verify(a => a.Errors);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_AllErrors_expectPassThrough()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -614,9 +614,9 @@ namespace Warewolf.Storage.Tests
             _mockEnv.Verify(a => a.AllErrors);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_AddError_expectPassThrough()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -626,9 +626,9 @@ namespace Warewolf.Storage.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_AssignDataShape_expectPassThrough()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -637,9 +637,9 @@ namespace Warewolf.Storage.Tests
             _mockEnv.Verify(a => a.AssignDataShape("[[Person(*)]]"));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_ApplyUpdate_expectPassThrough()
         {
             var personName = "[[@Person(*).Name]]";
@@ -651,9 +651,9 @@ namespace Warewolf.Storage.Tests
             scopedEnvironment.ApplyUpdate(personName, clause, 0);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_AssignJson_expectPassThrough()
         {
             var personName = "[[@Person(*).Name]]";
@@ -663,9 +663,9 @@ namespace Warewolf.Storage.Tests
             _mockEnv.Verify(environment => environment.AssignJson(new AssignValue(personName, "[[a]]"), 0));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_GivenListOfJsonObjcts_AssignJson_ShouldAssighnAll()
         {
             var personName = "[[@Person(*).Name]]";
@@ -681,9 +681,9 @@ namespace Warewolf.Storage.Tests
             _mockEnv.Verify(environment => environment.AssignJson(assignValues, 0));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_GivenListOfJsonObjct_AddToJsonObjects_ShouldAddJsonObject()
         {
             var personName = "[[@Person().Name]]";
@@ -696,9 +696,9 @@ namespace Warewolf.Storage.Tests
             _mockEnv.Verify(environment => environment.AddToJsonObjects(childName, obj));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_GivenListOfJsonObjct_EvalForJson_ShouldAddJsonObject()
         {
             var personName = "[[@Person().Name]]";
@@ -708,9 +708,9 @@ namespace Warewolf.Storage.Tests
             _mockEnv.Verify(environment => environment.EvalForJson(personName, false));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_GivenListOfJsonObjct_AssignUnique_Should()
         {
             var personName = "[[@Person().Name]]";
@@ -722,16 +722,16 @@ namespace Warewolf.Storage.Tests
             };
             var values = new List<string> {personName};
             var resList = new List<string>();
-            Assert.IsNotNull(resList);
+            NUnit.Framework.Assert.IsNotNull(resList);
             var _mockEnv = new Mock<IExecutionEnvironment>();
             var scopedEnvironment = new ScopedEnvironment(_mockEnv.Object, personName, "[[a]]");
             scopedEnvironment.AssignUnique(recs, values, resList, 0);
             _mockEnv.Verify(environment => environment.AssignUnique(recs, values, resList, 0));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_GetIndexes_ShouldGetIndex()
         {
             var datasource = "[[@Person(*).Name]]";
@@ -741,9 +741,9 @@ namespace Warewolf.Storage.Tests
             _mockEnv.Verify(environment => environment.GetIndexes(datasource));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_EvalJContainer_Should()
         {
             var datasource = "[[@Person(*).Name]]";
@@ -753,9 +753,9 @@ namespace Warewolf.Storage.Tests
             _mockEnv.Verify(environment => environment.EvalJContainer(datasource));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_SetDataSource_ShouldSetNewDataSource()
         {
             var datasource = "[[Person(*)]]";
@@ -764,16 +764,16 @@ namespace Warewolf.Storage.Tests
             var scopedEnvironment = new ScopedEnvironment(_mockEnv.Object, datasource, "[[a]]");
             var privateObj = new PrivateObject(scopedEnvironment);
             var ds = privateObj.GetField("_datasource");
-            Assert.IsNotNull(ds);
-            Assert.AreEqual(datasource, ds);
+            NUnit.Framework.Assert.IsNotNull(ds);
+            NUnit.Framework.Assert.AreEqual(datasource, ds);
             scopedEnvironment.SetDataSource(personName);
             ds = privateObj.GetField("_datasource");
-            Assert.AreEqual(personName, ds);
+            NUnit.Framework.Assert.AreEqual(personName, ds);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_AssignDataShape_expectPassThrough_NoReplace()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -782,9 +782,9 @@ namespace Warewolf.Storage.Tests
             _mockEnv.Verify(a => a.AssignDataShape("a"));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_FetchErrors_expectPassThrough()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -793,9 +793,9 @@ namespace Warewolf.Storage.Tests
             _mockEnv.Verify(a => a.FetchErrors());
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_HasErrors_expectPassThrough()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -804,9 +804,9 @@ namespace Warewolf.Storage.Tests
             _mockEnv.Verify(a => a.HasErrors());
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_EvalAsTable()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -817,12 +817,12 @@ namespace Warewolf.Storage.Tests
             var result = scopedEnvironment.EvalAsTable("[[rec()]]", 0);
 
             _mockEnv.Verify(o => o.EvalAsTable("[[rec()]]", 0), Times.Once);
-            Assert.AreSame(expected, result);
+            NUnit.Framework.Assert.AreSame(expected, result);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_EvalAsTable2()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
@@ -830,21 +830,21 @@ namespace Warewolf.Storage.Tests
             _mockEnv.Setup(o => o.EvalAsTable("[[rec()]]", 0, true)).Returns(expected);
             var scopedEnvironment = new ScopedEnvironment(_mockEnv.Object, "[[Person(*)]]", "[[a]]");
 
-            Assert.AreSame(expected, scopedEnvironment.EvalAsTable("[[rec()]]", 0, true));
+            NUnit.Framework.Assert.AreSame(expected, scopedEnvironment.EvalAsTable("[[rec()]]", 0, true));
 
             _mockEnv.Verify(o => o.EvalAsTable("[[rec()]]", 0, true), Times.Once);
         }
 
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ScopedEnvironment))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ScopedEnvironment))]
         public void ScopedEnvironment_ToJson()
         {
             var _mockEnv = new Mock<IExecutionEnvironment>();
             var scopedEnvironment = new ScopedEnvironment(_mockEnv.Object, "[[Person(*)]]", "[[a]]");
 
-            Assert.AreEqual("", scopedEnvironment.ToJson());
+            NUnit.Framework.Assert.AreEqual("", scopedEnvironment.ToJson());
         }
 
 
@@ -857,7 +857,7 @@ namespace Warewolf.Storage.Tests
                (s, i,val) =>
                {
                    var replaced =  fun(s,i,val);
-                   Assert.IsTrue(orzipped.Any(a=>a.Item1==val&&a.Item2==replaced));
+                   NUnit.Framework.Assert.IsTrue(orzipped.Any(a=>a.Item1==val&&a.Item2==replaced));
 
                    return replaced;
                }));
@@ -873,7 +873,7 @@ namespace Warewolf.Storage.Tests
                 {
                     var replaced = fun(s, i, val);
 
-                    Assert.AreEqual(replaced, val);
+                    NUnit.Framework.Assert.AreEqual(replaced, val);
                     return replaced;
                 }));
             envAction?.Invoke(env);

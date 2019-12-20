@@ -5,16 +5,17 @@ using Dev2.Activities.Exchange;
 using Dev2.Common.Interfaces.ToolBase.ExchangeEmail;
 using Dev2.Common.State;
 using Dev2.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Storage;
 
 namespace Dev2.Tests.Activities.ActivityTests.Exchange
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfExchangeEmailNewActivityTest
     {
-        [TestMethod]
+        [Test]
         public void DsfExchangeEmailNewActivity_InvalidRuntimeSource()
         {
             var env = new ExecutionEnvironment();
@@ -32,7 +33,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Exchange
             Assert.AreEqual("Invalid Email Source", env.FetchErrors());
         }
 
-        [TestMethod]
+        [Test]
         public void DsfExchangeEmailNewActivity_UpdateForEachInputs_ExpectReplacedValues()
         {
             var act = new DsfExchangeEmailNewActivity
@@ -70,9 +71,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Exchange
             Assert.AreEqual("BodyValue2", act.Body);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DsfExchangeEmailNewActivity_GetState")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DsfExchangeEmailNewActivity_GetState")]
         public void DsfExchangeEmailNewActivity_GetState_ReturnsStateVariable()
         {
             //------------Setup for test--------------------------

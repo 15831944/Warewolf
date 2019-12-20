@@ -7,7 +7,7 @@
 *  AUTHORS <http://warewolf.io/authors.php> , CONTRIBUTORS <http://warewolf.io/contributors.php>
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Security.Principal;
@@ -35,12 +35,13 @@ using Dev2.Common.Interfaces.Enums;
 
 namespace Warewolf.Driver.Serilog.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class GetLogDataServiceTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(GetLogDataService))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(GetLogDataService))]
         public void GetLogDataService_GetAuthorizationContextForService_Returns_Administrator()
         {
             //------------Setup for test-------------------------
@@ -51,9 +52,9 @@ namespace Warewolf.Driver.Serilog.Tests
             Assert.AreEqual(AuthorizationContext.Administrator, authorizationContextForService);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(GetLogDataService))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(GetLogDataService))]
         public void GetLogDataService_CreateServiceEntry_Returns_GetExecutionHistory()
         {
             //------------Setup for test-------------------------
@@ -67,9 +68,9 @@ namespace Warewolf.Driver.Serilog.Tests
             Assert.AreEqual(handleType, dynamicService.Name);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(GetLogDataService))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(GetLogDataService))]
         public void GetLogDataService_GivenEmptyArgs_Returns_ExecuteMessage()
         {
 
@@ -103,9 +104,9 @@ namespace Warewolf.Driver.Serilog.Tests
             Assert.AreEqual(0, deserializedResults.Count);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(GetLogDataService))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(GetLogDataService))]
         public void GetLogDataService_Execute_Should_ExecuteSendMessage()
         {
             //------------------------------Arrange----------------------------------

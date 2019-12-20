@@ -9,17 +9,18 @@
 */
 
 using Dev2.Common.Interfaces.Wrappers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System.IO;
 using Warewolf.Configuration;
 
 namespace Dev2.Common.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ServerSettingsTests
     {
-        [TestMethod]
+        [Test]
         public void ServerSettingsData_Equals_Valid_Expected()
         {
             var expectedServerSettingsData = new ServerSettingsData
@@ -45,7 +46,7 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(serverSettingsData.Equals(expectedServerSettingsData));
         }
 
-        [TestMethod]
+        [Test]
         public void Get_AppConfig_Configuration()
         {
             const string expectedPath = @"C:\ProgramData\Warewolf\Audits";
@@ -66,15 +67,15 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(200, settings.LogFlushInterval);
         }
 
-        [TestMethod]
+        [Test]
         public void GetServerSettings_Constants()
         {
             Assert.AreEqual(@"C:\ProgramData\Warewolf\Audits", ServerSettings.DefaultAuditPath);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("Logging Paths")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("Logging Paths")]
         public void ServerSettings_SaveIfNotExists()
         {
             var mockIFile = new Mock<IFile>();
@@ -92,9 +93,9 @@ namespace Dev2.Common.Tests
             mockDirectory.Verify();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory("Logging Paths")]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category("Logging Paths")]
         public void ServerSettings_SaveLoggingPath_Exists()
         {
             var newAuditsFilePath = "falsepath7";
@@ -124,9 +125,9 @@ namespace Dev2.Common.Tests
             mockDirectory.Verify();
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("Logging Paths")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("Logging Paths")]
         public void ServerSettings_SaveLoggingPath_DoesNot_Exist()
         {
             var newAuditsFilePath = "falsepath7";
@@ -149,9 +150,9 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(actual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("Logging Paths")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("Logging Paths")]
         public void ServerSettings_SaveLoggingPath_Get()
         {
             //arrange

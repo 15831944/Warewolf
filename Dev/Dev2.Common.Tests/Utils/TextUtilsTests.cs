@@ -11,17 +11,18 @@
 using System;
 using Dev2.Common.ExtMethods;
 using Dev2.Common.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Common.Tests.Utils
 {
     
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class TextUtilsTests
     {
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("TextUtils_ReplaceWorkflowNewLinesWithEnvironmentNewLines")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("TextUtils_ReplaceWorkflowNewLinesWithEnvironmentNewLines")]
 
         public void TextUtils_ReplaceWorkflowNewLinesWithEnvironmentNewLines_ReplaceWackNWithWackRWackN_ReplaceOccurs()
         {
@@ -34,9 +35,9 @@ namespace Dev2.Common.Tests.Utils
             Assert.AreEqual(expected, actual, "The replacement didn't work correctly");
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("TextUtils_ReplaceWorkflowNewLinesWithEnvironmentNewLines")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("TextUtils_ReplaceWorkflowNewLinesWithEnvironmentNewLines")]
         public void TextUtils_ReplaceWorkflowNewLinesWithEnvironmentNewLines_WackNFirstChars_ReplaceOccurs()
         {
             //------------Setup for test--------------------------
@@ -48,9 +49,9 @@ namespace Dev2.Common.Tests.Utils
             Assert.AreEqual(expected, actual, "The replacement didn't work correctly");
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("TextUtils_ReplaceWorkflowNewLinesWithEnvironmentNewLines")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("TextUtils_ReplaceWorkflowNewLinesWithEnvironmentNewLines")]
         public void TextUtils_ReplaceWorkflowNewLinesWithEnvironmentNewLines_WackNSecondChars_ReplaceOccurs()
         {
             //------------Setup for test--------------------------
@@ -62,9 +63,9 @@ namespace Dev2.Common.Tests.Utils
             Assert.AreEqual(expected, actual, "The replacement didn't work correctly");
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("TextUtils_ReplaceWorkflowNewLinesWithEnvironmentNewLines")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("TextUtils_ReplaceWorkflowNewLinesWithEnvironmentNewLines")]
         public void TextUtils_ReplaceWorkflowNewLinesWithEnvironmentNewLines_WackNLastChars_ReplaceOccurs()
         {
             //------------Setup for test--------------------------
@@ -76,9 +77,9 @@ namespace Dev2.Common.Tests.Utils
             Assert.AreEqual(expected, actual, "The replacement didn't work correctly");
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("TextUtils_ReplaceWorkflowNewLinesWithEnvironmentNewLines")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("TextUtils_ReplaceWorkflowNewLinesWithEnvironmentNewLines")]
         public void TextUtils_ReplaceWorkflowNewLinesWithEnvironmentNewLines_WackWackNFirstChars_ReplaceOccurs()
         {
             //------------Setup for test--------------------------
@@ -90,9 +91,9 @@ namespace Dev2.Common.Tests.Utils
             Assert.AreEqual(expected, actual, "The replacement didn't work correctly");
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("TextUtils_ReplaceWorkflowNewLinesWithEnvironmentNewLines")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("TextUtils_ReplaceWorkflowNewLinesWithEnvironmentNewLines")]
         public void TextUtils_ReplaceWorkflowNewLinesWithEnvironmentNewLines_WackkWackNFirstChars_ReplaceOccurs()
         {
             //------------Setup for test--------------------------
@@ -104,8 +105,8 @@ namespace Dev2.Common.Tests.Utils
             Assert.AreEqual(expected, actual, "The replacement didn't work correctly");
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ToGui_GivenValidString_ShouldReturnGuid()
         {
             //---------------Set up test pack-------------------

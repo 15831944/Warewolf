@@ -9,17 +9,18 @@
 */
 
 using Dev2.Providers.Validation.Rules;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class IsValidXmlRuleTests
     {
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("IsValidXmlRule_Check")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("IsValidXmlRule_Check")]
         public void IsValidXmlRule_Check_StringIsEmpty_ReturnsError()
         {
             //------------Setup for test--------------------------
@@ -32,9 +33,9 @@ namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
             Assert.AreEqual("Xml is not a valid expression", errorInfo.Message);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("IsValidXmlRule_Check")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("IsValidXmlRule_Check")]
         public void IsValidXmlRule_Check_StringIsInvalidXml_ReturnsError()
         {
             //------------Setup for test--------------------------
@@ -48,9 +49,9 @@ namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
         }
 
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("IsValidXmlRule_Check")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("IsValidXmlRule_Check")]
         public void IsValidXmlRule_Check_StringInvalidXml_ReturnsNoError()
         {
             //------------Setup for test--------------------------

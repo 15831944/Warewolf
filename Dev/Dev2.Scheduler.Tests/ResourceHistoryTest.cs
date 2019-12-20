@@ -12,17 +12,18 @@ using System;
 using System.Collections.Generic;
 using Dev2.Common.Interfaces.Diagnostics.Debug;
 using Dev2.Common.Interfaces.Scheduler.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Scheduler.Test
 {
 
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ResourceHistoryTest
     {
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskSheduler_ResourceHistoryTest_Construct")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskSheduler_ResourceHistoryTest_Construct")]
         
         public void TaskSheduler_ResourceHistory_ShouldConstructCorrectly()
 

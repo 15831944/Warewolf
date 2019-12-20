@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using Dev2.Activities.Designers2.DateTime;
 using Dev2.Common.Interfaces.Help;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Moq.Protected;
 
@@ -21,10 +21,11 @@ using Moq.Protected;
 
 namespace Dev2.Activities.Designers.Tests.DateTimeTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DateTimeViewModelTests
     {
-        [TestInitialize]
+        [SetUp]
         public void PreConditions()
         {
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-ZA");
@@ -34,10 +35,10 @@ namespace Dev2.Activities.Designers.Tests.DateTimeTests
             Assert.AreEqual("en-ZA", System.Threading.Thread.CurrentThread.CurrentUICulture.Name);
         }
 
-        [TestMethod]
-        [TestCategory("DateTimeActivityViewModel_SelectedTimeModifierTypeSelectedItem")]
+        [Test]
+        [Category("DateTimeActivityViewModel_SelectedTimeModifierTypeSelectedItem")]
         [Description("DateTime ViewModel clears the TimeModifierAmountDisplay property of the model item if the SelectedTimeModifierType property of the view model is set to a blank string")]
-        [Owner("Ashley Lewis")]
+        [Author("Ashley Lewis")]
 
         public void DateTimeActivityViewModel_SelectedTimeModifierTypeChange_SelectedTimeModifierTypeSetToABlankString_TimeModifierAmountDisplayCleared()
 
@@ -64,10 +65,10 @@ namespace Dev2.Activities.Designers.Tests.DateTimeTests
             Assert.IsTrue(viewModel.HasLargeView);
         }
 
-        [TestMethod]
-        [TestCategory("DateTimeActivityViewModel_SelectedTimeModifierTypeSelectedItem")]
+        [Test]
+        [Category("DateTimeActivityViewModel_SelectedTimeModifierTypeSelectedItem")]
         [Description("DateTime ViewModel does not clear the TimeModifierAmountDisplay property of the model item if the SelectedTimeModifierType property of the view model is set to some string")]
-        [Owner("Ashley Lewis")]
+        [Author("Ashley Lewis")]
 
         public void DateTimeActivityViewModel_SelectedTimeModifierTypeChange_SelectedTimeModifierTypeSetToABlankString_TimeModifierAmountDisplayNotCleared()
 
@@ -93,9 +94,9 @@ namespace Dev2.Activities.Designers.Tests.DateTimeTests
             prop.Verify(c => c.SetValue(expected), Times.Never(), "Find Records ViewModel does not clear the match data property of the model item when it's no longer needed");
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DateTimeActivityViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DateTimeActivityViewModel_Handle")]
         public void DateTimeActivityViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      

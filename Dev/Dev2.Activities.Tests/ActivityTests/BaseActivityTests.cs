@@ -4,7 +4,7 @@ using ActivityUnitTests;
 using Dev2.Activities;
 using Dev2.Common.State;
 using Dev2.Diagnostics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities.Utilities;
 
 namespace Dev2.Tests.Activities.ActivityTests
@@ -12,7 +12,8 @@ namespace Dev2.Tests.Activities.ActivityTests
     /// <summary>
     /// Summary description for DataSplitActivityTest
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class BaseActivityTests : BaseActivityUnitTest
     {
         /// <summary>
@@ -22,7 +23,7 @@ namespace Dev2.Tests.Activities.ActivityTests
         public TestContext TestContext { get; set; }
 
 
-        [TestMethod]
+        [Test]
         public void DsfBaseActivityWhenHasVariableShouldEvaluate()
         {
             //---------------Set up test pack-------------------
@@ -46,9 +47,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfBaseActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfBaseActivity_UpdateForEachInputs")]
         public void DsfBaseActivity_UpdateForEachInputs_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -60,9 +61,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("SomeText", act.Input1);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfBaseActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfBaseActivity_UpdateForEachOutputs")]
         public void DsfBaseActivity_UpdateForEachOutputs_NullDoesNothing_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -73,9 +74,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("SomeText", act.Input1);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfBaseActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfBaseActivity_UpdateForEachOutputs")]
         public void DsfBaseActivity_UpdateForEachOutputsMoreThanTwoItems_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -88,9 +89,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("SomeText", act.Input1);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfBaseActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfBaseActivity_UpdateForEachOutputs")]
         public void DsfBaseActivity_UpdateForEachOutputs_UpdatesTextValue()
         {
             //------------Setup for test--------------------------
@@ -102,9 +103,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Test", act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfBaseActivity_GetForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfBaseActivity_GetForEachInputs")]
         public void DsfBaseActivity_GetForEachInputs_WhenHasExpression_ReturnsInputList()
         {
             //------------Setup for test--------------------------
@@ -115,9 +116,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(1, dsfForEachItems.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfBaseActivity_GetForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfBaseActivity_GetForEachOutputs")]
         public void DsfBaseActivity_GetForEachOutputs_WhenHasResult_ReturnsInputList()
         {
             //------------Setup for test--------------------------
@@ -130,9 +131,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("[[Bob]]", dsfForEachItems[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfBaseActivity_GetOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfBaseActivity_GetOutputs")]
         public void DsfBaseActivity_GetOutputs_Called_ShouldReturnListWithResultValueInIt()
         {
             //------------Setup for test--------------------------

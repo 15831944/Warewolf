@@ -12,7 +12,7 @@ using Dev2.Common.Interfaces.Scheduler.Interfaces;
 using Dev2.Communication;
 using Dev2.Studio.Interfaces;
 using Dev2.Triggers.Scheduler;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -22,13 +22,14 @@ using System.Text;
 
 namespace Dev2.Core.Tests.Triggers
 {
-    [TestClass]
-    [TestCategory("Studio ViewModels Triggers")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Studio ViewModels Triggers")]
     public class ClientScheduledResourceTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ClientScheduledResourceModel")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ClientScheduledResourceModel")]
         public void ClientScheduledResourceModel_GetScheduledResources_ReturnsCollectionOfIScheduledResource()
         {
             //------------Setup for test--------------------------
@@ -50,9 +51,9 @@ namespace Dev2.Core.Tests.Triggers
             Assert.AreEqual(1, scheduledResources.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ClientScheduledResourceModel")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ClientScheduledResourceModel")]
         public void ClientScheduledResourceModel_DeleteScheduledResource_CallsCommunicationsController()
         {
             //------------Setup for test--------------------------
@@ -74,9 +75,9 @@ namespace Dev2.Core.Tests.Triggers
             mockConnection.Verify(connection => connection.ExecuteCommand(It.IsAny<StringBuilder>(), It.IsAny<Guid>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ClientScheduledResourceModel")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ClientScheduledResourceModel")]
         public void ClientScheduledResourceModel_SaveScheduledResource_CallsCommunicationsController()
         {
             //------------Setup for test--------------------------
@@ -99,9 +100,9 @@ namespace Dev2.Core.Tests.Triggers
             Assert.IsTrue(saved);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ClientScheduledResourceModel")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ClientScheduledResourceModel")]
         public void ClientScheduledResourceModel_SaveScheduledResource_HasError_CallsCommunicationsController()
         {
             //------------Setup for test--------------------------
@@ -128,9 +129,9 @@ namespace Dev2.Core.Tests.Triggers
             Assert.AreEqual("Error occurred", errorMessage);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ClientScheduledResourceModel")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ClientScheduledResourceModel")]
         public void ClientScheduledResourceModel_CreateHistory_ReturnsListOfIResourceHistory()
         {
             //------------Setup for test--------------------------
@@ -153,9 +154,9 @@ namespace Dev2.Core.Tests.Triggers
             Assert.AreEqual(1, resourceHistories.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ClientScheduledResourceModel")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ClientScheduledResourceModel")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ClientScheduledResourceModel_Constructor_NullEnvironmentModel_ThrowsException()
         {

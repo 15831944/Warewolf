@@ -12,17 +12,18 @@ using System;
 using System.Threading.Tasks;
 using Dev2.Common.Interfaces.Diagnostics.Debug;
 using Dev2.Diagnostics.Debug;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Diagnostics.Test.Debug
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WebDebugMessageRepoTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(WebDebugMessageRepo))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(WebDebugMessageRepo))]
         public void WebDebugMessageRepo_Constructor_IsNew_ShouldInitialise_OnlyOnce()
         {
             //---------------Arrange-------------------
@@ -34,9 +35,9 @@ namespace Dev2.Diagnostics.Test.Debug
                             );
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(WebDebugMessageRepo))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(WebDebugMessageRepo))]
         public void WebDebugMessageRepo_AddDebugItem_ValidArgs_ShouldAdd1Item()
         {
             //---------------Set up test pack-------------------
@@ -53,9 +54,9 @@ namespace Dev2.Diagnostics.Test.Debug
             Assert.AreEqual(1, fetchDebugItems.Count);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(WebDebugMessageRepo))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(WebDebugMessageRepo))]
         public void WebDebugMessageRepo_AddDebugItem_ValidArgsAndSessions_ShouldNotMixUpDebugStates()
         {
             //---------------Set up test pack-------------------
@@ -81,9 +82,9 @@ namespace Dev2.Diagnostics.Test.Debug
             Assert.AreEqual(1, fetchDebugItems.Count);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(WebDebugMessageRepo))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(WebDebugMessageRepo))]
         public void WebDebugMessageRepo_AddDebugItem_KeyExists_ShouldNotMixUpDebugStates()
         {
             //---------------Set up test pack-------------------
@@ -109,9 +110,9 @@ namespace Dev2.Diagnostics.Test.Debug
             Assert.AreEqual(2, fetchDebugItems1.Count);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(WebDebugMessageRepo))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(WebDebugMessageRepo))]
         public void WebDebugMessageRepo_AddDebugItem_StateTypeNone_ParentID_IsNull_ExpectTrue()
         {
             //---------------Set up test pack-------------------

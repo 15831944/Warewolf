@@ -14,7 +14,7 @@ using Dev2.Common.Interfaces.WebService;
 using Dev2.Communication;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using TestingDotnetDllCascading;
 using Warewolf.Core;
@@ -23,7 +23,8 @@ using Warewolf.Studio.ViewModels;
 
 namespace Dev2.Activities.Designers.Tests.WebPutTool
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class TestWebPutViewModel
     {
         #region Test Setup
@@ -62,8 +63,8 @@ namespace Dev2.Activities.Designers.Tests.WebPutTool
 
         #endregion
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void OnLoad_GivenHasModelAndId_ShouldHaveDefaultHeightValues()
         {
             //---------------Set up test pack-------------------
@@ -82,8 +83,8 @@ namespace Dev2.Activities.Designers.Tests.WebPutTool
             Assert.IsTrue(postViewModel.OutputsRegion.IsEnabled);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void OnLoad_GivenHasModelAndId_ThumbVisibility_ExpectedTrue()
         {
             //---------------Set up test pack-------------------
@@ -110,8 +111,8 @@ namespace Dev2.Activities.Designers.Tests.WebPutTool
             Assert.IsTrue(putViewModel.ShowLarge);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void OnLoad_GivenHasModelAndId_ThumbVisibility_ExpectedFalse()
         {
             //---------------Set up test pack-------------------
@@ -143,8 +144,8 @@ namespace Dev2.Activities.Designers.Tests.WebPutTool
             return new WebServicePutViewModel(ModelItemUtils.CreateModelItem(act), mod);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         //public void Validate_GivenHasNewInstance_ShouldHaveOneDefaultError()
         public void WebPut_MethodName_ValidateExpectErrors()
         {
@@ -162,9 +163,9 @@ namespace Dev2.Activities.Designers.Tests.WebPutTool
             Assert.AreEqual(postViewModel.DesignValidationErrors.Count, 2);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("WebPutDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("WebPutDesignerViewModel_Handle")]
         public void WebPutDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -183,8 +184,8 @@ namespace Dev2.Activities.Designers.Tests.WebPutTool
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ClearValidationMemoWithNoFoundError_GivenHasNoErrors_ShouldNullErrors()
         {
             //---------------Set up test pack-------------------
@@ -202,8 +203,8 @@ namespace Dev2.Activities.Designers.Tests.WebPutTool
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetHeaderRegion_GivenIsNew_ShouldReturnInputArea()
         {
             //---------------Set up test pack-------------------
@@ -222,8 +223,8 @@ namespace Dev2.Activities.Designers.Tests.WebPutTool
             Assert.AreSame(postViewModel.InputArea, postViewModel.GetHeaderRegion());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Construct_GivenIsNew_ShouldHaveDefalutValues()
         {
             //---------------Set up test pack-------------------
@@ -241,8 +242,8 @@ namespace Dev2.Activities.Designers.Tests.WebPutTool
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ActionSetSource_GivenSelectedSource_ShouldHaveDefaultValues()
         {
             //---------------Set up test pack-------------------
@@ -262,8 +263,8 @@ namespace Dev2.Activities.Designers.Tests.WebPutTool
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         //public void TesInputCommand_GivenSourceIsSet_ShouldHaveMappings()
         public void WebPut_TestActionSetSourceAndTestClickOkHasMappings()
         {
@@ -292,8 +293,8 @@ namespace Dev2.Activities.Designers.Tests.WebPutTool
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void WebPut_TestActionSetSourceAndTestClickOkHasMappingsErrorFromServer()
         {
             //---------------Set up test pack-------------------
@@ -318,8 +319,8 @@ namespace Dev2.Activities.Designers.Tests.WebPutTool
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void WebPut_TestActionSetSourceAndTestClickOkHasserialisationIssue()
         {
             //---------------Set up test pack-------------------
@@ -343,8 +344,8 @@ namespace Dev2.Activities.Designers.Tests.WebPutTool
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void WebPut_TestActionSetSourceAndTestClickOkHasHeaders()
         {
             //---------------Set up test pack-------------------
@@ -376,8 +377,8 @@ namespace Dev2.Activities.Designers.Tests.WebPutTool
 
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void WebPut_BodyIsJSonNoHeaders_ExpectNewHeadersAdded()
         {
             //---------------Set up test pack-------------------
@@ -413,8 +414,8 @@ namespace Dev2.Activities.Designers.Tests.WebPutTool
             Assert.IsTrue(newCount > oldCount);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void WebPut_BodyIsXmlNoHeaders_ExpectNewHeadersAdded()
         {
             //---------------Set up test pack-------------------
@@ -448,8 +449,8 @@ namespace Dev2.Activities.Designers.Tests.WebPutTool
             Assert.IsTrue(newCount > oldCount);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void WebPut_BodyIsJSonExistingHeaders_ExpectNoHeadersAdded()
         {
             //---------------Set up test pack-------------------
@@ -472,8 +473,8 @@ namespace Dev2.Activities.Designers.Tests.WebPutTool
             Assert.IsTrue(newCount == oldCount);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void WebPut_BodyIsXmlExistingHeaders_ExpectNoHeadersAdded()
         {
             //---------------Set up test pack-------------------
@@ -505,8 +506,8 @@ namespace Dev2.Activities.Designers.Tests.WebPutTool
             Assert.IsTrue(newCount == oldCount);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void WebPut_TestActionSetSourceAndTestClickOkHasQueryStringAndHeaders()
         {
             //---------------Set up test pack-------------------
@@ -539,8 +540,8 @@ namespace Dev2.Activities.Designers.Tests.WebPutTool
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void WebPut_TestActionSetSourceAndTestClickOkHasQueryStringAndHeadersRecSet()
         {
             //---------------Set up test pack-------------------

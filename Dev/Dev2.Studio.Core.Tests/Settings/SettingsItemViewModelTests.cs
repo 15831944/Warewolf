@@ -8,17 +8,18 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests.Settings
 {
-    [TestClass]
-    [TestCategory("Studio Settings Core")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Studio Settings Core")]
     public class SettingsItemViewModelTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SettingsItemViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SettingsItemViewModel_Constructor")]
         public void SettingsItemViewModel_Constructor_Properties_Initialized()
         {
             //------------Setup for test--------------------------

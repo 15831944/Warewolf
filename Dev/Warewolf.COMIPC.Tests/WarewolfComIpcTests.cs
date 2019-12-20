@@ -10,7 +10,7 @@
 
 using System;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using WarewolfCOMIPC.Client;
 using Dev2.Tests.Runtime.ESB.ComPlugin;
 using System.Reflection;
@@ -21,10 +21,11 @@ using System.Diagnostics;
 
 namespace WarewolfCOMIPC.Test
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WarewolfComIpcTests
     {
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void Add_Component_To_Registry(TestContext tstctx)
         {
             var runtimeTestsAssembly = Assembly.Load("Dev2.Runtime.Tests");
@@ -41,9 +42,9 @@ namespace WarewolfCOMIPC.Test
             regeditProcess.WaitForExit();
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WarewolfCOMIPCClient_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("WarewolfCOMIPCClient_Execute")]
         [DeploymentItem("Warewolf.COMIPC.exe")]
         [DeploymentItem("Dev2.Runtime.Tests.dll")]
         public void WarewolfCOMIPCClient_Execute_GetType_ShouldReturnType()
@@ -58,8 +59,8 @@ namespace WarewolfCOMIPC.Test
             Assert.IsNotNull(execute.Value);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         [DeploymentItem("Warewolf.COMIPC.exe")]
         [DeploymentItem("Dev2.Runtime.Tests.dll")]
         public void GetMethods_GivenConnection_ShouldReturnMethodList()
@@ -76,8 +77,8 @@ namespace WarewolfCOMIPC.Test
             Assert.AreEqual(30, enumerable.Count);
         }
         
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         [DeploymentItem("Dev2.Runtime.Tests.dll")]
         [DeploymentItem("Warewolf.COMIPC.exe"),DeploymentItem("Warewolf.COMIPC.pdb")]
         public void ExecuteSpecifiedMethod_GivenConnection_ReturnSuccess()
@@ -94,9 +95,9 @@ namespace WarewolfCOMIPC.Test
             Assert.IsNotNull(execute.Value);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(WarewolfCOMIPC))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(WarewolfCOMIPC))]
         [DeploymentItem("Dev2.Runtime.Tests.dll")]
         [DeploymentItem("Warewolf.COMIPC.exe"), DeploymentItem("Warewolf.COMIPC.pdb")]
         public void ExecuteSpecifiedMethod_Instance_IsNotNull()

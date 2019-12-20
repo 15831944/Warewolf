@@ -19,19 +19,20 @@ using Dev2.Communication;
 using Dev2.Data.Settings;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Services.Security;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Newtonsoft.Json;
 
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SettingsWriteTests
     {
 
         #region ClassInitialize
 
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void MyClassInitialize(TestContext context)
         {
         }
@@ -46,9 +47,9 @@ namespace Dev2.Tests.Runtime.Services
 
         #region Execute
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SettingsWrite_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SettingsWrite_Execute")]
         [ExpectedException(typeof(InvalidDataException))]
         public void SettingsWrite_Execute_NoSettingsValuePassed_ExceptionThrown()
         {
@@ -59,9 +60,9 @@ namespace Dev2.Tests.Runtime.Services
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SettingsWrite_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SettingsWrite_Execute")]
         [ExpectedException(typeof(InvalidDataException))]
         public void SettingsWrite_Execute_NoValuesPassed_ExceptionThrown()
         {
@@ -72,9 +73,9 @@ namespace Dev2.Tests.Runtime.Services
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SettingsWrite_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SettingsWrite_Execute")]
         public void SettingsWrite_Execute_SettingsValuePassedNotValidJSON_ExceptionThrown()
         {
             //------------Setup for test--------------------------
@@ -87,9 +88,9 @@ namespace Dev2.Tests.Runtime.Services
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SettingsWrite_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SettingsWrite_Execute")]
         public void SettingsWrite_Execute_SettingsWriteValuePassedValidJSON_ShouldDoSecurityWrite()
         {
             //------------Setup for test--------------------------
@@ -114,7 +115,7 @@ namespace Dev2.Tests.Runtime.Services
 
         #region HandlesType
 
-        [TestMethod]
+        [Test]
         public void SettingsWrite_HandlesType_ReturnsSettingsWriteService()
         {
             var esb = new SettingsWrite();
@@ -126,7 +127,7 @@ namespace Dev2.Tests.Runtime.Services
 
         #region CreateServiceEntry
 
-        [TestMethod]
+        [Test]
         public void SettingsWrite_CreateServiceEntry_ReturnsDynamicService()
         {
             var esb = new SettingsWrite();
@@ -143,9 +144,9 @@ namespace Dev2.Tests.Runtime.Services
 
         #endregion
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -157,9 +158,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------

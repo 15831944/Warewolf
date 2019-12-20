@@ -12,7 +12,7 @@ using Dev2.Studio.Interfaces;
 using Dev2.Threading;
 using Dev2.Util;
 using Dev2.ViewModels.Merge;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.IO;
@@ -76,13 +76,13 @@ namespace Dev2.Activities.Specs.Merge
                 remoteServer.ConnectAsync().Wait(60000);
                 remoteServer.ResourceRepository.Load(true);
                 var remoteResource = remoteServer.ResourceRepository.FindSingle(p => p.ResourceName.Equals(resourceName, StringComparison.InvariantCultureIgnoreCase));
-                Assert.IsNotNull(remoteResource, "Resource \"" + resourceName + "\" not found on remote server \"" + serverName + "\".");
+                NUnit.Framework.Assert.IsNotNull(remoteResource, "Resource \"" + resourceName + "\" not found on remote server \"" + serverName + "\".");
                 _scenarioContext.Add(remoteResourceString, remoteResource);
             }
             else
             {
                 var localResource = localHost.ResourceRepository.FindSingle(p => p.ResourceName.Equals(resourceName, StringComparison.InvariantCultureIgnoreCase));
-                Assert.IsNotNull(localResource, "Resource \"" + resourceName + "\" not found.");
+                NUnit.Framework.Assert.IsNotNull(localResource, "Resource \"" + resourceName + "\" not found.");
                 _scenarioContext.Add(localResourceString, localResource);
             }
         }
@@ -96,11 +96,11 @@ namespace Dev2.Activities.Specs.Merge
                 remoteServer.ConnectAsync().Wait(60000);
                 remoteServer.ResourceRepository.Load(true);
                 var remoteResource = remoteServer.ResourceRepository.FindSingle(p => p.ResourceName.Equals(resourceName, StringComparison.InvariantCultureIgnoreCase));
-                Assert.IsNotNull(remoteResource, "Resource \"" + resourceName + "\" not found on remote server \"" + serverName + "\".");
+                NUnit.Framework.Assert.IsNotNull(remoteResource, "Resource \"" + resourceName + "\" not found on remote server \"" + serverName + "\".");
                 var versions = remoteServer.ExplorerRepository.GetVersions(remoteResource.ID);
-                Assert.IsTrue(versions.Count > 0, "No versions found for resource \"" + resourceName + "\".");
+                NUnit.Framework.Assert.IsTrue(versions.Count > 0, "No versions found for resource \"" + resourceName + "\".");
                 var version = versions.FirstOrDefault(a => a.VersionNumber == versionNo.ToString());
-                Assert.IsNotNull(version, "Version \"" + versionNo + "\" of \"" + resourceName + "\" not found on remote server \"" + serverName + "\".");
+                NUnit.Framework.Assert.IsNotNull(version, "Version \"" + versionNo + "\" of \"" + resourceName + "\" not found on remote server \"" + serverName + "\".");
                 var remoteResourceVersion = version.ToContextualResourceModel(remoteServer, remoteResource.ID);
                 remoteResourceVersion.VersionInfo = version;
                 _scenarioContext.Add(remoteResourceString, remoteResourceVersion);
@@ -108,11 +108,11 @@ namespace Dev2.Activities.Specs.Merge
             else
             {
                 var localResource = localHost.ResourceRepository.FindSingle(p => p.ResourceName.Equals(resourceName, StringComparison.InvariantCultureIgnoreCase));
-                Assert.IsNotNull(localResource, "Resource \"" + resourceName + "\" not found.");
+                NUnit.Framework.Assert.IsNotNull(localResource, "Resource \"" + resourceName + "\" not found.");
                 var versions = localHost.ExplorerRepository.GetVersions(localResource.ID);
-                Assert.IsTrue(versions.Count > 0, "No versions found for resource \"" + resourceName + "\" on remote server \"" + serverName + "\".");
+                NUnit.Framework.Assert.IsTrue(versions.Count > 0, "No versions found for resource \"" + resourceName + "\" on remote server \"" + serverName + "\".");
                 var version = versions.Single(a => a.VersionNumber == versionNo.ToString());
-                Assert.IsNotNull(version, "Version \"" + versionNo + "\" of \"" + resourceName + "\" not found.");
+                NUnit.Framework.Assert.IsNotNull(version, "Version \"" + versionNo + "\" of \"" + resourceName + "\" not found.");
                 var localResourceVersion = version.ToContextualResourceModel(localHost, localResource.ID);
                 localResourceVersion.VersionInfo = version;
                 _scenarioContext.Add(localResourceVersionString, localResourceVersion);
@@ -220,7 +220,7 @@ namespace Dev2.Activities.Specs.Merge
                                                   .Cast<ToolConflictRow>()
                                                   .Select(p => p.CurrentViewModel)
                                                   .FirstOrDefault() as IToolConflictItem;
-            Assert.IsNotNull(mergeToolModel);
+            NUnit.Framework.Assert.IsNotNull(mergeToolModel);
             mergeToolModel.IsChecked = true;
         }
 
@@ -232,7 +232,7 @@ namespace Dev2.Activities.Specs.Merge
                                                   .Cast<ToolConflictRow>()
                                                   .Select(p => p.DiffViewModel)
                                                   .FirstOrDefault() as IToolConflictItem;
-            Assert.IsNotNull(mergeToolModel);
+            NUnit.Framework.Assert.IsNotNull(mergeToolModel);
             mergeToolModel.IsChecked = true;
         }
 
@@ -241,7 +241,7 @@ namespace Dev2.Activities.Specs.Merge
         {
             var mergeVm = _scenarioContext.Get<MergeWorkflowViewModel>(mergeVmString);
             var mergeArmConnector = mergeVm.Conflicts.Where(a => a is ConnectorConflictRow && a.HasConflict && !a.IsChecked).Cast<ConnectorConflictRow>().Select(p => p.CurrentArmConnector).FirstOrDefault() as IConnectorConflictItem;
-            Assert.IsNotNull(mergeArmConnector);
+            NUnit.Framework.Assert.IsNotNull(mergeArmConnector);
             mergeArmConnector.IsChecked = true;
         }
 
@@ -250,7 +250,7 @@ namespace Dev2.Activities.Specs.Merge
         {
             var mergeVm = _scenarioContext.Get<MergeWorkflowViewModel>(mergeVmString);
             var mergeArmConnector = mergeVm.Conflicts.Where(a => a is ConnectorConflictRow && a.HasConflict && !a.Different.IsChecked).Cast<ConnectorConflictRow>().Select(p => p.DifferentArmConnector).FirstOrDefault() as IConnectorConflictItem;
-            Assert.IsNotNull(mergeArmConnector);
+            NUnit.Framework.Assert.IsNotNull(mergeArmConnector);
             mergeArmConnector.IsChecked = true;
         }
 
@@ -258,7 +258,7 @@ namespace Dev2.Activities.Specs.Merge
         public void ThenSaveIsEnabled()
         {
             var mergeVm = _scenarioContext.Get<MergeWorkflowViewModel>(mergeVmString);
-            Assert.IsTrue(mergeVm.CanSave);
+            NUnit.Framework.Assert.IsTrue(mergeVm.CanSave);
         }
 
         [Then(@"Current workflow contains ""(.*)"" tools")]
@@ -266,7 +266,7 @@ namespace Dev2.Activities.Specs.Merge
         {
             var mergeVm = _scenarioContext.Get<MergeWorkflowViewModel>(mergeVmString);
             var toolCount = mergeVm.Conflicts.Where(a => a is ToolConflictRow).Cast<ToolConflictRow>().Select(p => p.CurrentViewModel).Count();
-            Assert.AreEqual(expectedToolCount, toolCount);
+            NUnit.Framework.Assert.AreEqual(expectedToolCount, toolCount);
         }
 
         [Then(@"Current workflow contains ""(.*)"" connectors")]
@@ -274,7 +274,7 @@ namespace Dev2.Activities.Specs.Merge
         {
             var mergeVm = _scenarioContext.Get<MergeWorkflowViewModel>(mergeVmString);
             var connectorCount = mergeVm.Conflicts.Where(a => a is ConnectorConflictRow).Cast<ConnectorConflictRow>().Select(p => p.CurrentArmConnector).Count();
-            Assert.AreEqual(expectedConnectorCount, connectorCount);
+            NUnit.Framework.Assert.AreEqual(expectedConnectorCount, connectorCount);
         }
 
         [Then(@"Different workflow contains ""(.*)"" tools")]
@@ -282,7 +282,7 @@ namespace Dev2.Activities.Specs.Merge
         {
             var mergeVm = _scenarioContext.Get<MergeWorkflowViewModel>(mergeVmString);
             var toolCount = mergeVm.Conflicts.Where(a => a is ToolConflictRow).Cast<ToolConflictRow>().Select(p => p.DiffViewModel).Count();
-            Assert.AreEqual(expectedToolCount, toolCount);
+            NUnit.Framework.Assert.AreEqual(expectedToolCount, toolCount);
         }
 
         [Then(@"Different workflow contains ""(.*)"" connectors")]
@@ -290,35 +290,35 @@ namespace Dev2.Activities.Specs.Merge
         {
             var mergeVm = _scenarioContext.Get<MergeWorkflowViewModel>(mergeVmString);
             var connectorCount = mergeVm.Conflicts.Where(a => a is ConnectorConflictRow).Cast<ConnectorConflictRow>().Select(p => p.DifferentArmConnector).Count();
-            Assert.AreEqual(expectedConnectorCount, connectorCount);
+            NUnit.Framework.Assert.AreEqual(expectedConnectorCount, connectorCount);
         }
 
         [Then(@"Current workflow header is ""(.*)""")]
         public void ThenCurrentWorkflowHeaderIs(string header)
         {
             var mergeVm = _scenarioContext.Get<MergeWorkflowViewModel>(mergeVmString);
-            Assert.AreEqual(header, mergeVm.ModelFactoryCurrent.Header);
+            NUnit.Framework.Assert.AreEqual(header, mergeVm.ModelFactoryCurrent.Header);
         }
 
         [Then(@"Current workflow header version is ""(.*)""")]
         public void ThenCurrentWorkflowHeaderVersionIs(string headerVersion)
         {
             var mergeVm = _scenarioContext.Get<MergeWorkflowViewModel>(mergeVmString);
-            Assert.AreEqual(headerVersion, mergeVm.ModelFactoryCurrent.HeaderVersion);
+            NUnit.Framework.Assert.AreEqual(headerVersion, mergeVm.ModelFactoryCurrent.HeaderVersion);
         }
 
         [Then(@"Different workflow header is ""(.*)""")]
         public void ThenDifferentWorkflowHeaderIs(string header)
         {
             var mergeVm = _scenarioContext.Get<MergeWorkflowViewModel>(mergeVmString);
-            Assert.AreEqual(header, mergeVm.ModelFactoryDifferent.Header);
+            NUnit.Framework.Assert.AreEqual(header, mergeVm.ModelFactoryDifferent.Header);
         }
 
         [Then(@"Different workflow header version is ""(.*)""")]
         public void ThenDifferentWorkflowHeaderVersionIs(string headerVersion)
         {
             var mergeVm = _scenarioContext.Get<MergeWorkflowViewModel>(mergeVmString);
-            Assert.AreEqual(headerVersion, mergeVm.ModelFactoryDifferent.HeaderVersion);
+            NUnit.Framework.Assert.AreEqual(headerVersion, mergeVm.ModelFactoryDifferent.HeaderVersion);
         }
 
         [Then(@"Merge conflicts count is ""(.*)""")]
@@ -326,7 +326,7 @@ namespace Dev2.Activities.Specs.Merge
         {
             var mergeVm = _scenarioContext.Get<MergeWorkflowViewModel>(mergeVmString);
             var count = mergeVm.Conflicts.Count();
-            Assert.AreEqual(conflictsCount, count);
+            NUnit.Framework.Assert.AreEqual(conflictsCount, count);
         }
 
         [Then(@"Merge variable conflicts is false")]
@@ -334,7 +334,7 @@ namespace Dev2.Activities.Specs.Merge
         {
             var mergeVm = _scenarioContext.Get<MergeWorkflowViewModel>(mergeVmString);
             var a = mergeVm.HasVariablesConflict;
-            Assert.IsFalse(a);
+            NUnit.Framework.Assert.IsFalse(a);
         }
 
         IToolConflictRow GetToolConflictFromRow(int conflictRow)
@@ -349,14 +349,14 @@ namespace Dev2.Activities.Specs.Merge
         public void ThenConflictCurrentMatchesTool(int conflictRow, string mergeToolDescription)
         {
             var toolConflict = GetToolConflictFromRow(conflictRow);
-            Assert.AreEqual(mergeToolDescription, toolConflict.CurrentViewModel.MergeDescription);
+            NUnit.Framework.Assert.AreEqual(mergeToolDescription, toolConflict.CurrentViewModel.MergeDescription);
         }
 
         [Then(@"conflict ""(.*)"" Different matches tool ""(.*)""")]
         public void ThenConflictDifferentMatchesTool(int conflictRow, string mergeToolDescription)
         {
             var toolConflict = GetToolConflictFromRow(conflictRow);
-            Assert.AreEqual(mergeToolDescription, toolConflict.DiffViewModel.MergeDescription);
+            NUnit.Framework.Assert.AreEqual(mergeToolDescription, toolConflict.DiffViewModel.MergeDescription);
         }
 
         IConnectorConflictRow GetArmConnectorFromRow(int conflictRow)
@@ -371,28 +371,28 @@ namespace Dev2.Activities.Specs.Merge
         public void ThenConflictCurrentConnectorMatchesTool(int conflictRow, string connectorDescription)
         {
             var connector = GetArmConnectorFromRow(conflictRow);
-            Assert.AreEqual(connectorDescription, connector.CurrentArmConnector.ArmDescription);
+            NUnit.Framework.Assert.AreEqual(connectorDescription, connector.CurrentArmConnector.ArmDescription);
         }
 
         [Then(@"conflict ""(.*)"" Current Connector matches tool is null")]
         public void ThenConflictCurrentConnectorMatchesToolIsNull(int conflictRow)
         {
             var connector = GetArmConnectorFromRow(conflictRow);
-            Assert.IsNull(connector.CurrentArmConnector.ArmDescription);
+            NUnit.Framework.Assert.IsNull(connector.CurrentArmConnector.ArmDescription);
         }
 
         [Then(@"conflict ""(.*)"" Different Connector matches tool ""(.*)""")]
         public void ThenConflictDifferentConnectorMatchesTool(int conflictRow, string connectorDescription)
         {
             var connector = GetArmConnectorFromRow(conflictRow);
-            Assert.AreEqual(connectorDescription, connector.DifferentArmConnector.ArmDescription);
+            NUnit.Framework.Assert.AreEqual(connectorDescription, connector.DifferentArmConnector.ArmDescription);
         }
 
         [Then(@"conflict ""(.*)"" Different Connector matches tool is null")]
         public void ThenConflictDifferentConnectorMatchesToolIsNull(int conflictRow)
         {
             var connector = GetArmConnectorFromRow(conflictRow);
-            Assert.IsNull(connector.DifferentArmConnector.ArmDescription);
+            NUnit.Framework.Assert.IsNull(connector.DifferentArmConnector.ArmDescription);
         }
 
         [Then(@"Merge variable conflicts is true")]
@@ -400,7 +400,7 @@ namespace Dev2.Activities.Specs.Merge
         {
             var mergeVm = _scenarioContext.Get<MergeWorkflowViewModel>(mergeVmString);
             var a = mergeVm.HasVariablesConflict;
-            Assert.IsTrue(a);
+            NUnit.Framework.Assert.IsTrue(a);
         }
 
         [Then(@"Merge window has no Conflicting tools")]
@@ -408,7 +408,7 @@ namespace Dev2.Activities.Specs.Merge
         {
             var mergeVm = _scenarioContext.Get<MergeWorkflowViewModel>(mergeVmString);
             var a = mergeVm.Conflicts.AsEnumerable().All(p => p.HasConflict);
-            Assert.IsFalse(a);
+            NUnit.Framework.Assert.IsFalse(a);
         }
 
         [Then(@"Merge window has ""(.*)"" Conflicting tools")]
@@ -416,7 +416,7 @@ namespace Dev2.Activities.Specs.Merge
         {
             var mergeVm = _scenarioContext.Get<MergeWorkflowViewModel>(mergeVmString);
             var a = mergeVm.Conflicts.AsEnumerable().Count(p => p.HasConflict);
-            Assert.AreEqual(expectedConflicts, a);
+            NUnit.Framework.Assert.AreEqual(expectedConflicts, a);
         }
 
         [Given(@"I Load All tools and expect all tools to be mapped")]
@@ -446,17 +446,17 @@ namespace Dev2.Activities.Specs.Merge
             
             var countOfAllTools = allActivityTypes.Count();
             var currentDesignerTools = DesignerAttributeMap.DesignerAttributes.Count;
-            Assert.AreEqual(countOfAllTools, currentDesignerTools, "Count mismatch between the assembly activities and the mapped activities in DesignerAttributeMap class");
+            NUnit.Framework.Assert.AreEqual(countOfAllTools, currentDesignerTools, "Count mismatch between the assembly activities and the mapped activities in DesignerAttributeMap class");
             var allActivitiesAreMapped = allActivityTypes.All(t => DesignerAttributeMap.DesignerAttributes.ContainsKey(t));
-            Assert.IsTrue(allActivitiesAreMapped, "Not all activities are mapped in the DesignerAttributeMap class");
+            NUnit.Framework.Assert.IsTrue(allActivitiesAreMapped, "Not all activities are mapped in the DesignerAttributeMap class");
 
 
             Type[] extraExclusions = { typeof(DsfDecision), typeof(DsfSwitch) };
             var activityTypes = allActivityTypes.Where(t => !(extraExclusions.Contains(t)));
             var currentActivtyDesignerTools = ActivityDesignerHelper.DesignerAttributes.Count;
-            Assert.AreEqual(activityTypes.Count(), currentActivtyDesignerTools, "Count mismatch between the assembly activities and the mapped activities in ActivityDesignerHelper class");
+            NUnit.Framework.Assert.AreEqual(activityTypes.Count(), currentActivtyDesignerTools, "Count mismatch between the assembly activities and the mapped activities in ActivityDesignerHelper class");
             var allActivitiesDesignersAreMapped = activityTypes.All(t => ActivityDesignerHelper.DesignerAttributes.ContainsKey(t));
-            Assert.IsTrue(allActivitiesDesignersAreMapped, "Not all activities are mapped in the ActivityDesignerHelper class");
+            NUnit.Framework.Assert.IsTrue(allActivitiesDesignersAreMapped, "Not all activities are mapped in the ActivityDesignerHelper class");
         }
     }
 }

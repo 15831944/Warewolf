@@ -18,7 +18,7 @@ using System.Reflection;
 using Dev2.Data.Util;
 using Dev2.Interfaces;
 using Dev2.Runtime.ESB.Control;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Warewolf.Test.Agent;
@@ -185,11 +185,11 @@ namespace Dev2.Activities.Specs.Toolbox.Data.DataSplit
                  
                  var recordSetValues = (recordSets as CommonFunctions.WarewolfEvalResult.WarewolfAtomListresult).Item.ToList();
                  
-                 Assert.AreEqual<int>(tableRows.Count, recordSetValues.Count);
+                 Assert.AreEqual(tableRows.Count, recordSetValues.Count);
 
                  for (int i = 0; i < tableRows.Count; i++)
                  {
-                     Assert.AreEqual<string>(tableRows[i][1], ExecutionEnvironment.WarewolfAtomToString(recordSetValues[i]).Trim());
+                     Assert.AreEqual(tableRows[i][1], ExecutionEnvironment.WarewolfAtomToString(recordSetValues[i]).Trim());
                  }
              }
 

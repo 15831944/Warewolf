@@ -14,19 +14,20 @@ using Dev2.Activities.Designers2.XPath;
 using Dev2.Common.Interfaces.Help;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Activities.Designers.Tests.XPath
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class XPathDesignerViewModelTests
     {
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("XPathDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("XPathDesignerViewModel_Constructor")]
         public void XPathDesignerViewModel_Constructor_ModelItemIsValid_CollectionNameIsSetToResultsCollection()
         {
             var items = new List<XPathDTO> { new XPathDTO() };
@@ -34,9 +35,9 @@ namespace Dev2.Activities.Designers.Tests.XPath
             Assert.AreEqual("ResultsCollection", viewModel.CollectionName);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("XPathDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("XPathDesignerViewModel_Handle")]
         public void XPathDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -54,20 +55,20 @@ namespace Dev2.Activities.Designers.Tests.XPath
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("XPathDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("XPathDesignerViewModel_Constructor")]
         public void XPathDesignerViewModel_Constructor_ModelItemIsValid_ResultsCollectionHasTwoItems()
         {
             var modelItem = ModelItemUtils.CreateModelItem(new DsfXPathActivity());
             var viewModel = new XPathDesignerViewModel(modelItem);
             dynamic mi = viewModel.ModelItem;
-            Assert.AreEqual(2, mi.ResultsCollection.Count);
+            NUnit.Framework.Assert.AreEqual(2, mi.ResultsCollection.Count);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("XPathDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("XPathDesignerViewModel_Constructor")]
         public void XPathDesignerViewModel_Constructor_ModelItemIsInitializedWith4Items_ResultsCollectionHasFourItems()
         {
             var items = new List<XPathDTO>
@@ -79,12 +80,12 @@ namespace Dev2.Activities.Designers.Tests.XPath
             };
             var viewModel = new XPathDesignerViewModel(CreateModelItem(items));
             dynamic mi = viewModel.ModelItem;
-            Assert.AreEqual(5, mi.ResultsCollection.Count);
+            NUnit.Framework.Assert.AreEqual(5, mi.ResultsCollection.Count);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("XPathDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("XPathDesignerViewModel_ValidateThis")]
         public void XPathDesignerViewModel_ValidateThis_SourceStringIsNotEmpty_DoesNotHaveErrors()
         {
             //------------Setup for test--------------------------
@@ -99,9 +100,9 @@ namespace Dev2.Activities.Designers.Tests.XPath
             Assert.IsNull(viewModel.Errors);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("XPathDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("XPathDesignerViewModel_ValidateThis")]
         public void XPathDesignerViewModel_ValidateThis_XPathIsInvalid_DoesHaveErrors()
         {
             //------------Setup for test--------------------------
@@ -116,9 +117,9 @@ namespace Dev2.Activities.Designers.Tests.XPath
             Assert.AreEqual(Warewolf.Resource.Errors.ErrorResource.XPathInvalidExpressionErrorTest, viewModel.Errors[0].Message);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("XPathDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("XPathDesignerViewModel_ValidateThis")]
         public void XPathDesignerViewModel_ValidateThis_OutputVariableHasSpecialCharacter_DoesHaveErrors()
         {
             //------------Setup for test--------------------------
@@ -133,9 +134,9 @@ namespace Dev2.Activities.Designers.Tests.XPath
             Assert.AreEqual("'Results' - Variable name [[a$]] contains invalid character(s). Only use alphanumeric _ and - ", viewModel.Errors[0].Message);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("XPathDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("XPathDesignerViewModel_ValidateThis")]
         public void XPathDesignerViewModel_ValidateThis_XPathIsValidButNoOuputVariable_DoesHaveErrors()
         {
             //------------Setup for test--------------------------
@@ -151,9 +152,9 @@ namespace Dev2.Activities.Designers.Tests.XPath
         }
 
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("XPathDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("XPathDesignerViewModel_ValidateThis")]
         public void XPathDesignerViewModel_ValidateThis_SourceStringIsEmpty_DoesHaveErrors()
         {
             //------------Setup for test--------------------------
@@ -168,9 +169,9 @@ namespace Dev2.Activities.Designers.Tests.XPath
             StringAssert.Contains(viewModel.Errors[0].Message, Warewolf.Resource.Errors.ErrorResource.XPathXmlNotNullErrorTest);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("XPathDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("XPathDesignerViewModel_ValidateThis")]
         public void XPathDesignerViewModel_ValidateThis_SourceStringIsInValidXml_DoesHaveErrors()
         {
             //------------Setup for test--------------------------
@@ -185,9 +186,9 @@ namespace Dev2.Activities.Designers.Tests.XPath
             StringAssert.Contains(viewModel.Errors[0].Message, Warewolf.Resource.Errors.ErrorResource.XPathXmlInvalidExpressionErrorTest);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("XPathDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("XPathDesignerViewModel_ValidateThis")]
         public void XPathDesignerViewModel_ValidateThis_SourceStringIsValidRecordset_DoesNotHaveErrors()
         {
             //------------Setup for test--------------------------
@@ -201,9 +202,9 @@ namespace Dev2.Activities.Designers.Tests.XPath
             Assert.IsNull(viewModel.Errors);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("XPathDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("XPathDesignerViewModel_ValidateThis")]
         public void XPathDesignerViewModel_ValidateThis_SourceStringRecordsetHasANegativeIndex_DoesHaveErrors()
         {
             //------------Setup for test--------------------------
@@ -218,9 +219,9 @@ namespace Dev2.Activities.Designers.Tests.XPath
             StringAssert.Contains(viewModel.Errors[0].Message, Warewolf.Resource.Errors.ErrorResource.XPathXmlRecordsetIndexErrorTest);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("XPathDesignerViewModel_ValidateThis")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("XPathDesignerViewModel_ValidateThis")]
         public void XPathDesignerViewModel_ValidateThis_SourceStringRecordsetHasASpecialCharacter_DoesHaveErrors()
         {
             //------------Setup for test--------------------------
@@ -236,9 +237,9 @@ namespace Dev2.Activities.Designers.Tests.XPath
         }
 
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("XPathDesignerViewModel_ValidateCollectionItem")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("XPathDesignerViewModel_ValidateCollectionItem")]
         public void XPathDesignerViewModel_ValidateCollectionItem_ValidatesPropertiesOfDTO()
         {
             //------------Setup for test--------------------------

@@ -4,13 +4,14 @@ using System.Activities.Statements;
 using System.IO;
 using System.Windows;
 using Dev2.Common.Interfaces.Toolbox;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Warewolf.Studio.ViewModels.ToolBox.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ToolDescriptorViewModelTests
     {
         #region Fields
@@ -25,7 +26,7 @@ namespace Warewolf.Studio.ViewModels.ToolBox.Tests
 
         #region Test initialize
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             _toolMock = new Mock<IToolDescriptor>();
@@ -39,7 +40,8 @@ namespace Warewolf.Studio.ViewModels.ToolBox.Tests
 
         #region Test construction
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestNullLocalModel()
         {
@@ -50,7 +52,8 @@ namespace Warewolf.Studio.ViewModels.ToolBox.Tests
 
         #region Test properties
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestTool()
         {
             //act
@@ -60,7 +63,8 @@ namespace Warewolf.Studio.ViewModels.ToolBox.Tests
             Assert.AreSame(_toolMock.Object, value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestName()
         {
             //arrange
@@ -74,7 +78,8 @@ namespace Warewolf.Studio.ViewModels.ToolBox.Tests
             Assert.AreEqual(expectedName, value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         [ExpectedException(typeof(IOException))]
         public void TestIcon()
         {
@@ -86,7 +91,8 @@ namespace Warewolf.Studio.ViewModels.ToolBox.Tests
             var img = _target.Icon;
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestDesigner()
         {
             //arrange
@@ -100,7 +106,8 @@ namespace Warewolf.Studio.ViewModels.ToolBox.Tests
             Assert.AreEqual(expectedDesignerMock.Object, value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestActivity()
         {
             //act
@@ -110,7 +117,8 @@ namespace Warewolf.Studio.ViewModels.ToolBox.Tests
             Assert.AreEqual(_warewolfTypeMock.Object, value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestActivityTypeNull()
         {
             //act
@@ -120,7 +128,8 @@ namespace Warewolf.Studio.ViewModels.ToolBox.Tests
             Assert.IsNull(value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestActivityType()
         {
             //arrange
@@ -138,7 +147,8 @@ namespace Warewolf.Studio.ViewModels.ToolBox.Tests
             Assert.AreEqual(name, value.GetData(formats[0]));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestActivityTypeFlowDecision()
         {
             //arrange
@@ -156,7 +166,8 @@ namespace Warewolf.Studio.ViewModels.ToolBox.Tests
             Assert.AreEqual(name, value.GetData(formats[0]));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestActivityTypeFlowSwitchString()
         {
             //arrange
@@ -174,7 +185,8 @@ namespace Warewolf.Studio.ViewModels.ToolBox.Tests
             Assert.AreEqual(name, value.GetData(formats[0]));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestIsEnabledfalse()
         {
             //act
@@ -184,7 +196,8 @@ namespace Warewolf.Studio.ViewModels.ToolBox.Tests
             Assert.IsFalse(value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestIsEnabledtrue()
         {
             //arrange

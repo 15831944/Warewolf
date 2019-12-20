@@ -17,21 +17,22 @@ using System.Xml.Linq;
 using ChinhDo.Transactions;
 using Dev2.Common.Common;
 using Dev2.Common.ExtMethods;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Common.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ExtensionMethodsTest
     {
 
         // ReturnAsTagSet
 
         
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_ToByteArray_WhenValidString_ExpectValidBytes()
         {
             //------------Setup for test--------------------------
@@ -48,9 +49,9 @@ namespace Dev2.Common.Tests
         }
         
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_ToObservableCollection_WhenIEnumableContainsData_ExpectCollection()
         {
             //------------Setup for test--------------------------
@@ -65,9 +66,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual("bar", result[1]);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_ToObservableCollection_WhenIEnumableContainsNothing_ExpectEmptyCollection()
         {
             //------------Setup for test--------------------------
@@ -81,9 +82,9 @@ namespace Dev2.Common.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_ElementStringSafe_WhenElementExist_ExpectElement()
         {
             //------------Setup for test--------------------------
@@ -99,9 +100,9 @@ namespace Dev2.Common.Tests
             StringAssert.Contains(result, "<y>y value</y>");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_ElementStringSafe_WhenElementDoesNotExist_ExpectEmptyString()
         {
             //------------Setup for test--------------------------
@@ -118,9 +119,9 @@ namespace Dev2.Common.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_ElementSafeStringBuilder_WhenElementExist_ExpectElement()
         {
             //------------Setup for test--------------------------
@@ -136,9 +137,9 @@ namespace Dev2.Common.Tests
             StringAssert.Contains(result.ToString(), "y");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_ElementSafeStringBuilder_WhenElementDoesNotExist_ExpectEmptyString()
         {
             //------------Setup for test--------------------------
@@ -154,9 +155,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(result.ToString(), string.Empty);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_ElementSafe_WhenElementExist_ExpectElement()
         {
             //------------Setup for test--------------------------
@@ -172,9 +173,9 @@ namespace Dev2.Common.Tests
             StringAssert.Contains(result, "y");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_ElementSafe_WhenElementDoesNotExist_ExpectEmptyString()
         {
             //------------Setup for test--------------------------
@@ -190,9 +191,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(result, string.Empty);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_AttributeSafe_WhenAttributeExist_ExpectAttributeValue()
         {
             //------------Setup for test--------------------------
@@ -208,9 +209,9 @@ namespace Dev2.Common.Tests
             StringAssert.Contains(result, "bar");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_AttributeSafe_WhenAttributeDoesNotExist_ExpectEmptyString()
         {
             //------------Setup for test--------------------------
@@ -227,9 +228,9 @@ namespace Dev2.Common.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_EncodeForXmlDocument_WhenValidUTF8XmlDocument_ExpectStream()
         {
             //------------Setup for test--------------------------
@@ -246,9 +247,9 @@ namespace Dev2.Common.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_EncodeForXmlDocument_WhenValidUnicodeXmlDocument_ExpectStream()
         {
             //------------Setup for test--------------------------
@@ -267,9 +268,9 @@ namespace Dev2.Common.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         [ExpectedException(typeof(XmlException))]
         public void ExtensionMethods_EncodeForXmlDocument_WhenInvalidXmlDocument_ExpectException()
         {
@@ -281,9 +282,9 @@ namespace Dev2.Common.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_GetAllMessages_WhenUnrollingException_ExpectFullExceptionList()
         {
             //------------Setup for test--------------------------
@@ -299,9 +300,9 @@ namespace Dev2.Common.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_IsEqual_WhenComparingTwoStringBuilder_ExpectFalse()
         {
             //------------Setup for test--------------------------
@@ -314,9 +315,9 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_IsEqual_WhenComparingTwoStringBuilder_ExpectTrue()
         {
             //------------Setup for test--------------------------
@@ -329,9 +330,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_IsEqual_WhenComparingTwoStringBuilderNotTheSame_ExpectFalse()
         {
             //------------Setup for test--------------------------
@@ -344,9 +345,9 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_ToStringBuilder_XElement_ExpectStringBuilder()
         {
             //------------Setup for test--------------------------
@@ -360,9 +361,9 @@ namespace Dev2.Common.Tests
             StringAssert.Contains(result.ToString(), expected);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_WriteToFile_WhenSavingStringBuilderToFileWithExistingDataThatIsShorter_ExpectSavedFileWithNoMangle()
         {
             //------------Setup for test--------------------------
@@ -384,9 +385,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(val, result, "WriteToFile did not truncate");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_WriteToFile_RollbackIfError()
         {
             //------------Setup for test--------------------------
@@ -409,9 +410,9 @@ namespace Dev2.Common.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_WriteToFile_WhenSavingStringBuilder_ExpectSavedFile()
         {
             //------------Setup for test--------------------------
@@ -432,9 +433,9 @@ namespace Dev2.Common.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_CleanEncodingHeaderForXmlSave_WhenSavingXElement_ExpectEncodingHeaderRemoved()
         {
             //------------Setup for test--------------------------
@@ -458,9 +459,9 @@ namespace Dev2.Common.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         [ExpectedException(typeof(XmlException))]
         public void ExtensionMethods_ToStreamForXmlLoad_WhenLoadingXElement_ExpectException()
         {
@@ -472,9 +473,9 @@ namespace Dev2.Common.Tests
             value.ToXElement();
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_ToStreamForXmlLoad_WhenLoadingXElement_ExpectValidXElement()
         {
             //------------Setup for test--------------------------
@@ -490,9 +491,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(val, result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_IndexOf_WhenStringBuilderContainsValue_ExpectValidIndex()
         {
             //------------Setup for test--------------------------
@@ -505,9 +506,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(2, result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_IndexOf_WhenStringBuilderDoesNotContainValue_ExpectNegativeIndex()
         {
             //------------Setup for test--------------------------
@@ -520,9 +521,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(-1, result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_IndexOf_WhenStringBuilderDoesNotContainValueAndCaseMatchOn_ExpectNegativeIndex()
         {
             //------------Setup for test--------------------------
@@ -535,9 +536,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(-1, result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_IndexOf_WhenStringBuilderDoesContainValueAndIndexIsAfter_ExpectNegativeIndex()
         {
             //------------Setup for test--------------------------
@@ -550,9 +551,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(-1, result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_Substring_WhenStartAndEndInBound_ExpectString()
         {
             //------------Setup for test--------------------------
@@ -565,9 +566,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual("a ", result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_Substring_WhenStartAndEndInBoundAndNotStartingAtZero_ExpectString()
         {
             //------------Setup for test--------------------------
@@ -580,9 +581,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual("b c", result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void ExtensionMethods_Substring_WhenStartAndEndOutOfBound_ExpectString()
         {
@@ -595,9 +596,9 @@ namespace Dev2.Common.Tests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_Contains_WhenSubstringIsContained_ExpectTrue()
         {
             //------------Setup for test--------------------------
@@ -610,9 +611,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_Contains_WhenSubstringIsNotContained_ExpectFalse()
         {
             //------------Setup for test--------------------------
@@ -625,9 +626,9 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_Unescape_WhenEscapedXmlString_ExpectUnescapedStringBuilder()
         {
             //------------Setup for test--------------------------
@@ -640,9 +641,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual("<x>this \" is' & neat</x>", result.ToString());
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_Unescape_WhenNormalString_ExpectSameStringBuilder()
         {
             //------------Setup for test--------------------------
@@ -655,9 +656,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual("twigs are snail broad swords", result.ToString());
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_LastIndexOf_WhenNormalString_ExpectLastIndex()
         {
             //------------Setup for test--------------------------
@@ -670,9 +671,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(28, result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_LastIndexOf_WhenNormalStringWithCaseIgnore_ExpectLastIndex()
         {
             //------------Setup for test--------------------------
@@ -685,9 +686,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(28, result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_LastIndexOf_WhenNormalStringInMiddle_ExpectLastIndex()
         {
             //------------Setup for test--------------------------
@@ -701,9 +702,9 @@ namespace Dev2.Common.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_ExtractXmlAttributeFromUnsafeXml_WhenAttributePresent_ExpectAttributeValue()
         {
             //------------Setup for test--------------------------
@@ -716,9 +717,9 @@ namespace Dev2.Common.Tests
             StringAssert.Contains("bug11827src", result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_ExtractXmlAttributeFromUnsafeXml_WhenAttributeNotPresent_ExpectEmptyString()
         {
             //------------Setup for test--------------------------
@@ -731,9 +732,9 @@ namespace Dev2.Common.Tests
             StringAssert.Contains(string.Empty, result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_ExtractXmlAttributeFromUnsafeXml_WhenAttributePresentAndEndTagInvalid_ExpectEmptyString()
         {
             //------------Setup for test--------------------------
@@ -746,9 +747,9 @@ namespace Dev2.Common.Tests
             StringAssert.Contains(string.Empty, result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_IsNullOrEmpty_NullStringBuilder_True()
         {
             //------------Setup for test--------------------------
@@ -761,9 +762,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(isNullOrEmpty);
         }
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_IsNullOrEmpty_EmptyStringBuilder_True()
         {
             //------------Setup for test--------------------------
@@ -776,9 +777,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(isNullOrEmpty);
         }   
     
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_IsNullOrEmpty_NullStringStringBuilder_True()
         {
             //------------Setup for test--------------------------
@@ -791,9 +792,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(isNullOrEmpty);
         } 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_IsNullOrEmpty_NonEmptyStringBuilder_False()
         {
             //------------Setup for test--------------------------
@@ -806,9 +807,9 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(isNullOrEmpty);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_ToStringBuilder_String_StringBuilder()
         {
             //------------Setup for test--------------------------
@@ -820,9 +821,9 @@ namespace Dev2.Common.Tests
             StringAssert.Contains(stringBuilder.ToString(),myString);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_EscapeString_SBString_IsNull_ExpectNull()
         {
             //------------Setup for test--------------------------
@@ -832,9 +833,9 @@ namespace Dev2.Common.Tests
             Assert.IsNull(escapeString);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_EscapeString_SBString_IsNotNull_ExpectSuccess()
         {
             //------------Setup for test--------------------------
@@ -845,9 +846,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual("&lt;Action Name=&quot;bug11827service&quot; Type=&quot;InvokeWebService&quot; SourceID=&quot;fd54cecb-eebf-485a-aff7-e97835853c93&quot; SourceName=&quot;bug11827src&quot; SourceMethod=&quot;&quot; RequestUrl=&quot;&quot; RequestMethod=&quot;Get&quot; JsonPath=&quot;&quot;&gt;", escapeString);
         }
         
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_UnescapeString_SBString_IsNull_ExpectNull()
         {
             //------------Setup for test--------------------------
@@ -857,9 +858,9 @@ namespace Dev2.Common.Tests
             Assert.IsNull(escapeString);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_UnescapeString_SBString_IsNotNull_ExpectSuccess()
         {
             //------------Setup for test--------------------------
@@ -871,9 +872,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(value, unEscapeString);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_LastIndexOf_WithoutSameChar_ExpectFail()
         {
             //------------Setup for test--------------------------
@@ -884,9 +885,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(-1, lastIndexOf);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_LastIndexOf_WithSameChar_ExpectSuccess()
         {
             //------------Setup for test--------------------------
@@ -897,9 +898,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(0, lastIndexOf);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_LastIndexOf_StartIndexSetter_WithSameChar_ExpectSuccess()
         {
             //------------Setup for test--------------------------
@@ -910,9 +911,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(0, lastIndexOf);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_LastIndexOf_StartIndexSetter_IgnoreCase_WithSameChar_ExpectSuccess()
         {
             //------------Setup for test--------------------------
@@ -923,9 +924,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(0, lastIndexOf);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_LastIndexOf_StartIndexSetter_IgnoreCase_False_WithSameChar_ExpectFail()
         {
             //------------Setup for test--------------------------
@@ -936,9 +937,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(-1, lastIndexOf);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_LastIndexOf_StartIndexSetter_IgnoreCase_False_WithSameChar_ExpectSuccess()
         {
             //------------Setup for test--------------------------
@@ -949,9 +950,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(4, lastIndexOf);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_IsValidXml_InputIsNotXml_ExpectFail()
         {
             //------------Setup for test--------------------------
@@ -961,9 +962,9 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(isValidXml);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_IsValidXml_InputIsInValidXml_ExpectFail()
         {
             //------------Setup for test--------------------------
@@ -973,9 +974,9 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(isValidXml);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_IsValidXml_InputIsValidXml_ExpectSuccess()
         {
             //------------Setup for test--------------------------
@@ -991,9 +992,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(isValidXml);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_IsValidJson_InputIsValidJson_ExpectSuccess()
         {
             //------------Setup for test--------------------------
@@ -1015,9 +1016,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(isValidJson);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_IsValidJson_InputIsInValidJson_ExpectFail()
         {
             //------------Setup for test--------------------------
@@ -1039,9 +1040,9 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(isValidJson);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExtensionMethods))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExtensionMethods))]
         public void ExtensionMethods_IsValidJson_InputIsInValidJsonChar_ExpectFail()
         {
             //------------Setup for test--------------------------
@@ -1071,8 +1072,8 @@ namespace Dev2.Common.Tests
              List<Person> Ps { get; set; }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DeepCopy_GivenPesron_ShouldCopy()
         {
             //---------------Set up test pack-------------------

@@ -10,16 +10,17 @@
 
 using System;
 using Dev2.Common.Interfaces.Scheduler.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Scheduler.Test
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class EventInfoTest
     {
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskSheduler_EventInfo_Test")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskSheduler_EventInfo_Test")]
         public void TaskSheduler_EventInfo_ShouldconstructCorrectly()
         {
 

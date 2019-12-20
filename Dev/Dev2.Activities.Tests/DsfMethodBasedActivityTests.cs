@@ -14,7 +14,7 @@ using Dev2.Common.Interfaces.DB;
 using Dev2.DynamicServices;
 using Dev2.Interfaces;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -23,12 +23,13 @@ using Warewolf.Storage;
 
 namespace Dev2.Tests.Activities
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfMethodBasedActivityTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfMethodBasedActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfMethodBasedActivity))]
         public void DsfMethodBasedActivity_Inputs_Null_ExpectZeroListsCount()
         {
             //-------------------Arrange------------------------
@@ -49,9 +50,9 @@ namespace Dev2.Tests.Activities
             Assert.AreEqual(0, itrCollection.FieldCount);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfMethodBasedActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfMethodBasedActivity))]
         public void DsfMethodBasedActivity_Inputs_NotNull_Name_NotNull_ExpectListsCountNonZero()
         {
             //-------------------Arrange------------------------
@@ -81,9 +82,9 @@ namespace Dev2.Tests.Activities
             Assert.AreEqual(dataListID, mockDSFDataObject.Object.DataListID);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfMethodBasedActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfMethodBasedActivity))]
         public void DsfMethodBasedActivity_Inputs_NotNull_Name_Null_ExpectListsCountNonZero()
         {
             //-------------------Arrange------------------------

@@ -18,12 +18,13 @@ using Dev2.Common;
 using Dev2.Common.State;
 using Dev2.Interfaces;
 using Dev2.Utilities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
-    [TestClass]    
+    [TestFixture]
+    [SetUpFixture]    
     public class MultiAssignActivityTest : BaseActivityUnitTest
     {
         public TestContext TestContext { get; set; }
@@ -35,7 +36,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         #region MultiAssign Functionality Tests
 
-        [TestMethod]
+        [Test]
         public void AssignRecordSetWithEvaluatedSingleExpression()
         {
             var fieldCollection = new ObservableCollection<ActivityDTO>();
@@ -55,7 +56,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
+        [Test]
         public void RecursiveEvaluation()
         {
             var fieldCollection = new ObservableCollection<ActivityDTO>();
@@ -100,7 +101,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void AssignRecordSetWithEvaluatedDoubleExpressionSameRecordSet()
         {
             var fieldCollection = new ObservableCollection<ActivityDTO>();
@@ -123,7 +124,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void AssignRecordSetWithEvaluatedSingleExpressionMultRecords()
         {
             var fieldCollection = new ObservableCollection<ActivityDTO>();
@@ -143,7 +144,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void AssignRecordSetWithEvaluatedDoubleExpressionMultRecords()
         {
             var fieldCollection = new ObservableCollection<ActivityDTO>();
@@ -167,7 +168,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void AssignRecordSetWithEvaluatedRecursiveRightSingleAssignMultRecords()
         {
             var fieldCollection = new ObservableCollection<ActivityDTO>();
@@ -193,7 +194,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void AssignRecordSetWithEvaluatedMultLeftIndexInBoundsExpressionMultRecords()
         {
             var fieldCollection = new ObservableCollection<ActivityDTO>();
@@ -217,7 +218,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         // -- End New
 
-        [TestMethod]
+        [Test]
         public void MultiAssignTenAtOnce_Expected_MultiAssignCorrectlySetsAllScalarValues()
         {
             var fieldCollection = new ObservableCollection<ActivityDTO>();
@@ -235,7 +236,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void MultiAssignWithAnEmptyField_Expected_FieldInDataListNotAssignedValue()
         {
             var fieldCollection = new ObservableCollection<ActivityDTO>();
@@ -255,7 +256,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsTrue(actual == string.Empty);
         }
 
-        [TestMethod]
+        [Test]
         public void MultiAssignWithAnEmptyValue_Expected_FieldInDataListNotAssignedValue()
         {
             var fieldCollection = new ObservableCollection<ActivityDTO>();
@@ -276,7 +277,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsTrue(actual == string.Empty);
         }
 
-        [TestMethod]
+        [Test]
         public void MultiAssignWithSpecialCharsInValue()
         {
             var fieldCollection = new ObservableCollection<ActivityDTO>();
@@ -297,7 +298,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void MutiAssignWithAddingOneRecSets()
         {
             var fieldCollection = new ObservableCollection<ActivityDTO>();
@@ -318,7 +319,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void MutiAssignWithAddingTenRecSets_Expected_RecordSetPopulatedToIndex()
         {
             var fieldCollection = new ObservableCollection<ActivityDTO>();
@@ -339,7 +340,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             CollectionAssert.AreEqual(expected, actual, new ActivityUnitTests.Utils.StringComparer());
         }
 
-        [TestMethod]
+        [Test]
         public void MutiAssignWithEditingExistingRecSets_Expected_RecordSetDataOverwritten()
         {
             var fieldCollection = new ObservableCollection<ActivityDTO>();
@@ -360,7 +361,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void ScalarInRecordset_Expected_MultiAssignCorrectlyIdentifiesField()
         {
 
@@ -387,7 +388,7 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
+        [Test]
         public void AssignRecordSetWithAppendRecordAndNoExistingRecordExpectedRecordInFirst()
         {
             var fieldCollection = new ObservableCollection<ActivityDTO>();
@@ -410,7 +411,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("New Value", actual[0]);
         }
 
-        [TestMethod]
+        [Test]
         public void MutiAssignWithCalculationOnBlankRecordSetExpectedCalculationReplacesBlankWithZero()
         {
             var fieldCollection = new ObservableCollection<ActivityDTO>();
@@ -436,7 +437,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void MultiAssignWithAppendCalculationToSameBlankRecordSetAndBlankIndexExpectedValueInFirst()
         {
             var fieldCollection = new ObservableCollection<ActivityDTO>();
@@ -461,7 +462,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             CollectionAssert.AreEqual(expected, actual, new ActivityUnitTests.Utils.StringComparer());
         }
 
-        [TestMethod]
+        [Test]
         public void MutiAssignWithAppendCalculationToSameBlankRecordSetAndStaredIndexExpectedValueInFirst()
         {
             var fieldCollection = new ObservableCollection<ActivityDTO>();
@@ -487,7 +488,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             CollectionAssert.AreEqual(expected, actual, new ActivityUnitTests.Utils.StringComparer());
         }
 
-        [TestMethod]
+        [Test]
         public void MutiAssignWithImpliedConcatenationExpectedCorrectSetsScalarValue()
         {
             var fieldCollection = new ObservableCollection<ActivityDTO>();
@@ -511,7 +512,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void MutiAssignWithExplicitConcatenationExpectedCorrectSetsScalarValue()
         {
             var fieldCollection = new ObservableCollection<ActivityDTO>();
@@ -538,7 +539,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         #region Language Tests
 
-        [TestMethod]
+        [Test]
         public void StarToStar_Expected_AllValuesOverwrittenWithRecordSetFrom()
         {
 
@@ -580,7 +581,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             CollectionAssert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Star_To_NoIndex_Expected_ValuesAppendedToRecordSet()
         {
 
@@ -613,7 +614,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
+        [Test]
         public void NoIndex_To_Star_LastValueOverwritesAllCurrentDataListValues()
         {
             var fieldCollection = new ObservableCollection<ActivityDTO>();
@@ -646,7 +647,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Value10", actual[0]);
         }
 
-        [TestMethod]
+        [Test]
         public void Index_To_Star_Expected_AllValuesOverwrittenByIndexValue()
         {
             var fieldCollection = new ObservableCollection<ActivityDTO>();
@@ -684,7 +685,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             CollectionAssert.AreEqual(expected, actual, new ActivityUnitTests.Utils.StringComparer());
         }
 
-        [TestMethod]
+        [Test]
         public void Star_To_Index_Expected_IndexSetToLastValueOfAssignedRecordSet()
         {
 
@@ -717,7 +718,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void StarToScalar_Expected_ScalarSetToLastValueInRecordSet()
         {
 
@@ -747,9 +748,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfBaseActivity_GetOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfBaseActivity_GetOutputs")]
         public void DsfBaseActivity_GetOutputs_Called_ShouldReturnListWithResultValueInIt()
         {
             //------------Setup for test--------------------------
@@ -765,7 +766,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("[[gRec(2).opt]]", outputs[1]);
         }
 
-        [TestMethod]
+        [Test]
         public void RecursiveEvaluateRecordset_WhenDataContainsQuotes_ShouldEvaluateWithoutExtraEscaping()
         {
 
@@ -789,7 +790,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("some value \"testData\" another", actual[1]);
         }
 
-        [TestMethod]
+        [Test]
         public void RecursiveEvaluateScalar_WhenDataContainsQuotes_ShouldEvaluateWithoutExtraEscaping()
         {
 
@@ -817,7 +818,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         #region Calculate Mode Tests
 
-        [TestMethod]
+        [Test]
         public void MutiAssign_CalculateMode_PrefixEncasing_Test()
         {
             var fieldCollection = new ObservableCollection<ActivityDTO>();
@@ -838,7 +839,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void MutiAssign_CalculateMode_SuffixEncasing_Test()
         {
             var fieldCollection = new ObservableCollection<ActivityDTO>();
@@ -860,7 +861,7 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
         // changed this test to faciliate the existing evaluate approach, hence the expected is now "" not 5
-        [TestMethod]
+        [Test]
         public void MutiAssign_CalculateMode_ValidEncasing_Test()
         {
             var fieldCollection = new ObservableCollection<ActivityDTO>();
@@ -882,7 +883,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void MutiAssign_CalculateMode_ValidComplexExpression()
         {
             var fieldCollection = new ObservableCollection<ActivityDTO>();
@@ -904,7 +905,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
             Assert.AreEqual(expected, actual);
         }
-        [TestMethod]
+        [Test]
         public void MutiAssign_ErrorHandeling_Expected_ErrorTag()
         {
             var fieldCollection = new ObservableCollection<ActivityDTO>();
@@ -926,9 +927,9 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         #region ForEach Update/Get Inputs/Outputs
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DsfMultiAssignActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DsfMultiAssignActivity_UpdateForEachInputs")]
         public void DsfMultiAssignActivity_UpdateForEachInputs_WhenContainsMatchingStarAndOtherData_UpdateSuccessful()
         {
             //------------Setup for test--------------------------
@@ -953,9 +954,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("[[rs(1).val]] [[result]]", collection[0].FieldValue);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DsfMultiAssignActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DsfMultiAssignActivity_UpdateForEachInputs")]
         public void DsfMultiAssignActivity_UpdateForEachInputs_WhenContainsMatchingStar_UpdateSuccessful()
         {
             //------------Setup for test--------------------------
@@ -980,9 +981,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("[[rs(1).val]]", collection[0].FieldValue);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DsfMultiAssignActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DsfMultiAssignActivity_UpdateForEachOutputs")]
         public void DsfMultiAssignActivity_UpdateForEachOutputs_WhenContainsMatchingStar_UpdateSuccessful()
         {
             //------------Setup for test--------------------------
@@ -1007,9 +1008,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("[[rs(1).val]]", collection[0].FieldName);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DsfMultiAssignActivity_GetForEachInputs")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DsfMultiAssignActivity_GetForEachInputs")]
         public void DsfMultiAssignActivity_GetForEachInputs_Normal_UpdateSuccessful()
         {
             //------------Setup for test--------------------------
@@ -1030,9 +1031,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("[[result]]", inputs[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DsfMultiAssignActivity_GetForEachOutputs")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DsfMultiAssignActivity_GetForEachOutputs")]
         public void DsfMultiAssignActivity_GetForEachOutputs_Normal_UpdateSuccessful()
         {
             //------------Setup for test--------------------------
@@ -1053,9 +1054,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("[[result]]", inputs[0].Name);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("DsfMultiAssignActivity_GetForEachOutputs")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("DsfMultiAssignActivity_GetForEachOutputs")]
         public void DsfMultiAssignActivity_GetState_Returns_Input_And_Outputs()
         {
             //------------Setup for test--------------------------

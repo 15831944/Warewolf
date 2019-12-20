@@ -10,17 +10,18 @@
 
 using Dev2.TO;
 using Dev2.Validation;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Activities.Validation
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class IsValidJsonCreateMappingInputRuleTests
     {
-        [TestMethod]
-        [Owner("Kerneels Roos")]
-        [TestCategory("IsValidJsonCreateMappingInputRule_Check")]
+        [Test]
+        [Author("Kerneels Roos")]
+        [Category("IsValidJsonCreateMappingInputRule_Check")]
         public void IsValidJsonCreateMappingInputRule_RaiseError()
         {
             //------------Setup for test--------------------------
@@ -31,9 +32,9 @@ namespace Dev2.Tests.Activities.Validation
             Assert.IsNotNull(errorInfo);
         }
 
-        [TestMethod]
-        [Owner("Kerneels Roos")]
-        [TestCategory("IsValidJsonCreateMappingInputRule_Check")]
+        [Test]
+        [Author("Kerneels Roos")]
+        [Category("IsValidJsonCreateMappingInputRule_Check")]
         public void IsValidJsonCreateMappingInputRule_RaisesNoError()
         {
             //------------Setup for test--------------------------

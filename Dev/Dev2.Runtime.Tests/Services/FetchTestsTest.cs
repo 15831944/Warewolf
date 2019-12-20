@@ -8,18 +8,19 @@ using Dev2.Data;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FetchTestsTest
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetResourceID_GivenArgsWithResourceId_ShouldReturnResourceId()
         {
             //------------Setup for test--------------------------
@@ -38,9 +39,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(resId, resourceID);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -52,9 +53,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -66,9 +67,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(AuthorizationContext.Contribute, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("FetchTests_HandlesType")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("FetchTests_HandlesType")]
         public void FetchTests_HandlesType_ExpectName()
         {
             //------------Setup for test--------------------------
@@ -81,9 +82,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("FetchTests", fetchTests.HandlesType());
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("FetchTests_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("FetchTests_Execute")]
         public void FetchTests_Execute_NullValues_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -96,9 +97,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(result.HasError);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("FetchTests_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("FetchTests_Execute")]
         public void FetchTests_Execute_ResourceIDNotPresent_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -112,9 +113,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(result.HasError);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("FetchTests_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("FetchTests_Execute")]
         public void FetchTests_Execute_ResourceIDNotGuid_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -129,9 +130,9 @@ namespace Dev2.Tests.Runtime.Services
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("FetchTests_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("FetchTests_Execute")]
         public void FetchTests_Execute_ExpectTestList()
         {
             //------------Setup for test--------------------------

@@ -13,18 +13,19 @@ using Dev2.Activities.Designers2.DeleteRecords;
 using Dev2.Common.Interfaces.Help;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Activities.Designers.Tests.DeleteRecords
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DeleteRecordsDesignerViewModelTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DeleteRecordsDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DeleteRecordsDesignerViewModel))]
         public void DeleteRecordsDesignerViewModel_ShouldCall_UpdateHelpDescriptor()
         {
             //------------Setup for test--------------------------

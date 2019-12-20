@@ -14,7 +14,7 @@ using Dev2.Data.MathOperations;
 using Dev2.MathOperations;
 using Infragistics.Calculations.CalcManager;
 using Infragistics.Calculations.Engine;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Tests.MathOperationTest
@@ -22,7 +22,8 @@ namespace Dev2.Tests.MathOperationTest
     /// <summary>
     /// Summary description for FunctionTest
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FunctionTest
     {
         /// <summary>
@@ -36,7 +37,7 @@ namespace Dev2.Tests.MathOperationTest
         // You can use the following additional attributes as you write your tests:
         //
         // Use ClassInitialize to run code before running the first test in the class
-        // [ClassInitialize()]
+        // [OneTimeSetUp]
         // public static void MyClassInitialize(TestContext testContext) { }
         //
         // Use ClassCleanup to run code after all tests in a class have run
@@ -55,7 +56,7 @@ namespace Dev2.Tests.MathOperationTest
 
         #region Ctor
 
-        [TestMethod]
+        [Test]
         public void Function_AllInputsValid_Expected_ValidFunctionCreated()
         {
             const string functionName = "Test Function";
@@ -67,7 +68,7 @@ namespace Dev2.Tests.MathOperationTest
             Assert.IsNotNull(func);
         }
 
-        [TestMethod]
+        [Test]
         public void Function_NullFunctionName_Expected_ExceptionReturned()
         {
             var arguments = new List<string>();
@@ -84,7 +85,7 @@ namespace Dev2.Tests.MathOperationTest
             }
         }
 
-        [TestMethod]
+        [Test]
         public void Function_NullListOfArguments_Expected_EmptyListofArguments()
         {
             const string functionName = "Test Function";
@@ -94,7 +95,7 @@ namespace Dev2.Tests.MathOperationTest
             Assert.AreEqual(0, func.arguments.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void Function_NullDescription_Expected_EmptyDescription()
         {
             const string functionName = "Test Function";
@@ -105,7 +106,7 @@ namespace Dev2.Tests.MathOperationTest
             Assert.IsTrue(func.Description.Equals(string.Empty));
         }
 
-        [TestMethod]
+        [Test]
         public void Function_NullDescriptionAndArguments_Expected_FunctionStillCreated()
         {
             const string functionName = "Test Function";
@@ -119,7 +120,7 @@ namespace Dev2.Tests.MathOperationTest
         #region CreateCustomFunction Test
 
 
-        [TestMethod]
+        [Test]
         public void CreateCustomFunction_AllValidValues_Expected_CustomFunctionCreatedAndRegisteredWithCalcManager()
         {
             const string functionName = "TestFunction";
@@ -136,7 +137,7 @@ namespace Dev2.Tests.MathOperationTest
             Assert.AreEqual(123123423423, value.ToDouble());
         }
 
-        [TestMethod]
+        [Test]
         public void CreateCustomFunction_NullXamCalculationManager_Expected_ExceptionReturned()
         {
             const string functionName = "TestFunction";
@@ -157,7 +158,7 @@ namespace Dev2.Tests.MathOperationTest
             }
         }
 
-        [TestMethod]
+        [Test]
         public void CreateCustomFunction_NullFunc_Expected_ExceptionReturned()
         {
             const string functionName = "TestFunction";
@@ -174,7 +175,7 @@ namespace Dev2.Tests.MathOperationTest
 
         }
 
-        [TestMethod]
+        [Test]
         public void CreateCustomFunction_NullArgumentDescription_Expected_ExceptionReturned()
         {
             const string functionName = "TestFunction";

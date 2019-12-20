@@ -25,7 +25,7 @@ using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Core.Messages;
 using Dev2.Studio.Interfaces;
 using Dev2.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
@@ -37,9 +37,10 @@ namespace Warewolf.Studio.ViewModels.Tests
     partial class ServiceTestViewModelTests
     {
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServiceTestViewModel_PopulateFromDebug")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("ServiceTestViewModel_PopulateFromDebug")]
         public void ServiceTestViewModel_PopulateFromDebug_WithError_ShouldSetTestToExpectErrorWithDebugErrorMessage()
         {
             //------------Setup for test--------------------------
@@ -75,9 +76,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual("Error in Debug", testFrameworkViewModel.SelectedServiceTest.ErrorContainsText);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServiceTestViewModel_PopulateFromDebug")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("ServiceTestViewModel_PopulateFromDebug")]
         public void ServiceTestViewModel_PopulateFromDebug_WithNoError_ShouldSetTestToExpectNoErrorWithDebugErrorMessage()
         {
             //------------Setup for test--------------------------
@@ -114,10 +116,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual("", testFrameworkViewModel.SelectedServiceTest.ErrorContainsText);
         }
 
-
-        [TestMethod,Timeout(60000)]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("ServiceTestViewModel_PopulateFromDebug")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Pieter Terblanche")]
+        [NUnit.Framework.Category("ServiceTestViewModel_PopulateFromDebug")]
         public void ServiceTestViewModel_PopulateFromDebug_WithNoError_UpdateInputs()
         {
             //------------Setup for test--------------------------
@@ -166,8 +168,9 @@ namespace Warewolf.Studio.ViewModels.Tests
         }
 
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         [DeploymentItem("JsonResources\\DebugStates.json", "JsonResources")]
         public void PrepopulateTestsUsingDebug_DebugItemDesicion_ShouldHaveAddServiceTestStep()
         {
@@ -215,8 +218,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         [DeploymentItem("JsonResources\\DebugStates.json", "JsonResources")]
         public void PrepopulateTestsUsingDebug_DebugIDesicion_ShouldHaveAddServiceTestStepShouldHaveArmOptions()
         {
@@ -262,8 +266,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             StringAssert.Contains("DsfMultiAssignActivity", testFrameworkViewModel.SelectedServiceTest.TestSteps[0].ActivityType);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         [DeploymentItem("JsonResources\\DebugStates.json", "JsonResources")]
         public void AddChildDebugItems_GivenTestStepNotContainsStep_ShouldAddStep()
         {
@@ -319,8 +324,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(contains);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         [DeploymentItem("JsonResources\\DebugStatesWithMockAssign.json", "JsonResources")]
         public void AddChildDebugItems_GivenMockStep_ShouldAddStep()
         {
@@ -365,8 +371,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual(2, testFrameworkViewModel.SelectedServiceTest.TestSteps.Count);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         [DeploymentItem("JsonResources\\DebugStates.json", "JsonResources")]
         public void AddChildDebugItems_GivenTestStepContainsStep_ShouldNotAddStep()
         {
@@ -422,8 +429,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual(1, testSteps.Count);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         [DeploymentItem("JsonResources\\DebugStates.json", "JsonResources")]
         public void AddChildDebugItems_GivenDecision_ShouldNotAddStepFromDebugState()
         {
@@ -493,8 +501,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             return jsonDataFile;
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         [DeploymentItem("JsonResources\\DebugStates.json", "JsonResources")]
         [DeploymentItem("JsonResources\\sequenceState.json", "JsonResources")]
         public void AddChildDebugItems_GivenSequence_ShouldAddtestStepFromDebugState()
@@ -556,8 +565,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual(StepType.Assert, serviceTestSteps[0].Type);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         [DeploymentItem("JsonResources\\DebugStates.json", "JsonResources")]
         public void SwitchFromDebug_GivenDebugState_ShouldAddtestStepFromDebugState()
         {
@@ -613,8 +623,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             //---------------Test Result -----------------------
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         [DeploymentItem("JsonResources\\DotnetllDebugStates.json", "JsonResources")]
         [DeploymentItem("JsonResources\\dotnetDllState.json", "JsonResources")]
         public void EnhancedDotNetDllFromDebug_GivenDebugState_ShouldAddtestStepFromDebugState()
@@ -673,8 +684,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(childCount);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         [DeploymentItem("JsonResources\\DebugStates.json", "JsonResources")]
         [DeploymentItem("JsonResources\\sequenceState.json", "JsonResources")]
         public void AddChildDebugItems_GivenSequenceWithChildren_ShouldAddStepWithOutputsFromDebugState()
@@ -728,8 +740,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             methodInfo.Invoke(testFrameworkViewModel, new object[] { sequenceSate, seq, default(IServiceTestStep) });
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         [DeploymentItem("JsonResources\\DebugStates.json", "JsonResources")]
         public void SetInputs_GivenDebugStates_ShouldAddTestInputValues()
         {
@@ -768,8 +781,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual("Nathi", testFrameworkViewModel.SelectedServiceTest.Inputs.First().Value);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         [DeploymentItem("JsonResources\\DebugStates.json", "JsonResources")]
         public void SetOutputs_GivenDebugStates_ShouldAddTestOutput()
         {
@@ -809,8 +823,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual("Hello Nathi.", testFrameworkViewModel.SelectedServiceTest.Outputs.First().Value);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         [DeploymentItem("JsonResources\\DebugStates.json", "JsonResources")]
         public void SetOutputs_GivenDebugStatesMultipleOutputs_ShouldAddAllTestOutputs()
         {
@@ -857,8 +872,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual("var", testFrameworkViewModel.SelectedServiceTest.Outputs.Last().Variable);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void TestPassingResult_GivenIsSet_ShouldFirePropertyChanges()
         {
             //---------------Set up test pack-------------------
@@ -900,8 +916,9 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void OnStepOutputPropertyChanges_GivenIsInvoked_ShouldFirePropertyChanges()
         {
             //---------------Set up test pack-------------------
@@ -945,8 +962,9 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void ServiceTestStepGetParentType_GivenSequence_ShouldSetupServiceTestStep()
         {
             //---------------Set up test pack-------------------
@@ -988,8 +1006,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual("Dsipa", o.StepDescription);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void ServiceTestStepGetParentType_GivenDsfForEachActivity_ShouldSetupServiceTestStep()
         {
             //---------------Set up test pack-------------------
@@ -1031,8 +1050,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual("Dsipa", o.StepDescription);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void ServiceTestStepGetParentType_GivenDsfSelectAndApplyActivity_ShouldSetupServiceTestStep()
         {
             //---------------Set up test pack-------------------
@@ -1075,8 +1095,9 @@ namespace Warewolf.Studio.ViewModels.Tests
         }
 
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void AddOutputsIfHasVariable_GivenListsOutputsAndServiceTestStep_ShouldBuildServiceTestOutputs()
         {
             //---------------Set up test pack-------------------
@@ -1113,8 +1134,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual(2, invoke.Count);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void AddEnhancedDotNetDllMethod_GivenPluginActionAndStep_ShouldMap()
         {
             //---------------Set up test pack-------------------
@@ -1156,8 +1178,9 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         }
         //private void AddEnhancedDotNetDll(DsfEnhancedDotNetDllActivity dotNetDllActivity, ServiceTestStep parent, ObservableCollection<IServiceTestStep> serviceTestSteps)
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void AddEnhancedDotNetDll_GivenActions_ShouldAddChildrens()
         {
             //---------------Set up test pack-------------------
@@ -1218,8 +1241,9 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void AddOutputs_GivenNoOutputNotNull()
         {
             //---------------Set up test pack-------------------
@@ -1266,8 +1290,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual(1, testOutputs.Count);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void AddOutputs_GivenOutputNotNull()
         {
             //---------------Set up test pack-------------------
@@ -1314,8 +1339,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual(2, testOutputs.Count);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void ServiceTestStepWithOutputs_GivenBuildCorrectly()
         {
             //---------------Set up test pack-------------------
@@ -1353,8 +1379,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(invoke);
         }
         
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void RunSelectedTestInBrowser_GivenIsInvoked_ShouldFirePropertyChanges()
         {
             //---------------Set up test pack-------------------
@@ -1390,8 +1417,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             mock.Verify(executor => executor.OpenInBrowser(It.IsAny<Uri>()));
         }
         
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void MarkChildrenPending_GivenIsInvoked_ShouldSetAsPending()
         {
             //---------------Set up test pack-------------------
@@ -1414,8 +1442,9 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         [DeploymentItem("JsonResources\\DebugStates.json", "JsonResources")]
         public void ProcessInputsAndOutputs_GivenStepDebugStates_ShouldNotAdd()
         {
@@ -1455,8 +1484,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual(0, testFrameworkViewModel.SelectedServiceTest.Inputs.Count);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         [DeploymentItem("JsonResources\\DebugStates.json", "JsonResources")]
         public void ProcessInputsAndOutputs_GivenInputStepDebugStates_ShouldAddInput()
         {
@@ -1498,8 +1528,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual(1, testFrameworkViewModel.SelectedServiceTest.Inputs.Count);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         [DeploymentItem("JsonResources\\DebugStates.json", "JsonResources")]
         public void ProcessInputsAndOutputs_GivenOutputStepDebugStates_ShouldAddOutput()
         {
@@ -1542,8 +1573,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual("Hello Nathi.", testFrameworkViewModel.SelectedServiceTest.Outputs.First().Value);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         [DeploymentItem("JsonResources\\DebugStates.json", "JsonResources")]
         public void PrepopulateTestsUsingDebug_GivenWrongMessage_ShouldAddTests()
         {
@@ -1584,8 +1616,9 @@ namespace Warewolf.Studio.ViewModels.Tests
         }
 
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void PrepopulateTestsUsingDebug_GivenInCorrectMessage_ShouldThrowException()
         {
             //---------------Set up test pack-------------------
@@ -1613,8 +1646,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             //---------------Test Result -----------------------
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void RefreshCommands_ShouldUpdateDisplayName()
         {
             //---------------Set up test pack-------------------
@@ -1643,8 +1677,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(wasCalled);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void ResourceID_GivenResourceModel_ShouldReturnCorrectly()
         {
             //---------------Set up test pack-------------------
@@ -1669,8 +1704,9 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void Stoptest_GivenServiceTests_ShouldSetValuesCorrectly()
         {
             //---------------Set up test pack-------------------
@@ -1702,8 +1738,9 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void SetStepIcon_GiventypeName_ShouldSetValuesCorrectly_PassThrouth()
         {
             //---------------Set up test pack-------------------

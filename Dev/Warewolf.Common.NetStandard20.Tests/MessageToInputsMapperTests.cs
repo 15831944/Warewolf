@@ -15,19 +15,20 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Common;
 using Warewolf.Web;
 
 namespace Warewolf.Web.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class MessageToInputsMapperTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(MessageToInputsMapper))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(MessageToInputsMapper))]
         public void MessageToInputsMapper_JsonMessage_WithExactProperties_ShouldMap()
         {
             //-----------------------------Arrange------------------------------
@@ -43,9 +44,9 @@ namespace Warewolf.Web.Tests
             Assert.AreEqual(message, mappedData);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(MessageToInputsMapper))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(MessageToInputsMapper))]
         public void MessageToInputsMapper_JsonMessage_WithMappableProperties_ShouldMap()
         {
             //-----------------------------Arrange------------------------------
@@ -63,9 +64,9 @@ namespace Warewolf.Web.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(MessageToInputsMapper))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(MessageToInputsMapper))]
         public void MessageToInputsMapper_XMLMessage_WithMappableProperties_ShouldMap()
         {
             //-----------------------------Arrange------------------------------
@@ -82,9 +83,9 @@ namespace Warewolf.Web.Tests
             Assert.AreEqual(expectedString, mappedData);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(MessageToInputsMapper))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(MessageToInputsMapper))]
         public void MessageToInputsMapper_NoInputs_ShouldReturnTrue()
         {
             //-----------------------------Arrange------------------------------
@@ -98,9 +99,9 @@ namespace Warewolf.Web.Tests
             Assert.AreEqual(expectedString, mappedData);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(MessageToInputsMapper))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(MessageToInputsMapper))]
         public void MessageToInputsMapper_UnMappableData_Xml_Should_NotMap()
         {
             //-----------------------------Arrange------------------------------
@@ -117,9 +118,9 @@ namespace Warewolf.Web.Tests
             Assert.AreEqual(expectedString, mappedData);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(MessageToInputsMapper))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(MessageToInputsMapper))]
         public void MessageToInputsMapper_JsonMessage_UnMappableProperties_ShouldNotMap()
         {
             //-----------------------------Arrange------------------------------
@@ -136,9 +137,9 @@ namespace Warewolf.Web.Tests
             Assert.AreEqual(expectedString, mappedData);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(MessageToInputsMapper))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(MessageToInputsMapper))]
         public void MessageToInputsMapper_WhenMapWholeMessage_ShouldSetWholeMessageToVariable()
         {
             //-----------------------------Arrange------------------------------

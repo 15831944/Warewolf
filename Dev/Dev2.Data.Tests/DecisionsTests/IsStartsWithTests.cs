@@ -1,16 +1,17 @@
 using Dev2.Data.Decisions.Operations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests.DecisionsTests
 {
     /// <summary>
     /// Summary description for IsStartsWithTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IsStartsWithTests
     {
-        [TestMethod]
-        [Owner("Sanele Mthembu")]        
+        [Test]
+        [Author("Sanele Mthembu")]        
         public void IsStartsWith_Invoke_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -21,11 +22,11 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = startsWith.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void IsStartsWith_Invoke_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -36,12 +37,12 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = startsWith.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthmembu")]
-        [TestCategory("IsStartsWith_HandlesType")]
+        [Test]
+        [Author("Sanele Mthmembu")]
+        [Category("IsStartsWith_HandlesType")]
         public void IsStartsWith_HandlesType_ReturnsNotStartWithType()
         {
             var startsWith = enDecisionType.IsStartsWith;
@@ -49,7 +50,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             var isStartsWith = new IsStartsWith();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.AreEqual(startsWith, isStartsWith.HandlesType());
+            NUnit.Framework.Assert.AreEqual(startsWith, isStartsWith.HandlesType());
         }
     }
 }

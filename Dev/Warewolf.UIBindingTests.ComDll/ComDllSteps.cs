@@ -12,13 +12,13 @@ using Dev2.Common.Interfaces.DB;
 using Dev2.Interfaces;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Studio.Core.Activities.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using TechTalk.SpecFlow;
 using Unlimited.Framework.Converters.Graph.Ouput;
 using Warewolf.Core;
 using Warewolf.Storage.Interfaces;
 using static System.String;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Warewolf.UIBindingTests.ComDll
 {
@@ -36,7 +36,7 @@ namespace Warewolf.UIBindingTests.ComDll
         public void GivenICreateNewWorkflow()
         {
             var dsfComDllActivity = new DsfComDllActivity();
-            Assert.IsNotNull(dsfComDllActivity);
+            NUnit.Framework.Assert.IsNotNull(dsfComDllActivity);
         }
 
         [Given(@"I drag Comdll tool onto the design surface")]
@@ -74,47 +74,47 @@ namespace Warewolf.UIBindingTests.ComDll
         public void GivenEditButtonIsDisabled()
         {
             var vm = _scenarioContext.Get<ComDllViewModel>("ViewModel");
-            Assert.IsFalse(vm.SourceRegion.EditSourceCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsFalse(vm.SourceRegion.EditSourceCommand.CanExecute(null));
         }
 
         [Then(@"EditButton is Enabled")]
         public void ThenEditButtonIsEnabled()
         {
             var vm = _scenarioContext.Get<ComDllViewModel>("ViewModel");
-            Assert.IsTrue(vm.SourceRegion.EditSourceCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(vm.SourceRegion.EditSourceCommand.CanExecute(null));
         }
         [Given(@"Comdll Source is Enabled")]
         public void GivenComdllSourceIsEnabled()
         {
             var vm = _scenarioContext.Get<ComDllViewModel>("ViewModel");
-            Assert.IsTrue(vm.SourceRegion.NewSourceCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(vm.SourceRegion.NewSourceCommand.CanExecute(null));
         }
 
         [Given(@"Namespace is disabled")]
         public void GivenNamespaceIsDisabled()
         {
             var vm = _scenarioContext.Get<ComDllViewModel>("ViewModel");
-            Assert.IsFalse(vm.NamespaceRegion.IsNamespaceEnabled);
+            NUnit.Framework.Assert.IsFalse(vm.NamespaceRegion.IsNamespaceEnabled);
         }
 
         [Then(@"Namespace is Enabled")]
         public void ThenNamespaceIsEnabled()
         {
             var vm = _scenarioContext.Get<ComDllViewModel>("ViewModel");
-            Assert.IsTrue(vm.NamespaceRegion.IsNamespaceEnabled);
+            NUnit.Framework.Assert.IsTrue(vm.NamespaceRegion.IsNamespaceEnabled);
         }
         [Given(@"Namespace refresh is disabled")]
         public void GivenNamespaceRefreshIsDisabled()
         {
             var vm = _scenarioContext.Get<ComDllViewModel>("ViewModel");
-            Assert.IsFalse(vm.NamespaceRegion.RefreshNamespaceCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsFalse(vm.NamespaceRegion.RefreshNamespaceCommand.CanExecute(null));
         }
 
         [Given(@"Action is disabled")]
         public void GivenActionIsDisabled()
         {
             var vm = _scenarioContext.Get<ComDllViewModel>("ViewModel");
-            Assert.IsFalse(vm.ActionRegion.IsActionEnabled);
+            NUnit.Framework.Assert.IsFalse(vm.ActionRegion.IsActionEnabled);
         }
 
 
@@ -122,28 +122,28 @@ namespace Warewolf.UIBindingTests.ComDll
         public void ThenActionIsEnabled()
         {
             var vm = _scenarioContext.Get<ComDllViewModel>("ViewModel");
-            Assert.IsTrue(vm.ActionRegion.IsActionEnabled);
+            NUnit.Framework.Assert.IsTrue(vm.ActionRegion.IsActionEnabled);
         }
 
         [Given(@"Action refresh is disabled")]
         public void GivenActionRefreshIsDisabled()
         {
             var vm = _scenarioContext.Get<ComDllViewModel>("ViewModel");
-            Assert.IsFalse(vm.ActionRegion.RefreshActionsCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsFalse(vm.ActionRegion.RefreshActionsCommand.CanExecute(null));
         }
 
         [Given(@"Action refresh is Enabled")]
         public void GivenActionRefreshIsEnabled()
         {
             var vm = _scenarioContext.Get<ComDllViewModel>("ViewModel");
-            Assert.IsTrue(vm.ActionRegion.RefreshActionsCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(vm.ActionRegion.RefreshActionsCommand.CanExecute(null));
         }
 
         [Given(@"New button is Enabled")]
         public void GivenNewButtonIsEnabled()
         {
             var vm = _scenarioContext.Get<ComDllViewModel>("ViewModel");
-            Assert.IsTrue(vm.SourceRegion.NewSourceCommand.CanExecute(null));
+            NUnit.Framework.Assert.IsTrue(vm.SourceRegion.NewSourceCommand.CanExecute(null));
         }
 
         [When(@"I click new source")]
@@ -211,21 +211,21 @@ namespace Warewolf.UIBindingTests.ComDll
         public void ThenEmptySourceErrorIsReturned()
         {
             var vm = _scenarioContext.Get<ComDllViewModel>("ViewModel");
-            Assert.AreEqual(1, vm.Errors.Count);
+            NUnit.Framework.Assert.AreEqual(1, vm.Errors.Count);
         }
 
         [Given(@"GenerateOutput is disabled")]
         public void GivenGenerateOutputIsDisabled()
         {
             var vm = _scenarioContext.Get<ComDllViewModel>("ViewModel");
-            Assert.IsFalse(vm.GenerateOutputsVisible);
+            NUnit.Framework.Assert.IsFalse(vm.GenerateOutputsVisible);
         }
 
         [Then(@"GenerateOutput is disabled")]
         public void ThenGenerateOutputIsDisabled()
         {
             var vm = _scenarioContext.Get<ComDllViewModel>("ViewModel");
-            Assert.IsFalse(vm.GenerateOutputsVisible);
+            NUnit.Framework.Assert.IsFalse(vm.GenerateOutputsVisible);
         }
 
         [Then(@"I select Action")]
@@ -255,7 +255,7 @@ namespace Warewolf.UIBindingTests.ComDll
         public void ThenIClickGenerateOutput()
         {
             var vm = _scenarioContext.Get<ComDllViewModel>("ViewModel");
-            Assert.IsTrue(vm.InputArea.IsEnabled);
+            NUnit.Framework.Assert.IsTrue(vm.InputArea.IsEnabled);
             var execute = vm.TestInputCommand.Execute();
             //execute.Start(TaskScheduler.Current);
             vm.TestProcedure();
@@ -265,7 +265,7 @@ namespace Warewolf.UIBindingTests.ComDll
         public void ThenInputsWindoIsOpen()
         {
             var vm = _scenarioContext.Get<ComDllViewModel>("ViewModel");
-            Assert.IsTrue(vm.OutputsRegion.OutputMappingEnabled);
+            NUnit.Framework.Assert.IsTrue(vm.OutputsRegion.OutputMappingEnabled);
         }
 
         [When(@"I click Done to execute tool")]
@@ -279,7 +279,7 @@ namespace Warewolf.UIBindingTests.ComDll
         public void ThenValidationIsSuccessful()
         {
             var vm = _scenarioContext.Get<ComDllViewModel>("ViewModel");
-            Assert.AreEqual(0, vm.Errors.Count);
+            NUnit.Framework.Assert.AreEqual(0, vm.Errors.Count);
         }
         
         [Then(@"I click fSix to Execute the tool the result is ""(.*)""")]
@@ -290,8 +290,8 @@ namespace Warewolf.UIBindingTests.ComDll
             var act = _scenarioContext.Get<DsfComDllActivity>("Activity");
             var activity = new MyActivity(dataObject, vm, act);
             activity.ExeTool();
-            Assert.IsNotNull(activity);
-            Assert.AreEqual(result, activity._result);
+            NUnit.Framework.Assert.IsNotNull(activity);
+            NUnit.Framework.Assert.AreEqual(result, activity._result);
         }
         [Then(@"I click fSix to Execute the tool")]
         public void ThenIClickFSixToExecuteTheTool()
@@ -307,8 +307,8 @@ namespace Warewolf.UIBindingTests.ComDll
         public void ThenTheResultIsReturnedWithError(string errorMessage)
         {
             var environment = _scenarioContext.Get<IExecutionEnvironment>("Environment");
-            Assert.AreEqual(1, environment.Errors.Count);
-            Assert.AreEqual(errorMessage, environment.Errors.First());
+            NUnit.Framework.Assert.AreEqual(1, environment.Errors.Count);
+            NUnit.Framework.Assert.AreEqual(errorMessage, environment.Errors.First());
         }
 
 

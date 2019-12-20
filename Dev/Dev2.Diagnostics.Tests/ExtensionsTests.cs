@@ -8,16 +8,17 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Diagnostics.Test
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ExtensionsTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(Extensions))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(Extensions))]
         public void Extensions_ContainsSafe_filter_IsNotNullButEmpty_ExpectTrue()
         {
             //----------------------Arrange---------------------
@@ -27,9 +28,9 @@ namespace Dev2.Diagnostics.Test
             Assert.IsTrue(extentions);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(Extensions))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(Extensions))]
         public void Extensions_ContainsSafe_filter_IsNull_ExpectTrue()
         {
             //----------------------Arrange---------------------
@@ -39,9 +40,9 @@ namespace Dev2.Diagnostics.Test
             Assert.IsTrue(extentions);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(Extensions))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(Extensions))]
         public void Extensions_ContainsSafe_filter_IsNotNullOrEmpty_ExpectFalse()
         {
             //----------------------Arrange---------------------
@@ -51,9 +52,9 @@ namespace Dev2.Diagnostics.Test
             Assert.IsFalse(extentions);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(Extensions))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(Extensions))]
         public void Extensions_ContainsSafe_s_IsNotNullOrEmpty_ExpectFalse()
         {
             //----------------------Arrange---------------------

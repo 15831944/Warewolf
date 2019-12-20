@@ -9,17 +9,18 @@
 */
 
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Warewolf.Streams
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ConsumerTests
     {
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(IConsumer))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(IConsumer))]
         public void IConsumer_()
         {
             var mockPublisher = new Mock<IConsumer<SBase>>();

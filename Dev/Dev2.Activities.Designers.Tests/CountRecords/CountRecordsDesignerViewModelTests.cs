@@ -12,18 +12,19 @@ using System.Activities.Presentation.Model;
 using Dev2.Common.Interfaces.Help;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Activities.Designers.Tests.CountRecords
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class CountRecordsDesignerViewModelTests
     {
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CountRecordsDesignerViewModel_SetRecordsetNameValue")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CountRecordsDesignerViewModel_SetRecordsetNameValue")]
         public void CountRecordsDesignerViewModel_SetRecordsetNameValue_ModelItemIsValid_RecordSetOnModelItemIsSet()
         {
             var modelItem = CreateModelItem();
@@ -34,9 +35,9 @@ namespace Dev2.Activities.Designers.Tests.CountRecords
             Assert.IsTrue(viewModel.HasLargeView);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("CountRecordsDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("CountRecordsDesignerViewModel_Handle")]
         public void CountRecordsDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      

@@ -9,18 +9,19 @@
 */
 
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Logging;
 
 namespace Warewolf.Common.Framework48.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ILoggerPublisherTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ILoggerPublisher))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ILoggerPublisher))]
         public void ILoggerPublisher_NewConnection_IsSuccessfull()
         {
             var mockConfig = new Mock<ILoggerConfig>();
@@ -39,9 +40,9 @@ namespace Warewolf.Common.Framework48.Tests
             mockloggerSource.Verify(o => o.NewConnection(It.IsAny<ILoggerConfig>()), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ILoggerPublisher))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ILoggerPublisher))]
         public void ILoggerPublisher_NewPublisher_PublishLogger_IsSuccessfull()
         {
             var mockConfig = new Mock<ILoggerConfig>();

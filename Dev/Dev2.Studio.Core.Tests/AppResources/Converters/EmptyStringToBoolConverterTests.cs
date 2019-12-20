@@ -9,17 +9,18 @@
 */
 
 using Dev2.CustomControls.Converters;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests.AppResources.Converters
 {
-    [TestClass]
-	[TestCategory("Studio Resources Core")]
+    [TestFixture]
+    [SetUpFixture]
+	[Category("Studio Resources Core")]
     public class EmptyStringToBoolConverterTests
     {
-        [TestMethod]
-        [Owner("Jurie Smit")]
-        [TestCategory("EmptyStringToBoolConverter")]
+        [Test]
+        [Author("Jurie Smit")]
+        [Category("EmptyStringToBoolConverter")]
         [Description("When a string is empty, expect true when istrueisempty equals true")]
         public void EmptyStringToBoolConverter_UnitTest_TrueWhenEmptyStringEmpty_ExpectsTrue()
         {
@@ -29,9 +30,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.IsTrue(actual);
         }
 
-        [TestMethod]
-        [Owner("Jurie Smit")]
-        [TestCategory("EmptyStringToBoolConverter")]
+        [Test]
+        [Author("Jurie Smit")]
+        [Category("EmptyStringToBoolConverter")]
         [Description("When a string is null, expect true when istrueisempty equals true")]
         public void EmptyStringToBoolConverter_UnitTest_TrueWhenEmptyStringNull_ExpectsTrue()
         {
@@ -41,9 +42,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.IsTrue(actual);
         }
 
-        [TestMethod]
-        [Owner("Jurie Smit")]
-        [TestCategory("EmptyStringToBoolConverter")]
+        [Test]
+        [Author("Jurie Smit")]
+        [Category("EmptyStringToBoolConverter")]
         [Description("When a string is white space, expect true when istrueisempty equals true")]
         public void EmptyStringToBoolConverter_UnitTest_TrueWhenEmptyStringWhiteSpace_ExpectsTrue()
         {
@@ -53,9 +54,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.IsTrue(actual);
         }
 
-        [TestMethod]
-        [Owner("Jurie Smit")]
-        [TestCategory("EmptyStringToBoolConverter")]
+        [Test]
+        [Author("Jurie Smit")]
+        [Category("EmptyStringToBoolConverter")]
         [Description("When a string is not empty, null or whitespace, expect false when istrueisempty equals true")]
         public void EmptyStringToBoolConverter_UnitTest_TrueWhenEmptyStringValue_ExpectsFalse()
         {
@@ -65,9 +66,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.IsFalse(actual);
         }
 
-        [TestMethod]
-        [Owner("Jurie Smit")]
-        [TestCategory("EmptyStringToBoolConverter")]
+        [Test]
+        [Author("Jurie Smit")]
+        [Category("EmptyStringToBoolConverter")]
         [Description("When a string is empty, expect dalse when istrueisempty equals falsee")]
         public void EmptyStringToBoolConverter_UnitTest_FalseWhenEmptyStringEmpty_ExpectsTrue()
         {
@@ -77,9 +78,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.IsFalse(actual);
         }
 
-        [TestMethod]
-        [Owner("Jurie Smit")]
-        [TestCategory("EmptyStringToBoolConverter")]
+        [Test]
+        [Author("Jurie Smit")]
+        [Category("EmptyStringToBoolConverter")]
         [Description("When a string is null, expect false when istrueisempty equals false")]
         public void EmptyStringToBoolConverter_UnitTest_FalseWhenEmptyStringNull_ExpectsTrue()
         {
@@ -89,9 +90,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.IsFalse(actual);
         }
 
-        [TestMethod]
-        [Owner("Jurie Smit")]
-        [TestCategory("EmptyStringToBoolConverter")]
+        [Test]
+        [Author("Jurie Smit")]
+        [Category("EmptyStringToBoolConverter")]
         [Description("When a string is white space, expect false when istrueisempty equals false")]
         public void EmptyStringToBoolConverter_UnitTest_FalseWhenEmptyStringWhiteSpace_ExpectsTrue()
         {
@@ -101,9 +102,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.IsFalse(actual);
         }
 
-        [TestMethod]
-        [Owner("Jurie Smit")]
-        [TestCategory("EmptyStringToBoolConverter")]
+        [Test]
+        [Author("Jurie Smit")]
+        [Category("EmptyStringToBoolConverter")]
         [Description("When a string is not empty, null or whitespace, expect true when istrueisempty equals false")]
         public void EmptyStringToBoolConverter_UnitTest_FalseWhenEmptyStringValue_ExpectsFalse()
         {

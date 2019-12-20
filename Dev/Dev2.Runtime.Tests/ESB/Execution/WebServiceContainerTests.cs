@@ -2,19 +2,20 @@
 using Dev2.Data.TO;
 using Dev2.Runtime.ESB.Execution;
 using Dev2.Services.Execution;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 
 namespace Dev2.Tests.Runtime.ESB.Execution
 {
-    [TestClass]
-    [TestCategory("Runtime ESB")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime ESB")]
     public class WebServiceContainerTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void WebServiceContainer_GivenGivenServiceExec_ShouldConstruct()
         {
             //---------------Set up test pack-------------------
@@ -29,13 +30,13 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             }
             catch(Exception ex)
             {
-                Assert.Fail(ex.Message);
+                NUnit.Framework.Assert.Fail(ex.Message);
             }
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenValidArgs_ShouldExecuteCorrectly()
         {
             //---------------Set up test pack-------------------
@@ -50,7 +51,7 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             //---------------Execute Test ----------------------
             var execute = webServiceContainer.Execute(out resultTO, 0);
             //---------------Test Result -----------------------
-            Assert.AreEqual(valueFunction, execute);
+            NUnit.Framework.Assert.AreEqual(valueFunction, execute);
         }
     }
 }

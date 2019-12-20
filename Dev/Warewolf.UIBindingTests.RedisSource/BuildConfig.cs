@@ -1,12 +1,13 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 using Warewolf.Test.Agent;
 
 namespace Dev2.Activities.Specs
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public static class BuildConfig
     {
-        [AssemblyInitialize]
+        [OneTimeSetUp]
         public static void Apply(TestContext context) => TestLauncher.EnableDocker = Job_Definitions.GetEnableDockerValue();
     }
 }

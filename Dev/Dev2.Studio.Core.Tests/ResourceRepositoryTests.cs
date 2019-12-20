@@ -48,7 +48,7 @@ using Dev2.Studio.Interfaces;
 using Dev2.Studio.Interfaces.Enums;
 using Dev2.Triggers;
 using Dev2.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json;
 using Warewolf.Configuration;
@@ -60,7 +60,8 @@ namespace BusinessDesignStudio.Unit.Tests
     /// <summary>
     /// Summary description for ResourceRepositoryTest
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ResourceRepositoryTests
     {
         #region Variables
@@ -80,7 +81,7 @@ namespace BusinessDesignStudio.Unit.Tests
 
         #region Additional result attributes
 
-        [TestInitialize]
+        [SetUp]
         public void MyTestInitialize()
         {
             Setup();
@@ -116,9 +117,9 @@ namespace BusinessDesignStudio.Unit.Tests
 
         #region Hydrate Resource Model
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("ResourceRepository_HydrateResourceModel")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("ResourceRepository_HydrateResourceModel")]
         public void ResourceRepository_HydrateResourceModel_ResourceTypeIsWorkflow_InputAndOutputMappingsAreValid()
         {
             const string inputData = "inputs";
@@ -137,9 +138,9 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.AreEqual(outputData, model.Outputs);
         }
 
-        [TestMethod]
-        [Owner("Ashley Lewis")]
-        [TestCategory("ResourceRepository_HydrateResourceModel")]
+        [Test]
+        [Author("Ashley Lewis")]
+        [Category("ResourceRepository_HydrateResourceModel")]
         public void ResourceRepository_HydrateResourceModel_WhenDataIsNewWorkflow_NewWorkFlowNamesUpdated()
         {
             //------------Setup for test--------------------------
@@ -153,9 +154,9 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.IsTrue(NewWorkflowNames.Instance.Contains("Unsaved 1"));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("ResourceRepository_HydrateResourceModel")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("ResourceRepository_HydrateResourceModel")]
         public void WorkFlowService_HydrateResourceModel_ServerDisconnected_ShowPopup()
         {
             var retVal = new StringBuilder();
@@ -188,7 +189,7 @@ namespace BusinessDesignStudio.Unit.Tests
 
         #region Load Tests
         
-        [TestMethod]
+        [Test]
         public void Load_CreateAndLoadResource_SingleResource_Expected_ResourceReturned()
         {
             var conn = SetupConnection();
@@ -234,7 +235,7 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.IsTrue(resources.Equals(1));
         }
         
-        [TestMethod]
+        [Test]
         public void ForceLoadSuccessfullLoadExpectIsLoadedTrue()
         {
             AppUsageStats.LocalHost = "https://localhost:3242/";
@@ -279,7 +280,7 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.IsTrue(_repo.IsLoaded);
         }
         
-        [TestMethod]
+        [Test]
         public void ForceLoadWithExceptionOnLoadExpectsIsLoadedFalse()
         {
             var conn = SetupConnection();
@@ -312,7 +313,7 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.IsFalse(_repo.IsLoaded);
         }
         
-        [TestMethod]
+        [Test]
         public void ForceLoadWith2WorkflowsExpectResourcesLoaded()
         {
             var conn = SetupConnection();
@@ -381,7 +382,7 @@ namespace BusinessDesignStudio.Unit.Tests
         /// <summary>
         /// Create resource with source type
         /// </summary>
-        [TestMethod]
+        [Test]
         public void Load_MultipleResourceLoad_SourceServiceType_Expected_AllResourcesReturned()
         {
             var model = new Mock<IResourceModel>();
@@ -430,10 +431,10 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.AreEqual(1, _repo.All().Count);
         }
 
-        [TestMethod]
-        [TestCategory("ResourceRepository_Load")]
+        [Test]
+        [Category("ResourceRepository_Load")]
         [Description("ResourceRepository Load must only do one server call to retrieve all resources")]
-        [Owner("Trevor Williams-Ros")]
+        [Author("Trevor Williams-Ros")]
         public void ResourceRepository_UnitTest_Load_InvokesAddResourcesOnce()
         {
 
@@ -454,7 +455,7 @@ namespace BusinessDesignStudio.Unit.Tests
 
         #region Save Tests
 
-        [TestMethod]
+        [Test]
         public void UpdateResource()
         {
             var model = new Mock<IResourceModel>();
@@ -482,9 +483,9 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.IsTrue(cnt == 1 && setArray[0].ResourceName == "NewName");
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ResourceRepository_Save")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ResourceRepository_Save")]
         public void ResourceRepository_Save_ExecuteMessageIsSuccessful_CallsUpdatesOnTheStudioResourceRepository()
         {
             //------------Setup for test--------------------------
@@ -510,9 +511,9 @@ namespace BusinessDesignStudio.Unit.Tests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ResourceRepository_Save")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ResourceRepository_Save")]
         public void ResourceRepository_Save_ExecuteMessageIsNotSuccessful_DoesNotCallUpdatesOnTheStudioResourceRepository()
         {
             //------------Setup for test--------------------------
@@ -538,9 +539,9 @@ namespace BusinessDesignStudio.Unit.Tests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ResourceRepository_Save")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ResourceRepository_Save")]
         public void ResourceRepository_Save_CategoryIsUnassignedAndResourceNameContainsUnsaved_DoesNotCallUpdatesOnTheStudioResourceRepository()
         {
             //------------Setup for test--------------------------
@@ -569,9 +570,9 @@ namespace BusinessDesignStudio.Unit.Tests
         #endregion Save Tests
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ResourceRepository_OnDeleteFromWorkspace")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ResourceRepository_OnDeleteFromWorkspace")]
         public void WorkFlowService_OnDeleteFromWorkspace_Expected_InRepository_UnsaveWF()
         {
             var retVal = new StringBuilder();
@@ -601,9 +602,9 @@ namespace BusinessDesignStudio.Unit.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("ResourceRepository_UpdateActiveServer")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("ResourceRepository_UpdateActiveServer")]
         public void WorkFlowService_UpdateActiveServer_IsNotNull()
         {
             var retVal = new StringBuilder();
@@ -638,9 +639,9 @@ namespace BusinessDesignStudio.Unit.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ResourceModel_SaveTests")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ResourceModel_SaveTests")]
         public void ResourceModel_SaveTests_ExecuteMessageIsSuccessful_NoException()
         {
             //------------Setup for test--------------------------
@@ -697,8 +698,8 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.AreEqual(1,serviceTestModelTos[0].TestSteps.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Savetests_GivenEmptyCategory_ShouldUseResourceName()
         {
             //---------------Set up test pack-------------------
@@ -756,9 +757,9 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.AreEqual(1, serviceTestModelTos[0].TestSteps.Count);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ResourceRepository))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ResourceRepository))]
         public void ResourceModel_FetchTriggerQueues_ExecuteMessageIsSuccessful_NoException()
         {
             var mockEnvironmentModel = new Mock<IServer>();
@@ -782,9 +783,9 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.AreEqual("FetchTriggerQueues", returnMessage.ServiceName);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ResourceRepository))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ResourceRepository))]
         public void ResourceModel_SaveQueue_ExecuteMessageIsSuccessful_NoException()
         {
             var expectedTriggerId = Guid.NewGuid().ToString();
@@ -814,9 +815,9 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.AreEqual(expectedTriggerId, triggerId.ToString());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ResourceRepository))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ResourceRepository))]
         public void ResourceModel_DeleteQueue_ExecuteMessageIsSuccessful_NoException()
         {
             var mockEnvironmentModel = new Mock<IServer>();
@@ -842,9 +843,9 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.AreEqual("DeleteTriggerQueueService", returnMessage.ServiceName);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ResourceRepository))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ResourceRepository))]
         public void ResourceModel_GetTriggerQueueHistory_ExecuteMessageIsSuccessful_NoException()
         {
             var resourceId = Guid.NewGuid();
@@ -871,9 +872,9 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.AreEqual(resourceId.ToString(), returnMessage.Args["ResourceId"].ToString());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("ResourceModel_ExecuteTest")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("ResourceModel_ExecuteTest")]
         public void ResourceModel_ExecuteTest_ExecuteMessageIsSuccessful_NoException()
         {
             //------------Setup for test--------------------------
@@ -919,7 +920,7 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.IsNotNull(retMsg);
         }
 
-        [TestMethod]
+        [Test]
         public void WorkFlowService_OnDeleteFromWorkspace_Expected_InRepository()
         {
             var retVal = new StringBuilder();
@@ -947,7 +948,7 @@ namespace BusinessDesignStudio.Unit.Tests
             var retMsg = JsonConvert.DeserializeObject<ExecuteMessage>(retVal.ToString());
             Assert.IsNotNull(retMsg);
         }
-        [TestMethod]
+        [Test]
         public void NonExistantWorkFlowService_OnDelete_Expected_Failure()
         {
             var env = EnviromentRepositoryTest.CreateMockEnvironment(EnviromentRepositoryTest.Server1Source);
@@ -958,7 +959,7 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.AreEqual("Failure", actual.Message.ToString(), "Non existant resource deleted successfully");
         }
 
-        [TestMethod]
+        [Test]
         public void NonExistantWorkFlowService_DeleteFromWorkspace_Expected_Failure()
         {
             var env = EnviromentRepositoryTest.CreateMockEnvironment(EnviromentRepositoryTest.Server1Source);
@@ -970,7 +971,7 @@ namespace BusinessDesignStudio.Unit.Tests
         }
 
 
-        [TestMethod]
+        [Test]
         public void NullResource_DeleteFromWorkspace_Expected_Failure()
         {
             var env = EnviromentRepositoryTest.CreateMockEnvironment(EnviromentRepositoryTest.Server1Source);
@@ -980,10 +981,10 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.AreEqual("Failure", actual.Message.ToString(), "Non existant resource deleted successfully");
         }
 
-        [TestMethod]
-        [TestCategory("ResourceRepository_Delete")]
+        [Test]
+        [Category("ResourceRepository_Delete")]
         [Description("Unassigned resources can be deleted")]
-        [Owner("Ashley Lewis")]
+        [Author("Ashley Lewis")]
         
         public void ResourceRepository_UnitTest_DeleteUnassignedResource_ResourceDeletedFromRepository()
 
@@ -1014,9 +1015,9 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.AreEqual(expectedCount - 1, mockEnvironmentModel.Object.ResourceRepository.All().Count);
         }
 
-        [TestMethod]
-        [TestCategory("ResourceRepository_Delete")]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Category("ResourceRepository_Delete")]
+        [Author("Hagashen Naidu")]
         
         public void ResourceRepository_DeleteResource_StudioResourceRepositoryRemoveItemCalled()
 
@@ -1049,9 +1050,9 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.AreEqual(expectedCount - 1, mockEnvironmentModel.Object.ResourceRepository.All().Count);
         }
 
-        [TestMethod]
-        [TestCategory("ResourceRepository_Delete")]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Category("ResourceRepository_Delete")]
+        [Author("Hagashen Naidu")]
         
         public void ResourceRepository_DeleteResource_ResourceNameUnsaved_StudioResourceRepositoryRemoveItemNeverCalled()
 
@@ -1083,9 +1084,9 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.AreEqual(expectedCount - 1, mockEnvironmentModel.Object.ResourceRepository.All().Count);
         }
 
-        [TestMethod]
-        [TestCategory("ResourceRepository_Delete")]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Category("ResourceRepository_Delete")]
+        [Author("Hagashen Naidu")]
         
         public void ResourceRepository_DeleteResource_ResourceNameNotUnsavedUnassignedCategory_StudioResourceRepositoryRemoveItemCalled()
 
@@ -1122,7 +1123,7 @@ namespace BusinessDesignStudio.Unit.Tests
         #region Missing Environment Information Tests
 
         //Create resource repository without connected to any environment
-        [TestMethod]
+        [Test]
         public void CreateResourceEnvironmentConnectionNotConnected()
         {
             //Arrange
@@ -1152,7 +1153,7 @@ namespace BusinessDesignStudio.Unit.Tests
             }
         }
         //Create resource with no address to connet to any environment
-        [TestMethod]
+        [Test]
         public void CreateResourceNoAddressEnvironmentConnection()
         {
             var msg = new ExecuteMessage();
@@ -1176,7 +1177,7 @@ namespace BusinessDesignStudio.Unit.Tests
 
         }
         //Create resource with no data channel connected to
-        [TestMethod]
+        [Test]
         public void CreateResourceNoDataChannelEnvironmentConnection()
         {
             //Arrange
@@ -1226,7 +1227,7 @@ namespace BusinessDesignStudio.Unit.Tests
 
         #region GetDependanciesAsXML Tests
 
-        [TestMethod]
+        [Test]
         public void GetDependenciesXmlWithNullModelReturnsEmptyString()
         {
             var resourceRepository = new ResourceRepository(new Mock<IServer>().Object);
@@ -1234,7 +1235,7 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.IsTrue(string.IsNullOrEmpty(result.Message.ToString()));
         }
 
-        [TestMethod]
+        [Test]
         public void GetDependenciesXmlWithModel()
         {
             var mockConnection = new Mock<IEnvironmentConnection>();
@@ -1267,7 +1268,7 @@ namespace BusinessDesignStudio.Unit.Tests
 
         #region GetUniqueDependancies Tests
 
-        [TestMethod]
+        [Test]
         public void GetUniqueDependenciesWithNullModel()
         {
             var mockConnection = new Mock<IEnvironmentConnection>();
@@ -1291,7 +1292,7 @@ namespace BusinessDesignStudio.Unit.Tests
             mockConnection.Verify(e => e.ExecuteCommand(It.IsAny<StringBuilder>(), It.IsAny<Guid>()), Times.Exactly(0));
         }
 
-        [TestMethod]
+        [Test]
         public void GetUniqueDependenciesWithNullModelReturnsEmptyList()
         {
             var resourceRepository = new ResourceRepository(new Mock<IServer>().Object);
@@ -1299,7 +1300,7 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.AreEqual(0, result.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void GetUniqueDependenciesWithModel()
         {
             var mockConnection = new Mock<IEnvironmentConnection>();
@@ -1328,7 +1329,7 @@ namespace BusinessDesignStudio.Unit.Tests
             mockConnection.Verify(e => e.ExecuteCommand(It.IsAny<StringBuilder>(), It.IsAny<Guid>()), Times.Exactly(1));
         }
 
-        [TestMethod]
+        [Test]
         public void GetUniqueDependenciesWithModelReturnsEmptyListWhenNoResourcesMatch()
         {
             var mockConnection = new Mock<IEnvironmentConnection>();
@@ -1358,7 +1359,7 @@ namespace BusinessDesignStudio.Unit.Tests
 
         #region ReloadResource Tests
         
-        [TestMethod]
+        [Test]
         public void ResourceRepositoryLoadWorkspaceWithValidArgsExpectedSetsProperties()
         {
             //------------Setup for test--------------------------
@@ -1396,7 +1397,7 @@ namespace BusinessDesignStudio.Unit.Tests
 
         #region FindResourcesByID
 
-        [TestMethod]
+        [Test]
         public void FindResourcesByID_With_NullParameters_Expected_ReturnsEmptyList()
         {
             var resourceRepository = GetResourceRepository();
@@ -1405,7 +1406,7 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.AreEqual(0, result.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void FindResourcesByID_With_NonNullParameters_Expected_ReturnsNonEmptyList()
         {
             var servers = new List<string> { EnviromentRepositoryTest.Server1ID };
@@ -1426,9 +1427,9 @@ namespace BusinessDesignStudio.Unit.Tests
 
         #region FetchResourceDefinition
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ResourceRepository_FetchResourceDefinition")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ResourceRepository_FetchResourceDefinition")]
         public void ResourceRepository_FetchResourceDefinition_WhenDefinitionToFetch_ExpectValidXAML()
         {
             //------------Setup for test--------------------------
@@ -1450,9 +1451,9 @@ namespace BusinessDesignStudio.Unit.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ResourceRepository_FetchResourceDefinition")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ResourceRepository_FetchResourceDefinition")]
         public void ResourceRepository_FetchResourceDefinition_WhenNoDefinitionToFetch_ExpectNothing()
         {
             //------------Setup for test--------------------------
@@ -1474,9 +1475,9 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.AreEqual(string.Empty, result.Message.ToString());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ResourceRepository_LoadResourceTests")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ResourceRepository_LoadResourceTests")]
         public void ResourceRepository_LoadResourceTests_WhenNoTestsToFetch_ExpectNothing()
         {
             //------------Setup for test--------------------------
@@ -1502,9 +1503,9 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.AreEqual(0, serviceTestModels.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ResourceRepository_LoadResourceTestsForDeploy")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ResourceRepository_LoadResourceTestsForDeploy")]
         public void ResourceRepository_LoadResourceTestsForDeploy_WhenNoTestsToFetch_ExpectNothing()
         {
             //------------Setup for test--------------------------
@@ -1530,9 +1531,9 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.AreEqual(0, serviceTestModels.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ResourceRepository_DeleteResourceTests")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ResourceRepository_DeleteResourceTests")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ResourceRepository_DeleteResourceTests_WhenNoTestNameIsNull_ExpectNothing()
         {
@@ -1559,9 +1560,9 @@ namespace BusinessDesignStudio.Unit.Tests
            
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ResourceRepository_DeleteResourceTests")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ResourceRepository_DeleteResourceTests")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ResourceRepository_DeleteResourceTests_WhenNoResourceIdIsNull_ExpectNothing()
         {
@@ -1589,9 +1590,9 @@ namespace BusinessDesignStudio.Unit.Tests
           
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ResourceRepository_DeleteResourceTests")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ResourceRepository_DeleteResourceTests")]
         public void ResourceRepository_DeleteResourceTests_WhenResultHasError_ExpectNothing()
         {
             //------------Setup for test--------------------------
@@ -1629,9 +1630,9 @@ namespace BusinessDesignStudio.Unit.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ResourceRepository_LoadResourceTests")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ResourceRepository_LoadResourceTests")]
         public void ResourceRepository_LoadResourceTests_WhenTestFound_ExpectTestsBack()
         {
             //------------Setup for test--------------------------
@@ -1666,9 +1667,9 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.IsNotNull(serviceTestModels.ToString());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ResourceRepository_LoadResourceTestsForDeploy")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ResourceRepository_LoadResourceTestsForDeploy")]
         public void ResourceRepository_LoadResourceTestsForDeploy_WhenTestFound_ExpectTestsBack()
         {
             //------------Setup for test--------------------------
@@ -1707,9 +1708,9 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.IsTrue(isEncryted);
             Assert.IsTrue(old.Contains(plainText));
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ResourceRepository_LoadResourceTests")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ResourceRepository_LoadResourceTests")]
         public void ResourceRepository_LoadResourceTests_WhenError_ExpectException()
         {
             //------------Setup for test--------------------------
@@ -1739,9 +1740,9 @@ namespace BusinessDesignStudio.Unit.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ResourceRepository_LoadResourceTestsForDeploy")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ResourceRepository_LoadResourceTestsForDeploy")]
         public void ResourceRepository_LoadResourceTestsForDeploy_WhenError_ExpectException()
         {
             //------------Setup for test--------------------------
@@ -1775,7 +1776,7 @@ namespace BusinessDesignStudio.Unit.Tests
 
         #region FindSourcesByType
 
-        [TestMethod]
+        [Test]
         public void FindSourcesByType_With_NullParameters_Expected_ReturnsEmptyList()
         {
             var resourceRepository = GetResourceRepository();
@@ -1784,7 +1785,7 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.AreEqual(0, result.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void FindSourcesByType_With_NonNullParameters_Expected_ReturnsNonEmptyList()
         {
 
@@ -1799,8 +1800,8 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.AreNotEqual(0, result.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetResourceList_GivenDropboxSource_ShouldReturnDroboxSources()
         {
             //---------------Set up test pack-------------------
@@ -1816,15 +1817,15 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.AreNotEqual(0, result.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetResourceList_GivenDropboxSource_ShouldCreateCorrectServiceName()
         {
             //---------------Set up test pack-------------------
             var resourceRepository = GetResourceRepository();
             //---------------Assert Precondition----------------
             //---------------Execute Test ----------------------
-            var privateObject = new PrivateObject(resourceRepository);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(resourceRepository);
             var invoke = privateObject.Invoke("CreateServiceName", typeof(DropBoxSource));
             //---------------Test Result -----------------------
             var serviceName = invoke.ToString();
@@ -1835,7 +1836,7 @@ namespace BusinessDesignStudio.Unit.Tests
 
         #region Find
 
-        [TestMethod]
+        [Test]
         public void FindWithValidFunctionExpectResourceReturned()
         {
             //------------Setup for test--------------------------
@@ -1853,7 +1854,7 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.AreEqual(newGuid, resourceModels.ToList()[0].ID);
         }
 
-        [TestMethod]
+        [Test]
         public void FindWithNullFunctionExpectNullReturned()
         {
             //------------Setup for test--------------------------
@@ -1872,9 +1873,9 @@ namespace BusinessDesignStudio.Unit.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ResourceRepository_FindSingle")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ResourceRepository_FindSingle")]
         public void ResourceRepository_FindSingle_WhenLoadDefinition_ExpectValidXAML()
         {
             //------------Setup for test--------------------------
@@ -1927,7 +1928,7 @@ namespace BusinessDesignStudio.Unit.Tests
 
         #region HydrateResourceTest
 
-        [TestMethod]
+        [Test]
         public void HydrateResourceHydratesResourceType()
         {
             //------------Setup for test--------------------------
@@ -1979,10 +1980,10 @@ namespace BusinessDesignStudio.Unit.Tests
         }
 
 
-        [TestMethod]
-        [TestCategory("ResourceRepositoryUnitTest")]
+        [Test]
+        [Category("ResourceRepositoryUnitTest")]
         [Description("HydrateResourceModel must hydrate the resource's errors.")]
-        [Owner("Trevor Williams-Ros")]
+        [Author("Trevor Williams-Ros")]
         public void ResourceRepository_HydrateResourceModel_ResourceRepositoryUnitTest_ResourceErrors_Hydrated()
         {
             //------------Setup for test--------------------------
@@ -2062,7 +2063,7 @@ namespace BusinessDesignStudio.Unit.Tests
 
         #region IsInCache
 
-        [TestMethod]
+        [Test]
         public void IsInCacheExpectsWhenResourceInCacheReturnsTrue()
         {
             //--------------------------Setup-------------------------------------------
@@ -2088,7 +2089,7 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.IsTrue(isInCache);
         }
 
-        [TestMethod]
+        [Test]
         public void IsInCacheExpectsWhenResourceNotInCacheReturnsFalse()
         {
             //--------------------------Setup-------------------------------------------
@@ -2115,9 +2116,9 @@ namespace BusinessDesignStudio.Unit.Tests
 
         #region DeployResources
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ResourceRepository_DeployResources")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ResourceRepository_DeployResources")]
         public void ResourceRepository_DeployResources_WhenNormalDeploy_ExpectRefreshOnTargetResourceRepo()
         {
             //------------Setup for test--------------------------
@@ -2153,9 +2154,9 @@ namespace BusinessDesignStudio.Unit.Tests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ResourceRepository_DeployResource")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ResourceRepository_DeployResource")]
         public void ResourceRepository_DeployResource_WhenNormalDeploy_ExpectDeployCalled()
         {
             //------------Setup for test--------------------------
@@ -2185,9 +2186,9 @@ namespace BusinessDesignStudio.Unit.Tests
             _environmentConnection.Verify(connection => connection.ExecuteCommand(It.IsAny<StringBuilder>(), It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ResourceRepository_DeployResources")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ResourceRepository_DeployResources")]
         public void ResourceRepository_DeployResources_WhenNormalDeploy_ExpectUpdatedResource()
         {
             //------------Setup for test--------------------------
@@ -2241,7 +2242,7 @@ namespace BusinessDesignStudio.Unit.Tests
 
         #region DeployResource
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ResourceRepositoryDeployResourceWithNullExpectedThrowsArgumentNullException()
         {
@@ -2330,9 +2331,9 @@ namespace BusinessDesignStudio.Unit.Tests
         #endregion
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ResourceRepository_HasDependencies")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ResourceRepository_HasDependencies")]
         public void FindResourcesByID_HasDependencies_ExpectFalse()
         {
             var resourceRepository = GetResourceRepository();
@@ -2341,9 +2342,9 @@ namespace BusinessDesignStudio.Unit.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ResourceRepository_HasDependencies")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ResourceRepository_HasDependencies")]
         public void FindResourcesByID_HasDependencies_ExpectFalseIfSelf()
         {
             var mockConnection = new Mock<IEnvironmentConnection>();
@@ -2373,9 +2374,9 @@ namespace BusinessDesignStudio.Unit.Tests
             Assert.IsFalse(res);
 
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ResourceRepository_ReceivePermissionsModified")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ResourceRepository_ReceivePermissionsModified")]
         public void ResourceRepository_ReceivePermissionsModified_HasDependencies_ExpectFalseIfSelf()
         {
             var mockConnection = new Mock<IEnvironmentConnection>();
@@ -2407,12 +2408,12 @@ namespace BusinessDesignStudio.Unit.Tests
             testEnvironmentModel2.Setup(e => e.ResourceRepository).Returns(resRepo);
 
             var perm = new WindowsGroupPermission { ResourceID = testResources.First().ID };
-            var p = new PrivateObject(resRepo);
+            var p = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(resRepo);
             p.Invoke("ReceivePermissionsModified", new List<WindowsGroupPermission> { perm });
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ResourceRepository_ReceivePermissionsModified")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ResourceRepository_ReceivePermissionsModified")]
         public void ResourceRepository_ReceivePermissionsModified_ExpectUpdateIfNonEmptyGuid()
         {
             var mockConnection = new Mock<IEnvironmentConnection>();
@@ -2445,13 +2446,13 @@ namespace BusinessDesignStudio.Unit.Tests
             testEnvironmentModel2.Setup(e => e.ResourceRepository).Returns(resRepo);
 
             var perm = new WindowsGroupPermission { ResourceID = testResources.First().ID };
-            var p = new PrivateObject(resRepo);
+            var p = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(resRepo);
             p.Invoke("ReceivePermissionsModified", new List<WindowsGroupPermission> { perm });
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ResourceRepository_ReceivePermissionsModified")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ResourceRepository_ReceivePermissionsModified")]
         public void ResourceRepository_ReceivePermissionsModified_ExpectNotUpdateIfEmptyGuidWithResourcePerm()
         {
             var mockConnection = new Mock<IEnvironmentConnection>();
@@ -2488,14 +2489,14 @@ namespace BusinessDesignStudio.Unit.Tests
 
             testEnvironmentModel2.Setup(e => e.ResourceRepository).Returns(resRepo);
 
-            var p = new PrivateObject(resRepo);
+            var p = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(resRepo);
             p.Invoke("ReceivePermissionsModified", new List<WindowsGroupPermission> { perm, perm2 });
         }
 
         //Create resource repository without connected to any environment
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ResourceRepository_SaveToServer")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ResourceRepository_SaveToServer")]
         public void ResourceRepository_SaveToServer_ExpectThatModelAdded()
         {
             //Arrange
@@ -2514,14 +2515,14 @@ namespace BusinessDesignStudio.Unit.Tests
             _environmentModel.Setup(e => e.Connection).Returns(conn.Object);
 
             _repo.SaveToServer(_resourceModel.Object);
-            var p = new PrivateObject(_repo);
+            var p = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(_repo);
             Assert.AreEqual(1, ((List<IResourceModel>)p.GetField("_resourceModels")).Count);
         }
 
         /// <summary>
         /// Test case for creating a resource and saving the resource model in resource factory
         /// </summary>
-        [TestMethod]
+        [Test]
         public void GetDatabaseTableColumns_DBTableHasSchema_ShouldAddSchemaToPayload()
         {
             //Arrange
@@ -2544,7 +2545,7 @@ namespace BusinessDesignStudio.Unit.Tests
             StringAssert.Contains(esbExecuteRequest.Args["Database"].ToString(), "TestDB");
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(WarewolfSaveException))]
         public void SaveServerSettings_OutputNull()
         {

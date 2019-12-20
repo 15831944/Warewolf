@@ -5,18 +5,20 @@ using Dev2.Common;
 using Dev2.Common.Interfaces.Monitoring;
 using Dev2.PerformanceCounters.Counters;
 using Dev2.PerformanceCounters.Management;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dev2.Diagnostics.Test
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class PerfCountersOpsTests
     {
         public static Guid ResourceGuid = Guid.NewGuid();
         const string CategoryName = "Warewolf";
 
-        [TestInitialize]
+        [SetUp]
         public void Init()
         {
             try
@@ -63,79 +65,79 @@ namespace Dev2.Diagnostics.Test
             }
         }
 
-        [TestMethod]
+        [Test]
         public void TestLocater()
         {
             var counter = CustomContainer.Get<IWarewolfPerformanceCounterLocater>().GetCounter(WarewolfPerfCounterType.ConcurrentRequests).FromSafe();
             var counter2 = CustomContainer.Get<IWarewolfPerformanceCounterLocater>().GetCounter("Concurrent requests currently executing").FromSafe();
-            Assert.AreEqual(counter, counter2);
+            NUnit.Framework.Assert.AreEqual(counter, counter2);
         }
 
-        [TestMethod]
+        [Test]
         public void ConcurrentCounterTest()
         {
             var counter = CustomContainer.Get<IWarewolfPerformanceCounterLocater>().GetCounter(WarewolfPerfCounterType.ConcurrentRequests).FromSafe();
-            Assert.AreEqual("Concurrent requests currently executing", counter.Name);
-            Assert.AreEqual(CategoryName, counter.Category);
+            NUnit.Framework.Assert.AreEqual("Concurrent requests currently executing", counter.Name);
+            NUnit.Framework.Assert.AreEqual(CategoryName, counter.Category);
         }
-        [TestMethod]
+        [Test]
         public void ConcurrentCounterTestByResource()
         {
             var counter = CustomContainer.Get<IWarewolfPerformanceCounterLocater>().GetCounter(ResourceGuid, WarewolfPerfCounterType.ConcurrentRequests).FromSafe();
-            Assert.AreEqual("Concurrent requests currently executing", counter.Name);
-            Assert.AreEqual(counter.Category, GlobalConstants.WarewolfServices);
+            NUnit.Framework.Assert.AreEqual("Concurrent requests currently executing", counter.Name);
+            NUnit.Framework.Assert.AreEqual(counter.Category, GlobalConstants.WarewolfServices);
 
             if (counter is IResourcePerformanceCounter resourcePerformanceCounter)
             {
-                Assert.AreEqual(ResourceGuid, resourcePerformanceCounter.ResourceId);
+                NUnit.Framework.Assert.AreEqual(ResourceGuid, resourcePerformanceCounter.ResourceId);
             }
             else
             {
-                Assert.Fail("Type was not recognised as IResourcePerformanceCounter: " + counter);
+                NUnit.Framework.Assert.Fail("Type was not recognised as IResourcePerformanceCounter: " + counter);
             }
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WarewolfErrorCounter_TestOps")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("WarewolfErrorCounter_TestOps")]
         public void WarewolfErrorCounter_TestOps_Valid_ExpectValidValues()
         {
             var counter = CustomContainer.Get<IWarewolfPerformanceCounterLocater>().GetCounter(WarewolfPerfCounterType.ExecutionErrors).FromSafe();
-            Assert.AreEqual("Total Errors", counter.Name);
-            Assert.AreEqual(CategoryName, counter.Category);
+            NUnit.Framework.Assert.AreEqual("Total Errors", counter.Name);
+            NUnit.Framework.Assert.AreEqual(CategoryName, counter.Category);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WarewolfErrorCounter_TestOps")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("WarewolfErrorCounter_TestOps")]
         public void WarewolfErrorCounterResource_TestOps_Valid_ExpectValidValues()
         {
             var counter = CustomContainer.Get<IWarewolfPerformanceCounterLocater>().GetCounter(ResourceGuid, WarewolfPerfCounterType.ExecutionErrors).FromSafe();
-            Assert.AreEqual("Total Errors", counter.Name);
-            Assert.AreEqual(counter.Category, GlobalConstants.WarewolfServices);
+            NUnit.Framework.Assert.AreEqual("Total Errors", counter.Name);
+            NUnit.Framework.Assert.AreEqual(counter.Category, GlobalConstants.WarewolfServices);
 
             if (counter is IResourcePerformanceCounter resourcePerformanceCounter)
             {
-                Assert.AreEqual(ResourceGuid, resourcePerformanceCounter.ResourceId);
+                NUnit.Framework.Assert.AreEqual(ResourceGuid, resourcePerformanceCounter.ResourceId);
             }
             else
             {
-                Assert.Fail("Type was not recognised as IResourcePerformanceCounter: " + counter);
+                NUnit.Framework.Assert.Fail("Type was not recognised as IResourcePerformanceCounter: " + counter);
             }
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WarewolfEmptyCounter_TestOps")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("WarewolfEmptyCounter_TestOps")]
         public void WarewolfEmptyCounter_TestOps_Valid_ExpectValidValues()
         {
             var counter = CustomContainer.Get<IWarewolfPerformanceCounterLocater>().GetCounter(Guid.NewGuid(), WarewolfPerfCounterType.AverageExecutionTime).FromSafe();
-            Assert.AreEqual("Empty", counter.Name);
-            Assert.AreEqual(CategoryName, counter.Category);
+            NUnit.Framework.Assert.AreEqual("Empty", counter.Name);
+            NUnit.Framework.Assert.AreEqual(CategoryName, counter.Category);
             var po = new PrivateObject(counter);
             po.Invoke("Setup", new object[0]);
 
-            Assert.IsNull(counter.CreationData());
+            NUnit.Framework.Assert.IsNull(counter.CreationData());
             counter.Setup();
 
             counter.Increment();
@@ -145,98 +147,98 @@ namespace Dev2.Diagnostics.Test
             counter.IncrementBy(3);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WarewolfRequestsPerSecondCounter_TestOps")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("WarewolfRequestsPerSecondCounter_TestOps")]
         public void WarewolfRequestPerSecondCounter_TestOps_Valid_ExpectValidValues()
         {
             var counter = CustomContainer.Get<IWarewolfPerformanceCounterLocater>().GetCounter(WarewolfPerfCounterType.RequestsPerSecond).FromSafe();
-            Assert.AreEqual("Request Per Second", counter.Name);
-            Assert.AreEqual(CategoryName, counter.Category);
+            NUnit.Framework.Assert.AreEqual("Request Per Second", counter.Name);
+            NUnit.Framework.Assert.AreEqual(CategoryName, counter.Category);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WarewolfRequestsPerSecondCounter_TestOps")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("WarewolfRequestsPerSecondCounter_TestOps")]
         public void WarewolfRequestPerSecondCounterResource_TestOps_Valid_ExpectValidValues()
         {
             var counter = CustomContainer.Get<IWarewolfPerformanceCounterLocater>().GetCounter(ResourceGuid, WarewolfPerfCounterType.RequestsPerSecond).FromSafe();
-            Assert.AreEqual("Request Per Second", counter.Name);
-            Assert.AreEqual(counter.Category, GlobalConstants.WarewolfServices);
+            NUnit.Framework.Assert.AreEqual("Request Per Second", counter.Name);
+            NUnit.Framework.Assert.AreEqual(counter.Category, GlobalConstants.WarewolfServices);
 
             if (counter is IResourcePerformanceCounter resourcePerformanceCounter)
             {
-                Assert.AreEqual(ResourceGuid, resourcePerformanceCounter.ResourceId);
+                NUnit.Framework.Assert.AreEqual(ResourceGuid, resourcePerformanceCounter.ResourceId);
             }
             else
             {
-                Assert.Fail("Type was not recognised as IResourcePerformanceCounter: " + counter);
+                NUnit.Framework.Assert.Fail("Type was not recognised as IResourcePerformanceCounter: " + counter);
             }
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WarewolfAverageExectionTimeCounter_TestOps")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("WarewolfAverageExectionTimeCounter_TestOps")]
         public void WarewolfServicesNotFound_TestOps_Valid_ExpectValidValues()
         {
             var counter = CustomContainer.Get<IWarewolfPerformanceCounterLocater>().GetCounter(WarewolfPerfCounterType.ServicesNotFound).FromSafe();
-            Assert.AreEqual("Count of requests for workflows which don't exist", counter.Name);
-            Assert.AreEqual(CategoryName, counter.Category);
+            NUnit.Framework.Assert.AreEqual("Count of requests for workflows which don't exist", counter.Name);
+            NUnit.Framework.Assert.AreEqual(CategoryName, counter.Category);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WarewolfAverageExectionTimeCounter_TestOps")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("WarewolfAverageExectionTimeCounter_TestOps")]
         public void WarewolfServicesNotFound_NotCauseErrorForResource_TestOps_Valid_ExpectValidValues()
         {
             var counter = CustomContainer.Get<IWarewolfPerformanceCounterLocater>().GetCounter(ResourceGuid, WarewolfPerfCounterType.ServicesNotFound).FromSafe();
-            Assert.IsTrue(counter is EmptyCounter);
+            NUnit.Framework.Assert.IsTrue(counter is EmptyCounter);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WarewolfAverageExectionTimeCounter_TestOps")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("WarewolfAverageExectionTimeCounter_TestOps")]
         public void WarewolfAuthErrors_TestOps_Valid_ExpectValidValues()
         {
             var counter = CustomContainer.Get<IWarewolfPerformanceCounterLocater>().GetCounter(WarewolfPerfCounterType.NotAuthorisedErrors).FromSafe();
-            Assert.AreEqual("Count of Not Authorised errors", counter.Name);
-            Assert.AreEqual(CategoryName, counter.Category);
+            NUnit.Framework.Assert.AreEqual("Count of Not Authorised errors", counter.Name);
+            NUnit.Framework.Assert.AreEqual(CategoryName, counter.Category);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WarewolfAverageExectionTimeCounter_TestOps")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("WarewolfAverageExectionTimeCounter_TestOps")]
         public void WarewolfAverageExectionTimeCounter_TestOps_Valid_ExpectValidValues()
         {
             //------------Setup for test--------------------------
             var counter = CustomContainer.Get<IWarewolfPerformanceCounterLocater>().GetCounter(WarewolfPerfCounterType.AverageExecutionTime).FromSafe();
-            Assert.AreEqual("Average workflow execution time", counter.Name);
-            Assert.AreEqual(CategoryName, counter.Category);
+            NUnit.Framework.Assert.AreEqual("Average workflow execution time", counter.Name);
+            NUnit.Framework.Assert.AreEqual(CategoryName, counter.Category);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WarewolfAverageExectionTimeCounter_TestOps")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("WarewolfAverageExectionTimeCounter_TestOps")]
         public void WarewolfAverageExectionTimeCounterResource_TestOps_Valid_ExpectValidValues()
         {
             //------------Setup for test--------------------------
             var counter = CustomContainer.Get<IWarewolfPerformanceCounterLocater>().GetCounter(ResourceGuid, WarewolfPerfCounterType.AverageExecutionTime).FromSafe();
-            Assert.AreEqual("Average workflow execution time", counter.Name);
-            Assert.AreEqual(counter.Category, GlobalConstants.WarewolfServices);
+            NUnit.Framework.Assert.AreEqual("Average workflow execution time", counter.Name);
+            NUnit.Framework.Assert.AreEqual(counter.Category, GlobalConstants.WarewolfServices);
 
             if (counter is IResourcePerformanceCounter resourcePerformanceCounter)
             {
-                Assert.AreEqual(ResourceGuid, resourcePerformanceCounter.ResourceId);
+                NUnit.Framework.Assert.AreEqual(ResourceGuid, resourcePerformanceCounter.ResourceId);
             }
             else
             {
-                Assert.Fail("Type was not recognised as IResourcePerformanceCounter: " + counter);
+                NUnit.Framework.Assert.Fail("Type was not recognised as IResourcePerformanceCounter: " + counter);
             }
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("WarewolfErrorCounter_TestOps")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("WarewolfErrorCounter_TestOps")]
         public void WarewolfErrorCounterResource_SafeCounterSwallowsExceptions()
         {
             var incremented = false;
@@ -256,15 +258,15 @@ namespace Dev2.Diagnostics.Test
             inner.Setup(a => a.Setup()).Callback(() => { setup = true; });
             var safe = new SafeCounter(inner.Object);
             safe.Increment();
-            Assert.IsTrue(incremented);
+            NUnit.Framework.Assert.IsTrue(incremented);
             safe.Decrement();
-            Assert.IsTrue(decremented);
+            NUnit.Framework.Assert.IsTrue(decremented);
             safe.IncrementBy(5);
-            Assert.IsTrue(incrementedBy);
-            Assert.AreEqual(safe.InnerCounter, inner.Object);
-            Assert.AreEqual("Neo", safe.Category);
-            Assert.AreEqual("Morpheus", safe.Name);
-            Assert.IsTrue(setup);
+            NUnit.Framework.Assert.IsTrue(incrementedBy);
+            NUnit.Framework.Assert.AreEqual(safe.InnerCounter, inner.Object);
+            NUnit.Framework.Assert.AreEqual("Neo", safe.Category);
+            NUnit.Framework.Assert.AreEqual("Morpheus", safe.Name);
+            NUnit.Framework.Assert.IsTrue(setup);
         }
     }
 }

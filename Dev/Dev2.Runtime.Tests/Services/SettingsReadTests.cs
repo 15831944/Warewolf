@@ -21,20 +21,21 @@ using Dev2.Runtime.ESB.Management;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Services.Security;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json;
 using Dev2.Infrastructure.Tests.Services.Security;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SettingsReadTests
     {
 
         #region ClassInitialize
 
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void MyClassInitialize(TestContext context)
         {
         }
@@ -43,9 +44,9 @@ namespace Dev2.Tests.Runtime.Services
 
         #region Execute
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SettingsRead_Execute")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SettingsRead_Execute")]
         public void SettingsRead_Execute_SecurityReadDoesNotThrowException_HasErrorsIsFalseAndSecurityPermissionsAreAssigned()
         {
             //------------Setup for test--------------------------
@@ -89,9 +90,9 @@ namespace Dev2.Tests.Runtime.Services
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SettingsRead_Execute")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SettingsRead_Execute")]
         public void SettingsRead_Execute_SecurityReadDoesThrowException_HasErrorsIsTrueAndDefaultPermissionsAreAssigned()
         {
             //------------Setup for test--------------------------
@@ -122,9 +123,9 @@ namespace Dev2.Tests.Runtime.Services
 
         #endregion
         
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SettingsRead_CreateSecurityReadEndPoint")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SettingsRead_CreateSecurityReadEndPoint")]
         public void SettingsRead_CreateSecurityReadEndPoint_IsInstanceOfSecurityRead()
         {
             //------------Setup for test--------------------------
@@ -137,12 +138,12 @@ namespace Dev2.Tests.Runtime.Services
 
             //------------Assert Results-------------------------
             Assert.IsNotNull(endpoint);
-            Assert.IsInstanceOfType(endpoint, typeof(SecurityRead));
+            Assert.IsInstanceOf(endpoint.GetType(), typeof(SecurityRead));
         }
 
         #region HandlesType
 
-        [TestMethod]
+        [Test]
         public void SettingsRead_HandlesType_ReturnsSettingsReadService()
         {
             var esb = new SettingsRead();
@@ -154,7 +155,7 @@ namespace Dev2.Tests.Runtime.Services
 
         #region CreateServiceEntry
 
-        [TestMethod]
+        [Test]
         public void SettingsRead_CreateServiceEntry_ReturnsDynamicService()
         {
             var esb = new SettingsRead();

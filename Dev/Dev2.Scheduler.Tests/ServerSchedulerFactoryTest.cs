@@ -18,19 +18,20 @@ using Dev2.Common.Wrappers;
 using Dev2.Runtime.Security;
 using Dev2.TaskScheduler.Wrappers;
 using Dev2.TaskScheduler.Wrappers.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Microsoft.Win32.TaskScheduler;
 using Moq;
 
 
 namespace Dev2.Scheduler.Test
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ServerSchedulerFactoryTest
     {
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerSchedulerFactory_Constructor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerSchedulerFactory_Constructor")]
         public void ServerSchedulerFactory_Constructor()
         {
             var service = new Mock<IDev2TaskService>().Object;
@@ -42,9 +43,9 @@ namespace Dev2.Scheduler.Test
             Assert.AreEqual(service, factory.TaskService);
             mockDirectory.Verify(a => a.CreateIfNotExists(It.IsAny<string>()));
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerSchedulerFactory_Constructor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerSchedulerFactory_Constructor")]
         public void ServerSchedulerFactory_ConstructorNulls()
         {
 
@@ -70,9 +71,9 @@ directory
             actual = new StringBuilder(actual).Replace(Environment.NewLine, "\n").Replace("\r", "").ToString();
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerSchedulerFactory_Constructor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerSchedulerFactory_Constructor")]
         public void ServerSchedulerFactory_Default()
         {
 
@@ -82,9 +83,9 @@ directory
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerSchedulerFactory_Constructor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerSchedulerFactory_Constructor")]
         public void ServerSchedulerFactory_Dispose()
         {
 
@@ -100,9 +101,9 @@ directory
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerSchedulerFactory_Model")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerSchedulerFactory_Model")]
         public void ServerSchedulerFactory_CreateModel()
         {
             var service = new Mock<IDev2TaskService>().Object;
@@ -116,9 +117,9 @@ directory
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerSchedulerFactory_CreateResource")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerSchedulerFactory_CreateResource")]
         public void ServerSchedulerFactory_CreateResource()
         {
             var service = new Mock<IDev2TaskService>();
@@ -144,16 +145,16 @@ directory
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerSchedulerFactory_CreateDailyTrigger")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerSchedulerFactory_CreateDailyTrigger")]
         public void ServerSchedulerFactory_CreateBootTrigger()
         {
             CheckTriggerTypes(new BootTrigger());
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerSchedulerFactory_CreateDailyTrigger")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerSchedulerFactory_CreateDailyTrigger")]
         public void ServerSchedulerFactory_CreateDailyTrigger()
         {
             CheckTriggerTypes(new DailyTrigger());
@@ -161,33 +162,33 @@ directory
 
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerSchedulerFactory_CreateEventTrigger")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerSchedulerFactory_CreateEventTrigger")]
         public void ServerSchedulerFactory_CreateEventTrigger()
         {
             CheckTriggerTypes(new EventTrigger("log", "bob", 111));
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerSchedulerFactory_CreateIdleTrigger")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerSchedulerFactory_CreateIdleTrigger")]
         public void ServerSchedulerFactory_CreateIdleTrigger()
         {
             CheckTriggerTypes(new IdleTrigger());
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerSchedulerFactory_CreateLogonTrigger")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerSchedulerFactory_CreateLogonTrigger")]
         public void ServerSchedulerFactory_CreateLogonTrigger()
         {
             CheckTriggerTypes(new LogonTrigger());
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerSchedulerFactory_CreateMonthlyTrigger")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerSchedulerFactory_CreateMonthlyTrigger")]
         public void ServerSchedulerFactory_CreateMonthlyTrigger()
         {
             
@@ -195,41 +196,41 @@ directory
             
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerSchedulerFactory_CreateMonthlyDOWTrigger")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerSchedulerFactory_CreateMonthlyDOWTrigger")]
         public void ServerSchedulerFactory_CreateMonthlyDowTrigger()
         {
             CheckTriggerTypes(new MonthlyDOWTrigger(DaysOfTheWeek.AllDays, MonthsOfTheYear.AllMonths, WhichWeek.AllWeeks));
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerSchedulerFactory_CreateRegistrationTrigger")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerSchedulerFactory_CreateRegistrationTrigger")]
         public void ServerSchedulerFactory_CreateRegistrationTrigger()
         {
             CheckTriggerTypes(new RegistrationTrigger());
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerSchedulerFactory_CreateSessionChangeTrigger")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerSchedulerFactory_CreateSessionChangeTrigger")]
         public void ServerSchedulerFactory_CreateSessionChangeTrigger()
         {
             CheckTriggerTypes(new SessionStateChangeTrigger());
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerSchedulerFactory_CreateTimeTrigger")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerSchedulerFactory_CreateTimeTrigger")]
         public void ServerSchedulerFactory_CreateTimeTrigger()
         {
             CheckTriggerTypes(new TimeTrigger(DateTime.Now));
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerSchedulerFactory_CreateWeeklyTrigger")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerSchedulerFactory_CreateWeeklyTrigger")]
         public void ServerSchedulerFactory_CreateWeeklyTrigger()
         {
             

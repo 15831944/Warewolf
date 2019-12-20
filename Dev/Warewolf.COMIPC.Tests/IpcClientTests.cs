@@ -12,18 +12,19 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json;
 using WarewolfCOMIPC.Client;
 
 namespace WarewolfCOMIPC.Test
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IpcClientTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IpcClient_Constructor_GivenPipeStream_ShouldResult()
         {
             //---------------Set up test pack-------------------
@@ -36,8 +37,8 @@ namespace WarewolfCOMIPC.Test
             Assert.IsNotNull(client);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IpcClient_GetIPCExecutor_GivenPipeStream_ShouldResult()
         {
             //---------------Set up test pack-------------------
@@ -55,8 +56,8 @@ namespace WarewolfCOMIPC.Test
 
         const string adodbConnectionClassId = "00000514-0000-0010-8000-00AA006D2EA4";
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IpcClientHelper_Invoke_GivenGetType_ShouldReturnResult()
         {
             //---------------Set up test pack-------------------
@@ -74,8 +75,8 @@ namespace WarewolfCOMIPC.Test
             Assert.IsNull(invoke);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IpcClientHelper_Invoke_GivenGetMethods_ShouldReturnResult()
         {
             //---------------Set up test pack-------------------
@@ -94,8 +95,8 @@ namespace WarewolfCOMIPC.Test
             CollectionAssert.AllItemsAreNotNull(invoke);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IpcClientHelper_Invoke_GivenExecuteSpecifiedMethod_ShouldReturnResult()
         {
             //---------------Set up test pack-------------------
@@ -114,8 +115,8 @@ namespace WarewolfCOMIPC.Test
             Assert.IsNotNull(invoke);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IpcClientHelper_Invoke_GivenGetNamespaces_ShouldReturnResult()
         {
             //---------------Set up test pack-------------------
@@ -135,8 +136,8 @@ namespace WarewolfCOMIPC.Test
 
         
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IpcClient_Dispose_PassThrough()
         {
             //---------------Set up test pack-------------------

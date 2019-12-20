@@ -13,17 +13,18 @@ using Dev2.Common.Interfaces.ServerProxyLayer;
 using Dev2.Common.Interfaces.ToolBase.Database;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Studio.Core.Activities.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Warewolf.Core;
 
 
 namespace Dev2.Activities.Designers.Tests.ODBC
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class TestODBCServerViewModel
     {
-        [TestMethod]
-        [TestCategory("ODBCServer_MethodName")]
+        [Test]
+        [Category("ODBCServer_MethodName")]
         public void ODBCServer_MethodName_Scenerio_Result()
         {
             //------------Setup for test--------------------------
@@ -48,8 +49,8 @@ namespace Dev2.Activities.Designers.Tests.ODBC
             Assert.IsTrue(ODBCServer.OutputsRegion.IsEnabled);
         }
 
-        [TestMethod]
-        [TestCategory("ODBCServer_MethodName")]
+        [Test]
+        [Category("ODBCServer_MethodName")]
         [ExpectedException(typeof(NullReferenceException))]
         public void ODBCServer_MethodName_Scenerio_Result_oneParementer()
         {
@@ -75,8 +76,8 @@ namespace Dev2.Activities.Designers.Tests.ODBC
             Assert.IsTrue(ODBCServer.OutputsRegion.IsEnabled);
         }
 
-        [TestMethod]
-        [TestCategory("ODBCServer_MethodName")]
+        [Test]
+        [Category("ODBCServer_MethodName")]
         public void ODBCServer_GenerateOutputsVisible()
         {
             //------------Setup for test--------------------------
@@ -100,8 +101,8 @@ namespace Dev2.Activities.Designers.Tests.ODBC
         }
 
 
-        [TestMethod]
-        [TestCategory("ODBCServer_MethodName")]
+        [Test]
+        [Category("ODBCServer_MethodName")]
         public void ODBCServer_GenerateOutputsInVisible()
         {
             //------------Setup for test--------------------------
@@ -125,8 +126,8 @@ namespace Dev2.Activities.Designers.Tests.ODBC
         }
 
 
-        [TestMethod]
-        [TestCategory("ODBCServer_MethodName")]
+        [Test]
+        [Category("ODBCServer_MethodName")]
         public void ODBCServer_HasErrorVisible()
         {
             //------------Setup for test--------------------------
@@ -149,8 +150,8 @@ namespace Dev2.Activities.Designers.Tests.ODBC
             Assert.IsTrue(ODBCServer.ErrorRegion.IsEnabled);
         }
 
-        [TestMethod]
-        [TestCategory("ODBCServer_MethodName")]
+        [Test]
+        [Category("ODBCServer_MethodName")]
         public void ODBCServer_TestProcedure()
         {
             //------------Setup for test--------------------------
@@ -172,8 +173,8 @@ namespace Dev2.Activities.Designers.Tests.ODBC
 
             Assert.IsTrue(ODBCServer.ErrorRegion.IsEnabled);
         }
-        [TestMethod]
-        [TestCategory("ODBCServer_MethodName")]
+        [Test]
+        [Category("ODBCServer_MethodName")]
         public void ODBCServer_TestProcedureNoError()
         {
             //------------Setup for test--------------------------
@@ -197,8 +198,8 @@ namespace Dev2.Activities.Designers.Tests.ODBC
             Assert.IsFalse(ODBCServer.ErrorRegion.IsEnabled);
         }
 
-        [TestMethod]
-        [TestCategory("ODBCServer_MethodName")]
+        [Test]
+        [Category("ODBCServer_MethodName")]
         public void ODBCServer_LabelWidth()
         {
             //------------Setup for test--------------------------
@@ -221,8 +222,8 @@ namespace Dev2.Activities.Designers.Tests.ODBC
             Assert.IsNotNull(width);
         }
 
-        [TestMethod]
-        [TestCategory("ODBCServer_MethodName")]
+        [Test]
+        [Category("ODBCServer_MethodName")]
         public void ODBCServer_WorstError()
         {
             //------------Setup for test--------------------------
@@ -248,8 +249,8 @@ namespace Dev2.Activities.Designers.Tests.ODBC
 
 
 
-        [TestMethod]
-        [TestCategory("ODBCServer_MethodName")]
+        [Test]
+        [Category("ODBCServer_MethodName")]
         public void ODBCServer_MethodName_ValidateExpectErrors()
         {
             //------------Setup for test--------------------------
@@ -266,8 +267,8 @@ namespace Dev2.Activities.Designers.Tests.ODBC
             Assert.AreEqual(ODBCServer.DesignValidationErrors.Count, 2);
         }
 
-        [TestMethod]
-        [TestCategory("ODBCServer_MethodName")]
+        [Test]
+        [Category("ODBCServer_MethodName")]
         public void ODBCServer_MethodName_ClearErrors()
         {
             //------------Setup for test--------------------------
@@ -283,8 +284,8 @@ namespace Dev2.Activities.Designers.Tests.ODBC
             Assert.AreEqual(ODBCServer.DesignValidationErrors.Count, 1);
         }
 
-        [TestMethod]
-        [TestCategory("ODBCServer_MethodName")]
+        [Test]
+        [Category("ODBCServer_MethodName")]
         public void ODBCServer_Ctor_EmptyModelItem()
         {
             //------------Setup for test--------------------------
@@ -302,8 +303,8 @@ namespace Dev2.Activities.Designers.Tests.ODBC
             Assert.IsTrue(ODBCServer.ErrorRegion.IsEnabled);
         }
 
-        [TestMethod]
-        [TestCategory("ODBCServer_MethodName")]
+        [Test]
+        [Category("ODBCServer_MethodName")]
         public void ODBCServer_TestActionSetSource()
         {
             //------------Setup for test--------------------------
@@ -322,8 +323,8 @@ namespace Dev2.Activities.Designers.Tests.ODBC
             Assert.IsTrue(ODBCServer.ErrorRegion.IsEnabled);
         }
 
-        [TestMethod]
-        [TestCategory("ODBCServer_MethodName")]
+        [Test]
+        [Category("ODBCServer_MethodName")]
         public void ODBCServer_TestActionSetSourceAndTestClickOkHasMappings()
         {
             //------------Setup for test--------------------------
@@ -343,8 +344,8 @@ namespace Dev2.Activities.Designers.Tests.ODBC
             Assert.AreEqual(0, ODBCServer.ManageServiceInputViewModel.Errors.Count);
         }
 
-        [TestMethod]
-        [TestCategory("ODBCServer_MethodName")]
+        [Test]
+        [Category("ODBCServer_MethodName")]
         public void ODBCServer_TestActionSetSourceAndTestClickOkHasMappingsErrorFromServer()
         {
             //------------Setup for test--------------------------
@@ -363,8 +364,8 @@ namespace Dev2.Activities.Designers.Tests.ODBC
             Assert.AreEqual(0, ODBCServer.ManageServiceInputViewModel.Errors.Count);
         }
 
-        [TestMethod]
-        [TestCategory("ODBCServer_MethodName")]
+        [Test]
+        [Category("ODBCServer_MethodName")]
         public void ODBCServer_TestActionSetSourceAndTestClickOkHasserialisationIssue()
         {
             //------------Setup for test--------------------------
@@ -385,8 +386,8 @@ namespace Dev2.Activities.Designers.Tests.ODBC
             Assert.AreEqual(0, ODBCServer.ManageServiceInputViewModel.Errors.Count);
         }
 
-        [TestMethod]
-        [TestCategory("ODBCServer_MethodName")]
+        [Test]
+        [Category("ODBCServer_MethodName")]
         public void ODBCServer_TestActionSetSourceAndTestClickOkHasHeaders()
         {
             //------------Setup for test--------------------------
@@ -408,8 +409,8 @@ namespace Dev2.Activities.Designers.Tests.ODBC
             Assert.AreEqual(0, ODBCServer.ManageServiceInputViewModel.Errors.Count);
         }
 
-        [TestMethod]
-        [TestCategory("ODBCServer_MethodName")]
+        [Test]
+        [Category("ODBCServer_MethodName")]
         public void ODBCServer_TestActionSetSourceAndTestClickOkHasQueryStringAndHeaders()
         {
             //------------Setup for test--------------------------
@@ -429,8 +430,8 @@ namespace Dev2.Activities.Designers.Tests.ODBC
             Assert.AreEqual(0, ODBCServer.ManageServiceInputViewModel.Errors.Count);
         }
 
-        [TestMethod]
-        [TestCategory("ODBCServer_MethodName")]
+        [Test]
+        [Category("ODBCServer_MethodName")]
         public void ODBCServer_TestActionSetSourceAndTestClickOkHasQueryStringAndHeadersRecSet()
         {
             //------------Setup for test--------------------------
@@ -451,9 +452,9 @@ namespace Dev2.Activities.Designers.Tests.ODBC
             Assert.AreEqual(0, ODBCServer.ManageServiceInputViewModel.Errors.Count);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("ODBCServer_MethodName")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("ODBCServer_MethodName")]
         public void ODBCServer_VerifyCommandTimeout()
         {
             //------------Setup for test--------------------------

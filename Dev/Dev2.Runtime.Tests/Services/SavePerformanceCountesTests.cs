@@ -7,18 +7,19 @@ using Dev2.Communication;
 using Dev2.PerformanceCounters.Management;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SavePerformanceCountesTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -30,9 +31,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -44,9 +45,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(AuthorizationContext.Administrator, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SavePerformanceCounters_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SavePerformanceCounters_Execute")]
         public void SavePerformanceCounters_Execute_WhenValid_ShouldCallManagerSave()
         {
             //------------Setup for test--------------------------
@@ -65,9 +66,9 @@ namespace Dev2.Tests.Runtime.Services
             mockPerfCounterManager.Verify(repository => repository.Save(It.IsAny<IPerformanceCounterTo>()));
         }        
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SavePerformanceCounters_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SavePerformanceCounters_Execute")]
         public void SavePerformanceCounters_Execute_WhenError_ShouldSetMessageWithError()
         {
             //------------Setup for test--------------------------
@@ -86,9 +87,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("This call failed", message.GetDecompressedMessage());
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SavePerformanceCounters_HandlesType")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SavePerformanceCounters_HandlesType")]
         public void SavePerformanceCounters_HandlesType_ShouldReturnSavePerformanceCounters()
         {
             //------------Setup for test--------------------------

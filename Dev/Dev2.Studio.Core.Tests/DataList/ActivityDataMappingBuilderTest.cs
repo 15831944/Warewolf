@@ -11,23 +11,24 @@
 using System.Text;
 using Dev2.DataList;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Core.Tests.DataList
 {
-    [TestClass]
-	[TestCategory("Studio Datalist Core")]
+    [TestFixture]
+    [SetUpFixture]
+	[Category("Studio Datalist Core")]
     public class ActivityDataMappingBuilderTest
     {
         public TestContext TestContext { get; set; }
 
         #region Test
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ActivityDataMappingBuilder_Generate")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ActivityDataMappingBuilder_Generate")]
         public void ActivityDataMappingBuilder_Generate_WhenValidWorkflow_ExpectValidOutputList()
         {
             //------------Setup for test--------------------------
@@ -116,9 +117,9 @@ namespace Dev2.Core.Tests.DataList
         }
 
         // NEW
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ActivityDataMappingBuilder_Generate")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ActivityDataMappingBuilder_Generate")]
         public void ActivityDataMappingBuilder_Generate_WhenValidWorkflowWithDataListMatchingColumn_ExpectValidOutputList()
         {
             //------------Setup for test--------------------------
@@ -208,9 +209,9 @@ namespace Dev2.Core.Tests.DataList
         }
 
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ActivityDataMappingBuilder_Generate")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ActivityDataMappingBuilder_Generate")]
         public void ActivityDataMappingBuilder_Generate_WhenValidWorkflow_ExpectValidInputList()
         {
             //------------Setup for test--------------------------
@@ -298,9 +299,9 @@ namespace Dev2.Core.Tests.DataList
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ActivityDataMappingBuilder_Generate")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ActivityDataMappingBuilder_Generate")]
         public void ActivityDataMappingBuilder_Generate_WhenValidWorkflow_ExpectValidInputAndOutputList()
         {
             //------------Setup for test--------------------------
@@ -385,9 +386,9 @@ namespace Dev2.Core.Tests.DataList
         }
 
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ActivityDataMappingBuilder_Generate")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ActivityDataMappingBuilder_Generate")]
         public void ActivityDataMappingBuilder_Generate_WhenValidWorkflowWithSavedMappings_ExpectSavedInputAndOutputList()
         {
             //------------Setup for test--------------------------
@@ -474,9 +475,9 @@ namespace Dev2.Core.Tests.DataList
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ActivityDataMappingBuilder_Generate")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ActivityDataMappingBuilder_Generate")]
         public void ActivityDataMappingBuilder_Generate_WhenValidWorkflowWithDifferentRecordsetNameAndFirstColumn_ExpectInputMappingWithDataListRecordsetName()
         {
             //------------Setup for test--------------------------
@@ -559,9 +560,9 @@ namespace Dev2.Core.Tests.DataList
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ActivityDataMappingBuilder_Generate")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ActivityDataMappingBuilder_Generate")]
         public void ActivityDataMappingBuilder_Generate_MultiplecolumnsWithSameNameInDifferentRecordSets()
         {
             //------------Setup for test--------------------------
@@ -644,9 +645,9 @@ namespace Dev2.Core.Tests.DataList
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ActivityDataMappingBuilder_Generate")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ActivityDataMappingBuilder_Generate")]
         public void ActivityDataMappingBuilder_Generate_WhenValidWorkflowWithDifferentRecordsetNameAndFirstColumn_ExpectOutputMappingWithDataListRecordsetName()
         {
             //------------Setup for test--------------------------
@@ -729,9 +730,9 @@ namespace Dev2.Core.Tests.DataList
         }
 
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("ActivityDataMappingBuilder_Generate")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("ActivityDataMappingBuilder_Generate")]
         public void ActivityDataMappingBuilder_Generate_WhenValidWorkflowWithNotEmptyRecordsetNameAndFirstColumn_ExpectOutputMappingWithDataListRecordsetName()
         {
             //------------Setup for test--------------------------
@@ -813,9 +814,9 @@ namespace Dev2.Core.Tests.DataList
 
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("ActivityDataMappingBuilder_Generate")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("ActivityDataMappingBuilder_Generate")]
         public void ActivityDataMappingBuilder_Generate_WhenValidWorkflowWithIsJson_ExpectOutputMappingWithDataList()
         {
             //------------Setup for test--------------------------

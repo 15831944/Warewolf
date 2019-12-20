@@ -18,13 +18,14 @@ using ActivityUnitTests;
 using Dev2.Common.State;
 using Dev2.DynamicServices;
 using Dev2.Utilities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Moq;
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DataSplitActivityTest : BaseActivityUnitTest
     {
         IList<DataSplitDTO> _resultsCollection = new List<DataSplitDTO>();
@@ -34,7 +35,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         #region Additional test attributes
 
-        [TestInitialize]
+        [SetUp]
         public void MyTestInitialize()
         {
             if (_resultsCollection == null)
@@ -48,9 +49,9 @@ namespace Dev2.Tests.Activities.ActivityTests
         
         #region Funky Language
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DsfDataMergeActivity_Execute")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DsfDataMergeActivity_Execute")]
         public void DsfDataSplitActivity_Execute_WhenUsingAppendAndMixedSplitType_ExpectCorrectSplit()
         {
 
@@ -95,9 +96,9 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DsfDataMergeActivity_Execute")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DsfDataMergeActivity_Execute")]
         public void DsfDataSplitActivity_Execute_WhenUsingStarAndMixedSplitType_ExpectCorrectSplit()
         {
 
@@ -141,9 +142,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             CollectionAssert.AreEqual(dataExpected, dataList, comparer);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("DsfDataMergeActivity_Execute")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("DsfDataMergeActivity_Execute")]
         public void DsfDataSplitActivity_Execute_WhenUsingStarAndMixedSplitType_WithEmptyLine_ExpectCorrectSplit()
         {
 
@@ -190,7 +191,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         #endregion
 
-        [TestMethod]
+        [Test]
         public void EmptySourceString_Expected_No_Splits()
         {
             _resultsCollection.Add(new DataSplitDTO("[[OutVar1]]", "Index", "15", 1));
@@ -202,7 +203,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(string.Empty, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Scalar_Expected_Split_And_Insert_To_Scalar()
         {
             _resultsCollection.Add(new DataSplitDTO("[[OutVar1]]", "Index", "15", 1));
@@ -218,7 +219,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
+        [Test]
         public void MultipleScalars_Expected_Split_And_Insert_Mutiple_Scalars()
         {
 
@@ -247,7 +248,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             CollectionAssert.AreEqual(expected, actual, comparer);
         }
 
-        [TestMethod]
+        [Test]
         public void MixedScalarsAndRecordsetWithIndex_Expected_Split_Insert_Mutiple_Scalar_And_Recordsets()
         {
             _resultsCollection.Add(new DataSplitDTO("[[OutVar1]]", "Index", "15", 1));
@@ -273,7 +274,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             CollectionAssert.AreEqual(expected, actual, comparer);
         }
 
-        [TestMethod]
+        [Test]
         public void MixedScalarsAndRecordsetWithoutIndex_Expected_Split_To_End_Inserting_Mutiple_Scalar_And_Recordsets()
         {
             _resultsCollection.Add(new DataSplitDTO("[[OutVar1]]", "Index", "15", 1));
@@ -308,7 +309,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             CollectionAssert.AreEqual(expected, actual, new ActivityUnitTests.Utils.StringComparer());
         }
 
-        [TestMethod]
+        [Test]
         public void NoResultVariableInFirst_Expected_Still_Spilt_But_Dont_Insert_For_First()
         {
 
@@ -324,7 +325,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual, "Got " + actual + " expected " + expected);
         }
 
-        [TestMethod]
+        [Test]
         public void IndexTypeSplit_Expected_Split_At_An_Index()
         {
             _resultsCollection.Add(new DataSplitDTO("[[OutVar1]]", "Index", "15", 1));
@@ -339,7 +340,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual, "Got " + actual + " but expected " + expected);
         }
 
-        [TestMethod]
+        [Test]
         public void CharsTypeSplitSingle_Expected_Split_Once_At_Chars()
         {
 
@@ -357,7 +358,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void BlankSpaceTypeSplitSingle_Expected_Split_At_BlankSpace()
         {
             _resultsCollection.Clear();
@@ -381,7 +382,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
+        [Test]
         public void BlankSpaceTypeSplitMultiple_Expected_Split_Mutiple_At_BlankSpace()
         {
 
@@ -404,7 +405,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             CollectionAssert.AreEqual(expected, actual, new ActivityUnitTests.Utils.StringComparer());
         }
 
-        [TestMethod]
+        [Test]
         public void NewLineTypeSplitWindows_Expected_Split_On_Windows_NewLine()
         {
             _resultsCollection.Add(new DataSplitDTO("[[OutVar1]]", "New Line", "", 1));
@@ -420,7 +421,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
         
-        [TestMethod]
+        [Test]
         public void TabTypeSplit_Expected_Split_On_Tab()
         {
             _resultsCollection.Add(new DataSplitDTO("[[recset2().field2]]", "Tab", "", 1));
@@ -436,7 +437,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             CollectionAssert.AreEqual(expected, actual, new ActivityUnitTests.Utils.StringComparer());
         }
 
-        [TestMethod]
+        [Test]
         public void EndTypeSplit_Expected_Split_On_End_Of_String()
         {
             _resultsCollection.Add(new DataSplitDTO("[[OutVar1]]", "End", "", 1));
@@ -457,9 +458,9 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfDataSplitActivity_GetOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfDataSplitActivity_GetOutputs")]
         public void DsfDataSplitActivity_GetOutputs_Called_ShouldReturnListWithResultValueInIt()
         {
             //------------Setup for test--------------------------
@@ -475,7 +476,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("[[recset2(2).field2]]", outputs[1]);
         }
 
-        [TestMethod]
+        [Test]
         public void RecordsetsWithVaryingIndexesExpectedSplitAndInsertAtDifferentIndexes()
         {
 
@@ -502,7 +503,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("0812457896", actual2[0]);
         }
 
-        [TestMethod]
+        [Test]
         public void MutiRecsetsWithNoIndex_Expected_Split_Append_To_The_Recordsets()
         {
             _resultsCollection.Add(new DataSplitDTO("[[recset1().field1]]", "Index", "15", 1));
@@ -543,7 +544,7 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
+        [Test]
         public void RecsetWithStar_Expected_Split_Overwrite_Records_From_Index_1()
         {
 
@@ -590,7 +591,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             actual = new StringBuilder(actual).Replace(Environment.NewLine, "\n").Replace("\r", "").ToString();
         }
 
-        [TestMethod]
+        [Test]
         public void RecorsetWithStarAsIndexInSourceString_Expected_Split_For_Last_Value_In_Recordset()
         {
 
@@ -645,9 +646,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             CollectionAssert.AreEqual(expectedRecSet1, actual, new ActivityUnitTests.Utils.StringComparer());
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfDataSplitActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfDataSplitActivity_UpdateForEachInputs")]
         public void DsfDataSplitActivity_UpdateForEachInputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -660,9 +661,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("[[CompanyName]]", act.ResultsCollection[0].OutputVariable);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfDataSplitActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfDataSplitActivity_UpdateForEachInputs")]
         public void DsfDataSplitActivity_UpdateForEachInputs_MoreThan1Updates_UpdatesMergeCollection()
         {
             //------------Setup for test--------------------------
@@ -681,9 +682,9 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfDataSplitActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfDataSplitActivity_UpdateForEachOutputs")]
         public void DsfDataSplitActivity_UpdateForEachOutputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -696,9 +697,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("[[CompanyName]]", act.SourceString);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfDataSplitActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfDataSplitActivity_UpdateForEachOutputs")]
         public void DsfDataSplitActivity_UpdateForEachOutputs_1Updates_UpdateCountNumber()
         {
             //------------Setup for test--------------------------
@@ -712,9 +713,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Test", act.ResultsCollection[0].OutputVariable);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfDataSplitActivity_GetForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfDataSplitActivity_GetForEachInputs")]
         public void DsfDataSplitActivity_GetForEachInputs_WhenHasExpression_ReturnsInputList()
         {
             //------------Setup for test--------------------------
@@ -731,9 +732,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("2", dsfForEachItems[1].Value);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfDataSplitActivity_GetForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfDataSplitActivity_GetForEachOutputs")]
         public void DsfDataSplitActivity_GetForEachOutputs_WhenHasResult_ReturnsInputList()
         {
             //------------Setup for test--------------------------
@@ -748,9 +749,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("[[CompanyName]]", dsfForEachItems[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfDataSplitActivity_GetState")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfDataSplitActivity_GetState")]
         public void DsfDataSplitActivity_GetState_ReturnsStateVariable()
         {
             IList<DataSplitDTO> resultsCollection = new List<DataSplitDTO> { new DataSplitDTO("[[CompanyName]]", "Index", "2", 1) };
@@ -805,9 +806,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("DsfDataSplitActivity_GetState")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("DsfDataSplitActivity_GetState")]
         public void DsfDataSplitActivity_EmptyLines_ShouldExist()
         {
             var sourceStringLines = new string[] {
@@ -846,9 +847,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("DsfDataSplitActivity_GetState")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("DsfDataSplitActivity_GetState")]
         public void DsfDataSplitActivity_EmptyLinesUnix_ShouldExist()
         {
             var sourceStringLines = new string[] {
@@ -887,9 +888,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("DsfDataSplitActivity_EmptyColumn")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("DsfDataSplitActivity_EmptyColumn")]
         public void DsfDataSplitActivity_EmptyColumn()
         {
             _resultsCollection.Clear();

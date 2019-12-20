@@ -32,31 +32,32 @@ using Dev2.Interfaces;
 using Dev2.Runtime.Execution;
 using Dev2.Runtime.Interfaces;
 using Dev2.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Warewolf.Storage;
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
 
     public class NativeActivityTest : BaseActivityUnitTest
     {
 
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void MyClassInitialize(TestContext testContext)
         {
-            Directory.SetCurrentDirectory(testContext.TestDir);
+            Directory.SetCurrentDirectory(testContext.TestDirectory);
         }
 
-        [ClassCleanup]
+        [OneTimeTearDown]
         public static void MyClassCleanup()
         {
 
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ConstructorWithNullDebugDispatcher_Expected_ArgumentNullException()
         {
@@ -65,7 +66,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
+        [Test]
         public void ConstructorWithDebugDispatcher_Expected_NoArgumentNullException()
         {
 
@@ -73,9 +74,9 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DsfNativeActivity_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DsfNativeActivity_Constructor")]
         public void DsfNativeActivity_Constructor_OnError_PropertiesInitialized()
         {
             //------------Setup for test--------------------------
@@ -89,9 +90,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsFalse(activity.IsEndedOnError);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DsfNativeActivity_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DsfNativeActivity_Constructor")]
         public void DsfNativeActivity_Constructor_OnErrorVariable_HasFindMissingAttribute()
         {
             //------------Setup for test--------------------------
@@ -105,20 +106,20 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsNotNull(attribute);
         }
 
-        [TestMethod]
+        [Test]
         public void ExecuteWithNoDataObject_Expected_DoesNotInvokeDebugDispatcher()
         {
             VerifyDispatcherWriteCount(null, 0);
         }
 
-        [TestMethod]
+        [Test]
         public void ExecuteWithIsDebugTrue_Expected_InvokesDebugDispatcher()
         {
             VerifyDispatcherWriteCount(CreateDataObject(true, false), 1);
         }
 
 
-        [TestMethod]
+        [Test]
         public void ExecuteWithIsDebugFalse_Expected_DoesNotInvokeDebugDispatcher()
         {
             VerifyDispatcherWriteCount(CreateDataObject(false, false), 0);
@@ -166,10 +167,10 @@ namespace Dev2.Tests.Activities.ActivityTests
             };
         }
 
-        [TestMethod]
-        [TestCategory("DsfNativeActivity_InitializeDebugState")]
+        [Test]
+        [Category("DsfNativeActivity_InitializeDebugState")]
         [Description("DsfNativeActivity InitializeDebugState must set the DebugState's properties.")]
-        [Owner("Trevor Williams-Ros")]
+        [Author("Trevor Williams-Ros")]
         public void DsfNativeActivity_UnitTest_InitializeDebugState_SetsPropertiesCorrectly()
         {
             var parentInstanceID = Guid.NewGuid();
@@ -221,8 +222,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(dataObj.DebugEnvironmentId, actual.EnvironmentID, "DispatchDebugState did not set the DebugState's EnvironmentID.");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Author("Hagashen Naidu")]
         public void DsfNativeActivity_DispatchDebugState_Before_SetsStartTimeCorrectly()
         {
             var parentInstanceID = Guid.NewGuid();
@@ -258,8 +259,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(DateTime.MinValue, actual.EndTime);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Author("Hagashen Naidu")]
         public void DsfNativeActivity_DispatchDebugState_After_SetsEndTimeCorrectly()
         {
             var parentInstanceID = Guid.NewGuid();
@@ -302,9 +303,9 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfNativeActivity_GetForEachItems")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfNativeActivity_GetForEachItems")]
         public void DsfNativeActivity_GetForEachItems_NullStringList_EmptyList()
         {
             //------------Setup for test--------------------------
@@ -316,9 +317,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsFalse(forEachItemsForTest.Any());
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfNativeActivity_GetForEachItems")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfNativeActivity_GetForEachItems")]
         public void DsfNativeActivity_GetForEachItems_EmptyStringList_EmptyList()
         {
             //------------Setup for test--------------------------
@@ -330,9 +331,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsFalse(forEachItemsForTest.Any());
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfNativeActivity_GetForEachItems")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfNativeActivity_GetForEachItems")]
         public void DsfNativeActivity_GetForEachItems_WhenHasStringItems_ReturnsForEachItemList()
         {
             //------------Setup for test--------------------------
@@ -350,9 +351,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsNotNull(forEachItemsForTest.FirstOrDefault(item => item.Value == item1NameAndValue));
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DsfActivity_UpdateDebugParentID")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DsfActivity_UpdateDebugParentID")]
 
         public void DsfActivity_UpdateDebugParentID_UniqueIdSameIfNestingLevelNotChanged()
 
@@ -375,9 +376,9 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("DsfNativeActivity_UpdateDebugParentID")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("DsfNativeActivity_UpdateDebugParentID")]
 
         public void DsfNativeActivity_UpdateDebugParentID_UniqueIdNotSameIfNestingLevelIncreased()
 
@@ -401,9 +402,9 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfNativeActivity_UpdateDebugParentID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfNativeActivity_UpdateDebugParentID")]
         public void DsfNativeActivity_ExecuteTool_DebugFalse_TestExecution()
         {
             var dataObject = new DsfDataObject("<Datalist></Datalist>", Guid.NewGuid())
@@ -445,9 +446,9 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfNativeActivity_UpdateDebugParentID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfNativeActivity_UpdateDebugParentID")]
         public void DsfNativeActivity_ExecuteTool_Errors_PerformsErrorHandling()
         {
             var dataObject = new DsfDataObject("<Datalist></Datalist>", Guid.NewGuid())
@@ -478,8 +479,8 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Author("Hagashen Naidu")]
         public void DsfNativeActivity_DispatchDebugState_After_TestExecution()
         {
             var parentInstanceID = Guid.NewGuid();
@@ -537,9 +538,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(RunResult.TestFailed, serviceTestModelTO.TestSteps[0].Result.RunTestResult);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("DsfNativeActivity_ExecuteTool")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("DsfNativeActivity_ExecuteTool")]
         public void DsfNativeActivity_ExecuteTool_NoTestStepOutputs_TestExecution()
         {
             var dataObject = new DsfDataObject("<Datalist></Datalist>", Guid.NewGuid())
@@ -574,9 +575,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsFalse(dataObject.StopExecution);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("DsfNativeActivity_ExecuteTool")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("DsfNativeActivity_ExecuteTool")]
         public void DsfNativeActivity_ExecuteTool_TestErrors_TestExecution()
         {
             CurrentDl = "<ADL><result></result></ADL>";

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using Dev2.Network;
 using Dev2.SignalR.Wrappers;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Core.Tests.Network
@@ -14,9 +14,9 @@ namespace Dev2.Core.Tests.Network
         //Given a ServerProxy
         //When I Execute the AddDebugWriter
         //Then the EsbProxy is invoked with AddDebugWriter
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServerProxy_AddDebugWriter")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServerProxy_AddDebugWriter")]
         public void ServerProxy_AddDebugWriter_WithArgs_ShouldInvokeCorrectly()
         {
             //------------Setup for test--------------------------
@@ -31,15 +31,16 @@ namespace Dev2.Core.Tests.Network
         }
 
 
-        [TestMethod, Timeout(5000)]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServerProxy_Constructor")]
+        [Test]
+        [Timeout(5000)]
+        [Author("Hagashen Naidu")]
+        [Category("ServerProxy_Constructor")]
         public void ServerProxy_FallbackOnConnectWithError()
         {
             //------------Setup for test--------------------------
             var serverProxy = new ServerProxy(new Uri("http://bob"));
             var serverGuid = Guid.NewGuid();
-            var p = new PrivateObject(serverProxy);
+            var p = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(serverProxy);
             var wrapped = new Mock<IEnvironmentConnection>();
             var fallback = new Mock<IEnvironmentConnection>();
             wrapped.Setup(a => a.Connect(It.IsAny<Guid>())).Throws(new FallbackException());
@@ -63,15 +64,16 @@ namespace Dev2.Core.Tests.Network
 
 
 
-        [TestMethod, Timeout(5000)]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServerProxy_Constructor")]
+        [Test]
+        [Timeout(5000)]
+        [Author("Hagashen Naidu")]
+        [Category("ServerProxy_Constructor")]
         public void ServerProxy_NoFallbackOnConnectIfNormalException()
         {
             //------------Setup for test--------------------------
             var serverProxy = new ServerProxy(new Uri("http://bob"));
             var serverGuid = Guid.NewGuid();
-            var p = new PrivateObject(serverProxy);
+            var p = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(serverProxy);
             var wrapped = new Mock<IEnvironmentConnection>();
             var fallback = new Mock<IEnvironmentConnection>();
             wrapped.Setup(a => a.Connect(It.IsAny<Guid>())).Throws(new Exception());

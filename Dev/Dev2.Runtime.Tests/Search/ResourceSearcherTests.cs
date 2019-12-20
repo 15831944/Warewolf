@@ -4,29 +4,30 @@ using Dev2.Common.Interfaces.Data;
 using Dev2.Common.Search;
 using Dev2.Runtime.Interfaces;
 using Dev2.Runtime.Search;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.Runtime.Search
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ResourceSearcherTests
     {
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void NullResourceCatalog_ShouldThrowException()
         {
             var searcher = new ResourceSearcher(null);
         }
 
-        [TestMethod]
+        [Test]
         public void Constructor_ResourceCatalogTestCatalog_ExpectNoException()
         {
             var searcher = new ResourceSearcher(new Mock<IResourceCatalog>().Object);
-            Assert.IsNotNull(searcher);
+            NUnit.Framework.Assert.IsNotNull(searcher);
         }
 
-        [TestMethod]
+        [Test]
         public void GetSearchResults_WhenResourceNameHasValue_ShouldReturnResult()
         {
             var mockResourceCatalog = new Mock<IResourceCatalog>();
@@ -50,13 +51,13 @@ namespace Dev2.Tests.Runtime.Search
 
             var variableListSearcher = new ResourceSearcher(mockResourceCatalog.Object);
             var searchResults = variableListSearcher.GetSearchResults(searchValue);
-            Assert.AreEqual(1, searchResults.Count);
+            NUnit.Framework.Assert.AreEqual(1, searchResults.Count);
             var searchResult = searchResults[0];
-            Assert.AreEqual(Guid.Empty, searchResult.ResourceId);
-            Assert.AreEqual("Test Resource", searchResult.Match);
-            Assert.AreEqual("Test Resource", searchResult.Name);
-            Assert.AreEqual("Folder", searchResult.Path);
-            Assert.AreEqual(Common.Interfaces.Search.SearchItemType.WorkflowName, searchResult.Type);
+            NUnit.Framework.Assert.AreEqual(Guid.Empty, searchResult.ResourceId);
+            NUnit.Framework.Assert.AreEqual("Test Resource", searchResult.Match);
+            NUnit.Framework.Assert.AreEqual("Test Resource", searchResult.Name);
+            NUnit.Framework.Assert.AreEqual("Folder", searchResult.Path);
+            NUnit.Framework.Assert.AreEqual(Common.Interfaces.Search.SearchItemType.WorkflowName, searchResult.Type);
         }
 
     }

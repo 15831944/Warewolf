@@ -8,7 +8,7 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 using Dev2.Common.Interfaces.Wrappers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -16,12 +16,13 @@ using System.Configuration;
 
 namespace Dev2.Server.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ServerEnvironmentPreparerTests
     {
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ServerEnvironmentPreparerTests))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ServerEnvironmentPreparerTests))]
         public void ServerEnvironmentPreparer_Constructor()
         {
             using (var serverEnvironmentPreparer = new ServerEnvironmentPreparer())
@@ -29,9 +30,9 @@ namespace Dev2.Server.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ServerEnvironmentPreparerTests))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ServerEnvironmentPreparerTests))]
         public void ServerEnvironmentPreparer_PrepareEnvironment()
         {
             var mockTempFileDeleter = new Mock<ITempFileDeleter>();

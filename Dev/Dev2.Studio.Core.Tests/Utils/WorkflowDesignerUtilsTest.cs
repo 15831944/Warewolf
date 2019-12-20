@@ -12,7 +12,7 @@ using System;
 using System.Collections.Generic;
 using Dev2.Studio.Interfaces;
 using Dev2.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
@@ -22,7 +22,8 @@ namespace Dev2.Core.Tests.Utils
     /// <summary>
     /// Summary description for WorkflowDesignerUtilsTest
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WorkflowDesignerUtilsTest
     {
         /// <summary>
@@ -36,7 +37,7 @@ namespace Dev2.Core.Tests.Utils
         // You can use the following additional attributes as you write your tests:
         //
         // Use ClassInitialize to run code before running the first test in the class
-        // [ClassInitialize()]
+        // [OneTimeSetUp]
         // public static void MyClassInitialize(TestContext testContext) { }
         //
         // Use ClassCleanup to run code after all tests in a class have run
@@ -53,7 +54,7 @@ namespace Dev2.Core.Tests.Utils
         //
         #endregion
 
-        [TestMethod]
+        [Test]
         public void CanFormatDsfActivityFieldHandleSpecialCharsWithNoException()
         {
             var wdu = new WorkflowDesignerUtils();
@@ -63,7 +64,7 @@ namespace Dev2.Core.Tests.Utils
             Assert.AreEqual(0, result.Count, "Strange behaviors parsing special chars, I got results when I should not?!");
         }
 
-        [TestMethod]
+        [Test]
         public void CanFormatDsfActivityFieldHandleNormalParse()
         {
             var wdu = new WorkflowDesignerUtils();
@@ -73,7 +74,7 @@ namespace Dev2.Core.Tests.Utils
             Assert.AreEqual(1, result.Count, "Strange behaviors parsing normal regions, I was expecting 1 result");
         }
         
-        [TestMethod]
+        [Test]
         public void CanFormatDsfActivityFieldWithMissmatchedRegionBracesExpectedNotParsed()
         {
             var wdu = new WorkflowDesignerUtils();
@@ -83,9 +84,9 @@ namespace Dev2.Core.Tests.Utils
             Assert.AreEqual(0, result.Count, "Format DsfActivity returned results when the region braces where missmatched");
         }
 
-        [TestMethod]
-        [Owner("Leon rajindrapersadh")]
-        [TestCategory("WorkflowDesignerUtils_OnClick")]
+        [Test]
+        [Author("Leon rajindrapersadh")]
+        [Category("WorkflowDesignerUtils_OnClick")]
         public void WorkflowDesignerUtils_CheckIfRemoteWorkflowAndSetProperties_ServerName_SetAsSource()
         {
 
@@ -110,9 +111,9 @@ namespace Dev2.Core.Tests.Utils
 
 
 
-        [TestMethod]
-        [Owner("Leon rajindrapersadh")]
-        [TestCategory("WorkflowDesignerUtils_OnClick")]
+        [Test]
+        [Author("Leon rajindrapersadh")]
+        [Category("WorkflowDesignerUtils_OnClick")]
         public void WorkflowDesignerUtils_CheckIfRemoteWorkflowAndSetProperties_DsfDateTime_DateTimeExampleShown()
         {
 

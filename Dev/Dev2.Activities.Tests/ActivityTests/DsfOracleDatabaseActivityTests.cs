@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
 using Dev2.Activities;
 using Dev2.Common.Interfaces.DB;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Warewolf.Core;
 using Warewolf.Storage;
 using Warewolf.Storage.Interfaces;
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfOracleDatabaseActivityTests
     {
         static DsfOracleDatabaseActivity CreateDsfOracleDatabaseActivity()
@@ -21,8 +22,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             return new ExecutionEnvironment();
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void DsfOracleDatabaseActivity_GivenNewInstance_ShouldNotBeNull()
         {
             //---------------Set up test pack-------------------
@@ -33,8 +34,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsNotNull(oracleDatabaseActivity);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void CreateNewActivity_GivenIsNew_ShouldHaveDisplayName()
         {
             //---------------Set up test pack-------------------
@@ -47,8 +48,8 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void GetFindMissingType_GivenIsNew_ShouldSetDatagridAcitivity()
         {
             //---------------Set up test pack-------------------
@@ -61,8 +62,8 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void GetDebugInputs_GivenEnvironmentIsNull_ShouldHaveNoDebugOutputs()
         {
             //---------------Set up test pack-------------------
@@ -74,8 +75,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(0, debugInputs.Count);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void GetDebugInputs_GivenEnvironmentMockEnvironmentAndFromPath_ShouldHaveOneDebugOutputs()
         {
             //---------------Set up test pack-------------------

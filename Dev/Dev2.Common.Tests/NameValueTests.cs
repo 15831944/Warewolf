@@ -9,18 +9,19 @@
 */
 
 using Dev2.Common.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace Dev2.Common.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class NameValueTests
     {
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(NameValue))]
+        [Test]
+        [Author("Candice Daniel")]
+        [NUnit.Framework.Category(nameof(NameValue))]
         public void NameValue_Constructor()
         {
             var constructor = new NameValue
@@ -34,9 +35,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual("testName", constructor.ToString());
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(NameValue))]
+        [Test]
+        [Author("Candice Daniel")]
+        [NUnit.Framework.Category(nameof(NameValue))]
         public void NameValue_Constructor_Values()
         {
             var constructor = new NameValue("testName", "testValue");
@@ -46,9 +47,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual("testName", constructor.ToString());
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(NameValue))]
+        [Test]
+        [Author("Candice Daniel")]
+        [NUnit.Framework.Category(nameof(NameValue))]
         public void NameValue_GetHashCode()
         {
             var constructor = new NameValue("testName", "testValue");
@@ -56,9 +57,9 @@ namespace Dev2.Common.Tests
             Assert.AreNotEqual("0", constructor.GetHashCode());
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(NameValue))]
+        [Test]
+        [Author("Candice Daniel")]
+        [NUnit.Framework.Category(nameof(NameValue))]
         public void NameValue_GetHashCode_NameEmpty()
         {
             var constructor = new NameValue(null, "testValue");
@@ -66,9 +67,9 @@ namespace Dev2.Common.Tests
             Assert.AreNotEqual(0, constructor.GetHashCode());
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(NameValue))]
+        [Test]
+        [Author("Candice Daniel")]
+        [NUnit.Framework.Category(nameof(NameValue))]
         public void NameValue_GetHashCode_ValueEmpty()
         {
             var constructor = new NameValue("Name", null);
@@ -76,9 +77,9 @@ namespace Dev2.Common.Tests
             Assert.AreNotEqual(0, constructor.GetHashCode());
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(NameValue))]
+        [Test]
+        [Author("Candice Daniel")]
+        [NUnit.Framework.Category(nameof(NameValue))]
         public void NameValue_Equals_NameValue_ExpectTrue()
         {
             var constructor = new NameValue("testName", "testValue");
@@ -87,9 +88,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(NameValue))]
+        [Test]
+        [Author("Candice Daniel")]
+        [NUnit.Framework.Category(nameof(NameValue))]
         public void NameValue_Equals_NameValue_ExpectFalse()
         {
             var constructor = new NameValue("testName", "testValue");
@@ -98,9 +99,9 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(NameValue))]
+        [Test]
+        [Author("Candice Daniel")]
+        [NUnit.Framework.Category(nameof(NameValue))]
         public void NameValue_Equals_NameValue_OtherisNullExpectFalse()
         {
             var constructor = new NameValue("testName", "testValue");
@@ -110,9 +111,9 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(NameValue))]
+        [Test]
+        [Author("Candice Daniel")]
+        [NUnit.Framework.Category(nameof(NameValue))]
         public void NameValue_Equals_NameValue_ConstructorEqualsOtherExpectTrue()
         {
             var constructor = new NameValue("testName", "testValue");
@@ -121,9 +122,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(NameValue))]
+        [Test]
+        [Author("Candice Daniel")]
+        [NUnit.Framework.Category(nameof(NameValue))]
         public void NameValue_Equals_Object_ExpectTrue()
         {
             var constructor = new NameValue("testName", "testValue");
@@ -133,9 +134,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(NameValue))]
+        [Test]
+        [Author("Candice Daniel")]
+        [NUnit.Framework.Category(nameof(NameValue))]
         public void NameValue_Equals_Object_isNullExpectFalse()
         {
             var constructor = new NameValue("testName", "testValue");
@@ -145,9 +146,9 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(NameValue))]
+        [Test]
+        [Author("Candice Daniel")]
+        [NUnit.Framework.Category(nameof(NameValue))]
         public void NameValue_Equals_Object_ObjectDifferentType()
         {
             var constructor = new NameValue("testName", "testValue");
@@ -156,27 +157,27 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(NameValue))]
+        [Test]
+        [Author("Candice Daniel")]
+        [NUnit.Framework.Category(nameof(NameValue))]
         public void NameValue_bool_operator_NotEqual()
         {
             var result = (new NameValue("testName", "testValue") != new NameValue("testName3", "testValue3"));
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(NameValue))]
+        [Test]
+        [Author("Candice Daniel")]
+        [NUnit.Framework.Category(nameof(NameValue))]
         public void NameValue_bool_operator_Equal()
         {
             var result = (new NameValue("testName", "testValue") == new NameValue("testName", "testValue3"));
             Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(NameValue))]
+        [Test]
+        [Author("Candice Daniel")]
+        [NUnit.Framework.Category(nameof(NameValue))]
         public void NameValue_OnPropertyChanged()
         {
             var constructor = new NameValue();

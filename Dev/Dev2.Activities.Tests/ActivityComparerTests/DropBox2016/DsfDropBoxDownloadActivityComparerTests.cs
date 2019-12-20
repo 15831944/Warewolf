@@ -24,18 +24,19 @@ using Dev2.Data.ServiceModel;
 using Dev2.Interfaces;
 using Dropbox.Api.Files;
 using Dropbox.Api.Stone;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Storage.Interfaces;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfDropBoxDownloadActivityComparerTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_UniqueIDEquals_EmptyDropBoxDeleteActivities_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -50,9 +51,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_UniqueID_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -66,9 +67,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_Equals_Given_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -83,9 +84,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_Equals_Given_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -100,9 +101,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_Equals_Given_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -116,9 +117,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_Result_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -133,9 +134,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_Result_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -150,9 +151,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_Result_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -167,9 +168,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_FromPath_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -184,9 +185,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_FromPath_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -201,9 +202,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_FromPath_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -218,9 +219,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_ToPath_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -235,9 +236,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_ToPath_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -252,9 +253,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_ToPath_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -269,9 +270,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_DropBoxSource_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -304,9 +305,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_DropBoxSource_Same_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -336,9 +337,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_OverwriteFile_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -368,9 +369,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_OverwriteFile_Same_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -400,9 +401,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_GetState_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------
@@ -481,9 +482,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_ObjectEquals_IsFalse_ExpectFalse()
         {
             //-----------------------Arrange----------------------------
@@ -504,9 +505,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_ObjectEquals_IsTrue_ExpectTrue()
         {
             //-----------------------Arrange----------------------------
@@ -526,9 +527,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_ObjectEquals_IsNotExpectedObject_ExpectFalse()
         {
             var mockDropboxClient = new Mock<IDropboxClient>();
@@ -545,9 +546,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_Equals_ExpectFalse()
         {
             var mockDropboxClient = new Mock<IDropboxClient>();
@@ -565,9 +566,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_Equals_IsNull_ExpectFalse()
         {
             var mockDropboxClient = new Mock<IDropboxClient>();
@@ -584,9 +585,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_Equals_IsEqual_ExpectTrue()
         {
             //-----------------------Arrange----------------------------
@@ -596,9 +597,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             Assert.IsTrue(dsfDropBoxDownloadActivity.Equals(dsfDropBoxDownloadActivity));
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_GetDebugOutputs_ExecutionEnvironment_IsNull_ExpectFalse()
         {
             var mockDropboxClient = new Mock<IDropboxClient>();
@@ -615,9 +616,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_GetDebugOutputs_ExecutionEnvironment_IsNotNull_ExpectTrue()
         {
             //-----------------------Arrange----------------------------
@@ -636,9 +637,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_LocalPathManager_SetProperty_AreEqual_ExpectTrue()
         {
             //-----------------------Arrange----------------------------
@@ -660,9 +661,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_ExecuteTool_FromPath_IsNullOrEmpty_VerifyMethodCall_3Times_ExpectTrue()
         {
             //-----------------------Arrange----------------------------
@@ -689,9 +690,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
         }
 
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_GetHashCode_PropertiesNull_IsNull_ExpectTrue()
         {
             var mockDropboxClient = new Mock<IDropboxClient>();
@@ -708,9 +709,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_GetHashCode_PropertiesNull_IsNotNull_ExpectTrue()
         {
             var mockDropboxClient = new Mock<IDropboxClient>();
@@ -732,9 +733,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_PerformExecution_ExpectSuccess()
         {
             //-----------------------Arrange----------------------------
@@ -773,9 +774,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_PerformExecution_ExpectException()
         {
             //-----------------------Arrange----------------------------
@@ -814,9 +815,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfDropBoxDownloadActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfDropBoxDownloadActivity))]
         public void DsfDropBoxDownloadActivity_PerformExecution_ContainsNotFile_ExpectException()
         {
             //-----------------------Arrange----------------------------
@@ -844,7 +845,7 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
             };
             //-----------------------Act--------------------------------
             //-----------------------Assert-----------------------------
-            Assert.ThrowsException<Exception>(() => dsfDropBoxDownloadActivity.TestPerformExecution(dictionary));
+            Assert.Throws<Exception>(() => dsfDropBoxDownloadActivity.TestPerformExecution(dictionary));
             dsfDropBoxDownloadActivity.Dispose();
         }
     }

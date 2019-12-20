@@ -10,17 +10,18 @@
 
 using System.Windows;
 using Dev2.AppResources.Converters;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests.AppResources.Converters
 {
-    [TestClass]
-	[TestCategory("Studio Resources Core")]
+    [TestFixture]
+    [SetUpFixture]
+	[Category("Studio Resources Core")]
     public class SchedulerMultiBoolToVisibilityConverterTests
     {
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SchedulerMultiBoolToVisibilityConverter_Convert")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("SchedulerMultiBoolToVisibilityConverter_Convert")]
         public void SchedulerMultiBoolToVisibilityConverter_Convert_WithTrueFalse_ReturnsCollapsed()
         {
             var schedulerMultiBoolToVisibilityConverter = new SchedulerMultiBoolToVisibilityConverter();
@@ -30,9 +31,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(Visibility.Collapsed, actual);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("SchedulerMultiBoolToVisibilityConverter_Convert")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("SchedulerMultiBoolToVisibilityConverter_Convert")]
         public void SchedulerMultiBoolToVisibilityConverter_Convert_WithFalseFalse_ReturnsVisible()
         {
             var schedulerMultiBoolToVisibilityConverter = new SchedulerMultiBoolToVisibilityConverter();

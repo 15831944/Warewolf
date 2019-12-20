@@ -17,7 +17,7 @@ using System.Text;
 using Dev2.Common.Interfaces.Data;
 using Dev2.Common.Interfaces.Enums;
 using Dev2.Communication;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Warewolf.Tools.Specs.BaseTypes;
@@ -230,7 +230,7 @@ namespace Dev2.Activities.Specs.Toolbox.LoopConstructs.ForEach
             var result = scenarioContext.Get<IDSFDataObject>("result");
             var recordSetValues = RetrieveAllRecordSetFieldValues(DataObject.Environment, recordset, column, out string error);
             recordSetValues = Enumerable.Where<string>(recordSetValues, i => !string.IsNullOrEmpty(i)).ToList();
-            Assert.AreEqual<int>(numOfIterations, recordSetValues.Count);
+            Assert.AreEqual(numOfIterations, recordSetValues.Count);
         }
     }
 

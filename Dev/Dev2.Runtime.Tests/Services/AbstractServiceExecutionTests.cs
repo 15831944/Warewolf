@@ -17,17 +17,18 @@ using Dev2.DynamicServices;
 using Dev2.Runtime.Hosting;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Services.Execution;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class AbstractServiceExecutionTests
     {
 
-        [TestMethod]
+        [Test]
         public void ServiceExecutionAbstract_ExecuteWithCrazyXML_ShouldMap()
         {
             
@@ -98,9 +99,9 @@ namespace Dev2.Tests.Runtime.Services
             //assert
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServiceExecutionAbstract_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServiceExecutionAbstract_Execute")]
         public void ServiceExecutionAbstract_Execute_ObjectJson_ShouldMapCorrectly()
         {
             //------------Setup for test--------------------------
@@ -192,9 +193,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("Hi there!  Your  debit order didn't go through this month. Please give us a shout on 087 357 6529 so we can make sure we've got your details right. Love, The Unlimited",actual);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("ServiceExecutionAbstract")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("ServiceExecutionAbstract")]
         public void ServiceExecutionAbstract_OutputServiceAction_GivenInvalidService_ReturnsErrorMessage()
         {
             var webService = new Mock<WebService>();
@@ -235,9 +236,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("Output format in service action Some Service is invalid.Please edit and remap.", errors.FetchErrors()[0]);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("ServiceExecutionAbstract")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("ServiceExecutionAbstract")]
         public void ServiceExecutionAbstract_OutputServiceAction_GivenEmpty_ReturnsErrorMessage()
         {
             var webService = new Mock<WebService>();

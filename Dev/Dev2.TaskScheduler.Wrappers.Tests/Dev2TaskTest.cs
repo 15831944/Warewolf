@@ -9,20 +9,21 @@
 */
 
 using Dev2.Common.Interfaces.WindowsTaskScheduler.Wrappers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Microsoft.Win32.TaskScheduler;
 using Moq;
 using System.Runtime.InteropServices;
 
 namespace Dev2.TaskScheduler.Wrappers.Test
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class Dev2TaskTest
     {
         TaskService _taskService;
         Mock<ITaskServiceConvertorFactory> _factory;
         
-        [TestInitialize]
+        [SetUp]
         public void Init()
         {
             _taskService = new TaskService();
@@ -45,9 +46,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
             _factory = new Mock<ITaskServiceConvertorFactory>();
         }
         
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2Task_Construct")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2Task_Construct")]
         public void Dev2Task_ConstructTest()
         {
             var task = _taskService.GetTask("UnitTestTask");
@@ -57,9 +58,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
             Assert.AreEqual(task,wrapper.Instance);
         }
         
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2Task_Properties")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2Task_Properties")]
         public void Dev2Task_Properties()
         {
             var task = _taskService.GetTask("UnitTestTask");
@@ -76,9 +77,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
         }
 
         //pass through
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2Task_Properties")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2Task_Properties")]
         public void Dev2Task_IsValidDev2Task()
         {
             var task = _taskService.GetTask("UnitTestTask");

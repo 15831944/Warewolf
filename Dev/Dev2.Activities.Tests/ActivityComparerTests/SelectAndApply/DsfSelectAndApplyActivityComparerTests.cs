@@ -3,16 +3,17 @@ using System.Activities;
 using System.Linq;
 using Dev2.Activities.SelectAndApply;
 using Dev2.Common.State;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.SelectAndApply
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfSelectAndApplyActivityComparerTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UniqueIDEquals_EmptySelectAndApply_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -27,8 +28,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.SelectAndApply
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UniqueIDDifferent_EmptySelectAndApply_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -43,8 +44,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.SelectAndApply
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_Same_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -59,8 +60,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.SelectAndApply
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_Different_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -75,8 +76,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.SelectAndApply
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_Different_Object_Is_Not_Equal_CaseSensitive()
         {
             //---------------Set up test pack-------------------
@@ -97,8 +98,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.SelectAndApply
             return uniqueId.HasValue ? new DsfMultiAssignActivity() { UniqueID = uniqueId.Value.ToString() } : new DsfMultiAssignActivity();
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ApplyActivityFunc_SameAssigns_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -130,8 +131,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.SelectAndApply
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ApplyActivityFunc_Equalsssigns_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -165,8 +166,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.SelectAndApply
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ApplyActivityFunc_DifferentAssigns_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -200,9 +201,9 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.SelectAndApply
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DsfSelectAndApplyActivity_GetState")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DsfSelectAndApplyActivity_GetState")]
         public void DsfSelectAndApplyActivity_GetState_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------

@@ -28,7 +28,7 @@ using System.Data;
 using Dev2.Data.Decision;
 using Warewolf.Resource.Errors;
 using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.Collections.Concurrent;
 
 namespace Dev2.Activities.Specs.Toolbox.ControlFlow.Decision

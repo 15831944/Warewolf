@@ -1,14 +1,15 @@
 ﻿using Dev2.Communication;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 
 namespace Dev2.Infrastructure.Tests.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ResourceDefinationCleanerTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetResourceDefinition_CorrectServiceDef_MessageHasNoErrors()
         {
             //------------Setup for test--------------------------
@@ -26,8 +27,8 @@ namespace Dev2.Infrastructure.Tests.Services
             Assert.IsTrue(hasError);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DecryptAllPasswords_PassThrough()
         {
             //------------Setup for test--------------------------

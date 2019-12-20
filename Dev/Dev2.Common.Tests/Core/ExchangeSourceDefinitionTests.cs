@@ -11,18 +11,19 @@
 using Dev2.Common.Interfaces.Core;
 using Dev2.Common.Interfaces.Core.DynamicServices;
 using Dev2.Common.Interfaces.ToolBase.ExchangeEmail;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 
 namespace Dev2.Common.Tests.Core
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ExchangeSourceDefinitionTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ExchangeSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ExchangeSourceDefinition))]
         public void ExchangeSourceDefinition_Validate()
         {
             var expectedResourceID = Guid.NewGuid();
@@ -65,9 +66,9 @@ namespace Dev2.Common.Tests.Core
             Assert.AreEqual(expectedResourceName, exchangeSourceDefinition.ResourceName);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ExchangeSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ExchangeSourceDefinition))]
         public void ExchangeSourceDefinition_Equals_ExchangeSource_Null_Expected_False()
         {
             var exchangeSourceDefinition = new ExchangeSourceDefinition();
@@ -78,9 +79,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ExchangeSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ExchangeSourceDefinition))]
         public void ExchangeSourceDefinition_Equals_ExchangeSource_Expected_True()
         {
             const string expectedAutoDiscoverUrl = "testAutoDiscoverUrl";
@@ -106,9 +107,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ExchangeSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ExchangeSourceDefinition))]
         public void ExchangeSourceDefinition_ReferenceEquals_ExchangeSource_Expected_True()
         {
             const string expectedAutoDiscoverUrl = "testAutoDiscoverUrl";
@@ -128,9 +129,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ExchangeSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ExchangeSourceDefinition))]
         public void ExchangeSourceDefinition_Equals_ExchangeSource_Expected_False()
         {
             const string expectedAutoDiscoverUrl = "testAutoDiscoverUrl";
@@ -158,9 +159,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ExchangeSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ExchangeSourceDefinition))]
         public void ExchangeSourceDefinition_Equals_ExchangeSourceDefinition_Null_Expected_False()
         {
             var exchangeSourceDefinition = new ExchangeSourceDefinition();
@@ -171,9 +172,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ExchangeSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ExchangeSourceDefinition))]
         public void ExchangeSourceDefinition_ReferenceEquals_ExchangeSourceDefinition_Expected_True()
         {
             const string expectedAutoDiscoverUrl = "testAutoDiscoverUrl";
@@ -193,9 +194,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ExchangeSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ExchangeSourceDefinition))]
         public void ExchangeSourceDefinition_Equals_ExchangeSourceDefinition_Expected_True()
         {
             const string expectedAutoDiscoverUrl = "testAutoDiscoverUrl";
@@ -217,9 +218,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(exchangeSourceDefinition == exchangeSourceDefinitionDup);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ExchangeSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ExchangeSourceDefinition))]
         public void ExchangeSourceDefinition_Equals_ExchangeSourceDefinition_Expected_False()
         {
             const string expectedAutoDiscoverUrl = "testAutoDiscoverUrl";
@@ -248,9 +249,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(exchangeSourceDefinition != exchangeSourceDefinitionDup);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ExchangeSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ExchangeSourceDefinition))]
         public void ExchangeSourceDefinition_Equals_Object_Null_Expected_False()
         {
             var exchangeSourceDefinition = new ExchangeSourceDefinition();
@@ -261,9 +262,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ExchangeSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ExchangeSourceDefinition))]
         public void ExchangeSourceDefinition_Equals_Object_Expected_True()
         {
             var expectedResourceID = Guid.NewGuid();
@@ -299,9 +300,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ExchangeSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ExchangeSourceDefinition))]
         public void ExchangeSourceDefinition_Equals_Object_Expected_False()
         {
             var expectedResourceID = Guid.NewGuid();
@@ -352,9 +353,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ExchangeSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ExchangeSourceDefinition))]
         public void ExchangeSourceDefinition_Equals_Object_GetType_Expected_False()
         {
             var expectedResourceID = Guid.NewGuid();
@@ -390,9 +391,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ExchangeSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ExchangeSourceDefinition))]
         public void ExchangeSourceDefinition_GetHashCode_Not_Equal_To_Zero()
         {
             const string expectedAutoDiscoverUrl = "testAutoDiscoverUrl";
@@ -411,9 +412,9 @@ namespace Dev2.Common.Tests.Core
             Assert.AreNotEqual(0, hashCode);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ExchangeSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ExchangeSourceDefinition))]
         public void ExchangeSourceDefinition_GetHashCode_Expect_Zero()
         {
             var exchangeSourceDefinition = new ExchangeSourceDefinition();

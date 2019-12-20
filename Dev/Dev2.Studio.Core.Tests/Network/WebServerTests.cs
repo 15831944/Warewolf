@@ -11,18 +11,19 @@
 using System;
 using Dev2.Studio.Core.Network;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Core.Tests.Network
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WebServerTests
     {
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(WebServer))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(WebServer))]
         public void ResourceModelWebserverUtil_GetWorkflowUri_GivenInvalidResourceModel_DoesNotThrow()
         {
             const string xmlData = "";
@@ -33,9 +34,9 @@ namespace Dev2.Core.Tests.Network
             Assert.IsNull(result);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(WebServer))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(WebServer))]
         public void ResourceModelWebserverUtil_GetWorkflowUri_GivenInvalidEnvironment_DoesNotThrow()
         {
             const string xmlData = "";
@@ -46,9 +47,9 @@ namespace Dev2.Core.Tests.Network
             Assert.IsNull(result);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(WebServer))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(WebServer))]
         public void ResourceModelWebserverUtil_GetWorkflowUri_GivenDisconnectedEnvironment_DoesNotThrow()
         {
             var mockConnection = new Mock<IEnvironmentConnection>();
@@ -64,9 +65,9 @@ namespace Dev2.Core.Tests.Network
             Assert.IsNull(result);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(WebServer))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(WebServer))]
         public void ResourceModelWebserverUtil_GetWorkflowUri_GivenAPI_UrlType()
         {
             var mockConnection = new Mock<IEnvironmentConnection>();
@@ -87,9 +88,9 @@ namespace Dev2.Core.Tests.Network
             Assert.AreEqual("http://somehost:1234/secure/some category.api", result.ToString());
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(WebServer))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(WebServer))]
         public void ResourceModelWebserverUtil_GetWorkflowUri_GivenAPI_UrlType_CategoryDefaultsToResourceName()
         {
             var mockConnection = new Mock<IEnvironmentConnection>();
@@ -110,9 +111,9 @@ namespace Dev2.Core.Tests.Network
             Assert.AreEqual("http://somehost:1234/secure/some resource name.api", result.ToString());
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(WebServer))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(WebServer))]
         public void ResourceModelWebserverUtil_GetWorkflowUri_GivenXml_UrlType_CategoryDefaultsToResourceName()
         {
             const string workspaceId = "1c52f5da-2c9d-4320-911e-8fa2d2b1fd62";
@@ -136,9 +137,9 @@ namespace Dev2.Core.Tests.Network
             Assert.AreEqual("http://somehost:1234/secure/some category.xml?<xmltag></xmltag>&wid=1c52f5da-2c9d-4320-911e-8fa2d2b1fd62", result.ToString());
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(WebServer))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(WebServer))]
         public void ResourceModelWebserverUtil_GetWorkflowUri_GivenJson_UrlType_CategoryDefaultsToResourceName()
         {
             const string workspaceId = "1c52f5da-2c9d-4320-911e-8fa2d2b1fd62";
@@ -162,9 +163,9 @@ namespace Dev2.Core.Tests.Network
             Assert.AreEqual("http://somehost:1234/secure/some category.json?<xmltag></xmltag>&wid=1c52f5da-2c9d-4320-911e-8fa2d2b1fd62", result.ToString());
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(WebServer))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(WebServer))]
         public void ResourceModelWebserverUtil_GetWorkflowUri_GivenTests_UrlType_CategoryDefaultsToResourceName()
         {
             const string workspaceId = "1c52f5da-2c9d-4320-911e-8fa2d2b1fd62";

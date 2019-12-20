@@ -11,19 +11,20 @@ using Dev2.Common.Interfaces.Search;
 using Dev2.Common.Search;
 using Dev2.Data;
 using Dev2.Data.SystemTemplates.Models;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using Warewolf.Security.Encryption;
 
 namespace Dev2.Common.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class CommonEqualityOpsTests
     {
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(CommonEqualityOps))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(CommonEqualityOps))]
         public void CommonEqualityOps_AreObjectsEqualUnSafe_Objects_ReturnTrue()
         {
             string str = default(string);
@@ -32,9 +33,9 @@ namespace Dev2.Common.Tests
 
             Assert.IsTrue(handlerActivityIsEqual);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(CommonEqualityOps))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(CommonEqualityOps))]
         public void CommonEqualityOps_AreObjectsEqualUnSafe_Objects_ReturnFalse()
         {
             string str = default(string);
@@ -43,9 +44,9 @@ namespace Dev2.Common.Tests
 
             Assert.IsFalse(handlerActivityIsEqual);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(CommonEqualityOps))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(CommonEqualityOps))]
         public void CommonEqualityOps_AreObjectsEqual_Objects_ReturnTrue()
         {
             string str = default(string);
@@ -54,9 +55,9 @@ namespace Dev2.Common.Tests
 
             Assert.IsTrue(handlerActivityIsEqual);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(CommonEqualityOps))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(CommonEqualityOps))]
         public void CommonEqualityOps_AreObjectsEqual_Objects_ReturnFalse()
         {
             string str = default(string);
@@ -65,9 +66,9 @@ namespace Dev2.Common.Tests
 
             Assert.IsFalse(handlerActivityIsEqual);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(CommonEqualityOps))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(CommonEqualityOps))]
         public void CommonEqualityOps_AreObjectsEqual_ReturnTrue()
         {
             var _name = "workflowName";
@@ -80,9 +81,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(areConditionsEqual);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(CommonEqualityOps))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(CommonEqualityOps))]
         public void CommonEqualityOps_AreObjectsEqual_ReturnFalse()
         {
             var _name = "workflowName";
@@ -95,9 +96,9 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(areConditionsEqual);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(CommonEqualityOps))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(CommonEqualityOps))]
         public void CommonEqualityOps_AreObjectsEqualUnSafe_ReturnTrue()
         {
             var _name = "workflowName";
@@ -110,9 +111,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(areConditionsEqual);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(CommonEqualityOps))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(CommonEqualityOps))]
         public void CommonEqualityOps_AreObjectsEqualUnSafe_ReturnFalse()
         {
             var _name = "workflowName";
@@ -125,27 +126,27 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(areConditionsEqual);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(CommonEqualityOps))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(CommonEqualityOps))]
         public void CommonEqualityOps_PassWordsCompare_ReturnFalse()
         {
             var areConditionsEqual = CommonEqualityOps.PassWordsCompare("123", "1233");
             Assert.IsFalse(areConditionsEqual);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(CommonEqualityOps))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(CommonEqualityOps))]
         public void CommonEqualityOps_PassWordsCompare_ReturnTrue()
         {
             var areConditionsEqual = CommonEqualityOps.PassWordsCompare(DpapiWrapper.Encrypt("123"), DpapiWrapper.Encrypt("123"));
             Assert.IsTrue(areConditionsEqual);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(CommonEqualityOps))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(CommonEqualityOps))]
         public void CommonEqualityOps_CollectionEquals_ReturnTrue()
         {
             var TheStack = new List<Dev2Decision>();
@@ -157,9 +158,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(collectionEquals);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(CommonEqualityOps))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(CommonEqualityOps))]
         public void CommonEqualityOps_CollectionEquals_ReturnFalse()
         {
             var TheStack = new List<Dev2Decision>();
@@ -175,9 +176,9 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(collectionEquals);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(CommonEqualityOps))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(CommonEqualityOps))]
         public void CommonEqualityOps_CollectionEquals__BothObjectsareNull_ReturnTrue()
         {
             var TheStack = new List<Dev2Decision>();
@@ -190,9 +191,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(collectionEquals);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(CommonEqualityOps))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(CommonEqualityOps))]
         public void CommonEqualityOps_CollectionEquals__OneObjectsIsNull_ReturnFalse()
         {
             var TheStack = new List<Dev2Decision>();

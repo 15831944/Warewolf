@@ -18,7 +18,7 @@ using Dev2.Common.ExtMethods;
 using Dev2.Common.Interfaces.StringTokenizer.Interfaces;
 using Dev2.Data.TO;
 using Dev2.Data.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using ServiceStack.Text;
 using Warewolf.Storage;
@@ -27,13 +27,14 @@ using Dev2.Data.Interfaces.Enums;
 
 namespace Dev2.Data.Tests.BinaryDataList
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
 
     public class DataListUtilTest
     {
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsArray_GivenGivenNotArray_ShouldReturnFalse()
         {
             //---------------Set up test pack-------------------
@@ -42,11 +43,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var isArray = DataListUtil.IsArray(ref scalr);
             //---------------Test Result -----------------------
-            Assert.IsFalse(isArray);
+            NUnit.Framework.Assert.IsFalse(isArray);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsArray_GivenGivenArray_ShouldReturnTrue()
         {
             //---------------Set up test pack-------------------
@@ -55,11 +56,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var isArray = DataListUtil.IsArray(ref scalr);
             //---------------Test Result -----------------------
-            Assert.IsTrue(isArray);
+            NUnit.Framework.Assert.IsTrue(isArray);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetAllPossibleExpressionsForFunctionOperations_GivenValidArgs_ShouldReturnsCorrectly()
         {
             //---------------Set up test pack-------------------
@@ -71,20 +72,20 @@ namespace Dev2.Data.Tests.BinaryDataList
             try
             {
                 var operations = DataListUtil.GetAllPossibleExpressionsForFunctionOperations("[[a]]", env.Object, out ErrorResultTO errorResultTO, 1);
-                Assert.AreEqual(0, operations.Count);
+                NUnit.Framework.Assert.AreEqual(0, operations.Count);
                 env.Setup(environment => environment.EvalAsListOfStrings(It.IsAny<string>(), It.IsAny<int>())).Throws(new Exception("error"));
                 DataListUtil.GetAllPossibleExpressionsForFunctionOperations("[[a]]", env.Object, out errorResultTO, 1);
             }
             catch (Exception ex)
             {
-                Assert.AreEqual("error", ex.Message);
+                NUnit.Framework.Assert.AreEqual("error", ex.Message);
 
             }
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GenerateDefsFromDataList_GivenDataList_ShouldReurnList()
         {
             //---------------Set up test pack-------------------
@@ -96,11 +97,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             try
             {
                 var generateDefsFromDataList = DataListUtil.GenerateDefsFromDataList(datalist, enDev2ColumnArgumentDirection.Input);
-                Assert.IsNotNull(generateDefsFromDataList);
+                NUnit.Framework.Assert.IsNotNull(generateDefsFromDataList);
             }
             catch (Exception ex)
             {
-                Assert.Fail(ex.Message);
+                NUnit.Framework.Assert.Fail(ex.Message);
 
             }
 
@@ -109,8 +110,8 @@ namespace Dev2.Data.Tests.BinaryDataList
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GenerateDefsFromDataList_GivenDataList_ShouldReurnListWithEntries()
         {
             //---------------Set up test pack-------------------
@@ -122,12 +123,12 @@ namespace Dev2.Data.Tests.BinaryDataList
             try
             {
                 var generateDefsFromDataList = DataListUtil.GenerateDefsFromDataList(datalist, enDev2ColumnArgumentDirection.Input);
-                Assert.IsNotNull(generateDefsFromDataList);
-                Assert.AreNotEqual(0, generateDefsFromDataList.Count);
+                NUnit.Framework.Assert.IsNotNull(generateDefsFromDataList);
+                NUnit.Framework.Assert.AreNotEqual(0, generateDefsFromDataList.Count);
             }
             catch (Exception ex)
             {
-                Assert.Fail(ex.Message);
+                NUnit.Framework.Assert.Fail(ex.Message);
 
             }
 
@@ -136,45 +137,45 @@ namespace Dev2.Data.Tests.BinaryDataList
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DataListUtil_IsJson")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DataListUtil_IsJson")]
         public void DataListUtil_IsJson_WhenValidJsonString_ExpectTrue()
         {//------------Setup for test--------------------------
             const string startingData = "{ \"message\" : \"Howzit, Samantha\"}";
             //------------Execute Test---------------------------
             var result = DataListUtil.IsJson(startingData);
             //------------Assert Results-------------------------
-            Assert.IsTrue(result, "Else Valid JSON not detected as such");
+            NUnit.Framework.Assert.IsTrue(result, "Else Valid JSON not detected as such");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DataListUtil_IsJson")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DataListUtil_IsJson")]
         public void DataListUtil_IsJson_WhenValidJsonStringWithExtraWhitespace_ExpectTrue()
         {//------------Setup for test--------------------------
             const string startingData = " { \"message\" : \"Howzit, Samantha\"} ";
             //------------Execute Test---------------------------
             var result = DataListUtil.IsJson(startingData);
             //------------Assert Results-------------------------
-            Assert.IsTrue(result, "Else Valid JSON not detected as such");
+            NUnit.Framework.Assert.IsTrue(result, "Else Valid JSON not detected as such");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DataListUtil_IsJson")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DataListUtil_IsJson")]
         public void DataListUtil_IsJson_WhenInvalidJsonString_ExpectFalse()
         {//------------Setup for test--------------------------
             const string startingData = "<\"message\" : \"Howzit, Samantha\">";
             //------------Execute Test---------------------------
             var result = DataListUtil.IsJson(startingData);
             //------------Assert Results-------------------------
-            Assert.IsFalse(result, "Invalid JSON not detected as such");
+            NUnit.Framework.Assert.IsFalse(result, "Invalid JSON not detected as such");
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("DataListUtil_AdjustForEncodingIssues")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("DataListUtil_AdjustForEncodingIssues")]
         public void DataListUtil_AdjustForEncodingIssues_WithStringLengthOf3_SameDataAsPassedIn()
         {
             //------------Setup for test--------------------------
@@ -182,27 +183,27 @@ namespace Dev2.Data.Tests.BinaryDataList
             //------------Execute Test---------------------------
             var result = DataListUtil.AdjustForEncodingIssues(startingData);
             //------------Assert Results-------------------------
-            Assert.AreEqual(startingData, result, "The data has changed when there was no encoding issues.");
+            NUnit.Framework.Assert.AreEqual(startingData, result, "The data has changed when there was no encoding issues.");
         }
 
-        [TestMethod]
-        [Owner("eon Rajindrapersadh")]
-        [TestCategory("DataListUtil_AdjustForEncodingIssues")]
+        [Test]
+        [Author("eon Rajindrapersadh")]
+        [Category("DataListUtil_AdjustForEncodingIssues")]
         public void DataListUtil_AdjustForEncodingIssues_BOMRemoved()
         {
             //------------Setup for test--------------------------
             const char c = (char)65279;
             var startingData = c + "<A></A>";
-            Assert.IsFalse(startingData.StartsWith("<", StringComparison.OrdinalIgnoreCase));
+            NUnit.Framework.Assert.IsFalse(startingData.StartsWith("<", StringComparison.OrdinalIgnoreCase));
             //------------Execute Test---------------------------
             var result = DataListUtil.AdjustForEncodingIssues(startingData);
             //------------Assert Results-------------------------
-            Assert.IsTrue(result.StartsWith("<", StringComparison.Ordinal));
+            NUnit.Framework.Assert.IsTrue(result.StartsWith("<", StringComparison.Ordinal));
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DataListUtil_IsSystemTag")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DataListUtil_IsSystemTag")]
         public void DataListUtil_IsSystemTag_WhenNoPrefix_ExpectSystemTagDetected()
         {
             //------------Setup for test--------------------------
@@ -212,12 +213,12 @@ namespace Dev2.Data.Tests.BinaryDataList
             var result = DataListUtil.IsSystemTag(tag);
 
             //------------Assert Results-------------------------
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DataListUtil_IsSystemTag")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DataListUtil_IsSystemTag")]
         public void DataListUtil_IsSystemTag_WhenDev2SystemPrefix_ExpectSystemTagDetected()
         {
             //------------Setup for test--------------------------
@@ -227,48 +228,48 @@ namespace Dev2.Data.Tests.BinaryDataList
             var result = DataListUtil.IsSystemTag(tag);
 
             //------------Assert Results-------------------------
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Travis")]
+        [Test]
+        [Author("Travis")]
         [Description("Ensure star is replaced with an index")]
-        [TestCategory("DataListUtil,UnitTest")]
+        [Category("DataListUtil,UnitTest")]
         public void DataListUtil_UnitTest_ReplaceStarWithFixedIndex()
         {
             const string exp = "[[rs(*).val]]";
             var result = DataListUtil.ReplaceStarWithFixedIndex(exp, 1);
 
-            Assert.AreEqual("[[rs(1).val]]", result, "Did not replace index in recordset");
+            NUnit.Framework.Assert.AreEqual("[[rs(1).val]]", result, "Did not replace index in recordset");
         }
 
-        [TestMethod]
-        [Owner("Travis")]
+        [Test]
+        [Author("Travis")]
         [Description("Ensure star is not replaced with an invalid index")]
-        [TestCategory("DataListUtil,UnitTest")]
+        [Category("DataListUtil,UnitTest")]
         public void DataListUtil_UnitTest_NotReplaceStarWithInvalidIndex()
         {
             const string exp = "[[rs(*).val]]";
             var result = DataListUtil.ReplaceStarWithFixedIndex(exp, -1);
 
-            Assert.AreEqual("[[rs(*).val]]", result, "Replaced with invalid index in recordset");
+            NUnit.Framework.Assert.AreEqual("[[rs(*).val]]", result, "Replaced with invalid index in recordset");
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DataListUtil,UnitTest")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DataListUtil,UnitTest")]
         public void DataListUtil_UnitTest_NotReplaceObjectBlankWithIndex()
         {
             const string exp = "[[@rs().val]]";
             var result = DataListUtil.ReplaceObjectBlankWithIndex(exp, 1);
 
-            Assert.AreEqual("[[@rs(1).val]]", result, "Replaced with invalid index in recordset");
+            NUnit.Framework.Assert.AreEqual("[[@rs(1).val]]", result, "Replaced with invalid index in recordset");
         }
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataListUtil_UpsertTokens")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataListUtil_UpsertTokens")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void DataListUtil_UpsertTokens_NullTarget_ThrowsArgumentNullException()
         {
@@ -280,9 +281,9 @@ namespace Dev2.Data.Tests.BinaryDataList
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataListUtil_UpsertTokens")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataListUtil_UpsertTokens")]
         public void DataListUtil_UpsertTokens_NullTokenizer_ClearsTarget()
         {
             //------------Setup for test--------------------------
@@ -296,12 +297,12 @@ namespace Dev2.Data.Tests.BinaryDataList
             DataListUtil.UpsertTokens(target, null);
 
             //------------Assert Results-------------------------
-            Assert.AreEqual(0, target.Count);
+            NUnit.Framework.Assert.AreEqual(0, target.Count);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataListUtil_UpsertTokens")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataListUtil_UpsertTokens")]
         public void DataListUtil_UpsertTokens_ValidTokenizer_AddsToTarget()
         {
             //------------Setup for test--------------------------
@@ -318,12 +319,12 @@ namespace Dev2.Data.Tests.BinaryDataList
             DataListUtil.UpsertTokens(target, tokenizer.Object);
 
             //------------Assert Results-------------------------
-            Assert.AreEqual(TokenCount, target.Count);
+            NUnit.Framework.Assert.AreEqual(TokenCount, target.Count);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataListUtil_UpsertTokens")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataListUtil_UpsertTokens")]
         public void DataListUtil_UpsertTokens_ValidTokenizer_AddsDuplicatesToTarget()
         {
             //------------Setup for test--------------------------
@@ -349,9 +350,9 @@ namespace Dev2.Data.Tests.BinaryDataList
             DataListUtil.UpsertTokens(target, tokenizer.Object);
 
             //------------Assert Results-------------------------
-            Assert.AreEqual(TokenCount * DuplicateCount, target.Count);
+            NUnit.Framework.Assert.AreEqual(TokenCount * DuplicateCount, target.Count);
             var groups = target.GroupBy(g => g.Key).ToList();
-            Assert.AreEqual(3, groups.Count);
+            NUnit.Framework.Assert.AreEqual(3, groups.Count);
             foreach (var grp in groups)
             {
                 var enumerator = grp.GetEnumerator();
@@ -360,13 +361,13 @@ namespace Dev2.Data.Tests.BinaryDataList
                 {
                     duplicateCount++;
                 }
-                Assert.AreEqual(DuplicateCount, duplicateCount);
+                NUnit.Framework.Assert.AreEqual(DuplicateCount, duplicateCount);
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataListUtil_UpsertTokens")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataListUtil_UpsertTokens")]
         public void DataListUtil_UpsertTokens_ValidTokenizer_ClearsTargetFirst()
         {
             //------------Setup for test--------------------------
@@ -394,7 +395,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             DataListUtil.UpsertTokens(target, tokenizer2.Object);
 
             //------------Assert Results-------------------------
-            Assert.AreEqual(ExpectedCount, target.Count);
+            NUnit.Framework.Assert.AreEqual(ExpectedCount, target.Count);
 
             // Expect only vars from second tokenizer
             var keys = target.Select(p => p.Key);
@@ -402,13 +403,13 @@ namespace Dev2.Data.Tests.BinaryDataList
             foreach (var key in keys)
             {
                 var expected = $"[[Var{i++}]]";
-                Assert.AreEqual(expected, key);
+                NUnit.Framework.Assert.AreEqual(expected, key);
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataListUtil_UpsertTokens")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataListUtil_UpsertTokens")]
         public void DataListUtil_UpsertTokens_ValidTokenizer_StripsWhiteSpaces()
         {
             //------------Setup for test--------------------------
@@ -425,7 +426,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             DataListUtil.UpsertTokens(target, tokenizer.Object);
 
             //------------Assert Results-------------------------
-            Assert.AreEqual(5, target.Count);
+            NUnit.Framework.Assert.AreEqual(5, target.Count);
 
             // Expect only vars from second tokenizer
             var keys = target.Select(p => p.Key);
@@ -433,13 +434,13 @@ namespace Dev2.Data.Tests.BinaryDataList
             foreach (var key in keys)
             {
                 var expected = $"[[Var{i++}]]";
-                Assert.AreEqual(expected, key);
+                NUnit.Framework.Assert.AreEqual(expected, key);
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataListUtil_UpsertTokens")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataListUtil_UpsertTokens")]
         public void DataListUtil_UpsertTokens_ValidTokenizer_AddsPrefixToKey()
         {
             //------------Setup for test--------------------------
@@ -456,20 +457,20 @@ namespace Dev2.Data.Tests.BinaryDataList
             DataListUtil.UpsertTokens(target, tokenizer.Object, "prefix", null, true);
 
             //------------Assert Results-------------------------
-            Assert.AreEqual(TokenCount, target.Count);
+            NUnit.Framework.Assert.AreEqual(TokenCount, target.Count);
 
             var keys = target.Select(p => p.Key);
             var i = 0;
             foreach (var key in keys)
             {
                 var expected = $"[[prefixVar{i++}]]";
-                Assert.AreEqual(expected, key);
+                NUnit.Framework.Assert.AreEqual(expected, key);
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataListUtil_UpsertTokens")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataListUtil_UpsertTokens")]
         public void DataListUtil_UpsertTokens_ValidTokenizer_AddsSuffixToKey()
         {
             //------------Setup for test--------------------------
@@ -486,21 +487,21 @@ namespace Dev2.Data.Tests.BinaryDataList
             DataListUtil.UpsertTokens(target, tokenizer.Object, "prefix", "suffix", true);
 
             //------------Assert Results-------------------------
-            Assert.AreEqual(TokenCount, target.Count);
+            NUnit.Framework.Assert.AreEqual(TokenCount, target.Count);
 
             var keys = target.Select(p => p.Key);
             var i = 0;
             foreach (var key in keys)
             {
                 var expected = $"[[prefixVar{i++}suffix]]";
-                Assert.AreEqual(expected, key);
+                NUnit.Framework.Assert.AreEqual(expected, key);
             }
         }
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataListUtil_UpsertTokens")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataListUtil_UpsertTokens")]
         public void DataListUtil_UpsertTokens_ValidTokenizer_RemoveEmptyEntriesIsFalse_AddsEmptyEntriesToTarget()
         {
             //------------Setup for test--------------------------
@@ -521,24 +522,24 @@ namespace Dev2.Data.Tests.BinaryDataList
             DataListUtil.UpsertTokens(target, tokenizer.Object, "rs(*).", "a", false);
 
             //------------Assert Results-------------------------
-            Assert.AreEqual(TokenCount, target.Count);
+            NUnit.Framework.Assert.AreEqual(TokenCount, target.Count);
 
             for (var i = 0; i < TokenCount; i++)
             {
                 if (i == 1 || i == 4)
                 {
-                    Assert.AreEqual(string.Empty, target[i].Key);
+                    NUnit.Framework.Assert.AreEqual(string.Empty, target[i].Key);
                 }
                 else
                 {
-                    Assert.AreEqual($"[[rs(*).{tokens[i]}a]]", target[i].Key);
+                    NUnit.Framework.Assert.AreEqual($"[[rs(*).{tokens[i]}a]]", target[i].Key);
                 }
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataListUtil_UpsertTokens")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataListUtil_UpsertTokens")]
         public void DataListUtil_UpsertTokens_ValidTokenizer_RemoveEmptyEntriesIsTrue_RemovesEmptyEntriesFromTarget()
         {
             //------------Setup for test--------------------------
@@ -561,16 +562,16 @@ namespace Dev2.Data.Tests.BinaryDataList
             //------------Assert Results-------------------------
             const int ExpectedCount = TokenCount - 2;
 
-            Assert.AreEqual(ExpectedCount, target.Count);
+            NUnit.Framework.Assert.AreEqual(ExpectedCount, target.Count);
 
             for (var i = 0; i < ExpectedCount; i++)
             {
-                Assert.AreEqual($"[[rs(*).f{i + 1}a]]", target[i].Key);
+                NUnit.Framework.Assert.AreEqual($"[[rs(*).f{i + 1}a]]", target[i].Key);
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ExtractFieldNameOnlyFromValue_GivenHasClosingBrace_ShouldExctractFieldName()
         {
             //---------------Set up test pack-------------------
@@ -581,11 +582,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var result = DataListUtil.ExtractFieldNameOnlyFromValue(recSetFiedWithNoClosingBrace);
             //---------------Test Result -----------------------
-            Assert.AreEqual(expectedFielName, result);
+            NUnit.Framework.Assert.AreEqual(expectedFielName, result);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ExtractFieldNameOnlyFromValue_GivenHasNoClosingBrace_ShouldExctractFieldName()
         {
             //---------------Set up test pack-------------------
@@ -596,11 +597,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var result = DataListUtil.ExtractFieldNameOnlyFromValue(recSetFiedWithNoClosingBrace);
             //---------------Test Result -----------------------
-            Assert.AreEqual(expectedFielName, result);
+            NUnit.Framework.Assert.AreEqual(expectedFielName, result);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ReplaceRecordsetIndexWithBlank_GivenRecSetWithNoIndex_ShouldReturnOriginalExp()
         {
             //---------------Set up test pack-------------------
@@ -609,11 +610,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var indexWithBlank = DataListUtil.ReplaceRecordsetIndexWithBlank(recName);
             //---------------Test Result -----------------------
-            Assert.AreEqual(recName, indexWithBlank);
+            NUnit.Framework.Assert.AreEqual(recName, indexWithBlank);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ReplaceRecordsetIndexWithBlank_GivenRecSetWithIndex_ShouldRemoveExp()
         {
             //---------------Set up test pack-------------------
@@ -622,11 +623,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var indexWithBlank = DataListUtil.ReplaceRecordsetIndexWithBlank(recName);
             //---------------Test Result -----------------------
-            Assert.AreEqual("rec().name", indexWithBlank);
+            NUnit.Framework.Assert.AreEqual("rec().name", indexWithBlank);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ReplaceRecordsetIndexWithStar_GivenRecSetWithIndex1_ShouldReplaceWithStar()
         {
             //---------------Set up test pack-------------------
@@ -635,10 +636,10 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var indexWithStar = DataListUtil.ReplaceRecordsetIndexWithStar(recName);
             //---------------Test Result -----------------------
-            Assert.AreEqual("rec(*).name", indexWithStar);
+            NUnit.Framework.Assert.AreEqual("rec(*).name", indexWithStar);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ReplaceRecordsetIndexWithStar_GivenRecSetWithStar_ShouldReturnSame()
         {
             //---------------Set up test pack-------------------
@@ -647,9 +648,9 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var indexWithStar = DataListUtil.ReplaceRecordsetIndexWithStar(recName);
             //---------------Test Result -----------------------
-            Assert.AreEqual("rec(*).name", indexWithStar);
+            NUnit.Framework.Assert.AreEqual("rec(*).name", indexWithStar);
         }
-        [TestMethod]
+        [Test]
         public void VariableNameToMapTo_GivenVariable_ShouldReturnVariableName()
         {
             //---------------Set up test pack-------------------
@@ -658,11 +659,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var variableName = DataListUtil.GetVariableNameToMapOutputTo(recName);
             //---------------Test Result -----------------------
-            Assert.AreEqual("name", variableName);
+            NUnit.Framework.Assert.AreEqual("name", variableName);
         }
 
 
-        [TestMethod]
+        [Test]
         public void FieldNameToMapTo_GivenRecordSet_ShouldReturnFieldName()
         {
             //---------------Set up test pack-------------------
@@ -671,11 +672,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var fieldName = DataListUtil.GetVariableNameToMapOutputTo(recName);
             //---------------Test Result -----------------------
-            Assert.AreEqual("name", fieldName);
+            NUnit.Framework.Assert.AreEqual("name", fieldName);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsCalcEvaluation_GivenNonCalcExp_ShouldReturnFalse()
         {
             //---------------Set up test pack-------------------
@@ -684,12 +685,12 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var isCalcEvaluation = DataListUtil.IsCalcEvaluation(exp, out string newExp);
             //---------------Test Result -----------------------
-            Assert.IsFalse(isCalcEvaluation);
-            Assert.AreEqual(string.Empty, newExp);
+            NUnit.Framework.Assert.IsFalse(isCalcEvaluation);
+            NUnit.Framework.Assert.AreEqual(string.Empty, newExp);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsCalcEvaluation_GivenCalcTxtExp_ShouldReturnTrue()
         {
             //---------------Set up test pack-------------------
@@ -698,12 +699,12 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var isCalcEvaluation = DataListUtil.IsCalcEvaluation(exp, out string newExp);
             //---------------Test Result -----------------------
-            Assert.IsTrue(isCalcEvaluation);
-            Assert.AreEqual("rec(*).name", newExp);
+            NUnit.Framework.Assert.IsTrue(isCalcEvaluation);
+            NUnit.Framework.Assert.AreEqual("rec(*).name", newExp);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsCalcEvaluation_GivenCalcAggExp_ShouldReturnTrue()
         {
             //---------------Set up test pack-------------------
@@ -712,12 +713,12 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var isCalcEvaluation = DataListUtil.IsCalcEvaluation(exp, out string newExp);
             //---------------Test Result -----------------------
-            Assert.IsTrue(isCalcEvaluation);
-            Assert.AreEqual("rec(*).name", newExp);
+            NUnit.Framework.Assert.IsTrue(isCalcEvaluation);
+            NUnit.Framework.Assert.AreEqual("rec(*).name", newExp);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsCalcEvaluation_GivenStartWithAggCalcAggExp_ShouldReturnFalse()
         {
             //---------------Set up test pack-------------------
@@ -726,12 +727,12 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var isCalcEvaluation = DataListUtil.IsCalcEvaluation(exp, out string newExp);
             //---------------Test Result -----------------------
-            Assert.IsFalse(isCalcEvaluation);
-            Assert.AreEqual(string.Empty, newExp);
+            NUnit.Framework.Assert.IsFalse(isCalcEvaluation);
+            NUnit.Framework.Assert.AreEqual(string.Empty, newExp);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsCalcEvaluation_GivenEndsWithAggCalcAggExp_ShouldReturnFalse()
         {
             //---------------Set up test pack-------------------
@@ -740,13 +741,13 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var isCalcEvaluation = DataListUtil.IsCalcEvaluation(exp, out string newExp);
             //---------------Test Result -----------------------
-            Assert.IsFalse(isCalcEvaluation);
-            Assert.AreEqual(string.Empty, newExp);
+            NUnit.Framework.Assert.IsFalse(isCalcEvaluation);
+            NUnit.Framework.Assert.AreEqual(string.Empty, newExp);
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsFullyEvaluated_GivenValidVariable_ShouldReturnTrue()
         {
             //---------------Set up test pack-------------------
@@ -755,11 +756,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var encrypted = DataListUtil.IsFullyEvaluated(v);
             //---------------Test Result -----------------------
-            Assert.IsTrue(encrypted);
+            NUnit.Framework.Assert.IsTrue(encrypted);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsFullyEvaluated_GivenINotClosedVariable_ShouldReturnFalse()
         {
             //---------------Set up test pack-------------------
@@ -768,11 +769,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var encrypted = DataListUtil.IsFullyEvaluated(v);
             //---------------Test Result -----------------------
-            Assert.IsFalse(encrypted);
+            NUnit.Framework.Assert.IsFalse(encrypted);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsFullyEvaluated_GivenInValidVariable_ShouldReturnFalse()
         {
             //---------------Set up test pack-------------------
@@ -781,11 +782,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var encrypted = DataListUtil.IsFullyEvaluated(v);
             //---------------Test Result -----------------------
-            Assert.IsFalse(encrypted);
+            NUnit.Framework.Assert.IsFalse(encrypted);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void NotEncrypted_GivenValidVariable_ShouldReturnTrue()
         {
             //---------------Set up test pack-------------------
@@ -794,11 +795,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var encrypted = DataListUtil.NotEncrypted(v);
             //---------------Test Result -----------------------
-            Assert.IsTrue(encrypted);
+            NUnit.Framework.Assert.IsTrue(encrypted);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void NotEncrypted_GivenEmptyString_ShouldReturnFalse()
         {
             //---------------Set up test pack-------------------
@@ -807,11 +808,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var encrypted = DataListUtil.NotEncrypted(v);
             //---------------Test Result -----------------------
-            Assert.IsTrue(encrypted);
+            NUnit.Framework.Assert.IsTrue(encrypted);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ReplaceRecordsetBlankWithIndex_GivenIndex1_ShouldAppendIndex()
         {
             //---------------Set up test pack-------------------
@@ -820,11 +821,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var fixedRexSet = DataListUtil.ReplaceRecordsetBlankWithIndex(reSet, 1);
             //---------------Test Result -----------------------
-            Assert.AreEqual("rec(1).Name", fixedRexSet);
+            NUnit.Framework.Assert.AreEqual("rec(1).Name", fixedRexSet);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ReplaceRecordsetBlankWithIndex_GivenHasIndex_ShouldNotAppendIndex()
         {
             //---------------Set up test pack-------------------
@@ -833,11 +834,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var fixedRexSet = DataListUtil.ReplaceRecordsetBlankWithIndex(reSet, 2);
             //---------------Test Result -----------------------
-            Assert.AreEqual("rec(1).Name", fixedRexSet);
+            NUnit.Framework.Assert.AreEqual("rec(1).Name", fixedRexSet);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ReplaceRecordsetBlankWithStar_GivenRecordSetWithIndex_ShouldAppendStar()
         {
             //---------------Set up test pack-------------------
@@ -846,11 +847,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var recordsetBlankWithStar = DataListUtil.ReplaceRecordsetBlankWithStar(reSet);
             //---------------Test Result -----------------------
-            Assert.AreEqual("rec(1).Name", recordsetBlankWithStar);
+            NUnit.Framework.Assert.AreEqual("rec(1).Name", recordsetBlankWithStar);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ReplaceRecordsetBlankWithStar_GivenRecordSetWithBlank_ShouldAppendStar()
         {
             //---------------Set up test pack-------------------
@@ -859,11 +860,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var recordsetBlankWithStar = DataListUtil.ReplaceRecordsetBlankWithStar(reSet);
             //---------------Test Result -----------------------
-            Assert.AreEqual("rec(*).Name", recordsetBlankWithStar);
+            NUnit.Framework.Assert.AreEqual("rec(*).Name", recordsetBlankWithStar);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ReplaceRecordBlankWithStar_GivenHasIndex_ShouldNotAppendStar()
         {
             //---------------Set up test pack-------------------
@@ -872,11 +873,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var recordsetBlankWithStar = DataListUtil.ReplaceRecordBlankWithStar(reSet);
             //---------------Test Result -----------------------
-            Assert.AreEqual(reSet, recordsetBlankWithStar);
+            NUnit.Framework.Assert.AreEqual(reSet, recordsetBlankWithStar);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ReplaceRecordBlankWithStar_GivenHasBlank_ShouldAppendStar()
         {
             //---------------Set up test pack-------------------
@@ -885,11 +886,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var recordsetBlankWithStar = DataListUtil.ReplaceRecordBlankWithStar(reSet);
             //---------------Test Result -----------------------
-            Assert.AreEqual("rec(*).Name", recordsetBlankWithStar);
+            NUnit.Framework.Assert.AreEqual("rec(*).Name", recordsetBlankWithStar);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void HasNegativeIndex_GivenRecordSetWithNoIndexAndNoBraces_ShouldReturnFalse()
         {
             //---------------Set up test pack-------------------
@@ -898,11 +899,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var hasNegativeIndex = DataListUtil.HasNegativeIndex(reSet);
             //---------------Test Result -----------------------
-            Assert.IsFalse(hasNegativeIndex);
+            NUnit.Framework.Assert.IsFalse(hasNegativeIndex);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void HasNegativeIndex_GivenRecordSetWithBracketsAndIndex_ShouldReturnFalse()
         {
             //---------------Set up test pack-------------------
@@ -911,11 +912,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var hasNegativeIndex = DataListUtil.HasNegativeIndex(reSet);
             //---------------Test Result -----------------------
-            Assert.IsFalse(hasNegativeIndex);
+            NUnit.Framework.Assert.IsFalse(hasNegativeIndex);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void HasNegativeIndex_GivenRecordSetWithBlankIndex_ShouldReturnFalse()
         {
             //---------------Set up test pack-------------------
@@ -924,11 +925,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var hasNegativeIndex = DataListUtil.HasNegativeIndex(reSet);
             //---------------Test Result -----------------------
-            Assert.IsFalse(hasNegativeIndex);
+            NUnit.Framework.Assert.IsFalse(hasNegativeIndex);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void HasNegativeIndex_GivenRecordSetNegetiveIndex_ShouldReturnFalse()
         {
             //---------------Set up test pack-------------------
@@ -937,11 +938,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var hasNegativeIndex = DataListUtil.HasNegativeIndex(reSet);
             //---------------Test Result -----------------------
-            Assert.IsTrue(hasNegativeIndex);
+            NUnit.Framework.Assert.IsTrue(hasNegativeIndex);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ExtractFieldNameFromValue_GivenRecSet_ShouldExtractField()
         {
             //---------------Set up test pack-------------------
@@ -951,10 +952,10 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var field = DataListUtil.ExtractFieldNameFromValue(reSet);
             //---------------Test Result -----------------------
-            Assert.AreEqual("Name", field);
+            NUnit.Framework.Assert.AreEqual("Name", field);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ExtractFieldNameFromValue_GivenRecSetWithNoBrackets_ShouldExtractField()
         {
             //---------------Set up test pack-------------------
@@ -963,10 +964,10 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var field = DataListUtil.ExtractFieldNameFromValue(reSet);
             //---------------Test Result -----------------------
-            Assert.AreEqual("Name", field);
+            NUnit.Framework.Assert.AreEqual("Name", field);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ExtractFieldNameFromValue_GivenRecSetWithNoIndex_ShouldExtractField()
         {
             //---------------Set up test pack-------------------
@@ -975,11 +976,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var field = DataListUtil.ExtractFieldNameFromValue(reSet);
             //---------------Test Result -----------------------
-            Assert.AreEqual("Name", field);
+            NUnit.Framework.Assert.AreEqual("Name", field);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ExtractRecordsetNameFromValue_GivenRecsetNoBrackets_ShouldExtractRecname()
         {
             //---------------Set up test pack-------------------
@@ -988,11 +989,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var recName = DataListUtil.ExtractRecordsetNameFromValue(reSet);
             //---------------Test Result -----------------------
-            Assert.AreEqual("rec", recName);
+            NUnit.Framework.Assert.AreEqual("rec", recName);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ExtractRecordsetNameFromValue_GivenValidRecset_ShouldExtractRecname()
         {
             //---------------Set up test pack-------------------
@@ -1001,11 +1002,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var recName = DataListUtil.ExtractRecordsetNameFromValue(reSet);
             //---------------Test Result -----------------------
-            Assert.AreEqual("rec", recName);
+            NUnit.Framework.Assert.AreEqual("rec", recName);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void StripBracketsFromValue_GivenValueWithBrackets_ShouldRemoveBrackets()
         {
             //---------------Set up test pack-------------------
@@ -1014,11 +1015,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var noBrackets = DataListUtil.StripBracketsFromValue(reSet);
             //---------------Test Result -----------------------
-            Assert.AreEqual("rec().Name", noBrackets);
+            NUnit.Framework.Assert.AreEqual("rec().Name", noBrackets);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void StripBracketsFromValue_GivenValueWithNoBrackets_ShouldReturnValue()
         {
             //---------------Set up test pack-------------------
@@ -1027,11 +1028,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var noBrackets = DataListUtil.StripBracketsFromValue(reSet);
             //---------------Test Result -----------------------
-            Assert.AreEqual("rec().Name", noBrackets);
+            NUnit.Framework.Assert.AreEqual("rec().Name", noBrackets);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void MakeValueIntoHighLevelRecordset_GivenRecsetWithBlankAndAddStarNotation_ShouldAppendStar()
         {
             //---------------Set up test pack-------------------
@@ -1040,10 +1041,10 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var highLevelRecordset = DataListUtil.MakeValueIntoHighLevelRecordset(reSet, true);
             //---------------Test Result -----------------------
-            Assert.AreEqual("rec(*)", highLevelRecordset);
+            NUnit.Framework.Assert.AreEqual("rec(*)", highLevelRecordset);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void MakeValueIntoHighLevelRecordset_GivenRecsetWithBlank_ShouldAppendBraces()
         {
             //---------------Set up test pack-------------------
@@ -1052,10 +1053,10 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var highLevelRecordset = DataListUtil.MakeValueIntoHighLevelRecordset(reSet);
             //---------------Test Result -----------------------
-            Assert.AreEqual("rec()", highLevelRecordset);
+            NUnit.Framework.Assert.AreEqual("rec()", highLevelRecordset);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void MakeValueIntoHighLevelRecordset_GivenRecsetEndsWithOpenBracket_ShouldAppendBraces()
         {
             //---------------Set up test pack-------------------
@@ -1064,10 +1065,10 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var highLevelRecordset = DataListUtil.MakeValueIntoHighLevelRecordset(reSet);
             //---------------Test Result -----------------------
-            Assert.AreEqual("rec()", highLevelRecordset);
+            NUnit.Framework.Assert.AreEqual("rec()", highLevelRecordset);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void MakeValueIntoHighLevelRecordset_GivenRecsetEndsCloseWithBrackets_ShouldAppendBraces()
         {
             //---------------Set up test pack-------------------
@@ -1076,11 +1077,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var highLevelRecordset = DataListUtil.MakeValueIntoHighLevelRecordset(reSet);
             //---------------Test Result -----------------------
-            Assert.AreEqual("rec()", highLevelRecordset);
+            NUnit.Framework.Assert.AreEqual("rec()", highLevelRecordset);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsStarIndex_GivenHasStar_ShouldReturnTrue()
         {
             //---------------Set up test pack-------------------
@@ -1089,11 +1090,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var isStarIndex = DataListUtil.IsStarIndex(reSet);
             //---------------Test Result -----------------------
-            Assert.IsTrue(isStarIndex);
+            NUnit.Framework.Assert.IsTrue(isStarIndex);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsStarIndex_GivenDoesNotContainStar_ShouldReturnFalse()
         {
             //---------------Set up test pack-------------------
@@ -1102,12 +1103,12 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var isStarIndex = DataListUtil.IsStarIndex(reSet);
             //---------------Test Result -----------------------
-            Assert.IsFalse(isStarIndex);
-            Assert.IsFalse(DataListUtil.IsStarIndex(string.Empty));
+            NUnit.Framework.Assert.IsFalse(isStarIndex);
+            NUnit.Framework.Assert.IsFalse(DataListUtil.IsStarIndex(string.Empty));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ShouldEncrypt_GivenEmptyValue_ShouldReturnFalse()
         {
             //---------------Set up test pack-------------------
@@ -1116,12 +1117,12 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var shouldEncrypt = DataListUtil.ShouldEncrypt(value);
             //---------------Test Result -----------------------
-            Assert.IsFalse(shouldEncrypt);
-            Assert.IsFalse(shouldEncrypt);
+            NUnit.Framework.Assert.IsFalse(shouldEncrypt);
+            NUnit.Framework.Assert.IsFalse(shouldEncrypt);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ShouldEncrypt_GivenInvalidRecset_ShouldReturnTrue()
         {
             //---------------Set up test pack-------------------
@@ -1130,11 +1131,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var shouldEncrypt = DataListUtil.ShouldEncrypt(value);
             //---------------Test Result -----------------------
-            Assert.IsTrue(shouldEncrypt);
+            NUnit.Framework.Assert.IsTrue(shouldEncrypt);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ShouldEncrypt_GivenValidRecset_ShouldReturnFalse()
         {
             //---------------Set up test pack-------------------
@@ -1143,7 +1144,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var shouldEncrypt = DataListUtil.ShouldEncrypt(value);
             //---------------Test Result -----------------------
-            Assert.IsFalse(shouldEncrypt);
+            NUnit.Framework.Assert.IsFalse(shouldEncrypt);
         }
         public class Car
         {
@@ -1151,8 +1152,8 @@ namespace Dev2.Data.Tests.BinaryDataList
             public string SurName { get; set; }
             public List<Car> Cars { get; set; }
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ConvertFromJsonToModel_GivenvalidModel_ShouldConvertBack()
         {
             //---------------Set up test pack-------------------
@@ -1161,12 +1162,12 @@ namespace Dev2.Data.Tests.BinaryDataList
             const string cars = "{ \"Name\":\"Mick\",\"SurName\":\"Mouse\",\"Cars\":[]}";
             var model = DataListUtil.ConvertFromJsonToModel<Car>(new StringBuilder(cars));
             //---------------Test Result -----------------------
-            Assert.IsNotNull(model);
-            Assert.AreEqual(typeof(Car), model.GetType());
+            NUnit.Framework.Assert.IsNotNull(model);
+            NUnit.Framework.Assert.AreEqual(typeof(Car), model.GetType());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ConvertModelToJson_GivenValidJson_ShouldCreateModel()
         {
             //---------------Set up test pack-------------------
@@ -1185,11 +1186,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Test Result -----------------------
             var expected = cars.RemoveWhiteSpace().ToJson();
             var actual = builder.ToString().RemoveWhiteSpace().ToJson();
-            Assert.AreEqual(expected, actual);
+            NUnit.Framework.Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GenerateDefsFromDataListForDebug_GivenEmpty_ShouldReturnEmptyList()
         {
             //---------------Set up test pack-------------------
@@ -1197,10 +1198,10 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var generateDefsFromDataListForDebug = DataListUtil.GenerateDefsFromDataListForDebug("", enDev2ColumnArgumentDirection.Output);
             //---------------Test Result -----------------------
-            Assert.AreEqual(0, generateDefsFromDataListForDebug.Count);
+            NUnit.Framework.Assert.AreEqual(0, generateDefsFromDataListForDebug.Count);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GenerateDefsFromDataListForDebug_GivenEmptyDataList_ShouldReturnEmptyList()
         {
             //---------------Set up test pack-------------------
@@ -1208,11 +1209,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var generateDefsFromDataListForDebug = DataListUtil.GenerateDefsFromDataListForDebug("<Datalist></Datalist>", enDev2ColumnArgumentDirection.Output);
             //---------------Test Result -----------------------
-            Assert.AreEqual(0, generateDefsFromDataListForDebug.Count);
+            NUnit.Framework.Assert.AreEqual(0, generateDefsFromDataListForDebug.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GenerateDefsFromDataListForDebug_GivenLoadedDataList_ShouldReturnDebugList()
         {
             //---------------Set up test pack-------------------
@@ -1221,12 +1222,12 @@ namespace Dev2.Data.Tests.BinaryDataList
             const string datalist = @"<DataList><Car Description=""A recordset of information about a car"" IsEditable=""True"" ColumnIODirection=""Both"" ><Make Description=""Make of vehicle"" IsEditable=""True"" ColumnIODirection=""None"" /><Model Description=""Model of vehicle"" IsEditable=""True"" ColumnIODirection=""None"" /></Car><Country Description=""name of Country"" IsEditable=""True"" ColumnIODirection=""Both"" /><Person Description="""" IsEditable=""True"" IsJson=""True"" IsArray=""False"" ColumnIODirection=""None"" ><Age Description="""" IsEditable=""True"" IsJson=""True"" IsArray=""False"" ColumnIODirection=""None"" ></Age><Name Description="""" IsEditable=""True"" IsJson=""True"" IsArray=""False"" ColumnIODirection=""None"" ></Name><School Description="""" IsEditable=""True"" IsJson=""True"" IsArray=""False"" ColumnIODirection=""None"" ><Name Description="""" IsEditable=""True"" IsJson=""True"" IsArray=""False"" ColumnIODirection=""None"" ></Name><Location Description="""" IsEditable=""True"" IsJson=""True"" IsArray=""False"" ColumnIODirection=""None"" ></Location></School></Person></DataList>";
             var generateDefsFromDataListForDebug = DataListUtil.GenerateDefsFromDataListForDebug(datalist, enDev2ColumnArgumentDirection.Output);
             //---------------Test Result -----------------------
-            Assert.AreNotEqual(0, generateDefsFromDataListForDebug.Count);
-            Assert.AreEqual(2, generateDefsFromDataListForDebug.Count);
+            NUnit.Framework.Assert.AreNotEqual(0, generateDefsFromDataListForDebug.Count);
+            NUnit.Framework.Assert.AreEqual(2, generateDefsFromDataListForDebug.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateRecordsetDisplayValue_GivenValues_ShouldCreateDisplayValue()
         {
             //---------------Set up test pack-------------------
@@ -1234,11 +1235,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var displayValue = DataListUtil.CreateRecordsetDisplayValue("rec", "Name", "1");
             //---------------Test Result -----------------------
-            Assert.AreEqual("rec(1).Name", displayValue);
+            NUnit.Framework.Assert.AreEqual("rec(1).Name", displayValue);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GenerateSerializableDefsFromDataList_GivenInput_ShouldCreateInputDefination()
         {
             //---------------Set up test pack-------------------
@@ -1248,11 +1249,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             var list = DataListUtil.GenerateSerializableDefsFromDataList("<DataList></DataList>", enDev2ColumnArgumentDirection);
             //---------------Test Result -----------------------
             var containsInput = list.Contains("Input");
-            Assert.IsTrue(containsInput);
+            NUnit.Framework.Assert.IsTrue(containsInput);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GenerateSerializableDefsFromDataList_GivenOutput_ShouldCreateOutPutDefination()
         {
             //---------------Set up test pack-------------------
@@ -1262,11 +1263,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             var list = DataListUtil.GenerateSerializableDefsFromDataList("<DataList></DataList>", enDev2ColumnArgumentDirection);
             //---------------Test Result -----------------------
             var containsInput = list.Contains("Output");
-            Assert.IsTrue(containsInput);
+            NUnit.Framework.Assert.IsTrue(containsInput);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void RemoveLanguageBrackets_GivenStringWithBrackets_ShouldReplaceWithNothing()
         {
             //---------------Set up test pack-------------------
@@ -1279,13 +1280,13 @@ namespace Dev2.Data.Tests.BinaryDataList
             s2 = DataListUtil.RemoveLanguageBrackets(s2);
             s3 = DataListUtil.RemoveLanguageBrackets(s3);
             //---------------Test Result -----------------------
-            Assert.AreEqual("V1", s1);
-            Assert.AreEqual("V1", s2);
-            Assert.AreEqual("V1", s3);
+            NUnit.Framework.Assert.AreEqual("V1", s1);
+            NUnit.Framework.Assert.AreEqual("V1", s2);
+            NUnit.Framework.Assert.AreEqual("V1", s3);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsValueRecordsetWithFields_GivenValusHasRecsetNotation_ShouldReturnTrue()
         {
             //---------------Set up test pack-------------------
@@ -1294,11 +1295,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var isValueRecordsetWithFields = DataListUtil.IsValueRecordsetWithFields(rec);
             //---------------Test Result -----------------------
-            Assert.IsTrue(isValueRecordsetWithFields);
+            NUnit.Framework.Assert.IsTrue(isValueRecordsetWithFields);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsValueRecordsetWithFields_GivenValueIsScalr_ShouldReturnFalse()
         {
             //---------------Set up test pack-------------------
@@ -1307,11 +1308,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var isValueRecordsetWithFields = DataListUtil.IsValueRecordsetWithFields(rec);
             //---------------Test Result -----------------------
-            Assert.IsFalse(isValueRecordsetWithFields);
+            NUnit.Framework.Assert.IsFalse(isValueRecordsetWithFields);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsXml_GivenNotXml_ShouldReturnFalse()
         {
             //---------------Set up test pack-------------------
@@ -1320,11 +1321,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var isXml = DataListUtil.IsXml(noXml, out bool isFragment);
             //---------------Test Result -----------------------
-            Assert.IsFalse(isXml);
+            NUnit.Framework.Assert.IsFalse(isXml);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsXml_GivenNotXml_ShouldReturnFalse_Overload()
         {
             //---------------Set up test pack-------------------
@@ -1333,11 +1334,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var isXml = DataListUtil.IsXml(noXml);
             //---------------Test Result -----------------------
-            Assert.IsFalse(isXml);
+            NUnit.Framework.Assert.IsFalse(isXml);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsXml_GivenXml_ShouldReturntrue()
         {
             //---------------Set up test pack-------------------
@@ -1346,11 +1347,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var isXml = DataListUtil.IsXml(noXml, out bool isFragment);
             //---------------Test Result -----------------------
-            Assert.IsTrue(isXml);
+            NUnit.Framework.Assert.IsTrue(isXml);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsXml_GivenXml_ShouldReturntrue_Overload()
         {
             //---------------Set up test pack-------------------
@@ -1359,11 +1360,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var isXml = DataListUtil.IsXml(noXml);
             //---------------Test Result -----------------------
-            Assert.IsTrue(isXml);
+            NUnit.Framework.Assert.IsTrue(isXml);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void RemoveRecordsetBracketsFromValue_GivenRecSet_ShouldRemoveBrackets()
         {
             //---------------Set up test pack-------------------
@@ -1372,11 +1373,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var removeRecordsetBracketsFromValue = DataListUtil.RemoveRecordsetBracketsFromValue(recSet);
             //---------------Test Result -----------------------
-            Assert.AreEqual("rec.name", removeRecordsetBracketsFromValue);
+            NUnit.Framework.Assert.AreEqual("rec.name", removeRecordsetBracketsFromValue);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsValueScalar_GivenNotScalr_ShouldreturnFalse()
         {
             //---------------Set up test pack-------------------
@@ -1389,13 +1390,13 @@ namespace Dev2.Data.Tests.BinaryDataList
             var recSetIsScalr = DataListUtil.IsValueScalar(recSet);
             var sclarIsScalr = DataListUtil.IsValueScalar(sclar);
             //---------------Test Result -----------------------
-            Assert.IsTrue(sclarIsScalr);
-            Assert.IsFalse(cmlpIsScalr);
-            Assert.IsFalse(recSetIsScalr);
+            NUnit.Framework.Assert.IsTrue(sclarIsScalr);
+            NUnit.Framework.Assert.IsFalse(cmlpIsScalr);
+            NUnit.Framework.Assert.IsFalse(recSetIsScalr);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void InputsToEnvironment_GivenGivenInputs_ShouldNeverThrowException()
         {
             //---------------Set up test pack-------------------
@@ -1412,7 +1413,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             catch (Exception ex)
             {
 
-                Assert.Fail(ex.Message);
+                NUnit.Framework.Assert.Fail(ex.Message);
             }
 
             //---------------Test Result -----------------------

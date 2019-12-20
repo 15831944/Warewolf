@@ -12,18 +12,19 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using Dev2.Runtime.WebServer;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf;
 
 namespace Dev2.Server.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class StartWebServerTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(StartWebServer))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(StartWebServer))]
         public void StartWebServer_WebServerConfigurationEndPoints_Null_ExpectExeption()
         {
             //-------------------Arrange---------------------
@@ -44,9 +45,9 @@ namespace Dev2.Server.Tests
             mockPauseHelper.Verify(o => o.Pause(), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(StartWebServer))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(StartWebServer))]
         public void StartWebServer_VerifyDispose_ExpectIsCalledOne()
         {
             //-------------------Arrange---------------------
@@ -73,9 +74,9 @@ namespace Dev2.Server.Tests
             return mockServer.Object;
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(StartWebServer))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(StartWebServer))]
         public void StartWebServer_DisposeCatch_DoesNotClushTheSystem_ExpectNomarlFlowAfter()
         {
             //-------------------Arrange---------------------
@@ -108,9 +109,9 @@ namespace Dev2.Server.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(StartWebServer))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(StartWebServer))]
         public void StartWebServer_WebServerConfigurationEndPoints_NotNull_ExpectListOfEndpoints()
         {
             //-------------------Arrange---------------------
@@ -134,9 +135,9 @@ namespace Dev2.Server.Tests
             mockWriter.Verify(a => a.WriteLine("Web server listening at Url"), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(StartWebServer))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(StartWebServer))]
         public void StartWebServer_IsWebServerConfig_False_ExpectException()
         {
             //-------------------Arrange---------------------

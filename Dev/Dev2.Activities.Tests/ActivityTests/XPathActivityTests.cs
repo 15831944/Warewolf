@@ -19,7 +19,7 @@ using Dev2.Common.State;
 using Dev2.DynamicServices;
 using Dev2.Interfaces;
 using Dev2.Utilities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.ActivityTests
@@ -27,7 +27,8 @@ namespace Dev2.Tests.Activities.ActivityTests
     /// <summary>
     /// Summary description for DataSplitActivityTest
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class XPathActivityTests : BaseActivityUnitTest
     {
@@ -45,7 +46,7 @@ namespace Dev2.Tests.Activities.ActivityTests
         // You can use the following additional attributes as you write your tests:
         //
         // Use ClassInitialize to run code before running the first test in the class
-        // [ClassInitialize()]
+        // [OneTimeSetUp]
         // public static void MyClassInitialize(TestContext testContext) { }
         //
         // Use ClassCleanup to run code after all tests in a class have run
@@ -53,7 +54,7 @@ namespace Dev2.Tests.Activities.ActivityTests
         // public static void MyClassCleanup() { }
         //
         // Use TestInitialize to run code before running each test 
-        [TestInitialize]
+        [SetUp]
         public void MyTestInitialize()
         {
             if(_resultsCollection == null)
@@ -69,9 +70,9 @@ namespace Dev2.Tests.Activities.ActivityTests
         //
         #endregion
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("XPath_Execute")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("XPath_Execute")]
         public void XPath_Execute_WhenLoadingTestResultsFile_ExpectParsableXML()
         {
             //------------Setup for test--------------------------
@@ -88,7 +89,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod] // - OK
+        [Test] // - OK
         public void EmptySourceStringExpectedNoData()
         {
             _resultsCollection.Add(new XPathDTO("[[OutVar1]]", "//type/method", 1));
@@ -101,7 +102,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("", actual);
         }
 
-        [TestMethod]
+        [Test]
         public void ScalarExpectedPathsAndInsertToScalarLastValue()
         {
             _resultsCollection.Add(new XPathDTO("[[OutVar1]]", "//type/method", 1));
@@ -122,7 +123,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ScalarExpectedWithXPathInScalarPathsAndInsertToScalarLastValue()
         {
             _resultsCollection.Add(new XPathDTO("[[OutVar1]]", "[[xpath]]", 1));
@@ -144,9 +145,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("XPathActivity_OnExecute")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("XPathActivity_OnExecute")]
         public void XPathActivity_Execute_MultipleScalars_XPathExecuteAndInsertMutipleScalars()
         {
 
@@ -171,9 +172,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             CollectionAssert.AreEqual(expected, actual, comparer);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("XPathActivity_OnExecute")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("XPathActivity_OnExecute")]
         public void XPathActivity_Execute_ScalarWithXPathInRecset_XPathExecuteAndInsertMutipleScalars()
         {
 
@@ -198,7 +199,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             CollectionAssert.AreEqual(expected, actual, comparer);
         }
 
-        [TestMethod]
+        [Test]
         public void RecsetWithXPathInRecsetExpectedXPathExecuteAndInsertMutipleScalars()
         {
 
@@ -216,9 +217,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             CollectionAssert.AreEqual(expected, actual, comparer);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("XPathActivity_OnExecute")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("XPathActivity_OnExecute")]
         public void MixedScalarsAndRecordsetWithIndexExpectedXPathEvalInsertMutipleScalarAndRecordsets()
         {
             _resultsCollection.Add(new XPathDTO("[[OutVar1]]", "//type/method/@name", 1));
@@ -245,9 +246,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             CollectionAssert.AreEqual(expected, actual, comparer);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("XPathActivity_OnExecute")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("XPathActivity_OnExecute")]
         public void XPathActivity_Execute_MixedScalarsAndRecordsetWithoutIndex_XPathValuesToEndInsertingMutipleScalarAndRecordsets()
         {
 
@@ -280,7 +281,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             CollectionAssert.AreEqual(expected, actual, new ActivityUnitTests.Utils.StringComparer());
         }
 
-        [TestMethod]
+        [Test]
         public void MutiRecsetsWithNoIndexExpectedXPathResultsAppendToTheRecordsets()
         {
             _resultsCollection.Add(new XPathDTO("[[recset1().rec1]]", "//type/method/@name", 1));
@@ -308,7 +309,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             CollectionAssert.AreEqual(expected, actual, new ActivityUnitTests.Utils.StringComparer());
         }
 
-        [TestMethod]
+        [Test]
         public void RecsetWithStarExpectedXPathsResultsOverwriteRecordsFromIndex1()
         {
 
@@ -335,7 +336,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
 
 
-        [TestMethod]
+        [Test]
         public void RecsetWithStarExpectedXPaths_InsideForEach_ShouldRespect_UpdateValueForRecordsetIndex()
         {
 
@@ -387,10 +388,10 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [TestCategory("XPathActivity_Execution")]
+        [Test]
+        [Category("XPathActivity_Execution")]
         [Description("XPathActivity execute upserts one result only")]
-        [Owner("Ashley Lewis")]
+        [Author("Ashley Lewis")]
         public void XPath_Execute_RecordsetWithStar_OneXPathResultUpserted()
         {
             //init
@@ -410,9 +411,9 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfXPathActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfXPathActivity_UpdateForEachInputs")]
         public void DsfXPathActivity_UpdateForEachInputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -427,9 +428,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("xml", act.SourceString);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetOutputs")]
         public void GetOutputs_Called_ShouldReturnListWithResultValueInIt()
         {
             //------------Setup for test--------------------------
@@ -443,9 +444,9 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfXPathActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfXPathActivity_UpdateForEachInputs")]
         public void DsfXPathActivity_UpdateForEachInputs_MoreThan1Updates_Updates()
         {
             //------------Setup for test--------------------------
@@ -463,9 +464,9 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfXPathActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfXPathActivity_UpdateForEachOutputs")]
         public void DsfXPathActivity_UpdateForEachOutputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -479,9 +480,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("xml", act.SourceString);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfXPathActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfXPathActivity_UpdateForEachOutputs")]
         public void DsfXPathActivity_UpdateForEachOutputs_MoreThan1Updates_Updates()
         {
             //------------Setup for test--------------------------
@@ -498,9 +499,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("xml", act.SourceString);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfUniqueActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfUniqueActivity_UpdateForEachOutputs")]
         public void DsfXPathActivity_UpdateForEachOutputs_1Updates_UpdateCommandResult()
         {
             //------------Setup for test--------------------------
@@ -516,9 +517,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("xml", act.SourceString);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfUniqueActivity_GetForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfUniqueActivity_GetForEachInputs")]
         public void DsfXPathActivity_GetForEachInputs_WhenHasExpression_ReturnsInputList()
         {
             //------------Setup for test--------------------------
@@ -535,9 +536,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("//x/a/text()", dsfForEachItems[1].Value);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfXPathActivity_GetForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfXPathActivity_GetForEachOutputs")]
         public void DsfXPathActivity_GetForEachOutputs_WhenHasResult_ReturnsOutputList()
         {
             //------------Setup for test--------------------------
@@ -553,9 +554,9 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfXPathActivity_GetState")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfXPathActivity_GetState")]
         public void DsfXPathActivity_GetState_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------

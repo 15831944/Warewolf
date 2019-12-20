@@ -1,6 +1,6 @@
 ﻿using System;
 using Dev2.Activities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Framework.Converters.Graph.Ouput;
 using Dev2.Common.Interfaces.Core.Graph;
 using System.Collections.Generic;
@@ -9,11 +9,12 @@ using Dev2.Common;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfWebPostActivityComparerTests
     {
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameUniqueID_EmptyWebPostTools_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -28,8 +29,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_DifferentWebPostToolIds_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -45,8 +46,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_SameWebPostTool_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -61,8 +62,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_DisplayName_Value_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -77,8 +78,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_DisplayName_Value_IsNOT_Equal()
         {
             //---------------Set up test pack-------------------
@@ -93,8 +94,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_DisplayName_Value_Different_Casing_IsNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -109,8 +110,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
             Assert.IsFalse(@equals);
         }
         
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_QueryString_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -126,8 +127,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
         }
 
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_QueryString_IsNOTEqual()
         {
             //---------------Set up test pack-------------------
@@ -142,8 +143,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_OutputDescription_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -159,8 +160,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_OutputDescription_IsNOTEqual()
         {
             //---------------Set up test pack-------------------
@@ -183,8 +184,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_Headers_IsNOTEqual()
         {
             //---------------Set up test pack-------------------
@@ -201,8 +202,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_Headers_DifferentIndexes_IsNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -218,8 +219,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
             //---------------Test Result -----------------------
             Assert.IsTrue(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_Headers_IsEqual()
         {
             //---------------Set up test pack-------------------

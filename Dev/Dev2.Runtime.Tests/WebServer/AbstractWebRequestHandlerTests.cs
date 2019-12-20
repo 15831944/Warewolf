@@ -36,7 +36,7 @@ using Dev2.Runtime.WebServer.TransferObjects;
 using Dev2.Services.Security;
 using Dev2.Web;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -44,8 +44,9 @@ using Warewolf.Storage.Interfaces;
 
 namespace Dev2.Tests.Runtime.WebServer
 {
-    [TestClass]
-    [TestCategory("Runtime WebServer")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime WebServer")]
     public class AbstractWebRequestHandlerTests
     {
         NameValueCollection LocalBoundVariables => new NameValueCollection
@@ -61,9 +62,9 @@ namespace Dev2.Tests.Runtime.WebServer
         };
         public TestContext TestContext { get; set; }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_CreateFormGivenValidArgsShouldReturnWriterHttpOkay()
         {
             //---------------Set up test pack-------------------
@@ -115,9 +116,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual("{}", result.Result);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_CreateForm_GivenValidArgsContainsIsDebug_ShouldSetDataObjectAsDebug()
         {
             //---------------Set up test pack-------------------
@@ -164,9 +165,9 @@ namespace Dev2.Tests.Runtime.WebServer
             principal.Setup(p => p.Identity).Returns(identity.Object);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_CreateForm_GivenValidArgsContainsIsServiceTes_ShouldSetDataObjectAsTest()
         {
             //---------------Set up test pack-------------------
@@ -205,9 +206,9 @@ namespace Dev2.Tests.Runtime.WebServer
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_CreateForm_GivenValidArgsContainsIsServiceSwagger_ShouldSetDataObjectAsSwagger()
         {
             //---------------Set up test pack-------------------
@@ -250,9 +251,9 @@ namespace Dev2.Tests.Runtime.WebServer
             dataObject.VerifySet(o => o.ReturnType = EmitionTypes.SWAGGER, Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_CreateForm_GivenValidArgsContainsIsServiceJson_ShouldSetDataObjectAsJson()
         {
             //---------------Set up test pack-------------------
@@ -296,9 +297,9 @@ namespace Dev2.Tests.Runtime.WebServer
             dataObject.VerifySet(o => o.ReturnType = EmitionTypes.JSON, Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_CreateForm_GivenValidArgsContainsIsServiceXMl_ShouldSetDataObjectAsXml()
         {
             //---------------Set up test pack-------------------
@@ -340,9 +341,9 @@ namespace Dev2.Tests.Runtime.WebServer
             dataObject.VerifySet(o => o.ReturnType = EmitionTypes.XML, Times.Exactly(2));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_CreateForm_GivenValidArgsContainsIsServiceXMlWithErrors_ShouldCheckReturnTypeOfError()
         {
             //---------------Set up test pack-------------------
@@ -386,9 +387,9 @@ namespace Dev2.Tests.Runtime.WebServer
             dataObject.VerifyGet(o => o.ReturnType);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_CreateForm_GivenValidArgsContainsIsServiceJsonWithErrors_ShouldCheckReturnTypeOfError()
         {
             //---------------Set up test pack-------------------
@@ -431,9 +432,9 @@ namespace Dev2.Tests.Runtime.WebServer
             dataObject.VerifyGet(o => o.ReturnType);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_CreateForm_GivenWebRequestHasStartServiceNameRequestEndsWithTests_ShouldSetDataobjectsTestsOptions()
         {
             //---------------Set up test pack-------------------
@@ -475,9 +476,9 @@ namespace Dev2.Tests.Runtime.WebServer
             dataObject.VerifySet(o => o.TestName = "*", Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_CreateForm_GivenWebRequestHasStartServiceNameRequestEndsWithTestsTRX_ShouldSetDataobjectsTRXOptions()
         {
             //---------------Set up test pack-------------------
@@ -519,9 +520,9 @@ namespace Dev2.Tests.Runtime.WebServer
             dataObject.VerifySet(o => o.TestName = "*", Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_CreateForm_GivenServiceNameIsGuid_ShouldLoadresourceAndSetDataobjectPropertiesFromResource()
         {
             //---------------Set up test pack-------------------
@@ -567,9 +568,9 @@ namespace Dev2.Tests.Runtime.WebServer
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_CreateForm_GivenServiceNameIsText_ShouldLoadresourceAndSetDataobjectPropertiesFromResource()
         {
             //---------------Set up test pack-------------------
@@ -614,9 +615,9 @@ namespace Dev2.Tests.Runtime.WebServer
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_CreateForm_GivenHasTestResourcesIds_ShouldRunAllTests()
         {
             //---------------Set up test pack-------------------
@@ -682,12 +683,12 @@ namespace Dev2.Tests.Runtime.WebServer
             dataObject.Verify(o => o.Clone(), Times.Exactly(3));
             testCatalog.Verify(catalog => catalog.Fetch(It.IsAny<Guid>()), Times.Exactly(3));
             resourceCatalog.Verify(catalog => catalog.GetResource(It.IsAny<Guid>(), It.IsAny<Guid>()), Times.Exactly(3));
-            Assert.IsInstanceOfType(responseWriter, typeof(StringResponseWriter));
+            Assert.IsInstanceOf(responseWriter.GetType(), typeof(StringResponseWriter));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_CreateForm_GivenEmitionTypeTEST_ShouldFetchTest()
         {
             //---------------Set up test pack-------------------
@@ -739,9 +740,9 @@ namespace Dev2.Tests.Runtime.WebServer
             testCatalog.Verify(o => o.Fetch(Guid.Empty), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_CreateForm_GivenEmitionTypeTESTAndIsRunAllTestsRequestTrue_ShouldFetchTests()
         {
             //---------------Set up test pack-------------------
@@ -802,9 +803,9 @@ namespace Dev2.Tests.Runtime.WebServer
             testCatalog.Verify(o => o.Fetch(Guid.Empty), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_CreateForm_GivenEmitionTypeTESTAndIsRunAllTestsRequestTrue_ShouldFetchTests1()
         {
             //---------------Set up test pack-------------------
@@ -860,9 +861,9 @@ namespace Dev2.Tests.Runtime.WebServer
             testCatalog.Verify(o => o.Fetch(Guid.Empty), Times.Never);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_BindRequestVariablesToDataObjectGivenHasBookMarkShouldSetDataObjectBookmark()
         {
             //---------------Set up test pack-------------------
@@ -895,9 +896,9 @@ namespace Dev2.Tests.Runtime.WebServer
             dataObject.VerifySet(o => o.ServiceName = "a", Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_GetPostDataGivenUrlWithGetJsonDataShouldReturnPostData()
         {
             //---------------Set up test pack-------------------
@@ -937,9 +938,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual(payLoad, postDataMock);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_GetPostDataGivenUrlWithJsonPostDataShouldReturnPostData()
         {
             //---------------Set up test pack-------------------
@@ -970,9 +971,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual(payLoad, postDataMock);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_GetPostData_GivenPostDataInContext_ShouldReturnEmpty()
         {
             //---------------Set up test pack-------------------
@@ -1000,9 +1001,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual("", postDataMock);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_GetPostData_GivenPostJsonDataInContextThrowsException_ShouldSwallowException()
         {
             //---------------Set up test pack-------------------
@@ -1031,9 +1032,9 @@ namespace Dev2.Tests.Runtime.WebServer
             handlerMock.GetPostDataMock(communicationContext.Object);
 
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_GetPostData_GivenPostJsonDataInContext_ShouldReturnJsonData()
         {
             //---------------Set up test pack-------------------
@@ -1064,9 +1065,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual(data, postDataMock);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_GetPostData_GivenJsonDataInContextAndUnknownWebMethod_ShouldReturnEmpty()
         {
             //---------------Set up test pack-------------------
@@ -1095,9 +1096,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual(string.Empty, postDataMock);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_GetPostData_GivenPostXmlDataInContext_ShouldReturnXmlData()
         {
             //---------------Set up test pack-------------------
@@ -1138,9 +1139,9 @@ namespace Dev2.Tests.Runtime.WebServer
             return xmlData;
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_GetPostData_GivenGetJsonDataInContext_ShouldReturnJsonData()
         {
             //---------------Set up test pack-------------------
@@ -1170,9 +1171,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual(data, postDataMock);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_GetPostData_GivenGetXmlDataInContext_ShouldReturnXmlData()
         {
             //---------------Set up test pack-------------------
@@ -1203,9 +1204,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual(xmlData, postDataMock);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_GetPostData_GivenGetDataListXmlDataInContext_ShouldReturnXmlData()
         {
             //---------------Set up test pack-------------------
@@ -1237,9 +1238,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual(xmlData, postDataMock);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_LocationGivenReturnsCorrectly()
         {
             //---------------Set up test pack-------------------
@@ -1261,13 +1262,13 @@ namespace Dev2.Tests.Runtime.WebServer
             var location = handlerMock.Location;
             //---------------Test Result -----------------------
             var locationCurrent = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            string currentLocation = Path.GetDirectoryName(Path.GetDirectoryName(TestContext.TestRunDirectory));
+            string currentLocation = Path.GetDirectoryName(Path.GetDirectoryName(Environment.CurrentDirectory));
             Assert.IsTrue(location == locationCurrent || location == currentLocation, location + " does not equal " + locationCurrent + " or " + currentLocation);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_RemoteInove_GivenServerInvoke_ShouldSetRemoteIdOnTheDataObjectAndRemoteInvokeTo_True()
         {
             const string Someremoteid = "SomeRemoteServerId";
@@ -1295,9 +1296,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual(Someremoteid, dataObject.Object.RemoteInvokerID);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_RemoteInvoke_GivenRemoteDebugInvoke_ShouldSetRemoteIdOnTheDataObjectAndRemoteInvokeTo_True()
         {
             const string Someremoteid = "SomeRemoteDebugServerId";
@@ -1326,9 +1327,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual(Someremoteid, dataObject.Object.RemoteInvokerID);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_GetBookmark_GivenBoundVariables_ShouldReturnBookmark()
         {
             const string ExpectedResult = "the_bookmark";
@@ -1344,9 +1345,9 @@ namespace Dev2.Tests.Runtime.WebServer
         }
 
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_GetClassName_GivenBoundVariables_ShouldReturnName()
         {
             const string ExpectedResult = "the_name";
@@ -1362,9 +1363,9 @@ namespace Dev2.Tests.Runtime.WebServer
         }
 
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_GetMethodName_GivenBoundVariables_ShouldReturnMethodName()
         {
             const string ExpectedResult = "the_action";
@@ -1380,9 +1381,9 @@ namespace Dev2.Tests.Runtime.WebServer
         }
 
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_GetPath_GivenBoundVariables_ShouldReturnPath()
         {
             const string ExpectedResult = "the_path";
@@ -1398,9 +1399,9 @@ namespace Dev2.Tests.Runtime.WebServer
         }
 
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_GetWebsite_GivenBoundVariables_ShouldReturnWebsite()
         {
             const string ExpectedResult = "the_website";
@@ -1416,9 +1417,9 @@ namespace Dev2.Tests.Runtime.WebServer
         }
 
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_GetInstanceID_GivenBoundVariables_ShouldReturnInstanceId()
         {
             const string ExpectedResult = "the_instanceid";
@@ -1434,9 +1435,9 @@ namespace Dev2.Tests.Runtime.WebServer
         }
 
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_GetServiceName_GivenBoundVariables_ShouldReturnServiceName()
         {
             const string ExpectedResult = "the_servicename";
@@ -1451,9 +1452,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual(ExpectedResult, serviceName);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_GetWorkspaceID_GivenQueryString_ShouldReturnId()
         {
             const string ExpectedResult = "the_wid";
@@ -1467,9 +1468,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual(ExpectedResult, workspaceID);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_GetDataListID_GivenQueryString_ShouldReturnDatalsi()
         {
             const string ExpectedResult = "the_datalist";
@@ -1484,9 +1485,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual(ExpectedResult, dataListID);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_BuildTestResultJSONForWebRequest_GivenTestResultPassed_ShouldSetMessage()
         {
             //------------Setup for test-------------------------
@@ -1495,16 +1496,16 @@ namespace Dev2.Tests.Runtime.WebServer
             {
                 RunTestResult = RunResult.TestPassed
             };
-            var privateObject = new PrivateType(typeof(ServiceTestModelJObjectResultBuilder));
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType(typeof(ServiceTestModelJObjectResultBuilder));
             //------------Execute Test---------------------------            
             var result = privateObject.InvokeStatic("BuildTestResultJSONForWebRequest", to);
             //------------Assert Results-------------------------
             Assert.IsTrue(result.ToString().Contains("\"Result\": \"Passed\""));
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_BuildTestResultJSONForWebRequest_GivenTestResultFailed_ShouldSetMessage()
         {
             //------------Setup for test-------------------------
@@ -1514,15 +1515,15 @@ namespace Dev2.Tests.Runtime.WebServer
                 RunTestResult = RunResult.TestFailed,
                 Message = ""
             };
-            var privateObject = new PrivateType(typeof(ServiceTestModelJObjectResultBuilder));
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType(typeof(ServiceTestModelJObjectResultBuilder));
             //------------Execute Test---------------------------            
             var result = privateObject.InvokeStatic("BuildTestResultJSONForWebRequest", to);
             //------------Assert Results-------------------------
             Assert.IsTrue(result.ToString().Contains("\"Result\": \"Failed\""));
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_BuildTestResultJSONForWebRequest_GivenTestResultInvalid_ShouldSetMessage()
         {
             //------------Setup for test-------------------------
@@ -1532,15 +1533,15 @@ namespace Dev2.Tests.Runtime.WebServer
                 RunTestResult = RunResult.TestInvalid,
                 Message = ""
             };
-            var privateObject = new PrivateType(typeof(ServiceTestModelJObjectResultBuilder));
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType(typeof(ServiceTestModelJObjectResultBuilder));
             //------------Execute Test---------------------------            
             var result = privateObject.InvokeStatic("BuildTestResultJSONForWebRequest", to);
             //------------Assert Results-------------------------
             Assert.IsTrue(result.ToString().Contains("\"Result\": \"Invalid\""));
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_BuildTestResultJSONForWebRequest_GivenTestResultTestResourceDeleted_ShouldSetMessage()
         {
             //------------Setup for test-------------------------
@@ -1550,15 +1551,15 @@ namespace Dev2.Tests.Runtime.WebServer
                 RunTestResult = RunResult.TestResourceDeleted,
                 Message = ""
             };
-            var privateObject = new PrivateType(typeof(ServiceTestModelJObjectResultBuilder));
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType(typeof(ServiceTestModelJObjectResultBuilder));
             //------------Execute Test---------------------------            
             var result = privateObject.InvokeStatic("BuildTestResultJSONForWebRequest", to);
             //------------Assert Results-------------------------
             Assert.IsTrue(result.ToString().Contains("\"Result\": \"ResourceDelete\""));
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_BuildTestResultJSONForWebRequest_GivenTestResultTestResourcePathUpdated_ShouldSetMessage()
         {
             //------------Setup for test-------------------------
@@ -1568,15 +1569,15 @@ namespace Dev2.Tests.Runtime.WebServer
                 RunTestResult = RunResult.TestResourcePathUpdated,
                 Message = ""
             };
-            var privateObject = new PrivateType(typeof(ServiceTestModelJObjectResultBuilder));
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType(typeof(ServiceTestModelJObjectResultBuilder));
             //------------Execute Test---------------------------            
             var result = privateObject.InvokeStatic("BuildTestResultJSONForWebRequest", to);
             //------------Assert Results-------------------------
             Assert.IsTrue(result.ToString().Contains("\"Result\": \"ResourcpathUpdated\""));
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_BuildTestResultJSONForWebRequest_GivenTestResultTestPending_ShouldSetMessage()
         {
             //------------Setup for test-------------------------
@@ -1586,7 +1587,7 @@ namespace Dev2.Tests.Runtime.WebServer
                 RunTestResult = RunResult.TestPending,
                 Message = ""
             };
-            var privateObject = new PrivateType(typeof(ServiceTestModelJObjectResultBuilder));
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType(typeof(ServiceTestModelJObjectResultBuilder));
             //------------Execute Test---------------------------            
             var result = privateObject.InvokeStatic("BuildTestResultJSONForWebRequest", to);
             //------------Assert Results-------------------------
@@ -1594,9 +1595,9 @@ namespace Dev2.Tests.Runtime.WebServer
         }
 
 
-        [TestMethod]
-        [Owner("Ashley Lewis")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Ashley Lewis")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_BuildTestResultTRXForWebRequest_GivenTestResultPassed_ShouldSetMessage()
         {
             //------------Setup for test-------------------------
@@ -1608,16 +1609,16 @@ namespace Dev2.Tests.Runtime.WebServer
                 RunTestResult = RunResult.TestPassed
             };
             toList.Add(to);
-            var privateObject = new PrivateType(typeof(ServiceTestModelTRXResultBuilder));
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType(typeof(ServiceTestModelTRXResultBuilder));
             //------------Execute Test---------------------------            
             var result = privateObject.InvokeStatic("BuildTestResultTRX", "Hello World", toList);
             //------------Assert Results-------------------------
             Assert.IsTrue(result.ToString().Contains("outcome=\"Passed\""));
         }
 
-        [TestMethod]
-        [Owner("Ashley Lewis")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Ashley Lewis")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_BuildTestResultTRXForWebRequest_GivenTestResultFailed_ShouldSetMessage()
         {
             //------------Setup for test-------------------------
@@ -1630,16 +1631,16 @@ namespace Dev2.Tests.Runtime.WebServer
                 Message = ""
             };
             toList.Add(to);
-            var privateObject = new PrivateType(typeof(ServiceTestModelTRXResultBuilder));
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType(typeof(ServiceTestModelTRXResultBuilder));
             //------------Execute Test---------------------------            
             var result = privateObject.InvokeStatic("BuildTestResultTRX", "Hello World", toList);
             //------------Assert Results-------------------------
             Assert.IsTrue(result.ToString().Contains("outcome=\"Failed\""));
         }
 
-        [TestMethod]
-        [Owner("Ashley Lewis")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Ashley Lewis")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_BuildTestResultTRXForWebRequest_GivenTestResultInvalid_ShouldSetMessage()
         {
             //------------Setup for test-------------------------
@@ -1652,16 +1653,16 @@ namespace Dev2.Tests.Runtime.WebServer
                 Message = ""
             };
             toList.Add(to);
-            var privateObject = new PrivateType(typeof(ServiceTestModelTRXResultBuilder));
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType(typeof(ServiceTestModelTRXResultBuilder));
             //------------Execute Test---------------------------            
             var result = privateObject.InvokeStatic("BuildTestResultTRX", "Hello World", toList);
             //------------Assert Results-------------------------
             Assert.IsTrue(result.ToString().Contains("outcome=\"Invalid\""));
         }
 
-        [TestMethod]
-        [Owner("Ashley Lewis")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Ashley Lewis")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_BuildTestResultTRXForWebRequest_GivenTestResultTestResourceDeleted_ShouldSetMessage()
         {
             //------------Setup for test-------------------------
@@ -1674,16 +1675,16 @@ namespace Dev2.Tests.Runtime.WebServer
                 Message = ""
             };
             toList.Add(to);
-            var privateObject = new PrivateType(typeof(ServiceTestModelTRXResultBuilder));
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType(typeof(ServiceTestModelTRXResultBuilder));
             //------------Execute Test---------------------------            
             var result = privateObject.InvokeStatic("BuildTestResultTRX", "Hello World", toList);
             //------------Assert Results-------------------------
             Assert.IsTrue(result.ToString().Contains("outcome=\"ResourceDeleted\""));
         }
 
-        [TestMethod]
-        [Owner("Ashley Lewis")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Ashley Lewis")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_BuildTestResultTRXForWebRequest_GivenTestResultTestResourcePathUpdated_ShouldSetMessage()
         {
             //------------Setup for test-------------------------
@@ -1696,16 +1697,16 @@ namespace Dev2.Tests.Runtime.WebServer
                 Message = ""
             };
             toList.Add(to);
-            var privateObject = new PrivateType(typeof(ServiceTestModelTRXResultBuilder));
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType(typeof(ServiceTestModelTRXResultBuilder));
             //------------Execute Test---------------------------            
             var result = privateObject.InvokeStatic("BuildTestResultTRX", "Hello World", toList);
             //------------Assert Results-------------------------
             Assert.IsTrue(result.ToString().Contains("outcome=\"ResourcePathUpdated\""));
         }
 
-        [TestMethod]
-        [Owner("Ashley Lewis")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Ashley Lewis")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_BuildTestResultTRXForWebRequest_GivenTestResultTestPending_ShouldSetMessage()
         {
             //------------Setup for test-------------------------
@@ -1718,16 +1719,16 @@ namespace Dev2.Tests.Runtime.WebServer
                 Message = ""
             };
             toList.Add(to);
-            var privateObject = new PrivateType(typeof(ServiceTestModelTRXResultBuilder));
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType(typeof(ServiceTestModelTRXResultBuilder));
             //------------Execute Test---------------------------            
             var result = privateObject.InvokeStatic("BuildTestResultTRX", "Hello World", toList);
             //------------Assert Results-------------------------
             Assert.IsTrue(result.ToString().Contains("outcome=\"Pending\""));
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_ExtractKeyValuePairs_GivenKeyvaluePairs_ShouldCloneKeyValuePair()
         {
             var boundVariables = new NameValueCollection();
@@ -1738,13 +1739,13 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual(LocalBoundVariables.Count - 1, boundVariables.Count);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_CleanupXml_GivenXml_ShouldAppendXmlCorrectly()
         {
             //------------Setup for test-------------------------
-            var privateObject = new PrivateType(typeof(AbstractWebRequestHandler));
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType(typeof(AbstractWebRequestHandler));
             const string BaseStr = "www.examlple.com?home=<Datalist>DatalistPayload</Datalist>";
             //------------Execute Test---------------------------            
             var value = AbstractWebRequestHandler.SubmittedData.CleanupXml(BaseStr);
@@ -1755,13 +1756,13 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.IsTrue(startsWith);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_ExtractKeyValuePairForGetMethod_GivenEmptyPayload_ShouldUseContextQueryString()
         {
             //------------Setup for test-------------------------
-            var privateObject = new PrivateType(typeof(AbstractWebRequestHandler));
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType(typeof(AbstractWebRequestHandler));
             var mock = new Mock<ICommunicationContext>();
             mock.Setup(communicationContext => communicationContext.Request.QueryString)
                 .Returns(new NameValueCollection());
@@ -1777,9 +1778,9 @@ namespace Dev2.Tests.Runtime.WebServer
         }
 
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_SetContentType_GivenJsonType_ShouldSetDataObjectReturnType()
         {
             var principal = new Mock<IPrincipal>();
@@ -1812,9 +1813,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual(EmitionTypes.JSON, dataObject.Object.ReturnType);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_SetContentType_GivenXMLType_ShouldSetDataObjectReturnType()
         {
             var principal = new Mock<IPrincipal>();
@@ -1847,9 +1848,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual(EmitionTypes.XML, dataObject.Object.ReturnType);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_SetEmitionType_GivenHeaderContentTypeJson_ShouldSetDataObjectContentTypeJson()
         {
             //---------------Set up test pack-------------------
@@ -1868,9 +1869,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual(ServiceName, invoke);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_SetEmitionType_GivenHeaderContentTypeXml_ShouldSetDataObjectContentTypeXml()
         {
             //---------------Set up test pack-------------------
@@ -1889,9 +1890,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual(ServiceName, emitionType);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_SetEmitionType_GivenNoHeaders_ShouldSetDataObjectContentTypeXml()
         {
             //---------------Set up test pack-------------------
@@ -1906,9 +1907,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual(ServiceName, emitionType);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_SetEmitionType_GivenServiceNameEndsWithapi_ShouldSetDataObjectContentTypeSwagger()
         {
             //---------------Set up test pack-------------------
@@ -1928,9 +1929,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual("hello World", dataObject.Object.ServiceName);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_SetEmitionType_GivenServiceNameEndsWithtests_ShouldSetDataObjectContentTypeTests()
         {
             //---------------Set up test pack-------------------
@@ -1950,9 +1951,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual("hello World", dataObject.Object.ServiceName);
         }
 
-        [TestMethod]
-        [Owner("Ashley Lewis")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Ashley Lewis")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_SetEmitionType_GivenServiceNameEndsWithteststrx_ShouldSetDataObjectContentTypeTRX()
         {
             //---------------Set up test pack-------------------
@@ -1971,9 +1972,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual("hello World", dataObject.Object.ServiceName);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_SetEmitionType_GivenServiceNameEndsWithJson_ShouldSetDataObjectContentTypeJson()
         {
             //---------------Set up test pack-------------------
@@ -1993,9 +1994,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual("hello World", dataObject.Object.ServiceName);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_SetEmitionType_GivenTestsInFolder_ShouldSetDataObjectContentTypeTests()
         {
             //---------------Set up test pack-------------------
@@ -2017,9 +2018,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual("*", dataObject.Object.TestName);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_SetEmitionType_GivenServiceNameEndsWithtests_ShouldSetDataObjectIsTestExecution()
         {
             //---------------Set up test pack-------------------
@@ -2041,9 +2042,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual("hello World", dataObject.Object.ServiceName);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_SetTestResourceIds_GivenRequestForAllTestsInAFolder_ShouldSetDataObjectTestResourceIds()
         {
             //---------------Set up test pack-------------------
@@ -2078,9 +2079,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.IsTrue(contains);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(AbstractWebRequestHandler))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(AbstractWebRequestHandler))]
         public void AbstractWebRequestHandler_SetTestResourceIds_GivenRequestForAllTests_ShouldSetDataObjectTestResourceIds()
         {
             //---------------Set up test pack-------------------

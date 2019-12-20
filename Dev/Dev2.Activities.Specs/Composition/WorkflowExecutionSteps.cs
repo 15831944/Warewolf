@@ -60,7 +60,7 @@ using Dev2.TO;
 using Dev2.Util;
 using Dev2.Utilities;
 using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Moq;
@@ -209,7 +209,7 @@ namespace Dev2.Activities.Specs.Composition
             if (hasError == "AN")
             {
                 var hasErrorState = debugStates.FirstOrDefault(state => state.HasError);
-                Assert.IsNotNull(hasErrorState);
+                NUnit.Framework.Assert.IsNotNull(hasErrorState);
             }
         }
 
@@ -224,8 +224,8 @@ namespace Dev2.Activities.Specs.Composition
             {
                 var innerWfHasErrorState = debugStates.FirstOrDefault(state => state.HasError && state.DisplayName.Equals(workflowName));
                 var parentWfhasErrorState = debugStates.FirstOrDefault(state => state.HasError && state.DisplayName.Equals(parentWorkflowName));
-                Assert.IsNotNull(innerWfHasErrorState);
-                Assert.IsNotNull(parentWfhasErrorState);
+                NUnit.Framework.Assert.IsNotNull(innerWfHasErrorState);
+                NUnit.Framework.Assert.IsNotNull(parentWfhasErrorState);
             }
         }
 
@@ -286,7 +286,7 @@ namespace Dev2.Activities.Specs.Composition
             }
             else
             {
-                Assert.Fail($"Server \"{serverName}\" not found");
+                NUnit.Framework.Assert.Fail($"Server \"{serverName}\" not found");
             }
         }
 
@@ -368,7 +368,7 @@ namespace Dev2.Activities.Specs.Composition
 
                 catch (Exception e)
                 {
-                    Assert.IsNotNull(e);
+                    NUnit.Framework.Assert.IsNotNull(e);
                 }
 
                 var performanceCounterFactory = new PerformanceCounterFactory();
@@ -385,7 +385,7 @@ namespace Dev2.Activities.Specs.Composition
             }
             catch (Exception ex)
             {
-                Assert.Fail("failed to delete existing counters");
+                NUnit.Framework.Assert.Fail("failed to delete existing counters");
             }
         }
 
@@ -408,11 +408,11 @@ namespace Dev2.Activities.Specs.Composition
                             {
                                 if (tableRow[1] == "x")
                                 {
-                                    Assert.AreNotEqual(cnt.RawValue, 0);
+                                    NUnit.Framework.Assert.AreNotEqual(cnt.RawValue, 0);
                                 }
                                 else
                                 {
-                                    Assert.AreEqual(cnt.RawValue, int.Parse(tableRow[1]));
+                                    NUnit.Framework.Assert.AreEqual(cnt.RawValue, int.Parse(tableRow[1]));
                                 }
                             }
                         }
@@ -428,7 +428,7 @@ namespace Dev2.Activities.Specs.Composition
 
             while (!server.IsConnected && !server.Connection.IsConnected)
             {
-                Assert.AreEqual(server.IsConnected, server.Connection.IsConnected);
+                NUnit.Framework.Assert.AreEqual(server.IsConnected, server.Connection.IsConnected);
 
                 var now = DateTime.UtcNow;
                 if (now.Subtract(startTime).TotalSeconds > timeout)
@@ -493,7 +493,7 @@ namespace Dev2.Activities.Specs.Composition
             var toolSpecificDebug =
                 debugStates.Where(ds => ds.ParentID.GetValueOrDefault() == workflowId && ds.DisplayName.Equals(toolName)).ToList();
 
-            Assert.IsTrue(toolSpecificDebug.Count >= stepNumber);
+            NUnit.Framework.Assert.IsTrue(toolSpecificDebug.Count >= stepNumber);
             var debugToUse = DebugToUse(stepNumber, toolSpecificDebug);
 
             _commonSteps.ThenTheDebugInputsAs(table, debugToUse.Inputs
@@ -515,11 +515,11 @@ namespace Dev2.Activities.Specs.Composition
             }
 
             var sequenceDebug = debugStates.Where(ds => ds.ParentID.GetValueOrDefault() == workflowId).ToList();
-            Assert.IsTrue(sequenceDebug.Count >= stepNumber);
+            NUnit.Framework.Assert.IsTrue(sequenceDebug.Count >= stepNumber);
 
             var sequenceId = sequenceDebug[stepNumber - 1].ID;
             var sequenceIsInForEach = sequenceDebug.Any(state => state.ID == sequenceId);
-            Assert.IsTrue(sequenceIsInForEach);
+            NUnit.Framework.Assert.IsTrue(sequenceIsInForEach);
 
             var toolSpecificDebug =
                 debugStates.Where(ds => ds.ParentID.GetValueOrDefault() == sequenceId && ds.DisplayName.Equals(toolName)).ToList();
@@ -545,15 +545,15 @@ namespace Dev2.Activities.Specs.Composition
             }
 
             var sequenceDebug = debugStates.Where(ds => ds.ParentID.GetValueOrDefault() == workflowId).ToList();
-            Assert.IsTrue(sequenceDebug.Count >= stepNumber);
+            NUnit.Framework.Assert.IsTrue(sequenceDebug.Count >= stepNumber);
 
             var sequenceId = sequenceDebug[stepNumber - 1].ID;
             var sequenceIsInForEach = sequenceDebug.Any(state => state.ID == sequenceId);
-            Assert.IsTrue(sequenceIsInForEach);
+            NUnit.Framework.Assert.IsTrue(sequenceIsInForEach);
 
             var toolSpecificDebug =
                 debugStates.Where(ds => ds.ParentID.GetValueOrDefault() == sequenceId && ds.DisplayName.Equals(toolName)).ToList();
-            Assert.IsNotNull(toolSpecificDebug);
+            NUnit.Framework.Assert.IsNotNull(toolSpecificDebug);
             var debugState = toolSpecificDebug.FirstOrDefault();
             if (debugState != null)
             {
@@ -568,10 +568,10 @@ namespace Dev2.Activities.Specs.Composition
                     var debugItemResult = debugItem.ResultsList.FirstOrDefault();
                     if (debugItemResult != null)
                     {
-                        Assert.AreEqual((object)value, debugItemResult.Value);
-                        Assert.AreEqual(variable, debugItemResult.Variable);
-                        Assert.AreEqual(label, debugItemResult.Label);
-                        Assert.AreEqual(operater, debugItemResult.Operator);
+                        NUnit.Framework.Assert.AreEqual((object)value, debugItemResult.Value);
+                        NUnit.Framework.Assert.AreEqual(variable, debugItemResult.Variable);
+                        NUnit.Framework.Assert.AreEqual(label, debugItemResult.Label);
+                        NUnit.Framework.Assert.AreEqual(operater, debugItemResult.Operator);
                     }
                 }
             }
@@ -592,15 +592,15 @@ namespace Dev2.Activities.Specs.Composition
             }
 
             var sequenceDebug = debugStates.Where(ds => ds.ParentID.GetValueOrDefault() == workflowId).ToList();
-            Assert.IsTrue(sequenceDebug.Count >= stepNumber);
+            NUnit.Framework.Assert.IsTrue(sequenceDebug.Count >= stepNumber);
 
             var sequenceId = sequenceDebug[stepNumber - 1].ID;
             var sequenceIsInForEach = sequenceDebug.Any(state => state.ID == sequenceId);
-            Assert.IsTrue(sequenceIsInForEach);
+            NUnit.Framework.Assert.IsTrue(sequenceIsInForEach);
 
             var toolSpecificDebug =
                 debugStates.Where(ds => ds.ParentID.GetValueOrDefault() == sequenceId && ds.DisplayName.Equals(toolName)).ToList();
-            Assert.IsNotNull(toolSpecificDebug);
+            NUnit.Framework.Assert.IsNotNull(toolSpecificDebug);
             var debugState = toolSpecificDebug.FirstOrDefault();
             if (debugState != null)
             {
@@ -614,9 +614,9 @@ namespace Dev2.Activities.Specs.Composition
                     var debugItemResult = debugItem.ResultsList.FirstOrDefault();
                     if (debugItemResult != null)
                     {
-                        Assert.AreEqual((object)value, debugItemResult.Value);
-                        Assert.AreEqual(variable, debugItemResult.Variable);
-                        Assert.AreEqual(operater, debugItemResult.Operator);
+                        NUnit.Framework.Assert.AreEqual((object)value, debugItemResult.Value);
+                        NUnit.Framework.Assert.AreEqual(variable, debugItemResult.Variable);
+                        NUnit.Framework.Assert.AreEqual(operater, debugItemResult.Operator);
                     }
                 }
             }
@@ -638,11 +638,11 @@ namespace Dev2.Activities.Specs.Composition
             }
 
             var sequenceDebug = debugStates.Where(ds => ds.ParentID.GetValueOrDefault() == workflowId).ToList();
-            Assert.IsTrue(sequenceDebug.Count >= stepNumber);
+            NUnit.Framework.Assert.IsTrue(sequenceDebug.Count >= stepNumber);
 
             var sequenceId = sequenceDebug[stepNumber - 1].ID;
             var sequenceIsInForEach = sequenceDebug.Any(state => state.ID == sequenceId);
-            Assert.IsTrue(sequenceIsInForEach);
+            NUnit.Framework.Assert.IsTrue(sequenceIsInForEach);
 
             var toolSpecificDebug =
                 debugStates.Where(ds => ds.ParentID.GetValueOrDefault() == sequenceId && ds.DisplayName.Equals(toolName)).ToList();
@@ -675,7 +675,7 @@ namespace Dev2.Activities.Specs.Composition
                 var strings = toolSpecificDebug.ErrorMessage.Replace("\n", ",").Replace("\r", "").Split(',');
                 var predicate = tableRow["Error"];
                 var first = strings.First(p => p == predicate);
-                Assert.IsFalse(string.IsNullOrEmpty(first));
+                NUnit.Framework.Assert.IsFalse(string.IsNullOrEmpty(first));
             }
         }
 
@@ -696,7 +696,7 @@ namespace Dev2.Activities.Specs.Composition
 
             var toolSpecificDebug =
                 debugStates.Where(ds => ds.ParentID.GetValueOrDefault() == workflowId && ds.DisplayName.Equals(toolName)).ToList();
-            Assert.IsTrue(toolSpecificDebug.Count >= stepNumber);
+            NUnit.Framework.Assert.IsTrue(toolSpecificDebug.Count >= stepNumber);
             var debugToUse = DebugToUse(stepNumber, toolSpecificDebug);
 
 
@@ -1256,7 +1256,7 @@ namespace Dev2.Activities.Specs.Composition
             var debugStates = Get<List<IDebugState>>("debugStates").ToList();
 
             var end = debugStates.First(wf => wf.Name.Equals("End"));
-            Assert.IsTrue(end.Duration.Ticks > 0, "Workflow debug output end step duration of " + end.Duration.Ticks + " ticks is less than or equal to 0 ticks. All workflows no matter how simple do take some time to execute.");
+            NUnit.Framework.Assert.IsTrue(end.Duration.Ticks > 0, "Workflow debug output end step duration of " + end.Duration.Ticks + " ticks is less than or equal to 0 ticks. All workflows no matter how simple do take some time to execute.");
         }
 
         [Then(@"""(.*)"" Duration is less or equal to (.*) seconds")]
@@ -1269,9 +1269,9 @@ namespace Dev2.Activities.Specs.Composition
             var debugStates = Get<List<IDebugState>>("debugStates").ToList();
 
             var end = debugStates.First(wf => wf.Name.Equals("End"));
-            Assert.IsTrue(end.Duration.Ticks > 0);
+            NUnit.Framework.Assert.IsTrue(end.Duration.Ticks > 0);
             var condition = end.Duration.Seconds <= duration;
-            Assert.IsTrue(condition);
+            NUnit.Framework.Assert.IsTrue(condition);
         }
 
         [Then(@"""(.*)"" Duration is greater or equal to (.*) seconds")]
@@ -1283,9 +1283,9 @@ namespace Dev2.Activities.Specs.Composition
             TryGetValue("parentWorkflowName", out string parentWorkflowName);
             var debugStates = Get<List<IDebugState>>("debugStates").ToList();
             var end = debugStates.First(wf => wf.Name.Equals("End"));
-            Assert.IsTrue(end.Duration.Ticks > 0);
+            NUnit.Framework.Assert.IsTrue(end.Duration.Ticks > 0);
             var condition = end.Duration.Seconds >= duration;
-            Assert.IsTrue(condition);
+            NUnit.Framework.Assert.IsTrue(condition);
         }
 
 
@@ -1316,7 +1316,7 @@ namespace Dev2.Activities.Specs.Composition
             var id =
                 debugStates.Where(ds => ds.DisplayName.Equals(toolName)).ToList().Select(a => a.ID).First();
             var children = debugStates.Count(a => a.ParentID.GetValueOrDefault() == id);
-            Assert.AreEqual(count, children, String.Join(", ", debugStates.Select(val=>val.DisplayName)));
+            NUnit.Framework.Assert.AreEqual(count, children, String.Join(", ", debugStates.Select(val=>val.DisplayName)));
         }
 
         [Then(@"the ""(.*)"" in WorkFlow ""(.*)"" has at least ""(.*)"" nested children")]
@@ -1329,7 +1329,7 @@ namespace Dev2.Activities.Specs.Composition
             var id =
                 debugStates.Where(ds => ds.DisplayName.Equals(toolName)).ToList().Select(a => a.ID).First();
             var children = debugStates.Count(a => a.ParentID.GetValueOrDefault() == id);
-            Assert.IsTrue(children >= count, $"Not enough children nested inside {toolName} in {workflowName}'s debug output");
+            NUnit.Framework.Assert.IsTrue(children >= count, $"Not enough children nested inside {toolName} in {workflowName}'s debug output");
         }
 
         [Then(@"each ""(.*)"" contains debug outputs for ""(.*)"" as")]
@@ -1340,7 +1340,7 @@ namespace Dev2.Activities.Specs.Composition
             var debugStates = Get<List<IDebugState>>("debugStates").ToList();
 
             var id = debugStates.Where(ds => ds.DisplayName.Equals("DsfActivity")).ToList();
-            id.ForEach(x => Assert.AreEqual(1, debugStates.Count(a => a.ParentID.GetValueOrDefault() == x.ID && a.DisplayName == nestedToolName)));
+            id.ForEach(x => NUnit.Framework.Assert.AreEqual(1, debugStates.Count(a => a.ParentID.GetValueOrDefault() == x.ID && a.DisplayName == nestedToolName)));
         }
 
         T Get<T>(string keyName)
@@ -1385,7 +1385,7 @@ namespace Dev2.Activities.Specs.Composition
         {
             var serverCpuUsage = GetServerCPUUsage();
 
-            Assert.IsTrue(serverCpuUsage < maxCpu, "Warewolf Server CPU usage: " + serverCpuUsage.ToString(CultureInfo.InvariantCulture));
+            NUnit.Framework.Assert.IsTrue(serverCpuUsage < maxCpu, "Warewolf Server CPU usage: " + serverCpuUsage.ToString(CultureInfo.InvariantCulture));
         }
 
         [Given(@"I get the server memory")]
@@ -1406,7 +1406,7 @@ namespace Dev2.Activities.Specs.Composition
 
             var diffInMem = serverMemAfter - serverMemBefore;
 
-            Assert.IsTrue(diffInMem < maxDiff, "Warewolf Server memory usage: " + diffInMem.ToString(CultureInfo.InvariantCulture));
+            NUnit.Framework.Assert.IsTrue(diffInMem < maxDiff, "Warewolf Server memory usage: " + diffInMem.ToString(CultureInfo.InvariantCulture));
         }
 
         [Then(@"the ""(.*)"" in Workflow ""(.*)"" has a debug Server Name of """"(.*)""""")]
@@ -1426,8 +1426,8 @@ namespace Dev2.Activities.Specs.Composition
             var toolSpecificDebug =
                 debugStates.Where(ds => ds.ParentID.GetValueOrDefault() == workflowId && ds.DisplayName.Equals(toolName)).ToList();
 
-            Assert.IsTrue(toolSpecificDebug.All(a => a.Server == remoteName));
-            Assert.IsTrue(debugStates.Where(ds => ds.ParentID.GetValueOrDefault() == workflowId && !ds.DisplayName.Equals(toolName)).All(a => a.Server == "localhost"));
+            NUnit.Framework.Assert.IsTrue(toolSpecificDebug.All(a => a.Server == remoteName));
+            NUnit.Framework.Assert.IsTrue(debugStates.Where(ds => ds.ParentID.GetValueOrDefault() == workflowId && !ds.DisplayName.Equals(toolName)).All(a => a.Server == "localhost"));
         }
 
         [Then(@"the ""(.*)"" in Workflow ""(.*)"" debug outputs is")]
@@ -1464,7 +1464,7 @@ namespace Dev2.Activities.Specs.Composition
                         {
                             errorsMessage = " There were one or more errors found in other tools on the same workflow though: " + string.Join(", ", errors.Select(wf => wf.ErrorMessage).Distinct().ToArray());
                         }
-                        Assert.Fail($"Debug output for {toolName} not found in {workflowName}.{errorsMessage}");
+                        NUnit.Framework.Assert.Fail($"Debug output for {toolName} not found in {workflowName}.{errorsMessage}");
                     }
                 }
                 else
@@ -1500,9 +1500,9 @@ namespace Dev2.Activities.Specs.Composition
                     _commonSteps.ThenTheDebugOutputAs(table, SelectResults.ToList(), isDataMergeDebug);
                     return;
                 }
-                Assert.Fail(outputState.Outputs.ToList() + " debug outputs found on " + workflowName + " does not include " + toolName + ".");
+                NUnit.Framework.Assert.Fail(outputState.Outputs.ToList() + " debug outputs found on " + workflowName + " does not include " + toolName + ".");
             }
-            Assert.Fail("No debug output found for " + workflowName + ".");
+            NUnit.Framework.Assert.Fail("No debug output found for " + workflowName + ".");
         }
 
 
@@ -1534,7 +1534,7 @@ namespace Dev2.Activities.Specs.Composition
                         {
                             errorsMessage = " There were one or more errors found in other tools on the same workflow though: " + string.Join(", ", errors.Select(wf => wf.ErrorMessage).Distinct().ToArray());
                         }
-                        Assert.Fail($"Debug output for {toolName} not found in {workflowName}.{errorsMessage}");
+                        NUnit.Framework.Assert.Fail($"Debug output for {toolName} not found in {workflowName}.{errorsMessage}");
                     }
                 }
                 else
@@ -1570,9 +1570,9 @@ namespace Dev2.Activities.Specs.Composition
                     _commonSteps.ThenTheDebugOutputAs(table, SelectResults.ToList(), isDataMergeDebug, true);
                     return;
                 }
-                Assert.Fail(outputState.Outputs.ToList() + " debug outputs found on " + workflowName + " does not include " + toolName + ".");
+                NUnit.Framework.Assert.Fail(outputState.Outputs.ToList() + " debug outputs found on " + workflowName + " does not include " + toolName + ".");
             }
-            Assert.Fail("No debug output found for " + workflowName + ".");
+            NUnit.Framework.Assert.Fail("No debug output found for " + workflowName + ".");
         }
 
 
@@ -1602,7 +1602,7 @@ namespace Dev2.Activities.Specs.Composition
                         {
                             errorsMessage = " There were one or more errors found in other tools on the same workflow though: " + string.Join(", ", errors.Select(wf => wf.ErrorMessage).Distinct().ToArray());
                         }
-                        Assert.Fail($"Debug output for {toolName} not found in {workflowName}.{errorsMessage}");
+                        NUnit.Framework.Assert.Fail($"Debug output for {toolName} not found in {workflowName}.{errorsMessage}");
                     }
                 }
                 else
@@ -1638,9 +1638,9 @@ namespace Dev2.Activities.Specs.Composition
                     _commonSteps.ThenTheDebugOutputAs(table, SelectResults.ToList(), isDataMergeDebug);
                     return;
                 }
-                Assert.Fail(outputState.Outputs.ToList() + " debug outputs found on " + workflowName + " does not include " + toolName + ".");
+                NUnit.Framework.Assert.Fail(outputState.Outputs.ToList() + " debug outputs found on " + workflowName + " does not include " + toolName + ".");
             }
-            Assert.Fail("No debug output found for " + workflowName + ".");
+            NUnit.Framework.Assert.Fail("No debug output found for " + workflowName + ".");
         }
 
         [Then(@"the ""(.*)"" in Workflow ""(.*)"" debug output contains as")]
@@ -1682,8 +1682,8 @@ namespace Dev2.Activities.Specs.Composition
                 }
             }
             var debugItemResults = outputState?.Outputs.SelectMany(s => s.ResultsList).ToList();
-            Assert.IsNotNull(debugItemResults);
-            Assert.IsTrue(debugItemResults.Any(result => result.Value.Contains("{\r\n  \"Name\": \"Bob\"\r\n}")));
+            NUnit.Framework.Assert.IsNotNull(debugItemResults);
+            NUnit.Framework.Assert.IsTrue(debugItemResults.Any(result => result.Value.Contains("{\r\n  \"Name\": \"Bob\"\r\n}")));
         }
 
         [Given(@"""(.*)"" contains an SQL Bulk Insert ""(.*)"" using database ""(.*)"" and table ""(.*)"" and KeepIdentity set ""(.*)"" and Result set ""(.*)"" for testing as")]
@@ -2899,7 +2899,7 @@ namespace Dev2.Activities.Specs.Composition
             var rep = new Studio.Core.VersionManagerProxy(new CommunicationControllerFactory(), server.Connection);
             var versions = rep.GetVersions(id);
             _scenarioContext["Versions"] = versions;
-            Assert.AreEqual(numberOfVersions, versions.Count);
+            NUnit.Framework.Assert.AreEqual(numberOfVersions, versions.Count);
         }
 
         [Then(@"explorer as")]
@@ -2908,14 +2908,14 @@ namespace Dev2.Activities.Specs.Composition
             var versions = _scenarioContext["Versions"] as IList<IExplorerItem>;
             if (versions == null || versions.Count == table.RowCount)
             {
-                Assert.Fail("InvalidVersions");
+                NUnit.Framework.Assert.Fail("InvalidVersions");
             }
             else
             {
                 for (var i = 0; i < versions.Count; i++)
                 {
                     var v1 = table.Rows[i + 1][0].Split(' ');
-                    Assert.IsTrue(versions[i].DisplayName.Contains(v1[0]));
+                    NUnit.Framework.Assert.IsTrue(versions[i].DisplayName.Contains(v1[0]));
 
                 }
             }
@@ -3974,7 +3974,7 @@ namespace Dev2.Activities.Specs.Composition
         {
             using (var sw = File.Create(fileName))
             {
-                Assert.IsNotNull(sw);
+                NUnit.Framework.Assert.IsNotNull(sw);
             }
         }
 
@@ -4748,9 +4748,9 @@ namespace Dev2.Activities.Specs.Composition
                     _commonSteps.ThenTheDebugInputsAs(table, SelectResults.ToList());
                     return;
                 }
-                Assert.Fail(inputState.Inputs.ToList() + " debug outputs found on " + workflowName + " does not include " + toolName + ".");
+                NUnit.Framework.Assert.Fail(inputState.Inputs.ToList() + " debug outputs found on " + workflowName + " does not include " + toolName + ".");
             }
-            Assert.Fail("No debug input found for " + workflowName + ".");
+            NUnit.Framework.Assert.Fail("No debug input found for " + workflowName + ".");
         }
 
         [Then(@"the ""(.*)"" number '(.*)' in WorkFlow ""(.*)"" has ""(.*)"" nested children")]
@@ -4763,7 +4763,7 @@ namespace Dev2.Activities.Specs.Composition
             var id =
                 debugStates.Where(ds => ds.DisplayName.Equals(toolName)).Skip(itemNumber - 1).ToList().Select(a => a.ID).First();
             var children = debugStates.Count(a => a.ParentID.GetValueOrDefault() == id);
-            Assert.AreEqual(count, children);
+            NUnit.Framework.Assert.AreEqual(count, children);
         }
 
         [Then(@"the ""(.*)"" in step (.*) for ""(.*)"" number '(.*)' debug inputs as")]
@@ -4783,7 +4783,7 @@ namespace Dev2.Activities.Specs.Composition
             var toolSpecificDebug =
                 debugStates.Where(ds => ds.ParentID.GetValueOrDefault() == workflowId && ds.DisplayName.Equals(toolName)).ToList();
 
-            Assert.IsTrue(toolSpecificDebug.Count >= stepNumber);
+            NUnit.Framework.Assert.IsTrue(toolSpecificDebug.Count >= stepNumber);
             var debugToUse = DebugToUse(stepNumber, toolSpecificDebug);
 
             _commonSteps.ThenTheDebugInputsAs(table, debugToUse.Inputs
@@ -4806,7 +4806,7 @@ namespace Dev2.Activities.Specs.Composition
 
             var toolSpecificDebug =
                 debugStates.Where(ds => ds.ParentID.GetValueOrDefault() == workflowId && ds.DisplayName.Equals(toolName)).ToList();
-            Assert.IsTrue(toolSpecificDebug.Count >= stepNumber);
+            NUnit.Framework.Assert.IsTrue(toolSpecificDebug.Count >= stepNumber);
             var debugToUse = DebugToUse(stepNumber, toolSpecificDebug);
 
 
@@ -4820,7 +4820,7 @@ namespace Dev2.Activities.Specs.Composition
         private static void AddPermissionsForResource(string resourceName, IServer environmentModel, IResourceRepository resourceRepository, Data.Settings.Settings settings)
         {
             var resourceModel = resourceRepository.FindSingle(model => model.Category.Equals(resourceName, StringComparison.InvariantCultureIgnoreCase));
-            Assert.IsNotNull(resourceModel, "Did not find: " + resourceName);
+            NUnit.Framework.Assert.IsNotNull(resourceModel, "Did not find: " + resourceName);
             settings.Security.WindowsGroupPermissions.RemoveAll(permission => permission.ResourceID == resourceModel.ID);
             var resourcePerm = new WindowsGroupPermission
             {
@@ -4832,7 +4832,7 @@ namespace Dev2.Activities.Specs.Composition
             };
             settings.Security.WindowsGroupPermissions.Add(resourcePerm);
             var SettingsWriteResult = resourceRepository.WriteSettings(environmentModel, settings);
-            Assert.IsFalse(SettingsWriteResult.HasError, "Cannot setup for security spec.\n Error writing initial resource permissions settings to localhost server.\n" + SettingsWriteResult.Message);
+            NUnit.Framework.Assert.IsFalse(SettingsWriteResult.HasError, "Cannot setup for security spec.\n Error writing initial resource permissions settings to localhost server.\n" + SettingsWriteResult.Message);
         }
 
         static void EnsureEnvironmentConnected(IServer server)
@@ -4850,8 +4850,8 @@ namespace Dev2.Activities.Specs.Composition
             environmentModel.Connect();
             environmentModel.ResourceRepository.Load(true);
             Add("environment", environmentModel);
-            Assert.IsNotNull(environmentModel);
-            Assert.AreEqual(server, environmentModel.Name);
+            NUnit.Framework.Assert.IsNotNull(environmentModel);
+            NUnit.Framework.Assert.AreEqual(server, environmentModel.Name);
         }
         [When(@"I resume the workflow ""(.*)"" at ""(.*)"" from version ""(.*)""")]
         public void WhenIResumeTheWorkflowAtFromVersion(string workflow, string activity, string versionNumber)
@@ -4863,7 +4863,7 @@ namespace Dev2.Activities.Specs.Composition
             TryGetValue("environment", out IServer environmentModel);
 
             var resourceModel = environmentModel.ResourceRepository.FindSingle(resource => resource.ResourceName == workflow);
-            Assert.IsNotNull(resourceModel);
+            NUnit.Framework.Assert.IsNotNull(resourceModel);
             var env = new ExecutionEnvironment();
             var serEnv = env.ToJson();
             var msg = environmentModel.ResourceRepository.ResumeWorkflowExecution(resourceModel, serEnv, Guid.Parse(assignActivity.UniqueID), versionNumber);
@@ -4877,7 +4877,7 @@ namespace Dev2.Activities.Specs.Composition
         {
             TryGetValue("environment", out IServer environmentModel);
             var resourceModel = environmentModel.ResourceRepository.FindSingle(resource => resource.ID.ToString() == resourceId);
-            Assert.IsNotNull(resourceModel);
+            NUnit.Framework.Assert.IsNotNull(resourceModel);
             var env = new ExecutionEnvironment();
             env.Assign("[[Name]]", "Bob", 0);
             env.Assign("[[Rec(1).Name]]", "Bob", 0);
@@ -4895,9 +4895,9 @@ namespace Dev2.Activities.Specs.Composition
         public void ThenAnError(string message)
         {
             TryGetValue("resumeMessage", out ExecuteMessage executeMessage);
-            Assert.IsNotNull(executeMessage);
-            Assert.IsTrue(executeMessage.HasError);
-            Assert.AreEqual(message, executeMessage.Message.ToString());
+            NUnit.Framework.Assert.IsNotNull(executeMessage);
+            NUnit.Framework.Assert.IsTrue(executeMessage.HasError);
+            NUnit.Framework.Assert.AreEqual(message, executeMessage.Message.ToString());
         }
 
         [Then(@"Resume has ""(.*)"" error")]
@@ -4906,11 +4906,11 @@ namespace Dev2.Activities.Specs.Composition
             TryGetValue("resumeMessage", out ExecuteMessage executeMessage);
             if (error == "AN")
             {
-                Assert.IsTrue(executeMessage.HasError);
+                NUnit.Framework.Assert.IsTrue(executeMessage.HasError);
             }
             else
             {
-                Assert.IsFalse(executeMessage.HasError);
+                NUnit.Framework.Assert.IsFalse(executeMessage.HasError);
             }
         }
 
@@ -4918,8 +4918,8 @@ namespace Dev2.Activities.Specs.Composition
         public void ThenResumeMessageIs(string message)
         {
             TryGetValue("resumeMessage", out ExecuteMessage executeMessage);
-            Assert.IsNotNull(executeMessage);
-            Assert.AreEqual(message, executeMessage.Message.ToString());
+            NUnit.Framework.Assert.IsNotNull(executeMessage);
+            NUnit.Framework.Assert.AreEqual(message, executeMessage.Message.ToString());
         }
 
         [Then(@"the ""(.*)"" in Workflow ""(.*)"" has an error")]
@@ -4928,14 +4928,14 @@ namespace Dev2.Activities.Specs.Composition
             var debugStates = Get<List<IDebugState>>("debugStates");
             var toolSpecificDebug =
                 debugStates.Where(ds => ds.DisplayName.Equals(toolName)).ToList();
-            Assert.IsFalse(string.IsNullOrEmpty(toolSpecificDebug[0].ErrorMessage));
+            NUnit.Framework.Assert.IsFalse(string.IsNullOrEmpty(toolSpecificDebug[0].ErrorMessage));
         }
 
         [Then(@"execution stopped on error and did not execute ""(.*)""")]
         public void ThenExecutionForStoppedOnErrorAndDidNotExecute(string toolName)
         {
             var debugStates = Get<List<IDebugState>>("debugStates");
-            Assert.IsFalse(debugStates.Any(ds => ds.DisplayName.Equals(toolName)));
+            NUnit.Framework.Assert.IsFalse(debugStates.Any(ds => ds.DisplayName.Equals(toolName)));
         }
 
         [When(@"I startup the mysql container")]
@@ -4954,7 +4954,7 @@ namespace Dev2.Activities.Specs.Composition
         {
             TryGetValue(workflow, out IResourceModel resourceModel);
             var selectedActivity = GetActivity(activityName, resourceModel) as Activity;
-            Assert.IsNotNull(selectedActivity, "The tool does not exist on the surface");
+            NUnit.Framework.Assert.IsNotNull(selectedActivity, "The tool does not exist on the surface");
             _commonSteps.AddActivityToActivityList(workflow, activityName, selectedActivity);
         }
 
@@ -4981,7 +4981,7 @@ namespace Dev2.Activities.Specs.Composition
             var uniqueId = GetActivityUniqueId(toolToResumeFrom);
             TryGetValue("environment", out IServer environmentModel);
             var resourceModel = environmentModel.ResourceRepository.FindSingle(resource => resource.ResourceName == workflow);
-            Assert.IsNotNull(resourceModel);
+            NUnit.Framework.Assert.IsNotNull(resourceModel);
 
             _debugWriterSubscriptionService = new SubscriptionService<DebugWriterWriteMessage>(environmentModel.Connection.ServerEvents);
 
@@ -5053,7 +5053,7 @@ namespace Dev2.Activities.Specs.Composition
             TryGetValue($"DetailLogInfo {workflowName}", out DetailLogInfo detailLogInfo);
             var logFileContent = detailLogInfo.ReadAllText();
             AddLogFileContentToContext(logFileContent);
-            Assert.IsTrue(logFileContent.Length > 0);
+            NUnit.Framework.Assert.IsTrue(logFileContent.Length > 0);
         }
 
         [Then(@"The Log file contains Logging for ""(.*)""")]
@@ -5061,10 +5061,10 @@ namespace Dev2.Activities.Specs.Composition
         {
             TryGetValue($"DetailLogInfo {workflowName}", out DetailLogInfo detailLogInfo);
             var logContent = detailLogInfo.ReadAllText();
-            Assert.IsTrue(logContent.Contains("header:LogPreExecuteState"));
-            Assert.IsTrue(logContent.Contains("header:LogPostExecuteState"));
-            Assert.IsTrue(logContent.Contains("header:LogExecuteCompleteState"));
-            Assert.IsFalse(logContent.Contains("header:LogStopExecutionState"));
+            NUnit.Framework.Assert.IsTrue(logContent.Contains("header:LogPreExecuteState"));
+            NUnit.Framework.Assert.IsTrue(logContent.Contains("header:LogPostExecuteState"));
+            NUnit.Framework.Assert.IsTrue(logContent.Contains("header:LogExecuteCompleteState"));
+            NUnit.Framework.Assert.IsFalse(logContent.Contains("header:LogStopExecutionState"));
         }
 
         [Then(@"The Log file contains Logging for stopped ""(.*)""")]
@@ -5072,10 +5072,10 @@ namespace Dev2.Activities.Specs.Composition
         {
             TryGetValue($"DetailLogInfo {workflowName}", out DetailLogInfo detailLogInfo);
             var logContent = detailLogInfo.ReadAllText();
-            Assert.IsTrue(logContent.Contains("header:LogPreExecuteState"));
-            Assert.IsTrue(logContent.Contains("header:LogPostExecuteState"));
-            Assert.IsFalse(logContent.Contains("header:LogExecuteCompleteState"));
-            Assert.IsTrue(logContent.Contains("header:LogStopExecutionState"));
+            NUnit.Framework.Assert.IsTrue(logContent.Contains("header:LogPreExecuteState"));
+            NUnit.Framework.Assert.IsTrue(logContent.Contains("header:LogPostExecuteState"));
+            NUnit.Framework.Assert.IsFalse(logContent.Contains("header:LogExecuteCompleteState"));
+            NUnit.Framework.Assert.IsTrue(logContent.Contains("header:LogStopExecutionState"));
         }
 
         [Then(@"The Log file for ""(.*)"" contains additional Logging")]
@@ -5084,10 +5084,10 @@ namespace Dev2.Activities.Specs.Composition
             TryGetValue($"DetailLogInfo {workflowName}", out DetailLogInfo detailLogInfo);
             var previousLogFileSize = detailLogInfo.PreviousLength;
             var logContent = detailLogInfo.ReadAllText();
-            Assert.IsTrue(logContent.Length > previousLogFileSize);
+            NUnit.Framework.Assert.IsTrue(logContent.Length > previousLogFileSize);
             var sizeDifference = logContent.Length / (double)previousLogFileSize;
-            Assert.IsTrue(sizeDifference > 1.9);
-            Assert.IsTrue(sizeDifference < 2.1);
+            NUnit.Framework.Assert.IsTrue(sizeDifference > 1.9);
+            NUnit.Framework.Assert.IsTrue(sizeDifference < 2.1);
         }
 
         [Then(@"The Log file for ""(.*)"" contains Logging matching ""(.*)""")]
@@ -5096,7 +5096,7 @@ namespace Dev2.Activities.Specs.Composition
             TryGetValue($"DetailLogInfo {workflowName}", out DetailLogInfo detailLogInfo);
             var logFileContent = detailLogInfo.ReadAllText();
             AddLogFileContentToContext(logFileContent);
-            Assert.IsTrue(logFileContent.Contains(searchString));
+            NUnit.Framework.Assert.IsTrue(logFileContent.Contains(searchString));
         }
 
         private void AddLogFileContentToContext(string logFileContent)
@@ -5117,7 +5117,7 @@ namespace Dev2.Activities.Specs.Composition
         public void ThenTheLogFileContainsLoggingMatching(string searchString)
         {
             TryGetValue("LogFileContent", out string logFileContent);
-            Assert.IsTrue(logFileContent.Contains(searchString), $"detailed log file does not contain {searchString}");
+            NUnit.Framework.Assert.IsTrue(logFileContent.Contains(searchString), $"detailed log file does not contain {searchString}");
         }
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
         [Given(@"the audit database is empty")]
@@ -5135,13 +5135,13 @@ namespace Dev2.Activities.Specs.Composition
             //(workflowName == "" || item.WorkflowName.Equals(workflowName)) &&
             //(auditType == "" || item.AuditType.Equals(auditType)) &&
             //(activityName == "" || (item.PreviousActivity != null && item.PreviousActivity.Contains(activityName))));
-            //Assert.AreEqual(expectedCount, results.Count());
+            //NUnit.Framework.Assert.AreEqual(expectedCount, results.Count());
             //var prop = table.Rows[0][0];
             //var val = table.Rows[0][1];
             //foreach (var item in results)
             //{
             //    var value = item.GetType().GetProperty(prop).GetValue(item, null);
-            //    Assert.AreEqual(val, value);
+            //    NUnit.Framework.Assert.AreEqual(val, value);
             //}
         }
 
@@ -5161,7 +5161,7 @@ namespace Dev2.Activities.Specs.Composition
                //       (item.PreviousActivityType != null && item.PreviousActivityType.Contains(activityName))
                //   ))
                //);
-            //   Assert.AreEqual(expectedCount, results.Count(), string.Join(" ", results.Select(entry => entry.WorkflowName + " " + entry.AuditDate + " " + entry.AdditionalDetail).ToList()));
+            //   NUnit.Framework.Assert.AreEqual(expectedCount, results.Count(), string.Join(" ", results.Select(entry => entry.WorkflowName + " " + entry.AuditDate + " " + entry.AdditionalDetail).ToList()));
 
             //if (results.Any() && table.Rows.Count > 0)
             //{
@@ -5169,10 +5169,10 @@ namespace Dev2.Activities.Specs.Composition
             //    foreach (var row in table.Rows)
             //    {
             //        var currentResult = results.ToArray()[index];
-            //        Assert.AreEqual(row["AuditType"], currentResult.AuditType);
-            //        Assert.AreEqual(row["WorkflowName"], currentResult.WorkflowName);
-            //        Assert.AreEqual(row["PreviousActivityType"], currentResult.PreviousActivityType ?? "null");
-            //        Assert.AreEqual(row["NextActivityType"], currentResult.NextActivityType ?? "null");
+            //        NUnit.Framework.Assert.AreEqual(row["AuditType"], currentResult.AuditType);
+            //        NUnit.Framework.Assert.AreEqual(row["WorkflowName"], currentResult.WorkflowName);
+            //        NUnit.Framework.Assert.AreEqual(row["PreviousActivityType"], currentResult.PreviousActivityType ?? "null");
+            //        NUnit.Framework.Assert.AreEqual(row["NextActivityType"], currentResult.NextActivityType ?? "null");
             //        index++;
             //    }
             //}
@@ -5186,16 +5186,16 @@ namespace Dev2.Activities.Specs.Composition
             //var results = Dev2StateAuditLogger.Query(item =>
             //   (workflowName == "" || item.WorkflowName.Equals(workflowName))
             //);
-            //Assert.AreEqual(expectedCount, results.Count());
+            //NUnit.Framework.Assert.AreEqual(expectedCount, results.Count());
             //if (results.Count() > 0 && table.Rows.Count > 0)
             //{
             //    var index = 0;
             //    foreach (var row in table.Rows)
             //    {
             //        var currentResult = results.ToArray()[index];
-            //        Assert.AreEqual(row["WorkflowName"], currentResult.WorkflowName);
-            //        Assert.AreEqual(row["AuditType"], currentResult.AuditType);
-            //        Assert.AreEqual(row["VersionNumber"], currentResult.VersionNumber ?? "null");
+            //        NUnit.Framework.Assert.AreEqual(row["WorkflowName"], currentResult.WorkflowName);
+            //        NUnit.Framework.Assert.AreEqual(row["AuditType"], currentResult.AuditType);
+            //        NUnit.Framework.Assert.AreEqual(row["VersionNumber"], currentResult.VersionNumber ?? "null");
             //        index++;
             //    }
             //}
@@ -5215,7 +5215,7 @@ namespace Dev2.Activities.Specs.Composition
             //        (item.PreviousActivityType != null && item.PreviousActivityType.Contains(activityName))
             //    ))
             //);
-            // Assert.AreEqual(expectedCount, results.Count());
+            // NUnit.Framework.Assert.AreEqual(expectedCount, results.Count());
         }
 
         private static bool GetMatchingNames(string toolName, string displayName)

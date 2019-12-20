@@ -9,7 +9,7 @@
 */
 
 using Fleck;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -18,13 +18,14 @@ using Warewolf.Logging;
 
 namespace Warewolf.Logger.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class LogServerTests
     {
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(LogServer))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(LogServer))]
         public void LogServer_Constructor_WhenValidParameters_ShouldNotThrowException()
         {
             //--------------------------------Arrange-------------------------------
@@ -34,9 +35,9 @@ namespace Warewolf.Logger.Tests
             Assert.IsNotNull(logServer);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(LogServer))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(LogServer))]
         [ExpectedException(typeof(ArgumentNullException))]
         public void LogServer_Constructor_WhenNullWebSocketFactory_ShouldNotThrowException()
         {
@@ -47,9 +48,9 @@ namespace Warewolf.Logger.Tests
             Assert.IsNull(logServer);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(LogServer))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(LogServer))]
         [ExpectedException(typeof(ArgumentNullException))]
         public void LogServer_Constructor_WhenNullWriter_ShouldNotThrowException()
         {
@@ -60,9 +61,9 @@ namespace Warewolf.Logger.Tests
             Assert.IsNull(logServer);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(LogServer))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(LogServer))]
         [ExpectedException(typeof(ArgumentNullException))]
         public void LogServer_Constructor_WhenNullLoggerContext_ShouldNotThrowException()
         {
@@ -73,9 +74,9 @@ namespace Warewolf.Logger.Tests
             Assert.IsNull(logServer);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(LogServer))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(LogServer))]
         public void LogServer_Start_ShouldCallWebSocketStart()
         {
             //--------------------------------Arrange-------------------------------
@@ -96,9 +97,9 @@ namespace Warewolf.Logger.Tests
             mockWebSocketServerWrapper.Verify(w => w.Start(It.IsAny<Action<IWebSocketConnection>>()), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(LogServer))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(LogServer))]
         public void LogServer_PerformingStartAction_ShouldCallActionOnTheWrapper()
         {
             //--------------------------------Arrange-------------------------------
@@ -130,9 +131,9 @@ namespace Warewolf.Logger.Tests
             mockClient.Verify();
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(LogServer))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(LogServer))]
         public void LogServer_PerformingClientOnOpen_ShouldCallAction()
         {
             //--------------------------------Arrange-------------------------------
@@ -170,9 +171,9 @@ namespace Warewolf.Logger.Tests
             Assert.AreEqual("Logging Server OnOpen...", consoleString);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(LogServer))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(LogServer))]
         public void LogServer_PerformingClientOnClose_ShouldCallAction()
         {
             //--------------------------------Arrange-------------------------------

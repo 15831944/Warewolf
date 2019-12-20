@@ -6,18 +6,19 @@ using Dev2.Common.Interfaces.Infrastructure.SharedModels;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.TO;
 using Microsoft.SharePoint.Client;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Warewolf.Storage;
 
 
 namespace Dev2.Tests.Activities.Utils
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SharepointUtilsTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointUtils_GetValidReadListItems")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointUtils_GetValidReadListItems")]
         public void SharepointUtils_GetValidReadListItems_NullList_EmptyList()
         {
             //------------Setup for test--------------------------
@@ -30,9 +31,9 @@ namespace Dev2.Tests.Activities.Utils
             Assert.AreEqual(0,validList.Count());
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointUtils_GetValidReadListItems")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointUtils_GetValidReadListItems")]
         public void SharepointUtils_GetValidReadListItems_WhereVariableNameNotNull_ListWithItem()
         {
             //------------Setup for test--------------------------
@@ -47,9 +48,9 @@ namespace Dev2.Tests.Activities.Utils
             Assert.AreEqual("Bob",tos[0].VariableName);
         }
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointUtils_GetValidReadListItems")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointUtils_GetValidReadListItems")]
         public void SharepointUtils_GetValidReadListItems_WhereVariableNameNull_ListWithoutItem()
         {
             //------------Setup for test--------------------------
@@ -64,9 +65,9 @@ namespace Dev2.Tests.Activities.Utils
             Assert.AreEqual("Bob",tos[0].VariableName);
         }
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointUtils_GetValidReadListItems")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointUtils_GetValidReadListItems")]
         public void SharepointUtils_GetValidReadListItems_WhereVariableNameEmpty_ListWithoutItem()
         {
             //------------Setup for test--------------------------
@@ -81,9 +82,9 @@ namespace Dev2.Tests.Activities.Utils
             Assert.AreEqual("Bob",tos[0].VariableName);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointUtils_BuildCamlQuery")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointUtils_BuildCamlQuery")]
         public void SharepointUtils_BuildCamlQuery_NoFilters_ShouldBeCreateAllItemsQuery()
         {
             //------------Setup for test--------------------------
@@ -95,9 +96,9 @@ namespace Dev2.Tests.Activities.Utils
             Assert.AreEqual(CamlQuery.CreateAllItemsQuery().ViewXml,camlQuery.ViewXml);
         }
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointUtils_BuildCamlQuery")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointUtils_BuildCamlQuery")]
         public void SharepointUtils_BuildCamlQuery_NoValidFiltersFieldNameEmpty_ShouldBeCreateAllItemsQuery()
         {
             //------------Setup for test--------------------------
@@ -109,9 +110,9 @@ namespace Dev2.Tests.Activities.Utils
             Assert.AreEqual(CamlQuery.CreateAllItemsQuery().ViewXml, camlQuery.ViewXml);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointUtils_BuildCamlQuery")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointUtils_BuildCamlQuery")]
         public void SharepointUtils_BuildCamlQuery_NoValidFiltersValueToMatchEmpty_ShouldBeCreateAllItemsQuery()
         {
             //------------Setup for test--------------------------
@@ -123,9 +124,9 @@ namespace Dev2.Tests.Activities.Utils
             Assert.AreEqual(CamlQuery.CreateAllItemsQuery().ViewXml, camlQuery.ViewXml);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointUtils_BuildCamlQuery")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointUtils_BuildCamlQuery")]
         public void SharepointUtils_BuildCamlQuery_NoValidFiltersFieldNameNull_ShouldBeCreateAllItemsQuery()
         {
             //------------Setup for test--------------------------
@@ -137,9 +138,9 @@ namespace Dev2.Tests.Activities.Utils
             Assert.AreEqual(CamlQuery.CreateAllItemsQuery().ViewXml, camlQuery.ViewXml);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointUtils_BuildCamlQuery")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointUtils_BuildCamlQuery")]
         public void SharepointUtils_BuildCamlQuery_NoValidFiltersValueToMatchNull_ShouldBeCreateAllItemsQuery()
         {
             //------------Setup for test--------------------------
@@ -151,9 +152,9 @@ namespace Dev2.Tests.Activities.Utils
             Assert.AreEqual(CamlQuery.CreateAllItemsQuery().ViewXml, camlQuery.ViewXml);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointUtils_BuildCamlQuery")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointUtils_BuildCamlQuery")]
         public void SharepointUtils_BuildCamlQuery_ValidFilter_HasQueryWithNoAnd()
         {
             //------------Setup for test--------------------------
@@ -164,9 +165,9 @@ namespace Dev2.Tests.Activities.Utils
             //------------Assert Results-------------------------
             Assert.AreEqual("<View><Query><Where><FieldRef Name=\"Title\"></FieldRef><Value Type=\"Text\">Bob</Value>"+Environment.NewLine+"</Where></Query></View>",camlQuery.ViewXml);
         }
-         [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointUtils_BuildCamlQuery")]
+         [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointUtils_BuildCamlQuery")]
         public void SharepointUtils_BuildCamlQuery_ValidFilter_In_ListResult()
         {
             //------------Setup for test--------------------------
@@ -180,9 +181,9 @@ namespace Dev2.Tests.Activities.Utils
              Assert.AreEqual("<View><Query><Where><In><FieldRef Name=\"Title\"></FieldRef><Values><Value Type=\"Text\">bob</Value><Value Type=\"Text\">dora</Value></Values></In>" + Environment.NewLine + "</Where></Query></View>", camlQuery.ViewXml);
         } 
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointUtils_BuildCamlQuery")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointUtils_BuildCamlQuery")]
         public void SharepointUtils_BuildCamlQuery_ValidFilter_In_ScalarResult()
         {
             //------------Setup for test--------------------------
@@ -195,9 +196,9 @@ namespace Dev2.Tests.Activities.Utils
              Assert.AreEqual("<View><Query><Where><In><FieldRef Name=\"Title\"></FieldRef><Values><Value Type=\"Text\">bob</Value></Values></In>" + Environment.NewLine + "</Where></Query></View>", camlQuery.ViewXml);
         }
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointUtils_BuildCamlQuery")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointUtils_BuildCamlQuery")]
         public void SharepointUtils_BuildCamlQuery_ValidFilter_In_TextResult()
         {
             //------------Setup for test--------------------------
@@ -209,9 +210,9 @@ namespace Dev2.Tests.Activities.Utils
              Assert.AreEqual("<View><Query><Where><In><FieldRef Name=\"Title\"></FieldRef><Values><Value Type=\"Text\">bob</Value></Values></In>" + Environment.NewLine + "</Where></Query></View>", camlQuery.ViewXml);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointUtils_BuildCamlQuery")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointUtils_BuildCamlQuery")]
         public void SharepointUtils_BuildCamlQuery_ValidFilter_In_TextResultCommaSeperated()
         {
             //------------Setup for test--------------------------
@@ -223,9 +224,9 @@ namespace Dev2.Tests.Activities.Utils
             Assert.AreEqual("<View><Query><Where><In><FieldRef Name=\"Title\"></FieldRef><Values><Value Type=\"Text\">bob</Value><Value Type=\"Text\">dora</Value></Values></In>" + Environment.NewLine + "</Where></Query></View>", camlQuery.ViewXml);
         }
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointUtils_BuildCamlQuery")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointUtils_BuildCamlQuery")]
         public void SharepointUtils_BuildCamlQuery_ValidFilter_In_ScalarResultCommaSeperated()
         {
             //------------Setup for test--------------------------
@@ -239,9 +240,9 @@ namespace Dev2.Tests.Activities.Utils
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointUtils_BuildCamlQuery")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointUtils_BuildCamlQuery")]
         public void SharepointUtils_BuildCamlQuery_ValidFilter_In_RecSetResultCommaSeperated()
         {
             //------------Setup for test--------------------------
@@ -254,9 +255,9 @@ namespace Dev2.Tests.Activities.Utils
             Assert.AreEqual("<View><Query><Where><In><FieldRef Name=\"Title\"></FieldRef><Values><Value Type=\"Text\">bob</Value><Value Type=\"Text\">dora</Value></Values></In>" + Environment.NewLine + "</Where></Query></View>", camlQuery.ViewXml);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointUtils_BuildCamlQuery")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointUtils_BuildCamlQuery")]
         public void SharepointUtils_BuildCamlQuery_ValidFilters_HasQueryWithAnd()
         {
             //------------Setup for test--------------------------
@@ -268,9 +269,9 @@ namespace Dev2.Tests.Activities.Utils
             Assert.AreEqual("<View><Query><Where><And><FieldRef Name=\"Title\"></FieldRef><Value Type=\"Text\">Bob</Value>" + Environment.NewLine + "<FieldRef Name=\"ID\"></FieldRef><Value Type=\"Integer\">1</Value>" + Environment.NewLine + "</And></Where></Query></View>", camlQuery.ViewXml);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointUtils_CastWarewolfValueToCorrectType")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointUtils_CastWarewolfValueToCorrectType")]
         public void SharepointUtils_CastWarewolfValueToCorrectType_Boolean_ShouldGiveBoolValue()
         {
             //------------Setup for test--------------------------
@@ -279,12 +280,12 @@ namespace Dev2.Tests.Activities.Utils
             //------------Execute Test---------------------------
             var value = SharepointUtils.CastWarewolfValueToCorrectType("true", SharepointFieldType.Boolean);
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(value,typeof(Boolean));
+            Assert.IsInstanceOf(value.GetType(), typeof(Boolean));
         } 
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointUtils_CastWarewolfValueToCorrectType")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointUtils_CastWarewolfValueToCorrectType")]
         public void SharepointUtils_CastWarewolfValueToCorrectType_Text_ShouldGiveStringValue()
         {
             //------------Setup for test--------------------------
@@ -293,12 +294,12 @@ namespace Dev2.Tests.Activities.Utils
             //------------Execute Test---------------------------
             var value = SharepointUtils.CastWarewolfValueToCorrectType("Bob", SharepointFieldType.Text);
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(value, typeof(String));
+            Assert.IsInstanceOf(value.GetType(), typeof(String));
         }
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointUtils_CastWarewolfValueToCorrectType")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointUtils_CastWarewolfValueToCorrectType")]
         public void SharepointUtils_CastWarewolfValueToCorrectType_Note_ShouldGiveStringValue()
         {
             //------------Setup for test--------------------------
@@ -307,12 +308,12 @@ namespace Dev2.Tests.Activities.Utils
             //------------Execute Test---------------------------
             var value = SharepointUtils.CastWarewolfValueToCorrectType("Bob", SharepointFieldType.Note);
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(value, typeof(String));
+            Assert.IsInstanceOf(value.GetType(), typeof(String));
         }
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointUtils_CastWarewolfValueToCorrectType")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointUtils_CastWarewolfValueToCorrectType")]
         public void SharepointUtils_CastWarewolfValueToCorrectType_Integer_ShouldGiveIntValue()
         {
             //------------Setup for test--------------------------
@@ -321,12 +322,12 @@ namespace Dev2.Tests.Activities.Utils
             //------------Execute Test---------------------------
             var value = SharepointUtils.CastWarewolfValueToCorrectType("2", SharepointFieldType.Integer);
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(value, typeof(Int32));
+            Assert.IsInstanceOf(value.GetType(), typeof(Int32));
         }
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointUtils_CastWarewolfValueToCorrectType")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointUtils_CastWarewolfValueToCorrectType")]
         public void SharepointUtils_CastWarewolfValueToCorrectType_NumberWithDecimal_ShouldGiveDecimalValue()
         {
             //------------Setup for test--------------------------
@@ -335,12 +336,12 @@ namespace Dev2.Tests.Activities.Utils
             //------------Execute Test---------------------------
             var value = SharepointUtils.CastWarewolfValueToCorrectType("2.15", SharepointFieldType.Number);
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(value, typeof(Decimal));
+            Assert.IsInstanceOf(value.GetType(), typeof(Decimal));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointUtils_CastWarewolfValueToCorrectType")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointUtils_CastWarewolfValueToCorrectType")]
         public void SharepointUtils_CastWarewolfValueToCorrectType_NumberWithNoDecimal_ShouldGiveDecimalValue()
         {
             //------------Setup for test--------------------------
@@ -349,12 +350,12 @@ namespace Dev2.Tests.Activities.Utils
             //------------Execute Test---------------------------
             var value = SharepointUtils.CastWarewolfValueToCorrectType("2", SharepointFieldType.Number);
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(value, typeof(Decimal));
+            Assert.IsInstanceOf(value.GetType(), typeof(Decimal));
         }
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointUtils_CastWarewolfValueToCorrectType")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointUtils_CastWarewolfValueToCorrectType")]
         public void SharepointUtils_CastWarewolfValueToCorrectType_Currency_ShouldGiveDecimalValue()
         {
             //------------Setup for test--------------------------
@@ -363,12 +364,12 @@ namespace Dev2.Tests.Activities.Utils
             //------------Execute Test---------------------------
             var value = SharepointUtils.CastWarewolfValueToCorrectType("2.01", SharepointFieldType.Currency);
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(value, typeof(Decimal));
+            Assert.IsInstanceOf(value.GetType(), typeof(Decimal));
         }
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointUtils_CastWarewolfValueToCorrectType")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointUtils_CastWarewolfValueToCorrectType")]
         public void SharepointUtils_CastWarewolfValueToCorrectType_Date_ShouldGiveDateValueValue()
         {
             //------------Setup for test--------------------------
@@ -377,7 +378,7 @@ namespace Dev2.Tests.Activities.Utils
             //------------Execute Test---------------------------
             var value = SharepointUtils.CastWarewolfValueToCorrectType(DateTime.Now, SharepointFieldType.DateTime);
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(value, typeof(DateTime));
+            Assert.IsInstanceOf(value.GetType(), typeof(DateTime));
         }
     }
 }

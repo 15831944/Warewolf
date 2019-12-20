@@ -9,16 +9,17 @@
 */
 
 using Dev2.Common.Wrappers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Common.Tests.Wrappers
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FilePathWrapperTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(FilePathWrapper))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(FilePathWrapper))]
         public void FilePathWrapper_GetFileName_AreEqual_ToLastStringAfterDevider_ExpectTrue()
         {
             //------------------------Arrange------------------------
@@ -29,9 +30,9 @@ namespace Dev2.Common.Tests.Wrappers
             Assert.AreEqual("testFileName.txt", fileName);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(FilePathWrapper))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(FilePathWrapper))]
         public void FilePathWrapper_Combine_AreEqual_ToArrayOfString_ExpectTrue()
         {
             //------------------------Arrange------------------------
@@ -44,9 +45,9 @@ namespace Dev2.Common.Tests.Wrappers
             Assert.AreEqual(@"O:\TestPath1\TestPath2\testFileName.txt", combinedTestPaths);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(FilePathWrapper))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(FilePathWrapper))]
         public void FilePathWrapper_IsPathRooted_HasRoot_LocalDir_ExpectTrue()
         {
             //------------------------Arrange------------------------
@@ -59,9 +60,9 @@ namespace Dev2.Common.Tests.Wrappers
             Assert.IsTrue(isPathRooted);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(FilePathWrapper))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(FilePathWrapper))]
         public void FilePathWrapper_IsPathRooted_HasRoot_UncPath_ExpectTrue()
         {
             //------------------------Arrange------------------------
@@ -74,9 +75,9 @@ namespace Dev2.Common.Tests.Wrappers
             Assert.IsTrue(isPathRooted);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(FilePathWrapper))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(FilePathWrapper))]
         public void FilePathWrapper_IsPathRooted_HasNoRoot_relativePath_ExpectFalse()
         {
             //------------------------Arrange------------------------

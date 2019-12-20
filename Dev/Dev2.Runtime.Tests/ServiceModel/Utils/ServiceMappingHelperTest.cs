@@ -15,7 +15,7 @@ using Dev2.Common.Interfaces.Core.Graph;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Runtime.ServiceModel.Utils;
 using Dev2.Tests.Runtime.XML;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Framework.Converters.Graph.Ouput;
 using Unlimited.Framework.Converters.Graph.Output;
 
@@ -25,8 +25,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Utils
     /// <summary>
     /// Summary description for ServiceMappingHelperTest
     /// </summary>
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class ServiceMappingHelperTest
     {
         /// <summary>
@@ -35,9 +36,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Utils
         ///</summary>
         public TestContext TestContext { get; set; }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ServiceMappingHelper_MapDbOutputs")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ServiceMappingHelper_MapDbOutputs")]
         public void ServiceMappingHelper_MapDbOutputs_WhenOutputsWithPaths_ExpectTwoOutputMappings()
         {
             //------------Setup for test--------------------------
@@ -57,9 +58,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Utils
             Assert.AreEqual(2, theService.Recordset.Fields.Count);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ServiceMappingHelper_MapDbOutputs")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ServiceMappingHelper_MapDbOutputs")]
         public void ServiceMappingHelper_MapDbOutputs_WhenNoOutputsWithPaths_ExpectNoOutputMappings()
         {
             //------------Setup for test--------------------------
@@ -78,9 +79,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Utils
             Assert.AreEqual(0, theService.Recordset.Fields.Count);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ServiceMappingHelper_MapDbOutputs")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ServiceMappingHelper_MapDbOutputs")]
         public void ServiceMappingHelper_MapDbOutputs_WhenNoOutputsContainNameWithDot_ExpectDotRemainsInNameReplacedInAlias()
         {
             //------------Setup for test--------------------------
@@ -101,9 +102,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Utils
             Assert.AreEqual("foobar", theService.Recordset.Fields[0].Alias);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ServiceMappingHelper_MapDbOutputs")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ServiceMappingHelper_MapDbOutputs")]
         public void ServiceMappingHelper_MapDbOutputs_WhenSampleDataContainsCommaReplacement_Expect10SampleItems()
         {
             //

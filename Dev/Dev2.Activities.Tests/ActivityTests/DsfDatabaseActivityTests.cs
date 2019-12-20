@@ -12,12 +12,13 @@ using Dev2.Activities;
 using Dev2.Data.TO;
 using Dev2.Interfaces;
 using Dev2.Services.Execution;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfDatabaseActivityTests
     {
         /// <summary>
@@ -28,10 +29,10 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         #region Database Service Execution
 
-        [TestMethod]
-        [TestCategory("DsfDatabaseActivity_BeforeExecutionStart")]
+        [Test]
+        [Category("DsfDatabaseActivity_BeforeExecutionStart")]
         [Description("DsfDatabaseActivity BeforeExecutionStart constructs a valid database service execution.")]
-        [Owner("Trevor Williams-Ros")]
+        [Author("Trevor Williams-Ros")]
         
         public void DsfDatabaseActivity_UnitTest_BeforeExecutionStart_CreatesServiceExecutionAndInvokesServiceExecutionBeforeExecution()
 
@@ -48,10 +49,10 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreSame(dataObj.Object, databaseActivity.ServiceExecution.DataObj, "Data Object not assigned to DatabaseServiceExecution.");
         }
 
-        [TestMethod]
-        [TestCategory("DsfDatabaseActivity_ExecutionImpl")]
+        [Test]
+        [Category("DsfDatabaseActivity_ExecutionImpl")]
         [Description("DsfDatabaseActivity ExecutionImpl invokes the database service.")]
-        [Owner("Trevor Williams-Ros")]
+        [Author("Trevor Williams-Ros")]
         
         public void DsfDatabaseActivity_UnitTest_ExecutionImpl_InvokesDatabaseServiceExecution()
 
@@ -77,10 +78,10 @@ namespace Dev2.Tests.Activities.ActivityTests
             dbServiceExecution.Verify(s => s.Execute(out errors, 0));
         }
 
-        [TestMethod]
-        [TestCategory("DsfDatabaseActivity_AfterExecutionCompleted")]
+        [Test]
+        [Category("DsfDatabaseActivity_AfterExecutionCompleted")]
         [Description("DsfDatabaseActivity AfterExecutionCompleted invokes DatabaseServiceExecution AfterExecution.")]
-        [Owner("Trevor Williams-Ros")]
+        [Author("Trevor Williams-Ros")]
         
         public void DsfDatabaseActivity_UnitTest_AfterExecutionCompleted_InvokesServiceExecutionAfterExecution()
 

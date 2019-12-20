@@ -13,17 +13,18 @@ using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.Core;
 using Dev2.Common.Interfaces.ServerProxyLayer;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Common.Tests.Core
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class RedisSourceDefinitionTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(RedisSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(RedisSourceDefinition))]
         public void RedisSourceDefinition_Validate()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Password;
@@ -51,9 +52,9 @@ namespace Dev2.Common.Tests.Core
             Assert.AreEqual(expectedPath, redisSourceDefinition.Path);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(RedisSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(RedisSourceDefinition))]
         public void RedisSourceDefinition_Equals_RedisServiceSource_Null_Expected_False()
         {
             var redisSourceDefinition = new RedisSourceDefinition();
@@ -64,9 +65,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(RedisSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(RedisSourceDefinition))]
         public void RedisSourceDefinition_Equals_RedisServiceSource_Expected_True()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Password;
@@ -95,9 +96,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(RedisSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(RedisSourceDefinition))]
         public void RedisSourceDefinition_ReferenceEquals_RedisServiceSource_Expected_True()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Password;
@@ -119,9 +120,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(RedisSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(RedisSourceDefinition))]
         public void RedisSourceDefinition_Equals_RedisServiceSource_Expected_False()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Password;
@@ -150,9 +151,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(RedisSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(RedisSourceDefinition))]
         public void RedisSourceDefinition_Equals_RedisSourceDefinition_Null_Expected_False()
         {
             var redisSourceDefinition = new RedisSourceDefinition();
@@ -163,9 +164,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(RedisSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(RedisSourceDefinition))]
         public void RedisSourceDefinition_ReferenceEquals_RedisSourceDefinition_Expected_True()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Password;
@@ -187,9 +188,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(RedisSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(RedisSourceDefinition))]
         public void RedisSourceDefinition_Equals_RedisSourceDefinition_Expected_True()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Password;
@@ -213,9 +214,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(redisSourceDefinition == redisSourceDefinitionDup);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(RedisSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(RedisSourceDefinition))]
         public void RedisSourceDefinition_Equals_RedisSourceDefinition_Expected_False()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Password;
@@ -247,9 +248,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(redisSourceDefinition != redisSourceDefinitionDup);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(RedisSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(RedisSourceDefinition))]
         public void RedisSourceDefinition_Equals_Object_Null_Expected_False()
         {
             var redisSourceDefinition = new RedisSourceDefinition();
@@ -260,9 +261,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(RedisSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(RedisSourceDefinition))]
         public void RedisSourceDefinition_Equals_Object_Expected_True()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Password;
@@ -288,9 +289,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(RedisSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(RedisSourceDefinition))]
         public void RedisSourceDefinition_Equals_Object_Expected_False()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Password;
@@ -324,9 +325,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(RedisSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(RedisSourceDefinition))]
         public void RedisSourceDefinition_Equals_Object_GetType_Expected_False()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Password;
@@ -352,9 +353,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(RedisSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(RedisSourceDefinition))]
         public void RedisSourceDefinition_GetHashCode_Not_Equal_To_Zero()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Password;
@@ -379,9 +380,9 @@ namespace Dev2.Common.Tests.Core
             Assert.AreNotEqual(0, hashCode);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(RedisSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(RedisSourceDefinition))]
         public void RedisSourceDefinition_GetHashCode_Expect_Zero()
         {
             var mockRedisSource = new Mock<IRedisSource>();

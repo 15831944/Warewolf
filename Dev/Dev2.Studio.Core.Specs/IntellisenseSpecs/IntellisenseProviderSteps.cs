@@ -24,7 +24,7 @@ using Dev2.Studio.Core.Specs.Helper;
 using Dev2.Studio.InterfaceImplementors;
 using Dev2.Studio.Interfaces;
 using Dev2.Studio.ViewModels.DataList;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using TechTalk.SpecFlow;
 using Dev2.Studio.Interfaces.Enums;
 using Dev2.Data.Interfaces;
@@ -183,7 +183,7 @@ namespace Dev2.Studio.Core.Specs.IntellisenseSpecs
 
             var getResults = provider.GetIntellisenseResults(context);
             var actualist = getResults.Where(i => i.IsError);
-            Assert.AreEqual(!actualist.Any(),bool.Parse(p0));
+            NUnit.Framework.Assert.AreEqual(!actualist.Any(),bool.Parse(p0));
         }
 
         [Then(@"the result has the error '(.*)'")]
@@ -191,7 +191,7 @@ namespace Dev2.Studio.Core.Specs.IntellisenseSpecs
         {
             var inputText = ScenarioContext.Current.Get<string>("inputText");
             var error = IntellisenseStringProvider.parseLanguageExpressionAndValidate(inputText);
-            Assert.AreEqual(errorMessage.TrimEnd(' '), error.Item2.TrimEnd(' '));
+            NUnit.Framework.Assert.AreEqual(errorMessage.TrimEnd(' '), error.Item2.TrimEnd(' '));
         }
         
         [Given(@"the suggestion list as '(.*)'")]
@@ -217,7 +217,7 @@ namespace Dev2.Studio.Core.Specs.IntellisenseSpecs
                     break;
                 }
             }
-            Assert.IsTrue(all);
+            NUnit.Framework.Assert.IsTrue(all);
             ScenarioContext.Current["stringOptions"] = options;
         }
 
@@ -245,7 +245,7 @@ namespace Dev2.Studio.Core.Specs.IntellisenseSpecs
 
             var getResults = provider.GetIntellisenseResults(context);
             var actualist = getResults.Where(i => !i.IsError).Select(i => i.Name).ToArray();
-            Assert.AreEqual(expectedList.Length, actualist.Length);
+            NUnit.Framework.Assert.AreEqual(expectedList.Length, actualist.Length);
             var all = true;
             foreach (var a in expectedList)
             {
@@ -255,7 +255,7 @@ namespace Dev2.Studio.Core.Specs.IntellisenseSpecs
                     break;
                 }
             }
-            Assert.IsTrue(all);
+            NUnit.Framework.Assert.IsTrue(all);
         }
 
         [When(@"I select the following option '(.*)'")]
@@ -296,7 +296,7 @@ namespace Dev2.Studio.Core.Specs.IntellisenseSpecs
             }
 
             var options =ScenarioContext.Current["stringOptions"] as IEnumerable<string>;
-            Assert.IsTrue(options.Contains(option));
+            NUnit.Framework.Assert.IsTrue(options.Contains(option));
            
             var builder = new IntellisenseStringResultBuilder();
             var res = builder.Build(option,caretpos, originalText,originalText);
@@ -307,14 +307,14 @@ namespace Dev2.Studio.Core.Specs.IntellisenseSpecs
         public void ThenTheResultTextShouldBe(string result)
         {
             var actual = ScenarioContext.Current.Get<string>("result");
-            Assert.AreEqual(result, actual);
+            NUnit.Framework.Assert.AreEqual(result, actual);
         }
 
         [Then(@"the caret position will be '(.*)'")]
         public void ThenTheCaretPositionWillBe(int caretpostion)
         {
             var context = ScenarioContext.Current.Get<IntellisenseProviderContext>("context");
-            Assert.AreEqual(caretpostion, context.CaretPosition);
+            NUnit.Framework.Assert.AreEqual(caretpostion, context.CaretPosition);
         }
 
         [Then(@"the result text should be ""(.*)"" with caret position will be '(.*)'")]
@@ -322,8 +322,8 @@ namespace Dev2.Studio.Core.Specs.IntellisenseSpecs
         {
            var res =  ScenarioContext.Current["stringResult"] as IIntellisenseStringResult;
             
-            Assert.AreEqual(res.Result,p0);
-            Assert.AreEqual(p1,res.CaretPosition);
+            NUnit.Framework.Assert.AreEqual(res.Result,p0);
+            NUnit.Framework.Assert.AreEqual(p1,res.CaretPosition);
         }
     }
 }

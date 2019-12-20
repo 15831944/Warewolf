@@ -1,16 +1,17 @@
 ﻿using System.Threading;
 using Dev2.Runtime.ESB.Execution;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Tests.Runtime.Util
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ExecutionManagerTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ExecutionManager_Instance")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ExecutionManager_Instance")]
         public void ExecutionManager_Instance_Accessed_ShouldHaveAllDefaults()
         {
             //------------Setup for test--------------------------
@@ -28,9 +29,9 @@ namespace Dev2.Tests.Runtime.Util
             return new ExecutionManager();
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ExecutionManager_Instance")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ExecutionManager_Instance")]
         public void ExecutionManager_StartRefreshing_ShouldSetIsRefreshingTrue()
         {
             //------------Setup for test--------------------------
@@ -42,9 +43,9 @@ namespace Dev2.Tests.Runtime.Util
             Assert.IsTrue(executionManager.IsRefreshing);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ExecutionManager_Instance")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ExecutionManager_Instance")]
         public void ExecutionManager_StopRefreshing_ShouldSetIsRefreshingTrue()
         {
             //------------Setup for test--------------------------
@@ -56,14 +57,14 @@ namespace Dev2.Tests.Runtime.Util
             Assert.IsTrue(executionManager.IsRefreshing);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ExecutionManager_AddExecution")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ExecutionManager_AddExecution")]
         public void ExecutionManager_AddExecution_ShouldIncreaseExecutionsCounts()
         {
             //------------Setup for test--------------------------
             var executionManager = GetConstructedExecutionManager();
-            var p = new PrivateObject(executionManager);
+            var p = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(executionManager);
             //------------Execute Test---------------------------
             executionManager.AddExecution();
             //------------Assert Results-------------------------
@@ -73,14 +74,14 @@ namespace Dev2.Tests.Runtime.Util
 
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ExecutionManager_AddExecution")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ExecutionManager_AddExecution")]
         public void ExecutionManager_CompleteExecution_ShouldDecreaseExecutionsCounts()
         {
             //------------Setup for test--------------------------
             var executionManager = GetConstructedExecutionManager();
-            var p = new PrivateObject(executionManager);
+            var p = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(executionManager);
             //------------PreExecution Asserts-------------------
             executionManager.AddExecution();
             var currentExecutionsValue = p.GetFieldOrProperty("_currentExecutions");
@@ -93,14 +94,14 @@ namespace Dev2.Tests.Runtime.Util
             Assert.AreEqual(0, updatedCurrentExecutionsValue);
         }
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ExecutionManager_StopExecution")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ExecutionManager_StopExecution")]
         public void ExecutionManager_StopRefresh_AfterWaitHandlesSet_ShouldSetToFalse()
         {
             //------------Setup for test--------------------------
             var executionManager = GetConstructedExecutionManager();
-            var p = new PrivateObject(executionManager);
+            var p = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(executionManager);
             var _threadTracker = false;
             var t = new Thread(()=>
             {

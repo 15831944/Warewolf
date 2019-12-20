@@ -4,12 +4,13 @@ using System.Collections.ObjectModel;
 using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.Infrastructure;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Warewolf.Studio.ViewModels.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ManageWcfServiceModelTests
     {
         #region Fields
@@ -28,7 +29,7 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         #region Test initialize
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             _shellViewModelMock = new Mock<IShellViewModel>();
@@ -52,7 +53,8 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         #endregion Test initialize
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestRetrieveSources()
         {
             var expectedResult = new ObservableCollection<IWcfServerSource>();
@@ -64,7 +66,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             _mockQueryManager.Verify(it => it.FetchWcfSources());
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestGetActions()
         {
             var expectedResult = new ObservableCollection<IWcfAction>();
@@ -77,7 +80,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             _mockQueryManager.Verify(it => it.WcfActions(mockWcfServerSource.Object));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestCreateNewSource()
         {
             try
@@ -90,7 +94,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             }
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestEditSqlSource()
         {
             var mockWcfServiceSource = new Mock<IWcfServerSource>();
@@ -101,7 +106,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             _target.EditSource(mockWcfServiceSource.Object);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestService()
         {
             var mockWcfServiceValues = new Mock<IWcfService>();

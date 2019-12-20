@@ -11,12 +11,13 @@
 using System;
 using Dev2.Studio.Core;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Core.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ResourceHelperTest
     {
         #region Additional test attributes
@@ -24,7 +25,7 @@ namespace Dev2.Core.Tests
         //You can use the following additional attributes as you write your tests:
         //
         //Use ClassInitialize to run code before running the first test in the class
-        //[ClassInitialize()]
+        //[OneTimeSetUp]
         //public static void MyClassInitialize(TestContext testContext)
         //{
         //}
@@ -49,7 +50,7 @@ namespace Dev2.Core.Tests
         //
         #endregion
 
-        [TestMethod]
+        [Test]
         public void ResourceHelperReturnsEmptyDisplayNameForNullResource()
         {
             //Test
@@ -59,7 +60,7 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(string.Empty, name);
         }
 
-        [TestMethod]
+        [Test]
         public void ResourceHelperReturnsResourceDisplayNameForNullEnvironment()
         {
             //Setup
@@ -74,7 +75,7 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("Test", name);
         }
 
-        [TestMethod]
+        [Test]
         public void ResourceHelper_UnitTest_WhenEnvironmentNullResourceIsWorkflowSavedFalse_ExpectResourceDisplayNameWithStar()
         {
             //Setup
@@ -89,7 +90,7 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("Test *", name);
         }
 
-        [TestMethod]
+        [Test]
         public void ResourceHelperReturnsResourceDisplayNameForLocalHost()
         {
             //Setup
@@ -107,7 +108,7 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("Test", name);
         }
 
-        [TestMethod]
+        [Test]
         [Description("Returned name has * when resource IsWorkflowSaved is false")]
         public void ResourceHelper_WhenLocalhostResourceIsWorkflowSavedFalse_ExpectResourceDisplayNameForLocalHostWithStar()
         {
@@ -127,7 +128,7 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("Test *", name);
         }
 
-        [TestMethod]
+        [Test]
         public void ResourceHelperReturnsResourceAndEnvironmentDisplayNameForNonLocalEnvironments()
         {
             //Setup
@@ -146,9 +147,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("Test - HostName", name);
         }
 
-        [TestMethod]
+        [Test]
         [Description("Resource IsWorkflowSaved should show * in text")]
-        [Owner("Huggs")]
+        [Author("Huggs")]
         public void ResourceHelper_UnitTest_WhenResourceIsWorkflowSavedFalseAndEnvironmentDisplayNameForNonLocalEnvironments_ReturnsStarInText()
         {
             //Setup

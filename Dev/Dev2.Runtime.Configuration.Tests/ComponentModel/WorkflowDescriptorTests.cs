@@ -12,30 +12,31 @@ using System;
 using System.Xml.Linq;
 using Dev2.Runtime.Configuration.ComponentModel;
 using Dev2.Runtime.Configuration.Tests.XML;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Runtime.Configuration.Tests.ComponentModel
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WorkflowDescriptorTests
     {
         #region CTOR
 
-        [TestMethod]
+        [Test]
         public void ConstructorWithNullXmlArgumentExpectedDoesNotThrowException()
         {
             var workflow = new WorkflowDescriptor(null);
-            Assert.IsNotNull(workflow);
+            NUnit.Framework.Assert.IsNotNull(workflow);
         }
 
-        [TestMethod]
+        [Test]
         public void ConstructorWithInvalidXmlArgumentExpectedDoesNotThrowException()
         {
             var workflow = new WorkflowDescriptor(new XElement("x", new XElement("y"), new XElement("z")));
-            Assert.IsNotNull(workflow);
+            NUnit.Framework.Assert.IsNotNull(workflow);
         }
 
-        [TestMethod]
+        [Test]
         public void ConstructorWithValidXmlArgumentExpectedInitializesAllProperties()
         {
             var xml = XmlResource.Fetch("Workflow");
@@ -52,7 +53,7 @@ namespace Dev2.Runtime.Configuration.Tests.ComponentModel
 
                 var expected = xml.AttributeSafe(property.Name).ToLower();
                 var actual = property.GetValue(workflow).ToString().ToLower();
-                Assert.AreEqual(expected, actual);
+                NUnit.Framework.Assert.AreEqual(expected, actual);
             }
         }
 
@@ -60,16 +61,16 @@ namespace Dev2.Runtime.Configuration.Tests.ComponentModel
 
         #region ToXmlExpectedReturnsXml
 
-        [TestMethod]
+        [Test]
         public void ToXmlExpectedReturnsXml()
         {
             var workflow = new WorkflowDescriptor();
             var result = workflow.ToXml();
-            Assert.IsNotNull(result);
-            Assert.IsInstanceOfType(result, typeof(XElement));
+            NUnit.Framework.Assert.IsNotNull(result);
+            NUnit.Framework.Assert.IsInstanceOf(result.GetType(), typeof(XElement));
         }
 
-        [TestMethod]
+        [Test]
         public void ToXmlExpectedSerializesIDandName()
         {
             var workflow = new WorkflowDescriptor
@@ -88,7 +89,7 @@ namespace Dev2.Runtime.Configuration.Tests.ComponentModel
                 }
                 var expected = property.GetValue(workflow).ToString().ToLower();
                 var actual = result.AttributeSafe(property.Name).ToLower();
-                Assert.AreEqual(expected, actual);
+                NUnit.Framework.Assert.AreEqual(expected, actual);
             }
         }
 

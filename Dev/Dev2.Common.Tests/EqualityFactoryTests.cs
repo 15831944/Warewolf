@@ -10,20 +10,21 @@
 
 using System;
 using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Common.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class EqualityFactoryTests
     {
         class Example
         {
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(EqualityFactory))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(EqualityFactory))]
         public void EqualityFactory_GetComparer_Compare()
         {
             var expected = 1234;
@@ -33,9 +34,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(EqualityFactory))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(EqualityFactory))]
         public void EqualityFactory_GetEqualityComparer_Equals_GetHashCode()
         {
             var expectedHash = 4321;
@@ -47,9 +48,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(expectedBool, actualBool);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(EqualityFactory))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(EqualityFactory))]
         public void EqualityFactory_GetComparable_CompareTo()
         {
             var expectedHash = 4321;
@@ -59,9 +60,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(expectedHash, actual);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(EqualityFactory))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(EqualityFactory))]
         public void EqualityFactory_GetEquitable_GetHashCode_NoHashCodeCallback()
         {
             var expected = true;
@@ -77,9 +78,9 @@ namespace Dev2.Common.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(EqualityFactory))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(EqualityFactory))]
         public void EqualityFactory_GetEquitable_IEqualityComparer_Equals()
         {
             var expected = true;
@@ -89,9 +90,9 @@ namespace Dev2.Common.Tests
             Assert.AreNotEqual(0, actual);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(EqualityFactory))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(EqualityFactory))]
         public void EqualityFactory_GetEquitable_IEquatable_Equals()
         {
             var expected = true;

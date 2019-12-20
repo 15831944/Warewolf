@@ -14,24 +14,23 @@ using System.IO;
 using ActivityUnitTests;
 using Dev2.Diagnostics;
 using Dev2.Tests.Activities.Mocks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
-    [TestClass]    
+    [TestFixture]
+    [SetUpFixture]    
     public class AbstractMultipleFilesActivityTests : BaseActivityUnitTest
     {
-        public TestContext TestContext { get; set; }
-
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("AbstractMultipleFiles_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("AbstractMultipleFiles_Execute")]
         public void AbstractMultipleFiles_Execute_WhenInputPathNotIsRooted_ExceptionCaughtErrorAdded()
         {
             //---------------Setup----------------------------------------------
             var fileNames = new List<string>();
             var guid = Guid.NewGuid();
-            fileNames.Add(Path.Combine(TestContext.TestRunDirectory, guid + "Dev2.txt"));
+            fileNames.Add(Path.Combine(Environment.CurrentDirectory, guid + "Dev2.txt"));
 
             foreach (string fileName in fileNames)
             {
@@ -43,7 +42,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             var act = new MockAbstractMultipleFilesActivity("Mock")
             {
                 InputPath = @"OldFile.txt",
-                OutputPath = Path.Combine(TestContext.TestRunDirectory, "NewName.txt"),
+                OutputPath = Path.Combine(Environment.CurrentDirectory, "NewName.txt"),
                 Result = "[[res]]",
                 DestinationUsername = "destUName",
                 DestinationPassword = "destPWord",
@@ -61,15 +60,15 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("", outputResultList[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("AbstractMultipleFiles_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("AbstractMultipleFiles_Execute")]
         public void AbstractMultipleFiles_Execute_WhenOutputPathNotIsRooted_ExceptionCaughtErrorAdded()
         {
             //---------------Setup----------------------------------------------
             var fileNames = new List<string>();
             var guid = Guid.NewGuid();
-            fileNames.Add(Path.Combine(TestContext.TestRunDirectory, guid + "Dev2.txt"));
+            fileNames.Add(Path.Combine(Environment.CurrentDirectory, guid + "Dev2.txt"));
 
             foreach (string fileName in fileNames)
             {

@@ -12,18 +12,19 @@ using System.Collections.Generic;
 using Dev2.Data.Interfaces;
 using Dev2.Data.Interfaces.Enums;
 using Dev2.PathOperations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Dev2.Common.Interfaces.Wrappers;
 
 namespace Dev2.Data.Tests.PathOperations
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ActivityIOBrokerBaseDriverTests
     {
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ActivityIOBrokerBaseDriver))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ActivityIOBrokerBaseDriver))]
         public void ActivityIOBrokerBaseDriver_RemoveAllTmpFiles()
         {
             var mockFile = new Mock<IFile>();
@@ -37,9 +38,9 @@ namespace Dev2.Data.Tests.PathOperations
             mockFile.Verify(o => o.Delete(It.IsAny<string>()), Times.Exactly(2));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ActivityIOBrokerBaseDriver))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ActivityIOBrokerBaseDriver))]
         public void ActivityIOBrokerBaseDriver_GetFileNameFromEndPoint_GivenEndPoint_ShouldReturnFileName()
         {
             var driver = new ActivityIOBrokerBaseDriver();
@@ -52,12 +53,12 @@ namespace Dev2.Data.Tests.PathOperations
 
             var pathReturned = driver.GetFileNameFromEndPoint(mockEndpoint.Object);
 
-            Assert.AreEqual(path, pathReturned);
+            NUnit.Framework.Assert.AreEqual(path, pathReturned);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ActivityIOBrokerBaseDriver))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ActivityIOBrokerBaseDriver))]
         public void ActivityIOBrokerBaseDriver_GetFileNameFromEndPoint_GivenEndPoint_ShouldReturnFileName_Overload()
         {
             var driver = new ActivityIOBrokerBaseDriver();
@@ -70,12 +71,12 @@ namespace Dev2.Data.Tests.PathOperations
 
             var pathReturned = driver.GetFileNameFromEndPoint(mockEndpoint.Object, mockActIo.Object);
 
-            Assert.AreEqual(path, pathReturned);
+            NUnit.Framework.Assert.AreEqual(path, pathReturned);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ActivityIOBrokerBaseDriver))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ActivityIOBrokerBaseDriver))]
 
         public void ActivityIOBrokerBaseDriver_ListDirectory_FilesAndFolders()
         {
@@ -88,15 +89,15 @@ namespace Dev2.Data.Tests.PathOperations
 
             var returnedList = broker.ListDirectory(endPoint.Object, ReadTypes.FilesAndFolders);
 
-            Assert.AreEqual(0, returnedList.Count);
-            Assert.AreEqual(mockList.Object, returnedList);
+            NUnit.Framework.Assert.AreEqual(0, returnedList.Count);
+            NUnit.Framework.Assert.AreEqual(mockList.Object, returnedList);
 
             endPoint.Verify(o => o.ListDirectory(ioPath), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ActivityIOBrokerBaseDriver))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ActivityIOBrokerBaseDriver))]
         public void ActivityIOBrokerBaseDriver_ListDirectory_Files()
         {
             var broker = new ActivityIOBrokerBaseDriver();
@@ -108,15 +109,15 @@ namespace Dev2.Data.Tests.PathOperations
 
             var returnedList = broker.ListDirectory(endPoint.Object, ReadTypes.Files);
 
-            Assert.AreEqual(0, returnedList.Count);
-            Assert.AreEqual(mockList.Object, returnedList);
+            NUnit.Framework.Assert.AreEqual(0, returnedList.Count);
+            NUnit.Framework.Assert.AreEqual(mockList.Object, returnedList);
 
             endPoint.Verify(o => o.ListFilesInDirectory(ioPath), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ActivityIOBrokerBaseDriver))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ActivityIOBrokerBaseDriver))]
         public void ActivityIOBrokerBaseDriver_ListDirectory_Folders()
         {
             var broker = new ActivityIOBrokerBaseDriver();
@@ -128,15 +129,15 @@ namespace Dev2.Data.Tests.PathOperations
 
             var returnedList = broker.ListDirectory(endPoint.Object, ReadTypes.Folders);
 
-            Assert.AreEqual(0, returnedList.Count);
-            Assert.AreEqual(mockList.Object, returnedList);
+            NUnit.Framework.Assert.AreEqual(0, returnedList.Count);
+            NUnit.Framework.Assert.AreEqual(mockList.Object, returnedList);
 
             endPoint.Verify(o => o.ListFoldersInDirectory(ioPath), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ActivityIOBrokerBaseDriver))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ActivityIOBrokerBaseDriver))]
         public void ActivityIOBrokerBaseDriver_CreateDirectory_GivenValidInterfaces_ShouldCallsCreateDirectoryCorrectly()
         {
             var dev2CrudOperationTO = new Dev2CRUDOperationTO(true);
@@ -148,13 +149,13 @@ namespace Dev2.Data.Tests.PathOperations
             var driver = new ActivityIOBrokerBaseDriver();
             var result = driver.CreateDirectory(endPoint.Object, dev2CrudOperationTO);
 
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
             endPoint.Verify(o => o.CreateDirectory(ioPath, dev2CrudOperationTO));
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ActivityIOBrokerBaseDriver))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ActivityIOBrokerBaseDriver))]
         public void ActivityIOBrokerBaseDriver_CreateEndPoint_ExpectSuccess()
         {
             //--------------------------Arrange-------------------------
@@ -171,15 +172,15 @@ namespace Dev2.Data.Tests.PathOperations
             //--------------------------Act-----------------------------
             var endPoint =  driver.CreateEndPoint(mockActivityIOOperationsEndPoint.Object, mockDev2CRUDOperationTO.Object, true);
             //--------------------------Assert--------------------------
-            Assert.AreEqual("Success", endPoint);
+            NUnit.Framework.Assert.AreEqual("Success", endPoint);
 
             mockActivityIOOperationsEndPoint.VerifyAll();
             mockActivityIOPath.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ActivityIOBrokerBaseDriver))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ActivityIOBrokerBaseDriver))]
         public void ActivityIOBrokerBaseDriver_CreateEndPoint_IsUncFileTypePath_ExpectSuccess()
         {
             //--------------------------Arrange-------------------------
@@ -197,15 +198,15 @@ namespace Dev2.Data.Tests.PathOperations
             //--------------------------Act-----------------------------
             var endPoint = driver.CreateEndPoint(mockActivityIOOperationsEndPoint.Object, mockDev2CRUDOperationTO.Object, true);
             //--------------------------Assert--------------------------
-            Assert.AreEqual("Success", endPoint);
+            NUnit.Framework.Assert.AreEqual("Success", endPoint);
 
             mockActivityIOOperationsEndPoint.VerifyAll();
             mockActivityIOPath.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ActivityIOBrokerBaseDriver))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ActivityIOBrokerBaseDriver))]
         public void ActivityIOBrokerBaseDriver_CreateEndPoint_IsNotFtpTypePathTest_ExpectSuccess()
         {
             //--------------------------Arrange-------------------------
@@ -223,15 +224,15 @@ namespace Dev2.Data.Tests.PathOperations
             //--------------------------Act-----------------------------
             var endPoint = driver.CreateEndPoint(mockActivityIOOperationsEndPoint.Object, mockDev2CRUDOperationTO.Object, true);
             //--------------------------Assert--------------------------
-            Assert.AreEqual("Success", endPoint);
+            NUnit.Framework.Assert.AreEqual("Success", endPoint);
 
             mockActivityIOOperationsEndPoint.VerifyAll();
             mockActivityIOPath.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ActivityIOBrokerBaseDriver))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ActivityIOBrokerBaseDriver))]
         public void ActivityIOBrokerBaseDriver_CreateEndPoint_IsUncFileTypePath_ExpectFail()
         {
             //--------------------------Arrange-------------------------
@@ -248,15 +249,15 @@ namespace Dev2.Data.Tests.PathOperations
             //--------------------------Act-----------------------------
             var endPoint = driver.CreateEndPoint(mockDst.Object, mockArgs.Object, true);
             //--------------------------Assert--------------------------
-            Assert.AreEqual("Failure", endPoint);
+            NUnit.Framework.Assert.AreEqual("Failure", endPoint);
 
             mockDst.VerifyAll();
             mockActivityIOPath.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ActivityIOBrokerBaseDriver))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ActivityIOBrokerBaseDriver))]
         public void ActivityIOBrokerBaseDriver_CreateEndPoint_GivenDirectory_IsUncFileTypePath_ExpectSuccess()
         {
             //--------------------------Arrange-------------------------
@@ -274,15 +275,15 @@ namespace Dev2.Data.Tests.PathOperations
             //--------------------------Act-----------------------------
             var endPoint = driver.CreateEndPoint(mockDst.Object, mockArgs.Object, true);
             //--------------------------Assert--------------------------
-            Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, endPoint);
+            NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, endPoint);
 
             mockDst.VerifyAll();
             mockActivityIOPath.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ActivityIOBrokerBaseDriver))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ActivityIOBrokerBaseDriver))]
         public void ActivityIOBrokerBaseDriver_CreateEndPoint_CreateDirectoriesForPath_PathExist_ExpectSuccess()
         {
             //--------------------------Arrange-------------------------
@@ -301,7 +302,7 @@ namespace Dev2.Data.Tests.PathOperations
             //--------------------------Act-----------------------------
             var endPoint = driver.CreateEndPoint(mockActivityIOOperationsEndPoint.Object, mockDev2CRUDOperationTO.Object, true);
             //--------------------------Assert--------------------------
-            Assert.AreEqual("Success", endPoint);
+            NUnit.Framework.Assert.AreEqual("Success", endPoint);
 
             mockActivityIOOperationsEndPoint.VerifyAll();
             mockActivityIOPath.VerifyAll();

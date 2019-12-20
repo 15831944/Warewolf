@@ -13,25 +13,26 @@ using Dev2.Studio.ViewModels.Diagnostics;
 using Dev2.Threading;
 using Dev2.ViewModels;
 using Microsoft.Practices.Prism.Mvvm;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Studio.ViewModels;
 
 namespace Dev2.Core.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class StudioTestViewModelTest
     {
-        [TestInitialize]
+        [SetUp]
         public void Init()
         {
             var newServerRepo = new Mock<IServerRepository>();
             CustomContainer.Register(newServerRepo.Object);
         } 
     
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WorkSurfaceContextViewModel_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("WorkSurfaceContextViewModel_Constructor")]
         public void WorkSurfaceContextViewModel_Constructor_ValidArguments_DebugOutputViewModelNotNull()
         {
             //------------Setup for test--------------------------
@@ -64,9 +65,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(vm.IsDirty);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("StudioTestViewModel_GetView")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("StudioTestViewModel_GetView")]
         public void StudioTestViewModel_GetView_ReturnsIView_NotNull()
         {
             //------------Setup for test--------------------------
@@ -104,9 +105,9 @@ namespace Dev2.Core.Tests
             Assert.IsNotNull(view);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("StudioTestViewModel_DebugOutputMessage")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("StudioTestViewModel_DebugOutputMessage")]
         public void StudioTestViewModel_DebugOutputMessage_Handle_NotNull()
         {
             //------------Setup for test--------------------------
@@ -163,9 +164,9 @@ namespace Dev2.Core.Tests
             mvm.Verify(model => model.HelpViewModel.UpdateHelpText(It.IsAny<string>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("StudioTestViewModel_DoDeactivate")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("StudioTestViewModel_DoDeactivate")]
         public void StudioTestViewModel_DoDeactivate_CanSave_ExpectedFalse()
         {
             //------------Setup for test--------------------------
@@ -226,9 +227,9 @@ namespace Dev2.Core.Tests
             mvm.Verify(model => model.HelpViewModel.UpdateHelpText(It.IsAny<string>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("StudioTestViewModel_OnDispose")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("StudioTestViewModel_OnDispose")]
         public void StudioTestViewModel_OnDispose_ViewModel_Dispose()
         {
             //------------Setup for test--------------------------
@@ -265,9 +266,9 @@ namespace Dev2.Core.Tests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("StudioTestViewModel_PropertyChanged")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("StudioTestViewModel_PropertyChanged")]
         public void StudioTestViewModel_PropertyChanged_ViewModel_IsTrue()
         {
             //------------Setup for test--------------------------
@@ -333,9 +334,9 @@ namespace Dev2.Core.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("StudioTestViewModel_DoDeactivate")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("StudioTestViewModel_DoDeactivate")]
         public void StudioTestViewModel_DoDeactivate_CanSave_ExpectedTrue()
         {
             //------------Setup for test--------------------------
@@ -396,9 +397,9 @@ namespace Dev2.Core.Tests
             popupController.Verify(controller => controller.Show(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<MessageBoxButton>(), MessageBoxImage.Information, "", false, false, true, false, false, false), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("StudioTestViewModel_DoDeactivate")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("StudioTestViewModel_DoDeactivate")]
         public void StudioTestViewModel_DoDeactivate_CanSave_MessageBoxYes()
         {
             //------------Setup for test--------------------------
@@ -456,9 +457,9 @@ namespace Dev2.Core.Tests
             Assert.IsNull(vm.HelpText);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("StudioTestViewModel_DoDeactivate")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("StudioTestViewModel_DoDeactivate")]
         public void StudioTestViewModel_DoDeactivate_CanSave_MessageBoxYesHasDuplicates()
         {
             //------------Setup for test--------------------------
@@ -522,9 +523,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(expectedValue);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("StudioTestViewModel_DoDeactivate")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("StudioTestViewModel_DoDeactivate")]
         public void StudioTestViewModel_DoDeactivate_CanSave_MessageBoxNo()
         {
             //------------Setup for test--------------------------

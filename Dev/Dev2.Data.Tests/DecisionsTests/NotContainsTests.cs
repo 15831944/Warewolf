@@ -9,17 +9,18 @@
 */
 
 using Dev2.Data.Decisions.Operations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests.DecisionsTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     //
     public class NotContainsTests
     {
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("NotContains_Invoke")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("NotContains_Invoke")]
         public void NotContains_Invoke_DoesContain_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -33,12 +34,12 @@ namespace Dev2.Data.Tests.DecisionsTests
             var result = notStartsWith.Invoke(cols);
 
             //------------Assert Results-------------------------
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("NotContains_Invoke")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("NotContains_Invoke")]
         public void NotContains_Invoke_DoesntContain_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -52,14 +53,14 @@ namespace Dev2.Data.Tests.DecisionsTests
             var result = notStartsWith.Invoke(cols);
 
             //------------Assert Results-------------------------
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
 
         }
 
 
-        [TestMethod]
-        [Owner("Sanele Mthmembu")]
-        [TestCategory("NotContains_HandlesType")]
+        [Test]
+        [Author("Sanele Mthmembu")]
+        [Category("NotContains_HandlesType")]
         public void NotContains_HandlesType_ReturnsNotContainsType()
         {
             var decisionType = enDecisionType.NotContain;
@@ -67,7 +68,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             var notContains = new NotContains();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.AreEqual(decisionType, notContains.HandlesType());
+            NUnit.Framework.Assert.AreEqual(decisionType, notContains.HandlesType());
         }
     }
 }

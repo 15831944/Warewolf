@@ -9,14 +9,15 @@
 */
 
 using Dev2.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests.UtilsTests
 {
     /// <summary>
     /// Summary description for NewWorkflowNamesTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DataListConversionUtilTest
     {
         /// <summary>
@@ -25,9 +26,9 @@ namespace Dev2.Core.Tests.UtilsTests
         ///</summary>
         public TestContext TestContext { get; set; }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DataListConversionUtilTest_CreateListToBindTo")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DataListConversionUtilTest_CreateListToBindTo")]
         
         public void DataListConversionUtilTest_CreateListToBindTo_WhenColumnHasInputMapping_ExpectCollectionWithOneItem()
 
@@ -50,9 +51,9 @@ namespace Dev2.Core.Tests.UtilsTests
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DataListConversionUtilTest_CreateListToBindTo")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DataListConversionUtilTest_CreateListToBindTo")]
         
         public void DataListConversionUtilTest_CreateListToBindTo_WhenColumnHasBothMapping_ExpectCollectionWithOneItem()
 
@@ -76,9 +77,9 @@ namespace Dev2.Core.Tests.UtilsTests
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DataListConversionUtilTest_CreateListToBindTo")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DataListConversionUtilTest_CreateListToBindTo")]
         
         public void DataListConversionUtilTest_CreateListToBindTo_WhenScalarHasInputMapping_ExpectCollectionWithOneItem()
 
@@ -100,9 +101,9 @@ namespace Dev2.Core.Tests.UtilsTests
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DataListConversionUtilTest_CreateListToBindTo")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DataListConversionUtilTest_CreateListToBindTo")]
         
         public void DataListConversionUtilTest_CreateListToBindTo_WhenScalarHasBothMapping_ExpectCollectionWithOneItem()
 
@@ -124,9 +125,9 @@ namespace Dev2.Core.Tests.UtilsTests
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DataListConversionUtilTest_CreateListToBindTo")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DataListConversionUtilTest_CreateListToBindTo")]
         
         public void DataListConversionUtilTest_CreateListToBindTo_WhenScalarHasNoneMapping_ExpectCollectionWithNoItems()
 
@@ -146,9 +147,9 @@ namespace Dev2.Core.Tests.UtilsTests
             Assert.AreEqual(0, result.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DataListModel_Create")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DataListModel_Create")]
         public void DataListModel_Create_PayLoadWithComplexObjects_ShouldHaveComplexObjectItems()
         {
             //------------Setup for test--------------------------
@@ -182,9 +183,9 @@ namespace Dev2.Core.Tests.UtilsTests
             Assert.IsTrue(result[1].IsObject);            
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DataListModel_Create")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DataListModel_Create")]
         public void DataListModel_Create_PayLoadWithComplexObjectsWithArrays_ShouldHaveComplexObjectItems()
         {
             //------------Setup for test--------------------------
@@ -218,9 +219,9 @@ namespace Dev2.Core.Tests.UtilsTests
             Assert.IsTrue(result[1].IsObject);            
         }
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DataListModel_Create")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DataListModel_Create")]
         public void DataListModel_Create_PayLoadWithComplexObjectsArrayWithParentArray_ShouldHaveComplexObjectItems()
         {
             //------------Setup for test--------------------------
@@ -254,9 +255,9 @@ namespace Dev2.Core.Tests.UtilsTests
             Assert.IsFalse(result[1].CanHaveMutipleRows);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DataListModel_Create")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DataListModel_Create")]
         public void DataListModel_Create_PayLoadWithComplexObjectsArray_ShouldHaveComplexObjectItems()
         {
             //------------Setup for test--------------------------

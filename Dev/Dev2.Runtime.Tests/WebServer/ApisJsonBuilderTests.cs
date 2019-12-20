@@ -7,19 +7,20 @@ using Dev2.Runtime.Interfaces;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Runtime.WebServer;
 using Dev2.Services.Security;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Tests.Runtime.WebServer
 {
-    [TestClass]
-    [TestCategory("Runtime WebServer")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime WebServer")]
     public class ApisJsonBuilderTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ApisJsonBuilder_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ApisJsonBuilder_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ApisJsonBuilder_Constructor_NullAuthorizationService_Exception()
         {
@@ -32,9 +33,9 @@ namespace Dev2.Tests.Runtime.WebServer
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ApisJsonBuilder_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ApisJsonBuilder_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ApisJsonBuilder_Constructor_NullResourceCatalog_Exception()
         {
@@ -47,9 +48,9 @@ namespace Dev2.Tests.Runtime.WebServer
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ApisJsonBuilder_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ApisJsonBuilder_Constructor")]
         public void ApisJsonBuilder_Constructor_AuthorizationService_PropertySet()
         {
             //------------Setup for test--------------------------
@@ -62,9 +63,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.IsNotNull(builder.ResourceCatalog);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ApisJsonBuilder_BuildForPath")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ApisJsonBuilder_BuildForPath")]
         public void ApisJsonBuilder_BuildForPath_NullPath_ShouldBuildForWholeCatalog()
         {
             //------------Setup for test--------------------------
@@ -94,9 +95,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual(exceptedApisJson.Apis[0].BaseUrl.Contains("secure"), apisJson.Apis[0].BaseUrl.Contains("secure"));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ApisJsonBuilder_BuildForPath")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ApisJsonBuilder_BuildForPath")]
         public void ApisJsonBuilder_BuildForPath_WithPath_ShouldBuildForResourcesAtPath()
         {
             //------------Setup for test--------------------------
@@ -127,9 +128,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual(exceptedApisJson.Apis[0].BaseUrl,apisJson.Apis[0].BaseUrl);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ApisJsonBuilder_BuildForPath")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ApisJsonBuilder_BuildForPath")]
         public void ApisJsonBuilder_BuildForPath_WithPathHasSubDirectories_ShouldBuildForAllResourcesAtPath()
         {
             //------------Setup for test--------------------------
@@ -162,9 +163,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual(exceptedApisJson.Apis[1].BaseUrl, apisJson.Apis[1].BaseUrl);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ApisJsonBuilder_BuildForPath")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ApisJsonBuilder_BuildForPath")]
         public void ApisJsonBuilder_BuildForPath_OnlyAuthorized_ShouldBuildForWholeCatalog()
         {
             //------------Setup for test--------------------------
@@ -201,9 +202,9 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual(exceptedApisJson.Apis[0].BaseUrl, apisJson.Apis[0].BaseUrl);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ApisJsonBuilder_BuildForPath")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ApisJsonBuilder_BuildForPath")]
         public void ApisJsonBuilder_BuildForPath_OnlyAuthorized_MixPublicWithSecure_ShouldBuildForWholeCatalog()
         {
             //------------Setup for test--------------------------
@@ -243,8 +244,8 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.AreEqual(exceptedApisJson.Apis[1].BaseUrl, apisJson.Apis[1].BaseUrl);
         }
 
-        [TestMethod]
-        [Owner("Ashley Lewis")]
+        [Test]
+        [Author("Ashley Lewis")]
         public void ApisJsonBuilder_GetHashCode()
         {
             var apiJson = new ApisJson
@@ -254,11 +255,11 @@ namespace Dev2.Tests.Runtime.WebServer
                 SpecificationVersion = "0.15",
                 Apis = new List<SingleApi>()
             };
-            Assert.IsInstanceOfType(apiJson.GetHashCode(), typeof(int), "ApisJson object did not hash.");
+            Assert.IsInstanceOf(apiJson.GetHashCode().GetType(), typeof(int), "ApisJson object did not hash.");
         }
 
-        [TestMethod]
-        [Owner("Ashley Lewis")]
+        [Test]
+        [Author("Ashley Lewis")]
         public void ApisJsonBuilder_Include_Equals()
         {
             var apiJson = new ApisJson
@@ -286,8 +287,8 @@ namespace Dev2.Tests.Runtime.WebServer
             Assert.IsFalse(differentApiJson.Include == apiJson.Include, "ApisJson object cannot compare Included Apis.");
         }
 
-        [TestMethod]
-        [Owner("Ashley Lewis")]
+        [Test]
+        [Author("Ashley Lewis")]
         public void ApisJsonBuilder_Maintainers_Equals()
         {
             var apiJson = new ApisJson

@@ -5,15 +5,17 @@ using System.Text;
 using Dev2.Common.Interfaces.Enums;
 using Dev2.Runtime.ESB.Management.Services;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FetchComPluginActionsTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -22,12 +24,12 @@ namespace Dev2.Tests.Runtime.Services
             //------------Execute Test---------------------------
             var resId = comPluginActions.GetResourceID(new Dictionary<string, StringBuilder>());
             //------------Assert Results-------------------------
-            Assert.AreEqual(Guid.Empty, resId);
+            NUnit.Framework.Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [NUnit.Framework.Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -36,39 +38,40 @@ namespace Dev2.Tests.Runtime.Services
             //------------Execute Test---------------------------
             var resId = fetchComPluginActions.GetAuthorizationContextForService();
             //------------Assert Results-------------------------
-            Assert.AreEqual(AuthorizationContext.Any, resId);
+            NUnit.Framework.Assert.AreEqual(AuthorizationContext.Any, resId);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void BuildServiceInputName_GivenTypeNames_ShouldConcatinateTypeWithName()
         {
             //---------------Set up test pack-------------------
             var comPluginActions = new FetchComPluginActions();
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(comPluginActions);
+            NUnit.Framework.Assert.IsNotNull(comPluginActions);
             //---------------Execute Test ----------------------
-            var privateObject = new PrivateObject(comPluginActions);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(comPluginActions);
             var invoke = privateObject.Invoke("BuildServiceInputName", "Class2", "Project1.Class2&, Project1, Version=5.0.0.0, Culture=neutral, PublicKeyToken=null");
             //---------------Test Result -----------------------
-            Assert.AreEqual("Class2 (Project1.Class2)", invoke.ToString());
+            NUnit.Framework.Assert.AreEqual("Class2 (Project1.Class2)", invoke.ToString());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void BuildServiceInputName_GivenCursorLocationEnumGetCorrectEnumName()
         {
             //---------------Set up test pack-------------------
             var comPluginActions = new FetchComPluginActions();
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(comPluginActions);
+            NUnit.Framework.Assert.IsNotNull(comPluginActions);
             //---------------Execute Test ----------------------
-            var privateObject = new PrivateObject(comPluginActions);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(comPluginActions);
 
             var typeConverter = TypeDescriptor.GetConverter("ADODB.CursorLocationEnum, ADODB, Version=6.1.0.0, Culture=neutral, PublicKeyToken=null");
 
             var invoke = privateObject.Invoke("BuildServiceInputName", "Class2", "ADODB.CursorLocationEnum, ADODB, Version=6.1.0.0, Culture=neutral, PublicKeyToken=null");
             //---------------Test Result -----------------------
-            Assert.AreEqual("Class2 (ADODB.CursorLocationEnum)", invoke.ToString());
+            NUnit.Framework.Assert.AreEqual("Class2 (ADODB.CursorLocationEnum)", invoke.ToString());
         }
     }
 }

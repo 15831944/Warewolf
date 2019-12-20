@@ -16,7 +16,7 @@ using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
 using Dev2.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Core;
 
@@ -26,14 +26,15 @@ using Warewolf.Core;
 
 namespace Dev2.Activities.Designers.Tests.SqlServer
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class TestSqlServerViewModel
     {
 
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SqlServer_MethodName")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SqlServer_MethodName")]
         public void SqlServer_MethodName_ValidateExpectErrors()
         {
             //------------Setup for test--------------------------
@@ -50,9 +51,9 @@ namespace Dev2.Activities.Designers.Tests.SqlServer
             Assert.AreEqual(2, sqlServer.DesignValidationErrors.Count);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SqlServer_MethodName")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SqlServer_MethodName")]
         public void SqlServer_MethodName_ClearErrors()
         {
             //------------Setup for test--------------------------
@@ -68,9 +69,9 @@ namespace Dev2.Activities.Designers.Tests.SqlServer
             Assert.AreEqual(sqlServer.DesignValidationErrors.Count, 1);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SqlServer_MethodName")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SqlServer_MethodName")]
         public void SqlServer_Ctor_EmptyModelItem()
         {
             //------------Setup for test--------------------------
@@ -88,9 +89,9 @@ namespace Dev2.Activities.Designers.Tests.SqlServer
             Assert.IsTrue(sqlServer.ErrorRegion.IsEnabled);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SqlServer_MethodName")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SqlServer_MethodName")]
         public void SqlServer_TestActionSetSource()
         {
             //------------Setup for test--------------------------
@@ -110,9 +111,9 @@ namespace Dev2.Activities.Designers.Tests.SqlServer
             Assert.IsTrue(sqlServer.ErrorRegion.IsEnabled);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SqlServer_MethodName")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SqlServer_MethodName")]
         public void SqlServer_TestActionSetSource_ShouldLoadActions()
         {
             //------------Setup for test--------------------------
@@ -130,9 +131,9 @@ namespace Dev2.Activities.Designers.Tests.SqlServer
             Assert.AreEqual(1,sqlServer.ActionRegion.Actions.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SqlServer_Refresh")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SqlServer_Refresh")]
         public void SqlServer_Refresh_ShouldLoadRefreshActions()
         {
             //------------Setup for test--------------------------
@@ -150,9 +151,9 @@ namespace Dev2.Activities.Designers.Tests.SqlServer
             Assert.AreEqual(1,sqlServer.ActionRegion.Actions.Count);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SqlServer_MethodName")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SqlServer_MethodName")]
         public void SqlServer_TestActionSetSourceAndTestClickOkHasMappings()
         {
             //------------Setup for test--------------------------
@@ -185,9 +186,9 @@ namespace Dev2.Activities.Designers.Tests.SqlServer
             Assert.AreEqual(hashCode, sqlServer.SourceRegion.SelectedSource.GetHashCode());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SqlServer_MethodName")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SqlServer_MethodName")]
         public void SqlServer_TestActionSetSourceAndTestClickOkHasMappingsErrorFromServer()
         {
             //------------Setup for test--------------------------
@@ -207,15 +208,15 @@ namespace Dev2.Activities.Designers.Tests.SqlServer
             sqlServer.ManageServiceInputViewModel.OutputArea.Outputs = new List<IServiceOutputMapping> { new ServiceOutputMapping("a", "b", "c"), new ServiceOutputMapping("a", "b", "c"), new ServiceOutputMapping("a", "b", "c") };
             sqlServer.ManageServiceInputViewModel.OkCommand.Execute(null);
 #pragma warning restore 4014
-            
+
             //------------Assert Results-------------------------
             Assert.IsTrue(sqlServer.ErrorRegion.IsEnabled);
             Assert.AreNotEqual(0, sqlServer.ManageServiceInputViewModel.Errors.Count);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SqlServer_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SqlServer_Handle")]
         public void SqlServer_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -235,9 +236,9 @@ namespace Dev2.Activities.Designers.Tests.SqlServer
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SqlServer_MethodName")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SqlServer_MethodName")]
         public void SqlServer_TestActionSetSourceAndTestClickOkHasHeaders()
         {
             //------------Setup for test--------------------------
@@ -268,9 +269,9 @@ namespace Dev2.Activities.Designers.Tests.SqlServer
             Assert.IsTrue(sqlServer.ManageServiceInputViewModel.InputArea.Inputs.First().Name == "[[a]]");
             Assert.AreEqual(0, sqlServer.ManageServiceInputViewModel.Errors.Count);
         }
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SqlServer_MethodName")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SqlServer_MethodName")]
         public void SqlServer_TestActionSetSourceAndTestClickOkHasQueryStringAndHeaders()
         {
             //------------Setup for test--------------------------
@@ -303,9 +304,9 @@ namespace Dev2.Activities.Designers.Tests.SqlServer
             Assert.AreEqual(0, sqlServer.ManageServiceInputViewModel.Errors.Count);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SqlServer_TestAction")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SqlServer_TestAction")]
         public void SqlServer_TestActionSetSourceHasRecSet()
         {
             //------------Setup for test--------------------------
@@ -337,9 +338,9 @@ namespace Dev2.Activities.Designers.Tests.SqlServer
             Assert.IsTrue(sqlServer.ManageServiceInputViewModel.InputArea.Inputs.Last().Name == "[[a]]");
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("SqlServer_MethodName")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("SqlServer_MethodName")]
         public void SQLServer_VerifyCommandTimeout()
         {
             //------------Setup for test--------------------------

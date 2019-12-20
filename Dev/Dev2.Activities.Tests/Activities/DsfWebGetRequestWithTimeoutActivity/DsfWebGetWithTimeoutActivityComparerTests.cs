@@ -12,16 +12,17 @@ using System;
 using System.Linq;
 using Dev2.Activities;
 using Dev2.Common.State;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfWebGetWithTimeoutActivityComparerTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_Equals_Given_SameUniqueID_EmptyWebGetRequestTools_AreEqual()
         {
             //---------------Set up test pack-------------------
@@ -36,9 +37,9 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_Equals_Given_DifferentWebGetRequestToolIds_AreNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -54,9 +55,9 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_Equals_Given_Same_DisplayName_Value_Different_Casing_IsNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -71,9 +72,9 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_Equals_Given_Same_Result_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -88,9 +89,9 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             Assert.IsTrue(@equals);
         }
         
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_Equals_Given_Different_Result_IsNOTEqual()
         {
             //---------------Set up test pack-------------------
@@ -105,9 +106,9 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_Equals_Given_Same_Url_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -122,9 +123,9 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_Equals_Given_Same_Url_Different_Casing_IsNOtEqual()
         {
             //---------------Set up test pack-------------------
@@ -138,9 +139,9 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_Equals_Given_Different_Url_IsNOTEqual()
         {
             //---------------Set up test pack-------------------
@@ -155,9 +156,9 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_Equals_Given_Different_Headers_IsNOTEqual()
         {
             //---------------Set up test pack-------------------
@@ -172,9 +173,9 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_Equals_Given_Same_Headers_Different_Casing_IsNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -189,9 +190,9 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_Equals_Given_Same_Headers_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -206,9 +207,9 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_Equals_Given_Different_Method_IsNOTEqual()
         {
             //---------------Set up test pack-------------------
@@ -223,9 +224,9 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_Equals_Given_Same_Method_Different_Casing_IsNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -240,9 +241,9 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_Equals_Given_Same_Method_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -257,9 +258,9 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_Equals_Given_Same_TimeOutText_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -273,9 +274,9 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             //---------------Test Result -----------------------
             Assert.IsTrue(@equals);
         }
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_Equals_Given_Same_TimeOutText_Different_Casing_IsNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -289,9 +290,9 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_Equals_Given_Different_TimeOutText_IsNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -306,9 +307,9 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_Equals_Given_Different_TimeoutSeconds_IsNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -323,9 +324,9 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_Equals_Given_Same_TimeoutSeconds_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -340,9 +341,9 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_GetState_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------

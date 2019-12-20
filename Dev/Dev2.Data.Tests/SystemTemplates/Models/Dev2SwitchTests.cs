@@ -9,16 +9,17 @@
 */
 
 using Dev2.Data.SystemTemplates.Models;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests.SystemTemplates.Models
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class Dev2SwitchTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(Dev2Switch))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(Dev2Switch))]
         public void Dev2Switch_SetProperties_AreEqual_ExpectTrue()
         {
             //-----------------------Arrange--------------------
@@ -30,10 +31,10 @@ namespace Dev2.Data.Tests.SystemTemplates.Models
                 DisplayText = "TestDisplayText"
             };
             //-----------------------Assert---------------------
-            Assert.AreEqual(Dev2ModelType.Dev2Switch, dev2Switch.ModelName);
-            Assert.AreEqual("TestSwitchVariable", dev2Switch.SwitchVariable);
-            Assert.AreEqual("TestSwitchExpression", dev2Switch.SwitchExpression);
-            Assert.AreEqual("TestDisplayText", dev2Switch.DisplayText);
+            NUnit.Framework.Assert.AreEqual(Dev2ModelType.Dev2Switch, dev2Switch.ModelName);
+            NUnit.Framework.Assert.AreEqual("TestSwitchVariable", dev2Switch.SwitchVariable);
+            NUnit.Framework.Assert.AreEqual("TestSwitchExpression", dev2Switch.SwitchExpression);
+            NUnit.Framework.Assert.AreEqual("TestDisplayText", dev2Switch.DisplayText);
         }
     }
 }

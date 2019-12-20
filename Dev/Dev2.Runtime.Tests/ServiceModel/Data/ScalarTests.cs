@@ -9,15 +9,16 @@
 */
 using Dev2.Data;
 using Dev2.Data.Interfaces.Enums;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Runtime.ServiceModel.Data
 {
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class ScalarTests
     {
-        [TestMethod]
+        [Test]
         public void ConstructorWithNoParametersExpectedInitializesListProperties()
         {
             var scalar = new Scalar();
@@ -25,7 +26,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.IsFalse(scalar.IsEditable);
         }
 
-        [TestMethod]
+        [Test]
         public void Scalar_GetHashCode_ShouldReturnHashCode()
         {
             var scalar = new Scalar { Name = "MyScalar" };
@@ -34,7 +35,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
         }
 
 
-        [TestMethod]
+        [Test]
         public void GivenDifferemtScalar_Scalar_Equals_ShouldReturnFalse()
         {
             var scalar = new Scalar { Name = "MyScalar" };
@@ -43,7 +44,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.IsFalse(scalarEqual);
         }
 
-        [TestMethod]
+        [Test]
         public void GivenDifferemtScalar_Scalar_EqualsOperator_ShouldReturnFalse()
         {
             var scalar = new Scalar { Name = "MyScalar" };
@@ -51,7 +52,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.IsFalse(scalar == other);
             Assert.IsTrue(scalar != other);
         }
-        [TestMethod]
+        [Test]
         public void GivenNullScalar_Scalar_EqualsOperator_ShouldReturnFalse()
         {
             var scalar = new Scalar { Name = "MyScalar" };
@@ -59,36 +60,40 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             var equals = Scalar.Comparer.Equals(scalar, other);
             Assert.IsFalse(equals);
         }
-        [TestMethod, DeploymentItem("EnableDocker.txt")]
-        [Owner("Candice Daniel")]
-        [TestCategory("Scalar")]
+        [Test]
+        [DeploymentItem("EnableDocker.txt")]
+        [Author("Candice Daniel")]
+        [Category("Scalar")]
         public void Scalar_ComparerEqualityComparer_SameObject_ShouldReturnTrue()
         {
             var scalar = new Scalar { Name = "MyScalar" };
             var equals = Scalar.Comparer.Equals(scalar, scalar);
             Assert.IsTrue(equals);
         }
-        [TestMethod, DeploymentItem("EnableDocker.txt")]
-        [Owner("Candice Daniel")]
-        [TestCategory("Scalar")]
+        [Test]
+        [DeploymentItem("EnableDocker.txt")]
+        [Author("Candice Daniel")]
+        [Category("Scalar")]
         public void Scalar_ComparerEqualityComparer_XisNull_ShouldReturnFalse()
         {
             var scalar = new Scalar { Name = "MyScalar" };
             var equals = Scalar.Comparer.Equals(null, scalar);
             Assert.IsFalse(equals);
         }
-        [TestMethod, DeploymentItem("EnableDocker.txt")]
-        [Owner("Candice Daniel")]
-        [TestCategory("Scalar")]
+        [Test]
+        [DeploymentItem("EnableDocker.txt")]
+        [Author("Candice Daniel")]
+        [Category("Scalar")]
         public void Scalar_ComparerEqualityComparer_YisNull_ShouldReturnFalse()
         {
             var scalar = new Scalar { Name = "MyScalar" };
             var equals = Scalar.Comparer.Equals(scalar, null);
             Assert.IsFalse(equals);
         }
-        [TestMethod, DeploymentItem("EnableDocker.txt")]
-        [Owner("Candice Daniel")]
-        [TestCategory("Scalar")]
+        [Test]
+        [DeploymentItem("EnableDocker.txt")]
+        [Author("Candice Daniel")]
+        [Category("Scalar")]
         public void Scalar_ComparerEqualityComparer_GetHashCode_ShouldReturnHashCode()
         {
             var scalar = new Scalar { Name = "MyScalar" };
@@ -96,9 +101,10 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             var actual = Scalar.Comparer.GetHashCode(scalar);
             Assert.AreEqual(expected, actual);
         }
-        [TestMethod, DeploymentItem("EnableDocker.txt")]
-        [Owner("Candice Daniel")]
-        [TestCategory("Scalar")]
+        [Test]
+        [DeploymentItem("EnableDocker.txt")]
+        [Author("Candice Daniel")]
+        [Category("Scalar")]
         public void Scalar_ComparerEqualityComparer_GetHashCode_ShouldReturn0()
         {
             var scalar = new Scalar { };
@@ -108,9 +114,10 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual(0, actual);
             Assert.AreEqual(expected, actual);
         }
-        [TestMethod, DeploymentItem("EnableDocker.txt")]
-        [Owner("Candice Daniel")]
-        [TestCategory("Scalar")]
+        [Test]
+        [DeploymentItem("EnableDocker.txt")]
+        [Author("Candice Daniel")]
+        [Category("Scalar")]
         public void Scalar_ComparerEqualityComparer_SetIODirection()
         {
             enDev2ColumnArgumentDirection columnDirection;
@@ -123,9 +130,10 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual(true, scalar.IsEditable);
             Assert.AreEqual("Value", scalar.Value);
         }
-        [TestMethod, DeploymentItem("EnableDocker.txt")]
-        [Owner("Candice Daniel")]
-        [TestCategory("Scalar")]
+        [Test]
+        [DeploymentItem("EnableDocker.txt")]
+        [Author("Candice Daniel")]
+        [Category("Scalar")]
         public void Scalar_GivenDifferentObjectType_Equals_ShouldReturnFalse()
         {
             var scalar = new Scalar { };
@@ -133,9 +141,10 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             var scalarEqual = scalar.Equals(other);
             Assert.IsFalse(scalarEqual);
         }
-        [TestMethod, DeploymentItem("EnableDocker.txt")]
-        [Owner("Candice Daniel")]
-        [TestCategory("Scalar")]
+        [Test]
+        [DeploymentItem("EnableDocker.txt")]
+        [Author("Candice Daniel")]
+        [Category("Scalar")]
         public void Scalar_GivenNullObject_Equals_ShouldReturnFalse()
         {
             object scalar = new Scalar { };
@@ -143,9 +152,10 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             var scalarEqual = scalar.Equals(scalarOther);
             Assert.IsFalse(scalarEqual);
         }
-        [TestMethod, DeploymentItem("EnableDocker.txt")]
-        [Owner("Candice Daniel")]
-        [TestCategory("Scalar")]
+        [Test]
+        [DeploymentItem("EnableDocker.txt")]
+        [Author("Candice Daniel")]
+        [Category("Scalar")]
         public void Scalar_GivenObject_Equals_ShouldReturnTrue()
         {
             object scalar = new Scalar { };
@@ -153,9 +163,10 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             var scalarEqual = scalar.Equals(scalarOther);
             Assert.IsTrue(scalarEqual);
         }
-        [TestMethod, DeploymentItem("EnableDocker.txt")]
-        [Owner("Candice Daniel")]
-        [TestCategory("Scalar")]
+        [Test]
+        [DeploymentItem("EnableDocker.txt")]
+        [Author("Candice Daniel")]
+        [Category("Scalar")]
         public void Scalar_GivenObjectScalar_Equals_ShouldReturnTrue()
         {
             object scalar = new Scalar { };

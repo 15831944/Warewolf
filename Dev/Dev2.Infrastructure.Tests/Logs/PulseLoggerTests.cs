@@ -10,19 +10,20 @@
 
 using System.Threading;
 using Dev2.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Dev2.Common;
 
 namespace Dev2.Infrastructure.Tests.Logs
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class PulseLoggerTests
     {
         bool _elapsed;
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(PulseLogger))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(PulseLogger))]
         public void PulseLogger_Ctor_CheckValues_ExpectInitialised()
         {
             //------------Setup for test--------------------------
@@ -34,9 +35,9 @@ namespace Dev2.Infrastructure.Tests.Logs
             }
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(PulseLogger))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(PulseLogger))]
         public void PulseLogger_Ctor_Start_ExpectInitialised()
         {
             //------------Setup for test--------------------------
@@ -57,9 +58,9 @@ namespace Dev2.Infrastructure.Tests.Logs
             }
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(PulseTracker))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(PulseTracker))]
         public void PulseLogger_Ctor_TimeoutElapse_ExpectResetExecutionWatcher()
         {
             //------------Setup for test--------------------------

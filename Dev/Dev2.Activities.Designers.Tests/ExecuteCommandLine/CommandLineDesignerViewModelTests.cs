@@ -17,18 +17,19 @@ using Dev2.Common.Interfaces.Infrastructure.Providers.Errors;
 using Dev2.Providers.Errors;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Activities.Designers.Tests.ExecuteCommandLine
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class CommandLineDesignerViewModelTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("CommandLineDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("CommandLineDesignerViewModel_Constructor")]
         public void CommandLineDesignerViewModel_Constructor_Properties_Initialized()
         {
             //------------Setup for test--------------------------
@@ -48,9 +49,9 @@ namespace Dev2.Activities.Designers.Tests.ExecuteCommandLine
             Assert.AreEqual(ProcessPriorityClass.RealTime, viewModel.CommandPriorities[5].Key);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("CommandLineDesignerViewModel_Validate")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("CommandLineDesignerViewModel_Validate")]
         public void CommandLineDesignerViewModel_Validate_CommandFileNameIsNull_HasErrors()
         {
             //------------Setup for test--------------------------
@@ -75,9 +76,9 @@ namespace Dev2.Activities.Designers.Tests.ExecuteCommandLine
             Assert.IsTrue(viewModel.IsCommandFileNameFocused);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("CommandLineDesignerViewModel_Validate")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("CommandLineDesignerViewModel_Validate")]
         public void CommandLineDesignerViewModel_Validate_CommandFileNameHasInvalidExpression_HasErrors()
         {
             //------------Setup for test--------------------------
@@ -100,9 +101,9 @@ namespace Dev2.Activities.Designers.Tests.ExecuteCommandLine
             Assert.IsTrue(viewModel.IsCommandFileNameFocused);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("CommandLineDesignerViewModel_Validate")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("CommandLineDesignerViewModel_Validate")]
         public void CommandLineDesignerViewModel_Validate_CommandFileNameHasValidExpression_HasNoErrors()
         {
             //------------Setup for test--------------------------
@@ -117,9 +118,9 @@ namespace Dev2.Activities.Designers.Tests.ExecuteCommandLine
             Assert.AreEqual(0, viewModel.Errors.Count);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("CommandLineDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("CommandLineDesignerViewModel_Handle")]
         public void CommandLineDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -137,9 +138,9 @@ namespace Dev2.Activities.Designers.Tests.ExecuteCommandLine
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("CommandLineDesignerViewModel_Validate")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("CommandLineDesignerViewModel_Validate")]
         public void CommandLineDesignerViewModel_Validate_ClearsErrorsFirst()
         {
             //------------Setup for test--------------------------

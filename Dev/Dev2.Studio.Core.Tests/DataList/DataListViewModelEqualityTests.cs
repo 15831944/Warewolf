@@ -4,17 +4,18 @@ using Dev2.Studio.Core;
 using Dev2.Studio.Core.Factories;
 using Dev2.Studio.Interfaces.DataList;
 using Dev2.Studio.ViewModels.DataList;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Core.Tests
 {
-    [TestClass]
-    [TestCategory("Studio Datalist Core")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Studio Datalist Core")]
     public class DataListViewModelEqualityTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void NewDataListViewModel_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -42,8 +43,8 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DataListViewModel_SameVaribalesCollection_Object_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -79,8 +80,8 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DataListViewModel_DifferentVariablesCollection_Object_Is_NOT_Equal()
         {
             //---------------Set up test pack-------------------

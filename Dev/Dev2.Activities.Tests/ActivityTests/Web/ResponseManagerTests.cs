@@ -8,7 +8,7 @@ using Dev2.Common.Interfaces.DB;
 using Dev2.Interfaces;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Tests.Activities.XML;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Core;
 using Warewolf.Storage;
@@ -18,11 +18,12 @@ using Warewolf.Storage.Interfaces;
 
 namespace Dev2.Tests.Activities.ActivityTests.Web
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WebResponseManagerTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void OnCreation_GivenOutputDescriptionANdMapping_ShouldNotThrowException()
         {
             //---------------Set up test pack-------------------
@@ -38,8 +39,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.IsNotNull(newResponseManager, "Cannot create new ResponseManager object.");
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UnescapeRawXml_GivenEscapedXml_ShouldUnescapeXml()
         {
             //---------------Set up test pack-------------------
@@ -59,8 +60,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual("<x>this \" is' & neat</x>", result);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UnescapeRawXml_GivenUnEscapedXml_ShouldUnescapeXml()
         {
             //---------------Set up test pack-------------------
@@ -80,8 +81,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual(value.ToString(), result);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void PushResponseIntoEnvironment_GivenNoDataObject_ShouldCatchObjectNullException()
         {
@@ -99,8 +100,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void PushResponseIntoEnvironment_GivenResponse_ShouldNotThrowException()
         {
             //---------------Set up test pack-------------------
@@ -148,8 +149,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void PushResponseIntoEnvironment_GivenResponseAndIsJosn_ShouldAssignJsonObjects()
         {
             //---------------Set up test pack-------------------
@@ -188,8 +189,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void PushResponseIntoEnvironment_GivenScalaResponseAndIsJosn_ShouldAssignJsonObjects()
         {
             //---------------Set up test pack-------------------
@@ -226,8 +227,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void PushXmlIntoEnvironment_GivenNull_ShouldLoggError()
         {
             //---------------Set up test pack-------------------
@@ -272,8 +273,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void PushResponseIntoEnvironment_GivenNoResponse_ShouldNotThrowException()
         {
             //---------------Set up test pack-------------------
@@ -297,8 +298,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void PushResponseIntoEnvironment_GivenNoResponse_ShouldNotAssignOutputs()
         {
             //---------------Set up test pack-------------------
@@ -326,8 +327,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             env.Verify(environment => environment.AddError(It.IsAny<string>()), Times.Never);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void PushResponseIntoEnvironment_GivenNoResponse_ShouldNotAaddError()
         {
             //---------------Set up test pack-------------------
@@ -352,8 +353,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             env.Verify(environment => environment.AddError(It.IsAny<string>()), Times.Never);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void PushResponseIntoEnvironment_GivenEmptyMappedTo_ShouldNotAddPath()
         {
             //---------------Set up test pack-------------------

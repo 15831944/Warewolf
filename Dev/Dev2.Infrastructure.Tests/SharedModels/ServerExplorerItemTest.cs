@@ -13,17 +13,18 @@ using System.Collections.Generic;
 using Dev2.Common.Interfaces.Explorer;
 using Dev2.Common.Interfaces.Security;
 using Dev2.Explorer;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Infrastructure.Tests.SharedModels
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ServerExplorerItemTest
     {
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerItem_Constructor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerItem_Constructor")]
         public void ServerExplorerItem_Constructor_Construct_ExpectAllFieldsAreSetup()
         {
             //------------Setup for test--------------------------
@@ -45,9 +46,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
             Assert.AreEqual(guid, serverExplorerItem.ResourceId);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerItem_Constructor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerItem_Constructor")]
         public void ServerExplorerItem_GetHashCode_ExpectHashCodeSameAsID()
         {
             //------------Setup for test--------------------------
@@ -65,9 +66,9 @@ namespace Dev2.Infrastructure.Tests.SharedModels
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ServerExplorerItem_Constructor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ServerExplorerItem_Constructor")]
         public void ServerExplorerItem_Equals_ExpectEqualityOnGuidOnly()
         {
             //------------Setup for test--------------------------

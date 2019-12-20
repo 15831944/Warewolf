@@ -28,14 +28,15 @@ using Dev2.Diagnostics;
 using Dev2.Interfaces;
 using Dropbox.Api.Files;
 using Dropbox.Api.Stone;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Storage;
 using Warewolf.Storage.Interfaces;
 
 namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfDropBoxDownloadAcivtityTestShould
     {
         static DsfDropBoxDownloadActivity CreateDropboxActivity()
@@ -48,8 +49,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
             return new ExecutionEnvironment();
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DsfDropBoxUpload_GivenNewInstance_ShouldNotBeNull()
         {
             //---------------Set up test pack-------------------
@@ -61,8 +62,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateNewActivity_GivenIsNew_ShouldHaveDisplayName()
         {
             //---------------Set up test pack-------------------
@@ -75,8 +76,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DropboxFile_GivenIsNew_ShouldNotBeNull()
         {
             //---------------Set up test pack-------------------
@@ -90,8 +91,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetFindMissingType_GivenIsNew_ShouldSetDatagridAcitivity()
         {
             //---------------Set up test pack-------------------
@@ -104,8 +105,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetDebugInputs_GivenEnvironmentIsNull_ShouldHaveNoDebugOutputs()
         {
             //---------------Set up test pack-------------------
@@ -117,8 +118,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
             Assert.AreEqual(0, debugInputs.Count());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetDebugInputs_GivenEnvironmentMockEnvironmentAndFromPath_ShouldHaveOneDebugOutputs()
         {
             //---------------Set up test pack-------------------
@@ -132,8 +133,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
             Assert.AreEqual(1, debugInputs.Count());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetDebugInputs_GivenEnvironmentMockEnvironmentAndToPathNotExecuted_ShouldHaveOneDebugOutputs()
         {
             //---------------Set up test pack-------------------
@@ -146,8 +147,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
             //---------------Test Result -----------------------
             Assert.AreEqual(1, debugInputs.Count());
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetDebugInputs_GivenEnvironmentMockEnvironmentAndToPathAndFromPath_ShouldHaveTwoDebugOutputs()
         {
             //---------------Set up test pack-------------------
@@ -163,8 +164,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
             Assert.AreEqual(1, debugInputs.Count());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetDebugOutputs_GivenNullEnvironment_ShouldHaveNoDebugOutPuts()
         {
             //---------------Set up test pack-------------------
@@ -176,8 +177,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
             Assert.AreEqual(0, debugOutputs.Count());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetDebugOutputs_GivenFileMetadataIsNull_ShouldHaveNoDebugOutPuts()
         {
             //---------------Set up test pack-------------------
@@ -189,8 +190,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
             Assert.AreEqual(0, debugOutputs.Count());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetDebugOutputs_GivenFileMetadataIsNotNull_ShouldHaveOneDebugOutPuts()
         {
             //---------------Set up test pack-------------------
@@ -209,8 +210,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetDebugOutputs_GivenWebRequestSuccess_ShouldCorrectDebugValue()
         {
             //---------------Set up test pack-------------------
@@ -233,8 +234,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
             Assert.AreEqual(0, debugOutputs.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ExecuteTool_GivenNoFromPath_ShouldAddError()
         {
             //---------------Set up test pack-------------------
@@ -256,8 +257,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
             executionEnvironment.Verify(environment => environment.AddError("Please confirm that the correct file location has been entered"));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ExecuteTool_GivenNoToPath_ShouldAddError()
         {
             //---------------Set up test pack-------------------
@@ -279,8 +280,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
             executionEnvironment.Verify(environment => environment.AddError("Please confirm that the correct file destination has been entered"));
         }
         
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ExecuteTool_GivenAllPaths_ShouldExecuteTool()
         {
             //---------------Set up test pack-------------------
@@ -301,8 +302,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         [ExpectedException(typeof(ArgumentException))]
         public void PerformExecution_GivenNoPaths_ShouldThrowException()
         {
@@ -324,8 +325,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
             Assert.Fail("Exception Not Thrown");
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void PerformExecution_GivenPaths_ShouldNotThrowException()
         {
             var singleExecutor = new Mock<IDropboxSingleExecutor<IDropboxResult>>();
@@ -363,8 +364,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
             Assert.AreEqual(GlobalConstants.DropBoxSuccess, execution);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         [ExpectedException(typeof(Exception), "Test Exception")]
         public void PerformExecution_GivenNoDropboxFilePaths_ShouldThrowException()
         {
@@ -401,8 +402,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
             Assert.Fail("Exception not Thrown");
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void PerformExecution_Givennot_fileException_ShouldHaveValidMessage()
         {
             try
@@ -446,8 +447,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void PerformExecution_GivenFileExistAndOverwriteFalse_ShouldHaveValidMessage()
         {
             try
@@ -499,8 +500,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetLocalPathManager_GivenLocalManagerIsSet_ShouldReturnLocalManager()
         {
             //---------------Set up test pack-------------------
@@ -514,8 +515,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
             Assert.AreEqual(activity.Object.LocalPathManager, mock.Object);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetLocalPathManager_GivenLocalManagerIsSet_ShouldCorrectLocalManager()
         {
             //---------------Set up test pack-------------------
@@ -528,8 +529,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
             Assert.AreEqual(activity.LocalPathManager, activity.GetLocalPathManager());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetDebugInputs_GivenValues_ShouldAddDebugInputs()
         {
             //---------------Set up test pack-------------------

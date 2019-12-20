@@ -9,17 +9,18 @@
 */
 
 using Dev2.Diagnostics.Debug;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 
 namespace Dev2.Diagnostics.Test.Debug
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class RemoteDebugMessageRepoTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(RemoteDebugMessageRepo))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(RemoteDebugMessageRepo))]
         public void RemoteDebugMessageRepo_AddDebugItem_Invalid_Guid()
         {
             Guid.TryParse("test", out Guid remoteInvokeId);
@@ -33,9 +34,9 @@ namespace Dev2.Diagnostics.Test.Debug
             Assert.IsNull(list);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(RemoteDebugMessageRepo))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(RemoteDebugMessageRepo))]
         public void RemoteDebugMessageRepo_AddDebugItem()
         {
             var remoteInvokeId = Guid.NewGuid();
@@ -50,9 +51,9 @@ namespace Dev2.Diagnostics.Test.Debug
             Assert.AreEqual(remoteInvokeId, list[0].ID);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(RemoteDebugMessageRepo))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(RemoteDebugMessageRepo))]
         public void RemoteDebugMessageRepo_AddDebugItem_AddToList()
         {
             var remoteInvokeId = Guid.NewGuid();
@@ -73,9 +74,9 @@ namespace Dev2.Diagnostics.Test.Debug
             Assert.AreEqual("otherName", list[1].Name);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(RemoteDebugMessageRepo))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(RemoteDebugMessageRepo))]
         public void RemoteDebugMessageRepo_AddDebugItem_Contains_Id()
         {
             var remoteInvokeId = Guid.NewGuid();
@@ -92,9 +93,9 @@ namespace Dev2.Diagnostics.Test.Debug
             Assert.AreEqual(remoteInvokeId, list[0].ID);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(RemoteDebugMessageRepo))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(RemoteDebugMessageRepo))]
         public void RemoteDebugMessageRepo_FetchDebugItems()
         {
             var remoteInvokeId = Guid.NewGuid();

@@ -18,30 +18,31 @@ using Dev2.Common.ExtMethods;
 using Dev2.Common.Interfaces;
 using Dev2.Runtime.Hosting;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class SendEmailActivityTests : BaseActivityUnitTest
     {
-        [TestMethod]
-        [TestCategory("SendEmail_Constructor")]
+        [Test]
+        [Category("SendEmail_Constructor")]
         public void SendEmail_Constructor_TypeIsAbstractString()
         {
             //------------Setup for test--------------------------
             //------------Execute Test---------------------------
             var activity = GetSendEmailActivity();
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(activity, typeof(DsfActivityAbstract<string>));
+            Assert.IsInstanceOf(activity.GetType(), typeof(DsfActivityAbstract<string>));
         }
 
-        [TestMethod]
-        [TestCategory("SendEmail_Constructor")]
+        [Test]
+        [Category("SendEmail_Constructor")]
         public void SendEmail_Constructor_EmailSenderIsNotAssigned_GetsNonNullValue()
         {
             //------------Setup for test--------------------------
@@ -49,11 +50,11 @@ namespace Dev2.Tests.Activities.ActivityTests
             //------------Execute Test---------------------------
             var emailSender = activity.EmailSender;
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(emailSender, typeof(EmailSender));
+            Assert.IsInstanceOf(emailSender.GetType(), typeof(EmailSender));
         }
 
-        [TestMethod]
-        [TestCategory("SendEmail_Constructor")]
+        [Test]
+        [Category("SendEmail_Constructor")]
         public void SendEmail_Constructor_EmailSenderIsAssigned_GetsGivenValue()
         {
             //------------Setup for test--------------------------
@@ -64,11 +65,11 @@ namespace Dev2.Tests.Activities.ActivityTests
             var actual = activity.EmailSender;
             //------------Assert Results-------------------------
             Assert.AreEqual(emailSender, actual);
-            Assert.IsNotInstanceOfType(actual, typeof(EmailSender));
+            Assert.IsNotInstanceOf(actual.GetType(), typeof(EmailSender));
         }
 
-        [TestMethod]
-        [TestCategory("SendEmail_GetFindMissingType")]
+        [Test]
+        [Category("SendEmail_GetFindMissingType")]
         public void SendEmail_GetFindMissingType_StaticActivityType()
         {
             //------------Setup for test--------------------------
@@ -79,8 +80,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(enFindMissingType.StaticActivity, findMissingType);
         }
 
-        [TestMethod]
-        [TestCategory("SendEmail_Execute")]
+        [Test]
+        [Category("SendEmail_Execute")]
         public void SendEmail_Execute_StaticValues_CorrectResults()
         {
             //------------Setup for test--------------------------
@@ -120,8 +121,8 @@ namespace Dev2.Tests.Activities.ActivityTests
 
 
 
-        [TestMethod]
-        [TestCategory("SendEmail_Execute")]
+        [Test]
+        [Category("SendEmail_Execute")]
         public void SendEmail_Execute_StaticValues_CorrectResults_IsHTML()
         {
             //------------Setup for test--------------------------
@@ -161,8 +162,8 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [TestCategory("SendEmail_Execute")]
+        [Test]
+        [Category("SendEmail_Execute")]
         public void SendEmail_Execute_ScalarValuesExpectCorrectResults()
         {
             //------------Setup for test--------------------------
@@ -200,8 +201,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("SubJectValue", mailMessage.Subject);
         }
 
-        [TestMethod]
-        [TestCategory("SendEmail_Execute")]
+        [Test]
+        [Category("SendEmail_Execute")]
         public void SendEmail_Execute_ScalarValuesHasToList_CorrectResults()
         {
             //------------Setup for test--------------------------
@@ -239,8 +240,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("to.so2meone@amail.account", mailMessage.To[4].Address);
         }
 
-        [TestMethod]
-        [TestCategory("SendEmail_Execute")]
+        [Test]
+        [Category("SendEmail_Execute")]
         public void SendEmail_Execute_ScalarValuesHasBCCList_CorrectResults()
         {
             //------------Setup for test--------------------------
@@ -278,8 +279,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("to.so2meone@amail.account", mailMessage.Bcc[4].Address);
         }
 
-        [TestMethod]
-        [TestCategory("SendEmail_Execute")]
+        [Test]
+        [Category("SendEmail_Execute")]
         public void SendEmail_Execute_ScalarValuesHasCCList_CorrectResults()
         {
             //------------Setup for test--------------------------
@@ -316,8 +317,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("to.so2meone@amail.account", mailMessage.CC[4].Address);
         }
 
-        [TestMethod]
-        [TestCategory("SendEmail_Execute")]
+        [Test]
+        [Category("SendEmail_Execute")]
         public void SendEmail_Execute_MixedScalarsRecordsetData_CorrectExcecution()
         {
             var emailSourceForTesting = EmailSourceForTesting();
@@ -345,9 +346,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             mock.Verify(sender => sender.Send(emailSourceForTesting, It.IsAny<MailMessage>()), Times.Exactly(4));
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SendEmail_Execute")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SendEmail_Execute")]
         public void SendEmail_Execute_FromAccount_EmailSourceIsCorrect()
         {
             Verify_Execute_FromAccount_EmailSourceIsCorrect(true);
@@ -429,8 +430,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
-        [TestCategory("SendEmail_UpdateForEachInputs")]
+        [Test]
+        [Category("SendEmail_UpdateForEachInputs")]
         public void SendEmail_UpdateForEachInputs_ScalarValuesShouldSetValues()
         {
             //------------Setup for test--------------------------
@@ -480,8 +481,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsTrue(activity.Password.IsBase64());
         }
 
-        [TestMethod]
-        [TestCategory("SendEmail_UpdateForEachOutsputs")]
+        [Test]
+        [Category("SendEmail_UpdateForEachOutsputs")]
         public void SendEmail_UpdateForEachOutsputs_ScalarValuesShouldSetValues()
         {
             //------------Setup for test--------------------------
@@ -508,9 +509,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("TheResult", activity.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetOutputs")]
         public void GetOutputs_Called_ShouldReturnListWithResultValueInIt()
         {
             //------------Setup for test--------------------------

@@ -16,21 +16,22 @@ using Dev2.Studio.Core;
 using Dev2.Studio.Core.Factories;
 using Dev2.Studio.Interfaces;
 using Dev2.Studio.Interfaces.Enums;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Core.Tests.Factories
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfActivityFactoryTests
     {
         
 
-        [TestMethod]
-        [TestCategory("DsfActivityFactory_CreateDsfActivity")]
+        [Test]
+        [Category("DsfActivityFactory_CreateDsfActivity")]
         [Description("DsfActivityFactory must assign the resource and environment ID.")]
-        [Owner("Trevor Williams-Ros")]
+        [Author("Trevor Williams-Ros")]
         public void DsfActivityFactory_UnitTest_ResourceAndEnvironmentIDAssigned_Done()
         {
             var expectedResourceID = Guid.NewGuid();
@@ -57,9 +58,9 @@ namespace Dev2.Core.Tests.Factories
             Assert.AreEqual(expectedEnvironmentID, actualEnvironmentID, "DsfActivityFactory did not assign the environment ID.");
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("DsfActivityFactory_CreateDsfActivity")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("DsfActivityFactory_CreateDsfActivity")]
         public void DsfActivityFactory_CreateDsfActivity_NullWorkflowXamlServerResourceTypeWebService_TypeIsWebService()
         {
             //------------Setup for test--------------------------
@@ -85,9 +86,9 @@ namespace Dev2.Core.Tests.Factories
             Assert.AreEqual("WebService", ((Literal<string>)activity.Type.Expression).Value);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("DsfActivityFactory_CreateDsfActivity")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("DsfActivityFactory_CreateDsfActivity")]
         public void DsfActivityFactory_CreateDsfActivity_NullWorkflowXamlServerResourceTypeDbService_TypeIsDbService()
         {
             //------------Setup for test--------------------------
@@ -113,9 +114,9 @@ namespace Dev2.Core.Tests.Factories
             Assert.AreEqual("DbService", ((Literal<string>)activity.Type.Expression).Value);
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("DsfActivityFactory_CreateDsfActivity")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("DsfActivityFactory_CreateDsfActivity")]
         public void DsfActivityFactory_CreateDsfActivity_NullWorkflowXamlServerResourceTypePluginService_TypeIsPluginService()
         {
             //------------Setup for test--------------------------
@@ -141,9 +142,9 @@ namespace Dev2.Core.Tests.Factories
             Assert.AreEqual("PluginService", ((Literal<string>)activity.Type.Expression).Value);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DsfActivityFactory_CreateDsfActivity")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DsfActivityFactory_CreateDsfActivity")]
         public void DsfActivityFactory_CreateDsfActivity_WhenRemoteEnviromentIsActiveAndActivityFromRemoteEnvironment_ExpectEnviromentIDEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -170,9 +171,9 @@ namespace Dev2.Core.Tests.Factories
             Assert.AreEqual(Guid.Empty.ToString(), activity.EnvironmentID.Expression.ToString());
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DsfActivityFactory_CreateDsfActivity")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DsfActivityFactory_CreateDsfActivity")]
         public void DsfActivityFactory_CreateDsfActivity_WhenLocalEnviromentIsActiveAndActivityFromRemoteEnvironment_ExpectRemoteEnviromentID()
         {
             //------------Setup for test--------------------------

@@ -20,17 +20,18 @@ using Dev2.Studio.Interfaces;
 using Dev2.Studio.Interfaces.Search;
 using Dev2.ViewModels;
 using Microsoft.Practices.Prism.Mvvm;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Studio.Tests.ViewModels
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SearchModelTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SearchModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [NUnit.Framework.Category(nameof(SearchModel))]
         public void SearchModel_Constructor_Validate()
         {
             const string expectedDisplayName = "SearchViewDisplayName";

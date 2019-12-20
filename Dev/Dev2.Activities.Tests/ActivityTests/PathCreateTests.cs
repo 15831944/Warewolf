@@ -13,7 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ActivityUnitTests;
 using Dev2.Common.State;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.ActivityTests
@@ -21,7 +21,8 @@ namespace Dev2.Tests.Activities.ActivityTests
     /// <summary>
     /// Summary description for DateTimeDifferenceTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class PathCreateTests : BaseActivityUnitTest
     {
@@ -36,14 +37,14 @@ namespace Dev2.Tests.Activities.ActivityTests
         
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfPathCreate_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfPathCreate_UpdateForEachInputs")]
         public void DsfPathCreate_UpdateForEachInputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
-            var outputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
+            var outputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
             var act = new DsfPathCreate { OutputPath = outputPath, Result = "[[CompanyName]]" };
 
             //------------Execute Test---------------------------
@@ -52,15 +53,15 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(outputPath, act.OutputPath);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfPathCreate_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfPathCreate_UpdateForEachInputs")]
         public void DsfPathCreate_UpdateForEachInputs_MoreThan1Updates_DoesNotUpdates()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
-            var inputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]].txt");
-            var outputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
+            var inputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]].txt");
+            var outputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
             var act = new DsfPathCreate { OutputPath = outputPath, Result = "[[CompanyName]]" };
 
             var tuple1 = new Tuple<string, string>(outputPath, "Test");
@@ -71,14 +72,14 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(outputPath, act.OutputPath);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfPathCreate_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfPathCreate_UpdateForEachInputs")]
         public void DsfPathCreate_UpdateForEachInputs_1Update_Updates()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
-            var outputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
+            var outputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
             var act = new DsfPathCreate { OutputPath = outputPath, Result = "[[CompanyName]]" };
 
             var tuple1 = new Tuple<string, string>(outputPath, "Test");
@@ -89,30 +90,30 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfPathCreate_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfPathCreate_UpdateForEachOutputs")]
         public void DsfPathCreate_UpdateForEachOutputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
             const string result = "[[CompanyName]]";
-            var act = new DsfPathCreate { OutputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt"), Result = result };
+            var act = new DsfPathCreate { OutputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt"), Result = result };
 
             act.UpdateForEachOutputs(null);
             //------------Assert Results-------------------------
             Assert.AreEqual(result, act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfPathCreate_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfPathCreate_UpdateForEachOutputs")]
         public void DsfPathCreate_UpdateForEachOutputs_MoreThan1Updates_DoesNothing()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
             const string result = "[[CompanyName]]";
-            var act = new DsfPathCreate { OutputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt"), Result = result };
+            var act = new DsfPathCreate { OutputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt"), Result = result };
 
             var tuple1 = new Tuple<string, string>("Test", "Test");
             var tuple2 = new Tuple<string, string>("Test2", "Test2");
@@ -122,14 +123,14 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(result, act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfPathCreate_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfPathCreate_UpdateForEachOutputs")]
         public void DsfPathCreate_UpdateForEachOutputs_1Updates_UpdateResult()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
-            var outputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
+            var outputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
             var act = new DsfPathCreate { OutputPath = outputPath, Result = "[[CompanyName]]" };
 
             var tuple1 = new Tuple<string, string>("[[CompanyName]]", "Test");
@@ -139,14 +140,14 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Test", act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfPathCreate_GetForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfPathCreate_GetForEachInputs")]
         public void DsfPathCreate_GetForEachInputs_WhenHasExpression_ReturnsInputList()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
-            var outputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
+            var outputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
             var act = new DsfPathCreate { OutputPath = outputPath, Result = "[[CompanyName]]" };
 
             //------------Execute Test---------------------------
@@ -157,15 +158,15 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(outputPath, dsfForEachItems[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfPathCreate_GetForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfPathCreate_GetForEachOutputs")]
         public void DsfPathCreate_GetForEachOutputs_WhenHasResult_ReturnsOutputList()
         {
             //------------Setup for test--------------------------
             var newGuid = Guid.NewGuid();
             const string result = "[[CompanyName]]";
-            var act = new DsfPathCreate { OutputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt"), Result = result };
+            var act = new DsfPathCreate { OutputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt"), Result = result };
 
             //------------Execute Test---------------------------
             var dsfForEachItems = act.GetForEachOutputs();
@@ -175,9 +176,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(result, dsfForEachItems[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DsfPathCreate_GetState")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DsfPathCreate_GetState")]
         public void DsfPathCreate_GetState_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------

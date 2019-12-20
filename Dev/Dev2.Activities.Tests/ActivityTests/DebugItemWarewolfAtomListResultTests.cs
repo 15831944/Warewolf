@@ -1,16 +1,17 @@
 ﻿using Dev2.Activities.Debug;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Storage.Interfaces;
 using WarewolfParserInterop;
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DebugItemWarewolfAtomListResultTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DebugItemWarewolfAtomListResult_GivenIsNew_GetDebugItemResult()
         {
             //---------------Set up test pack-------------------
@@ -34,8 +35,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsNotNull(debugEvalResult);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
+        [Test]
+        [Author("Rory McGuire")]
         public void DebugItemWarewolfAtomListResult_IsScalarOldValue_GetDebugItemResult()
         {
             //---------------Set up test pack-------------------
@@ -58,8 +59,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("{\"PolicyNo\":\"A0003\",\"DateId\":32,\"SomeVal\":\"Bob\"}", debugItemResults[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
+        [Test]
+        [Author("Rory McGuire")]
         public void DebugItemWarewolfAtomListResult_IsListOldValue_GetDebugItemResult()
         {
             //---------------Set up test pack-------------------
@@ -82,8 +83,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("KingDom Of The Zulu", debugItemResults[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
+        [Test]
+        [Author("Rory McGuire")]
         public void DebugItemWarewolfAtomListResult_IsListOldValue_GetDebugItemResult2()
         {
             //---------------Set up test pack-------------------
@@ -108,8 +109,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("[[newValue(1).PolicyNo]]", debugItemResults[0].Variable);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
+        [Test]
+        [Author("Rory McGuire")]
         public void DebugItemWarewolfAtomListResult_IsListOldValue_IsCalculate_GetDebugItemResult()
         {
             //---------------Set up test pack-------------------
@@ -134,8 +135,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(rightLabel, debugItemResults[0].Label);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
+        [Test]
+        [Author("Rory McGuire")]
         public void DebugItemWarewolfAtomListResult_IsListOldValue_LeftLabel_IsNotCalculate_GetDebugItemResult()
         {
             //---------------Set up test pack-------------------
@@ -162,8 +163,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(null, debugItemResults[0].Variable);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
+        [Test]
+        [Author("Rory McGuire")]
         public void DebugItemWarewolfAtomListResult_IsListOldValue_LeftLabel_IsCalculate_GetDebugItemResult()
         {
             //---------------Set up test pack-------------------
@@ -190,8 +191,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("[[Variable()]]", debugItemResults[0].Variable);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
+        [Test]
+        [Author("Rory McGuire")]
         public void DebugItemWarewolfAtomListResult_IsListOldValue_IsCalculate_GetDebugItemResult2()
         {
             //---------------Set up test pack-------------------
@@ -218,8 +219,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(rightLabel, debugItemResults[0].Label);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DebugItemWarewolfAtomListResult_GivenJsonArrayResult_GetDebugItemResult()
         {
             //---------------Set up test pack-------------------
@@ -244,8 +245,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("[[@Variable()]]", debugItemResults[0].GroupName);
             Assert.IsNotNull(debugEvalResult);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DebugItemWarewolfAtomListResult_GivenRecordsetResult_GetDebugItemResult()
         {
             //---------------Set up test pack-------------------
@@ -271,8 +272,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsNotNull(debugEvalResult);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DebugItemWarewolfAtomListResult_GetDebugItemResult()
         {
             //---------------Set up test pack-------------------

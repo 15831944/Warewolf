@@ -55,7 +55,7 @@ using Dev2.Util;
 using Dev2.Utilities;
 using Dev2.Workspaces;
 using Microsoft.Practices.Prism.Mvvm;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Dev2.ViewModels;
 using Warewolf.Studio.ViewModels;
@@ -65,10 +65,11 @@ using Dev2.Triggers;
 
 namespace Dev2.Core.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class MainViewModelTests : MainViewModelBase
     {
-        [TestInitialize]
+        [SetUp]
         public void Initialize()
         {
             AppUsageStats.LocalHost = "http://localhost:3142";
@@ -90,14 +91,14 @@ namespace Dev2.Core.Tests
             CustomContainer.Register(serverRepo.Object);
         }
 
-        [TestMethod]
+        [Test]
         public void DeployCommandCanExecuteIrrespectiveOfEnvironments()
         {
             CreateFullExportsAndVm();
             Assert.IsTrue(_shellViewModel.DeployCommand.CanExecute(null));
         }
 
-        [TestMethod]
+        [Test]
         public void MainViewModel_ShowPopupMessage_CallsPopupController()
         {
             CreateFullExportsAndVm();
@@ -105,9 +106,9 @@ namespace Dev2.Core.Tests
             _popupController.Verify(controller => controller.Show(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<MessageBoxButton>(), MessageBoxImage.Error, @"", false, true, false, false, false, false), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("MainViewModel_ToolboxViewModel")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("MainViewModel_ToolboxViewModel")]
         public void MainViewModel_ToolboxViewModel_WhenInContainer_ShouldReturnContainerValue()
         {
             //------------Setup for test--------------------------
@@ -121,9 +122,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(toolboxViewModel, mainViewModelToolboxViewModel);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("MainViewModel_SettingsCommand")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("MainViewModel_SettingsCommand")]
         public void MainViewModel_SettingsCommand_CanExecute_Correct()
         {
             Verify_SettingsCommand_CanExecute(expected: true, isAuthorized: true, isConnected: true, canStudioExecute: true);
@@ -148,7 +149,7 @@ namespace Dev2.Core.Tests
         #region Constructor
 
         // PBI 9397 - 2013.06.09 - TWR: added
-        [TestMethod]
+        [Test]
         public void MainViewModelConstructorWithWorkspaceItemsInRepositoryExpectedLoadsWorkspaceItems()
         {
             var workspaceID = Guid.NewGuid();
@@ -207,7 +208,7 @@ namespace Dev2.Core.Tests
         }
 
         // PBI 9397 - 2013.06.09 - TWR: added
-        [TestMethod]
+        [Test]
         public void MainViewModelConstructorWithWorkspaceItemsInRepositoryExpectedNotLoadsWorkspaceItemsWithDifferentEnvID()
         {
             var workspaceID = Guid.NewGuid();
@@ -255,7 +256,7 @@ namespace Dev2.Core.Tests
         }
 
         // PBI 9397 - 2013.06.09 - TWR: added
-        [TestMethod]
+        [Test]
         public void MainViewModelConstructorWithWorkspaceItemsInRepositoryExpectedNotLoadsWorkspaceItemsWithSameEnvID()
         {
             var workspaceID = Guid.NewGuid();
@@ -309,10 +310,10 @@ namespace Dev2.Core.Tests
             Assert.IsNotNull(expected);
         }
 
-        [TestMethod]
-        [TestCategory("MainViewModel_Constructor")]
+        [Test]
+        [Category("MainViewModel_Constructor")]
         [Description("Constructor must not allow null AsyncWorker.")]
-        [Owner("Trevor Williams-Ros")]
+        [Author("Trevor Williams-Ros")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void MainViewModel_UnitTest_ConstructorWithNullAsyncWorker_ThrowsArgumentNullException()
         {
@@ -336,7 +337,7 @@ namespace Dev2.Core.Tests
 
         #region Close Context
 
-        [TestMethod]
+        [Test]
         public void MainViewModel_CloseWorkSurfaceContext_CloseTrueAndResourceSaved_RemoveWorkspaceItemRemoveCalledAndTabClosedMessageAndContextRemoved()
         {
             CreateFullExportsAndVm();
@@ -355,7 +356,7 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(_shellViewModel.Items.Count == 1);
         }
 
-        [TestMethod]
+        [Test]
         public void MainViewModel_CloseWorkSurfaceContext_CloseTrueAndResourceNotSavedPopupOk_RemoveWorkspaceItemCalledAndContextRemovedAndSaveResourceEventAggregatorMessage()
         {
             CreateFullExportsAndVm();
@@ -383,9 +384,9 @@ namespace Dev2.Core.Tests
             _eventAggregator.Verify(e => e.Publish(It.IsAny<SaveResourceMessage>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("MainViewModel_DeactivateItem")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("MainViewModel_DeactivateItem")]
         public void MainViewModel_DeactivateItem_WorkSurfaceContextViewModelIsNull_RemoveIsNotCalledOnTheRepo()
         {
             CreateFullExportsAndVm();
@@ -397,7 +398,7 @@ namespace Dev2.Core.Tests
             _mockWorkspaceRepo.Verify(c => c.Remove(_firstResource.Object), Times.Never());
         }
 
-        [TestMethod]
+        [Test]
         public void MainViewModel_CloseWorkSurfaceContext_CloseTrueAndResourceNotSavedPopupNotOk_WorkspaceItemNotRemoved()
         {
             CreateFullExportsAndVm();
@@ -413,9 +414,9 @@ namespace Dev2.Core.Tests
             _mockWorkspaceRepo.Verify(c => c.Remove(_firstResource.Object), Times.Never());
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("MainViewModel_IsWorkFlowOpened")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("MainViewModel_IsWorkFlowOpened")]
         public void MainViewModel_IsWorkFlowOpened_ResourceIsOpened_True()
         {
             //------------Setup for test--------------------------
@@ -427,9 +428,9 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(isWorkflowOpened);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("MainViewModel_IsWorkFlowOpened")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("MainViewModel_IsWorkFlowOpened")]
         public void MainViewModel_IsWorkFlowOpened_ResourceIsNotOpened_False()
         {
             //------------Setup for test--------------------------
@@ -445,7 +446,7 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(isWorkflowOpened);
         }
 
-        [TestMethod]
+        [Test]
         public void MainViewModel_CloseWorkSurfaceContext_CloseFalse_PreviousItemActivatedAndAllItemsPResent()
         {
             CreateFullExportsAndVm();
@@ -465,7 +466,7 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(_shellViewModel.ActiveItem.Equals(firstCtx));
         }
 
-        [TestMethod]
+        [Test]
         public void MainViewModel_CloseWorkSurfaceContext_CloseTrue_PreviousItemActivatedAndOneLessItem()
         {
             CreateFullExportsAndVm();
@@ -485,7 +486,7 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(_shellViewModel.ActiveItem.Equals(secondCtx));
         }
 
-        [TestMethod]
+        [Test]
         public void MainViewModel_CloseWorkSurfaceContext_CloseFalse_ContextNotRemoved()
         {
             CreateFullExportsAndVm();
@@ -497,10 +498,10 @@ namespace Dev2.Core.Tests
             _mockWorkspaceRepo.Verify(c => c.Remove(_firstResource.Object), Times.Never());
         }
 
-        [TestMethod]
-        [TestCategory("MainViewModel_CloseWorkSurfaceContext")]
+        [Test]
+        [Category("MainViewModel_CloseWorkSurfaceContext")]
         [Description("An exisiting workflow with unsaved changes that is not saved, must rollback the resource model.")]
-        [Owner("Trevor Williams-Ros")]
+        [Author("Trevor Williams-Ros")]
         public void MainViewModel_CloseWorkSurfaceContext_ExistingUnsavedWorkflowNotSaved_ResourceModelRolledback()
         {
             CreateFullExportsAndVm();
@@ -517,10 +518,10 @@ namespace Dev2.Core.Tests
             _firstResource.Verify(r => r.Rollback(), Times.Once(), "ResourceModel was not rolled back when not saved.");
         }
 
-        [TestMethod]
-        [TestCategory("MainViewModel_CloseWorkSurfaceContext")]
+        [Test]
+        [Category("MainViewModel_CloseWorkSurfaceContext")]
         [Description("An exisiting workflow with unsaved changes that is saved, must commit the resource model.")]
-        [Owner("Trevor Williams-Ros")]
+        [Author("Trevor Williams-Ros")]
         public void MainViewModel_CloseWorkSurfaceContext_ExistingUnsavedWorkflowSaved_ResourceModelCommitted()
         {
             CreateFullExportsAndVm();
@@ -538,10 +539,10 @@ namespace Dev2.Core.Tests
         }
 
 
-        [TestMethod]
-        [TestCategory("MainViewModel_CloseWorkSurfaceContext")]
+        [Test]
+        [Category("MainViewModel_CloseWorkSurfaceContext")]
         [Description("An exisiting workflow with unsaved changes that is saved, must commit the resource model.")]
-        [Owner("Leon Rajindrapersadh")]
+        [Author("Leon Rajindrapersadh")]
         public void MainViewModel_CloseWorkSurfaceContext_ExistingUnsavedWorkflowSaved_WhenDeletedNoPopup()
         {
             CreateFullExportsAndVm();
@@ -563,10 +564,10 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [TestCategory("MainViewModel_CloseWorkSurfaceContext")]
+        [Test]
+        [Category("MainViewModel_CloseWorkSurfaceContext")]
         [Description("An exisiting workflow with unsaved changes that is saved, must commit the resource model.")]
-        [Owner("Leon Rajindrapersadh")]
+        [Author("Leon Rajindrapersadh")]
         public void MainViewModel_CloseResource()
         {
             CreateFullExportsAndVm();
@@ -593,10 +594,10 @@ namespace Dev2.Core.Tests
                         It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>(), It.IsAny<bool>()), Times.Never);
         }
 
-        [TestMethod]
-        [TestCategory("MainViewModel_CreateTest")]
+        [Test]
+        [Category("MainViewModel_CreateTest")]
         [Description("An exisiting workflow with unsaved changes that is saved, must commit the resource model.")]
-        [Owner("Pieter Terblanche")]
+        [Author("Pieter Terblanche")]
         public void MainViewModel_CreateTest()
         {
             CreateFullExportsAndVm();
@@ -617,10 +618,10 @@ namespace Dev2.Core.Tests
             _shellViewModel.CreateTest(resourceId);
         }
 
-        [TestMethod]
-        [TestCategory("MainViewModel_RunAllTests")]
+        [Test]
+        [Category("MainViewModel_RunAllTests")]
         [Description("An exisiting workflow with unsaved changes that is saved, must commit the resource model.")]
-        [Owner("Pieter Terblanche")]
+        [Author("Pieter Terblanche")]
         public void MainViewModel_RunAllTests()
         {
             CreateFullExportsAndVm();
@@ -641,10 +642,10 @@ namespace Dev2.Core.Tests
             _shellViewModel.RunAllTests(string.Empty, resourceId, new Mock<IExternalProcessExecutor>().Object);
         }
 
-        [TestMethod]
-        [TestCategory("MainViewModel_CloseResourceTestView")]
+        [Test]
+        [Category("MainViewModel_CloseResourceTestView")]
         [Description("An exisiting workflow with unsaved changes that is saved, must commit the resource model.")]
-        [Owner("Pieter Terblanche")]
+        [Author("Pieter Terblanche")]
         public void MainViewModel_CloseResourceTestView()
         {
             CreateFullExportsAndVm();
@@ -665,10 +666,10 @@ namespace Dev2.Core.Tests
             _shellViewModel.CloseResourceTestView(resourceId, _serverId, mockEnv.Object.EnvironmentID);
         }
 
-        [TestMethod]
-        [TestCategory("MainViewModel_CloseResourceMergeView")]
+        [Test]
+        [Category("MainViewModel_CloseResourceMergeView")]
         [Description("An exisiting workflow with unsaved changes that is saved, must commit the resource model.")]
-        [Owner("Pieter Terblanche")]
+        [Author("Pieter Terblanche")]
         public void MainViewModel_CloseResourceMergeView()
         {
             CreateFullExportsAndVm();
@@ -689,9 +690,9 @@ namespace Dev2.Core.Tests
             _shellViewModel.CloseResourceMergeView(resourceId, _serverId, mockEnv.Object.EnvironmentID);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("MainViewModel_CloseWorkSurfaceContext")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("MainViewModel_CloseWorkSurfaceContext")]
         public void MainViewModel_CloseWorkSurfaceContext_UnsavedWorkflowAndResourceCanSaveIsFalse_ResourceModelIsNotSaved()
         {
             //------------Setup for test--------------------------
@@ -710,7 +711,7 @@ namespace Dev2.Core.Tests
 
             //------------Execute Test---------------------------
             _shellViewModel.WorksurfaceContextManager.CloseWorkSurfaceContext(activetx, null);
-            var pvt = new PrivateObject(_shellViewModel);
+            var pvt = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(_shellViewModel);
             //------------Assert Results-------------------------
             _eventAggregator.Verify(e => e.Publish(It.IsAny<SaveResourceMessage>()), Times.Never());
             _firstResource.Verify(r => r.Commit(), Times.Never(), "ResourceModel was committed when saved.");
@@ -723,7 +724,7 @@ namespace Dev2.Core.Tests
 
         #region Workspaces and init
 
-        [TestMethod]
+        [Test]
         public void OnImportsSatisfiedExpectsTwoItems()
         {
             CreateFullExportsAndVm();
@@ -731,7 +732,7 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(2, _shellViewModel.Items.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void OnImportsSatisfiedExpectsContextsAddedForSavedWorkspaces()
         {
             CreateFullExportsAndVm();
@@ -743,7 +744,7 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(expectedKey.ResourceID.Equals(activetx.WorkSurfaceKey.ResourceID) && expectedKey.ServerID.Equals(activetx.WorkSurfaceKey.ServerID));
         }
 
-        [TestMethod]
+        [Test]
         public void OnImportsSatisfiedExpectsDisplayNameSet()
         {
             CreateFullExportsAndVm();
@@ -756,9 +757,9 @@ namespace Dev2.Core.Tests
 
         #region Commands
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("MainViewModel_ShowStartPageCommand")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("MainViewModel_ShowStartPageCommand")]
         public void MainViewModel_ShowStartPageCommand_ShowStartPageActive()
         {
             CreateFullExportsAndVm();
@@ -768,9 +769,9 @@ namespace Dev2.Core.Tests
             Assert.IsNotNull(langHelpCtx);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("MainViewModel_DebugCommand")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("MainViewModel_DebugCommand")]
         public void MainViewModel_DebugCommand_NotNull()
         {
             CreateFullExportsAndVm();
@@ -780,9 +781,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(_shellViewModel.ActiveItem.DebugCommand, authorizeCommand);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("MainViewModel_DebugCommand")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("MainViewModel_DebugCommand")]
         public void MainViewModel_DebugCommandNoActiveItem_NotNull()
         {
             CreateFullExportsAndVmWithEmptyRepo();
@@ -793,9 +794,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(AuthorizationContext.None, authorizeCommand.AuthorizationContext);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("MainViewModel_QuickDebugCommand")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("MainViewModel_QuickDebugCommand")]
         public void MainViewModel_QuickDebugCommand_NotNull()
         {
             CreateFullExportsAndVm();
@@ -805,9 +806,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(_shellViewModel.ActiveItem.QuickDebugCommand, authorizeCommand);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("MainViewModel_QuickDebugCommand")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("MainViewModel_QuickDebugCommand")]
         public void MainViewModel_QuickDebugCommandNoActiveItem_NotNull()
         {
             CreateFullExportsAndVmWithEmptyRepo();
@@ -820,9 +821,9 @@ namespace Dev2.Core.Tests
 
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("MainViewModel_SaveCommand")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("MainViewModel_SaveCommand")]
         public void MainViewModel_SaveCommand_NotNull()
         {
             CreateFullExportsAndVm();
@@ -832,9 +833,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(_shellViewModel.ActiveItem.SaveCommand, authorizeCommand);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("MainViewModel_SaveCommand")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("MainViewModel_SaveCommand")]
         public void MainViewModel_SaveCommandNoActiveItem_NotNull()
         {
             CreateFullExportsAndVmWithEmptyRepo();
@@ -846,9 +847,9 @@ namespace Dev2.Core.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("MainViewModel_QuickViewInBrowserCommand")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("MainViewModel_QuickViewInBrowserCommand")]
         public void MainViewModel_QuickViewInBrowserCommand_NotNull()
         {
             CreateFullExportsAndVm();
@@ -858,9 +859,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(_shellViewModel.ActiveItem.QuickViewInBrowserCommand, authorizeCommand);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("MainViewModel_QuickViewInBrowserCommand")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("MainViewModel_QuickViewInBrowserCommand")]
         public void MainViewModel_QuickViewInBrowserCommandNoActiveItem_NotNull()
         {
             CreateFullExportsAndVmWithEmptyRepo();
@@ -871,9 +872,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(AuthorizationContext.None, authorizeCommand.AuthorizationContext);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("MainViewModel_ViewInBrowserCommand")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("MainViewModel_ViewInBrowserCommand")]
         public void MainViewModel_ViewInBrowserCommand_NotNull()
         {
             CreateFullExportsAndVm();
@@ -883,9 +884,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(_shellViewModel.ActiveItem.ViewInBrowserCommand, authorizeCommand);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("MainViewModel_ViewInBrowserCommand")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("MainViewModel_ViewInBrowserCommand")]
         public void MainViewModel_ViewInBrowserCommandNoActiveItem_NotNull()
         {
             CreateFullExportsAndVmWithEmptyRepo();
@@ -896,9 +897,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(AuthorizationContext.None, authorizeCommand.AuthorizationContext);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("MainViewModel_ShowCommunityPageCommand")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("MainViewModel_ShowCommunityPageCommand")]
         public void MainViewModel_ShowCommunityPageCommand_ShowShowCommunityPagActive()
         {
             CreateFullExportsAndVm();
@@ -907,9 +908,9 @@ namespace Dev2.Core.Tests
             _browserPopupController.Verify(controller => controller.ShowPopup(It.IsAny<string>()));
         }
 
-        [TestMethod]
+        [Test]
         [Description("Makes sure that new workflow only calls TempSave, not save on the resource repository")]
-        [Owner("Jurie Smit")]
+        [Author("Jurie Smit")]
         public void MainViewModel_Regression_NewWorkFlowCommand_DoesNotSaveRepository()
         {
             //Setup
@@ -942,7 +943,7 @@ namespace Dev2.Core.Tests
 
         #region Delete
 
-        [TestMethod]
+        [Test]
         public void DeleteResourceConfirmedExpectContextRemoved()
         {
             CreateFullExportsAndVm();
@@ -952,7 +953,7 @@ namespace Dev2.Core.Tests
             _resourceRepo.Verify(s => s.HasDependencies(_firstResource.Object), Times.Once());
         }
 
-        [TestMethod]
+        [Test]
         public void DeleteResourceConfirmedExpectContextRemoved2()
         {
             CreateFullExportsAndVm();
@@ -962,9 +963,9 @@ namespace Dev2.Core.Tests
             _resourceRepo.Verify(s => s.HasDependencies(_firstResource.Object), Times.Exactly(2));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("MainViewModel_HandleDeleteResourceMessage")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("MainViewModel_HandleDeleteResourceMessage")]
         public void MainViewModel_HandleDeleteResourceMessage_WhenHasActionDeclined_PerformsAction()
         {
             //------------Setup for test--------------------------
@@ -982,9 +983,9 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(_actionInvoked);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("MainViewModel_HandleDeleteResourceMessage")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("MainViewModel_HandleDeleteResourceMessage")]
         public void MainViewModel_HandleDeleteResourceMessage_WhenHasNullResource_PerformsAction()
         {
             //------------Setup for test--------------------------
@@ -1002,7 +1003,7 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(_actionInvoked);
         }
 
-        [TestMethod]
+        [Test]
         public void DeleteResourceWithConfirmExpectsDependencyServiceCalled()
         {
             CreateFullExportsAndVm();
@@ -1016,7 +1017,7 @@ namespace Dev2.Core.Tests
 
 
 
-        [TestMethod]
+        [Test]
         public void DeleteResourceWithDeclineExpectsDependencyServiceCalled()
         {
             CreateFullExportsAndVm();
@@ -1027,7 +1028,7 @@ namespace Dev2.Core.Tests
             _resourceRepo.Verify(s => s.HasDependencies(_firstResource.Object), Times.Never());
         }
 
-        [TestMethod]
+        [Test]
         public void DeleteResourceWithNullResourceExpectsNoPoupShown()
         {
             CreateFullExportsAndVm();
@@ -1038,7 +1039,7 @@ namespace Dev2.Core.Tests
             _popupController.Verify(s => s.Show(), Times.Never());
         }
 
-        [TestMethod]
+        [Test]
         public void TestFromDebugExpectsNoPoupShown()
         {
             CreateFullExportsAndVm();
@@ -1055,7 +1056,7 @@ namespace Dev2.Core.Tests
             _popupController.Verify(s => s.Show(), Times.Never());
         }
 
-        [TestMethod]
+        [Test]
         public void TestFromDebugAddAndActivateWorkSurface()
         {
             CreateFullExportsAndVm();
@@ -1077,7 +1078,7 @@ namespace Dev2.Core.Tests
             _popupController.Verify(s => s.Show(), Times.Never());
         }
 
-        [TestMethod]
+        [Test]
         public void TestFromDebugExistingWorkSurface()
         {
             CreateFullExportsAndVm();
@@ -1109,10 +1110,10 @@ namespace Dev2.Core.Tests
 
 
 
-        [TestMethod]
-        [TestCategory("MainViewmodel_Delete")]
+        [Test]
+        [Category("MainViewmodel_Delete")]
         [Description("Unassigned resources can be deleted")]
-        [Owner("Ashley Lewis")]
+        [Author("Ashley Lewis")]
 
         public void MainViewmodel_UnitTest_DeleteUnassignedResource_ResourceRepositoryDeleteResourceCalled()
 
@@ -1143,9 +1144,9 @@ namespace Dev2.Core.Tests
         #region ShowStartPage
 
         // PBI 9512 - 2013.06.07 - TWR: added
-        [TestMethod]
+        [Test]
        
-        [TestCategory("ShowStartPage")]
+        [Category("ShowStartPage")]
         public void MainViewModelShowStartPageExpectedGetsLatestFirst()
         {
             CreateFullExportsAndVm();
@@ -1154,9 +1155,9 @@ namespace Dev2.Core.Tests
             _shellViewModel.ShowStartPageAsync();
             versionChecker.Verify(v => v.CommunityPageUri);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("ShowStartPage")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("ShowStartPage")]
         public void MainViewModelShowStartPageExpectedTracking()
         {
             var _applicationTrackerMock = new Mock<IApplicationTracker>();
@@ -1181,7 +1182,7 @@ namespace Dev2.Core.Tests
 
         #region DeactivateItem
 
-        [TestMethod]
+        [Test]
         public void MainViewModelDeactivateItemWithPreviousItemNotOpenExpectedNoActiveItem()
         {
             var wsiRepo = new Mock<IWorkspaceItemRepository>();
@@ -1239,9 +1240,9 @@ namespace Dev2.Core.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("MainViewModel_UnsavedWorkflowDialog")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("MainViewModel_UnsavedWorkflowDialog")]
         public void MainViewModel_UnsavedWorkflowDialog_WhenXPressed_WorkflowRemainsOpen()
         {
             var wsiRepo = new Mock<IWorkspaceItemRepository>();
@@ -1301,9 +1302,9 @@ namespace Dev2.Core.Tests
         }
 
         // PBI 9405 - 2013.06.13 - Massimo.Guerrera
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("MainViewModel")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("MainViewModel")]
         [Description("When closing a new workflow with nothing on it the pop up should not show")]
         public void MainViewModel_UnitTest_CloseNewWorkflowWithNoChanges_PopUpMustNotShow()
         {
@@ -1365,9 +1366,9 @@ namespace Dev2.Core.Tests
         }
 
         // PBI 9405 - 2013.06.13 - Massimo.Guerrera
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("MainViewModel")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("MainViewModel")]
         public void MainViewModel_RemoveResourceAndCloseTabMessage_PopUpMustNotShow()
         {
             var wsiRepo = new Mock<IWorkspaceItemRepository>();
@@ -1428,9 +1429,9 @@ namespace Dev2.Core.Tests
             mockPopUp.Verify(m => m.Show(), Times.Never());
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("MainViewModel")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("MainViewModel")]
         public void MainViewModel_RemoveResourceAndCloseTabMessage_RemoveFromWorkspace_PopUpMustNotShow()
         {
             var wsiRepo = new Mock<IWorkspaceItemRepository>();
@@ -1494,7 +1495,7 @@ namespace Dev2.Core.Tests
         #region OnDeactivate
 
         // PBI 9397 - 2013.06.09 - TWR: added
-        [TestMethod]
+        [Test]
         public void MainViewModelOnDeactivateWithTrueExpectedSavesWorkspaceItems()
         {
             var wsiRepo = new Mock<IWorkspaceItemRepository>();
@@ -1524,7 +1525,7 @@ namespace Dev2.Core.Tests
         }
 
         // PBI 9397 - 2013.06.09 - TWR: added
-        [TestMethod]
+        [Test]
         public void MainViewModelOnDeactivateWithTrueExpectedSavesResourceModels()
         {
             var wsiRepo = new Mock<IWorkspaceItemRepository>();
@@ -1572,7 +1573,7 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
+        [Test]
         public void MainViewModelOnDeactivateWithTrueExpectedSavesResourceModels_WhenEnvironmentNotConnectedDoesNotCallSave()
         {
             var wsiRepo = new Mock<IWorkspaceItemRepository>();
@@ -1634,7 +1635,7 @@ namespace Dev2.Core.Tests
 
         #region BrowserPopupController
 
-        [TestMethod]
+        [Test]
         public void MainViewModelShowCommunityPageExpectedInvokesConstructorsBrowserPopupController()
         {
             var popupController = new Mock<IBrowserPopupController>();
@@ -1660,7 +1661,7 @@ namespace Dev2.Core.Tests
             popupController.Verify(p => p.ShowPopup(It.IsAny<string>()));
         }
 
-        [TestMethod]
+        [Test]
         public void MainViewModelConstructorWithNullBrowserPopupControllerExpectedCreatesExternalBrowserPopupController()
         {
             var mockEventAggregator = new Mock<IEventAggregator>();
@@ -1678,10 +1679,10 @@ namespace Dev2.Core.Tests
             var viewMock = new Mock<IView>();
             vieFactory.Setup(factory => factory.GetViewGivenServerResourceType(It.IsAny<string>())).Returns(viewMock.Object);
             var vm = new ShellViewModel(mockEventAggregator.Object, new Mock<IAsyncWorker>().Object, envRepo.Object, new Mock<IVersionChecker>().Object, vieFactory.Object, false, null);
-            Assert.IsInstanceOfType(vm.BrowserPopupController, typeof(ExternalBrowserPopupController));
+            Assert.IsInstanceOf(vm.BrowserPopupController.GetType(), typeof(ExternalBrowserPopupController));
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void MainViewModelConstructorWithNullVersionCheckerExpectedThrowsArgumentNullException()
         {
@@ -1699,9 +1700,9 @@ namespace Dev2.Core.Tests
 
         #region ActiveEnvironment
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("MainViewModel_AuthorizeCommands")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("MainViewModel_AuthorizeCommands")]
         public void MainViewModel_AuthorizeCommands_AuthorizationContextIsCorrect()
         {
             //------------Setup for test--------------------------    
@@ -1714,9 +1715,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(AuthorizationContext.Administrator, _shellViewModel.SettingsCommand.AuthorizationContext);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("MainViewModel_AuthorizeCommands")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("MainViewModel_AuthorizeCommands")]
         public void MainViewModel_AuthorizeCommands_ActiveEnvironmentChanged_UpdateContextInvoked()
         {
             //------------Setup for test--------------------------            
@@ -1752,7 +1753,7 @@ namespace Dev2.Core.Tests
             return mockEnvironmentConnection;
         }
 
-        [TestMethod]
+        [Test]
         public void IsActiveEnvironmentConnectExpectFalseWithNullEnvironment()
         {
             CreateFullExportsAndVm();
@@ -1761,7 +1762,7 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(actual);
         }
 
-        [TestMethod]
+        [Test]
         public void GetMenuPanelWidth()
         {
             CreateFullExportsAndVm();
@@ -1773,9 +1774,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(60, _shellViewModel.MenuPanelWidth);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_SetActiveServer")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_SetActiveServer")]
         public void MainViewModel_SetActiveServer_Scenerio_Result()
         {
             //------------Setup for test--------------------------
@@ -1797,9 +1798,9 @@ namespace Dev2.Core.Tests
 
         #endregion
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_ViewSwagger")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_ViewSwagger")]
         public void MainViewModel_ViewSwagger_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -1832,9 +1833,9 @@ namespace Dev2.Core.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_ViewViewApisJson")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_ViewViewApisJson")]
         public void MainViewModel_ViewViewApisJson_HandleFolder_Result()
         {
             //------------Setup for test--------------------------
@@ -1860,9 +1861,9 @@ namespace Dev2.Core.Tests
             _shellViewModel.ViewApisJson(source.Object.ResourcePath, new Uri("http://localhost:3142"));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_ViewViewApisJson")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_ViewViewApisJson")]
         public void MainViewModel_ViewViewApisJson_HandleServer_Result()
         {
             //------------Setup for test--------------------------
@@ -1886,9 +1887,9 @@ namespace Dev2.Core.Tests
             _shellViewModel.ViewApisJson(source.Object.ResourcePath, new Uri("http://localhost:3142"));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_OpenResource")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_OpenResource")]
         public void MainViewModel_OpenResource_HandleVersion_Result()
         {
             //------------Setup for test--------------------------
@@ -1918,9 +1919,9 @@ namespace Dev2.Core.Tests
             _shellViewModel.OpenResource(source.Object.ResourceId, viewModel.Object.ActiveServer.EnvironmentID, viewModel.Object.ActiveServer);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("MainViewModel_OpenMergeConflictsView")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("MainViewModel_OpenMergeConflictsView")]
         public void MainViewModel_OpenMergeConflictsView_HandleVersion_Result()
         {
             //------------Setup for test--------------------------
@@ -1954,7 +1955,7 @@ namespace Dev2.Core.Tests
             var source = new ExplorerItemViewModel(server.Object, treeItem.Object, action, _shellViewModel, popUpController.Object);
             var contextManager = new Mock<IWorksurfaceContextManager>();
             contextManager.Setup(p => p.ViewMergeConflictsService(currentItem.Object, difItem.Object, It.IsAny<bool>(), It.IsAny<IWorkSurfaceKey>()));
-            var privateObject = new PrivateObject(_shellViewModel);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(_shellViewModel);
             var currentSurfaceManager = (IWorksurfaceContextManager)privateObject.GetField("_worksurfaceContextManager");
             privateObject.SetField("_worksurfaceContextManager", contextManager.Object);
             _shellViewModel.OpenMergeConflictsView(source, viewModel.Object.ActiveServer.EnvironmentID, serverDef.Object);
@@ -1962,9 +1963,9 @@ namespace Dev2.Core.Tests
             privateObject.SetField("_worksurfaceContextManager", currentSurfaceManager);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_OpenResource")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_OpenResource")]
         public void MainViewModel_OpenResource_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -1996,9 +1997,9 @@ namespace Dev2.Core.Tests
             _shellViewModel.OpenResource(source.Object.ResourceId, viewModel.Object.ActiveServer.EnvironmentID, viewModel.Object.ActiveServer);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_EditSqlServerSource")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_EditSqlServerSource")]
         [DeploymentItem("Warewolf.Studio.Themes.Luna.dll")]
         [DeploymentItem("InfragisticsWPF4.DataPresenter.v15.1.dll")]
         public void MainViewModel_EditSqlServerSource_Handle_Result()
@@ -2026,9 +2027,9 @@ namespace Dev2.Core.Tests
             _shellViewModel.EditSqlServerResource(source.Object);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_EditMySqlSource")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_EditMySqlSource")]
         [DeploymentItem("Warewolf.Studio.Themes.Luna.dll")]
         [DeploymentItem("InfragisticsWPF4.Controls.Interactions.XamDialogWindow.v15.1.dll")]
         [DeploymentItem("InfragisticsWPF4.DataPresenter.v15.1.dll")]
@@ -2057,9 +2058,9 @@ namespace Dev2.Core.Tests
             _shellViewModel.EditMySqlResource(source.Object);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_EditPostgreSqlSource")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_EditPostgreSqlSource")]
         [DeploymentItem("Warewolf.Studio.Themes.Luna.dll")]
         [DeploymentItem("InfragisticsWPF4.DataPresenter.v15.1.dll")]
         public void MainViewModel_EditPostgreSqlSource_Handle_Result()
@@ -2087,9 +2088,9 @@ namespace Dev2.Core.Tests
             _shellViewModel.EditPostgreSqlResource(source.Object);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_EditOracleSource")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_EditOracleSource")]
         [DeploymentItem("Warewolf.Studio.Themes.Luna.dll")]
         [DeploymentItem("InfragisticsWPF4.DataPresenter.v15.1.dll")]
         public void MainViewModel_EditOracleSource_Handle_Result()
@@ -2117,9 +2118,9 @@ namespace Dev2.Core.Tests
             _shellViewModel.EditOracleResource(source.Object);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_EditOdbcSource")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_EditOdbcSource")]
         [DeploymentItem("Warewolf.Studio.Themes.Luna.dll")]
         [DeploymentItem("InfragisticsWPF4.DataPresenter.v15.1.dll")]
         public void MainViewModel_EditOdbcSource_Handle_Result()
@@ -2147,9 +2148,9 @@ namespace Dev2.Core.Tests
             _shellViewModel.EditOdbcResource(source.Object);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_EditDropboxSource")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_EditDropboxSource")]
         public void MainViewModel_EditDropboxSource_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -2174,9 +2175,9 @@ namespace Dev2.Core.Tests
             mockWM.Verify(manager => manager.EditResource(It.IsAny<IOAuthSource>(), view.Object));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_EditEmailSource")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_EditEmailSource")]
         public void MainViewModel_EditEmailSource_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -2202,9 +2203,9 @@ namespace Dev2.Core.Tests
             _shellViewModel.EditResource(source.Object);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_EditExchangeSource")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_EditExchangeSource")]
         public void MainViewModel_EditExchangeSource_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -2230,9 +2231,9 @@ namespace Dev2.Core.Tests
             _shellViewModel.EditResource(source.Object);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_EditPluginSource")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_EditPluginSource")]
         public void MainViewModel_EditPluginSource_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -2263,9 +2264,9 @@ namespace Dev2.Core.Tests
             _shellViewModel.EditResource(source.Object);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_EditComPluginSource")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_EditComPluginSource")]
         public void MainViewModel_EditComPluginSource_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -2296,9 +2297,9 @@ namespace Dev2.Core.Tests
             _shellViewModel.EditResource(source.Object);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_EditRabbitMQSource")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_EditRabbitMQSource")]
         public void MainViewModel_EditRabbitMQSource_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -2324,9 +2325,9 @@ namespace Dev2.Core.Tests
             _shellViewModel.EditResource(source.Object);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_EditServerSource")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_EditServerSource")]
         public void MainViewModel_EditServerSource_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -2352,9 +2353,9 @@ namespace Dev2.Core.Tests
             mockWM.Verify(manager => manager.EditServer(It.IsAny<IServerSource>(), It.IsAny<IServer>(), It.IsAny<IView>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_EditSharepointSource")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_EditSharepointSource")]
         public void MainViewModel_EditSharepointSource_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -2379,9 +2380,9 @@ namespace Dev2.Core.Tests
             mockWM.Verify(manager => manager.EditResource(It.IsAny<ISharepointServerSource>(), view.Object));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_EditWcfSource")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_EditWcfSource")]
         public void MainViewModel_EditWcfSource_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -2407,9 +2408,9 @@ namespace Dev2.Core.Tests
             _shellViewModel.EditResource(source.Object);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_EditWebSource")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_EditWebSource")]
         public void MainViewModel_EditWebSource_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -2437,9 +2438,9 @@ namespace Dev2.Core.Tests
 
         #region CommandTests
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_NewSqlServerSource")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_NewSqlServerSource")]
         public void MainViewModel_NewSqlServerSource_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -2467,9 +2468,9 @@ namespace Dev2.Core.Tests
             mockWM.Verify(manager => manager.NewSqlServerSource(It.IsAny<string>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_NewMySqlSource")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_NewMySqlSource")]
         public void MainViewModel_NewMySqlSource_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -2497,9 +2498,9 @@ namespace Dev2.Core.Tests
             mockWM.Verify(manager => manager.NewMySqlSource(It.IsAny<string>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_NewPostgreSqlSource")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_NewPostgreSqlSource")]
         public void MainViewModel_NewPostgreSqlSource_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -2527,9 +2528,9 @@ namespace Dev2.Core.Tests
             mockWM.Verify(manager => manager.NewPostgreSqlSource(It.IsAny<string>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_NewOracleSource")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_NewOracleSource")]
         public void MainViewModel_NewOracleSource_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -2557,9 +2558,9 @@ namespace Dev2.Core.Tests
             mockWM.Verify(manager => manager.NewOracleSource(It.IsAny<string>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_NewOdbcSource")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_NewOdbcSource")]
         public void MainViewModel_NewOdbcSource_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -2587,9 +2588,9 @@ namespace Dev2.Core.Tests
             mockWM.Verify(manager => manager.NewOdbcSource(It.IsAny<string>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_NewDropboxSourceCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_NewDropboxSourceCommand")]
         public void MainViewModel_NewDropboxSourceCommand_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -2617,9 +2618,9 @@ namespace Dev2.Core.Tests
             mockWM.Verify(manager => manager.NewDropboxSource(It.IsAny<string>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_NewEmailSourceCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_NewEmailSourceCommand")]
         public void MainViewModel_NewEmailSourceCommand_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -2647,9 +2648,9 @@ namespace Dev2.Core.Tests
             mockWM.Verify(manager => manager.NewEmailSource(It.IsAny<string>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_NewExchangeSourceCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_NewExchangeSourceCommand")]
         public void MainViewModel_NewExchangeSourceCommand_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -2678,9 +2679,9 @@ namespace Dev2.Core.Tests
             mockWM.Verify(manager => manager.NewExchangeSource(It.IsAny<string>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_NewPluginSourceCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_NewPluginSourceCommand")]
         public void MainViewModel_NewPluginSourceCommand_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -2708,9 +2709,9 @@ namespace Dev2.Core.Tests
             mockWM.Verify(manager => manager.NewPluginSource(It.IsAny<string>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_NewRabbitMQSourceCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_NewRabbitMQSourceCommand")]
         public void MainViewModel_NewRabbitMQSourceCommand_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -2739,9 +2740,9 @@ namespace Dev2.Core.Tests
             mockWM.Verify(manager => manager.NewRabbitMQSource(It.IsAny<string>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_NewSharepointSourceCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_NewSharepointSourceCommand")]
         public void MainViewModel_NewSharepointSourceCommand_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -2769,9 +2770,9 @@ namespace Dev2.Core.Tests
             mockWM.Verify(manager => manager.NewSharepointSource(It.IsAny<string>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_NewWcfSourceCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_NewWcfSourceCommand")]
         public void MainViewModel_NewWcfSourceCommand_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -2799,9 +2800,9 @@ namespace Dev2.Core.Tests
             mockWM.Verify(manager => manager.NewWcfSource(It.IsAny<string>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_NewWebSourceCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_NewWebSourceCommand")]
         public void MainViewModel_NewWebSourceCommand_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -2828,9 +2829,9 @@ namespace Dev2.Core.Tests
             mockWM.Verify(manager => manager.NewWebSource(It.IsAny<string>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_NewRedisSourceCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_NewRedisSourceCommand")]
         public void MainViewModel_NewRedisSourceCommand_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -2857,9 +2858,9 @@ namespace Dev2.Core.Tests
             mockWM.Verify(manager => manager.NewRedisSource(It.IsAny<string>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_TasksCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_TasksCommand")]
         public void MainViewModel_TasksCommand_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -2886,9 +2887,9 @@ namespace Dev2.Core.Tests
             mockWM.Verify(manager => manager.AddTriggersWorkSurface());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_QueueEventsCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_QueueEventsCommand")]
         public void MainViewModel_QueueEventsCommand_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -2916,9 +2917,9 @@ namespace Dev2.Core.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MainViewModel_SchedulerCommand")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MainViewModel_SchedulerCommand")]
         public void MainViewModel_SchedulerCommand_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -2968,9 +2969,9 @@ namespace Dev2.Core.Tests
         #endregion
 
         #region OnStudioClosing
-        [TestMethod]
-        [TestCategory("MainViewModel_OnStudioClosing")]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category("MainViewModel_OnStudioClosing")]
+        [Author("Pieter Terblanche")]
         public void MainViewModel_OnStudioClosing_CallsTasksOnClosing()
         {
             var eventPublisher = new Mock<IEventAggregator>();
@@ -3020,9 +3021,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(mvm.OnStudioClosing());
         }
 
-        [TestMethod]
-        [TestCategory("MainViewModel_OnStudioClosing")]
-        [Owner("Leon Rajindrapersadh")]
+        [Test]
+        [Category("MainViewModel_OnStudioClosing")]
+        [Author("Leon Rajindrapersadh")]
         public void MainViewModel_OnStudioClosing_ClosesRemoteEnvironmants()
         {
             var viewModel = new Mock<IShellViewModel>();
@@ -3076,9 +3077,9 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(mvm.OnStudioClosing());   // assert that the studio closes
         }
 
-        [TestMethod]
-        [TestCategory("MainViewModel_OnStudioClosing")]
-        [Owner("Leon Rajindrapersadh")]
+        [Test]
+        [Category("MainViewModel_OnStudioClosing")]
+        [Author("Leon Rajindrapersadh")]
         public void MainViewModel_OnStudioClosing_CallsSettingsOnClosing()
         {
             var viewModel = new Mock<IShellViewModel>();
@@ -3138,9 +3139,9 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [TestCategory("MainViewModel_OnStudioClosing")]
-        [Owner("Leon Rajindrapersadh")]
+        [Test]
+        [Category("MainViewModel_OnStudioClosing")]
+        [Author("Leon Rajindrapersadh")]
         public void MainViewModel_OnStudioClosing_CallsSettingsOnClosingDirty()
         {
             var viewModel = new Mock<IShellViewModel>();
@@ -3191,9 +3192,9 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [TestCategory("MainViewModel_OnStudioClosing")]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category("MainViewModel_OnStudioClosing")]
+        [Author("Pieter Terblanche")]
         public void MainViewModel_OnStudioClosing_CallsWorkflowOnClosing()
         {
             var viewModel = new Mock<IShellViewModel>();
@@ -3308,9 +3309,9 @@ namespace Dev2.Core.Tests
             CreateFullExportsAndVm();
         }
 
-        [TestMethod]
-        [TestCategory("MainViewModel_OnStudioClosing")]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category("MainViewModel_OnStudioClosing")]
+        [Author("Pieter Terblanche")]
         public void MainViewModel_OnStudioClosing_CallsDatabaseOnClosing()
         {
             InitSourceViewModel(out Mock<IServer> environmentModel, out ShellViewModel mvm);
@@ -3342,9 +3343,9 @@ namespace Dev2.Core.Tests
         }
 
 
-        [TestMethod]
-        [TestCategory("MainViewModel_OnStudioClosing")]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category("MainViewModel_OnStudioClosing")]
+        [Author("Pieter Terblanche")]
         public void MainViewModel_OnStudioClosing_CallsEmailOnClosing()
         {
             InitSourceViewModel(out Mock<IServer> environmentModel, out ShellViewModel mvm);
@@ -3373,9 +3374,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(mvm.OnStudioClosing());
         }
 
-        [TestMethod]
-        [TestCategory("MainViewModel_OnStudioClosing")]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category("MainViewModel_OnStudioClosing")]
+        [Author("Pieter Terblanche")]
         public void MainViewModel_OnStudioClosing_CallsWebSourceOnClosing()
         {
             InitSourceViewModel(out Mock<IServer> environmentModel, out ShellViewModel mvm);
@@ -3406,9 +3407,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(mvm.OnStudioClosing());
         }
 
-        [TestMethod]
-        [TestCategory("MainViewModel_OnStudioClosing")]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category("MainViewModel_OnStudioClosing")]
+        [Author("Pieter Terblanche")]
         public void MainViewModel_OnStudioClosing_CallsComPluginSourceOnClosing()
         {
             InitSourceViewModel(out Mock<IServer> environmentModel, out ShellViewModel mvm);
@@ -3435,9 +3436,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(mvm.OnStudioClosing());
         }
 
-        [TestMethod]
-        [TestCategory("MainViewModel_OnStudioClosing")]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category("MainViewModel_OnStudioClosing")]
+        [Author("Pieter Terblanche")]
         public void MainViewModel_OnStudioClosing_CallsPluginSourceOnClosing()
         {
             InitSourceViewModel(out Mock<IServer> environmentModel, out ShellViewModel mvm);
@@ -3466,9 +3467,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(mvm.OnStudioClosing());
         }
 
-        [TestMethod]
-        [TestCategory("MainViewModel_OnStudioClosing")]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category("MainViewModel_OnStudioClosing")]
+        [Author("Pieter Terblanche")]
         public void MainViewModel_OnStudioClosing_CallsExchangeSourceOnClosing()
         {
             InitSourceViewModel(out Mock<IServer> environmentModel, out ShellViewModel mvm);
@@ -3497,9 +3498,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(mvm.OnStudioClosing());
         }
 
-        [TestMethod]
-        [TestCategory("MainViewModel_OnStudioClosing")]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category("MainViewModel_OnStudioClosing")]
+        [Author("Pieter Terblanche")]
         public void MainViewModel_OnStudioClosing_CallsOAuthSourceOnClosing()
         {
             InitSourceViewModel(out Mock<IServer> environmentModel, out ShellViewModel mvm);
@@ -3529,9 +3530,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(mvm.OnStudioClosing());
         }
 
-        [TestMethod]
-        [TestCategory("MainViewModel_OnStudioClosing")]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category("MainViewModel_OnStudioClosing")]
+        [Author("Pieter Terblanche")]
         public void MainViewModel_OnStudioClosing_CallsSharepointServerSourceOnClosing()
         {
             InitSourceViewModel(out Mock<IServer> environmentModel, out ShellViewModel mvm);
@@ -3562,9 +3563,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(mvm.OnStudioClosing());
         }
 
-        [TestMethod]
-        [TestCategory("MainViewModel_OnStudioClosing")]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category("MainViewModel_OnStudioClosing")]
+        [Author("Pieter Terblanche")]
         public void MainViewModel_OnStudioClosing_CallsRabbitMQSourceOnClosing()
         {
             InitSourceViewModel(out Mock<IServer> environmentModel, out ShellViewModel mvm);
@@ -3594,9 +3595,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(mvm.OnStudioClosing());
         }
 
-        [TestMethod]
-        [TestCategory("MainViewModel_OnStudioClosing")]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category("MainViewModel_OnStudioClosing")]
+        [Author("Pieter Terblanche")]
         public void MainViewModel_OnStudioClosing_CallsWcfSourceOnClosing()
         {
             InitSourceViewModel(out Mock<IServer> environmentModel, out ShellViewModel mvm);
@@ -3623,9 +3624,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(mvm.OnStudioClosing());
         }
 
-        [TestMethod]
-        [TestCategory("MainViewModel_OnStudioClosing")]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category("MainViewModel_OnStudioClosing")]
+        [Author("Pieter Terblanche")]
         public void MainViewModel_OnStudioClosing_CallsServerSourceOnClosing()
         {
             InitSourceViewModel(out Mock<IServer> environmentModel, out ShellViewModel mvm);
@@ -3663,18 +3664,18 @@ namespace Dev2.Core.Tests
             return result;
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("MainViewModel_HandleAddWorkSurfaceMessage")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("MainViewModel_HandleAddWorkSurfaceMessage")]
         public void MainViewModel_HandleAddWorkSurfaceMessage_ShowDebugWindowOnLoadIsTrue_DoesExecuteDebugCommand()
         {
             CustomContainer.Register(new Mock<IShellViewModel>().Object);
             Verify_HandleAddWorkSurfaceMessage_ShowDebugWindowOnLoad(true);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("MainViewModel_HandleAddWorkSurfaceMessage")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("MainViewModel_HandleAddWorkSurfaceMessage")]
         public void MainViewModel_HandleAddWorkSurfaceMessage_ShowDebugWindowOnLoadIsFalse_DoesNotExecuteDebugCommand()
         {
             CustomContainer.Register(new Mock<IShellViewModel>().Object);
@@ -3713,9 +3714,9 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("MainViewModel_AddWorkSurfaceContext")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("MainViewModel_AddWorkSurfaceContext")]
         public void MainViewModel_AddWorkSurfaceContext_AddResourceFromServer_ExpectIsSavedTrue()
         {
             var resourceId = Guid.NewGuid();
@@ -3749,9 +3750,9 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("MainViewModel_AddWorkSurfaceContext")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("MainViewModel_AddWorkSurfaceContext")]
         public void MainViewModel_AddWorkSurfaceContext_AddResourceFromWorkspace_ExpectIsSavedValueSameAsWhenPassedIn()
         {
             var resourceId = Guid.NewGuid();
@@ -3785,9 +3786,9 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [TestCategory("MainViewModel_IsDownloading")]
-        [Owner("Tshepo Ntlhokoa")]
+        [Test]
+        [Category("MainViewModel_IsDownloading")]
+        [Author("Tshepo Ntlhokoa")]
         public void MainViewModel_IsDownloading_IsBusyDownloadingInstallerIsNull_False()
         {
             //------------Setup for test--------------------------
@@ -3818,9 +3819,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(isDownloading);
         }
 
-        [TestMethod]
-        [TestCategory("MainViewModel_IsDownloading")]
-        [Owner("Tshepo Ntlhokoa")]
+        [Test]
+        [Category("MainViewModel_IsDownloading")]
+        [Author("Tshepo Ntlhokoa")]
         public void MainViewModel_IsDownloading_IsBusyDownloadingInstallerReturnsFalse_False()
         {
             //------------Setup for test--------------------------
@@ -3848,8 +3849,8 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(isDownloading);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CopyUrlLink_GivenresourceIdAndServer_ShouldLoadResourceModel()
         {
             //---------------Set up test pack-------------------
@@ -3864,8 +3865,8 @@ namespace Dev2.Core.Tests
             _environmentModel.Verify(model => model.ResourceRepository.LoadContextualResourceModel(It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateNewSchedule_GivenresourceIdAndServer_ShouldLoadResourceModel()
         {
             //---------------Set up test pack-------------------
@@ -3880,8 +3881,8 @@ namespace Dev2.Core.Tests
             _environmentModel.Verify(model => model.ResourceRepository.LoadContextualResourceModel(It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void MainViewModel_CreateNewQueueEvent_GivenresourceIdAndServer_ShouldLoadResourceModel()
         {
             //---------------Set up test pack-------------------
@@ -3896,8 +3897,8 @@ namespace Dev2.Core.Tests
             _environmentModel.Verify(model => model.ResourceRepository.LoadContextualResourceModel(It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void SetRefreshExplorerState_GivenTrue_ShouldSetExplorerStateCorrectly()
         {
             //---------------Set up test pack-------------------
@@ -3913,14 +3914,14 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(_shellViewModel.ExplorerViewModel.IsRefreshing);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void BrowserDebug_GivenId_ShouldLoadResourceModel()
         {
             //---------------Set up test pack-------------------
 
             CreateFullExportsAndVm();
-            var pv = new PrivateObject(_shellViewModel);
+            var pv = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(_shellViewModel);
             var resourceModel = new Mock<IContextualResourceModel>();
 
             var wcm = new Mock<IWorksurfaceContextManager>();
@@ -3944,14 +3945,14 @@ namespace Dev2.Core.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void NewComPluginSource_GivenPath_ShouldOpenSurfaceWithCorrectPath()
         {
             //---------------Set up test pack-------------------
 
             CreateFullExportsAndVm();
-            var pv = new PrivateObject(_shellViewModel);
+            var pv = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(_shellViewModel);
             var resourceModel = new Mock<IContextualResourceModel>();
 
             var wcm = new Mock<IWorksurfaceContextManager>();
@@ -3966,14 +3967,14 @@ namespace Dev2.Core.Tests
             wcm.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void AddDeploySurface_GivenExplorereItems_ShouldOpenSurfaceWithCorrectExplorereItems()
         {
             //---------------Set up test pack-------------------
 
             CreateFullExportsAndVm();
-            var pv = new PrivateObject(_shellViewModel);
+            var pv = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(_shellViewModel);
 
             var wcm = new Mock<IWorksurfaceContextManager>();
             IEnumerable<IExplorerTreeItem> enumerable = new List<IExplorerTreeItem>();
@@ -3988,13 +3989,13 @@ namespace Dev2.Core.Tests
             wcm.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void OpenVersion_GivenVersionInfo_ShouldOpenSurfaceWithCorrectVersion()
         {
             //---------------Set up test pack-------------------
             CreateFullExportsAndVm();
-            var pv = new PrivateObject(_shellViewModel);
+            var pv = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(_shellViewModel);
 
             var wcm = new Mock<IWorksurfaceContextManager>();
             IVersionInfo version = new VersionInfo();
@@ -4009,13 +4010,13 @@ namespace Dev2.Core.Tests
             wcm.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void StudioDebug_GivenId_ShouldLoadResourceModel()
         {
             //---------------Set up test pack-------------------
             CreateFullExportsAndVm();
-            var pv = new PrivateObject(_shellViewModel);
+            var pv = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(_shellViewModel);
             var resourceModel = new Mock<IContextualResourceModel>();
 
             var wcm = new Mock<IWorksurfaceContextManager>();
@@ -4039,14 +4040,14 @@ namespace Dev2.Core.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void NewSchedule_GivenId_ShouldLoadResourceModel()
         {
             //---------------Set up test pack-------------------
 
             CreateFullExportsAndVm();
-            var pv = new PrivateObject(_shellViewModel);
+            var pv = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(_shellViewModel);
             var resourceModel = new Mock<IContextualResourceModel>();
 
             var wcm = new Mock<IWorksurfaceContextManager>();
@@ -4064,14 +4065,14 @@ namespace Dev2.Core.Tests
             wcm.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void MainViewModel_NewQueueEvent_GivenId_ShouldLoadResourceModel()
         {
             //---------------Set up test pack-------------------
 
             CreateFullExportsAndVm();
-            var pv = new PrivateObject(_shellViewModel);
+            var pv = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(_shellViewModel);
             var resourceModel = new Mock<IContextualResourceModel>();
 
             var wcm = new Mock<IWorksurfaceContextManager>();
@@ -4089,8 +4090,8 @@ namespace Dev2.Core.Tests
             wcm.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void OpenResourceAsync_GivenresourceIdAndServer_ShouldLoadResourceModel()
         {
             //---------------Set up test pack-------------------
@@ -4113,8 +4114,8 @@ namespace Dev2.Core.Tests
             task.Wait();
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ShowServerDisconnectedPopup_GivenresourceIdAndServer_ShouldLoadResourceModel()
         {
             //---------------Set up test pack-------------------
@@ -4131,14 +4132,14 @@ namespace Dev2.Core.Tests
             mock1.Setup(se => se.Name).Returns("a");
             mock1.Setup(se => se.DisplayName).Returns("a");
             _shellViewModel.ActiveServer = mock1.Object;
-            var po = new PrivateObject(_shellViewModel);
+            var po = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(_shellViewModel);
             po.Invoke("ShowServerDisconnectedPopup");
             //---------------Test Result -----------------------
             mock.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DuplicateResource_GivenNotConnected_ShouldPopup()
         {
             //---------------Set up test pack-------------------
@@ -4162,8 +4163,8 @@ namespace Dev2.Core.Tests
             mock.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void SaveAllCommand_GivenWorkflowItemAndCanSav_ShouldSaveItem()
         {
             //---------------Set up test pack-------------------
@@ -4187,8 +4188,8 @@ namespace Dev2.Core.Tests
             surfaceContext.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DeployResource_GivenIsNew_ShouldReturnNull()
         {
             //---------------Set up test pack-------------------
@@ -4206,7 +4207,7 @@ namespace Dev2.Core.Tests
 
 
 
-        [TestMethod]
+        [Test]
         public void MainViewModel_HasNewVersion_ShouldCallBrowserPopupContollerToLatestVersionPage()
         {
             var popupController = new Mock<IBrowserPopupController>();

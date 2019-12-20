@@ -8,7 +8,7 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Dev2.Common;
 using System.Configuration;
@@ -18,19 +18,20 @@ using Dev2.Common.Wrappers;
 
 namespace Dev2.Server.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WebServerConfigurationTests
     {
-        [TestInitialize]
+        [SetUp]
         public void Initialize()
         {
             ConfigurationManager.AppSettings.Set("webServerEnabled", "false");
             ConfigurationManager.AppSettings.Set("webServerSslEnabled", "false");
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(WebServerConfiguration))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(WebServerConfiguration))]
         public void WebServerConfigurationTests_Execute_IsWebServerEnabled_False()
         {
             //----------------Arrange--------------------
@@ -55,9 +56,9 @@ namespace Dev2.Server.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(WebServerConfiguration))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(WebServerConfiguration))]
         public void WebServerConfigurationTests_Execute__IsWebServerEnabled_True()
         {
             //----------------Arrange--------------------
@@ -75,9 +76,9 @@ namespace Dev2.Server.Tests
             Assert.AreEqual("http://*:80/", endPoints[0].Url);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(WebServerConfiguration))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(WebServerConfiguration))]
         public void WebServerConfigurationTests_Execute__IsWebServerEnabled_and_isWebServerSslEnabled()
         {
             //----------------Arrange--------------------
@@ -95,9 +96,9 @@ namespace Dev2.Server.Tests
             Assert.IsTrue(webServerConfig.IsWebServerSslEnabled);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(WebServerConfiguration))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(WebServerConfiguration))]
         public void WebServerConfigurationTests_Execute_WebServerPort_Invalid_ExpectException()
         {
             //----------------Arrange--------------------
@@ -117,9 +118,9 @@ namespace Dev2.Server.Tests
             mockWriter.Verify(a => a.Fail("Server initialization failed", It.IsAny<ArgumentException>()), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(WebServerConfiguration))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(WebServerConfiguration))]
         public void WebServerConfigurationTests_Execute_WebServerSslPort_Invalid_ExpectException()
         {
             //----------------Arrange--------------------
@@ -138,9 +139,9 @@ namespace Dev2.Server.Tests
             mockWriter.Verify(a => a.Fail("Server initialization failed", It.IsAny<ArgumentException>()), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(WebServerConfiguration))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(WebServerConfiguration))]
         public void WebServerConfigurationTests_Execute_WebServerPort_IsEmptyOrNull_ExpectExeption()
         {
             //----------------Arrange--------------------

@@ -9,17 +9,18 @@
 */
 
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Infrastructure.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DbTableTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DbTable_FullName")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DbTable_FullName")]
         public void DbTable_FullName_HasSchema_ShouldContainSchemaDotTableName()
         {
             //------------Setup for test--------------------------
@@ -30,9 +31,9 @@ namespace Dev2.Infrastructure.Tests
             Assert.AreEqual("dbo.Test", fullName);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DbTable_FullName")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DbTable_FullName")]
         public void DbTable_FullName_HasEmptySchema_ShouldContainTableName()
         {
             //------------Setup for test--------------------------
@@ -43,9 +44,9 @@ namespace Dev2.Infrastructure.Tests
             Assert.AreEqual("Test", fullName);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DbTable_FullName")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DbTable_FullName")]
         public void DbTable_FullName_HasNullSchema_ShouldContainTableName()
         {
             //------------Setup for test--------------------------
@@ -56,9 +57,9 @@ namespace Dev2.Infrastructure.Tests
             Assert.AreEqual("Test", fullName);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DbTable_FullName")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DbTable_FullName")]
         public void DbTable_FullName_HasEmptyTableName_ShouldEmptyString()
         {
             //------------Setup for test--------------------------
@@ -69,9 +70,9 @@ namespace Dev2.Infrastructure.Tests
             Assert.AreEqual("", fullName);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DbTable_FullName")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DbTable_FullName")]
         public void DbTable_FullName_HasTableNameNull_ShouldEmptyString()
         {
             //------------Setup for test--------------------------

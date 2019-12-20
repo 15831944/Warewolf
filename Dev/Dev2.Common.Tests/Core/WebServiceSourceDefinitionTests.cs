@@ -12,18 +12,19 @@ using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.Core;
 using Dev2.Common.Interfaces.ServerProxyLayer;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 
 namespace Dev2.Common.Tests.Core
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WebServiceSourceDefinitionTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WebServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WebServiceSourceDefinition))]
         public void WebServiceSourceDefinition_Validate()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -57,9 +58,9 @@ namespace Dev2.Common.Tests.Core
             Assert.AreEqual(expectedUserName, webServiceSourceDefinition.UserName);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WebServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WebServiceSourceDefinition))]
         public void WebServiceSourceDefinition_Equals_WebServiceSource_Null_Expected_False()
         {
             var webServiceSourceDefinition = new WebServiceSourceDefinition();
@@ -70,9 +71,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WebServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WebServiceSourceDefinition))]
         public void WebServiceSourceDefinition_Equals_WebServiceSource_Expected_True()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -107,9 +108,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WebServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WebServiceSourceDefinition))]
         public void WebServiceSourceDefinition_ReferenceEquals_WebServiceSource_Expected_True()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -135,9 +136,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WebServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WebServiceSourceDefinition))]
         public void WebServiceSourceDefinition_Equals_WebServiceSource_Expected_False()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -172,9 +173,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WebServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WebServiceSourceDefinition))]
         public void WebServiceSourceDefinition_Equals_WebServiceSourceDefinition_Null_Expected_False()
         {
             var webServiceSourceDefinition = new WebServiceSourceDefinition();
@@ -185,9 +186,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WebServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WebServiceSourceDefinition))]
         public void WebServiceSourceDefinition_ReferenceEquals_WebServiceSourceDefinition_Expected_True()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -213,9 +214,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WebServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WebServiceSourceDefinition))]
         public void WebServiceSourceDefinition_Equals_WebServiceSourceDefinition_Expected_True()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -243,9 +244,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(webServiceSourceDefinition == webServiceSourceDefinitionDup);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WebServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WebServiceSourceDefinition))]
         public void WebServiceSourceDefinition_Equals_WebServiceSourceDefinition_Expected_False()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -283,9 +284,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(webServiceSourceDefinition != webServiceSourceDefinitionDup);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WebServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WebServiceSourceDefinition))]
         public void WebServiceSourceDefinition_Equals_Object_Null_Expected_False()
         {
             var webServiceSourceDefinition = new WebServiceSourceDefinition();
@@ -296,9 +297,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WebServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WebServiceSourceDefinition))]
         public void WebServiceSourceDefinition_Equals_Object_Expected_True()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -328,9 +329,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WebServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WebServiceSourceDefinition))]
         public void WebServiceSourceDefinition_Equals_Object_Expected_False()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -370,9 +371,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WebServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WebServiceSourceDefinition))]
         public void WebServiceSourceDefinition_Equals_Object_GetType_Expected_False()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -402,9 +403,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WebServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WebServiceSourceDefinition))]
         public void WebServiceSourceDefinition_GetHashCode_Not_Equal_To_Zero()
         {
             const AuthenticationType expectedAuthenticationType = AuthenticationType.Public;
@@ -433,9 +434,9 @@ namespace Dev2.Common.Tests.Core
             Assert.AreNotEqual(0, hashCode);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(WebServiceSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(WebServiceSourceDefinition))]
         public void WebServiceSourceDefinition_GetHashCode_Expect_Zero()
         {
             var mockWebSource = new Mock<IWebSource>();

@@ -10,7 +10,7 @@
 
 using Dev2.Data;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Runtime.ServiceModel.Data
 {
@@ -19,13 +19,14 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
 
     /// <author>trevor.williams-ros</author>
     /// <date>2013/02/13</date>
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class RecordsetTests
     {
         #region CTOR
 
-        [TestMethod]
+        [Test]
         public void ConstructorWithNoParametersExpectedInitializesListProperties()
         {
             var rs = new Recordset();
@@ -42,7 +43,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
 
         #region NewRecord Tests
 
-        [TestMethod]
+        [Test]
         public void NewRecordExpectedAddANewRecordToRecordset()
         {
             var rs = new Recordset { Name = "MyRec" };
@@ -55,7 +56,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
 
         #region SetValue Tests
 
-        [TestMethod]
+        [Test]
         public void SetValueExpectedAddANewRecordToRecordset()
         {
             var rs = new Recordset { Name = "MyRec" };
@@ -65,14 +66,14 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual("MyTestData", rs.Records[0][0].Value);
         }
 
-        [TestMethod]
+        [Test]
         public void RecordSet_AddColumn_ShouldAddColumnOnTheRecSet()
         {
             var recordset = new RecordSet { Name = "MyRec" };
             Assert.IsNotNull(recordset);
         }
 
-        [TestMethod]
+        [Test]
         public void SetValueWithRecordNotExistiongExpectedAddANewRecordToRecordset()
         {
             var rs = new Recordset { Name = "MyRec" };
@@ -81,7 +82,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual("MyTestData", rs.Records[0][0].Value);
         }
 
-        [TestMethod]
+        [Test]
         public void SetValueSecondMethodExpectedAddANewRecordToRecordset()
         {
             var rs = new Recordset { Name = "MyRec" };

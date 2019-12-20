@@ -5,16 +5,17 @@ using Dev2.Common;
 using Dev2.Common.Interfaces.Monitoring;
 using Dev2.PerformanceCounters.Counters;
 using Dev2.PerformanceCounters.Management;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Diagnostics.Test
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class TestPerfCounterManager
     {
         public static Guid CounterGuid = Guid.NewGuid();
-        [TestInitialize]
+        [SetUp]
         public void Init()
         {
             try
@@ -38,7 +39,7 @@ namespace Dev2.Diagnostics.Test
         }
 
 
-        [TestMethod]
+        [Test]
         public void TestManagerLocater_ReturnsSameCounter()
         {
             var performanceCounterFactory = new Mock<IRealPerformanceCounterFactory>().Object;
@@ -60,9 +61,9 @@ namespace Dev2.Diagnostics.Test
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("PerformanceCounterManager_CreateAndRetrieve")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("PerformanceCounterManager_CreateAndRetrieve")]
         public void PerformanceCounterManager_CreateAndRetrieve_CreateAndRetrieve_ExpectValid()
         {
             var performanceCounterFactory = new Mock<IRealPerformanceCounterFactory>().Object;
@@ -86,9 +87,9 @@ namespace Dev2.Diagnostics.Test
             Assert.AreEqual(counter.ResourceId, CounterGuid);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("PerformanceCounterManager_CreateAndRetrieve")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("PerformanceCounterManager_CreateAndRetrieve")]
         public void PerformanceCounterManager_CreateAndRetrieve_CreateUnknownCreatesEmpty()
         {
             var performanceCounterFactory = new Mock<IRealPerformanceCounterFactory>().Object;
@@ -108,9 +109,9 @@ namespace Dev2.Diagnostics.Test
             Assert.IsTrue(counter is EmptyCounter);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("PerformanceCounterManager_CreateAndRetrieve")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("PerformanceCounterManager_CreateAndRetrieve")]
         public void PerformanceCounterManager_Remove_ExpectEmptyValidFromRetrieve()
         {
             var performanceCounterFactory = new Mock<IRealPerformanceCounterFactory>().Object;

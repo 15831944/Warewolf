@@ -9,28 +9,29 @@
 */
 
 using Dev2.Data.SystemTemplates.Models;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class Dev2DecisionComparerTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(Dev2DecisionComparer))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(Dev2DecisionComparer))]
         public void Dev2DecisionComparer_Both_Null_Equals_Expect_True()
         {
             var dev2DecisionComparer = new Dev2DecisionComparer();
 
             var isEqual = dev2DecisionComparer.Equals(null, null);
 
-            Assert.IsTrue(isEqual);
+            NUnit.Framework.Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(Dev2DecisionComparer))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(Dev2DecisionComparer))]
         public void Dev2DecisionComparer_Left_Null_Equals_Expect_False()
         {
             var dev2DecisionB = new Dev2Decision
@@ -45,12 +46,12 @@ namespace Dev2.Data.Tests
 
             var isEqual = dev2DecisionComparer.Equals(null, dev2DecisionB);
 
-            Assert.IsFalse(isEqual);
+            NUnit.Framework.Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(Dev2DecisionComparer))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(Dev2DecisionComparer))]
         public void Dev2DecisionComparer_Right_Null_Equals_Expect_False()
         {
             var dev2DecisionA = new Dev2Decision
@@ -65,12 +66,12 @@ namespace Dev2.Data.Tests
 
             var isEqual = dev2DecisionComparer.Equals(dev2DecisionA, null);
 
-            Assert.IsFalse(isEqual);
+            NUnit.Framework.Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(Dev2DecisionComparer))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(Dev2DecisionComparer))]
         public void Dev2DecisionComparer_Equals_Expect_True()
         {
             var dev2DecisionA = new Dev2Decision
@@ -93,12 +94,12 @@ namespace Dev2.Data.Tests
 
             var isEqual = dev2DecisionComparer.Equals(dev2DecisionA, dev2DecisionB);
 
-            Assert.IsTrue(isEqual);
+            NUnit.Framework.Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(Dev2DecisionComparer))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(Dev2DecisionComparer))]
         public void Dev2DecisionComparer_Equals_Expect_False()
         {
             var dev2DecisionA = new Dev2Decision
@@ -121,12 +122,12 @@ namespace Dev2.Data.Tests
 
             var isEqual = dev2DecisionComparer.Equals(dev2DecisionA, dev2DecisionB);
 
-            Assert.IsFalse(isEqual);
+            NUnit.Framework.Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(Dev2DecisionComparer))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(Dev2DecisionComparer))]
         public void Dev2DecisionComparer_GetHashCode_Expected_Not_Zero()
         {
             var dev2DecisionA = new Dev2Decision
@@ -141,7 +142,7 @@ namespace Dev2.Data.Tests
 
             var hashCode = dev2DecisionComparer.GetHashCode(dev2DecisionA);
 
-            Assert.AreNotEqual(0, hashCode);
+            NUnit.Framework.Assert.AreNotEqual(0, hashCode);
         }
     }
 }

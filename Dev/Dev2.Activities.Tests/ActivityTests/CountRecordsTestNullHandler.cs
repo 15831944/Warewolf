@@ -15,15 +15,16 @@ using System.Collections.Generic;
 using System.Linq;
 using ActivityUnitTests;
 using Dev2.Common.State;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class CountRecordsTestNullHandler : BaseActivityUnitTest
     {
-        [TestMethod]
+        [Test]
         public void CountOutputToBlank_Expected_BlankResultVariableError()
         {
             SetupArguments("<root>" + ActivityStrings.CountRecordsDataListShape + "</root>", "<root><recset1><field1/></recset1><TestCountvar/></root>", "[[recset1()]]", string.Empty);
@@ -38,7 +39,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         #region Store To Scalar Tests
 
-        [TestMethod]
+        [Test]
         public void CountOutputToScalar_Expected_ScalarValueCorrectlySetToRecordSetCount()
         {
             SetupArguments("<root>" + ActivityStrings.CountRecordsDataListShape + "</root>", "<root><recset1><field1/></recset1><TestCountvar/></root>", "[[recset1()]]", "[[TestCountvar]]");
@@ -53,7 +54,7 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
         //Bug 7853
-        [TestMethod]
+        [Test]
         public void CountOutputToScalar_With_EmptyRecSet_Expected_ScalarValueCorrectlySetTo0()
         {
             SetupArguments("<root><ADL><TestCountvar/></ADL></root>", "<root><recset1><field1/></recset1><TestCountvar/></root>", "[[recset1()]]", "[[TestCountvar]]");
@@ -71,7 +72,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         #region Store To RecordSet Tests
 
-        [TestMethod]
+        [Test]
         public void CountOutputToRecset()
         {
             SetupArguments("<root>" + ActivityStrings.CountRecordsDataListShape + "</root>", "<root><recset1><field1/></recset1><TestCountvar/></root>", "[[recset1()]]", "[[recset1().field1]]");
@@ -89,9 +90,9 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         #endregion Store To RecordSet Tests
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfCountRecordsetActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfCountRecordsetActivity_UpdateForEachInputs")]
         public void DsfCountRecordsetActivity_UpdateForEachInputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -103,9 +104,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(recordsetName, act.RecordsetName);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfCountRecordsetActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfCountRecordsetActivity_UpdateForEachInputs")]
         public void DsfCountRecordsetActivity_UpdateForEachInputs_MoreThan1Updates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -119,9 +120,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(recordsetName, act.RecordsetName);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfCountRecordsetActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfCountRecordsetActivity_UpdateForEachInputs")]
         public void DsfCountRecordsetActivity_UpdateForEachInputs_1Updates_UpdateRecordsetName()
         {
             //------------Setup for test--------------------------
@@ -134,9 +135,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Test", act.RecordsetName);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfCountRecordsetActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfCountRecordsetActivity_UpdateForEachOutputs")]
         public void DsfCountRecordsetActivity_UpdateForEachOutputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -148,9 +149,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(recordsetName, act.RecordsetName);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfCountRecordsetActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfCountRecordsetActivity_UpdateForEachOutputs")]
         public void DsfCountRecordsetActivity_UpdateForEachOutputs_MoreThan1Updates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -164,9 +165,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(recordsetName, act.RecordsetName);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfCountRecordsetActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfCountRecordsetActivity_UpdateForEachOutputs")]
         public void DsfCountRecordsetActivity_UpdateForEachOutputs_1Updates_UpdateCountNumber()
         {
             //------------Setup for test--------------------------
@@ -179,9 +180,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Test", act.CountNumber);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfCountRecordsetActivityGetForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfCountRecordsetActivityGetForEachInputs")]
         public void DsfCountRecordsetActivity_GetForEachInputs_WhenHasExpression_ReturnsInputList()
         {
             //------------Setup for test--------------------------
@@ -195,9 +196,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(recordsetName, dsfForEachItems[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfCountRecordsetActivity_GetForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfCountRecordsetActivity_GetForEachOutputs")]
         public void DsfCountRecordsetActivity_GetForEachOutputs_WhenHasResult_ReturnsInputList()
         {
             //------------Setup for test--------------------------
@@ -211,9 +212,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("[[res]]", dsfForEachItems[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfCountRecordsetNullHandlerActivity_GetState")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfCountRecordsetNullHandlerActivity_GetState")]
         public void DsfCountRecordsetNullHandlerActivity_GetState_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------
@@ -265,9 +266,9 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         #region |Valid Recordset Name|
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DsfCountRecordsetActivity_Execute")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DsfCountRecordsetActivity_Execute")]
         public void DsfCountRecordsetActivity_Execute_EmptyRecordsetName_NoCount()
         {
             //------------Setup for test--------------------------
@@ -281,9 +282,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(Expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DsfCountRecordsetActivity_Execute")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DsfCountRecordsetActivity_Execute")]
         public void DsfCountRecordsetActivity_Execute_RecordsetHasFieldName_NoCount()
         {
             //------------Setup for test--------------------------
@@ -297,9 +298,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(Expected, actual);
         }
         
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DsfCountRecordsetActivity_Execute")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DsfCountRecordsetActivity_Execute")]
         public void DsfCountRecordsetActivity_Execute_TwoInputVariables_NoCount()
         {
             //------------Setup for test--------------------------
@@ -313,9 +314,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(Expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DsfCountRecordsetActivity_Execute")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DsfCountRecordsetActivity_Execute")]
         public void DsfCountRecordsetActivity_Execute_InputIsAScalar_NoCount()
         {
             //------------Setup for test--------------------------
@@ -329,8 +330,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(Expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void TreaNullAsZero_GivenActivityIsNew_ShouldhaveValueTrue()
         {
             //---------------Set up test pack-------------------
@@ -343,8 +344,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsTrue(treaNullAsZero);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenEmptyRecordSet_ShouldResturnZero()
         {
             //---------------Set up test pack-------------------
@@ -359,8 +360,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(Expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenEmptyRecordSetTreatNullAsZeroFalse_ShouldResturnError()
         {
             //---------------Set up test pack-------------------

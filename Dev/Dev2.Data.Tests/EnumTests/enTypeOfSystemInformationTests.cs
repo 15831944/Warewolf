@@ -10,14 +10,15 @@
 
 using Dev2.Common.ExtMethods;
 using Dev2.Data.Interfaces.Enums;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests.EnumTests
 {
     /// <summary>
     /// Summary description for enTypeOfSystemInformationTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class enTypeOfSystemInformationTests
     {
         TestContext testContextInstance;
@@ -43,7 +44,7 @@ namespace Dev2.Data.Tests.EnumTests
         // You can use the following additional attributes as you write your tests:
         //
         // Use ClassInitialize to run code before running the first test in the class
-        // [ClassInitialize()]
+        // [OneTimeSetUp]
         // public static void MyClassInitialize(TestContext testContext) { }
         //
         // Use ClassCleanup to run code after all tests in a class have run
@@ -60,116 +61,116 @@ namespace Dev2.Data.Tests.EnumTests
         //
         #endregion
 
-        [TestMethod]
+        [Test]
         public void OperatingSystemEnumExpectedDiscriptionOfOperatingSystem()
         {
             var disc = enTypeOfSystemInformationToGather.OperatingSystem.GetDescription();
-            Assert.AreEqual("Operating System", disc);
+            NUnit.Framework.Assert.AreEqual("Operating System", disc);
         }
 
-        [TestMethod]
+        [Test]
         public void ServicePackEnumExpectedDiscriptionOfServicePack()
         {
             var disc = enTypeOfSystemInformationToGather.ServicePack.GetDescription();
-            Assert.AreEqual("Service Pack", disc);
+            NUnit.Framework.Assert.AreEqual("Service Pack", disc);
         }
 
-        [TestMethod]
+        [Test]
         public void OsBitValueEnumExpectedDiscriptionOf32Slash64Bit()
         {
             var disc = enTypeOfSystemInformationToGather.OSBitValue.GetDescription();
-            Assert.AreEqual("32/64 Bit", disc);
+            NUnit.Framework.Assert.AreEqual("32/64 Bit", disc);
         }
 
-        [TestMethod]
+        [Test]
         public void DateAndTimeEnumExpectedDiscriptionOfDateAndTime()
         {
             var disc = enTypeOfSystemInformationToGather.FullDateTime.GetDescription();
-            Assert.AreEqual("Date & Time", disc);
+            NUnit.Framework.Assert.AreEqual("Date & Time", disc);
         }
 
-        [TestMethod]
+        [Test]
         public void DateTimeFormatEnumExpectedDiscriptionOfDateAndTimeFormat()
         {
             var disc = enTypeOfSystemInformationToGather.DateTimeFormat.GetDescription();
-            Assert.AreEqual("Date & Time Format", disc);
+            NUnit.Framework.Assert.AreEqual("Date & Time Format", disc);
         }
 
-        [TestMethod]
+        [Test]
         public void DiskAvailableEnumExpectedDiscriptionOfDiskAvailable()
         {
             var disc = enTypeOfSystemInformationToGather.DiskAvailable.GetDescription();
-            Assert.AreEqual("Disk Available (GB)", disc);
+            NUnit.Framework.Assert.AreEqual("Disk Available (GB)", disc);
         }
 
-        [TestMethod]
+        [Test]
         public void DiskTotalEnumExpectedDiscriptionOfDiskTotal()
         {
             var disc = enTypeOfSystemInformationToGather.DiskTotal.GetDescription();
-            Assert.AreEqual("Disk Total (GB)", disc);
+            NUnit.Framework.Assert.AreEqual("Disk Total (GB)", disc);
         }
 
-        [TestMethod]
+        [Test]
         public void MemoryAvailableEnumExpectedDiscriptionOfMemoryAvailable()
         {
             var disc = enTypeOfSystemInformationToGather.PhysicalMemoryAvailable.GetDescription();
-            Assert.AreEqual("RAM Available (MB)", disc);
+            NUnit.Framework.Assert.AreEqual("RAM Available (MB)", disc);
         }
 
-        [TestMethod]
+        [Test]
         public void MemoryTotalEnumExpectedDiscriptionOfMemoryTotal()
         {
             var disc = enTypeOfSystemInformationToGather.PhysicalMemoryTotal.GetDescription();
-            Assert.AreEqual("RAM Total (MB)", disc);
+            NUnit.Framework.Assert.AreEqual("RAM Total (MB)", disc);
         } 
 
-        [TestMethod]
+        [Test]
         public void CPUAvailableEnumExpectedDiscriptionOfCPUAvailable()
         {
             var disc = enTypeOfSystemInformationToGather.CPUAvailable.GetDescription();
-            Assert.AreEqual("CPU Available", disc);
+            NUnit.Framework.Assert.AreEqual("CPU Available", disc);
         }
 
-        [TestMethod]
+        [Test]
         public void CPUTotalEnumExpectedDiscriptionOfCPUTotal()
         {
             var disc = enTypeOfSystemInformationToGather.CPUTotal.GetDescription();
-            Assert.AreEqual("CPU Total", disc);
+            NUnit.Framework.Assert.AreEqual("CPU Total", disc);
         }
 
-        [TestMethod]
+        [Test]
         public void LanguageEnumExpectedDiscriptionOfLanguage()
         {
             var disc = enTypeOfSystemInformationToGather.Language.GetDescription();
-            Assert.AreEqual("Language", disc);
+            NUnit.Framework.Assert.AreEqual("Language", disc);
         }
         
-        [TestMethod]
+        [Test]
         public void RegionEnumExpectedDiscriptionOfRegion()
         {
             var disc = enTypeOfSystemInformationToGather.Region.GetDescription();
-            Assert.AreEqual("Region", disc);
+            NUnit.Framework.Assert.AreEqual("Region", disc);
         }
 
-        [TestMethod]
+        [Test]
         public void UserRolesEnumExpectedDiscriptionOfUserRoles()
         {
             var disc = enTypeOfSystemInformationToGather.UserRoles.GetDescription();
-            Assert.AreEqual("User Roles", disc);
+            NUnit.Framework.Assert.AreEqual("User Roles", disc);
         }
 
-        [TestMethod]
+        [Test]
         public void UserNameEnumExpectedDiscriptionOfUserName()
         {
             var disc = enTypeOfSystemInformationToGather.UserName.GetDescription();
-            Assert.AreEqual("User Name", disc);
+            NUnit.Framework.Assert.AreEqual("User Name", disc);
         }
         
-        [TestMethod]
+        [Test]
         public void DomainEnumExpectedDiscriptionOfDomain()
         {
             var disc = enTypeOfSystemInformationToGather.Domain.GetDescription();
-            Assert.AreEqual("Domain", disc);
+            NUnit.Framework.Assert.AreEqual("Domain", disc);
         }
 
     }

@@ -17,18 +17,20 @@ using Dev2.Common;
 using Dev2.Common.Interfaces.Services.Sql;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Services.Sql;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dev2.Sql.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SqlServerTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SqlServer_Connect")]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SqlServer_Connect")]
+        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
 
         public void SqlServer_Connect_ConnectionStringIsNull_ThrowsArgumentNullException()
 
@@ -48,10 +50,10 @@ namespace Dev2.Sql.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SqlServer_Connect")]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SqlServer_Connect")]
+        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
 
         public void SqlServer_Connect_ConnectionStringIsInvalid_ThrowsArgumentException()
 
@@ -71,10 +73,10 @@ namespace Dev2.Sql.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SqlServer_Connect")]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SqlServer_Connect")]
+        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
 
         public void SqlServer_Connect_CommandTextIsNull_ThrowsArgumentNullException()
 
@@ -94,10 +96,10 @@ namespace Dev2.Sql.Tests
             }
         }                
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SqlServer_FetchDataTable")]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SqlServer_FetchDataTable")]
+        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
 
         public void SqlServer_FetchDataTable_CommandIsNull_ThrowsArgumentNullException()
 
@@ -118,10 +120,10 @@ namespace Dev2.Sql.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SqlServer_FetchDatabases")]
-        [ExpectedException(typeof(Exception))]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SqlServer_FetchDatabases")]
+        [NUnit.Framework.ExpectedException(typeof(Exception))]
 
         public void SqlServer_FetchDatabases_ConnectionNotInitialized_ThrowsConnectFirstException()
 
@@ -141,10 +143,10 @@ namespace Dev2.Sql.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SqlServer_FetchStoredProcedures")]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SqlServer_FetchStoredProcedures")]
+        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
 
         public void SqlServer_FetchStoredProcedures_FunctionProcessorIsNull_ThrowsArgumentNullException()
 
@@ -167,9 +169,9 @@ namespace Dev2.Sql.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SqlServer_FetchStoredProcedures")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SqlServer_FetchStoredProcedures")]
 
         public void SqlServer_FetchStoredProcedures_EmptyReturnsNothing()
 
@@ -198,7 +200,7 @@ namespace Dev2.Sql.Tests
                 Func<IDbCommand, List<IDbDataParameter>, string, string, bool> procProcessor = (command, list, arg3, a) => { somethingAdded = true; return true; };
 
                 sqlServer.FetchStoredProcedures(procProcessor, procProcessor);
-                Assert.IsFalse(somethingAdded);
+                NUnit.Framework.Assert.IsFalse(somethingAdded);
                 //------------Assert Results-------------------------
             }
             finally
@@ -207,9 +209,9 @@ namespace Dev2.Sql.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SqlServer_FetchStoredProcedures")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SqlServer_FetchStoredProcedures")]
 
         public void SqlServer_FetchStoredProcedures_SPReturnsSPs()
         {
@@ -253,8 +255,8 @@ namespace Dev2.Sql.Tests
                 };
 
                 sqlServer.FetchStoredProcedures(procProcessor, funcProcessor);
-                Assert.IsTrue(somethingAdded);
-                Assert.IsFalse(funcAdded);
+                NUnit.Framework.Assert.IsTrue(somethingAdded);
+                NUnit.Framework.Assert.IsFalse(funcAdded);
 
 
 
@@ -266,9 +268,9 @@ namespace Dev2.Sql.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SqlServer_FetchStoredProcedures")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SqlServer_FetchStoredProcedures")]
 
         public void SqlServer_FetchStoredProcedures_FuncReturnsSPs()
 
@@ -313,8 +315,8 @@ namespace Dev2.Sql.Tests
                 };
 
                 sqlServer.FetchStoredProcedures(procProcessor, funcProcessor);
-                Assert.IsTrue(funcAdded);
-                Assert.IsFalse(somethingAdded);
+                NUnit.Framework.Assert.IsTrue(funcAdded);
+                NUnit.Framework.Assert.IsFalse(somethingAdded);
 
 
 
@@ -326,9 +328,9 @@ namespace Dev2.Sql.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SqlServer_FetchStoredProcedures")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SqlServer_FetchStoredProcedures")]
 
         public void SqlServer_FetchStoredProcedures_TableValuesProcFunc_NotReturned()
 
@@ -363,14 +365,14 @@ namespace Dev2.Sql.Tests
                 };
                 Func<IDbCommand, List<IDbDataParameter>, string, string, bool> funcProcessor = (command, list, arg3, a) =>
                 {
-                    Assert.AreEqual("select * from Dave.Bob()", a);
+                    NUnit.Framework.Assert.AreEqual("select * from Dave.Bob()", a);
                     funcAdded = true;
                     return true;
                 };
 
                 sqlServer.FetchStoredProcedures(procProcessor, funcProcessor);
-                Assert.IsTrue(funcAdded);
-                Assert.IsFalse(somethingAdded);
+                NUnit.Framework.Assert.IsTrue(funcAdded);
+                NUnit.Framework.Assert.IsFalse(somethingAdded);
 
 
 
@@ -383,9 +385,9 @@ namespace Dev2.Sql.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SqlServer_Connect")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SqlServer_Connect")]
 
         public void SqlServer_FetchStoredProcedures_Connect_VerifyUnderlyingConnectionIsCalled()
 
@@ -416,9 +418,9 @@ namespace Dev2.Sql.Tests
 
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SqlServer_BeginTransaction")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SqlServer_BeginTransaction")]
         public void SqlServer_FetchStoredProcedures_BeginTransaction()
         {
             //------------Setup for test--------------------------
@@ -442,9 +444,9 @@ namespace Dev2.Sql.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SqlServer_RollbackTransaction")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SqlServer_RollbackTransaction")]
 
         public void SqlServer_FetchStoredProcedures_RollbackTransaction()
 
@@ -481,9 +483,9 @@ namespace Dev2.Sql.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SqlServer_FetchStoredProcedures")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SqlServer_FetchStoredProcedures")]
 
         public void SqlServer_FetchStoredProcedures_TableValuesProcWithParamsFunc_NotReturned()
 
@@ -531,14 +533,14 @@ namespace Dev2.Sql.Tests
                 };
                 Func<IDbCommand, List<IDbDataParameter>, string, string, bool> funcProcessor = (command, list, arg3, a) =>
                 {
-                    Assert.AreEqual("select * from Dave.Bob(@moo)", a);
+                    NUnit.Framework.Assert.AreEqual("select * from Dave.Bob(@moo)", a);
                     funcAdded = true;
                     return true;
                 };
 
                 sqlServer.FetchStoredProcedures(procProcessor, funcProcessor);
-                Assert.IsTrue(funcAdded);
-                Assert.IsFalse(somethingAdded);
+                NUnit.Framework.Assert.IsTrue(funcAdded);
+                NUnit.Framework.Assert.IsFalse(somethingAdded);
                 param.Verify(a => a.Add(It.IsAny<object>()), Times.Once);
                 mockCommand.VerifySet(command => command.CommandType = CommandType.Text, Times.Exactly(2));
                 mockCommand.VerifySet(command => command.CommandText = GlobalConstants.SchemaQuery);
@@ -551,9 +553,9 @@ namespace Dev2.Sql.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SqlServer_FetchStoredProcedures")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SqlServer_FetchStoredProcedures")]
 
         public void SqlServer_FetchDatabases_CallsSchemaFunctionWithCorrectyParams()
 
@@ -582,8 +584,8 @@ namespace Dev2.Sql.Tests
 
 
                 var output = sqlServer.FetchDatabases();
-                Assert.AreEqual("Bob", output[0]);
-                Assert.AreEqual("Dave", output[1]);
+                NUnit.Framework.Assert.AreEqual("Bob", output[0]);
+                NUnit.Framework.Assert.AreEqual("Dave", output[1]);
                 conn.Verify(a => a.GetSchema("Databases"), Times.Once());
 
 
@@ -596,9 +598,9 @@ namespace Dev2.Sql.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SqlServer_FetchStoredProcedures")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SqlServer_FetchStoredProcedures")]
 
         public void SqlServer_FetchDatabases_OnException()
 
@@ -630,8 +632,8 @@ namespace Dev2.Sql.Tests
 
 
                 var output = sqlServer.FetchDatabases();
-                Assert.AreEqual("Bob", output[0]);
-                Assert.AreEqual("Dave", output[1]);
+                NUnit.Framework.Assert.AreEqual("Bob", output[0]);
+                NUnit.Framework.Assert.AreEqual("Dave", output[1]);
                 conn.Verify(a => a.GetSchema("Databases"), Times.Once());
 
 
@@ -643,10 +645,10 @@ namespace Dev2.Sql.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [ExpectedException(typeof(DbEx))]
-        [TestCategory("SqlServer_FetchDataTable")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.ExpectedException(typeof(DbEx))]
+        [Category("SqlServer_FetchDataTable")]
         public void SqlServer_FetchDataTable_OnException()
 
         {
@@ -690,9 +692,9 @@ namespace Dev2.Sql.Tests
 
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SqlServer_FetchDataTable_addParams")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SqlServer_FetchDataTable_addParams")]
 
         public void SqlServer_FetchDataTable_AddParams_VerifyAllAdded()
 
@@ -726,7 +728,7 @@ namespace Dev2.Sql.Tests
             //    IDbDataParameter[] param = new IDbDataParameter[] { new SqlParameter("a", "a"), new SqlParameter("b", "b") };
 
             //    SqlServer.AddParameters(mockCommand.Object,param);
-            //    Assert.AreEqual(2,added.Count);
+            //    NUnit.Framework.Assert.AreEqual(2,added.Count);
 
 
             //    //------------Assert Results-------------------------
@@ -737,9 +739,9 @@ namespace Dev2.Sql.Tests
             //}
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SqlServer_FetchDataTable_addParams")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SqlServer_FetchDataTable_addParams")]
 
         public void SqlServer_FetchDataTable_ConnectionsString()
 
@@ -776,9 +778,9 @@ namespace Dev2.Sql.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SqlServer_FetchDataTable_addParams")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SqlServer_FetchDataTable_addParams")]
 
         public void SqlServer_FetchDataTable_ConnectionsStringNull()
 
@@ -803,7 +805,7 @@ namespace Dev2.Sql.Tests
             var sqlServer = new SqlServer();
             try
             {
-                Assert.IsNull(sqlServer.ConnectionString);
+                NUnit.Framework.Assert.IsNull(sqlServer.ConnectionString);
 
             }
             finally
@@ -812,9 +814,9 @@ namespace Dev2.Sql.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SqlServer_FetchDataTable_addParams")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SqlServer_FetchDataTable_addParams")]
 
         public void SqlServer_Connect_SetsCommandTypeAndCommandType()
 
@@ -843,8 +845,8 @@ namespace Dev2.Sql.Tests
                 var privateObject = new PrivateObject(sqlServer);
                 var commandText = (string)privateObject.GetField("_commantText");
                 var commandType = (CommandType)privateObject.GetField("_commandType");
-                Assert.AreEqual(commandType, CommandType.Text);
-                Assert.AreEqual("select * from ", commandText);
+                NUnit.Framework.Assert.AreEqual(commandType, CommandType.Text);
+                NUnit.Framework.Assert.AreEqual("select * from ", commandText);
             }
             finally
             {
@@ -852,9 +854,9 @@ namespace Dev2.Sql.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SqlServer_FetchDataTable_addParams")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SqlServer_FetchDataTable_addParams")]
 
         public void SqlServer_CreateCommand_CreateCommand()
 
@@ -892,97 +894,9 @@ namespace Dev2.Sql.Tests
             }
         }
 
-
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SqlServer_FetchDataTable_addParams")]
-
-        public void SqlServer_FetchDataSet_CallsNestedFactory()
-
-        {
-            ////------------Setup for test--------------------------
-            //var factory = new Mock<IDbFactory>();
-            //var mockCommand = new Mock<IDbCommand>();
-            //mockCommand.Setup(a => a.ExecuteReader(It.IsAny<CommandBehavior>())).Returns(new Mock<IDataReader>().Object);
-            //mockCommand.Setup(a => a.CommandText).Returns("Dave.Bob");
-            //var added = new SqlCommand().Parameters;
-            //mockCommand.Setup(a => a.Parameters).Returns(added);
-            //var helpTextCommand = new Mock<IDbCommand>();
-            //helpTextCommand.Setup(a => a.ExecuteReader(It.IsAny<CommandBehavior>())).Returns(new Mock<IDataReader>().Object);
-            //DataTable dt = new DataTable();
-            //dt.Columns.Add("database_name");
-            //dt.Rows.Add(new object[] { "Bob" });
-            //dt.Rows.Add(new object[] { "Dave" });
-            //factory.Setup(a => a.GetSchema(It.IsAny<IDbConnection>(), "Databases")).Returns(dt);
-            //var conn = new Mock<IDbConnection>();
-            //conn.Setup(a => a.State).Returns(ConnectionState.Open);
-            //conn.Setup(a => a.ConnectionString).Returns("bob");
-            //conn.Setup(a => a.CreateCommand()).Returns(mockCommand.Object);
-            //factory.Setup(a => a.CreateConnection(It.IsAny<string>())).Returns(conn.Object);
-            //factory.Setup(a => a.FetchDataSet(It.IsAny<DbCommand>())).Returns(new DataSet());
-            //var sqlServer = new SqlServer();
-            //try
-            //{
-
-            //    PrivateObject pvt = new PrivateObject(sqlServer);
-            //    pvt.SetField("_connection", conn.Object);
-            //    //------------Execute Test---------------------------
-            //    sqlServer.FetchDataSet(mockCommand.Object, new SqlParameter[] { });
-            //    factory.Verify(a=>a.FetchDataSet(It.IsAny<IDbCommand>()));
-            //}
-            //finally
-            //{
-            //    sqlServer.Dispose();
-            //}
-        }
-
-
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SqlServer_FetchDataTable_addParams")]
-
-        public void SqlServer_FetchDataSet_CallsNestedFactory_ParamsOnly_UsesNestedCommand()
-
-        {
-            ////------------Setup for test--------------------------
-            //var factory = new Mock<IDbFactory>();
-            //var mockCommand = new Mock<IDbCommand>();
-            //mockCommand.Setup(a => a.ExecuteReader(It.IsAny<CommandBehavior>())).Returns(new Mock<IDataReader>().Object);
-            //mockCommand.Setup(a => a.CommandText).Returns("Dave.Bob");
-            //var added = new SqlCommand().Parameters;
-            //mockCommand.Setup(a => a.Parameters).Returns(added);
-            //var helpTextCommand = new Mock<IDbCommand>();
-            //helpTextCommand.Setup(a => a.ExecuteReader(It.IsAny<CommandBehavior>())).Returns(new Mock<IDataReader>().Object);
-            //DataTable dt = new DataTable();
-            //dt.Columns.Add("database_name");
-            //dt.Rows.Add(new object[] { "Bob" });
-            //dt.Rows.Add(new object[] { "Dave" });
-            //factory.Setup(a => a.GetSchema(It.IsAny<IDbConnection>(), "Databases")).Returns(dt);
-            //var conn = new Mock<IDbConnection>();
-            //conn.Setup(a => a.State).Returns(ConnectionState.Open);
-            //conn.Setup(a => a.ConnectionString).Returns("bob");
-            //conn.Setup(a => a.CreateCommand()).Returns(mockCommand.Object);
-            //factory.Setup(a => a.CreateConnection(It.IsAny<string>())).Returns(conn.Object);
-            //factory.Setup(a => a.FetchDataSet(It.IsAny<DbCommand>())).Returns(new DataSet());
-            //var sqlServer = new SqlServer();
-            //try
-            //{
-
-            //    PrivateObject pvt = new PrivateObject(sqlServer);
-            //    pvt.SetField("_connection", conn.Object);
-            //    pvt.SetField("_command", mockCommand.Object);
-            //    //------------Execute Test---------------------------
-            //    sqlServer.FetchDataSet( new SqlParameter[] { });
-            //    factory.Verify(a => a.FetchDataSet(It.IsAny<IDbCommand>()));
-            //}
-            //finally
-            //{
-            //    sqlServer.Dispose();
-            //}
-        }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SqlServer_IsTableValueFunction")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SqlServer_IsTableValueFunction")]
 
         public void SqlServer_IsTableValueFunction_InvalidRow()
 
@@ -991,14 +905,14 @@ namespace Dev2.Sql.Tests
 
 
             //------------Execute Test---------------------------
-            Assert.IsFalse(SqlServer.IsTableValueFunction(null, null));
+            NUnit.Framework.Assert.IsFalse(SqlServer.IsTableValueFunction(null, null));
 
             //------------Assert Results-------------------------
 
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SqlServer_IsFunction")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SqlServer_IsFunction")]
 
 
         public void SqlServer_IsFunction_InvalidRow()
@@ -1008,14 +922,14 @@ namespace Dev2.Sql.Tests
 
 
             //------------Execute Test---------------------------
-            Assert.IsFalse(SqlServer.IsFunction(null, null));
+            NUnit.Framework.Assert.IsFalse(SqlServer.IsFunction(null, null));
 
             //------------Assert Results-------------------------
 
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SqlServer_IsSp")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SqlServer_IsSp")]
 
         public void SqlServer_IsSP_InvalidRow()
 
@@ -1024,19 +938,16 @@ namespace Dev2.Sql.Tests
 
 
             //------------Execute Test---------------------------
-            Assert.IsFalse(SqlServer.IsStoredProcedure(null, null));
+            NUnit.Framework.Assert.IsFalse(SqlServer.IsStoredProcedure(null, null));
 
             //------------Assert Results-------------------------
 
         }
 
-
-
-
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SqlServer_CreateCommand")]
-        [ExpectedException(typeof(Exception))]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SqlServer_CreateCommand")]
+        [NUnit.Framework.ExpectedException(typeof(Exception))]
 
         public void SqlServer_CreateCommand_ConnectionNotInitialized_ThrowsConnectFirstException()
 
@@ -1057,9 +968,9 @@ namespace Dev2.Sql.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ConnectionBuilder")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ConnectionBuilder")]
         public void ConnectionBuilder_GivenConnectionString_ShouldReturnUpdatedConnectionWithPoolNoMARS()
 
         {
@@ -1073,19 +984,19 @@ namespace Dev2.Sql.Tests
 
             var updatedConnectionString = connectionBuilder.ConnectionString(source.ConnectionString);
             //------------Assert Results-------------------------
-            Assert.IsFalse(updatedConnectionString.Contains("MultipleActiveResultSets=True"));
-            StringAssert.Contains(updatedConnectionString, "Application Name=\"Warewolf Service\"");
-            StringAssert.Contains(updatedConnectionString, "Pooling=True");
-            StringAssert.Contains(updatedConnectionString, "Data Source=localhost");
-            StringAssert.Contains(updatedConnectionString, "Integrated Security=True");
-            StringAssert.Contains(updatedConnectionString, "Max Pool Size=100");
-            StringAssert.Contains(updatedConnectionString, "Connect Timeout=30");
+            NUnit.Framework.Assert.IsFalse(updatedConnectionString.Contains("MultipleActiveResultSets=True"));
+            NUnit.Framework.StringAssert.Contains(updatedConnectionString, "Application Name=\"Warewolf Service\"");
+            NUnit.Framework.StringAssert.Contains(updatedConnectionString, "Pooling=True");
+            NUnit.Framework.StringAssert.Contains(updatedConnectionString, "Data Source=localhost");
+            NUnit.Framework.StringAssert.Contains(updatedConnectionString, "Integrated Security=True");
+            NUnit.Framework.StringAssert.Contains(updatedConnectionString, "Max Pool Size=100");
+            NUnit.Framework.StringAssert.Contains(updatedConnectionString, "Connect Timeout=30");
 
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ConnectionBuilder")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ConnectionBuilder")]
         public void ConnectionBuilder_GivenConnectionString_ShouldReturnConnectionUpdatedConnectionWithPoolNoMARS()
 
         {
@@ -1099,8 +1010,8 @@ namespace Dev2.Sql.Tests
 
             var connection = connectionBuilder.BuildConnection(source.ConnectionString);
             //------------Assert Results-------------------------
-            Assert.IsNotNull(connection);
-            Assert.IsInstanceOfType(connection, typeof(ISqlConnection));
+            NUnit.Framework.Assert.IsNotNull(connection);
+            NUnit.Framework.Assert.IsInstanceOf(connection.GetType(), typeof(ISqlConnection));
 
         }
 

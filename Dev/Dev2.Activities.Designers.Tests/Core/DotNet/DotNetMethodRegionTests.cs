@@ -14,7 +14,7 @@ using Dev2.Common.Interfaces.ToolBase.DotNet;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Core;
 
@@ -22,12 +22,13 @@ using Warewolf.Core;
 
 namespace Dev2.Activities.Designers.Tests.Core.DotNet
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DotNetMethodRegionTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DotNetMethodRegion_Constructor")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DotNetMethodRegion_Constructor")]
         public void DotNetMethodRegion_Constructor_IsNew_ValidateDependencies()
         {
             //------------Setup for test--------------------------
@@ -60,22 +61,22 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.IsNotNull(dotNetMethodRegion.RefreshMethodsCommand);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DotNetMethodRegion_Constructor")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DotNetMethodRegion_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void DotNetMethodRegion_Constructor_IsNew_ValidateShellVmDependencies()
             => new DotNetMethodRegion(default(IShellViewModel), new ActionInputDatalistMapper());
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DotNetMethodRegion_Constructor")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DotNetMethodRegion_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void DotNetMethodRegion_Constructor_IsNew_ValidateMapperVmDependencies()
             => new DotNetMethodRegion(new Mock<IShellViewModel>().Object, default(IActionInputDatatalistMapper));
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void SelectedMethod_GivenIsSet_ShouldFireIsVoidChanges()
         {
             //------------Setup for test--------------------------
@@ -109,8 +110,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.IsTrue(wasCalled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void SelectedMethod_GivenIsSet_ShouldFireIsMethodChanges()
         {
             //------------Setup for test--------------------------
@@ -144,8 +145,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.IsTrue(wasCalled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void SelectedMethod_GivenIsSet_ShouldFireIsRecordsetNameChanges()
         {
             //------------Setup for test--------------------------
@@ -179,8 +180,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.IsTrue(wasCalled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void SelectedMethod_GivenIsSet_ShouldFireIsRecordsetIsObjectChanges()
         {
             //------------Setup for test--------------------------
@@ -214,8 +215,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.IsTrue(wasCalled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void SelectedMethod_GivenIsSet_ShouldFireIsRecordsetIsObjectNameChanges()
         {
             //------------Setup for test--------------------------
@@ -249,8 +250,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.IsTrue(wasCalled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void SelectedMethod_GivenIsSet_ShouldFireIsRecordsetIsObjectResultChanges()
         {
             //------------Setup for test--------------------------
@@ -284,8 +285,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.IsTrue(wasCalled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void SelectedMethod_GivenIsSet_ShouldFireIsRecordsetIsInputsChanges()
         {
             //------------Setup for test--------------------------
@@ -319,8 +320,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.IsTrue(wasCalled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void SelectedMethod_GivenIsSet_ShouldFireIsRecordsetIsInputsEmptyRowsChanges()
         {
             //------------Setup for test--------------------------
@@ -355,8 +356,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.AreEqual("A", dotNetMethodRegion.SelectedMethod.Method);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsVoid_GivenIsSet_ShouldPropertyChangesChanges()
         {
             //------------Setup for test--------------------------
@@ -391,8 +392,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.AreEqual(true, dotNetMethodRegion.IsVoid);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void RecordsetName_GivenIsSet_ShouldPropertyChangesChanges()
         {
             //------------Setup for test--------------------------
@@ -431,8 +432,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsObject_GivenIsSet_ShouldPropertyChangesChanges()
         {
             //------------Setup for test--------------------------
@@ -470,8 +471,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.AreEqual(true, dotNetMethodRegion.IsObject);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ObjectName_GivenIsSet_ShouldPropertyChangesChanges()
         {
             //------------Setup for test--------------------------
@@ -512,8 +513,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             shellVm.Verify(model => model.UpdateCurrentDataListWithObjectFromJson(It.IsAny<string>(), It.IsAny<string>()));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ObjectName_GivenIsSetToEmpty_ShouldPropertyChangesChangesNoUpdatesToDatalist()
         {
             //------------Setup for test--------------------------
@@ -555,8 +556,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             shellVm.Verify(model => model.UpdateCurrentDataListWithObjectFromJson(It.IsAny<string>(), It.IsAny<string>()), Times.Never);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Inputs_GivenIsSet_ShouldPropertyChangesChanges()
         {
             //------------Setup for test--------------------------
@@ -604,8 +605,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.IsTrue(wasInputsEmptyCalled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ObjectResult_GivenIsSet_ShouldPropertyChangesChanges()
         {
             //------------Setup for test--------------------------
@@ -642,8 +643,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.AreEqual("ObjectResult", dotNetMethodRegion.ObjectResult);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsMethodExpanded_GivenIsSet_ShouldPropertyChangesChanges()
         {
             //------------Setup for test--------------------------
@@ -678,8 +679,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.AreEqual(true, dotNetMethodRegion.IsMethodExpanded);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsRefreshing_GivenIsSet_ShouldPropertyChangesChanges()
         {
             //------------Setup for test--------------------------
@@ -716,8 +717,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
 
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CloneRegion_GivenRegion_ShouldCopyInputs()
         {
             //------------Setup for test--------------------------
@@ -748,8 +749,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.AreEqual(2, ((DotNetMethodRegion)cloneRegion).Inputs.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CloneRegion_GivenRegion_ShouldCopyIsEnabled()
         {
             //------------Setup for test--------------------------
@@ -781,8 +782,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.AreEqual(false, cloneRegion.IsEnabled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CloneRegion_GivenRegion_ShouldCopyFullName()
         {
             //------------Setup for test--------------------------
@@ -814,8 +815,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.AreEqual("f", ((DotNetMethodRegion)cloneRegion).SelectedMethod.FullName);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CloneRegion_GivenRegion_ShouldCopyMethod()
         {
             //------------Setup for test--------------------------
@@ -847,8 +848,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.AreEqual("f", ((DotNetMethodRegion)cloneRegion).SelectedMethod.Method);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void RestoreRegion_GivenDotnetRegion_ShouldFireSelectedMethodChanged()
         {
             //---------------Set up test pack-------------------
@@ -885,8 +886,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void RestoreRegion_GivenDotnetRegion_ShouldSetSelectedMethod()
         {
             //---------------Set up test pack-------------------
@@ -915,8 +916,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CanRefresh_GivenSourceSelected_ShouldreturnTrue()
         {
             //---------------Set up test pack-------------------
@@ -942,8 +943,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CanRefresh_GivenSourceNotSelected_ShouldreturnFalse()
         {
             //---------------Set up test pack-------------------
@@ -969,8 +970,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CanRefresh_GivenNamespaceNotSelected_ShouldreturnFalse()
         {
             //---------------Set up test pack-------------------
@@ -996,8 +997,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UpdateBasedOnNamespace_GivenSource_ShouldLoadMethodsToRun()
         {
             //---------------Set up test pack-------------------
@@ -1027,8 +1028,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void RefreshMethodsCommand_GivenSource_ShouldLoadMethodsToRun()
         {
             //---------------Set up test pack-------------------
@@ -1057,8 +1058,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void SourceOnSomethingChanged_GivenSource_ShouldLoadMethodsToRun()
         {
             //---------------Set up test pack-------------------
@@ -1100,7 +1101,7 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             object sender = new DotNetConstructorRegion();
             IToolRegion regionIncoming = new DotNetInputRegion();
             methodInfo.Invoke(dotNetMethodRegion, new[] { sender, regionIncoming });
-            
+
             Assert.IsTrue(wasCalled);
             Assert.IsTrue(errorHandler);
             Assert.IsTrue(sometingChanged);
@@ -1109,8 +1110,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ViewObjectResult_GivenObjectResult_ShouldObjectPopup()
         {
             //---------------Set up test pack-------------------
@@ -1142,8 +1143,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ViewObjectResult_GivenObjectServiceInput_ShouldObjectPopup()
         {
             //---------------Set up test pack-------------------
@@ -1175,8 +1176,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void RefreshMethodsCommand_GivenThrowsError_ShouldAddErrors()
         {
             //---------------Set up test pack-------------------
@@ -1200,8 +1201,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.AreEqual("Attempted to read or write protected memory. This is often an indication that other memory is corrupt.", dotNetMethodRegion.Errors.Single());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsObjectEnabled_GivenIsNotObject_ShouldReturnTrue()
         {
             //---------------Set up test pack-------------------
@@ -1222,8 +1223,8 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             Assert.IsTrue(dotNetMethodRegion.IsObjectEnabled);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void IsInputsEmptyRows_GivenNoInputs_ShouldReturnTrue()
         {
             //---------------Set up test pack-------------------
@@ -1246,7 +1247,7 @@ namespace Dev2.Activities.Designers.Tests.Core.DotNet
             var methodInfo = typeof(DotNetMethodRegion).GetMethod("SetSelectedAction", BindingFlags.Instance | BindingFlags.NonPublic);
             methodInfo.Invoke(dotNetMethodRegion, new object[] { pluginAction });
             //---------------Execute Test ----------------------
-            
+
             //---------------Test Result -----------------------
             Assert.IsTrue(dotNetMethodRegion.IsInputsEmptyRows);
         }

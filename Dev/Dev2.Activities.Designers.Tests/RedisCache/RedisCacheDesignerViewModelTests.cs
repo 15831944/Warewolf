@@ -18,12 +18,13 @@ using Dev2.Common.Interfaces.Help;
 using Dev2.Data.ServiceModel;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Activities.Designers.Tests.RedisCache
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class RedisCacheDesignerViewModelTests
     {
         static ModelItem CreateModelItem()
@@ -31,9 +32,9 @@ namespace Dev2.Activities.Designers.Tests.RedisCache
             return ModelItemUtils.CreateModelItem(new RedisCacheActivity());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(RedisCacheDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(RedisCacheDesignerViewModel))]
         [ExpectedException(typeof(ArgumentNullException))]
         public void RedisCacheDesignerViewModel_Constructor_ModelItemIsValid_Null_EnvironmentModel()
         {
@@ -43,9 +44,9 @@ namespace Dev2.Activities.Designers.Tests.RedisCache
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(RedisCacheDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(RedisCacheDesignerViewModel))]
         [ExpectedException(typeof(ArgumentNullException))]
         public void RedisCacheDesignerViewModel_Constructor_ModelItemIsValid_Null_ShellViewModel()
         {
@@ -56,9 +57,9 @@ namespace Dev2.Activities.Designers.Tests.RedisCache
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(RedisCacheDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(RedisCacheDesignerViewModel))]
         public void RedisCacheDesignerViewModel_Constructor_ModelItemIsValid_Constructor()
         {
             //------------Setup for test--------------------------
@@ -110,9 +111,9 @@ namespace Dev2.Activities.Designers.Tests.RedisCache
             mockResourceRepository.Verify(resourceRepository => resourceRepository.FindSourcesByType<RedisSource>(It.IsAny<IServer>(), enSourceType.RedisSource), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(RedisCacheDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(RedisCacheDesignerViewModel))]
         public void RedisCacheDesignerViewModel_Constructor_ModelItemIsValid_UpdateHelpDescriptor()
         {
             var expectedHelpText = "redis help text";
@@ -147,9 +148,9 @@ namespace Dev2.Activities.Designers.Tests.RedisCache
             mockHelpViewModel.Verify(helpViewModel => helpViewModel.UpdateHelpText(expectedHelpText), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(RedisCacheDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(RedisCacheDesignerViewModel))]
         public void RedisCacheDesignerViewModel_Constructor_ModelItemIsValid_EditRedisServerSource()
         {
             var expectedId = Guid.NewGuid();
@@ -189,9 +190,9 @@ namespace Dev2.Activities.Designers.Tests.RedisCache
             mockResourceRepository.Verify(resourceRepository => resourceRepository.FindSourcesByType<RedisSource>(It.IsAny<IServer>(), enSourceType.RedisSource), Times.Exactly(2));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(RedisCacheDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(RedisCacheDesignerViewModel))]
         public void RedisCacheDesignerViewModel_Constructor_ModelItemIsValid_NewRedisServerSource()
         {
             var expectedId = Guid.NewGuid();

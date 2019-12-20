@@ -13,7 +13,7 @@ using Dev2.Common.Interfaces;
 using Dev2.Data.TO;
 using Dev2.Runtime.ServiceModel;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,11 +22,12 @@ using System.Text;
 
 namespace Dev2.Tests.Runtime.ServiceModel
 {
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class WebSourcesTests
     {
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void WebSources_ConstructorWithNullResourceCatalogExpectedThrowsArgumentNullException()
         {
@@ -37,7 +38,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
 #pragma warning restore 168
         }
 
-        [TestMethod]
+        [Test]
         public void WebSources_TestWithInValidArgsExpectedInvalidValidationResult()
         {
             var handler = new WebSources();
@@ -45,7 +46,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.IsFalse(result.IsValid);
         }
 
-        [TestMethod]
+        [Test]
         public void WebSources_TestWithInvalidAddressExpectedInvalidValidationResult()
         {
             var source = new WebSource { Address = "www.foo.bar", AuthenticationType = AuthenticationType.Anonymous }.ToString();
@@ -55,7 +56,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.IsFalse(result.IsValid, result.ErrorMessage);
         }
 
-        [TestMethod]
+        [Test]
         public void WebSources_AssertUserAgentHeaderSet()
         {
             var source = new WebSource { Address = "www.foo.bar", AuthenticationType = AuthenticationType.Anonymous };
@@ -67,7 +68,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.IsNotNull(agent);
             Assert.AreEqual(agent, GlobalConstants.UserAgentString);
         }
-        [TestMethod]
+        [Test]
         public void WebSources_AssertUserAgentHeaderSet_SetsOtherHeaders()
         {
             var source = new WebSource { Address = "www.foo.bar", AuthenticationType = AuthenticationType.Anonymous };
@@ -81,7 +82,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.IsTrue(client.Headers.AllKeys.Contains("a"));
             Assert.IsTrue(client.Headers.AllKeys.Contains("b"));
         }
-        [TestMethod]
+        [Test]
         public void WebSources_AssertUserAgentHeaderSet_SetsUserNameAndPassword()
 
         {
@@ -97,7 +98,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
 
         }
 
-        [TestMethod]
+        [Test]
         public void WebSources_GetWithNullArgsExpectedReturnsNewSource()
         {
             var handler = new WebSources();
@@ -107,7 +108,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(Guid.Empty, result.ResourceID);
         }
 
-        [TestMethod]
+        [Test]
         public void WebSources_GetWithInvalidArgsExpectedReturnsNewSource()
         {
             var handler = new WebSources();
@@ -117,12 +118,12 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(Guid.Empty, result.ResourceID);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void WebSources_GetAddress_Given_Null_Source_And_NoRelativeUri_Should_Return_relativeUri()
         {
             //------------Setup for test-------------------------
-            var webSource = new PrivateType(typeof(WebSources));
+            var webSource = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType(typeof(WebSources));
             //------------Execute Test---------------------------
             object[] args = { null, string.Empty };
             var invokeStaticResults = webSource.InvokeStatic("GetAddress", args);
@@ -134,12 +135,12 @@ namespace Dev2.Tests.Runtime.ServiceModel
         }
 
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void WebSources_GetAddress_Given_Null_Source_And_relativeUri_Should_Return_relativeUri()
         {
             //------------Setup for test-------------------------
-            var webSource = new PrivateType(typeof(WebSources));
+            var webSource = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType(typeof(WebSources));
             //------------Execute Test---------------------------
             object[] args = { null, "some url" };
             var invokeStaticResults = webSource.InvokeStatic("GetAddress", args);
@@ -150,8 +151,8 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual("some url", results);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
+        [Test]
+        [Author("Candice Daniel")]
         public void WebSources_PerformMultipartWebRequest_SetsContentTypeHeaders()
         {
             var source = new WebSource { Address = "http://www.msn.com/", AuthenticationType = AuthenticationType.Anonymous };
@@ -169,8 +170,8 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.IsNotNull(contentType);
             Assert.AreEqual("multipart/form-data", contentType);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
+        [Test]
+        [Author("Candice Daniel")]
         public void WebSources_Execute_SetsContentTypeHeaders_multipart()
         {
             var headerString = new List<string> { "a:x", "b:e", "Content-Type: multipart/form-data" };
@@ -184,8 +185,8 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.IsFalse(errors.HasErrors(), "On executing with multipart form data web client source returned at least one error: " + (errors.HasErrors()?errors.FetchErrors()[0]:""));
             Assert.AreEqual("multipart/form-data", contentType);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
+        [Test]
+        [Author("Candice Daniel")]
         public void WebSources__Execute_Without_MultiPart()
         {
             var headerString = new List<string> { "a:x", "b:e" };
@@ -199,8 +200,8 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.IsTrue(client.Headers.AllKeys.Contains("b"));
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
+        [Test]
+        [Author("Candice Daniel")]
         public void WebSources_HttpNewLine()
         {
             const string data = @"Accept-Language: en-US,en;q=0.5

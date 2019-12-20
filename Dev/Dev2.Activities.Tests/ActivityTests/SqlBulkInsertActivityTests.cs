@@ -20,20 +20,21 @@ using Dev2.Common.Interfaces.Enums;
 using Dev2.Runtime.Hosting;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.TO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SqlBulkInsertActivityTests : BaseActivityUnitTest
     {
         public TestContext TestContext { get; set; }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSqlBulkInsertActivity_Construct")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSqlBulkInsertActivity_Construct")]
         public void DsfSqlBulkInsertActivity_Construct_Paramterless_SetsDefaultPropertyValues()
         {
             //------------Setup for test--------------------------
@@ -47,42 +48,42 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsTrue(dsfSqlBulkInsertActivity.IgnoreBlankRows);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSqlBulkInsertActivity_SqlBulkInserter")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSqlBulkInsertActivity_SqlBulkInserter")]
         public void DsfSqlBulkInsertActivity_SqlBulkInserter_NotSet_ReturnsConcreateType()
         {
             //------------Setup for test--------------------------
             var dsfSqlBulkInsertActivity = new DsfSqlBulkInsertActivity();
             //------------Execute Test---------------------------
-            var px = new PrivateObject(dsfSqlBulkInsertActivity);
+            var px = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(dsfSqlBulkInsertActivity);
 
             var sqlBulkInserter = px.GetProperty("SqlBulkInserter");
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(sqlBulkInserter, typeof(ISqlBulkInserter));
-            Assert.IsInstanceOfType(sqlBulkInserter, typeof(SqlBulkInserter));
+            Assert.IsInstanceOf(sqlBulkInserter.GetType(), typeof(ISqlBulkInserter));
+            Assert.IsInstanceOf(sqlBulkInserter.GetType(), typeof(SqlBulkInserter));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSqlBulkInsertActivity_SqlBulkInserter")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSqlBulkInsertActivity_SqlBulkInserter")]
         public void DsfSqlBulkInsertActivity_SqlBulkInserter_WhenSet_ReturnsSetValue()
         {
             //------------Setup for test--------------------------
             var dsfSqlBulkInsertActivity = new DsfSqlBulkInsertActivity();
-            var p = new PrivateObject(dsfSqlBulkInsertActivity);
+            var p = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(dsfSqlBulkInsertActivity);
             p.SetProperty("SqlBulkInserter",new Mock<ISqlBulkInserter>().Object);
             
             //------------Execute Test---------------------------
             var sqlBulkInserter = p.GetProperty("SqlBulkInserter");
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(sqlBulkInserter, typeof(ISqlBulkInserter));
-            Assert.IsNotInstanceOfType(sqlBulkInserter, typeof(SqlBulkInserter));
+            Assert.IsInstanceOf(sqlBulkInserter.GetType(), typeof(ISqlBulkInserter));
+            Assert.IsNotInstanceOf(sqlBulkInserter.GetType(), typeof(SqlBulkInserter));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSqlBulkInsertActivity_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSqlBulkInsertActivity_Execute")]
         public void DsfSqlBulkInsertActivity_Execute_WithNoInputMappings_EmptyDataTableToInsert()
         {
             //------------Setup for test--------------------------
@@ -98,9 +99,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsNull(returnedDataTable);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetOutputs")]
         public void GetOutputs_Called_ShouldReturnListWithResultValueInIt()
         {
             //------------Setup for test--------------------------
@@ -112,9 +113,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("[[insResult]]", outputs[0]);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSqlBulkInsertActivity_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSqlBulkInsertActivity_Execute")]
         public void DsfSqlBulkInsertActivity_Execute_OptionsNotSet_HasSqlBulkCopyWithOptionsWithDefaultValues()
         {
             //------------Setup for test--------------------------
@@ -134,9 +135,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(0, bulkCopy.BatchSize);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DsfSqlBulkInsertActivity_Execute")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DsfSqlBulkInsertActivity_Execute")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void DsfSqlBulkInsertActivity_Execute_WhenNotTableSet_ExpectException()
         {
@@ -148,9 +149,9 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSqlBulkInsertActivity_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSqlBulkInsertActivity_Execute")]
         public void DsfSqlBulkInsertActivity_Execute_OptionsSet_HasSqlBulkCopyWithOptionsWithValues()
         {
             //------------Setup for test--------------------------
@@ -171,9 +172,9 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSqlBulkInsertActivity_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSqlBulkInsertActivity_Execute")]
         public void DsfSqlBulkInsertActivity_Execute_OptionsSetMixed_HasSqlBulkCopyWithOptionsWithValues()
         {
             //------------Setup for test--------------------------
@@ -193,9 +194,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(10, bulkCopy.BatchSize);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSqlBulkInsertActivity_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSqlBulkInsertActivity_Execute")]
         public void DsfSqlBulkInsertActivity_Execute_OptionsSetMixedUsingDataList_HasSqlBulkCopyWithOptionsWithValues()
         {
             //------------Setup for test--------------------------
@@ -223,9 +224,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             return dbSource;
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSqlBulkInsertActivity_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSqlBulkInsertActivity_Execute")]
         public void DsfSqlBulkInsertActivity_Execute_WithInputMappings_HasDataTableToInsert()
         {
             //------------Setup for test--------------------------
@@ -255,9 +256,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(-1, returnedDataTable.Columns[0].MaxLength); // Max Length Only applies to strings            
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSqlBulkInsertActivity_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSqlBulkInsertActivity_Execute")]
         public void DsfSqlBulkInsertActivity_Execute_WithInputMappingsStringMapping_HasDataTableToInsertWithStringColumnHavingMaxLength()
         {
             //------------Setup for test--------------------------
@@ -287,9 +288,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(100, returnedDataTable.Columns[0].MaxLength); // Max Length Only applies to strings            
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSqlBulkInsertActivity_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSqlBulkInsertActivity_Execute")]
         public void DsfSqlBulkInsertActivity_Execute_WithMultipleInputMappings_HasDataTableWithMultipleColumns()
         {
             //------------Setup for test--------------------------
@@ -352,9 +353,9 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSqlBulkInsertActivity_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSqlBulkInsertActivity_Execute")]
         public void DsfSqlBulkInsertActivity_Execute_WithInputMappingsAndDataFromDataListAppend_HasDataTableWithData()
         {
             //------------Setup for test--------------------------
@@ -405,9 +406,9 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSqlBulkInsertActivity_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSqlBulkInsertActivity_Execute")]
         public void DsfSqlBulkInsertActivity_Execute_WithInputMappingsAndDataFromDataListStar_HasDataTableWithData()
         {
             //------------Setup for test--------------------------
@@ -468,9 +469,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(60m, returnedDataTable.Rows[2]["TestCol4"]);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSqlBulkInsertActivity_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSqlBulkInsertActivity_Execute")]
         public void DsfSqlBulkInsertActivity_Execute_WithBlankRowsInData_HasDataTableWithDataExcludingBlankRows()
         {
             //------------Setup for test--------------------------
@@ -531,9 +532,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(60m, returnedDataTable.Rows[2]["TestCol4"]);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSqlBulkInsertActivity_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSqlBulkInsertActivity_Execute")]
         public void DsfSqlBulkInsertActivity_Execute_WithIgnoreBlankRowsFalse_HasDataTableWithDataIncludingBlankRows()
         {
             //------------Setup for test--------------------------
@@ -604,9 +605,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("60", returnedDataTable.Rows[4]["TestCol4"]);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSqlBulkInsertActivity_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSqlBulkInsertActivity_Execute")]
         public void DsfSqlBulkInsertActivity_Execute_WithInputMappingsAndDataFromDataListStar_HasDataTableWithDataColumnHaveCorrectDataTypes()
         {
             //------------Setup for test--------------------------
@@ -688,9 +689,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(Guid.Parse("52ed8fe2-80c3-42e1-8a9f-f52715988efb"), returnedDataTable.Rows[0]["TestCol7"]);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSqlBulkInsertActivity_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSqlBulkInsertActivity_Execute")]
         public void DsfSqlBulkInsertActivity_Execute_WithInputMappingsAndDataFromDataListAppendMulitpleRows_HasDataTableWithDataOnlyLastRowFromDataList()
         {
             //------------Setup for test--------------------------
@@ -743,9 +744,9 @@ namespace Dev2.Tests.Activities.ActivityTests
 
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSqlBulkInsertActivity_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSqlBulkInsertActivity_Execute")]
         public void DsfSqlBulkInsertActivity_Execute_WithInputMappingsAndDataFromDataListStarWithOneScalar_HasDataTableWithData()
         {
             //------------Setup for test--------------------------
@@ -816,9 +817,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Hello", returnedDataTable.Rows[2]["Val"]);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DsfSqlBulkInsertActivity_Execute")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DsfSqlBulkInsertActivity_Execute")]
         public void DsfSqlBulkInsertActivity_Execute_WithInputMappingsWithIdentityColumnWithDataMappedAndKeepIdentityOnWhenMultiTable_HasTableWithData()
         {
             //------------Setup for test--------------------------
@@ -879,9 +880,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Hello", returnedDataTable.Rows[2]["Val"]);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DsfSqlBulkInsertActivity_Execute")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DsfSqlBulkInsertActivity_Execute")]
         public void DsfSqlBulkInsertActivity_Execute_WithInputMappingsWithIdentityColumnWithDataMappedAndKeepIdentityOffWhenMultiTable_HasErrorAboutColumn()
         {
             //------------Setup for test--------------------------
@@ -931,9 +932,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DsfSqlBulkInsertActivity_Execute")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DsfSqlBulkInsertActivity_Execute")]
         public void DsfSqlBulkInsertActivity_Execute_WithInputMappingsWithInvalidIndex_HasErrorAboutColumn()
         {
             //------------Setup for test--------------------------
@@ -983,9 +984,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DsfSqlBulkInsertActivity_Execute")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DsfSqlBulkInsertActivity_Execute")]
         public void DsfSqlBulkInsertActivity_Execute_WithInputMappingsWithInvalidEvaluatedIndex_HasErrorAboutColumn()
         {
             //------------Setup for test--------------------------
@@ -1036,9 +1037,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DsfSqlBulkInsertActivity_Execute")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DsfSqlBulkInsertActivity_Execute")]
         public void DsfSqlBulkInsertActivity_Execute_WithInputMappingsWithIdentityColumnWithNoDataMappedAndKeepIdentityOnWhenMultiTable_HasErrorAboutColumn()
         {
             //------------Setup for test--------------------------
@@ -1088,9 +1089,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DsfSqlBulkInsertActivity_Execute")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DsfSqlBulkInsertActivity_Execute")]
         public void DsfSqlBulkInsertActivity_Execute_WithInputMappingsWithIdentityColumnWithNoDataMappedAndKeepIdentityOffWhenMultiTable_HasDataTableWithData()
         {
             //------------Setup for test--------------------------
@@ -1148,9 +1149,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Hello", returnedDataTable.Rows[2]["Val"]);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DsfSqlBulkInsertActivity_Execute")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DsfSqlBulkInsertActivity_Execute")]
         public void DsfSqlBulkInsertActivity_Execute_WithInputMappingsWithNullableColumnWithNoDataMappedWhenMultiTable_HasDataTableWithData()
         {
             //------------Setup for test--------------------------
@@ -1208,9 +1209,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Hello", returnedDataTable.Rows[2]["Val"]);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DsfSqlBulkInsertActivity_Execute")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DsfSqlBulkInsertActivity_Execute")]
         public void DsfSqlBulkInsertActivity_Execute_WithInputMappingsWithNullableColumnWithDataMappedWhenMultiTable_HasDataTableWithData()
         {
             //------------Setup for test--------------------------
@@ -1271,9 +1272,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Hello", returnedDataTable.Rows[2]["Val"]);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DsfSqlBulkInsertActivity_Execute")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DsfSqlBulkInsertActivity_Execute")]
         [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void DsfSqlBulkInsertActivity_Execute_WithInputMappingsWithNonNullableColumnWithDataMappedWhenMultiTable_HasDataTableWithData()
         {
@@ -1335,9 +1336,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Hello", returnedDataTable.Rows[2]["Val"]);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DsfSqlBulkInsertActivity_Execute")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DsfSqlBulkInsertActivity_Execute")]
         public void DsfSqlBulkInsertActivity_Execute_WithInputMappingsWithNonNullableColumnWithNoDataMappedWhenMultiTable_HasErrorAboutColumn()
         {
             //------------Setup for test--------------------------
@@ -1387,9 +1388,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSqlBulkInsertActivity_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSqlBulkInsertActivity_Execute")]
         public void DsfSqlBulkInsertActivity_Execute_IgnoreBlankRowsFalse_HasDataTableWithBlankRowData()
         {
             //------------Setup for test--------------------------
@@ -1461,9 +1462,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("", returnedDataTable.Rows[2]["Val"]);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSqlBulkInsertActivity_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSqlBulkInsertActivity_Execute")]
         public void DsfSqlBulkInsertActivity_Execute_MixedData_IgnoreBlankRowsTrue_HasDataTableWithOutBlankRowData()
         {
             //------------Setup for test--------------------------
@@ -1528,9 +1529,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("", returnedDataTable.Rows[1]["Val"]);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSqlBulkInsertActivity_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSqlBulkInsertActivity_Execute")]
         public void DsfSqlBulkInsertActivity_Execute_WithInputMappingsAndDataFromDataListStarWithOneScalarAndAppend_HasDataTableWithData()
         {
             //------------Setup for test--------------------------
@@ -1601,9 +1602,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Hello", returnedDataTable.Rows[2]["Val"]);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSqlBulkInsertActivity_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSqlBulkInsertActivity_Execute")]
         public void DsfSqlBulkInsertActivity_Execute_WithInputMappingsAndDataFromDataListStarWithOneScalarAndAppendMixedRecsets_HasDataTableWithData()
         {
             //------------Setup for test--------------------------
@@ -1733,9 +1734,9 @@ namespace Dev2.Tests.Activities.ActivityTests
 
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSqlBulkInsertActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSqlBulkInsertActivity_UpdateForEachInputs")]
         public void DsfSqlBulkInsertActivity_UpdateForEachInputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -1763,9 +1764,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(Result, act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSqlBulkInsertActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSqlBulkInsertActivity_UpdateForEachInputs")]
         public void DsfSqlBulkInsertActivity_UpdateForEachInputs_MoreThan1Updates_Updates()
         {
             //------------Setup for test--------------------------
@@ -1796,9 +1797,9 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSqlBulkInsertActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSqlBulkInsertActivity_UpdateForEachOutputs")]
         public void DsfSqlBulkInsertActivity_UpdateForEachOutputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -1819,9 +1820,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(Result, act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSqlBulkInsertActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSqlBulkInsertActivity_UpdateForEachOutputs")]
         public void DsfSqlBulkInsertActivity_UpdateForEachOutputs_MoreThan1Updates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -1845,9 +1846,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(Result, act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSqlBulkInsertActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSqlBulkInsertActivity_UpdateForEachOutputs")]
         public void DsfSqlBulkInsertActivity_UpdateForEachOutputs_1Updates_UpdateCommandResult()
         {
             //------------Setup for test--------------------------
@@ -1870,9 +1871,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Test", act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSqlBulkInsertActivity_GetForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSqlBulkInsertActivity_GetForEachInputs")]
         public void DsfSqlBulkInsertActivity_GetForEachInputs_WhenHasExpression_ReturnsInputList()
         {
             //------------Setup for test--------------------------
@@ -1917,9 +1918,9 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfSqlBulkInsertActivity_GetForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfSqlBulkInsertActivity_GetForEachOutputs")]
         public void DsfSqlBulkInsertActivity_GetForEachOutputs_WhenHasResult_ReturnsOutputList()
         {
             //------------Setup for test--------------------------
@@ -1944,9 +1945,9 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DsfSqlBulkInsertActivity_GetFindMissingType")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DsfSqlBulkInsertActivity_GetFindMissingType")]
         public void DsfSqlBulkInsertActivity_GetFindMissingType_MixedActivity()
         {
             //------------Setup for test--------------------------
@@ -1983,7 +1984,7 @@ namespace Dev2.Tests.Activities.ActivityTests
                 IgnoreBlankRows = ignoreBlankRows,
                 KeepIdentity = keepIdentity
             };
-            var p = new PrivateObject(x);
+            var p = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(x);
             p.SetProperty("SqlBulkInserter", sqlBulkInserter);
 
             TestStartNode = new FlowStep

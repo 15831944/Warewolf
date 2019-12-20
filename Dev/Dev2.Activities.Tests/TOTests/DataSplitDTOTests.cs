@@ -9,7 +9,7 @@
 */
 
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 
@@ -18,12 +18,13 @@ namespace Dev2.Tests.Activities.TOTests
     /// <summary>
     /// Summary description for DataSplitDTOTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DataSplitDTOTests
     {
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("DataSplitDTO_Ctor")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("DataSplitDTO_Ctor")]
         public void DataSplitDTO_Ctor_CreateWithSplitTypeOfSpace_EnabledAtFalse()
         {
             //------------Execute Test---------------------------
@@ -32,9 +33,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsFalse(dataSplitDTO.EnableAt);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataSplitDTO_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataSplitDTO_Constructor")]
         public void DataSplitDTO_Constructor_Default_PropertiesInitializedCorrectly()
         {
             //------------Setup for test--------------------------
@@ -56,9 +57,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.AreEqual(false, dto.IsEscapeCharFocused);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataSplitDTO_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataSplitDTO_Constructor")]
         public void DataSplitDTO_Constructor_FullConstructor_PropertiesInitializedCorrectly()
         {
             //------------Setup for test--------------------------
@@ -82,9 +83,9 @@ namespace Dev2.Tests.Activities.TOTests
 
         #region CanAdd Tests
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("DataSplitDTO_CanAdd")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("DataSplitDTO_CanAdd")]
         public void DataSplitDTO_CanAdd_WithNewLineSplitTypeAndNoOtherValues_ReturnTrue()
         {
             //------------Setup for test--------------------------
@@ -94,9 +95,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(dataSplitDTO.CanAdd());
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("DataSplitDTO_CanAdd")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("DataSplitDTO_CanAdd")]
         public void DataSplitDTO_CanAdd_WithNoInputVarButValueForAt_ReturnTrue()
         {
             //------------Setup for test--------------------------
@@ -106,9 +107,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(dataSplitDTO.CanAdd());
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("DataSplitDTO_CanAdd")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("DataSplitDTO_CanAdd")]
         public void DataSplitDTO_CanAdd_WithNoInputVarAndNoAt_ReturnFalse()
         {
             //------------Setup for test--------------------------
@@ -118,9 +119,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsFalse(dataSplitDTO.CanAdd());
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("DataSplitDTO_CanAdd")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("DataSplitDTO_CanAdd")]
         public void DataSplitDTO_CanAdd_WithIndexSplitTypeAndNoOtherValues_ReturnFalse()
         {
             //------------Setup for test--------------------------
@@ -134,9 +135,9 @@ namespace Dev2.Tests.Activities.TOTests
 
         #region CanRemove Tests
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("DataSplitDTO_CanRemove")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("DataSplitDTO_CanRemove")]
         public void DataSplitDTO_CanRemove_WithNoInputVarButValueForAt_ReturnFalse()
         {
             //------------Setup for test--------------------------
@@ -146,9 +147,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsFalse(dataSplitDTO.CanRemove());
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("DataSplitDTO_CanRemove")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("DataSplitDTO_CanRemove")]
         public void DataSplitDTO_CanRemove_WithNoInputVarAndNoAt_ReturnTrue()
         {
             //------------Setup for test--------------------------
@@ -158,9 +159,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(dataSplitDTO.CanRemove());
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("DataSplitDTO_CanRemove")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("DataSplitDTO_CanRemove")]
         public void DataSplitDTO_CanRemove_WithNewLineTypeAndNoInputVar_ReturnFalse()
         {
             //------------Setup for test--------------------------
@@ -170,9 +171,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsFalse(dataSplitDTO.CanRemove());
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("DataSplitDTO_CanRemove")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("DataSplitDTO_CanRemove")]
         public void DataSplitDTO_CanRemove_WithNewLineInputTypeAndVar_ReturnFalse()
         {
             //------------Setup for test--------------------------
@@ -184,9 +185,9 @@ namespace Dev2.Tests.Activities.TOTests
 
         #endregion
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataSplitDTO_IsEmpty")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataSplitDTO_IsEmpty")]
         public void DataSplitDTO_IsEmpty_PropertiesAreEmpty_True()
         {
             Verify_IsEmpty(DataSplitDTO.SplitTypeIndex);
@@ -206,9 +207,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(actual);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataSplitDTO_IsEmpty")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataSplitDTO_IsEmpty")]
         public void DataSplitDTO_IsEmpty_PropertiesAreNotEmpty_False()
         {
             //------------Setup for test--------------------------
@@ -221,9 +222,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsFalse(actual);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataSplitDTO_ClearRow")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataSplitDTO_ClearRow")]
         public void DataSplitDTO_ClearRow_PropertiesAreEmpty()
         {
             //------------Setup for test--------------------------
@@ -239,9 +240,9 @@ namespace Dev2.Tests.Activities.TOTests
         }
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataSplitDTO_GetRuleSet")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataSplitDTO_GetRuleSet")]
         public void DataSplitDTO_GetRuleSet_IsEmptyIsTrue_ValidateRulesReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -252,9 +253,9 @@ namespace Dev2.Tests.Activities.TOTests
             Verify_RuleSet(dto, "At", null);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataSplitDTO_GetRuleSet")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataSplitDTO_GetRuleSet")]
         public void DataSplitDTO_GetRuleSetOutputVariable_ExpressionIsInvalid_ValidateRulesReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -264,9 +265,9 @@ namespace Dev2.Tests.Activities.TOTests
             Verify_RuleSet(dto, "OutputVariable", "Result - Invalid expression: opening and closing brackets don't match");
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataSplitDTO_GetRuleSet")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataSplitDTO_GetRuleSet")]
         public void DataSplitDTO_GetRuleSetOutputVariable_ExpressionIsValid_ValidateRulesReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -276,9 +277,9 @@ namespace Dev2.Tests.Activities.TOTests
             Verify_RuleSet(dto, "OutputVariable", null);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataSplitDTO_GetRuleSet")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataSplitDTO_GetRuleSet")]
         public void DataSplitDTO_GetRuleSetOutputVariable_IsNotNullOrEmpty_ValidateRulesReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -290,9 +291,9 @@ namespace Dev2.Tests.Activities.TOTests
 
 
 
-        [TestMethod]
-        [Owner("Robin van den Heever")]
-        [TestCategory("DataSplitDTO_GetRuleSet")]
+        [Test]
+        [Author("Robin van den Heever")]
+        [Category("DataSplitDTO_GetRuleSet")]
         public void DataSplitDTO_GetRuleSetOutputVariable_IsNotNullOrEmpty_ValidateRulesReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -305,9 +306,9 @@ namespace Dev2.Tests.Activities.TOTests
 
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataSplitDTO_GetRuleSet")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataSplitDTO_GetRuleSet")]
         public void DataSplitDTO_GetRuleSetAt_SplitTypeIsIndexAndExpressionIsInvalid_ValidateRulesReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -317,9 +318,9 @@ namespace Dev2.Tests.Activities.TOTests
             Verify_RuleSet(dto, "At", "Result - Invalid expression: opening and closing brackets don't match");
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataSplitDTO_GetRuleSet")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataSplitDTO_GetRuleSet")]
         public void DataSplitDTO_GetRuleSetAt_SplitTypeIsIndexAndExpressionIsValid_ValidateRulesReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -329,9 +330,9 @@ namespace Dev2.Tests.Activities.TOTests
             Verify_RuleSet(dto, "At", null);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataSplitDTO_GetRuleSet")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataSplitDTO_GetRuleSet")]
         public void DataSplitDTO_GetRuleSetAt_SplitTypeIsIndexAndIsNumeric_ValidateRulesReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -341,9 +342,9 @@ namespace Dev2.Tests.Activities.TOTests
             Verify_RuleSet(dto, "At", null);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataSplitDTO_GetRuleSet")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataSplitDTO_GetRuleSet")]
         public void DataSplitDTO_GetRuleSetAt_SplitTypeIsCharsAndExpressionIsInvalid_ValidateRulesReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -353,9 +354,9 @@ namespace Dev2.Tests.Activities.TOTests
             Verify_RuleSet(dto, "At", "Result - Invalid expression: opening and closing brackets don't match");
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataSplitDTO_GetRuleSet")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataSplitDTO_GetRuleSet")]
         public void DataSplitDTO_GetRuleSetAt_SplitTypeIsCharsAndExpressionIsValid_ValidateRulesReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -365,9 +366,9 @@ namespace Dev2.Tests.Activities.TOTests
             Verify_RuleSet(dto, "At", null);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataSplitDTO_GetRuleSet")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataSplitDTO_GetRuleSet")]
         public void DataSplitDTO_GetRuleSetAt_SplitTypeIsCharsAndIsEmpty_ValidateRulesReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -377,9 +378,9 @@ namespace Dev2.Tests.Activities.TOTests
             Verify_RuleSet(dto, "At", Warewolf.Resource.Errors.ErrorResource.CannotBeNull);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataSplitDTO_GetRuleSet")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataSplitDTO_GetRuleSet")]
         public void DataSplitDTO_GetRuleSetAt_SplitTypeIsCharsAndIsNotEmpty_ValidateRulesReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -389,9 +390,9 @@ namespace Dev2.Tests.Activities.TOTests
             Verify_RuleSet(dto, "At", null);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataSplitDTO_GetRuleSet")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataSplitDTO_GetRuleSet")]
         public void DataSplitDTO_GetRuleSetAt_SplitTypeIsIndexAndIsLessThan0_ValidateRulesReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -401,9 +402,9 @@ namespace Dev2.Tests.Activities.TOTests
             Verify_RuleSet(dto, "At", Warewolf.Resource.Errors.ErrorResource.MustBeRealNumber);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataSplitDTO_GetRuleSet")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataSplitDTO_GetRuleSet")]
         public void DataSplitDTO_GetRuleSetAt_SplitTypeIsIndexAndIsGreaterThan0_ValidateRulesReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -413,9 +414,9 @@ namespace Dev2.Tests.Activities.TOTests
             Verify_RuleSet(dto, "At", null);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DataSplitDTO_GetRuleSet")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DataSplitDTO_GetRuleSet")]
         public void DataSplitDTO_GetRuleSetAt_SplitTypeIsIndexAndIs0_ValidateRulesReturnsTrue()
         {
             //------------Setup for test--------------------------

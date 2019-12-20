@@ -15,19 +15,20 @@ using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
 using Dev2.Threading;
 using Dev2.TO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 
 namespace Dev2.Activities.Designers.Tests.Sharepoint
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SharepointDesignerViewModelBaseTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointListDesignerViewModelBase_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointListDesignerViewModelBase_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SharepointListDesignerViewModelBase_Constructor_NullModelItem_ThrowsException()
         {
@@ -40,9 +41,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             Assert.IsNull(sharepointListDesignerViewModelBase);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointListDesignerViewModelBase_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointListDesignerViewModelBase_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SharepointListDesignerViewModelBase_Constructor_NullAsyncWorker_ThrowsException()
         {
@@ -54,9 +55,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             //------------Assert Results-------------------------
         }        
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointListDesignerViewModelBase_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointListDesignerViewModelBase_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SharepointListDesignerViewModelBase_Constructor_NullEnvironmentModel_ThrowsException()
         {
@@ -68,9 +69,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             //------------Assert Results-------------------------
         }  
       
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointListDesignerViewModelBase_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointListDesignerViewModelBase_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SharepointListDesignerViewModelBase_Constructor_NullEventAggregator_ThrowsException()
         {
@@ -82,9 +83,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointListDesignerViewModelBase_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointListDesignerViewModelBase_Constructor")]
         public void SharepointListDesignerViewModelBase_Constructor_ParametersPassed_ShouldSetupCorrectly()
         {
             //------------Setup for test--------------------------
@@ -102,9 +103,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             Assert.IsTrue(sharepointListDesignerViewModelBase.RefreshListsCommand.CanExecute(null));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointListDesignerViewModelBase_MethodName")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointListDesignerViewModelBase_MethodName")]
         public void SharepointListDesignerViewModelBase_SharepointServerList_ShouldHaveServerListWithNewSharepointOption()
         {
             //------------Setup for test--------------------------
@@ -134,9 +135,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             return new TestSharepointListDesignerViewModelBase(CreateModelItem(), new SynchronousAsyncWorker(), mockEnvironmentModel.Object, mockEventAggregator.Object, false);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointListDesignerViewModelBase_LoadSharepointServers")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointListDesignerViewModelBase_LoadSharepointServers")]
         public void SharepointListDesignerViewModelBase_SharepointListDesignerViewModelBase_LoadSharepointServers_HasServers_ShouldPopulateList()
         {
             //------------Setup for test--------------------------
@@ -161,9 +162,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             Assert.AreEqual(sharepointSource,sharepointServers[2]);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointListDesignerViewModelBase_SetSelectedSharepointServer")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointListDesignerViewModelBase_SetSelectedSharepointServer")]
         public void SharepointListDesignerViewModelBase_SetSelectedSharepointServer_SetToServer_ShouldLoadLists()
         {
             //------------Setup for test--------------------------
@@ -209,9 +210,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointListDesignerViewModelBase_SetSelectedSharepointServer")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointListDesignerViewModelBase_SetSelectedSharepointServer")]
         public void SharepointListDesignerViewModelBase_SetSelectedSharepointServer_EditCommand_ShouldCallOpenResource()
         {
             //------------Setup for test--------------------------
@@ -240,9 +241,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointListDesignerViewModelBase_SetSelectedSharepointServer")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointListDesignerViewModelBase_SetSelectedSharepointServer")]
         public void SharepointListDesignerViewModelBase_SetSelectedSharepointServer_SetToNewSharepointServer_ShouldPublishEvent()
         {
             //------------Setup for test--------------------------
@@ -270,9 +271,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointListDesignerViewModelBase_SetSelectedSharepointList")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointListDesignerViewModelBase_SetSelectedSharepointList")]
         public void SharepointListDesignerViewModelBase_SetSelectedList_SetToList_ShouldLoadFields()
         {
             //------------Setup for test--------------------------
@@ -364,9 +365,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointListDesignerViewModelBase_RefreshListsCommand")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointListDesignerViewModelBase_RefreshListsCommand")]
         public void SharepointListDesignerViewModelBase_RefreshListsCommand_ShouldReloadLists()
         {
             //------------Setup for test--------------------------
@@ -435,9 +436,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointListDesignerViewModelBase_SetSelectedSharepointList")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointListDesignerViewModelBase_SetSelectedSharepointList")]
         public void SharepointListDesignerViewModelBase_Constructor_Activity_ShouldLoadFromActivity()
         {
             //------------Setup for test--------------------------
@@ -483,7 +484,7 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             //------------Assert Results-------------------------
             Assert.IsNotNull(sharepointListDesignerViewModelBase.SelectedSharepointServer);
             Assert.IsNotNull(sharepointListDesignerViewModelBase.Lists);
-            Assert.AreEqual(1, sharepointListDesignerViewModelBase.Lists.Count);            
+            Assert.AreEqual(1, sharepointListDesignerViewModelBase.Lists.Count);
             Assert.IsNotNull(sharepointListDesignerViewModelBase.SelectedList);
             Assert.IsNotNull(sharepointListDesignerViewModelBase.ListItems);
             Assert.AreEqual(1, sharepointListDesignerViewModelBase.ListItems.Count);
@@ -495,9 +496,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             Assert.AreEqual(2,sharepointListDesignerViewModelBase.ModelItemCollection.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointListDesignerViewModelBase_RemoveFilterItem")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointListDesignerViewModelBase_RemoveFilterItem")]
         public void SharepointListDesignerViewModelBase_RemoveFilterItem_ShouldRemoveFromCollection()
         {
             //------------Setup for test--------------------------

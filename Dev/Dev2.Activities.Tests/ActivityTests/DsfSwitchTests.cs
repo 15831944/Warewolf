@@ -7,11 +7,12 @@ using Dev2.Common.State;
 using Dev2.Communication;
 using Dev2.Data.SystemTemplates.Models;
 using Dev2.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Warewolf.Storage;
 using Warewolf.Storage.Interfaces;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
@@ -28,11 +29,12 @@ namespace Dev2.Tests.Activities.ActivityTests
             ExecuteTool(dataObject, update);
         }
     }
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfSwitchTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Constructor_GivenIsNew_ShouldHaveCorrectValues()
         {
             //---------------Set up test pack-------------------
@@ -43,20 +45,20 @@ namespace Dev2.Tests.Activities.ActivityTests
             };
             var activity = new DsfSwitch(switchActivity);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(activity);
+            NUnit.Framework.Assert.IsNotNull(activity);
             //---------------Execute Test ----------------------
             //---------------Test Result -----------------------
-            Assert.AreEqual("Switch", activity.DisplayName);
-            Assert.AreSame(switchActivity, activity.Inner);
-            Assert.AreSame(switchActivity.UniqueID, activity.UniqueID);
-            Assert.IsNull(activity.Switches);
-            Assert.IsNull(activity.Default);
-            Assert.IsNull(activity.Switch);
-            Assert.IsNull(activity.Result);
+            NUnit.Framework.Assert.AreEqual("Switch", activity.DisplayName);
+            NUnit.Framework.Assert.AreSame(switchActivity, activity.Inner);
+            NUnit.Framework.Assert.AreSame(switchActivity.UniqueID, activity.UniqueID);
+            NUnit.Framework.Assert.IsNull(activity.Switches);
+            NUnit.Framework.Assert.IsNull(activity.Default);
+            NUnit.Framework.Assert.IsNull(activity.Switch);
+            NUnit.Framework.Assert.IsNull(activity.Result);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetOutputs_GivenIsNew_ShouldZeroOutputs()
         {
             //---------------Set up test pack-------------------
@@ -67,22 +69,22 @@ namespace Dev2.Tests.Activities.ActivityTests
             };
             var activity = new DsfSwitch(switchActivity);
             //---------------Assert Precondition----------------
-            Assert.AreEqual("Switch", activity.DisplayName);
-            Assert.AreSame(switchActivity, activity.Inner);
-            Assert.AreSame(switchActivity.UniqueID, activity.UniqueID);
-            Assert.IsNull(activity.Switches);
-            Assert.IsNull(activity.Default);
-            Assert.IsNull(activity.Switch);
-            Assert.IsNull(activity.Result);
+            NUnit.Framework.Assert.AreEqual("Switch", activity.DisplayName);
+            NUnit.Framework.Assert.AreSame(switchActivity, activity.Inner);
+            NUnit.Framework.Assert.AreSame(switchActivity.UniqueID, activity.UniqueID);
+            NUnit.Framework.Assert.IsNull(activity.Switches);
+            NUnit.Framework.Assert.IsNull(activity.Default);
+            NUnit.Framework.Assert.IsNull(activity.Switch);
+            NUnit.Framework.Assert.IsNull(activity.Result);
             //---------------Execute Test ----------------------
             var outputs = activity.GetOutputs();
             //---------------Test Result -----------------------
-            Assert.AreEqual(0, outputs.Count);
+            NUnit.Framework.Assert.AreEqual(0, outputs.Count);
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetForEachInputs_ReturnsNull()
         {
             //---------------Set up test pack-------------------
@@ -94,16 +96,16 @@ namespace Dev2.Tests.Activities.ActivityTests
             var activity = new DsfSwitch(switchActivity);
             //---------------Assert Precondition----------------
             var outputs = activity.GetOutputs();
-            Assert.AreEqual(0, outputs.Count);
+            NUnit.Framework.Assert.AreEqual(0, outputs.Count);
             //---------------Execute Test ----------------------
             var dsfForEachItems = activity.GetForEachInputs();
             //---------------Test Result -----------------------
-            Assert.IsNull(dsfForEachItems);
+            NUnit.Framework.Assert.IsNull(dsfForEachItems);
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetForEachOutputs_ReturnsNull()
         {
             //---------------Set up test pack-------------------
@@ -115,16 +117,16 @@ namespace Dev2.Tests.Activities.ActivityTests
             var activity = new DsfSwitch(switchActivity);
             //---------------Assert Precondition----------------
             var outputs = activity.GetForEachInputs();
-            Assert.IsNull(outputs);
+            NUnit.Framework.Assert.IsNull(outputs);
             //---------------Execute Test ----------------------
             var dsfForEachItems = activity.GetForEachOutputs();
             //---------------Test Result -----------------------
-            Assert.IsNull(dsfForEachItems);
+            NUnit.Framework.Assert.IsNull(dsfForEachItems);
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetDebugInputs_GivenIsNewReturnsZero()
         {
             //---------------Set up test pack-------------------
@@ -138,11 +140,11 @@ namespace Dev2.Tests.Activities.ActivityTests
             //---------------Execute Test ----------------------
             var customAttributes = activity.GetDebugInputs(new Mock<IExecutionEnvironment>().Object, 1);
             //---------------Test Result -----------------------
-            Assert.AreEqual(0, customAttributes.Count);
+            NUnit.Framework.Assert.AreEqual(0, customAttributes.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetDebugOutputs_GivenIsNewReturnsZero()
         {
             //---------------Set up test pack-------------------
@@ -156,11 +158,11 @@ namespace Dev2.Tests.Activities.ActivityTests
             //---------------Execute Test ----------------------
             var customAttributes = activity.GetDebugOutputs(new Mock<IExecutionEnvironment>().Object, 1);
             //---------------Test Result -----------------------
-            Assert.AreEqual(0, customAttributes.Count);
+            NUnit.Framework.Assert.AreEqual(0, customAttributes.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DebugOutput_GivenDataObject_ShouldSetInnerBugOuputsIncrementsDebugOutputs()
         {
             //---------------Set up test pack-------------------
@@ -175,19 +177,19 @@ namespace Dev2.Tests.Activities.ActivityTests
             };
             var dataObject = new Mock<IDSFDataObject>();
             dataObject.Setup(o => o.IsDebugMode()).Returns(true);
-            var obj = new PrivateObject(activity);
+            var obj = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(activity);
             //---------------Assert Precondition----------------
             var activityDebugOutputs = activity.GetDebugOutputs(new Mock<IExecutionEnvironment>().Object, 1);
-            Assert.AreEqual(0, activityDebugOutputs.Count);
+            NUnit.Framework.Assert.AreEqual(0, activityDebugOutputs.Count);
             //---------------Execute Test ----------------------
             obj.Invoke("DebugOutput", dataObject.Object);
             //---------------Test Result -----------------------
             activityDebugOutputs = activity.GetDebugOutputs(new Mock<IExecutionEnvironment>().Object, 1);
-            Assert.AreEqual(1, activityDebugOutputs.Count);
+            NUnit.Framework.Assert.AreEqual(1, activityDebugOutputs.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Debug_GivenDataObject_ShouldSetInnerBugOuputs_IncrementsDebugInputs()
         {
             //---------------Set up test pack-------------------
@@ -204,21 +206,21 @@ namespace Dev2.Tests.Activities.ActivityTests
             };
             var dataObject = new Mock<IDSFDataObject>();
             dataObject.Setup(o => o.IsDebugMode()).Returns(true);
-            var obj = new PrivateObject(activity);
+            var obj = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(activity);
             //---------------Assert Precondition----------------
             var getDebugInputs = activity.GetDebugInputs(new Mock<IExecutionEnvironment>().Object, 1);
-            Assert.AreEqual(0, getDebugInputs.Count);
+            NUnit.Framework.Assert.AreEqual(0, getDebugInputs.Count);
             //---------------Execute Test ----------------------
             var result = "[[variable]]";
             var mySwitch = new Dev2Switch();
             obj.Invoke("Debug", dataObject.Object, result, mySwitch);
             //---------------Test Result -----------------------
             getDebugInputs = activity.GetDebugInputs(new Mock<IExecutionEnvironment>().Object, 1);
-            Assert.AreEqual(1, getDebugInputs.Count);
+            NUnit.Framework.Assert.AreEqual(1, getDebugInputs.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ExecuteTool_GivenIsNotDebugMode_NotAddDebugOutputs()
         {
             //---------------Set up test pack-------------------
@@ -243,16 +245,16 @@ namespace Dev2.Tests.Activities.ActivityTests
             dataObject.Setup(o => o.Environment).Returns(executionEnvironment);
             //---------------Assert Precondition----------------
             var getDebugInputs = activity.GetDebugInputs(new Mock<IExecutionEnvironment>().Object, 1);
-            Assert.AreEqual(0, getDebugInputs.Count);
+            NUnit.Framework.Assert.AreEqual(0, getDebugInputs.Count);
             //---------------Execute Test ----------------------
             activity.ExecuteMock(dataObject.Object, 0);
             //---------------Test Result -----------------------
             getDebugInputs = activity.GetDebugInputs(new Mock<IExecutionEnvironment>().Object, 1);
-            Assert.AreEqual(0, getDebugInputs.Count);
+            NUnit.Framework.Assert.AreEqual(0, getDebugInputs.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ExecuteTool_GivenSwicthMacthing_ShouldAddNextNodes()
         {
             //---------------Set up test pack-------------------
@@ -277,19 +279,19 @@ namespace Dev2.Tests.Activities.ActivityTests
             dataObject.Setup(o => o.Environment).Returns(executionEnvironment);
             //---------------Assert Precondition----------------
             var getDebugInputs = activity.GetDebugInputs(new Mock<IExecutionEnvironment>().Object, 1);
-            Assert.AreEqual(0, getDebugInputs.Count);
-            Assert.IsNull(activity.NextNodes);
+            NUnit.Framework.Assert.AreEqual(0, getDebugInputs.Count);
+            NUnit.Framework.Assert.IsNull(activity.NextNodes);
             //---------------Execute Test ----------------------
             activity.ExecuteMock(dataObject.Object, 0);
             //---------------Test Result -----------------------
             getDebugInputs = activity.GetDebugInputs(new Mock<IExecutionEnvironment>().Object, 1);
-            Assert.AreEqual(0, getDebugInputs.Count);
-            Assert.AreEqual(1, activity.NextNodes.Count());
+            NUnit.Framework.Assert.AreEqual(0, getDebugInputs.Count);
+            NUnit.Framework.Assert.AreEqual(1, activity.NextNodes.Count());
             var contains = activity.NextNodes.Contains(nextActivity.Object);
-            Assert.IsTrue(contains);
+            NUnit.Framework.Assert.IsTrue(contains);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ExecuteTool_GivenSwicthNotMacthing_ShouldUseDefault()
         {
             //---------------Set up test pack-------------------
@@ -314,22 +316,22 @@ namespace Dev2.Tests.Activities.ActivityTests
             dataObject.Setup(o => o.Environment).Returns(executionEnvironment);
             //---------------Assert Precondition----------------
             var getDebugInputs = activity.GetDebugInputs(new Mock<IExecutionEnvironment>().Object, 1);
-            Assert.AreEqual(0, getDebugInputs.Count);
-            Assert.IsNull(activity.NextNodes);
+            NUnit.Framework.Assert.AreEqual(0, getDebugInputs.Count);
+            NUnit.Framework.Assert.IsNull(activity.NextNodes);
             //---------------Execute Test ----------------------
             activity.ExecuteMock(dataObject.Object, 0);
             //---------------Test Result -----------------------
             getDebugInputs = activity.GetDebugInputs(new Mock<IExecutionEnvironment>().Object, 1);
-            Assert.AreEqual(0, getDebugInputs.Count);
-            Assert.IsNotNull(activity.NextNodes);
-            Assert.AreEqual(1, activity.NextNodes.Count());
+            NUnit.Framework.Assert.AreEqual(0, getDebugInputs.Count);
+            NUnit.Framework.Assert.IsNotNull(activity.NextNodes);
+            NUnit.Framework.Assert.AreEqual(1, activity.NextNodes.Count());
             var contains = activity.NextNodes.Single();
-            Assert.AreEqual(nextActivity.Object, contains);
-            Assert.AreEqual("Default", activity.Result);
+            NUnit.Framework.Assert.AreEqual(nextActivity.Object, contains);
+            NUnit.Framework.Assert.AreEqual("Default", activity.Result);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ExecuteTool_GivenIsDebugMode_ShouldHaveDebugOutputs()
         {
             //---------------Set up test pack-------------------
@@ -354,22 +356,22 @@ namespace Dev2.Tests.Activities.ActivityTests
             dataObject.Setup(o => o.Environment).Returns(executionEnvironment);
             //---------------Assert Precondition----------------
             var getDebugInputs = activity.GetDebugInputs(new Mock<IExecutionEnvironment>().Object, 1);
-            Assert.AreEqual(0, getDebugInputs.Count);
-            Assert.IsNull(activity.NextNodes);
+            NUnit.Framework.Assert.AreEqual(0, getDebugInputs.Count);
+            NUnit.Framework.Assert.IsNull(activity.NextNodes);
             //---------------Execute Test ----------------------
             activity.ExecuteMock(dataObject.Object, 0);
             //---------------Test Result -----------------------
             getDebugInputs = activity.GetDebugInputs(new Mock<IExecutionEnvironment>().Object, 1);
-            Assert.AreEqual(1, getDebugInputs.Count);
-            Assert.IsNotNull(activity.NextNodes);
-            Assert.AreEqual(1, activity.NextNodes.Count());
+            NUnit.Framework.Assert.AreEqual(1, getDebugInputs.Count);
+            NUnit.Framework.Assert.IsNotNull(activity.NextNodes);
+            NUnit.Framework.Assert.AreEqual(1, activity.NextNodes.Count());
             var contains = activity.NextNodes.Single();
-            Assert.AreEqual(nextActivity.Object, contains);
-            Assert.AreEqual("Default", activity.Result);
+            NUnit.Framework.Assert.AreEqual(nextActivity.Object, contains);
+            NUnit.Framework.Assert.AreEqual("Default", activity.Result);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void ExecuteTool_GivenDefaultIsNull_ShouldShowError()
         {
             //---------------Set up test pack-------------------
@@ -394,21 +396,21 @@ namespace Dev2.Tests.Activities.ActivityTests
             dataObject.Setup(o => o.Environment).Returns(executionEnvironment);
             //---------------Assert Precondition----------------
             var getDebugInputs = activity.GetDebugInputs(new Mock<IExecutionEnvironment>().Object, 1);
-            Assert.AreEqual(0, getDebugInputs.Count);
-            Assert.IsNull(activity.NextNodes);
+            NUnit.Framework.Assert.AreEqual(0, getDebugInputs.Count);
+            NUnit.Framework.Assert.IsNull(activity.NextNodes);
             //---------------Execute Test ----------------------
             activity.ExecuteMock(dataObject.Object, 0);
             //---------------Test Result -----------------------
             getDebugInputs = activity.GetDebugInputs(new Mock<IExecutionEnvironment>().Object, 1);
-            Assert.AreEqual(1, getDebugInputs.Count);
-            Assert.IsNotNull(activity.NextNodes);
-            Assert.AreEqual(0, activity.NextNodes.Count());
-            Assert.AreEqual(1, executionEnvironment.AllErrors.Count);
+            NUnit.Framework.Assert.AreEqual(1, getDebugInputs.Count);
+            NUnit.Framework.Assert.IsNotNull(activity.NextNodes);
+            NUnit.Framework.Assert.AreEqual(0, activity.NextNodes.Count());
+            NUnit.Framework.Assert.AreEqual(1, executionEnvironment.AllErrors.Count);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DsfSwitch_GetState")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DsfSwitch_GetState")]
         public void DsfSwitch_GetState_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------
@@ -430,7 +432,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             };
             //------------Execute Test---------------------------
             var stateItems = act.GetState();
-            Assert.AreEqual(4, stateItems.Count());
+            NUnit.Framework.Assert.AreEqual(4, stateItems.Count());
 
             var expectedResults = new[]
             {
@@ -471,9 +473,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             //------------Assert Results-------------------------
             foreach (var entry in iter)
             {
-                Assert.AreEqual(entry.expectValue.Name, entry.value.Name);
-                Assert.AreEqual(entry.expectValue.Type, entry.value.Type);
-                Assert.AreEqual(entry.expectValue.Value, entry.value.Value);
+                NUnit.Framework.Assert.AreEqual(entry.expectValue.Name, entry.value.Name);
+                NUnit.Framework.Assert.AreEqual(entry.expectValue.Type, entry.value.Type);
+                NUnit.Framework.Assert.AreEqual(entry.expectValue.Value, entry.value.Value);
             }
         }
     }

@@ -13,14 +13,15 @@ using Dev2.Common.Interfaces.Threading;
 using Dev2.Studio.Core.ViewModels.Base;
 using Dev2.Studio.ViewModels.Diagnostics;
 using Dev2.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.IO;
 
 namespace Dev2.Core.Tests.ViewModelTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ExceptionViewModelTest
     {
         #region Class Members
@@ -35,7 +36,7 @@ namespace Dev2.Core.Tests.ViewModelTests
         // You can use the following additional attributes as you write your tests:
         //
         // Use ClassInitialize to run code before running the first test in the class
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void MyClassInitialize(TestContext testContext)
         {
             _tempTestFolder = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString());
@@ -46,7 +47,7 @@ namespace Dev2.Core.Tests.ViewModelTests
 
         
 
-        [TestMethod]
+        [Test]
         public void ShowExceptionDialog_Expected_WindowManagerInvokedForViewModel()
         {
             var vm = new ExceptionViewModel(new AsyncWorker());
@@ -60,7 +61,7 @@ namespace Dev2.Core.Tests.ViewModelTests
             mockWinManager.Verify(mgr => mgr.ShowDialog(It.IsAny<ExceptionViewModel>(), null, null), Times.Once());
         }
 
-        [TestMethod]
+        [Test]
         public void SendErrorCommandTest()
         {
             var asyncWorker = new Mock<IAsyncWorker>();
@@ -73,7 +74,7 @@ namespace Dev2.Core.Tests.ViewModelTests
             Assert.IsTrue(vm.Testing);
         }
 
-        [TestMethod]
+        [Test]
         public void CancelCommandTest()
         {
             var asyncWorker = new Mock<IAsyncWorker>();
@@ -86,7 +87,7 @@ namespace Dev2.Core.Tests.ViewModelTests
             Assert.IsFalse(vm.Testing);
         }
 
-        [TestMethod]
+        [Test]
         public void ExceptionViewModelConstructorNullAsyncWorker()
         {
             IAsyncWorker asyncWorker = null;
@@ -96,7 +97,7 @@ namespace Dev2.Core.Tests.ViewModelTests
             Assert.IsNotNull(vm.AsyncWorker);
         }
 
-        [TestMethod]
+        [Test]
         public void ExceptionViewModelConstructorNewAsyncWorker()
         {
             IAsyncWorker asyncWorker = new AsyncWorker();

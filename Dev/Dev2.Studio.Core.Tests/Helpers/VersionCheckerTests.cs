@@ -11,7 +11,7 @@
 using System;
 using System.Net;
 using Dev2.Studio.Core.Helpers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Core;
 using Dev2.Studio.Core;
@@ -21,24 +21,25 @@ using Dev2.Util;
 namespace Dev2.Core.Tests.Helpers
 {
     
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class VersionCheckerTests
     {
 
         /// <summary>
         /// This test checks that CollectUsageStats is set to False on develop
         /// </summary>
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("RevulyticsCollectUsageStats")]
+        [Test]
+        [Author("Candice Daniel")]
+        [NUnit.Framework.Category("RevulyticsCollectUsageStats")]
         public void RevulyticsCollectUsageStatsForStudioIsFalseTest()
         {
             Assert.AreEqual(false, AppUsageStats.CollectUsageStats);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("VersionChecker_GetCommunityPage")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [NUnit.Framework.Category("VersionChecker_GetCommunityPage")]
         public void VersionChecker_GetCommunityPage_ReturnsResourceCommunityPageUrl()
         {
             //------------Setup for test--------------------------
@@ -51,17 +52,18 @@ namespace Dev2.Core.Tests.Helpers
             Assert.AreEqual(StringResources.Uri_Community_HomePage, startPage);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("VersionChecker_Ctor")]
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        [Author("Leon Rajindrapersadh")]
+        [NUnit.Framework.Category("VersionChecker_Ctor")]
         public void VersionChecker_Currentr_NullVersionChecker_ExpectException()
         {
             new VersionChecker(new WarewolfWebClient(new WebClient()), null);
         }
 
-        [TestMethod]
-        [Owner("Ashley Lewis")]
-        [TestCategory("VersionChecker_Ctor")]
+        [Test]
+        [Author("Ashley Lewis")]
+        [NUnit.Framework.Category("VersionChecker_Ctor")]
         public void WarewolfWebClient_AddRemove_EventHandlers()
         {
             using (var warewolfWebClient =

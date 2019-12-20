@@ -12,12 +12,13 @@ using System;
 using System.IO;
 using Dev2.Common.Common;
 using Dev2.Common.Interfaces.Wrappers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DeleteHelperTest
     {
 
@@ -36,9 +37,9 @@ namespace Dev2.Tests
 
         #endregion
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DeleteHelper_Delete")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DeleteHelper_Delete")]
         public void DeleteHelper_Delete_WhenNullPath_ExpectFalse()
         {
             var mockFile = new Mock<IFile>();
@@ -49,9 +50,9 @@ namespace Dev2.Tests
             Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DeleteHelper_Delete")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DeleteHelper_Delete")]
         public void DeleteHelper_Delete_WhenPathContainsStar_ExpectTrue()
         {
             //------------Setup for test--------------------------
@@ -74,9 +75,9 @@ namespace Dev2.Tests
             Assert.AreEqual(0, contents.Length);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DeleteHelper_Delete")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DeleteHelper_Delete")]
         public void DeleteHelper_Delete_WhenPathContainsJustFolder_ExpectTrue()
         {
             //------------Setup for test--------------------------
@@ -101,9 +102,9 @@ namespace Dev2.Tests
             Assert.IsFalse(bDirStillExit);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DeleteHelper_Delete")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DeleteHelper_Delete")]
         public void DeleteHelper_Delete_WhenPathContainsJustFile_ExpectTrue()
         {
             //------------Setup for test--------------------------
@@ -128,9 +129,9 @@ namespace Dev2.Tests
             Assert.IsTrue(bDirStillExit);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("DeleteHelper_Delete")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("DeleteHelper_Delete")]
         public void DeleteHelper_Delete_WhenPathContainsJustFileWithStar_ExpectTrue()
         {
             var mockFile = new Mock<IFile>();

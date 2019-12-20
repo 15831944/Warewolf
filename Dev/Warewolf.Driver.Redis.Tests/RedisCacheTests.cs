@@ -9,19 +9,20 @@
 */
 
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Driver.Redis;
 using Warewolf.Interfaces;
 
 namespace Dev2.Tests.Activities.Activities.Redis
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class RedisCacheTests
     {
-        [TestMethod]
-        [TestCategory("RedisCache")]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Category("RedisCache")]
+        [Author("Hagashen Naidu")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void RedisCache_Constructor_NullFunction_ShouldThrowException()
         {
@@ -31,9 +32,9 @@ namespace Dev2.Tests.Activities.Activities.Redis
             //--------------Assert-------------------------------
         }
 
-        [TestMethod]
-        [TestCategory("RedisCache")]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Category("RedisCache")]
+        [Author("Hagashen Naidu")]
         public void RedisCache_Set_StringValue_ShouldCallStringSetOnCache()
         {
             //--------------Arrange------------------------------
@@ -49,9 +50,9 @@ namespace Dev2.Tests.Activities.Activities.Redis
 
         }
 
-        [TestMethod]
-        [TestCategory("RedisCache")]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Category("RedisCache")]
+        [Author("Hagashen Naidu")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void RedisCache_Set_NullValue_ShouldThrowArgumentNullException()
         {
@@ -67,9 +68,9 @@ namespace Dev2.Tests.Activities.Activities.Redis
 
         }
 
-        [TestMethod]
-        [TestCategory("RedisCache")]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Category("RedisCache")]
+        [Author("Hagashen Naidu")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void RedisCache_Set_NotStringValue_ShouldThrowInvalidOperationException()
         {
@@ -85,9 +86,9 @@ namespace Dev2.Tests.Activities.Activities.Redis
 
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory("RedisCache")]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category("RedisCache")]
         public void RedisCache_Set_DataToCacheWithNoTTL_CachedDataShouldNotExpire()
         {
             //----------------------Arrange----------------------
@@ -104,9 +105,9 @@ namespace Dev2.Tests.Activities.Activities.Redis
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [TestCategory("RedisCache")]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Category("RedisCache")]
+        [Author("Hagashen Naidu")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void RedisCache_Set_NullKey_ShouldThrowArgumentNullException()
         {
@@ -123,9 +124,9 @@ namespace Dev2.Tests.Activities.Activities.Redis
         }
 
 
-        [TestMethod]
-        [TestCategory("RedisCache")]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Category("RedisCache")]
+        [Author("Hagashen Naidu")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void RedisCache_Get_NullKey_ShouldThrowArgumentNullException()
         {
@@ -142,9 +143,9 @@ namespace Dev2.Tests.Activities.Activities.Redis
 
         }
 
-        [TestMethod]
-        [TestCategory("RedisCache")]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Category("RedisCache")]
+        [Author("Hagashen Naidu")]
         public void RedisCache_Get_ValidKey_ShouldReturn()
         {
             //--------------Arrange------------------------------
@@ -159,9 +160,9 @@ namespace Dev2.Tests.Activities.Activities.Redis
             mockDatabase.Verify(db => db.Get("bob"), Times.Once);
         }
 
-        [TestMethod]
-        [TestCategory("RedisCache")]
-        [Owner("Candice Daniel")]
+        [Test]
+        [Category("RedisCache")]
+        [Author("Candice Daniel")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void RedisCache_Delete_NullKey_ShouldThrowArgumentNullException()
         {
@@ -176,9 +177,9 @@ namespace Dev2.Tests.Activities.Activities.Redis
             redis.Remove(null);
             //--------------Assert-------------------------------
         }
-        [TestMethod]
-        [TestCategory("RedisCache")]
-        [Owner("Candice Daniel")]
+        [Test]
+        [Category("RedisCache")]
+        [Author("Candice Daniel")]
         public void RedisCache_Delete_ValidKey_ShouldReturn()
         {
             //--------------Arrange------------------------------
@@ -192,9 +193,9 @@ namespace Dev2.Tests.Activities.Activities.Redis
             //--------------Assert-------------------------------
             mockDatabase.Verify(db => db.Remove("bob"), Times.Once);
         }
-        [TestMethod]
-        [TestCategory("RedisCache")]
-        [Owner("Candice Daniel")]
+        [Test]
+        [Category("RedisCache")]
+        [Author("Candice Daniel")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void RedisCache_Increment_NullKey_ShouldThrowArgumentNullException()
         {
@@ -209,9 +210,9 @@ namespace Dev2.Tests.Activities.Activities.Redis
             redis.Increment(null,"1");
             //--------------Assert-------------------------------
         }
-        [TestMethod]
-        [TestCategory("RedisCache")]
-        [Owner("Candice Daniel")]
+        [Test]
+        [Category("RedisCache")]
+        [Author("Candice Daniel")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void RedisCache_Decrement_NullKey_ShouldThrowArgumentNullException()
         {
@@ -226,9 +227,9 @@ namespace Dev2.Tests.Activities.Activities.Redis
             redis.Decrement(null, "1");
             //--------------Assert-------------------------------
         }
-        [TestMethod]
-        [TestCategory("RedisCache")]
-        [Owner("Candice Daniel")]
+        [Test]
+        [Category("RedisCache")]
+        [Author("Candice Daniel")]
         public void RedisCache_Increment_ValidKey_ShouldIncrement()
         {
             //--------------Arrange------------------------------
@@ -242,9 +243,9 @@ namespace Dev2.Tests.Activities.Activities.Redis
             //--------------Assert-------------------------------
             mockDatabase.Verify(db => db.Increment("bob", "1"), Times.Once);
         }
-        [TestMethod]
-        [TestCategory("RedisCache")]
-        [Owner("Candice Daniel")]
+        [Test]
+        [Category("RedisCache")]
+        [Author("Candice Daniel")]
         public void RedisCache_Decrement_ValidKey_ShouldDecrement()
         {
             //--------------Arrange------------------------------

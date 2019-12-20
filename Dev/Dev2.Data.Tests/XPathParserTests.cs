@@ -14,12 +14,13 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using Dev2.Data.Parsers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Data.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class XPathParserTests
     {
         readonly XPathParser _xPathParser = new XPathParser();
@@ -37,7 +38,7 @@ namespace Dev2.Data.Tests
 
         const string XmlData = "<excludelist>" + "<namespace name=\"Unlimited.Applications.BusinessDesignStudio.Activities\" />" + "<namespace name=\"Dev2.Studio.Core.AppResources.Behaviors\" />" + "<namespace name=\"Dev2.Studio.Core.AppResources.WindowManagers\" />" + "<namespace name=\"Dev2.Studio.ActivityDesigners\" />" + "<namespace name=\"Dev2.Studio.Views.Workflow\" />" + "<type name=\"Dev2.Activities.DsfExecuteCommandLineActivity\" />" + "<type name=\"Dev2.Activities.DsfForEachItem\" />" + "<type name=\"Dev2.Activities.DsfGatherSystemInformationActivity\" />" + "<type name=\"Dev2.Activities.DsfRandomActivity\" />" + "<type name=\"Dev2.DynamicServices.DsfDataObject\" excludetype=\"false\">" + "<method name=\"ExtractInMergeDataFromRequest\" signature=\"void(object)\" />" + "<method name=\"ExtractOutMergeDataFromRequest\" signature=\"void(object)\" />" + "</type>" + "<type name=\"Dev2.Runtime.Hosting.DynamicObjectHelper\" excludetype=\"false\">" + "<method name=\"SetID\" signature=\"void(Dev2.DynamicServices.IDynamicServiceObject, object)\" />" + "</type>" + "<type name=\"Dev2.CommandLineParameters\">" + "<method name=\"&lt;GetUsage&gt;b__0\" signature=\"void(CommandLine.Text.HelpText)\" />" + "<method name=\"GetUsage\" signature=\"string()\" />" + "<field name=\"&lt;Install&gt;k__BackingField\" signature=\"bool\" />" + "<field name=\"&lt;IntegrationTestMode&gt;k__BackingField\" signature=\"bool\" />" + "<field name=\"&lt;StartService&gt;k__BackingField\" signature=\"bool\" />" + "<field name=\"&lt;StopService&gt;k__BackingField\" signature=\"bool\" />" + "<field name=\"&lt;Uninstall&gt;k__BackingField\" signature=\"bool\" />" + "<propertymember name=\"Install\" />" + "<propertymember name=\"IntegrationTestMode\" />" + "<propertymember name=\"StartService\" />" + "<propertymember name=\"StopService\" />" + "<propertymember name=\"Uninstall\" />" + "</type>" + "<type name=\"Dev2.WebServer\" excludetype=\"false\">" + "<method name=\"CreateForm\" signature=\"Unlimited.Applications.WebServer.Responses.CommunicationResponseWriter(object, string, string)\" />" + "</type>" + "</excludelist>";
 
-        [TestMethod]
+        [Test]
         public void ExecutePathSaxonWhereGivenXMLDocumentExpectXMLReturned()
         {
             //------------Setup for test--------------------------
@@ -46,12 +47,12 @@ namespace Dev2.Data.Tests
             var returnData = _xPathParser.ExecuteXPath(XmlDocument, XPath);
             //------------Assert Results-------------------------
             var data = returnData as IList<string> ?? returnData.ToList();
-            Assert.AreEqual(6, data.Count);
-            Assert.AreEqual("<method name=\"ExtractOutMergeDataFromRequest\" signature=\"void(object)\" />", data[1]);
+            NUnit.Framework.Assert.AreEqual(6, data.Count);
+            NUnit.Framework.Assert.AreEqual("<method name=\"ExtractOutMergeDataFromRequest\" signature=\"void(object)\" />", data[1]);
         }
 
 
-        [TestMethod]
+        [Test]
         public void ExecutePathSaxonWhereGivenXPathWithBooleanFunctionShouldReturnTrue()
         {
             //------------Setup for test--------------------------
@@ -60,11 +61,11 @@ namespace Dev2.Data.Tests
             var returnData = _xPathParser.ExecuteXPath(XmlDocument, XPath);
             //------------Assert Results-------------------------
             var data = returnData as IList<string> ?? returnData.ToList();
-            Assert.AreEqual(1, data.Count);
-            Assert.AreEqual("true", data[0]);
+            NUnit.Framework.Assert.AreEqual(1, data.Count);
+            NUnit.Framework.Assert.AreEqual("true", data[0]);
         }
 
-        [TestMethod]
+        [Test]
         public void ExecutePathWhereGivenXMLDocumentExpectXMLReturned()
         {
             //------------Setup for test--------------------------
@@ -73,13 +74,13 @@ namespace Dev2.Data.Tests
             var returnData = _xPathParser.ExecuteXPath(XmlDocument, XPath);
             //------------Assert Results-------------------------
             var data = returnData as IList<string> ?? returnData.ToList();
-            Assert.AreEqual(6, data.Count);
-            Assert.AreEqual("<method name=\"ExtractOutMergeDataFromRequest\" signature=\"void(object)\" />", data[1]);
+            NUnit.Framework.Assert.AreEqual(6, data.Count);
+            NUnit.Framework.Assert.AreEqual("<method name=\"ExtractOutMergeDataFromRequest\" signature=\"void(object)\" />", data[1]);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("XPathParser_Parser")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("XPathParser_Parser")]
         public void XPathParser_Parser_WhenXPathingAttributes_ExpectValidDataWithoutAttributeName()
         {
             //------------Setup for test--------------------------
@@ -208,15 +209,15 @@ namespace Dev2.Data.Tests
             var returnData = _xPathParser.ExecuteXPath(data, xPath);
             //------------Assert Results-------------------------
             var dataList = returnData as IList<string> ?? returnData.ToList();
-            Assert.AreEqual(11, dataList.Count);
-            Assert.AreEqual("ActivityCollectionDesignerViewModel_ExecuteShowErrorsCommand_ShowErrorsIsTrue_ShowErrorsIsSetToFalse", dataList[0]);
-            Assert.AreEqual("SortActivity_MultipleRecordSetContainingSameSortValue_DateTime_SortedWithTheRecordSetAppearingMultipleTimes", dataList[10]);
+            NUnit.Framework.Assert.AreEqual(11, dataList.Count);
+            NUnit.Framework.Assert.AreEqual("ActivityCollectionDesignerViewModel_ExecuteShowErrorsCommand_ShowErrorsIsTrue_ShowErrorsIsSetToFalse", dataList[0]);
+            NUnit.Framework.Assert.AreEqual("SortActivity_MultipleRecordSetContainingSameSortValue_DateTime_SortedWithTheRecordSetAppearingMultipleTimes", dataList[10]);
         }
 
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("XPathParser_Parser")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("XPathParser_Parser")]
         public void XPathParser_Parser_WhenXPathingElements_ExpectValidData()
         {
             //------------Setup for test--------------------------
@@ -357,10 +358,10 @@ namespace Dev2.Data.Tests
 </Deployment>";
 
             var dataList = returnData as IList<string> ?? returnData.ToList();
-            Assert.AreEqual(1, dataList.Count);
+            NUnit.Framework.Assert.AreEqual(1, dataList.Count);
             var actual = dataList[0];
             FixBreaks(ref expected, ref actual);
-            Assert.AreEqual(expected, actual);
+            NUnit.Framework.Assert.AreEqual(expected, actual);
 
         }
         void FixBreaks(ref string expected, ref string actual)
@@ -369,9 +370,9 @@ namespace Dev2.Data.Tests
             actual = new StringBuilder(actual).Replace(" ", "").Replace(Environment.NewLine, "").Replace("\r", "").Replace("\n", "").ToString();
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("XPathParser_Parser")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("XPathParser_Parser")]
         public void XPathParser_Parser_WhenXPathingElementsWithAttributes_ExpectValidData()
         {
             //------------Setup for test--------------------------
@@ -502,14 +503,14 @@ namespace Dev2.Data.Tests
             const string expected = @"D:\Builds\ReleaseGate\TestResults";
 
             var dataList = returnData as IList<string> ?? returnData.ToList();
-            Assert.AreEqual(1, dataList.Count);
-            Assert.AreEqual(expected, dataList[0]);
+            NUnit.Framework.Assert.AreEqual(1, dataList.Count);
+            NUnit.Framework.Assert.AreEqual(expected, dataList[0]);
 
         }
         
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("XPathParser_Parser")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("XPathParser_Parser")]
         public void XPathParser_Parser_WhenXPathingAttributesFromTFSWithoutNamespace_ExpectValidDataWithoutAttributeName()
         {
             //------------Setup for test--------------------------
@@ -525,12 +526,12 @@ namespace Dev2.Data.Tests
             var result = _xPathParser.ExecuteXPath(data, xPath).ToList();
             //------------Assert Results-------------------------
 
-            Assert.AreEqual(4241, result.Count);
-            Assert.AreEqual("ActivityCollectionDesignerViewModel_ExecuteShowErrorsCommand_ShowErrorsIsTrue_ShowErrorsIsSetToFalse", result[0]);
-            Assert.AreEqual("Instantiate_Where_MessageBrokerIsNull_Expected_ArgumentNullException", result[4240]);
+            NUnit.Framework.Assert.AreEqual(4241, result.Count);
+            NUnit.Framework.Assert.AreEqual("ActivityCollectionDesignerViewModel_ExecuteShowErrorsCommand_ShowErrorsIsTrue_ShowErrorsIsSetToFalse", result[0]);
+            NUnit.Framework.Assert.AreEqual("Instantiate_Where_MessageBrokerIsNull_Expected_ArgumentNullException", result[4240]);
         }
 
-        [TestMethod]
+        [Test]
         public void ExecutePathWhereGivenXMLDocumentExpectXMLReturnedTestXML()
         {
             //------------Setup for test--------------------------
@@ -539,11 +540,11 @@ namespace Dev2.Data.Tests
             var returnData = _xPathParser.ExecuteXPath("<x><a>1</a></x>", XPath);
             //------------Assert Results-------------------------
             var data = returnData as IList<string> ?? returnData.ToList();
-            Assert.AreEqual(1, data.Count);
-            Assert.AreEqual("1", data[0]);
+            NUnit.Framework.Assert.AreEqual(1, data.Count);
+            NUnit.Framework.Assert.AreEqual("1", data[0]);
         }
 
-        [TestMethod]
+        [Test]
         public void ExecutePathWhereGivenXMLDataExpectXMLReturned()
         {
             //------------Setup for test--------------------------
@@ -552,11 +553,11 @@ namespace Dev2.Data.Tests
             var returnData = _xPathParser.ExecuteXPath(XmlData, XPath);
             //------------Assert Results-------------------------
             var data = returnData as IList<string> ?? returnData.ToList();
-            Assert.AreEqual(6, data.Count);
-            Assert.AreEqual("<method name=\"ExtractOutMergeDataFromRequest\" signature=\"void(object)\" />", data[1]);
+            NUnit.Framework.Assert.AreEqual(6, data.Count);
+            NUnit.Framework.Assert.AreEqual("<method name=\"ExtractOutMergeDataFromRequest\" signature=\"void(object)\" />", data[1]);
         }
 
-        [TestMethod]
+        [Test]
         public void ExecutePathWhereRootNodeInXPathGivenXMLDataExpectXMLReturned()
         {
             //------------Setup for test--------------------------
@@ -565,13 +566,13 @@ namespace Dev2.Data.Tests
             var returnData = _xPathParser.ExecuteXPath(XmlData, XPath);
             //------------Assert Results-------------------------
             var data = returnData as IList<string> ?? returnData.ToList();
-            Assert.AreEqual(6, data.Count);
-            Assert.AreEqual("<method name=\"ExtractOutMergeDataFromRequest\" signature=\"void(object)\" />", data[1]);
+            NUnit.Framework.Assert.AreEqual(6, data.Count);
+            NUnit.Framework.Assert.AreEqual("<method name=\"ExtractOutMergeDataFromRequest\" signature=\"void(object)\" />", data[1]);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("XPathParser_Parser")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("XPathParser_Parser")]
         public void XPathParser_ExecutePath_AttrXPathGivenXMLData_XMLReturned()
         {
             //------------Setup for test--------------------------
@@ -580,13 +581,13 @@ namespace Dev2.Data.Tests
             var returnData = _xPathParser.ExecuteXPath(XmlData, XPath);
             //------------Assert Results-------------------------
             var data = returnData as IList<string> ?? returnData.ToList();
-            Assert.AreEqual(6, data.Count);
-            Assert.AreEqual("ExtractOutMergeDataFromRequest", data[1]);
+            NUnit.Framework.Assert.AreEqual(6, data.Count);
+            NUnit.Framework.Assert.AreEqual("ExtractOutMergeDataFromRequest", data[1]);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("XPathParser_Parser")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("XPathParser_Parser")]
         public void XPathParser_ExecutePath_OrXPathGivenXMLData_XMLReturned()
         {
             //------------Setup for test--------------------------
@@ -595,12 +596,12 @@ namespace Dev2.Data.Tests
             var returnData = _xPathParser.ExecuteXPath(XmlData, XPath);
             //------------Assert Results-------------------------
             var data = returnData as IList<string> ?? returnData.ToList();
-            Assert.AreEqual(12, data.Count);
-            Assert.AreEqual("ExtractInMergeDataFromRequest", data[0]);
-            Assert.AreEqual("void(object)", data[1]);
+            NUnit.Framework.Assert.AreEqual(12, data.Count);
+            NUnit.Framework.Assert.AreEqual("ExtractInMergeDataFromRequest", data[0]);
+            NUnit.Framework.Assert.AreEqual("void(object)", data[1]);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ExecuteXPathWhereNullXmlDataExpectExceptionThrown()
         {
@@ -611,7 +612,7 @@ namespace Dev2.Data.Tests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ExecuteXPathWhereEmptyXmlDataExpectExceptionThrown()
         {
@@ -622,7 +623,7 @@ namespace Dev2.Data.Tests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ExecuteXPathWhereNullPathExpectExceptionThrown()
         {
@@ -633,7 +634,7 @@ namespace Dev2.Data.Tests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ExecuteXPathWhereEmptyPathExpectExceptionThrown()
         {
@@ -644,9 +645,9 @@ namespace Dev2.Data.Tests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("XPathParser_ExecuteXPath")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("XPathParser_ExecuteXPath")]
         public void XPathParser_ExecuteXPath_XmlHasNamespaces_ShouldStillWork()
         {
             //------------Setup for test--------------------------
@@ -657,9 +658,9 @@ namespace Dev2.Data.Tests
             //------------Execute Test---------------------------
             var ret = xPathParser.ExecuteXPath(xmlData, xPath);
             //------------Assert Results-------------------------
-            Assert.IsNotNull(ret);
-            Assert.AreEqual(1, ret.Count());
-            Assert.AreEqual("http://www.webserviceX.NET/", ret.ToList()[0]);
+            NUnit.Framework.Assert.IsNotNull(ret);
+            NUnit.Framework.Assert.AreEqual(1, ret.Count());
+            NUnit.Framework.Assert.AreEqual("http://www.webserviceX.NET/", ret.ToList()[0]);
         }
 
         string LoadFile(string name)

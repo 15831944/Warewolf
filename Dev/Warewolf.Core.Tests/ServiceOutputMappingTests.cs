@@ -1,14 +1,15 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using NUnit.Framework;
 
 
 namespace Warewolf.Core.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ServiceOutputMappingTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServiceOutputMapping_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServiceOutputMapping_Constructor")]
         public void ServiceOutputMapping_Constructor_EmptyConstructor_ShouldStillConstruct()
         {
             //------------Setup for test--------------------------
@@ -18,9 +19,9 @@ namespace Warewolf.Core.Tests
             Assert.IsNotNull(serviceOutputMapping);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServiceOutputMapping_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServiceOutputMapping_Constructor")]
         public void ServiceOutputMapping_Constructor_EmptyMappingFrom_ShouldStillConsturct()
         {
             //------------Setup for test--------------------------
@@ -36,9 +37,9 @@ namespace Warewolf.Core.Tests
             Assert.AreEqual(recordSet,serviceOutputMapping.RecordSetName);
         }
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServiceOutputMapping_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServiceOutputMapping_Constructor")]
         public void ServiceOutputMapping_Constructor_EmptyMappingTo_ShouldStillConsturct()
         {
             //------------Setup for test--------------------------
@@ -54,9 +55,9 @@ namespace Warewolf.Core.Tests
             Assert.AreEqual(recordSet,serviceOutputMapping.RecordSetName);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServiceOutputMapping_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServiceOutputMapping_Constructor")]
         public void ServiceOutputMapping_Constructor_WhenNoRecordsetName_ShouldConstructorScalarMappedTo()
         {
             //------------Setup for test--------------------------
@@ -72,9 +73,9 @@ namespace Warewolf.Core.Tests
             Assert.AreEqual(variableMapTo,serviceOutputMapping.MappedTo);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServiceOutputMapping_RecordsetName")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServiceOutputMapping_RecordsetName")]
         public void ServiceOutputMapping_RecordsetName_WhenContainedInMapTo_ShouldUpdateMapToValue()
         {
             //------------Setup for test--------------------------
@@ -93,9 +94,9 @@ namespace Warewolf.Core.Tests
             Assert.AreEqual(variableNameMappingToChanged,serviceOutputMapping.MappedTo);
         }
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServiceOutputMapping_RecordsetName")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServiceOutputMapping_RecordsetName")]
         public void ServiceOutputMapping_RecordsetName_WhenNotContainedInMapTo_ShouldNotUpdateMapToValue()
         {
             //------------Setup for test--------------------------
@@ -115,9 +116,9 @@ namespace Warewolf.Core.Tests
             Assert.AreNotEqual(variableNameMappingTo,serviceOutputMapping.MappedTo);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServiceOutputMapping_RecordsetName")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServiceOutputMapping_RecordsetName")]
         public void ServiceOutputMapping_RecordsetName_WhenContainedInMapToRecsetCleared_ShouldUpdateMapToScalarValue()
         {
             //------------Setup for test--------------------------
@@ -136,9 +137,9 @@ namespace Warewolf.Core.Tests
             Assert.AreEqual(variableNameMappingToChanged, serviceOutputMapping.MappedTo);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ServiceOutputMapping_RecordsetName")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ServiceOutputMapping_RecordsetName")]
         public void ServiceOutputMapping_RecordsetName_WhenEmptyRecsetIsUpdated_ShouldUpdateMapToScalarValue()
         {
             //------------Setup for test--------------------------

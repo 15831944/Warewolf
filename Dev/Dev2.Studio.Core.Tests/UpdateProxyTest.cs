@@ -5,7 +5,7 @@ using Dev2.Common.Interfaces.Infrastructure.Communication;
 using Dev2.Communication;
 using Dev2.Controller;
 using Dev2.Studio.Core;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Dev2.Studio.Interfaces;
 using Dev2.Common.Interfaces.ToolBase.ExchangeEmail;
@@ -17,12 +17,13 @@ using Dev2.Util;
 
 namespace Dev2.Core.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class UpdateProxyTest
     {
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("UpdateProxyTest_Save")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("UpdateProxyTest_Save")]
         public void UpdateProxyTest_Save_RabbitMqSource_ExpectSuccess()
         {
             //------------Setup for test--------------------------
@@ -40,9 +41,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Test")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Test")]
         public void UpdateProxyTest_Test_RabbitMqSource_ExpectSuccess()
         {
             //------------Setup for test--------------------------
@@ -60,9 +61,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("UpdateProxyTest_Save")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("UpdateProxyTest_Save")]
         [ExpectedException(typeof(WarewolfSaveException))]
         public void UpdateProxyTest_Save_RabbitMqSource_ExpectException()
         {
@@ -81,9 +82,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Test")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Test")]
         [ExpectedException(typeof(WarewolfTestException))]
         public void UpdateProxyTest_Test_RabbitMqSource_ExpectException()
         {
@@ -102,9 +103,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Save")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Save")]
         public void UpdateProxyTest_Save_ExchangeSource_ExpectSuccess()
         {
             //------------Setup for test--------------------------
@@ -122,9 +123,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Test")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Test")]
         public void UpdateProxyTest_Test_ExchangeSource_ExpectSuccess()
         {
             //------------Setup for test--------------------------
@@ -142,9 +143,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Save")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Save")]
         [ExpectedException(typeof(WarewolfSaveException))]
         public void UpdateProxyTest_Save_ExchangeSource_ExpectException()
         {
@@ -163,9 +164,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Test")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Test")]
         [ExpectedException(typeof(WarewolfTestException))]
         public void UpdateProxyTest_Test_ExchangeSource_ExpectException()
         {
@@ -184,9 +185,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Save")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Save")]
         public void UpdateProxyTest_Save_EmailServiceSource_ExpectSuccess()
         {
             //------------Setup for test--------------------------
@@ -204,9 +205,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Test")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Test")]
         public void UpdateProxyTest_Test_EmailServiceSource_ExpectSuccess()
         {
             //------------Setup for test--------------------------
@@ -224,9 +225,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Save")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Save")]
         [ExpectedException(typeof(WarewolfSaveException))]
         public void UpdateProxyTest_Save_EmailServiceSource_ExpectException()
         {
@@ -245,9 +246,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Test")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Test")]
         [ExpectedException(typeof(WarewolfTestException))]
         public void UpdateProxyTest_Test_EmailServiceSource_ExpectException()
         {
@@ -266,9 +267,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Save")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Save")]
         public void UpdateProxyTest_Save_OAuthSource_ExpectSuccess()
         {
             //------------Setup for test--------------------------
@@ -286,9 +287,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Save")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Save")]
         [ExpectedException(typeof(WarewolfSaveException))]
         public void UpdateProxyTest_Save_OAuthSource_ExpectException()
         {
@@ -307,9 +308,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Save")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Save")]
         public void UpdateProxyTest_Save_ComPluginSource_ExpectSuccess()
         {
             //------------Setup for test--------------------------
@@ -327,9 +328,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Test")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Test")]
         public void UpdateProxyTest_Test_ComPluginSource_ExpectSuccess()
         {
             //------------Setup for test--------------------------
@@ -347,9 +348,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Save")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Save")]
         [ExpectedException(typeof(WarewolfSaveException))]
         public void UpdateProxyTest_Save_ComPluginSource_ExpectException()
         {
@@ -368,9 +369,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Test")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Test")]
         [ExpectedException(typeof(WarewolfTestException))]
         public void UpdateProxyTest_Test_ComPluginSource_ExpectException()
         {
@@ -389,9 +390,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Save")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Save")]
         public void UpdateProxyTest_Save_PluginSource_ExpectSuccess()
         {
             //------------Setup for test--------------------------
@@ -409,9 +410,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Test")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Test")]
         public void UpdateProxyTest_Test_PluginSource_ExpectSuccess()
         {
             //------------Setup for test--------------------------
@@ -429,9 +430,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Save")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Save")]
         [ExpectedException(typeof(WarewolfSaveException))]
         public void UpdateProxyTest_Save_PluginSource_ExpectException()
         {
@@ -450,9 +451,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Test")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Test")]
         [ExpectedException(typeof(WarewolfTestException))]
         public void UpdateProxyTest_Test_PluginSource_ExpectException()
         {
@@ -471,9 +472,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Save")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Save")]
         public void UpdateProxyTest_Save_SharepointServer_ExpectSuccess()
         {
             //------------Setup for test--------------------------
@@ -491,9 +492,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Save")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Save")]
         [ExpectedException(typeof(WarewolfSaveException))]
         public void UpdateProxyTest_Save_SharepointServer_ExpectException()
         {
@@ -512,9 +513,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Test")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Test")]
         [ExpectedException(typeof(WarewolfTestException))]
         public void UpdateProxyTest_Test_SharepointServer_ExpectException()
         {
@@ -533,9 +534,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Save")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Save")]
         public void UpdateProxyTest_Save_WebserviceSource_ExpectSuccess()
         {
             //------------Setup for test--------------------------
@@ -553,9 +554,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Save")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Save")]
         [ExpectedException(typeof(WarewolfSaveException))]
         public void UpdateProxyTest_Save_WebserviceSource_ExpectException()
         {
@@ -574,9 +575,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Save")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Save")]
         public void UpdateProxyTest_Save_RedisSource_ExpectSuccess()
         {
             //------------Setup for test--------------------------
@@ -594,9 +595,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Save")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Save")]
         [ExpectedException(typeof(WarewolfSaveException))]
         public void UpdateProxyTest_Save_RedisSource_ExpectException()
         {
@@ -615,9 +616,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Save")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Save")]
         public void UpdateProxyTest_Save_DbSource_ExpectSuccess()
         {
             //------------Setup for test--------------------------
@@ -635,9 +636,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Test")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Test")]
         public void UpdateProxyTest_Test_DbSource_ExpectSuccess()
         {
             //------------Setup for test--------------------------
@@ -655,9 +656,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Save")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Save")]
         [ExpectedException(typeof(WarewolfSaveException))]
         public void UpdateProxyTest_Save_DbSource_ExpectException()
         {
@@ -676,9 +677,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Test")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Test")]
         [ExpectedException(typeof(WarewolfTestException))]
         public void UpdateProxyTest_Test_DbSource_ExpectException()
         {
@@ -697,9 +698,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Save")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Save")]
         public void UpdateProxyTest_Save_ServerSource_ExpectSuccess()
         {
             //------------Setup for test--------------------------
@@ -717,9 +718,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Test")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Test")]
         public void UpdateProxyTest_Test_ServerSource_ExpectSuccess()
         {
             //------------Setup for test--------------------------
@@ -737,9 +738,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Save")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Save")]
         [ExpectedException(typeof(WarewolfSaveException))]
         public void UpdateProxyTest_Save_ServerSource_ExpectException()
         {
@@ -758,9 +759,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Test")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Test")]
         [ExpectedException(typeof(WarewolfTestException))]
         public void UpdateProxyTest_Test_ServerSource_ExpectException()
         {
@@ -779,9 +780,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Save")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Save")]
         public void UpdateProxyTest_Save_WcfSource_ExpectSuccess()
         {
             //------------Setup for test--------------------------
@@ -799,9 +800,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Test")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Test")]
         public void UpdateProxyTest_Test_WcfSource_ExpectSuccess()
         {
             //------------Setup for test--------------------------
@@ -819,9 +820,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Save")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Save")]
         [ExpectedException(typeof(WarewolfSaveException))]
         public void UpdateProxyTest_Save_WcfSource_ExpectException()
         {
@@ -840,9 +841,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Test")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Test")]
         [ExpectedException(typeof(WarewolfTestException))]
         public void UpdateProxyTest_Test_WcfSource_ExpectException()
         {
@@ -861,9 +862,9 @@ namespace Dev2.Core.Tests
             controller.Verify(a => a.ExecuteCommand<IExecuteMessage>(env.Object, It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("UpdateProxyTest_Test")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("UpdateProxyTest_Test")]
         public void UpdateProxyTest_Deploy()
         {
             //------------Setup for test--------------------------

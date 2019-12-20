@@ -9,18 +9,19 @@ using Dev2.Common.Interfaces.Threading;
 using Dev2.Providers.Errors;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Resource.Errors;
 
 namespace Dev2.Activities.Designers.Tests.Sharepoint
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SharePointDeleteFileDesignerViewModelTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SharePointDeleteFileDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SharePointDeleteFileDesignerViewModel))]
         public void SharePointDeleteFileDesignerViewModel_ShouldCall_UpdateHelpDescriptor()
         {
             //------------Setup for test--------------------------
@@ -44,9 +45,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SharePointDeleteFileDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SharePointDeleteFileDesignerViewModel))]
         public void SharePointDeleteFileDesignerViewModel_ValidateThis_ClearErrors()
         {
             //------------Setup for test--------------------------
@@ -80,9 +81,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SharePointDeleteFileDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SharePointDeleteFileDesignerViewModel))]
         public void SharePointDeleteFileDesignerViewModel_ValidateThis_SharepointServerRequired()
         {
             //------------Setup for test--------------------------
@@ -107,9 +108,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             }
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(SharePointDeleteFileDesignerViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(SharePointDeleteFileDesignerViewModel))]
         public void SharePointDeleteFileDesignerViewModel_ValidateThis_SharepointServerPathRequired()
         {
             //------------Setup for test--------------------------

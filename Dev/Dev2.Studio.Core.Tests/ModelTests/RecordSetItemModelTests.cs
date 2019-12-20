@@ -2,11 +2,12 @@ using Dev2.Data;
 using Dev2.Data.Interfaces.Enums;
 using Dev2.Studio.Core.Models.DataList;
 using Dev2.Studio.Interfaces.DataList;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests.ModelTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class RecordSetItemModelTests
     {
         #region Test Fields
@@ -42,8 +43,8 @@ namespace Dev2.Core.Tests.ModelTests
 
         #region CTOR Tests
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void RecordsetItemModel_NewRecordSetItemModel_GivenDisplayName_ShouldSetDiplayName()
         {
             //---------------Set up test pack-------------------
@@ -59,8 +60,8 @@ namespace Dev2.Core.Tests.ModelTests
         #region Name Validation
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void RecordsetItemModel_Validatename_GivenValidName_ShouldHaveNoErrorMessage()
         {
             //---------------Set up test pack-------------------
@@ -76,8 +77,8 @@ namespace Dev2.Core.Tests.ModelTests
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void RecordsetItemModel_ValidateRecordsetName_GivenInvalidName_ShouldHaveErrorMessage()
         {
             //---------------Set up test pack-------------------
@@ -92,8 +93,8 @@ namespace Dev2.Core.Tests.ModelTests
             Assert.IsTrue(hasErrorMsg, "Invalid recordset name does not have error message.");
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void RecordsetItemModel_ValidateName_GivenNameHasXmlEscapeCharacters_ShouldHaveErrorMessage()
         {
             //---------------Set up test pack-------------------

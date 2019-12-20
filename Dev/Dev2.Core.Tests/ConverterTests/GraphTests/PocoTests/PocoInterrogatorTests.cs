@@ -11,12 +11,13 @@
 using System;
 using System.Collections.Generic;
 using Dev2.Common.Interfaces.Core.Graph;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Framework.Converters.Graph.Poco;
 
 namespace Unlimited.UnitTest.Framework.ConverterTests.GraphTests.PocoTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class PocoInterrogatorTests
     {
         #region Private/Internal Methods
@@ -65,7 +66,7 @@ namespace Unlimited.UnitTest.Framework.ConverterTests.GraphTests.PocoTests
         /// <summary>
         /// Create mapper expected poco mapper.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void CreateMapper_Expected_PocoMapper()
         {
             var pocoTestData = Given();
@@ -85,7 +86,7 @@ namespace Unlimited.UnitTest.Framework.ConverterTests.GraphTests.PocoTests
         /// <summary>
         /// Creates the navigator expected poco navigator.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void CreateNavigator_Expected_PocoNavigator()
         {
             var pocoTestData = Given();

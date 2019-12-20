@@ -16,18 +16,19 @@ using Dev2.Common.Interfaces.Wrappers;
 using Dev2.Data.Interfaces;
 using Dev2.Data.Interfaces.Enums;
 using Dev2.PathOperations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Resource.Errors;
 
 namespace Dev2.Data.Tests.PathOperations
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class Dev2ActivityIOBrokerTests
     {
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_Construct()
         {
             var mockFileWrapper = new Mock<IFile>();
@@ -36,9 +37,9 @@ namespace Dev2.Data.Tests.PathOperations
             var broker = new Dev2ActivityIOBroker(mockFileWrapper.Object, mockCommonData.Object);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_Get()
         {
             var mockFileWrapper = new Mock<IFile>();
@@ -48,19 +49,19 @@ namespace Dev2.Data.Tests.PathOperations
             var ioPath = mockIoPath.Object;
             mockPath.Setup(o => o.IOPath).Returns(ioPath);
             mockPath.Setup(o => o.Get(ioPath, It.IsAny<List<string>>()))
-                .Callback<IActivityIOPath, List<string>>((path, filesToRemove) => Assert.AreEqual(0, filesToRemove.Count))
+                .Callback<IActivityIOPath, List<string>>((path, filesToRemove) => NUnit.Framework.Assert.AreEqual(0, filesToRemove.Count))
                 .Returns(new MemoryStream(Encoding.UTF8.GetBytes("some string")));
 
             var broker = new Dev2ActivityIOBroker(mockFileWrapper.Object, mockCommonData.Object);
             var result = broker.Get(mockPath.Object);
 
-            Assert.AreEqual("some string", result);
+            NUnit.Framework.Assert.AreEqual("some string", result);
 
             mockPath.Verify(o => o.IOPath, Times.Exactly(1));
             mockPath.Verify(o => o.Get(ioPath, It.IsAny<List<string>>()), Times.Once);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Dev2ActivityIOBroker_Get_GivenPath_ShouldReturnFileEncodingContents()
         {
             var broker = ActivityIOFactory.CreateOperationsBroker();
@@ -68,11 +69,11 @@ namespace Dev2.Data.Tests.PathOperations
             fileMock.Setup(point => point.Get(It.IsAny<IActivityIOPath>(), It.IsAny<List<string>>())).Returns(new ByteBuffer(Encoding.ASCII.GetBytes("")));
 
             var stringEncodingContents = broker.Get(fileMock.Object, true);
-            Assert.IsNotNull(stringEncodingContents);
+            NUnit.Framework.Assert.IsNotNull(stringEncodingContents);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Dev2ActivityIOBroker_Get_GivenPath_ShouldReturnFileDecodedContents()
         {
             var broker = ActivityIOFactory.CreateOperationsBroker();
@@ -83,13 +84,13 @@ namespace Dev2.Data.Tests.PathOperations
 
             var stringEncodingContents = broker.Get(fileMock.Object, true);
 
-            Assert.IsNotNull(stringEncodingContents);
-            Assert.AreEqual(iAmGood, stringEncodingContents);
+            NUnit.Framework.Assert.IsNotNull(stringEncodingContents);
+            NUnit.Framework.Assert.AreEqual(iAmGood, stringEncodingContents);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_PutRaw_RequiresLocalTmpStorage()
         {
             var mockFileWrapper = new Mock<IFile>();
@@ -111,7 +112,7 @@ namespace Dev2.Data.Tests.PathOperations
 
             var result = broker.PutRaw(dst, args);
 
-            Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
+            NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
 
             mockDst.Verify(o => o.RequiresLocalTmpStorage(), Times.Once);
             mockImplementation.Verify(o => o.CreateTmpFile(), Times.Once);
@@ -120,9 +121,9 @@ namespace Dev2.Data.Tests.PathOperations
             mockImplementation.Verify(o => o.RemoveAllTmpFiles(), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_PutRaw_FileExists()
         {
             var mockFileWrapper = new Mock<IFile>();
@@ -143,7 +144,7 @@ namespace Dev2.Data.Tests.PathOperations
 
             var result = broker.PutRaw(dst, args);
 
-            Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
+            NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
 
             mockDst.Verify(o => o.RequiresLocalTmpStorage(), Times.Once);
             mockDst.Verify(o => o.PathExist(It.IsAny<Dev2ActivityIOPath>()), Times.Once);
@@ -155,9 +156,9 @@ namespace Dev2.Data.Tests.PathOperations
             mockImplementation.Verify(o => o.RemoveAllTmpFiles(), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_PutRaw_FileNotExists_WriteData_Fails()
         {
             var mockFileWrapper = new Mock<IFile>();
@@ -176,7 +177,7 @@ namespace Dev2.Data.Tests.PathOperations
 
             var result = broker.PutRaw(dst, args);
 
-            Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, result);
+            NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, result);
 
             mockDst.Verify(o => o.RequiresLocalTmpStorage(), Times.Once);
             mockDst.Verify(o => o.PathExist(It.IsAny<Dev2ActivityIOPath>()), Times.Once);
@@ -184,9 +185,9 @@ namespace Dev2.Data.Tests.PathOperations
             mockImplementation.Verify(o => o.WriteDataToFile(args, dst), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_PutRaw_FileNotExists_CreateEndPoint_Fails()
         {
             var mockFileWrapper = new Mock<IFile>();
@@ -205,7 +206,7 @@ namespace Dev2.Data.Tests.PathOperations
 
             var result = broker.PutRaw(dst, args);
 
-            Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, result);
+            NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, result);
 
             mockDst.Verify(o => o.RequiresLocalTmpStorage(), Times.Once);
             mockDst.Verify(o => o.PathExist(It.IsAny<Dev2ActivityIOPath>()), Times.Once);
@@ -213,9 +214,9 @@ namespace Dev2.Data.Tests.PathOperations
             mockImplementation.Verify(o => o.WriteDataToFile(args, dst), Times.Never);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_PutRaw_FileNotExists()
         {
             var mockFileWrapper = new Mock<IFile>();
@@ -235,7 +236,7 @@ namespace Dev2.Data.Tests.PathOperations
 
             var result = broker.PutRaw(dst, args);
 
-            Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
+            NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
 
             mockDst.Verify(o => o.RequiresLocalTmpStorage(), Times.Once);
             mockDst.Verify(o => o.PathExist(It.IsAny<Dev2ActivityIOPath>()), Times.Once);
@@ -243,9 +244,9 @@ namespace Dev2.Data.Tests.PathOperations
             mockImplementation.Verify(o => o.WriteDataToFile(args, dst), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_Delete_GivenDeleteIsFalse_ShouldReturnResultBad()
         {
             var mockFileWrapper = new Mock<IFile>();
@@ -262,16 +263,16 @@ namespace Dev2.Data.Tests.PathOperations
 
             var delete = broker.Delete(dstMock.Object);
 
-            Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, delete);
+            NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, delete);
 
             dstMock.Verify(o => o.Delete(ioPath), Times.Once);
             mockImplementation.Verify(o => o.RemoveAllTmpFiles(), Times.Once);
         }
 
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_Delete_GivenDeleteThrows_ShouldReturnResultBad()
         {
             var exception = new Exception("some exception");
@@ -290,15 +291,15 @@ namespace Dev2.Data.Tests.PathOperations
 
             var delete = broker.Delete(dstMock.Object);
 
-            Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, delete);
+            NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, delete);
 
             dstMock.Verify(o => o.Delete(ioPath), Times.Once);
             mockImplementation.Verify(o => o.RemoveAllTmpFiles(), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_Delete_GivenDeleteIsTrue_ShouldReturnResultOk()
         {
             //---------------Set up test pack-------------------
@@ -316,15 +317,15 @@ namespace Dev2.Data.Tests.PathOperations
 
             var delete = broker.Delete(dstMock.Object);
 
-            Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, delete);
+            NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, delete);
 
             dstMock.Verify(o => o.Delete(ioPath), Times.Once);
             mockImplementation.Verify(o => o.RemoveAllTmpFiles(), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_ListDirectory_GivenFolders_ShouldReturnEmptyList()
         {
             var mockFileWrapper = new Mock<IFile>();
@@ -342,14 +343,14 @@ namespace Dev2.Data.Tests.PathOperations
 
             var result = broker.ListDirectory(endPoint, readTypes);
 
-            Assert.AreEqual(expectedList, result);
+            NUnit.Framework.Assert.AreEqual(expectedList, result);
 
             mockImplementation.Verify(o => o.ListDirectory(endPoint, readTypes), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_Create_GivenDestination_ShouldCreateFileCorrectly()
         {
             var mockFile = new Mock<IFile>();
@@ -373,16 +374,16 @@ namespace Dev2.Data.Tests.PathOperations
 
             var result = broker.Create(dst, args, true);
 
-            Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
+            NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
 
             mockCommon.Verify(o => o.ValidateEndPoint(dst, args), Times.Once);
             mockDriver.Verify(o => o.CreateEndPoint(dst, args, true), Times.Once);
             mockDriver.Verify(o => o.RemoveAllTmpFiles(), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_Create_CreateEndPoint_Fails()
         {
             var mockFile = new Mock<IFile>();
@@ -406,16 +407,16 @@ namespace Dev2.Data.Tests.PathOperations
 
             var result = broker.Create(mockDst.Object, args, true);
 
-            Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, result);
+            NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, result);
 
             mockDriver.Verify(o => o.CreateEndPoint(dst, args, true), Times.Once);
             mockCommon.Verify(o => o.ValidateEndPoint(dst, args), Times.Once);
             mockDriver.Verify(o => o.RemoveAllTmpFiles(), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_Create_CreateEndPoint_Throws()
         {
             var exception = new Exception("some exception");
@@ -447,20 +448,20 @@ namespace Dev2.Data.Tests.PathOperations
             } catch (Exception e)
             {
                 hadException = true;
-                Assert.AreEqual(exception, e);
+                NUnit.Framework.Assert.AreEqual(exception, e);
             }
-            Assert.IsTrue(hadException);
+            NUnit.Framework.Assert.IsTrue(hadException);
 
-            Assert.IsNull(result);
+            NUnit.Framework.Assert.IsNull(result);
 
             mockDriver.Verify(o => o.CreateEndPoint(dst, args, true), Times.Once);
             mockCommon.Verify(o => o.ValidateEndPoint(dst, args), Times.Once);
             mockDriver.Verify(o => o.RemoveAllTmpFiles(), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_Rename_GivenSourceAndDestinationDifferentPathType_ShouldThrowExc()
         {
             var mockFile = new Mock<IFile>();
@@ -484,17 +485,17 @@ namespace Dev2.Data.Tests.PathOperations
             catch (Exception exc)
             {
                 hadException = true;
-                Assert.AreEqual(ErrorResource.SourceAndDestinationNOTFilesOrDirectory, exc.Message);
+                NUnit.Framework.Assert.AreEqual(ErrorResource.SourceAndDestinationNOTFilesOrDirectory, exc.Message);
             }
-            Assert.IsTrue(hadException);
+            NUnit.Framework.Assert.IsTrue(hadException);
 
             src.Verify(o => o.Delete(It.IsAny<IActivityIOPath>()), Times.Never);
             mockDriver.Verify(o => o.RemoveAllTmpFiles(), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_Rename_GivenSourceAndDestinationSamePathTypePathExistsOverwriteFalse_ShouldThrowException()
         {
             var mockFile = new Mock<IFile>();
@@ -519,14 +520,14 @@ namespace Dev2.Data.Tests.PathOperations
             catch (Exception exc)
             {
                 hadException = true;
-                Assert.AreEqual(ErrorResource.DestinationDirectoryExist, exc.Message);
+                NUnit.Framework.Assert.AreEqual(ErrorResource.DestinationDirectoryExist, exc.Message);
             }
-            Assert.IsTrue(hadException);
+            NUnit.Framework.Assert.IsTrue(hadException);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_Rename_GivenSourceAndDestinationSamePathTypePathExistsOverwriteTrue_ShouldDeleteDestFile()
         {
             var mockFile = new Mock<IFile>();
@@ -561,9 +562,9 @@ namespace Dev2.Data.Tests.PathOperations
             mockDriver.Verify(o => o.RemoveAllTmpFiles(), Times.AtLeastOnce);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_Rename_GivenSourceAndDestinationTypesNotEqual()
         {
             var mockFile = new Mock<IFile>();
@@ -596,16 +597,16 @@ namespace Dev2.Data.Tests.PathOperations
             catch (Exception e)
             {
                 hadException = true;
-                Assert.AreEqual(ErrorResource.SourceAndDestinationNOTFilesOrDirectory, e.Message);
+                NUnit.Framework.Assert.AreEqual(ErrorResource.SourceAndDestinationNOTFilesOrDirectory, e.Message);
             }
-            Assert.IsTrue(hadException);
+            NUnit.Framework.Assert.IsTrue(hadException);
 
             mockDriver.Verify(o => o.RemoveAllTmpFiles(), Times.AtLeastOnce);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_Copy_SourceDirectoryInfoFails()
         {
             string expectedOutcome = ActivityIOBrokerBaseDriver.ResultBad;
@@ -613,9 +614,9 @@ namespace Dev2.Data.Tests.PathOperations
             Dev2ActivityIOBroker_Copy_DestinationPutFails_Implementation(directoryInfo, 0, expectedOutcome);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_Copy_DestinationPut()
         {
             string expectedOutcome = ActivityIOBrokerBaseDriver.ResultOk;
@@ -623,9 +624,9 @@ namespace Dev2.Data.Tests.PathOperations
             Dev2ActivityIOBroker_Copy_DestinationPutFails_Implementation(srcDirectory, 0, expectedOutcome);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_Copy_DestinationPutFails()
         {
             string expectedOutcome = ActivityIOBrokerBaseDriver.ResultBad;
@@ -687,16 +688,16 @@ namespace Dev2.Data.Tests.PathOperations
 
             var result = broker.Copy(src, dst, args);
 
-            Assert.AreEqual(expectedOutcome, result);
+            NUnit.Framework.Assert.AreEqual(expectedOutcome, result);
 
             mockSrc.Verify(o => o.RequiresLocalTmpStorage(), Times.Once);
 
             mockDriver.Verify(o => o.RemoveAllTmpFiles(), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_Copy_RequiresLocalTmpStorage()
         {
             string expectedOutcome = ActivityIOBrokerBaseDriver.ResultOk;
@@ -706,9 +707,9 @@ namespace Dev2.Data.Tests.PathOperations
             Dev2ActivityIOBroker_Copy_RequiresLocalTmpStorage(srcDirectory, putReturnCode, expectedOutcome, srcHasRoot);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_Copy_RequiresLocalTmpStorage_SrcHasRoot()
         {
             string expectedOutcome = ActivityIOBrokerBaseDriver.ResultOk;
@@ -718,9 +719,9 @@ namespace Dev2.Data.Tests.PathOperations
             Dev2ActivityIOBroker_Copy_RequiresLocalTmpStorage(srcDirectory, putReturnCode, expectedOutcome, srcHasRoot);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_Copy_RequiresLocalTmpStorage_PutFails()
         {
             string expectedOutcome = ActivityIOBrokerBaseDriver.ResultBad;
@@ -793,7 +794,7 @@ namespace Dev2.Data.Tests.PathOperations
 
             var result = broker.Copy(src, dst, args);
 
-            Assert.AreEqual(expectedOutcome, result);
+            NUnit.Framework.Assert.AreEqual(expectedOutcome, result);
 
             mockSrc.Verify(o => o.RequiresLocalTmpStorage(), Times.Once);
 
@@ -807,9 +808,9 @@ namespace Dev2.Data.Tests.PathOperations
             mockDriver.Verify(o => o.RemoveAllTmpFiles(), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_Move()
         {
             var mockFile = new Mock<IFile>();
@@ -844,9 +845,9 @@ namespace Dev2.Data.Tests.PathOperations
             mockDriver.Verify(o => o.RemoveAllTmpFiles(), Times.AtLeastOnce);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_Move_Fails()
         {
             var mockFile = new Mock<IFile>();
@@ -880,9 +881,9 @@ namespace Dev2.Data.Tests.PathOperations
             mockDriver.Verify(o => o.RemoveAllTmpFiles(), Times.AtLeastOnce);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_Move_CopyThrows()
         {
             var exception = new Exception("some exception");
@@ -917,9 +918,9 @@ namespace Dev2.Data.Tests.PathOperations
             } catch (Exception e)
             {
                 hadException = true;
-                Assert.AreEqual(exception, e);
+                NUnit.Framework.Assert.AreEqual(exception, e);
             }
-            Assert.IsTrue(hadException);
+            NUnit.Framework.Assert.IsTrue(hadException);
 
             mockValidator.Verify(o => o.ValidateCopySourceDestinationFileOperation(src, dst, args, It.IsAny<Func<string>>()), Times.Once);
             mockSrc.Verify(o => o.Delete(srcPath), Times.Never);
@@ -927,25 +928,25 @@ namespace Dev2.Data.Tests.PathOperations
             mockDriver.Verify(o => o.RemoveAllTmpFiles(), Times.AtLeastOnce);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_UnZip()
         {
             Dev2ActivityIOBroker_UnZip_Implementation(ActivityIOBrokerBaseDriver.ResultOk, false, false);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_UnZip_SrcRequiresLocalStorage()
         {
             Dev2ActivityIOBroker_UnZip_Implementation(ActivityIOBrokerBaseDriver.ResultOk, true, false);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_UnZip_DstRequiresLocalStorage()
         {
             Dev2ActivityIOBroker_UnZip_Implementation(ActivityIOBrokerBaseDriver.ResultOk, false, true);
@@ -1011,7 +1012,7 @@ namespace Dev2.Data.Tests.PathOperations
 
             var result = broker.UnZip(src, dst, args);
 
-            Assert.AreEqual(expectedStatus, result);
+            NUnit.Framework.Assert.AreEqual(expectedStatus, result);
 
             if (srcRequiresLocalTempStorage)
             {
@@ -1038,27 +1039,27 @@ namespace Dev2.Data.Tests.PathOperations
 
 
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_Zip()
         {
             var path = @"c:\some src path";
             Dev2ActivityIOBroker_Zip_Implementation(false, path);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_Zip_Directory()
         {
             var path = @"c:\some src path";
             Dev2ActivityIOBroker_Zip_Implementation(true, path);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(Dev2ActivityIOBroker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(Dev2ActivityIOBroker))]
         public void Dev2ActivityIOBroker_Zip_StarWildcard()
         {
             var path = @"c:\some src path\*";

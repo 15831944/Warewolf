@@ -31,19 +31,20 @@ using Dev2.Runtime.ESB.Execution;
 using Dev2.Runtime.Interfaces;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Framework.Converters.Graph.Ouput;
 using Warewolf.Storage;
 
 namespace Dev2.Tests.Runtime.ESB.Execution
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ServiceTestExecutionContainerTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(ServiceTestExecutionContainer))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(ServiceTestExecutionContainer))]
         public void ServiceTestExecutionContainer_Constructor_GivenArgs_ShouldPassThrough()
         {
             //---------------Set up test pack-------------------
@@ -58,16 +59,16 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             var esbExecuteRequest = new EsbExecuteRequest();
             var serviceTestExecutionContainer = new ServiceTestExecutionContainerMock(serviceAction, dsfObj.Object, workSpace.Object, channel.Object, esbExecuteRequest);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(serviceTestExecutionContainer);
+            NUnit.Framework.Assert.IsNotNull(serviceTestExecutionContainer);
             //---------------Execute Test ----------------------
             //---------------Test Result -----------------------
-            Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
-            Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(ServiceTestExecutionContainer))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(ServiceTestExecutionContainer))]
         public void ServiceTestExecutionContainer_Execute_GivenArgs_ShouldPassThrough_ReturnsExecutedResults()
         {
             //---------------Set up test pack-------------------
@@ -102,15 +103,15 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             var esbExecuteRequest = new EsbExecuteRequest();
             var serviceTestExecutionContainer = new ServiceTestExecutionContainerMock(serviceAction, dsfObj.Object, workSpace.Object, channel.Object, esbExecuteRequest, cataLog.Object, resourceCat.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(serviceTestExecutionContainer, "ServiceTestExecutionContainer is Null.");
-            Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
-            Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
+            NUnit.Framework.Assert.IsNotNull(serviceTestExecutionContainer, "ServiceTestExecutionContainer is Null.");
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
             //---------------Execute Test ----------------------
             Thread.CurrentPrincipal = GlobalConstants.GenericPrincipal;
             Common.Utilities.PerformActionInsideImpersonatedContext(GlobalConstants.GenericPrincipal, () =>
             {
                 var execute = serviceTestExecutionContainer.Execute(out ErrorResultTO errors, 1);
-                Assert.IsNotNull(execute, "serviceTestExecutionContainer execute results is Null.");
+                NUnit.Framework.Assert.IsNotNull(execute, "serviceTestExecutionContainer execute results is Null.");
             });
 
             //---------------Test Result -----------------------
@@ -121,7 +122,7 @@ namespace Dev2.Tests.Runtime.ESB.Execution
                     KnownTypes = typeof(ServiceTestModelTO).Assembly.GetExportedTypes()
                         .Union(typeof(TestRunResult).Assembly.GetExportedTypes()).ToList()
                 });
-                Assert.IsNotNull(serviceTestModelTO, "Execute results Deserialize returned Null.");
+                NUnit.Framework.Assert.IsNotNull(serviceTestModelTO, "Execute results Deserialize returned Null.");
             }
             catch (Exception)
             {
@@ -130,13 +131,13 @@ namespace Dev2.Tests.Runtime.ESB.Execution
                     KnownTypes = typeof(ServiceTestModelTO).Assembly.GetExportedTypes()
                         .Union(typeof(TestRunResult).Assembly.GetExportedTypes()).ToList()
                 });
-                Assert.IsNotNull(serviceTestModelTO, "Execute results Deserialize returned Null.");
+                NUnit.Framework.Assert.IsNotNull(serviceTestModelTO, "Execute results Deserialize returned Null.");
             }
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ServiceTestExecutionContainer))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ServiceTestExecutionContainer))]
         public void ServiceTestExecutionContainer_Execute_AuthenticationType_Public_ReturnsExecutedResults()
         {
             //---------------Set up test pack-------------------
@@ -179,21 +180,21 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             
             var serviceTestExecutionContainer = new ServiceTestExecutionContainerMock(serviceAction, mockDSFDataObject.Object, mockWorkspace.Object, mockEsbChannel.Object, esbExecuteRequest, mockTestCatalog.Object, mockResourceCatalog.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(serviceTestExecutionContainer, "ServiceTestExecutionContainer is Null.");
-            Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
-            Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
+            NUnit.Framework.Assert.IsNotNull(serviceTestExecutionContainer, "ServiceTestExecutionContainer is Null.");
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
             //---------------Execute Test ----------------------
             Thread.CurrentPrincipal = GlobalConstants.GenericPrincipal;
             Common.Utilities.PerformActionInsideImpersonatedContext(GlobalConstants.GenericPrincipal, () =>
             {
                 var execute = serviceTestExecutionContainer.Execute(out ErrorResultTO errors, 1);
-                Assert.AreEqual("00000000-0000-0000-0000-000000000000", execute.ToString());
+                NUnit.Framework.Assert.AreEqual("00000000-0000-0000-0000-000000000000", execute.ToString());
             });
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(ServiceTestExecutionContainer))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(ServiceTestExecutionContainer))]
         public void ServiceTestExecutionContainer_Execute_GivenStopExecutionAndUnAuthorized_ShouldAddFailureMessage()
         {
             //---------------Set up test pack-------------------
@@ -231,9 +232,9 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             var esbExecuteRequest = new EsbExecuteRequest();
             var serviceTestExecutionContainer = new ServiceTestExecutionContainerMock(serviceAction, dsfObj.Object, workSpace.Object, channel.Object, esbExecuteRequest, cataLog.Object, resourceCat.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(serviceTestExecutionContainer, "ServiceTestExecutionContainer is Null.");
-            Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
-            Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
+            NUnit.Framework.Assert.IsNotNull(serviceTestExecutionContainer, "ServiceTestExecutionContainer is Null.");
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
             //---------------Execute Test ----------------------
             Thread.CurrentPrincipal = null;
             var identity = new GenericIdentity("User");
@@ -242,7 +243,7 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             Common.Utilities.ServerUser = currentPrincipal;
 
             var execute = serviceTestExecutionContainer.Execute(out ErrorResultTO errors, 1);
-            Assert.IsNotNull(execute, "serviceTestExecutionContainer execute results is Null.");
+            NUnit.Framework.Assert.IsNotNull(execute, "serviceTestExecutionContainer execute results is Null.");
 
             //---------------Test Result -----------------------
 
@@ -254,14 +255,14 @@ namespace Dev2.Tests.Runtime.ESB.Execution
                     KnownTypes = typeof(ServiceTestModelTO).Assembly.GetExportedTypes()
                         .Union(typeof(TestRunResult).Assembly.GetExportedTypes()).ToList()
                 });
-                Assert.IsNotNull(serviceTestModelTO, "Execute results Deserialize returned Null.");
-                Assert.IsNotNull(serviceTestModelTO, "Execute results Deserialize returned Null.");
+                NUnit.Framework.Assert.IsNotNull(serviceTestModelTO, "Execute results Deserialize returned Null.");
+                NUnit.Framework.Assert.IsNotNull(serviceTestModelTO, "Execute results Deserialize returned Null.");
                 dsfObj.Verify(o => o.IsDebugMode());
                 dsfObj.Verify(o => o.Environment.HasErrors());
                 dsfObj.Verify(o => o.Environment.FetchErrors());
                 cataLog.Verify(cat => cat.SaveTest(It.IsAny<Guid>(), It.IsAny<IServiceTestModelTO>()), Times.Never);
                 cataLog.Verify(cat => cat.FetchTest(resourceId, TestName));
-                Assert.AreNotEqual("", serviceTestModelTO.FailureMessage);
+                NUnit.Framework.Assert.AreNotEqual("", serviceTestModelTO.FailureMessage);
             }
             catch (Exception)
             {
@@ -270,20 +271,20 @@ namespace Dev2.Tests.Runtime.ESB.Execution
                     KnownTypes = typeof(ServiceTestModelTO).Assembly.GetExportedTypes()
                         .Union(typeof(TestRunResult).Assembly.GetExportedTypes()).ToList()
                 });
-                Assert.IsNotNull(testRunResult, "Execute results Deserialize returned Null.");
-                Assert.IsNotNull(testRunResult, "Execute results Deserialize returned Null.");
+                NUnit.Framework.Assert.IsNotNull(testRunResult, "Execute results Deserialize returned Null.");
+                NUnit.Framework.Assert.IsNotNull(testRunResult, "Execute results Deserialize returned Null.");
                 dsfObj.Verify(o => o.IsDebugMode());
                 dsfObj.Verify(o => o.Environment.HasErrors());
                 dsfObj.Verify(o => o.Environment.FetchErrors());
                 cataLog.Verify(cat => cat.SaveTest(It.IsAny<Guid>(), It.IsAny<IServiceTestModelTO>()), Times.Never);
                 cataLog.Verify(cat => cat.FetchTest(resourceId, TestName));
-                Assert.AreNotEqual("", testRunResult.Message);
+                NUnit.Framework.Assert.AreNotEqual("", testRunResult.Message);
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory(nameof(ServiceTestExecutionContainer))]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category(nameof(ServiceTestExecutionContainer))]
         public void ServiceTestExecutionContainer_CanExecute_GivenArgs_ShouldPassThrough()
         {
             //---------------Set up test pack-------------------
@@ -298,18 +299,18 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             var esbExecuteRequest = new EsbExecuteRequest();
             var serviceTestExecutionContainer = new ServiceTestExecutionContainerMock(serviceAction, dsfObj.Object, workSpace.Object, channel.Object, esbExecuteRequest);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(serviceTestExecutionContainer);
-            Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
-            Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
+            NUnit.Framework.Assert.IsNotNull(serviceTestExecutionContainer);
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
             //---------------Execute Test ----------------------
             var execute = serviceTestExecutionContainer.CanExecute(Guid.NewGuid(), dsfObj.Object, AuthorizationContext.Administrator);
             //---------------Test Result -----------------------
-            Assert.IsTrue(execute);
+            NUnit.Framework.Assert.IsTrue(execute);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory(nameof(ServiceTestExecutionContainer))]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category(nameof(ServiceTestExecutionContainer))]
         public void ServiceTestExecutionContainer_ExecutingEvaluator_UpdateTestWithStepValues_Sets_The_Correct_FailureMessage()
         {
             //------------Setup for test-------------------------
@@ -346,7 +347,7 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             var channel = new Mock<IEsbChannel>();
             var esbExecuteRequest = new EsbExecuteRequest();
             var serviceTestExecutionContainer = new ExecutingEvaluator(dsfObj.Object, resourceCat.Object, workSpace.Object, esbExecuteRequest);
-            var testObj = new PrivateType(serviceTestExecutionContainer.GetType());
+            var testObj = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateType(serviceTestExecutionContainer.GetType());
             var test = SetupServiceTestSteps();
             testObj.InvokeStatic("UpdateTestWithStepValues", test.Object);
             //------------Execute Test---------------------------            
@@ -366,9 +367,9 @@ Test Failed because of some reasons
             }, Times.AtLeastOnce);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory(nameof(ServiceTestExecutionContainer))]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category(nameof(ServiceTestExecutionContainer))]
         public void ServiceTestExecutionContainer_ExecuteWf_GivenRecordSetsInputs_Should_AssignAllRecordSetItems()
         {
             //------------Setup for test-------------------------
@@ -403,23 +404,23 @@ Test Failed because of some reasons
             var esbExecuteRequest = new EsbExecuteRequest();
             var serviceTestExecutionContainer = new ServiceTestExecutionContainerMock(serviceAction, dsfObj.Object, workSpace.Object, channel.Object, esbExecuteRequest, testCataLog.Object, resourceCat.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(serviceTestExecutionContainer, "ServiceTestExecutionContainer is Null.");
-            Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
-            Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
+            NUnit.Framework.Assert.IsNotNull(serviceTestExecutionContainer, "ServiceTestExecutionContainer is Null.");
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
             //---------------Execute Test ----------------------
             Thread.CurrentPrincipal = GlobalConstants.GenericPrincipal;
             Common.Utilities.PerformActionInsideImpersonatedContext(GlobalConstants.GenericPrincipal, () =>
             {
                 var execute = serviceTestExecutionContainer.Execute(out ErrorResultTO errors, 1);
-                Assert.IsNotNull(execute, "serviceTestExecutionContainer execute results is Null.");
+                NUnit.Framework.Assert.IsNotNull(execute, "serviceTestExecutionContainer execute results is Null.");
             });
             //---------------Test Result -----------------------
             dsfObj.Verify(o => o.Environment.Assign("[[Person(1).Name]]", "Marry", 0), Times.AtLeastOnce);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ServiceTestExecutionContainer))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ServiceTestExecutionContainer))]
         public void ServiceTestExecutionContainer_ExecuteWf_TestCatalog_Null_Should_AssignAllRecordSetItems()
         {
             //------------Setup for test-------------------------
@@ -447,23 +448,23 @@ Test Failed because of some reasons
             
             var serviceTestExecutionContainer = new ServiceTestExecutionContainerMock(serviceAction, mockDSFDataObject.Object, mockWorkspace.Object, mockEsbChannel.Object, esbExecuteRequest, mockTestCatalog.Object, mockResourceCatalog.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(serviceTestExecutionContainer, "ServiceTestExecutionContainer is Null.");
-            Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
-            Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
+            NUnit.Framework.Assert.IsNotNull(serviceTestExecutionContainer, "ServiceTestExecutionContainer is Null.");
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
             //---------------Execute Test ----------------------
             Thread.CurrentPrincipal = GlobalConstants.GenericPrincipal;
             Common.Utilities.PerformActionInsideImpersonatedContext(GlobalConstants.GenericPrincipal, () =>
             {
                 var execute = serviceTestExecutionContainer.Execute(out ErrorResultTO errors, 1);
-                Assert.IsNotNull(execute, "serviceTestExecutionContainer execute results is Null.");
+                NUnit.Framework.Assert.IsNotNull(execute, "serviceTestExecutionContainer execute results is Null.");
             });
 
             mockDSFDataObject.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ServiceTestExecutionContainer))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ServiceTestExecutionContainer))]
         public void ServiceTestExecutionContainer_ExecuteWf_AuthenticationType_Windows_Should_AssignAllRecordSetItems()
         {
             //------------Setup for test-------------------------
@@ -497,16 +498,16 @@ Test Failed because of some reasons
 
             var serviceTestExecutionContainer = new ServiceTestExecutionContainerMock(serviceAction, mockDSFDataObject.Object, mockWorkspace.Object, mockEsbChannel.Object, esbExecuteRequest, mockTestCatalog.Object, mockResourceCatalog.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(serviceTestExecutionContainer, "ServiceTestExecutionContainer is Null.");
-            Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
-            Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
+            NUnit.Framework.Assert.IsNotNull(serviceTestExecutionContainer, "ServiceTestExecutionContainer is Null.");
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
             //---------------Execute Test ----------------------
             Thread.CurrentPrincipal = GlobalConstants.GenericPrincipal;
             Common.Utilities.PerformActionInsideImpersonatedContext(GlobalConstants.GenericPrincipal, () =>
             {
                 var execute = serviceTestExecutionContainer.Execute(out ErrorResultTO errors, 1);
-                Assert.IsNotNull(execute, "serviceTestExecutionContainer execute results is Null.");
-                Assert.IsNotNull("{00000000-0000-0000-0000-000000000000}", execute.ToString());
+                NUnit.Framework.Assert.IsNotNull(execute, "serviceTestExecutionContainer execute results is Null.");
+                NUnit.Framework.Assert.IsNotNull("{00000000-0000-0000-0000-000000000000}", execute.ToString());
             });
 
             mockDSFDataObject.VerifyAll();
@@ -514,9 +515,9 @@ Test Failed because of some reasons
             mockTestCatalog.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ServiceTestExecutionContainer))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ServiceTestExecutionContainer))]
         public void ServiceTestExecutionContainer_TryExecuteWf_Inputs_StartsWithAt_Should_AssignAllRecordSetItems()
         {
             //------------Setup for test-------------------------
@@ -558,16 +559,16 @@ Test Failed because of some reasons
 
             var serviceTestExecutionContainer = new ServiceTestExecutionContainerMock(serviceAction, mockDSFDataObject.Object, mockWorkspace.Object, mockEsbChannel.Object, esbExecuteRequest, mockTestCatalog.Object, mockResourceCatalog.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(serviceTestExecutionContainer, "ServiceTestExecutionContainer is Null.");
-            Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
-            Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
+            NUnit.Framework.Assert.IsNotNull(serviceTestExecutionContainer, "ServiceTestExecutionContainer is Null.");
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
             //---------------Execute Test ----------------------
             Thread.CurrentPrincipal = GlobalConstants.GenericPrincipal;
             Common.Utilities.PerformActionInsideImpersonatedContext(GlobalConstants.GenericPrincipal, () =>
             {
                 var execute = serviceTestExecutionContainer.Execute(out ErrorResultTO errors, 1);
-                Assert.IsNotNull(execute, "serviceTestExecutionContainer execute results is Null.");
-                Assert.IsNotNull("{00000000-0000-0000-0000-000000000000}", execute.ToString());
+                NUnit.Framework.Assert.IsNotNull(execute, "serviceTestExecutionContainer execute results is Null.");
+                NUnit.Framework.Assert.IsNotNull("{00000000-0000-0000-0000-000000000000}", execute.ToString());
             });
 
             mockDSFDataObject.VerifyAll();
@@ -575,9 +576,9 @@ Test Failed because of some reasons
             mockTestCatalog.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ServiceTestExecutionContainer))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ServiceTestExecutionContainer))]
         public void ServiceTestExecutionContainer_TryExecuteWf_DataObject_StopExecutionTrue_Should_AssignAllRecordSetItems()
         {
             //------------Setup for test-------------------------
@@ -620,16 +621,16 @@ Test Failed because of some reasons
 
             var serviceTestExecutionContainer = new ServiceTestExecutionContainerMock(serviceAction, mockDSFDataObject.Object, mockWorkspace.Object, mockEsbChannel.Object, esbExecuteRequest, mockTestCatalog.Object, mockResourceCatalog.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(serviceTestExecutionContainer, "ServiceTestExecutionContainer is Null.");
-            Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
-            Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
+            NUnit.Framework.Assert.IsNotNull(serviceTestExecutionContainer, "ServiceTestExecutionContainer is Null.");
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
             //---------------Execute Test ----------------------
             Thread.CurrentPrincipal = GlobalConstants.GenericPrincipal;
             Common.Utilities.PerformActionInsideImpersonatedContext(GlobalConstants.GenericPrincipal, () =>
             {
                 var execute = serviceTestExecutionContainer.Execute(out ErrorResultTO errors, 1);
-                Assert.IsNotNull(execute, "serviceTestExecutionContainer execute results is Null.");
-                Assert.IsNotNull("{00000000-0000-0000-0000-000000000000}", execute.ToString());
+                NUnit.Framework.Assert.IsNotNull(execute, "serviceTestExecutionContainer execute results is Null.");
+                NUnit.Framework.Assert.IsNotNull("{00000000-0000-0000-0000-000000000000}", execute.ToString());
             });
 
             mockDSFDataObject.VerifyAll();
@@ -637,9 +638,9 @@ Test Failed because of some reasons
             mockTestCatalog.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ServiceTestExecutionContainer))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ServiceTestExecutionContainer))]
         public void ServiceTestExecutionContainer_TryExecuteWf_DataObject_StopExecutionFalse_Should_AssignAllRecordSetItems()
         {
             //------------Setup for test-------------------------
@@ -683,16 +684,16 @@ Test Failed because of some reasons
 
             var serviceTestExecutionContainer = new ServiceTestExecutionContainerMock(serviceAction, mockDSFDataObject.Object, mockWorkspace.Object, mockEsbChannel.Object, esbExecuteRequest, mockTestCatalog.Object, mockResourceCatalog.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(serviceTestExecutionContainer, "ServiceTestExecutionContainer is Null.");
-            Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
-            Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
+            NUnit.Framework.Assert.IsNotNull(serviceTestExecutionContainer, "ServiceTestExecutionContainer is Null.");
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
             //---------------Execute Test ----------------------
             Thread.CurrentPrincipal = GlobalConstants.GenericPrincipal;
             Common.Utilities.PerformActionInsideImpersonatedContext(GlobalConstants.GenericPrincipal, () =>
             {
                 var execute = serviceTestExecutionContainer.Execute(out ErrorResultTO errors, 1);
-                Assert.IsNotNull(execute, "serviceTestExecutionContainer execute results is Null.");
-                Assert.IsNotNull("{00000000-0000-0000-0000-000000000000}", execute.ToString());
+                NUnit.Framework.Assert.IsNotNull(execute, "serviceTestExecutionContainer execute results is Null.");
+                NUnit.Framework.Assert.IsNotNull("{00000000-0000-0000-0000-000000000000}", execute.ToString());
             });
 
             mockDSFDataObject.VerifyAll();
@@ -700,9 +701,9 @@ Test Failed because of some reasons
             mockTestCatalog.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ServiceTestExecutionContainer))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ServiceTestExecutionContainer))]
         public void ServiceTestExecutionContainer_ExecuteWf_DataObject_StopExecutionFalse_TestPassedTrue_Should_AssignAllRecordSetItems()
         {
             //------------Setup for test-------------------------
@@ -747,16 +748,16 @@ Test Failed because of some reasons
 
             var serviceTestExecutionContainer = new ServiceTestExecutionContainerMock(serviceAction, mockDSFDataObject.Object, mockWorkspace.Object, mockEsbChannel.Object, esbExecuteRequest, mockTestCatalog.Object, mockResourceCatalog.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(serviceTestExecutionContainer, "ServiceTestExecutionContainer is Null.");
-            Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
-            Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
+            NUnit.Framework.Assert.IsNotNull(serviceTestExecutionContainer, "ServiceTestExecutionContainer is Null.");
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
             //---------------Execute Test ----------------------
             Thread.CurrentPrincipal = GlobalConstants.GenericPrincipal;
             Common.Utilities.PerformActionInsideImpersonatedContext(GlobalConstants.GenericPrincipal, () =>
             {
                 var execute = serviceTestExecutionContainer.Execute(out ErrorResultTO errors, 1);
-                Assert.IsNotNull(execute, "serviceTestExecutionContainer execute results is Null.");
-                Assert.IsNotNull("{00000000-0000-0000-0000-000000000000}", execute.ToString());
+                NUnit.Framework.Assert.IsNotNull(execute, "serviceTestExecutionContainer execute results is Null.");
+                NUnit.Framework.Assert.IsNotNull("{00000000-0000-0000-0000-000000000000}", execute.ToString());
             });
 
             mockDSFDataObject.VerifyAll();
@@ -764,9 +765,9 @@ Test Failed because of some reasons
             mockTestCatalog.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ServiceTestExecutionContainer))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ServiceTestExecutionContainer))]
         public void ServiceTestExecutionContainer_TryExecuteWf_SetTestFailureBasedOnExpectedError_ErrorExpectedTrue_Should_AssignAllRecordSetItems()
         {
             //------------Setup for test-------------------------
@@ -815,16 +816,16 @@ Test Failed because of some reasons
 
             var serviceTestExecutionContainer = new ServiceTestExecutionContainerMock(serviceAction, mockDSFDataObject.Object, mockWorkspace.Object, mockEsbChannel.Object, esbExecuteRequest, mockTestCatalog.Object, mockResourceCatalog.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(serviceTestExecutionContainer, "ServiceTestExecutionContainer is Null.");
-            Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
-            Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
+            NUnit.Framework.Assert.IsNotNull(serviceTestExecutionContainer, "ServiceTestExecutionContainer is Null.");
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
             //---------------Execute Test ----------------------
             Thread.CurrentPrincipal = GlobalConstants.GenericPrincipal;
             Common.Utilities.PerformActionInsideImpersonatedContext(GlobalConstants.GenericPrincipal, () =>
             {
                 var execute = serviceTestExecutionContainer.Execute(out ErrorResultTO errors, 1);
-                Assert.IsNotNull(execute, "serviceTestExecutionContainer execute results is Null.");
-                Assert.IsNotNull("{00000000-0000-0000-0000-000000000000}", execute.ToString());
+                NUnit.Framework.Assert.IsNotNull(execute, "serviceTestExecutionContainer execute results is Null.");
+                NUnit.Framework.Assert.IsNotNull("{00000000-0000-0000-0000-000000000000}", execute.ToString());
             });
 
             mockDSFDataObject.VerifyAll();
@@ -832,9 +833,9 @@ Test Failed because of some reasons
             mockTestCatalog.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ServiceTestExecutionContainer))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ServiceTestExecutionContainer))]
         public void ServiceTestExecutionContainer_TryExecuteWf_DataObject_StopExecution_ThrowInvalidWorkflowException_Should_AssignAllRecordSetItems()
         {
             //------------Setup for test-------------------------
@@ -882,16 +883,16 @@ Test Failed because of some reasons
 
             var serviceTestExecutionContainer = new ServiceTestExecutionContainerMock(serviceAction, mockDSFDataObject.Object, mockWorkspace.Object, mockEsbChannel.Object, esbExecuteRequest, mockTestCatalog.Object, mockResourceCatalog.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(serviceTestExecutionContainer, "ServiceTestExecutionContainer is Null.");
-            Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
-            Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
+            NUnit.Framework.Assert.IsNotNull(serviceTestExecutionContainer, "ServiceTestExecutionContainer is Null.");
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
             //---------------Execute Test ----------------------
             Thread.CurrentPrincipal = GlobalConstants.GenericPrincipal;
             Common.Utilities.PerformActionInsideImpersonatedContext(GlobalConstants.GenericPrincipal, () =>
             {
                 var execute = serviceTestExecutionContainer.Execute(out ErrorResultTO errors, 1);
-                Assert.IsNotNull(execute, "serviceTestExecutionContainer execute results is Null.");
-                Assert.IsNotNull("{00000000-0000-0000-0000-000000000000}", execute.ToString());
+                NUnit.Framework.Assert.IsNotNull(execute, "serviceTestExecutionContainer execute results is Null.");
+                NUnit.Framework.Assert.IsNotNull("{00000000-0000-0000-0000-000000000000}", execute.ToString());
             });
 
             mockDSFDataObject.VerifyAll();
@@ -899,9 +900,9 @@ Test Failed because of some reasons
             mockTestCatalog.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ServiceTestExecutionContainer))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ServiceTestExecutionContainer))]
         public void ServiceTestExecutionContainer_TryExecuteWf_SetTestFailureBasedOnExpectedError_EnvironmentErrorsTrue_Should_AssignAllRecordSetItems()
         {
             //------------Setup for test-------------------------
@@ -949,16 +950,16 @@ Test Failed because of some reasons
 
             var serviceTestExecutionContainer = new ServiceTestExecutionContainerMock(serviceAction, mockDSFDataObject.Object, mockWorkspace.Object, mockEsbChannel.Object, esbExecuteRequest, mockTestCatalog.Object, mockResourceCatalog.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(serviceTestExecutionContainer, "ServiceTestExecutionContainer is Null.");
-            Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
-            Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
+            NUnit.Framework.Assert.IsNotNull(serviceTestExecutionContainer, "ServiceTestExecutionContainer is Null.");
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
             //---------------Execute Test ----------------------
             Thread.CurrentPrincipal = GlobalConstants.GenericPrincipal;
             Common.Utilities.PerformActionInsideImpersonatedContext(GlobalConstants.GenericPrincipal, () =>
             {
                 var execute = serviceTestExecutionContainer.Execute(out ErrorResultTO errors, 1);
-                Assert.IsNotNull(execute, "serviceTestExecutionContainer execute results is Null.");
-                Assert.IsNotNull("{00000000-0000-0000-0000-000000000000}", execute.ToString());
+                NUnit.Framework.Assert.IsNotNull(execute, "serviceTestExecutionContainer execute results is Null.");
+                NUnit.Framework.Assert.IsNotNull("{00000000-0000-0000-0000-000000000000}", execute.ToString());
             });
 
             mockDSFDataObject.VerifyAll();
@@ -967,9 +968,9 @@ Test Failed because of some reasons
         }
 
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ServiceTestExecutionContainer))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ServiceTestExecutionContainer))]
         public void ServiceTestExecutionContainer_Execute_IsDebugTrue_EnvironmentHasErrors_Should_AssignAllRecordSetItems()
         {
             //------------Setup for test-------------------------
@@ -1013,16 +1014,16 @@ Test Failed because of some reasons
 
             var serviceTestExecutionContainer = new ServiceTestExecutionContainerMock(serviceAction, mockDSFDataObject.Object, mockWorkspace.Object, mockEsbChannel.Object, esbExecuteRequest, mockTestCatalog.Object, mockResourceCatalog.Object);
             //---------------Assert Precondition----------------
-            Assert.IsNotNull(serviceTestExecutionContainer, "ServiceTestExecutionContainer is Null.");
-            Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
-            Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
+            NUnit.Framework.Assert.IsNotNull(serviceTestExecutionContainer, "ServiceTestExecutionContainer is Null.");
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceOutputDefinition);
+            NUnit.Framework.Assert.IsNull(serviceTestExecutionContainer.InstanceInputDefinition);
             //---------------Execute Test ----------------------
             Thread.CurrentPrincipal = GlobalConstants.GenericPrincipal;
             Common.Utilities.PerformActionInsideImpersonatedContext(GlobalConstants.GenericPrincipal, () =>
             {
                 var execute = serviceTestExecutionContainer.Execute(out ErrorResultTO errors, 1);
-                Assert.IsNotNull(execute, "serviceTestExecutionContainer execute results is Null.");
-                Assert.IsNotNull("{00000000-0000-0000-0000-000000000000}", execute.ToString());
+                NUnit.Framework.Assert.IsNotNull(execute, "serviceTestExecutionContainer execute results is Null.");
+                NUnit.Framework.Assert.IsNotNull("{00000000-0000-0000-0000-000000000000}", execute.ToString());
             });
             
             mockServiceTestModelTO.VerifyAll();

@@ -14,7 +14,7 @@ using Dev2.Runtime;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Runtime.ServiceModel.Esb.Brokers.Plugin;
 using DummyNamespaceForTest;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Newtonsoft.Json;
 
 namespace Dev2.Tests.Runtime.ESB.Plugin
@@ -22,8 +22,9 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
     /// <summary>
     /// Summary description for PluginServiceExecutionFactory
     /// </summary>
-    [TestClass]
-    [TestCategory("Runtime ESB")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime ESB")]
     public class PluginServiceExecutionFactoryTest
     {
         /// <summary>
@@ -33,9 +34,9 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
         public TestContext TestContext { get; set; }
 
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("PluginServiceExecutionFactory_GetNamespaces")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("PluginServiceExecutionFactory_GetNamespaces")]
         public void PluginRuntimeHandler_GetNamespaces_WhenValidDll_ExpectNamespaces()
         {
             //------------Setup for test--------------------------
@@ -46,13 +47,13 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
 
                 var result = PluginServiceExecutionFactory.GetNamespaces(source);
                 //------------Assert Results-------------------------
-                Assert.IsTrue(result.Count > 0);
+                NUnit.Framework.Assert.IsTrue(result.Count > 0);
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("PluginServiceExecutionFactory_GetNamespaces")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("PluginServiceExecutionFactory_GetNamespaces")]
         public void PluginRuntimeHandler_GetNamespacesWithJsonObjects_WhenValidDll_ExpectNamespaces()
         {
             //------------Setup for test--------------------------
@@ -63,13 +64,13 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
 
                 var result = PluginServiceExecutionFactory.GetNamespacesWithJsonObjects(source);
                 //------------Assert Results-------------------------
-                Assert.IsTrue(result.Count > 0);
+                NUnit.Framework.Assert.IsTrue(result.Count > 0);
             }
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("PluginServiceExecutionFactory_GetNamespaces")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("PluginServiceExecutionFactory_GetNamespaces")]
         [ExpectedException(typeof(NullReferenceException))]
         public void PluginRuntimeHandler_GetNamespaces_WhenNullDll_ExpectException()
         {
@@ -77,9 +78,9 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             PluginServiceExecutionFactory.GetNamespaces(null);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("PluginServiceExecutionFactory_GetNamespaces")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("PluginServiceExecutionFactory_GetNamespaces")]
         [ExpectedException(typeof(NullReferenceException))]
         public void PluginRuntimeHandler_GetNamespacesWithJsonObjects_WhenNullDll_ExpectException()
         {
@@ -88,9 +89,9 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
         }
 
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("PluginServiceExecutionFactory_GetMethods")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("PluginServiceExecutionFactory_GetMethods")]
         public void PluginRuntimeHandler_GetMethods_WhenValidDll_ExpectValidResults()
         {
             //------------Setup for test--------------------------
@@ -101,13 +102,13 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             {
                 var result = PluginServiceExecutionFactory.GetMethods(source.AssemblyLocation, source.AssemblyName, service.Namespace);
                 //------------Assert Results-------------------------
-                Assert.IsTrue(result.Count > 0);
+                NUnit.Framework.Assert.IsTrue(result.Count > 0);
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("PluginServiceExecutionFactory_GetMethods")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("PluginServiceExecutionFactory_GetMethods")]
         public void PluginRuntimeHandler_GetConstructors_WhenValidDll_ExpectValidResults()
         {
             //------------Setup for test--------------------------
@@ -118,13 +119,13 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             {
                 var result = PluginServiceExecutionFactory.GetConstructors(source.AssemblyLocation, source.AssemblyName, service.Namespace);
                 //------------Assert Results-------------------------
-                Assert.IsTrue(result.Count > 0);
+                NUnit.Framework.Assert.IsTrue(result.Count > 0);
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("PluginServiceExecutionFactory_GetMethods")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("PluginServiceExecutionFactory_GetMethods")]
         public void PluginRuntimeHandler_GetMethodsWithReturns_WhenValidDll_ExpectValidResults()
         {
             //------------Setup for test--------------------------
@@ -135,13 +136,13 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             {
                 var result = PluginServiceExecutionFactory.GetMethodsWithReturns(source.AssemblyLocation, source.AssemblyName, service.Namespace);
                 //------------Assert Results-------------------------
-                Assert.IsTrue(result.Count > 0);
+                NUnit.Framework.Assert.IsTrue(result.Count > 0);
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("PluginServiceExecutionFactory_GetMethods")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("PluginServiceExecutionFactory_GetMethods")]
         public void PluginRuntimeHandler_GetMethodsWithReturns_WhenValidDllMethodIsVoid_ExpectValidResultsWithVoidMethod()
         {
             //------------Setup for test--------------------------
@@ -152,14 +153,14 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             {
                 var result = PluginServiceExecutionFactory.GetMethodsWithReturns(source.AssemblyLocation, source.AssemblyName, service.Namespace);
                 //------------Assert Results-------------------------
-                Assert.IsTrue(result.Count > 0);
-                Assert.IsTrue(result.Any(method => method.IsVoid));
+                NUnit.Framework.Assert.IsTrue(result.Count > 0);
+                NUnit.Framework.Assert.IsTrue(result.Any(method => method.IsVoid));
             }
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("PluginServiceExecutionFactory_InvokePlugin")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("PluginServiceExecutionFactory_InvokePlugin")]
         public void PluginRuntimeHandler_InvokePlugin_WhenValidDll_ExpectValidResults()
         {
             //------------Setup for test--------------------------
@@ -188,11 +189,11 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
                 var castResult = JsonConvert.DeserializeObject(result.ToString()) as dynamic;
                 if (castResult != null)
                 {
-                    StringAssert.Contains(castResult.Name.ToString(), "test data");
+                    NUnit.Framework.StringAssert.Contains(castResult.Name.ToString(), "test data");
                 }
                 else
                 {
-                    Assert.Fail("Failed Conversion for Assert");
+                    NUnit.Framework.Assert.Fail("Failed Conversion for Assert");
                 }
             }
 

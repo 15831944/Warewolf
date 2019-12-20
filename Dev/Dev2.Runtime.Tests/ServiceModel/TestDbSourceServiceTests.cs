@@ -10,18 +10,19 @@ using Dev2.Runtime.Diagnostics;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.Runtime.ServiceModel
 {
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class TestDbSourceServiceTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -34,9 +35,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -48,9 +49,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(AuthorizationContext.Contribute, resId);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("TestDbSourceService_HandlesType")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("TestDbSourceService_HandlesType")]
         public void TestDbSourceService_HandlesType_ExpectName()
         {
             //------------Setup for test--------------------------
@@ -63,9 +64,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual("TestDbSourceService", service.HandlesType());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("TestDbSourceService_HandlesType")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("TestDbSourceService_HandlesType")]
         public void Execute_Problemtestingconnection_GivenNullBrokerResult_ReturnsError()
         {
             //------------Setup for test--------------------------

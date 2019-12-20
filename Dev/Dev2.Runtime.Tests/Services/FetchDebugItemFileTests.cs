@@ -17,21 +17,22 @@ using Dev2.Common.Interfaces.Core.DynamicServices;
 using Dev2.Common.Interfaces.Enums;
 using Dev2.Communication;
 using Dev2.Runtime.ESB.Management.Services;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FetchDebugItemFileTests
     {
         #region Static Class Init
 
         static string _testDir;
 
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void MyClassInit(TestContext context)
         {
-            _testDir = context.DeploymentDirectory;
+            _testDir = context.TestDirectory;
         }
 
         #endregion
@@ -46,7 +47,7 @@ namespace Dev2.Tests.Runtime.Services
 
         #region Execute
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidDataContractException))]
         public void FetchDebugItemFileExecuteWithNullValuesExpectedException()
         {
@@ -57,7 +58,7 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(string.Empty, msg.Message.ToString());
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidDataContractException))]
         public void FetchDebugItemFileExecuteWithNoDebugItemFileInValuesExpectedException()
         {
@@ -68,7 +69,7 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(string.Empty, msg.Message.ToString());
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidDataContractException))]
         public void FetchDebugItemFileExecuteWithNullDebugItemFileExpectedException()
         {
@@ -79,7 +80,7 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(string.Empty, msg.Message.ToString());
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidDataContractException))]
         public void FetchDebugItemFileExecuteWithNonExistingDebugItemFileExpectedReturnsEmptyString()
         {
@@ -91,7 +92,7 @@ namespace Dev2.Tests.Runtime.Services
         }
 
 
-        [TestMethod]
+        [Test]
         public void FetchDebugItemFileExecuteWithExistingLogExpectedReturnsContentsOfLog()
         {
             const string Expected = "Hello world";
@@ -104,9 +105,9 @@ namespace Dev2.Tests.Runtime.Services
             StringAssert.Contains(msg.Message.ToString(), Expected);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("FetchDebugItemFile_Execute")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("FetchDebugItemFile_Execute")]
 
         public void FetchDebugItemFile_Execute_FileHasMultiLines_ReturnedMessageWillBeMultiLines()
 
@@ -130,7 +131,7 @@ namespace Dev2.Tests.Runtime.Services
 
         #region HandlesType
 
-        [TestMethod]
+        [Test]
         public void FetchDebugItemFileHandlesTypeExpectedReturnsFetchCurrentServerLogService()
         {
             var esb = new FetchDebugItemFile();
@@ -142,7 +143,7 @@ namespace Dev2.Tests.Runtime.Services
 
         #region CreateServiceEntry
 
-        [TestMethod]
+        [Test]
         public void FFetchDebugItemFileCreateServiceEntryExpectedReturnsDynamicService()
         {
             var esb = new FetchDebugItemFile();
@@ -159,9 +160,9 @@ namespace Dev2.Tests.Runtime.Services
 
         #endregion
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -173,9 +174,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------

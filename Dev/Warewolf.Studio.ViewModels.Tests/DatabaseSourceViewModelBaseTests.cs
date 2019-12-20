@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 using Moq;
 
@@ -10,7 +10,8 @@ using Dev2.Common.Interfaces.ServerProxyLayer;
 
 namespace Warewolf.Studio.ViewModels.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DatabaseSourceViewModelBaseTests
     {
         #region Fields
@@ -26,7 +27,7 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         #region Test initialize
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             _updateRepositoryMock = new Mock<IStudioUpdateManager>();
@@ -39,7 +40,8 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         #region Test properties
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestServerName()
         {
             //act
@@ -49,7 +51,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual(_serverName, value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestDatabaseSourceServerNameWithBrackets()
         {
             //arrange
@@ -66,7 +69,8 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         #region Test methods
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestGetComputerNames()
         {
             //arrange
@@ -81,7 +85,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreSame(expectedValue, value);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestTestDbConnection()
         {
             //arrange
@@ -96,7 +101,8 @@ namespace Warewolf.Studio.ViewModels.Tests
            _updateRepositoryMock.Verify(it=>it.TestDbConnection(dbResourceMock.Object));
             Assert.AreSame(expectedValue, value);
         }
-		[TestMethod,Timeout(60000)]
+		[Test]
+        [Timeout(60000)]
 		public void TestSqliteConnection()
 		{
 			//arrange
@@ -111,7 +117,8 @@ namespace Warewolf.Studio.ViewModels.Tests
 			_updateRepositoryMock.Verify(it => it.TestSqliteConnection(dbResourceMock.Object));
 			Assert.AreSame(expectedValue, value);
 		}
-		[TestMethod,Timeout(60000)]
+		[Test]
+        [Timeout(60000)]
         public void TestSave()
         {
             //arrange

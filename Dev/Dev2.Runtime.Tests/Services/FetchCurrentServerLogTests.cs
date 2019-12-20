@@ -17,21 +17,22 @@ using Dev2.Common.Interfaces.Core.DynamicServices;
 using Dev2.Common.Interfaces.Enums;
 using Dev2.Communication;
 using Dev2.Runtime.ESB.Management.Services;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FetchCurrentServerLogTests
     {
         #region Static Class Init
 
         static string _testDir;
 
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void MyClassInit(TestContext context)
         {
-            _testDir = context.DeploymentDirectory;
+            _testDir = context.TestDirectory;
         }
 
         #endregion
@@ -46,7 +47,7 @@ namespace Dev2.Tests.Runtime.Services
 
         #region CTOR
 
-        [TestMethod]
+        [Test]
         public void FetchCurrentServerLogConstructorWithDefaultExpectedInitializesServerLogPath()
         {
             var serverLogPath = EnvironmentVariables.ServerLogFile;
@@ -59,7 +60,7 @@ namespace Dev2.Tests.Runtime.Services
 
         #region Execute
 
-        [TestMethod]
+        [Test]
         public void FetchCurrentServerLogExecuteWithNonExistingLogExpectedReturnsEmptyString()
         {
             var serverLogPath = Path.Combine(_testDir, string.Format("ServerLog_{0}.txt", Guid.NewGuid()));
@@ -71,7 +72,7 @@ namespace Dev2.Tests.Runtime.Services
         }
 
 
-        [TestMethod]
+        [Test]
         public void FetchCurrentServerLogExecuteWithExistingLogExpectedReturnsContentsOfLog()
         {
             const string Expected = "Hello world";
@@ -88,7 +89,7 @@ namespace Dev2.Tests.Runtime.Services
 
         #region HandlesType
 
-        [TestMethod]
+        [Test]
         public void FetchCurrentServerLogHandlesTypeExpectedReturnsFetchCurrentServerLogService()
         {
             var esb = new FetchCurrentServerLog();
@@ -100,7 +101,7 @@ namespace Dev2.Tests.Runtime.Services
 
         #region CreateServiceEntry
 
-        [TestMethod]
+        [Test]
         public void FetchCurrentServerLogCreateServiceEntryExpectedReturnsDynamicService()
         {
             var esb = new FetchCurrentServerLog();
@@ -117,9 +118,9 @@ namespace Dev2.Tests.Runtime.Services
 
         #endregion
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -131,9 +132,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------

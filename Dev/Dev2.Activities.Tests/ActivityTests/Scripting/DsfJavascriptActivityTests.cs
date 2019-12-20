@@ -9,7 +9,7 @@ using ActivityUnitTests;
 using Dev2.Activities.Scripting;
 using Dev2.Common.Interfaces.Enums;
 using Dev2.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Warewolf.Core;
 
@@ -17,10 +17,11 @@ using Warewolf.Core;
 
 namespace Dev2.Tests.Activities.ActivityTests.Scripting
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfJavascriptActivityTests : BaseActivityUnitTest
     {
-        [ClassCleanup]
+        [OneTimeTearDown]
         public static void Cleaner()
         {
             try
@@ -37,7 +38,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
         ///information about and functionality for the current test run.
         ///</summary>
         public TestContext TestContext { get; set; }
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void Init(TestContext context)
         {
             try
@@ -63,8 +64,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
                 Assert.Fail(ex.Message);
             }
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Attribute_GivenIsNew_ShouldhaveCorrectValues()
         {
             //---------------Set up test pack-------------------
@@ -81,8 +82,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             Assert.AreEqual("JavaScript", toolDescriptorInfo.Name );
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void OnConstruction_GivenType_ShouldInheritCorrectly()
         {
             //---------------Set up test pack-------------------
@@ -92,17 +93,17 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             //---------------Execute Test ----------------------
 
             //---------------Test Result -----------------------
-            Assert.IsInstanceOfType(act, typeof(DsfActivityAbstract<string>));
+            Assert.IsInstanceOf(act.GetType(), typeof(DsfActivityAbstract<string>));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Equals_Given_GivenIsNew_ShouldSetJavascript()
         {
             //---------------Set up test pack-------------------
             var act = new DsfJavascriptActivity();
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOfType(act, typeof(DsfActivityAbstract<string>));
+            Assert.IsInstanceOf(act.GetType(), typeof(DsfActivityAbstract<string>));
             //---------------Execute Test ----------------------
             var displayName = act.DisplayName;
             //---------------Test Result -----------------------
@@ -110,14 +111,14 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Script_GivenIsNew_ShouldBeEmpty()
         {
             //---------------Set up test pack-------------------
             var act = new DsfJavascriptActivity();
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOfType(act, typeof(DsfActivityAbstract<string>));
+            Assert.IsInstanceOf(act.GetType(), typeof(DsfActivityAbstract<string>));
             //---------------Execute Test ----------------------
             var displayName = act.Script;
             //---------------Test Result -----------------------
@@ -125,8 +126,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ScriptType_GivenIsNew_ShouldSetJavascript()
         {
             //---------------Set up test pack-------------------
@@ -142,8 +143,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
 
         #region Should execute valid javascript
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GivenExternalFile_Execute_Javascript_ShouldExecuteExternalFunction()
         {
             var activity = new DsfJavascriptActivity();
@@ -156,8 +157,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
         }
        
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GivenFunctionNotInExternalFile_Execute_Javascript_ShouldNotExecuteFunction()
         {
             var activity = new DsfJavascriptActivity();
@@ -170,8 +171,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
        
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GivenAnEscapeCharInString_ExecuteWithEscapeCharecters_Javascript_ShouldReturnGivenString()
         {
             SetupArguments("<DataList><testScript>\"C:\test\"</testScript><Result></Result></DataList>", "<DataList><testScript/><Result/></DataList>", "[[Result]]",
@@ -190,8 +191,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GivenAnEscapeCharInString_ExecuteWithEscapeCharectersInVariable_Javascript_EscapeFalse_ShouldReturnGivenString()
         {
             SetupArguments("<DataList><testScript>\"C:\test\"</testScript><Result></Result></DataList>", "<DataList><testScript/><Result/></DataList>", "[[Result]]",
@@ -210,8 +211,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ExecuteWithValidJavascriptExpectedCorrectResultReturned()
         {
             SetupArguments("<DataList><Result>0</Result></DataList>", "<DataList><Result/></DataList>", "[[Result]]",
@@ -232,8 +233,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ExecuteWithValidJavascriptAndVariableExpectedCorrectResultReturned()
         {
             SetupArguments("<DataList><Result>0</Result></DataList>", "<DataList><Result/></DataList>", "[[Result]]", @"var i = 1 + 1;return i;", enScriptType.JavaScript);
@@ -253,8 +254,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ExecuteWithValidJavascriptWithScalarDataListRegionsInScriptExpectedCorrectResultReturned()
         {
             SetupArguments("<DataList><inputData>1</inputData><Result>0</Result></DataList>", "<DataList><inputData/><Result/></DataList>", "[[Result]]", @"var i = [[inputData]] + [[inputData]];return i;", enScriptType.JavaScript);
@@ -274,8 +275,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ExecuteWithValidJavascriptWithRecordAppendNotationDataListRegionsInScriptExpectedCorrectResultReturned()
         {
             SetupArguments("<DataList><inputData><field1>1</field1></inputData><inputData><field1>2</field1></inputData><inputData><field1>3</field1></inputData><inputData><field1>4</field1></inputData><Result>0</Result></DataList>", "<DataList><inputData><field1/></inputData><Result/></DataList>", "[[Result]]", @"var i = [[inputData().field1]] + [[inputData().field1]];return i;", enScriptType.JavaScript);
@@ -295,8 +296,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ExecuteWithValidJavascriptWithRecordStarNotationDataListRegionsInScriptExpectedCorrectResultReturned()
         {
             SetupArguments("<DataList><inputData><field1>1</field1></inputData><inputData><field1>2</field1></inputData><inputData><field1>3</field1></inputData><inputData><field1>4</field1></inputData></DataList>", "<DataList><inputData><field1/></inputData><Result><res/></Result></DataList>", "[[Result().res]]", @"var i = '[[inputData(*).field1]]';return i;", enScriptType.JavaScript);
@@ -319,8 +320,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ExecuteWithValidJavascriptWithEmptyRecordStarNotationDataListRegionsInScriptExpectedCorrectResultReturned()
         {
             SetupArguments("<DataList><inputData><field1/></inputData><Result><res/></Result></DataList>", "<DataList><inputData><field1/></inputData><Result><res/></Result></DataList>", "[[Result().res]]", @"var i = [[inputData(*).field1]] + [[inputData(*).field1]];return i;", enScriptType.JavaScript);

@@ -22,7 +22,7 @@ using Dev2.Interfaces;
 using Dev2.Runtime.Interfaces;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Tests.Activities.XML;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Unlimited.Framework.Converters.Graph.Ouput;
@@ -33,7 +33,8 @@ using Warewolf.Storage.Interfaces;
 
 namespace Dev2.Tests.Activities.ActivityTests.Web
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfWebPuttActivityTests
     {
         const string _userAgent = "user-agent";
@@ -41,21 +42,21 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
         const string _userAgent1 = "Mozilla/4.0";
         const string _userAgent2 = "(compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)";
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DsfWebPutActivity_Constructed")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DsfWebPutActivity_Constructed")]
         public void DsfWebPutActivity_Constructed_Correctly_ShouldHaveInheritDsfActivity()
         {
             //------------Setup for test--------------------------
             //------------Execute Test---------------------------
             var DsfWebPutActivity = new DsfWebPutActivity();
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(DsfWebPutActivity, typeof(DsfActivity));
+            Assert.IsInstanceOf(DsfWebPutActivity.GetType(), typeof(DsfActivity));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DsfWebPutActivity_Constructor")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DsfWebPutActivity_Constructor")]
         public void DsfWebPutActivity_Constructor_Correctly_ShouldSetTypeDisplayName()
         {
             //------------Setup for test--------------------------
@@ -65,9 +66,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual("PUT Web Method", DsfWebPutActivity.DisplayName);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DsfWebPutActivity_Constructed")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DsfWebPutActivity_Constructed")]
         public void DsfWebPutActivity_Constructed_Correctly_ShouldHaveCorrectProperties()
         {
             //------------Setup for test--------------------------
@@ -80,9 +81,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual("PUT", toolDescriptor.Name);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DsfWebPutActivity_Execute")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DsfWebPutActivity_Execute")]
         public void DsfWebPutActivity_Execute_WithNoOutputDescription_ShouldAddError()
         {
             //------------Setup for test--------------------------
@@ -121,9 +122,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.IsNull(DsfWebPutActivity.OutputDescription);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DsfWebPutActivity_Execute")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DsfWebPutActivity_Execute")]
         public void DsfWebPutActivity_Execute_WithValidWebResponse_ShouldSetVariables()
         {
             //------------Setup for test--------------------------
@@ -171,9 +172,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             }
         }
         
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DsfWebPutActivity_Execute")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DsfWebPutActivity_Execute")]
         public void DsfWebPutActivity_Execute_WithValidTextResponse_ShouldSetVariables()
         {
             //------------Setup for test--------------------------
@@ -221,9 +222,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             }
         }
         
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DsfWebPutActivity_Execute")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DsfWebPutActivity_Execute")]
         public void DsfWebPutActivity_Execute_WithInValidWebResponse_ShouldError()
         {
             //------------Setup for test--------------------------
@@ -278,9 +279,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DsfWebPutActivity_Execute")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DsfWebPutActivity_Execute")]
         public void DsfWebPutActivity_Execute_WithValidXmlEscaped_ShouldSetVariables()
         {
             //------------Setup for test--------------------------
@@ -330,9 +331,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DsfWebPutActivity_Execute")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DsfWebPutActivity_Execute")]
         public void DsfWebPutActivity_Execute_WithInputVariables_ShouldEvalVariablesBeforeExecutingWebRequest()
         {
             //------------Setup for test--------------------------
@@ -382,8 +383,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Constructer_GivenHasInstance_ShouldHaveType()
         {
             //---------------Set up test pack-------------------
@@ -396,8 +397,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.IsNotNull(DsfWebPutActivity.Type);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetFindMissingType_GivenWebPostActivity_ShouldReturnMissingTypeDataGridAcitvity()
         {
             //---------------Set up test pack-------------------
@@ -410,8 +411,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual(enFindMissingType.DataGridActivity, DsfWebPutActivity.GetFindMissingType());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetDebugInputs_GivenEnvironmentIsNull_ShouldReturnZeroDebugInputs()
         {
             //---------------Set up test pack-------------------
@@ -423,8 +424,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual(0, debugInputs.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetDebugInputs_GivenMockEnvironment_ShouldAddDebugInputItems()
         {
             //---------------Set up test pack-------------------
@@ -473,8 +474,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateClient_GivenNoHeaders_ShouldHaveTwoHeaders()
         {
             //---------------Set up test pack-------------------
@@ -493,8 +494,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual(1, actualHeaderCount);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CleateClient_GivenNoHeaders_ShouldGlobalConstantsUserAgent()
         {
             //---------------Set up test pack-------------------
@@ -509,8 +510,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateClient_GivenWebSourceAuthenticationTypeIsUser_ShouldSetWebClientPasswordAndUserName()
         {
             //---------------Set up test pack-------------------
@@ -527,8 +528,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.IsNotNull(webClientCredentials);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateClient_GivenAuthenticationTypeIsNotUser_ShouldNotSetCredentials()
         {
             //---------------Set up test pack-------------------
@@ -542,8 +543,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.IsNull(httpClient.DefaultRequestHeaders.Authorization);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateClient_GivenHeaders_ShouldHaveHeadersAdded()
         {
             //---------------Set up test pack-------------------
@@ -564,9 +565,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual("text/json", allContentValues.ToList()[0]);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfWebPutActivity_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfWebPutActivity_Execute")]
         public void DsfWebPutActivity_Execute_ErrorResponse_ShouldSetVariables()
         {
             //------------Setup for test--------------------------
@@ -599,9 +600,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual("Error", ExecutionEnvironment.WarewolfEvalResultToString(dataObject.Environment.Eval("[[Message]]", 0)));
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebPutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebPutActivity))]
         public void DsfWebPutActivity_ExecutionImpl_ErrorResultTO_ReturnErrors_ToActivity_Success()
         {
             //-----------------------Arrange-------------------------

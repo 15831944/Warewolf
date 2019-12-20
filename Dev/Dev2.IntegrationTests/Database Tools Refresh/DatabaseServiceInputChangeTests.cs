@@ -12,7 +12,7 @@ using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
 using Dev2.Studio.ViewModels.DataList;
 using Dev2.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Activities.Presentation.Model;
@@ -24,7 +24,8 @@ using Warewolf.Studio.ViewModels;
 
 namespace Dev2.Integration.Tests.Database_Tools_Refresh
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DatabaseServiceInputChangeTests
     {
         public static Depends _containerOps;
@@ -35,7 +36,7 @@ namespace Dev2.Integration.Tests.Database_Tools_Refresh
         private DatabaseSourceRegion _source;
         private IDbSource _selectedSource;
 
-        [ClassInitialize()]
+        [OneTimeSetUp]
         public static void ClassInit(TestContext context)
         {
             var aggr = new Mock<IEventAggregator>();
@@ -43,7 +44,7 @@ namespace Dev2.Integration.Tests.Database_Tools_Refresh
             _containerOps = new Depends(Depends.ContainerType.MSSQL);
         }
 
-        [ClassCleanup]
+        [OneTimeTearDown]
         public static void CleanupContainer() => _containerOps?.Dispose();
 
         private void CreateDbServiceModel()
@@ -78,10 +79,7 @@ namespace Dev2.Integration.Tests.Database_Tools_Refresh
             };
         }
 
-        private void CreateDatabaseSourceRegion()
-        {
-            _source = new DatabaseSourceRegion(_dbServiceModel, _modelItem, Common.Interfaces.Core.DynamicServices.enSourceType.SqlDatabase);
-        }
+        void CreateDatabaseSourceRegion() => _source = new DatabaseSourceRegion(_dbServiceModel, _modelItem, Common.Interfaces.Core.DynamicServices.enSourceType.SqlDatabase);
 
         private void CreateDbActionRegion()
         {
@@ -104,8 +102,8 @@ namespace Dev2.Integration.Tests.Database_Tools_Refresh
             CreateDbActionRegion();
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Change_sql_source_verify_Empty_Inputs()
         {
             var newName = Guid.NewGuid().ToString();
@@ -114,25 +112,25 @@ namespace Dev2.Integration.Tests.Database_Tools_Refresh
             {
                 var createProcedure = "CREATE procedure [dbo].[" + cleanProcName + "](@ProductId int) as Begin select * from Country select * from City end";
                 var result = SqlHelper.RunSqlCommand(Depends.RigOpsIP, _containerOps.Container.Port, createProcedure);
-                Assert.AreEqual(-1, result);
+                NUnit.Framework.Assert.AreEqual(-1, result);
 
                 Setup(cleanProcName);
 
                 var mockSource = new Mock<IDbSource>();
 
                 IDatabaseInputRegion databaseInputRegion = new DatabaseInputRegion(_modelItem, _dbActionRegion);
-                Assert.AreEqual(1, databaseInputRegion.Inputs.Count);
-                Assert.AreEqual("ProductId", databaseInputRegion.Inputs.Single().Name);
-                Assert.AreEqual("[[ProductId]]", databaseInputRegion.Inputs.Single().Value);
+                NUnit.Framework.Assert.AreEqual(1, databaseInputRegion.Inputs.Count);
+                NUnit.Framework.Assert.AreEqual("ProductId", databaseInputRegion.Inputs.Single().Name);
+                NUnit.Framework.Assert.AreEqual("[[ProductId]]", databaseInputRegion.Inputs.Single().Value);
                 //add testing here
 
                 _source.SelectedSource = mockSource.Object;
-                Assert.AreEqual(0, databaseInputRegion.Inputs.Count);
+                NUnit.Framework.Assert.AreEqual(0, databaseInputRegion.Inputs.Count);
             }
             finally
             {
                 var dropResult = DropProcedure(cleanProcName);
-                Assert.AreEqual(-1, dropResult);
+                NUnit.Framework.Assert.AreEqual(-1, dropResult);
             }
         }
 
@@ -143,8 +141,8 @@ namespace Dev2.Integration.Tests.Database_Tools_Refresh
             return dropResult;
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void Add_A_New_InputOnSqlProcedure_Expect_New_IS_InputAdded()
         {
             const string procName = "TestingAddingANewInput";
@@ -152,27 +150,27 @@ namespace Dev2.Integration.Tests.Database_Tools_Refresh
             Setup(procName);
 
             IDatabaseInputRegion databaseInputRegion = new DatabaseInputRegion(_modelItem, _dbActionRegion);
-            Assert.AreEqual(1, databaseInputRegion.Inputs.Count);
-            Assert.AreEqual("ProductId", databaseInputRegion.Inputs.Single().Name);
-            Assert.AreEqual("[[ProductId]]", databaseInputRegion.Inputs.Single().Value);
+            NUnit.Framework.Assert.AreEqual(1, databaseInputRegion.Inputs.Count);
+            NUnit.Framework.Assert.AreEqual("ProductId", databaseInputRegion.Inputs.Single().Name);
+            NUnit.Framework.Assert.AreEqual("[[ProductId]]", databaseInputRegion.Inputs.Single().Value);
             //testing here
             const string alterProcedure = "ALTER procedure [dbo].[" + procName + "](@ProductId int,@ProductId1 int,@ProductId2 int) as Begin select * from Country select * from City end";
             var alterTableResults = SqlHelper.RunSqlCommand(Depends.RigOpsIP, _containerOps.Container.Port, alterProcedure);
-            Assert.AreEqual(-1, alterTableResults);
+            NUnit.Framework.Assert.AreEqual(-1, alterTableResults);
 
             _dbActionRegion.RefreshActionsCommand.Execute(null);
-            Assert.IsNotNull(_dbActionRegion.Actions, "No Actions were generated for source: " + _selectedSource);
+            NUnit.Framework.Assert.IsNotNull(_dbActionRegion.Actions, "No Actions were generated for source: " + _selectedSource);
 
             var procActionsToInputs = _dbActionRegion.Actions.Single(p => p.Name.EndsWith(procName));
 
-            Assert.AreEqual("ProductId", procActionsToInputs.Inputs.ToList()[0].Name);
-            Assert.AreEqual("[[ProductId]]", procActionsToInputs.Inputs.ToList()[0].Value);
+            NUnit.Framework.Assert.AreEqual("ProductId", procActionsToInputs.Inputs.ToList()[0].Name);
+            NUnit.Framework.Assert.AreEqual("[[ProductId]]", procActionsToInputs.Inputs.ToList()[0].Value);
 
-            Assert.AreEqual("ProductId1", procActionsToInputs.Inputs.ToList()[1].Name);
-            Assert.AreEqual("[[ProductId1]]", procActionsToInputs.Inputs.ToList()[1].Value);
+            NUnit.Framework.Assert.AreEqual("ProductId1", procActionsToInputs.Inputs.ToList()[1].Name);
+            NUnit.Framework.Assert.AreEqual("[[ProductId1]]", procActionsToInputs.Inputs.ToList()[1].Value);
 
-            Assert.AreEqual("ProductId2", procActionsToInputs.Inputs.ToList()[2].Name);
-            Assert.AreEqual("[[ProductId2]]", procActionsToInputs.Inputs.ToList()[2].Value);
+            NUnit.Framework.Assert.AreEqual("ProductId2", procActionsToInputs.Inputs.ToList()[2].Name);
+            NUnit.Framework.Assert.AreEqual("[[ProductId2]]", procActionsToInputs.Inputs.ToList()[2].Value);
         }
     }
 }

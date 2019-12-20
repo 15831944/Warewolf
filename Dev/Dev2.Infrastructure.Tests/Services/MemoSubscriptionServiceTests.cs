@@ -12,29 +12,30 @@ using System;
 using Dev2.Common.Interfaces.Infrastructure.Events;
 using Dev2.Communication;
 using Dev2.Services;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Infrastructure.Tests.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class MemoSubscriptionServiceTests
     {
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void MemoSubscriptionServiceConstructorWithNullServiceArgsExpectedThrowsArgumentNullException()
         {
             var memoService = new MemoSubscriptionService<Memo>((SubscriptionService<Memo>)null);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void MemoSubscriptionServiceConstructorWithNullPublisherArgsExpectedThrowsArgumentNullException()
         {
             var memoService = new MemoSubscriptionService<Memo>((IEventPublisher)null);
         }
 
-        [TestMethod]
+        [Test]
         public void MemoSubscriptionServiceConstructorWithValidArgsExpectedDoesNotThrowException()
         {
             var publisher = new Mock<IEventPublisher>();
@@ -42,7 +43,7 @@ namespace Dev2.Infrastructure.Tests.Services
             Assert.IsTrue(true);
         }
 
-        [TestMethod]
+        [Test]
         public void MemoSubscriptionServiceSubscribeWithArgsExpectedAddsSubscriptionFilteredByMemoID()
         {
             Func<Memo, bool> actualFilter = null;
@@ -65,7 +66,7 @@ namespace Dev2.Infrastructure.Tests.Services
             Assert.IsFalse(negResult);
         }
 
-        [TestMethod]
+        [Test]
         public void MemoSubscriptionServiceDisposeExpectedDisposesManagedObjects()
         {
             var service = new Mock<ISubscriptionService<Memo>>();

@@ -3,14 +3,15 @@ using Dev2.Common.Interfaces.Explorer;
 using Dev2.Studio.Interfaces;
 using Dev2.ViewModels.Search;
 using Microsoft.Practices.Prism.PubSubEvents;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Collections.ObjectModel;
 
 namespace Warewolf.Studio.ViewModels.Tests.Search
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SearchViewModelTests
     {
         #region Fields
@@ -27,7 +28,7 @@ namespace Warewolf.Studio.ViewModels.Tests.Search
 
         #region Test initialize
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             _shellViewModelMock = new Mock<IShellViewModel>();
@@ -62,8 +63,9 @@ namespace Warewolf.Studio.ViewModels.Tests.Search
 
         #endregion Test initialize
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Pieter Terblanche")]
         public void SearchViewModel_Constructor_ExpectedValues()
         {
             //------------Setup for test--------------------------

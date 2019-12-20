@@ -9,19 +9,20 @@
 */
 
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.Text;
 
 namespace Warewolf.Streams
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SerializeDeserializeTests
     {
         private const string ExpectedSerializedData = "{\"MyInt\":123,\"MyString\":\"kuihhj:\"}";
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ISerializer))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ISerializer))]
         public void ISerializer_GivenValidObject_ExpectJsonString()
         {
             ISerializer serializer = new JsonSerializer();
@@ -32,9 +33,9 @@ namespace Warewolf.Streams
             Assert.AreEqual(ExpectedSerializedData, UTF8Encoding.UTF8.GetString(bytes));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ISerializer))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ISerializer))]
         public void IDeserializer_GivenValidJson_ExpectValidObject()
         {
             IDeserializer deserializer = new JsonSerializer();

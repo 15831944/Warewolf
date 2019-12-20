@@ -1,6 +1,6 @@
 ﻿using Dev2.Studio.Core;
 using Dev2.Studio.Interfaces.DataList;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

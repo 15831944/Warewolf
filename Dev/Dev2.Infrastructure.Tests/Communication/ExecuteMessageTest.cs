@@ -9,16 +9,17 @@
 */
 
 using Dev2.Communication;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Infrastructure.Tests.Communication
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ExecuteMessageTest
     {
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ExecuteMessage_Constructor")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ExecuteMessage_Constructor")]
         public void ExecuteMessage_Constructor_WhenSettingMessage_ExpectMessageWithNoErrors()
         {
             //------------Setup for test--------------------------
@@ -30,9 +31,9 @@ namespace Dev2.Infrastructure.Tests.Communication
             Assert.AreEqual("the message", executeMessage.Message.ToString());
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ExecuteMessage_Constructor")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ExecuteMessage_Constructor")]
         public void ExecuteMessage_Constructor_WhenSettingHasErrors_ExpectHasErrorsTrue()
         {
             //------------Setup for test--------------------------

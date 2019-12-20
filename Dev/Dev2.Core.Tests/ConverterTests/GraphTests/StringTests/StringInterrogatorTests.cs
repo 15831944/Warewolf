@@ -11,7 +11,7 @@
 using System;
 using System.Collections.Generic;
 using Dev2.Common.Interfaces.Core.Graph;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Framework.Converters.Graph;
 using Unlimited.Framework.Converters.Graph.Poco;
 using Unlimited.Framework.Converters.Graph.String;
@@ -19,7 +19,8 @@ using Unlimited.Framework.Converters.Graph.String.Json;
 using Unlimited.Framework.Converters.Graph.String.Xml;
 
 namespace Unlimited.UnitTest.Framework.ConverterTests.GraphTests.StringTests {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class StringInterrogatorTests {
 
         internal string XmlGiven() {
@@ -62,7 +63,7 @@ namespace Unlimited.UnitTest.Framework.ConverterTests.GraphTests.StringTests {
         /// <summary>
         /// Create mapper given XML expected XML mapper created.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void CreateMapper_Expected_XmlMapper() {         
             var stringInterrogator = new StringInterrogator();
 
@@ -77,7 +78,7 @@ namespace Unlimited.UnitTest.Framework.ConverterTests.GraphTests.StringTests {
         /// <summary>
         /// Create navigator given xml expected XML navigator returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void CreateNavigator_Expected_XmlNavigator() {            
             var stringInterrogator = new StringInterrogator();
 
@@ -89,7 +90,7 @@ namespace Unlimited.UnitTest.Framework.ConverterTests.GraphTests.StringTests {
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(Exception))]
         public void CreateNavigator_Given_TypeofIPath_Expected_Exception()
         {
@@ -97,7 +98,7 @@ namespace Unlimited.UnitTest.Framework.ConverterTests.GraphTests.StringTests {
             stringInterrogator.CreateNavigator(XmlGiven(), typeof(IPath));
         }
 
-        [TestMethod]        
+        [Test]        
         public void CreateNavigator_Given_TypeofPocoPath_Expected_PocoNavigator()
         {
             var stringInterrogator = new StringInterrogator();
@@ -106,7 +107,7 @@ namespace Unlimited.UnitTest.Framework.ConverterTests.GraphTests.StringTests {
             Assert.IsTrue(navigator.GetType() == typeof(PocoNavigator));
         }
 
-        [TestMethod]        
+        [Test]        
         public void CreateNavigator_Given_TypeofUnExistingType_Expected_PocoPath()
         {
             var stringInterrogator = new StringInterrogator();

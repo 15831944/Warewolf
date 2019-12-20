@@ -24,19 +24,20 @@ using Dev2.Studio.Core.Models.DataList;
 using Dev2.Studio.Interfaces;
 using Dev2.Studio.Interfaces.DataList;
 using Dev2.Studio.ViewModels.DataList;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 
 namespace Dev2.Activities.Designers.Tests.Core
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DotNetConstructorInputRegionTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DotNetConstructorInputRegion_Constructor")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DotNetConstructorInputRegion_Constructor")]
         public void DotNetConstructorInputRegion_Constructor_Scenerio_Result()
         {
             var id = Guid.NewGuid();
@@ -53,9 +54,9 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.AreEqual(region.Errors.Count, 0);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DotNetConstructorInputRegion_Constructor")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DotNetConstructorInputRegion_Constructor")]
         public void DotNetConstructorInputRegion_Constructor_TestInput_ConstructorEmpty()
         {
             var src = new Mock<IPluginServiceModel>();
@@ -66,9 +67,9 @@ namespace Dev2.Activities.Designers.Tests.Core
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DotNetConstructorInputRegion_TestClone")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DotNetConstructorInputRegion_TestClone")]
         public void DotNetConstructorInputRegion_TestClone()
         {
             var id = Guid.NewGuid();
@@ -89,9 +90,9 @@ namespace Dev2.Activities.Designers.Tests.Core
             }
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DotNetConstructorInputRegion_Test")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DotNetConstructorInputRegion_Test")]
         public void DotNetConstructorInputRegion_Test_InputAddHeader_ExpectHeightChanges()
         {
             var id = Guid.NewGuid();
@@ -106,9 +107,9 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.AreEqual(region.IsEnabled, false);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DotNetConstructorInputRegion_Test")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DotNetConstructorInputRegion_Test")]
         public void DotNetConstructorInputRegion_Test_InputAddHeader_ExpectHeightChangesPastThree()
         {
             var id = Guid.NewGuid();
@@ -124,9 +125,9 @@ namespace Dev2.Activities.Designers.Tests.Core
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DotNetConstructorInputRegion_RestoreFromPrevious")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DotNetConstructorInputRegion_RestoreFromPrevious")]
         public void DotNetConstructorInputRegion_RestoreFromPrevious_Restore_ExpectValuesChanged()
         {
             //------------Setup for test--------------------------
@@ -149,9 +150,9 @@ namespace Dev2.Activities.Designers.Tests.Core
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DotNetConstructorInputRegion_SourceChanged")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DotNetConstructorInputRegion_SourceChanged")]
         public void DotNetConstructorInputRegion_SourceChanged_UpdateValues()
         {
             //------------Setup for test--------------------------
@@ -171,8 +172,8 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.AreEqual(region.Inputs.Count, 0);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UpdateOnActionSelection_GivenHasInputs_ShouldWriteToActiveDatalist()
         {
             //---------------Set up test pack-------------------
@@ -213,8 +214,8 @@ namespace Dev2.Activities.Designers.Tests.Core
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UpdateOnActionSelection_GivenHasInputs_ShouldWriteToActiveDatalistAndPopulatesInputValues()
         {
             //---------------Set up test pack-------------------
@@ -258,8 +259,8 @@ namespace Dev2.Activities.Designers.Tests.Core
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UpdateOnActionSelection_GivenHasInputsWithDataTypes_ShouldWriteToActiveDatalistAndPopulatesInputValues()
         {
             //---------------Set up test pack-------------------
@@ -300,8 +301,8 @@ namespace Dev2.Activities.Designers.Tests.Core
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void UpdateOnActionSelection_GivenHasInputsWithDataTypes_ShouldWriteToActiveDatalistAndPopulatesInputNoValues()
         {
             //---------------Set up test pack-------------------

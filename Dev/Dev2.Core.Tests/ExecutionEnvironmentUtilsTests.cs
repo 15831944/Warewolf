@@ -4,18 +4,19 @@ using Dev2.Common.Interfaces.Data;
 using Dev2.Communication;
 using Dev2.DynamicServices;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ExecutionEnvironmentUtilsTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ExecutionEnvironmentUtils_GetSwaggerOutputForService")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ExecutionEnvironmentUtils_GetSwaggerOutputForService")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ExecutionEnvironmentUtils_GetSwaggerOutputForService_NullServiceName_ExpectedException()
         {
@@ -26,9 +27,9 @@ namespace Dev2.Tests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ExecutionEnvironmentUtils_GetSwaggerOutputForService")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ExecutionEnvironmentUtils_GetSwaggerOutputForService")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ExecutionEnvironmentUtils_GetSwaggerOutputForService_EmptyDataList_ExpectedException()
         {
@@ -39,9 +40,9 @@ namespace Dev2.Tests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ExecutionEnvironmentUtils_GetSwaggerOutputForService")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ExecutionEnvironmentUtils_GetSwaggerOutputForService")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ExecutionEnvironmentUtils_GetSwaggerOutputForService_NullDataList_ExpectedException()
         {
@@ -52,9 +53,9 @@ namespace Dev2.Tests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ExecutionEnvironmentUtils_GetSwaggerOutputForService")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ExecutionEnvironmentUtils_GetSwaggerOutputForService")]
         public void ExecutionEnvironmentUtils_GetSwaggerOutputForService_NoInputsNoOutputs_ValidSwaggerDefinition()
         {
             //------------Setup for test--------------------------
@@ -75,9 +76,9 @@ namespace Dev2.Tests
             StringAssert.Contains(swaggerOutputForService, "\"schemes\":[\"http\"]");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ExecutionEnvironmentUtils_GetSwaggerOutputForService")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ExecutionEnvironmentUtils_GetSwaggerOutputForService")]
         public void ExecutionEnvironmentUtils_GetSwaggerOutputForService_ScalarInputsNoOutputs_ValidSwaggerDefinition()
         {
             //------------Setup for test--------------------------
@@ -104,9 +105,9 @@ namespace Dev2.Tests
             StringAssert.Contains(swaggerOutputForService, "\"schemes\":[\"https\"]");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ExecutionEnvironmentUtils_GetSwaggerOutputForService")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ExecutionEnvironmentUtils_GetSwaggerOutputForService")]
         public void ExecutionEnvironmentUtils_GetSwaggerOutputForService_RecordSetInputsNoOutputs_ValidSwaggerDefinition()
         {
             //------------Setup for test--------------------------
@@ -134,9 +135,9 @@ namespace Dev2.Tests
             StringAssert.Contains(swaggerOutputForService, "\"schemes\":[\"http\"]");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ExecutionEnvironmentUtils_GetSwaggerOutputForService")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ExecutionEnvironmentUtils_GetSwaggerOutputForService")]
         public void ExecutionEnvironmentUtils_GetSwaggerOutputForService_RecordSetInputsScalarInputsNoOutputs_ValidSwaggerDefinition()
         {
             //------------Setup for test--------------------------
@@ -165,9 +166,9 @@ namespace Dev2.Tests
             StringAssert.Contains(swaggerOutputForService, "\"schemes\":[\"https\"]");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ExecutionEnvironmentUtils_GetXmlOutputFromEnvironment")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ExecutionEnvironmentUtils_GetXmlOutputFromEnvironment")]
         public void ExecutionEnvironmentUtils_GetXmlOutputFromEnvironment_WhenHasRecordset_ShouldNotError()
         {
             //------------Setup for test--------------------------
@@ -190,9 +191,9 @@ namespace Dev2.Tests
             StringAssert.Contains(actual, "</DataList>");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ExecutionEnvironmentUtils_GetXmlOutputFromEnvironment")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ExecutionEnvironmentUtils_GetXmlOutputFromEnvironment")]
         public void ExecutionEnvironmentUtils_GetXmlOutputFromEnvironment_WhenDataList_ShouldOnlyHaveVariablesMarkedAsOutputInString()
         {
             //------------Setup for test--------------------------
@@ -229,9 +230,9 @@ namespace Dev2.Tests
             Assert.IsFalse(actual.Contains("<c>3</c>"));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ExecutionEnvironmentUtils_GetXmlOutputFromEnvironment")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ExecutionEnvironmentUtils_GetXmlOutputFromEnvironment")]
         public void ExecutionEnvironmentUtils_GetJsonOutputFromEnvironment_WhenDataList_ShouldOnlyHaveVariablesMarkedAsOutputInString()
         {
             //------------Setup for test--------------------------
@@ -266,9 +267,9 @@ namespace Dev2.Tests
             Assert.IsFalse(actual.Contains("\"c\": \"3\""));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ExecutionEnvironmentUtils_GetJsonForEnvironmentWithColumnIoDirection")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ExecutionEnvironmentUtils_GetJsonForEnvironmentWithColumnIoDirection")]
         public void ExecutionEnvironmentUtils_GetJsonForEnvironmentWithColumnIoDirection_WhenEmptyDataList_ShouldReturnEmptyJson()
         {
             //------------Setup for test--------------------------
@@ -280,9 +281,9 @@ namespace Dev2.Tests
             Assert.AreEqual("{}", outPutJson);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("ExecutionEnvironmentUtils_GetXmlOutputFromEnvironment")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("ExecutionEnvironmentUtils_GetXmlOutputFromEnvironment")]
         public void ExecutionEnvironmentUtils_GetXmlOutputFromEnvironment_WhenEmptyDataList_ShouldReturnEmptyXml()
         {
             //------------Setup for test--------------------------
@@ -295,7 +296,7 @@ namespace Dev2.Tests
         }
 
 
-        [TestMethod]
+        [Test]
         public void ExecutionEnvironmentUtils_UpdateEnvironmentFromInputPayload_WithXmlChar_ShouldStillMapWhenInputAsJson()
         {
             var dataObj = new DsfDataObject(string.Empty, Guid.NewGuid());

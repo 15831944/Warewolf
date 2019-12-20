@@ -1,8 +1,9 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests.MathOperations
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class MathOpsFactoryTests
     {
     }

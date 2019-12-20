@@ -4,17 +4,18 @@ using System.Linq;
 using Dev2.Providers.Validation.Rules;
 using Dev2.TO;
 using Dev2.Validation;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Tests.Activities.TOTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SharepointSearchToTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointSearchTo_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointSearchTo_Constructor")]
         public void SharepointSearchTo_Constructor_Default_SetsProperties()
         {
             //------------Setup for test--------------------------
@@ -31,9 +32,9 @@ namespace Dev2.Tests.Activities.TOTests
 
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointSearchTo_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointSearchTo_Constructor")]
         public void SharepointSearchTo_ParameterConstructor_SetsProperties()
         {
             //------------Setup for test--------------------------
@@ -53,9 +54,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsFalse(searchTo.IsSearchCriteriaEnabled);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointSearchTo_SearchType")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointSearchTo_SearchType")]
         public void SharepointSearchTo_SearchType_SetValue_FiresNotifyPropertyChanged()
         {
             //------------Setup for test--------------------------
@@ -70,9 +71,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(notifyPropertyChanged);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointSearchTo_SearchType")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointSearchTo_SearchType")]
         public void SharepointSearchTo_SearchCriteria_SetValue_FiresNotifyPropertyChanged()
         {
             //------------Setup for test--------------------------
@@ -87,9 +88,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(notifyPropertyChanged);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointSearchTo_IndexNum")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointSearchTo_IndexNum")]
         public void SharepointSearchTo_IndexNum_SetValue_FiresNotifyPropertyChanged()
         {
             //------------Setup for test--------------------------
@@ -102,9 +103,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(notifyPropertyChanged);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointSearchTo_IsSearchCriteriaEnabled")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointSearchTo_IsSearchCriteriaEnabled")]
         public void SharepointSearchTo_IsSearchCriteriaEnabled_SetValue_FiresNotifyPropertyChanged()
         {
             //------------Setup for test--------------------------
@@ -119,9 +120,9 @@ namespace Dev2.Tests.Activities.TOTests
 
         #region CanAdd Tests
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointSearchTo_CanAdd")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointSearchTo_CanAdd")]
         public void SharepointSearchTo_CanAdd_SearchTypeEmpty_ReturnFalse()
         {
             //------------Setup for test--------------------------
@@ -132,9 +133,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsFalse(canAdd);
         }
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointSearchTo_CanAdd")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointSearchTo_CanAdd")]
         public void SharepointSearchTo_CanAdd_FieldNameEmpty_ReturnFalse()
         {
             //------------Setup for test--------------------------
@@ -145,9 +146,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsFalse(canAdd);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointSearchTo_CanAdd")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointSearchTo_CanAdd")]
         public void SharepointSearchTo_CanAdd_SearchTypeWithData_ReturnTrue()
         {
             //------------Setup for test--------------------------
@@ -162,9 +163,9 @@ namespace Dev2.Tests.Activities.TOTests
 
         #region CanRemove Tests
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointSearchTo_CanRemove")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointSearchTo_CanRemove")]
         public void SharepointSearchTo_CanRemove_FieldNameEmpty_ReturnTrue()
         {
             //------------Setup for test--------------------------
@@ -175,9 +176,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(canRemove);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointSearchTo_CanRemove")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointSearchTo_CanRemove")]
         public void SharepointSearchTo_CanRemove_FieldNameEmptyWithData_ReturnFalse()
         {
             //------------Setup for test--------------------------
@@ -189,9 +190,9 @@ namespace Dev2.Tests.Activities.TOTests
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointSearchTo_GetRuleSet")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointSearchTo_GetRuleSet")]
         public void SharepointSearchTo_GetRuleSet_OnValueToMatchNoValue_ReturnTwoRules()
         {
             //------------Setup for test--------------------------
@@ -199,9 +200,9 @@ namespace Dev2.Tests.Activities.TOTests
             VerifyCorrectRulesForEachField(searchTo, "ValueToMatch", new List<Type> { typeof(IsStringEmptyRule), typeof(IsValidExpressionRule) });
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointSearchTo_GetRuleSet")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointSearchTo_GetRuleSet")]
         public void SharepointSearchTo_GetRuleSet_OnValueToMatchWithValue_ReturnOneRules()
         {
             //------------Setup for test--------------------------
@@ -209,9 +210,9 @@ namespace Dev2.Tests.Activities.TOTests
             VerifyCorrectRulesForEachField(searchTo, "ValueToMatch", new List<Type> { typeof(IsValidExpressionRule) });
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SharepointSearchTo_GetRuleSet")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SharepointSearchTo_GetRuleSet")]
         public void SharepointSearchTo_GetRuleSet_OnFieldNameNoValue_ReturnTwoRules()
         {
             //------------Setup for test--------------------------

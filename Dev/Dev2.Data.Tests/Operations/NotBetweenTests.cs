@@ -9,16 +9,17 @@
 */
 
 using Dev2.Data.Decisions.Operations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests.Operations
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class NotBetweenTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(NotBetween))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(NotBetween))]
         public void NotBetween_Invoke_Type_Double_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -31,12 +32,12 @@ namespace Dev2.Data.Tests.Operations
             //------------Execute Test---------------------------
             var result = notBetween.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(NotBetween))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(NotBetween))]
         public void NotBetween_Invoke_Type_Double_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -49,12 +50,12 @@ namespace Dev2.Data.Tests.Operations
             //------------Execute Test---------------------------
             var result = notBetween.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(NotBetween))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(NotBetween))]
         public void NotBetween_Invoke_Type_Double_And_DateTime_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -67,12 +68,12 @@ namespace Dev2.Data.Tests.Operations
             //------------Execute Test---------------------------
             var result = notBetween.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(NotBetween))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(NotBetween))]
         public void NotBetween_Invoke_Type_DateTime_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -85,12 +86,12 @@ namespace Dev2.Data.Tests.Operations
             //------------Execute Test---------------------------
             var result = notBetween.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(NotBetween))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(NotBetween))]
         public void NotBetween_Invoke_Type_DateTime_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -103,12 +104,12 @@ namespace Dev2.Data.Tests.Operations
             //------------Execute Test---------------------------
             var result = notBetween.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(NotBetween))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(NotBetween))]
         public void NotBetween_Invoke_Type_Unknown_DateTime_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -121,12 +122,12 @@ namespace Dev2.Data.Tests.Operations
             //------------Execute Test---------------------------
             var result = notBetween.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(NotBetween))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(NotBetween))]
         public void NotBetween_Invoke_Type_Null_DateTime_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -139,19 +140,19 @@ namespace Dev2.Data.Tests.Operations
             //------------Execute Test---------------------------
             var result = notBetween.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(NotBetween))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(NotBetween))]
         public void NotBetween_HandlesType_ReturnsType()
         {
             //------------Setup for test--------------------------
             var notBetween = new NotBetween();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.AreEqual(enDecisionType.NotBetween, notBetween.HandlesType());
+            NUnit.Framework.Assert.AreEqual(enDecisionType.NotBetween, notBetween.HandlesType());
         }
     }
 }

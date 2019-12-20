@@ -13,17 +13,18 @@ using System.Drawing;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using Dev2.Studio.AppResources.Converters;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests.AppResources.Converters
 {
-    [TestClass]
-	[TestCategory("Studio Resources Core")]
+    [TestFixture]
+    [SetUpFixture]
+	[Category("Studio Resources Core")]
     public class MessageBoxImageToSystemIconConverterTests
     {
         #region Tests
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(NotImplementedException))]
         public void ConvertBackExpectedNotImplementedException()
         {
@@ -31,7 +32,7 @@ namespace Dev2.Core.Tests.AppResources.Converters
             messageBoxImageToSystemIconConverter.ConvertBack(null, null, null, null);
         }
 
-        [TestMethod]
+        [Test]
         public void ConvertNullExpectedEmptyBitmap()
         {
             var messageBoxImageToSystemIconConverter = new MessageBoxImageToSystemIconConverter();
@@ -48,7 +49,7 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(expectedColor, actualColor, "Returned image isn't empty.");
         }
 
-        [TestMethod]
+        [Test]
         public void ConvertNoneExpectedEmptyBitmap()
         {
             var messageBoxImageToSystemIconConverter = new MessageBoxImageToSystemIconConverter();
@@ -65,7 +66,7 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(expectedColor, actualColor, "Returned image isn't empty.");
         }
 
-        [TestMethod]
+        [Test]
         public void ConvertInvalidValueExpectedEmptyBitmap()
         {
             var messageBoxImageToSystemIconConverter = new MessageBoxImageToSystemIconConverter();
@@ -82,7 +83,7 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(expectedColor, actualColor, "Returned image isn't empty.");
         }
 
-        [TestMethod]
+        [Test]
         public void ConvertAsteriskExpectedSystemAsterisk()
         {
             var messageBoxImageToSystemIconConverter = new MessageBoxImageToSystemIconConverter();
@@ -91,7 +92,7 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual("pack://application:,,,/Warewolf Studio;component/Images/PopupInformation-32.png", actual);
         }
 
-        [TestMethod]
+        [Test]
         public void ConvertErrorExpectedSystemError()
         {
             var messageBoxImageToSystemIconConverter = new MessageBoxImageToSystemIconConverter();
@@ -101,7 +102,7 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual("pack://application:,,,/Warewolf Studio;component/Images/PopupError-32.png", actual);
         }
 
-        [TestMethod]
+        [Test]
         public void ConvertExclamationExpectedSystemExclamation()
         {
             var messageBoxImageToSystemIconConverter = new MessageBoxImageToSystemIconConverter();
@@ -111,7 +112,7 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual("pack://application:,,,/Warewolf Studio;component/Images/PopupNotSavedWarning-32.png", actual);
         }
 
-        [TestMethod]
+        [Test]
         public void ConvertHandExpectedSystemHand()
         {
             var messageBoxImageToSystemIconConverter = new MessageBoxImageToSystemIconConverter();
@@ -121,7 +122,7 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual("pack://application:,,,/Warewolf Studio;component/Images/PopupError-32.png", actual);
         }
 
-        [TestMethod]
+        [Test]
         public void ConvertInformationExpectedSystemInformation()
         {
             var messageBoxImageToSystemIconConverter = new MessageBoxImageToSystemIconConverter();
@@ -131,7 +132,7 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual("pack://application:,,,/Warewolf Studio;component/Images/PopupInformation-32.png", actual);
         }
 
-        [TestMethod]
+        [Test]
         public void ConvertQuestionExpectedSystemQuestion()
         {
             var messageBoxImageToSystemIconConverter = new MessageBoxImageToSystemIconConverter();
@@ -141,7 +142,7 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual("pack://application:,,,/Warewolf Studio;component/Images/GenericHelp-32.png", actual);
         }
 
-        [TestMethod]
+        [Test]
         public void ConvertStopExpectedSystemError()
         {
             var messageBoxImageToSystemIconConverter = new MessageBoxImageToSystemIconConverter();
@@ -151,7 +152,7 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual("pack://application:,,,/Warewolf Studio;component/Images/PopupError-32.png", actual);
         }
 
-        [TestMethod]
+        [Test]
         public void ConvertWarningExpectedSystemWarning()
         {
             var messageBoxImageToSystemIconConverter = new MessageBoxImageToSystemIconConverter();

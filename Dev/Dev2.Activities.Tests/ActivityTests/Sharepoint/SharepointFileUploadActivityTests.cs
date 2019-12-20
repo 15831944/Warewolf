@@ -9,13 +9,14 @@ using Dev2.Common.State;
 using Dev2.Data.ServiceModel;
 using Dev2.DynamicServices;
 using Dev2.Runtime.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using static Dev2.Tests.Activities.ActivityTests.Sharepoint.SharepointCopyFileActivityTests;
 
 namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SharepointFileUploadActivityTests : BaseActivityUnitTest
     {
         SharepointFileUploadActivity CreateActivity()
@@ -23,9 +24,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
             return new SharepointFileUploadActivity();
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SharepointFileUploadActivity_Construct")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SharepointFileUploadActivity_Construct")]
         public void SharepointFileUploadActivity_Construct_GivenInstance_ShouldNotBeNull()
         {
             //------------Setup for test--------------------------
@@ -35,9 +36,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
             Assert.IsNotNull(sharepointFileUploadActivity);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SharepointFileUpload_Execute")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SharepointFileUpload_Execute")]
         public void SharepointSource_DoesNotExist_OnResourceCatalog_ShouldSetSharepointSource_ToGuidEmpty()
         {
             //------------Setup for test--------------------------
@@ -56,7 +57,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
             var resourceCatalog = new Mock<IResourceCatalog>();
             var mockSharepointSource = new Mock<SharepointSource>();
 
-            var privateObject = new PrivateObject(sharepointFileUploadActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(sharepointFileUploadActivity);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
             sharepointFileUploadActivity.SharepointSource = mockSharepointSource.Object;
 
@@ -68,9 +69,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
             Assert.AreEqual(Guid.Empty, sharepointFileUploadActivity.SharepointServerResourceId);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SharepointFileUpload_Execute")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SharepointFileUpload_Execute")]
         public void SharepointSource_Exists_OnResourceCatalog_BlankRecordSet()
         {
             //------------Setup for test--------------------------
@@ -99,7 +100,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
 
             resourceCatalog.Setup(r => r.GetResource<SharepointSource>(It.IsAny<Guid>(), It.IsAny<Guid>())).Returns(mockSharepointSource);
 
-            var privateObject = new PrivateObject(sharepointFileUploadActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(sharepointFileUploadActivity);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
             sharepointFileUploadActivity.SharepointSource = mockSharepointSource;
 
@@ -111,9 +112,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
             Assert.AreEqual("Success", result[0]);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SharepointFileUpload_Execute")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SharepointFileUpload_Execute")]
         public void SharepointSource_Exists_OnResourceCatalog_StarRecordSet()
         {
             //------------Setup for test--------------------------
@@ -142,7 +143,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
 
             resourceCatalog.Setup(r => r.GetResource<SharepointSource>(It.IsAny<Guid>(), It.IsAny<Guid>())).Returns(mockSharepointSource);
 
-            var privateObject = new PrivateObject(sharepointFileUploadActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(sharepointFileUploadActivity);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
             sharepointFileUploadActivity.SharepointSource = mockSharepointSource;
 
@@ -154,9 +155,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
             Assert.AreEqual("Success", result[0]);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SharepointFileUpload_Execute")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SharepointFileUpload_Execute")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SharepointFileUploadActivity_ValidateRequest_SharepointServerResourceId_EmptyGuid()
         {
@@ -176,7 +177,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
 
             resourceCatalog.Setup(r => r.GetResource<SharepointSource>(It.IsAny<Guid>(), It.IsAny<Guid>())).Returns(mockSharepointSource.Object);
 
-            var privateObject = new PrivateObject(sharepointFileUploadActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(sharepointFileUploadActivity);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
             sharepointFileUploadActivity.SharepointSource = mockSharepointSource.Object;
 
@@ -184,9 +185,9 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
             privateObject.Invoke("ValidateRequest");
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SharepointFileUpload_Execute")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SharepointFileUpload_Execute")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SharepointFileUploadActivity_ValidateRequest_ServerInputPath_IsEmpty()
         {
@@ -207,16 +208,16 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
 
             resourceCatalog.Setup(r => r.GetResource<SharepointSource>(It.IsAny<Guid>(), It.IsAny<Guid>())).Returns(mockSharepointSource.Object);
 
-            var privateObject = new PrivateObject(sharepointFileUploadActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(sharepointFileUploadActivity);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
             sharepointFileUploadActivity.SharepointSource = mockSharepointSource.Object;
 
             //------------Execute Test---------------------------
             privateObject.Invoke("ValidateRequest");
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("SharepointFileUploadGetState")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("SharepointFileUploadGetState")]
         public void SharepointFileUpload_GetState()
         {
             //------------Setup for test--------------------------
@@ -244,7 +245,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
             };
             resourceCatalog.Setup(r => r.GetResource<SharepointSource>(It.IsAny<Guid>(), It.IsAny<Guid>())).Returns(mockSharepointSource);
 
-            var privateObject = new PrivateObject(sharepointFileUploadActivity);
+            var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(sharepointFileUploadActivity);
             privateObject.SetProperty("ResourceCatalog", resourceCatalog.Object);
             sharepointFileUploadActivity.SharepointSource = mockSharepointSource;
 

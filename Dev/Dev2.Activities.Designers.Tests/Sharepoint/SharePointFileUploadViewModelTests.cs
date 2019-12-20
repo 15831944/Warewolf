@@ -9,12 +9,13 @@ using Dev2.Providers.Errors;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
 using Dev2.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Activities.Designers.Tests.Sharepoint
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SharePointFileUploadViewModelTests
     {
         public const string TestOwner = "Bernardt Joubert";
@@ -27,9 +28,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             return ModelItemUtils.CreateModelItem(fileUploadactivity);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SharePointFileUploadDesignerViewModel_Constructor_NullModelItem_ThrowsException()
         {
@@ -42,9 +43,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             Assert.IsNull(sharepointFileUploadDesignerViewModel);
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SharePointFileUploadDesignerViewModel_Constructor_NullAsyncWorker_ThrowsException()
         {
@@ -57,9 +58,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SharePointFileUploadDesignerViewModel_Constructor_NullEnvironmentModel_ThrowsException()
         {
@@ -72,9 +73,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void SharePointFileUploadDesignerViewModel_InitilizeProperties_ReturnsSuccess()
         {
             //------------Setup for test--------------------------
@@ -90,9 +91,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void SharePointFileUploadDesignerViewModel_SetProperties_ReturnsSuccess()
         {
             //------------Setup for test--------------------------
@@ -119,9 +120,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void SharePointFileUploadDesignerViewModel_SetPropertiesNullSource_ReturnsSuccess()
         {
             //------------Setup for test--------------------------
@@ -140,9 +141,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner(TestOwner)]
-        [TestCategory(Category)]
+        [Test]
+        [Author(TestOwner)]
+        [Category(Category)]
         public void SharePointFileUploadDesignerViewModel_SetPropertiesNullLocalPath_ReturnsSuccess()
         {
             //------------Setup for test--------------------------
@@ -154,7 +155,7 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             var sharepointReadFolderDesignerViewModel = new SharePointFileUploadDesignerViewModel(modelItem, new SynchronousAsyncWorker(), new Mock<IServer>().Object);
             sharepointReadFolderDesignerViewModel.Errors = new List<IActionableErrorInfo> { new ActionableErrorInfo() { Message = "Please Select a SharePoint Server" } };
             sharepointReadFolderDesignerViewModel.Validate();
-         
+
 
             Assert.IsNotNull(sharepointReadFolderDesignerViewModel.LocalInputPath);
             //------------Assert Results-------------------------

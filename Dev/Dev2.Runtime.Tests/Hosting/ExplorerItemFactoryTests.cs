@@ -19,7 +19,7 @@ using Dev2.Common.Interfaces.Wrappers;
 using Dev2.Runtime.Hosting;
 using Dev2.Runtime.Interfaces;
 using Dev2.Services.Security;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
@@ -42,13 +42,14 @@ namespace Dev2.Tests.Runtime.Hosting
         }
     }
 
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ExplorerItemFactoryTests
     {
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ExplorerItemFactory_Constructor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ExplorerItemFactory_Constructor")]
         public void ExplorerItemFactory_Constructor_AssertCatalogueSetup()
         {
 
@@ -60,12 +61,12 @@ namespace Dev2.Tests.Runtime.Hosting
 
 
             //------------Assert Results-------------------------
-            Assert.AreEqual(catalogue.Object, explorerItemFactory.Catalogue);
+            NUnit.Framework.Assert.AreEqual(catalogue.Object, explorerItemFactory.Catalogue);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ExplorerItemFactory_BuildRootNode")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ExplorerItemFactory_BuildRootNode")]
         public void ExplorerItemFactory_BuildRootNode_AssertRootNode_Correct()
         {
 
@@ -81,15 +82,15 @@ namespace Dev2.Tests.Runtime.Hosting
             var root = explorerItemFactory.BuildRoot();
 
             //------------Assert Results-------------------------
-            Assert.AreEqual(Environment.MachineName, root.DisplayName);
-            Assert.AreEqual(0, root.Children.Count);
-            Assert.AreEqual(Guid.Empty, root.ResourceId);
-            Assert.AreEqual(Permissions.View, root.Permissions);
+            NUnit.Framework.Assert.AreEqual(Environment.MachineName, root.DisplayName);
+            NUnit.Framework.Assert.AreEqual(0, root.Children.Count);
+            NUnit.Framework.Assert.AreEqual(Guid.Empty, root.ResourceId);
+            NUnit.Framework.Assert.AreEqual(Permissions.View, root.Permissions);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ExplorerItemFactory_CreateExplorerItem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ExplorerItemFactory_CreateExplorerItem")]
         public void ExplorerItemFactory_CreateExplorerItem_NoResources_ExpectARoot()
         {
 
@@ -104,15 +105,15 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var item = explorerItemFactory.CreateRootExplorerItem(@"b:\bob", Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual(Environment.MachineName, item.DisplayName);
-            Assert.AreEqual(0, item.Children.Count);
+            NUnit.Framework.Assert.AreEqual(Environment.MachineName, item.DisplayName);
+            NUnit.Framework.Assert.AreEqual(0, item.Children.Count);
         }
 
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ExplorerItemFactory_CreateExplorerItem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ExplorerItemFactory_CreateExplorerItem")]
         public void ExplorerItemFactory_CreateExplorerItem_FirstGen_ExpectFirstGenChildren()
         {
 
@@ -135,15 +136,15 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var item = explorerItemFactory.CreateRootExplorerItem(@"b:\bob", Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual(Environment.MachineName, item.DisplayName);
-            Assert.AreEqual(4, resources.Count);
+            NUnit.Framework.Assert.AreEqual(Environment.MachineName, item.DisplayName);
+            NUnit.Framework.Assert.AreEqual(4, resources.Count);
         }
 
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ExplorerItemFactory_CreateExplorerItem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ExplorerItemFactory_CreateExplorerItem")]
         public void ExplorerItemFactory_CreateExplorerItem_SecondtGen_ExpectSecondGenChildren()
         {
 
@@ -168,18 +169,18 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var item = explorerItemFactory.CreateRootExplorerItem(@"b:\bob", Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual(Environment.MachineName, item.DisplayName);
-            Assert.IsTrue(item.IsServer);
-            Assert.AreEqual(1, item.Children.Count);
-            Assert.IsTrue(item.Children[0].IsFolder);
-            Assert.AreEqual(4, item.Children[0].Children.Count);
-            Assert.IsTrue(item.Children[0].Children.All(explorerItem => explorerItem.IsService));
+            NUnit.Framework.Assert.AreEqual(Environment.MachineName, item.DisplayName);
+            NUnit.Framework.Assert.IsTrue(item.IsServer);
+            NUnit.Framework.Assert.AreEqual(1, item.Children.Count);
+            NUnit.Framework.Assert.IsTrue(item.Children[0].IsFolder);
+            NUnit.Framework.Assert.AreEqual(4, item.Children[0].Children.Count);
+            NUnit.Framework.Assert.IsTrue(item.Children[0].Children.All(explorerItem => explorerItem.IsService));
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ExplorerItemFactory_CreateExplorerItem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ExplorerItemFactory_CreateExplorerItem")]
         public void ExplorerItemFactory_CreateExplorerItem_MultipleGenerations_ExpectSecondAndFirstGenChildren()
         {
 
@@ -204,17 +205,17 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var item = explorerItemFactory.CreateRootExplorerItem(@"b:\bob", Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual(Environment.MachineName, item.DisplayName);
-            Assert.AreEqual(3, item.Children.Count);
-            Assert.AreEqual(2, item.Children[0].Children.Count);
-            Assert.IsTrue(item.Children[0].Children.All(explorerItem => explorerItem.IsSource));
+            NUnit.Framework.Assert.AreEqual(Environment.MachineName, item.DisplayName);
+            NUnit.Framework.Assert.AreEqual(3, item.Children.Count);
+            NUnit.Framework.Assert.AreEqual(2, item.Children[0].Children.Count);
+            NUnit.Framework.Assert.IsTrue(item.Children[0].Children.All(explorerItem => explorerItem.IsSource));
         }
 
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ExplorerItemFactory_CreateExplorerItem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ExplorerItemFactory_CreateExplorerItem")]
         public void ExplorerItemFactory_CreateExplorerItemWithType_FirstGen_ExpectFirstGenChildren()
         {
 
@@ -238,15 +239,15 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var item = explorerItemFactory.CreateRootExplorerItem("EmailSource", @"b:\bob", Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual(Environment.MachineName, item.DisplayName);
-            Assert.AreEqual(1, item.Children.Count);
+            NUnit.Framework.Assert.AreEqual(Environment.MachineName, item.DisplayName);
+            NUnit.Framework.Assert.AreEqual(1, item.Children.Count);
         }
 
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ExplorerItemFactory_CreateExplorerItem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ExplorerItemFactory_CreateExplorerItem")]
         public void ExplorerItemFactory_CreateExplorerItemWithType_SecondtGen_ExpectSecondGenChildren()
         {
 
@@ -270,14 +271,14 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var item = explorerItemFactory.CreateRootExplorerItem("EmailSource", @"b:\bob", Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual(Environment.MachineName, item.DisplayName);
-            Assert.AreEqual(1, item.Children.Count);
-            Assert.AreEqual(4, item.Children[0].Children.Count);
+            NUnit.Framework.Assert.AreEqual(Environment.MachineName, item.DisplayName);
+            NUnit.Framework.Assert.AreEqual(1, item.Children.Count);
+            NUnit.Framework.Assert.AreEqual(4, item.Children[0].Children.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ExplorerItemFactory_CreateExplorerItem")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ExplorerItemFactory_CreateExplorerItem")]
         public void ExplorerItemFactory_CreateExplorerItemWithType_ReservedServicesNotReturned_SecondtGen_ExpectSecondGenChildren()
         {
 
@@ -307,16 +308,16 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var item = explorerItemFactory.CreateRootExplorerItem(@"b:\bob", Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual(1, item.Children.Count);
-            Assert.AreEqual(4, item.Children[0].Children.Count);
+            NUnit.Framework.Assert.AreEqual(1, item.Children.Count);
+            NUnit.Framework.Assert.AreEqual(4, item.Children[0].Children.Count);
             var found = item.Children[0].Children.FirstOrDefault(explorerItem => explorerItem.DisplayName == "TestReservedService");
-            Assert.IsNull(found);
+            NUnit.Framework.Assert.IsNull(found);
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ExplorerItemFactory_CreateExplorerItem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ExplorerItemFactory_CreateExplorerItem")]
         public void ExplorerItemFactory_CreateExplorerItemWithType_MultipleGenerations_ExpectSecondAndFirstGenChildren()
         {
 
@@ -341,16 +342,16 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var item = explorerItemFactory.CreateRootExplorerItem("EmailSource", @"b:\bob", Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual(Environment.MachineName, item.DisplayName);
-            Assert.AreEqual(4, item.Children.Count);
-            Assert.AreEqual(1, item.Children[0].Children.Count);
+            NUnit.Framework.Assert.AreEqual(Environment.MachineName, item.DisplayName);
+            NUnit.Framework.Assert.AreEqual(4, item.Children.Count);
+            NUnit.Framework.Assert.AreEqual(1, item.Children[0].Children.Count);
         }
 
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ExplorerItemFactory_CreateExplorerItem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ExplorerItemFactory_CreateExplorerItem")]
         public void ExplorerItemFactory_CreateExplorerItemWithType_Folders_ExpectTwoChildren()
         {
 
@@ -375,17 +376,17 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var item = explorerItemFactory.CreateRootExplorerItem("Folder", @"b:\bob", Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual(Environment.MachineName, item.DisplayName);
-            Assert.AreEqual(2, item.Children.Count);
-            Assert.IsTrue(item.Children.All(a => a.Permissions == Permissions.Contribute));
-            Assert.IsTrue(item.Permissions == Permissions.Contribute);
+            NUnit.Framework.Assert.AreEqual(Environment.MachineName, item.DisplayName);
+            NUnit.Framework.Assert.AreEqual(2, item.Children.Count);
+            NUnit.Framework.Assert.IsTrue(item.Children.All(a => a.Permissions == Permissions.Contribute));
+            NUnit.Framework.Assert.IsTrue(item.Permissions == Permissions.Contribute);
 
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ExplorerItemFactory_CreateExplorerItem")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ExplorerItemFactory_CreateExplorerItem")]
         public void ExplorerItemFactory_CreateExplorerItemWithType_Authorisation_ExpectFirstGenChildrenWithPermissions()
         {
 
@@ -414,17 +415,17 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var item = explorerItemFactory.CreateRootExplorerItem(@"b:\bob", Guid.NewGuid());
             //------------Assert Results-------------------------
-            Assert.AreEqual(Environment.MachineName, item.DisplayName);
-            Assert.AreEqual(4, item.Children.Count);
-            Assert.AreEqual(item.Children[0].Permissions, Permissions.Contribute);
-            Assert.AreEqual(item.Children[1].Permissions, Permissions.Administrator);
-            Assert.AreEqual(item.Children[2].Permissions, Permissions.DeployFrom);
-            Assert.AreEqual(item.Children[3].Permissions, Permissions.DeployTo);
+            NUnit.Framework.Assert.AreEqual(Environment.MachineName, item.DisplayName);
+            NUnit.Framework.Assert.AreEqual(4, item.Children.Count);
+            NUnit.Framework.Assert.AreEqual(item.Children[0].Permissions, Permissions.Contribute);
+            NUnit.Framework.Assert.AreEqual(item.Children[1].Permissions, Permissions.Administrator);
+            NUnit.Framework.Assert.AreEqual(item.Children[2].Permissions, Permissions.DeployFrom);
+            NUnit.Framework.Assert.AreEqual(item.Children[3].Permissions, Permissions.DeployTo);
         }
 
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void ExplorerItemFactory_GetDuplicatedResourcesPaths_ShouldReturnDuplicateStringMessage()
         {
             const string expectedResults = "Resource Test_Resource in path Test_path and path Test_path2 are the same";
@@ -446,15 +447,15 @@ namespace Dev2.Tests.Runtime.Hosting
                 });
             //------------Execute Test---------------------------
             var explorerItemFactory = new ExplorerItemFactory(catalogue.Object, directory.Object, auth.Object);
-            Assert.IsNotNull(explorerItemFactory);
+            NUnit.Framework.Assert.IsNotNull(explorerItemFactory);
             var results = explorerItemFactory.GetDuplicatedResourcesPaths();
             //------------Assert Results-------------------------
-            Assert.IsFalse(results.Count == 0);
-            Assert.IsFalse(string.Equals(expectedResults, results.Any().ToString()));
+            NUnit.Framework.Assert.IsFalse(results.Count == 0);
+            NUnit.Framework.Assert.IsFalse(string.Equals(expectedResults, results.Any().ToString()));
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void ExplorerItemFactory_GivenEmptyResourceDir_GetDuplicatedResourcesPaths_ShouldReturnEmptyString()
         {
             var catalogue = new Mock<IResourceCatalog>();
@@ -463,10 +464,10 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Setup for test--------------------------
             //------------Execute Test---------------------------
             var explorerItemFactory = new ExplorerItemFactory(catalogue.Object, directory.Object, auth.Object);
-            Assert.IsNotNull(explorerItemFactory);
+            NUnit.Framework.Assert.IsNotNull(explorerItemFactory);
             var results = explorerItemFactory.GetDuplicatedResourcesPaths();
             //------------Assert Results-------------------------
-            Assert.AreEqual(0, results.Count);
+            NUnit.Framework.Assert.AreEqual(0, results.Count);
         }
     }
 }

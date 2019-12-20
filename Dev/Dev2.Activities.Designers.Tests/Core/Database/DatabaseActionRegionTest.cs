@@ -10,7 +10,7 @@ using Dev2.Common.Interfaces.ServerProxyLayer;
 using Dev2.Common.Interfaces.ToolBase;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Core;
 
@@ -18,12 +18,13 @@ using Warewolf.Core;
 
 namespace Dev2.Activities.Designers.Tests.Core.Database
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DatabaseActionRegionTest
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DatabaseActionRegion_Constructor")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DatabaseActionRegion_Constructor")]
         public void DatabaseActionRegion_Constructor_Scenerio_Result()
         {
             //------------Setup for test--------------------------
@@ -39,9 +40,9 @@ namespace Dev2.Activities.Designers.Tests.Core.Database
             Assert.IsFalse(dbActionRegion.IsEnabled);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DatabaseActionRegion_ConstructorWithSelectedAction")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DatabaseActionRegion_ConstructorWithSelectedAction")]
         public void DatabaseActionRegion_ConstructorWithSelectedAction_Scenerio_Result()
         {
             //------------Setup for test--------------------------
@@ -64,9 +65,9 @@ namespace Dev2.Activities.Designers.Tests.Core.Database
             Assert.IsTrue(dbActionRegion.CanRefresh());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DatabaseActionRegion_ConstructorWithSelectedAction")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DatabaseActionRegion_ConstructorWithSelectedAction")]
         public void DatabaseActionRegion_ConstructorWithSelectedAction_IsRefreshingTrue_IsActionEnabledFalse()
         {
             //------------Setup for test--------------------------
@@ -89,9 +90,9 @@ namespace Dev2.Activities.Designers.Tests.Core.Database
             Assert.IsFalse(dbActionRegion.CanRefresh());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DatabaseActionRegion_ChangeActionSomethingChanged")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DatabaseActionRegion_ChangeActionSomethingChanged")]
         public void DatabaseActionRegion_ChangeActionSomethingChanged_ExpectedChange_Result()
         {
             //------------Setup for test--------------------------
@@ -115,9 +116,9 @@ namespace Dev2.Activities.Designers.Tests.Core.Database
             Assert.IsTrue(evt);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DatabaseActionRegion_ChangeActionSomethingChanged")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DatabaseActionRegion_ChangeActionSomethingChanged")]
         public void DatabaseActionRegion_ChangeActionSomethingChanged_RestoreRegion_Result()
         {
             //------------Setup for test--------------------------
@@ -152,9 +153,9 @@ namespace Dev2.Activities.Designers.Tests.Core.Database
             dep2.Verify(a => a.RestoreRegion(clone2.Object),Times.Never);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DatabaseActionRegion_ChangeActionSomethingChanged")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DatabaseActionRegion_ChangeActionSomethingChanged")]
         public void DatabaseActionRegion_ChangeActionSomethingChanged_RegionsNotRestored_Invalid()
         {
             //------------Setup for test--------------------------
@@ -189,9 +190,9 @@ namespace Dev2.Activities.Designers.Tests.Core.Database
             dep2.Verify(a => a.RestoreRegion(clone2.Object), Times.Never);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DatabaseActionRegion_ChangeActionSomethingChanged")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DatabaseActionRegion_ChangeActionSomethingChanged")]
         public void DatabaseActionRegion_ChangeActionSomethingChanged_CloneRegion_ExpectedClone()
         {
             //------------Setup for test--------------------------
@@ -213,9 +214,9 @@ namespace Dev2.Activities.Designers.Tests.Core.Database
             Assert.AreEqual(((DbActionMemento)cloned).SelectedAction, dbActionRegion.SelectedAction);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DatabaseActionRegion_ChangeActionSomethingChanged")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DatabaseActionRegion_ChangeActionSomethingChanged")]
         public void DatabaseActionRegion_ChangeActionSomethingChanged_RestoreRegion_ExpectedRestore()
         {
             //------------Setup for test--------------------------

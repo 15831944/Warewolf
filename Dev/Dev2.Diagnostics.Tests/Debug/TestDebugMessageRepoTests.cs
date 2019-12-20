@@ -9,17 +9,18 @@
 */
 
 using Dev2.Diagnostics.Debug;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 
 namespace Dev2.Diagnostics.Test.Debug
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class TestDebugMessageRepoTests
     {
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(TestDebugMessageRepo))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(TestDebugMessageRepo))]
         public void TestDebugMessageRepo_AddDebugItem_Invalid_Guid()
         {
             Guid.TryParse("test", out Guid resourceId);
@@ -33,9 +34,9 @@ namespace Dev2.Diagnostics.Test.Debug
             Assert.IsNull(list);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(TestDebugMessageRepo))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(TestDebugMessageRepo))]
         public void TestDebugMessageRepo_AddDebugItem()
         {
             var resourceId = Guid.NewGuid();
@@ -50,9 +51,9 @@ namespace Dev2.Diagnostics.Test.Debug
             Assert.AreEqual(resourceId, list[0].ID);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(TestDebugMessageRepo))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(TestDebugMessageRepo))]
         public void TestDebugMessageRepo_AddDebugItem_AddToList()
         {
             var resourceId = Guid.NewGuid();
@@ -73,9 +74,9 @@ namespace Dev2.Diagnostics.Test.Debug
             Assert.AreEqual("otherName", list[1].Name);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(TestDebugMessageRepo))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(TestDebugMessageRepo))]
         public void TestDebugMessageRepo_GetDebugItems()
         {
             var resourceId = Guid.NewGuid();
@@ -96,9 +97,9 @@ namespace Dev2.Diagnostics.Test.Debug
             Assert.AreEqual("otherName", list[1].Name);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(TestDebugMessageRepo))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(TestDebugMessageRepo))]
         public void TestDebugMessageRepo_GetDebugItems_NoItems()
         {
             var resourceId = Guid.NewGuid();
@@ -115,9 +116,9 @@ namespace Dev2.Diagnostics.Test.Debug
             Assert.IsNull(list);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(TestDebugMessageRepo))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(TestDebugMessageRepo))]
         public void TestDebugMessageRepo_AddDebugItem_Contains_Id()
         {
             var resourceId = Guid.NewGuid();
@@ -134,9 +135,9 @@ namespace Dev2.Diagnostics.Test.Debug
             Assert.AreEqual(resourceId, list[0].ID);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(TestDebugMessageRepo))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(TestDebugMessageRepo))]
         public void TestDebugMessageRepo_FetchDebugItems()
         {
             var resourceId = Guid.NewGuid();

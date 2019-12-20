@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Common.Tests
 {
@@ -11,15 +11,16 @@ namespace Dev2.Common.Tests
         public string Name { get; set; }
     }
 
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DistinctByTests
     {
 
 
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Constructor_GivenPropertyName_ShouldPassThrough()
         {
             //---------------Set up test pack-------------------
@@ -43,8 +44,8 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(3, contacts.Count());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Constructor_GivenPropertyNullGuidValues_ShouldPassThrough()
         {
             //---------------Set up test pack-------------------

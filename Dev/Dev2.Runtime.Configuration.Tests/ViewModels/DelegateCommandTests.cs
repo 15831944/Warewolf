@@ -10,17 +10,17 @@
 
 using System;
 using Dev2.Runtime.Configuration.ViewModels.Base;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Runtime.Configuration.Tests.ViewModels
 {
-    [TestClass]
+    [TestFixture]
     
     public class DelegateCommandTests
     {
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("RelayCommand_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("RelayCommand_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void RelayCommand_Constructor_ActionIsNull_ThrowsException()
         {
@@ -29,9 +29,9 @@ namespace Dev2.Runtime.Configuration.Tests.ViewModels
             
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("RelayCommand_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("RelayCommand_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void RelayCommand_ConstructorOverload_ActionIsNull_ThrowsException()
         {
@@ -40,9 +40,9 @@ namespace Dev2.Runtime.Configuration.Tests.ViewModels
             
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DelegateCommand_Execute")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DelegateCommand_Execute")]
         public void DelegateCommand_Execute_PassingAnObject_ObjectPassedToAction()
         {
             //------------Setup for test--------------------------
@@ -54,14 +54,14 @@ namespace Dev2.Runtime.Configuration.Tests.ViewModels
             //------------Execute Test---------------------------
             delegateCommand.Execute(new { Name = "Tshepo", Surname = "Ntlhokoa" });
             //------------Assert Results-------------------------
-            Assert.IsNotNull(prop);
-            Assert.IsNotNull("Tshepo", prop.Name);
-            Assert.IsNotNull("Ntlhokoa", prop.Surname);
+            NUnit.Framework.Assert.IsNotNull(prop);
+            NUnit.Framework.Assert.IsNotNull("Tshepo", prop.Name);
+            NUnit.Framework.Assert.IsNotNull("Ntlhokoa", prop.Surname);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DelegateCommand_CanExecute")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DelegateCommand_CanExecute")]
         public void DelegateCommand_CanExecute_WhenConstructedWithAPredicate_PredicateIsCalled()
         {
             //------------Setup for test--------------------------
@@ -74,13 +74,13 @@ namespace Dev2.Runtime.Configuration.Tests.ViewModels
             //------------Execute Test---------------------------
             var canExecute = delegateCommand.CanExecute(null);
             //------------Assert Results-------------------------
-            Assert.IsTrue(canExecuteWasCalled);
-            Assert.IsTrue(canExecute);
+            NUnit.Framework.Assert.IsTrue(canExecuteWasCalled);
+            NUnit.Framework.Assert.IsTrue(canExecute);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("DelegateCommand_CanExecute")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("DelegateCommand_CanExecute")]
         public void DelegateCommand_CanExecute_WhenConstructedWithoutAPredicate_ReturnsTrueAsADefault()
         {
             //------------Setup for test--------------------------
@@ -88,7 +88,7 @@ namespace Dev2.Runtime.Configuration.Tests.ViewModels
             //------------Execute Test---------------------------
             var canExecute = delegateCommand.CanExecute(null);
             //------------Assert Results-------------------------
-            Assert.IsTrue(canExecute);
+            NUnit.Framework.Assert.IsTrue(canExecute);
         }
     }
 }

@@ -9,18 +9,19 @@
 */
 
 using Dev2.Runtime.Hosting;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Runtime.Hosting
 {
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class ServiceDefinitionLoaderTest
     {
         // GenerateServiceGraph
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ServiceDefinitionLoader_GenerateServiceGraph")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ServiceDefinitionLoader_GenerateServiceGraph")]
         public void ServiceDefinitionLoader_GenerateServiceGraph_WhenLoadingSource_SourceIsLoaded()
         {
             //------------Setup for test--------------------------
@@ -31,9 +32,9 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ServiceDefinitionLoader_GenerateServiceGraph")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ServiceDefinitionLoader_GenerateServiceGraph")]
         public void ServiceDefinitionLoader_GenerateServiceGraph_WhenLoadingWorkflow_WorkflowIsLoaded()
         {
             //------------Setup for test--------------------------
@@ -44,9 +45,9 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("ServiceDefinitionLoader_GenerateServiceGraph")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("ServiceDefinitionLoader_GenerateServiceGraph")]
         public void ServiceDefinitionLoader_GenerateServiceGraph_WhenLoadingWorkerService_ServiceIsLoaded()
         {
             //------------Setup for test--------------------------

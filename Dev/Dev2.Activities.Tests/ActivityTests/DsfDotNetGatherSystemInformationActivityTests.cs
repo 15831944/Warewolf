@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Dev2.Activities;
 using Dev2.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Storage;
 using Dev2.Data.Interfaces.Enums;
@@ -11,10 +11,11 @@ using Dev2.Utilities;
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfDotNetGatherSystemInformationActivityTests
     {
-        [TestMethod]
+        [Test]
         public void GetCorrectSystemInformation_MultipleInformationGatherShouldHaveValues()
         {
             var ob = new DsfDotNetGatherSystemInformationActivity
@@ -147,7 +148,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsFalse(string.IsNullOrWhiteSpace(warewolfServerVersion[0]), "[[warewolfServerVersion]]");
         }
 
-        [TestMethod]
+        [Test]
         public void GetCorrectSystemInformation_WarewolfCPU_GatherShouldHaveValues()
         {
             var ob = new DsfDotNetGatherSystemInformationActivity
@@ -178,9 +179,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             return env.EvalAsListOfStrings("[[warewolfCPU]]", 0);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfDotNetGatherSystemInformationActivity_GetState")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfDotNetGatherSystemInformationActivity_GetState")]
         public void DsfDotNetGatherSystemInformationActivity_GetState_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------

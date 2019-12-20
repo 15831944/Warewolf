@@ -18,17 +18,18 @@ using Dev2.Runtime.WebServer;
 using Dev2.Runtime.WebServer.Responses;
 using Dev2.Runtime.WebServer.TransferObjects;
 using Dev2.Web;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Runtime.WebServer.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ExecutionDtoExtentionsTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExecutionDtoExtentions))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExecutionDtoExtentions))]
         public void ExecutionDtoExtentions_CreateResponseWriter_NotWasInternalService_And_EmitionTypesSWAGGER_Success()
         {
             //-------------------------------Arrange----------------------------------
@@ -62,9 +63,9 @@ namespace Dev2.Runtime.WebServer.Tests
             Assert.AreEqual(expected: "{\r\n  \"swagger\": 2,\r\n  \"info\": {\r\n    \"title\": null,\r\n    \"description\": \"\",\r\n    \"version\": \"1.0.0\"\r\n  },\r\n  \"host\": \":0/\",\r\n  \"basePath\": \"/\",\r\n  \"schemes\": [\r\n    \"http\"\r\n  ],\r\n  \"produces\": [\r\n    \"application/json\",\r\n    \"application/xml\"\r\n  ],\r\n  \"paths\": {\r\n    \"serviceName\": \"/public/resourceName.api\",\r\n    \"get\": {\r\n      \"summary\": \"\",\r\n      \"description\": \"\",\r\n      \"parameters\": []\r\n    }\r\n  },\r\n  \"responses\": {\r\n    \"200\": {\r\n      \"schema\": {\r\n        \"$ref\": \"#/definition/Output\"\r\n      }\r\n    }\r\n  },\r\n  \"definitions\": {\r\n    \"Output\": {\r\n      \"type\": \"object\",\r\n      \"properties\": {}\r\n    }\r\n  }\r\n}", actual: executionDto.PayLoad);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExecutionDtoExtentions))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExecutionDtoExtentions))]
         public void ExecutionDtoExtentions_CreateResponseWriter_NotWasInternalService_And_EmitionTypesXML_Success()
         {
             //-------------------------------Arrange----------------------------------
@@ -95,9 +96,9 @@ namespace Dev2.Runtime.WebServer.Tests
             Assert.AreEqual(expected: "<DataList />", actual: executionDto.PayLoad);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExecutionDtoExtentions))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExecutionDtoExtentions))]
         public void ExecutionDtoExtentions_CreateResponseWriter_NotWasInternalService_And_EmitionTypesJSON_Success()
         {
             //-------------------------------Arrange----------------------------------
@@ -128,9 +129,9 @@ namespace Dev2.Runtime.WebServer.Tests
             Assert.AreEqual(expected: "{}", actual: executionDto.PayLoad);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExecutionDtoExtentions))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExecutionDtoExtentions))]
         public void ExecutionDtoExtentions_CreateResponseWriter_NotWasInternalService_And_IsDebug_Success()
         {
             //-------------------------------Arrange----------------------------------
@@ -158,9 +159,9 @@ namespace Dev2.Runtime.WebServer.Tests
             Assert.AreEqual(expected: string.Empty, actual: executionDto.PayLoad);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExecutionDtoExtentions))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExecutionDtoExtentions))]
         public void ExecutionDtoExtentions_CreateResponseWriter_WasInternalService_And_ExecuteMessageJSON_Success()
         {
             //-------------------------------Arrange----------------------------------
@@ -191,9 +192,9 @@ namespace Dev2.Runtime.WebServer.Tests
             Assert.AreEqual(expected: "{\"test\":\"message\"}", actual: executionDto.PayLoad);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExecutionDtoExtentions))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExecutionDtoExtentions))]
         public void ExecutionDtoExtentions_CreateResponseWriter_WasInternalService_And_ExecuteMessageXML_Success()
         {
             //-------------------------------Arrange----------------------------------
@@ -225,9 +226,9 @@ namespace Dev2.Runtime.WebServer.Tests
             Assert.AreEqual(expected: esbExecuteRequestMessage, actual: executionDto.PayLoad);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExecutionDtoExtentions))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExecutionDtoExtentions))]
         public void ExecutionDtoExtentions_CreateResponseWriter_NotWasInternalService_And_HasErrors_ShouldReturnError_Success()
         {
             //-------------------------------Arrange----------------------------------
@@ -261,9 +262,9 @@ namespace Dev2.Runtime.WebServer.Tests
             Assert.AreEqual(expected: esbExecuteRequest, actual: executionDto.PayLoad);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ExecutionDtoExtentions))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ExecutionDtoExtentions))]
         public void ExecutionDtoExtentions_CreateResponseWriter_WasInternalService_And_ExecuteMessageXML_PayLoadIsNullOrEmpty_Success()
         {
             //-------------------------------Arrange----------------------------------

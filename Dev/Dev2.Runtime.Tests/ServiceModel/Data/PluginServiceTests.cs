@@ -13,7 +13,7 @@ using System.Linq;
 using System.Xml.Linq;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Tests.Runtime.XML;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Framework.Converters.Graph.String.Xml;
 
 namespace Dev2.Tests.Runtime.ServiceModel.Data
@@ -23,38 +23,39 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
     /// <summary>
     /// Summary description for DbServiceTests
     /// </summary>
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class PluginServiceTests
     {
         #region CTOR
 
-        [TestMethod]
+        [Test]
         public void PluginServiceContructorWithDefaultExpectedInitializesProperties()
         {
             var service = new PluginService();
-            Assert.AreEqual(Guid.Empty, service.ResourceID);
-            Assert.AreEqual("PluginService", service.ResourceType);
+            NUnit.Framework.Assert.AreEqual(Guid.Empty, service.ResourceID);
+            NUnit.Framework.Assert.AreEqual("PluginService", service.ResourceType);
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void PluginServiceContructorWithNullXmlExpectedThrowsArgumentNullException()
         {
             var service = new PluginService(null);
         }
 
-        [TestMethod]
+        [Test]
         public void PluginServiceContructorWithInvalidXmlExpectedDoesNotThrowExceptionAndInitializesProperties()
         {
             var xml = new XElement("root");
             var service = new PluginService(xml);
-            Assert.AreNotEqual(Guid.Empty, service.ResourceID);
-            Assert.IsTrue(service.IsUpgraded);
-            Assert.AreEqual("PluginService", service.ResourceType);
+            NUnit.Framework.Assert.AreNotEqual(Guid.Empty, service.ResourceID);
+            NUnit.Framework.Assert.IsTrue(service.IsUpgraded);
+            NUnit.Framework.Assert.AreEqual("PluginService", service.ResourceType);
         }
 
-        [TestMethod]
+        [Test]
         public void PluginServiceContructorWithValidXmlExpectedInitializesProperties()
         {
             var xml = XmlResource.Fetch("PluginService");
@@ -67,7 +68,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
 
         #region ToXml
 
-        [TestMethod]
+        [Test]
         public void PluginServiceToXmlExpectedSerializesProperties()
         {
             var expected = new PluginService
@@ -124,16 +125,16 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
 
             var actual = new PluginService(xml);
 
-            Assert.AreEqual(expected.Source.ResourceType, actual.Source.ResourceType);
-            Assert.AreEqual(expected.Source.ResourceID, actual.Source.ResourceID);
-            Assert.AreEqual(expected.Source.ResourceName, actual.Source.ResourceName);
-            Assert.AreEqual(expected.ResourceType, actual.ResourceType);
-            Assert.AreEqual(expected.Namespace, actual.Namespace);
+            NUnit.Framework.Assert.AreEqual(expected.Source.ResourceType, actual.Source.ResourceType);
+            NUnit.Framework.Assert.AreEqual(expected.Source.ResourceID, actual.Source.ResourceID);
+            NUnit.Framework.Assert.AreEqual(expected.Source.ResourceName, actual.Source.ResourceName);
+            NUnit.Framework.Assert.AreEqual(expected.ResourceType, actual.ResourceType);
+            NUnit.Framework.Assert.AreEqual(expected.Namespace, actual.Namespace);
 
             foreach(var expectedParameter in expected.Method.Parameters)
             {
                 var actualParameter = actual.Method.Parameters.First(p => p.Name == expectedParameter.Name);
-                Assert.AreEqual(expectedParameter.DefaultValue, actualParameter.DefaultValue);
+                NUnit.Framework.Assert.AreEqual(expectedParameter.DefaultValue, actualParameter.DefaultValue);
             }
 
             foreach(var expectedRecordset in expected.Recordsets)
@@ -143,14 +144,14 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
                 foreach(var expectedField in expectedRecordset.Fields)
                 {
                     var actualField = actualRecordset.Fields.FirstOrDefault(f => expectedField.Name == null ? f.Name == "" : f.Name == expectedField.Name);
-                    Assert.IsNotNull(actualField);
-                    Assert.AreEqual(expectedField.Alias ?? "", actualField.Alias);
+                    NUnit.Framework.Assert.IsNotNull(actualField);
+                    NUnit.Framework.Assert.AreEqual(expectedField.Alias ?? "", actualField.Alias);
                     if(actualField.Path != null)
                     {
-                        Assert.AreEqual(expectedField.Path.ActualPath, actualField.Path.ActualPath);
-                        Assert.AreEqual(expectedField.Path.DisplayPath, actualField.Path.DisplayPath);
-                        Assert.AreEqual(string.Format("[[{0}]]", expectedField.Alias), actualField.Path.OutputExpression);
-                        Assert.AreEqual(expectedField.Path.SampleData, actualField.Path.SampleData);
+                        NUnit.Framework.Assert.AreEqual(expectedField.Path.ActualPath, actualField.Path.ActualPath);
+                        NUnit.Framework.Assert.AreEqual(expectedField.Path.DisplayPath, actualField.Path.DisplayPath);
+                        NUnit.Framework.Assert.AreEqual(string.Format("[[{0}]]", expectedField.Alias), actualField.Path.OutputExpression);
+                        NUnit.Framework.Assert.AreEqual(expectedField.Path.SampleData, actualField.Path.SampleData);
                     }
                 }
             }
@@ -162,16 +163,16 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
 
         public static void VerifyEmbeddedPluginService(PluginService service)
         {
-            Assert.AreEqual(Guid.Parse("89098b76-ac11-40b2-b3e8-b175314cb3bb"), service.ResourceID);
-            Assert.AreEqual("PluginService", service.ResourceType);
-            Assert.AreEqual(Guid.Parse("00746beb-46c1-48a8-9492-e2d20817fcd5"), service.Source.ResourceID);
-            Assert.AreEqual("PluginTesterSource", service.Source.ResourceName);
-            Assert.AreEqual("Dev2.Terrain.Mountain", service.Namespace);
-            Assert.AreEqual("Echo", service.Method.Name);
+            NUnit.Framework.Assert.AreEqual(Guid.Parse("89098b76-ac11-40b2-b3e8-b175314cb3bb"), service.ResourceID);
+            NUnit.Framework.Assert.AreEqual("PluginService", service.ResourceType);
+            NUnit.Framework.Assert.AreEqual(Guid.Parse("00746beb-46c1-48a8-9492-e2d20817fcd5"), service.Source.ResourceID);
+            NUnit.Framework.Assert.AreEqual("PluginTesterSource", service.Source.ResourceName);
+            NUnit.Framework.Assert.AreEqual("Dev2.Terrain.Mountain", service.Namespace);
+            NUnit.Framework.Assert.AreEqual("Echo", service.Method.Name);
 
-            Assert.AreEqual("<root>hello</root>", service.Method.Parameters.First(p => p.Name == "text").DefaultValue);
+            NUnit.Framework.Assert.AreEqual("<root>hello</root>", service.Method.Parameters.First(p => p.Name == "text").DefaultValue);
 
-            Assert.AreEqual("reverb", service.Recordsets[0].Fields.First(f => f.Name == "echo").Alias);
+            NUnit.Framework.Assert.AreEqual("reverb", service.Recordsets[0].Fields.First(f => f.Name == "echo").Alias);
         }
 
         #endregion

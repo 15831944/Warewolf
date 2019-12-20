@@ -13,21 +13,22 @@ using System.Collections.Generic;
 using Dev2.Calculate;
 using Dev2.Studio.InterfaceImplementors;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Core.Tests.IntellisenseProvider
 {
-    [TestClass]
-    [TestCategory("Intellisense Provider Core")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Intellisense Provider Core")]
     public class CalculateIntellisenseProviderTest
     {
         
         #region CalculateIntellisenseProvider Tests
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CalculateIntellisenseProvider_Construct")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CalculateIntellisenseProvider_Construct")]
         public void CalculateIntellisenseProvider_Construct_DefaultPropertiesAreSet()
         {
             var calculateIntellisenseProvider = GetCalculateProvider(false);
@@ -39,9 +40,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.IsFalse(calculateIntellisenseProvider.Optional);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CalculateIntellisenseProvider_GetIntellisenseResults")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CalculateIntellisenseProvider_GetIntellisenseResults")]
         public void CalculateIntellisenseProvider_GetIntellisenseResults_InputBeginsCaretPositonedAfterTwoCharacters_ResultsFilteredBasedOnCharacters()
         {
             var context = new IntellisenseProviderContext
@@ -62,9 +63,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual("seriessum", results[3].Name);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CalculateIntellisenseProvider_GetIntellisenseResults")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CalculateIntellisenseProvider_GetIntellisenseResults")]
         public void CalculateIntellisenseProvider_GetIntellisenseResults_DesiredIsEntireSet_ResultAllResult()
         {
             var context = new IntellisenseProviderContext
@@ -81,9 +82,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(4, results.Count);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CalculateIntellisenseProvider_GetIntellisenseResults")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CalculateIntellisenseProvider_GetIntellisenseResults")]
         public void CalculateIntellisenseProvider_GetIntellisenseResults_CalculateModeIsFalse_ResultCountIsZero()
         {
             var context = new IntellisenseProviderContext
@@ -99,9 +100,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(0, results.Count);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CalculateIntellisenseProvider_GetIntellisenseResults")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CalculateIntellisenseProvider_GetIntellisenseResults")]
         public void CalculateIntellisenseProvider_GetIntellisenseResults_ProviderContextIsNull_ResultsCountIsZero()
         {
             var calculateIntellisenseProvider = new CalculateIntellisenseProvider();
@@ -109,9 +110,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(0, results.Count);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CalculateIntellisenseProvider_GetIntellisenseResults")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CalculateIntellisenseProvider_GetIntellisenseResults")]
         public void CalculateIntellisenseProvider_GetIntellisenseResults_InputStringIsEmpty_ResultsCountIsZero()
         {
             var context = new IntellisenseProviderContext
@@ -127,9 +128,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(175, results.Count);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CalculateIntellisenseProvider_GetIntellisenseResults")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CalculateIntellisenseProvider_GetIntellisenseResults")]
         public void CalculateIntellisenseProvider_GetIntellisenseResults_InputStringIsNull_ResultsCountIsZero()
         {
             var context = new IntellisenseProviderContext
@@ -145,9 +146,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(175, results.Count);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CalculateIntellisenseProvider_GetIntellisenseResults")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CalculateIntellisenseProvider_GetIntellisenseResults")]
         public void CalculateIntellisenseProvider_GetIntellisenseResults_CaretPositionIsZero_ResultsCountIsZero()
         {
             var context = new IntellisenseProviderContext
@@ -163,9 +164,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(4, results.Count);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CalculateIntellisenseProvider_GetIntellisenseResults")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CalculateIntellisenseProvider_GetIntellisenseResults")]
         public void CalculateIntellisenseProvider_GetIntellisenseResults_DesiredResultSetIsEntiresetAndInputIsInvalidText_EntiresetPlusAndError()
         {
             var context = new IntellisenseProviderContext
@@ -183,9 +184,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
            
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CalculateIntellisenseProvider_GetIntellisenseResults")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CalculateIntellisenseProvider_GetIntellisenseResults")]
         public void CalculateIntellisenseProvider_GetIntellisenseResults_DesiredResultsetIsClosestMatchAndInputTextIsNotFound_AnError()
         {
             var context = new IntellisenseProviderContext
@@ -202,9 +203,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(0, results.Count);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CalculateIntellisenseProvider_GetIntellisenseResults")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CalculateIntellisenseProvider_GetIntellisenseResults")]
         public void CalculateIntellisenseProvider_GetIntellisenseResults_DesiredResultsetIsClosestMatchAndInputTextIsFound_ResultPlusAnError()
         {
             var context = new IntellisenseProviderContext
@@ -223,9 +224,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual("Sums all the numbers given as arguments and returns the sum.", results[0].Description);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CalculateIntellisenseProvider_GetIntellisenseResults")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CalculateIntellisenseProvider_GetIntellisenseResults")]
         public void CalculateIntellisenseProvider_GetIntellisenseResults_DesiredResultsetIsDefaultExpressionIsIncomplete_AnError()
         {
             var context = new IntellisenseProviderContext
@@ -243,9 +244,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual("sum", results[0].Name);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CalculateIntellisenseProvider_PerformResultInsertion")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CalculateIntellisenseProvider_PerformResultInsertion")]
         [ExpectedException(typeof(NotSupportedException))]
         public void CalculateIntellisenseProvider_PerformResultInsertion_ValidContext_ThrowsException()
         {
@@ -261,9 +262,9 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             calculateIntellisenseProvider.PerformResultInsertion("some string", context);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CalculateIntellisenseProvider_Dispose")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CalculateIntellisenseProvider_Dispose")]
         public void CalculateIntellisenseProvider_Dispose_IntellisenseResultIsNullified()
         {
             var calculateIntellisenseProvider = new CalculateIntellisenseProvider();
@@ -273,18 +274,18 @@ namespace Dev2.Core.Tests.IntellisenseProvider
             Assert.AreEqual(null, calculateIntellisenseProvider.IntellisenseResult);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CalculateIntellisenseProvider_Optional")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CalculateIntellisenseProvider_Optional")]
         public void CalculateIntellisenseProvider_IsOptional_False()
         {
             var calculateIntellisenseProvider = new CalculateIntellisenseProvider();
             Assert.AreEqual(false, calculateIntellisenseProvider.Optional);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CalculateIntellisenseProvider_HandlesResultInsertion")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CalculateIntellisenseProvider_HandlesResultInsertion")]
         public void CalculateIntellisenseProvider_HandlesResultInsertion_False()
         {
             var calculateIntellisenseProvider = new CalculateIntellisenseProvider();

@@ -18,7 +18,7 @@ using Dev2.Common.Interfaces.Wrappers;
 using Dev2.Common.Wrappers;
 using Dev2.Communication;
 using Dev2.PerformanceCounters.Management;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
@@ -79,21 +79,22 @@ namespace Dev2.Diagnostics.Test
         }
     }
 
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class PerformanceCounterPersistenceTest
     {
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("PerformanceCounterPersistence_Load")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("PerformanceCounterPersistence_Load")]
         public void CtorTest()
         {
             var obj = new PerformanceCounterPersistence( new Mock<IFile>().Object);
             Assert.IsNotNull(obj);
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("PerformanceCounterPersistence_Load")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("PerformanceCounterPersistence_Load")]
         public void PerformanceCounterPersistence_SaveEmpty_ExpectCountersSaved()
         {
         
@@ -111,9 +112,9 @@ namespace Dev2.Diagnostics.Test
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("PerformanceCounterPersistence_Load")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("PerformanceCounterPersistence_Load")]
         public void PerformanceCounterPersistence_Save_ExpectCountersSaved()
         {
 
@@ -134,9 +135,9 @@ namespace Dev2.Diagnostics.Test
 
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("PerformanceCounterPersistence_Load")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("PerformanceCounterPersistence_Load")]
         public void PerformanceCounterPersistence_Load_ExpectCountersLoadedForExistingFile()
         {
             var _file = new Mock<IFile>();
@@ -158,9 +159,9 @@ namespace Dev2.Diagnostics.Test
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("PerformanceCounterPersistence_Load")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("PerformanceCounterPersistence_Load")]
         public void PerformanceCounterPersistence_Load_ExpectCountersRecreatedForNoFile()
         {
             var _file = new Mock<IFile>();
@@ -181,9 +182,9 @@ namespace Dev2.Diagnostics.Test
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("PerformanceCounterPersistence_Load")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("PerformanceCounterPersistence_Load")]
         public void PerformanceCounterPersistence_Load_ResourceCounters()
         {
             var _file = new Mock<IFile>();
@@ -207,9 +208,9 @@ namespace Dev2.Diagnostics.Test
             File.Delete(fileName);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("PerformanceCounterPersistence_Load")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("PerformanceCounterPersistence_Load")]
         public void PerformanceCounterPersistence_Load_ResourceCounters_NonExistLoadDefault()
         {
             var _file = new Mock<IFile>();

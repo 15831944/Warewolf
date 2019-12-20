@@ -9,7 +9,7 @@
 */
 
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Common.Tests
 {
@@ -38,12 +38,13 @@ namespace Dev2.Common.Tests
 #pragma warning restore 169
     }
 
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class MapperTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(FieldAndPropertyMapper))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(FieldAndPropertyMapper))]
         public void Mapper_Map_GivenObjects_ShouldMapCorrectly()
         {
             var fieldAndPropertyMapper = new FieldAndPropertyMapper();
@@ -71,9 +72,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(100, child.ParentId);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(FieldAndPropertyMapper))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(FieldAndPropertyMapper))]
         public void Mapper_Map_ObjectsNoActions_ShouldMapCorrectly()
         {
             var fieldAndPropertyMapper = new FieldAndPropertyMapper();
@@ -100,9 +101,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(parent.Surname, child.Surname);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(FieldAndPropertyMapper))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(FieldAndPropertyMapper))]
         public void Mapper_Map_TMapTo_IsNotNull_ExpectArgumentNullException()
         {
             var fieldAndPropertyMapper = new FieldAndPropertyMapper();
@@ -116,12 +117,12 @@ namespace Dev2.Common.Tests
             //---------------Assert Precondition----------------
             //---------------Execute Test ----------------------
             //---------------Test Result -----------------------
-            Assert.ThrowsException<ArgumentNullException>(() => fieldAndPropertyMapper.Map(default(Parent), child));
+            Assert.Throws<ArgumentNullException>(() => fieldAndPropertyMapper.Map(default(Parent), child));
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(FieldAndPropertyMapper))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(FieldAndPropertyMapper))]
         public void Mapper_Map_TMapTo_IsNull_ExpectNoArgumentNullException()
         {
             var fieldAndPropertyMapper = new FieldAndPropertyMapper();
@@ -141,9 +142,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(100, parent.Id);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(FieldAndPropertyMapper))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(FieldAndPropertyMapper))]
         public void Mapper_Map_TMapTo_IsNotNull_ExpectNoArgumentNullException()
         {
             var fieldAndPropertyMapper = new FieldAndPropertyMapper();

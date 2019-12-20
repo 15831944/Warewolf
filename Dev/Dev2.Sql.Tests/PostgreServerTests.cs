@@ -4,18 +4,20 @@ using System.Data;
 using System.Data.SqlClient;
 using Dev2.Common.Interfaces.Services.Sql;
 using Dev2.Services.Sql;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dev2.Sql.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class PostgreServerTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("PostgreServer_Connect")]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("PostgreServer_Connect")]
+        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
         
         public void PostgreServer_Connect_ConnectionStringIsNull_ThrowsArgumentNullException()
     
@@ -35,10 +37,10 @@ namespace Dev2.Sql.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("PostgreServer_Connect")]
-        [ExpectedException(typeof(ArgumentException))]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("PostgreServer_Connect")]
+        [NUnit.Framework.ExpectedException(typeof(ArgumentException))]
         
         public void PostgreServer_Connect_ConnectionStringIsInvalid_ThrowsArgumentException()
     
@@ -58,10 +60,10 @@ namespace Dev2.Sql.Tests
             }
         }
         
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("PostgreServer_FetchDataTable")]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("PostgreServer_FetchDataTable")]
+        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
         
         public void PostgreServer_FetchDataTable_CommandIsNull_ThrowsArgumentNullException()
     
@@ -81,10 +83,10 @@ namespace Dev2.Sql.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("PostgreServer_FetchDatabases")]
-        [ExpectedException(typeof(Exception))]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("PostgreServer_FetchDatabases")]
+        [NUnit.Framework.ExpectedException(typeof(Exception))]
         
         public void PostgreServer_FetchDatabases_ConnectionNotInitialized_ThrowsConnectFirstException()
     
@@ -104,10 +106,10 @@ namespace Dev2.Sql.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("PostgreServer_FetchStoredProcedures")]
-        [ExpectedException(typeof(ArgumentNullException))]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("PostgreServer_FetchStoredProcedures")]
+        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
         
         public void PostgreServer_FetchStoredProcedures_FunctionProcessorIsNull_ThrowsArgumentNullException()
     
@@ -132,9 +134,9 @@ namespace Dev2.Sql.Tests
         
         
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("PostgreServer_FetchDataTable_addParams")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("PostgreServer_FetchDataTable_addParams")]
         
         public void PostgreServer_FetchDataTable_AddParams_VerifyAllAdded()
     
@@ -168,7 +170,7 @@ namespace Dev2.Sql.Tests
                 var param = new IDbDataParameter[] { new SqlParameter("a", "a"), new SqlParameter("b", "b") };
 
                 PostgreServer.AddParameters(mockCommand.Object,param);
-                Assert.AreEqual(2,added.Count);
+                NUnit.Framework.Assert.AreEqual(2,added.Count);
 
 
                 //------------Assert Results-------------------------
@@ -179,9 +181,9 @@ namespace Dev2.Sql.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("PostgreServer_FetchDataTable_addParams")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("PostgreServer_FetchDataTable_addParams")]
         
         public void PostgreServer_FetchDataTable_ConnectionsString()
     
@@ -211,7 +213,7 @@ namespace Dev2.Sql.Tests
                 pvt.SetField("_command", mockCommand.Object);
                 //------------Execute Test---------------------------
 
-                Assert.AreEqual("bob", sqlServer.ConnectionString);
+                NUnit.Framework.Assert.AreEqual("bob", sqlServer.ConnectionString);
 
             }
             finally
@@ -220,9 +222,9 @@ namespace Dev2.Sql.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("PostgreServer_FetchDataTable_addParams")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("PostgreServer_FetchDataTable_addParams")]
         
         public void PostgreServer_FetchDataTable_ConnectionsStringNull()
     
@@ -247,7 +249,7 @@ namespace Dev2.Sql.Tests
             var sqlServer = new PostgreServer(factory.Object);
             try
             {
-                Assert.IsNull( sqlServer.ConnectionString);
+                NUnit.Framework.Assert.IsNull( sqlServer.ConnectionString);
 
             }
             finally
@@ -256,9 +258,9 @@ namespace Dev2.Sql.Tests
             }
         }
         
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("PostgreServer_FetchDataTable_addParams")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("PostgreServer_FetchDataTable_addParams")]
         
         public void PostgreServer_CreateCommand_CreateCommand()
     
@@ -299,9 +301,9 @@ namespace Dev2.Sql.Tests
         }
 
         
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("PostgreServer_IsTableValueFunction")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("PostgreServer_IsTableValueFunction")]
         
         public void PostgreServer_IsTableValueFunction_InvalidRow()
     
@@ -310,14 +312,14 @@ namespace Dev2.Sql.Tests
 
         
             //------------Execute Test---------------------------
-            Assert.IsFalse(  SqlServer.IsTableValueFunction(null,null));
+            NUnit.Framework.Assert.IsFalse(  SqlServer.IsTableValueFunction(null,null));
 
             //------------Assert Results-------------------------
        
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("PostgreServer_IsFunction")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("PostgreServer_IsFunction")]
 
         
         public void PostgreServer_IsFunction_InvalidRow()
@@ -327,14 +329,14 @@ namespace Dev2.Sql.Tests
 
 
             //------------Execute Test---------------------------
-            Assert.IsFalse(SqlServer.IsFunction(null, null));
+            NUnit.Framework.Assert.IsFalse(SqlServer.IsFunction(null, null));
 
             //------------Assert Results-------------------------
 
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("PostgreServer_IsSp")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("PostgreServer_IsSp")]
         
         public void PostgreServer_IsSP_InvalidRow()
     
@@ -343,7 +345,7 @@ namespace Dev2.Sql.Tests
 
 
             //------------Execute Test---------------------------
-            Assert.IsFalse(SqlServer.IsStoredProcedure(null, null));
+            NUnit.Framework.Assert.IsFalse(SqlServer.IsStoredProcedure(null, null));
 
             //------------Assert Results-------------------------
 
@@ -352,10 +354,10 @@ namespace Dev2.Sql.Tests
 
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("PostgreServer_CreateCommand")]
-        [ExpectedException(typeof(Exception))]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("PostgreServer_CreateCommand")]
+        [NUnit.Framework.ExpectedException(typeof(Exception))]
         
         public void PostgreServer_CreateCommand_ConnectionNotInitialized_ThrowsConnectFirstException()
     

@@ -17,22 +17,23 @@ using Dev2.Common.Interfaces.Core.DynamicServices;
 using Dev2.Common.Interfaces.Enums;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Services.Security;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Newtonsoft.Json;
 
 namespace Dev2.Tests.Runtime.Services
 {
     
 
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SecurityWriteTests
     {
 
         #region Execute
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SecurityWrite_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SecurityWrite_Execute")]
         [ExpectedException(typeof(InvalidDataException))]
         public void SecurityWrite_Execute_NoSecuritySettingsValuePassed_ExceptionThrown()
         {
@@ -43,9 +44,9 @@ namespace Dev2.Tests.Runtime.Services
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SecurityWrite_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SecurityWrite_Execute")]
         [ExpectedException(typeof(InvalidDataException))]
         public void SecurityWrite_Execute_NoValuesPassed_ExceptionThrown()
         {
@@ -56,9 +57,9 @@ namespace Dev2.Tests.Runtime.Services
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SecurityWrite_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SecurityWrite_Execute")]
         [ExpectedException(typeof(InvalidDataException))]
         public void SecurityWrite_Execute_SecuritySettingsValuePassedNotValidJSON_ExceptionThrown()
         {
@@ -69,9 +70,9 @@ namespace Dev2.Tests.Runtime.Services
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SecurityWrite_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SecurityWrite_Execute")]
         public void SecurityWrite_Execute_SecuritySettingsValuePassedValidJSON_ShouldWriteFile()
         {
             //------------Setup for test--------------------------
@@ -96,7 +97,7 @@ namespace Dev2.Tests.Runtime.Services
 
         #region HandlesType
 
-        [TestMethod]
+        [Test]
         public void SecurityWrite_HandlesType_ReturnsSecurityWriteService()
         {
             var esb = new SecurityWrite();
@@ -108,7 +109,7 @@ namespace Dev2.Tests.Runtime.Services
 
         #region CreateServiceEntry
 
-        [TestMethod]
+        [Test]
         public void SecurityWrite_CreateServiceEntry_ReturnsDynamicService()
         {
             var esb = new SecurityWrite();
@@ -125,9 +126,9 @@ namespace Dev2.Tests.Runtime.Services
 
         #endregion
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityWrite_Write")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityWrite_Write")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SecurityWrite_Write_SecuritySettingsIsNull_ThrowsArgumentNullException()
         {
@@ -139,9 +140,9 @@ namespace Dev2.Tests.Runtime.Services
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityWrite_Write")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityWrite_Write")]
         public void SecurityWrite_Write_SecuritySettingsIsNotNull_PersistsSecuritySettings()
         {
             //------------Setup for test--------------------------
@@ -160,9 +161,9 @@ namespace Dev2.Tests.Runtime.Services
             File.Delete(EnvironmentVariables.ServerSecuritySettingsFile);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -174,9 +175,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------

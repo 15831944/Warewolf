@@ -11,13 +11,14 @@ using Dev2.Common.Interfaces.Help;
 using Dev2.Data.ServiceModel;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Activities.Designers.Tests.DropBox2016.Delete
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DropBoxDeleteViewModelTest
     {
         DropBoxDeleteViewModel CreateMockViewModel()
@@ -34,9 +35,9 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Delete
             return modelItem;
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DropBoxDeleteViewModel_Construct")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DropBoxDeleteViewModel_Construct")]
         public void DropBoxDeleteViewModel_Construct_GivenNewInstance_ShouldBeActivityViewModel()
         {
             //------------Setup for test--------------------------
@@ -46,12 +47,12 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Delete
             Assert.IsFalse(dropBoxDeleteViewModel.ShowLarge);
             Assert.AreEqual(dropBoxDeleteViewModel.ThumbVisibility, Visibility.Collapsed);
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(dropBoxDeleteViewModel, typeof(ActivityDesignerViewModel));
+            Assert.IsInstanceOf(dropBoxDeleteViewModel.GetType(), typeof(ActivityDesignerViewModel));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DropBoxDeleteViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DropBoxDeleteViewModel_Handle")]
         public void DropBoxDeleteViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -67,9 +68,9 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Delete
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DropBoxDeleteViewModel_Sources")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DropBoxDeleteViewModel_Sources")]
         public void DropBoxDeleteViewModel_Sources_GivenANewDropBoxViewModel_ShouldHaveNotBeNull()
         {
             //------------Setup for test--------------------------
@@ -78,13 +79,13 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Delete
             //------------Execute Test---------------------------
             dropBoxDeleteViewModel.Validate();
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(dropBoxDeleteViewModel, typeof(ActivityDesignerViewModel));
+            Assert.IsInstanceOf(dropBoxDeleteViewModel.GetType(), typeof(ActivityDesignerViewModel));
             Assert.IsNotNull(dropBoxDeleteViewModel.Sources);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DropBoxDeleteViewModel_DeletePath")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DropBoxDeleteViewModel_DeletePath")]
         public void DropBoxDeleteViewModel_DeletePath_GivenActivityIsNew_ShouldBeNullOrEmpty()
         {
             //------------Setup for test--------------------------
@@ -97,9 +98,9 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Delete
             Assert.IsTrue(string.IsNullOrEmpty(dropBoxDeleteViewModel.DeletePath));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DropBoxDeleteViewModel_Result")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DropBoxDeleteViewModel_Result")]
         public void DropBoxDeleteViewModel_Result_GivenActivityIsNew_ShouldBeNullOrEmpty()
         {
             //------------Setup for test--------------------------
@@ -111,9 +112,9 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Delete
             Assert.IsTrue(string.IsNullOrEmpty(dropBoxDeleteViewModel.Result));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DropBoxDeleteViewModel_SelectedSourceName")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DropBoxDeleteViewModel_SelectedSourceName")]
         public void DropBoxDeleteViewModel_SelectedSourceName_GivenActivityIsNewAndNoSourceSelected_ShouldBeNullOrEmpty()
         {
             //------------Setup for test--------------------------
@@ -125,9 +126,9 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Delete
             Assert.IsNull(dropBoxDeleteViewModel.SelectedSource);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DropBoxDeleteViewModel_Sources")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DropBoxDeleteViewModel_Sources")]
         public void DropBoxDeleteViewModel_Sources_EditSource_PublishesMessage()
         {
             //------------Setup for test--------------------------
@@ -147,9 +148,9 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Delete
             CustomContainer.DeRegister<IShellViewModel>();
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DropBoxDeleteViewModel_Sources")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DropBoxDeleteViewModel_Sources")]
         public void DropBoxDeleteViewModel_Sources_EditSource_OnlyAvailableIfSourceSelected()
         {
             //------------Setup for test--------------------------
@@ -163,9 +164,9 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Delete
             Assert.IsTrue(dropBoxDeleteViewModel.IsDropboxSourceSelected);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DropBoxDeleteViewModel_Sources")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DropBoxDeleteViewModel_Sources")]
         public void DropBoxDeleteViewModel_Sources_EditSource_AvailableIfSourceSelected()
         {
             //------------Setup for test--------------------------
@@ -180,9 +181,9 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Delete
             Assert.IsTrue(dropBoxDeleteViewModel.IsDropboxSourceSelected);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DropBoxDeleteViewModel_DeletePath")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DropBoxDeleteViewModel_DeletePath")]
         public void DropBoxDeleteViewModel_DeletePath_GivenIsSet_ShouldSetModelItemProperty()
         {
             //------------Setup for test--------------------------
@@ -204,9 +205,9 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Delete
             Assert.AreEqual("A", modelPropertyValue);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DropBoxDeleteViewModel_Result")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DropBoxDeleteViewModel_Result")]
         public void DropBoxDeleteViewModel_Result_GivenIsSet_ShouldSetModelItemProperty()
         {
             //------------Setup for test--------------------------
@@ -227,9 +228,9 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Delete
             Assert.AreEqual("A", modelPropertyValue);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DropBoxDeleteViewModel_CreateOAuthSource")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DropBoxDeleteViewModel_CreateOAuthSource")]
         public void DropBoxDeleteViewModel_CreateOAuthSource_GivenCanPublish_ShouldResfreshSources()
         {
             //------------Setup for test--------------------------

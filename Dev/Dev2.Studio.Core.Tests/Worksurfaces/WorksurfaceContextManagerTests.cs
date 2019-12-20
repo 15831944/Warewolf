@@ -19,7 +19,7 @@ using Dev2.Common.Interfaces.ToolBase.ExchangeEmail;
 using Dev2.Common.Interfaces.Versioning;
 using Dev2.Studio.ViewModels;
 using Dev2.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Dev2.Studio.Interfaces;
 using Microsoft.Practices.Prism.Mvvm;
@@ -28,14 +28,15 @@ using Action = System.Action;
 
 namespace Dev2.Core.Tests
 {
-    [TestClass]
-    [TestCategory("Studio Worksurfaces Core")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Studio Worksurfaces Core")]
     public class WorksurfaceContextManagerTests : MainViewModelBase
     {
         Action _verifyAction;
         Action _setActiveServerAction;
 
-        [TestInitialize]
+        [SetUp]
         public void Initialize()
         {
             AppUsageStats.LocalHost = "http://localhost:3142";
@@ -58,8 +59,8 @@ namespace Dev2.Core.Tests
             CustomContainer.Register(new Mock<Microsoft.Practices.Prism.PubSubEvents.IEventAggregator>().Object);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Constructor_GivenIsCalled_ShouldPassThrough()
         {
             //---------------Set up test pack-------------------
@@ -73,8 +74,8 @@ namespace Dev2.Core.Tests
             Assert.IsNotNull(sorksurfaceContextManager);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void EditResource_GivenIsSharepointSource_ShouldPassThrough()
         {
             //---------------Set up test pack-------------------
@@ -95,8 +96,8 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void EditResource_GivenIsOAuthSource_ShouldPassThrough()
         {
             //---------------Set up test pack-------------------
@@ -116,8 +117,8 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void EditWcfSource_GivenResourceModel_ShouldPassThrough()
         {
             //---------------Set up test pack-------------------
@@ -142,8 +143,8 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void EditRabbitMQSource_GivenResourceModel_ShouldPassThrough()
         {
             //---------------Set up test pack-------------------
@@ -168,8 +169,8 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void EditDropBoxSource_GivenResourceModel_ShouldPassThrough()
         {
             //---------------Set up test pack-------------------
@@ -194,8 +195,8 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void EditExchangeSource_GivenResourceModel_ShouldPassThrough()
         {
             //---------------Set up test pack-------------------
@@ -220,8 +221,8 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void EditEmailSource_GivenResourceModel_ShouldPassThrough()
         {
             //---------------Set up test pack-------------------
@@ -246,8 +247,8 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void EditSharePointSource_GivenResourceModel_ShouldPassThrough()
         {
             //---------------Set up test pack-------------------
@@ -272,8 +273,8 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void EditWebSource_GivenResourceModel_ShouldPassThrough()
         {
             //---------------Set up test pack-------------------
@@ -298,8 +299,8 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void EditComPluginSource_GivenResourceModel_ShouldPassThrough()
         {
             //---------------Set up test pack-------------------
@@ -325,8 +326,8 @@ namespace Dev2.Core.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void EditOdbcSource_GivenResourceModel_ShouldPassThrough()
         {
             //---------------Set up test pack-------------------
@@ -352,8 +353,8 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void EditOracleSource_GivenResourceModel_ShouldPassThrough()
         {
             //---------------Set up test pack-------------------
@@ -378,8 +379,8 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void EditPostgreSqlSource_GivenResourceModel_ShouldPassThrough()
         {
             //---------------Set up test pack-------------------
@@ -403,8 +404,8 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(afterCount > beforeCount);
 
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void EditMySqlSource_GivenResourceModel_ShouldPassThrough()
         {
             //---------------Set up test pack-------------------
@@ -429,8 +430,8 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void EditSqlServerSource_GivenResourceModel_ShouldPassThrough()
         {
             //---------------Set up test pack-------------------
@@ -456,8 +457,8 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DisplayResourceWizard_GivenSqlDatabaseResourceType_ShouldEditSqlDatabse()
         {
             //---------------Set up test pack-------------------
@@ -489,8 +490,8 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(workSurfaceViewModels);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DisplayResourceWizard_GivenODBCResourceType_ShouldEditODBC()
         {
             //---------------Set up test pack-------------------
@@ -520,8 +521,8 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(workSurfaceViewModels);
 
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DisplayResourceWizard_GivenOracleResourceType_ShouldEditODBC()
         {
             //---------------Set up test pack-------------------
@@ -552,8 +553,8 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DisplayResourceWizard_GivenPostgreSQLResourceType_ShouldEditODBC()
         {
             //---------------Set up test pack-------------------
@@ -583,8 +584,8 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DisplayResourceWizard_GivenMySqlDatabaseResourceType_ShouldEditODBC()
         {
             //---------------Set up test pack-------------------
@@ -614,8 +615,8 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DisplayResourceWizard_GivenWebSourceResourceType_ShouldEditWebSource()
         {
             //---------------Set up test pack-------------------
@@ -645,8 +646,8 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
 
 
         public void DisplayResourceWizard_GivenWcfSourceResourceType_ShouldEditWcfSource()
@@ -677,8 +678,8 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(workSurfaceViewModels);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DisplayResourceWizard_GivenEmailSourceResourceType_ShouldEditEmailSource()
         {
             //---------------Set up test pack-------------------
@@ -707,8 +708,8 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(workSurfaceViewModels);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
 
 
         public void DisplayResourceWizard_GivenExchangeSourceResourceType_ShouldEditExchangeSource()
@@ -739,8 +740,8 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(workSurfaceViewModels);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
 
 
         public void DisplayResourceWizard_GivenDropBoxSourceResourceType_ShouldEditDropBoxSource()
@@ -771,8 +772,8 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(workSurfaceViewModels);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
 
 
         public void DisplayResourceWizard_GivenSharepointServerSourceResourceType_ShouldEditSharepointServerSource()
@@ -803,8 +804,8 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(workSurfaceViewModels);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DisplayResourceWizard_GivenOauthSourceResourceType_ShouldEditOauthSource()
         {
             //---------------Set up test pack-------------------
@@ -835,8 +836,8 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(workSurfaceViewModels);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
 
 
         public void DisplayResourceWizard_GivenRabbitMQSourceResourceType_ShouldEditRabbitMQSource()
@@ -867,8 +868,8 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(workSurfaceViewModels);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
 
 
         public void DisplayResourceWizard_GivenServerType_ShouldEditServer()
@@ -898,8 +899,8 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(workSurfaceViewModels);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DisplayResourceWizard_GivenDev2ServerType_ShouldDev2Server()
         {
             //---------------Set up test pack-------------------
@@ -932,8 +933,8 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(workSurfaceViewModels);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
 
 
         public void DisplayResourceWizard_GivenServerSourceType_ShouldServerSource()
@@ -960,8 +961,8 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(workSurfaceViewModels);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void OpenVersion_GivenVersionType_ShouldLoadResourceModel()
         {
             //---------------Set up test pack-------------------
@@ -992,8 +993,8 @@ namespace Dev2.Core.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Author("Hagashen Naidu")]
         public void AddEventsWorkSurface_ShouldPassThrough()
         {
             //---------------Set up test pack-------------------
@@ -1012,8 +1013,8 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Author("Hagashen Naidu")]
         public void AddSchedulerWorkSurface_ShouldPassThrough()
         {
             //---------------Set up test pack-------------------
@@ -1032,8 +1033,8 @@ namespace Dev2.Core.Tests
 
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Author("Hagashen Naidu")]
         public void AddTasksSurface_ShouldPassThrough()
         {
             //---------------Set up test pack-------------------

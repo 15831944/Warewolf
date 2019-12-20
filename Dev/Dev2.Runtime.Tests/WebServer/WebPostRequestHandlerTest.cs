@@ -17,7 +17,7 @@ using Dev2.Common.Interfaces.Monitoring;
 using Dev2.PerformanceCounters.Counters;
 using Dev2.Runtime.WebServer;
 using Dev2.Runtime.WebServer.Handlers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.Runtime.WebServer
@@ -25,11 +25,12 @@ namespace Dev2.Tests.Runtime.WebServer
     /// <summary>
     /// Summary description for WebPostRequestHandlerTest
     /// </summary>
-    [TestClass]
-    [TestCategory("Runtime WebServer")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime WebServer")]
     public class WebPostRequestHandlerTest
     {
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void Init(TestContext context)
         {
             var pCounter = new Mock<IWarewolfPerformanceCounterLocater>();
@@ -44,9 +45,9 @@ namespace Dev2.Tests.Runtime.WebServer
         ///</summary>
         public TestContext TestContext { get; set; }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("WebPostRequestHandler_ProcessRequest")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("WebPostRequestHandler_ProcessRequest")]
         public void WebPostRequestHandler_ProcessRequest_WhenValidUserContext_ExpectExecution()
         {
             //------------Setup for test--------------------------

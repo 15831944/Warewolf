@@ -14,12 +14,13 @@ using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Runtime.Interfaces;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FindDependenciesTests
     {
         ExecuteMessage ConvertToMsg(StringBuilder msg)
@@ -29,19 +30,19 @@ namespace Dev2.Tests.Runtime.Services
             return result;
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(FindDependencies))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(FindDependencies))]
         public void FindDependenciesConstructor()
         {
             var esb = new FindDependencies();
             Assert.IsNotNull(esb);
-            Assert.IsInstanceOfType(esb,typeof(IEsbManagementEndpoint));
+            Assert.IsInstanceOf(esb.GetType(), typeof(IEsbManagementEndpoint));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(FindDependencies))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(FindDependencies))]
         [ExpectedException(typeof(InvalidDataContractException))]
         public void FindDependencies_Execute_NullResourceId_Exception()
         {
@@ -53,9 +54,9 @@ namespace Dev2.Tests.Runtime.Services
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(FindDependencies))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(FindDependencies))]
         [ExpectedException(typeof(InvalidDataContractException))]
         public void FindDependencies_Execute_EmptyResourceId_Exception()
         {
@@ -67,9 +68,9 @@ namespace Dev2.Tests.Runtime.Services
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(FindDependencies))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(FindDependencies))]
         [ExpectedException(typeof(InvalidDataContractException))]
         public void FindDependencies_Execute_NonGuidResourceId_Exception()
         {
@@ -81,9 +82,9 @@ namespace Dev2.Tests.Runtime.Services
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(FindDependencies))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(FindDependencies))]
         [ExpectedException(typeof(InvalidDataContractException))]
         public void FindDependencies_Execute_ResourceIdKeyNotPresent_Exception()
         {
@@ -95,9 +96,9 @@ namespace Dev2.Tests.Runtime.Services
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(FindDependencies))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(FindDependencies))]
         public void FindDependencies_Execute_GetDependsOnMe_ShouldReturnDependantsRecursive()
         {
             //------------Setup for test--------------------------
@@ -151,9 +152,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(parentDepDepId.ToString(), node3.Attribute("id").Value);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(FindDependencies))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(FindDependencies))]
         public void FindDependencies_Execute_GetDependsOnMeFalse_ShouldReturnDependenciesRecursive()
         {
             //------------Setup for test--------------------------
@@ -207,9 +208,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(parentDepDepId.ToString(), node2Dep.Attribute("id").Value);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(FindDependencies))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(FindDependencies))]
         public void FindDependencies_Execute_GetDependsOnMe_WhenCircular_ShouldReturnDependantsRecursive()
         {
             //------------Setup for test--------------------------
@@ -267,9 +268,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(parentResourceId.ToString(), node3Dep.Attribute("id").Value);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(FindDependencies))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(FindDependencies))]
         public void FindDependencies_LogHandlesTypeExpectedReturnsFindDependencyService()
         {
             var esb = new FindDependencies();
@@ -277,9 +278,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("FindDependencyService", result);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(FindDependencies))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(FindDependencies))]
         public void FindDependencies_FetchCurrentServerLogCreateServiceEntryExpectedReturnsDynamicService()
         {
             var esb = new FindDependencies();
@@ -294,9 +295,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(esb.HandlesType(), serviceAction.SourceMethod);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(FindDependencies))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(FindDependencies))]
         public void FindDependencies_GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -308,9 +309,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory(nameof(FindDependencies))]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category(nameof(FindDependencies))]
         public void FindDependencies_GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------

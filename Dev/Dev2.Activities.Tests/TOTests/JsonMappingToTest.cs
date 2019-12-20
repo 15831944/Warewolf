@@ -1,16 +1,17 @@
 ﻿using Dev2.TO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Tests.Activities.TOTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class JsonMappingToTest
     {
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("JsonMappingTo_Validate")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("JsonMappingTo_Validate")]
         public void JsonMappingTo_Validate_ValidAndInvalidPassThrough()
         {
             //------------Setup for test--------------------------
@@ -28,9 +29,9 @@ namespace Dev2.Tests.Activities.TOTests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("JsonMappingTo_Clear")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("JsonMappingTo_Clear")]
         public void JsonMappingTo_Clear()
         {
             //------------Setup for test--------------------------
@@ -47,9 +48,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.AreEqual("", jsonMappingTo.DestinationName);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("JsonMappingTo_AddRemove")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("JsonMappingTo_AddRemove")]
         public void JsonMappingTo_CanAddRemove_NoSourceAndDestinationName_CanRemoveTrue_CanAddFalse()
         {
             //------------Setup for test--------------------------
@@ -61,9 +62,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsFalse(jsonMappingTo.CanAdd());
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("JsonMappingTo_AddRemove")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("JsonMappingTo_AddRemove")]
         public void JsonMappingTo_CanAddRemove_HasSourceName_CanRemoveFalse_CanAddTrue()
         {
             //------------Setup for test--------------------------
@@ -75,9 +76,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(jsonMappingTo.CanAdd());
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("JsonMappingTo_AddRemove")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("JsonMappingTo_AddRemove")]
         public void JsonMappingTo_CanAddRemove_HasDestinationName_CanRemoveFalse_CanAddTrue()
         {
             //------------Setup for test--------------------------
@@ -89,9 +90,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(jsonMappingTo.CanAdd());
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("JsonMappingTo_AddRemove")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("JsonMappingTo_AddRemove")]
         public void JsonMappingTo_CanAddRemove_HasSourceAndDestinationName_CanRemoveFalse_CanAddTrue()
         {
             //------------Setup for test--------------------------
@@ -103,9 +104,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(jsonMappingTo.CanAdd());
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("JsonMappingTo_SourceName")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("JsonMappingTo_SourceName")]
         public void JsonMappingTo_SourceName_DoesNotSetsDestinationRecset()
         {
             //------------Setup for test--------------------------
@@ -115,9 +116,9 @@ namespace Dev2.Tests.Activities.TOTests
 
             Assert.AreEqual("asdas", jsonMappingTo.DestinationName);
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("JsonMappingTo_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("JsonMappingTo_Ctor")]
         public void JsonMappingTo_Ctor()
         {
             //------------Setup for test--------------------------

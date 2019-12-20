@@ -13,11 +13,12 @@ using System.IO;
 using Dev2.Data.Interfaces;
 using Dev2.Data.Interfaces.Enums;
 using Dev2.PathOperations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests.Operations
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class Dev2IOBrokerTests
     {
         /// <summary>
@@ -26,9 +27,9 @@ namespace Dev2.Data.Tests.Operations
         ///</summary>
         public TestContext TestContext { get; set; }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ActivityIOFactory_CreateOperationEndPointFromIOPath")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ActivityIOFactory_CreateOperationEndPointFromIOPath")]
         
         public void ActivityIOFactory_CreateOperationEndPointFromIOPath_WithSftp_ShouldSetTypeTpSFtp()
 
@@ -38,10 +39,10 @@ namespace Dev2.Data.Tests.Operations
             //------------Execute Test---------------------------
             var scrEndPoint = ActivityIOFactory.CreateOperationEndPointFromIOPath(ActivityIOFactory.CreatePathFromString(Path, string.Empty, null, true));
             //------------Assert Results-------------------------
-            Assert.AreEqual(enActivityIOPathType.SFTP, scrEndPoint.IOPath.PathType);
+            NUnit.Framework.Assert.AreEqual(enActivityIOPathType.SFTP, scrEndPoint.IOPath.PathType);
         }
 
-        [TestMethod]
+        [Test]
         public void PutRaw_Should()
         {
             const string newFileName = "tempTextFile";
@@ -50,20 +51,20 @@ namespace Dev2.Data.Tests.Operations
             var activityOperationsBroker = ActivityIOFactory.CreateOperationsBroker();
             var raw = activityOperationsBroker.PutRaw(scrEndPoint,
                 new Dev2PutRawOperationTO(WriteType.Overwrite, "Some content to write"));
-            Assert.AreEqual("Success", raw);
+            NUnit.Framework.Assert.AreEqual("Success", raw);
         }
 
-        [TestMethod]
+        [Test]
         public void Create_Should()
         {
             var tempPath = Path.GetTempPath() + "SomeName.zip";
             var scrEndPoint = ActivityIOFactory.CreateOperationEndPointFromIOPath(ActivityIOFactory.CreatePathFromString(tempPath, string.Empty, null, true, ""));
             var activityOperationsBroker = ActivityIOFactory.CreateOperationsBroker();
             var create = activityOperationsBroker.Create(scrEndPoint, new Dev2CRUDOperationTO(false,false), false);
-            Assert.AreEqual("Success", create);
+            NUnit.Framework.Assert.AreEqual("Success", create);
         }
         
-        [TestMethod]
+        [Test]
         public void GivenExistingFile_PutRawAppendTop_ShouldShouldAppendContent()
         {
             const string newFileName = "tempTextFile";
@@ -73,7 +74,7 @@ namespace Dev2.Data.Tests.Operations
             var activityOperationsBroker = ActivityIOFactory.CreateOperationsBroker();
             var raw = activityOperationsBroker.PutRaw(scrEndPoint,
                 new Dev2PutRawOperationTO(WriteType.AppendTop, "Some content to write"));
-            Assert.AreEqual("Success", raw);
+            NUnit.Framework.Assert.AreEqual("Success", raw);
         }
     }
 }

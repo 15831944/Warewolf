@@ -12,18 +12,19 @@ using System;
 using Dev2.Common.Interfaces.Wrappers;
 using Dev2.CustomControls.Progress;
 using Dev2.Studio.Core.Helpers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Core.Tests.Helpers
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class TestProgressFileDownloaderTests
     {
-        [TestMethod]
-        [TestCategory("ProgressFileDownloaderUnitTest")]
+        [Test]
+        [Category("ProgressFileDownloaderUnitTest")]
         [Description("Test for ProgressFileDownloader's Cancel method, it is expected to stop the download and the progress dialog")]
-        [Owner("Ashley Lewis")]
+        [Author("Ashley Lewis")]
         public void ProgressFileDownloaderUnitTestDownloadAsyncDownloadStopedAndProgressDialogClosed()
         {
             //init
@@ -40,10 +41,10 @@ namespace Dev2.Core.Tests.Helpers
             mockWebClient.Verify(c => c.CancelAsync());
         }
 
-        [TestMethod]
-        [TestCategory("ProgressFileDownloaderUnitTest")]
+        [Test]
+        [Category("ProgressFileDownloaderUnitTest")]
         [Description("Test for ProgressFileDownloader's RehydrateDialog method, it is expected to rehydrate the progress dialogs label and progress values")]
-        [Owner("Ashley Lewis")]
+        [Author("Ashley Lewis")]
         public void ProgressFileDownloader_UnitTest_RehydrateDialog_ProgressDialogRehydrated()
         {
             //init
@@ -61,25 +62,27 @@ namespace Dev2.Core.Tests.Helpers
             mockProgressDialog.Verify(c => c.StatusChanged(It.IsAny<string>(), It.IsAny<int>(), It.IsAny<long>()), Times.Once());
         }        
 
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ProgresssFileDownloader_Ctor")]
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ProgresssFileDownloader_Ctor")]
         public void ProgresssFileDownloader_Ctor_VerifyExceptionThrownIfWebClientsNull()
         {
             new ProgressFileDownloader(null,  new Mock<IFile>().Object);
         }
 
-        [TestMethod, ExpectedException(typeof(ArgumentNullException))]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ProgresssFileDownloader_Ctor")]
+        [Test]
+        [ExpectedException(typeof(ArgumentNullException))]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ProgresssFileDownloader_Ctor")]
         public void ProgresssFileDownloader_Ctor_VerifyExceptionThrownIfFileClientsNull()
         {            
             new ProgressFileDownloader(new Mock<IDev2WebClient>().Object, null);            
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ProgressFileDownloader_Ctor ")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ProgressFileDownloader_Ctor ")]
         public void ProgressFileDownloader_Ctor_AssertCorrectConstruction()
         {
             //------------Setup for test--------------------------
@@ -91,9 +94,9 @@ namespace Dev2.Core.Tests.Helpers
 #pragma warning restore 168
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ProgressFileDownloader_Cleanup ")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ProgressFileDownloader_Cleanup ")]
         public void ProgressFileDownloader_Cleanup_AssertFilesDeleted()
         {
             //------------Setup for test--------------------------
@@ -105,9 +108,9 @@ namespace Dev2.Core.Tests.Helpers
              file.Verify(a=>a.Delete(It.IsAny<string>()),Times.Exactly(3));
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ProgressFileDownloader_Cleanup ")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ProgressFileDownloader_Cleanup ")]
         public void ProgressFileDownloader_Cleanup_OnlyTempFilesDeleted()
         {
             //------------Setup for test--------------------------

@@ -15,18 +15,19 @@ using Dev2.Studio.ViewModels.Help;
 using Dev2.Studio.Views.Help;
 using Dev2.ViewModels.Help;
 using Dev2.Webs.Callbacks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Core.Tests
 {
     
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class HelpViewModelTests
     {
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("HelpViewModel_OnViewLoaded")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("HelpViewModel_OnViewLoaded")]
         public void HelpViewModel_OnViewLoaded_ValidHelpView_HelpViewIsSet()
         {
             //------------Setup for test--------------------------
@@ -39,9 +40,9 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(helpViewModel.IsViewAvailable);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("HelpViewModel_OnViewLoaded")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("HelpViewModel_OnViewLoaded")]
         public void HelpViewModel_OnViewLoaded_HelpViewIsNull_IsViewAvailableIsFalse()
         {
             //------------Setup for test--------------------------
@@ -53,9 +54,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(helpViewModel.IsViewAvailable);
         }
         
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("HelpViewModel_OnViewLoaded")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("HelpViewModel_OnViewLoaded")]
         public async Task HelpViewModel_LoadBrowserUri_HasInternetConnection_NavigatesToUrl()
         {
             //------------Setup for test--------------------------
@@ -77,9 +78,9 @@ namespace Dev2.Core.Tests
             Assert.IsNull(helpViewModel.ResourcePath);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("HelpViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("HelpViewModel_Constructor")]
         public void HelpViewModel_Constructor_IsViewAvailableIsInitializedToTrue()
         {
             //------------Execute Test---------------------------
@@ -88,9 +89,9 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(helpViewModel.IsViewAvailable);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("HelpViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("HelpViewModel_Constructor")]
         public void HelpViewModel_Constructor_WorkSurfaceContextIsInitializedToHelp()
         {
             //------------Execute Test---------------------------

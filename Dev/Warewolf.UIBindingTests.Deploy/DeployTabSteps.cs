@@ -15,7 +15,7 @@ using Dev2.Explorer;
 using Dev2.Services.Security;
 using Dev2.Studio.Interfaces;
 using Dev2.Studio.Interfaces.Deploy;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using TechTalk.SpecFlow;
 using Warewolf.Studio.ViewModels;

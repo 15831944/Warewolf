@@ -8,16 +8,16 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Instrumentation.Factory.Tests
 {
-    [TestClass()]
+    [TestFixture]
     public class ApplicationTrackerFactoryTests
     {
-        [TestMethod()]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ApplicationTrackerFactory))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ApplicationTrackerFactory))]
         public void ApplicationTrackerFactory_GetApplicationTrackerProviderTest()
         {
             Assert.IsNull(ApplicationTrackerFactory.ApplicationTracker);

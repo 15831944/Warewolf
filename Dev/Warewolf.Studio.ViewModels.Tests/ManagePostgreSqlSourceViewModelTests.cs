@@ -15,12 +15,13 @@ using Dev2.Common.Interfaces.Threading;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Studio.Interfaces;
 using Microsoft.Practices.Prism.PubSubEvents;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Warewolf.Studio.ViewModels.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public partial class ManagePostgreSqlSourceViewModelTests
     {
         #region Fields
@@ -45,7 +46,7 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         #region Test initialize
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             _asyncWorkerMock = new Mock<IAsyncWorker>();
@@ -125,7 +126,8 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         #region Test construction
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestManagePostgreSqlSourceViewModelUpdateManagerNull()
         {
@@ -136,7 +138,8 @@ namespace Warewolf.Studio.ViewModels.Tests
                  _asyncWorkerMock.Object);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestManagePostgreSqlSourceViewModelAggregatorNull()
         {
@@ -147,7 +150,8 @@ namespace Warewolf.Studio.ViewModels.Tests
                  _asyncWorkerMock.Object);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestManagePostgreSqlSourceViewModelRequestServiceNameViewModelNull()
         {
@@ -158,7 +162,8 @@ namespace Warewolf.Studio.ViewModels.Tests
                  _asyncWorkerMock.Object);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestManagePostgreSqlSourceViewModelDbSourceNull()
         {
@@ -173,7 +178,8 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         #region Test properties
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestAuthenticationType_dbSourceNull()
         {
             //arrange
@@ -199,7 +205,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(_targetAsyncWorker.Testing);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestName()
         {
             //arrange
@@ -214,7 +221,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual(expectedValue, _targetAsyncWorker.ResourceName);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestResourceNameNotEmpty()
         {
             //arrange
@@ -232,7 +240,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(_changedPropertiesAsyncWorker.Contains(expectedValue));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestResourceNameEmpty()
         {
             //arrange
@@ -248,7 +257,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(_changedPropertiesAsyncWorker.Contains(expectedValue));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestPublicAuthenticationSelectedFalse()
         {
             //arrange
@@ -261,7 +271,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(actualValue);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestUserAuthenticationSelectedTrue()
         {
             //arrange
@@ -274,7 +285,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(actualValue);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestComputerNames()
         {
             //arrange
@@ -290,7 +302,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(_changedPropertiesAsyncWorker.Contains("ComputerNames"));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestPath()
         {
             //arrange
@@ -306,7 +319,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(_changedPropertiesAsyncWorker.Contains("Path"));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestRequestServiceNameViewModel()
         {
             var valueMock = new Mock<IRequestServiceNameViewModel>();
@@ -320,7 +334,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreSame(expectedValue, actualValue);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestDatabaseName()
         {
             //arrange
@@ -337,7 +352,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(_changedPropertiesAsyncWorker.Contains("Header"));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestDatabaseNames()
         {
             //arrange
@@ -353,7 +369,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(_changedPropertiesAsyncWorker.Contains("DatabaseNames"));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestUserName()
         {
             //arrange
@@ -374,7 +391,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(_targetAsyncWorker.Testing);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestPassword()
         {
             //arrange
@@ -395,7 +413,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(_targetAsyncWorker.Testing);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestTestPassed()
         {
             //arrange
@@ -411,7 +430,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(_changedPropertiesAsyncWorker.Contains("TestPassed"));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestTestFailed()
         {
             //arrange
@@ -427,7 +447,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(_changedPropertiesAsyncWorker.Contains("TestFailed"));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestHeaderText()
         {
             //arrange
@@ -444,7 +465,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(_changedPropertiesAsyncWorker.Contains("Header"));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestServerName()
         {
             //arrange
@@ -465,7 +487,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(_targetAsyncWorker.Testing);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestEmptyServerName()
         {
             //arrange
@@ -488,7 +511,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(_targetAsyncWorker.Testing);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestEmptyServerNameEmpty()
         {
             //arrange
@@ -515,7 +539,8 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         #region Test commands
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestTestCommandCanExecute()
         {
             //arrange
@@ -532,7 +557,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(result);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestTestCommandExecuteAsyncWorkerSuccess()
         {
             //arrange
@@ -565,7 +591,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(_targetUpdateManagerAggregatorDbSource.Testing);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestTestCommandExecuteAsyncWorkerExceptionNull()
         {
             //arrange
@@ -597,7 +624,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(_targetUpdateManagerAggregatorDbSource.Testing);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestTestCommandExecuteAsyncWorkerExceptionNotNull()
         {
             //arrange
@@ -629,7 +657,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(_targetUpdateManagerAggregatorDbSource.Testing);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestTestCommandExecuteAsyncWorkerThrowsException()
         {
             //arrange
@@ -657,7 +686,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(_targetUpdateManagerAggregatorDbSource.Testing);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestOkCommandCanExecute()
         {
             //arrange
@@ -671,7 +701,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(result);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestOkCommandExecute_dbSourceNull()
         {
             //arrange
@@ -699,7 +730,7 @@ namespace Warewolf.Studio.ViewModels.Tests
             _targetUpdateManagerRequestServiceName.OkCommand.Execute(null);
 
             //assert
-            Assert.IsInstanceOfType(_targetUpdateManagerRequestServiceName.Item, typeof(DbSourceDefinition));
+            Assert.IsInstanceOf(_targetUpdateManagerRequestServiceName.Item.GetType(), typeof(DbSourceDefinition));
             _updateManagerMock.Verify(it => it.Save(_targetUpdateManagerRequestServiceName.Item));
             Assert.AreEqual(_targetUpdateManagerRequestServiceName.Item.Name, _targetUpdateManagerRequestServiceName.HeaderText);
             Assert.AreEqual(_targetUpdateManagerRequestServiceName.Item.Name, _targetUpdateManagerRequestServiceName.Header);
@@ -714,7 +745,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreNotEqual(Guid.Empty, _targetUpdateManagerRequestServiceName.Item.Id);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestOkCommandExecute_dbSourceNotNull()
         {
             //arrange
@@ -741,7 +773,7 @@ namespace Warewolf.Studio.ViewModels.Tests
             _targetUpdateManagerAggregatorDbSource.OkCommand.Execute(null);
 
             //assert
-            Assert.IsInstanceOfType(_targetUpdateManagerAggregatorDbSource.Item, typeof(DbSourceDefinition));
+            Assert.IsInstanceOf(_targetUpdateManagerAggregatorDbSource.Item.GetType(), typeof(DbSourceDefinition));
             _updateManagerMock.Verify(it => it.Save(_targetUpdateManagerAggregatorDbSource.Item));
             Assert.AreEqual(_targetUpdateManagerAggregatorDbSource.Item.Name, _targetUpdateManagerAggregatorDbSource.HeaderText);
             Assert.AreEqual(_targetUpdateManagerAggregatorDbSource.Item.Name, _targetUpdateManagerAggregatorDbSource.Header);
@@ -756,7 +788,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual(expectedId, _targetUpdateManagerAggregatorDbSource.Item.Id);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestCancelTestCommandCanExecute()
         {
             //act
@@ -766,7 +799,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(result);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestCancelDBSourceTestCommandExecute()
         {
             //act
@@ -777,7 +811,8 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         #region Test methods
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestToModelItemNull()
         {
             //arrange
@@ -815,7 +850,8 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestToModelItemNotNull()
         {
             //arrange
@@ -851,7 +887,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.AreEqual(expectedId, value.Id);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestUpdateHelpDescriptor()
         {
             //arrange
@@ -868,7 +905,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             helpViewModelMock.Verify(it => it.UpdateHelpText(helpText));
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestSaveException()
         {
             //arrange
@@ -884,7 +922,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(_targetUpdateManagerAggregatorDbSource.TestPassed);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestSavePassed()
         {
             //arrange
@@ -900,7 +939,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(_targetUpdateManagerAggregatorDbSource.TestFailed);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestCanSaveTestPassedFalse()
         {
             //arrange
@@ -913,7 +953,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(result);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestCanSaveTestPassedTrueDatabaseNameIsEmpty()
         {
             //arrange
@@ -927,7 +968,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(result);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestCanSaveTestPassedTrueDatabaseNameNonEmpty()
         {
             //arrange
@@ -941,7 +983,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(result);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestCanTestServerNameNotNull()
         {
             //arrange
@@ -954,7 +997,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(result);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestCanTestAuthenticationTypeUserUserNamePasswordEmpty()
         {
             //arrange
@@ -970,7 +1014,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(result);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestCanTestAuthenticationTypeUserUserNameNonEmptyPasswordEmpty()
         {
             //arrange
@@ -986,7 +1031,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(result);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestCanTestAuthenticationTypeUser()
         {
             //arrange
@@ -1002,7 +1048,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(result);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestCanTestServerNameNull()
         {
             //arrange
@@ -1018,7 +1065,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(result);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestCanTest()
         {
             //arrange
@@ -1034,7 +1082,8 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(result);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestFromModel()
         {
             //arrange

@@ -1,11 +1,12 @@
 ﻿using System;
 using Dev2.Common.ExtMethods;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Tests.ExtMethods
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ObjExtTests
     {
         [Serializable]
@@ -15,8 +16,8 @@ namespace Dev2.Tests.ExtMethods
             public string name1 { get; set; }
             public string name2 { get; set; }
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DeepCopy_GivenCallShould_ShouldCopyAll()
         {
             //---------------Set up test pack-------------------

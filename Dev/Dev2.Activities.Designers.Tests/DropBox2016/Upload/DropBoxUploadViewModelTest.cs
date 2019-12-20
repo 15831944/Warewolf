@@ -12,12 +12,13 @@ using Dev2.Common.Interfaces.Help;
 using Dev2.Data.ServiceModel;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Activities.Designers.Tests.DropBox2016.Upload
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
 
     public class DropBoxUploadViewModelTest
     {
@@ -35,9 +36,9 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Upload
             return modelItem;
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DropBoxUploadViewModel_Construct")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DropBoxUploadViewModel_Construct")]
         public void DropBoxUploadViewModel_Construct_GivenNewInstance_ShouldBeActivityViewModel()
         {
             //------------Setup for test--------------------------
@@ -48,12 +49,12 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Upload
             Assert.IsFalse(dropBoxUploadViewModel.ShowLarge);
             Assert.AreEqual(dropBoxUploadViewModel.ThumbVisibility, Visibility.Collapsed);
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(dropBoxUploadViewModel, typeof(ActivityDesignerViewModel));
+            Assert.IsInstanceOf(dropBoxUploadViewModel.GetType(), typeof(ActivityDesignerViewModel));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("DropBoxUploadViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("DropBoxUploadViewModel_Handle")]
         public void DropBoxUploadViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -70,21 +71,21 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Upload
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Sources_GivenANewDropBoxViewModel_ShouldHaveNotBeNull()
         {
             //---------------Set up test pack-------------------
             var dropBoxUploadViewModel = CreateMockViewModel();
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOfType(dropBoxUploadViewModel, typeof(ActivityDesignerViewModel));
+            Assert.IsInstanceOf(dropBoxUploadViewModel.GetType(), typeof(ActivityDesignerViewModel));
             //---------------Execute Test ----------------------
             Assert.IsNotNull(dropBoxUploadViewModel.Sources);
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void FromPath_GivenActivityIsNew_ShouldBeNullOrEmpty()
         {
             //---------------Set up test pack-------------------
@@ -96,8 +97,8 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Upload
             Assert.IsTrue(string.IsNullOrEmpty(dropBoxUploadViewModel.FromPath));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ToPath_GivenActivityIsNew_ShouldBeNullOrEmpty()
         {
             //---------------Set up test pack-------------------
@@ -109,8 +110,8 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Upload
             Assert.IsTrue(string.IsNullOrEmpty(dropBoxUploadViewModel.ToPath));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Result_GivenActivityIsNew_ShouldBeNullOrEmpty()
         {
             //---------------Set up test pack-------------------
@@ -122,8 +123,8 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Upload
             Assert.IsTrue(string.IsNullOrEmpty(dropBoxUploadViewModel.Result));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void SelectedSourceName_GivenActivityIsNewAndNoSourceSelected_ShouldBeNullOrEmpty()
         {
             //---------------Set up test pack-------------------
@@ -135,8 +136,8 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Upload
             Assert.IsNull(dropBoxUploadViewModel.SelectedSource);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Overwrite_GivenActivityIsNew_ShouldBeDefaultToTrue()
         {
             //---------------Set up test pack-------------------
@@ -146,8 +147,8 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Upload
             Assert.IsTrue(dropBoxUploadViewModel.OverWriteMode);
             //---------------Test Result -----------------------
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Add_GivenActivityIsNew_ShouldBeDefaultToFalse()
         {
             //---------------Set up test pack-------------------
@@ -159,9 +160,9 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Upload
             //---------------Test Result -----------------------
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("SelectedOperation_EditSource")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("SelectedOperation_EditSource")]
         public void DropboxUploadViewModel_EditSourcePublishesMessage()
         {
             var agg = new Mock<IEventAggregator>();
@@ -180,9 +181,9 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Upload
             CustomContainer.DeRegister<IShellViewModel>();
         }
         
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("SelectedOperation_EditSource")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("SelectedOperation_EditSource")]
         public void DropboxUploadViewModel_NewSourcePublishesMessage()
         {
             var agg = new Mock<IEventAggregator>();
@@ -200,9 +201,9 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Upload
             CustomContainer.DeRegister<IShellViewModel>();
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("SelectedOperation_EditSource")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("SelectedOperation_EditSource")]
         public void DropboxUploadViewModel_EditSourceOnlyAvailableIfSourceSelected()
         {
             var agg = new Mock<IEventAggregator>();
@@ -217,9 +218,9 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Upload
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("SelectedOperation_EditSource")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
+        [Category("SelectedOperation_EditSource")]
         public void DropboxUploadViewModel_EditSourceAvailableIfSourceSelected()
         {
             var agg = new Mock<IEventAggregator>();
@@ -231,8 +232,8 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Upload
             Assert.IsTrue(boxUploadViewModel.IsDropboxSourceSelected);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void AddMode_GivenIsSet_ShouldSetModelItemProperty()
         {
             var agg = new Mock<IEventAggregator>();
@@ -253,8 +254,8 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Upload
             Assert.IsTrue(modelPropertyValue);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void OverwriteModel_GivenIsSet_ShouldSetModelItemProperty()
         {
             var agg = new Mock<IEventAggregator>();
@@ -275,8 +276,8 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Upload
             Assert.IsTrue(modelPropertyValue);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void FromPath_GivenIsSet_ShouldSetModelItemProperty()
         {
             var agg = new Mock<IEventAggregator>();
@@ -297,8 +298,8 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Upload
             Assert.AreEqual("A", modelPropertyValue);
         } 
         
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ToPath_GivenIsSet_ShouldSetModelItemProperty()
         {
             var agg = new Mock<IEventAggregator>();
@@ -319,8 +320,8 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Upload
             Assert.AreEqual("A", modelPropertyValue);
         } 
         
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Result_GivenIsSet_ShouldSetModelItemProperty()
         {
             var agg = new Mock<IEventAggregator>();
@@ -342,8 +343,8 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Upload
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateOAuthSource_GivenCanPublish_ShouldResfreshSources()
         {
             var agg = new Mock<IEventAggregator>();

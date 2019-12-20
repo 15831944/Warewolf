@@ -21,7 +21,7 @@ using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Studio.Interfaces;
 using Dev2.Triggers.QueueEvents;
 using Dev2.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -36,8 +36,9 @@ using Warewolf.UI;
 
 namespace Dev2.Core.Tests.Triggers.QueueEvents
 {
-    [TestClass]
-    [TestCategory("Studio Triggers Queue Core")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Studio Triggers Queue Core")]
     public class QueueEventsViewModelTests
     {
         Mock<IResource> _mockQueueSource;
@@ -45,7 +46,7 @@ namespace Dev2.Core.Tests.Triggers.QueueEvents
         Guid _workflowResourceId = Guid.NewGuid();
         Mock<IResourcePickerDialog> _mockResourcePickerDialog;
 
-        [TestInitialize]
+        [SetUp]
         public void SetupForTest()
         {
             AppUsageStats.LocalHost = "http://localhost:3142";
@@ -182,9 +183,9 @@ namespace Dev2.Core.Tests.Triggers.QueueEvents
             return expectedOptions;
         }
 
-        [TestMethod]
-        [TestCategory(nameof(QueueEventsViewModel))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(QueueEventsViewModel))]
+        [Author("Pieter Terblanche")]
         public void QueueEventsViewModel_Queues()
         {
             Mock<IServer> mockServer = SetupForTriggerQueueView(null);
@@ -212,9 +213,9 @@ namespace Dev2.Core.Tests.Triggers.QueueEvents
             Assert.AreEqual(queue2, queueEventsViewModel.SelectedQueue);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(QueueEventsViewModel))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(QueueEventsViewModel))]
+        [Author("Pieter Terblanche")]
         public void QueueEventsViewModel_QueueEvents_AddNew_ShouldAddNewItem()
         {
             var queueEventsViewModel = CreateViewModel();
@@ -231,9 +232,9 @@ namespace Dev2.Core.Tests.Triggers.QueueEvents
             Assert.IsTrue(queueEventsViewModel.Queues[2].NewQueue);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(QueueEventsViewModel))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(QueueEventsViewModel))]
+        [Author("Pieter Terblanche")]
         public void QueueEventsViewModel_QueueEvents_AddNew_ShouldNotAddNewItem()
         {
             var mockPopupController = new Mock<IPopupController>();
@@ -258,9 +259,9 @@ namespace Dev2.Core.Tests.Triggers.QueueEvents
             mockPopupController.Verify(popupController => popupController.Show(Warewolf.Studio.Resources.Languages.Core.TriggerQueueSaveEditedTestsMessage, Warewolf.Studio.Resources.Languages.Core.TriggerQueueSaveEditedQueueHeader, MessageBoxButton.OK, MessageBoxImage.Error, null, false, true, false, false, false, false), Times.Once);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(QueueEventsViewModel))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(QueueEventsViewModel))]
+        [Author("Pieter Terblanche")]
         public void QueueEventsViewModel_QueueEvents_Delete_ShouldDeleteSelectedItem()
         {
             Mock<IServer> mockServer = SetupForTriggerQueueView(null);
@@ -279,9 +280,9 @@ namespace Dev2.Core.Tests.Triggers.QueueEvents
             Assert.IsFalse(queueEventsViewModel.Queues[0].NewQueue);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(QueueEventsViewModel))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(QueueEventsViewModel))]
+        [Author("Pieter Terblanche")]
         public void QueueEventsViewModel_QueueEvents_AddWorkflow_ShouldDeleteSelectedItem()
         {
             Mock<IServer> mockServer = SetupForTriggerQueueView(null);
@@ -298,9 +299,9 @@ namespace Dev2.Core.Tests.Triggers.QueueEvents
             Assert.AreEqual(0, queueEventsViewModel.SelectedQueue.Inputs.Count);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(QueueEventsViewModel))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(QueueEventsViewModel))]
+        [Author("Pieter Terblanche")]
         public void QueueEventsViewModel_UpdateHelpDescriptor()
         {
             var queueEventsViewModel = CreateViewModel();
@@ -308,9 +309,9 @@ namespace Dev2.Core.Tests.Triggers.QueueEvents
             Assert.AreEqual("This is a help text", queueEventsViewModel.HelpText);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(QueueEventsViewModel))]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Category(nameof(QueueEventsViewModel))]
+        [Author("Hagashen Naidu")]
         public void QueueEventsViewModel_QueueEvents_AddNew_Should_FirePropertyChangedEventForQueuesProperty()
         {
             var queueEventsViewModel = CreateViewModel();
@@ -328,9 +329,9 @@ namespace Dev2.Core.Tests.Triggers.QueueEvents
             Assert.IsTrue(propertyChangedFired);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(QueueEventsViewModel))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(QueueEventsViewModel))]
+        [Author("Pieter Terblanche")]
         public void QueueEventsViewModel_QueueEvents_ViewQueueStats()
         {
             Uri uri = new Uri("https://www.rabbitmq.com/blog/tag/statistics/");
@@ -345,9 +346,9 @@ namespace Dev2.Core.Tests.Triggers.QueueEvents
             mockExternalExecutor.Verify(externalProcessExecutor => externalProcessExecutor.OpenInBrowser(uri), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(QueueEventsViewModel))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(QueueEventsViewModel))]
         public void QueueEventsViewModel_ConnectionError_SetAndClearError_ValidErrorSetAndClear()
         {
             //------------Setup for test--------------------------
@@ -367,9 +368,9 @@ namespace Dev2.Core.Tests.Triggers.QueueEvents
             Assert.IsFalse(queueEventsViewModel.HasConnectionError);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(QueueEventsViewModel))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(QueueEventsViewModel))]
+        [Author("Pieter Terblanche")]
         public void QueueEventsViewModel_QueueEvents_Save_Empty_QueueSource()
         {
             var mockPopupController = new Mock<IPopupController>();
@@ -386,9 +387,9 @@ namespace Dev2.Core.Tests.Triggers.QueueEvents
             mockPopupController.Verify(popupController => popupController.Show(Warewolf.Studio.Resources.Languages.Core.TriggerQueuesSaveQueueSourceNotSelected, Warewolf.Studio.Resources.Languages.Core.TriggerQueuesSaveErrorHeader, MessageBoxButton.OK, MessageBoxImage.Error, string.Empty, false, true, false, false, false, false), Times.Once);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(QueueEventsViewModel))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(QueueEventsViewModel))]
+        [Author("Pieter Terblanche")]
         public void QueueEventsViewModel_QueueEvents_Save_Empty_Queue()
         {
             var resourceId = Guid.NewGuid();
@@ -415,9 +416,9 @@ namespace Dev2.Core.Tests.Triggers.QueueEvents
             mockPopupController.Verify(popupController => popupController.Show(Warewolf.Studio.Resources.Languages.Core.TriggerQueuesSaveQueueNameEmpty, Warewolf.Studio.Resources.Languages.Core.TriggerQueuesSaveErrorHeader, MessageBoxButton.OK, MessageBoxImage.Error, string.Empty, false, true, false, false, false, false), Times.Once);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(QueueEventsViewModel))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(QueueEventsViewModel))]
+        [Author("Pieter Terblanche")]
         public void QueueEventsViewModel_QueueEvents_Save_Empty_WorkflowName()
         {
             var resourceId = Guid.NewGuid();
@@ -445,9 +446,9 @@ namespace Dev2.Core.Tests.Triggers.QueueEvents
             mockPopupController.Verify(popupController => popupController.Show(Warewolf.Studio.Resources.Languages.Core.TriggerQueuesSaveWorkflowNotSelected, Warewolf.Studio.Resources.Languages.Core.TriggerQueuesSaveErrorHeader, MessageBoxButton.OK, MessageBoxImage.Error, string.Empty, false, true, false, false, false, false), Times.Once);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(QueueEventsViewModel))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(QueueEventsViewModel))]
+        [Author("Pieter Terblanche")]
         public void QueueEventsViewModel_QueueEvents_Save_Empty_OnError_QueueSource()
         {
             var resourceId = Guid.NewGuid();
@@ -476,9 +477,9 @@ namespace Dev2.Core.Tests.Triggers.QueueEvents
             mockPopupController.Verify(popupController => popupController.Show(Warewolf.Studio.Resources.Languages.Core.TriggerQueuesSaveQueueSinkNotSelected, Warewolf.Studio.Resources.Languages.Core.TriggerQueuesSaveErrorHeader, MessageBoxButton.OK, MessageBoxImage.Error, string.Empty, false, true, false, false, false, false), Times.Once);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(QueueEventsViewModel))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(QueueEventsViewModel))]
+        [Author("Pieter Terblanche")]
         public void QueueEventsViewModel_QueueEvents_Save_Empty_OnError_Queue()
         {
             var resourceId = Guid.NewGuid();
@@ -508,9 +509,9 @@ namespace Dev2.Core.Tests.Triggers.QueueEvents
             mockPopupController.Verify(popupController => popupController.Show(Warewolf.Studio.Resources.Languages.Core.TriggerQueuesSaveOnErrorQueueNameEmpty, Warewolf.Studio.Resources.Languages.Core.TriggerQueuesSaveErrorHeader, MessageBoxButton.OK, MessageBoxImage.Error, string.Empty, false, true, false, false, false, false), Times.Once);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(QueueEventsViewModel))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(QueueEventsViewModel))]
+        [Author("Pieter Terblanche")]
         public void QueueEventsViewModel_QueueEvents_Save_Successful()
         {
             var resourceId = Guid.NewGuid();

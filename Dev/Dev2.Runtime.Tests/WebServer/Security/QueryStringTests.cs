@@ -13,17 +13,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Dev2.Runtime.WebServer.Security;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Runtime.WebServer.Security
 {
-    [TestClass]
-    [TestCategory("Runtime WebServer")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime WebServer")]
     public class QueryStringTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QueryString_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QueryString_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void QueryString_Constructor_ItemsIsNull_ThrowsArgumentNullException()
         {
@@ -35,9 +36,9 @@ namespace Dev2.Tests.Runtime.WebServer.Security
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QueryString_GetEnumerator")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QueryString_GetEnumerator")]
         public void QueryString_GetEnumerator_ItemsEnumerator()
         {
             //------------Setup for test--------------------------
@@ -61,9 +62,9 @@ namespace Dev2.Tests.Runtime.WebServer.Security
             Assert.AreEqual(1, count);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QueryString_GetEnumerator")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QueryString_GetEnumerator")]
         public void QueryString_IEnumerableGetEnumerator_ItemsEnumerator()
         {
             //------------Setup for test--------------------------
@@ -81,7 +82,7 @@ namespace Dev2.Tests.Runtime.WebServer.Security
             {
                 count++;
                 var current = enumerator.Current;
-                Assert.IsInstanceOfType(current, typeof(KeyValuePair<string, string>));
+                Assert.IsInstanceOf(current.GetType(), typeof(KeyValuePair<string, string>));
                 var kvp = (KeyValuePair<string, string>)current;
                 Assert.AreEqual(kvp.Key, "key");
                 Assert.AreEqual(kvp.Value, "value");
@@ -89,9 +90,9 @@ namespace Dev2.Tests.Runtime.WebServer.Security
             Assert.AreEqual(1, count);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QueryString_GetValues")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QueryString_GetValues")]
         public void QueryString_GetValues_KeyFound_ValuesForKey()
         {
             //------------Setup for test--------------------------
@@ -111,9 +112,9 @@ namespace Dev2.Tests.Runtime.WebServer.Security
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QueryString_GetValues")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QueryString_GetValues")]
         public void QueryString_GetValues_KeyNotFound_EmptyEnumerable()
         {
             //------------Setup for test--------------------------
@@ -128,9 +129,9 @@ namespace Dev2.Tests.Runtime.WebServer.Security
             Assert.AreEqual(0, values.Count());
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QueryString_Get")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QueryString_Get")]
         public void QueryString_Get_KeyFound_ValuesForKey()
         {
             //------------Setup for test--------------------------
@@ -145,9 +146,9 @@ namespace Dev2.Tests.Runtime.WebServer.Security
             Assert.AreEqual("value1; value2", values);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QueryString_Get")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QueryString_Get")]
         public void QueryString_Get_KeyNotFound_EmptyString()
         {
             //------------Setup for test--------------------------
@@ -162,9 +163,9 @@ namespace Dev2.Tests.Runtime.WebServer.Security
             Assert.AreEqual(string.Empty, values);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QueryString_Item")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QueryString_Item")]
         public void QueryString_Item_KeyFound_ValuesForKey()
         {
             //------------Setup for test--------------------------
@@ -179,9 +180,9 @@ namespace Dev2.Tests.Runtime.WebServer.Security
             Assert.AreEqual("value1; value2", values);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("QueryString_Item")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("QueryString_Item")]
         public void QueryString_Item_KeyNotFound_EmptyString()
         {
             //------------Setup for test--------------------------

@@ -11,7 +11,7 @@
 using Dev2.Common;
 using Dev2.Common.Interfaces.DB;
 using Dev2.Data.ServiceModel;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using QueueWorker;
 using System;
@@ -26,7 +26,8 @@ using Warewolf.Triggers;
 
 namespace Warewolf.QueueWorker.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WorkerContextTests
     {
         private static readonly Guid _resourceId = Guid.Parse("a0a7ffdb-6b6e-4e6c-8ff1-9734db4f34e4");
@@ -36,9 +37,9 @@ namespace Warewolf.QueueWorker.Tests
         private static readonly IServiceInput _expectedIServiceInput = new Mock<IServiceInput>().Object;
         private static readonly string _workflowName = "Some Workflow";
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(QueueWorker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(QueueWorker))]
         public void WorkerContext_GivenValidConstruct_ExpectValidSource()
         {
             var context = ConstructWorkerContext(out var rabbitSource, out _);
@@ -46,9 +47,9 @@ namespace Warewolf.QueueWorker.Tests
             Assert.AreEqual(rabbitSource, context.Source);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(QueueWorker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(QueueWorker))]
         public void WorkerContext_GivenValidConstruct_ExpectValidSourceAndDeadLetterSink()
         {
             var context = ConstructWorkerContext(out var expectedSource, out var expectedDeadLetterSink);
@@ -59,9 +60,9 @@ namespace Warewolf.QueueWorker.Tests
             Assert.AreEqual(expectedDeadLetterSink, context.DeadLetterSink);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(QueueWorker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(QueueWorker))]
         public void WorkerContext_GivenValidConstruct_ExpectQueueName()
         {
             var context = ConstructWorkerContext(out var _, out var _);
@@ -69,9 +70,9 @@ namespace Warewolf.QueueWorker.Tests
             Assert.AreEqual(_queueName, context.QueueName);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(QueueWorker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(QueueWorker))]
         public void WorkerContext_GivenValidConstruct_ExpectValidInputs()
         {
             var context = ConstructWorkerContext(out var _, out var _);
@@ -80,9 +81,9 @@ namespace Warewolf.QueueWorker.Tests
             Assert.AreEqual(_expectedIServiceInput, context.Inputs[0]);
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(QueueWorker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(QueueWorker))]
         public void WorkerContext_GivenValidConstruct_ExpectQueueConfig()
         {
             var context = ConstructWorkerContext(out var _, out var _);
@@ -94,9 +95,9 @@ namespace Warewolf.QueueWorker.Tests
             Assert.AreEqual(true, durable.GetValue(config));
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(QueueWorker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(QueueWorker))]
         public void WorkerContext_GivenValidConstruct_ExpectValidWorkflowUrl()
         {
             var context = ConstructWorkerContext(out var _, out var _);
@@ -107,9 +108,9 @@ namespace Warewolf.QueueWorker.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(QueueWorker))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(QueueWorker))]
         public void WorkerContext_WatchTriggerResource_ShouldHaveValidSetup()
         {
             var context = ConstructWorkerContext(out var _, out var _);

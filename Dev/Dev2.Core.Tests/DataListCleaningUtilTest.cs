@@ -9,7 +9,7 @@
 */
 
 using Dev2.DataList.Contract;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests
 {
@@ -19,12 +19,13 @@ namespace Dev2.Tests
     ///This is a test class for DataListUtilTest and is intended
     ///to contain all DataListUtilTest Unit Tests
     ///</summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class DataListCleaningUtilTest
     {
  
-        [TestMethod]
+        [Test]
         public void SplitIntoRegionsWithScalarsExpectedSeperateRegions()
         {
             //Initialize
@@ -36,7 +37,7 @@ namespace Dev2.Tests
             Assert.AreEqual("[[secondRegion]]", actual[1]);
         }
 
-        [TestMethod]
+        [Test]
         public void SplitIntoRegionsWithRecSetsExpectedSeperateRegions()
         {
             //Initialize
@@ -48,7 +49,7 @@ namespace Dev2.Tests
             Assert.AreEqual("[[secondRegion().field]]", actual[1]);
         }
 
-        [TestMethod]
+        [Test]
         public void SplitIntoRegionsWithBigGapBetweenRegionsExpectedSeperateRegions()
         {
             //Initialize
@@ -60,7 +61,7 @@ namespace Dev2.Tests
             Assert.AreEqual("[[secondRegion]]", actual[1]);
         }
 
-        [TestMethod]
+        [Test]
         public void SplitIntoRegionsWithInvalidRegionsExpectedCannotSeperateRegions()
         {
             //Initialize
@@ -71,7 +72,7 @@ namespace Dev2.Tests
             Assert.AreEqual(0, actual.Count);
         }
 
-        [TestMethod]
+        [Test]
         public void SplitIntoRegionsWithNoOpenningRegionsExpectedCannotSeperateRegions()
         {
             //Initialize
@@ -82,7 +83,7 @@ namespace Dev2.Tests
             Assert.AreEqual(null, actual[0]);
         }
 
-        [TestMethod]
+        [Test]
         public void SplitIntoRegionsWithRecordSetsAndScalarsRecordSetIndexsOfExpectedOneRegion()
         {
             //Initialize
@@ -94,7 +95,7 @@ namespace Dev2.Tests
 
         }
 
-        [TestMethod]
+        [Test]
         public void SplitIntoRegionsWithScalarsRecordSetsIndexsOfExpectedSeperateRegions()
         {
             //Initialize
@@ -108,7 +109,7 @@ namespace Dev2.Tests
             Assert.AreEqual("[[secondRegion]]", actual[3]);
         }
 
-        [TestMethod]
+        [Test]
         public void SplitIntoRegionsWithRecordSetsAndScalarsRecordSetIndexsOfExpectedSeperateRegions()
         {
             //Initialize
@@ -125,7 +126,7 @@ namespace Dev2.Tests
         }
 
         //Author: Massimo.Guerrera - Bug 9611
-        [TestMethod]
+        [Test]
         public void SplitIntoRegionsForFindMissingWithRecordSetAndScalarInvalidRegionExpectedNoRegionsReturned()
         {
             //Initialize
@@ -137,7 +138,7 @@ namespace Dev2.Tests
         }
 
         //Author: Massimo.Guerrera - Bug 9611
-        [TestMethod]
+        [Test]
         public void SplitIntoRegionsForFindMissingWithRecordSetAndScalarInvalidRegionExpectedRecordsetReturned()
         {
             //Initialize

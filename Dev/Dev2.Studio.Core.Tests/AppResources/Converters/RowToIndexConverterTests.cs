@@ -13,18 +13,19 @@ using System.Collections.Generic;
 using System.Globalization;
 using Dev2.CustomControls.Converters;
 using Dev2.Studio.Core.Activities.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Core.Tests.AppResources.Converters
 {
-    [TestClass]
-	[TestCategory("Studio Resources Core")]
+    [TestFixture]
+    [SetUpFixture]
+	[Category("Studio Resources Core")]
     public class RowToIndexConverterTests
     {
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("RowToIndexConverter_Convert")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("RowToIndexConverter_Convert")]
         public void RowToIndexConverter_Convert_FindsValue_ReturnsIndex()
         {
             //------------Setup for test--------------------------
@@ -51,9 +52,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             }
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("RowToIndexConverter_Convert")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("RowToIndexConverter_Convert")]
         public void RowToIndexConverter_Convert_DoesntFindValue_ReturnsMinusOne()
         {
             var converter = new RowToIndexConverter();

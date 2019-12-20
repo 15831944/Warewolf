@@ -4,19 +4,20 @@ using Dev2.Activities.Designers2.Core;
 using Dev2.Common.Interfaces.Help;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using System;
 
 namespace Dev2.Activities.Designers.Tests.AggregateCalculate
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class AggregateCalculateDesignerViewModelTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("AggregateCalculateDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("AggregateCalculateDesignerViewModel_Constructor")]
         public void AggregateCalculateDesignerViewModel_Constructor_ModelItemIsValid_Result()
         {
             //------------Setup for test--------------------------
@@ -27,13 +28,13 @@ namespace Dev2.Activities.Designers.Tests.AggregateCalculate
 
             //------------Assert Results-------------------------
             Assert.IsNotNull(aggregateCalculateDesignerViewModel);
-            Assert.IsInstanceOfType(aggregateCalculateDesignerViewModel, typeof(ActivityDesignerViewModel));
+            Assert.IsInstanceOf(aggregateCalculateDesignerViewModel.GetType(), typeof(ActivityDesignerViewModel));
             Assert.AreEqual("Aggregate Calculate", aggregateCalculateDesignerViewModel.ModelItem.GetProperty("DisplayName"));
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("AggregateCalculateDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("AggregateCalculateDesignerViewModel_Constructor")]
         public void AggregateCalculateDesignerViewModel_Constructor_Constructed_HasHelpLargeViewToogle()
         {
             var x = Guid.NewGuid();
@@ -49,9 +50,9 @@ namespace Dev2.Activities.Designers.Tests.AggregateCalculate
             Assert.AreEqual(0, aggregateCalculateDesignerViewModel.TitleBarToggles.Count);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("AggregateCalculateDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("AggregateCalculateDesignerViewModel_Handle")]
         public void AggregateCalculateDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------            

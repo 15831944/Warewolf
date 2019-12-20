@@ -10,18 +10,19 @@
 
 using Dev2.Providers.Validation.Rules;
 using Dev2.Validation;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 
 namespace Dev2.Tests.Activities.TOTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FindRecordsTOTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("FindRecordsTO_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("FindRecordsTO_Constructor")]
         public void FindRecordsTO_Constructor_Default_SetsProperties()
         {
             //------------Setup for test--------------------------
@@ -37,9 +38,9 @@ namespace Dev2.Tests.Activities.TOTests
 
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("FindRecordsTO_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("FindRecordsTO_Constructor")]
         public void FindRecordsTO_ParameterConstructor_SetsProperties()
         {
             //------------Setup for test--------------------------
@@ -57,9 +58,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsFalse(findRecordsTO.IsSearchCriteriaEnabled);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("FindRecordsTO_SearchType")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("FindRecordsTO_SearchType")]
         public void FindRecordsTO_SearchType_SetValue_FiresNotifyPropertyChanged()
         {
             //------------Setup for test--------------------------
@@ -74,9 +75,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(notifyPropertyChanged);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("FindRecordsTO_SearchType")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("FindRecordsTO_SearchType")]
         public void FindRecordsTO_SearchCriteria_SetValue_FiresNotifyPropertyChanged()
         {
             //------------Setup for test--------------------------
@@ -91,9 +92,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(notifyPropertyChanged);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("FindRecordsTO_IndexNum")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("FindRecordsTO_IndexNum")]
         public void FindRecordsTO_IndexNum_SetValue_FiresNotifyPropertyChanged()
         {
             //------------Setup for test--------------------------
@@ -106,9 +107,9 @@ namespace Dev2.Tests.Activities.TOTests
             Assert.IsTrue(notifyPropertyChanged);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("FindRecordsTO_IsSearchCriteriaEnabled")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("FindRecordsTO_IsSearchCriteriaEnabled")]
         public void FindRecordsTO_IsSearchCriteriaEnabled_SetValue_FiresNotifyPropertyChanged()
         {
             //------------Setup for test--------------------------
@@ -123,9 +124,9 @@ namespace Dev2.Tests.Activities.TOTests
 
         #region CanAdd Tests
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("FindRecordsTO_CanAdd")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("FindRecordsTO_CanAdd")]
         public void FindRecordsTO_CanAdd_SearchTypeEmpty_ReturnFalse()
         {
             //------------Setup for test--------------------------
@@ -135,9 +136,9 @@ namespace Dev2.Tests.Activities.TOTests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("FindRecordsTO_CanAdd")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("FindRecordsTO_CanAdd")]
         public void FindRecordsTO_CanAdd_SearchTypeWithData_ReturnTrue()
         {
             //------------Setup for test--------------------------
@@ -151,9 +152,9 @@ namespace Dev2.Tests.Activities.TOTests
 
         #region CanRemove Tests
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("FindRecordsTO_CanRemove")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("FindRecordsTO_CanRemove")]
         public void FindRecordsTO_CanRemove_SearchTypeEmptyAndSearchTypeEmpty_ReturnTrue()
         {
             //------------Setup for test--------------------------
@@ -163,9 +164,9 @@ namespace Dev2.Tests.Activities.TOTests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("FindRecordsTO_CanRemove")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("FindRecordsTO_CanRemove")]
         public void FindRecordsTO_CanRemove_SearchTypeWithDataAndSearchTypeEmpty_ReturnFalse()
         {
             //------------Setup for test--------------------------
@@ -175,9 +176,9 @@ namespace Dev2.Tests.Activities.TOTests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("FindRecordsTO_CanRemove")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("FindRecordsTO_CanRemove")]
         public void FindRecordsTO_CanRemove_SearchTypeEmptyAndSearchTypeWithData_ReturnFalse()
         {
             //------------Setup for test--------------------------
@@ -187,9 +188,9 @@ namespace Dev2.Tests.Activities.TOTests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("FindRecordsTO_GetRuleSet")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("FindRecordsTO_GetRuleSet")]
         public void FindRecordsTO_GetRuleSet_OnSearchCriteriaSearchTypeAsStartsWith_ReturnTwoRules()
         {
             //------------Setup for test--------------------------
@@ -197,9 +198,9 @@ namespace Dev2.Tests.Activities.TOTests
             VerifyCorrectRulesForEachFieldSearch(findRecordsTO, "SearchCriteria");
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("FindRecordsTO_GetRuleSet")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("FindRecordsTO_GetRuleSet")]
         public void FindRecordsTO_GetRuleSet_OnSearchCriteriaSearchTypeAsEndsWith_ReturnTwoRules()
         {
             //------------Setup for test--------------------------
@@ -207,9 +208,9 @@ namespace Dev2.Tests.Activities.TOTests
             VerifyCorrectRulesForEachFieldSearch(findRecordsTO, "SearchCriteria");
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("FindRecordsTO_GetRuleSet")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("FindRecordsTO_GetRuleSet")]
         public void FindRecordsTO_GetRuleSet_OnSearchCriteriaSearchTypeAsDoesntEndWith_ReturnTwoRules()
         {
             //------------Setup for test--------------------------
@@ -217,9 +218,9 @@ namespace Dev2.Tests.Activities.TOTests
             VerifyCorrectRulesForEachFieldSearch(findRecordsTO, "SearchCriteria");
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("FindRecordsTO_GetRuleSet")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("FindRecordsTO_GetRuleSet")]
         public void FindRecordsTO_GetRuleSet_OnSearchCriteriaSearchTypeAsDoesntStartWith_ReturnTwoRules()
         {
             //------------Setup for test--------------------------
@@ -227,9 +228,9 @@ namespace Dev2.Tests.Activities.TOTests
             VerifyCorrectRulesForEachFieldSearch(findRecordsTO, "SearchCriteria");
         }
         
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("FindRecordsTO_GetRuleSet")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("FindRecordsTO_GetRuleSet")]
         public void FindRecordsTO_GetRuleSet_OnFromSearchTypeAsIsBetween_ReturnTwoRules()
         {
             //------------Setup for test--------------------------
@@ -237,18 +238,18 @@ namespace Dev2.Tests.Activities.TOTests
             VerifyCorrectRulesForEachField(findRecordsTO, "From");
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("FindRecordsTO_GetRuleSet")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("FindRecordsTO_GetRuleSet")]
         public void FindRecordsTO_GetRuleSet_OnFromSearchTypeAsIsNotBetween_ReturnTwoRules()
         {
             //------------Setup for test--------------------------
             var findRecordsTO = new FindRecordsTO { SearchType = "Is Not Between", SearchCriteria = string.Empty };
             VerifyCorrectRulesForEachField(findRecordsTO, "From");
         }
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("FindRecordsTO_GetRuleSet")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("FindRecordsTO_GetRuleSet")]
         public void FindRecordsTO_GetRuleSet_OnToSearchTypeAsIsBetween_ReturnTwoRules()
         {
             //------------Setup for test--------------------------
@@ -256,9 +257,9 @@ namespace Dev2.Tests.Activities.TOTests
             VerifyCorrectRulesForEachField(findRecordsTO, "To");
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("FindRecordsTO_GetRuleSet")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("FindRecordsTO_GetRuleSet")]
         public void FindRecordsTO_GetRuleSet_OnToSearchTypeAsIsNotBetween_ReturnTwoRules()
         {
             //------------Setup for test--------------------------
@@ -273,8 +274,8 @@ namespace Dev2.Tests.Activities.TOTests
             var rulesSet = findRecordsTO.GetRuleSet(fieldName, "");
             //------------Assert Results-------------------------
             Assert.IsNotNull(rulesSet);
-            Assert.IsInstanceOfType(rulesSet.Rules[0], typeof(IsStringEmptyRule));
-            Assert.IsInstanceOfType(rulesSet.Rules[1], typeof(IsValidExpressionRule));
+            Assert.IsInstanceOf(rulesSet.Rules[0].GetType(), typeof(IsStringEmptyRule));
+            Assert.IsInstanceOf(rulesSet.Rules[1].GetType(), typeof(IsValidExpressionRule));
         }
         static void VerifyCorrectRulesForEachFieldSearch(FindRecordsTO findRecordsTO, string fieldName)
         {
@@ -283,7 +284,7 @@ namespace Dev2.Tests.Activities.TOTests
             //------------Assert Results-------------------------
             Assert.IsNotNull(rulesSet);
     
-            Assert.IsInstanceOfType(rulesSet.Rules[0], typeof(IsValidExpressionRule));
+            Assert.IsInstanceOf(rulesSet.Rules[0].GetType(), typeof(IsValidExpressionRule));
         }
         #endregion
     }

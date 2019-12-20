@@ -12,17 +12,18 @@ using System;
 using System.Globalization;
 using System.Windows;
 using Dev2.Studio.Core.AppResources.Converters;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests.AppResources.Converters
 {
-    [TestClass]
-	[TestCategory("Studio Resources Core")]
+    [TestFixture]
+    [SetUpFixture]
+	[Category("Studio Resources Core")]
     public class IntInRangeToVisibilityConverterTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("IntInRangeToVisibilityConverter_ConvertBack")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("IntInRangeToVisibilityConverter_ConvertBack")]
         [ExpectedException(typeof(NotImplementedException))]
         public void IntInRangeToVisibilityConverter_ConvertBack_ThrowsNotImplementedException()
         {
@@ -35,25 +36,25 @@ namespace Dev2.Core.Tests.AppResources.Converters
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("IntInRangeToVisibilityConverter_Convert")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("IntInRangeToVisibilityConverter_Convert")]
         public void IntInRangeToVisibilityConverter_Convert_NullValues_Visible()
         {
             Verify_Convert(null, Visibility.Visible);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("IntInRangeToVisibilityConverter_Convert")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("IntInRangeToVisibilityConverter_Convert")]
         public void IntInRangeToVisibilityConverter_Convert_2OrLessValues_Visible()
         {
             Verify_Convert(new object[2], Visibility.Visible);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("IntInRangeToVisibilityConverter_Convert")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("IntInRangeToVisibilityConverter_Convert")]
         public void IntInRangeToVisibilityConverter_Convert_MinEqualsMax_Visible()
         {
             const int Min = 2;
@@ -62,9 +63,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Verify_Convert(new object[] { Value, Min, Max }, Visibility.Visible);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("IntInRangeToVisibilityConverter_Convert")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("IntInRangeToVisibilityConverter_Convert")]
         public void IntInRangeToVisibilityConverter_Convert_ValueEqualToMinAndLessThanMax_Visible()
         {
             const int Min = 2;
@@ -73,9 +74,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Verify_Convert(new object[] { Value, Min, Max }, Visibility.Visible);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("IntInRangeToVisibilityConverter_Convert")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("IntInRangeToVisibilityConverter_Convert")]
         public void IntInRangeToVisibilityConverter_Convert_ValueGreaterThanMinAndLessThanMax_Visible()
         {
             const int Min = 3;
@@ -84,9 +85,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Verify_Convert(new object[] { Value, Min, Max }, Visibility.Visible);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("IntInRangeToVisibilityConverter_Convert")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("IntInRangeToVisibilityConverter_Convert")]
         public void IntInRangeToVisibilityConverter_Convert_ValueGreaterThanMinAndEqualToMax_Visible()
         {
             const int Min = 2;
@@ -95,9 +96,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Verify_Convert(new object[] { Value, Min, Max }, Visibility.Visible);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("IntInRangeToVisibilityConverter_Convert")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("IntInRangeToVisibilityConverter_Convert")]
         public void IntInRangeToVisibilityConverter_Convert_ValueLessThanMin_Collapsed()
         {
             const int Min = 3;
@@ -106,9 +107,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Verify_Convert(new object[] { Value, Min, Max }, Visibility.Collapsed);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("IntInRangeToVisibilityConverter_Convert")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("IntInRangeToVisibilityConverter_Convert")]
         public void IntInRangeToVisibilityConverter_Convert_GreaterThanMax_Collapsed()
         {
             const int Min = 3;

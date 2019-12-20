@@ -11,12 +11,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using Dev2.Common.Interfaces.Core.Graph;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Framework.Converters.Graph.String.Xml;
 
 namespace Unlimited.UnitTest.Framework.ConverterTests.GraphTests.StringTests.XmlTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class XmlMapperTests
     {
         internal string Given()
@@ -61,7 +62,7 @@ namespace Unlimited.UnitTest.Framework.ConverterTests.GraphTests.StringTests.Xml
         /// <summary>
         /// Map XML with attribute expected path to attribute returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void MapXmlWithAttribute_Expected_PathToAttribute()
         {
             var xmlMapper = new XmlMapper();
@@ -75,7 +76,7 @@ namespace Unlimited.UnitTest.Framework.ConverterTests.GraphTests.StringTests.Xml
         /// <summary>
         /// Map XML with scalar value expected path to scalar value returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void MapXmlWithScalarValue_Expected_PathToScalarValue()
         {
             var xmlMapper = new XmlMapper();
@@ -89,7 +90,7 @@ namespace Unlimited.UnitTest.Framework.ConverterTests.GraphTests.StringTests.Xml
         /// <summary>
         /// Map XML with blank scalar value expected path to scalar value returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void MapXmlWithBlankScalarValue_Expected_PathToScalarValue()
         {
             var xmlMapper = new XmlMapper();
@@ -103,7 +104,7 @@ namespace Unlimited.UnitTest.Framework.ConverterTests.GraphTests.StringTests.Xml
         /// <summary>
         /// Map XML with A recordset and attributes on items in the recordset_ expected_ path to attribute of elements in recordset.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void MapXmlWithARecordsetAndAttributesOnItemsInTheRecordset_Expected_PathToAttributeOfElementsInRecordset()
         {
             var xmlMapper = new XmlMapper();
@@ -117,7 +118,7 @@ namespace Unlimited.UnitTest.Framework.ConverterTests.GraphTests.StringTests.Xml
         /// <summary>
         /// Map XML with a recordset and attributes on the recordset expected path to attribute of recordset returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void MapXmlWithARecordsetAndAttributesOnTheRecordset_Expected_PathToAttributeOfRecordset()
         {
             var xmlMapper = new XmlMapper();
@@ -131,7 +132,7 @@ namespace Unlimited.UnitTest.Framework.ConverterTests.GraphTests.StringTests.Xml
         /// <summary>
         /// Map XML with a inline recordset expected path to items in inner recordset returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void MapXmlWithAInlineRecordset_Expected_PathToItemsInInnerRecordset()
         {
             var xmlMapper = new XmlMapper();

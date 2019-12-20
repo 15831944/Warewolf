@@ -12,17 +12,18 @@ using System;
 using System.Collections.Generic;
 using Dev2.Data.Interfaces;
 using Dev2.PathOperations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Data.Tests.PathOperations
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class Dev2FileSystemProviderTests
     {
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("Dev2FileSystemProvider_CRUDOperationTests")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("Dev2FileSystemProvider_CRUDOperationTests")]
         public void Dev2FileSystemProvider_GetOperation_NonExistingPath_FriendlyError()
         {
             var pass = false;
@@ -37,18 +38,18 @@ namespace Dev2.Data.Tests.PathOperations
             }
             catch(Exception ex)
             {
-                Assert.AreEqual("File C:/dadsdascasxxxacvaawqf not found ", ex.Message);
+                NUnit.Framework.Assert.AreEqual("File C:/dadsdascasxxxacvaawqf not found ", ex.Message);
                 pass = true;
             }
             if(!pass)
             {
-                Assert.Fail("The correct error wasn't returned.");
+                NUnit.Framework.Assert.Fail("The correct error wasn't returned.");
             }
         }
 
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("Dev2FileSystemProvider_CRUDOperationTests")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("Dev2FileSystemProvider_CRUDOperationTests")]
         public void Dev2FileSystemProvider_GetDirectoryOperation_NonExistingPath_FriendlyError()
         {
             var pass = false;
@@ -60,12 +61,12 @@ namespace Dev2.Data.Tests.PathOperations
             }
             catch(Exception ex)
             {
-                Assert.AreEqual("Directory not found C:/dadsdascasxxxacvaawqf", ex.Message);
+                NUnit.Framework.Assert.AreEqual("Directory not found C:/dadsdascasxxxacvaawqf", ex.Message);
                 pass = true;
             }
             if(!pass)
             {
-                Assert.Fail("The corrrect error wasnt returned");
+                NUnit.Framework.Assert.Fail("The corrrect error wasnt returned");
             }
         }
     }

@@ -22,20 +22,22 @@ using Dev2.Data.TO;
 using Dev2.DataList.Contract;
 using Dev2.DynamicServices;
 using Dev2.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Warewolf.Storage;
 using Warewolf.Storage.Interfaces;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfWebGetRequestWithTimeoutActivityTests : BaseActivityUnitTest 
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_UpdateForEachInputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -46,12 +48,12 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             //------------Execute Test---------------------------
             act.UpdateForEachInputs(null);
             //------------Assert Results-------------------------
-            Assert.AreEqual(url, act.Url);
+            NUnit.Framework.Assert.AreEqual(url, act.Url);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_UpdateForEachInputs_MoreThan1Updates_Updates()
         {
             //------------Setup for test--------------------------
@@ -65,12 +67,12 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             //------------Execute Test---------------------------
             act.UpdateForEachInputs(new List<Tuple<string, string>> { tuple1, tuple2 });
             //------------Assert Results-------------------------
-            Assert.AreEqual("Test2", act.Url);
+            NUnit.Framework.Assert.AreEqual("Test2", act.Url);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_UpdateForEachOutputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -81,12 +83,12 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             //------------Execute Test---------------------------
             act.UpdateForEachOutputs(null);
             //------------Assert Results-------------------------
-            Assert.AreEqual(result, act.Result);
+            NUnit.Framework.Assert.AreEqual(result, act.Result);
         }
         
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_UpdateForEachOutputs_MoreThan1Updates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -100,12 +102,12 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             //------------Execute Test---------------------------
             act.UpdateForEachOutputs(new List<Tuple<string, string>> { tuple1, tuple2 });
             //------------Assert Results-------------------------
-            Assert.AreEqual(result, act.Result);
+            NUnit.Framework.Assert.AreEqual(result, act.Result);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_UpdateForEachOutputs_1Update_UpdateCommandResult()
         {
             //------------Setup for test--------------------------
@@ -118,12 +120,12 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             //------------Execute Test---------------------------
             act.UpdateForEachOutputs(new List<Tuple<string, string>> { tuple1 });
             //------------Assert Results-------------------------
-            Assert.AreEqual("Test", act.Result);
+            NUnit.Framework.Assert.AreEqual("Test", act.Result);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_GetForEachInputs_WhenHasExpression_ReturnsInputList()
         {
             //------------Setup for test--------------------------
@@ -134,14 +136,14 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             //------------Execute Test---------------------------
             var dsfForEachItems = act.GetForEachInputs();
             //------------Assert Results-------------------------
-            Assert.AreEqual(1, dsfForEachItems.Count);
-            Assert.AreEqual(url, dsfForEachItems[0].Name);
-            Assert.AreEqual(url, dsfForEachItems[0].Value);
+            NUnit.Framework.Assert.AreEqual(1, dsfForEachItems.Count);
+            NUnit.Framework.Assert.AreEqual(url, dsfForEachItems[0].Name);
+            NUnit.Framework.Assert.AreEqual(url, dsfForEachItems[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_GetForEachOutputs_WhenHasResult_ReturnsOutputList()
         {
             //------------Setup for test--------------------------
@@ -152,27 +154,27 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             //------------Execute Test---------------------------
             var dsfForEachItems = act.GetForEachOutputs();
             //------------Assert Results-------------------------
-            Assert.AreEqual(1, dsfForEachItems.Count);
-            Assert.AreEqual(result, dsfForEachItems[0].Name);
-            Assert.AreEqual(result, dsfForEachItems[0].Value);
+            NUnit.Framework.Assert.AreEqual(1, dsfForEachItems.Count);
+            NUnit.Framework.Assert.AreEqual(result, dsfForEachItems[0].Name);
+            NUnit.Framework.Assert.AreEqual(result, dsfForEachItems[0].Value);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_Constructed_Expect_IsAbstractString()
         {
             //------------Setup for test--------------------------
             //------------Execute Test---------------------------
             var activity = GetWebGetRequestWithTimeoutActivity();
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(activity, typeof(DsfActivityAbstract<string>));
-            Assert.AreEqual(100, activity.TimeoutSeconds);
+            NUnit.Framework.Assert.IsInstanceOf(activity.GetType(), typeof(DsfActivityAbstract<string>));
+            NUnit.Framework.Assert.AreEqual(100, activity.TimeoutSeconds);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_WebRequestInvoker_IsNull_Expect_ConcreateImplementation()
         {
             //------------Setup for test--------------------------
@@ -180,12 +182,12 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             //------------Execute Test---------------------------
             var requestInvoker = activity.WebRequestInvoker;
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(requestInvoker, typeof(WebRequestInvoker));
+            NUnit.Framework.Assert.IsInstanceOf(requestInvoker.GetType(), typeof(WebRequestInvoker));
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_WebRequestInvoker_Expect_GetGivenValue()
         {
             //------------Setup for test--------------------------
@@ -195,13 +197,13 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             //------------Execute Test---------------------------
             var actual = activity.WebRequestInvoker;
             //------------Assert Results-------------------------
-            Assert.AreEqual(webRequestInvoker, actual);
-            Assert.IsNotInstanceOfType(actual, typeof(WebRequestInvoker));
+            NUnit.Framework.Assert.AreEqual(webRequestInvoker, actual);
+            NUnit.Framework.Assert.IsNotInstanceOf(actual.GetType(), typeof(WebRequestInvoker));
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_GetFindMissingType_Expect_StaticActivityType()
         {
             //------------Setup for test--------------------------
@@ -209,13 +211,13 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             //------------Execute Test---------------------------
             var findMissingType = activity.GetFindMissingType();
             //------------Assert Results-------------------------
-            Assert.AreEqual(enFindMissingType.StaticActivity, findMissingType);
+            NUnit.Framework.Assert.AreEqual(enFindMissingType.StaticActivity, findMissingType);
         }
 
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_ExecuteRequest_WithStaticValues_Expect_CorrectResults()
         {
             //------------Setup for test--------------------------
@@ -233,9 +235,9 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             mock.Verify(sender => sender.ExecuteRequest(activity.Method, activity.Url, It.IsAny<List<Tuple<string, string>>>(), It.IsAny<int>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_ExecuteRequest_WithError_ExpectErrorAdded()
         {
             //------------Setup for test--------------------------
@@ -257,12 +259,12 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             //------------Assert Results-------------------------
             mock.Verify(sender => sender.ExecuteRequest(activity.Method, activity.Url, It.IsAny<List<Tuple<string, string>>>(), It.IsAny<int>()), Times.Once());
             var errorString = DataObject.Environment.FetchErrors();
-            StringAssert.Contains(errorString, Message);
+            NUnit.Framework.StringAssert.Contains(errorString, Message);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_ExecuteRequest_WithError_ExpectTimeOut_IsTrue()
         {
             //------------Setup for test--------------------------
@@ -294,18 +296,18 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             dsfDataObject.EsbChannel = new MockEsb();
 
             bool timeoutSecondsError = false;
-            PrivateObject obj = new PrivateObject(activity);
+            PrivateObject obj = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(activity);
             object[] args = new object[] { dsfDataObject, 0, errorResultTO, timeoutSecondsError };
 
             //------------Execute Test---------------------------
             var act = obj.Invoke("SetTimeoutSecondsError", args);
             //------------Assert Results-------------------------
-            Assert.AreEqual(true, act);
+            NUnit.Framework.Assert.AreEqual(true, act);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_ExecuteRequest_WithError_Expect_ErrorAdded_TimeoutSecondsOutOfRange()
         {
             //------------Setup for test--------------------------
@@ -330,13 +332,13 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             //------------Assert Results-------------------------
             mock.Verify(sender => sender.ExecuteRequest(activity.Method, Url, It.IsAny<List<Tuple<string, string>>>(), It.IsAny<int>()), Times.Never());
             GetScalarValueFromEnvironment(result.Environment, "Res", out string actual, out string error);
-            Assert.AreNotEqual(ExpectedResult, actual);
-            Assert.IsNotNull(error);
+            NUnit.Framework.Assert.AreNotEqual(ExpectedResult, actual);
+            NUnit.Framework.Assert.IsNotNull(error);
         }
         
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_ExecuteRequest_WithScalarValues_Expect_CorrectResults()
         {
             //------------Setup for test--------------------------
@@ -361,12 +363,12 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             //------------Assert Results-------------------------
             mock.Verify(sender => sender.ExecuteRequest(activity.Method, Url, It.IsAny<List<Tuple<string, string>>>(), It.IsAny<int>()), Times.Once());
             GetScalarValueFromEnvironment(result.Environment, "Res", out string actual, out string error);
-            Assert.AreEqual(ExpectedResult, actual);
+            NUnit.Framework.Assert.AreEqual(ExpectedResult, actual);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_GetOutputs_Called_Expect_ListWithResultValueInIt()
         {
             //------------Setup for test--------------------------
@@ -377,13 +379,13 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             //------------Execute Test---------------------------
             var outputs = act.GetOutputs();
             //------------Assert Results-------------------------
-            Assert.AreEqual(1, outputs.Count);
-            Assert.AreEqual("[[res]]", outputs[0]);
+            NUnit.Framework.Assert.AreEqual(1, outputs.Count);
+            NUnit.Framework.Assert.AreEqual("[[res]]", outputs[0]);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_Execute_WithHeaders()
         {
             //------------Setup for test--------------------------
@@ -406,12 +408,12 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             //------------Execute Test---------------------------
             dsfWebGetActivity.Execute(dataObjectMock.Object, 0);
             //------------Assert Results-------------------------
-            Assert.AreEqual(response, ExecutionEnvironment.WarewolfEvalResultToString(environment.Eval("[[Response]]", 0)));
+            NUnit.Framework.Assert.AreEqual(response, ExecutionEnvironment.WarewolfEvalResultToString(environment.Eval("[[Response]]", 0)));
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_Execute_WithHeaders_WithTimeoutActivity()
         {
             //------------Setup for test--------------------------
@@ -434,12 +436,12 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             //------------Execute Test---------------------------
             dsfWebGetActivity.Execute(dataObjectMock.Object, 0);
             //------------Assert Results-------------------------
-            Assert.AreEqual("Value hhh for TimeoutSecondsText could not be interpreted as a numeric value.\r\nExecution aborted - see error messages.", environment.FetchErrors().ToString());
+            NUnit.Framework.Assert.AreEqual("Value hhh for TimeoutSecondsText could not be interpreted as a numeric value.\r\nExecution aborted - see error messages.", environment.FetchErrors().ToString());
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_Equals_dsfWebGetActivity_Null_IsFalse()
         {
             //------------Setup for test--------------------------
@@ -447,12 +449,12 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             //------------Execute Test---------------------------
             var actual = dsfWebGetActivity.Equals(null);
             //------------Assert Results-------------------------
-            Assert.IsFalse(actual);
+            NUnit.Framework.Assert.IsFalse(actual);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_Equals_dsfWebGetActivity_NotNull_IsTrue()
         {
             //------------Setup for test--------------------------
@@ -466,12 +468,12 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             //------------Execute Test---------------------------
             var actual = dsfWebGetActivity.Equals(dsfWebGetActivity);
             //------------Assert Results-------------------------
-            Assert.IsTrue(actual);
+            NUnit.Framework.Assert.IsTrue(actual);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_Equals_ObjectType_NotEqualToThis_IsFalse()
         {
             //------------Setup for test--------------------------
@@ -485,12 +487,12 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             //------------Execute Test---------------------------
             var actual = dsfWebGetActivity.Equals(new object());
             //------------Assert Results-------------------------
-            Assert.IsFalse(actual);
+            NUnit.Framework.Assert.IsFalse(actual);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_Equals_Object_IsNull_IsFalse()
         {
             //------------Setup for test--------------------------
@@ -506,12 +508,12 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             //------------Execute Test---------------------------
             var actual = dsfWebGetActivity.Equals(obj);
             //------------Assert Results-------------------------
-            Assert.IsFalse(actual);
+            NUnit.Framework.Assert.IsFalse(actual);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWebGetRequestWithTimeoutActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWebGetRequestWithTimeoutActivity))]
         public void DsfWebGetRequestWithTimeoutActivity_Equals_ObjectType_IsEqualToThis_IsTrue()
         {
             //------------Setup for test--------------------------
@@ -527,7 +529,7 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             //------------Execute Test---------------------------
             var actual = dsfWebGetActivity.Equals(obj);
             //------------Assert Results-------------------------
-            Assert.IsTrue(actual);
+            NUnit.Framework.Assert.IsTrue(actual);
         }
 
         static DsfWebGetRequestWithTimeoutActivity GetWebGetRequestWithTimeoutActivity(Mock<IWebRequestInvoker> mockWebRequestInvoker)

@@ -10,17 +10,18 @@
 
 using Dev2.Common;
 using Dev2.Studio.InterfaceImplementors;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests.AppResources.Converters
 {
-    [TestClass]
-	[TestCategory("Studio Resources Core")]    
+    [TestFixture]
+    [SetUpFixture]
+	[Category("Studio Resources Core")]    
     public class CalculateIntellisenseTextConverterTests
     {
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CalculateIntellisenseTextConverter_Convert")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CalculateIntellisenseTextConverter_Convert")]
         public void CalculateIntellisenseTextConverter_Convert_StringWithCalculationConstants_SameString()
         {
             var converter = new CalculateIntellisenseTextConverter();
@@ -29,9 +30,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(Expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CalculateIntellisenseTextConverter_Convert")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CalculateIntellisenseTextConverter_Convert")]
         public void CalculateIntellisenseTextConverter_Convert_StringWithParameterAllowUserCalculateIsTrue_StringIsConverted()
         {
             var converter = new CalculateIntellisenseTextConverter();
@@ -40,9 +41,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual("=sum(10,10)", actual);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CalculateIntellisenseTextConverter_Convert")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CalculateIntellisenseTextConverter_Convert")]
         public void CalculateIntellisenseTextConverter_Convert_StringWithParameterAllowUserCalculateIsFalse_StringIsNotConverted()
         {
             var converter = new CalculateIntellisenseTextConverter();
@@ -51,9 +52,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CalculateIntellisenseTextConverter_Convert")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CalculateIntellisenseTextConverter_Convert")]
         public void CalculateIntellisenseTextConverter_Convert_Null_Null()
         {
             var converter = new CalculateIntellisenseTextConverter();
@@ -61,9 +62,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(null, actual);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CalculateIntellisenseTextConverter_ConvertBack")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CalculateIntellisenseTextConverter_ConvertBack")]
         public void CalculateIntellisenseTextConverter_ConvertBack_StringWithCalculationConstants_SameString()
         {
             var converter = new CalculateIntellisenseTextConverter();
@@ -72,9 +73,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(Expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CalculateIntellisenseTextConverter_ConvertBack")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CalculateIntellisenseTextConverter_ConvertBack")]
         public void CalculateIntellisenseTextConverter_ConvertBack_StringWithParameterAllowUserCalculateIsTrue_StringIsConverted()
         {
             var converter = new CalculateIntellisenseTextConverter();
@@ -83,9 +84,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CalculateIntellisenseTextConverter_ConvertBack")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CalculateIntellisenseTextConverter_ConvertBack")]
         public void CalculateIntellisenseTextConverter_ConvertBack_StringWithParameterAllowUserCalculateIsFalse_StringIsNotConverted()
         {
             var converter = new CalculateIntellisenseTextConverter();
@@ -94,9 +95,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(expected, actual);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CalculateIntellisenseTextConverter_ConvertBack")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CalculateIntellisenseTextConverter_ConvertBack")]
         public void CalculateIntellisenseTextConverter_ConvertBack_Null_Null()
         {
             var converter = new CalculateIntellisenseTextConverter();

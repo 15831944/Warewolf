@@ -10,11 +10,12 @@
 
 using System;
 using Dev2.Communication;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Infrastructure.Tests.Communication
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FutureRecieptTest
     {
 
@@ -22,9 +23,9 @@ namespace Dev2.Infrastructure.Tests.Communication
 
 
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("FutureReceipt_ToKey")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("FutureReceipt_ToKey")]
         public void FutureReceipt_ToKey_WhenValidKeyParts_ExpectKey()
         {
             //------------Setup for test--------------------------
@@ -37,9 +38,9 @@ namespace Dev2.Infrastructure.Tests.Communication
             StringAssert.Contains(result, RequestID+"-1-Bob!");
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("FutureReceipt_ToKey")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("FutureReceipt_ToKey")]
         [ExpectedException(typeof(Exception))]
         public void FutureReceipt_ToKey_WhenPartIDLessThenZero_ExpectException()
         {
@@ -50,9 +51,9 @@ namespace Dev2.Infrastructure.Tests.Communication
             futureReciept.ToKey();
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("FutureReceipt_ToKey")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("FutureReceipt_ToKey")]
         [ExpectedException(typeof(Exception))]
         public void FutureReceipt_ToKey_WhenRequestIDEmpty_ExpectException()
         {
@@ -63,9 +64,9 @@ namespace Dev2.Infrastructure.Tests.Communication
             futureReciept.ToKey();
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("FutureReceipt_ToKey")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("FutureReceipt_ToKey")]
         [ExpectedException(typeof(Exception))]
         public void FutureReceipt_ToKey_WhenRequestIDNotSet_ExpectException()
         {
@@ -76,9 +77,9 @@ namespace Dev2.Infrastructure.Tests.Communication
             futureReciept.ToKey();
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("FutureReceipt_ToKey")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("FutureReceipt_ToKey")]
         [ExpectedException(typeof(Exception))]
         public void FutureReceipt_ToKey_WhenUserEmpty_ExpectException()
         {
@@ -89,9 +90,9 @@ namespace Dev2.Infrastructure.Tests.Communication
             futureReciept.ToKey();
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("FutureReceipt_ToKey")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("FutureReceipt_ToKey")]
         [ExpectedException(typeof(Exception))]
         public void FutureReceipt_ToKey_WhenUserNull_ExpectException()
         {
@@ -102,9 +103,9 @@ namespace Dev2.Infrastructure.Tests.Communication
             futureReciept.ToKey();
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("FutureReceipt_ToKey")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("FutureReceipt_ToKey")]
         [ExpectedException(typeof(Exception))]
         public void FutureReceipt_ToKey_WhenUserNotSet_ExpectException()
         {

@@ -11,7 +11,7 @@ using Dev2.Interfaces;
 using Dev2.Runtime.Interfaces;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Tests.Activities.XML;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Core;
 using Warewolf.Storage;
@@ -20,15 +20,16 @@ using Warewolf.Storage;
 namespace Dev2.Tests.Activities.ActivityTests.Web
 {
     //"This Test class tests WebBaseActivity using a Delete implemantation as an example "    
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
 
     public class DsfWebBaseActivityTests
     {
         const string userAgent1 = "Mozilla/4.0";
         const string userAgent2 = "(compatible; MSIE 6.0; Windows NT 5.2; .NET CLR 1.0.3705;)";
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void DsfWebActivity_GivenDeleteInstance_ShouldNotBenull()
         {
             //---------------Set up test pack-------------------
@@ -48,8 +49,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
                     "Web Post Delete Tool", "Web Post Delete Tool"));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateClient_GivenRequestMethod_ShouldHaveClient()
         {
             //---------------Set up test pack-------------------
@@ -64,8 +65,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.IsNotNull(httpClient);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateClient_GivenWrongUri_ShouldReturnClientWithNoAdress()
         {
             //---------------Set up test pack-------------------
@@ -78,8 +79,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.IsNull(httpClient.BaseAddress);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Constructer_GivenHasInstance_ShouldHaveType()
         {
             //---------------Set up test pack-------------------
@@ -92,8 +93,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.IsNotNull(deleteActivityFromBase.Type);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetFindMissingType_GivenWebPostActivity_ShouldReturnMissingTypeDataGridAcitvity()
         {
             //---------------Set up test pack-------------------
@@ -106,8 +107,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual(enFindMissingType.DataGridActivity, deleteActivityFromBase.GetFindMissingType());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetDebugInputs_GivenEnvironmentIsNull_ShouldReturnZeroDebugInputs()
         {
             //---------------Set up test pack-------------------
@@ -120,8 +121,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual(0, debugInputs.Count);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateClient_GivenNoHeaders_ShouldHaveTwoHeaders()
         {
             //---------------Set up test pack-------------------
@@ -136,8 +137,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual(2, actualHeaderCount);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CleateClient_GivenNoHeaders_ShouldGlobalConstantsUserAgent()
         {
             //---------------Set up test pack-------------------
@@ -153,8 +154,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual(userAgent2, userAgentCollection.Last().ToString());
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateClient_GivenWebSourceAuthenticationTypeIsUser_ShouldSetWebClientPasswordAndUserName()
         {
             //---------------Set up test pack-------------------
@@ -174,8 +175,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             //Assert.AreEqual(webClientCredentials.Password, networkCredentialFromWebSource.Password);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateClient_GivenAuthenticationTypeIsNotUser_ShouldNotSetCredentials()
         {
             //---------------Set up test pack-------------------
@@ -189,8 +190,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.IsNull(httpClient.DefaultRequestHeaders.Authorization);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateClient_GivenHeaders_ShouldHaveHeadersAdded()
         {
             //---------------Set up test pack-------------------
@@ -211,8 +212,8 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             Assert.AreEqual("text/json", allContentValues.ToList()[0]);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetDebugInputs_GivenMockEnvironment_ShouldAddDebugInputItems()
         {
             //---------------Set up test pack-------------------

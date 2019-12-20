@@ -1,18 +1,19 @@
 ﻿using System.Collections.ObjectModel;
 using Dev2.Studio.Core.Models.DataList;
 using Dev2.Studio.Interfaces.DataList;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 
 namespace Dev2.Core.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ComplexObjectItemModelTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ComplexObjectItemModel_Constructor")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ComplexObjectItemModel_Constructor")]
         public void ComplexObjectItemModel_Constructor_ShouldCreateItem()
         {
             //------------Setup for test--------------------------
@@ -21,17 +22,17 @@ namespace Dev2.Core.Tests
             var complexObjectItemModel = new ComplexObjectItemModel("TestItem");
             //------------Assert Results-------------------------
             Assert.IsNotNull(complexObjectItemModel);
-            Assert.IsInstanceOfType(complexObjectItemModel,typeof(DataListItemModel));
-            Assert.IsInstanceOfType(complexObjectItemModel,typeof(IComplexObjectItemModel));
+            Assert.IsInstanceOf(complexObjectItemModel.GetType(), typeof(DataListItemModel));
+            Assert.IsInstanceOf(complexObjectItemModel.GetType(), typeof(IComplexObjectItemModel));
             Assert.IsNull(complexObjectItemModel.Parent);
             Assert.IsTrue(complexObjectItemModel.IsParentObject);
             Assert.AreEqual("TestItem",complexObjectItemModel.DisplayName);
             Assert.AreEqual("@TestItem",complexObjectItemModel.Name);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ComplexObjectItemModel_Children")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ComplexObjectItemModel_Children")]
         public void ComplexObjectItemModel_Children_GetWhenNotSet_ShouldReturnNewCollection()
         {
             //------------Setup for test--------------------------
@@ -44,9 +45,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(0,children.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ComplexObjectItemModel_Children")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ComplexObjectItemModel_Children")]
         public void ComplexObjectItemModel_Children_GetWhenSet_ShouldReturnSetCollection()
         {
             //------------Setup for test--------------------------
@@ -60,9 +61,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(1,children.Count);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ComplexObjectItemModel_Parent")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ComplexObjectItemModel_Parent")]
         public void ComplexObjectItemModel_Parent_Set_ShouldUpdateNameIsParentObject()
         {
             //------------Setup for test--------------------------
@@ -77,9 +78,9 @@ namespace Dev2.Core.Tests
             Assert.IsFalse(complexObjectItemModel.IsParentObject);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ComplexObject_GetJson")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ComplexObject_GetJson")]
         public void ComplexObjectItemModel_GetJson_PrimitiveChildren_ShouldReturnCorrectJson()
         {
             //------------Setup for test--------------------------
@@ -93,9 +94,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("{\"Parent\":{\"Name\":\"\",\"Age\":\"\",\"Gender\":\"\"}}", jsonString);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ComplexObject_GetJson")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ComplexObject_GetJson")]
         public void ComplexObjectItemModel_GetJson_HasObjectChildren_ShouldReturnCorrectJson()
         {
             //------------Setup for test--------------------------
@@ -114,9 +115,9 @@ namespace Dev2.Core.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ComplexObject_GetJson")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ComplexObject_GetJson")]
         public void ComplexObjectItemModel_GetJson_IsArray_PrimitiveChildren_ShouldReturnCorrectJson()
         {
             //------------Setup for test--------------------------
@@ -131,9 +132,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("{\"Parent\":[{\"Name\":\"\",\"Age\":\"\",\"Gender\":\"\"}]}", jsonString);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("ComplexObject_GetJson")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("ComplexObject_GetJson")]
         public void ComplexObjectItemModel_GetJson_HasObjectChildrenIsArray_ShouldReturnCorrectJson()
         {
             //------------Setup for test--------------------------
@@ -152,9 +153,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("{\"Parent\":{\"Name\":\"\",\"Age\":\"\",\"School\":[{\"Name\":\"\",\"Location\":\"\"}],\"Gender\":\"\"}}", jsonString);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("ComplexObjectItemModel_ValidateNames")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("ComplexObjectItemModel_ValidateNames")]
         public void ComplexObjectItemModel_ValidateNames_WithInvalidComplexObjectParentNameWithDot_ShouldHaveError()
         {
             //------------Setup for test--------------------------
@@ -167,9 +168,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("Complex Object name [[Parent.]] contains invalid character(s). Only use alphanumeric _ and - ", complexObject.ErrorMessage);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("ComplexObjectItemModel_ValidateNames")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("ComplexObjectItemModel_ValidateNames")]
         public void ComplexObjectItemModel_ValidateNames_WithInvalidComplexObjectChildNameWithDot_ShouldHaveError()
         {
             //------------Setup for test--------------------------
@@ -186,9 +187,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("Complex Object name [[Name.]] contains invalid character(s). Only use alphanumeric _ and - ", complexObject.Children[0].ErrorMessage);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("ComplexObjectItemModel_ValidateNames")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("ComplexObjectItemModel_ValidateNames")]
         public void ComplexObjectItemModel_ValidateNames_WithValidComplexObject_IsUsed()
         {
             //------------Setup for test--------------------------
@@ -204,9 +205,9 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(complexObject.Children[0].IsUsed);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("ComplexObjectItemModel_ValidateNames")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("ComplexObjectItemModel_ValidateNames")]
         public void ComplexObjectItemModel_ValidateNames_WithValidLongComplexObject_IsUsed()
         {
             //------------Setup for test--------------------------

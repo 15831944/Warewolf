@@ -10,7 +10,7 @@
 
 
 using Dev2.Common;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -21,12 +21,13 @@ using Warewolf.Triggers;
 
 namespace Dev2.Server.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class QueueProcessorMonitorTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(QueueWorkerMonitor))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(QueueWorkerMonitor))]
         public void QueueProcessorMonitor_Start_Success()
         {
             //----------------------------Arrange-----------------------------
@@ -60,9 +61,9 @@ namespace Dev2.Server.Tests
             Assert.IsTrue(pass, "Queue worker exe incorrect");
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(QueueWorkerMonitor))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(QueueWorkerMonitor))]
         public void QueueProcessorMonitor_WorkerCreated()
         {
             var mockProcessFactory = new Mock<IProcessFactory>();

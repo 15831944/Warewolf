@@ -1,19 +1,20 @@
 ﻿using System.Xml.Linq;
 using Dev2.Data.ServiceModel;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Warewolf.Security.Encryption;
 
 
 namespace Dev2.Tests.Runtime.ServiceModel
 {
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class OauthSourceTest
     {
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("OauthSource_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("OauthSource_Ctor")]
         public void OauthSource_Ctor_Construct_ExpectSource()
         {
             //------------Setup for test--------------------------
@@ -26,9 +27,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(null,oauthSource.AppKey);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("OauthSource_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("OauthSource_Ctor")]
         public void OauthSource_Ctor_FromXML_Construct_ExpectSource()
         {
             //------------Setup for test--------------------------
@@ -47,9 +48,9 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(oauthSource.AppKey, "key");
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("OauthSource_ToXML")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("OauthSource_ToXML")]
         public void OauthSource_ToXML_Construct_ExpectPropertiesSet()
         {
             //------------Setup for test--------------------------

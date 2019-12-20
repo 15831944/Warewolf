@@ -16,7 +16,7 @@ using Dev2.Services.Security;
 using Dev2.Studio.Core;
 using Dev2.Studio.Interfaces;
 using Dev2.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Dev2.Triggers;
 using Warewolf.Trigger.Queue;
@@ -25,10 +25,11 @@ using Warewolf.Triggers;
 
 namespace Dev2.Core.Tests.Triggers
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class TriggerViewModelTests
     {
-        [TestInitialize]
+        [SetUp]
         public void SetupForTest()
         {
             var mockExplorerToolTips = new Mock<IExplorerTooltips>();
@@ -46,9 +47,9 @@ namespace Dev2.Core.Tests.Triggers
             CustomContainer.Register(mockExplorerToolTips.Object);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(TriggersViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(TriggersViewModel))]
         [ExpectedException(typeof(ArgumentNullException))]
         public void TriggersViewModel_Constructor_NullPopupController_ThrowsArgumentNullException()
         {
@@ -58,9 +59,9 @@ namespace Dev2.Core.Tests.Triggers
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(TriggersViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(TriggersViewModel))]
         [ExpectedException(typeof(ArgumentNullException))]
         public void TriggersViewModel_Constructor_NullAsyncWorker_ThrowsArgumentNullException()
         {
@@ -70,9 +71,9 @@ namespace Dev2.Core.Tests.Triggers
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(TriggersViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(TriggersViewModel))]
         public void TriggersViewModel_Constructor_Properties_Initialized()
         {
             var mockEventAggregator = new Mock<IEventAggregator>();
@@ -97,9 +98,9 @@ namespace Dev2.Core.Tests.Triggers
         }
 
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(TriggersViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(TriggersViewModel))]
         public void TriggersViewModel_IsEventsSelected_WhenSetToTrue_ShouldSetIsSchedulerToFalse()
         {
             var mockEventAggregator = new Mock<IEventAggregator>();
@@ -121,9 +122,9 @@ namespace Dev2.Core.Tests.Triggers
         }
 
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(TriggersViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(TriggersViewModel))]
         public void TriggersViewModel_IsSchedulerSelected_WhenSetToTrue_ShouldSetIsSchedulerToFalse()
         {
             var mockEventAggregator = new Mock<IEventAggregator>();
@@ -144,9 +145,9 @@ namespace Dev2.Core.Tests.Triggers
             Assert.IsFalse(triggersViewModel.IsEventsSelected);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(TriggersViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(TriggersViewModel))]
         public void TriggersViewModel_NewQueueEventCommand()
         {
 
@@ -156,9 +157,9 @@ namespace Dev2.Core.Tests.Triggers
             Assert.AreEqual(2, triggersViewModel.QueueEventsViewModel.Queues.Count); // The other item is the 'New Queue' item
         }
        
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(TriggersViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(TriggersViewModel))]
         public void TriggersViewModel_DoDeactivate_ShowMessage_False_Expect_True()
         {
             var mockEventAggregator = new Mock<IEventAggregator>();
@@ -183,9 +184,9 @@ namespace Dev2.Core.Tests.Triggers
             mockPopupController.Verify(popupController => popupController.ShowSaveServerNotReachableErrorMsg(), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(TriggersViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(TriggersViewModel))]
         public void TriggersViewModel_DoDeactivate_ShowMessage_True_Unauthorized_Expect_True()
         {
             var mockEventAggregator = new Mock<IEventAggregator>();
@@ -280,9 +281,9 @@ namespace Dev2.Core.Tests.Triggers
             return triggersViewModel;
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(TriggersViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(TriggersViewModel))]
         public void TriggersViewModel_DoDeactivate_ShowMessage_True_Expect_True()
         {
 
@@ -291,9 +292,9 @@ namespace Dev2.Core.Tests.Triggers
             Assert.IsTrue(value);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(TriggersViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(TriggersViewModel))]
         public void TriggersViewModel_DoDeactivate_ShowMessage_True_Cancel_MessageBox_Expect_False()
         {
             var mockPopupController = new Mock<IPopupController>();
@@ -305,9 +306,9 @@ namespace Dev2.Core.Tests.Triggers
             mockPopupController.Verify(popupController => popupController.ShowTasksCloseConfirmation(), Times.Once);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(TriggersViewModel))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(TriggersViewModel))]
         public void TriggersViewModel_DoDeactivate_ShowMessage_True_None_MessageBox_Expect_False()
         {
             var mockPopupController = new Mock<IPopupController>();

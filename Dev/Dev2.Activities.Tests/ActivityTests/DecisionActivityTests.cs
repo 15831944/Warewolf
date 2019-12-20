@@ -4,7 +4,7 @@ using Dev2.Common.State;
 using Dev2.Communication;
 using Dev2.Data.SystemTemplates.Models;
 using Dev2.Utilities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -13,13 +13,14 @@ namespace Dev2.Tests.Activities.ActivityTests
     /// <summary>
     /// Summary description for CaseConvertActivityTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class DecisionActivityTests : BaseActivityUnitTest
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfDecision_SerializeDeserialize")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfDecision_SerializeDeserialize")]
         public void DsfDecision_SerializeDeserialize_WhenAndSetTrue_ShouldHaveAndAsTrueWhenDeserialized()
         {
             //------------Setup for test--------------------------
@@ -33,9 +34,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsTrue(deSerDecision.And);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfDecision_SerializeDeserialize")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfDecision_SerializeDeserialize")]
         public void DsfDecision_SerializeDeserialize_WhenAndSetFalse_ShouldHaveAndAsFalseWhenDeserialized()
         {
             //------------Setup for test--------------------------
@@ -49,9 +50,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsFalse(deSerDecision.And);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfDecision_GetState")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfDecision_GetState")]
         public void DsfDecision_GetState_ReturnsStateVariable()
         {
             //---------------Set up test pack-------------------

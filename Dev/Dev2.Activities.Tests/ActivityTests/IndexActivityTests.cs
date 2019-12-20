@@ -16,7 +16,7 @@ using ActivityUnitTests;
 using Dev2.Common.State;
 using Dev2.Interfaces;
 using Dev2.Utilities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.ActivityTests
@@ -24,7 +24,8 @@ namespace Dev2.Tests.Activities.ActivityTests
     /// <summary>
     /// Summary description for DateTimeDifferenceTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class IndexActivityTests : BaseActivityUnitTest
     {
@@ -36,7 +37,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         #region Index Positive Tests
 
-        [TestMethod]
+        [Test]
         public void Index_Recordset_With_Index_Expected_Index_Of_Four_Returned()
         {
             SetupArguments(ActivityStrings.IndexDataListShape, ActivityStrings.IndexDataListWithData,
@@ -51,7 +52,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
+        [Test]
         public void Index_Recordset_With_Star_And_Star_Search_Criteria_Expected_Index_Of_Four_Returned()
         {
             SetupArguments(ActivityStrings.IndexDataListShapeWithThreeRecordsets, ActivityStrings.IndexDataListWithDataAndThreeRecordsets,
@@ -71,7 +72,7 @@ namespace Dev2.Tests.Activities.ActivityTests
         /// <summary>
         /// This method takes a recordset as input and outputs a single value
         /// </summary>
-        [TestMethod]
+        [Test]
         public void Index_Recordset_With_Star_And_Star_Search_Criteria_Numeric_Return_Field_Expected_RowWithValuesAsCSV()
         {
             const int Expected = 1;
@@ -91,7 +92,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
+        [Test]
         public void Index_Recordset_With_No_Index_Expected_Index_Of_One_Returned()
         {
             SetupArguments(ActivityStrings.IndexDataListShape, ActivityStrings.IndexDataListWithData,
@@ -106,7 +107,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
+        [Test]
         public void Index_Recordset_With_Star_Expected_Six_Different_Indexs_Returned()
         {
             SetupArguments(ActivityStrings.IndexDataListShape, ActivityStrings.IndexDataListWithData,
@@ -123,7 +124,7 @@ namespace Dev2.Tests.Activities.ActivityTests
         /// <summary>
         /// getting a scalar, returning a scalar
         /// </summary>
-        [TestMethod]
+        [Test]
         public void Index_Scalar_Expected_Index_Of_Four_Returned()
         {
             const string Expected = "4";
@@ -142,7 +143,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(Expected, actual);
         }
 
-        [TestMethod]
+        [Test]
         public void Index_Scalar_RightToLeft_Expected_Index_Of_One_Returned()
         {
             SetupArguments(ActivityStrings.IndexDataListShape, ActivityStrings.IndexDataListWithData,
@@ -156,7 +157,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         }
 
-        [TestMethod]
+        [Test]
         public void Index_Scalar_Text_Not_Found_Expected_Index_Of_Negative_One_Returned()
         {
             SetupArguments(ActivityStrings.IndexDataListShape, ActivityStrings.IndexDataListWithData,
@@ -174,7 +175,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         #region Index Negative Tests
 
-        [TestMethod]
+        [Test]
         public void Index_Raw_Data_AllOccurrences_Expected_Success()
         {
             SetupArguments(ActivityStrings.IndexDataListShape, ActivityStrings.IndexDataListShape,
@@ -190,7 +191,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
      
 
-        [TestMethod]
+        [Test]
         public void Index_Recordset_With_Star_AllOccurrences_Expected_Seven_Different_Indexs_Returned()
         {
             SetupArguments(ActivityStrings.IndexDataListShape, ActivityStrings.IndexDataListWithData,
@@ -209,9 +210,9 @@ namespace Dev2.Tests.Activities.ActivityTests
         #endregion Index Negative Tests
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfBaseActivity_GetOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfBaseActivity_GetOutputs")]
         public void DsfBaseActivity_GetOutputs_Called_ShouldReturnListWithResultValueInIt()
         {
             //------------Setup for test--------------------------
@@ -226,9 +227,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("[[res]]", outputs[0]);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfIndexActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfIndexActivity_UpdateForEachInputs")]
         public void DsfIndexActivity_UpdateForEachInputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -243,9 +244,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(characters, act.Characters);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfIndexActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfIndexActivity_UpdateForEachInputs")]
         public void DsfIndexActivity_UpdateForEachInputs_MoreThan1Updates_Updates()
         {
             //------------Setup for test--------------------------
@@ -263,9 +264,9 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfIndexActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfIndexActivity_UpdateForEachOutputs")]
         public void DsfIndexActivity_UpdateForEachOutputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -277,9 +278,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(result, act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfIndexActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfIndexActivity_UpdateForEachOutputs")]
         public void DsfIndexActivity_UpdateForEachOutputs_MoreThan1Updates_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -294,9 +295,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(result, act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfIndexActivity_UpdateForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfIndexActivity_UpdateForEachOutputs")]
         public void DsfIndexActivity_UpdateForEachOutputs_1Updates_UpdateCommandResult()
         {
             //------------Setup for test--------------------------
@@ -309,9 +310,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual("Test", act.Result);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfIndexActivity_GetForEachInputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfIndexActivity_GetForEachInputs")]
         public void DsfIndexActivity_GetForEachInputs_WhenHasExpression_ReturnsInputList()
         {
             //------------Setup for test--------------------------
@@ -329,9 +330,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(characters, dsfForEachItems[1].Value);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DsfIndexActivity_GetForEachOutputs")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DsfIndexActivity_GetForEachOutputs")]
         public void DsfIndexActivity_GetForEachOutputs_WhenHasResult_ReturnsOutputList()
         {
             //------------Setup for test--------------------------
@@ -346,8 +347,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(result, dsfForEachItems[0].Value);
         }
 
-        [TestMethod]
-        [TestCategory("DsfIndexActivity_UpdateForEachOutputs")]
+        [Test]
+        [Category("DsfIndexActivity_UpdateForEachOutputs")]
         public void DsfIndexActivity_GetState_Returns_Inputs_And_Outputs()
         {
             //------------Setup for test--------------------------

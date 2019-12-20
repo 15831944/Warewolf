@@ -13,18 +13,19 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 using Dev2.Activities.Designers2.GetWebRequest.GetWebRequestWithTimeout;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Moq.Protected;
 
 namespace Dev2.Activities.Designers.Tests.GetWebRequestTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class GetWebRequestViewModelTests
     {
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("GetWebRequestDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [NUnit.Framework.Category("GetWebRequestDesignerViewModel_Constructor")]
         public void GetWebRequestDesignerViewModel_Constructor_PreviewViewModel_NotNull()
         {
             var properties = new Dictionary<string, Mock<ModelProperty>>();
@@ -42,9 +43,9 @@ namespace Dev2.Activities.Designers.Tests.GetWebRequestTests
             Assert.IsNotNull(sut.PreviewViewModel);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("GetWebRequestDesignerViewModel_UrlSet")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [NUnit.Framework.Category("GetWebRequestDesignerViewModel_UrlSet")]
         public void GetWebRequestDesignerViewModel_SetUrl_EmptyString_CanPreviewIsFalse()
         {
             var properties = new Dictionary<string, Mock<ModelProperty>>();
@@ -65,9 +66,9 @@ namespace Dev2.Activities.Designers.Tests.GetWebRequestTests
             Assert.IsFalse(sut.PreviewViewModel.CanPreview);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("GetWebRequestDesignerViewModel_UrlSet")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [NUnit.Framework.Category("GetWebRequestDesignerViewModel_UrlSet")]
         public void GetWebRequestDesignerViewModel_SetUrl_StringWithoutVariables_CanPreviewIsTrueButPreviewInputsCountIsZero()
         {
             var properties = new Dictionary<string, Mock<ModelProperty>>();
@@ -90,9 +91,9 @@ namespace Dev2.Activities.Designers.Tests.GetWebRequestTests
             Assert.AreEqual(sut.PreviewViewModel.InputsVisibility, Visibility.Collapsed);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("GetWebRequestDesignerViewModel_UrlSet")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [NUnit.Framework.Category("GetWebRequestDesignerViewModel_UrlSet")]
         public void GetWebRequestDesignerViewModel_SetUrl_StringWithTwoVariables_CanPreviewIsTrueAndPreviewInputsCountIsTwo()
         {
             var properties = new Dictionary<string, Mock<ModelProperty>>();
@@ -115,9 +116,9 @@ namespace Dev2.Activities.Designers.Tests.GetWebRequestTests
             Assert.AreEqual(sut.PreviewViewModel.InputsVisibility, Visibility.Visible);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("GetWebRequestDesignerViewModel_HeadersSet")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [NUnit.Framework.Category("GetWebRequestDesignerViewModel_HeadersSet")]
         public void GetWebRequestDesignerViewModel_SetHeaders_EmptyString_CanPreviewIsFalse()
         {
             var properties = new Dictionary<string, Mock<ModelProperty>>();
@@ -138,9 +139,9 @@ namespace Dev2.Activities.Designers.Tests.GetWebRequestTests
             Assert.IsFalse(sut.PreviewViewModel.CanPreview);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("GetWebRequestDesignerViewModel_HeadersSet")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [NUnit.Framework.Category("GetWebRequestDesignerViewModel_HeadersSet")]
         public void GetWebRequestDesignerViewModel_SetHeaders_StringWithoutVariables_PreviewInputsCountIsZero()
         {
             var properties = new Dictionary<string, Mock<ModelProperty>>();
@@ -162,9 +163,9 @@ namespace Dev2.Activities.Designers.Tests.GetWebRequestTests
             Assert.AreEqual(sut.PreviewViewModel.InputsVisibility, Visibility.Collapsed);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("GetWebRequestDesignerViewModel_HeadersSet")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [NUnit.Framework.Category("GetWebRequestDesignerViewModel_HeadersSet")]
         public void GetWebRequestDesignerViewModel_SetHeaders_StringWithOneVariables_PreviewInputsCountIsOne()
         {
 
@@ -188,9 +189,9 @@ namespace Dev2.Activities.Designers.Tests.GetWebRequestTests
             Assert.AreEqual(sut.PreviewViewModel.InputsVisibility, Visibility.Visible);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("GetWebRequestDesignerViewModel_ExecutePreview")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [NUnit.Framework.Category("GetWebRequestDesignerViewModel_ExecutePreview")]
         public void GetWebRequestDesignerViewModel_ExecutePreviewWhenUrlIsValid_WebRequestIsInvoked()
         {
             var properties = new Dictionary<string, Mock<ModelProperty>>();
@@ -215,9 +216,9 @@ namespace Dev2.Activities.Designers.Tests.GetWebRequestTests
             Assert.IsNull(sut.Errors);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("GetWebRequestDesignerViewModel_ExecutePreview")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [NUnit.Framework.Category("GetWebRequestDesignerViewModel_ExecutePreview")]
         public void GetWebRequestDesignerViewModel_ExecutePreviewWhenUrlIsValidWithoutHttpPrefix_WebRequestIsInvoked()
         {
             var properties = new Dictionary<string, Mock<ModelProperty>>();
@@ -242,9 +243,9 @@ namespace Dev2.Activities.Designers.Tests.GetWebRequestTests
             Assert.IsNull(sut.Errors);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("GetWebRequestDesignerViewModel_ExecutePreview")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [NUnit.Framework.Category("GetWebRequestDesignerViewModel_ExecutePreview")]
         public void GetWebRequestDesignerViewModel_ExecutePreviewWhenUrlIsNull_WebRequestIsNotInvoked()
         {
             var modelItem = GenerateMockModelItem(string.Empty);
@@ -265,9 +266,9 @@ namespace Dev2.Activities.Designers.Tests.GetWebRequestTests
             Assert.AreEqual(1, sut.Errors.Count);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("GetWebRequestDesignerViewModel_Validate")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [NUnit.Framework.Category("GetWebRequestDesignerViewModel_Validate")]
         public void GetWebRequestDesignerViewModel_Validate_InvalidExpression_IsValidFalse()
         {
             //------------Setup for test--------------------------
@@ -284,9 +285,9 @@ namespace Dev2.Activities.Designers.Tests.GetWebRequestTests
             Assert.AreEqual("Invalid expression: opening and closing brackets don't match.", viewModel.Errors[0].Message);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("GetWebRequestDesignerViewModel_Validate")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [NUnit.Framework.Category("GetWebRequestDesignerViewModel_Validate")]
         public void GetWebRequestDesignerViewModel_Validate_ValidExpression_IsValidTrue()
         {
             //------------Setup for test--------------------------
@@ -302,9 +303,9 @@ namespace Dev2.Activities.Designers.Tests.GetWebRequestTests
             Assert.IsNull(viewModel.Errors);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("GetWebRequestDesignerViewModel_Validate")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [NUnit.Framework.Category("GetWebRequestDesignerViewModel_Validate")]
         public void GetWebRequestDesignerViewModel_Validate_ValidString_IsValidTrue()
         {
             //------------Setup for test--------------------------

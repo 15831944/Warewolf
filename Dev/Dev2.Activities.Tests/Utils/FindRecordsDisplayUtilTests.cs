@@ -9,7 +9,7 @@
 */
 
 using Dev2.Utilities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Tests.Activities.Utils
@@ -17,12 +17,13 @@ namespace Dev2.Tests.Activities.Utils
     /// <summary>
     /// Summary description for FindRecordsMigrationUtilTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FindRecordsDisplayUtilTests
     {
-        [TestMethod]
-        [Owner("Massimo Guerrera")]
-        [TestCategory("FindRecordsMigrationUtil_ConvertForDisplay")]
+        [Test]
+        [Author("Massimo Guerrera")]
+        [Category("FindRecordsMigrationUtil_ConvertForDisplay")]
         public void FindRecordsMigrationUtil_ConvertForDisplay_TryAllOptions_CorrectStringsReturned()
         {
             Assert.AreEqual("=", FindRecordsDisplayUtil.ConvertForDisplay("Equals"));

@@ -22,24 +22,25 @@ using Dev2.Explorer;
 using Dev2.Runtime;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FetchExplorerItemsTest
     {
-        [TestInitialize]
+        [SetUp]
         public void Setup()
         {
             CustomContainer.Register<IActivityParser>(new Mock<IActivityParser>().Object);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -51,9 +52,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -65,9 +66,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(AuthorizationContext.Any, resId);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FetchExplorerItems_HandlesType")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("FetchExplorerItems_HandlesType")]
         public void FetchExplorerItems_HandlesType_ExpectName()
         {
             //------------Setup for test--------------------------
@@ -80,9 +81,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("FetchExplorerItemsService", fetchExplorerItems.HandlesType());
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("FetchExplorerItems_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("FetchExplorerItems_Execute")]
         public void FetchExplorerItems_Execute_NullValuesParameter_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -95,9 +96,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(ExecStatus.Fail, result.Status);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FetchExplorerItems_HandlesType")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("FetchExplorerItems_HandlesType")]
         public void FetchExplorerItems_Execute_ExpectName()
         {
             //------------Setup for test--------------------------
@@ -119,9 +120,9 @@ namespace Dev2.Tests.Runtime.Services
             var message = serializer.Deserialize<CompressedExecuteMessage>(execute);
             Assert.AreEqual(serializer.Deserialize<IExplorerItem>(message.GetDecompressedMessage()).ResourceId, item.ResourceId);
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FetchExplorerItems_HandlesType")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("FetchExplorerItems_HandlesType")]
         public void FetchExplorerItems_ExecuteReloadTrue_ExpectName()
         {
             //------------Setup for test--------------------------
@@ -144,9 +145,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(serializer.Deserialize<IExplorerItem>(message.GetDecompressedMessage()).ResourceId, item.ResourceId);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FetchExplorerItems_HandlesType")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("FetchExplorerItems_HandlesType")]
         public void FetchExplorerItems_ExecuteReloadTrueWithExecutionManager_ExpectCallsStartAndStopRefresh()
         {
             //------------Setup for test--------------------------
@@ -172,9 +173,9 @@ namespace Dev2.Tests.Runtime.Services
             exeManager.Verify(manager => manager.StopRefresh(),Times.AtLeastOnce());
             CustomContainer.DeRegister<IExecutionManager>();
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("FetchExplorerItems_HandlesType")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("FetchExplorerItems_HandlesType")]
         public void FetchExplorerItems_Execute_NoRefresh()
         {
             //------------Setup for test--------------------------
@@ -197,9 +198,9 @@ namespace Dev2.Tests.Runtime.Services
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("FetchExplorerItems_HandlesType")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("FetchExplorerItems_HandlesType")]
         public void FetchExplorerItems_CreateServiceEntry_ExpectProperlyFormedDynamicService()
         {
             //------------Setup for test--------------------------

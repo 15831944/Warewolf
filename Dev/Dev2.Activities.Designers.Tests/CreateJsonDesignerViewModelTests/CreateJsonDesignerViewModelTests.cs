@@ -6,43 +6,44 @@ using Dev2.Common.Interfaces.Help;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
 using Dev2.TO;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 
 namespace Dev2.Activities.Designers.Tests.CreateJsonDesignerViewModelTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class CreateJsonDesignerViewModelTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("CreateJsonDesignerViewModel_Construct")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("CreateJsonDesignerViewModel_Construct")]
         public void CreateJsonDesignerViewModel_Construct_IsInstanceOfActivityViewModelBase_True()
         {
             //------------Setup for test--------------------------
             //------------Execute Test---------------------------
             var createJsonDesignerViewModel = CreateViewModel();
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(createJsonDesignerViewModel, typeof(ActivityDesignerViewModel));
+            Assert.IsInstanceOf(createJsonDesignerViewModel.GetType(), typeof(ActivityDesignerViewModel));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("CreateJsonDesignerViewModel_Construct")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("CreateJsonDesignerViewModel_Construct")]
         public void CreateJsonDesignerViewModel_Construct_IsInstanceOfActivityCollectionViewModelBaseOfJsonMappingTo_True()
         {
             //------------Setup for test--------------------------
             //------------Execute Test---------------------------
             var createJsonDesignerViewModel = CreateViewModel();
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(createJsonDesignerViewModel, typeof(ActivityCollectionDesignerViewModel<JsonMappingTo>));
+            Assert.IsInstanceOf(createJsonDesignerViewModel.GetType(), typeof(ActivityCollectionDesignerViewModel<JsonMappingTo>));
         }
 
-        [TestMethod]
-        [TestCategory("CreateJsonDesignerViewModel_Constructor")]
-        [Owner("Hagashen Naidu")]
+        [Test]
+        [Category("CreateJsonDesignerViewModel_Constructor")]
+        [Author("Hagashen Naidu")]
         public void CreateJsonDesignerViewModel_Constructor_CollectionNameInitialized()
         {
             //------------Setup for test--------------------------
@@ -59,9 +60,9 @@ namespace Dev2.Activities.Designers.Tests.CreateJsonDesignerViewModelTests
             Assert.AreEqual(ExpectedCollectionName, vm.CollectionName, "Collection Name not initialized on Multi Assign load");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("CreateJsonDesignerViewModel_ErrorsProperty")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("CreateJsonDesignerViewModel_ErrorsProperty")]
         public void CreateJsonDesignerViewModel_ErrorsProperty_Constructor_IsNull()
         {
             //------------Setup for test--------------------------
@@ -72,9 +73,9 @@ namespace Dev2.Activities.Designers.Tests.CreateJsonDesignerViewModelTests
             Assert.IsNull(errorInfos);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("CreateJsonDesignerViewModel_CustomAction")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("CreateJsonDesignerViewModel_CustomAction")]
         public void CreateJsonDesignerViewModel_CustomAction_WhenSourceNameChangedToScalar_UpdatesDestinationNameScalarName()
         {
             //------------Setup for test--------------------------
@@ -90,9 +91,9 @@ namespace Dev2.Activities.Designers.Tests.CreateJsonDesignerViewModelTests
             Assert.AreEqual("var",jsonMappingTo.DestinationName);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("CreateJsonDesignerViewModel_CustomAction")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("CreateJsonDesignerViewModel_CustomAction")]
         public void CreateJsonDesignerViewModel_CustomAction_WhenSourceNameChangedToRecsetWithField_UpdatesDestinationNameRecsetName()
         {
             //------------Setup for test--------------------------
@@ -108,9 +109,9 @@ namespace Dev2.Activities.Designers.Tests.CreateJsonDesignerViewModelTests
             Assert.AreEqual("rec", jsonMappingTo.DestinationName);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("CreateJsonDesignerViewModel_CustomAction")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("CreateJsonDesignerViewModel_CustomAction")]
         public void CreateJsonDesignerViewModel_CustomAction_WhenSourceNameChangedToRecsetNoField_UpdatesDestinationNameRecsetName()
         {
             //------------Setup for test--------------------------
@@ -126,9 +127,9 @@ namespace Dev2.Activities.Designers.Tests.CreateJsonDesignerViewModelTests
             Assert.AreEqual("rec", jsonMappingTo.DestinationName);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("CreateJsonDesignerViewModel_CustomAction")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("CreateJsonDesignerViewModel_CustomAction")]
         public void CreateJsonDesignerViewModel_CustomAction_WhenSourceNameChangedToNonVariable_DoesNotUpdatesDestinationName()
         {
             //------------Setup for test--------------------------
@@ -144,9 +145,9 @@ namespace Dev2.Activities.Designers.Tests.CreateJsonDesignerViewModelTests
             Assert.IsTrue(string.IsNullOrEmpty(mi.GetProperty<string>("DestinationName")));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("CreateJsonDesignerViewModel_CustomAction")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("CreateJsonDesignerViewModel_CustomAction")]
         public void CreateJsonDesignerViewModel_CustomAction_WhenSourceNameChangedToVariableButDestinationAlreadyPopulated_DoesNotUpdatesDestinationName()
         {
             //------------Setup for test--------------------------
@@ -166,9 +167,9 @@ namespace Dev2.Activities.Designers.Tests.CreateJsonDesignerViewModelTests
             Assert.AreEqual("rec", jsonMappingTo.DestinationName);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("CreateJsonDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("CreateJsonDesignerViewModel_Handle")]
         public void CreateJsonDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      

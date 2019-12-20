@@ -19,7 +19,7 @@ using Dev2.Services.Security;
 using Dev2.Studio.Core;
 using Dev2.Studio.Diagnostics;
 using Dev2.Studio.ViewModels.Diagnostics;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
@@ -27,9 +27,9 @@ namespace Dev2.Core.Tests
 {
     public partial class DebugOutputViewModelTest
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DebugOutputViewModel_Append")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DebugOutputViewModel_Append")]
         public void DebugOutputViewModel_Append_NullContent_NotAdded()
         {
             //------------Setup for test--------------------------
@@ -44,41 +44,41 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(0, viewModel.RootItems.Count);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DebugOutputViewModel_Append")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DebugOutputViewModel_Append")]
         public void DebugOutputViewModel_Append_SearchTextDoesNotMatchContent_NotAdded()
         {
             DebugOutputViewModel_Append_SearchText("Moo", "Baa", false);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DebugOutputViewModel_Append")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DebugOutputViewModel_Append")]
         public void DebugOutputViewModel_Append_SearchTextDoesMatchContent_Added()
         {
             DebugOutputViewModel_Append_SearchText("Moo", "Moo", true);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DebugOutputViewModel_Append")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DebugOutputViewModel_Append")]
         public void DebugOutputViewModel_Append_SearchTextIsEmpty_Added()
         {
             DebugOutputViewModel_Append_SearchText("", "Moo", true);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DebugOutputViewModel_Append")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DebugOutputViewModel_Append")]
         public void DebugOutputViewModel_Append_SearchTextIsNull_Added()
         {
             DebugOutputViewModel_Append_SearchText(null, "Moo", true);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DebugOutputViewModel_Append")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DebugOutputViewModel_Append")]
         public void DebugOutputViewModel_Append_SearchTextIsWhiteSpace_Added()
         {
             DebugOutputViewModel_Append_SearchText("  ", "Moo", true);
@@ -102,17 +102,17 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(isAdded ? 1 : 0, viewModel.RootItems.Count);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DebugOutputViewModel_Append")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DebugOutputViewModel_Append")]
         public void DebugOutputViewModel_Append_ContentStateTypeIsMessage_StringTreeViewItemAdded()
         {
             DebugOutputViewModel_Append_ContentStateType(StateType.Message, typeof(DebugStringTreeViewItemViewModel), false);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DebugOutputViewModel_Append")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DebugOutputViewModel_Append")]
         public void DebugOutputViewModel_Append_ContentStateTypeIsNotMessage_StateTreeViewItemAdded()
         {
             DebugOutputViewModel_Append_ContentStateType(StateType.All, typeof(DebugStateTreeViewItemViewModel), false);
@@ -133,7 +133,7 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(1, viewModel.ContentItemCount);
             Assert.AreEqual(1, viewModel.RootItems.Count);
             Assert.AreEqual(viewModel.RootItems[0].IsExpanded, isExpanded);
-            Assert.IsInstanceOfType(viewModel.RootItems[0], expectedType);
+            Assert.IsInstanceOf(viewModel.RootItems[0].GetType(), expectedType);
 
             if(expectedType == typeof(DebugStringTreeViewItemViewModel))
             {
@@ -149,26 +149,26 @@ namespace Dev2.Core.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DebugOutputViewModel_Append")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DebugOutputViewModel_Append")]
         public void DebugOutputViewModel_Append_ContentIsDebugStateAndParentIDIsEmpty_ItemAddedAtRootAndIsNotExpanded()
         {
             DebugOutputViewModel_Append_ContentIsDebugState(Guid.NewGuid(), Guid.Empty, "Content");
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DebugOutputViewModel_Append")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DebugOutputViewModel_Append")]
         public void DebugOutputViewModel_Append_ContentIsDebugStateAndIDDoesEqualParentID_ItemAddedAtRootAndIsNotExpanded()
         {
             var id = Guid.NewGuid();
             DebugOutputViewModel_Append_ContentIsDebugState(id, id, "Content");
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DebugOutputViewModel_Append")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DebugOutputViewModel_Append")]
         public void DebugOutputViewModel_Append_ItemHasSameID_ShouldAddAsNewItemIntoTree()
         {
             //------------Setup for test--------------------------
@@ -200,9 +200,9 @@ namespace Dev2.Core.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("DebugOutputViewModel_Append")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("DebugOutputViewModel_Append")]
         public void DebugOutputViewModel_Append_ItemRemoteHasNoPermission_ShouldNotAddAsNewItemIntoTree()
         {
             //------------Setup for test--------------------------
@@ -246,17 +246,17 @@ namespace Dev2.Core.Tests
 
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DebugOutputViewModel_Append")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DebugOutputViewModel_Append")]
         public void DebugOutputViewModel_Append_ContentIsDebugStateWithoutErrors_ItemAddedWithoutErrors()
         {
             DebugOutputViewModel_Append_ContentIsDebugStateErrors(false, false);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DebugOutputViewModel_Append")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DebugOutputViewModel_Append")]
         public void DebugOutputViewModel_Append_ContentIsDebugStateWithErrors_ItemAddedWithErrors()
         {
             DebugOutputViewModel_Append_ContentIsDebugStateErrors(true, true);
@@ -285,9 +285,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(parentContentHasErrors, childItem.Parent.HasError);
         }
 
-        [TestMethod]
-        [Owner("Ashley Lewis")]
-        [TestCategory("DebugOutputViewModel_Append")]
+        [Test]
+        [Author("Ashley Lewis")]
+        [Category("DebugOutputViewModel_Append")]
         public void DebugOutputViewModel_Append_TypeIsStartAndNotFirstStep_NothingAppended()
         {
             var envRepo = GetEnvironmentRepository();
@@ -300,9 +300,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(1, viewModel.RootItems.Count);
         }
 
-        [TestMethod]
-        [Owner("Ashley Lewis")]
-        [TestCategory("DebugOutputViewModel_Append")]
+        [Test]
+        [Author("Ashley Lewis")]
+        [Category("DebugOutputViewModel_Append")]
         public void DebugOutputViewModel_Append_TypeIsEndAndNotLastStep_NothingAppended()
         {
             var envRepo = GetEnvironmentRepository();
@@ -316,9 +316,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(1, viewModel.RootItems.Count);
         }
 
-        [TestMethod]
-        [Owner("Ashley Lewis")]
-        [TestCategory("DebugOutputViewModel_Append")]
+        [Test]
+        [Author("Ashley Lewis")]
+        [Category("DebugOutputViewModel_Append")]
         public void DebugOutputViewModel_Append_TypeIsEsbServicesInvokerAndNotLastStep_NothingAppended()
         {
             var envRepo = GetEnvironmentRepository();
@@ -332,9 +332,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(0, viewModel.RootItems.Count);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("DebugOutputViewModel_Append")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("DebugOutputViewModel_Append")]
         public void Given_GroupDebugOutputViewModel_Append_Adds_Assing_On_Label()
         {
             var inputs = new List<IDebugItem>

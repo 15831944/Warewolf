@@ -16,15 +16,17 @@ using System.Text;
 using Dev2.Activities.Scripting;
 using Dev2.Runtime.Configuration.ViewModels.Base;
 using Dev2.Studio.Core.Activities.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 
 namespace Dev2.Activities.Designers.Tests.Script_Python
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class PythonDesignerViewModelTests
     {
+        public TestContext TestContext { get; set; }
 
         static string GetJsTmpFile()
         {
@@ -33,12 +35,7 @@ namespace Dev2.Activities.Designers.Tests.Script_Python
             return directoryName + "\\jsFile.js ";
         }
 
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext { get; set; }
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void Init(TestContext context)
         {
             try
@@ -64,7 +61,8 @@ namespace Dev2.Activities.Designers.Tests.Script_Python
                 Assert.Fail(ex.Message);
             }
         }
-        [ClassCleanup]
+
+        [OneTimeTearDown]
         public static void Cleaner()
         {
             try
@@ -77,9 +75,9 @@ namespace Dev2.Activities.Designers.Tests.Script_Python
             }
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ScriptDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ScriptDesignerViewModel_Constructor")]
         public void ScriptDesignerViewModel_Constructor_PropertiesInitialized()
         {
             var modelItem = CreateModelItem();
@@ -88,9 +86,9 @@ namespace Dev2.Activities.Designers.Tests.Script_Python
             Assert.IsTrue(viewModel.HasLargeView);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ScriptDesignerViewModel_SelectedScriptType")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ScriptDesignerViewModel_SelectedScriptType")]
         public void ScriptDesignerViewModel_ChooseDirectoryShould_ReturnFile()
         {
             var modelItem = CreateModelItem();
@@ -104,9 +102,9 @@ namespace Dev2.Activities.Designers.Tests.Script_Python
             Assert.IsFalse(string.IsNullOrEmpty(viewModel.IncludeFile));
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("ScriptDesignerViewModel_SelectedScriptType")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("ScriptDesignerViewModel_SelectedScriptType")]
         public void ScriptDesignerViewModel_SelectedScriptType_Python_PropertiesInitialized()
         {
             var modelItem = CreateModelItem();

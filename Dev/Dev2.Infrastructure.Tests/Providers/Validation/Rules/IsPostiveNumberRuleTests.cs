@@ -10,17 +10,18 @@
 
 using System.Globalization;
 using Dev2.Providers.Validation.Rules;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IsPostiveNumberRuleTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("IsPostiveNumberRule_Check")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("IsPostiveNumberRule_Check")]
         public void IsPostiveNumberRule_Check_ItemIsValid_ResultIsNull()
         {
             Verify_Check(true, @"1");
@@ -32,9 +33,9 @@ namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
             Verify_Check(true, int.MaxValue.ToString(CultureInfo.InvariantCulture));
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("IsPostiveNumberRule_Check")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("IsPostiveNumberRule_Check")]
         public void IsPostiveNumberRule_Check_ItemIsNotValid_ResultIsError()
         {
             Verify_Check(false, @"-1");

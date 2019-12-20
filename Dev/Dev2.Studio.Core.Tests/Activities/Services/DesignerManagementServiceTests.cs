@@ -13,35 +13,36 @@ using System.Collections.Generic;
 using Dev2.Studio.Core.Activities.Services;
 using Dev2.Studio.Interfaces;
 using Dev2.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Core.Tests.Activities.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DesignerManagementServiceTests
     {
 
-        [TestInitialize]
+        [SetUp]
         public void Initialize()
         {
             AppUsageStats.LocalHost = "http://localhost:3142";
         }
 
-        [TestMethod]
-        [TestCategory("DesignerManagementService_Constructor")]
+        [Test]
+        [Category("DesignerManagementService_Constructor")]
         [Description("DesignerManagementService must throw null argument exception if root model is null.")]
-        [Owner("Trevor Williams-Ros")]
+        [Author("Trevor Williams-Ros")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void DesignerManagementService_UnitTest_ConstructorWithNullRootModel_ThrowsArgumentNullException()
         {
             new DesignerManagementService(null, null);
         }
 
-        [TestMethod]
-        [TestCategory("DesignerManagementService_Constructor")]
+        [Test]
+        [Category("DesignerManagementService_Constructor")]
         [Description("DesignerManagementService must throw null argument exception if resource repository is null.")]
-        [Owner("Trevor Williams-Ros")]
+        [Author("Trevor Williams-Ros")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void DesignerManagementService_UnitTest_ConstructorWithNullResourceRepository_ThrowsArgumentNullException()
         {
@@ -50,10 +51,10 @@ namespace Dev2.Core.Tests.Activities.Services
         }
 
 
-        [TestMethod]
-        [TestCategory("DesignerManagementService_GetRootResourceModel")]
+        [Test]
+        [Category("DesignerManagementService_GetRootResourceModel")]
         [Description("DesignerManagementService GetRootResourceModel must return the same root model given to its constructor.")]
-        [Owner("Trevor Williams-Ros")]
+        [Author("Trevor Williams-Ros")]
         public void DesignerManagementService_UnitTest_GetResourceModel_SameAsConstructorInstance()
         {
             var resourceModel = Dev2MockFactory.SetupResourceModelMock();

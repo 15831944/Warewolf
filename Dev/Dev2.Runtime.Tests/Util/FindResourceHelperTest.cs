@@ -16,18 +16,19 @@ using Dev2.Common.Interfaces.Infrastructure.Providers.Errors;
 using Dev2.Providers.Errors;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Newtonsoft.Json;
 
 namespace Dev2.Tests.Runtime.Util
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FindResourceHelperTest
     {
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("FindResourceHelper_SerializeResourceForStudio")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("FindResourceHelper_SerializeResourceForStudio")]
 
         public void FindResourceHelper_SerializeResourceForStudio_WhenNewResource_ExpectValidResource()
 
@@ -46,9 +47,9 @@ namespace Dev2.Tests.Runtime.Util
             Assert.AreEqual(id, result.ResourceID);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("FindResourceHelper_SerializeResourceForStudio")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("FindResourceHelper_SerializeResourceForStudio")]
         public void FindResourceHelper_SerializeResourceForStudio_WhenNotNewResource_ExpectValidResource()
         {
             //------------Setup for test--------------------------
@@ -65,9 +66,9 @@ namespace Dev2.Tests.Runtime.Util
             Assert.AreEqual(id, result.ResourceID);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("FindResourceHelper_SerializeResourceForStudio")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("FindResourceHelper_SerializeResourceForStudio")]
         public void FindResourceHelper_SerializeResourceForStudio_WhenCheckingAllProperties_ExpectValidResource()
         {
             //------------Setup for test--------------------------

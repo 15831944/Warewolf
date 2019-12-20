@@ -1,6 +1,6 @@
 ﻿using System;
 using Dev2.Activities;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Dev2.Services.Execution;
 using System.Runtime.InteropServices.ComTypes;
 using Dev2.Runtime.ServiceModel.Data;
@@ -9,11 +9,12 @@ using Dev2.Runtime.ESB.Execution;
 
 namespace Dev2.Tests.Activities.ActivityComparerTests.Database
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfSqlServerDatabaseActivityEqualityTests
     {
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void UniqueIDEquals_EmptySqlDatabase_Object_Is_Equal()
         {
             //---------------Set up test pack-------------------
@@ -28,8 +29,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Database
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void UniqueIDDifferent_EmptySqlDatabase_Object_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -44,8 +45,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Database
             Assert.IsFalse(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_DisplayName_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -60,8 +61,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Database
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_DisplayName_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------
@@ -75,8 +76,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Database
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_ProcedureName_IsEqual()
         {
             //---------------Set up test pack-------------------
@@ -91,8 +92,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Database
             Assert.IsTrue(@equals);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Same_ProcedureName_Different_Casing_IsNotEqual()
         {
             //---------------Set up test pack-------------------
@@ -106,8 +107,8 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Database
             //---------------Test Result -----------------------
             Assert.IsFalse(@equals);
         }
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Equals_Given_Different_ProcedureName_Is_Not_Equal()
         {
             //---------------Set up test pack-------------------

@@ -9,7 +9,7 @@
 */
 using Dev2.Common;
 using Dev2.Common.Interfaces.Wrappers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -18,12 +18,13 @@ using System.Threading;
 
 namespace Dev2.Server.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class TempFileDeleterTests
     {
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(TempFileDeleterTests))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(TempFileDeleterTests))]
         public void TempFileDeleter_Constructor()
         {
             var mockDirectoryWrapper = new Mock<IDirectory>();
@@ -33,9 +34,9 @@ namespace Dev2.Server.Tests
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(TempFileDeleterTests))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(TempFileDeleterTests))]
         public void TempFileDeleter_Delete_Success()
         {
             bool wasCalled = false;

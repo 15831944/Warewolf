@@ -13,17 +13,18 @@ using System.Collections.Specialized;
 using System.Net.Http;
 using Dev2.Runtime.WebServer;
 using Dev2.Runtime.WebServer.Responses;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Runtime.WebServer.Responses
 {
-    [TestClass]
-    [TestCategory("Runtime WebServer")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime WebServer")]
     public class StaticFileResponseWriterTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("StaticFileResponseWriter_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("StaticFileResponseWriter_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void StaticFileResponseWriter_Constructor_FileIsNull_ThrowsArgumentNullException()
         {
@@ -35,9 +36,9 @@ namespace Dev2.Tests.Runtime.WebServer.Responses
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("StaticFileResponseWriter_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("StaticFileResponseWriter_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void StaticFileResponseWriter_Constructor_ContentTypeIsNull_ThrowsArgumentNullException()
         {
@@ -49,9 +50,9 @@ namespace Dev2.Tests.Runtime.WebServer.Responses
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("StaticFileResponseWriter_Write")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("StaticFileResponseWriter_Write")]
         public void StaticFileResponseWriter_Write_WebServerContext_WritesContent()
         {
             var request = WebServerRequestTests.CreateHttpRequest(out string content, out NameValueCollection boundVars, out NameValueCollection queryStr, out NameValueCollection headers);
@@ -67,7 +68,7 @@ namespace Dev2.Tests.Runtime.WebServer.Responses
 
             //------------Assert Results-------------------------
             Assert.AreEqual(ContentTypes.Plain, context.ResponseMessage.Content.Headers.ContentType);
-            Assert.IsInstanceOfType(context.ResponseMessage.Content, typeof(PushStreamContent));
+            Assert.IsInstanceOf(context.ResponseMessage.Content.GetType(), typeof(PushStreamContent));
             var task = context.ResponseMessage.Content.ReadAsStringAsync();
             task.Wait();
 

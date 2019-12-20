@@ -18,17 +18,18 @@ using Dev2.Common.Interfaces.Versioning;
 using Dev2.DynamicServices;
 using Dev2.Runtime.ResourceCatalogImpl;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.Runtime.Hosting
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ResourceLoadProviderTests
     {
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory(nameof(ResourceLoadProvider))]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category(nameof(ResourceLoadProvider))]
         public void ResourceLoadProvider_FindByType_GivenWorkflowResource_ExpectWorkflowResource()
         {
             var workspaceResources = new ConcurrentDictionary<Guid, List<IResource>>();
@@ -42,11 +43,11 @@ namespace Dev2.Tests.Runtime.Hosting
 
             var resources = provider.FindByType(typeof(Workflow).FullName);
 
-            Assert.IsTrue(resources.Any(o => o == expected));
+            NUnit.Framework.Assert.IsTrue(resources.Any(o => o == expected));
 
             var resources2 = provider.FindByType<Workflow>();
 
-            Assert.IsTrue(resources2.Any(o => o == expected));
+            NUnit.Framework.Assert.IsTrue(resources2.Any(o => o == expected));
         }
     }
 }

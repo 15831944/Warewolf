@@ -22,7 +22,7 @@ using Dev2.Data.TO;
 using Dev2.Interfaces;
 using Dev2.Runtime.Interfaces;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Framework.Converters.Graph.Ouput;
 using Warewolf.Core;
@@ -30,12 +30,13 @@ using Warewolf.Storage;
 
 namespace Dev2.Tests.Activities.Activities.WcfEndPoint
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DsfComDllActivityTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWcfEndPointActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWcfEndPointActivity))]
         public void DsfWcfEndPointActivity_Method_IsNull_Expect_Error()
         {
             var mockEsbChannel = new Mock<IEsbChannel>();
@@ -49,9 +50,9 @@ namespace Dev2.Tests.Activities.Activities.WcfEndPoint
             Assert.AreEqual("No Method Selected", errorResult.FetchErrors()[0]);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWcfEndPointActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWcfEndPointActivity))]
         public void DsfWcfEndPointActivity_ExecutionImpl_Catch_Common_IsNotNull_Expect_NoError()
         {
             //-----------------------Arrange---------------------
@@ -105,9 +106,9 @@ namespace Dev2.Tests.Activities.Activities.WcfEndPoint
             Assert.AreEqual(0, errorResult.FetchErrors().Count);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWcfEndPointActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWcfEndPointActivity))]
         public void DsfWcfEndPointActivity_ExecutionImpl_Catch_GetResource_IsNull_Expect_Error()
         {
             //-----------------------Arrange---------------------
@@ -157,9 +158,9 @@ namespace Dev2.Tests.Activities.Activities.WcfEndPoint
             Assert.AreEqual("Object reference not set to an instance of an object.", errorResult.FetchErrors()[0]);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWcfEndPointActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWcfEndPointActivity))]
         public void DsfWcfEndPointActivity_GetFindMissingType_WhenCalled_Expect_DataGridActivity()
         {
             //-----------------------Arrange---------------------
@@ -170,9 +171,9 @@ namespace Dev2.Tests.Activities.Activities.WcfEndPoint
             Assert.AreEqual(enFindMissingType.DataGridActivity, FindMissingType);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWcfEndPointActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWcfEndPointActivity))]
         public void DsfWcfEndPointActivity_GetHashCode_IsNotNull_Expect_True()
         {
             //-----------------------Arrange---------------------
@@ -183,9 +184,9 @@ namespace Dev2.Tests.Activities.Activities.WcfEndPoint
             Assert.IsNotNull(hashCode);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWcfEndPointActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWcfEndPointActivity))]
         public void DsfWcfEndPointActivity_GetHashCode_MethodOutputDescriptionSource_NotNull_Expect_IsNotNull()
         {
             //-----------------------Arrange---------------------
@@ -209,9 +210,9 @@ namespace Dev2.Tests.Activities.Activities.WcfEndPoint
             Assert.IsNotNull(hashCode);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWcfEndPointActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWcfEndPointActivity))]
         public void DsfWcfEndPointActivity_Equals_IsNotNull_Expect_True()
         {
             //-----------------------Arrange---------------------
@@ -222,9 +223,9 @@ namespace Dev2.Tests.Activities.Activities.WcfEndPoint
             Assert.IsTrue(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWcfEndPointActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWcfEndPointActivity))]
         public void DsfWcfEndPointActivity_Equals_IsNull_Expect_False()
         {
             //-----------------------Arrange---------------------
@@ -235,9 +236,9 @@ namespace Dev2.Tests.Activities.Activities.WcfEndPoint
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWcfEndPointActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWcfEndPointActivity))]
         public void DsfWcfEndPointActivity_Equals_InstancesWithNoParams_NotSame_Expect_False()
         {
             //-----------------------Arrange---------------------
@@ -248,9 +249,9 @@ namespace Dev2.Tests.Activities.Activities.WcfEndPoint
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWcfEndPointActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWcfEndPointActivity))]
         public void DsfWcfEndPointActivity_Equals_InstancesWithSameParams_NotSame_Expect_False()
         {
             //-----------------------Arrange---------------------
@@ -282,9 +283,9 @@ namespace Dev2.Tests.Activities.Activities.WcfEndPoint
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWcfEndPointActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWcfEndPointActivity))]
         public void DsfWcfEndPointActivity_ObjectEquals_IsNotSameInstance_Expect_False()
         {
             //-----------------------Arrange---------------------
@@ -297,9 +298,9 @@ namespace Dev2.Tests.Activities.Activities.WcfEndPoint
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWcfEndPointActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWcfEndPointActivity))]
         public void DsfWcfEndPointActivity_ObjectEquals_IsNull_Expect_False()
         {
             //-----------------------Arrange---------------------
@@ -312,9 +313,9 @@ namespace Dev2.Tests.Activities.Activities.WcfEndPoint
             Assert.IsFalse(equals);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DsfWcfEndPointActivity))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DsfWcfEndPointActivity))]
         public void DsfWcfEndPointActivity_TryExecute_injectVal_IsNull_Expect_NoError()
         {
             //-----------------------Arrange---------------------

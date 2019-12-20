@@ -20,24 +20,25 @@ using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Runtime.Interfaces;
 using Dev2.Services.Security;
 using Dev2.Tests.Runtime.Security;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json;
 using Dev2.Infrastructure.Tests.Services.Security;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SecurityReadTests
     {
         static string _testDir;
 
         #region ClassInitialize
 
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void MyClassInitialize(TestContext context)
         {
-            _testDir = Path.Combine(context.DeploymentDirectory, "SecurityConfig");
+            _testDir = Path.Combine(context.TestDirectory, "SecurityConfig");
             Directory.CreateDirectory(_testDir);
         }
 
@@ -45,9 +46,9 @@ namespace Dev2.Tests.Runtime.Services
 
         #region Execute
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("SecurityRead_Execute")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("SecurityRead_Execute")]
         public void SecurityRead_Execute_WhenOldSecureConfigExist_MigratesAdministratorsToWarewolfAdministrators_ExpectSuccessfulMigration()
         {
             //------------Setup for test--------------------------
@@ -94,9 +95,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(true, readSecuritySettings.WindowsGroupPermissions[0].Administrator);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SecurityRead_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SecurityRead_Execute")]
         public void SecurityRead_Execute_WhenSecureConfigDoesExistWithNoGuestPermission_ShouldHaveExistingPermissionsAndGuest()
         {
             //------------Setup for test--------------------------
@@ -151,9 +152,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(new TimeSpan(0, 10, 0), readSecuritySettings.CacheTimeout);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SecurityRead_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SecurityRead_Execute")]
         public void SecurityRead_Execute_WhenSecureConfigDoesExistWithGuestPermission_ShouldHaveExistingPermissions()
         {
             //------------Setup for test--------------------------
@@ -221,9 +222,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(new TimeSpan(0, 10, 0), readSecuritySettings.CacheTimeout);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SecurityRead_Execute")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SecurityRead_Execute")]
         public void SecurityRead_Execute_WhenSecureConfigDoesNotExist_ReturnsDefaultPermissions()
         {
             //------------Setup for test--------------------------
@@ -250,9 +251,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("SecurityRead_Execute")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("SecurityRead_Execute")]
         public void SecurityRead_Execute_DecryptThrowsException_ReturnsDefaultPermissions()
         {
             //------------Setup for test--------------------------
@@ -286,7 +287,7 @@ namespace Dev2.Tests.Runtime.Services
 
         #region HandlesType
 
-        [TestMethod]
+        [Test]
         public void SecurityRead_HandlesType_ReturnsSecurityReadService()
         {
             var esb = new SecurityRead();
@@ -298,7 +299,7 @@ namespace Dev2.Tests.Runtime.Services
 
         #region CreateServiceEntry
 
-        [TestMethod]
+        [Test]
         public void SecurityReadCreateServiceEntryExpectedReturnsDynamicService()
         {
             var esb = new SecurityRead();
@@ -315,9 +316,9 @@ namespace Dev2.Tests.Runtime.Services
 
         #endregion
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -329,9 +330,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -343,9 +344,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(AuthorizationContext.Any, resId);
         }
 
-        [TestMethod]
-        [Owner("Travis Frisinger")]
-        [TestCategory("SecurityRead_Execute")]
+        [Test]
+        [Author("Travis Frisinger")]
+        [Category("SecurityRead_Execute")]
         public void SecurityRead_Execute_Given_Config_data()
         {
             //------------Setup for test--------------------------

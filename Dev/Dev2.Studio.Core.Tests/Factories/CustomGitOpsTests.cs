@@ -1,15 +1,16 @@
 ﻿using Dev2.Common.Interfaces;
 using Dev2.Factory;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System.Diagnostics;
 
 namespace Dev2.Core.Tests.Factories
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class CustomGitOpsTests
     {
-        [TestMethod]
+        [Test]
         public void CustomGitOps_ExecutesSixCommands()
         {
             //------------Setup for test--------------------------
@@ -18,7 +19,7 @@ namespace Dev2.Core.Tests.Factories
             executor.Verify(p => p.Start(It.IsAny<ProcessStartInfo>()), Times.Exactly(6));
         }
 
-        [TestMethod]
+        [Test]
         public void CustomGitOps_ExecutesSixCommands_WithExceptions()
         {
             //------------Setup for test--------------------------

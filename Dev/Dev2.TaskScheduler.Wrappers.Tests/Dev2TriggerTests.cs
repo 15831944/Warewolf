@@ -10,7 +10,7 @@
 
 using System;
 using Dev2.Common.Interfaces.WindowsTaskScheduler.Wrappers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Microsoft.Win32.TaskScheduler;
 using Moq;
 
@@ -20,14 +20,15 @@ namespace Dev2.TaskScheduler.Wrappers.Test
     /// <summary>
     /// Test trigger wrapper
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class Dev2TriggerTests
     {
 
 
         Mock<ITaskServiceConvertorFactory> _taskServiceConvertorFactory;
 
-        [TestInitialize]
+        [SetUp]
         public void Init()
         {
             _taskServiceConvertorFactory = new Mock<ITaskServiceConvertorFactory>();
@@ -35,9 +36,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2DailyTrigger_Construct")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2DailyTrigger_Construct")]
         public void Dev2DailyTrigger_Construct_Test()
         {
 
@@ -48,9 +49,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2DailyTrigger_Construct")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2DailyTrigger_Construct")]
         public void Dev2EventTrigger_Construct_Test()
         {
             int? id = 0;
@@ -63,9 +64,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2DailyTrigger_Construct")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2DailyTrigger_Construct")]
         public void Dev2IdleTrigger_Construct_Test()
         {
 
@@ -75,9 +76,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2DailyTrigger_Construct")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2DailyTrigger_Construct")]
         public void Dev2RegistrationTrigger_Construct_Test()
         {
 
@@ -87,9 +88,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2DailyTrigger_Construct")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2DailyTrigger_Construct")]
         public void Dev2MonthlyTrigger_Construct_Test()
         {
 
@@ -104,9 +105,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2MonthlyDOWTrigger_Construct")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2MonthlyDOWTrigger_Construct")]
         public void Dev2MonthlyDOWTrigger_Construct_Test()
         {
 
@@ -122,9 +123,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2EventTrigger_Construct")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2EventTrigger_Construct")]
         public void TaskShedulerWrapper_Dev2EventTrigger_Construct_Test()
         {
 
@@ -142,9 +143,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_Dev2EventTrigger_Construct")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_Dev2EventTrigger_Construct")]
         public void TaskShedulerWrapper_Dev2DailyTrigger_Construct_Test()
         {
 
@@ -157,9 +158,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_LogonTrigger_Construct")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_LogonTrigger_Construct")]
         public void TaskShedulerWrapper_Dev2LogonTrigger_Construct_Test()
         {
 
@@ -174,9 +175,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_WeeklyTrigger_Construct")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_WeeklyTrigger_Construct")]
         public void TaskShedulerWrapper_Dev2Weekly_Construct_Test()
         {
 

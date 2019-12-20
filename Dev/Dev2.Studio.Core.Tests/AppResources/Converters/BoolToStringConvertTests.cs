@@ -10,18 +10,19 @@
 
 using System.Globalization;
 using Dev2.CustomControls.Converters;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests.AppResources.Converters
 {
-    [TestClass]
-	[TestCategory("Studio Resources Core")]
+    [TestFixture]
+    [SetUpFixture]
+	[Category("Studio Resources Core")]
     
     public class BoolToStringConvertTests
     {
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("BoolToStringConvert_Convert")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("BoolToStringConvert_Convert")]
         public void BoolToStringConvert_Convert_WhenBooleanIsTrue_ReturnsSuccess()
         {
             //------------Setup for test--------------------------
@@ -32,9 +33,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual("Success", result);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("BoolToStringConvert_Convert")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("BoolToStringConvert_Convert")]
         public void BoolToStringConvert_Convert_WhenBooleanIsFalse_ReturnsFailure()
         {
             //------------Setup for test--------------------------
@@ -45,9 +46,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual("Failure", result);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("BoolToStringConvert_Convert")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("BoolToStringConvert_Convert")]
         public void BoolToStringConvert_Convert_WhenIsNotBoolean_DefaultsToFailure()
         {
             //------------Setup for test--------------------------

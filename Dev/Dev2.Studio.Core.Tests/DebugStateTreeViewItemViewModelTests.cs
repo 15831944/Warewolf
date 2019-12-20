@@ -16,23 +16,24 @@ using Dev2.Diagnostics.Debug;
 using Dev2.Services.Events;
 using Dev2.Studio.Core;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Core.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DebugStateTreeViewItemViewModelTests
     {
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void Initialize(TestContext testContext)
         {
         }
 
         // BUG 8373: TWR
-        [TestMethod]
-        [TestCategory("DebugStateTreeViewItemViewModel_Constructor")]
-        [Owner("Trevor Williams-Ros")]
+        [Test]
+        [Category("DebugStateTreeViewItemViewModel_Constructor")]
+        [Author("Trevor Williams-Ros")]
         
         public void DebugStateTreeViewItemViewModel_Constructor_IsExpanded_False()
         {
@@ -60,9 +61,9 @@ namespace Dev2.Core.Tests
         }
 
         // BUG 8373: TWR
-        [TestMethod]
-        [TestCategory("DebugStateTreeViewItemViewModel_Constructor")]
-        [Owner("Trevor Williams-Ros")]
+        [Test]
+        [Category("DebugStateTreeViewItemViewModel_Constructor")]
+        [Author("Trevor Williams-Ros")]
         public void DebugStateTreeViewItemViewModel_Constructor_EnvironmentRepository_SetsDebugStateServer()
         {
             var environmentID = Guid.NewGuid();
@@ -84,9 +85,9 @@ namespace Dev2.Core.Tests
             
             Assert.AreEqual(ServerName, content.Server);
         }
-        [TestMethod]
-        [TestCategory("DebugStateTreeViewItemViewModel_Constructor")]
-        [Owner("Leon Rajindrapersadh")]
+        [Test]
+        [Category("DebugStateTreeViewItemViewModel_Constructor")]
+        [Author("Leon Rajindrapersadh")]
         public void DebugStateTreeViewItemViewModel_Constructor_EnvironmentRepository_SetsDebugStateServer_IfNameSet()
         {
             var environmentID = Guid.NewGuid();
@@ -109,9 +110,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("BobsServer", content.Server);
         }
         // BUG 8373: TWR
-        [TestMethod]
-        [TestCategory("DebugStateTreeViewItemViewModel_Constructor")]
-        [Owner("Trevor Williams-Ros")]
+        [Test]
+        [Category("DebugStateTreeViewItemViewModel_Constructor")]
+        [Author("Trevor Williams-Ros")]
         public void DebugStateTreeViewItemViewModel_Constructor_CanDetectRemoteServerName()
         {
             var serverID = Guid.NewGuid();
@@ -136,9 +137,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual("Unknown Remote Server", vm.Content.Server);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DebugStateTreeViewItemViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DebugStateTreeViewItemViewModel_Constructor")]
         public void DebugStateTreeViewItemViewModel_Constructor_NullContent_NoExceptionThrown()
         {
             //------------Setup for test--------------------------
@@ -153,9 +154,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(0, vm.Outputs.Count);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DebugStateTreeViewItemViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DebugStateTreeViewItemViewModel_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void DebugStateTreeViewItemViewModel_Constructor_NullEnvironmentRepository_ExceptionThrown()
         {
@@ -169,41 +170,41 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(0, vm.Outputs.Count);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DebugStateTreeViewItemViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DebugStateTreeViewItemViewModel_Constructor")]
         public void DebugStateTreeViewItemViewModel_Constructor_ContentIsMiddleStep_AssignsNameToContentServer()
         {
             Verify_Constructor_AssignsNameToContentServer(StateType.Append);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DebugStateTreeViewItemViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DebugStateTreeViewItemViewModel_Constructor")]
         public void DebugStateTreeViewItemViewModel_Constructor_ContentIsFirstStep_AssignsNameToContentServer()
         {
             Verify_Constructor_AssignsNameToContentServer(StateType.Start);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DebugStateTreeViewItemViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DebugStateTreeViewItemViewModel_Constructor")]
         public void DebugStateTreeViewItemViewModel_Constructor_ContentIsLastStep_AssignsNameToContentServer()
         {
             Verify_Constructor_AssignsNameToContentServer(StateType.End);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DebugStateTreeViewItemViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DebugStateTreeViewItemViewModel_Constructor")]
         public void DebugStateTreeViewItemViewModel_Constructor_ContentServerIsRemote_AssignsUnknownNameToContentServer()
         {
             Verify_Constructor_AssignsNameToContentServer(StateType.Append, true);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DebugStateTreeViewItemViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DebugStateTreeViewItemViewModel_Constructor")]
         public void DebugStateTreeViewItemViewModel_Constructor_ContentWithItems_BindsInputsAndOutputs()
         {
             //------------Setup for test--------------------------
@@ -222,41 +223,41 @@ namespace Dev2.Core.Tests
         }
 
 
-        [TestMethod]
-        [TestCategory("DebugStateTreeViewItemViewModel_Constructor")]
-        [Owner("Trevor Williams-Ros")]
+        [Test]
+        [Category("DebugStateTreeViewItemViewModel_Constructor")]
+        [Author("Trevor Williams-Ros")]
         public void DebugStateTreeViewItemViewModel_Constructor_ActivityTypeIsNotWorkflow_PublishesSelectionEventWithActivitySelectionTypeAdd()
         {
             Verify_IsSelected_PublishesDebugSelectionChangedEventArgs(ActivityType.Step, ActivitySelectionType.Add, 2);
         }
 
-        [TestMethod]
-        [TestCategory("DebugStateTreeViewItemViewModel_Constructor")]
-        [Owner("Trevor Williams-Ros")]
+        [Test]
+        [Category("DebugStateTreeViewItemViewModel_Constructor")]
+        [Author("Trevor Williams-Ros")]
         public void DebugStateTreeViewItemViewModel_Constructor_ActivityTypeIsWorkflow_DoesNotPublishSelectionEventWithActivitySelectionTypeAdd()
         {
             Verify_IsSelected_PublishesDebugSelectionChangedEventArgs(ActivityType.Workflow, ActivitySelectionType.Add, 0);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DebugStateTreeViewItemViewModel_AppendError")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DebugStateTreeViewItemViewModel_AppendError")]
         public void DebugStateTreeViewItemViewModel_AppendError_ContentHasError_AppendsErrorToContentError()
         {
             Verify_AppendError(true);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("DebugStateTreeViewItemViewModel_AppendError")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("DebugStateTreeViewItemViewModel_AppendError")]
         public void DebugStateTreeViewItemViewModel_AppendError_ContentHasNoError_AppendsErrorToContentError()
         {
             Verify_AppendError(false);
         }
 
-        [TestMethod]
-        [TestCategory("DebugStateTreeViewItemViewModel_IsSelected")]
-        [Owner("Trevor Williams-Ros")]
+        [Test]
+        [Category("DebugStateTreeViewItemViewModel_IsSelected")]
+        [Author("Trevor Williams-Ros")]
         public void DebugStateTreeViewItemViewModel_IsSelected_SetsSelectionTypeToSingle()
         {
             //------------Setup for test--------------------------
@@ -271,9 +272,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(ActivitySelectionType.Single, vm.SelectionType);
         }
 
-        [TestMethod]
-        [TestCategory("DebugStateTreeViewItemViewModel_IsSelected")]
-        [Owner("Trevor Williams-Ros")]
+        [Test]
+        [Category("DebugStateTreeViewItemViewModel_IsSelected")]
+        [Author("Trevor Williams-Ros")]
         public void DebugStateTreeViewItemViewModel_IsSelected_PublishesSelectionEventWithSameActivitySelectionType()
         {
             Verify_IsSelected_PublishesDebugSelectionChangedEventArgs(ActivityType.Service, ActivitySelectionType.None, 2, true);

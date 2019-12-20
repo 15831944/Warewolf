@@ -9,24 +9,25 @@
 */
 
 using Dev2.TaskScheduler.Wrappers;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Microsoft.Win32.TaskScheduler;
 
 namespace Dev2.Scheduler.Test
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ClientSchedulerFactoryTests
     {
         ClientSchedulerFactory _fact;
-        [TestInitialize]
+        [SetUp]
         public void Init()
         {
             _fact = new ClientSchedulerFactory(new Dev2TaskService(new TaskServiceConvertorFactory()), new TaskServiceConvertorFactory());
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("ClientSchedulerFactory_Trigger")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("ClientSchedulerFactory_Trigger")]
         public void AssertTriggerCreation()
         {
             var trig = _fact.CreateTrigger(new DailyTrigger());

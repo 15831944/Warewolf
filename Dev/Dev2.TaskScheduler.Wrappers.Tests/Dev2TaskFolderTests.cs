@@ -9,18 +9,19 @@
 */
 
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Microsoft.Win32.TaskScheduler;
 
 
 namespace Dev2.TaskScheduler.Wrappers.Test
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class Dev2TaskFolderTests
     {
         TaskFolder _folder;
         TaskService _service;
-        [TestInitialize]
+        [SetUp]
         public void Init()
         {
             _service = new TaskService();
@@ -30,7 +31,7 @@ namespace Dev2.TaskScheduler.Wrappers.Test
             _folder.RegisterTaskDefinition("TestTask", task, TaskCreation.Create, "LocalSchedulerAdmin", "987Sched#@!", TaskLogonType.None);
         }
 
-        [TestCleanup]
+        [TearDown]
         public void Cleanup()
         {
 
@@ -46,9 +47,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
             
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_TaskFolder_Construct")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_TaskFolder_Construct")]
         public void TaskShedulerWrapper_TaskFolder_Construct()
         {
             var service = new TaskService();
@@ -61,9 +62,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
         
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_TaskFolder_Create")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_TaskFolder_Create")]
         public void TaskShedulerWrapper_TaskFolder_Create()
         {
             var folder = new Dev2TaskFolder(new TaskServiceConvertorFactory(), _folder);
@@ -73,9 +74,9 @@ namespace Dev2.TaskScheduler.Wrappers.Test
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_TaskFolder_Delete")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_TaskFolder_Delete")]
         public void TaskShedulerWrapper_TaskFolder_Delete()
         {
             var folder = new Dev2TaskFolder(new TaskServiceConvertorFactory(), _folder);
@@ -84,27 +85,27 @@ namespace Dev2.TaskScheduler.Wrappers.Test
 
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_TaskFolder_Valid")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_TaskFolder_Valid")]
         public void TaskShedulerWrapper_TaskFolder_Valid()
         {
             var folder = new Dev2TaskFolder(new TaskServiceConvertorFactory(), _folder);
             Assert.AreEqual(1, folder.ValidTasks.Count);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_TaskFolder_Exists")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_TaskFolder_Exists")]
         public void TaskShedulerWrapper_TaskFolder_Exists()
         {
             var folder = new Dev2TaskFolder(new TaskServiceConvertorFactory(), _folder);
             Assert.IsTrue(folder.TaskExists("TestTask"));
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("TaskShedulerWrapper_TaskFolder_Register")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("TaskShedulerWrapper_TaskFolder_Register")]
         public void TaskShedulerWrapper_TaskFolder_Register()
         {
             var folder = new Dev2TaskFolder(new TaskServiceConvertorFactory(), _folder);

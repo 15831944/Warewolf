@@ -12,17 +12,18 @@ using System;
 using System.Collections.ObjectModel;
 using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.Core;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Common.Tests.Core
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ComPluginSourceDefinitionTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ComPluginSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ComPluginSourceDefinition))]
         public void ComPluginSourceDefinition_Validate_FileSystemAssemblyName()
         {
             const string expectedComName = "testComName";
@@ -57,9 +58,9 @@ namespace Dev2.Common.Tests.Core
             Assert.AreEqual(expectedResourceName, comPluginSourceDefinition.ResourceName);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ComPluginSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ComPluginSourceDefinition))]
         public void ComPluginSourceDefinition_Equals_ComPluginSource_Expected_True()
         {
             const string expectedComName = "testComName";
@@ -83,9 +84,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(comPluginSourceDefinition == comPluginSourceDefinitionDup);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ComPluginSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ComPluginSourceDefinition))]
         public void ComPluginSourceDefinition_Equals_ComPluginSource_Expected_False()
         {
             const string expectedComName = "testComName";
@@ -117,9 +118,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(comPluginSourceDefinition != comPluginSourceDefinitionDup);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ComPluginSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ComPluginSourceDefinition))]
         public void ComPluginSourceDefinition_Equals_Object_Null_Expected_False()
         {
             var comPluginSourceDefinition = new ComPluginSourceDefinition();
@@ -130,9 +131,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ComPluginSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ComPluginSourceDefinition))]
         public void ComPluginSourceDefinition_Equals_Object_Expected_True()
         {
             const string expectedComName = "testComName";
@@ -156,9 +157,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ComPluginSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ComPluginSourceDefinition))]
         public void ComPluginSourceDefinition_Equals_Object_Expected_False()
         {
             const string expectedComName = "testComName";
@@ -191,9 +192,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ComPluginSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ComPluginSourceDefinition))]
         public void ComPluginSourceDefinition_Equals_Object_GetType_Expected_False()
         {
             const string expectedComName = "testComName";
@@ -217,9 +218,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ComPluginSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ComPluginSourceDefinition))]
         public void ComPluginSourceDefinition_GetHashCode_Not_Equal_To_Zero()
         {
             const string expectedComName = "testComName";
@@ -242,9 +243,9 @@ namespace Dev2.Common.Tests.Core
             Assert.AreNotEqual(0, hashCode);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(ComPluginSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(ComPluginSourceDefinition))]
         public void ComPluginSourceDefinition_GetHashCode_Expect_Zero()
         {
             var comPluginSourceDefinition = new ComPluginSourceDefinition();

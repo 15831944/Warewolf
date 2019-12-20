@@ -16,19 +16,20 @@ using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
 using Dev2.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Warewolf.Core;
 
 
 namespace Dev2.Activities.Designers.Tests.MySql
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class TestMySqlViewModel
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MySql_MethodName")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MySql_MethodName")]
         public void MySql_MethodName_ValidateExpectErrors()
         {
             //------------Setup for test--------------------------
@@ -44,9 +45,9 @@ namespace Dev2.Activities.Designers.Tests.MySql
             Assert.AreEqual(2, mySql.DesignValidationErrors.Count);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MySql_MethodName")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MySql_MethodName")]
         public void MySql_MethodName_ClearErrors()
         {
             //------------Setup for test--------------------------
@@ -61,9 +62,9 @@ namespace Dev2.Activities.Designers.Tests.MySql
             Assert.AreEqual(mySql.DesignValidationErrors.Count, 1);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MySql_MethodName")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MySql_MethodName")]
         public void MySql_Ctor_EmptyModelItem()
         {
             //------------Setup for test--------------------------
@@ -80,9 +81,9 @@ namespace Dev2.Activities.Designers.Tests.MySql
             Assert.IsTrue(mySql.ErrorRegion.IsEnabled);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MySql_MethodName")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MySql_MethodName")]
         public void MySql_TestActionSetSource()
         {
             //------------Setup for test--------------------------
@@ -101,9 +102,9 @@ namespace Dev2.Activities.Designers.Tests.MySql
             Assert.IsTrue(mySql.ErrorRegion.IsEnabled);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MySql_MethodName")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MySql_MethodName")]
         public void MySql_TestActionSetSourceAndTestClickOkHasMappings()
         {
             //------------Setup for test--------------------------
@@ -133,9 +134,9 @@ namespace Dev2.Activities.Designers.Tests.MySql
             Assert.AreEqual(0, mySql.ManageServiceInputViewModel.Errors.Count);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MySql_MethodName")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MySql_MethodName")]
         public void MySql_TestActionSetSourceAndTestClickOkHasMappingsErrorFromServer()
         {
             //------------Setup for test--------------------------
@@ -160,9 +161,9 @@ namespace Dev2.Activities.Designers.Tests.MySql
             Assert.AreNotEqual(0, mySql.ManageServiceInputViewModel.Errors.Count);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MySql_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MySql_Handle")]
         public void MySql_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -182,9 +183,9 @@ namespace Dev2.Activities.Designers.Tests.MySql
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MySql_MethodName")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MySql_MethodName")]
         public void MySql_TestActionSetSourceAndTestClickOkHasHeaders()
         {
             //------------Setup for test--------------------------
@@ -214,9 +215,9 @@ namespace Dev2.Activities.Designers.Tests.MySql
             Assert.IsTrue(mySql.ManageServiceInputViewModel.InputArea.Inputs.First().Name == "[[a]]");
             Assert.AreEqual(0, mySql.ManageServiceInputViewModel.Errors.Count);
         }
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MySql_MethodName")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MySql_MethodName")]
         public void MySql_TestActionSetSourceAndTestClickOkHasQueryStringAndHeaders()
         {
             //------------Setup for test--------------------------
@@ -249,9 +250,9 @@ namespace Dev2.Activities.Designers.Tests.MySql
         }
 
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SqlServer_Refresh")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SqlServer_Refresh")]
         public void MySql_Refresh_ShouldLoadRefreshActions()
         {
             //------------Setup for test--------------------------
@@ -271,9 +272,9 @@ namespace Dev2.Activities.Designers.Tests.MySql
         }
 
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("MySql_TestAction")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("MySql_TestAction")]
         public void MySql_TestActionSetSourceHasRecSet()
         {
             //------------Setup for test--------------------------
@@ -304,9 +305,9 @@ namespace Dev2.Activities.Designers.Tests.MySql
             Assert.IsTrue(mySql.ManageServiceInputViewModel.InputArea.Inputs.Last().Name == "[[a]]");
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("MySql_MethodName")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("MySql_MethodName")]
         public void MySql_VerifyCommandTimeout()
         {
             //------------Setup for test--------------------------

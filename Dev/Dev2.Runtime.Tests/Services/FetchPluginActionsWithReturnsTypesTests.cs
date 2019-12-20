@@ -11,19 +11,20 @@ using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Runtime.Interfaces;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using TestingDotnetDllCascading;
 
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FetchPluginActionsWithReturnsTypesTests
     {
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -35,8 +36,8 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void GetAuthorizationContextForService_ShouldReturnAuthorizationContext_Any()
         {
             //------------Setup for test--------------------------
@@ -47,8 +48,8 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(AuthorizationContext.Any, authorizationContext);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Execute_GivenNoNamespace_ShouldReturnEmpyt()
         {
             //------------Setup for test--------------------------
@@ -84,8 +85,8 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("[]", results.Message.ToString());
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
+        [Test]
+        [Author("Sanele Mthembu")]
         public void Execute_GivenSourceAndNamespace_ShouldReturnStringBuilder()
         {
             var personObject = typeof(Person);
@@ -132,8 +133,8 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(pluginActions.Any(action => action.FullName == personObject.FullName));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenSourceAndNamespaceWithVoidActions_ShouldReturnAVoidFunction()
         {
             var humanType   = typeof(Human);
@@ -179,8 +180,8 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(pluginActions.Any(action => action.IsVoid));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenSourceAndNamespaceWithStringActions_ShouldReturnAStringFunction()
         {
             var humanType   = typeof(Human);
@@ -229,8 +230,8 @@ namespace Dev2.Tests.Runtime.Services
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenSourceAndNamespaceWithActionsTakingObject_ShouldObjectParameters()
         {
             var humanType   = typeof(Human);
@@ -284,8 +285,8 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(dev2ReturnType);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Execute_GivenSourceAndNamespace_ShouldPropertyMethods()
         {
             var humanType   = typeof(Human);

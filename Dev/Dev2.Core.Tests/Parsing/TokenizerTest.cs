@@ -13,7 +13,7 @@ using System.Data;
 using System.Parsing.Intellisense;
 using System.Parsing.SyntaxAnalysis;
 using System.Parsing.Tokenization;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 
@@ -21,11 +21,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Unlimited.UnitTest.Framework.Parsing
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class TokenizerTest
     {
         #region RequiredDefinitions Tests
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void RequiredDefinitions_EnsureNotNull_Test()
         {
@@ -41,7 +42,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
         #endregion
 
         #region Tokenization Handler Tests
-        [TestMethod]
+        [Test]
         public void Range_EnsureSuccess_Test()
         {
             var definitions = new RequiredTokenDefinitions<TokenKind>(TokenKind.Whitespace, TokenKind.LineBreak, TokenKind.Unknown, TokenKind.EOF);
@@ -56,7 +57,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             }
         }
 
-        [TestMethod]
+        [Test]
         public void NumericTokenizationHandler_EnsureSuccess_Test()
         {
             var definitions = new RequiredTokenDefinitions<TokenKind>(TokenKind.Whitespace, TokenKind.LineBreak, TokenKind.Unknown, TokenKind.EOF);
@@ -71,7 +72,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             }
         }
 
-        [TestMethod]
+        [Test]
         public void NumericTokenizationHandler_EnsureFailure_Test()
         {
             var definitions = new RequiredTokenDefinitions<TokenKind>(TokenKind.Whitespace, TokenKind.LineBreak, TokenKind.Unknown, TokenKind.EOF);
@@ -83,7 +84,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(true, tokens[tokens.Length - 1].PreviousNWS.Definition == TokenKind.Unknown);
         }
 
-        [TestMethod]
+        [Test]
         public void CharTokenizationHandler_EnsureSuccess_Test()
         {
             var definitions = new RequiredTokenDefinitions<TokenKind>(TokenKind.Whitespace, TokenKind.LineBreak, TokenKind.Unknown, TokenKind.EOF);
@@ -100,7 +101,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             }
         }
 
-        [TestMethod]
+        [Test]
         public void CharTokenizationHandler_EnsureFailure_Test()
         {
             var definitions = new RequiredTokenDefinitions<TokenKind>(TokenKind.Whitespace, TokenKind.LineBreak, TokenKind.Unknown, TokenKind.EOF);
@@ -113,7 +114,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(true, tokens[tokens.Length - 1].PreviousNWS.Definition == TokenKind.Unknown);
         }
 
-        [TestMethod]
+        [Test]
         public void StringTokenizationHandler_EnsureSuccess_Test()
         {
             var definitions = new RequiredTokenDefinitions<TokenKind>(TokenKind.Whitespace, TokenKind.LineBreak, TokenKind.Unknown, TokenKind.EOF);
@@ -128,7 +129,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             }
         }
 
-        [TestMethod]
+        [Test]
         public void StringTokenizationHandler_EnsureFailure_Test()
         {
             var definitions = new RequiredTokenDefinitions<TokenKind>(TokenKind.Whitespace, TokenKind.LineBreak, TokenKind.Unknown, TokenKind.EOF);
@@ -141,7 +142,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
         #endregion
 
         #region AbstractSyntaxTreeBuilder Tests
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void AbstractSyntaxTreeBuilder_RegisterDuplicate_Test()
         {
@@ -149,7 +150,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             builder.RegisterGrammer(new InfrigisticsGrammer());
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentException))]
         public void AbstractSyntaxTreeBuilder_RegisterMultipleFromGrammerGroup_Test()
         {
@@ -157,7 +158,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             builder.RegisterGrammer(new CSharpNumericLiteralGrammer());
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void AbstractSyntaxTreeBuilder_MultipleNonUnaryTokenizationHandlers_Test()
         {
@@ -166,7 +167,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             builder.Build("5 + 4");
         }
 
-        [TestMethod]
+        [Test]
         public void AbstractSyntaxTreeBuilder_InferredUnaryDefinitionsMatchExpected()
         {
             TestGrammer grammer;
@@ -186,7 +187,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(1, present);
         }
 
-        [TestMethod]
+        [Test]
         public void AbstractSyntaxTreeBuilder_InferredKeywordDefinitionsMatchExpected()
         {
             TestGrammer grammer;
@@ -197,7 +198,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(true, grammer.Tokenizer.Keywords.ContainsKey("false"));
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void AbstractSyntaxTreeBuilder_RegisterAfterBuild_Test()
         {
@@ -208,7 +209,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
         #endregion
 
         #region ASTGrammerBehaviourRegistry Tests
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ASTGrammerBehaviourRegistry_RegisterTrigger_NullDefinition_Test()
         {
@@ -217,7 +218,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             builder.Build("5 + 4");
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ReadOnlyException))]
         public void ASTGrammerBehaviourRegistry_RegisterTrigger_OutOfBand_Test()
         {
@@ -231,7 +232,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
         #endregion
 
         #region DataListGrammer Tests
-        [TestMethod]
+        [Test]
         public void DataListGrammer_IsolationGrammer_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -239,7 +240,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(false, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void DataListGrammer_IsolationGrammer_EnsureFailure_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -247,7 +248,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(true, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void DataListGrammer_IsolationGrammer_NDepthRecursion_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -255,7 +256,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(false, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void DataListGrammer_IsolationGrammer_NDepthRecursion_EnsureFailure_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -263,7 +264,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(true, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void DataListGrammer_IsolationGrammer_CompositeIdentifier_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -271,7 +272,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(false, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void DataListGrammer_IsolationGrammer_CompositeIdentifier_EnsureFailure_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -279,7 +280,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(true, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void DataListGrammer_IsolationGrammer_CompositeField_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -287,7 +288,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(false, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void DataListGrammer_IsolationGrammer_CompositeField_EnsureFailure_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -295,7 +296,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(true, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void DataListGrammer_IsolationGrammer_CompositeIdentifier_CompositeField_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -303,7 +304,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(false, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void DataListGrammer_IsolationGrammer_CompositeIdentifier_CompositeField_EnsureFailure_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -311,7 +312,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(true, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void DataListGrammer_IsolationGrammer_ComplexParameter_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -319,7 +320,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(false, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void DataListGrammer_IsolationGrammer_ComplexParameter_EnsureFailure_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -327,7 +328,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(true, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void DataListGrammer_IsolationGrammer_NestedComposite_ComplexParameter_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -335,7 +336,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(false, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void DataListGrammer_IsolationGrammer_NestedComposite_ComplexParameter_EnsureFailure_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -343,7 +344,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(true, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void DataListGrammer_IsolationGrammer_NestedComposite_ComplexParameter_NestedSimple_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -351,7 +352,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(false, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void DataListGrammer_IsolationGrammer_NestedComposite_ComplexParameter_NestedSimple_EnsureFailure_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -359,9 +360,9 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(true, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
-        [Owner("Tshepo")]
-        [TestCategory("DataListGrammer_IsolationGrammer")]
+        [Test]
+        [Author("Tshepo")]
+        [Category("DataListGrammer_IsolationGrammer")]
         public void DataListGrammer_IsolationGrammer_SingleVariable_HasEventLogsIsFalse()
         {
             var builder = new SyntaxTreeBuilder();
@@ -369,9 +370,9 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.IsFalse(builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
-        [Owner("Tshepo")]
-        [TestCategory("DataListGrammer_IsolationGrammer")]
+        [Test]
+        [Author("Tshepo")]
+        [Category("DataListGrammer_IsolationGrammer")]
         public void DataListGrammer_IsolationGrammer_VariablesSideBySide_HasEventLogsIsFalse()
         {
             var builder = new SyntaxTreeBuilder();
@@ -379,9 +380,9 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.IsFalse(builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
-        [Owner("Tshepo")]
-        [TestCategory("SyntaxTreeBuilder_Build")]
+        [Test]
+        [Author("Tshepo")]
+        [Category("SyntaxTreeBuilder_Build")]
         public void SyntaxTreeBuilder_Build_VariablesSideBySideWithNewLine_HasEventLogsIsFalse()
         {
             var builder = new SyntaxTreeBuilder();
@@ -390,9 +391,9 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.IsFalse(builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
-        [Owner("Tshepo")]
-        [TestCategory("DataListGrammer_IsolationGrammer")]
+        [Test]
+        [Author("Tshepo")]
+        [Category("DataListGrammer_IsolationGrammer")]
         public void DataListGrammer_IsolationGrammer_VariablesSideBySideWithAnAdditionOperator_HasEventLogsIsFalse()
         {
             var builder = new SyntaxTreeBuilder();
@@ -401,9 +402,9 @@ namespace Unlimited.UnitTest.Framework.Parsing
         }
 
 
-        [TestMethod]
-        [Owner("Tshepo")]
-        [TestCategory("DataListGrammer_IsolationGrammer")]
+        [Test]
+        [Author("Tshepo")]
+        [Category("DataListGrammer_IsolationGrammer")]
         public void DataListGrammer_IsolationGrammer_VariablesSideBySide_WithModOperator_HasEventLogsIsFalse()
         {
             var builder = new SyntaxTreeBuilder();
@@ -411,9 +412,9 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.IsFalse(builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
-        [Owner("Tshepo")]
-        [TestCategory("DataListGrammer_IsolationGrammer")]
+        [Test]
+        [Author("Tshepo")]
+        [Category("DataListGrammer_IsolationGrammer")]
         public void DataListGrammer_IsolationGrammer_InvalidVar_HasEventLogsIsTrue()
         {
             var builder = new SyntaxTreeBuilder();
@@ -423,7 +424,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
         #endregion
 
         #region UltracalcGrammer Tests
-        [TestMethod]
+        [Test]
         public void UltracalcGrammer_StringLiteralGrammer_EnsureSuccess_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -431,7 +432,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(false, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void UltracalcGrammer_StringLiteralGrammer_NestedDatalist_EnsureSuccess_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -439,7 +440,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(false, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void UltracalcGrammer_StringLiteralGrammer_NestedDatalist_Infragistics_EnsureSuccess_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -447,7 +448,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(false, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void UltracalcGrammer_StringLiteralGrammer_CompositeNestedDatalist_Infragistics_EnsureSuccess_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -455,7 +456,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(false, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void UltracalcGrammer_StringLiteralGrammer_PartialDatalist_EnsureSuccess_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -463,7 +464,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(false, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void UltracalcGrammer_IsolationGrammer_EnsureSuccess_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -471,7 +472,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(false, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void UltracalcGrammer_IsolationGrammer_NDepthRecursion_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -479,7 +480,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(false, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void UltracalcGrammer_IsolationGrammer_CompositeIdentifier_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -487,7 +488,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(false, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void UltracalcGrammer_IsolationGrammer_CompositeField_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -495,7 +496,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(false, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void UltracalcGrammer_IsolationGrammer_CompositeIdentifier_CompositeField_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -503,7 +504,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(false, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void UltracalcGrammer_IsolationGrammer_ComplexParameter_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -511,7 +512,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(false, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void UltracalcGrammer_IsolationGrammer_NestedComposite_ComplexParameter_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -519,7 +520,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(false, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void UltracalcGrammer_IsolationGrammer_EnsureFailure_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -527,7 +528,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(true, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void UltracalcGrammer_IsolationGrammer_NDepthRecursion_EnsureFailure_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -535,7 +536,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(true, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void UltracalcGrammer_IsolationGrammer_CompositeIdentifier_EnsureFailure_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -543,7 +544,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(true, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void UltracalcGrammer_IsolationGrammer_CompositeField_EnsureFailure_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -551,7 +552,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(true, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void UltracalcGrammer_IsolationGrammer_CompositeIdentifier_CompositeField_EnsureFailure_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -559,7 +560,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(true, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void UltracalcGrammer_IsolationGrammer_ComplexParameter_EnsureFailure_Test()
         {
             var builder = new SyntaxTreeBuilder();
@@ -567,7 +568,7 @@ namespace Unlimited.UnitTest.Framework.Parsing
             Assert.AreEqual(true, builder.EventLog.HasEventLogs);
         }
 
-        [TestMethod]
+        [Test]
         public void UltracalcGrammer_IsolationGrammer_NestedComposite_ComplexParameter_EnsureFailure_Test()
         {
             var builder = new SyntaxTreeBuilder();

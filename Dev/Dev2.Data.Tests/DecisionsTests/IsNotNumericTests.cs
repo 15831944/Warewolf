@@ -1,15 +1,16 @@
 using Dev2.Data.Decisions.Operations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Data.Tests.DecisionsTests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IsNotNumericTests
     {
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("IsNotNumeric_Invoke")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("IsNotNumeric_Invoke")]
         public void GivenSomeString_IsNotNumeric_Invoke_ReturnsTrue()
         {
             //------------Setup for test--------------------------
@@ -19,12 +20,12 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = isNotNumeric.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsTrue(result);
+            NUnit.Framework.Assert.IsTrue(result);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthembu")]
-        [TestCategory("IsNotNumeric_Invoke")]
+        [Test]
+        [Author("Sanele Mthembu")]
+        [Category("IsNotNumeric_Invoke")]
         public void IsNotNumeric_Invoke_IsNotNumeric_ReturnsFalse()
         {
             //------------Setup for test--------------------------
@@ -34,12 +35,12 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = notStartsWith.Invoke(cols);
             //------------Assert Results-------------------------
-            Assert.IsFalse(result);
+            NUnit.Framework.Assert.IsFalse(result);
         }
 
-        [TestMethod]
-        [Owner("Sanele Mthmembu")]
-        [TestCategory("IsNotNumeric_HandlesType")]
+        [Test]
+        [Author("Sanele Mthmembu")]
+        [Category("IsNotNumeric_HandlesType")]
         public void IsNotNumeric_HandlesType_ReturnsIsNotNumericType()
         {
             var decisionType = enDecisionType.IsNotNumeric;
@@ -47,7 +48,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             var isNotNumeric = new IsNotNumeric();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            Assert.AreEqual(decisionType, isNotNumeric.HandlesType());
+            NUnit.Framework.Assert.AreEqual(decisionType, isNotNumeric.HandlesType());
         }
     }
 }

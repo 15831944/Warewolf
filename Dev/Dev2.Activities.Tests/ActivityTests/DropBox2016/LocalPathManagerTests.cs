@@ -1,22 +1,23 @@
 ﻿using System.IO;
 using Dev2.Activities.DropBox2016;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Tests.Activities.ActivityTests.DropBox2016
 {
     //These test cannot be run on the build server, best to cemment them out when checking in
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class LocalPathManagerTests
     {
-        [TestInitialize]
+        [SetUp]
         public void MyTestInitialise()
         {
             ValidFileName = Path.GetTempFileName();
             InValidFileName = @"\Home\Hi\hi.file";
         }
         
-        [TestCleanup]
+        [TearDown]
         public void MyTestCleanup()
         {
             if(File.Exists(ValidFileName))
@@ -29,8 +30,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016
                 File.Delete(InValidFileName);
             }
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Construct_GivenIsValid_ShouldShouldNotBeNull()
         {
             //---------------Set up test pack-------------------
@@ -40,8 +41,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016
             //---------------Test Result -----------------------
             Assert.IsNotNull(localPathManager);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Construct_GivenInValid_ShouldShouldNotBeNull()
         {
             //---------------Set up test pack-------------------
@@ -52,8 +53,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016
             Assert.IsNotNull(localPathManager);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ManageDirectory_GivenInValid_ShouldBeNotNull()
         {
             //---------------Set up test pack-------------------
@@ -65,8 +66,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016
             //---------------Test Result -----------------------
             Assert.IsFalse(string.IsNullOrEmpty(manageDirectory));
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ManageDirectory_GivenValid_ShouldBeNotNull()
         {
             //---------------Set up test pack-------------------
@@ -79,8 +80,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016
             Assert.IsFalse(string.IsNullOrEmpty(manageDirectory));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateValidFolder_GivenValid_ShouldNotCreateFolder()
         {
             //---------------Set up test pack-------------------
@@ -93,8 +94,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016
             Assert.IsFalse(string.IsNullOrEmpty(validFolder));
             Assert.IsTrue(Directory.Exists(validFolder));
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CreateValidFolder_GivenInValid_ShouldCreateFolder()
         {
             //---------------Set up test pack-------------------
@@ -108,8 +109,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016
             Assert.IsTrue(Directory.Exists(validFolder));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetFileName_GivenInValid_ShouldReturnFilename()
         {
             //---------------Set up test pack-------------------
@@ -122,8 +123,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016
             Assert.IsFalse(string.IsNullOrEmpty(fileName));
             Assert.AreEqual("hi.file", fileName);
         }
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GetFullFileName_GivenInValid_ShouldReturnFullFilename()
         {
             //---------------Set up test pack-------------------
@@ -137,8 +138,8 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016
             Assert.AreEqual(InValidFileName, fileName);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void FileExist_GivenTemp_ShouldReturnFalse()
         {
             //---------------Set up test pack-------------------

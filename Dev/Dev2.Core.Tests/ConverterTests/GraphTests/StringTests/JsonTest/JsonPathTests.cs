@@ -10,14 +10,15 @@
 
 using System.Linq;
 using Dev2.Common.Interfaces.Core.Graph;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Newtonsoft.Json.Linq;
 using Unlimited.Framework.Converters.Graph.String.Json;
 
 
 namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class JsonPathTests {
 
         #region GetSegments Tests
@@ -25,7 +26,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
         /// <summary>
         /// Gets the segments of a path expected correct segment count.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void GetSegments_Expected_CorrectSegmentCount()
         {
             var path = new JsonPath("EnumerableData().NestedData.Name", "EnumerableData.NestedData.Name");
@@ -39,7 +40,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
         /// <summary>
         /// Gets the segments expected last segment is correct.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void GetSegments_Expected_LastSegmentIsCorrect()
         {
             var path = new JsonPath("EnumerableData().NestedData.NestedData.Name", "EnumerableData.NestedData.NestedData.Name");
@@ -53,7 +54,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
         /// <summary>
         /// Create enumerable path segment from JSON property expected enumerable json path segment returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void CreateEnumerablePathSegmentFromJProperty_Expected_EnumerableJsonPathSegment()
         {
             var jProperty = new JProperty("EnumerableProperty", new JArray(
@@ -71,7 +72,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
         /// <summary>
         /// Create the scalar path segment from JSON property expected scalar json path segment returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void CreateScalarPathSegmentFromJProperty_Expected_ScalarJsonPathSegment()
         {
             var jProperty = new JProperty("ScalarProperty", "ScalarValue");
@@ -87,7 +88,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
         /// <summary>
         /// Create enumerable path segment from segment text expected enumerable json path segment returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void CreateEnumerablePathSegmentFromSegmentText_Expected_EnumerableJsonPathSegment()
         {
             var path = new JsonPath();
@@ -102,7 +103,7 @@ namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
         /// <summary>
         /// Create scalar path segment from segment text expected scalar json path segment returned.
         /// </summary>
-        [TestMethod]
+        [Test]
         public void CreateScalarPathSegmentFromSegmentText_Expected_ScalarJsonPathSegment()
         {
             var path = new JsonPath();

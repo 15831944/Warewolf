@@ -12,19 +12,20 @@ using Dev2.Common.Interfaces.Wrappers;
 using Dev2.Data.Interfaces;
 using Dev2.Data.PathOperations;
 using Dev2.Data.PathOperations.Operations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.IO;
 
 namespace Dev2.Data.Tests.PathOperations
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DoPutActionTests
     {
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoPutAction))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoPutAction))]
         public void DoPutAction_ExecuteOperation_ExpectIOException()
         {
             //-------------------------Arrange-----------------------
@@ -34,12 +35,12 @@ namespace Dev2.Data.Tests.PathOperations
             var ss = new DoPutAction( new MemoryStream(), mockActivityIOPath.Object, mockDev2CRUDOperationTO.Object, "testWhereToPut");
             //-------------------------Act---------------------------
             //-------------------------Assert------------------------
-            Assert.ThrowsException<IOException>(() => ss.ExecuteOperation());
+            NUnit.Framework.Assert.Throws<IOException>(() => ss.ExecuteOperation());
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoPutAction))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoPutAction))]
         public void DoPutAction_ExecuteOperation_IsPathRooted_false_ExpectIOException()
         {
             //-------------------------Arrange-----------------------
@@ -55,12 +56,12 @@ namespace Dev2.Data.Tests.PathOperations
             var ss = new DoPutAction(new MemoryStream(), mockActivityIOPath.Object, mockDev2CRUDOperationTO.Object, "TestWhere", mockDev2LogonProvider.Object, mockFileWrapper.Object, mockFilePath.Object, (arg1, arg2)=> mockWindowsImpersonationContext.Object);
             //-------------------------Act---------------------------
             //-------------------------Assert------------------------
-            Assert.ThrowsException<IOException>(()=> ss.ExecuteOperation());
+            NUnit.Framework.Assert.Throws<IOException>(()=> ss.ExecuteOperation());
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoPutAction))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoPutAction))]
         public void DoPutAction_ExecuteOperation_IsPathRooted_True_ExpectArgumentNullException()
         {
             //-------------------------Arrange-----------------------
@@ -76,12 +77,12 @@ namespace Dev2.Data.Tests.PathOperations
             var ss = new DoPutAction(new MemoryStream(), mockActivityIOPath.Object, mockDev2CRUDOperationTO.Object, "TestWhere", mockDev2LogonProvider.Object, mockFileWrapper.Object, mockFilePath.Object, (arg1, arg2) => mockWindowsImpersonationContext.Object);
             //-------------------------Act---------------------------
             //-------------------------Assert------------------------
-            Assert.ThrowsException<ArgumentNullException>(() => ss.ExecuteOperation());
+            NUnit.Framework.Assert.Throws<ArgumentNullException>(() => ss.ExecuteOperation());
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoPutAction))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoPutAction))]
         public void DoPutAction_ExecuteOperation_IsPathRooted_True__ImpersonatedUser_IsNull_ExpectArgumentNullException()
         {
             //-------------------------Arrange-----------------------
@@ -96,12 +97,12 @@ namespace Dev2.Data.Tests.PathOperations
             var ss = new DoPutAction(new MemoryStream(), mockActivityIOPath.Object, mockDev2CRUDOperationTO.Object, null, mockDev2LogonProvider.Object, mockFileWrapper.Object, mockFilePath.Object, (arg1, arg2) => null);
             //-------------------------Act---------------------------
             //-------------------------Assert------------------------
-            Assert.ThrowsException<ArgumentNullException>(() => ss.ExecuteOperation());
+            NUnit.Framework.Assert.Throws<ArgumentNullException>(() => ss.ExecuteOperation());
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoPutAction))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoPutAction))]
         public void DoPutAction_ExecuteOperation_IsPathRooted_True_ImpersonatedUser_IsNull_ExpectTrue()
         {
             //-------------------------Arrange-----------------------
@@ -121,12 +122,12 @@ namespace Dev2.Data.Tests.PathOperations
             //-------------------------Assert------------------------
             mockFilePath.VerifyAll();
             mockActivityIOPath.VerifyAll();
-            Assert.AreEqual(0,xx);
+            NUnit.Framework.Assert.AreEqual(0,xx);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoPutAction))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoPutAction))]
         public void DoPutAction_ExecuteOperation_IsPathRooted_True__ImpersonatedUser_IsNotNull_ExpectIOException()
         {
             //-------------------------Arrange-----------------------
@@ -148,12 +149,12 @@ namespace Dev2.Data.Tests.PathOperations
             mockFilePath.VerifyAll();
             mockActivityIOPath.VerifyAll();
             mockDev2CRUDOperationTO.VerifyAll();
-            Assert.AreEqual(0, xx);
+            NUnit.Framework.Assert.AreEqual(0, xx);
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(DoPutAction))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(DoPutAction))]
         public void DoPutAction_ExecuteOperation_IsPathRooted_True_ImpersonatedUser_IsNotNull_FileExist_False_ExpectIOException()
         {
             //-------------------------Arrange-----------------------
@@ -175,7 +176,7 @@ namespace Dev2.Data.Tests.PathOperations
             mockFilePath.VerifyAll();
             mockActivityIOPath.VerifyAll();
             mockDev2CRUDOperationTO.VerifyAll();
-            Assert.AreEqual(0, xx);
+            NUnit.Framework.Assert.AreEqual(0, xx);
         }
     }
 }

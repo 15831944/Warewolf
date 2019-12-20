@@ -1,16 +1,18 @@
 ﻿using System.Collections.Generic;
 using Dev2.Common.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Warewolf.Studio.ViewModels.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class DummyServiceTestTests
     {
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DummyServiceTest_Constructor")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DummyServiceTest_Constructor")]
         public void DummyServiceTest_Constructor_Constructor_NoException()
         {
             //------------Setup for test--------------------------
@@ -23,9 +25,10 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
-        [TestCategory("DummyServiceTest_Constructor")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
+        [Category("DummyServiceTest_Constructor")]
         public void DummyServiceTest_Constructor_isNew_SetsNeverRunTests()
         {
             //------------Setup for test--------------------------
@@ -37,8 +40,9 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void Constuctor_GivenNullAction_ShouldPassThrough()
         {
             //---------------Set up test pack-------------------
@@ -50,8 +54,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             //---------------Test Result -----------------------
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void Constuctor_GivenAction_ShouldDefaultPropertyValues()
         {
             //---------------Set up test pack-------------------
@@ -84,8 +89,9 @@ namespace Warewolf.Studio.ViewModels.Tests
         }
 
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void Constuctor_GivenAction_ShouldCreateCommand()
         {
             //---------------Set up test pack-------------------
@@ -99,8 +105,9 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsNotNull(dummyServiceTest.CreateTestCommand);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Timeout(60000)]
+        [Author("Nkosinathi Sangweni")]
         public void CreateTestCommand_GivenAction_ShouldExecuteCorrectly()
         {
             //---------------Set up test pack-------------------

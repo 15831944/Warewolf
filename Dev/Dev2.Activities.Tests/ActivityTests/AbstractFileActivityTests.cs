@@ -12,7 +12,7 @@
 using System;
 using System.Collections.Generic;
 using ActivityUnitTests;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Dev2.DataList.Contract;
 using Dev2.Data.TO;
@@ -31,7 +31,8 @@ namespace Dev2.Tests.Activities.ActivityTests
     /// <summary>
     /// Summary description for DateTimeDifferenceTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class AbstractFileActivityTests : BaseActivityUnitTest
     {
         public TestContext TestContext { get; set; }
@@ -79,9 +80,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
         }
 
-        [TestMethod]
-        [Owner("Rory McGuire")]
-        [TestCategory("DsfAbstractFileActivity_UpdateForEachInputs")]
+        [Test]
+        [Author("Rory McGuire")]
+        [Category("DsfAbstractFileActivity_UpdateForEachInputs")]
         public void DsfAbstractFileActivity_FileOutputStringError_ShouldExistInEnvironmentErrors()
         {
             //------------Setup for test--------------------------
@@ -90,7 +91,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             data.Setup(o => o.Environment).Returns(() => env);
 
             var newGuid = Guid.NewGuid();
-            var inputPath = string.Concat(TestContext.TestRunDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
+            var inputPath = string.Concat(Environment.CurrentDirectory, "\\", newGuid + "[[CompanyName]]2.txt");
             var act = new TestActivity("TestActivity") { InputPath = inputPath, Result = "[[CompanyName]]" };
 
 

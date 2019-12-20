@@ -10,16 +10,17 @@ using Dev2.Common.Interfaces.ServerProxyLayer;
 using Dev2.Communication;
 using Dev2.Studio.Core;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Core.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ExplorerDeleteProviderTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Delete_WhenResource_ShouldDeleteResource()
         {
             //---------------Set up test pack-------------------
@@ -62,8 +63,8 @@ namespace Dev2.Core.Tests
             updateManagerProxy.Verify(manager => manager.DeleteResource(It.IsAny<Guid>()));
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Delete_WhenVersion_ShouldDeleteVersion()
         {
             //---------------Set up test pack-------------------
@@ -112,8 +113,8 @@ namespace Dev2.Core.Tests
             Assert.IsTrue(deletedFileMetadata.IsDeleted);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Delete_WhenFolderDeleteAnywayApplyToAll_ShouldShowDependenciesAndDeleteFolder()
         {
             //---------------Set up test pack-------------------
@@ -161,8 +162,8 @@ namespace Dev2.Core.Tests
 
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Delete_WhenFolderDeleteAnywayNotApplyToAll_ShouldShowDependenciesAndDeleteResource()
         {
             //---------------Set up test pack-------------------
@@ -212,8 +213,8 @@ namespace Dev2.Core.Tests
         }
 
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Delete_WhenFolderDeleteAnywayApplyToAll_ShouldShowDependenciesAndDeleteResource()
         {
             //---------------Set up test pack-------------------
@@ -261,8 +262,8 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(Guid.Empty, item.ResourceId);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Delete_WhenException_ShouldNotDelete()
         {
             //---------------Set up test pack-------------------

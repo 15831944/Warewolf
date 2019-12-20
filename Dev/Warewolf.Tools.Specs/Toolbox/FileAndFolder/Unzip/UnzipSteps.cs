@@ -12,7 +12,7 @@ using Dev2.Activities.Specs.BaseTypes;
 using Dev2.Common.Interfaces.Infrastructure.Providers.Errors;
 using Dev2.PathOperations;
 using Dev2.Providers.Errors;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using System;
 using System.Activities.Statements;
 using System.Collections.Generic;

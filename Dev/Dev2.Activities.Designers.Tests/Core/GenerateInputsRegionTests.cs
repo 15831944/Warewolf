@@ -1,13 +1,14 @@
 ﻿using Dev2.Activities.Designers2.Core;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Activities.Designers.Tests.Core
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class GenerateInputsRegionTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void GenerateInputsRegion_GivenIsNew_ShouldSetToolRegionName_To_GenerateInputsRegion()
         {
             var inputRegion = new GenerateInputsRegion();
@@ -20,8 +21,8 @@ namespace Dev2.Activities.Designers.Tests.Core
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void Errors_GivenIsNew_ShouldHaveEmptyErrors()
         {
             var inputRegion = new GenerateInputsRegion();
@@ -37,8 +38,8 @@ namespace Dev2.Activities.Designers.Tests.Core
 
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void CloneRegion_ShouldReturnNull()
         {
             var inputRegion = new GenerateInputsRegion();
@@ -55,8 +56,8 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.IsNull(cloneRegion);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ErrorsHandler_GivenIsNew_ShouldReturnNull()
         {
             var inputRegion = new GenerateInputsRegion();
@@ -73,8 +74,8 @@ namespace Dev2.Activities.Designers.Tests.Core
             Assert.IsNull(cloneRegion);
         }
 
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ErrorsHandler_GivenIsIset_ShouldBeInvokable()
         {
             var inputRegion = new GenerateInputsRegion()

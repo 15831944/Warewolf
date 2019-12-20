@@ -12,7 +12,7 @@ using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.Wrappers;
 using Dev2.Common.Wrappers;
 using Dev2.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json;
 using System;
@@ -22,7 +22,8 @@ using Warewolf.Storage;
 
 namespace Warewolf.Auditing.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IStateAuditLoggerTests
     {
         IDSFDataObject _dSFDataObject;
@@ -30,9 +31,9 @@ namespace Warewolf.Auditing.Tests
         IStateAuditLogger _stateAuditLogger;
         IFile _fileWrapper;
         IDirectory _directoryWrapper;
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(IStateAuditLogger))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(IStateAuditLogger))]
         public void IStateAuditLogger_SubscribeToEventNotifications_Tests()
         {
             TestSetup(out _fileWrapper, out _directoryWrapper, out _activity);
@@ -66,9 +67,9 @@ namespace Warewolf.Auditing.Tests
             notifier.Dispose();
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(IStateAuditLogger))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(IStateAuditLogger))]
         public void IStateAuditLogger_LogExecuteCompleteState_Tests()
         {
             var expectedWorkflowId = Guid.NewGuid();
@@ -85,9 +86,9 @@ namespace Warewolf.Auditing.Tests
             mockWebSocketFactory.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(IStateAuditLogger))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(IStateAuditLogger))]
         public void IStateAuditLogger_LogPostExecuteState_Tests()
         {
             var expectedWorkflowId = Guid.NewGuid();
@@ -105,9 +106,9 @@ namespace Warewolf.Auditing.Tests
             mockWebSocketFactory.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(IStateAuditLogger))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(IStateAuditLogger))]
         public void IStateAuditLogger_LogPreExecuteState_Tests()
         {
             var expectedWorkflowId = Guid.NewGuid();
@@ -124,9 +125,9 @@ namespace Warewolf.Auditing.Tests
             mockWebSocketFactory.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(IStateAuditLogger))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(IStateAuditLogger))]
         public void IStateAuditLogger_LogStopExecutionState_Tests()
         {
             var expectedWorkflowId = Guid.NewGuid();
@@ -143,9 +144,9 @@ namespace Warewolf.Auditing.Tests
             mockWebSocketFactory.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(IStateAuditLogger))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(IStateAuditLogger))]
         public void IStateAuditLogger_LogAdditionalDetail_Tests()
         {
             var expectedWorkflowId = Guid.NewGuid();
@@ -163,9 +164,9 @@ namespace Warewolf.Auditing.Tests
             mockWebSocketFactory.VerifyAll();
         }
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(IStateAuditLogger))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(IStateAuditLogger))]
         public void IStateAuditLogger_LogExecuteException_LogsTheGivenException_Success()
         {
             //------------------------------Arrange--------------------------------

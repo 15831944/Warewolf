@@ -25,7 +25,7 @@ using Dev2.Triggers.Scheduler;
 using Dev2.Studio.Core;
 using Dev2.TaskScheduler.Wrappers;
 using Dev2.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Microsoft.Win32.TaskScheduler;
 using Moq;
 using TechTalk.SpecFlow;
@@ -35,6 +35,7 @@ using Dev2.Common.Interfaces.Studio.Controller;
 using Dev2.Studio.Interfaces;
 using System.IO;
 using Dev2.Infrastructure.Tests;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Dev2.Activities.Specs.Scheduler
 {
@@ -211,11 +212,11 @@ namespace Dev2.Activities.Specs.Scheduler
 
                 if (status == "Success")
                 {
-                    Assert.AreEqual(ScheduleRunStatus.Success, x[0].TaskHistoryOutput.Success, x[0].TaskHistoryOutput.FailureReason);
+                    NUnit.Framework.Assert.AreEqual(ScheduleRunStatus.Success, x[0].TaskHistoryOutput.Success, x[0].TaskHistoryOutput.FailureReason);
                 }
                 else
                 {
-                    Assert.IsTrue(x[0].TaskHistoryOutput.Success == ScheduleRunStatus.Error);
+                    NUnit.Framework.Assert.IsTrue(x[0].TaskHistoryOutput.Success == ScheduleRunStatus.Error);
                 }
                 _scenarioContext["History"] = x;
 
@@ -251,12 +252,12 @@ namespace Dev2.Activities.Specs.Scheduler
         {
             if (error == "AN" && (!_scenarioContext.ContainsKey("Error") || _scenarioContext["Error"] == null))
             {
-                Assert.Fail("Error Expected");
+                NUnit.Framework.Assert.Fail("Error Expected");
             }
 
             if (error == "NO" && _scenarioContext.ContainsKey("Error") && _scenarioContext["Error"] != null)
             {
-                Assert.Fail(_scenarioContext["Error"].ToString());
+                NUnit.Framework.Assert.Fail(_scenarioContext["Error"].ToString());
             }
         }
 
@@ -269,7 +270,7 @@ namespace Dev2.Activities.Specs.Scheduler
                 var x = new TaskService();
                 x.GetFolder("Warewolf");
                 var task = x.FindTask(scheduleName);
-                Assert.IsNotNull(task, "Task " + scheduleName + " not found in Warewolf folder");
+                NUnit.Framework.Assert.IsNotNull(task, "Task " + scheduleName + " not found in Warewolf folder");
                 do
                 {
                     task.Run();

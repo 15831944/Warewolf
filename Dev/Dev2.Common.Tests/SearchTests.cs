@@ -14,19 +14,20 @@ using Dev2.Common.Search;
 using Dev2.Data;
 using Dev2.Runtime.Interfaces;
 using Dev2.Runtime.Search;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Collections.Generic;
 
 namespace Dev2.Common.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SearchTests
     {
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("Search")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("Search")]
         public void Search_Ctor()
         {
             var searchValue = new Search.Search
@@ -39,9 +40,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual("Set", searchValue.SearchInput);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("Search")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("Search")]
         public void Search_GetSearchResults()
         {
             var searchValue = new Search.Search
@@ -98,9 +99,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual("Folder", searchResult.Path);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("Search")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("Search")]
         public void Search_SearchResult_Ctor()
         {
             var _resId = Guid.NewGuid();
@@ -116,9 +117,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(SearchItemType.WorkflowName, searchVal.Type);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("Search")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("Search")]
         public void Search_SearchResult_Blank_Ctor()
         {
             var result = new SearchResult();
@@ -129,9 +130,9 @@ namespace Dev2.Common.Tests
             Assert.AreEqual(SearchItemType.WorkflowName, result.Type);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("Search")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("Search")]
         public void Search_SearchResult_Equals_ReturnFalse()
         {
             var _name = "workflowName";
@@ -141,9 +142,9 @@ namespace Dev2.Common.Tests
             var otherSearchVal = new SearchResult(Guid.NewGuid(), _name, _path, SearchItemType.WorkflowName, _match);
             Assert.IsFalse(searchVal.Equals(otherSearchVal));
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("Search")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("Search")]
         public void Search_SearchResult_Equals_ReturnTrue()
         {
             var _id = Guid.NewGuid();
@@ -154,9 +155,9 @@ namespace Dev2.Common.Tests
             var otherSearchVal = new SearchResult(_id, _name, _path, SearchItemType.WorkflowName, _match);
             Assert.IsTrue(searchVal.Equals(otherSearchVal));
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("Search")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("Search")]
         public void Search_SearchResult_Equals_OtherisNull_ReturnFalse()
         {
             var _id = Guid.NewGuid();
@@ -169,9 +170,9 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(searchVal.Equals(otherSearchVal));
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("Search")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("Search")]
         public void Search_SearchResult_Equals_Object_ReturnFalse()
         {
             var _id = Guid.NewGuid();
@@ -183,9 +184,9 @@ namespace Dev2.Common.Tests
             Assert.IsFalse(searchVal.Equals(otherSearchVal));
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("Search")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("Search")]
         public void Search_SearchResult_Equals_Object_ReturnTrue()
         {
             var _id = Guid.NewGuid();
@@ -198,9 +199,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(searchVal.Equals(other));
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("Search")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("Search")]
         public void Search_SearchResult_GetHashCode()
         {
             var _id = Guid.NewGuid();
@@ -212,9 +213,9 @@ namespace Dev2.Common.Tests
             Assert.AreNotEqual(0,searchVal.GetHashCode());
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("Search")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("Search")]
         public void Search_SearchOptions_Set_Properties()
         {
             var searchValue = new Search.Search
@@ -249,9 +250,9 @@ namespace Dev2.Common.Tests
             Assert.IsTrue(searchValue.SearchOptions.IsInputVariableSelected);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory("Search")]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category("Search")]
         public void Search_SearchOptions_IsVariableSelected_ExpectFalse()
         {
             var searchValue = new Search.Search

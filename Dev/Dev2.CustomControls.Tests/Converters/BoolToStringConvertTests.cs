@@ -2,18 +2,19 @@
 using System.Globalization;
 using System.Windows.Data;
 using Dev2.CustomControls.Converters;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 
 
 namespace Dev2.CustomControls.Tests.Converters
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class BoolToStringConvertTests
     {
-        [TestMethod]
-        [Owner("Nkosinathi Sangweni")]
+        [Test]
+        [Author("Nkosinathi Sangweni")]
         public void ConvertBack_GivenAnyArg_ShouldReturnDoNothing()
         {
             //---------------Set up test pack-------------------

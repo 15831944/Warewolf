@@ -12,18 +12,19 @@ using System.Activities.Presentation.Model;
 using Dev2.Common.Interfaces.Help;
 using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Activities.Designers.Tests.SortRecords
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class SortRecordsDesignerViewModelTests
     {
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("SortRecordsDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("SortRecordsDesignerViewModel_Constructor")]
 
         public void SortRecordsDesignerViewModel_Constructor_ModelItemIsValid_SelectedSortIsInitialized()
 
@@ -35,9 +36,9 @@ namespace Dev2.Activities.Designers.Tests.SortRecords
             Assert.IsTrue(viewModel.HasLargeView);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("SortRecordsDesignerViewModel_Handle")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("SortRecordsDesignerViewModel_Handle")]
         public void SortRecordsDesignerViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
             //------------Setup for test--------------------------      
@@ -53,9 +54,9 @@ namespace Dev2.Activities.Designers.Tests.SortRecords
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("SortRecordsDesignerViewModel_Constructor")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("SortRecordsDesignerViewModel_Constructor")]
 
         public void SortRecordsDesignerViewModel_Constructor_ModelItemIsValid_SortOrderTypesHasTwoItems()
 
@@ -65,9 +66,9 @@ namespace Dev2.Activities.Designers.Tests.SortRecords
             Assert.AreEqual(2, viewModel.SortOrderTypes.Count);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("SortRecordsDesignerViewModel_SetSelectedSelectedSort")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("SortRecordsDesignerViewModel_SetSelectedSelectedSort")]
 
         public void SortRecordsDesignerViewModel_SetSelectedSelectedSort_ValidOrderType_SelectedOrderTypeOnModelItemIsAlsoSet()
 
@@ -79,9 +80,9 @@ namespace Dev2.Activities.Designers.Tests.SortRecords
             Assert.AreEqual(ExpectedValue, viewModel.SelectedSort);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SortRecordsDesignerViewModel_RehydratesSortOrder")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SortRecordsDesignerViewModel_RehydratesSortOrder")]
 
         public void SortRecordsDesignerViewModel_RehydratesSortOrder_ValidOrderType_ExpectUnderlyingValueBackwards()
 
@@ -90,12 +91,12 @@ namespace Dev2.Activities.Designers.Tests.SortRecords
             modelItem.SetProperty("SelectedSort","Backwards");
             var viewModel = new TestSortRecordsDesignerViewModel(modelItem);
             const string ExpectedValue = "Backwards";
-          
+
             Assert.AreEqual(ExpectedValue, viewModel.SelectedSort);
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SortRecordsDesignerViewModel_Validate")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SortRecordsDesignerViewModel_Validate")]
 
         public void SortRecordsDesignerViewModel_Validate_ValidatesSingleRegion_ExpectNoErrors()
 
@@ -108,9 +109,9 @@ namespace Dev2.Activities.Designers.Tests.SortRecords
 
             Assert.IsNull(viewModel.Errors);
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SortRecordsDesignerViewModel_Validate")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SortRecordsDesignerViewModel_Validate")]
 
         public void SortRecordsDesignerViewModel_Validate_ValidatesSingleRegion_ExpectErrors()
 
@@ -123,9 +124,9 @@ namespace Dev2.Activities.Designers.Tests.SortRecords
             Assert.AreEqual(1, viewModel.Errors.Count);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SortRecordsDesignerViewModel_Validate")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SortRecordsDesignerViewModel_Validate")]
 
         public void SortRecordsDesignerViewModel_Validate_ValidatesSingleRegion_NoErrors()
 
@@ -138,9 +139,9 @@ namespace Dev2.Activities.Designers.Tests.SortRecords
             Assert.IsNull(viewModel.Errors);
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SortRecordsDesignerViewModel_RehydratesSortOrder")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SortRecordsDesignerViewModel_RehydratesSortOrder")]
 
         public void SortRecordsDesignerViewModel_RehydratesSortOrder_ValidOrderType_ExpectUnderlyingValueForwards()
 
@@ -153,9 +154,9 @@ namespace Dev2.Activities.Designers.Tests.SortRecords
 
             Assert.AreEqual(ExpectedValue, viewModel.SelectedSort);
         }
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("SortRecordsDesignerViewModel_RehydratesSortOrder")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("SortRecordsDesignerViewModel_RehydratesSortOrder")]
 
         public void SortRecordsDesignerViewModel_RehydratesSortOrder_ValidOrderType_ExpectUnderlyingValueEmpty()
 

@@ -1,12 +1,13 @@
 ﻿using System;
 using Microsoft.Practices.Prism.PubSubEvents;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Dev2.Common.Interfaces.Help;
 
 namespace Warewolf.Studio.Models.Help.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class HelpModelTests
     {
         #region Fields
@@ -20,7 +21,7 @@ namespace Warewolf.Studio.Models.Help.Tests
 
         #region Test initialize
 
-        [TestInitialize]
+        [SetUp]
         public void TestInitialize()
         {
             _eventAggregatorMock = new Mock<IEventAggregator>();
@@ -33,7 +34,8 @@ namespace Warewolf.Studio.Models.Help.Tests
 
         #region Test construction
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestHelpModel()
         {
@@ -44,7 +46,8 @@ namespace Warewolf.Studio.Models.Help.Tests
 
         #region Test methods
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestFireOnHelpReceived()
         {
             //arrange
@@ -63,7 +66,8 @@ namespace Warewolf.Studio.Models.Help.Tests
             Assert.IsTrue(isOnHelpTextReceivedRaised);
         }
 
-        [TestMethod,Timeout(60000)]
+        [Test]
+        [Timeout(60000)]
         public void TestDispose()
         {
             //arrange

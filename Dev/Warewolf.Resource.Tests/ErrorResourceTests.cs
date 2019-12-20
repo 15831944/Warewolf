@@ -7,17 +7,18 @@
 *  AUTHORS <http://warewolf.io/authors.php> , CONTRIBUTORS <http://warewolf.io/contributors.php>
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Warewolf.Resource.Errors;
 
 namespace Warewolf.Resource.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ErrorResourceTests
     {
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(ErrorResource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(ErrorResource))]
         public void ErrorResource_Exceptions()
         {
             Assert.AreEqual("The following arguments are not allowed to be null: {0}", ErrorResource.ArgumentsNotAllowedToBeNull);

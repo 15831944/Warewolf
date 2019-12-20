@@ -10,19 +10,20 @@
 
 using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.Core;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System;
 using System.Collections.ObjectModel;
 
 namespace Dev2.Common.Tests.Core
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class PluginSourceDefinitionTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(PluginSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(PluginSourceDefinition))]
         public void PluginSourceDefinition_Validate_FileSystemAssemblyName()
         {
             const string expectedAssemblyLocation = "testAssemblyPath";
@@ -59,9 +60,9 @@ namespace Dev2.Common.Tests.Core
             Assert.AreEqual(string.Empty, pluginSourceDefinition.GACAssemblyName);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(PluginSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(PluginSourceDefinition))]
         public void PluginSourceDefinition_Validate_GACAssemblyName()
         {
             const string expectedAssemblyLocation = "GAC:testAssemblyPath";
@@ -98,9 +99,9 @@ namespace Dev2.Common.Tests.Core
             Assert.AreEqual(expectedAssemblyLocation, pluginSourceDefinition.GACAssemblyName);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(PluginSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(PluginSourceDefinition))]
         public void PluginSourceDefinition_Equals_PluginSource_Expected_True()
         {
             const string expectedAssemblyLocation = "testAssemblyPath";
@@ -126,9 +127,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(pluginSourceDefinition == pluginSourceDefinitionDup);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(PluginSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(PluginSourceDefinition))]
         public void PluginSourceDefinition_Equals_PluginSource_Expected_False()
         {
             const string expectedAssemblyLocation = "testAssemblyPath";
@@ -163,9 +164,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(pluginSourceDefinition != pluginSourceDefinitionDup);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(PluginSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(PluginSourceDefinition))]
         public void PluginSourceDefinition_Equals_Object_Null_Expected_False()
         {
             var pluginSourceDefinition = new PluginSourceDefinition();
@@ -176,9 +177,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(PluginSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(PluginSourceDefinition))]
         public void PluginSourceDefinition_Equals_Object_Expected_True()
         {
             const string expectedAssemblyLocation = "testAssemblyPath";
@@ -204,9 +205,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsTrue(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(PluginSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(PluginSourceDefinition))]
         public void PluginSourceDefinition_Equals_Object_Expected_False()
         {
             const string expectedAssemblyLocation = "testAssemblyPath";
@@ -242,9 +243,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(PluginSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(PluginSourceDefinition))]
         public void PluginSourceDefinition_Equals_Object_GetType_Expected_False()
         {
             const string expectedAssemblyLocation = "testAssemblyPath";
@@ -270,9 +271,9 @@ namespace Dev2.Common.Tests.Core
             Assert.IsFalse(isEqual);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(PluginSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(PluginSourceDefinition))]
         public void PluginSourceDefinition_GetHashCode_Not_Equal_To_Zero()
         {
             const string expectedAssemblyLocation = "testAssemblyPath";
@@ -297,9 +298,9 @@ namespace Dev2.Common.Tests.Core
             Assert.AreNotEqual(0, hashCode);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory(nameof(PluginSourceDefinition))]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category(nameof(PluginSourceDefinition))]
         public void PluginSourceDefinition_GetHashCode_Expect_Zero()
         {
             var pluginSourceDefinition = new PluginSourceDefinition();

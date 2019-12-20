@@ -12,17 +12,18 @@ using System;
 using Dev2.Common.Interfaces.Enums;
 using Dev2.Common.Interfaces.Security;
 using Dev2.Services.Security;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Infrastructure.Tests.Services.Security
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class AuthorizationHelpersTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizationHelpers_ToReason")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizationHelpers_ToReason")]
         public void AuthorizationHelpers_ToReason_IsAuthorized_Null()
         {
             foreach(AuthorizationContext context in Enum.GetValues(typeof(AuthorizationContext)))
@@ -35,9 +36,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizationHelpers_ToReason")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizationHelpers_ToReason")]
         public void AuthorizationHelpers_ToReason_IsNotAuthorized_CorrectReason()
         {
             foreach(AuthorizationContext context in Enum.GetValues(typeof(AuthorizationContext)))
@@ -76,9 +77,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             }
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizationHelpers_Matches")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizationHelpers_Matches")]
         public void AuthorizationHelpers_Matches_SecurityPermissionIsServer_True()
         {
             //------------Setup for test--------------------------
@@ -91,9 +92,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsTrue(authorized);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizationHelpers_Matches")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizationHelpers_Matches")]
         public void AuthorizationHelpers_Matches_ResourceIsNullOrEmpty_False()
         {
             //------------Setup for test--------------------------
@@ -106,9 +107,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsTrue(authorized);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizationHelpers_Matches")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizationHelpers_Matches")]
         public void AuthorizationHelpers_Matches_ResourceIsGuidAndHasSecurityPermission_True()
         {
             //------------Setup for test--------------------------
@@ -122,9 +123,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsTrue(authorized);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizationHelpers_Matches")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizationHelpers_Matches")]
         public void AuthorizationHelpers_Matches_ResourceIsGuidAndDoesNotHaveSecurityPermissions_False()
         {
             //------------Setup for test--------------------------
@@ -138,9 +139,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsFalse(authorized);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizationHelpers_Matches")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizationHelpers_Matches")]
         public void AuthorizationHelpers_Matches_ResourceIsStringAndHasSecurityPermission_True()
         {
             //------------Setup for test--------------------------
@@ -154,9 +155,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsTrue(authorized);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizationHelpers_Matches")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizationHelpers_Matches")]
         public void AuthorizationHelpers_Matches_ResourceIsStringAndDoesNotHaveSecurityPermissions_False()
         {
             //------------Setup for test--------------------------
@@ -170,9 +171,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsFalse(authorized);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizationHelpers_ToPermissions")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizationHelpers_ToPermissions")]
         public void AuthorizationHelpers_ToPermissions_AuthorizationContextCorrectlyTranslated()
         {
             Verify_ToPermissions(AuthorizationContext.None, Permissions.None);
@@ -194,9 +195,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.AreEqual(expectedPermissions, actual);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizationHelpers_IsContributor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizationHelpers_IsContributor")]
         public void AuthorizationHelpers_IsContributor_CorrectlyTranslated()
         {
             Verify_IsContributor(Permissions.Administrator | Permissions.View, true);
@@ -214,9 +215,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
         }
 
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("AuthorizationHelpers_CanDebug")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("AuthorizationHelpers_CanDebug")]
         public void AuthorizationHelpers_CanDebug_CorrectlyTranslated()
         {
             Verify_CanDebug(Permissions.Administrator | Permissions.View, true);

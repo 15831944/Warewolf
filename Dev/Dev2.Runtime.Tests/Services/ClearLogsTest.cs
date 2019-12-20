@@ -18,12 +18,13 @@ using Dev2.Common.Interfaces.Enums;
 using Dev2.Communication;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Workspaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ClearLogsTest
     {
         static readonly Guid _workspaceID = Guid.Parse("34c0ce48-1f02-4a47-ad51-19ee3789ed4c");
@@ -33,10 +34,10 @@ namespace Dev2.Tests.Runtime.Services
 
         #region ClassInitialize
 
-        [ClassInitialize]
+        [OneTimeSetUp]
         public static void MyClassInitialize(TestContext context)
         {
-            _testDir = Path.Combine(context.DeploymentDirectory, "ClearLogs");
+            _testDir = Path.Combine(context.TestDirectory, "ClearLogs");
             Directory.CreateDirectory(_testDir);
         }
 
@@ -44,7 +45,7 @@ namespace Dev2.Tests.Runtime.Services
 
         #region Execute
 
-        [TestMethod]
+        [Test]
         public void ClearLogNonValidDirectoryExpectsNoDelete()
         {
             //setup
@@ -59,7 +60,7 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(result.Contains("Error clearing"));
         }
 
-        [TestMethod]
+        [Test]
         public void ClearLogNoDirectoryPassedExpectsNoDelete()
         {
             //execute
@@ -71,7 +72,7 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(result.Contains("Can't delete a file if no directory is passed."));
         }
 
-        [TestMethod]
+        [Test]
         public void ClearLogDirectoryExpectsFilesDeleted()
         {
             lock(SyncRoot)
@@ -100,7 +101,7 @@ namespace Dev2.Tests.Runtime.Services
             }
         }
 
-        [TestMethod]
+        [Test]
         public void ClearLogExecuteWithValidPathAndLockedExpectedReturnsError()
         {
             var serializer = new Dev2JsonSerializer();
@@ -144,7 +145,7 @@ namespace Dev2.Tests.Runtime.Services
 
         #region HandlesType
 
-        [TestMethod]
+        [Test]
         public void DeleteLogHandlesTypeExpectedReturnsDeleteLogService()
         {
             var esb = new ClearLog();
@@ -156,7 +157,7 @@ namespace Dev2.Tests.Runtime.Services
 
         #region CreateServiceEntry
 
-        [TestMethod]
+        [Test]
         public void DeleteLogCreateServiceEntryExpectedReturnsDynamicService()
         {
             var esb = new ClearLog();
@@ -184,9 +185,9 @@ namespace Dev2.Tests.Runtime.Services
 
         #endregion
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -198,9 +199,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty,resId);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("GetResourceID")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("GetResourceID")]
         public void GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------

@@ -8,17 +8,18 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Warewolf.Options;
 
 namespace Warewolf.Data.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class OptionTests
     {
-        [TestMethod]
-        [TestCategory(nameof(OptionBool))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(OptionBool))]
+        [Author("Pieter Terblanche")]
         public void OptionBool_Default()
         {
             var optionBool = new OptionBool();
@@ -34,9 +35,9 @@ namespace Warewolf.Data.Tests
             Assert.IsTrue(optionBool.Default);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(OptionBool))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(OptionBool))]
+        [Author("Pieter Terblanche")]
         public void OptionBool_Clone()
         {
             var optionBool = new OptionBool
@@ -50,9 +51,9 @@ namespace Warewolf.Data.Tests
             Assert.AreEqual(optionBool.Value, cloneOptionBool.Value);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(OptionBool))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(OptionBool))]
+        [Author("Pieter Terblanche")]
         public void OptionBool_CompareTo()
         {
             var optionBool = new OptionBool
@@ -71,9 +72,9 @@ namespace Warewolf.Data.Tests
             Assert.AreEqual(0, expectedValue);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(OptionInt))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(OptionInt))]
+        [Author("Pieter Terblanche")]
         public void OptionInt_Default()
         {
             var optionInt = new OptionInt();
@@ -89,9 +90,9 @@ namespace Warewolf.Data.Tests
             Assert.AreEqual(0, optionInt.Default);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(OptionInt))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(OptionInt))]
+        [Author("Pieter Terblanche")]
         public void OptionInt_Clone()
         {
             var optionInt = new OptionInt
@@ -105,9 +106,9 @@ namespace Warewolf.Data.Tests
             Assert.AreEqual(optionInt.Value, cloneOptionBool.Value);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(OptionInt))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(OptionInt))]
+        [Author("Pieter Terblanche")]
         public void OptionInt_CompareTo()
         {
             var optionInt = new OptionInt
@@ -126,9 +127,9 @@ namespace Warewolf.Data.Tests
             Assert.AreEqual(0, expectedValue);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(OptionAutocomplete))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(OptionAutocomplete))]
+        [Author("Pieter Terblanche")]
         public void OptionAutocomplete_Default()
         {
             var optionAutocomplete = new OptionAutocomplete();
@@ -145,9 +146,9 @@ namespace Warewolf.Data.Tests
             Assert.IsNull(optionAutocomplete.Suggestions);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(OptionAutocomplete))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(OptionAutocomplete))]
+        [Author("Pieter Terblanche")]
         public void OptionAutocomplete_Clone()
         {
             var optionAutocomplete = new OptionAutocomplete
@@ -161,9 +162,9 @@ namespace Warewolf.Data.Tests
             Assert.AreEqual(optionAutocomplete.Value, cloneOptionBool.Value);
         }
 
-        [TestMethod]
-        [TestCategory(nameof(OptionAutocomplete))]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Category(nameof(OptionAutocomplete))]
+        [Author("Pieter Terblanche")]
         public void OptionAutocomplete_CompareTo()
         {
             var optionAutocomplete = new OptionAutocomplete

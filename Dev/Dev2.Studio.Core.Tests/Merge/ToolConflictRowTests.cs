@@ -1,13 +1,14 @@
 ﻿using Dev2.Core.Tests.Merge.Utils;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests.Merge
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ToolConflictRowTests : MergeTestUtils
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void ToolConflictRow_CreateConflictRow()
         {
             var conflictRow = CreateConflictRow();
@@ -20,8 +21,8 @@ namespace Dev2.Core.Tests.Merge
             Assert.AreNotEqual(conflictRow.Different, conflictRow.Current);
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
+        [Test]
+        [Author("Pieter Terblanche")]
         public void ToolConflictRow_CreateStartRow()
         {
             var conflictRow = CreateStartRow();

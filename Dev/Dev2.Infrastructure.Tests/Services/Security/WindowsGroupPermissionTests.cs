@@ -11,17 +11,18 @@
 using System;
 using Dev2.Common.Interfaces.Security;
 using Dev2.Services.Security;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 
 namespace Dev2.Infrastructure.Tests.Services.Security
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class WindowsGroupPermissionTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WindowsGroupPermission_Permissions")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WindowsGroupPermission_Permissions")]
         public void WindowsGroupPermission_Permissions_Get_CorrectPermissionsReturned()
         {
             //------------Setup for test-------------------------
@@ -36,9 +37,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.AreEqual(Permissions.Administrator, new WindowsGroupPermission { Administrator = true }.Permissions);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WindowsGroupPermission_Permissions")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WindowsGroupPermission_Permissions")]
         public void WindowsGroupPermission_Permissions_SetNone_CorrectlyApplied()
         {
             //------------Setup for test-------------------------
@@ -55,9 +56,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsFalse(p.Administrator);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WindowsGroupPermission_Permissions")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WindowsGroupPermission_Permissions")]
         public void WindowsGroupPermission_Permissions_SetView_CorrectlyApplied()
         {
             //------------Setup for test-------------------------
@@ -74,9 +75,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsFalse(p.Administrator);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WindowsGroupPermission_Permissions")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WindowsGroupPermission_Permissions")]
         public void WindowsGroupPermission_Permissions_SetExecute_CorrectlyApplied()
         {
             //------------Setup for test-------------------------
@@ -93,9 +94,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsFalse(p.Administrator);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WindowsGroupPermission_Permissions")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WindowsGroupPermission_Permissions")]
         public void WindowsGroupPermission_Permissions_SetContribute_CorrectlyApplied()
         {
             //------------Setup for test-------------------------
@@ -112,9 +113,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsFalse(p.Administrator);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WindowsGroupPermission_Permissions")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WindowsGroupPermission_Permissions")]
         public void WindowsGroupPermission_Permissions_SetDeployTo_CorrectlyApplied()
         {
             //------------Setup for test-------------------------
@@ -131,9 +132,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsFalse(p.Administrator);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WindowsGroupPermission_Permissions")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WindowsGroupPermission_Permissions")]
         public void WindowsGroupPermission_Permissions_SetDeployFrom_CorrectlyApplied()
         {
             //------------Setup for test-------------------------
@@ -150,9 +151,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsFalse(p.Administrator);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WindowsGroupPermission_Permissions")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WindowsGroupPermission_Permissions")]
         public void WindowsGroupPermission_Permissions_SetAdministrator_CorrectlyApplied()
         {
             //------------Setup for test-------------------------
@@ -169,9 +170,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsTrue(p.Administrator);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WindowsGroupPermission_IsBuiltInAdministrators")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WindowsGroupPermission_IsBuiltInAdministrators")]
         public void WindowsGroupPermission_IsBuiltInAdministrators_IsNotServer_False()
         {
             //------------Setup for test-------------------------
@@ -183,9 +184,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsFalse(p.IsBuiltInAdministrators);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WindowsGroupPermission_IsBuiltInAdministrators")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WindowsGroupPermission_IsBuiltInAdministrators")]
         public void WindowsGroupPermission_IsBuiltInAdministrators_IsServerAndWindowsGroupIsNotBuiltInAdministrators_False()
         {
             //------------Setup for test-------------------------
@@ -197,9 +198,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsFalse(p.IsBuiltInAdministrators);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WindowsGroupPermission_IsBuiltInAdministrators")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WindowsGroupPermission_IsBuiltInAdministrators")]
         public void WindowsGroupPermission_IsBuiltInAdministrators_IsServerAndWindowsGroupIsBuiltInAdministrators_True()
         {
             //------------Setup for test-------------------------
@@ -211,9 +212,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsTrue(p.IsBuiltInAdministrators);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WindowsGroupPermission_IsBuiltInGuests")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("WindowsGroupPermission_IsBuiltInGuests")]
         public void WindowsGroupPermission_IsBuiltInGuests_IsNotServer_False()
         {
             //------------Setup for test-------------------------
@@ -225,9 +226,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsFalse(p.IsBuiltInGuests);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WindowsGroupPermission_IsBuiltInGuests")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("WindowsGroupPermission_IsBuiltInGuests")]
         public void WindowsGroupPermission_IsBuiltInGuests_IsServerAndWindowsGroupIsNotBuiltInAdministrators_False()
         {
             //------------Setup for test-------------------------
@@ -239,9 +240,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsFalse(p.IsBuiltInGuests);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WindowsGroupPermission_IsBuiltInGuests")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("WindowsGroupPermission_IsBuiltInGuests")]
         public void WindowsGroupPermission_IsBuiltInGuests_IsServerAndWindowsGroupIsBuiltInAdministrators_True()
         {
             //------------Setup for test-------------------------
@@ -253,9 +254,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsTrue(p.IsBuiltInGuests);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WindowsGroupPermission_IsValid")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WindowsGroupPermission_IsValid")]
         public void WindowsGroupPermission_IsValid_IsServerAndWindowsGroupIsEmpty_False()
         {
             //------------Setup for test-------------------------
@@ -267,9 +268,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsFalse(p.IsValid);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WindowsGroupPermission_IsValid")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WindowsGroupPermission_IsValid")]
         public void WindowsGroupPermission_IsValid_IsServerAndWindowsGroupIsNotEmpty_True()
         {
             //------------Setup for test-------------------------
@@ -281,9 +282,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsTrue(p.IsValid);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WindowsGroupPermission_IsValid")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WindowsGroupPermission_IsValid")]
         public void WindowsGroupPermission_IsValid_IsNotServerAndWindowsGroupIsEmpty_False()
         {
             //------------Setup for test-------------------------
@@ -295,9 +296,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsFalse(p.IsValid);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WindowsGroupPermission_IsValid")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WindowsGroupPermission_IsValid")]
         public void WindowsGroupPermission_IsValid_IsNotServerAndResourceNameIsEmpty_False()
         {
             //------------Setup for test-------------------------
@@ -309,9 +310,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsFalse(p.IsValid);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WindowsGroupPermission_IsValid")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WindowsGroupPermission_IsValid")]
         public void WindowsGroupPermission_IsValid_IsNotServerAndWindowsGroupAndResourceNameAreNotEmpty_True()
         {
             //------------Setup for test-------------------------
@@ -323,9 +324,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsTrue(p.IsValid);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WindowsGroupPermission_CreateAdministrators")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WindowsGroupPermission_CreateAdministrators")]
         public void WindowsGroupPermission_CreateAdministrators_IsNotNull()
         {
             //------------Setup for test-------------------------
@@ -345,9 +346,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.AreEqual(Guid.Empty, p.ResourceID);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WindowsGroupPermission_CreateGuestGroup")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("WindowsGroupPermission_CreateGuestGroup")]
         public void WindowsGroupPermission_CreateGuestGroup_IsNotNull_NoAccess()
         {
             //------------Setup for test--------------------------
@@ -368,9 +369,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.AreEqual(Guid.Empty, guestPermissions.ResourceID);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("WindowsGroupPermission_CreateEveryone")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("WindowsGroupPermission_CreateEveryone")]
         public void WindowsGroupPermission_CreateEveryone_IsNotNull()
         {
             //------------Setup for test-------------------------
@@ -390,9 +391,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.AreEqual(Guid.Empty, p.ResourceID);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WindowsGroupPermissions_CanRemove")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("WindowsGroupPermissions_CanRemove")]
         public void WindowsGroupPermissions_CanRemove_IsPublic_False()
         {
             //------------Setup for test--------------------------
@@ -403,9 +404,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsFalse(canRemove);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WindowsGroupPermissions_CanRemove")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("WindowsGroupPermissions_CanRemove")]
         public void WindowsGroupPermissions_CanRemove_NoWindowsGroupName_False()
         {
             //------------Setup for test--------------------------
@@ -417,9 +418,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsFalse(canRemove);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WindowsGroupPermissions_CanRemove")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("WindowsGroupPermissions_CanRemove")]
         public void WindowsGroupPermissions_CanRemove_Server_True()
         {
             //------------Setup for test--------------------------
@@ -430,9 +431,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsTrue(canRemove);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WindowsGroupPermissions_CanRemove")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("WindowsGroupPermissions_CanRemove")]
         public void WindowsGroupPermissions_CanRemove_Resource_True()
         {
             //------------Setup for test--------------------------
@@ -443,9 +444,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsTrue(canRemove);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("WindowsGroup_MethodName")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("WindowsGroup_MethodName")]
         public void WindowsGroup_RemoveRow_DeleteFalse_DeleteTrueEnableCellEditingFalse()
         {
             //------------Setup for test--------------------------
@@ -457,9 +458,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.IsFalse(p.EnableCellEditing);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WindowsGroupPermissions_CanRemoveRow")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("WindowsGroupPermissions_CanRemoveRow")]
         public void WindowsGroupPermissions_CanRemoveRow_IsServerChanges_CanExecuteChangedFires()
         {
             //------------Setup for test--------------------------
@@ -475,9 +476,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.AreEqual(1,hitCount);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("WindowsGroupPermissions_CanRemoveRow")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("WindowsGroupPermissions_CanRemoveRow")]
         public void WindowsGroupPermissions_CanRemoveRow_WindowsGroupChanges_CanExecuteChangedFires()
         {
             //------------Setup for test--------------------------
@@ -493,9 +494,9 @@ namespace Dev2.Infrastructure.Tests.Services.Security
             Assert.AreEqual(1,hitCount);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("WindowsGroup_MethodName")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("WindowsGroup_MethodName")]
         public void WindowsGroup_RemoveRow_DeleteTrue_DeletefalseEnableCellEditingTrue()
         {
             //------------Setup for test--------------------------

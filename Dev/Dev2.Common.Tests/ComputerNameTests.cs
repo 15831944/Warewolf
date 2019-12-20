@@ -9,17 +9,18 @@
 */
 
 using Dev2.Common.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Common.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ComputerNameTests
     {
 
-        [TestMethod]
-        [Owner("Siphamandla Dube")]
-        [TestCategory(nameof(ComputerName))]
+        [Test]
+        [Author("Siphamandla Dube")]
+        [Category(nameof(ComputerName))]
         public void ComputerName_ToString_SetProperty_Expect_SetName()
         {
             //--------------------Arrange--------------------

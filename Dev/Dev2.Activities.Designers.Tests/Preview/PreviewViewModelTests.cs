@@ -12,50 +12,46 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using Dev2.Activities.Preview;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Activities.Designers.Tests.Preview
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class PreviewViewModelTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("PreviewViewModel_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [NUnit.Framework.Category("PreviewViewModel_Constructor")]
         public void PreviewViewModel_Constructor_Properties_Initialized()
         {
-            //------------Setup for test--------------------------
-
             //------------Execute Test---------------------------
             var previewViewModel = new PreviewViewModel();
 
             //------------Assert Results-------------------------
             Assert.IsNotNull(previewViewModel.Inputs);
-            Assert.IsInstanceOfType(previewViewModel.Inputs, typeof(ObservableCollection<ObservablePair<string, string>>));
+            Assert.IsInstanceOf(previewViewModel.Inputs.GetType(), typeof(ObservableCollection<ObservablePair<string, string>>));
             Assert.AreEqual(0, previewViewModel.Inputs.Count);
 
             Assert.IsNotNull(previewViewModel.PreviewCommand);
             Assert.AreEqual(Visibility.Visible, previewViewModel.InputsVisibility);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("PreviewViewModel_Output")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [NUnit.Framework.Category("PreviewViewModel_Output")]
         public void PreviewViewModel_Implementation_INotifyPropertyChanged()
         {
-            //------------Setup for test--------------------------
-
-
             //------------Execute Test---------------------------
             var previewViewModel = new PreviewViewModel();
 
             //------------Assert Results-------------------------
-            Assert.IsInstanceOfType(previewViewModel, typeof(INotifyPropertyChanged));
+            Assert.IsInstanceOf(previewViewModel.GetType(), typeof(INotifyPropertyChanged));
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("PreviewViewModel_Output")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [NUnit.Framework.Category("PreviewViewModel_Output")]
         public void PreviewViewModel_Output_Changed_ValueSetAndFiresNotifyPropertyChangedEvent()
         {
             //------------Setup for test--------------------------
@@ -74,9 +70,9 @@ namespace Dev2.Activities.Designers.Tests.Preview
             Assert.AreEqual(OutputValue, previewViewModel.Output);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("PreviewViewModel_Output")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [NUnit.Framework.Category("PreviewViewModel_Output")]
         public void PreviewViewModel_PreviewCommand_Executed_FiresPreviewRequestedEvent()
         {
             //------------Setup for test--------------------------
@@ -95,9 +91,9 @@ namespace Dev2.Activities.Designers.Tests.Preview
             Assert.IsTrue(previewRequested);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("PreviewViewModel_Output")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [NUnit.Framework.Category("PreviewViewModel_Output")]
         public void PreviewViewModel_PreviewCommand_CanExecute_EqualsCanPreview()
         {
             //------------Setup for test--------------------------

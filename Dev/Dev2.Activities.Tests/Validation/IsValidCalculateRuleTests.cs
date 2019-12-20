@@ -10,16 +10,17 @@
 
 using System;
 using Dev2.Validation;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Activities.Validation
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class IsValidCalculateRuleTests
     {
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("IsValidCalculateRule_Ctor")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("IsValidCalculateRule_Ctor")]
         [ExpectedException(typeof(ArgumentNullException))]
 
         public void IsValidCalculateRule_Ctor_NullGet_ExpectError()
@@ -35,9 +36,9 @@ namespace Dev2.Tests.Activities.Validation
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("IsValidCalculateRule_Check")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("IsValidCalculateRule_Check")]
         public void IsValidCalculateRule_Check()
         {
 
@@ -46,9 +47,9 @@ namespace Dev2.Tests.Activities.Validation
         }
 
         
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("IsValidCalculateRule_Check")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("IsValidCalculateRule_Check")]
         public void IsValidCalculateRule_Check_Literals()
         {
 
@@ -57,9 +58,9 @@ namespace Dev2.Tests.Activities.Validation
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("IsValidCalculateRule_Check")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("IsValidCalculateRule_Check")]
         public void IsValidCalculateRule_Check_NonCalculationString()
         {
 
@@ -67,9 +68,9 @@ namespace Dev2.Tests.Activities.Validation
             Assert.IsNull(x.Check());
         }
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("IsValidCalculateRule_Check")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("IsValidCalculateRule_Check")]
         public void IsValidCalculateRule_Check_Functions_Valid()
         {
 
@@ -79,9 +80,9 @@ namespace Dev2.Tests.Activities.Validation
 
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("IsValidCalculateRule_Check")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("IsValidCalculateRule_Check")]
         public void IsValidCalculateRule_Check_Functions_InValid()
         {
 
@@ -90,9 +91,9 @@ namespace Dev2.Tests.Activities.Validation
         }
 
 
-        [TestMethod]
-        [Owner("Leon Rajindrapersadh")]
-        [TestCategory("IsValidCalculateRule_Check")]
+        [Test]
+        [Author("Leon Rajindrapersadh")]
+        [Category("IsValidCalculateRule_Check")]
         public void IsValidCalculateRule_Check_Functions_InValidFunctionSyntax()
         {
 

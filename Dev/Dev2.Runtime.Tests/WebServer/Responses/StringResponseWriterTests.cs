@@ -15,17 +15,18 @@ using System.Net.Http.Headers;
 using System.Text;
 using Dev2.Runtime.WebServer;
 using Dev2.Runtime.WebServer.Responses;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Runtime.WebServer.Responses
 {
-    [TestClass]
-    [TestCategory("Runtime WebServer")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime WebServer")]
     public class StringResponseWriterTests
     {
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("StringResponseWriter_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("StringResponseWriter_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void StringResponseWriter_Constructor_TextIsNull_ThrowsArgumentNullException()
         {
@@ -37,9 +38,9 @@ namespace Dev2.Tests.Runtime.WebServer.Responses
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("StringResponseWriter_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("StringResponseWriter_Constructor")]
         [ExpectedException(typeof(ArgumentNullException))]
         public void StringResponseWriter_Constructor_ContentTypeIsNullMediaTypeHeaderValue_ThrowsArgumentNullException()
         {
@@ -51,9 +52,9 @@ namespace Dev2.Tests.Runtime.WebServer.Responses
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("StringResponseWriter_Constructor")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("StringResponseWriter_Constructor")]
         [ExpectedException(typeof(FormatException))]
         public void StringResponseWriter_Constructor_ContentTypeIsNullString_ThrowsFormatException()
         {
@@ -65,9 +66,9 @@ namespace Dev2.Tests.Runtime.WebServer.Responses
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("StringResponseWriter_Write")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("StringResponseWriter_Write")]
         public void StringResponseWriter_Write_WebServerContext_WritesContent()
         {
             var request = WebServerRequestTests.CreateHttpRequest(out string content, out NameValueCollection boundVars, out NameValueCollection queryStr, out NameValueCollection headers);
@@ -83,16 +84,16 @@ namespace Dev2.Tests.Runtime.WebServer.Responses
 
             //------------Assert Results-------------------------
             Assert.AreEqual(ContentTypes.Plain, context.ResponseMessage.Content.Headers.ContentType);
-            Assert.IsInstanceOfType(context.ResponseMessage.Content, typeof(StringContent));
+            Assert.IsInstanceOf(context.ResponseMessage.Content.GetType(), typeof(StringContent));
             var task = context.ResponseMessage.Content.ReadAsStringAsync();
             task.Wait();
 
             Assert.AreEqual(NewContent, task.Result);
         }
 
-        [TestMethod]
-        [Owner("Trevor Williams-Ros")]
-        [TestCategory("StringResponseWriter_Write")]
+        [Test]
+        [Author("Trevor Williams-Ros")]
+        [Category("StringResponseWriter_Write")]
         public void StringResponseWriter_Write_LargeContentWebServerContext_WritesContentAndUpdateContentDisposition()
         {
             var request = WebServerRequestTests.CreateHttpRequest(out string content, out NameValueCollection boundVars, out NameValueCollection queryStr, out NameValueCollection headers);
@@ -112,7 +113,7 @@ namespace Dev2.Tests.Runtime.WebServer.Responses
             Assert.AreEqual("attachment", context.ResponseMessage.Content.Headers.ContentDisposition.DispositionType);
             Assert.AreEqual("attachment; filename=Output.xml", context.ResponseMessage.Content.Headers.ContentDisposition.ToString());
 
-            Assert.IsInstanceOfType(context.ResponseMessage.Content, typeof(StringContent));
+            Assert.IsInstanceOf(context.ResponseMessage.Content.GetType(), typeof(StringContent));
             var task = context.ResponseMessage.Content.ReadAsStringAsync();
             task.Wait();
 

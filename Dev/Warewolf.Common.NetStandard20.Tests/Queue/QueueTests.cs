@@ -9,7 +9,7 @@
 */
 
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using System.Text;
 using Warewolf.Triggers;
@@ -19,12 +19,13 @@ using Warewolf.Streams;
 
 namespace Warewolf.Trigger.Queue.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class QueueTests
     {
-        [TestMethod]
-        [Owner("Sphamandla Dube")]
-        [TestCategory(nameof(IQueueConnectionFactory))]
+        [Test]
+        [Author("Sphamandla Dube")]
+        [Category(nameof(IQueueConnectionFactory))]
         public void IQueue_StartConsuming_GivenNoEvents_Success()
         {
             //----------------------Arrange----------------------
@@ -48,9 +49,9 @@ namespace Warewolf.Trigger.Queue.Tests
             Assert.IsFalse(testConsumer.IsDataReceived);
         }
 
-        [TestMethod]
-        [Owner("Sphamandla Dube")]
-        [TestCategory(nameof(IQueueConnectionFactory))]
+        [Test]
+        [Author("Sphamandla Dube")]
+        [Category(nameof(IQueueConnectionFactory))]
         public void IQueue_Publish_Success()
         {
             //----------------------Arrange----------------------

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.Threading;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Dev2.Common.Interfaces.Core;
 using Dev2.Common.SaveDialog;
@@ -13,7 +13,8 @@ using System.Xml.Linq;
 
 namespace Warewolf.Studio.ViewModels.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class ManageWcfSourceViewModelTests
     {
         public const string Category = "Exchange Email";
@@ -52,9 +53,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             return new ManageWcfSourceViewModel(new ManageWcfSourceModel(new Mock<IStudioUpdateManager>().Object, new Mock<IQueryManager>().Object),task, new Microsoft.Practices.Prism.PubSubEvents.EventAggregator(), new Mock<IAsyncWorker>().Object, new Mock<IServer>().Object);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Bernardt Joubert")]
-        [TestCategory(Category)]
+        [Test]
+        [Timeout(60000)]
+        [Author("Bernardt Joubert")]
+        [Category(Category)]
         public void WcfSource_InstantiateNewModel_Returns_Success()
         {
             var model = GetModel();
@@ -62,18 +64,20 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsNotNull(model);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Bernardt Joubert")]
-        [TestCategory(Category)]
+        [Test]
+        [Timeout(60000)]
+        [Author("Bernardt Joubert")]
+        [Category(Category)]
         public void WcfSource_InstantiateNewTestModel_Returns_Success()
         {
             var model = TestModel();
             Assert.IsNotNull(model);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Bernardt Joubert")]
-        [TestCategory(Category)]
+        [Test]
+        [Timeout(60000)]
+        [Author("Bernardt Joubert")]
+        [Category(Category)]
         public void WcfSource_InitialIzeProperties_Returns_Success()
         {
             var model = GetModel();
@@ -97,9 +101,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsNotNull(model.HeaderText);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Bernardt Joubert")]
-        [TestCategory(Category)]
+        [Test]
+        [Timeout(60000)]
+        [Author("Bernardt Joubert")]
+        [Category(Category)]
         public void WcfSource_InitialIzeTestProperties_Returns_Success()
         {
             var model = GetModel();
@@ -113,9 +118,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsTrue(model.Testing);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Bernardt Joubert")]
-        [TestCategory(Category)]
+        [Test]
+        [Timeout(60000)]
+        [Author("Bernardt Joubert")]
+        [Category(Category)]
         public void WcfSource_InitialIzeTestNullEndpointUrl_Returns_Success()
         {
             var model = GetModel();
@@ -131,9 +137,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(model.TestFailed);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Bernardt Joubert")]
-        [TestCategory(Category)]
+        [Test]
+        [Timeout(60000)]
+        [Author("Bernardt Joubert")]
+        [Category(Category)]
         public void WcfSource_InitialIzeTestCanTestTrue_Returns_Success()
         {
             var model = GetModel();
@@ -148,9 +155,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(model.TestFailed);
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Bernardt Joubert")]
-        [TestCategory(Category)]
+        [Test]
+        [Timeout(60000)]
+        [Author("Bernardt Joubert")]
+        [Category(Category)]
         public void WcfSource_CancelTest_Returns_Success()
         {
             var model = GetModel();
@@ -160,9 +168,10 @@ namespace Warewolf.Studio.ViewModels.Tests
         }
        
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Bernardt Joubert")]
-        [TestCategory(Category)]
+        [Test]
+        [Timeout(60000)]
+        [Author("Bernardt Joubert")]
+        [Category(Category)]
         public void WcfSource_CancelTestCommand_Returns_Success()
         {
             var model = GetModel();
@@ -170,9 +179,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(model.CanCancelTest());
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Bernardt Joubert")]
-        [TestCategory(Category)]
+        [Test]
+        [Timeout(60000)]
+        [Author("Bernardt Joubert")]
+        [Category(Category)]
         public void WcfSource_ToNewSource_Returns_Success()
         {
             var model = GetModel();
@@ -180,9 +190,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(model.CanCancelTest());
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Bernardt Joubert")]
-        [TestCategory(Category)]
+        [Test]
+        [Timeout(60000)]
+        [Author("Bernardt Joubert")]
+        [Category(Category)]
         public void WcfSource_ToModel_Returns_Success()
         {
             var model = GetModel();
@@ -190,9 +201,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(model.CanCancelTest());
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Bernardt Joubert")]
-        [TestCategory(Category)]
+        [Test]
+        [Timeout(60000)]
+        [Author("Bernardt Joubert")]
+        [Category(Category)]
         public void WcfSource_ToModelItemNotNull_Returns_Success()
         {
             var model = GetModel();
@@ -201,9 +213,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(model.CanCancelTest());
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Bernardt Joubert")]
-        [TestCategory(Category)]
+        [Test]
+        [Timeout(60000)]
+        [Author("Bernardt Joubert")]
+        [Category(Category)]
         public void WcfSource_SaveConnection_Returns_Success()
         {
             var model = TestModel();
@@ -217,9 +230,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             Assert.IsFalse(model.CanCancelTest());
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Bernardt Joubert")]
-        [TestCategory(Category)]
+        [Test]
+        [Timeout(60000)]
+        [Author("Bernardt Joubert")]
+        [Category(Category)]
         public void WcfSource_ToSourceNullResource_Returns_Success()
         {
             var model = TestModel();
@@ -231,9 +245,10 @@ namespace Warewolf.Studio.ViewModels.Tests
           
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Bernardt Joubert")]
-        [TestCategory(Category)]
+        [Test]
+        [Timeout(60000)]
+        [Author("Bernardt Joubert")]
+        [Category(Category)]
         [ExpectedException(typeof(NullReferenceException))]
         public void WcfSource_RequestServiceModelThrows_Returns_Exeption()
         {
@@ -243,9 +258,10 @@ namespace Warewolf.Studio.ViewModels.Tests
             var requestModel = model.GetRequestServiceNameViewModel();
         }
 
-        [TestMethod,Timeout(60000)]
-        [Owner("Ashley Lewis")]
-        [TestCategory(Category)]
+        [Test]
+        [Timeout(60000)]
+        [Author("Ashley Lewis")]
+        [Category(Category)]
         public void WcfSource_FetchSource_Returns_IWcfServerSource()
         {
             //setup

@@ -11,18 +11,19 @@
 using System;
 using Dev2.Runtime.ServiceModel;
 using Dev2.Runtime.ServiceModel.Data;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Tests.Runtime.ServiceModel
 {
     // PBI 953 - 2013.05.16 - TWR - Created
-    [TestClass]
-    [TestCategory("Runtime Hosting")]
+    [TestFixture]
+    [SetUpFixture]
+    [Category("Runtime Hosting")]
     public class EmailSourcesTests
     {
         #region CTOR
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void EmailSourcesConstructorWithNullResourceCatalogExpectedThrowsArgumentNullException()
         {
@@ -34,7 +35,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
 
         #region Test
 
-        [TestMethod]
+        [Test]
         public void EmailSourcesTestWithInValidArgsExpectedInvalidValidationResult()
         {
             var handler = new EmailSources();
@@ -42,7 +43,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.IsFalse(result.IsValid);
         }
 
-        [TestMethod]
+        [Test]
         public void EmailSourcesTestWithInvalidHostExpectedInvalidValidationResult()
         {
             var source = new EmailSource { Host = "smtp.foobar.com", Port = 25 }.ToString();
@@ -56,7 +57,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
 
         #region Get
 
-        [TestMethod]
+        [Test]
         public void EmailSourcesGetWithNullArgsExpectedReturnsNewSource()
         {
             var handler = new EmailSources();
@@ -66,7 +67,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             Assert.AreEqual(Guid.Empty, result.ResourceID);
         }
 
-        [TestMethod]
+        [Test]
         public void EmailSourcesGetWithInvalidArgsExpectedReturnsNewSource()
         {
             var handler = new EmailSources();

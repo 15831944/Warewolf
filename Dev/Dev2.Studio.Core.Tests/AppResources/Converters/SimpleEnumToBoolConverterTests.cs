@@ -2,17 +2,18 @@
 using System.Windows.Data;
 using Dev2.AppResources.Converters;
 using Dev2.Settings.Logging;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests.AppResources.Converters
 {
-    [TestClass]
-	[TestCategory("Studio Resources Core")]
+    [TestFixture]
+    [SetUpFixture]
+	[Category("Studio Resources Core")]
     public class SimpleEnumToBoolConverterTests
     {
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SimpleEnumToBoolConverter_Convert")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SimpleEnumToBoolConverter_Convert")]
         public void SimpleEnumToBoolConverter_Convert_GivenMatchingEnumValue_True()
         {
             //------------Setup for test--------------------------
@@ -24,9 +25,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.IsTrue(convert);
         } 
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SimpleEnumToBoolConverter_Convert")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SimpleEnumToBoolConverter_Convert")]
         public void SimpleEnumToBoolConverter_Convert_GivenNotMatchingEnumValue_False()
         {
             //------------Setup for test--------------------------
@@ -38,9 +39,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.IsFalse(convert);
         }        
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SimpleEnumToBoolConverter_Convert")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SimpleEnumToBoolConverter_Convert")]
         public void SimpleEnumToBoolConverter_ConvertBack_GivenMatchingEnumValue_ReturnEnum()
         {
             //------------Setup for test--------------------------
@@ -52,9 +53,9 @@ namespace Dev2.Core.Tests.AppResources.Converters
             Assert.AreEqual(LogLevel.DEBUG,convert);
         }
         
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("SimpleEnumToBoolConverter_Convert")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("SimpleEnumToBoolConverter_Convert")]
         public void SimpleEnumToBoolConverter_ConvertBack_GivenNotMatchingEnumValue_ReturnBindingNothing()
         {
             //------------Setup for test--------------------------

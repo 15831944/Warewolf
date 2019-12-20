@@ -17,19 +17,20 @@ using Dev2.Core.Tests.Environments;
 using Dev2.Studio.Controller;
 using Dev2.Studio.Core.Messages;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Moq.Protected;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Core.Tests
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class FlowControllerTests
     {
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("FlowController_ConfigureSwitch")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("FlowController_ConfigureSwitch")]
         public void FlowController_ConfigureSwitch_Handle_Switch()
         {
             //------------Setup for test--------------------------
@@ -94,9 +95,9 @@ namespace Dev2.Core.Tests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("FlowController_ConfigureSwitch")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("FlowController_ConfigureSwitch")]
         public void FlowController_ConfigureSwitch_Handle_SwitchCase()
         {
             //------------Setup for test--------------------------
@@ -160,9 +161,9 @@ namespace Dev2.Core.Tests
             //------------Assert Results-------------------------
         }
 
-        [TestMethod]
-        [Owner("Pieter Terblanche")]
-        [TestCategory("FlowController_ConfigureSwitch")]
+        [Test]
+        [Author("Pieter Terblanche")]
+        [Category("FlowController_ConfigureSwitch")]
         public void FlowController_ConfigureSwitch_Handle_EditSwitchCase()
         {
             //------------Setup for test--------------------------

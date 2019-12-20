@@ -18,18 +18,19 @@ using Dev2.Communication;
 using Dev2.Infrastructure.Tests;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Runtime.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json.Serialization;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     public class TestRedisSourceTests
     {
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(TestRedisSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(TestRedisSource))]
         public void TestRedisSource_GetResourceID_ShouldReturnEmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -40,9 +41,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(Guid.Empty, resId);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(TestRedisSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(TestRedisSource))]
         public void TestRedisSource_GetAuthorizationContextForService_ShouldReturnContext()
         {
             //------------Setup for test--------------------------
@@ -53,9 +54,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual(AuthorizationContext.Contribute, resId);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(TestRedisSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(TestRedisSource))]
         public void TestRedisSource_HandlesType_ExpectName()
         {
             //------------Setup for test--------------------------
@@ -65,9 +66,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.AreEqual("TestRedisSource", testRedisSource.HandlesType());
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(TestRedisSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(TestRedisSource))]
         public void TestRedisSource_CreateServiceEntry_ExpectActions()
         {
             //------------Setup for test--------------------------
@@ -78,9 +79,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsNotNull(dynamicService);
             Assert.IsNotNull(dynamicService.Actions);
         }
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(TestRedisSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(TestRedisSource))]
         public void TestRedisSource_Execute_NullValues_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -93,9 +94,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(result.HasError);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(TestRedisSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(TestRedisSource))]
         public void TestRedisSource_Execute_ResourceIDNotPresent_ErrorResult()
         {
             //------------Setup for test--------------------------
@@ -109,9 +110,9 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsTrue(result.HasError);
         }
 
-        [TestMethod]
-        [Owner("Candice Daniel")]
-        [TestCategory(nameof(TestRedisSource))]
+        [Test]
+        [Author("Candice Daniel")]
+        [Category(nameof(TestRedisSource))]
         [Depends(Depends.ContainerType.AnonymousRedis)]
         public void TestRedisSource_Execute_GivenResourceDefinition_ShouldTestNewSourceReturnResourceDefinitionMsg()
         {

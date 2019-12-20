@@ -8,26 +8,27 @@
 *  @license GNU Affero General Public License <http://www.gnu.org/licenses/agpl-3.0.html>
 */
 
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Dev2.Core.Tests
 {
     /// <summary>
     /// Summary description for CustomContainerTests
     /// </summary>
-    [TestClass]
+    [TestFixture]
+    [SetUpFixture]
     
     public class CustomContainerTests
     {
-        [TestInitialize]
+        [SetUp]
         public void InitializeContainer()
         {
             CustomContainer.Clear();
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CustomContainer_Register")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CustomContainer_Register")]
         public void CustomContainer_Register_TypeOnce_OneEntryIsRegistered()
         {
             //------------Setup for test--------------------------
@@ -38,9 +39,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(1, CustomContainer.EntiresCount);
         }
 
-        [TestMethod]
-        [Owner("Hagashen Naidu")]
-        [TestCategory("CustomContainer_Deregister")]
+        [Test]
+        [Author("Hagashen Naidu")]
+        [Category("CustomContainer_Deregister")]
         public void CustomContainer_Deregister_TypeExists_TypeRemoved()
         {
             //------------Setup for test--------------------------
@@ -56,9 +57,9 @@ namespace Dev2.Core.Tests
             Assert.IsNull(objectAfterDeregister);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CustomContainer_Register")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CustomContainer_Register")]
         public void CustomContainer_Register_TypeTwice_OneEntryIsRegistered()
         {
             //------------Setup for test--------------------------
@@ -70,9 +71,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(1, CustomContainer.EntiresCount);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CustomContainer_Get")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CustomContainer_Get")]
         public void CustomContainer_Get_NoTypeIsRegisted_Null()
         {
             //------------Execute Test---------------------------
@@ -82,9 +83,9 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(null, o);
         }
 
-        [TestMethod]
-        [Owner("Tshepo Ntlhokoa")]
-        [TestCategory("CustomContainer_Get")]
+        [Test]
+        [Author("Tshepo Ntlhokoa")]
+        [Category("CustomContainer_Get")]
         public void CustomContainer_Get_ThereIsATypeRegisted_Type()
         {
             var simpleObject = new SimpleObject();

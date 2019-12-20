@@ -8,7 +8,7 @@ using Dev2.Common.Interfaces.RabbitMQ;
 using Dev2.Common.SaveDialog;
 using Dev2.Studio.Core;
 using Dev2.Studio.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 using Moq;
 using TechTalk.SpecFlow;
 using Warewolf.Test.Agent;
