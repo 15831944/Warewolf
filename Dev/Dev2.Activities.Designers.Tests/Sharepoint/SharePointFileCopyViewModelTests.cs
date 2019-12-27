@@ -79,16 +79,14 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
         public void SharePointCopyFileDesignerViewModel_InitilizeProperties_ReturnsSuccess()
         {
             //------------Setup for test--------------------------
-
-
-            //------------Execute Test---------------------------
             var sharepointFileCopyDesignerViewModel = new SharePointCopyFileDesignerViewModel(CreateModelItem(), new SynchronousAsyncWorker(), new Mock<IServer>().Object);
 
+            //------------Execute Test---------------------------
             sharepointFileCopyDesignerViewModel.UpdateHelpDescriptor("Test");
 
+            //------------Assert Results-------------------------
             Assert.IsNotNull(sharepointFileCopyDesignerViewModel);
             Assert.IsNotNull(sharepointFileCopyDesignerViewModel.CollectionName);
-            //------------Assert Results-------------------------
         }
 
         [Test]

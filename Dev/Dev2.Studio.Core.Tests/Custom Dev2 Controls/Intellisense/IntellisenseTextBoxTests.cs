@@ -31,7 +31,6 @@ namespace Dev2.Core.Tests.Custom_Dev2_Controls.Intellisense
 
 {
     [TestFixture]
-    [SetUpFixture]
     public class IntellisenseTextBoxTests
     {
 

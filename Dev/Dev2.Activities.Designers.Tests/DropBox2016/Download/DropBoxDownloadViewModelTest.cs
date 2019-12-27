@@ -19,7 +19,6 @@ using Moq;
 namespace Dev2.Activities.Designers.Tests.DropBox2016.Download
 {
     [TestFixture]
-
     public class DropBoxDownloadViewModelTest
     {
         DropBoxDownloadViewModel CreateMockViewModel()
@@ -49,7 +48,7 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Download
             Assert.IsFalse(dropBoxDownloadViewModel.ShowLarge);
             Assert.AreEqual(dropBoxDownloadViewModel.ThumbVisibility, Visibility.Collapsed);
             //------------Assert Results-------------------------
-            Assert.IsInstanceOf(dropBoxDownloadViewModel.GetType(), typeof(ActivityDesignerViewModel));
+            Assert.IsInstanceOf(typeof(ActivityDesignerViewModel), dropBoxDownloadViewModel);
         }
 
         [Test]
@@ -70,7 +69,6 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Download
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-
         [Test]
         [Author("Nkosinathi Sangweni")]
         public void DropboxDownload_Sources_GivenANewDropBoxViewModel_ShouldHaveNotBeNull()
@@ -78,13 +76,11 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Download
             //---------------Set up test pack-------------------
             var downloadViewModel = CreateMockViewModel();
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOf(downloadViewModel.GetType(), typeof(ActivityDesignerViewModel));
+            Assert.IsInstanceOf(typeof(ActivityDesignerViewModel), downloadViewModel);
             //---------------Execute Test ----------------------
             Assert.IsNotNull(downloadViewModel.Sources);
             //---------------Test Result -----------------------
         }
-
-
 
         [Test]
         [Author("Nkosinathi Sangweni")]

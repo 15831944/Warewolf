@@ -23,7 +23,6 @@ namespace Dev2.Integration.Tests.Dev2.Application.Server.Tests.InternalServices
     /// Summary description for FindResourceServiceTest
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class FindResourceServiceTest
     {
         #region Additional test attributes
@@ -57,7 +56,7 @@ namespace Dev2.Integration.Tests.Dev2.Application.Server.Tests.InternalServices
             var result = TestHelper.PostDataToWebserver(path);
 
             var json = Newtonsoft.Json.JsonConvert.DeserializeObject<JArray>(result);
-            NUnit.Framework.Assert.IsNotNull(json);
+            Assert.IsNotNull(json);
         }
 
         [Test]
@@ -76,8 +75,8 @@ namespace Dev2.Integration.Tests.Dev2.Application.Server.Tests.InternalServices
                 result = errorContent.ReadToEnd();
             }
 
-            NUnit.Framework.Assert.IsTrue(result.Contains("The workflow must have at least one service or activity connected to the Start Node."));
-            NUnit.Framework.Assert.IsTrue(result.Contains(GlobalConstants.NoStartNodeError));
+            Assert.IsTrue(result.Contains("The workflow must have at least one service or activity connected to the Start Node."));
+            Assert.IsTrue(result.Contains(GlobalConstants.NoStartNodeError));
         }
 
         [Test]
@@ -89,7 +88,7 @@ namespace Dev2.Integration.Tests.Dev2.Application.Server.Tests.InternalServices
             var result = TestHelper.PostDataToWebserver(path);
 
             var json = Newtonsoft.Json.JsonConvert.DeserializeObject<JArray>(result);
-            NUnit.Framework.Assert.IsNotNull(json);
+            Assert.IsNotNull(json);
         }
 
         [Test]
@@ -101,7 +100,7 @@ namespace Dev2.Integration.Tests.Dev2.Application.Server.Tests.InternalServices
             var result = TestHelper.PostDataToWebserver(path);
 
             var json = Newtonsoft.Json.JsonConvert.DeserializeObject<JArray>(result);
-            NUnit.Framework.Assert.IsNotNull(json);
+            Assert.IsNotNull(json);
         }
 
         [Test]
@@ -113,7 +112,7 @@ namespace Dev2.Integration.Tests.Dev2.Application.Server.Tests.InternalServices
             var result = TestHelper.PostDataToWebserver(path);
 
             var json = Newtonsoft.Json.JsonConvert.DeserializeObject<JArray>(result);
-            NUnit.Framework.Assert.IsNotNull(json);
+            Assert.IsNotNull(json);
         }
     }
 }

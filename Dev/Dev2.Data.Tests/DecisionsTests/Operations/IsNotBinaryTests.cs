@@ -17,7 +17,6 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
     /// Is Not Binary Decision
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class IsNotBinaryTests
     {
         [Test]

@@ -7,7 +7,6 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.Assigns
 
 {
     [TestFixture]
-    [SetUpFixture]
     public class MultiAssignComparerTests
     {
         [Test]

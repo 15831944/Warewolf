@@ -6,7 +6,6 @@ using NUnit.Framework;
 namespace Dev2.Data.Tests.Operations
 {
     [TestFixture]
-    [SetUpFixture]
     public class Dev2ReplaceOperationTests
     {
         IDev2ReplaceOperation _dev2ReplaceOperation;

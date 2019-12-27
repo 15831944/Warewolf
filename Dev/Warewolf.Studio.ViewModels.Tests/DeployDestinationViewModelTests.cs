@@ -12,7 +12,6 @@ using Dev2.ConnectionHelpers;
 namespace Warewolf.Studio.ViewModels.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class DeployDestinationViewModelTests
     {
         #region Fields

@@ -19,7 +19,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace ActivityUnitTests.ActivityTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class DateTimeDifferenceTests : BaseActivityUnitTest
     {
         [SetUp]

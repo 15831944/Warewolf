@@ -26,7 +26,6 @@ namespace Dev2.Tests.Runtime.WebServer
     /// Summary description for WebPostRequestHandlerTest
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime WebServer")]
     public class WebPostRequestHandlerTest
     {

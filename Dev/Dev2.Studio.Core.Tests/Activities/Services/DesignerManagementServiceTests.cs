@@ -19,7 +19,6 @@ using Moq;
 namespace Dev2.Core.Tests.Activities.Services
 {
     [TestFixture]
-    [SetUpFixture]
     public class DesignerManagementServiceTests
     {
 

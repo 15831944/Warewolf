@@ -19,7 +19,6 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
     /// Summary description for DateTimeComparerTests
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class DateTimeComparerTests
     {
         [SetUp]

@@ -30,7 +30,6 @@ using System.Net.Http;
 namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.DropboxFiles
 {
     [TestFixture]
-    [SetUpFixture]
 
     public class DropboxFileListActivityShould
     {

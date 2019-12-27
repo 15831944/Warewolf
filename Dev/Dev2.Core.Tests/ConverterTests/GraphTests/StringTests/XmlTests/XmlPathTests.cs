@@ -18,7 +18,6 @@ using Unlimited.Framework.Converters.Graph.String.Xml;
 namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.XmlTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class XmlPathTests {
 
         #region GetSegments Tests

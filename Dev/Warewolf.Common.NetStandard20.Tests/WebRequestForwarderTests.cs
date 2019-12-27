@@ -22,7 +22,6 @@ using Warewolf.Web;
 namespace Warewolf.Web.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class WebRequestForwarderTests
     {
         [Test]

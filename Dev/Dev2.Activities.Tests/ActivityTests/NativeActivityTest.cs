@@ -40,38 +40,27 @@ using Warewolf.Storage;
 namespace Dev2.Tests.Activities.ActivityTests
 {
     [TestFixture]
-    [SetUpFixture]
 
     public class NativeActivityTest : BaseActivityUnitTest
     {
 
         [OneTimeSetUp]
-        public static void MyClassInitialize(TestContext testContext)
+        public static void MyClassInitialize()
         {
-            Directory.SetCurrentDirectory(testContext.TestDirectory);
-        }
-
-        [OneTimeTearDown]
-        public static void MyClassCleanup()
-        {
-
+            Directory.SetCurrentDirectory(TestContext.CurrentContext.TestDirectory);
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ConstructorWithNullDebugDispatcher_Expected_ArgumentNullException()
         {
-
             new TestActivity(null);
-
         }
 
         [Test]
         public void ConstructorWithDebugDispatcher_Expected_NoArgumentNullException()
         {
-
             new TestActivity(DebugDispatcher.Instance);
-
         }
 
         [Test]

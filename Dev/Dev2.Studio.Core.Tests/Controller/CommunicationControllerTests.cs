@@ -17,7 +17,6 @@ using Warewolf.Resource.Errors;
 namespace Dev2.Core.Tests.Controller
 {
     [TestFixture]
-    [SetUpFixture]
     public class CommunicationControllerTests
     {
 

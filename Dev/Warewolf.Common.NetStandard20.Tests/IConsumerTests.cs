@@ -15,7 +15,6 @@ using Moq;
 namespace Warewolf.Streams
 {
     [TestFixture]
-    [SetUpFixture]
     public class ConsumerTests
     {
         [Test]

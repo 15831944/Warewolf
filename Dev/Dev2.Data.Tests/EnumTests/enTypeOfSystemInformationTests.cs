@@ -18,7 +18,6 @@ namespace Dev2.Data.Tests.EnumTests
     /// Summary description for enTypeOfSystemInformationTests
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class enTypeOfSystemInformationTests
     {
         TestContext testContextInstance;

@@ -20,7 +20,6 @@ using Unlimited.Framework.Converters.Graph.String.Xml;
 
 namespace Unlimited.UnitTest.Framework.ConverterTests.GraphTests.StringTests {
     [TestFixture]
-    [SetUpFixture]
     public class StringInterrogatorTests {
 
         internal string XmlGiven() {

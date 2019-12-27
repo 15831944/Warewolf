@@ -26,7 +26,6 @@ namespace Dev2.Tests.Activities.ActivityTests
     /// Summary description for DateTimeDifferenceTests
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     
     public class PathCopyTests : BaseActivityUnitTest
     {
@@ -40,7 +39,6 @@ namespace Dev2.Tests.Activities.ActivityTests
         [Test]
         [Author("Hagashen Naidu")]
         [Category("DsfPathCopy_UpdateForEachInputs")]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void DsfPathCopy_UpdateForEachInputs_NullUpdates_DoesNothing()
         {
             //------------Setup for test--------------------------

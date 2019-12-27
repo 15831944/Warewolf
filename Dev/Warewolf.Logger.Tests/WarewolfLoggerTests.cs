@@ -13,7 +13,6 @@ using System.Linq;
 namespace Warewolf.Logger.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class WarewolfLoggerTests
     {
         [Test]

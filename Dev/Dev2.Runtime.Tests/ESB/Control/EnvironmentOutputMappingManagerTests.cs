@@ -21,7 +21,6 @@ using WarewolfParserInterop;
 namespace Dev2.Tests.Runtime.ESB.Control
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime ESB")]
     public class EnvironmentOutputMappingManagerTests
     {
@@ -42,7 +41,7 @@ namespace Dev2.Tests.Runtime.ESB.Control
             var executionEnvironment = manager.UpdatePreviousEnvironmentWithSubExecutionResultUsingOutputMappings(dsfObject.Object, "", 0, true, errors);
             //---------------Test Result -----------------------
             dsfObject.Verify(o => o.PopEnvironment(), Times.Once);
-            NUnit.Framework.Assert.IsNotNull(executionEnvironment);
+            Assert.IsNotNull(executionEnvironment);
         }
 
         [Test]
@@ -67,7 +66,7 @@ namespace Dev2.Tests.Runtime.ESB.Control
             dsfObject.Verify(o => o.PopEnvironment(), Times.Once);
             env.VerifyGet(o => o.AllErrors);
             env.VerifyGet(o => o.Errors);
-            NUnit.Framework.Assert.IsNotNull(executionEnvironment);
+            Assert.IsNotNull(executionEnvironment);
         }
 
         [Test]

@@ -11,7 +11,6 @@ using Dev2.Common.Interfaces.ServerProxyLayer;
 namespace Warewolf.Studio.ViewModels.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class DatabaseSourceViewModelBaseTests
     {
         #region Fields

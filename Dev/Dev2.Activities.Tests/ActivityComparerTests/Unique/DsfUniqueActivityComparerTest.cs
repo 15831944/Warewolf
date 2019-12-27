@@ -5,7 +5,6 @@ using System;
 namespace Dev2.Tests.Activities.ActivityComparerTests.Unique
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfUniqueActivityComparerTest
     {
         [Test]

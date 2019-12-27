@@ -16,7 +16,6 @@ using NUnit.Framework;
 namespace Dev2.Tests.Runtime.Hosting
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime Hosting")]
     public class ResourceUpgradeTest
     {
@@ -46,7 +45,7 @@ namespace Dev2.Tests.Runtime.Hosting
             
             var x = new Func<XElement,XElement>( async=>async);
             var a = new ResourceUpgrade(x);
-            NUnit.Framework.Assert.AreEqual(x,a.UpgradeFunc);
+            Assert.AreEqual(x,a.UpgradeFunc);
             
 
             //------------Execute Test---------------------------

@@ -14,7 +14,6 @@ using NUnit.Framework;
 namespace Dev2.Tests.Runtime.ServiceModel.Data
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime Hosting")]
     public class ScalarTests
     {
@@ -61,7 +60,6 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.IsFalse(equals);
         }
         [Test]
-        [DeploymentItem("EnableDocker.txt")]
         [Author("Candice Daniel")]
         [Category("Scalar")]
         public void Scalar_ComparerEqualityComparer_SameObject_ShouldReturnTrue()
@@ -71,7 +69,6 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.IsTrue(equals);
         }
         [Test]
-        [DeploymentItem("EnableDocker.txt")]
         [Author("Candice Daniel")]
         [Category("Scalar")]
         public void Scalar_ComparerEqualityComparer_XisNull_ShouldReturnFalse()
@@ -81,7 +78,6 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.IsFalse(equals);
         }
         [Test]
-        [DeploymentItem("EnableDocker.txt")]
         [Author("Candice Daniel")]
         [Category("Scalar")]
         public void Scalar_ComparerEqualityComparer_YisNull_ShouldReturnFalse()
@@ -91,7 +87,6 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.IsFalse(equals);
         }
         [Test]
-        [DeploymentItem("EnableDocker.txt")]
         [Author("Candice Daniel")]
         [Category("Scalar")]
         public void Scalar_ComparerEqualityComparer_GetHashCode_ShouldReturnHashCode()
@@ -102,7 +97,6 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual(expected, actual);
         }
         [Test]
-        [DeploymentItem("EnableDocker.txt")]
         [Author("Candice Daniel")]
         [Category("Scalar")]
         public void Scalar_ComparerEqualityComparer_GetHashCode_ShouldReturn0()
@@ -115,7 +109,6 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual(expected, actual);
         }
         [Test]
-        [DeploymentItem("EnableDocker.txt")]
         [Author("Candice Daniel")]
         [Category("Scalar")]
         public void Scalar_ComparerEqualityComparer_SetIODirection()
@@ -131,7 +124,6 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.AreEqual("Value", scalar.Value);
         }
         [Test]
-        [DeploymentItem("EnableDocker.txt")]
         [Author("Candice Daniel")]
         [Category("Scalar")]
         public void Scalar_GivenDifferentObjectType_Equals_ShouldReturnFalse()
@@ -142,7 +134,6 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.IsFalse(scalarEqual);
         }
         [Test]
-        [DeploymentItem("EnableDocker.txt")]
         [Author("Candice Daniel")]
         [Category("Scalar")]
         public void Scalar_GivenNullObject_Equals_ShouldReturnFalse()
@@ -153,7 +144,6 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.IsFalse(scalarEqual);
         }
         [Test]
-        [DeploymentItem("EnableDocker.txt")]
         [Author("Candice Daniel")]
         [Category("Scalar")]
         public void Scalar_GivenObject_Equals_ShouldReturnTrue()
@@ -164,7 +154,6 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             Assert.IsTrue(scalarEqual);
         }
         [Test]
-        [DeploymentItem("EnableDocker.txt")]
         [Author("Candice Daniel")]
         [Category("Scalar")]
         public void Scalar_GivenObjectScalar_Equals_ShouldReturnTrue()

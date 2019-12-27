@@ -3,7 +3,6 @@
 namespace Dev2.Tests.Activities.ActivityComparerTests.BaseConvert
 {
     [TestFixture]
-    [SetUpFixture]
     public class BaseConvertToEqualityTests
     {
         [Test]

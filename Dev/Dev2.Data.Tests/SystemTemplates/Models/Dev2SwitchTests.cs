@@ -14,7 +14,6 @@ using NUnit.Framework;
 namespace Dev2.Data.Tests.SystemTemplates.Models
 {
     [TestFixture]
-    [SetUpFixture]
     public class Dev2SwitchTests
     {
         [Test]

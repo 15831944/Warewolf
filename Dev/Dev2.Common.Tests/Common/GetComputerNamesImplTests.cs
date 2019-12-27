@@ -18,7 +18,6 @@ using System.Security.Principal;
 namespace Dev2.Common.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class GetComputerNamesImplTests
     {
         [OneTimeSetUp]

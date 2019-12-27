@@ -30,11 +30,7 @@ using Moq;
 
 namespace Dev2.DynamicServices.Test
 {
-    /// <summary>
-    /// Summary description for WorkspaceTest
-    /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class WorkspaceTest
     {
         const string ServiceName = "Calculate_RecordSet_Subtract";

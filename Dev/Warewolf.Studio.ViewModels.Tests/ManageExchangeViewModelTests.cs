@@ -13,7 +13,6 @@ using Moq;
 namespace Warewolf.Studio.ViewModels.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ManageExchangeViewModelTests
     {
         public const string TestOwner = "Bernardt Joubert";

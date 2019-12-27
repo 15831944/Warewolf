@@ -24,7 +24,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Dev2.Sql.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class SqlServerTests
     {
         [Test]
@@ -1011,7 +1010,7 @@ namespace Dev2.Sql.Tests
             var connection = connectionBuilder.BuildConnection(source.ConnectionString);
             //------------Assert Results-------------------------
             NUnit.Framework.Assert.IsNotNull(connection);
-            NUnit.Framework.Assert.IsInstanceOf(connection.GetType(), typeof(ISqlConnection));
+            NUnit.Framework.Assert.IsInstanceOf(typeof(ISqlConnection), connection);
 
         }
 

@@ -17,7 +17,6 @@ using Moq;
 namespace Dev2.Core.Tests.AppResources.Comparers
 {
     [TestFixture]
-    [SetUpFixture]
 	[Category("Studio Resources Core")]
     public class ContexttualResourceModelEqualityComparerTests
     {

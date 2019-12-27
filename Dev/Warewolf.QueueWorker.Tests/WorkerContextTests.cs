@@ -27,7 +27,6 @@ using Warewolf.Triggers;
 namespace Warewolf.QueueWorker.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class WorkerContextTests
     {
         private static readonly Guid _resourceId = Guid.Parse("a0a7ffdb-6b6e-4e6c-8ff1-9734db4f34e4");

@@ -20,7 +20,6 @@ using Warewolf.Resource.Errors;
 namespace Dev2.Tests.ConverterTests.DateTimeTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class DateTimeParserTests
     {
         static IDateTimeParser _parser;

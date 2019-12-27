@@ -23,7 +23,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Core.Tests.Factories
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfActivityFactoryTests
     {
         

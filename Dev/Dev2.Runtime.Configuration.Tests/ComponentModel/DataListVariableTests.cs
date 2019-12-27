@@ -14,7 +14,6 @@ using System.ComponentModel;
 namespace Dev2.Runtime.Configuration.Tests.ComponentModel
 {
     [TestFixture]
-    [SetUpFixture]
     public class DataListVariableTests
     {
         [Test]
@@ -26,8 +25,8 @@ namespace Dev2.Runtime.Configuration.Tests.ComponentModel
             var dataListVariable = new DataListVariable() { Name = "test" };
             dataListVariable.PropertyChanged += (s, e) => called = true;
             dataListVariable.Name = "testChange";
-            NUnit.Framework.Assert.AreEqual("testChange", dataListVariable.Name);
-            NUnit.Framework.Assert.IsTrue(called);
+            Assert.AreEqual("testChange", dataListVariable.Name);
+            Assert.IsTrue(called);
         }
 
         [Test]
@@ -39,8 +38,8 @@ namespace Dev2.Runtime.Configuration.Tests.ComponentModel
             var dataListVariable = new DataListVariable() { Name = "test" };
             dataListVariable.PropertyChanged += (s, e) => called = true;
             dataListVariable.Name = "test";
-            NUnit.Framework.Assert.AreEqual("test", dataListVariable.Name);
-            NUnit.Framework.Assert.IsFalse(called);
+            Assert.AreEqual("test", dataListVariable.Name);
+            Assert.IsFalse(called);
         }
     }
 }

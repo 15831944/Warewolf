@@ -15,7 +15,6 @@ using System.Text;
 namespace Warewolf.Streams
 {
     [TestFixture]
-    [SetUpFixture]
     public class SerializeDeserializeTests
     {
         private const string ExpectedSerializedData = "{\"MyInt\":123,\"MyString\":\"kuihhj:\"}";

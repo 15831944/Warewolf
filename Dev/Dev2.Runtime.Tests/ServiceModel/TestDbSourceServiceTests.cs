@@ -16,7 +16,6 @@ using Moq;
 namespace Dev2.Tests.Runtime.ServiceModel
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime Hosting")]
     public class TestDbSourceServiceTests
     {

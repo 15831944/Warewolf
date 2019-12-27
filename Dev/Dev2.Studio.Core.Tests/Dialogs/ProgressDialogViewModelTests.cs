@@ -15,7 +15,6 @@ using NUnit.Framework;
 namespace Dev2.Core.Tests.Dialogs
 {
     [TestFixture]
-    [SetUpFixture]
     
     public class ProgressDialogViewModelTests
     {

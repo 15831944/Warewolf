@@ -6,7 +6,6 @@ using Newtonsoft.Json.Linq;
 namespace WarewolfParsingTest
 {
     [TestFixture]
-    [SetUpFixture]
     public class TestDataStructure
     {
 

@@ -19,7 +19,6 @@ using Moq;
 namespace Dev2.Tests.Runtime.Hosting
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime Hosting")]
     public class ResourceUpgraderTests
     {
@@ -46,7 +45,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Setup for test--------------------------
             var path = new List<IUpgradePath>();
             var a = new ResourceUpgrader(path);
-            NUnit.Framework.Assert.AreEqual(path,a.AvailableUpgrades);
+            Assert.AreEqual(path,a.AvailableUpgrades);
 
 
         }
@@ -62,7 +61,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
            var upgraded = a.UpgradeResource(XElement.Parse("<a></a>"), new Version(1, 2),x=>{});
             //------------Assert Results-------------------------
-           NUnit.Framework.Assert.AreEqual(upgraded.ToString(), "<a></a>");
+           Assert.AreEqual(upgraded.ToString(), "<a></a>");
         }
 
                [Test]
@@ -77,7 +76,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var upgraded = a.UpgradeResource(XElement.Parse("<a></a>"), new Version(1, 2), x => { });
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(upgraded.ToString(), "<a></a>");
+            Assert.AreEqual(upgraded.ToString(), "<a></a>");
         }
 
         [Test]
@@ -103,7 +102,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var upgraded = upgrader.UpgradeResource(source, new Version(1, 2), x => { });
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(upgraded.ToString(), "<b ServerVersion=\"" +upgrader.GetType().Assembly.GetName().Version + "\"></b>");
+            Assert.AreEqual(upgraded.ToString(), "<b ServerVersion=\"" +upgrader.GetType().Assembly.GetName().Version + "\"></b>");
         }
         [Test]
         [Author("Leon Rajindrapersadh")]
@@ -136,7 +135,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var upgraded = upgrader.UpgradeResource(source, new Version(1, 2), x => { });
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(upgraded.ToString(), "<c ServerVersion=\"" + upgrader.GetType().Assembly.GetName().Version + "\"></c>");
+            Assert.AreEqual(upgraded.ToString(), "<c ServerVersion=\"" + upgrader.GetType().Assembly.GetName().Version + "\"></c>");
         }
         [Test]
         [Author("Leon Rajindrapersadh")]
@@ -169,7 +168,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var upgraded = upgrader.UpgradeResource(source, new Version(1, 2), x => { });
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(upgraded.ToString(), "<b ServerVersion=\"" + upgrader.GetType().Assembly.GetName().Version + "\"></b>");
+            Assert.AreEqual(upgraded.ToString(), "<b ServerVersion=\"" + upgrader.GetType().Assembly.GetName().Version + "\"></b>");
         }
 
     }

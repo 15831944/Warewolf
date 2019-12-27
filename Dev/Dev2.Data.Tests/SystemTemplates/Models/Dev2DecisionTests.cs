@@ -19,7 +19,6 @@ using Warewolf.Storage.Interfaces;
 namespace Dev2.Data.Tests.SystemTemplates.Models
 {
     [TestFixture]
-    [SetUpFixture]
     public class Dev2DecisionTests
     {
         [Test]

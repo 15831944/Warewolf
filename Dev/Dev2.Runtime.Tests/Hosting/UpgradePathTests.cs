@@ -16,7 +16,6 @@ using NUnit.Framework;
 namespace Dev2.Tests.Runtime.Hosting
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime Hosting")]
     public class UpgradePathTests
     {
@@ -77,7 +76,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(upgrade.CanUpgrade(XElement.Parse("<a></a>")));
+            Assert.IsTrue(upgrade.CanUpgrade(XElement.Parse("<a></a>")));
         }
 
         [Test]
@@ -92,7 +91,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsFalse(upgrade.CanUpgrade(XElement.Parse("<a ServerVersion=\"3.4.5.6\"></a>")));
+            Assert.IsFalse(upgrade.CanUpgrade(XElement.Parse("<a ServerVersion=\"3.4.5.6\"></a>")));
         }
 
         [Test]
@@ -107,7 +106,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsFalse(upgrade.CanUpgrade(XElement.Parse("<a ServerVersion=\"2.0.0.0\"></a>")));
+            Assert.IsFalse(upgrade.CanUpgrade(XElement.Parse("<a ServerVersion=\"2.0.0.0\"></a>")));
         }
 
         [Test]
@@ -122,7 +121,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsFalse(upgrade.CanUpgrade(XElement.Parse("<a ServerVersion=\"1.0.0.0\"></a>")));
+            Assert.IsFalse(upgrade.CanUpgrade(XElement.Parse("<a ServerVersion=\"1.0.0.0\"></a>")));
         }
     
     }

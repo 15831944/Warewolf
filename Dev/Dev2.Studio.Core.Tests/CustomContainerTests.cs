@@ -16,7 +16,6 @@ namespace Dev2.Core.Tests
     /// Summary description for CustomContainerTests
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     
     public class CustomContainerTests
     {

@@ -64,7 +64,6 @@ namespace Dev2.Activities.Designers.Tests.AdvancedRecordset
         [Test]
         [Author("Pieter Terblanche")]
         [Category("AdvancedRecordset")]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AdvancedRecordsetViewModel_ValidateSql_ReturnCorrectFormat()
         {
             CustomContainer.LoadedTypes = new List<Type>
@@ -113,7 +112,6 @@ namespace Dev2.Activities.Designers.Tests.AdvancedRecordset
         [Test]
         [Author("Pieter Terblanche")]
         [Category("AdvancedRecordset")]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AdvancedRecordsetViewModel_ValidateSql_ShowsCorrectErrorFormat()
         {
             CustomContainer.LoadedTypes = new List<Type>
@@ -164,7 +162,6 @@ namespace Dev2.Activities.Designers.Tests.AdvancedRecordset
         [Test]
         [Author("Candice Daniel")]
         [Category("AdvancedRecordset")]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AdvancedRecordsetViewModel_TestActionSetSourceAndTestClickOkHasMappingsErrorFromServer()
         {
             CustomContainer.LoadedTypes = new List<Type>
@@ -200,10 +197,10 @@ namespace Dev2.Activities.Designers.Tests.AdvancedRecordset
                 Assert.IsTrue(advancedRecordset.ErrorRegion.IsEnabled);
             }
         }
+        
         [Test]
         [Author("Candice Daniel")]
         [Category("AdvancedRecordset")]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AdvancedRecordsetViewModel_ParseTSQL_SelectStatementWithAllias_1_ReturnOutputs()
         {
             //------------Setup for test--------------------------
@@ -254,10 +251,10 @@ namespace Dev2.Activities.Designers.Tests.AdvancedRecordset
                 Assert.AreEqual("address_id", viewModel.OutputsRegion.Outputs.Last().MappedFrom);
             }
         }
+        
         [Test]
         [Author("Candice Daniel")]
         [Category("AdvancedRecordset")]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AdvancedRecordsetViewModel_ParseTSQL_SelectStatementWithAllias_2_ReturnOutputs()
         {
             //------------Setup for test--------------------------
@@ -316,7 +313,6 @@ namespace Dev2.Activities.Designers.Tests.AdvancedRecordset
         [Test]
         [Author("Candice Daniel")]
         [Category("AdvancedRecordset")]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AdvancedRecordsetViewModel_ParseTSQL_SelectStatementWithAllias_3_ReturnOutputs()
         {
             //------------Setup for test--------------------------
@@ -371,7 +367,6 @@ namespace Dev2.Activities.Designers.Tests.AdvancedRecordset
         [Test]
         [Author("Candice Daniel")]
         [Category("AdvancedRecordset")]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AdvancedRecordsetViewModel_ParseTSQL_SelectStatementWithAllias_4_ReturnOutputs()
         {
             //------------Setup for test--------------------------
@@ -425,7 +420,6 @@ namespace Dev2.Activities.Designers.Tests.AdvancedRecordset
         [Test]
         [Author("Candice Daniel")]
         [Category("AdvancedRecordset")]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AdvancedRecordsetViewModel_ParseTSQL_SelectStatementWithAllias_6_ReturnOutputs()
         {
             //------------Setup for test--------------------------
@@ -486,7 +480,6 @@ namespace Dev2.Activities.Designers.Tests.AdvancedRecordset
         [Test]
         [Author("Candice Daniel")]
         [Category("AdvancedRecordset")]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AdvancedRecordsetViewModel_ParseTSQL_SelectStatementWithAllias_5_ReturnOutputs()
         {
             //------------Setup for test--------------------------
@@ -539,7 +532,6 @@ namespace Dev2.Activities.Designers.Tests.AdvancedRecordset
         [Test]
         [Author("Candice Daniel")]
         [Category("AdvancedRecordset")]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AdvancedRecordsetViewModel_ParseTSQL_SelectStatementWithAllias_7_ReturnOutputs()
         {
             //------------Setup for test--------------------------
@@ -598,7 +590,6 @@ namespace Dev2.Activities.Designers.Tests.AdvancedRecordset
         
         [Test]
         [Author("Candice Daniel")]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         [Category("AdvancedRecordset")]
         public void AdvancedRecordsetViewModel_UpdateHelp_ShouldCallToHelpViewMode()
         {
@@ -636,7 +627,6 @@ namespace Dev2.Activities.Designers.Tests.AdvancedRecordset
         [Test]
         [Author("Candice Daniel")]
         [Category("AdvancedRecordset")]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AdvancedRecordsetViewModel_SelectStatement_WhenTwoRecordsetsDifferentCased_Should_ReturnOutputs()
         {
             //------------Setup for test--------------------------
@@ -696,7 +686,6 @@ namespace Dev2.Activities.Designers.Tests.AdvancedRecordset
         [Test]
         [Author("Candice Daniel")]
         [Category("AdvancedRecordset")]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AdvancedRecordsetViewModel_SelectStatement_WhenJoinedTwoRecordsetsDifferentCased_Should_ReturnOutputs()
         {
             //------------Setup for test--------------------------

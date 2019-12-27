@@ -11,6 +11,7 @@
 using System.Activities.Presentation.Model;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Windows.Data;
 using Dev2.Activities.Designers.Tests.Designers2.Core.Stubs;
 using Dev2.Activities.Designers2.Core;
@@ -306,6 +307,7 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
         [Test]
         [Author("Trevor Williams-Ros")]
         [Category("ActivityCollectionDesignerViewModel_AddTitleBarQuickVariableInputToggle")]
+        [Apartment(ApartmentState.STA)]
         public void ActivityCollectionDesignerViewModel_AddTitleBarQuickVariableInputToggle_Added()
         {
             //------------Setup for test--------------------------
@@ -320,9 +322,7 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
 
             var toggle = viewModel.TitleBarToggles[0];
 
-            //NUnit.Framework.Assert.AreEqual("pack://application:,,,/Dev2.Activities.Designers;component/Images/ServiceQuickVariableInput-32.png", toggle.CollapseImageSourceUri);
             Assert.AreEqual("Close Quick Variable Input", toggle.CollapseToolTip);
-            //NUnit.Framework.Assert.AreEqual("pack://application:,,,/Dev2.Activities.Designers;component/Images/ServiceQuickVariableInput-32.png", toggle.ExpandImageSourceUri);
             Assert.AreEqual("Open Quick Variable Input", toggle.ExpandToolTip);
             Assert.AreEqual("QuickVariableInputToggle", toggle.AutomationID);
 

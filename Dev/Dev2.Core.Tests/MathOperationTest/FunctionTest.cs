@@ -23,7 +23,6 @@ namespace Dev2.Tests.MathOperationTest
     /// Summary description for FunctionTest
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class FunctionTest
     {
         /// <summary>

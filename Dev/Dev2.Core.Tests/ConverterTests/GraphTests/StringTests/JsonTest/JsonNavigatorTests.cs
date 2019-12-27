@@ -20,7 +20,6 @@ using Unlimited.Framework.Converters.Graph.String.Xml;
 namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
 {
     [TestFixture]
-    [SetUpFixture]
     public class JsonNavigatorTests
     {
         internal string testData => @"{

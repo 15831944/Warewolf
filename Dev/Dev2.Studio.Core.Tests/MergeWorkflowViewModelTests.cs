@@ -5,7 +5,6 @@ using System.Linq;
 namespace Dev2.Core.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class MergeWorkflowViewModelTests : MergeTestUtils
     {
         [Test]

@@ -18,7 +18,6 @@ using Dev2.Threading;
 namespace Warewolf.Studio.ViewModels.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ManageRabbitMQSourceViewModelTests
     {
         #region Fields

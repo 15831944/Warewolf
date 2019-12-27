@@ -14,7 +14,6 @@ using NUnit.Framework;
 namespace Dev2.Core.Tests.UtilsTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ActivityDesignerLanuageNotationConverterTest
     {
         [Test]

@@ -48,7 +48,7 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Upload
             Assert.IsFalse(dropBoxUploadViewModel.ShowLarge);
             Assert.AreEqual(dropBoxUploadViewModel.ThumbVisibility, Visibility.Collapsed);
             //------------Assert Results-------------------------
-            Assert.IsInstanceOf(dropBoxUploadViewModel.GetType(), typeof(ActivityDesignerViewModel));
+            Assert.IsInstanceOf(typeof(ActivityDesignerViewModel), dropBoxUploadViewModel);
         }
 
         [Test]
@@ -69,7 +69,6 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Upload
             mockHelpViewModel.Verify(model => model.UpdateHelpText(It.IsAny<string>()), Times.Once());
         }
 
-
         [Test]
         [Author("Nkosinathi Sangweni")]
         public void Sources_GivenANewDropBoxViewModel_ShouldHaveNotBeNull()
@@ -77,7 +76,7 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Upload
             //---------------Set up test pack-------------------
             var dropBoxUploadViewModel = CreateMockViewModel();
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOf(dropBoxUploadViewModel.GetType(), typeof(ActivityDesignerViewModel));
+            Assert.IsInstanceOf(typeof(ActivityDesignerViewModel), dropBoxUploadViewModel);
             //---------------Execute Test ----------------------
             Assert.IsNotNull(dropBoxUploadViewModel.Sources);
             //---------------Test Result -----------------------

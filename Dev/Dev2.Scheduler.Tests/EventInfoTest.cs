@@ -15,7 +15,6 @@ using NUnit.Framework;
 namespace Dev2.Scheduler.Test
 {
     [TestFixture]
-    [SetUpFixture]
     public class EventInfoTest
     {
         [Test]

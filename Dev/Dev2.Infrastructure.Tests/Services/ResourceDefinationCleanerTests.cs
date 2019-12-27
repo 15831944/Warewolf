@@ -5,7 +5,6 @@ using System;
 namespace Dev2.Infrastructure.Tests.Services
 {
     [TestFixture]
-    [SetUpFixture]
     public class ResourceDefinationCleanerTests
     {
         [Test]

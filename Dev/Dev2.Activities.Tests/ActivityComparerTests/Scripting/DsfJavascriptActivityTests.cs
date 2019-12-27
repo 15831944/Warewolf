@@ -12,12 +12,10 @@ using Warewolf.Storage;
 namespace Dev2.Tests.Activities.ActivityComparerTests.Scripting
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfJavascriptActivityTests
     {
         [Test]
         [Author("Nkosinathi Sangweni")]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void UniqueIDEquals_EmptyJavascript_Object_IsEqual()
         {
             //---------------Set up test pack-------------------

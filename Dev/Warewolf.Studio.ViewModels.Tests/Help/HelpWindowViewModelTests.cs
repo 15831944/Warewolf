@@ -11,7 +11,6 @@ using Moq;
 namespace Warewolf.Studio.ViewModels.Help.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class HelpWindowViewModelTests
     {
         #region Fields

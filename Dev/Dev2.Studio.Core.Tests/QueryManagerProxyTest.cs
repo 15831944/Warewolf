@@ -27,7 +27,6 @@ using Dev2.Common.Interfaces.ToolBase.ExchangeEmail;
 namespace Dev2.Core.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class QueryManagerProxyTest
     {
         [Test]

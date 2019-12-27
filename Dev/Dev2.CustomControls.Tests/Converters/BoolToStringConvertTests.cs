@@ -10,7 +10,6 @@ using Moq;
 namespace Dev2.CustomControls.Tests.Converters
 {
     [TestFixture]
-    [SetUpFixture]
     public class BoolToStringConvertTests
     {
         [Test]

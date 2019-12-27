@@ -10,7 +10,6 @@ using WarewolfParserInterop;
 namespace WarewolfParsingTest
 {
     [TestFixture]
-    [SetUpFixture]
     public class TestDistinct
     {
         [Test]

@@ -36,7 +36,6 @@ using Dev2.Common.Interfaces.Enums;
 namespace Warewolf.Driver.Serilog.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class GetLogDataServiceTests
     {
         [Test]

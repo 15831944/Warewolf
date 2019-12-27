@@ -21,7 +21,6 @@ using NUnit.Framework;
 namespace Dev2.Infrastructure.Tests.Collections
 {
     [TestFixture]
-    [SetUpFixture]
     public class ObservableReadOnlyListTests
     {
         [Test]
@@ -35,7 +34,7 @@ namespace Dev2.Infrastructure.Tests.Collections
             //------------Execute Test---------------------------
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsInstanceOf(observableReadOnlyList.GetType(), typeof(IReadOnlyList<string>));
+            NUnit.Framework.Assert.IsInstanceOf(typeof(IReadOnlyList<string>), observableReadOnlyList);
 
             observableReadOnlyList.Insert(0, "Item1");
             observableReadOnlyList.Insert(1, "Item3");
@@ -70,7 +69,7 @@ namespace Dev2.Infrastructure.Tests.Collections
             //------------Execute Test---------------------------
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsInstanceOf(observableReadOnlyList.GetType(), typeof(IReadOnlyCollection<string>));
+            NUnit.Framework.Assert.IsInstanceOf(typeof(IReadOnlyCollection<string>), observableReadOnlyList);
             NUnit.Framework.Assert.IsTrue(observableReadOnlyList.IsReadOnly);
 
             observableReadOnlyList.Add("Item1");
@@ -112,7 +111,7 @@ namespace Dev2.Infrastructure.Tests.Collections
             //------------Execute Test---------------------------
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsInstanceOf(observableReadOnlyList.GetType(), typeof(IEnumerable<string>));
+            NUnit.Framework.Assert.IsInstanceOf(typeof(IEnumerable<string>), observableReadOnlyList);
 
             var enumeratorCount = 0;
             var enumerator = observableReadOnlyList.GetEnumerator();
@@ -140,7 +139,7 @@ namespace Dev2.Infrastructure.Tests.Collections
             observableReadOnlyList.Add("item4");
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsInstanceOf(observableReadOnlyList.GetType(), typeof(INotifyCollectionChanged));
+            NUnit.Framework.Assert.IsInstanceOf(typeof(INotifyCollectionChanged), observableReadOnlyList);
             NUnit.Framework.Assert.IsTrue(collectionChanged);
         }
 

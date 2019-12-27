@@ -15,7 +15,6 @@ using NUnit.Framework;
 namespace Dev2.Infrastructure.Tests.Communication
 {
     [TestFixture]
-    [SetUpFixture]
     public class FutureRecieptTest
     {
 

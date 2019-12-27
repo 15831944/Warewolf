@@ -23,8 +23,7 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
-    [TestFixture]
-    [SetUpFixture]    
+    [TestFixture]    
     public class MultiAssignActivityTest : BaseActivityUnitTest
     {
         public TestContext TestContext { get; set; }

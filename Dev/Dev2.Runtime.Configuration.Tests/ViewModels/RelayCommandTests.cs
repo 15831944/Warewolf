@@ -15,7 +15,6 @@ using NUnit.Framework;
 namespace Dev2.Runtime.Configuration.Tests.ViewModels
 {
     [TestFixture]
-    [SetUpFixture]
     public class RelayCommandTests
     {
         [Test]
@@ -41,9 +40,9 @@ namespace Dev2.Runtime.Configuration.Tests.ViewModels
             //------------Execute Test---------------------------
             relayCommand.Execute(new { Name = "Tshepo", Surname = "Ntlhokoa" });
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsNotNull(prop);
-            NUnit.Framework.Assert.AreEqual("Tshepo", prop.Name);
-            NUnit.Framework.Assert.AreEqual("Ntlhokoa", prop.Surname);
+            Assert.IsNotNull(prop);
+            Assert.AreEqual("Tshepo", prop.Name);
+            Assert.AreEqual("Ntlhokoa", prop.Surname);
         }
 
         [Test]
@@ -61,8 +60,8 @@ namespace Dev2.Runtime.Configuration.Tests.ViewModels
             //------------Execute Test---------------------------
             var canExecute = relayCommand.CanExecute(null);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(canExecuteWasCalled);
-            NUnit.Framework.Assert.IsTrue(canExecute);
+            Assert.IsTrue(canExecuteWasCalled);
+            Assert.IsTrue(canExecute);
         }
 
         [Test]
@@ -75,7 +74,7 @@ namespace Dev2.Runtime.Configuration.Tests.ViewModels
             //------------Execute Test---------------------------
             var canExecute = relayCommand.CanExecute(null);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(canExecute);
+            Assert.IsTrue(canExecute);
         }
 
         [Test]
@@ -90,7 +89,7 @@ namespace Dev2.Runtime.Configuration.Tests.ViewModels
             //------------Execute Test---------------------------
             relayCommand.RaiseCanExecuteChanged();
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsFalse(isDelegateCalled);
+            Assert.IsFalse(isDelegateCalled);
         }
 
         [Test]
@@ -106,7 +105,7 @@ namespace Dev2.Runtime.Configuration.Tests.ViewModels
             relayCommand.CanExecuteChanged += (s, MouseEventArgs) => { isDelegateCalled = true; };
             relayCommand.RaiseCanExecuteChanged();
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(isDelegateCalled);
+            Assert.IsTrue(isDelegateCalled);
         }
     }
 }

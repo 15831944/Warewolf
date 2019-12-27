@@ -17,7 +17,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Tests.Activities.TOTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class FindRecordsTOTests
     {
         [Test]
@@ -274,8 +273,8 @@ namespace Dev2.Tests.Activities.TOTests
             var rulesSet = findRecordsTO.GetRuleSet(fieldName, "");
             //------------Assert Results-------------------------
             Assert.IsNotNull(rulesSet);
-            Assert.IsInstanceOf(rulesSet.Rules[0].GetType(), typeof(IsStringEmptyRule));
-            Assert.IsInstanceOf(rulesSet.Rules[1].GetType(), typeof(IsValidExpressionRule));
+            Assert.IsInstanceOf(typeof(IsStringEmptyRule), rulesSet.Rules[0]);
+            Assert.IsInstanceOf(typeof(IsValidExpressionRule), rulesSet.Rules[1]);
         }
         static void VerifyCorrectRulesForEachFieldSearch(FindRecordsTO findRecordsTO, string fieldName)
         {
@@ -284,7 +283,7 @@ namespace Dev2.Tests.Activities.TOTests
             //------------Assert Results-------------------------
             Assert.IsNotNull(rulesSet);
     
-            Assert.IsInstanceOf(rulesSet.Rules[0].GetType(), typeof(IsValidExpressionRule));
+            Assert.IsInstanceOf(typeof(IsValidExpressionRule), rulesSet.Rules[0]);
         }
         #endregion
     }

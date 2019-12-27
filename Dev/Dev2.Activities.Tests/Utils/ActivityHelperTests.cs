@@ -30,7 +30,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Tests.Activities.Utils
 {
     [TestFixture]
-    [SetUpFixture]
     public class ActivityHelperTests
     {
         [Test]

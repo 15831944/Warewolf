@@ -9,7 +9,6 @@ using System.Linq;
 namespace Dev2.Infrastructure.Tests.PerformanceCounters
 {
     [TestFixture]
-    [SetUpFixture]
     public class WarewolfCurrentExecutionsPerformanceCounterByResourceByResourceTests
     {
         const string CounterName = "Concurrent requests currently executing";

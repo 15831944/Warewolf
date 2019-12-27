@@ -24,23 +24,10 @@ using Moq;
 namespace Dev2.Tests.Runtime.Services
 {
     [TestFixture]
-    [SetUpFixture]
     public class DeleteLogTests
     {
         readonly static object MonitorLock = new object();
         readonly static object SyncRoot = new object();
-
-        static string _testDir;
-
-        #region ClassInitialize
-
-        [OneTimeSetUp]
-        public static void MyClassInitialize(TestContext context)
-        {
-            _testDir = context.TestDirectory;
-        }
-
-        #endregion
 
         #region TestInitialize/Cleanup
 
@@ -151,7 +138,7 @@ namespace Dev2.Tests.Runtime.Services
             lock(SyncRoot)
             {
                 var fileName = Guid.NewGuid().ToString() + "_Test.log";
-                var path = Path.Combine(_testDir, fileName);
+                var path = Path.Combine(TestContext.CurrentContext.TestDirectory, fileName);
                 File.WriteAllText(path, "hello test");
 
                 Assert.IsTrue(File.Exists(path));
@@ -162,7 +149,7 @@ namespace Dev2.Tests.Runtime.Services
                 {
                     var workspace = new Mock<IWorkspace>();
 
-                    var values = new Dictionary<string, StringBuilder> { { "ResourcePath", new StringBuilder(fileName) }, { "Directory", new StringBuilder(_testDir) } };
+                    var values = new Dictionary<string, StringBuilder> { { "ResourcePath", new StringBuilder(fileName) }, { "Directory", new StringBuilder(TestContext.CurrentContext.TestDirectory) } };
                     var esb = new DeleteLog();
                     var result = esb.Execute(values, workspace.Object);
                     var msg = ConvertToMsg(result);

@@ -7,7 +7,6 @@ using WarewolfParserInterop;
 namespace Dev2.Tests.Activities.ActivityTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class DebugItemWarewolfAtomListResultTests
     {
         [Test]

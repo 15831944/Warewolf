@@ -7,7 +7,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Tests.Activities.ActivityComparerTests.XPath
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfXPathActivityComparerTests
     {
         [Test]

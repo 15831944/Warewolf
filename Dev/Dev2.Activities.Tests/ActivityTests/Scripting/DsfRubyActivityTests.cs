@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Activities.Statements;
 using System.Collections.Generic;
 using System.IO;
@@ -17,11 +17,10 @@ using Warewolf.Core;
 namespace Dev2.Tests.Activities.ActivityTests.Scripting
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfRubyActivityTests : BaseActivityUnitTest
     {
         [OneTimeSetUp]
-        public static void Init(TestContext context)
+        public static void Init()
         {
             File.WriteAllBytes(GetRbTmpFile(), Encoding.ASCII.GetBytes(@"def greaterBalanceThanFive(other) return 5 < other end"));
         }
@@ -55,7 +54,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             //---------------Execute Test ----------------------
 
             //---------------Test Result -----------------------
-            Assert.IsInstanceOf(act.GetType(), typeof(DsfActivityAbstract<string>));
+            Assert.IsInstanceOf(typeof(DsfActivityAbstract<string>), act);
         }
 
         [Test]
@@ -65,7 +64,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             //---------------Set up test pack-------------------
             var act = new DsfRubyActivity();
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOf(act.GetType(), typeof(DsfActivityAbstract<string>));
+            Assert.IsInstanceOf(typeof(DsfActivityAbstract<string>), act);
             //---------------Execute Test ----------------------
             var displayName = act.DisplayName;
             //---------------Test Result -----------------------
@@ -80,7 +79,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             //---------------Set up test pack-------------------
             var act = new DsfRubyActivity();
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOf(act.GetType(), typeof(DsfActivityAbstract<string>));
+            Assert.IsInstanceOf(typeof(DsfActivityAbstract<string>), act);
             //---------------Execute Test ----------------------
             var displayName = act.Script;
             //---------------Test Result -----------------------

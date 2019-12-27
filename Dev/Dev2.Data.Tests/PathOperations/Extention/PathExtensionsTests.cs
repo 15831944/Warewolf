@@ -17,7 +17,6 @@ using Moq;
 namespace Dev2.Data.Tests.PathOperations.Extention
 {
     [TestFixture]
-    [SetUpFixture]
     public class PathExtensionsTests
     {
         [Test]

@@ -7,7 +7,6 @@ using NUnit.Framework;
 namespace Dev2.Common.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class DebugStateTreeBuilderTests
     {
         [Test]

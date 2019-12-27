@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Threading;
 using Dev2.Activities.Designers2.Service;
 using Dev2.Common.Interfaces.Infrastructure.Providers.Errors;
 using Dev2.Providers.Errors;
@@ -10,6 +11,7 @@ using Moq;
 namespace Dev2.Activities.Designers.Tests.Service
 {
     [TestFixture]
+    [Apartment(ApartmentState.STA)]
     public class ValidationMemoManagerTests
     {
         [Test]

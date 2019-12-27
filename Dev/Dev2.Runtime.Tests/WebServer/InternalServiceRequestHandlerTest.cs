@@ -29,7 +29,6 @@ namespace Dev2.Tests.Runtime.WebServer
     /// Summary description for InternalServiceRequestHandlerTest
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime WebServer")]
     public class InternalServiceRequestHandlerTest
     {

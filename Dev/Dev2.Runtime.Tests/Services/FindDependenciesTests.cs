@@ -20,7 +20,6 @@ using Moq;
 namespace Dev2.Tests.Runtime.Services
 {
     [TestFixture]
-    [SetUpFixture]
     public class FindDependenciesTests
     {
         ExecuteMessage ConvertToMsg(StringBuilder msg)
@@ -37,7 +36,7 @@ namespace Dev2.Tests.Runtime.Services
         {
             var esb = new FindDependencies();
             Assert.IsNotNull(esb);
-            Assert.IsInstanceOf(esb.GetType(), typeof(IEsbManagementEndpoint));
+            Assert.IsInstanceOf(typeof(IEsbManagementEndpoint), esb);
         }
 
         [Test]

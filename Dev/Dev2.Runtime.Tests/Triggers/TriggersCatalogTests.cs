@@ -24,7 +24,6 @@ using Warewolf.Triggers;
 namespace Dev2.Tests.Runtime.Triggers
 {
     [TestFixture]
-    [SetUpFixture]
     public class TriggersCatalogTests
     {
         public static string QueueTriggersPath
@@ -103,7 +102,7 @@ namespace Dev2.Tests.Runtime.Triggers
                 WorkflowName = workflowName,
                 TriggerId = triggerId
             };
-            var serializer = new Dev2.Common.Serializers.Dev2JsonSerializer();
+            var serializer = new Common.Serializers.Dev2JsonSerializer();
 
             var mockSerializer = new Mock<IBuilderSerializer>();
             mockSerializer.Setup(o => o.Serialize(It.IsAny<ITriggerQueue>())).Returns(serializer.Serialize(triggerQueueEvent));

@@ -26,7 +26,6 @@ using Warewolf.Options;
 namespace Dev2.Tests.Runtime.Services
 {
     [TestFixture]
-    [SetUpFixture]
     public class FindOptionsTests
     {
         [Test]
@@ -98,7 +97,7 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsNotNull(deserializedResults);
             Assert.AreEqual(1,deserializedResults.Count);
             Assert.AreEqual("Durable", deserializedResults[0].Name);
-            Assert.IsInstanceOf(deserializedResults[0].GetType(), typeof(OptionBool));
+            Assert.IsInstanceOf(typeof(OptionBool), deserializedResults[0]);
         }
 
         [Test]

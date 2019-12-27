@@ -14,7 +14,6 @@ using WarewolfParserInterop;
 namespace Warewolf.Storage.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class BuildJObjectArrayIndexMapHelperTests
     {
         [Test]

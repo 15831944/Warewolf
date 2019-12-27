@@ -28,7 +28,6 @@ using Dev2.Infrastructure.Tests.Services.Security;
 namespace Dev2.Tests.Runtime.Services
 {
     [TestFixture]
-    [SetUpFixture]
     public class SecurityReadTests
     {
         static string _testDir;
@@ -36,9 +35,9 @@ namespace Dev2.Tests.Runtime.Services
         #region ClassInitialize
 
         [OneTimeSetUp]
-        public static void MyClassInitialize(TestContext context)
+        public static void MyClassInitialize()
         {
-            _testDir = Path.Combine(context.TestDirectory, "SecurityConfig");
+            _testDir = Path.Combine(TestContext.CurrentContext.TestDirectory, "SecurityConfig");
             Directory.CreateDirectory(_testDir);
         }
 

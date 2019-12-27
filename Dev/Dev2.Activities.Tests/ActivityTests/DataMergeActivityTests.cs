@@ -22,7 +22,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Tests.Activities.ActivityTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class DataMergeActivityTest : BaseActivityUnitTest
     {
         IList<DataMergeDTO> _mergeCollection = new List<DataMergeDTO>();
@@ -275,7 +274,7 @@ Wallis0000Buchan
             var result = ExecuteProcess();
             //------------Assert Results-------------------------
             var actual = result.Environment.FetchErrors();
-            StringAssert.Contains(actual, "The 'Using' value must be a real number.");
+            StringAssert.Contains("The 'Using' value must be a real number.", actual);
         }
 
         #endregion Index Tests

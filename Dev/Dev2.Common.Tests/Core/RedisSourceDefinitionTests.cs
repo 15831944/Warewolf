@@ -19,7 +19,6 @@ using Moq;
 namespace Dev2.Common.Tests.Core
 {
     [TestFixture]
-    [SetUpFixture]
     public class RedisSourceDefinitionTests
     {
         [Test]

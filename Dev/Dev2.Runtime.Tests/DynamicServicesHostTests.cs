@@ -24,7 +24,6 @@ using System.Diagnostics.CodeAnalysis;
 namespace Dev2.DynamicServices.Test
 {
     [TestFixture]
-    [SetUpFixture]
     public class DynamicServicesHostTests
     {
         const int VersionNo = 9999;

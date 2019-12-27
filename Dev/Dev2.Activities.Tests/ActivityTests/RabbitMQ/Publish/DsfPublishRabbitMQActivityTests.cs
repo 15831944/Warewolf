@@ -14,7 +14,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Publish
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfPublishRabbitMQActivityTests
     {
         [Test]

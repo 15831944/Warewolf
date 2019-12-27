@@ -31,7 +31,6 @@ using Moq;
 namespace Dev2.Core.Tests.Settings
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Studio Settings Core")]
     public class SecurityViewModelTests
     {

@@ -14,7 +14,6 @@ using Dev2.Common.State;
 namespace Dev2.Tests.Activities.ActivityTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class DotNetAggregateCalculateActivityTest : BaseActivityUnitTest
     {
         public TestContext TestContext { get; set; }

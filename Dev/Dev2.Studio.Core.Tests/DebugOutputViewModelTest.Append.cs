@@ -133,7 +133,7 @@ namespace Dev2.Core.Tests
             Assert.AreEqual(1, viewModel.ContentItemCount);
             Assert.AreEqual(1, viewModel.RootItems.Count);
             Assert.AreEqual(viewModel.RootItems[0].IsExpanded, isExpanded);
-            Assert.IsInstanceOf(viewModel.RootItems[0].GetType(), expectedType);
+            Assert.IsInstanceOf(expectedType, viewModel.RootItems[0]);
 
             if(expectedType == typeof(DebugStringTreeViewItemViewModel))
             {

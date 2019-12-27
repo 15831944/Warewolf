@@ -8,7 +8,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Tests.Activities.ActivityComparerTests.DsfDecision
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfDecisionEqualityTests
     {
         [Test]

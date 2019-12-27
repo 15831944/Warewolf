@@ -32,7 +32,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfWebGetRequestWithTimeoutActivityTests : BaseActivityUnitTest 
     {
         [Test]
@@ -168,7 +167,7 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             //------------Execute Test---------------------------
             var activity = GetWebGetRequestWithTimeoutActivity();
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsInstanceOf(activity.GetType(), typeof(DsfActivityAbstract<string>));
+            NUnit.Framework.Assert.IsInstanceOf(typeof(DsfActivityAbstract<string>), activity);
             NUnit.Framework.Assert.AreEqual(100, activity.TimeoutSeconds);
         }
 
@@ -182,7 +181,7 @@ namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
             //------------Execute Test---------------------------
             var requestInvoker = activity.WebRequestInvoker;
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsInstanceOf(requestInvoker.GetType(), typeof(WebRequestInvoker));
+            NUnit.Framework.Assert.IsInstanceOf(typeof(WebRequestInvoker), requestInvoker);
         }
 
         [Test]

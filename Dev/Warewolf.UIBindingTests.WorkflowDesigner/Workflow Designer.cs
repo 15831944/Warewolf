@@ -50,7 +50,6 @@ using Dev2.Core.Tests;
 namespace Warewolf.UIBindingTests.WorkflowDesigner
 {
     [TestFixture]
-    [SetUpFixture]
     public class Workflow_Designer
     {
         Mock<IShellViewModel> _shellViewModelMock;

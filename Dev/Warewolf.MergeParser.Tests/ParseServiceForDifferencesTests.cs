@@ -16,7 +16,6 @@ using Dev2.Common.Interfaces.Diagnostics.Debug;
 namespace Warewolf.MergeParser.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ParseServiceForDifferencesTests
     {
         [Test]

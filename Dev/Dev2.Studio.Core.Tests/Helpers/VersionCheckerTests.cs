@@ -22,7 +22,6 @@ namespace Dev2.Core.Tests.Helpers
 {
     
     [TestFixture]
-    [SetUpFixture]
     public class VersionCheckerTests
     {
 

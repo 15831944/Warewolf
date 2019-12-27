@@ -9,7 +9,6 @@ using NUnit.Framework;
 namespace Dev2.Tests.Runtime.Services
 {
     [TestFixture]
-    [SetUpFixture]
     public class GetServerInformationTest
     {
         [Test]

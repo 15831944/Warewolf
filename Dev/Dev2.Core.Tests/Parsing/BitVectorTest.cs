@@ -18,7 +18,6 @@ namespace Dev2.Tests.Parsing
     /// Summary description for BitVectorTest
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class BitVectorTest
     {
         TestContext testContextInstance;

@@ -21,7 +21,6 @@ using Newtonsoft.Json;
 namespace Dev2.Tests.Diagnostics
 {
     [TestFixture]
-    [SetUpFixture]
     public class DebugDispatcherTest
     {
         [Test]

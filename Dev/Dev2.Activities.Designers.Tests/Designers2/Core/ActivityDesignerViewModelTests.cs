@@ -13,6 +13,7 @@ using System.Activities;
 using System.Activities.Presentation.Model;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 using System.Windows;
 using Caliburn.Micro;
 using Dev2.Activities.Designers.Tests.Designers2.Core.Stubs;
@@ -39,6 +40,7 @@ using Moq.Protected;
 namespace Dev2.Activities.Designers.Tests.Designers2.Core
 {
     [TestFixture]
+    [Apartment(ApartmentState.STA)]
     public class ActivityDesignerViewModelTests
     {
         [SetUp]
@@ -61,7 +63,7 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
             var vm = new TestActivityDesignerViewModel(mockModel.Object);
 
             //assert
-            Assert.IsInstanceOf(vm.GetType(), typeof(ActivityDesignerViewModel), "Activity view model base cannot initialize");
+            Assert.IsInstanceOf(typeof(ActivityDesignerViewModel), vm, "Activity view model base cannot initialize");
         }
 
         [Test]
@@ -82,10 +84,6 @@ namespace Dev2.Activities.Designers.Tests.Designers2.Core
 
             Assert.IsTrue(wasCalled);
         }
-
-        /*
-         * REMOVED ADD HELP TOGGLE TEST. THE HELP TOGGLE ON THE DESIGNERS HAVE BEEN REMOVED
-        */
 
         [Test]
         [Author("Trevor Williams-Ros")]

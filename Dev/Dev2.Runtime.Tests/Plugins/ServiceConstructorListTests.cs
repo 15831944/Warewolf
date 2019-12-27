@@ -18,7 +18,7 @@ namespace Dev2.Tests.Runtime.Plugins
             //---------------Assert Precondition----------------
             Assert.IsNotNull(constructorList);
             //---------------Execute Test ----------------------
-            Assert.IsInstanceOf(constructorList.GetType(), typeof(List<ServiceConstructor>));
+            Assert.IsInstanceOf(typeof(List<ServiceConstructor>), constructorList);
             //---------------Test Result -----------------------
             var s = constructorList.ToString();
             var dev2JsonSerializer = new Dev2JsonSerializer();

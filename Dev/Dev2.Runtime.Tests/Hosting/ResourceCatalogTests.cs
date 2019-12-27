@@ -51,7 +51,6 @@ using Dev2.Common.Interfaces.Wrappers;
 namespace Dev2.Tests.Runtime.Hosting
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime Hosting")]
     public class ResourceCatalogTests
     {
@@ -64,7 +63,7 @@ namespace Dev2.Tests.Runtime.Hosting
         [OneTimeSetUp]
         public static void MyClassInit(TestContext context)
         {
-            _testDir = context.TestDirectory;
+            _testDir = TestContext.CurrentContext.TestDirectory;
         }
 
         [SetUp]
@@ -95,9 +94,9 @@ namespace Dev2.Tests.Runtime.Hosting
         {
             var instance1 = ResourceCatalog.Instance;
             var instance2 = ResourceCatalog.Instance;
-            NUnit.Framework.Assert.IsNotNull(instance1);
-            NUnit.Framework.Assert.IsNotNull(instance2);
-            NUnit.Framework.Assert.AreSame(instance1, instance2);
+            Assert.IsNotNull(instance1);
+            Assert.IsNotNull(instance2);
+            Assert.AreSame(instance1, instance2);
         }
 
         #endregion
@@ -121,7 +120,7 @@ namespace Dev2.Tests.Runtime.Hosting
         {
             var rc = new ResourceCatalog(null, new Mock<IServerVersionRepository>().Object);
 
-            NUnit.Framework.Assert.AreEqual(0, rc.LoadWorkspaceViaBuilder("xx", false).Count);
+            Assert.AreEqual(0, rc.LoadWorkspaceViaBuilder("xx", false).Count);
         }
 
 
@@ -139,13 +138,13 @@ namespace Dev2.Tests.Runtime.Hosting
             rc.LoadWorkspace(workspaceID);
             var result = rc.GetResources(workspaceID);
 
-            NUnit.Framework.Assert.AreEqual(3, result.Count);
+            Assert.AreEqual(3, result.Count);
 
             foreach (var resource in result)
             {
                 var currentResource = resource;
                 var expected = resources.First(r => r.ResourceName == currentResource.ResourceName);
-                NUnit.Framework.Assert.AreEqual(expected.FilePath, resource.FilePath);
+                Assert.AreEqual(expected.FilePath, resource.FilePath);
             }
         }
 
@@ -160,13 +159,13 @@ namespace Dev2.Tests.Runtime.Hosting
             rc.LoadWorkspace(workspaceID);
             var result = rc.GetResources(workspaceID);
 
-            NUnit.Framework.Assert.AreEqual(SaveResourceCount, result.Count);
+            Assert.AreEqual(SaveResourceCount, result.Count);
 
             foreach (var resource in result)
             {
                 var currentResource = resource;
                 var expected = resources.First(r => r.ResourceName == currentResource.ResourceName);
-                NUnit.Framework.Assert.AreEqual(expected.FilePath, resource.FilePath);
+                Assert.AreEqual(expected.FilePath, resource.FilePath);
             }
         }
 
@@ -180,7 +179,7 @@ namespace Dev2.Tests.Runtime.Hosting
             var rc = new ResourceCatalog(null, new Mock<IServerVersionRepository>().Object);
             rc.LoadWorkspace(workspaceID);
 
-            NUnit.Framework.Assert.AreEqual(SaveResourceCount, rc.GetResourceCount(workspaceID));
+            Assert.AreEqual(SaveResourceCount, rc.GetResourceCount(workspaceID));
         }
 
         [Test]
@@ -192,7 +191,7 @@ namespace Dev2.Tests.Runtime.Hosting
             var rc = new ResourceCatalog(null, new Mock<IServerVersionRepository>().Object);
             rc.Reload();
 
-            NUnit.Framework.Assert.AreEqual(SaveResourceCount, rc.GetResourceCount(workspaceID));
+            Assert.AreEqual(SaveResourceCount, rc.GetResourceCount(workspaceID));
         }
 
 
@@ -210,13 +209,13 @@ namespace Dev2.Tests.Runtime.Hosting
             rc.LoadWorkspace(workspaceID);
             var result = rc.GetResources(workspaceID);
 
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
+            Assert.AreEqual(2, result.Count);
 
             foreach (var resource in result)
             {
                 var currentResource = resource;
                 var expected = resources.First(r => r.ResourceName == currentResource.ResourceName);
-                NUnit.Framework.Assert.AreEqual(expected.FilePath, resource.FilePath);
+                Assert.AreEqual(expected.FilePath, resource.FilePath);
             }
         }
 
@@ -235,13 +234,13 @@ namespace Dev2.Tests.Runtime.Hosting
             rc.LoadWorkspace(workspaceID);
             var result = rc.GetResources(workspaceID);
 
-            NUnit.Framework.Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(1, result.Count);
 
             foreach (var resource in result)
             {
                 var currentResource = resource;
                 var expected = resources.First(r => r.ResourceName == currentResource.ResourceName);
-                NUnit.Framework.Assert.AreNotEqual(expected.ResourceID, resource.ResourceID);
+                Assert.AreNotEqual(expected.ResourceID, resource.ResourceID);
             }
         }
 
@@ -288,12 +287,12 @@ namespace Dev2.Tests.Runtime.Hosting
             catalog.SaveResource(workspaceID, resource, "");
             //------------Assert Results-------------------------
             xml = XElement.Load(Path.Combine(path, resource.ResourceName + ".bite"));
-            NUnit.Framework.Assert.IsNotNull(xml);
+            Assert.IsNotNull(xml);
             var idAttr = xml.Attributes("ID").ToList();
-            NUnit.Framework.Assert.AreEqual(1, idAttr.Count);
+            Assert.AreEqual(1, idAttr.Count);
             var nameAttribute = xml.Attribute("Name");
-            NUnit.Framework.Assert.IsNotNull(nameAttribute);
-            NUnit.Framework.Assert.AreEqual(resourceName, nameAttribute.Value);
+            Assert.IsNotNull(nameAttribute);
+            Assert.AreEqual(resourceName, nameAttribute.Value);
         }
 
         [Test]
@@ -362,7 +361,7 @@ namespace Dev2.Tests.Runtime.Hosting
 
             { }
             var res = catalog.GetResourceContents(workspaceID, expected.ResourceID).ToString();
-            NUnit.Framework.Assert.IsFalse(res.Contains("federatedresource"));
+            Assert.IsFalse(res.Contains("federatedresource"));
 
         }
 
@@ -388,9 +387,9 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             catalog.SaveResource(workspaceID, resource, "");
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(_called);
-            NUnit.Framework.Assert.IsNotNull(_resourceInEvent);
-            NUnit.Framework.Assert.AreEqual(resource.ResourceID, _resourceInEvent.ResourceID);
+            Assert.IsTrue(_called);
+            Assert.IsNotNull(_resourceInEvent);
+            Assert.AreEqual(resource.ResourceID, _resourceInEvent.ResourceID);
         }
 
         [Test]
@@ -410,12 +409,12 @@ namespace Dev2.Tests.Runtime.Hosting
             catalog.SaveResource(workspaceID, resource, "");
             //------------Assert Results-------------------------
             xml = XElement.Load(Path.Combine(path, resource.ResourceName + ".bite"));
-            NUnit.Framework.Assert.IsNotNull(xml);
+            Assert.IsNotNull(xml);
             var idAttr = xml.Attributes("ID").ToList();
-            NUnit.Framework.Assert.AreEqual(1, idAttr.Count);
+            Assert.AreEqual(1, idAttr.Count);
             var nameAttribute = xml.Attribute("Name");
-            NUnit.Framework.Assert.IsNotNull(nameAttribute);
-            NUnit.Framework.Assert.AreEqual(resourceName, nameAttribute.Value);
+            Assert.IsNotNull(nameAttribute);
+            Assert.AreEqual(resourceName, nameAttribute.Value);
         }
 
         [Test]
@@ -436,12 +435,12 @@ namespace Dev2.Tests.Runtime.Hosting
             catalog.SaveResource(workspaceID, resource, resourcePath);
             //------------Assert Results-------------------------
             xml = XElement.Load(path + "\\" + resourceName + ".bite");
-            NUnit.Framework.Assert.IsNotNull(xml);
+            Assert.IsNotNull(xml);
             var idAttr = xml.Attributes("ID").ToList();
-            NUnit.Framework.Assert.AreEqual(1, idAttr.Count);
+            Assert.AreEqual(1, idAttr.Count);
             var nameAttribute = xml.Attribute("Name");
-            NUnit.Framework.Assert.IsNotNull(nameAttribute);
-            NUnit.Framework.Assert.AreEqual(resourceName, nameAttribute.Value);
+            Assert.IsNotNull(nameAttribute);
+            Assert.AreEqual(resourceName, nameAttribute.Value);
         }
 
         [Test]
@@ -462,10 +461,10 @@ namespace Dev2.Tests.Runtime.Hosting
             var pathToDelete = resource.FilePath;
             resource2.FilePath = resource.FilePath.Replace("Folder1", "Foldler1");
             resource2.ResourceName = "CitiesDatabase2";
-            NUnit.Framework.Assert.IsTrue(File.Exists(pathToDelete));
+            Assert.IsTrue(File.Exists(pathToDelete));
             catalog.SaveResource(workspaceID, resource2, "MyTest\\Folder1\\CitiesDatabase2", "", "");
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsFalse(File.Exists(pathToDelete));
+            Assert.IsFalse(File.Exists(pathToDelete));
         }
 
         [Test]
@@ -486,10 +485,10 @@ namespace Dev2.Tests.Runtime.Hosting
             var pathToDelete = resource.FilePath;
             resource2.FilePath = resource.FilePath.Replace("Folder1", "Foldler1");
             resource2.ResourceName = "CitiesDatabase";
-            NUnit.Framework.Assert.IsTrue(File.Exists(pathToDelete));
+            Assert.IsTrue(File.Exists(pathToDelete));
             catalog.SaveResource(workspaceID, resource2, "MyTest\\FOLDER1\\CitiesDatabase", "", "");
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(File.Exists(pathToDelete));
+            Assert.IsTrue(File.Exists(pathToDelete));
         }
 
         [Test]
@@ -510,10 +509,10 @@ namespace Dev2.Tests.Runtime.Hosting
             var pathToDelete = resource.FilePath;
             resource2.FilePath = resource.FilePath.Replace("Folder1", "Foldler1");
             resource2.ResourceName = "CitiesDatabase";
-            NUnit.Framework.Assert.IsTrue(File.Exists(pathToDelete));
+            Assert.IsTrue(File.Exists(pathToDelete));
             catalog.SaveResource(workspaceID, resource2, "MyTest\\FOLDER1\\CitiesDatabase", "", "");
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(File.Exists(pathToDelete));
+            Assert.IsTrue(File.Exists(pathToDelete));
         }
 
         [Test]
@@ -537,12 +536,12 @@ namespace Dev2.Tests.Runtime.Hosting
             catalog.SaveResource(workspaceID, resource1, resourcePath1, "", "");
             //------------Assert Results-------------------------
             xml = XElement.Load(path + "\\" + resourceName + ".bite");
-            NUnit.Framework.Assert.IsNotNull(xml);
+            Assert.IsNotNull(xml);
             var idAttr = xml.Attributes("ID").ToList();
-            NUnit.Framework.Assert.AreEqual(1, idAttr.Count);
+            Assert.AreEqual(1, idAttr.Count);
             var nameAttribute = xml.Attribute("Name");
-            NUnit.Framework.Assert.IsNotNull(nameAttribute);
-            NUnit.Framework.Assert.AreEqual(resourceName, nameAttribute.Value);
+            Assert.IsNotNull(nameAttribute);
+            Assert.AreEqual(resourceName, nameAttribute.Value);
 
         }
 
@@ -565,14 +564,14 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var resourceCatalogResult = catalog.SaveResource(workspaceID, resource1, resourcePath, "", "");
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(ExecStatus.DuplicateMatch, resourceCatalogResult.Status);
+            Assert.AreEqual(ExecStatus.DuplicateMatch, resourceCatalogResult.Status);
             xml = XElement.Load(path + "\\CitiesDatabase" + ".bite");
-            NUnit.Framework.Assert.IsNotNull(xml);
+            Assert.IsNotNull(xml);
             var idAttr = xml.Attributes("ID").ToList();
-            NUnit.Framework.Assert.AreEqual(1, idAttr.Count);
+            Assert.AreEqual(1, idAttr.Count);
             var nameAttribute = xml.Attribute("Name");
-            NUnit.Framework.Assert.IsNotNull(nameAttribute);
-            NUnit.Framework.Assert.AreEqual(resourceName, nameAttribute.Value);
+            Assert.IsNotNull(nameAttribute);
+            Assert.AreEqual(resourceName, nameAttribute.Value);
         }
 
 
@@ -592,7 +591,7 @@ namespace Dev2.Tests.Runtime.Hosting
             xml = XElement.Load(Path.Combine(path, "CitiesDatabase" + ".bite"));
             var attr = xml.Attributes("ID").ToList();
 
-            NUnit.Framework.Assert.AreEqual(1, attr.Count);
+            Assert.AreEqual(1, attr.Count);
         }
 
         [Test]
@@ -611,10 +610,10 @@ namespace Dev2.Tests.Runtime.Hosting
             var contents = catalog.GetResourceContents(workspaceID, expected.ResourceID);
             var actual = new DbSource(XElement.Parse(contents.ToString()));
 
-            NUnit.Framework.Assert.AreEqual(expected.ResourceName, actual.ResourceName);
-            NUnit.Framework.Assert.AreEqual(expected.DatabaseName, actual.DatabaseName);
-            NUnit.Framework.Assert.AreEqual(expected.Server, actual.Server);
-            NUnit.Framework.Assert.AreEqual(expected.ServerType, actual.ServerType);
+            Assert.AreEqual(expected.ResourceName, actual.ResourceName);
+            Assert.AreEqual(expected.DatabaseName, actual.DatabaseName);
+            Assert.AreEqual(expected.Server, actual.Server);
+            Assert.AreEqual(expected.ServerType, actual.ServerType);
         }
 
         [Test]
@@ -641,10 +640,10 @@ namespace Dev2.Tests.Runtime.Hosting
             var contents = catalog.GetResourceContents(workspaceID, expected.ResourceID);
             var actual = new DbSource(XElement.Parse(contents.ToString()));
 
-            NUnit.Framework.Assert.AreEqual(expected.ResourceName, actual.ResourceName);
-            NUnit.Framework.Assert.AreEqual(expected.DatabaseName, actual.DatabaseName);
-            NUnit.Framework.Assert.AreEqual(expected.Server, actual.Server);
-            NUnit.Framework.Assert.AreEqual(expected.ServerType, actual.ServerType);
+            Assert.AreEqual(expected.ResourceName, actual.ResourceName);
+            Assert.AreEqual(expected.DatabaseName, actual.DatabaseName);
+            Assert.AreEqual(expected.Server, actual.Server);
+            Assert.AreEqual(expected.ServerType, actual.ServerType);
         }
 
         [Test]
@@ -659,10 +658,10 @@ namespace Dev2.Tests.Runtime.Hosting
             var contents = catalog.GetResourceContents(workspaceID, expected.ResourceID);
             var actual = new DbSource(XElement.Parse(contents.ToString()));
 
-            NUnit.Framework.Assert.AreEqual(expected.ResourceName, actual.ResourceName);
-            NUnit.Framework.Assert.AreEqual(expected.DatabaseName, actual.DatabaseName);
-            NUnit.Framework.Assert.AreEqual(expected.Server, actual.Server);
-            NUnit.Framework.Assert.AreEqual(expected.ServerType, actual.ServerType);
+            Assert.AreEqual(expected.ResourceName, actual.ResourceName);
+            Assert.AreEqual(expected.DatabaseName, actual.DatabaseName);
+            Assert.AreEqual(expected.Server, actual.Server);
+            Assert.AreEqual(expected.ServerType, actual.ServerType);
         }
 
         [Test]
@@ -688,10 +687,10 @@ namespace Dev2.Tests.Runtime.Hosting
             var contents = catalog.GetResourceContents(workspaceID, expected.ResourceID);
             var actual = new DbSource(XElement.Parse(contents.ToString()));
 
-            NUnit.Framework.Assert.AreEqual(expected.ResourceName, actual.ResourceName);
-            NUnit.Framework.Assert.AreEqual(expected.DatabaseName, actual.DatabaseName);
-            NUnit.Framework.Assert.AreEqual(expected.Server, actual.Server);
-            NUnit.Framework.Assert.AreEqual(expected.ServerType, actual.ServerType);
+            Assert.AreEqual(expected.ResourceName, actual.ResourceName);
+            Assert.AreEqual(expected.DatabaseName, actual.DatabaseName);
+            Assert.AreEqual(expected.Server, actual.Server);
+            Assert.AreEqual(expected.ServerType, actual.ServerType);
         }
 
         #endregion
@@ -717,9 +716,9 @@ namespace Dev2.Tests.Runtime.Hosting
             foreach (var expected in resources)
             {
                 var actual = catalog.GetResource(workspaceID, expected.ResourceName);
-                NUnit.Framework.Assert.IsNotNull(actual);
-                NUnit.Framework.Assert.AreEqual(expected.ResourceID, actual.ResourceID);
-                NUnit.Framework.Assert.AreEqual(expected.ResourceName, actual.ResourceName);
+                Assert.IsNotNull(actual);
+                Assert.AreEqual(expected.ResourceID, actual.ResourceID);
+                Assert.AreEqual(expected.ResourceName, actual.ResourceName);
             }
         }
 
@@ -743,8 +742,8 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var retrievedResource = catalog.GetResource(workspaceID, "MyTest\\Folder2\\CitiesDatabase");
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsNotNull(retrievedResource);
-            NUnit.Framework.Assert.AreEqual(resourcePath1, "MyTest\\Folder2");
+            Assert.IsNotNull(retrievedResource);
+            Assert.AreEqual(resourcePath1, "MyTest\\Folder2");
 
         }
 
@@ -761,11 +760,11 @@ namespace Dev2.Tests.Runtime.Hosting
             var catalog = new ResourceCatalog(null, new Mock<IServerVersionRepository>().Object);
             var resourceCatalogResult = catalog.SaveResource(workspaceID, resource, resourcePath, "", "");
             //------------Execute Test---------------------------
-            NUnit.Framework.Assert.IsTrue(resourceCatalogResult.Status == ExecStatus.Success);
+            Assert.IsTrue(resourceCatalogResult.Status == ExecStatus.Success);
             var retrievedResource = catalog.GetResourcePath(workspaceID, resource.ResourceID);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsNotNull(retrievedResource);
-            NUnit.Framework.Assert.AreEqual(resourcePath + "\\" + resourceName, retrievedResource);
+            Assert.IsNotNull(retrievedResource);
+            Assert.AreEqual(resourcePath + "\\" + resourceName, retrievedResource);
 
         }
 
@@ -782,11 +781,11 @@ namespace Dev2.Tests.Runtime.Hosting
             var catalog = new ResourceCatalog(null, new Mock<IServerVersionRepository>().Object);
             var resourceCatalogResult = catalog.SaveResource(workspaceID, resource, resourcePath, "", "");
             //------------Execute Test---------------------------
-            NUnit.Framework.Assert.IsTrue(resourceCatalogResult.Status == ExecStatus.Success);
+            Assert.IsTrue(resourceCatalogResult.Status == ExecStatus.Success);
             var retrievedResource = catalog.GetResourceList(workspaceID);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsNotNull(retrievedResource);
-            NUnit.Framework.Assert.AreEqual(1, retrievedResource.Count);
+            Assert.IsNotNull(retrievedResource);
+            Assert.AreEqual(1, retrievedResource.Count);
 
         }
 
@@ -803,11 +802,11 @@ namespace Dev2.Tests.Runtime.Hosting
             var catalog = new ResourceCatalog(null, new Mock<IServerVersionRepository>().Object);
             var resourceCatalogResult = catalog.SaveResource(workspaceID, resource, resourcePath, "", "");
             //------------Execute Test---------------------------
-            NUnit.Framework.Assert.IsTrue(resourceCatalogResult.Status == ExecStatus.Success);
+            Assert.IsTrue(resourceCatalogResult.Status == ExecStatus.Success);
             var retrievedResource = catalog.GetResourceList<DbSource>(workspaceID);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsNotNull(retrievedResource);
-            NUnit.Framework.Assert.AreEqual(1, retrievedResource.Count);
+            Assert.IsNotNull(retrievedResource);
+            Assert.AreEqual(1, retrievedResource.Count);
 
 
         }
@@ -824,11 +823,11 @@ namespace Dev2.Tests.Runtime.Hosting
             var catalog = new ResourceCatalog(null, new Mock<IServerVersionRepository>().Object);
             var resourceCatalogResult = catalog.SaveResource(workspaceID, resource, resourcePath, "", "");
             //------------Execute Test---------------------------
-            NUnit.Framework.Assert.IsTrue(resourceCatalogResult.Status == ExecStatus.Success);
+            Assert.IsTrue(resourceCatalogResult.Status == ExecStatus.Success);
             var retrievedResource = catalog.GetResourceList<DropBoxSource>(workspaceID);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsNotNull(retrievedResource);
-            NUnit.Framework.Assert.AreEqual(0, retrievedResource.Count);
+            Assert.IsNotNull(retrievedResource);
+            Assert.AreEqual(0, retrievedResource.Count);
 
 
         }
@@ -850,7 +849,7 @@ namespace Dev2.Tests.Runtime.Hosting
             }
             catch (Exception e)
             {
-                NUnit.Framework.Assert.Fail(e.Message);
+                Assert.Fail(e.Message);
             }
             //---------------Test Result -----------------------
         }
@@ -871,8 +870,8 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var workflow = ResourceCatalog.Instance.GetResource<Workflow>(workspaceID, "Bugs\\" + resourceName);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsNotNull(workflow);
-            NUnit.Framework.Assert.IsInstanceOf(workflow.GetType(), typeof(Workflow));
+            Assert.IsNotNull(workflow);
+            Assert.IsInstanceOf(typeof(Workflow), workflow);
         }
 
         [Test]
@@ -894,8 +893,8 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var webSource = catalog.GetResource<WebSource>(workspaceID, resource.ResourceID);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsNotNull(webSource);
-            NUnit.Framework.Assert.IsInstanceOf(webSource.GetType(), typeof(WebSource));
+            Assert.IsNotNull(webSource);
+            Assert.IsInstanceOf(typeof(WebSource), webSource);
         }
 
         #endregion
@@ -907,7 +906,7 @@ namespace Dev2.Tests.Runtime.Hosting
         {
             var catalog = new ResourceCatalog(null, new Mock<IServerVersionRepository>().Object);
             var result = catalog.GetResourceContents(null);
-            NUnit.Framework.Assert.AreEqual(string.Empty, result.ToString());
+            Assert.AreEqual(string.Empty, result.ToString());
         }
 
         [Test]
@@ -915,7 +914,7 @@ namespace Dev2.Tests.Runtime.Hosting
         {
             var catalog = new ResourceCatalog(null, new Mock<IServerVersionRepository>().Object);
             var result = catalog.GetResourceContents(new Resource());
-            NUnit.Framework.Assert.AreEqual(string.Empty, result.ToString());
+            Assert.AreEqual(string.Empty, result.ToString());
         }
 
         [Test]
@@ -928,7 +927,7 @@ namespace Dev2.Tests.Runtime.Hosting
             foreach (var expected in resources)
             {
                 var actual = catalog.GetResourceContents(expected);
-                NUnit.Framework.Assert.IsNotNull(actual);
+                Assert.IsNotNull(actual);
             }
         }
 
@@ -960,7 +959,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var resourceContents = resourceCatalog.GetResourceContents(webService);
             //------------Assert Results-------------------------
-            NUnit.Framework.StringAssert.Contains(resourceContents.ToString(), "\n");
+            StringAssert.Contains(resourceContents.ToString(), "\n");
         }
 
         [Test]
@@ -971,7 +970,7 @@ namespace Dev2.Tests.Runtime.Hosting
 
             var catalog = new ResourceCatalog(null, new Mock<IServerVersionRepository>().Object);
             var actual = catalog.GetResourceContents(new Resource { ResourceID = Guid.NewGuid(), FilePath = Path.GetRandomFileName() });
-            NUnit.Framework.Assert.AreEqual(string.Empty, actual.ToString());
+            Assert.AreEqual(string.Empty, actual.ToString());
         }
 
         [Test]
@@ -982,7 +981,7 @@ namespace Dev2.Tests.Runtime.Hosting
 
             var catalog = new ResourceCatalog(null, new Mock<IServerVersionRepository>().Object);
             var actual = catalog.GetResourceContents(workspaceID, Guid.NewGuid());
-            NUnit.Framework.Assert.AreEqual(string.Empty, actual.ToString());
+            Assert.AreEqual(string.Empty, actual.ToString());
         }
 
         #endregion
@@ -1006,7 +1005,7 @@ namespace Dev2.Tests.Runtime.Hosting
 
             new ResourceCatalog().SyncTo(sourceWorkspacePath, targetWorkspacePath, true, false);
             targetFile.Refresh();
-            NUnit.Framework.Assert.IsTrue(targetFile.Exists);
+            Assert.IsTrue(targetFile.Exists);
         }
 
         [Test]
@@ -1038,7 +1037,7 @@ namespace Dev2.Tests.Runtime.Hosting
             var expected = sourceFile.Length;
             var actual = targetFile.Length;
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -1071,7 +1070,7 @@ namespace Dev2.Tests.Runtime.Hosting
 
             var actual = targetFile.Length;
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -1090,7 +1089,7 @@ namespace Dev2.Tests.Runtime.Hosting
             targetFile.Delete();
             new ResourceCatalog().SyncTo(sourceWorkspacePath, targetWorkspacePath, false, false, new List<string> { targetFile.Name });
             targetFile.Refresh();
-            NUnit.Framework.Assert.IsFalse(targetFile.Exists);
+            Assert.IsFalse(targetFile.Exists);
         }
 
         [Test]
@@ -1110,7 +1109,7 @@ namespace Dev2.Tests.Runtime.Hosting
 
             new ResourceCatalog().SyncTo(sourceWorkspacePath, targetWorkspacePath, false, false, new List<string> { targetFile.Name });
             targetFile.Refresh();
-            NUnit.Framework.Assert.IsTrue(targetFile.Exists);
+            Assert.IsTrue(targetFile.Exists);
         }
 
         [Test]
@@ -1126,7 +1125,7 @@ namespace Dev2.Tests.Runtime.Hosting
 
             new ResourceCatalog().SyncTo(sourceWorkspacePath, targetWorkspacePath, false, false);
             targetDir.Refresh();
-            NUnit.Framework.Assert.IsTrue(targetDir.Exists);
+            Assert.IsTrue(targetDir.Exists);
 
         }
 
@@ -1155,10 +1154,10 @@ namespace Dev2.Tests.Runtime.Hosting
 
             //------------Assert Results-------------------------
 
-            NUnit.Framework.Assert.IsTrue(payload.ToString().StartsWith("<Source"));
+            Assert.IsTrue(payload.ToString().StartsWith("<Source"));
             var payloadElement = XElement.Parse(payload.ToString());
             var connectionStringattribute = payloadElement.AttributeSafe("ConnectionString");
-            NUnit.Framework.Assert.IsFalse(string.IsNullOrEmpty(connectionStringattribute));
+            Assert.IsFalse(string.IsNullOrEmpty(connectionStringattribute));
         }
 
         #endregion
@@ -1170,23 +1169,23 @@ namespace Dev2.Tests.Runtime.Hosting
         public void ResourceCatalogResultBuilder_GivenMessage_ShouldReturnCorrectResults()
         {
             var accessViolationResult = ResourceCatalogResultBuilder.CreateAccessViolationResult("a");
-            NUnit.Framework.Assert.AreEqual(ExecStatus.AccessViolation, accessViolationResult.Status);
-            NUnit.Framework.Assert.AreEqual("a", accessViolationResult.Message);
+            Assert.AreEqual(ExecStatus.AccessViolation, accessViolationResult.Status);
+            Assert.AreEqual("a", accessViolationResult.Message);
             var duplicate = ResourceCatalogResultBuilder.CreateDuplicateMatchResult("b");
-            NUnit.Framework.Assert.AreEqual(ExecStatus.DuplicateMatch, duplicate.Status);
-            NUnit.Framework.Assert.AreEqual("b", duplicate.Message);
+            Assert.AreEqual(ExecStatus.DuplicateMatch, duplicate.Status);
+            Assert.AreEqual("b", duplicate.Message);
             var fail = ResourceCatalogResultBuilder.CreateFailResult("c");
-            NUnit.Framework.Assert.AreEqual(ExecStatus.Fail, fail.Status);
-            NUnit.Framework.Assert.AreEqual("c", fail.Message);
+            Assert.AreEqual(ExecStatus.Fail, fail.Status);
+            Assert.AreEqual("c", fail.Message);
             var noMatch = ResourceCatalogResultBuilder.CreateNoMatchResult("d");
-            NUnit.Framework.Assert.AreEqual(ExecStatus.NoMatch, noMatch.Status);
-            NUnit.Framework.Assert.AreEqual("d", noMatch.Message);
+            Assert.AreEqual(ExecStatus.NoMatch, noMatch.Status);
+            Assert.AreEqual("d", noMatch.Message);
             var wild = ResourceCatalogResultBuilder.CreateNoWildcardsAllowedhResult("e");
-            NUnit.Framework.Assert.AreEqual(ExecStatus.NoWildcardsAllowed, wild.Status);
-            NUnit.Framework.Assert.AreEqual("e", wild.Message);
+            Assert.AreEqual(ExecStatus.NoWildcardsAllowed, wild.Status);
+            Assert.AreEqual("e", wild.Message);
             var succes = ResourceCatalogResultBuilder.CreateSuccessResult("f");
-            NUnit.Framework.Assert.AreEqual(ExecStatus.Success, succes.Status);
-            NUnit.Framework.Assert.AreEqual("f", succes.Message);
+            Assert.AreEqual(ExecStatus.Success, succes.Status);
+            Assert.AreEqual("f", succes.Message);
 
 
         }
@@ -1219,7 +1218,7 @@ namespace Dev2.Tests.Runtime.Hosting
             var workspaceID = Guid.NewGuid();
             var catalog = new ResourceCatalog(null, new Mock<IServerVersionRepository>().Object);
             var result = catalog.DeleteResource(workspaceID, "*", "WorkflowService");
-            NUnit.Framework.Assert.AreEqual(ExecStatus.NoWildcardsAllowed, result.Status);
+            Assert.AreEqual(ExecStatus.NoWildcardsAllowed, result.Status);
         }
 
         [Test]
@@ -1230,7 +1229,7 @@ namespace Dev2.Tests.Runtime.Hosting
 
             var catalog = new ResourceCatalog(null, new Mock<IServerVersionRepository>().Object);
             var result = catalog.DeleteResource(workspaceID, "xxx", "WorkflowService");
-            NUnit.Framework.Assert.AreEqual(ExecStatus.NoMatch, result.Status);
+            Assert.AreEqual(ExecStatus.NoMatch, result.Status);
         }
 
         [Test]
@@ -1245,7 +1244,7 @@ namespace Dev2.Tests.Runtime.Hosting
             catalog.SaveResource(workspaceID, new Resource { ResourceID = Guid.NewGuid(), ResourceName = ResourceName, ResourceType = "WorkflowService" }, "");
 
             var result = catalog.DeleteResource(workspaceID, ResourceName, "WorkflowService");
-            NUnit.Framework.Assert.AreEqual(ExecStatus.DuplicateMatch, result.Status);
+            Assert.AreEqual(ExecStatus.DuplicateMatch, result.Status);
         }
 
 
@@ -1355,7 +1354,7 @@ namespace Dev2.Tests.Runtime.Hosting
             var rc = new ResourceCatalog(null, new Mock<IServerVersionRepository>().Object);
             var result = rc.LoadWorkspaceViaBuilder(workspacePath, false, "Sources", "Services");
 
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
+            Assert.AreEqual(2, result.Count);
 
             //------------Execute Test---------------------------
 
@@ -1364,12 +1363,12 @@ namespace Dev2.Tests.Runtime.Hosting
 
             foreach (var model in models)
             {
-                NUnit.Framework.Assert.AreEqual(typeof(Connection), model.GetType());
+                Assert.AreEqual(typeof(Connection), model.GetType());
             }
 
             var payload = JsonConvert.SerializeObject(models);
 
-            NUnit.Framework.Assert.IsNotNull(payload);
+            Assert.IsNotNull(payload);
         }
 
         [Test]
@@ -1389,7 +1388,7 @@ namespace Dev2.Tests.Runtime.Hosting
             rc.LoadWorkspace(workspaceID);
             var result = rc.GetResources(workspaceID);
 
-            NUnit.Framework.Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(1, result.Count);
 
             //------------Execute Test---------------------------
             var models = rc.GetModels(workspaceID, enSourceType.EmailSource);
@@ -1397,12 +1396,12 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Assert Results-------------------------
             foreach (var model in models)
             {
-                NUnit.Framework.Assert.AreEqual(typeof(EmailSource), model.GetType());
+                Assert.AreEqual(typeof(EmailSource), model.GetType());
             }
 
             var payload = JsonConvert.SerializeObject(models);
 
-            NUnit.Framework.Assert.IsNotNull(payload);
+            Assert.IsNotNull(payload);
         }
         [Test]
         [Author("Leon Rajindrapersadh")]
@@ -1421,7 +1420,7 @@ namespace Dev2.Tests.Runtime.Hosting
             rc.LoadWorkspace(workspaceID);
             var result = rc.GetResources(workspaceID);
 
-            NUnit.Framework.Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(1, result.Count);
 
             //------------Execute Test---------------------------
             var models = rc.GetModels(workspaceID, enSourceType.OauthSource);
@@ -1429,12 +1428,12 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Assert Results-------------------------
             foreach (var model in models)
             {
-                NUnit.Framework.Assert.AreEqual(typeof(DropBoxSource), model.GetType());
+                Assert.AreEqual(typeof(DropBoxSource), model.GetType());
             }
 
             var payload = JsonConvert.SerializeObject(models);
 
-            NUnit.Framework.Assert.IsNotNull(payload);
+            Assert.IsNotNull(payload);
         }
         
         [Test]
@@ -1451,7 +1450,7 @@ namespace Dev2.Tests.Runtime.Hosting
             var rc = new ResourceCatalog(null, new Mock<IServerVersionRepository>().Object);
             rc.LoadWorkspace(workspaceID);
             var result = rc.GetResources(workspaceID);
-            NUnit.Framework.Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(1, result.Count);
 
             //------------Execute Test---------------------------
             var models = rc.GetModels(workspaceID, enSourceType.SqlDatabase);
@@ -1459,11 +1458,11 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Assert Results-------------------------
             foreach (var model in models)
             {
-                NUnit.Framework.Assert.AreEqual(typeof(DbSource), model.GetType());
+                Assert.AreEqual(typeof(DbSource), model.GetType());
             }
 
             var payload = JsonConvert.SerializeObject(models);
-            NUnit.Framework.Assert.IsNotNull(payload);
+            Assert.IsNotNull(payload);
         }
 
         [Test]
@@ -1482,7 +1481,7 @@ namespace Dev2.Tests.Runtime.Hosting
             var rc = new ResourceCatalog(null, new Mock<IServerVersionRepository>().Object);
             rc.LoadWorkspace(workspaceID);
             var result = rc.GetResources(workspaceID);
-            NUnit.Framework.Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(1, result.Count);
 
             //------------Execute Test---------------------------
             var models = rc.GetModels(workspaceID, enSourceType.PluginSource);
@@ -1490,12 +1489,12 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Assert Results-------------------------
             foreach (var model in models)
             {
-                NUnit.Framework.Assert.AreEqual(typeof(PluginSource), model.GetType());
+                Assert.AreEqual(typeof(PluginSource), model.GetType());
             }
 
             var payload = JsonConvert.SerializeObject(models);
 
-            NUnit.Framework.Assert.IsNotNull(payload);
+            Assert.IsNotNull(payload);
         }
 
         [Test]
@@ -1514,7 +1513,7 @@ namespace Dev2.Tests.Runtime.Hosting
             var rc = new ResourceCatalog(null, new Mock<IServerVersionRepository>().Object);
             rc.LoadWorkspace(workspaceID);
             var result = rc.GetResources(workspaceID);
-            NUnit.Framework.Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(1, result.Count);
 
             //------------Execute Test---------------------------
             var models = rc.GetModels(workspaceID, enSourceType.WebSource);
@@ -1522,12 +1521,12 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Assert Results-------------------------
             foreach (var model in models)
             {
-                NUnit.Framework.Assert.AreEqual(typeof(WebSource), model.GetType());
+                Assert.AreEqual(typeof(WebSource), model.GetType());
             }
 
             var payload = JsonConvert.SerializeObject(models);
 
-            NUnit.Framework.Assert.IsNotNull(payload);
+            Assert.IsNotNull(payload);
         }
 
         [Test]
@@ -1548,7 +1547,7 @@ namespace Dev2.Tests.Runtime.Hosting
 
             var models = rc.GetModels(workspaceID, enSourceType.WebService);
 
-            NUnit.Framework.Assert.IsNull(models);
+            Assert.IsNull(models);
         }
 
         [Test]
@@ -1569,7 +1568,7 @@ namespace Dev2.Tests.Runtime.Hosting
 
             var models = rc.GetModels(workspaceID, enSourceType.DynamicService);
 
-            NUnit.Framework.Assert.IsNull(models);
+            Assert.IsNull(models);
         }
 
         [Test]
@@ -1590,7 +1589,7 @@ namespace Dev2.Tests.Runtime.Hosting
 
             var models = rc.GetModels(workspaceID, enSourceType.MySqlDatabase);
 
-            NUnit.Framework.Assert.AreEqual(0, models.Cast<object>().Count());
+            Assert.AreEqual(0, models.Cast<object>().Count());
         }
 
         [Test]
@@ -1611,7 +1610,7 @@ namespace Dev2.Tests.Runtime.Hosting
 
             var models = rc.GetModels(workspaceID, enSourceType.ManagementDynamicService);
 
-            NUnit.Framework.Assert.IsNull(models);
+            Assert.IsNull(models);
         }
 
         [Test]
@@ -1632,15 +1631,11 @@ namespace Dev2.Tests.Runtime.Hosting
 
             var models = rc.GetModels(workspaceID, enSourceType.Unknown);
 
-            NUnit.Framework.Assert.IsNull(models);
+            Assert.IsNull(models);
         }
 
 
         #endregion
-
-        //
-        // Static helpers
-        //
 
         #region UpdateResourceCatalog            
 
@@ -1663,24 +1658,24 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = rc.GetResources(workspaceID);
             var oldResource = result.FirstOrDefault(resource => resource.ResourceID.ToString() == resourceID);
             //------------Assert Precondition--------------------
-            NUnit.Framework.Assert.AreEqual(1, result.Count);
-            NUnit.Framework.Assert.IsNotNull(oldResource);
+            Assert.AreEqual(1, result.Count);
+            Assert.IsNotNull(oldResource);
             //------------Execute Test---------------------------
             var resourceCatalogResult = rc.RenameResource(workspaceID, Guid.Parse(resourceID), "TestName", "TestName");
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(ExecStatus.Success, resourceCatalogResult.Status);
-            NUnit.Framework.Assert.AreEqual("Renamed Resource '" + resourceID + "' to 'TestName'", resourceCatalogResult.Message);
+            Assert.AreEqual(ExecStatus.Success, resourceCatalogResult.Status);
+            Assert.AreEqual("Renamed Resource '" + resourceID + "' to 'TestName'", resourceCatalogResult.Message);
             var resourceContents = rc.GetResourceContents(workspaceID, oldResource.ResourceID).ToString();
             var xElement = XElement.Load(new StringReader(resourceContents), LoadOptions.None);
             var element = xElement.Attribute("Name");
-            NUnit.Framework.Assert.IsNotNull(element);
-            NUnit.Framework.Assert.AreEqual("TestName", element.Value);
+            Assert.IsNotNull(element);
+            Assert.AreEqual("TestName", element.Value);
             serverVersionRepository.Verify(a => a.StoreVersion(It.IsAny<IResource>(), "unknown", "Rename", workspaceID, "TestName"));
             var actionElem = xElement.Element("Action");
-            NUnit.Framework.Assert.IsNotNull(actionElem);
+            Assert.IsNotNull(actionElem);
             var xamlElem = actionElem.Element("XamlDefinition");
 
-            NUnit.Framework.Assert.IsTrue(xamlElem.Value.Contains("DisplayName=\"TestName\""));
+            Assert.IsTrue(xamlElem.Value.Contains("DisplayName=\"TestName\""));
 
         }
 
@@ -1703,18 +1698,18 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = rc.GetResources(workspaceID);
             var oldResource = result.FirstOrDefault(resource => resource.ResourceID.ToString() == resourceID);
             //------------Assert Precondition--------------------
-            NUnit.Framework.Assert.AreEqual(1, result.Count);
-            NUnit.Framework.Assert.IsNotNull(oldResource);
+            Assert.AreEqual(1, result.Count);
+            Assert.IsNotNull(oldResource);
             //------------Execute Test---------------------------
             var resourceCatalogResult = rc.RenameResource(workspaceID, oldResource.ResourceID, null, null);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(ExecStatus.Success, resourceCatalogResult.Status);
-            NUnit.Framework.Assert.AreEqual("<CompilerMessage>Updated Resource '50fef451-b41e-4bdf-92a1-4a41e254cde2' renamed to ''</CompilerMessage>", resourceCatalogResult.Message);
+            Assert.AreEqual(ExecStatus.Success, resourceCatalogResult.Status);
+            Assert.AreEqual("<CompilerMessage>Updated Resource '50fef451-b41e-4bdf-92a1-4a41e254cde2' renamed to ''</CompilerMessage>", resourceCatalogResult.Message);
             var resourceContents = rc.GetResourceContents(workspaceID, oldResource.ResourceID).ToString();
             var xElement = XElement.Load(new StringReader(resourceContents), LoadOptions.None);
             var element = xElement.Element("Name");
-            NUnit.Framework.Assert.IsNotNull(element);
-            NUnit.Framework.Assert.AreEqual("Bug6619Dep", element.Value);
+            Assert.IsNotNull(element);
+            Assert.AreEqual("Bug6619Dep", element.Value);
         }
 
         [Test]
@@ -1736,21 +1731,21 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = rc.GetResources(workspaceID);
             var oldResource = result.FirstOrDefault(resource => resource.ResourceID.ToString() == resourceID);
             //------------Assert Precondition--------------------
-            NUnit.Framework.Assert.AreEqual(1, result.Count);
-            NUnit.Framework.Assert.IsNotNull(oldResource);
+            Assert.AreEqual(1, result.Count);
+            Assert.IsNotNull(oldResource);
             //------------Execute Test---------------------------
             var resourceCatalogResult = rc.RenameResource(workspaceID, oldResource.ResourceID, "", "");
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(ExecStatus.Success, resourceCatalogResult.Status);
-            NUnit.Framework.Assert.AreEqual("<CompilerMessage>Updated Resource '50fef451-b41e-4bdf-92a1-4a41e254cde2' renamed to ''</CompilerMessage>", resourceCatalogResult.Message);
+            Assert.AreEqual(ExecStatus.Success, resourceCatalogResult.Status);
+            Assert.AreEqual("<CompilerMessage>Updated Resource '50fef451-b41e-4bdf-92a1-4a41e254cde2' renamed to ''</CompilerMessage>", resourceCatalogResult.Message);
             var resourceContents = rc.GetResourceContents(workspaceID, oldResource.ResourceID).ToString();
             var xElement = XElement.Load(new StringReader(resourceContents), LoadOptions.None);
             var element = xElement.Element("Name");
-            NUnit.Framework.Assert.IsNotNull(element);
-            NUnit.Framework.Assert.AreEqual("Bug6619Dep", element.Value);
+            Assert.IsNotNull(element);
+            Assert.AreEqual("Bug6619Dep", element.Value);
             var elementCat = xElement.Element("Category");
-            NUnit.Framework.Assert.IsNotNull(elementCat);
-            NUnit.Framework.Assert.AreEqual("TestCategory\\Bug6619Dep", element.Value);
+            Assert.IsNotNull(elementCat);
+            Assert.AreEqual("TestCategory\\Bug6619Dep", element.Value);
         }
 
         [Test]
@@ -1771,14 +1766,14 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = rc.GetResources(workspaceID);
             var oldResource = result.FirstOrDefault(resource => resource.ResourceName == resourceName);
             //------------Assert Precondition-----------------
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
-            NUnit.Framework.Assert.IsNotNull(oldResource);
+            Assert.AreEqual(2, result.Count);
+            Assert.IsNotNull(oldResource);
             //------------Execute Test---------------------------
             var resourceCatalogResult = rc.RenameCategory(workspaceID, "Bugs", "TestCategory");
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(ExecStatus.Success, resourceCatalogResult.Status);
-            NUnit.Framework.Assert.AreEqual("<CompilerMessage>Updated Category from 'Bugs' to 'TestCategory'</CompilerMessage>", resourceCatalogResult.Message);
-            NUnit.Framework.Assert.AreEqual("TestCategory\\Bug6619Dep", oldResource.GetResourcePath(workspaceID));
+            Assert.AreEqual(ExecStatus.Success, resourceCatalogResult.Status);
+            Assert.AreEqual("<CompilerMessage>Updated Category from 'Bugs' to 'TestCategory'</CompilerMessage>", resourceCatalogResult.Message);
+            Assert.AreEqual("TestCategory\\Bug6619Dep", oldResource.GetResourcePath(workspaceID));
         }
 
         [Test]
@@ -1798,18 +1793,18 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = rc.GetResources(workspaceID);
             var oldResource = result.FirstOrDefault(resource => resource.ResourceName == resourceName);
             //------------Assert Precondition-----------------
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
-            NUnit.Framework.Assert.IsNotNull(oldResource);
+            Assert.AreEqual(2, result.Count);
+            Assert.IsNotNull(oldResource);
 
             //---------------Assert Precondition----------------
 
             //---------------Execute Test ----------------------
             var resourceCatalogResult = rc.RenameCategory(workspaceID, "Bugs", "TestCategory", result);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual(resourceCatalogResult.Status, ExecStatus.Success);
+            Assert.AreEqual(resourceCatalogResult.Status, ExecStatus.Success);
             foreach (var resource in result)
             {
-                NUnit.Framework.Assert.AreEqual("TestCategory\\" + resource.ResourceName, resource.GetResourcePath(workspaceID));
+                Assert.AreEqual("TestCategory\\" + resource.ResourceName, resource.GetResourcePath(workspaceID));
             }
         }
 
@@ -1832,17 +1827,17 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = rc.GetResources(workspaceID);
             var oldResource = result.FirstOrDefault(resource => resource.ResourceName == resourceName);
             //------------Assert Precondition-----------------
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
-            NUnit.Framework.Assert.IsNotNull(oldResource);
+            Assert.AreEqual(2, result.Count);
+            Assert.IsNotNull(oldResource);
             //------------Execute Test---------------------------
             var resourceCatalogResult = rc.RenameCategory(workspaceID, "SomeNonExistentCategory", "TestCategory");
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(ExecStatus.NoMatch, resourceCatalogResult.Status);
+            Assert.AreEqual(ExecStatus.NoMatch, resourceCatalogResult.Status);
             var resourceContents = rc.GetResourceContents(workspaceID, oldResource.ResourceID).ToString();
             var xElement = XElement.Load(new StringReader(resourceContents), LoadOptions.None);
             var element = xElement.Element("Category");
-            NUnit.Framework.Assert.IsNotNull(element);
-            NUnit.Framework.Assert.AreEqual("Bugs\\Bug6619Dep", element.Value);
+            Assert.IsNotNull(element);
+            Assert.AreEqual("Bugs\\Bug6619Dep", element.Value);
         }
 
         [Test]
@@ -1863,14 +1858,14 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = rc.GetResources(workspaceID);
             var oldResource = result.FirstOrDefault(resource => resource.ResourceName == resourceName);
             //------------Assert Precondition-----------------
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
-            NUnit.Framework.Assert.IsNotNull(oldResource);
+            Assert.AreEqual(2, result.Count);
+            Assert.IsNotNull(oldResource);
             //------------Execute Test---------------------------
             var resourceCatalogResult = rc.RenameCategory(workspaceID, "Bugs", "TestCategory");
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(ExecStatus.Success, resourceCatalogResult.Status);
+            Assert.AreEqual(ExecStatus.Success, resourceCatalogResult.Status);
 
-            NUnit.Framework.Assert.AreEqual("TestCategory\\Bug6619Dep", oldResource.GetResourcePath(workspaceID));
+            Assert.AreEqual("TestCategory\\Bug6619Dep", oldResource.GetResourcePath(workspaceID));
         }
 
         [Test]
@@ -1891,8 +1886,8 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = rc.GetResources(workspaceID);
             var oldResource = result.FirstOrDefault(resource => resource.ResourceName == resourceName);
             //------------Assert Precondition-----------------
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
-            NUnit.Framework.Assert.IsNotNull(oldResource);
+            Assert.AreEqual(2, result.Count);
+            Assert.IsNotNull(oldResource);
             //------------Execute Test---------------------------
             rc.DeleteResource(workspaceID, Guid.Empty, "TypeWorkflowService");
             //------------Assert Results-------------------------            
@@ -1916,8 +1911,8 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = rc.GetResources(workspaceID);
             var oldResource = result.FirstOrDefault(resource => resource.ResourceName == resourceName);
             //------------Assert Precondition-----------------
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
-            NUnit.Framework.Assert.IsNotNull(oldResource);
+            Assert.AreEqual(2, result.Count);
+            Assert.IsNotNull(oldResource);
             //------------Execute Test---------------------------
             rc.DeleteResource(workspaceID, Guid.NewGuid(), "");
             //------------Assert Results-------------------------            
@@ -1941,8 +1936,8 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = rc.GetResources(workspaceID);
             var oldResource = result.FirstOrDefault(resource => resource.ResourceName == resourceName);
             //------------Assert Precondition-----------------
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
-            NUnit.Framework.Assert.IsNotNull(oldResource);
+            Assert.AreEqual(2, result.Count);
+            Assert.IsNotNull(oldResource);
             //------------Execute Test---------------------------
             rc.DeleteResource(workspaceID, Guid.NewGuid(), null);
             //------------Assert Results-------------------------            
@@ -1965,12 +1960,12 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = rc.GetResources(workspaceID);
             var oldResource = result.FirstOrDefault(resource => resource.ResourceName == resourceName);
             //------------Assert Precondition-----------------
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
-            NUnit.Framework.Assert.IsNotNull(oldResource);
+            Assert.AreEqual(2, result.Count);
+            Assert.IsNotNull(oldResource);
             //------------Execute Test---------------------------
             var resourceCatalogResult = rc.DeleteResource(workspaceID, Guid.NewGuid(), "TypeWorkflowService");
             //------------Assert Results-------------------------        
-            NUnit.Framework.Assert.AreEqual(ExecStatus.NoMatch, resourceCatalogResult.Status);
+            Assert.AreEqual(ExecStatus.NoMatch, resourceCatalogResult.Status);
         }
 
         [Test]
@@ -1991,14 +1986,14 @@ namespace Dev2.Tests.Runtime.Hosting
             var oldResource = result.FirstOrDefault(resource => resource.ResourceName == resourceName);
             var resourceToUpdate = result.FirstOrDefault(resource => resource.ResourceName == "Bug6619");
             //------------Assert Precondition-----------------
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
-            NUnit.Framework.Assert.IsNotNull(oldResource);
-            NUnit.Framework.Assert.IsNotNull(resourceToUpdate);
+            Assert.AreEqual(2, result.Count);
+            Assert.IsNotNull(oldResource);
+            Assert.IsNotNull(resourceToUpdate);
             //------------Execute Test---------------------------
             resourceToUpdate.ResourceID = oldResource.ResourceID;
             var resourceCatalogResult = rc.DeleteResource(workspaceID, resourceToUpdate.ResourceID, "WorkflowService");
             //------------Assert Results-------------------------        
-            NUnit.Framework.Assert.AreEqual(ExecStatus.DuplicateMatch, resourceCatalogResult.Status);
+            Assert.AreEqual(ExecStatus.DuplicateMatch, resourceCatalogResult.Status);
         }
 
         [Test]
@@ -2020,15 +2015,15 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = rc.GetResources(workspaceID);
             var oldResource = result.FirstOrDefault(resource => resource.ResourceName == resourceName);
             //------------Assert Precondition-----------------
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
-            NUnit.Framework.Assert.IsNotNull(oldResource);
+            Assert.AreEqual(2, result.Count);
+            Assert.IsNotNull(oldResource);
             //------------Execute Test---------------------------
             var resourceCatalogResult = rc.DeleteResource(workspaceID, oldResource.ResourceID, "WorkflowService");
             //------------Assert Results-------------------------        
-            NUnit.Framework.Assert.AreEqual(ExecStatus.Success, resourceCatalogResult.Status);
+            Assert.AreEqual(ExecStatus.Success, resourceCatalogResult.Status);
             var resourceToFind = result.FirstOrDefault(resource => resource.ResourceName == resourceName);
             serverVersionRepository.Verify(a => a.DeleteVersion(It.IsAny<Guid>(), "1", "Bug6619Dep"), Times.Once());
-            NUnit.Framework.Assert.IsNull(resourceToFind);
+            Assert.IsNull(resourceToFind);
         }
 
 
@@ -2052,15 +2047,15 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = rc.GetResources(workspaceID);
             var oldResource = result.FirstOrDefault(resource => resource.ResourceName == resourceName);
             //------------Assert Precondition-----------------
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
-            NUnit.Framework.Assert.IsNotNull(oldResource);
+            Assert.AreEqual(2, result.Count);
+            Assert.IsNotNull(oldResource);
             //------------Execute Test---------------------------
             var resourceCatalogResult = rc.DeleteResource(workspaceID, oldResource.ResourceID, "WorkflowService", false);
             //------------Assert Results-------------------------        
-            NUnit.Framework.Assert.AreEqual(ExecStatus.Success, resourceCatalogResult.Status);
+            Assert.AreEqual(ExecStatus.Success, resourceCatalogResult.Status);
             var resourceToFind = result.FirstOrDefault(resource => resource.ResourceName == resourceName);
             serverVersionRepository.Verify(a => a.DeleteVersion(It.IsAny<Guid>(), "1", ""), Times.Never());
-            NUnit.Framework.Assert.IsNull(resourceToFind);
+            Assert.IsNull(resourceToFind);
         }
 
         [Test]
@@ -2080,13 +2075,13 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = rc.GetResources(workspaceID);
             var oldResource = result.FirstOrDefault(resource => resource.ResourceName == resourceName);
             //------------Assert Precondition-----------------
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
-            NUnit.Framework.Assert.IsNotNull(oldResource);
+            Assert.AreEqual(2, result.Count);
+            Assert.IsNotNull(oldResource);
             //------------Execute Test---------------------------
             var resourceFound = rc.GetResource<Workflow>(workspaceID, oldResource.ResourceID);
             //------------Assert Results-------------------------        
-            NUnit.Framework.Assert.IsNotNull(resourceFound);
-            NUnit.Framework.Assert.AreEqual(oldResource.ResourceID, resourceFound.ResourceID);
+            Assert.IsNotNull(resourceFound);
+            Assert.AreEqual(oldResource.ResourceID, resourceFound.ResourceID);
         }
 
         [Test]
@@ -2108,13 +2103,13 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = catalog.GetResources(workspaceID);
             var oldResource = result.FirstOrDefault(r => r.ResourceName == resourceName);
             //------------Assert Precondition-----------------
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
-            NUnit.Framework.Assert.IsNotNull(oldResource);
+            Assert.AreEqual(2, result.Count);
+            Assert.IsNotNull(oldResource);
             //------------Execute Test---------------------------
             var resourceFound = catalog.GetResource<DbSource>(workspaceID, oldResource.ResourceID);
             //------------Assert Results-------------------------        
-            NUnit.Framework.Assert.IsNotNull(resourceFound);
-            NUnit.Framework.Assert.AreEqual(oldResource.ResourceID, resourceFound.ResourceID);
+            Assert.IsNotNull(resourceFound);
+            Assert.AreEqual(oldResource.ResourceID, resourceFound.ResourceID);
         }
 
 
@@ -2253,12 +2248,12 @@ namespace Dev2.Tests.Runtime.Hosting
             rc.LoadWorkspace(workspaceID);
             var result = rc.GetResources(workspaceID);
             //------------Assert Precondition-----------------
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
+            Assert.AreEqual(2, result.Count);
             //------------Execute Test---------------------------
             var dependants = ResourceCatalog.Instance.GetDependants(workspaceID, Guid.Parse("ec636256-5f11-40ab-a044-10e731d87555"));
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(1, dependants.Count);
-            NUnit.Framework.Assert.AreEqual(Guid.Parse("1736ca6e-b870-467f-8d25-262972d8c3e8"), dependants[0]);
+            Assert.AreEqual(1, dependants.Count);
+            Assert.AreEqual(Guid.Parse("1736ca6e-b870-467f-8d25-262972d8c3e8"), dependants[0]);
         }
 
         [Test]
@@ -2279,13 +2274,13 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = rc.GetResources(workspaceID);
             var resource = result.FirstOrDefault(r => r.ResourceName == resourceName);
             var depresource = result.FirstOrDefault(r => r.ResourceName == depResourceName);
-            NUnit.Framework.Assert.IsNotNull(resource);
+            Assert.IsNotNull(resource);
             var beforeService = rc.GetDynamicObjects<DynamicService>(workspaceID, resourceName).FirstOrDefault();
-            NUnit.Framework.Assert.IsNotNull(beforeService);
+            Assert.IsNotNull(beforeService);
             var beforeAction = beforeService.Actions.FirstOrDefault();
             var xElement = rc.GetResourceContents(resource).ToXElement();
             var element = xElement.Element("DataList");
-            NUnit.Framework.Assert.IsNotNull(element);
+            Assert.IsNotNull(element);
             element.Add(new XElement("a"));
             element.Add(new XElement("b"));
             var s = xElement.ToString();
@@ -2295,28 +2290,28 @@ namespace Dev2.Tests.Runtime.Hosting
                 messages.MessageList = tos;
             };
             //------------Assert Precondition-----------------
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
+            Assert.AreEqual(2, result.Count);
             //------------Execute Test---------------------------
             rcSaveProvider.CompileTheResourceAfterSave(workspaceID, resource, new StringBuilder(s), beforeAction);
             //------------Assert Results-------------------------
 
             xElement = rc.GetResourceContents(depresource).ToXElement();
-            NUnit.Framework.Assert.IsNotNull(xElement);
+            Assert.IsNotNull(xElement);
             var errorMessages = xElement.Element("ErrorMessages");
-            NUnit.Framework.Assert.IsNotNull(errorMessages);
+            Assert.IsNotNull(errorMessages);
             var errorElement = errorMessages.Element("ErrorMessage");
             var isValid = xElement.AttributeSafe("IsValid");
             var messageType = Enum.Parse(typeof(CompileMessageType), errorElement.AttributeSafe("MessageType"), true);
-            NUnit.Framework.Assert.AreEqual("false", isValid);
-            NUnit.Framework.Assert.AreEqual(CompileMessageType.MappingChange, messageType);
-            NUnit.Framework.Assert.IsNotNull(depresource);
+            Assert.AreEqual("false", isValid);
+            Assert.AreEqual(CompileMessageType.MappingChange, messageType);
+            Assert.IsNotNull(depresource);
             var message = messages.MessageList.FirstOrDefault(msg => msg.WorkspaceID != Guid.Empty);
-            NUnit.Framework.Assert.IsNotNull(message, "No valid update resource messages published");
-            NUnit.Framework.Assert.AreEqual(workspaceID, message.WorkspaceID);
-            NUnit.Framework.Assert.AreEqual(depresource.ResourceName, message.ServiceName);
-            NUnit.Framework.Assert.AreEqual(depresource.ResourceID, message.ServiceID);
-            NUnit.Framework.Assert.AreNotEqual(depresource.ResourceID, message.UniqueID);
-            NUnit.Framework.Assert.AreNotEqual(resource.ResourceID, message.UniqueID);
+            Assert.IsNotNull(message, "No valid update resource messages published");
+            Assert.AreEqual(workspaceID, message.WorkspaceID);
+            Assert.AreEqual(depresource.ResourceName, message.ServiceName);
+            Assert.AreEqual(depresource.ResourceID, message.ServiceID);
+            Assert.AreNotEqual(depresource.ResourceID, message.UniqueID);
+            Assert.AreNotEqual(resource.ResourceID, message.UniqueID);
         }
 
         [Test]
@@ -2337,15 +2332,15 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = rc.GetResources(workspaceID);
             var resource = result.FirstOrDefault(r => r.ResourceName == "Bug6619Dep");
             var depresource = result.FirstOrDefault(r => r.ResourceName == "Bug6619");
-            NUnit.Framework.Assert.IsNotNull(resource);
+            Assert.IsNotNull(resource);
             var beforeService = rc.GetDynamicObjects<DynamicService>(workspaceID, resourceName).FirstOrDefault();
-            NUnit.Framework.Assert.IsNotNull(beforeService);
+            Assert.IsNotNull(beforeService);
             var beforeAction = beforeService.Actions.FirstOrDefault();
 
             var xElement = rc.GetResourceContents(resource).ToXElement();
 
             var element = xElement.Element("DataList");
-            NUnit.Framework.Assert.IsNotNull(element);
+            Assert.IsNotNull(element);
             element.Add(new XElement("a"));
             element.Add(new XElement("b"));
             var s = xElement.ToString();
@@ -2355,28 +2350,28 @@ namespace Dev2.Tests.Runtime.Hosting
                 messages.MessageList = tos;
             };
             //------------Assert Precondition-----------------
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
+            Assert.AreEqual(2, result.Count);
             //------------Execute Test---------------------------
             rcSaveProvider.CompileTheResourceAfterSave(workspaceID, resource, new StringBuilder(s), beforeAction);
             //------------Assert Results-------------------------
 
             xElement = rc.GetResourceContents(depresource).ToXElement();
-            NUnit.Framework.Assert.IsNotNull(xElement);
+            Assert.IsNotNull(xElement);
             var errorMessages = xElement.Element("ErrorMessages");
-            NUnit.Framework.Assert.IsNotNull(errorMessages);
+            Assert.IsNotNull(errorMessages);
             var errorElement = errorMessages.Element("ErrorMessage");
             var isValid = xElement.AttributeSafe("IsValid");
             var messageType = Enum.Parse(typeof(CompileMessageType), errorElement.AttributeSafe("MessageType"), true);
-            NUnit.Framework.Assert.AreEqual("false", isValid);
-            NUnit.Framework.Assert.AreEqual(CompileMessageType.MappingChange, messageType);
-            NUnit.Framework.Assert.IsNotNull(depresource);
+            Assert.AreEqual("false", isValid);
+            Assert.AreEqual(CompileMessageType.MappingChange, messageType);
+            Assert.IsNotNull(depresource);
             var message = messages.MessageList.FirstOrDefault(msg => msg.WorkspaceID != Guid.Empty);
-            NUnit.Framework.Assert.IsNotNull(message, "No valid update resource messages published");
-            NUnit.Framework.Assert.AreEqual(workspaceID, message.WorkspaceID);
-            NUnit.Framework.Assert.AreEqual(depresource.ResourceName, message.ServiceName);
-            NUnit.Framework.Assert.AreEqual(depresource.ResourceID, message.ServiceID);
-            NUnit.Framework.Assert.AreNotEqual(depresource.ResourceID, message.UniqueID);
-            NUnit.Framework.Assert.AreNotEqual(resource.ResourceID, message.UniqueID);
+            Assert.IsNotNull(message, "No valid update resource messages published");
+            Assert.AreEqual(workspaceID, message.WorkspaceID);
+            Assert.AreEqual(depresource.ResourceName, message.ServiceName);
+            Assert.AreEqual(depresource.ResourceID, message.ServiceID);
+            Assert.AreNotEqual(depresource.ResourceID, message.UniqueID);
+            Assert.AreNotEqual(resource.ResourceID, message.UniqueID);
         }
 
         [Test]
@@ -2388,11 +2383,11 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = rc.LoadWorkspaceViaBuilder("xx", false);
             //const string resourceName = "resource";
             //------------Assert Precondition-----------------
-            NUnit.Framework.Assert.AreEqual(0, result.Count);
+            Assert.AreEqual(0, result.Count);
             //------------Execute Test---------------------------
             var dependants = ResourceCatalog.Instance.GetDependants(workspaceID, Guid.Empty);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(0, dependants.Count);
+            Assert.AreEqual(0, dependants.Count);
         }
 
         [Test]
@@ -2410,11 +2405,11 @@ namespace Dev2.Tests.Runtime.Hosting
             rc.LoadWorkspace(workspaceID);
             var result = rc.GetResources(workspaceID);
             //------------Assert Precondition-----------------
-            NUnit.Framework.Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(1, result.Count);
             //------------Execute Test---------------------------
             var dependants = ResourceCatalog.Instance.GetDependants(workspaceID, Guid.Parse("ec636256-5f11-40ab-a044-10e731d87555"));
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(0, dependants.Count);
+            Assert.AreEqual(0, dependants.Count);
         }
 
         #endregion
@@ -2436,12 +2431,12 @@ namespace Dev2.Tests.Runtime.Hosting
             rc.LoadWorkspace(workspaceID);
             var result = rc.GetResources(workspaceID);
             //------------Assert Precondition-----------------
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
+            Assert.AreEqual(2, result.Count);
             //------------Execute Test---------------------------
             var dependants = ResourceCatalog.Instance.GetDependentsAsResourceForTrees(workspaceID, Guid.Parse("ec636256-5f11-40ab-a044-10e731d87555"));
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(1, dependants.Count);
-            NUnit.Framework.Assert.AreEqual("Bug6619", dependants[0].ResourceName);
+            Assert.AreEqual(1, dependants.Count);
+            Assert.AreEqual("Bug6619", dependants[0].ResourceName);
         }
 
         [Test]
@@ -2453,11 +2448,11 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = rc.LoadWorkspaceViaBuilder("xx", false);
             //  const string resourceName = "resource";
             //------------Assert Precondition-----------------
-            NUnit.Framework.Assert.AreEqual(0, result.Count);
+            Assert.AreEqual(0, result.Count);
             //------------Execute Test---------------------------
             var dependants = ResourceCatalog.Instance.GetDependentsAsResourceForTrees(workspaceID, Guid.NewGuid());
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(0, dependants.Count);
+            Assert.AreEqual(0, dependants.Count);
         }
 
         [Test]
@@ -2475,11 +2470,11 @@ namespace Dev2.Tests.Runtime.Hosting
             rc.LoadWorkspace(workspaceID);
             var result = rc.GetResources(workspaceID);
             //------------Assert Precondition-----------------
-            NUnit.Framework.Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(1, result.Count);
             //------------Execute Test---------------------------
             var dependants = ResourceCatalog.Instance.GetDependentsAsResourceForTrees(workspaceID, Guid.Parse("7b8c9b6e-16f4-4771-8605-655bbfab7543"));
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(1, dependants.Count);
+            Assert.AreEqual(1, dependants.Count);
         }
         #endregion
 
@@ -2492,17 +2487,17 @@ namespace Dev2.Tests.Runtime.Hosting
         static void VerifyObjectGraph<TGraph>(ICollection<IResource> expectedResources, ICollection<TGraph> actualGraphs)
             where TGraph : DynamicServiceObjectBase
         {
-            NUnit.Framework.Assert.AreEqual(expectedResources.Count, actualGraphs.Count);
+            Assert.AreEqual(expectedResources.Count, actualGraphs.Count);
 
             foreach (var expected in expectedResources)
             {
                 var resource = expected;
                 var actualGraph = actualGraphs.FirstOrDefault(g => g.Name == resource.ResourceName);
-                NUnit.Framework.Assert.IsNotNull(actualGraph);
+                Assert.IsNotNull(actualGraph);
 
                 var actual = new Resource(actualGraph.ResourceDefinition.ToXElement());
-                NUnit.Framework.Assert.AreEqual(expected.ResourceID, actual.ResourceID);
-                NUnit.Framework.Assert.AreEqual(expected.ResourceType, actual.ResourceType);
+                Assert.AreEqual(expected.ResourceID, actual.ResourceID);
+                Assert.AreEqual(expected.ResourceType, actual.ResourceType);
             }
         }
 
@@ -2537,7 +2532,7 @@ namespace Dev2.Tests.Runtime.Hosting
             };
             var workflow = rc.GetResourceList(workspaceID, filterParams);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(0, workflow.Count);
+            Assert.AreEqual(0, workflow.Count);
 
         }
 
@@ -2596,13 +2591,13 @@ namespace Dev2.Tests.Runtime.Hosting
             };
             var workflow = rc.GetResourceList(workspaceID, filterParams);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsNotNull(workflow);
-            NUnit.Framework.Assert.AreEqual(2, workflow.Count);
+            Assert.IsNotNull(workflow);
+            Assert.AreEqual(2, workflow.Count);
 
             // the ordering swaps around - hence the contains assert ;)
 
-            NUnit.Framework.StringAssert.Contains(workflow[0].ResourceName, "Bug6619");
-            NUnit.Framework.StringAssert.Contains(workflow[1].ResourceName, "Bug6619");
+            StringAssert.Contains(workflow[0].ResourceName, "Bug6619");
+            StringAssert.Contains(workflow[1].ResourceName, "Bug6619");
         }
 
         [Test]
@@ -2633,7 +2628,7 @@ namespace Dev2.Tests.Runtime.Hosting
             };
             var workflow = rc.GetResourceList(workspaceID, filterParams);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(0, workflow.Count);
+            Assert.AreEqual(0, workflow.Count);
 
         }
 
@@ -2664,7 +2659,7 @@ namespace Dev2.Tests.Runtime.Hosting
                 {"type",null }
             };
             var resourceList = rc.GetResourceList(workspaceID, filterParams);
-            NUnit.Framework.Assert.IsNotNull(resourceList);
+            Assert.IsNotNull(resourceList);
         }
 
         [Test]
@@ -2693,7 +2688,7 @@ namespace Dev2.Tests.Runtime.Hosting
             };
             var workflow = rc.GetResourceList(workspaceID, filterParams);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(0, workflow.Count);
+            Assert.AreEqual(0, workflow.Count);
 
         }
 
@@ -2705,16 +2700,16 @@ namespace Dev2.Tests.Runtime.Hosting
 
             var catalogPluginContainer = new ResourceCatalogPluginContainer(new Mock<IServerVersionRepository>().Object, new ConcurrentDictionary<Guid, List<IResource>>());
             //---------------Assert Precondition----------------
-            NUnit.Framework.Assert.IsNotNull(catalogPluginContainer);
+            Assert.IsNotNull(catalogPluginContainer);
             //---------------Execute Test ----------------------
             var rc = new ResourceCatalog(null, new Mock<IServerVersionRepository>().Object);
             catalogPluginContainer.Build(rc);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsNotNull(catalogPluginContainer.SaveProvider);
-            NUnit.Framework.Assert.IsNotNull(catalogPluginContainer.SyncProvider);
-            NUnit.Framework.Assert.IsNotNull(catalogPluginContainer.RenameProvider);
-            NUnit.Framework.Assert.IsNotNull(catalogPluginContainer.DeleteProvider);
-            NUnit.Framework.Assert.IsNotNull(catalogPluginContainer.LoadProvider);
+            Assert.IsNotNull(catalogPluginContainer.SaveProvider);
+            Assert.IsNotNull(catalogPluginContainer.SyncProvider);
+            Assert.IsNotNull(catalogPluginContainer.RenameProvider);
+            Assert.IsNotNull(catalogPluginContainer.DeleteProvider);
+            Assert.IsNotNull(catalogPluginContainer.LoadProvider);
         }
 
         [Test]
@@ -2725,16 +2720,16 @@ namespace Dev2.Tests.Runtime.Hosting
             IEnumerable<DynamicService> services = new List<DynamicService>();
             var catalogPluginContainer = new ResourceCatalogPluginContainer(new Mock<IServerVersionRepository>().Object, new ConcurrentDictionary<Guid, List<IResource>>(), services);
             //---------------Assert Precondition----------------
-            NUnit.Framework.Assert.IsNotNull(catalogPluginContainer);
+            Assert.IsNotNull(catalogPluginContainer);
             //---------------Execute Test ----------------------
             var rc = new ResourceCatalog(null, new Mock<IServerVersionRepository>().Object);
             catalogPluginContainer.Build(rc);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsNotNull(catalogPluginContainer.SaveProvider);
-            NUnit.Framework.Assert.IsNotNull(catalogPluginContainer.SyncProvider);
-            NUnit.Framework.Assert.IsNotNull(catalogPluginContainer.RenameProvider);
-            NUnit.Framework.Assert.IsNotNull(catalogPluginContainer.DeleteProvider);
-            NUnit.Framework.Assert.IsNotNull(catalogPluginContainer.LoadProvider);
+            Assert.IsNotNull(catalogPluginContainer.SaveProvider);
+            Assert.IsNotNull(catalogPluginContainer.SyncProvider);
+            Assert.IsNotNull(catalogPluginContainer.RenameProvider);
+            Assert.IsNotNull(catalogPluginContainer.DeleteProvider);
+            Assert.IsNotNull(catalogPluginContainer.LoadProvider);
         }
 
 
@@ -2748,8 +2743,8 @@ namespace Dev2.Tests.Runtime.Hosting
             //---------------Execute Test ----------------------
             rc.Dispose();
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual(0, rc.WorkspaceResources.Count);
-            NUnit.Framework.Assert.AreEqual(0, rc.WorkspaceLocks.Count);
+            Assert.AreEqual(0, rc.WorkspaceResources.Count);
+            Assert.AreEqual(0, rc.WorkspaceLocks.Count);
         }
 
         [Test]
@@ -2767,8 +2762,8 @@ namespace Dev2.Tests.Runtime.Hosting
             //---------------Execute Test ----------------------
             var stringBuilder = rc.ToPayload(mockResource.Object);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsTrue(stringBuilder.Contains(reservedservice));
-            NUnit.Framework.Assert.IsTrue(stringBuilder.Contains(s));
+            Assert.IsTrue(stringBuilder.Contains(reservedservice));
+            Assert.IsTrue(stringBuilder.Contains(s));
         }
 
         [Test]
@@ -2795,7 +2790,7 @@ namespace Dev2.Tests.Runtime.Hosting
             }
             catch (Exception e)
             {
-                NUnit.Framework.Assert.Fail(e.Message);
+                Assert.Fail(e.Message);
             }
             //---------------Test Result -----------------------
         }
@@ -2835,7 +2830,7 @@ namespace Dev2.Tests.Runtime.Hosting
             }
             catch (Exception e)
             {
-                NUnit.Framework.Assert.Fail(e.Message);
+                Assert.Fail(e.Message);
             }
             //---------------Test Result -----------------------
         }
@@ -2869,12 +2864,12 @@ namespace Dev2.Tests.Runtime.Hosting
             var resourceActivityCache = _parsers[GlobalConstants.ServerWorkspaceID];
             var actId = Guid.Parse("1736ca6e-b870-467f-8d25-262972d8c3e8");
             var actId2 = Guid.Parse("ec636256-5f11-40ab-a044-10e731d87555");
-            NUnit.Framework.Assert.IsTrue(resourceActivityCache.HasActivityInCache(actId));
-            NUnit.Framework.Assert.IsTrue(resourceActivityCache.HasActivityInCache(actId2));
+            Assert.IsTrue(resourceActivityCache.HasActivityInCache(actId));
+            Assert.IsTrue(resourceActivityCache.HasActivityInCache(actId2));
             var act1 = resourceActivityCache.GetActivity(actId);
             var act2 = resourceActivityCache.GetActivity(actId2);
-            NUnit.Framework.Assert.IsNotNull(act1);
-            NUnit.Framework.Assert.IsNotNull(act2);
+            Assert.IsNotNull(act1);
+            Assert.IsNotNull(act2);
         }
 
         [Test]
@@ -2905,7 +2900,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //---------------Execute Test ----------------------
             var act1 = rc.Parse(workspaceID, actId);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsNotNull(act1);
+            Assert.IsNotNull(act1);
         }
 
         [Test]
@@ -2938,8 +2933,8 @@ namespace Dev2.Tests.Runtime.Hosting
             var actId2 = Guid.Parse("ec636256-5f11-40ab-a044-10e731d87555");
             var ds1 = ServiceActionRepo.Instance.ReadCache(actId);
             var ds2 = ServiceActionRepo.Instance.ReadCache(actId2);
-            NUnit.Framework.Assert.IsNotNull(ds1);
-            NUnit.Framework.Assert.IsNotNull(ds2);
+            Assert.IsNotNull(ds1);
+            Assert.IsNotNull(ds2);
         }
 
         [Test]
@@ -2966,10 +2961,10 @@ namespace Dev2.Tests.Runtime.Hosting
             rc.LoadServerActivityCache();
             var actId = Guid.Parse("1736ca6e-b870-467f-8d25-262972d8c3e8");
             //---------------Assert Precondition----------------
-            NUnit.Framework.Assert.IsNotNull(ServiceActionRepo.Instance.ReadCache(actId));
+            Assert.IsNotNull(ServiceActionRepo.Instance.ReadCache(actId));
             //---------------Execute Test ----------------------
             rc.DeleteResource(workspaceID, actId, "WorkflowService");
-            NUnit.Framework.Assert.IsNull(ServiceActionRepo.Instance.ReadCache(actId));
+            Assert.IsNull(ServiceActionRepo.Instance.ReadCache(actId));
 
 
         }
@@ -3010,11 +3005,11 @@ namespace Dev2.Tests.Runtime.Hosting
             catalog.LoadWorkspaceViaBuilder(path, true, allFolders.ToArray());
             var duplicateResources = catalog.GetDuplicateResources();
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(duplicateResources.Count > 0);
+            Assert.IsTrue(duplicateResources.Count > 0);
             var duplicateResource = duplicateResources.Single();
-            NUnit.Framework.Assert.IsTrue(duplicateResource.ResourcePath.Count == 2);
-            NUnit.Framework.Assert.IsTrue(duplicateResource.ResourcePath[0].Contains(resourcePath));
-            NUnit.Framework.Assert.IsTrue(duplicateResource.ResourcePath[1].Contains(resourcePath1));
+            Assert.IsTrue(duplicateResource.ResourcePath.Count == 2);
+            Assert.IsTrue(duplicateResource.ResourcePath[0].Contains(resourcePath));
+            Assert.IsTrue(duplicateResource.ResourcePath[1].Contains(resourcePath1));
         }
 
         [Test]
@@ -3034,8 +3029,8 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = rc.GetResources(workspaceID);
             var oldResource = result.FirstOrDefault(resource => resource.ResourceName == resourceName);
             //------------Assert Precondition-----------------
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
-            NUnit.Framework.Assert.IsNotNull(oldResource);
+            Assert.AreEqual(2, result.Count);
+            Assert.IsNotNull(oldResource);
         }
 
         [Test]
@@ -3055,8 +3050,8 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = rc.GetResources(workspaceID);
             var oldResource = result.FirstOrDefault(resource => resource.ResourceName == resourceName);
             //------------Assert Precondition-----------------
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
-            NUnit.Framework.Assert.IsNotNull(oldResource);
+            Assert.AreEqual(2, result.Count);
+            Assert.IsNotNull(oldResource);
         }
 
         [Test]
@@ -3076,12 +3071,12 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = rc.GetResources(workspaceID);
             var oldResource = result.FirstOrDefault(resource => resource.ResourceName == resourceName);
             //------------Assert Precondition-----------------
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
-            NUnit.Framework.Assert.IsNotNull(oldResource);
+            Assert.AreEqual(2, result.Count);
+            Assert.IsNotNull(oldResource);
             var xElement = oldResource.ToXml();
 
             var containsOrgName = xElement.ToString(SaveOptions.DisableFormatting).Contains(resourceName);
-            NUnit.Framework.Assert.IsTrue(containsOrgName);
+            Assert.IsTrue(containsOrgName);
 
             //------------Execute Test---------------------------
             const string destinationPath = "SomeName";
@@ -3089,13 +3084,13 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Assert Results-------------------------
             result = rc.GetResources(workspaceID);
             var dupResource = result.FirstOrDefault(resource => resource.ResourceName == destinationPath);
-            NUnit.Framework.Assert.IsNotNull(dupResource);
+            Assert.IsNotNull(dupResource);
             var dupXelement = dupResource.ToXml();
             var newNamecontains = dupXelement.ToString(SaveOptions.DisableFormatting).Contains(destinationPath);
             containsOrgName = dupXelement.ToString(SaveOptions.DisableFormatting).Contains(resourceName);
-            NUnit.Framework.Assert.IsTrue(newNamecontains);
-            NUnit.Framework.Assert.IsNotNull(resourceCatalogResult);
-            NUnit.Framework.Assert.IsFalse(containsOrgName);
+            Assert.IsTrue(newNamecontains);
+            Assert.IsNotNull(resourceCatalogResult);
+            Assert.IsFalse(containsOrgName);
         }
 
 
@@ -3116,13 +3111,13 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = rc.GetResources(workspaceID);
             var oldResource = result.FirstOrDefault(resource => resource.ResourceName == resourceName);
             //------------Assert Precondition-----------------
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
-            NUnit.Framework.Assert.IsNotNull(oldResource);
+            Assert.AreEqual(2, result.Count);
+            Assert.IsNotNull(oldResource);
             //------------Execute Test---------------------------
             ResourceCatalogResult resourceCatalogResult = rc.DuplicateFolder(oldResource.GetResourcePath(GlobalConstants.ServerWorkspaceID), "Destination", "NewName", false);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(ExecStatus.Success, resourceCatalogResult.Status);
-            NUnit.Framework.Assert.AreEqual(@"Duplicated Successfully".Replace(Environment.NewLine, ""), resourceCatalogResult.Message.Replace(Environment.NewLine, ""));
+            Assert.AreEqual(ExecStatus.Success, resourceCatalogResult.Status);
+            Assert.AreEqual(@"Duplicated Successfully".Replace(Environment.NewLine, ""), resourceCatalogResult.Message.Replace(Environment.NewLine, ""));
         }
 
         [Test]
@@ -3142,8 +3137,8 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = rc.GetResources(workspaceID);
             var oldResource = result.FirstOrDefault(resource => resource.ResourceName == resourceName);
             //------------Assert Precondition-----------------
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
-            NUnit.Framework.Assert.IsNotNull(oldResource);
+            Assert.AreEqual(2, result.Count);
+            Assert.IsNotNull(oldResource);
 
         }
 
@@ -3162,12 +3157,12 @@ namespace Dev2.Tests.Runtime.Hosting
             var rc = new ResourceCatalog(null, new Mock<IServerVersionRepository>().Object);
             var resourceList = rc.GetResourceList(workspaceID);
             //------------Assert Precondition-----------------
-            NUnit.Framework.Assert.IsNotNull(resourceList);
+            Assert.IsNotNull(resourceList);
             //------------Execute Test---------------------------
             var count = resourceList.Count;
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(2, count);
+            Assert.AreEqual(2, count);
         }
 
         [Test]
@@ -3188,7 +3183,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(2, resourceList);
+            Assert.AreEqual(2, resourceList);
         }
 
 
@@ -3207,7 +3202,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var resourceList = rc.GetResource<PluginSource>(Guid.NewGuid(), Guid.NewGuid());
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsNull(resourceList);
+            Assert.IsNull(resourceList);
         }
 
         [Test]
@@ -3246,8 +3241,8 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = rc.GetResources(workspaceID);
             var oldResource = result.FirstOrDefault(resource => resource.ResourceName == resourceName);
             //------------Assert Precondition-----------------
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
-            NUnit.Framework.Assert.IsNotNull(oldResource);
+            Assert.AreEqual(2, result.Count);
+            Assert.IsNotNull(oldResource);
             //------------Execute Test---------------------------
 
             rc.DuplicateFolder("", oldResource.GetResourcePath(workspaceID), "Null", true);
@@ -3273,8 +3268,8 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Assert Precondition-----------------            
             //------------Execute Test--------------------------
             //------------Assert Results------------------------
-            NUnit.Framework.Assert.AreEqual(1, resourceCount);
-            NUnit.Framework.Assert.IsTrue(resource.FilePath.EndsWith(".bite"));
+            Assert.AreEqual(1, resourceCount);
+            Assert.IsTrue(resource.FilePath.EndsWith(".bite"));
         }
 
         [Test]
@@ -3314,9 +3309,9 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test--------------------------
             var result = privateObject.Invoke("CopyMissingResources", programDataIds, programFilesBuilders, mockDirectory.Object, fileHelper);
             //------------Assert Results------------------------
-            NUnit.Framework.Assert.IsNotNull(result);
+            Assert.IsNotNull(result);
             var hadMissing = (bool)result;
-            NUnit.Framework.Assert.IsFalse(hadMissing);
+            Assert.IsFalse(hadMissing);
 
 
             //------------Execute Test--------------------------
@@ -3329,9 +3324,9 @@ namespace Dev2.Tests.Runtime.Hosting
             result = privateObject.Invoke("CopyMissingResources", programDataIds, programFilesBuilders, mockDirectory.Object, fileHelper);
 
             //------------Assert Results------------------------
-            NUnit.Framework.Assert.IsNotNull(result);
+            Assert.IsNotNull(result);
             hadMissing = (bool)result;
-            NUnit.Framework.Assert.IsTrue(hadMissing);
+            Assert.IsTrue(hadMissing);
 
             fileHelperObject.Verify();
             mockDirectory.Verify();
@@ -3347,10 +3342,10 @@ namespace Dev2.Tests.Runtime.Hosting
             var xml = XmlResource.Fetch("fileThatsNotWarewolfResource");
             var results = privateObject.Invoke("IsWarewolfResource", xml);
             //------------Assert Precondition-----------------            
-            NUnit.Framework.Assert.IsNotNull(results);
+            Assert.IsNotNull(results);
             //------------Execute Test--------------------------
             //------------Assert Results------------------------
-            NUnit.Framework.Assert.IsFalse((bool)results);
+            Assert.IsFalse((bool)results);
         }
 
         [Test]
@@ -3370,7 +3365,7 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = rc.GetResources(workspaceID);
             //------------Assert Precondition-----------------
             var expectedFile = resourceSaved.First().FilePath;
-            NUnit.Framework.Assert.IsTrue(File.Exists(expectedFile));
+            Assert.IsTrue(File.Exists(expectedFile));
             File.Delete(expectedFile);
         }
 
@@ -3389,7 +3384,7 @@ namespace Dev2.Tests.Runtime.Hosting
             privateObject.Invoke("UpdateExtensions", filePathToUpdate);
             //------------Assert Precondition-----------------
             var expectedFile = Path.ChangeExtension(filePath, ".bite");
-            NUnit.Framework.Assert.IsTrue(File.Exists(expectedFile));
+            Assert.IsTrue(File.Exists(expectedFile));
             File.Delete(expectedFile);
         }
 
@@ -3409,13 +3404,13 @@ namespace Dev2.Tests.Runtime.Hosting
             File.SetAttributes(allFiles[0], FileAttributes.ReadOnly);
 
             var attributes = File.GetAttributes(allFiles[0]);
-            NUnit.Framework.Assert.AreEqual(FileAttributes.ReadOnly, attributes);
+            Assert.AreEqual(FileAttributes.ReadOnly, attributes);
 
             var rc = new ResourceCatalog(null, new Mock<IServerVersionRepository>().Object);
             rc.LoadWorkspaceViaBuilder(workspacePath, false, "Sources", "Services");
 
             attributes = File.GetAttributes(allFiles[0]);
-            NUnit.Framework.Assert.AreNotEqual(FileAttributes.ReadOnly, attributes);
+            Assert.AreNotEqual(FileAttributes.ReadOnly, attributes);
         }
 
         [Test]

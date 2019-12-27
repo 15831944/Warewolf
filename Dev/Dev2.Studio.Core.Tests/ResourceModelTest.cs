@@ -33,7 +33,6 @@ using Dev2.Studio.Interfaces.Enums;
 namespace Dev2.Core.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ResourceModelTest
     {
         void Setup()

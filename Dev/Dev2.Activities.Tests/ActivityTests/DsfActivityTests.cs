@@ -33,13 +33,11 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Dev2.Tests.Activities.ActivityTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfActivityTests : BaseActivityUnitTest
     { 
         [Test]
         [Author("Hagashen Naidu")]
         [Category("DsfActivity_BeforeExecutionStart")]
-        [NUnit.Framework.DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void DsfActivity_BeforeExecutionStart_NullResourceID_DoesNothing()
         {
             //------------Setup for test--------------------------
@@ -226,10 +224,10 @@ namespace Dev2.Tests.Activities.ActivityTests
             NUnit.Framework.Assert.AreEqual(environmentID, resultEnvironmentID);
             NUnit.Framework.Assert.IsFalse(isRemoteOverridden);
         }
+
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("DsfActivity_UpdateDebugParentID")]
-
         public void DsfActivity_UpdateDebugParentID_UniqueIdSameIfNestingLevelNotChanged()
 
         {

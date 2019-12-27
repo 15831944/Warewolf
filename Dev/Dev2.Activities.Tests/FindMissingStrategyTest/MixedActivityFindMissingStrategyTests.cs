@@ -23,7 +23,6 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
     /// Summary description for MixedActivityFindMissingStrategyTests
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     
     public class MixedActivityFindMissingStrategyTests
     {

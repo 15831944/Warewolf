@@ -76,7 +76,7 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
 
             //------------Assert Results-------------------------
             Assert.IsNotNull(qviViewModel);
-            Assert.IsInstanceOf(qviViewModel.GetType(), typeof(DependencyObject));
+            Assert.IsInstanceOf(typeof(DependencyObject), qviViewModel);
             Assert.AreEqual(string.Empty, qviViewModel.SplitToken);
             Assert.AreEqual(string.Empty, qviViewModel.VariableListString);
             Assert.AreEqual(string.Empty, qviViewModel.Prefix);
@@ -97,15 +97,15 @@ namespace Dev2.Activities.Designers.Tests.QuickVariableInput
             CollectionAssert.Contains(qviViewModel.SplitTypeList, QuickVariableInputViewModel.SplitTypeTab);
 
             Assert.IsNotNull(qviViewModel.ClearCommand);
-            Assert.IsInstanceOf(qviViewModel.ClearCommand.GetType(), typeof(DelegateCommand));
+            Assert.IsInstanceOf(typeof(DelegateCommand), qviViewModel.ClearCommand);
             Assert.IsTrue(qviViewModel.ClearCommand.CanExecute(null));
 
             Assert.IsNotNull(qviViewModel.AddCommand);
-            Assert.IsInstanceOf(qviViewModel.AddCommand.GetType(), typeof(RelayCommand));
+            Assert.IsInstanceOf(typeof(RelayCommand), qviViewModel.AddCommand);
             Assert.IsFalse(qviViewModel.AddCommand.CanExecute(null));
 
             Assert.IsNotNull(qviViewModel.PreviewViewModel);
-            Assert.IsInstanceOf(qviViewModel.PreviewViewModel.GetType(), typeof(PreviewViewModel));
+            Assert.IsInstanceOf(typeof(PreviewViewModel), qviViewModel.PreviewViewModel);
             Assert.AreEqual(Visibility.Collapsed, qviViewModel.PreviewViewModel.InputsVisibility);
         }
     }

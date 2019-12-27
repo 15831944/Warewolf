@@ -18,7 +18,6 @@ using System;
 namespace Dev2.Tests.Runtime
 {
     [TestFixture]
-    [SetUpFixture]
     public class ExchangeEmailSenderTests
     {
         [Test]
@@ -32,7 +31,7 @@ namespace Dev2.Tests.Runtime
             var exchangeEmailSender = new ExchangeEmailSender(mockExchange.Object);
             //---------------------------Act-------------------------------
             //---------------------------Assert----------------------------
-            NUnit.Framework.Assert.Throws<ServiceValidationException>(()=> exchangeEmailSender.Send(new ExchangeServiceFactory().Create(), new EmailMessage(new ExchangeServiceFactory().Create())));
+            Assert.Throws<ServiceValidationException>(()=> exchangeEmailSender.Send(new ExchangeServiceFactory().Create(), new EmailMessage(new ExchangeServiceFactory().Create())));
         }
 
         [Test]
@@ -48,7 +47,7 @@ namespace Dev2.Tests.Runtime
             var exchangeEmailSender = new ExchangeEmailSender(mockExchange.Object);
             //---------------------------Act-------------------------------
             //---------------------------Assert----------------------------
-            NUnit.Framework.Assert.Throws<UriFormatException>(()=> exchangeEmailSender.Send(new ExchangeServiceFactory().Create(), new EmailMessage(new ExchangeServiceFactory().Create())));
+            Assert.Throws<UriFormatException>(()=> exchangeEmailSender.Send(new ExchangeServiceFactory().Create(), new EmailMessage(new ExchangeServiceFactory().Create())));
         }
 
         [Test]
@@ -64,7 +63,7 @@ namespace Dev2.Tests.Runtime
             var exchangeEmailSender = new ExchangeEmailSender(mockExchange.Object);
             //---------------------------Act-------------------------------
             //---------------------------Assert----------------------------
-            NUnit.Framework.Assert.Throws<ServiceLocalException>(() => exchangeEmailSender.Send(new ExchangeServiceFactory().Create(), new EmailMessage(new ExchangeServiceFactory().Create())));
+            Assert.Throws<ServiceLocalException>(() => exchangeEmailSender.Send(new ExchangeServiceFactory().Create(), new EmailMessage(new ExchangeServiceFactory().Create())));
         }
 
         [Test]
@@ -79,7 +78,7 @@ namespace Dev2.Tests.Runtime
             var exchangeEmailSender = new ExchangeEmailSender(mockExchange.Object);
             //---------------------------Act-------------------------------
             //---------------------------Assert----------------------------
-            NUnit.Framework.Assert.Throws<FormatException>(()=> exchangeEmailSender.Send(new ExchangeServiceFactory().Create(), new EmailMessage(new ExchangeServiceFactory().Create())));
+            Assert.Throws<FormatException>(()=> exchangeEmailSender.Send(new ExchangeServiceFactory().Create(), new EmailMessage(new ExchangeServiceFactory().Create())));
         }
     }
 }

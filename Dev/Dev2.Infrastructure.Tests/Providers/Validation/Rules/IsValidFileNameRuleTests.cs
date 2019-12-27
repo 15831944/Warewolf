@@ -17,7 +17,6 @@ using NUnit.Framework;
 namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
 {
     [TestFixture]
-    [SetUpFixture]
     public class IsValidFileNameRuleTests
     {
         [Test]

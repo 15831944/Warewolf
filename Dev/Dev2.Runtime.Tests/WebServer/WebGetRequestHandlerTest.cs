@@ -26,7 +26,6 @@ using Moq;
 namespace Dev2.Tests.Runtime.WebServer
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime WebServer")]
     public class WebGetRequestHandlerTest
     {

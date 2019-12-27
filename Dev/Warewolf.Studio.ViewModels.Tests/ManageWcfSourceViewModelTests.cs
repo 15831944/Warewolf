@@ -14,7 +14,6 @@ using System.Xml.Linq;
 namespace Warewolf.Studio.ViewModels.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ManageWcfSourceViewModelTests
     {
         public const string Category = "Exchange Email";

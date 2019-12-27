@@ -28,7 +28,6 @@ using Newtonsoft.Json.Serialization;
 namespace Dev2.Tests.Runtime.Services
 {
     [TestFixture]
-    [SetUpFixture]
     public class SaveRedisSourceTests
     {
         [Test]

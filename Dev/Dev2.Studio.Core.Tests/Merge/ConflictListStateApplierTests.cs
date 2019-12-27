@@ -4,7 +4,6 @@ using NUnit.Framework;
 namespace Dev2.Core.Tests.Merge
 {
     [TestFixture]
-    [SetUpFixture]
     public class ConflictListStateApplierTests : MergeTestUtils
     {
         [Test]

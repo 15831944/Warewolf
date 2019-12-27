@@ -20,7 +20,6 @@ using Moq;
 namespace Dev2.Tests.Activities.Activities.DropBox2016
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfDropBoxBaseActivityTests
     {
         [Test]

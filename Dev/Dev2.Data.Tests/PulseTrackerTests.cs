@@ -4,7 +4,6 @@ using NUnit.Framework;
 namespace Dev2.Data
 {
     [TestFixture]
-    [SetUpFixture]
     public class PulseTrackerTests
     {
         [Test]

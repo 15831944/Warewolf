@@ -18,11 +18,13 @@ using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using System;
+using System.Threading;
 using Dev2.TO;
 
 namespace Dev2.Activities.Designers.Tests.CaseConvert
 {
     [TestFixture]
+    [Apartment(ApartmentState.STA)]
     public class CaseConvertDesignerViewModelTests
     {
         [Test]
@@ -54,7 +56,7 @@ namespace Dev2.Activities.Designers.Tests.CaseConvert
             var modelItem = ModelItemUtils.CreateModelItem(new DsfCaseConvertActivity());
             var viewModel = new CaseConvertDesignerViewModel(modelItem);
             dynamic mi = viewModel.ModelItem;
-            NUnit.Framework.Assert.AreEqual(2, mi.ConvertCollection.Count);
+            Assert.AreEqual(2, mi.ConvertCollection.Count);
         }
 
         [Test]
@@ -71,7 +73,7 @@ namespace Dev2.Activities.Designers.Tests.CaseConvert
             };
             var viewModel = new CaseConvertDesignerViewModel(CreateModelItem(items));
             dynamic mi = viewModel.ModelItem;
-            NUnit.Framework.Assert.AreEqual(4, mi.ConvertCollection.Count);
+            Assert.AreEqual(4, mi.ConvertCollection.Count);
         }
 
         [Test]
@@ -107,7 +109,7 @@ namespace Dev2.Activities.Designers.Tests.CaseConvert
         {
             var viewModel = new CaseConvertDesignerViewModel(CreateModelItem(null));
             dynamic mi = viewModel.ModelItem;
-            NUnit.Framework.Assert.AreEqual(2, mi.ConvertCollection.Count);
+            Assert.AreEqual(2, mi.ConvertCollection.Count);
         }
 
         [Test]

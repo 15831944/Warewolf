@@ -8,7 +8,6 @@ using System.Linq;
 namespace Dev2.Infrastructure.Tests.PerformanceCounters
 {
     [TestFixture]
-    [SetUpFixture]
     public class WarewolfServicesNotFoundCounterTests
     {
         const string CounterName = "Count of requests for workflows which don't exist";

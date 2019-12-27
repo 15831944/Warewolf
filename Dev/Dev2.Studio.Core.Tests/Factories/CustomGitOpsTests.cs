@@ -7,7 +7,6 @@ using System.Diagnostics;
 namespace Dev2.Core.Tests.Factories
 {
     [TestFixture]
-    [SetUpFixture]
     public class CustomGitOpsTests
     {
         [Test]

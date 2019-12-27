@@ -18,7 +18,6 @@ using System.Collections.Generic;
 namespace Dev2.Common.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class PluginActionTests
     {
         [Test]

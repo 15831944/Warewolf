@@ -15,7 +15,6 @@ namespace Dev2.Tests.Activities.ActivityTests
     /// Summary description for CalculateActivityTest
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class AggregateCalculateActivityTest : BaseActivityUnitTest
     {
         /// <summary>
@@ -211,7 +210,6 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.AreEqual(expected, actual);
         }
 
-        // Bug 8467 - Travis.Frisinger
         [Test]
         public void CalculateActivity_RecordsetWithStar_Expected_SumOf10()
         {

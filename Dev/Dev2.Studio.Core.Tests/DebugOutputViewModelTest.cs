@@ -37,7 +37,6 @@ namespace Dev2.Core.Tests
 {
     [ExcludeFromCodeCoverage]
     [TestFixture]
-    [SetUpFixture]
     
     public partial class DebugOutputViewModelTest
     {
@@ -670,9 +669,9 @@ namespace Dev2.Core.Tests
             vm.Append(state.Object);
 
             Assert.AreEqual(3, vm.RootItems.Count);
-            Assert.IsInstanceOf(vm.RootItems[0].GetType(), typeof(DebugStringTreeViewItemViewModel));
-            Assert.IsInstanceOf(vm.RootItems[1].GetType(), typeof(DebugStateTreeViewItemViewModel));
-            Assert.IsInstanceOf(vm.RootItems[2].GetType(), typeof(DebugStringTreeViewItemViewModel));
+            Assert.IsInstanceOf(typeof(DebugStringTreeViewItemViewModel), vm.RootItems[0]);
+            Assert.IsInstanceOf(typeof(DebugStateTreeViewItemViewModel), vm.RootItems[1]);
+            Assert.IsInstanceOf(typeof(DebugStringTreeViewItemViewModel), vm.RootItems[2]);
         }
 
         [Test]

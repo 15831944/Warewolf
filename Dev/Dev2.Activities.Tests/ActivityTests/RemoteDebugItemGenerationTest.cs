@@ -29,7 +29,6 @@ namespace Dev2.Tests.Activities.ActivityTests
     /// Summary description for RemoteDebugItemGenerationTest
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class RemoteDebugItemGenerationTest : BaseActivityUnitTest
     {
         /// <summary>

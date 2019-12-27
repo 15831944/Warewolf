@@ -19,7 +19,6 @@ using Warewolf.Storage.Interfaces;
 namespace Dev2.Tests.Activities.ActivityTests.Web
 {
     [TestFixture]
-    [SetUpFixture]
     public class WebResponseManagerTests
     {
         [Test]

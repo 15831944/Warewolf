@@ -15,7 +15,6 @@ using NUnit.Framework;
 namespace Dev2.Tests.Runtime.ResourceUpgraders
 {
     [TestFixture]
-    [SetUpFixture]
     public class BaseUpgradeConvertorTests
     {
         [Test]
@@ -29,7 +28,7 @@ namespace Dev2.Tests.Runtime.ResourceUpgraders
             var baseResourceUpgrader = new BaseResourceUpgrader();
 
             //------------Execute Test---------------------------
-            NUnit.Framework.Assert.AreEqual("<a>clr-namespace:Dev2.Common.Interfaces.Infrastructure.Providers.Errors;assembly=Dev2.Common.Interfaces</a>", baseResourceUpgrader.UpgradeFunc(XElement.Parse("<a>clr-namespace:Dev2.Providers.Errors;assembly=Dev2.Infrastructure</a>")).ToString());
+            Assert.AreEqual("<a>clr-namespace:Dev2.Common.Interfaces.Infrastructure.Providers.Errors;assembly=Dev2.Common.Interfaces</a>", baseResourceUpgrader.UpgradeFunc(XElement.Parse("<a>clr-namespace:Dev2.Providers.Errors;assembly=Dev2.Infrastructure</a>")).ToString());
             //------------Assert Results-------------------------
         }
 
@@ -43,7 +42,7 @@ namespace Dev2.Tests.Runtime.ResourceUpgraders
             var baseResourceUpgrader = new BaseResourceUpgrader();
 
             //------------Execute Test---------------------------
-            NUnit.Framework.Assert.AreEqual("<a>clr-namespace:Dev2.Common.Interfaces.Core.Convertors.Case;assembly=Dev2.Common.Interfaces</a>", baseResourceUpgrader.UpgradeFunc(XElement.Parse("<a>clr-namespace:Dev2.Interfaces;assembly=Dev2.Core</a>")).ToString());
+            Assert.AreEqual("<a>clr-namespace:Dev2.Common.Interfaces.Core.Convertors.Case;assembly=Dev2.Common.Interfaces</a>", baseResourceUpgrader.UpgradeFunc(XElement.Parse("<a>clr-namespace:Dev2.Interfaces;assembly=Dev2.Core</a>")).ToString());
             //------------Assert Results-------------------------
         }
 
@@ -57,7 +56,7 @@ namespace Dev2.Tests.Runtime.ResourceUpgraders
             var baseResourceUpgrader = new BaseResourceUpgrader();
 
             //------------Execute Test---------------------------
-            NUnit.Framework.Assert.AreEqual("<a>bob</a>", baseResourceUpgrader.UpgradeFunc(XElement.Parse("<a>bob</a>")).ToString());
+            Assert.AreEqual("<a>bob</a>", baseResourceUpgrader.UpgradeFunc(XElement.Parse("<a>bob</a>")).ToString());
             //------------Assert Results-------------------------
         }
 

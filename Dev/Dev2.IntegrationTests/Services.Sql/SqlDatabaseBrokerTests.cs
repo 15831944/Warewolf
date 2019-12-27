@@ -31,7 +31,6 @@ using Dev2.Infrastructure.Tests;
 namespace Dev2.Integration.Tests.Services.Sql
 {
     [TestFixture]
-    [SetUpFixture]
     public class SqlDatabaseBrokerTests
     {
         static Depends _containerOps;
@@ -58,7 +57,7 @@ namespace Dev2.Integration.Tests.Services.Sql
                 var dbSource = SqlServerTestUtils.CreateDev2TestingDbSource(AuthenticationType.Windows, Depends.SVRDEVIP);
                 var broker = new SqlDatabaseBroker();
                 var result = broker.GetServiceMethods(dbSource);
-                NUnit.Framework.Assert.AreEqual(true, result.Count > 0);
+                Assert.AreEqual(true, result.Count > 0);
             });
         }
         
@@ -73,13 +72,13 @@ namespace Dev2.Integration.Tests.Services.Sql
                 try
                 {
                     broker.GetServiceMethods(dbSource);
-                    NUnit.Framework.Assert.Fail();
+                    Assert.Fail();
                 }
                 catch(Exception ex)
                 {
-                    NUnit.Framework.Assert.IsNotNull(ex);
-                    NUnit.Framework.Assert.IsInstanceOf(ex.GetType(), typeof(SqlException));
-                    NUnit.Framework.Assert.AreEqual("Login failed for user 'DEV2\\NoDBAccessTest'.", ex.Message);
+                    Assert.IsNotNull(ex);
+                    Assert.IsInstanceOf(typeof(SqlException), ex);
+                    Assert.AreEqual("Login failed for user 'DEV2\\NoDBAccessTest'.", ex.Message);
                 }
             });
         }
@@ -104,7 +103,7 @@ namespace Dev2.Integration.Tests.Services.Sql
             var dbSource = SqlServerTestUtils.CreateDev2TestingDbSource();
             var broker = new SqlDatabaseBroker();
             var result = broker.GetServiceMethods(dbSource);
-            NUnit.Framework.Assert.AreEqual(true, result.Count > 0);
+            Assert.AreEqual(true, result.Count > 0);
         }
         
         [Test]
@@ -130,7 +129,7 @@ namespace Dev2.Integration.Tests.Services.Sql
                 };
                 var broker = new SqlDatabaseBroker();
                 var result = broker.TestService(serviceConn);
-                NUnit.Framework.Assert.AreEqual(OutputFormats.ShapedXML, result.Format);
+                Assert.AreEqual(OutputFormats.ShapedXML, result.Format);
             });
         }
         
@@ -167,9 +166,9 @@ namespace Dev2.Integration.Tests.Services.Sql
                     exception = ex;
                 }
 
-                NUnit.Framework.Assert.IsNotNull(exception);
-                NUnit.Framework.Assert.IsInstanceOf(exception.GetType(), typeof(SqlException));
-                NUnit.Framework.Assert.AreEqual("Login failed for user 'DEV2\\NoDBAccessTest'.", exception.Message);
+                Assert.IsNotNull(exception);
+                Assert.IsInstanceOf(typeof(SqlException), exception);
+                Assert.AreEqual("Login failed for user 'DEV2\\NoDBAccessTest'.", exception.Message);
             });
         }
 
@@ -221,7 +220,7 @@ namespace Dev2.Integration.Tests.Services.Sql
             };
             var broker = new SqlDatabaseBroker();
             var result = broker.TestService(serviceConn);
-            NUnit.Framework.Assert.AreEqual(OutputFormats.ShapedXML, result.Format);
+            Assert.AreEqual(OutputFormats.ShapedXML, result.Format);
         }
 
         [Test]
@@ -248,11 +247,11 @@ namespace Dev2.Integration.Tests.Services.Sql
 
             var broker = new SqlDatabaseBroker();
             var outputDescription = broker.TestService(service);
-            NUnit.Framework.Assert.AreEqual(1, outputDescription.DataSourceShapes.Count);
+            Assert.AreEqual(1, outputDescription.DataSourceShapes.Count);
             var dataSourceShape = outputDescription.DataSourceShapes[0];
-            NUnit.Framework.Assert.IsNotNull(dataSourceShape);
-            NUnit.Framework.Assert.AreEqual(3, dataSourceShape.Paths.Count);
-            NUnit.Framework.StringAssert.Contains(dataSourceShape.Paths[2].DisplayPath, "TestTextNull"); //This is the field that contains a null value. Previously this column would not have been returned.
+            Assert.IsNotNull(dataSourceShape);
+            Assert.AreEqual(3, dataSourceShape.Paths.Count);
+            StringAssert.Contains(dataSourceShape.Paths[2].DisplayPath, "TestTextNull"); //This is the field that contains a null value. Previously this column would not have been returned.
         }
 
         public static bool RunAs(string userName, string domain, Action action)

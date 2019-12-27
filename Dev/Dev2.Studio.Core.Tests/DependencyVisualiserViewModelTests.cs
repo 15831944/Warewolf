@@ -17,7 +17,6 @@ using Warewolf.Studio.ViewModels;
 namespace Dev2.Core.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class DependencyVisualiserViewModelTests
     {
         [Test]
@@ -33,7 +32,7 @@ namespace Dev2.Core.Tests
             var fieldInfo = typeof(DependencyVisualiserViewModel).GetField("_popupController", BindingFlags.Instance | BindingFlags.NonPublic);
             //---------------Test Result -----------------------
             Assert.IsNotNull(fieldInfo);
-            Assert.IsInstanceOf(fieldInfo.GetValue(dependencyVisualiserViewModel).GetType(), typeof(PopupController));
+            Assert.IsInstanceOf(typeof(PopupController), fieldInfo.GetValue(dependencyVisualiserViewModel));
             Assert.IsFalse(dependencyVisualiserViewModel.HasVariables);
             Assert.IsFalse(dependencyVisualiserViewModel.HasDebugOutput);
             Assert.IsFalse(dependencyVisualiserViewModel.TextVisibility);

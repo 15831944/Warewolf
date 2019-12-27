@@ -9,7 +9,6 @@ using Warewolf.Storage.Interfaces;
 namespace Dev2.Tests.Activities.ActivityTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfOracleDatabaseActivityTests
     {
         static DsfOracleDatabaseActivity CreateDsfOracleDatabaseActivity()

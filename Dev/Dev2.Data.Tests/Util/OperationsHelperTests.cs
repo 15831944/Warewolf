@@ -17,7 +17,6 @@ using System;
 namespace Dev2.Data.Tests.Util
 {
     [TestFixture]
-    [SetUpFixture]
     public class OperationsHelperTests
     {
         [Test]

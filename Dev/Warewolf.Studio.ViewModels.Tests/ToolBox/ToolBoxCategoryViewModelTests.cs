@@ -6,7 +6,6 @@ using Moq;
 namespace Warewolf.Studio.ViewModels.ToolBox.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ToolBoxCategoryViewModelTests
     {
         [Test]

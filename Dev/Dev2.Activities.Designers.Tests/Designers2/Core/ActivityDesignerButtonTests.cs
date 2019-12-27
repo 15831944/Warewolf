@@ -9,6 +9,7 @@
 */
 
 using System.Collections.Generic;
+using System.Threading;
 using System.Windows.Input;
 using Dev2.Activities.Designers2.Core;
 using Dev2.Common.Interfaces.Infrastructure.Providers.Errors;
@@ -21,7 +22,7 @@ using Moq;
 namespace Dev2.Activities.Designers.Tests.Designers2.Core
 {
     [TestFixture]
-    
+    [Apartment(ApartmentState.STA)]
     public class ActivityDesignerButtonTests
     {
         #region Tests

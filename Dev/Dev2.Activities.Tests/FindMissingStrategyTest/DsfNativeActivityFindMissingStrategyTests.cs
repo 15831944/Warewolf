@@ -25,7 +25,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Tests.Activities.FindMissingStrategyTest
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfNativeActivityFindMissingStrategyTests
     {
         [Test]

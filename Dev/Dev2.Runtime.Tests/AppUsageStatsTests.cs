@@ -6,7 +6,6 @@ using System.Configuration;
 namespace Dev2.Tests.Runtime
 {
     [TestFixture]
-    [SetUpFixture]
     public class AppUsageStatsTests
     {
         /// <summary>
@@ -17,7 +16,7 @@ namespace Dev2.Tests.Runtime
         [Category("RevulyticsCollectUsageStats")]
         public void RevulyticsCollectUsageStatsForServerIsFalseTest()
         {
-            NUnit.Framework.Assert.AreEqual(false, AppUsageStats.CollectUsageStats);
+            Assert.AreEqual(false, AppUsageStats.CollectUsageStats);
         }
 
         [Test]
@@ -32,7 +31,7 @@ namespace Dev2.Tests.Runtime
                 ConfigurationManager.AppSettings["CollectUsageStats"] = null;
                 GlobalConstants.CollectUsageStats = "True";
                 //test
-                NUnit.Framework.Assert.AreEqual(true, AppUsageStats.CollectUsageStats);
+                Assert.AreEqual(true, AppUsageStats.CollectUsageStats);
             }
             finally
             {

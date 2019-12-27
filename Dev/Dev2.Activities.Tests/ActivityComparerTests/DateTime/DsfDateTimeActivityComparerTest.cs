@@ -7,7 +7,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Tests.Activities.ActivityComparerTests.DateTime
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfDateTimeActivityComparerTest
     {
         [SetUp]

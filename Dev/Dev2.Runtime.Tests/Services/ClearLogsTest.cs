@@ -24,7 +24,6 @@ using Moq;
 namespace Dev2.Tests.Runtime.Services
 {
     [TestFixture]
-    [SetUpFixture]
     public class ClearLogsTest
     {
         static readonly Guid _workspaceID = Guid.Parse("34c0ce48-1f02-4a47-ad51-19ee3789ed4c");
@@ -35,9 +34,9 @@ namespace Dev2.Tests.Runtime.Services
         #region ClassInitialize
 
         [OneTimeSetUp]
-        public static void MyClassInitialize(TestContext context)
+        public static void MyClassInitialize()
         {
-            _testDir = Path.Combine(context.TestDirectory, "ClearLogs");
+            _testDir = Path.Combine(TestContext.CurrentContext.TestDirectory, "ClearLogs");
             Directory.CreateDirectory(_testDir);
         }
 

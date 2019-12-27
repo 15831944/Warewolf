@@ -23,7 +23,6 @@ namespace Warewolf.Storage.Tests
 {
     [ExcludeFromCodeCoverage]
     [TestFixture]
-    [SetUpFixture]
     public class ExecutionEnvironmentTest
     {
         [Test]

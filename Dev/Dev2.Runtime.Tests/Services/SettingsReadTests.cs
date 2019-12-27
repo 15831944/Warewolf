@@ -29,7 +29,6 @@ using Dev2.Infrastructure.Tests.Services.Security;
 namespace Dev2.Tests.Runtime.Services
 {
     [TestFixture]
-    [SetUpFixture]
     public class SettingsReadTests
     {
 

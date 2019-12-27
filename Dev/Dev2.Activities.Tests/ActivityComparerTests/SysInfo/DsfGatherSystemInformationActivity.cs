@@ -6,7 +6,6 @@ using System.Collections.Generic;
 namespace Dev2.Tests.Activities.ActivityComparerTests.SysInfo
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfGatherSystemInformationActivityComparerTest
     {
 #pragma warning disable S3776,S1541,S134,CC0075,S1066,S1067

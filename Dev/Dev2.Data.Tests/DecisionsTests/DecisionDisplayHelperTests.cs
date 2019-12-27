@@ -6,7 +6,6 @@ using Warewolf.Resource.Messages;
 namespace Dev2.Data.Tests.DecisionsTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class DecisionDisplayHelperTests
     {
         [Test]

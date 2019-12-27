@@ -19,7 +19,6 @@ using Dev2.Studio.Interfaces;
 namespace Dev2.Core.Tests.Diagnostics
 {
     [TestFixture]
-    [SetUpFixture]
     public class ExceptionFactoryTests
     {
         Mock<IServer> _contextModel;

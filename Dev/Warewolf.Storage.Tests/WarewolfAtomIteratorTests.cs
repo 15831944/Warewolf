@@ -15,7 +15,6 @@ using NUnit.Framework;
 namespace Warewolf.Storage.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class WarewolfAtomIteratorTests
     {
         [Test]

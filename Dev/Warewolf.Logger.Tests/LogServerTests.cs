@@ -19,7 +19,6 @@ using Warewolf.Logging;
 namespace Warewolf.Logger.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class LogServerTests
     {
 

@@ -24,7 +24,6 @@ using Dev2.Studio.AppResources.Comparers;
 namespace Dev2.Core.Tests.AppResources.Comparers
 {
     [TestFixture]
-    [SetUpFixture]
 	[Category("Studio Resources Core")]
     public class WorkSurfaceKeyEqualityComparerTests
     {

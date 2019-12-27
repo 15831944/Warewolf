@@ -87,7 +87,7 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.DropboxFiles
             Assert.IsFalse(dropBoxFileListViewModel.ShowLarge);
             Assert.AreEqual(dropBoxFileListViewModel.ThumbVisibility, Visibility.Collapsed);
             //------------Assert Results-------------------------
-            Assert.IsInstanceOf(dropBoxFileListViewModel.GetType(), typeof(ActivityDesignerViewModel));
+            Assert.IsInstanceOf(typeof(ActivityDesignerViewModel), dropBoxFileListViewModel);
         }
 
 
@@ -98,7 +98,7 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.DropboxFiles
             //---------------Set up test pack-------------------
             var dropBoxFileListViewModel = CreateMockViewModel();
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOf(dropBoxFileListViewModel.GetType(), typeof(ActivityDesignerViewModel));
+            Assert.IsInstanceOf(typeof(ActivityDesignerViewModel), dropBoxFileListViewModel);
             //---------------Execute Test ----------------------
             Assert.IsNotNull(dropBoxFileListViewModel.Sources);
             //---------------Test Result -----------------------

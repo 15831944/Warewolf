@@ -21,7 +21,6 @@ namespace Dev2.Tests.Runtime.CompileMessages
     /// Summary description for ServiceModelCompilerTest
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class ServiceModelCompilerTest
     {
 
@@ -38,12 +37,12 @@ namespace Dev2.Tests.Runtime.CompileMessages
 
             var msgs = smc.Compile(sID, ServerCompileMessageType.WorkflowMappingChangeRule, new StringBuilder(PreStr), new StringBuilder(PostStr));
 
-            NUnit.Framework.Assert.AreEqual(1, msgs.Count);
-            NUnit.Framework.Assert.AreEqual(CompileMessageType.MappingChange, msgs[0].MessageType);
+            Assert.AreEqual(1, msgs.Count);
+            Assert.AreEqual(CompileMessageType.MappingChange, msgs[0].MessageType);
             var expected = @"<Args><Input>[{""Name"":""a"",""MapsTo"":"""",""Value"":"""",""IsRecordSet"":false,""RecordSetName"":"""",""IsEvaluated"":false,""DefaultValue"":"""",""IsRequired"":false,""RawValue"":"""",""EmptyToNull"":false,""IsTextResponse"":false,""IsObject"":false,""IsJsonArray"":false},{""Name"":""b"",""MapsTo"":"""",""Value"":"""",""IsRecordSet"":false,""RecordSetName"":"""",""IsEvaluated"":false,""DefaultValue"":"""",""IsRequired"":false,""RawValue"":"""",""EmptyToNull"":false,""IsTextResponse"":false,""IsObject"":false,""IsJsonArray"":false}]</Input><Output>[{""Name"":""a"",""MapsTo"":"""",""Value"":"""",""IsRecordSet"":false,""RecordSetName"":"""",""IsEvaluated"":false,""DefaultValue"":"""",""IsRequired"":false,""RawValue"":"""",""EmptyToNull"":false,""IsTextResponse"":false,""IsObject"":false,""IsJsonArray"":false},{""Name"":""b"",""MapsTo"":"""",""Value"":"""",""IsRecordSet"":false,""RecordSetName"":"""",""IsEvaluated"":false,""DefaultValue"":"""",""IsRequired"":false,""RawValue"":"""",""EmptyToNull"":false,""IsTextResponse"":false,""IsObject"":false,""IsJsonArray"":false}]</Output></Args>";
             var actual = msgs[0].MessagePayload;
             FixBreaks(ref expected, ref actual);
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -59,12 +58,12 @@ namespace Dev2.Tests.Runtime.CompileMessages
 
             var msgs = smc.Compile(sID, ServerCompileMessageType.WorkflowMappingChangeRule, new StringBuilder(PreStr), new StringBuilder(PostStr));
 
-            NUnit.Framework.Assert.AreEqual(1, msgs.Count);
-            NUnit.Framework.Assert.AreEqual(CompileMessageType.MappingChange, msgs[0].MessageType);
+            Assert.AreEqual(1, msgs.Count);
+            Assert.AreEqual(CompileMessageType.MappingChange, msgs[0].MessageType);
             var expected = @"<Args><Input>[{""Name"":""A"",""MapsTo"":"""",""Value"":"""",""IsRecordSet"":false,""RecordSetName"":"""",""IsEvaluated"":false,""DefaultValue"":"""",""IsRequired"":false,""RawValue"":"""",""EmptyToNull"":false,""IsTextResponse"":false,""IsObject"":false,""IsJsonArray"":false}]</Input><Output>[{""Name"":""A"",""MapsTo"":"""",""Value"":"""",""IsRecordSet"":false,""RecordSetName"":"""",""IsEvaluated"":false,""DefaultValue"":"""",""IsRequired"":false,""RawValue"":"""",""EmptyToNull"":false,""IsTextResponse"":false,""IsObject"":false,""IsJsonArray"":false}]</Output></Args>";
             var actual = msgs[0].MessagePayload;
             FixBreaks(ref expected, ref actual);
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -80,12 +79,12 @@ namespace Dev2.Tests.Runtime.CompileMessages
 
             var msgs = smc.Compile(sID, ServerCompileMessageType.WorkflowMappingChangeRule, new StringBuilder(PreStr), new StringBuilder(PostStr));
 
-            NUnit.Framework.Assert.AreEqual(1, msgs.Count);
-            NUnit.Framework.Assert.AreEqual(CompileMessageType.MappingChange, msgs[0].MessageType);
+            Assert.AreEqual(1, msgs.Count);
+            Assert.AreEqual(CompileMessageType.MappingChange, msgs[0].MessageType);
             var expected = @"<Args><Input>[{""Name"":""a"",""MapsTo"":"""",""Value"":"""",""IsRecordSet"":false,""RecordSetName"":"""",""IsEvaluated"":false,""DefaultValue"":"""",""IsRequired"":false,""RawValue"":"""",""EmptyToNull"":false,""IsTextResponse"":false,""IsObject"":false,""IsJsonArray"":false},{""Name"":""b"",""MapsTo"":"""",""Value"":"""",""IsRecordSet"":false,""RecordSetName"":"""",""IsEvaluated"":false,""DefaultValue"":"""",""IsRequired"":false,""RawValue"":"""",""EmptyToNull"":false,""IsTextResponse"":false,""IsObject"":false,""IsJsonArray"":false}]</Input><Output>[]</Output></Args>";
             var actual = msgs[0].MessagePayload;
             FixBreaks(ref expected, ref actual);
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         void FixBreaks(ref string expected, ref string actual)

@@ -31,7 +31,6 @@ using Warewolf.Storage;
 namespace Dev2.Tests.Activities.Activities.WcfEndPoint
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfComDllActivityTests
     {
         [Test]

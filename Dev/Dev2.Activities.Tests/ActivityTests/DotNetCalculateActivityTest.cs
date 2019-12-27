@@ -27,7 +27,6 @@ namespace Dev2.Tests.Activities.ActivityTests
     /// Summary description for CalculateActivityTest
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class DotNetCalculateActivityTest : BaseActivityUnitTest
     {
         /// <summary>

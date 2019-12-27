@@ -15,7 +15,6 @@ using NUnit.Framework;
 namespace Dev2.Data.Tests.Builders
 {
     [TestFixture]
-    [SetUpFixture]
     
     public class RecordSetCollectionBuilderTest
     {

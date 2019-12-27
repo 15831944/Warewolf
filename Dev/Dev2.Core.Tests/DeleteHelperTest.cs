@@ -18,7 +18,6 @@ using Moq;
 namespace Dev2.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class DeleteHelperTest
     {
 

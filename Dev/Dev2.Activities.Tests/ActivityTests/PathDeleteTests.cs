@@ -23,7 +23,6 @@ namespace Dev2.Tests.Activities.ActivityTests
     /// Summary description for DateTimeDifferenceTests
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     
     public class PathDeleteTests : BaseActivityUnitTest
     {
@@ -41,7 +40,6 @@ namespace Dev2.Tests.Activities.ActivityTests
         [Test]
         [Author("Ashley Lewis")]
         [Category("DsfPathDelete_Execution")]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void DsfPathDelete_Execution_FileNotFound_DebugOutputErrorMessageRelevant()
         {
             var dsfPathDelete = new DsfPathDelete { InputPath = Environment.CurrentDirectory + "\\some file that doesnt exist.txt", Result = "[[res]]" };

@@ -11,7 +11,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.DropboxFiles
 {
     [TestFixture]
-    [SetUpFixture]
 
     public class DropboxFileReadTests
     {
@@ -103,7 +102,7 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.DropboxFiles
             //---------------Execute Test ----------------------
             var result = dropBoxFileRead.ExecuteTask(mockDropboxClient.Object);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsInstanceOf(result.GetType(), typeof(DropboxFailureResult), "Dropbox failure result not returned after exception");
+            NUnit.Framework.Assert.IsInstanceOf(typeof(DropboxFailureResult), result, "Dropbox failure result not returned after exception");
         }
     }
 }

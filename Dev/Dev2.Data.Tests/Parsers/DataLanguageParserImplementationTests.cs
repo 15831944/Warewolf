@@ -20,7 +20,6 @@ using System.Text;
 namespace Dev2.Data.Tests.Parsers
 {
     [TestFixture]
-    [SetUpFixture]
     public class DataLanguageParserImplementationTests
     {
         [Test]

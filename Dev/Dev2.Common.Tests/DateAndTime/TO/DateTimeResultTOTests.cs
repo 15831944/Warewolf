@@ -15,7 +15,6 @@ using System.Globalization;
 namespace Dev2.Common.Tests.DateAndTime.TO
 {
     [TestFixture]
-    [SetUpFixture]
     public class DateTimeResultTOTests
     {
         [Test]

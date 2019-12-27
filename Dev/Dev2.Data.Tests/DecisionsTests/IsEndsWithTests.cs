@@ -7,7 +7,6 @@ namespace Dev2.Data.Tests.DecisionsTests
     /// Summary description for IsEndsWithTests
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class IsEndsWithTests
     {
         [Test]

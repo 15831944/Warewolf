@@ -22,7 +22,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Core.Tests.Activities
 {
     [TestFixture]
-    [SetUpFixture]
     public class WorkflowPropertyInterigatorTest
     {
 

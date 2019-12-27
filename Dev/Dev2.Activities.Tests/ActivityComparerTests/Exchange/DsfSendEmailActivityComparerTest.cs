@@ -10,7 +10,6 @@ using Dev2.Runtime.ServiceModel.Data;
 namespace Dev2.Tests.Activities.ActivityComparerTests.Exchange
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfSendEmailActivityComparerTests
     {
         [Test]

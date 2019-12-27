@@ -14,7 +14,6 @@ using NUnit.Framework;
 namespace Dev2.Runtime.Configuration.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ExtensionMethodsTests
     {
         const string AttributeName = "say";
@@ -33,15 +32,15 @@ namespace Dev2.Runtime.Configuration.Tests
         public void AttributeSafeWithInvalidArgumentsReturnsEmptyString()
         {
             var result = ExtensionMethods.AttributeSafe(null, null);
-            NUnit.Framework.Assert.AreEqual(string.Empty, result);
+            Assert.AreEqual(string.Empty, result);
 
             var elem = CreateXml();
             result = elem.AttributeSafe(null);
-            NUnit.Framework.Assert.AreEqual(string.Empty, result);
+            Assert.AreEqual(string.Empty, result);
             result = elem.AttributeSafe(string.Empty);
-            NUnit.Framework.Assert.AreEqual(string.Empty, result);
+            Assert.AreEqual(string.Empty, result);
             result = elem.AttributeSafe("y");
-            NUnit.Framework.Assert.AreEqual(string.Empty, result);
+            Assert.AreEqual(string.Empty, result);
         }
 
         [Test]
@@ -49,7 +48,7 @@ namespace Dev2.Runtime.Configuration.Tests
         {
             var elem = CreateXml();
             var result = elem.AttributeSafe(AttributeName);
-            NUnit.Framework.Assert.AreEqual(AttributeValue, result);
+            Assert.AreEqual(AttributeValue, result);
         }
 
         #endregion

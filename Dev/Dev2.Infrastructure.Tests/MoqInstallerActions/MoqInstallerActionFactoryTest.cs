@@ -17,7 +17,6 @@ namespace Dev2.Infrastructure.Tests.MoqInstallerActions
     /// Summary description for MoqInstallerActionFactoryTest
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class MoqInstallerActionFactoryTest
     {
         

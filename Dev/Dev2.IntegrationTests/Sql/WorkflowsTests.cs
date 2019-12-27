@@ -18,7 +18,6 @@ using TestBase;
 namespace Dev2.Integration.Tests.Sql
 {
     [TestFixture]
-    [SetUpFixture]
     public class WorkflowsTests
     {
         [Test]
@@ -27,14 +26,14 @@ namespace Dev2.Integration.Tests.Sql
             try
             {
                 var reponseData = TestHelper.PostDataToWebserver(string.Format("{0}{1}", "http://localhost:3142/services/", "Acceptance Testing Resources/SampleEmployeesWorkflow?ResultType=Managers"));
-                NUnit.Framework.Assert.IsNotNull(reponseData);
+                Assert.IsNotNull(reponseData);
             }
             catch (WebException e)
             {
                 using (var stream = e.Response.GetResponseStream())
                 {
                     var responseData = new StreamReader(stream).ReadToEnd();
-                    NUnit.Framework.Assert.IsNotNull(responseData);
+                    Assert.IsNotNull(responseData);
                 }
             }
         }
@@ -48,7 +47,7 @@ namespace Dev2.Integration.Tests.Sql
                 var request = client.DownloadString("https://warewolf.userecho.com/api/v2/users.json?page=1&limit=1&access_token=vAAI14uAhYGFGzHMc8pxad2H2ktF7ykuh5vHREql");
                 var jToken = JToken.Parse(request);
                 var isObject = jToken.IsObject();
-                NUnit.Framework.Assert.IsTrue(isObject);
+                Assert.IsTrue(isObject);
             }
         }
     }

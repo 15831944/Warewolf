@@ -19,7 +19,6 @@ using System;
 namespace Dev2.Data.Tests.PathOperations
 {
     [TestFixture]
-    [SetUpFixture]
     public class DoGetFilesAsPerTypeOperationTests
     {
         [Test]

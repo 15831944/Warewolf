@@ -21,7 +21,6 @@ using Moq;
 namespace Dev2.Tests.Runtime.Services
 {
     [TestFixture]
-    [SetUpFixture]
     public class DirectDeployTest
     {
         [Test]
@@ -48,7 +47,7 @@ namespace Dev2.Tests.Runtime.Services
             var inputs = new Dictionary<string, StringBuilder>();
             var directDeploy = new DirectDeploy();
 
-            var sourceXml = Dev2.Tests.Runtime.XML.XmlResource.Fetch("WebSource");
+            var sourceXml = XML.XmlResource.Fetch("WebSource");
             inputs.Add("ResourceDefinition", sourceXml.ToStringBuilder());
             var checkResource = new Resource(sourceXml);
             

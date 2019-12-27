@@ -16,7 +16,6 @@ using Moq;
 namespace Dev2.Tests.Activities.ActivityTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class SqlBulkInserterTests
     {
         

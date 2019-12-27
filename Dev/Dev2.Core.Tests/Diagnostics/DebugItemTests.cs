@@ -18,7 +18,6 @@ using NUnit.Framework;
 namespace Dev2.Tests.Diagnostics
 {
     [TestFixture]
-    [SetUpFixture]
     public class DebugItemTests
     {
         const string LongText = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."

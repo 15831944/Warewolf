@@ -23,7 +23,6 @@ using Dev2.Common.Interfaces.Enums;
 namespace Dev2.Tests.Runtime.Security
 {
     [TestFixture]
-    [SetUpFixture]
     public class ServerAuthorizationServiceTests
     {
         
@@ -40,7 +39,7 @@ namespace Dev2.Tests.Runtime.Security
             var instance2 = ServerAuthorizationService.Instance;
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreSame(instance1, instance2);
+            Assert.AreSame(instance1, instance2);
         }
 
         [Test]
@@ -61,13 +60,13 @@ namespace Dev2.Tests.Runtime.Security
             request.Setup(r => r.QueryString[It.IsAny<string>()]).Returns(string.Empty);
 
             authorizationService.IsAuthorized(request.Object);
-            NUnit.Framework.Assert.AreEqual(1, authorizationService.CachedRequestCount);
+            Assert.AreEqual(1, authorizationService.CachedRequestCount);
 
             //------------Execute Test---------------------------
             securityService.Raise(m => m.PermissionsChanged += null, EventArgs.Empty);
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(0, authorizationService.CachedRequestCount);
+            Assert.AreEqual(0, authorizationService.CachedRequestCount);
         }
 
         [Test]
@@ -108,7 +107,7 @@ namespace Dev2.Tests.Runtime.Security
             request.Setup(r => r.RequestType).Returns(WebServerRequestType.HubConnect);
             request.Setup(r => r.QueryString[It.IsAny<string>()]).Returns(string.Empty);
 
-            NUnit.Framework.Assert.AreEqual(0, authorizationService.CachedRequestCount);
+            Assert.AreEqual(0, authorizationService.CachedRequestCount);
 
             //------------Execute Test---------------------------
             var result = authorizationService.IsAuthorized(request.Object);
@@ -118,8 +117,8 @@ namespace Dev2.Tests.Runtime.Security
 
             //------------Assert Results-------------------------
             securityService.VerifyGet(p => p.Permissions, Times.AtLeast(1));
-            NUnit.Framework.Assert.AreEqual(0, authorizationService.CachedRequestCount);
-            NUnit.Framework.Assert.IsTrue(result);
+            Assert.AreEqual(0, authorizationService.CachedRequestCount);
+            Assert.IsTrue(result);
         }
 
         [Test]
@@ -143,7 +142,7 @@ namespace Dev2.Tests.Runtime.Security
             request.Setup(r => r.RequestType).Returns(WebServerRequestType.EsbFetchExecutePayloadFragment);
             request.Setup(r => r.QueryString[It.IsAny<string>()]).Returns(string.Empty);
 
-            NUnit.Framework.Assert.AreEqual(0, authorizationService.CachedRequestCount);
+            Assert.AreEqual(0, authorizationService.CachedRequestCount);
 
             //------------Execute Test---------------------------
             var result = authorizationService.IsAuthorized(request.Object);
@@ -153,8 +152,8 @@ namespace Dev2.Tests.Runtime.Security
 
             //------------Assert Results-------------------------
             securityService.VerifyGet(p => p.Permissions, Times.AtLeast(1));
-            NUnit.Framework.Assert.AreEqual(0, authorizationService.CachedRequestCount);
-            NUnit.Framework.Assert.IsTrue(result);
+            Assert.AreEqual(0, authorizationService.CachedRequestCount);
+            Assert.IsTrue(result);
         }
 
         [Test]
@@ -175,15 +174,15 @@ namespace Dev2.Tests.Runtime.Security
             request.Setup(r => r.RequestType).Returns(WebServerRequestType.HubConnect);
             request.Setup(r => r.QueryString[It.IsAny<string>()]).Returns(string.Empty);
 
-            NUnit.Framework.Assert.AreEqual(0, authorizationService.CachedRequestCount);
+            Assert.AreEqual(0, authorizationService.CachedRequestCount);
 
             //------------Execute Test---------------------------
             var result = authorizationService.IsAuthorized(request.Object);
 
             //------------Assert Results-------------------------
             securityService.VerifyGet(p => p.Permissions, Times.AtLeast(1));
-            NUnit.Framework.Assert.AreEqual(0, authorizationService.CachedRequestCount);
-            NUnit.Framework.Assert.IsFalse(result);
+            Assert.AreEqual(0, authorizationService.CachedRequestCount);
+            Assert.IsFalse(result);
         }
 
         [Test]
@@ -207,7 +206,7 @@ namespace Dev2.Tests.Runtime.Security
             request.Setup(r => r.RequestType).Returns(WebServerRequestType.EsbWrite);
             request.Setup(r => r.QueryString[It.IsAny<string>()]).Returns(string.Empty);
 
-            NUnit.Framework.Assert.AreEqual(0, authorizationService.CachedRequestCount);
+            Assert.AreEqual(0, authorizationService.CachedRequestCount);
 
             //------------Execute Test---------------------------
             var result = authorizationService.IsAuthorized(request.Object);
@@ -217,8 +216,8 @@ namespace Dev2.Tests.Runtime.Security
 
             //------------Assert Results-------------------------
             securityService.VerifyGet(p => p.Permissions, Times.AtLeast(1));
-            NUnit.Framework.Assert.AreEqual(1, authorizationService.CachedRequestCount);
-            NUnit.Framework.Assert.IsFalse(result);
+            Assert.AreEqual(1, authorizationService.CachedRequestCount);
+            Assert.IsFalse(result);
         }
 
         [Test]
@@ -238,14 +237,14 @@ namespace Dev2.Tests.Runtime.Security
             request.Setup(r => r.RequestType).Returns(WebServerRequestType.WebGet);
             request.Setup(r => r.QueryString[It.IsAny<string>()]).Returns(string.Empty);
 
-            NUnit.Framework.Assert.AreEqual(0, authorizationService.CachedRequestCount);
+            Assert.AreEqual(0, authorizationService.CachedRequestCount);
 
             //------------Execute Test---------------------------
             authorizationService.IsAuthorized(request.Object);
 
             //------------Assert Results-------------------------
             securityService.VerifyGet(p => p.Permissions, Times.AtLeast(1));
-            NUnit.Framework.Assert.AreEqual(1, authorizationService.CachedRequestCount);
+            Assert.AreEqual(1, authorizationService.CachedRequestCount);
         }
 
         [Test]
@@ -267,14 +266,14 @@ namespace Dev2.Tests.Runtime.Security
 
             authorizationService.IsAuthorized(request.Object);
             securityService.VerifyGet(p => p.Permissions, Times.AtLeast(1));
-            NUnit.Framework.Assert.AreEqual(1, authorizationService.CachedRequestCount);
+            Assert.AreEqual(1, authorizationService.CachedRequestCount);
 
             //------------Execute Test---------------------------
             authorizationService.IsAuthorized(request.Object);
 
             //------------Assert Results-------------------------
             securityService.VerifyGet(p => p.Permissions, Times.AtLeast(1));
-            NUnit.Framework.Assert.AreEqual(1, authorizationService.CachedRequestCount);
+            Assert.AreEqual(1, authorizationService.CachedRequestCount);
         }
 
         [Test]
@@ -296,13 +295,13 @@ namespace Dev2.Tests.Runtime.Security
             authorizationService.IsAuthorized(request.Object);
             //-------------Assert Preconditions-------------------
             securityService.VerifyGet(p => p.Permissions, Times.AtLeast(1));
-            NUnit.Framework.Assert.AreEqual(1, authorizationService.CachedRequestCount);
+            Assert.AreEqual(1, authorizationService.CachedRequestCount);
             //------------Execute Test---------------------------
             Thread.Sleep(1200);
             authorizationService.IsAuthorized(request.Object);
             //------------Assert Results-------------------------
             securityService.VerifyGet(p => p.Permissions, Times.AtLeast(1));
-            NUnit.Framework.Assert.AreEqual(1, authorizationService.CachedRequestCount);
+            Assert.AreEqual(1, authorizationService.CachedRequestCount);
         }
 
         [Test]
@@ -324,12 +323,12 @@ namespace Dev2.Tests.Runtime.Security
             authorizationService.IsAuthorized(request.Object);
             //-------------Assert Preconditions-------------------
             securityService.VerifyGet(p => p.Permissions, Times.AtLeast(1));
-            NUnit.Framework.Assert.AreEqual(1, authorizationService.CachedRequestCount);
+            Assert.AreEqual(1, authorizationService.CachedRequestCount);
             //------------Execute Test---------------------------
             authorizationService.IsAuthorized(request.Object);
             //------------Assert Results-------------------------
             securityService.VerifyGet(p => p.Permissions, Times.AtLeast(1));
-            NUnit.Framework.Assert.AreEqual(1, authorizationService.CachedRequestCount);
+            Assert.AreEqual(1, authorizationService.CachedRequestCount);
         }
 
         [Test]
@@ -510,7 +509,7 @@ namespace Dev2.Tests.Runtime.Security
             var authorized = authorizationService.IsAuthorized(authorizationRequest);
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(expected, authorized, string.Format("\nUserIsInRole: {0}\nAllowed: {1}\nConfig: {2}\nIsServer: {3}\nURL: {4}",
+            Assert.AreEqual(expected, authorized, string.Format("\nUserIsInRole: {0}\nAllowed: {1}\nConfig: {2}\nIsServer: {3}\nURL: {4}",
                 authorizationRequest.UserIsInRole, allowedPermissions, configPermissions.Permissions, configPermissions.IsServer, authorizationRequest.Url));
         }
 

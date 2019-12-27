@@ -16,7 +16,6 @@ using Moq;
 namespace Dev2.Core.Tests.DataList
 {
     [TestFixture]
-    [SetUpFixture]
 	[Category("Studio Datalist Core")]
     public class InputOutputViewModelEqualityComparerTest
     {

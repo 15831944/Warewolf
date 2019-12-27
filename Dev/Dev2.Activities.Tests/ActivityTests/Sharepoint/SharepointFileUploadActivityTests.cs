@@ -16,7 +16,6 @@ using static Dev2.Tests.Activities.ActivityTests.Sharepoint.SharepointCopyFileAc
 namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
 {
     [TestFixture]
-    [SetUpFixture]
     public class SharepointFileUploadActivityTests : BaseActivityUnitTest
     {
         SharepointFileUploadActivity CreateActivity()

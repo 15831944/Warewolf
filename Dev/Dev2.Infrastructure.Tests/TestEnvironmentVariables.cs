@@ -21,7 +21,6 @@ using System.Text;
 namespace Dev2.Infrastructure.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class TestEnvironmentVariables
     {
         [Test]

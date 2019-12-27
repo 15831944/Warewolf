@@ -29,7 +29,6 @@ using Warewolf.Storage.Interfaces;
 namespace Dev2.Tests.Runtime.ESB.Control
 {
     [TestFixture]
-    [SetUpFixture]
     public class EsbServiceInvokerTests
     {
         [OneTimeSetUp]
@@ -56,7 +55,7 @@ namespace Dev2.Tests.Runtime.ESB.Control
             //---------------Execute Test ----------------------
             var invoker = new EsbServiceInvoker(channel.Object, workSpace.Object);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsNotNull(invoker, "Cannot create new EsbServiceInvoker object.");
+            Assert.IsNotNull(invoker, "Cannot create new EsbServiceInvoker object.");
         }
 
         [Test]
@@ -113,11 +112,11 @@ namespace Dev2.Tests.Runtime.ESB.Control
             var obj = new Mock<IDSFDataObject>();
             var invoker = new EsbServiceInvoker(channel.Object, workSpace.Object);
             //---------------Assert Precondition----------------
-            NUnit.Framework.Assert.IsNotNull(invoker);
+            Assert.IsNotNull(invoker);
             //---------------Execute Test ----------------------
             var executionContainer = invoker.GenerateInvokeContainer(obj.Object, Guid.NewGuid(), false);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsNotNull(executionContainer);
+            Assert.IsNotNull(executionContainer);
         }
 
         [Test]
@@ -139,11 +138,11 @@ namespace Dev2.Tests.Runtime.ESB.Control
             var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(invoker);
             privateObject.SetField("_serviceLocator", locater.Object);
             //---------------Assert Precondition----------------
-            NUnit.Framework.Assert.IsNotNull(invoker);
+            Assert.IsNotNull(invoker);
             //---------------Execute Test ----------------------
             var executionContainer = invoker.GenerateInvokeContainer(obj.Object, Guid.NewGuid(), true);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsNull(executionContainer);
+            Assert.IsNull(executionContainer);
         }
 
         [Test]
@@ -182,12 +181,12 @@ namespace Dev2.Tests.Runtime.ESB.Control
             var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(invoker);
             privateObject.SetField("_serviceLocator", locater.Object);
             //---------------Assert Precondition----------------
-            NUnit.Framework.Assert.IsNotNull(invoker);
+            Assert.IsNotNull(invoker);
             //---------------Execute Test ----------------------
             var executionContainer = invoker.GenerateInvokeContainer(obj.Object, serviceId, true);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsNotNull(executionContainer);
-            NUnit.Framework.Assert.IsInstanceOf(executionContainer.GetType(), typeof(PerfmonExecutionContainer));
+            Assert.IsNotNull(executionContainer);
+            Assert.IsInstanceOf(typeof(PerfmonExecutionContainer), executionContainer);
             locater.VerifyAll();
         }
 
@@ -228,12 +227,12 @@ namespace Dev2.Tests.Runtime.ESB.Control
             var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(invoker);
             privateObject.SetField("_serviceLocator", locater.Object);
             //---------------Assert Precondition----------------
-            NUnit.Framework.Assert.IsNotNull(invoker);
+            Assert.IsNotNull(invoker);
             //---------------Execute Test ----------------------
             var executionContainer = invoker.GenerateInvokeContainer(obj.Object, serviceId, true);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsNotNull(executionContainer);
-            NUnit.Framework.Assert.IsInstanceOf(executionContainer.GetType(), typeof(ServiceTestExecutionContainer));
+            Assert.IsNotNull(executionContainer);
+            Assert.IsInstanceOf(typeof(ServiceTestExecutionContainer), executionContainer);
             locater.VerifyAll();
         }
 
@@ -272,14 +271,14 @@ namespace Dev2.Tests.Runtime.ESB.Control
             privateObject.SetField("_serviceLocator", locater.Object);
             privateObject.SetField("_cache", _cache);
             //---------------Assert Precondition----------------
-            NUnit.Framework.Assert.IsNotNull(invoker);
+            Assert.IsNotNull(invoker);
             //---------------Execute Test ----------------------
             var executionContainer = invoker.GenerateInvokeContainer(obj.Object, newGuid, true);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsNotNull(executionContainer);
+            Assert.IsNotNull(executionContainer);
             obj.VerifyGet(o => o.ResourceID);
             var condition = executionContainer is InternalServiceContainer;
-            NUnit.Framework.Assert.IsTrue(condition);
+            Assert.IsTrue(condition);
         }
 
         [Test]
@@ -317,21 +316,21 @@ namespace Dev2.Tests.Runtime.ESB.Control
             privateObject.SetField("_serviceLocator", locater.Object);
             privateObject.SetField("_cache", _cache);
             //---------------Assert Precondition----------------
-            NUnit.Framework.Assert.IsNotNull(invoker);
+            Assert.IsNotNull(invoker);
             //---------------Execute Test ----------------------
             try
             {
                 var executionContainer = invoker.GenerateInvokeContainer(obj.Object, newGuid, true);
                 //---------------Test Result -----------------------
-                NUnit.Framework.Assert.IsNotNull(executionContainer);
+                Assert.IsNotNull(executionContainer);
                 obj.VerifyGet(o => o.ResourceID);
                 var condition = executionContainer is PerfmonExecutionContainer;
-                NUnit.Framework.Assert.IsTrue(condition);
+                Assert.IsTrue(condition);
             }
             catch (Exception e)
             {
                 //Expected break for Web services, 
-                NUnit.Framework.Assert.AreEqual("Root element is missing.", e.Message);
+                Assert.AreEqual("Root element is missing.", e.Message);
             }
         }
 
@@ -376,23 +375,23 @@ namespace Dev2.Tests.Runtime.ESB.Control
             privateObject.SetField("_serviceLocator", locater.Object);
             privateObject.SetField("_cache", _cache);
             //---------------Assert Precondition----------------
-            NUnit.Framework.Assert.IsNotNull(invoker);
+            Assert.IsNotNull(invoker);
             //---------------Execute Test ----------------------
             try
             {
                 var executionContainer = invoker.GenerateInvokeContainer(obj.Object, "Name", true, serviceId);
                 //---------------Test Result -----------------------
-                NUnit.Framework.Assert.IsNotNull(executionContainer);
+                Assert.IsNotNull(executionContainer);
                 obj.VerifyGet(o => o.ResourceID);
                 var condition = executionContainer is InternalServiceContainer;
-                NUnit.Framework.Assert.AreEqual(1, _cache.Count);
-                NUnit.Framework.Assert.IsTrue(condition);
+                Assert.AreEqual(1, _cache.Count);
+                Assert.IsTrue(condition);
                 locater.VerifyAll();
             }
             catch (Exception e)
             {
                 //Expected break for Web services, 
-                NUnit.Framework.Assert.AreEqual("Root element is missing.", e.Message);
+                Assert.AreEqual("Root element is missing.", e.Message);
             }
         }
 
@@ -420,14 +419,14 @@ namespace Dev2.Tests.Runtime.ESB.Control
             var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(invoker);
             privateObject.SetField("_serviceLocator", locater.Object);
             //---------------Assert Precondition----------------
-            NUnit.Framework.Assert.IsNotNull(invoker);
+            Assert.IsNotNull(invoker);
             //---------------Execute Test ----------------------
 
             var executionContainer = invoker.GenerateInvokeContainer(obj.Object, "Name", false, serviceId);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsNotNull(executionContainer);
+            Assert.IsNotNull(executionContainer);
             var isRemoteWorkFlowExecution = executionContainer is RemoteWorkflowExecutionContainer;
-            NUnit.Framework.Assert.IsTrue(isRemoteWorkFlowExecution);
+            Assert.IsTrue(isRemoteWorkFlowExecution);
 
         }
 
@@ -454,13 +453,13 @@ namespace Dev2.Tests.Runtime.ESB.Control
             var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(invoker);
             privateObject.SetField("_serviceLocator", locater.Object);
             //---------------Assert Precondition----------------
-            NUnit.Framework.Assert.IsNotNull(invoker);
+            Assert.IsNotNull(invoker);
             //---------------Execute Test ----------------------
             invoker.Invoke(obj.Object, out ErrorResultTO errorResultTO);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsNotNull(errorResultTO);
-            NUnit.Framework.Assert.AreEqual(1, errorResultTO.FetchErrors().Count);
-            NUnit.Framework.Assert.AreEqual(Resources.DynamicServiceError_ServiceNotSpecified, errorResultTO.FetchErrors().Single());
+            Assert.IsNotNull(errorResultTO);
+            Assert.AreEqual(1, errorResultTO.FetchErrors().Count);
+            Assert.AreEqual(Resources.DynamicServiceError_ServiceNotSpecified, errorResultTO.FetchErrors().Single());
 
         }
 
@@ -489,12 +488,12 @@ namespace Dev2.Tests.Runtime.ESB.Control
             var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(invoker);
             privateObject.SetField("_serviceLocator", locater.Object);
             //---------------Assert Precondition----------------
-            NUnit.Framework.Assert.IsNotNull(invoker);
+            Assert.IsNotNull(invoker);
             //---------------Execute Test ----------------------
             invoker.Invoke(obj.Object, out ErrorResultTO errorResultTO);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsNotNull(errorResultTO);
-            NUnit.Framework.Assert.AreEqual(0, errorResultTO.FetchErrors().Count);
+            Assert.IsNotNull(errorResultTO);
+            Assert.AreEqual(0, errorResultTO.FetchErrors().Count);
             locater.VerifyAll();
 
         }
@@ -527,17 +526,17 @@ namespace Dev2.Tests.Runtime.ESB.Control
             var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(invoker);
             privateObject.SetField("_serviceLocator", locater.Object);
             //---------------Assert Precondition----------------
-            NUnit.Framework.Assert.IsNotNull(invoker);
+            Assert.IsNotNull(invoker);
             //---------------Execute Test ----------------------
             invoker.Invoke(obj.Object, out ErrorResultTO errorResultTO);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsNotNull(errorResultTO);
-            NUnit.Framework.Assert.AreEqual(1, errorResultTO.FetchErrors().Count);
-            NUnit.Framework.StringAssert.Contains(errorResultTO.FetchErrors().Single(), ErrorResource.ServiceNotFound);
+            Assert.IsNotNull(errorResultTO);
+            Assert.AreEqual(1, errorResultTO.FetchErrors().Count);
+            StringAssert.Contains(errorResultTO.FetchErrors().Single(), ErrorResource.ServiceNotFound);
             locater.VerifyAll();
             
-            var toTypes = typeof(Dev2.Data.ServiceTestModelTO);
-            var common = typeof(Dev2.Common.Interfaces.TestRunResult);
+            var toTypes = typeof(ServiceTestModelTO);
+            var common = typeof(TestRunResult);
             var enumerable = toTypes.Assembly.ExportedTypes.Where(type => !type.IsInterface);
             var types = enumerable as Type[] ?? enumerable.ToArray();
             var allTypes = types.Union(common.Assembly.ExportedTypes.Where(type => !type.IsInterface));
@@ -545,12 +544,12 @@ namespace Dev2.Tests.Runtime.ESB.Control
             {
                 KnownTypes = allTypes.ToList()
             });
-            NUnit.Framework.Assert.AreEqual(false, serviceTestModelTO.TestPassed);
-            NUnit.Framework.Assert.AreEqual(true, serviceTestModelTO.TestInvalid);
-            NUnit.Framework.Assert.AreEqual("Resource has been deleted", serviceTestModelTO.FailureMessage);
-            NUnit.Framework.Assert.IsTrue(serviceTestModelTO.Result.RunTestResult == RunResult.TestResourceDeleted);
-            NUnit.Framework.Assert.AreEqual("Resource has been deleted", serviceTestModelTO.Result.Message);
-            NUnit.Framework.Assert.AreEqual(0, serviceTestModelTO.Result.DebugForTest.Count);
+            Assert.AreEqual(false, serviceTestModelTO.TestPassed);
+            Assert.AreEqual(true, serviceTestModelTO.TestInvalid);
+            Assert.AreEqual("Resource has been deleted", serviceTestModelTO.FailureMessage);
+            Assert.IsTrue(serviceTestModelTO.Result.RunTestResult == RunResult.TestResourceDeleted);
+            Assert.AreEqual("Resource has been deleted", serviceTestModelTO.Result.Message);
+            Assert.AreEqual(0, serviceTestModelTO.Result.DebugForTest.Count);
         }
 
         [Test]
@@ -592,11 +591,11 @@ namespace Dev2.Tests.Runtime.ESB.Control
             var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(invoker);
             privateObject.SetField("_serviceLocator", locater.Object);
             //---------------Assert Precondition----------------
-            NUnit.Framework.Assert.IsNotNull(invoker);
+            Assert.IsNotNull(invoker);
             //---------------Execute Test ----------------------
             invoker.Invoke(obj.Object, out ErrorResultTO errorResultTO);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual(enActionType.Workflow, serviceAction.ActionType);
+            Assert.AreEqual(enActionType.Workflow, serviceAction.ActionType);
         }
 
         [Test]
@@ -638,14 +637,14 @@ namespace Dev2.Tests.Runtime.ESB.Control
             var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(invoker);
             privateObject.SetField("_serviceLocator", locater.Object);
             //---------------Assert Precondition----------------
-            NUnit.Framework.Assert.IsNotNull(invoker);
+            Assert.IsNotNull(invoker);
             //---------------Execute Test ----------------------
 
             invoker.Invoke(obj.Object, out ErrorResultTO errorResultTO);
 
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual(1, errorResultTO.FetchErrors().Count);
-            NUnit.Framework.Assert.AreEqual(ErrorResource.CanOnlyExecuteWorkflowsFromWebBrowser, errorResultTO.FetchErrors().Single());
+            Assert.AreEqual(1, errorResultTO.FetchErrors().Count);
+            Assert.AreEqual(ErrorResource.CanOnlyExecuteWorkflowsFromWebBrowser, errorResultTO.FetchErrors().Single());
         }
 
         [Test]
@@ -687,14 +686,14 @@ namespace Dev2.Tests.Runtime.ESB.Control
             var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(invoker);
             privateObject.SetField("_serviceLocator", locater.Object);
             //---------------Assert Precondition----------------
-            NUnit.Framework.Assert.IsNotNull(invoker);
+            Assert.IsNotNull(invoker);
             //---------------Execute Test ----------------------
 
             invoker.Invoke(obj.Object, out ErrorResultTO errorResultTO);
 
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual(1, errorResultTO.FetchErrors().Count);
-            NUnit.Framework.Assert.AreEqual(string.Format(ErrorResource.MalformedService, Guid.Empty), errorResultTO.FetchErrors().Single());
+            Assert.AreEqual(1, errorResultTO.FetchErrors().Count);
+            Assert.AreEqual(string.Format(ErrorResource.MalformedService, Guid.Empty), errorResultTO.FetchErrors().Single());
         }
 
         [Test]
@@ -757,21 +756,21 @@ namespace Dev2.Tests.Runtime.ESB.Control
             privateObject.SetField("_serviceLocator", locater.Object);
             privateObject.SetField("_cache", _cache);
             //---------------Assert Precondition----------------
-            NUnit.Framework.Assert.IsNotNull(invoker);
+            Assert.IsNotNull(invoker);
             //---------------Execute Test ----------------------
             try
             {
                 var executionContainer = invoker.GenerateInvokeContainer(obj.Object, "Name", true, serviceId);
                 //---------------Test Result -----------------------
-                NUnit.Framework.Assert.IsNotNull(executionContainer);
+                Assert.IsNotNull(executionContainer);
                 obj.VerifyGet(o => o.ResourceID);
                 var condition = executionContainer is InternalServiceContainer;
-                NUnit.Framework.Assert.IsTrue(condition);
+                Assert.IsTrue(condition);
             }
             catch (Exception e)
             {
                 //Expected break for Web services, 
-                NUnit.Framework.Assert.AreEqual("Root element is missing.", e.Message);
+                Assert.AreEqual("Root element is missing.", e.Message);
             }
         }
 
@@ -819,7 +818,7 @@ namespace Dev2.Tests.Runtime.ESB.Control
             }
             catch (Exception e)
             {
-                NUnit.Framework.Assert.AreEqual("error", e.Message);
+                Assert.AreEqual("error", e.Message);
             }
             //---------------Test Result -----------------------
 
@@ -866,12 +865,12 @@ namespace Dev2.Tests.Runtime.ESB.Control
             try
             {
                 var dynamicService = privateObject.Invoke("GetService", string.Empty, Guid.Empty) as DynamicService;
-                NUnit.Framework.Assert.IsNotNull(dynamicService);
+                Assert.IsNotNull(dynamicService);
                 locater.Verify(l => l.FindService(It.IsAny<string>(), It.IsAny<Guid>()), Times.Once);
             }
             catch (Exception e)
             {
-                NUnit.Framework.Assert.AreEqual("error", e.Message);
+                Assert.AreEqual("error", e.Message);
             }
             //---------------Test Result -----------------------
 
@@ -916,12 +915,12 @@ namespace Dev2.Tests.Runtime.ESB.Control
             try
             {
                 var dynamicService = privateObject.Invoke("GetService", string.Empty, newGuid) as DynamicService;
-                NUnit.Framework.Assert.IsNotNull(dynamicService);
+                Assert.IsNotNull(dynamicService);
                 locater.Verify(l => l.FindService(It.IsAny<Guid>(), It.IsAny<Guid>()), Times.Once);
             }
             catch (Exception e)
             {
-                NUnit.Framework.Assert.AreEqual("error", e.Message);
+                Assert.AreEqual("error", e.Message);
             }
             //---------------Test Result -----------------------
         }

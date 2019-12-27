@@ -17,7 +17,6 @@ using NUnit.Framework;
 namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfWebGetWithTimeoutActivityComparerTests
     {
         [Test]

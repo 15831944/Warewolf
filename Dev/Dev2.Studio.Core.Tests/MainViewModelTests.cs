@@ -66,7 +66,6 @@ using Dev2.Triggers;
 namespace Dev2.Core.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class MainViewModelTests : MainViewModelBase
     {
         [SetUp]
@@ -2000,8 +1999,6 @@ namespace Dev2.Core.Tests
         [Test]
         [Author("Pieter Terblanche")]
         [Category("MainViewModel_EditSqlServerSource")]
-        [DeploymentItem("Warewolf.Studio.Themes.Luna.dll")]
-        [DeploymentItem("InfragisticsWPF4.DataPresenter.v15.1.dll")]
         public void MainViewModel_EditSqlServerSource_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -2030,9 +2027,6 @@ namespace Dev2.Core.Tests
         [Test]
         [Author("Pieter Terblanche")]
         [Category("MainViewModel_EditMySqlSource")]
-        [DeploymentItem("Warewolf.Studio.Themes.Luna.dll")]
-        [DeploymentItem("InfragisticsWPF4.Controls.Interactions.XamDialogWindow.v15.1.dll")]
-        [DeploymentItem("InfragisticsWPF4.DataPresenter.v15.1.dll")]
         public void MainViewModel_EditMySqlSource_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -2061,8 +2055,6 @@ namespace Dev2.Core.Tests
         [Test]
         [Author("Pieter Terblanche")]
         [Category("MainViewModel_EditPostgreSqlSource")]
-        [DeploymentItem("Warewolf.Studio.Themes.Luna.dll")]
-        [DeploymentItem("InfragisticsWPF4.DataPresenter.v15.1.dll")]
         public void MainViewModel_EditPostgreSqlSource_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -2091,8 +2083,6 @@ namespace Dev2.Core.Tests
         [Test]
         [Author("Pieter Terblanche")]
         [Category("MainViewModel_EditOracleSource")]
-        [DeploymentItem("Warewolf.Studio.Themes.Luna.dll")]
-        [DeploymentItem("InfragisticsWPF4.DataPresenter.v15.1.dll")]
         public void MainViewModel_EditOracleSource_Handle_Result()
         {
             //------------Setup for test--------------------------
@@ -2121,8 +2111,6 @@ namespace Dev2.Core.Tests
         [Test]
         [Author("Pieter Terblanche")]
         [Category("MainViewModel_EditOdbcSource")]
-        [DeploymentItem("Warewolf.Studio.Themes.Luna.dll")]
-        [DeploymentItem("InfragisticsWPF4.DataPresenter.v15.1.dll")]
         public void MainViewModel_EditOdbcSource_Handle_Result()
         {
             //------------Setup for test--------------------------

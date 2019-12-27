@@ -21,7 +21,6 @@ using Moq;
 namespace Dev2.Core.Tests.Environments
 {
     [TestFixture]
-    [SetUpFixture]
     public class EnvironmentModelEqualityComparerTests
     {
         [Test]

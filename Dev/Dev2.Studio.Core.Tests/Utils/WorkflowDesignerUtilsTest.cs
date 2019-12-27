@@ -23,7 +23,6 @@ namespace Dev2.Core.Tests.Utils
     /// Summary description for WorkflowDesignerUtilsTest
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class WorkflowDesignerUtilsTest
     {
         /// <summary>

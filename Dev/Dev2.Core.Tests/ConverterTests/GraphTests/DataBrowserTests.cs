@@ -23,7 +23,6 @@ using Unlimited.UnitTest.Framework.ConverterTests.GraphTests;
 namespace Dev2.Tests.ConverterTests.GraphTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class DataBrowserTests
     {
         internal PocoTestData GivenPoco()

@@ -13,7 +13,6 @@ using NUnit.Framework;
 namespace Dev2.Core.Tests.Diagnostics
 {
     [TestFixture]
-    [SetUpFixture]
     public class FileHelperTests
     {
         static string NewPath;

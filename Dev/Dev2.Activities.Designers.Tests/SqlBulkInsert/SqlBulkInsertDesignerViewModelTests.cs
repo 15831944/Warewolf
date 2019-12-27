@@ -15,6 +15,7 @@ using System.Data;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Threading;
 using Caliburn.Micro;
 using Dev2.Activities.Designers2.Core.QuickVariableInput;
 using Dev2.Activities.Designers2.SqlBulkInsert;
@@ -35,6 +36,7 @@ using Moq;
 namespace Dev2.Activities.Designers.Tests.SqlBulkInsert
 {
     [TestFixture]
+    [Apartment(ApartmentState.STA)]
     public class SqlBulkInsertDesignerViewModelTests
     {
 
@@ -652,7 +654,7 @@ namespace Dev2.Activities.Designers.Tests.SqlBulkInsert
             var errors = viewModel.Errors;
             Assert.IsNotNull(errors);
             Assert.AreEqual(2, errors.Count);
-            StringAssert.Contains(errors[0].Message, "Db0_Column_1_0 does not allow NULL");
+            StringAssert.Contains("Db0_Column_1_0 does not allow NULL.", errors[0].Message);
 
         }
 

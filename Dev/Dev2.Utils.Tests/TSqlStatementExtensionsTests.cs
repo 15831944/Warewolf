@@ -15,7 +15,6 @@ using TSQL;
 namespace Dev2.Utils.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class TSqlStatementExtensionsTests
     {
         [Test]

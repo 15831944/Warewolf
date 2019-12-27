@@ -21,7 +21,6 @@ namespace Dev2.Integration.Tests.Dev2.Studio.Core.Tests
     //                              & that the Studio always performs it's connection actions in a 
     //                              synchronous fashion.
     [TestFixture]
-    [SetUpFixture]
     public class StudioServerCommsTests
     {
         #region Environment Connection Tests
@@ -41,7 +40,7 @@ namespace Dev2.Integration.Tests.Dev2.Studio.Core.Tests
             // The IsConnected property of the EnvironmentConnection references the TCPDispatch Client
             // Only if the connection to the server is successfully made by the dispatch client will the
             // IsConnected message return true
-            NUnit.Framework.Assert.IsTrue(conn.IsConnected);
+            Assert.IsTrue(conn.IsConnected);
 
             conn.Disconnect();
         }
@@ -60,7 +59,7 @@ namespace Dev2.Integration.Tests.Dev2.Studio.Core.Tests
             Thread.Sleep(500);
             var afterReconnection = conn.IsConnected;
 
-            NUnit.Framework.Assert.IsTrue(afterReconnection);
+            Assert.IsTrue(afterReconnection);
 
             conn.Disconnect();
         }

@@ -15,7 +15,6 @@ using NUnit.Framework;
 namespace Dev2.Data.Tests.DecisionsTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class IsEqualTests
     {
         [Test]

@@ -20,7 +20,6 @@ using Newtonsoft.Json;
 namespace Dev2.Tests.Runtime.Util
 {
     [TestFixture]
-    [SetUpFixture]
     public class RemoteDebugItemParserTest
     {
         [Test]

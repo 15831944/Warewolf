@@ -15,7 +15,6 @@ using NUnit.Framework;
 namespace Dev2.Data.Tests.BinaryDataList
 {
     [TestFixture]
-    [SetUpFixture]
     public class IndexIteratorTest
     {
         [Test]

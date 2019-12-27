@@ -21,7 +21,6 @@ using FluentAssertions;
 namespace Warewolf.Security.Encryption
 {
     [TestFixture]
-    [SetUpFixture]
     public class DPAPIWrapperTests
     {
 

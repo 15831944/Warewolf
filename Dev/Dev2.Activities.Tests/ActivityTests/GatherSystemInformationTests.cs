@@ -27,7 +27,6 @@ using Dev2.Utilities;
 namespace Dev2.Tests.Activities.ActivityTests
 {
     [TestFixture]
-    [SetUpFixture]
     
     public class GatherSystemInformationTests : BaseActivityUnitTest
     {        
@@ -43,7 +42,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             //------------Execute Test---------------------------
             var getSystemInformation = activity.GetSystemInformation;
             //------------Assert Results-------------------------
-            Assert.IsInstanceOf(getSystemInformation.GetType(), typeof(GetSystemInformationHelper));
+            Assert.IsInstanceOf(typeof(GetSystemInformationHelper), getSystemInformation);
         }
 
         [Test]
@@ -54,7 +53,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             //------------Execute Test---------------------------
             var activity = GetGatherSystemInformationActivity();
             //------------Assert Results-------------------------
-            Assert.IsInstanceOf(activity.GetType(), typeof(ICollectionActivity));
+            Assert.IsInstanceOf(typeof(ICollectionActivity), activity);
         }
 
         [Test]
@@ -68,7 +67,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             var systemInfo = activity.GetSystemInformation;
             //------------Assert Results-------------------------
             Assert.AreEqual(getSystemInformation, systemInfo);
-            Assert.IsNotInstanceOf(systemInfo.GetType(), typeof(GetSystemInformationHelper));
+            Assert.IsNotInstanceOf(typeof(GetSystemInformationHelper), systemInfo);
         }
 
         [Test]

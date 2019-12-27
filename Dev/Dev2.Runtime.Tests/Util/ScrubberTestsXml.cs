@@ -20,7 +20,6 @@ using Unlimited.Framework.Converters.Graph.String.Xml;
 namespace Dev2.Tests.Runtime.Util
 {
     [TestFixture]
-    [SetUpFixture]
     public partial class ScrubberTests
     {
         #region Scrub Xml

@@ -25,7 +25,6 @@ using WarewolfCOMIPC.Client;
 namespace Dev2.Server.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ServerLifecycleManagerServiceTests
     {
         [Test]
@@ -349,7 +348,7 @@ namespace Dev2.Server.Tests
             {
                 var t = serverLifeCycleManager.Run(items);
                 //------------------------Assert-------------------------
-                Assert.IsInstanceOf(t.GetType(), typeof(Task));
+                Assert.IsInstanceOf(typeof(Task), t);
 
             }
         }

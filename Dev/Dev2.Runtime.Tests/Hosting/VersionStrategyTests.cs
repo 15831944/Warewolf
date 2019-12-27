@@ -18,7 +18,6 @@ using Moq;
 namespace Dev2.Tests.Runtime.Hosting
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime Hosting")]
     public class VersionStrategyTests
     {
@@ -36,10 +35,10 @@ namespace Dev2.Tests.Runtime.Hosting
 
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(output.VersionNumber,"1");
-            NUnit.Framework.Assert.AreEqual(output.Reason,"save");
-            NUnit.Framework.Assert.AreEqual(output.User,"bob");
-            NUnit.Framework.Assert.AreEqual(output.DateTimeStamp.Date,DateTime.Today);
+            Assert.AreEqual(output.VersionNumber,"1");
+            Assert.AreEqual(output.Reason,"save");
+            Assert.AreEqual(output.User,"bob");
+            Assert.AreEqual(output.DateTimeStamp.Date,DateTime.Today);
         }
 
         [Test]
@@ -59,10 +58,10 @@ namespace Dev2.Tests.Runtime.Hosting
 
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(output.VersionNumber, "2");
-            NUnit.Framework.Assert.AreEqual(output.Reason, "save");
-            NUnit.Framework.Assert.AreEqual(output.User, "bob");
-            NUnit.Framework.Assert.AreEqual(output.DateTimeStamp.Date, DateTime.Today);
+            Assert.AreEqual(output.VersionNumber, "2");
+            Assert.AreEqual(output.Reason, "save");
+            Assert.AreEqual(output.User, "bob");
+            Assert.AreEqual(output.DateTimeStamp.Date, DateTime.Today);
         }
 
         [Test]
@@ -81,10 +80,10 @@ namespace Dev2.Tests.Runtime.Hosting
 
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(output.VersionNumber, "1");
-            NUnit.Framework.Assert.AreEqual(output.Reason, "save");
-            NUnit.Framework.Assert.AreEqual(output.User, "bob");
-            NUnit.Framework.Assert.AreEqual(output.DateTimeStamp.Date, DateTime.Today);
+            Assert.AreEqual(output.VersionNumber, "1");
+            Assert.AreEqual(output.Reason, "save");
+            Assert.AreEqual(output.User, "bob");
+            Assert.AreEqual(output.DateTimeStamp.Date, DateTime.Today);
         }
 
         [Test]
@@ -103,10 +102,10 @@ namespace Dev2.Tests.Runtime.Hosting
 
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(output.VersionNumber, "1");
-            NUnit.Framework.Assert.AreEqual(output.Reason, "save");
-            NUnit.Framework.Assert.AreEqual(output.User, "bob");
-            NUnit.Framework.Assert.AreEqual(output.DateTimeStamp.Date, DateTime.Today);
+            Assert.AreEqual(output.VersionNumber, "1");
+            Assert.AreEqual(output.Reason, "save");
+            Assert.AreEqual(output.User, "bob");
+            Assert.AreEqual(output.DateTimeStamp.Date, DateTime.Today);
         }
 
 
@@ -124,10 +123,10 @@ namespace Dev2.Tests.Runtime.Hosting
 
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(output.VersionNumber, "2");
-            NUnit.Framework.Assert.AreEqual(output.Reason, "save");
-            NUnit.Framework.Assert.AreEqual(output.User, "bob");
-            NUnit.Framework.Assert.AreEqual(output.DateTimeStamp.Date, DateTime.Today);
+            Assert.AreEqual(output.VersionNumber, "2");
+            Assert.AreEqual(output.Reason, "save");
+            Assert.AreEqual(output.User, "bob");
+            Assert.AreEqual(output.DateTimeStamp.Date, DateTime.Today);
         }
 
 
@@ -145,10 +144,10 @@ namespace Dev2.Tests.Runtime.Hosting
 
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(output.VersionNumber, "2");
-            NUnit.Framework.Assert.AreEqual(output.Reason, "save");
-            NUnit.Framework.Assert.AreEqual(output.User, "bob");
-            NUnit.Framework.Assert.AreEqual(output.DateTimeStamp.Date, DateTime.Today);
+            Assert.AreEqual(output.VersionNumber, "2");
+            Assert.AreEqual(output.Reason, "save");
+            Assert.AreEqual(output.User, "bob");
+            Assert.AreEqual(output.DateTimeStamp.Date, DateTime.Today);
         }
 
 
@@ -169,10 +168,10 @@ namespace Dev2.Tests.Runtime.Hosting
 
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(output.VersionNumber, "12");
-            NUnit.Framework.Assert.AreEqual(output.Reason, "mook");
-            NUnit.Framework.Assert.AreEqual(output.User, "usr");
-            NUnit.Framework.Assert.AreEqual(output.DateTimeStamp.Date, DateTime.Today);
+            Assert.AreEqual(output.VersionNumber, "12");
+            Assert.AreEqual(output.Reason, "mook");
+            Assert.AreEqual(output.User, "usr");
+            Assert.AreEqual(output.DateTimeStamp.Date, DateTime.Today);
         }
     }
 }

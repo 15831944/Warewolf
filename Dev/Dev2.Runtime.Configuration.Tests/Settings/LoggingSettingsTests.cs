@@ -17,7 +17,6 @@ using NUnit.Framework;
 namespace Dev2.Runtime.Configuration.Tests.Settings
 {
     [TestFixture]
-    [SetUpFixture]
     public class LoggingSettingsTests
     {
         [Test]
@@ -26,18 +25,18 @@ namespace Dev2.Runtime.Configuration.Tests.Settings
             var config = new Configuration.Settings.Configuration(XmlResource.Fetch("Settings"));
             var logging = config.Logging;
 
-            NUnit.Framework.Assert.IsTrue(logging.ServiceInput == "");
-            NUnit.Framework.Assert.IsTrue(logging.LogFileDirectory == "");
-            NUnit.Framework.Assert.IsFalse(logging.LogAll);
-            NUnit.Framework.Assert.IsTrue(logging.NestedLevelCount == 0);
-            NUnit.Framework.Assert.IsFalse(logging.IsOutputLogged);
-            NUnit.Framework.Assert.IsFalse(logging.IsInputLogged);
-            NUnit.Framework.Assert.IsFalse(logging.IsDataAndTimeLogged);
-            NUnit.Framework.Assert.IsFalse(logging.IsDurationLogged);
-            NUnit.Framework.Assert.IsFalse(logging.IsTypeLogged);
-            NUnit.Framework.Assert.IsFalse(logging.IsVersionLogged);
-            NUnit.Framework.Assert.IsFalse(logging.IsLoggingEnabled);
-            NUnit.Framework.Assert.IsTrue(logging.Workflows.Count == 0);
+            Assert.IsTrue(logging.ServiceInput == "");
+            Assert.IsTrue(logging.LogFileDirectory == "");
+            Assert.IsFalse(logging.LogAll);
+            Assert.IsTrue(logging.NestedLevelCount == 0);
+            Assert.IsFalse(logging.IsOutputLogged);
+            Assert.IsFalse(logging.IsInputLogged);
+            Assert.IsFalse(logging.IsDataAndTimeLogged);
+            Assert.IsFalse(logging.IsDurationLogged);
+            Assert.IsFalse(logging.IsTypeLogged);
+            Assert.IsFalse(logging.IsVersionLogged);
+            Assert.IsFalse(logging.IsLoggingEnabled);
+            Assert.IsTrue(logging.Workflows.Count == 0);
         }
 
         [Test]
@@ -46,20 +45,20 @@ namespace Dev2.Runtime.Configuration.Tests.Settings
             var config = new Configuration.Settings.Configuration(XmlResource.Fetch("NonEmptySettings"));
             var logging = config.Logging;
 
-            NUnit.Framework.Assert.IsTrue(logging.ServiceInput == "TestInput");
-            NUnit.Framework.Assert.IsTrue(logging.LogFileDirectory == "TestDir");
-            NUnit.Framework.Assert.IsFalse(logging.LogAll);
-            NUnit.Framework.Assert.IsTrue(logging.NestedLevelCount == 2);
-            NUnit.Framework.Assert.IsTrue(logging.IsOutputLogged);
-            NUnit.Framework.Assert.IsTrue(logging.IsInputLogged);
-            NUnit.Framework.Assert.IsTrue(logging.IsDataAndTimeLogged);
-            NUnit.Framework.Assert.IsTrue(logging.IsDurationLogged);
-            NUnit.Framework.Assert.IsTrue(logging.IsTypeLogged);
-            NUnit.Framework.Assert.IsTrue(logging.IsVersionLogged);
-            NUnit.Framework.Assert.IsTrue(logging.IsLoggingEnabled);
-            NUnit.Framework.Assert.IsTrue(logging.Workflows.Count == 1);
-            NUnit.Framework.Assert.IsFalse(logging.RunPostWorkflow);
-            NUnit.Framework.Assert.IsNull(logging.PostWorkflow);
+            Assert.IsTrue(logging.ServiceInput == "TestInput");
+            Assert.IsTrue(logging.LogFileDirectory == "TestDir");
+            Assert.IsFalse(logging.LogAll);
+            Assert.IsTrue(logging.NestedLevelCount == 2);
+            Assert.IsTrue(logging.IsOutputLogged);
+            Assert.IsTrue(logging.IsInputLogged);
+            Assert.IsTrue(logging.IsDataAndTimeLogged);
+            Assert.IsTrue(logging.IsDurationLogged);
+            Assert.IsTrue(logging.IsTypeLogged);
+            Assert.IsTrue(logging.IsVersionLogged);
+            Assert.IsTrue(logging.IsLoggingEnabled);
+            Assert.IsTrue(logging.Workflows.Count == 1);
+            Assert.IsFalse(logging.RunPostWorkflow);
+            Assert.IsNull(logging.PostWorkflow);
         }
 
         [Test]
@@ -68,10 +67,10 @@ namespace Dev2.Runtime.Configuration.Tests.Settings
             var config = new Configuration.Settings.Configuration(XmlResource.Fetch("SettingsWithPostWorkflow"));
             var logging = config.Logging;
 
-            NUnit.Framework.Assert.IsTrue(logging.RunPostWorkflow);
-            NUnit.Framework.Assert.IsNotNull(logging.PostWorkflow);
-            NUnit.Framework.Assert.IsTrue(logging.Workflows.Any(wf => wf.ResourceID == logging.PostWorkflow.ResourceID));
-            NUnit.Framework.Assert.IsFalse(logging.IsInitializing);
+            Assert.IsTrue(logging.RunPostWorkflow);
+            Assert.IsNotNull(logging.PostWorkflow);
+            Assert.IsTrue(logging.Workflows.Any(wf => wf.ResourceID == logging.PostWorkflow.ResourceID));
+            Assert.IsFalse(logging.IsInitializing);
         }
 
         [Test]
@@ -96,7 +95,7 @@ namespace Dev2.Runtime.Configuration.Tests.Settings
 
             var actual = logging.ToXml().ToString();
             var expected = XmlResource.Fetch("LoggingSettings").ToString();
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
     }
 }

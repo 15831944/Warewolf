@@ -6,7 +6,6 @@ using NUnit.Framework;
 namespace Dev2.Tests.Activities.FindRecsetOptionsTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class IsNullFindRecsetOptionTests
     {
         [Test]

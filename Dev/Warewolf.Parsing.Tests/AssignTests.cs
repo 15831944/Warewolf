@@ -9,7 +9,6 @@ using WarewolfParserInterop;
 namespace WarewolfParsingTest
 {
     [TestFixture]
-    [SetUpFixture]
     public class AssignTests
     {
 

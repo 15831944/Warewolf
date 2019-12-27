@@ -23,7 +23,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfConsumeRabbitMQActivityTests : BaseActivityUnitTest
     {
         [Test]
@@ -954,18 +953,9 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
             var serializer = new Dev2JsonSerializer();
 
             //------------Execute Test---------------------------
-            try
-            {
-                var serializedAct = serializer.SerializeToBuilder(dsfConsumeRabbitMQActivity);
-                //------------Assert Results-------------------------
-                NUnit.Framework.Assert.IsNotNull(serializedAct);
-            }
-            catch (Exception e)
-            {
-                NUnit.Framework.Assert.Fail(e.Message);
-            }
-
-
+            var serializedAct = serializer.SerializeToBuilder(dsfConsumeRabbitMQActivity);
+            //------------Assert Results-------------------------
+            NUnit.Framework.Assert.IsNotNull(serializedAct);
         }
 
         [Test]

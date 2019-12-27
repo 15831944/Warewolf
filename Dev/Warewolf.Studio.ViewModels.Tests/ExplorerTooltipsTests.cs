@@ -3,7 +3,6 @@
 namespace Warewolf.Studio.ViewModels.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ExplorerTooltipsTests
     {
         ExplorerTooltips _target;

@@ -5,7 +5,6 @@ using NUnit.Framework;
 namespace Dev2.Tests.Activities.TOTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class JsonMappingToTest
     {
 

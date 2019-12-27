@@ -17,7 +17,6 @@ using NUnit.Framework;
 namespace Dev2.Data.Tests.TO
 {
     [TestFixture]
-    [SetUpFixture]
     public class ErrorResultTOTests
     {
         [Test]

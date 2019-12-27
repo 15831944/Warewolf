@@ -20,7 +20,6 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
     /// Summary description for DsfActivityFindMissingStrategyTests
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class DsfActivityFindMissingStrategyTests
     {
         /// <summary>

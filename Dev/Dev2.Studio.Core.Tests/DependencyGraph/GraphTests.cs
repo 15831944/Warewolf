@@ -7,7 +7,6 @@ using NUnit.Framework;
 namespace Dev2.Core.Tests.DependencyGraph
 {
     [TestFixture]
-    [SetUpFixture]
     public class GraphTests
     {
         [Test]

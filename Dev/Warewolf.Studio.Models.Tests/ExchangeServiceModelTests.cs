@@ -9,7 +9,6 @@ using System.Collections.Generic;
 namespace Warewolf.Studio.Models.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ExchangeServiceModelTests
     {
         [Test]

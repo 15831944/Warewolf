@@ -61,7 +61,6 @@ namespace BusinessDesignStudio.Unit.Tests
     /// Summary description for ResourceRepositoryTest
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class ResourceRepositoryTests
     {
         #region Variables

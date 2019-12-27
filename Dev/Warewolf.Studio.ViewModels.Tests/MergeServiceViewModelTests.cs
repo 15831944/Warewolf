@@ -20,7 +20,6 @@ using IEventAggregator = Microsoft.Practices.Prism.PubSubEvents.IEventAggregator
 namespace Warewolf.Studio.ViewModels.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class MergeServiceViewModelTests
     {
         private MergeServiceViewModel _target;

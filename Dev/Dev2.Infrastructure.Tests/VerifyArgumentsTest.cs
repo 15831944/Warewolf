@@ -17,7 +17,6 @@ using NUnit.Framework;
 namespace Dev2.Infrastructure.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class VerifyArgumentsTest
     {
         [Test]

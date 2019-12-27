@@ -27,7 +27,6 @@ namespace Dev2.Tests.Runtime.Services
     /// Summary description for HostSecurityProviderTest
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class HostSecurityProviderTest
     {
         static XElement TestXml;

@@ -32,7 +32,6 @@ using Warewolf.Storage.Interfaces;
 namespace Dev2.Tests.Activities.ActivityComparerTests.DropBox2016
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfDropboxFileListActivityComparerTests
     {
         [Test]

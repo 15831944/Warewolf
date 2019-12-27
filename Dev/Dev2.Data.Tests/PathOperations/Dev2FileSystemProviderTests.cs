@@ -18,7 +18,6 @@ using NUnit.Framework;
 namespace Dev2.Data.Tests.PathOperations
 {
     [TestFixture]
-    [SetUpFixture]
     public class Dev2FileSystemProviderTests
     {
         [Test]

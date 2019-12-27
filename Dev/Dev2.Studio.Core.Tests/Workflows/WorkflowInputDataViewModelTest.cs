@@ -36,7 +36,6 @@ using Dev2.Services.Security;
 namespace Dev2.Core.Tests.Workflows
 {
     [TestFixture]
-    [SetUpFixture]
     public class WorkflowInputDataViewModelTests
     {
         readonly Guid _resourceID = Guid.Parse("2b975c6d-670e-49bb-ac4d-fb1ce578f66a");

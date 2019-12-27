@@ -22,8 +22,7 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
-    [TestFixture]
-    [SetUpFixture]    
+    [TestFixture]    
     public class BaseConvertActivityTests : BaseActivityUnitTest
     {
         #region Base 64 Tests

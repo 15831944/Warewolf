@@ -21,7 +21,6 @@ using Warewolf.Streams;
 namespace Warewolf.Driver.RabbitMQ.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class RabbitMQDriverTests
     {
         private class TestQueueNameGenerator

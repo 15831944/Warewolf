@@ -16,7 +16,6 @@ using NUnit.Framework;
 namespace Dev2.Infrastructure.Tests.Logs
 {
     [TestFixture]
-    [SetUpFixture]
     public class CustomTraceListenerTests
     {
         [Test]

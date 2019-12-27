@@ -16,7 +16,6 @@ using NUnit.Framework;
 namespace Dev2.Infrastructure.Tests.Providers.Errors
 {
     [TestFixture]
-    [SetUpFixture]
     
     public class ActionableErrorInfoTests
     {

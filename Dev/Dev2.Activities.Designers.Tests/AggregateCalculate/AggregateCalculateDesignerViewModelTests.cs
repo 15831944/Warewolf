@@ -27,7 +27,7 @@ namespace Dev2.Activities.Designers.Tests.AggregateCalculate
 
             //------------Assert Results-------------------------
             Assert.IsNotNull(aggregateCalculateDesignerViewModel);
-            Assert.IsInstanceOf(aggregateCalculateDesignerViewModel.GetType(), typeof(ActivityDesignerViewModel));
+            Assert.IsInstanceOf(typeof(ActivityDesignerViewModel), aggregateCalculateDesignerViewModel);
             Assert.AreEqual("Aggregate Calculate", aggregateCalculateDesignerViewModel.ModelItem.GetProperty("DisplayName"));
         }
 

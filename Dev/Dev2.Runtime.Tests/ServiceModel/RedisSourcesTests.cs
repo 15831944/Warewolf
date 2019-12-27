@@ -17,7 +17,6 @@ using NUnit.Framework;
 namespace Dev2.Tests.Runtime.ServiceModel
 {
     [TestFixture]
-    [SetUpFixture]
     public class RedisSourcesTests
     {
         [Test]

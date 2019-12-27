@@ -19,7 +19,6 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
 {
     // PBI 953 - 2013.05.16 - TWR - Created
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime Hosting")]
     public class EmailSourceTests
     {
@@ -29,17 +28,17 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
         public void EmailSourceContructorWithDefaultExpectedInitializesProperties()
         {
             var source = new EmailSource();
-            NUnit.Framework.Assert.AreEqual(Guid.Empty, source.ResourceID);
-            NUnit.Framework.Assert.AreEqual(nameof(EmailSource), source.ResourceType);
-            NUnit.Framework.Assert.AreEqual(EmailSource.DefaultTimeout, source.Timeout);
-            NUnit.Framework.Assert.AreEqual(EmailSource.DefaultPort, source.Port);
-            NUnit.Framework.Assert.IsNull(source.DataList);
-            NUnit.Framework.Assert.IsTrue(source.IsSource);
-            NUnit.Framework.Assert.IsFalse(source.IsService);
-            NUnit.Framework.Assert.IsFalse(source.IsFolder);
-            NUnit.Framework.Assert.IsFalse(source.IsReservedService);
-            NUnit.Framework.Assert.IsFalse(source.IsServer);
-            NUnit.Framework.Assert.IsFalse(source.IsResourceVersion);
+            Assert.AreEqual(Guid.Empty, source.ResourceID);
+            Assert.AreEqual(nameof(EmailSource), source.ResourceType);
+            Assert.AreEqual(EmailSource.DefaultTimeout, source.Timeout);
+            Assert.AreEqual(EmailSource.DefaultPort, source.Port);
+            Assert.IsNull(source.DataList);
+            Assert.IsTrue(source.IsSource);
+            Assert.IsFalse(source.IsService);
+            Assert.IsFalse(source.IsFolder);
+            Assert.IsFalse(source.IsReservedService);
+            Assert.IsFalse(source.IsServer);
+            Assert.IsFalse(source.IsResourceVersion);
         }
 
         [Test]
@@ -54,11 +53,11 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
         {
             var xml = new XElement("root");
             var source = new EmailSource(xml);
-            NUnit.Framework.Assert.AreNotEqual(Guid.Empty, source.ResourceID);
-            NUnit.Framework.Assert.IsTrue(source.IsUpgraded);
-            NUnit.Framework.Assert.AreEqual(nameof(EmailSource), source.ResourceType);
-            NUnit.Framework.Assert.AreEqual(EmailSource.DefaultTimeout, source.Timeout);
-            NUnit.Framework.Assert.AreEqual(EmailSource.DefaultPort, source.Port);
+            Assert.AreNotEqual(Guid.Empty, source.ResourceID);
+            Assert.IsTrue(source.IsUpgraded);
+            Assert.AreEqual(nameof(EmailSource), source.ResourceType);
+            Assert.AreEqual(EmailSource.DefaultTimeout, source.Timeout);
+            Assert.AreEqual(EmailSource.DefaultPort, source.Port);
         }
 
 
@@ -68,14 +67,14 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             var xml = XmlResource.Fetch(nameof(EmailSource));
 
             var source = new EmailSource(xml);
-            NUnit.Framework.Assert.AreEqual(Guid.Parse("bf810e43-3633-4638-9d0a-56473ef54151"), source.ResourceID);
-            NUnit.Framework.Assert.AreEqual(nameof(EmailSource), source.ResourceType);
-            NUnit.Framework.Assert.AreEqual("smtp.gmail.com", source.Host);
-            NUnit.Framework.Assert.AreEqual(465, source.Port);
-            NUnit.Framework.Assert.AreEqual(true, source.EnableSsl);
-            NUnit.Framework.Assert.AreEqual(30000, source.Timeout);
-            NUnit.Framework.Assert.AreEqual("user@gmail.com", source.UserName);
-            NUnit.Framework.Assert.AreEqual("1234", source.Password);
+            Assert.AreEqual(Guid.Parse("bf810e43-3633-4638-9d0a-56473ef54151"), source.ResourceID);
+            Assert.AreEqual(nameof(EmailSource), source.ResourceType);
+            Assert.AreEqual("smtp.gmail.com", source.Host);
+            Assert.AreEqual(465, source.Port);
+            Assert.AreEqual(true, source.EnableSsl);
+            Assert.AreEqual(30000, source.Timeout);
+            Assert.AreEqual("user@gmail.com", source.UserName);
+            Assert.AreEqual("1234", source.Password);
         }
 
         [Test]
@@ -84,14 +83,14 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             var xml = XmlResource.Fetch("EmailSourceCorrupt");
 
             var source = new EmailSource(xml);
-            NUnit.Framework.Assert.AreEqual(Guid.Parse("bf810e43-3633-4638-9d0a-56473ef54151"), source.ResourceID);
-            NUnit.Framework.Assert.AreEqual(nameof(EmailSource), source.ResourceType);
-            NUnit.Framework.Assert.AreEqual("smtp.gmail.com", source.Host);
-            NUnit.Framework.Assert.AreEqual(EmailSource.DefaultPort, source.Port);
-            NUnit.Framework.Assert.AreEqual(false, source.EnableSsl);
-            NUnit.Framework.Assert.AreEqual(EmailSource.DefaultTimeout, source.Timeout);
-            NUnit.Framework.Assert.AreEqual("user@gmail.com", source.UserName);
-            NUnit.Framework.Assert.AreEqual("1234", source.Password);
+            Assert.AreEqual(Guid.Parse("bf810e43-3633-4638-9d0a-56473ef54151"), source.ResourceID);
+            Assert.AreEqual(nameof(EmailSource), source.ResourceType);
+            Assert.AreEqual("smtp.gmail.com", source.Host);
+            Assert.AreEqual(EmailSource.DefaultPort, source.Port);
+            Assert.AreEqual(false, source.EnableSsl);
+            Assert.AreEqual(EmailSource.DefaultTimeout, source.Timeout);
+            Assert.AreEqual("user@gmail.com", source.UserName);
+            Assert.AreEqual("1234", source.Password);
         }
 
         #endregion
@@ -117,19 +116,18 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
 
             var actual = new EmailSource(xml);
 
-            NUnit.Framework.Assert.AreEqual(expected.ResourceType, actual.ResourceType);
-            NUnit.Framework.Assert.AreEqual(expected.Host, actual.Host);
-            NUnit.Framework.Assert.AreEqual(expected.Port, actual.Port);
-            NUnit.Framework.Assert.AreEqual(expected.EnableSsl, actual.EnableSsl);
-            NUnit.Framework.Assert.AreEqual(expected.UserName, actual.UserName);
-            NUnit.Framework.Assert.AreEqual(expected.Password, actual.Password);
-            NUnit.Framework.Assert.AreEqual(expected.Timeout, actual.Timeout);
-            NUnit.Framework.Assert.IsNull(actual.TestFromAddress);
-            NUnit.Framework.Assert.IsNull(actual.TestToAddress);
+            Assert.AreEqual(expected.ResourceType, actual.ResourceType);
+            Assert.AreEqual(expected.Host, actual.Host);
+            Assert.AreEqual(expected.Port, actual.Port);
+            Assert.AreEqual(expected.EnableSsl, actual.EnableSsl);
+            Assert.AreEqual(expected.UserName, actual.UserName);
+            Assert.AreEqual(expected.Password, actual.Password);
+            Assert.AreEqual(expected.Timeout, actual.Timeout);
+            Assert.IsNull(actual.TestFromAddress);
+            Assert.IsNull(actual.TestToAddress);
         }
 
         [Test]
-        [DeploymentItem("EnableDocker.txt")]
         [Author("Pieter Terblanche")]
         [Category(nameof(EmailSource))]
         public void EmailSource_Validate_DataList()
@@ -141,7 +139,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
                 DataList = expectedDataList
             };
 
-            NUnit.Framework.Assert.AreEqual(expectedDataList, source.DataList);
+            Assert.AreEqual(expectedDataList, source.DataList);
         }
 
         [Test]

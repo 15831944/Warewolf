@@ -21,8 +21,7 @@ using PopupController = Dev2.Studio.Controller.PopupController;
 
 namespace Dev2.Core.Tests
 {
-    [TestFixture]
-    [SetUpFixture]    
+    [TestFixture]    
     public class PopupControllerTests
     {
         [Test]

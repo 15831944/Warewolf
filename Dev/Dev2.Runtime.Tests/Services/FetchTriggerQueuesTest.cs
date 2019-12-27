@@ -23,7 +23,6 @@ using Warewolf.Triggers;
 namespace Dev2.Tests.Runtime.Services
 {
     [TestFixture]
-    [SetUpFixture]
     public class FetchTriggerQueuesTest
     {
 

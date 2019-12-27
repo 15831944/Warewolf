@@ -22,7 +22,6 @@ using NUnit.Framework;
 namespace Dev2.Tests.Runtime.Services
 {
     [TestFixture]
-    [SetUpFixture]
     public class FetchDebugItemFileTests
     {
         #region Static Class Init
@@ -32,7 +31,7 @@ namespace Dev2.Tests.Runtime.Services
         [OneTimeSetUp]
         public static void MyClassInit(TestContext context)
         {
-            _testDir = context.TestDirectory;
+            _testDir = TestContext.CurrentContext.TestDirectory;
         }
 
         #endregion

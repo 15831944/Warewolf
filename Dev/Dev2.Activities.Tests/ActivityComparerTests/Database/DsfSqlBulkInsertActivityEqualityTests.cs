@@ -13,7 +13,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Tests.Activities.ActivityComparerTests.Database
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfSqlBulkInsertActivityEqualityTests
     {
         [Test]

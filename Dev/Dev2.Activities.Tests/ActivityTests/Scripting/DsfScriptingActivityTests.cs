@@ -25,12 +25,7 @@ using Dev2.Interfaces;
 
 namespace Dev2.Tests.Activities.ActivityTests.Scripting
 {
-    /// <summary>
-    /// Summary description for CalculateActivityTest
-    /// </summary>
-    [ExcludeFromCodeCoverage]
     [TestFixture]
-    [SetUpFixture]
     public class DsfScriptingActivityTests : BaseActivityUnitTest
     {
         static string GetJsTmpFile()
@@ -39,12 +34,14 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             var directoryName = Path.GetDirectoryName(codeBase);
             return directoryName + "\\jsonFile.js";
         }
+        
         static string GetRbTmpFile()
         {
             var codeBase = Assembly.GetExecutingAssembly().Location;
             var directoryName = Path.GetDirectoryName(codeBase);
             return directoryName + "\\rubyFile.rb";
         }
+        
         static string GetPyTmpFile()
         {
             var codeBase = Assembly.GetExecutingAssembly().Location;
@@ -52,39 +49,27 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             return directoryName + "\\pythonFile.py";
         }
 
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext { get; set; }
         [OneTimeSetUp]
-        public static void Init(TestContext context)
+        public static void Init()
         {
-            try
-            {
-                File.WriteAllBytes(GetJsTmpFile(), Encoding.ASCII.GetBytes(@"if (!String.prototype.endsWith) 
+            File.WriteAllBytes(GetJsTmpFile(), Encoding.ASCII.GetBytes(@"if (!String.prototype.endsWith) 
+                    {
+                        String.prototype.endsWith = function(searchString, position) 
                         {
-                            String.prototype.endsWith = function(searchString, position) 
+                            var subjectString = this.toString();
+                            if (typeof position !== 'number' || !isFinite(position) || Math.floor(position) !== position || position > subjectString.length)
                             {
-                                var subjectString = this.toString();
-                                if (typeof position !== 'number' || !isFinite(position) || Math.floor(position) !== position || position > subjectString.length)
-                                {
-                                    position = subjectString.length;
-                                }
-                                position -= searchString.length;
-                                var lastIndex = subjectString.indexOf(searchString, position);
-                                return lastIndex !== -1 && lastIndex === position;
-                            };
-                       }"));
-                File.WriteAllBytes(GetRbTmpFile(), Encoding.ASCII.GetBytes(@"def greaterBalanceThanFive(other) return 5 < other end"));
-                File.WriteAllBytes(GetPyTmpFile(), Encoding.ASCII.GetBytes(@"def GreaterThanFive(value):return 5<value;"));
-            }
-            catch (Exception ex)
-            {
-                //supress exceptio
-                Assert.Fail(ex.Message);
-            }
+                                position = subjectString.length;
+                            }
+                            position -= searchString.length;
+                            var lastIndex = subjectString.indexOf(searchString, position);
+                            return lastIndex !== -1 && lastIndex === position;
+                        };
+                   }"));
+            File.WriteAllBytes(GetRbTmpFile(), Encoding.ASCII.GetBytes(@"def greaterBalanceThanFive(other) return 5 < other end"));
+            File.WriteAllBytes(GetPyTmpFile(), Encoding.ASCII.GetBytes(@"def GreaterThanFive(value):return 5<value;"));
         }
+        
         [OneTimeTearDown]
         public static void Cleaner()
         {
@@ -94,7 +79,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
             catch (Exception)
             {
-                //supress exceptio
+                //try delete
             }
         }
 
@@ -131,6 +116,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             Assert.AreEqual(1, outputs.Count);
             Assert.AreEqual("[[scrRes]]", outputs[0]);
         }
+        
         [Test]
         public void DsfScriptingActivity_ShouldReturnResults()
         {
@@ -173,7 +159,6 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             Assert.IsNotNull(debugInputs);
         }
 
-
         [Test]
         public void DsfScriptingActivity_GivenInvalidScript_SholdReturnException()
         {
@@ -187,6 +172,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             var debugInputs = activity.GetDebugInputs(DataObject.Environment, 0);
             Assert.IsNotNull(debugInputs);
         }
+        
         [Test]
         public void DsfScriptingActivity_GivenInvalidScript_SholdUpdateForEachOutputs()
         {

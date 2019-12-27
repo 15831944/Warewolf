@@ -20,7 +20,6 @@ namespace Dev2.Tests
     ///to contain all DataListUtilTest Unit Tests
     ///</summary>
     [TestFixture]
-    [SetUpFixture]
     
     public class DataListCleaningUtilTest
     {

@@ -24,7 +24,6 @@ namespace Dev2.Tests.Activities.ActivityTests
     /// Summary description for SortRecordsTest
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     
     public class SortRecordsTest : BaseActivityUnitTest
     {

@@ -6,7 +6,6 @@ using Dev2.Common.Search;
 namespace Dev2.Common.Tests.Utils
 {
     [TestFixture]
-    [SetUpFixture]
     public class SearchUtilTests
     {
         [Test]

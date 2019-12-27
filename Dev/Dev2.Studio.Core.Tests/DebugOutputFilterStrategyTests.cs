@@ -17,7 +17,6 @@ using NUnit.Framework;
 namespace Dev2.Core.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class DebugOutputFilterStrategyTests
     {
         static DebugOutputFilterStrategy _debugOutputFilterStrategy;

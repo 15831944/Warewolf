@@ -29,7 +29,6 @@ using Warewolf.Storage.Interfaces;
 namespace Dev2.Tests.Runtime.ESB.Control
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime ESB")]
     public class EsbServicesEndpointTests
     {
@@ -76,7 +75,7 @@ namespace Dev2.Tests.Runtime.ESB.Control
 
             var resultId = esbServicesEndpoint.ExecuteRequest(dataObject, request, workspaceId, out var errors);
 
-            NUnit.Framework.Assert.AreEqual(Guid.Empty, resultId);
+            Assert.AreEqual(Guid.Empty, resultId);
         }
 
         [Test]
@@ -116,7 +115,7 @@ namespace Dev2.Tests.Runtime.ESB.Control
             dataObj.Setup(o => o.ServiceName).Returns("SomeName");
             var esbServicesEndpoint = new EsbServicesEndpoint();
             //---------------Assert Precondition----------------
-            NUnit.Framework.Assert.IsNotNull(esbServicesEndpoint);
+            Assert.IsNotNull(esbServicesEndpoint);
             //---------------Execute Test ----------------------
             esbServicesEndpoint.ExecuteSubRequest(dataObj.Object, Guid.NewGuid(), "", "", out var err, 1, true);
 
@@ -145,7 +144,7 @@ namespace Dev2.Tests.Runtime.ESB.Control
             dataObj.Setup(o => o.Clone()).Returns(dataObjClon.Object);
             var esbServicesEndpoint = new EsbServicesEndpoint();
             //---------------Assert Precondition----------------
-            NUnit.Framework.Assert.IsNotNull(esbServicesEndpoint);
+            Assert.IsNotNull(esbServicesEndpoint);
             //---------------Execute Test ----------------------
 
             esbServicesEndpoint.ExecuteSubRequest(dataObj.Object, Guid.NewGuid(), "", "", out var err, 1, true);
@@ -153,7 +152,7 @@ namespace Dev2.Tests.Runtime.ESB.Control
             //---------------Test Result -----------------------
             dataObj.Verify(o => o.IsRemoteWorkflow(), Times.Once);
             var contains = err.FetchErrors().Contains(ErrorResource.ResourceNotFound);
-            NUnit.Framework.Assert.IsTrue(contains);
+            Assert.IsTrue(contains);
         }
 
         [Test]
@@ -171,7 +170,7 @@ namespace Dev2.Tests.Runtime.ESB.Control
 
             var esbServicesEndpoint = new EsbServicesEndpoint();
             //---------------Assert Precondition----------------
-            NUnit.Framework.Assert.IsNotNull(esbServicesEndpoint);
+            Assert.IsNotNull(esbServicesEndpoint);
             //---------------Execute Test ----------------------
             try
             {
@@ -180,7 +179,7 @@ namespace Dev2.Tests.Runtime.ESB.Control
             catch (Exception ex)
             {
                 //---------------Test Result -----------------------
-                NUnit.Framework.Assert.Fail(ex.Message);
+                Assert.Fail(ex.Message);
             }
         }
     }

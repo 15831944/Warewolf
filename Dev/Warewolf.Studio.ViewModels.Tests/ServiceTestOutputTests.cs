@@ -11,7 +11,6 @@ using NUnit.Framework;
 namespace Warewolf.Studio.ViewModels.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ServiceTestOutputTests
     {
         [Test]

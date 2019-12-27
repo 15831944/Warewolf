@@ -21,12 +21,10 @@ using NUnit.Framework;
 namespace Dev2.Tests.Runtime.ESB.ComPlugin
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime ESB")]
     public class ComPluginServiceExecutionFactoryTest
     {
         public TestContext TestContext { get; set; }
-
 
         [Test]
         [Author("Nkosinathi Sangweni")]
@@ -40,7 +38,7 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
             {
                 var result = ComPluginServiceExecutionFactory.GetNamespaces(source);
                 //------------Assert Results-------------------------
-                NUnit.Framework.Assert.IsTrue(result.Count > 0);
+                Assert.IsTrue(result.Count > 0);
             }
         }
 
@@ -54,11 +52,8 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
             ComPluginServiceExecutionFactory.GetNamespaces(null);
         }
 
-
-
         [Test]
         [Author("Nkosinathi Sangweni")]
-        [DeploymentItem("Warewolf.COMIPC.exe")]
         public void ListMethods_GivenAdodbConnection_ShouldContainOpen()
         {
             //---------------Set up test pack-------------------
@@ -66,13 +61,13 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
             //---------------Assert Precondition----------------
             //---------------Execute Test ----------------------
             var ns = ComPluginServiceExecutionFactory.GetNamespaces(new ComPluginSource { ClsId = adodbConGuid });
-            NUnit.Framework.Assert.IsNotNull(ns);
+            Assert.IsNotNull(ns);
             
             var result = ComPluginServiceExecutionFactory.GetMethods(adodbConGuid,true);
             //------------Assert Results-------------------------
             var openMethod = result.First(method => method.Name.ToUpper() == "open".ToUpper());
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsNotNull(openMethod);
+            Assert.IsNotNull(openMethod);
         }
         
         #region Helper Methods

@@ -6,7 +6,6 @@ using NUnit.Framework;
 namespace Dev2.Tests.ExtMethods
 {
     [TestFixture]
-    [SetUpFixture]
     public class ObjExtTests
     {
         [Serializable]

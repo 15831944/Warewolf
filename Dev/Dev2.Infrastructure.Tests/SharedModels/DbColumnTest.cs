@@ -18,7 +18,6 @@ namespace Dev2.Infrastructure.Tests.SharedModels
     /// When adding logic behind properties... TEST!
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class DbColumnTest
     {
         

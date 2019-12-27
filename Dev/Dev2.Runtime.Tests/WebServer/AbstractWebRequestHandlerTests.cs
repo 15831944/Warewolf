@@ -45,7 +45,6 @@ using Warewolf.Storage.Interfaces;
 namespace Dev2.Tests.Runtime.WebServer
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime WebServer")]
     public class AbstractWebRequestHandlerTests
     {
@@ -683,7 +682,7 @@ namespace Dev2.Tests.Runtime.WebServer
             dataObject.Verify(o => o.Clone(), Times.Exactly(3));
             testCatalog.Verify(catalog => catalog.Fetch(It.IsAny<Guid>()), Times.Exactly(3));
             resourceCatalog.Verify(catalog => catalog.GetResource(It.IsAny<Guid>(), It.IsAny<Guid>()), Times.Exactly(3));
-            Assert.IsInstanceOf(responseWriter.GetType(), typeof(StringResponseWriter));
+            Assert.IsInstanceOf(typeof(StringResponseWriter), responseWriter);
         }
 
         [Test]
@@ -2119,7 +2118,7 @@ namespace Dev2.Tests.Runtime.WebServer
 
     class AbstractWebRequestHandlerMock : AbstractWebRequestHandler
     {
-        public AbstractWebRequestHandlerMock(AbstractWebRequestHandler.IDataObjectFactory dataObjectFactory, IAuthorizationService service, IResourceCatalog catalog, ITestCatalog testCatalog, IWorkspaceRepository repository)
+        public AbstractWebRequestHandlerMock(IDataObjectFactory dataObjectFactory, IAuthorizationService service, IResourceCatalog catalog, ITestCatalog testCatalog, IWorkspaceRepository repository)
             : base(catalog, testCatalog, repository, service, dataObjectFactory)
         {
         }

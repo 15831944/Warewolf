@@ -6,7 +6,6 @@ using NUnit.Framework;
 namespace Dev2.Common.Tests.Wrappers
 {
     [TestFixture]
-    [SetUpFixture]
     public class TimerWrapperTests
     {
         [Test]

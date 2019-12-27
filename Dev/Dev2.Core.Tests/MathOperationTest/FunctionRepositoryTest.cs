@@ -18,19 +18,9 @@ using NUnit.Framework;
 
 namespace Dev2.Tests.MathOperationTest
 {
-    /// <summary>
-    /// Summary description for FunctionRepositoryTest
-    /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class FunctionRepositoryTest
     {
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext { get; set; }
-
         #region Load Tests
 
         /// <summary>
@@ -99,9 +89,6 @@ namespace Dev2.Tests.MathOperationTest
 
         #region FindSingle Tests
 
-        /// <summary>
-        /// FunctionRepository FindSingle valid expression expected single result returned.
-        /// </summary>
         [Test]
         public void FunctionRepository_FindSingle_ValidExpression_Expected_SingleResultReturned()
         {
@@ -115,9 +102,6 @@ namespace Dev2.Tests.MathOperationTest
 
         }
 
-        /// <summary>
-        /// FunctionRepository FindSingle expression yields no result expected empty function returned.
-        /// </summary>
         [Test]
         public void FunctionRepository_FindSingle_ExpressionYieldsNoResult_Expected_EmptyFunctionReturned()
         {
@@ -125,12 +109,9 @@ namespace Dev2.Tests.MathOperationTest
             // The function repository must be loaded in order to populate the function list
             functionRepo.Load();
             var function = functionRepo.FindSingle(c => c.FunctionName == string.Empty);
-            Assert.IsInstanceOf(function.GetType(), typeof(IFunction));
+            Assert.IsInstanceOf(typeof(IFunction), function);
         }
 
-        /// <summary>
-        /// FunctionRepository FindSingle NULL expression expected error from repository.
-        /// </summary>
         [Test]
         public void FunctionRepository_FindSingle_NullExpression_Expected_NullReturned()
         {

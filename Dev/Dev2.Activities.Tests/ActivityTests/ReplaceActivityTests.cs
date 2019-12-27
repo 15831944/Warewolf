@@ -26,7 +26,6 @@ namespace Dev2.Tests.Activities.ActivityTests
     /// Summary description for CountRecordsTest
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     
     public class ReplaceActivityTests : BaseActivityUnitTest
     {

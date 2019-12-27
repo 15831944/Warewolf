@@ -23,9 +23,7 @@ public class Depends : Attribute, IDisposable
         RabbitMQ = 4,
         CIRemote = 5,
         Redis = 6,
-        AnonymousRedis = 7,
-        SVRDEV = 8,
-        TFSBLD = 9
+        AnonymousRedis = 7
     }
 
     string ConvertToString(ContainerType containerType)

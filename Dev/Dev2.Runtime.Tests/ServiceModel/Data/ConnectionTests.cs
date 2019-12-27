@@ -18,7 +18,6 @@ using System.Xml.Linq;
 namespace Dev2.Tests.Runtime.ServiceModel.Data
 {
     [TestFixture]
-    [SetUpFixture]
     public class ConnectionTests
     {
 
@@ -40,7 +39,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             var result = conn.FetchTestConnectionAddress();
 
             //------------Assert Results-------------------------
-            NUnit.Framework.StringAssert.Contains(result, address);
+            StringAssert.Contains(result, address);
 
         }
 
@@ -64,7 +63,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             var result = conn.FetchTestConnectionAddress();
 
             //------------Assert Results-------------------------
-            NUnit.Framework.StringAssert.Contains(result, expected);
+            StringAssert.Contains(result, expected);
         }
 
         [Test]
@@ -86,7 +85,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             var result = conn.FetchTestConnectionAddress();
 
             //------------Assert Results-------------------------
-            NUnit.Framework.StringAssert.Contains(result, expected);
+            StringAssert.Contains(result, expected);
         }
 
         [Test]
@@ -97,7 +96,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             var testConnection = SetupDefaultConnection();
             var actualConnectionToString = testConnection.ToString();
             var expected = JsonConvert.SerializeObject(testConnection);
-            NUnit.Framework.Assert.AreEqual(expected, actualConnectionToString);
+            Assert.AreEqual(expected, actualConnectionToString);
         }
 
         [Test]
@@ -108,7 +107,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             var testConnection = new Connection();
             var actualSerializedConnection = testConnection.ToString();
             var expected = JsonConvert.SerializeObject(testConnection);
-            NUnit.Framework.Assert.AreEqual(expected, actualSerializedConnection);
+            Assert.AreEqual(expected, actualSerializedConnection);
         }
 
         [Test]
@@ -127,7 +126,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             {
                 if (attribEnum.Current.Name == "Name")
                 {
-                    NUnit.Framework.Assert.AreEqual("TestResourceIMadeUp", attribEnum.Current.Value);
+                    Assert.AreEqual("TestResourceIMadeUp", attribEnum.Current.Value);
                     break;
                 }
             }
@@ -147,7 +146,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             {
                 if (attribEnum.Current.Name == "Name")
                 {
-                    NUnit.Framework.Assert.AreEqual(string.Empty, attribEnum.Current.Value);
+                    Assert.AreEqual(string.Empty, attribEnum.Current.Value);
                     break;
                 }
             }
@@ -178,7 +177,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
                 Password = "password2",
                 WebServerPort = 12343
             };
-            NUnit.Framework.Assert.IsFalse(testConnection.Equals(testConnectionOther));
+            Assert.IsFalse(testConnection.Equals(testConnectionOther));
         }
 
         [Test]
@@ -188,7 +187,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
         {
             var testConnection = SetupDefaultConnection();
             object other = new object();
-            NUnit.Framework.Assert.IsFalse(testConnection.Equals(other));
+            Assert.IsFalse(testConnection.Equals(other));
         }
         [Test]
         [Author("Candice Daniel")]
@@ -198,7 +197,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             var testConnection = SetupDefaultConnection();
             object other = new object();
             other = testConnection;
-            NUnit.Framework.Assert.IsTrue(testConnection.Equals(other));
+            Assert.IsTrue(testConnection.Equals(other));
         }
         [Test]
         [Author("Candice Daniel")]
@@ -208,7 +207,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             var testConnection = SetupDefaultConnection();
             object other = new object();
             other = null;
-            NUnit.Framework.Assert.IsFalse(testConnection.Equals(other));
+            Assert.IsFalse(testConnection.Equals(other));
         }
         [Test]
         [Author("Candice Daniel")]
@@ -220,12 +219,12 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
 
             _connectionXml = XmlResource.Fetch("ServerConnection2");
             _connection = new Connection(_connectionXml);
-            NUnit.Framework.Assert.AreEqual(1235, _connection.WebServerPort);
-            NUnit.Framework.Assert.AreEqual("http://127.0.0.2:1235/", _connection.Address);
-            NUnit.Framework.Assert.AreEqual(AuthenticationType.User, _connection.AuthenticationType);
-            NUnit.Framework.Assert.AreEqual("Dev2", _connection.Password);
-            NUnit.Framework.Assert.AreEqual("Dev2Server", _connection.ResourceType);
-            NUnit.Framework.Assert.AreEqual("http://127.0.0.2:1235/", _connection.WebAddress);
+            Assert.AreEqual(1235, _connection.WebServerPort);
+            Assert.AreEqual("http://127.0.0.2:1235/", _connection.Address);
+            Assert.AreEqual(AuthenticationType.User, _connection.AuthenticationType);
+            Assert.AreEqual("Dev2", _connection.Password);
+            Assert.AreEqual("Dev2Server", _connection.ResourceType);
+            Assert.AreEqual("http://127.0.0.2:1235/", _connection.WebAddress);
         }
         [Test]
         [Author("Candice Daniel")]
@@ -234,7 +233,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
         {
             var connection = SetupDefaultConnection();
             connection.GetHashCode();
-            NUnit.Framework.Assert.AreNotEqual(0, connection.GetHashCode());
+            Assert.AreNotEqual(0, connection.GetHashCode());
         }
         [Test]
         [Author("Candice Daniel")]
@@ -253,7 +252,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
                 WebServerPort = 8080
             };
             testConnection.GetHashCode();
-            NUnit.Framework.Assert.AreNotEqual(0, testConnection.GetHashCode());
+            Assert.AreNotEqual(0, testConnection.GetHashCode());
         }
 
 

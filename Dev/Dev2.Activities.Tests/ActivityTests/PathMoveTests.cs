@@ -28,7 +28,6 @@ namespace Dev2.Tests.Activities.ActivityTests
     /// Summary description for DateTimeDifferenceTests
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     
     public class PathMoveTests : BaseActivityUnitTest
     {
@@ -243,7 +242,6 @@ namespace Dev2.Tests.Activities.ActivityTests
         [Test]
         [Author("Tshepo Ntlhokoa")]
         [Category("DsfPathMove_Execute")]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void Move_Execute_Workflow_SourceFile_And_DestinationFile_Has_Separate_Passwords_Both_Passwords_Are_Sent_To_OperationBroker()
         {
             var fileNames = new List<string>

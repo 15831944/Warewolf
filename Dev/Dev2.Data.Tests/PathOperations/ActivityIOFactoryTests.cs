@@ -12,7 +12,7 @@ namespace Dev2.Data.Tests.PathOperations
         public void Dev2ActivityIOBroker_CreateInstance_GivenThrowsNoExpetion_ShouldBeIActivityOperationsBroker()
         {
             var broker = ActivityIOFactory.CreateOperationsBroker();
-            NUnit.Framework.Assert.IsInstanceOf(broker.GetType(), typeof(IActivityOperationsBroker));
+            NUnit.Framework.Assert.IsInstanceOf(typeof(IActivityOperationsBroker), broker);
         }
     }
 }

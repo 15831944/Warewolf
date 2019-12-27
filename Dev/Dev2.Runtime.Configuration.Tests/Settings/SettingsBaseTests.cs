@@ -16,7 +16,6 @@ using NUnit.Framework;
 namespace Dev2.Runtime.Configuration.Tests.Settings
 {
     [TestFixture]
-    [SetUpFixture]
     public class SettingsBaseTests
     {
         #region CTOR
@@ -46,9 +45,9 @@ namespace Dev2.Runtime.Configuration.Tests.Settings
         public void ConstructorWithValidNameArgumentsExpectedSetsProperties()
         {
             var settings = new SettingsBaseMock("x", "y", "localhost");
-            NUnit.Framework.Assert.AreEqual("x", settings.SettingName);
-            NUnit.Framework.Assert.AreEqual("y", settings.DisplayName);
-            NUnit.Framework.Assert.AreEqual("localhost", settings.WebServerUri);
+            Assert.AreEqual("x", settings.SettingName);
+            Assert.AreEqual("y", settings.DisplayName);
+            Assert.AreEqual("localhost", settings.WebServerUri);
         }
 
         [Test]
@@ -64,9 +63,9 @@ namespace Dev2.Runtime.Configuration.Tests.Settings
             var xml = new XElement("Settings", new XAttribute("DisplayName", "hello"));
             var settings = new SettingsBaseMock(xml, "localhost");
 
-            NUnit.Framework.Assert.AreEqual("hello", settings.DisplayName);
-            NUnit.Framework.Assert.AreEqual(xml.Name, settings.SettingName);
-            NUnit.Framework.Assert.AreEqual("localhost", settings.WebServerUri);
+            Assert.AreEqual("hello", settings.DisplayName);
+            Assert.AreEqual(xml.Name, settings.SettingName);
+            Assert.AreEqual("localhost", settings.WebServerUri);
         }
 
         [Test]
@@ -76,8 +75,8 @@ namespace Dev2.Runtime.Configuration.Tests.Settings
             var xml = new XElement("Settings", new XAttribute("DisplayName", "hello"));
             var settings = new SettingsBaseMock(xml, null);
 
-            NUnit.Framework.Assert.AreEqual("hello", settings.DisplayName);
-            NUnit.Framework.Assert.AreEqual(xml.Name, settings.SettingName);
+            Assert.AreEqual("hello", settings.DisplayName);
+            Assert.AreEqual(xml.Name, settings.SettingName);
         }
 
         #endregion
@@ -89,8 +88,8 @@ namespace Dev2.Runtime.Configuration.Tests.Settings
         {
             var settings = new SettingsBaseMock("x", "y", "localhost");
             var result = settings.ToXml();
-            NUnit.Framework.Assert.IsNotNull(result);
-            NUnit.Framework.Assert.IsInstanceOf(result.GetType(), typeof(XElement));
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOf(typeof(XElement), result);
         }
 
         [Test]
@@ -99,8 +98,8 @@ namespace Dev2.Runtime.Configuration.Tests.Settings
             var settings = new SettingsBaseMock("x", "y", "localhost");
 
             var result = settings.ToXml();
-            NUnit.Framework.Assert.AreEqual(settings.SettingName, result.Name);
-            NUnit.Framework.Assert.AreEqual(settings.DisplayName, result.AttributeSafe("DisplayName"));
+            Assert.AreEqual(settings.SettingName, result.Name);
+            Assert.AreEqual(settings.DisplayName, result.AttributeSafe("DisplayName"));
         }
 
         #endregion

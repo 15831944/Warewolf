@@ -30,7 +30,6 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
     }
     [TestFixture]
-    [SetUpFixture]
     public class DsfSwitchTests
     {
         [Test]

@@ -26,7 +26,6 @@ using static Dev2.Activities.AdvancedRecordsetActivity;
 namespace Dev2.Tests.Activities.ActivityTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class AdvancedRecordsetActivityTests : BaseActivityTests
     {
         static AdvancedRecordsetActivity CreateAdvancedRecordsetActivity()
@@ -49,7 +48,6 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
         [Test]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         [Author("Candice Daniel")]
         [Category(nameof(AdvancedRecordsetActivity))]
         public void AdvancedRecordsetActivity_Equal_OtherIsNull()
@@ -60,7 +58,6 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
         [Test]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         [Author("Candice Daniel")]
         [Category(nameof(AdvancedRecordsetActivity))]
         public void AdvancedRecordsetActivity_Equal_OtherisEqual()
@@ -72,7 +69,6 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
         [Test]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         [Author("Candice Daniel")]
         [Category(nameof(AdvancedRecordsetActivity))]
         public void AdvancedRecordsetActivity_Equal_OtherisObjectofAdvancedRecordsetActivity()
@@ -84,7 +80,6 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
         [Test]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         [Author("Candice Daniel")]
         [Category(nameof(AdvancedRecordsetActivity))]
         public void AdvancedRecordsetActivity_Equal_BothareObjects()
@@ -96,7 +91,6 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
         [Test]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         [Author("Candice Daniel")]
         [Category(nameof(AdvancedRecordsetActivity))]
         public void AdvancedRecordsetActivity_SetGet_RecordsetName()
@@ -108,7 +102,6 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
         [Test]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         [Author("Candice Daniel")]
         [Category(nameof(AdvancedRecordsetActivity))]
         public void AdvancedRecordsetActivity_SetGet_SqlQuery()
@@ -120,7 +113,6 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
         [Test]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         [Author("Candice Daniel")]
         [Category(nameof(AdvancedRecordsetActivity))]
         public void AdvancedRecordsetActivity_SetGet_DeclareVariables()
@@ -133,7 +125,6 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
         [Test]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         [Author("Candice Daniel")]
         [Category(nameof(AdvancedRecordsetActivity))]
         public void AdvancedRecordsetActivity_SetGet_ExecuteActionString()
@@ -146,7 +137,6 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
         [Test]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         [Author("Candice Daniel")]
         [Category(nameof(AdvancedRecordsetActivity))]
         public void AdvancedRecordsetActivity_GetFindMissingType_Expect_DataGridActivity()
@@ -159,7 +149,6 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
         [Test]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         [Author("Candice Daniel")]
         [Category(nameof(AdvancedRecordsetActivity))]
         public void AdvancedRecordsetActivity_GetHashCode()
@@ -172,7 +161,6 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
         [Test]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         [Author("Candice Daniel")]
         [Category(nameof(AdvancedRecordsetActivity))]
         public void AdvancedRecordsetActivity_Worker_LoadRecordset()
@@ -185,7 +173,6 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
         [Test]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         [Author("Candice Daniel")]
         [Category(nameof(AdvancedRecordsetActivity))]
         public void AdvancedRecordsetActivity_Worker_AddDeclarations()
@@ -201,7 +188,6 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
         [Test]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         [Author("Candice Daniel")]
         [Category(nameof(AdvancedRecordsetActivity))]
         public void AdvancedRecordsetActivity_Worker_Dispose()
@@ -217,7 +203,6 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
        
         [Test]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         [Author("Candice Daniel")]
         [Category(nameof(AdvancedRecordsetActivity))]
         public void AdvancedRecordsetActivity_GetDebugInputs()
@@ -245,7 +230,6 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
         [Test]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         [Author("Candice Daniel")]
         [Category(nameof(AdvancedRecordsetActivity))]
         public void AdvancedRecordsetActivity_GetOutputs_OutputsisNull()
@@ -262,7 +246,6 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
         [Test]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         [Author("Candice Daniel")]
         [Category(nameof(AdvancedRecordsetActivity))]
         public void AdvancedRecordsetActivity_GetOutputs_OutputsnotNull()
@@ -274,7 +257,6 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
         [Test]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         [Author("Candice Daniel")]
         [Category(nameof(AdvancedRecordsetActivity))]
         public void AdvancedRecordsetActivity_GetOutputs_OutputsIsObject()
@@ -288,7 +270,6 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
         [Test]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         [Author("Candice Daniel")]
         [Category(nameof(AdvancedRecordsetActivity))]
         public void AdvancedRecordsetActivity_ExecuteSql()
@@ -305,7 +286,6 @@ namespace Dev2.Tests.Activities.ActivityTests
             // workerInvoker.ExecuteSql(0, ref started);
         }
         [Test]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         [Author("Candice Daniel")]
         [Category(nameof(AdvancedRecordsetActivity))]
         public void AdvancedRecordsetActivity_ExecuteRecordset()
@@ -342,7 +322,6 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
         [Test]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         [Author("Candice Daniel")]
         [Category(nameof(AdvancedRecordsetActivity))]
         public void AdvancedRecordsetActivity_OnExecute()

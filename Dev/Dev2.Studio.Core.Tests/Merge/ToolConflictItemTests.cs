@@ -9,7 +9,6 @@ using System.Windows.Media;
 namespace Dev2.Core.Tests.Merge
 {
     [TestFixture]
-    [SetUpFixture]
     public class ToolConflictItemTests : MergeTestUtils
     {
         [Test]

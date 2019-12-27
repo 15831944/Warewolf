@@ -6,7 +6,6 @@ using NUnit.Framework;
 namespace Dev2.Tests.Runtime.Util
 {
     [TestFixture]
-    [SetUpFixture]
     public class ExecutionManagerTests
     {
         [Test]

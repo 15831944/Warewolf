@@ -29,7 +29,6 @@ namespace Dev2.Core.Tests
     ///to contain all InputOutputViewModelTest Unit Tests
     ///</summary>
     [TestFixture]
-    [SetUpFixture]
     public class InputOutputViewModelTest
     {
 

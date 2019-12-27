@@ -17,7 +17,6 @@ using NUnit.Framework;
 namespace Dev2.Tests.Runtime.WebServer.Responses
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime WebServer")]
     public class StatusResponseWriterTests
     {

@@ -10,13 +10,11 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Activities.Specs
 {
     [TestFixture]
-    [SetUpFixture]
     public class DatasplitCompositionLoadTests
     {
         protected string CurrentDl { get; set; }
 
         [Test]
-        [DeploymentItem("LargeRowsDataSplit.txt")]
         [Category("CompositionLoadTests")]
         public void LargeRows_SplitOnNewLine_ShouldSplitCorrectly()
         {

@@ -31,7 +31,6 @@ namespace Dev2.Tests.Activities.ActivityTests
     /// Summary description for AssignActivity
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class ForEachActivityTest : BaseActivityUnitTest
     {
 

@@ -6,7 +6,6 @@ using Dev2.Common.Interfaces.Enums;
 namespace Dev2.Tests.Activities.ActivityComparerTests.Random
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfRandomActivityComparerTest
     {
         [Test]

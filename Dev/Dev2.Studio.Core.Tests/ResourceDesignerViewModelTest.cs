@@ -24,7 +24,6 @@ namespace Dev2.Core.Tests
     ///to contain all ResourceDesignerViewModelTest Unit Tests
     ///</summary>
     [TestFixture]
-    [SetUpFixture]
     public class ResourceDesignerViewModelTest
     {
 

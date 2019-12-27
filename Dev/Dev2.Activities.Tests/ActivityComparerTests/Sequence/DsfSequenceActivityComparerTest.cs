@@ -7,7 +7,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Tests.Activities.ActivityComparerTests.Sequence
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfSequenceActivityComparerTest
     {
         [Test]

@@ -5,7 +5,6 @@ using NUnit.Framework;
 namespace Dev2.Studio.Tests.AppResources.Converters
 {
     [TestFixture]
-    [SetUpFixture]
     public class CustomIconsTests
     {
         [Test]

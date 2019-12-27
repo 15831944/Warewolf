@@ -18,7 +18,6 @@ namespace Dev2.Scheduler.Test
 {
 
     [TestFixture]
-    [SetUpFixture]
     public class ResourceHistoryTest
     {
         [Test]

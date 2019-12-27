@@ -21,7 +21,6 @@ using Moq;
 namespace Dev2.TaskScheduler.Wrappers.Test
 {
     [TestFixture]
-    [SetUpFixture]
      public class TaskServiceConvertorFactoryTests
     {
 

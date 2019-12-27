@@ -22,7 +22,6 @@ namespace Dev2.Core.Tests.Services
     /// Summary description for ServerServiceConfigurationTest
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class ServerServiceConfigurationTest
     {
         /// <summary>

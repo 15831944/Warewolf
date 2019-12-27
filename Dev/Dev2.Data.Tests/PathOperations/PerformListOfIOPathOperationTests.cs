@@ -21,7 +21,6 @@ using System.IO;
 namespace Dev2.Data.Tests.PathOperations
 {
     [TestFixture]
-    [SetUpFixture]
     public class PerformListOfIOPathOperationTests
     {
         [Test]

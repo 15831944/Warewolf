@@ -14,7 +14,6 @@ namespace Dev2.Tests.Activities.ActivityTests
     /// Summary description for CaseConvertActivityTests
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     
     public class DecisionActivityTests : BaseActivityUnitTest
     {

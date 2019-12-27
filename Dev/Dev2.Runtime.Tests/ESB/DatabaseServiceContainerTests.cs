@@ -19,19 +19,9 @@ using Moq;
 namespace Dev2.Tests.Runtime.ESB
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime ESB")]
     public class DatabaseServiceContainerTests
     {
-        #region ClassInitialize
-
-        [OneTimeSetUp]
-        public static void MyClassInitialize(TestContext context)
-        {
-        }
-
-        #endregion
-
         #region Execute
 
         [Test]
@@ -46,7 +36,7 @@ namespace Dev2.Tests.Runtime.ESB
             //------------Execute Test---------------------------
             var actual = databaseServiceContainer.Execute(out errors, 0);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(expected, actual, "Execute should return the Guid from the service execution");
+            Assert.AreEqual(expected, actual, "Execute should return the Guid from the service execution");
         }
 
         #endregion

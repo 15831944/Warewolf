@@ -19,7 +19,6 @@ using Moq;
 namespace Warewolf.Trigger.Queue.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class DummyTriggerQueueViewTests
     {
         [SetUp]

@@ -19,7 +19,6 @@ using NUnit.Framework;
 namespace Dev2.Tests.DataList
 {
     [TestFixture]
-    [SetUpFixture]
     public class Dev2StudioSessionBrokerTests
     {
         /// <summary>

@@ -16,7 +16,6 @@ using Dev2.Common;
 namespace Dev2.Infrastructure.Tests.Logs
 {
     [TestFixture]
-    [SetUpFixture]
     public class PulseLoggerTests
     {
         bool _elapsed;

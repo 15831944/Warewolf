@@ -7,7 +7,6 @@ using System;
 namespace Dev2.Core.Tests.Merge
 {
     [TestFixture]
-    [SetUpFixture]
     public class ConnectorConflictRowTests
     {
         

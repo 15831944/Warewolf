@@ -20,7 +20,6 @@ using Warewolf.Options;
 namespace Warewolf.Trigger.Queue.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class TriggerQueueTests
     {
         [Test]

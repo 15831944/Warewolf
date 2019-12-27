@@ -23,7 +23,6 @@ using System.Text;
 namespace Dev2.Core.Tests.Triggers
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Studio ViewModels Triggers")]
     public class ClientScheduledResourceTests
     {

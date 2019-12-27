@@ -13,7 +13,6 @@ using Moq;
 namespace Warewolf.Studio.ViewModels.ToolBox.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ToolboxViewModelTests
     {
         #region Fields

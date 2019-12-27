@@ -4,7 +4,6 @@ using Dev2.Runtime.ESB.Management.Services;
 namespace Dev2.Tests.Runtime.Services
 {
     [TestFixture]
-    [SetUpFixture]
     public class WorkflowResumeTests
     {       
         [Test]

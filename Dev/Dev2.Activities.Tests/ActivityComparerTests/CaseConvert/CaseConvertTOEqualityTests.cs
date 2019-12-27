@@ -3,7 +3,6 @@
 namespace Dev2.Tests.Activities.ActivityComparerTests.CaseConvert
 {
     [TestFixture]
-    [SetUpFixture]
     public class CaseConvertToEqualityTests
     {
         [Test]

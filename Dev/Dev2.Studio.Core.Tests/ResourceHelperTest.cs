@@ -17,7 +17,6 @@ using Moq;
 namespace Dev2.Core.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ResourceHelperTest
     {
         #region Additional test attributes

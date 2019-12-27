@@ -25,7 +25,6 @@ namespace Dev2.Tests.Activities.ActivityTests
     /// Summary description for RecordsetLengthTestNullhandler
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class RecordsetLengthTestNullhandler : BaseActivityUnitTest
     {
         /// <summary>

@@ -18,7 +18,6 @@ namespace Dev2.Tests.Activities.Utils
     /// Summary description for FindRecordsMigrationUtilTests
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class FindRecordsDisplayUtilTests
     {
         [Test]

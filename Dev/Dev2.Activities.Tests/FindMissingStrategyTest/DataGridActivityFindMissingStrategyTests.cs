@@ -28,7 +28,6 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
     /// Summary description for DataGridActivityFindMissingStrategyTests
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class DataGridActivityFindMissingStrategyTests
     {
         /// <summary>

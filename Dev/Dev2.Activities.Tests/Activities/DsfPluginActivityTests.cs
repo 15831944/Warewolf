@@ -17,7 +17,6 @@ using Moq;
 namespace Dev2.Tests.Activities.Activities
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfPluginActivityTests
     {
         [Test]

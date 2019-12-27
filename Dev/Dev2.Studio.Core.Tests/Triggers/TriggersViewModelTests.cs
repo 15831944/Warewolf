@@ -26,7 +26,6 @@ using Warewolf.Triggers;
 namespace Dev2.Core.Tests.Triggers
 {
     [TestFixture]
-    [SetUpFixture]
     public class TriggerViewModelTests
     {
         [SetUp]

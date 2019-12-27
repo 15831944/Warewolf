@@ -27,7 +27,6 @@ using System.Linq;
 namespace Warewolf.Studio.ViewModels.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class StudioServerProxyTests
     {
         [Test]

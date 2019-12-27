@@ -15,7 +15,6 @@ using System;
 namespace Dev2.Diagnostics.Test.Debug
 {
     [TestFixture]
-    [SetUpFixture]
     public class TestDebugMessageRepoTests
     {
         [Test]

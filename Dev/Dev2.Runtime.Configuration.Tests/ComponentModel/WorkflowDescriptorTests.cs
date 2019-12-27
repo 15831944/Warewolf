@@ -17,7 +17,6 @@ using NUnit.Framework;
 namespace Dev2.Runtime.Configuration.Tests.ComponentModel
 {
     [TestFixture]
-    [SetUpFixture]
     public class WorkflowDescriptorTests
     {
         #region CTOR
@@ -26,14 +25,14 @@ namespace Dev2.Runtime.Configuration.Tests.ComponentModel
         public void ConstructorWithNullXmlArgumentExpectedDoesNotThrowException()
         {
             var workflow = new WorkflowDescriptor(null);
-            NUnit.Framework.Assert.IsNotNull(workflow);
+            Assert.IsNotNull(workflow);
         }
 
         [Test]
         public void ConstructorWithInvalidXmlArgumentExpectedDoesNotThrowException()
         {
             var workflow = new WorkflowDescriptor(new XElement("x", new XElement("y"), new XElement("z")));
-            NUnit.Framework.Assert.IsNotNull(workflow);
+            Assert.IsNotNull(workflow);
         }
 
         [Test]
@@ -53,7 +52,7 @@ namespace Dev2.Runtime.Configuration.Tests.ComponentModel
 
                 var expected = xml.AttributeSafe(property.Name).ToLower();
                 var actual = property.GetValue(workflow).ToString().ToLower();
-                NUnit.Framework.Assert.AreEqual(expected, actual);
+                Assert.AreEqual(expected, actual);
             }
         }
 
@@ -66,8 +65,8 @@ namespace Dev2.Runtime.Configuration.Tests.ComponentModel
         {
             var workflow = new WorkflowDescriptor();
             var result = workflow.ToXml();
-            NUnit.Framework.Assert.IsNotNull(result);
-            NUnit.Framework.Assert.IsInstanceOf(result.GetType(), typeof(XElement));
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOf(typeof(XElement), result);
         }
 
         [Test]
@@ -89,7 +88,7 @@ namespace Dev2.Runtime.Configuration.Tests.ComponentModel
                 }
                 var expected = property.GetValue(workflow).ToString().ToLower();
                 var actual = result.AttributeSafe(property.Name).ToLower();
-                NUnit.Framework.Assert.AreEqual(expected, actual);
+                Assert.AreEqual(expected, actual);
             }
         }
 

@@ -26,7 +26,6 @@ using Moq;
 namespace Dev2.Studio.Tests.ViewModels
 {
     [TestFixture]
-    [SetUpFixture]
     public class SearchModelTests
     {
         [Test]

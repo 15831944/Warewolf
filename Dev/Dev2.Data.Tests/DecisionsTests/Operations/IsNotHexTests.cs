@@ -17,7 +17,6 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
     /// Is Not Hex Decision
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class IsNotHexTests
     {
         [Test]

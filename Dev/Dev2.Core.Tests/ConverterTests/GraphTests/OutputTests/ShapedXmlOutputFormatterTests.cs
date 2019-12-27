@@ -25,7 +25,6 @@ using Unlimited.UnitTest.Framework.ConverterTests.GraphTests;
 namespace Dev2.Tests.ConverterTests.GraphTests.OutputTests
 {
     [TestFixture]
-    [SetUpFixture]
     [ExcludeFromCodeCoverage]
     public class ShapedXmlOutputFormatterTests
     {

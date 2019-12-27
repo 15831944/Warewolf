@@ -15,7 +15,6 @@ using System.Collections.Generic;
 namespace Dev2.Data.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ReverseIndexIteratorTests
     {
         [Test]

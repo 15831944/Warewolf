@@ -17,7 +17,6 @@ using NUnit.Framework;
 namespace Unlimited.UnitTest.Framework.Parsing
 {
     [TestFixture]
-    [SetUpFixture]
     public class LanguageParserTest
     {
 

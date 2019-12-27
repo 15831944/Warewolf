@@ -15,7 +15,6 @@ using Moq;
 namespace Dev2.Data.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class SetingTest
     {
         [Test]

@@ -17,7 +17,6 @@ using Moq;
 namespace Dev2.Diagnostics.Test
 {
     [TestFixture]
-    [SetUpFixture]
     public class TestExecutionContainer
     {
         Mock<IRealPerformanceCounterFactory> _mockPerformanceCounterFactory;

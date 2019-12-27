@@ -8,7 +8,6 @@ using Moq;
 namespace Warewolf.ResourceManagement.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ResourceActivityCacheTests
     {
         [Test]

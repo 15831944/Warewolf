@@ -18,7 +18,6 @@ using System.Globalization;
 namespace Dev2.Common.Tests.DateAndTime
 {
     [TestFixture]
-    [SetUpFixture]
     public class StandardDateTimeFormatterTests
     {
         [SetUp]

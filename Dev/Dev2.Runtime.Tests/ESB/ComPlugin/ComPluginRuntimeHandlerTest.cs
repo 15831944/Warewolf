@@ -29,7 +29,6 @@ using System.Diagnostics;
 namespace Dev2.Tests.Runtime.ESB.ComPlugin
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime ESB")]
     public class ComPluginRuntimeHandlerTest
     {
@@ -38,7 +37,7 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
         public TestContext TestContext { get; set; }
 
         [OneTimeSetUp]
-        public static void Add_Component_To_Registry(TestContext tstctx)
+        public static void Add_Component_To_Registry()
         {
             var assembly = Assembly.GetExecutingAssembly();
             var assemblyDirectory = new FileInfo(assembly.Location).Directory.FullName;
@@ -74,7 +73,7 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
             var isolated = new ComPluginRuntimeHandler(mock.Object);
             var serviceMethodList = isolated.ListMethods(adodbConnectionClassId, true);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(0, serviceMethodList.Count);
+            Assert.AreEqual(0, serviceMethodList.Count);
         }
 
         [Test]
@@ -94,8 +93,8 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
             var isolated = new ComPluginRuntimeHandler(mock.Object);
             var result = isolated.ListMethods(adodbConnectionClassId, false);
             //------------Assert Results-------------------------
-            NUnit.Framework.CollectionAssert.AllItemsAreUnique(result);
-            NUnit.Framework.CollectionAssert.AllItemsAreNotNull(result);
+            CollectionAssert.AllItemsAreUnique(result);
+            CollectionAssert.AllItemsAreNotNull(result);
         }
 
         [Test]
@@ -115,9 +114,9 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
             var isolated = new ComPluginRuntimeHandler(mock.Object);
             var result = isolated.FetchNamespaceListObject(source);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(1, result.Count);
             var assemblyLocation = result[0].AssemblyLocation;
-            NUnit.Framework.Assert.IsTrue(string.IsNullOrEmpty(assemblyLocation));
+            Assert.IsTrue(string.IsNullOrEmpty(assemblyLocation));
         }
 
         [Test]
@@ -144,7 +143,7 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
             //---------------Execute Test ----------------------
             var enumerable = methodInfo.Invoke("TryBuildValuedTypeParams", new object[] { args }) as IEnumerable<object>;
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual(1,enumerable?.Count());
+            Assert.AreEqual(1,enumerable?.Count());
         }
 
         [Test]
@@ -172,7 +171,7 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
             //---------------Execute Test ----------------------
             var enumerable = methodInfo.Invoke("TryBuildValuedTypeParams", new object[] { args }) as IEnumerable<object>;
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual(1,enumerable?.Count());
+            Assert.AreEqual(1,enumerable?.Count());
         }
 
         [Test]
@@ -223,7 +222,7 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
             using (var isolated = new Isolated<ComPluginRuntimeHandler>())
             {
                 var result = isolated.Value.FetchNamespaceListObject(source);
-                NUnit.Framework.Assert.IsNotNull(result);
+                Assert.IsNotNull(result);
             }
         }
 
@@ -251,14 +250,13 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
             using (var isolated = new Isolated<ComPluginRuntimeHandler>())
             {
                 var result = isolated.Value.ListMethods(string.Empty, false);
-                NUnit.Framework.Assert.AreEqual(0, result.Count);
+                Assert.AreEqual(0, result.Count);
             }
         }
 
         [Test]
         [Author("Nkosinathi Sangweni")]
         [Category("ComPluginRuntimeHandler_ListMethods")]
-        [DeploymentItem("Warewolf.COMIPC.exe"),DeploymentItem("Warewolf.COMIPC.pdb")]
         public void ComPluginRuntimeHandler_ListMethods_WhenValidLocation_ExpectResults()
         {
             //------------Setup for test--------------------------
@@ -266,8 +264,8 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
             using (var isolated = new Isolated<ComPluginRuntimeHandler>())
             {
                 var result = isolated.Value.ListMethods(adodbConnectionClassId, true);
-                NUnit.Framework.CollectionAssert.AllItemsAreUnique(result);
-                NUnit.Framework.Assert.AreNotEqual(0, result.Count);
+                CollectionAssert.AllItemsAreUnique(result);
+                Assert.AreNotEqual(0, result.Count);
             }
         }
 
@@ -288,7 +286,7 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
 
             var args = new ComPluginInvokeArgs { ClsId = adodbConnectionClassId, Fullname = svc.Namespace, Method = "InvalidName", Parameters = svc.Method.Parameters };
             var run = isolated.Run(args);
-            NUnit.Framework.Assert.IsNull(run);
+            Assert.IsNull(run);
 
         }
 
@@ -304,8 +302,8 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
             var isolated = new ComPluginRuntimeHandler();
             var args = new ComPluginInvokeArgs { ClsId = adodbConnectionClassId, Fullname = svc.Namespace, Method = "InvalidName", Parameters = svc.Method.Parameters };
             var run = isolated.Test(args, out string outString);
-            NUnit.Framework.Assert.IsNotNull(run);
-            NUnit.Framework.Assert.IsNull(outString);
+            Assert.IsNotNull(run);
+            Assert.IsNull(outString);
 
         }
 
@@ -326,8 +324,8 @@ namespace Dev2.Tests.Runtime.ESB.ComPlugin
             var isolated = new ComPluginRuntimeHandler(mock.Object);
             var args = new ComPluginInvokeArgs { ClsId = adodbConnectionClassId, Fullname = svc.Namespace, Method = "ToString", Parameters = svc.Method.Parameters, Is32Bit = true };
             var run = isolated.Test(args, out string outString);
-            NUnit.Framework.Assert.IsNotNull(run);
-            NUnit.Framework.Assert.IsNotNull(outString);
+            Assert.IsNotNull(run);
+            Assert.IsNotNull(outString);
 
         }
 

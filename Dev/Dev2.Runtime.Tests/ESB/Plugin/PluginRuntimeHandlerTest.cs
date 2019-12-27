@@ -30,7 +30,6 @@ using TestingDotnetDllCascading;
 namespace Dev2.Tests.Runtime.ESB.Plugin
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime ESB")]
     public class PluginRuntimeHandlerTest
     {
@@ -49,7 +48,7 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             {
                 var result = isolated.Value.FetchNamespaceListObject(source);
                 //------------Assert Results-------------------------
-                NUnit.Framework.Assert.IsTrue(result.Count > 0);
+                Assert.IsTrue(result.Count > 0);
             }
         }
 
@@ -65,7 +64,7 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             {
                 var result = isolated.Value.FetchNamespaceListObjectWithJsonObjects(source);
                 //------------Assert Results-------------------------
-                NUnit.Framework.Assert.IsTrue(result.Count > 0);
+                Assert.IsTrue(result.Count > 0);
             }
         }
 
@@ -262,7 +261,7 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             using (Isolated<PluginRuntimeHandler> isolated = new Isolated<PluginRuntimeHandler>())
             {
                 var result = isolated.Value.ListNamespaces(source.AssemblyLocation, "Foo");
-                NUnit.Framework.Assert.IsNotNull(result);
+                Assert.IsNotNull(result);
             }
         }
 
@@ -290,7 +289,7 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             using (Isolated<PluginRuntimeHandler> isolated = new Isolated<PluginRuntimeHandler>())
             {
                 var result = isolated.Value.ListNamespaces("z:\foo\asm.dll", "Foo");
-                NUnit.Framework.Assert.IsFalse(result.Any());
+                Assert.IsFalse(result.Any());
             }
         }
 
@@ -304,7 +303,7 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             using (Isolated<PluginRuntimeHandler> isolated = new Isolated<PluginRuntimeHandler>())
             {
                 var result = isolated.Value.ListMethods("z:\foo\asm.dll", "asm.dll", "asm.dll");
-                NUnit.Framework.Assert.IsFalse(result.Any());
+                Assert.IsFalse(result.Any());
             }
         }
 
@@ -318,7 +317,7 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             using (Isolated<PluginRuntimeHandler> isolated = new Isolated<PluginRuntimeHandler>())
             {
                 var result = isolated.Value.ListConstructors("z:\foo\asm.dll", "asm.dll", "asm.dll");
-                NUnit.Framework.Assert.IsFalse(result.Any());
+                Assert.IsFalse(result.Any());
             }
         }
 
@@ -334,7 +333,7 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
                 var fullName = Assembly.GetExecutingAssembly().Location;
                 var dllName = Path.GetFileName(fullName);
                 var result = isolated.Value.ListMethods(fullName, dllName, typeof(Main).FullName);
-                NUnit.Framework.Assert.IsTrue(result.Any());
+                Assert.IsTrue(result.Any());
             }
         }
 
@@ -350,7 +349,7 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
                 var fullName = Assembly.GetExecutingAssembly().Location;
                 var dllName = Path.GetFileName(fullName);
                 var result = isolated.Value.ListConstructors(fullName, dllName, typeof(Main).FullName);
-                NUnit.Framework.Assert.IsTrue(result.Any());
+                Assert.IsTrue(result.Any());
             }
         }
 
@@ -366,7 +365,7 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
                 var fullName = Assembly.GetExecutingAssembly().Location;
                 var dllName = Path.GetFileName(fullName);
                 var result = isolated.Value.ListMethodsWithReturns(fullName, dllName, typeof(Main).FullName);
-                NUnit.Framework.Assert.IsTrue(result.Any());
+                Assert.IsTrue(result.Any());
             }
         }
 
@@ -382,8 +381,8 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
                 var fullName = Assembly.GetExecutingAssembly().Location;
                 var dllName = Path.GetFileName(fullName);
                 var result = isolated.Value.ListMethodsWithReturns(fullName, dllName, typeof(Main).FullName);
-                NUnit.Framework.Assert.IsTrue(result.Any());
-                NUnit.Framework.Assert.IsTrue(result.Any(method => method.IsVoid));
+                Assert.IsTrue(result.Any());
+                Assert.IsTrue(result.Any(method => method.IsVoid));
             }
         }
 
@@ -399,8 +398,8 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
                 var fullName = Assembly.GetExecutingAssembly().Location;
                 var dllName = Path.GetFileName(fullName);
                 var result = isolated.Value.ListMethodsWithReturns(fullName, dllName, typeof(Main).FullName);
-                NUnit.Framework.Assert.IsTrue(result.Any());
-                NUnit.Framework.Assert.IsTrue(result.Any(method => method.IsProperty));
+                Assert.IsTrue(result.Any());
+                Assert.IsTrue(result.Any(method => method.IsProperty));
             }
         }
 
@@ -416,10 +415,10 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
                 var fullName = Assembly.GetExecutingAssembly().Location;
                 var dllName = Path.GetFileName(fullName);
                 var result = isolated.Value.ListMethodsWithReturns(fullName, dllName, typeof(Main).FullName);
-                NUnit.Framework.Assert.IsTrue(result.Any());
+                Assert.IsTrue(result.Any());
                 var serviceMethods = result.Where(method => !method.IsVoid);
                 var condition = serviceMethods.Any(method => method.Dev2ReturnType.Contains("["));
-                NUnit.Framework.Assert.IsTrue(condition);
+                Assert.IsTrue(condition);
             }
         }
 
@@ -467,7 +466,7 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
                 });
 
                 var deserializeToObject = instance.ObjectString.DeserializeToObject(type, new KnownTypesBinder() { KnownTypes = new List<Type>(type.Assembly.ExportedTypes) });
-                NUnit.Framework.Assert.IsNotNull(deserializeToObject);
+                Assert.IsNotNull(deserializeToObject);
             }
         }
 
@@ -511,9 +510,9 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
                 if (deserializeToObject is Human firstOrDefault)
                 {
 
-                    NUnit.Framework.Assert.AreEqual("Jimmy", firstOrDefault.Name);
+                    Assert.AreEqual("Jimmy", firstOrDefault.Name);
                 }
-                NUnit.Framework.Assert.IsNotNull(deserializeToObject);
+                Assert.IsNotNull(deserializeToObject);
             }
         }
 
@@ -553,12 +552,12 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
                 var instance = isolated.Value.CreateInstance(pluginInvokeArgs);
 
                 var deserializeToObject = instance.ObjectString.DeserializeToObject(type, new KnownTypesBinder() { KnownTypes = new List<Type>(type.Assembly.ExportedTypes) });
-                NUnit.Framework.Assert.IsNotNull(deserializeToObject);
+                Assert.IsNotNull(deserializeToObject);
                 instance.Args = pluginInvokeArgs;
                 var dev2MethodInfo = instance.Args.MethodsToRun.First();
                 var run = isolated.Value.Run(dev2MethodInfo, instance, out string stringOBj);
-                NUnit.Framework.Assert.IsNotNull(run);
-                NUnit.Framework.StringAssert.Contains(stringOBj, "Default");
+                Assert.IsNotNull(run);
+                StringAssert.Contains(stringOBj, "Default");
             }
         }
 
@@ -606,9 +605,9 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
 
             var dev2MethodInfo = pluginInvokeArgs.MethodsToRun.First();
             var run = handler.Run(dev2MethodInfo, pluginExecutionDto, out string stringOBj);
-            NUnit.Framework.Assert.IsNotNull(run);
-            NUnit.Framework.Assert.IsTrue(run.HasError);
-            NUnit.Framework.Assert.IsFalse(string.IsNullOrEmpty(run.ErrorMessage));
+            Assert.IsNotNull(run);
+            Assert.IsTrue(run.HasError);
+            Assert.IsFalse(string.IsNullOrEmpty(run.ErrorMessage));
 
         }
 
@@ -651,8 +650,8 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             mock.Setup(loader => loader.TryLoadAssembly(It.IsAny<string>(), It.IsAny<string>(), out loadedAssembly))
                 .Throws(exception);
             var run = handler.Test(pluginInvokeArgs, out string stringOBj);
-            NUnit.Framework.Assert.IsNull(run);
-            NUnit.Framework.Assert.IsTrue(string.IsNullOrEmpty(stringOBj));
+            Assert.IsNull(run);
+            Assert.IsTrue(string.IsNullOrEmpty(stringOBj));
 
         }
 
@@ -732,8 +731,8 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
 
                 };
                 var instance = isolated.Value.CreateInstance(pluginInvokeArgs);
-                NUnit.Framework.Assert.IsTrue(string.IsNullOrEmpty(instance.ObjectString));
-                NUnit.Framework.Assert.IsTrue(instance.IsStatic);
+                Assert.IsTrue(string.IsNullOrEmpty(instance.ObjectString));
+                Assert.IsTrue(instance.IsStatic);
             }
         }
 
@@ -765,8 +764,8 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
                 var instance = isolated.Value.CreateInstance(pluginInvokeArgs);
                 instance.Args = pluginInvokeArgs;
                 isolated.Value.Run(svc.MethodsToRun.First(), instance, out string str);
-                NUnit.Framework.Assert.IsTrue(string.IsNullOrEmpty(str));
-                NUnit.Framework.Assert.IsTrue(instance.IsStatic);
+                Assert.IsTrue(string.IsNullOrEmpty(str));
+                Assert.IsTrue(instance.IsStatic);
             }
         }
 
@@ -797,8 +796,8 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
 
                 };
                 var instance = isolated.Value.CreateInstance(pluginInvokeArgs);
-                NUnit.Framework.Assert.IsTrue(!string.IsNullOrEmpty(instance.ObjectString));
-                NUnit.Framework.Assert.IsFalse(instance.IsStatic);
+                Assert.IsTrue(!string.IsNullOrEmpty(instance.ObjectString));
+                Assert.IsFalse(instance.IsStatic);
             }
         }
 
@@ -831,8 +830,8 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
                 {
                     Args = pluginInvokeArgs
                 });
-                NUnit.Framework.Assert.IsTrue(!string.IsNullOrEmpty(instance.ObjectString));
-                NUnit.Framework.Assert.IsFalse(instance.IsStatic);
+                Assert.IsTrue(!string.IsNullOrEmpty(instance.ObjectString));
+                Assert.IsFalse(instance.IsStatic);
             }
         }
 
@@ -873,9 +872,9 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
 
             };
             var instance = isolated.Test(pluginInvokeArgs, out string jresult);
-            NUnit.Framework.Assert.IsTrue(!string.IsNullOrEmpty(jresult));
+            Assert.IsTrue(!string.IsNullOrEmpty(jresult));
             var count = instance.DataSourceShapes.Count;
-            NUnit.Framework.Assert.AreEqual(1, count);
+            Assert.AreEqual(1, count);
 
         }
 
@@ -894,10 +893,10 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             //---------------Execute Test ----------------------
             var jObject = invokeStatic as JObject;
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsNotNull(jObject);
+            Assert.IsNotNull(jObject);
             var hasValues = jObject.HasValues;
-            NUnit.Framework.Assert.IsTrue(hasValues);
-            NUnit.Framework.Assert.AreEqual(8, jObject.Count);
+            Assert.IsTrue(hasValues);
+            Assert.AreEqual(8, jObject.Count);
         }
 
         [Test]
@@ -914,14 +913,14 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             var invokeStatic = type.InvokeStatic("GetPropertiesJObject", type1);
             //---------------Execute Test ----------------------
             var jObject = invokeStatic as JObject;
-            NUnit.Framework.Assert.IsNotNull(jObject);
+            Assert.IsNotNull(jObject);
             var hasValues = jObject.HasValues;
-            NUnit.Framework.Assert.IsTrue(hasValues);
-            NUnit.Framework.Assert.AreEqual(8, jObject.Count);
+            Assert.IsTrue(hasValues);
+            Assert.AreEqual(8, jObject.Count);
             //---------------Test Result -----------------------
             const string str = "{\"CommandText\":\"\",\"CommandTimeout\":\"\",\"CommandType\":\"\",\"Connection\":\"\",\"DesignTimeVisible\":\"\",\"Transaction\":\"\",\"UpdatedRowSource\":\"\",\"Site\":\"\"}";
             var s = jObject.ToString(Formatting.None);
-            NUnit.Framework.Assert.AreEqual(str, s);
+            Assert.AreEqual(str, s);
         }
 
         [Test]
@@ -940,7 +939,7 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             //------------Execute Test---------------------------
             var runtimeHandler = new PluginRuntimeHandler();
             var resultAdgusted = methodInfo.Invoke(runtimeHandler, new[] { result, memberInfo });
-            NUnit.Framework.Assert.AreEqual("<PrimitiveReturnValue>string</PrimitiveReturnValue>", resultAdgusted);
+            Assert.AreEqual("<PrimitiveReturnValue>string</PrimitiveReturnValue>", resultAdgusted);
         }
 
 

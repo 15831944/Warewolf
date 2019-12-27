@@ -5,8 +5,7 @@ using WarewolfParserInterop;
 
 namespace WarewolfParsingTest
 {
-    [TestFixture]
-    [SetUpFixture] 
+    [TestFixture] 
     public class SortTest
     {
 

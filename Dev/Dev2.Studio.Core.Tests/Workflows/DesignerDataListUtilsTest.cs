@@ -16,7 +16,6 @@ using NUnit.Framework;
 namespace Dev2.Core.Tests.Workflows
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Studio Workflows Core")]
     public class DesignerDataListUtilsTest
     {

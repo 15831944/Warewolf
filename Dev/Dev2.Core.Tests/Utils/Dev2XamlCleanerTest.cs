@@ -20,7 +20,6 @@ namespace Dev2.Tests.Utils
     /// Summary description for Dev2XamlLoaderTest
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class Dev2XamlCleanerTest
     {
 

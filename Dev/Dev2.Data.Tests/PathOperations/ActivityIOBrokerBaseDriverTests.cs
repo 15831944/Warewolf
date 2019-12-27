@@ -19,7 +19,6 @@ using Dev2.Common.Interfaces.Wrappers;
 namespace Dev2.Data.Tests.PathOperations
 {
     [TestFixture]
-    [SetUpFixture]
     public class ActivityIOBrokerBaseDriverTests
     {
         [Test]

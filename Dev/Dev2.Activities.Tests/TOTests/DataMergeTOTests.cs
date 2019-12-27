@@ -18,7 +18,6 @@ namespace Dev2.Tests.Activities.TOTests
     /// Summary description for DataMergeTOTests
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     
     public class DataMergeTOTests
     {

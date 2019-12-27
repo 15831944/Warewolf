@@ -18,7 +18,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Core.Tests.DataList
 {
     [TestFixture]
-    [SetUpFixture]
 	[Category("Studio Datalist Core")]
     public class ActivityDataMappingBuilderTest
     {

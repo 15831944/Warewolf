@@ -22,7 +22,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Warewolf.Storage.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ScopedEnvironmentTests
     {
         [Test]

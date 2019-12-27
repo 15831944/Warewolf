@@ -17,7 +17,6 @@ using Microsoft.Win32.TaskScheduler;
 namespace Dev2.TaskScheduler.Wrappers.Test
 {
     [TestFixture]
-    [SetUpFixture]
     public class Dev2TaskSettingsTest
     {
 

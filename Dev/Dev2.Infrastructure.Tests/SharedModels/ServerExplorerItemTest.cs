@@ -19,7 +19,6 @@ using NUnit.Framework;
 namespace Dev2.Infrastructure.Tests.SharedModels
 {
     [TestFixture]
-    [SetUpFixture]
     public class ServerExplorerItemTest
     {
         [Test]

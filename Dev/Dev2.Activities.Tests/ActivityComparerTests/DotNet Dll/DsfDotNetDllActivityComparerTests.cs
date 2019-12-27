@@ -11,7 +11,6 @@ using Warewolf.Core;
 namespace Dev2.Tests.Activities.ActivityComparerTests.DotNet_Dll
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfEnhancedDotNetDllActivityComparerTests
     {
         [Test]

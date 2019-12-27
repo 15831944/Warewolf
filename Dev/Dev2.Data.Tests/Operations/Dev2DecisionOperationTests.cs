@@ -15,7 +15,6 @@ using System;
 namespace Dev2.Data.Tests.Operations
 {
     [TestFixture]
-    [SetUpFixture]
     public class Dev2DecisionOperationTests
     {
         #region Comparing Integers

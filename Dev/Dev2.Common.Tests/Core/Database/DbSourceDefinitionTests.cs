@@ -20,7 +20,6 @@ using Dev2.Common.Interfaces.ServerProxyLayer;
 namespace Dev2.Common.Tests.Core.Database
 {
     [TestFixture]
-    [SetUpFixture]
     public class DbSourceDefinitionTests
     {
         [Test]

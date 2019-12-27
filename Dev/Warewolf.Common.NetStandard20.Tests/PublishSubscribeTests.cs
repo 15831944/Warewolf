@@ -17,7 +17,6 @@ using System.Text;
 namespace Warewolf.Streams
 {
     [TestFixture]
-    [SetUpFixture]
     public class PublishSubscribeTests
     {
         [Test]

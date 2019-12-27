@@ -10,7 +10,6 @@ using Moq;
 namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
 {
     [TestFixture]
-    [SetUpFixture]
 
     public class DropBoxDownloadTests
     {
@@ -87,7 +86,7 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Download
             //---------------Execute Test ----------------------
             var result = dropBoxDownLoad.ExecuteTask(mockDropboxClient.Object);
             //---------------Test Result -----------------------
-            Assert.IsInstanceOf(result.GetType(), typeof(DropboxFailureResult), "Dropbox failure result not returned after exception");
+            Assert.IsInstanceOf(typeof(DropboxFailureResult), result, "Dropbox failure result not returned after exception");
         }
     }
 }

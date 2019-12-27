@@ -17,7 +17,6 @@ using System.Configuration;
 namespace Dev2.Server.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ServerEnvironmentPreparerTests
     {
         [Test]

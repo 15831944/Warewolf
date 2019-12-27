@@ -17,7 +17,6 @@ using Moq;
 namespace Dev2.Core.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Studio Datalist Core")]
     public class DataListSingletonTest
     {

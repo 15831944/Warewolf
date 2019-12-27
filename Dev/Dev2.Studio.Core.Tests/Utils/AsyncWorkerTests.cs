@@ -18,7 +18,6 @@ using Moq;
 namespace Dev2.Core.Tests.Utils
 {
     [TestFixture]
-    [SetUpFixture]
     
     public class AsyncWorkerTests
     {

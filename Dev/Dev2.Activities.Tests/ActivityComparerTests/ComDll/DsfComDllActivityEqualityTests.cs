@@ -26,7 +26,6 @@ using Warewolf.Core;
 namespace Dev2.Tests.Activities.ActivityComparerTests.ComDll
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfComDllActivityEqualityTests
     {
         [Test]

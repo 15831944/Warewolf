@@ -27,7 +27,6 @@ using System.Collections.Generic;
 namespace Warewolf.UIBindingTests.Scheduler
 {
     [TestFixture]
-    [SetUpFixture]
     public class Scheduler
     {
         [Test]

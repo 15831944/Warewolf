@@ -19,7 +19,6 @@ using System.Threading;
 namespace Dev2.Server.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class TempFileDeleterTests
     {
         [Test]

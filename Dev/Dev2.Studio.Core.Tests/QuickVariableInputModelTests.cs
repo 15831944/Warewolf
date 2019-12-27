@@ -24,7 +24,6 @@ namespace Dev2.Core.Tests
     /// Summary description for QuickVariableInputModelTests
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class QuickVariableInputModelTests
     {
         #region Additional test attributes

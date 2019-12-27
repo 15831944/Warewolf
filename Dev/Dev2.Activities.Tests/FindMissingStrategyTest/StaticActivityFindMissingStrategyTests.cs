@@ -21,7 +21,6 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
     /// Summary description for StaticActivityFindMissingStrategyTests
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class StaticActivityFindMissingStrategyTests
     {
         TestContext _testContextInstance;

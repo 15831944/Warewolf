@@ -15,7 +15,6 @@ using System.Text;
 namespace Dev2.Data.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class DataListTOTests
     {
         [Test]

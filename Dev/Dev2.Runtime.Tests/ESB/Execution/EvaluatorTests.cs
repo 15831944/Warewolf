@@ -31,7 +31,6 @@ using Warewolf.Storage;
 namespace Dev2.Tests.Runtime.ESB.Execution
 {
     [TestFixture]
-    [SetUpFixture]
     public class EvaluatorTests
     {
         [Test]
@@ -54,7 +53,7 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             var evaluator = new Evaluator(mockDataObject.Object, mockResourceCatalog.Object, mockWorkspace.Object);
             var serviceTest = evaluator.TryEval(EvaluatorTestSetup.HelloWorldId, mockDataObject.Object, serviceTestModelTO);
 
-            NUnit.Framework.Assert.AreEqual("Unauthorized to execute this resource.\r\n", serviceTest.FailureMessage);
+            Assert.AreEqual("Unauthorized to execute this resource.\r\n", serviceTest.FailureMessage);
         }
 
         [Test]
@@ -111,7 +110,7 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             var evaluator = new Evaluator(mockDataObject.Object, mockResourceCatalog.Object, mockWorkspace.Object, mockBuilderSerializer.Object);
             var serviceTest = evaluator.TryEval(helloWorldId, mockDataObject.Object, serviceTestModelTO);
 
-            NUnit.Framework.Assert.AreEqual("", serviceTest.FailureMessage);
+            Assert.AreEqual("", serviceTest.FailureMessage);
         }
 
         [Test]
@@ -152,24 +151,24 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             var evaluator = new Evaluator(mockDataObject.Object, mockResourceCatalog.Object, mockWorkspace.Object, mockBuilderSerializer.Object);
             var serviceTest = evaluator.TryEval(helloWorldId, mockDataObject.Object, serviceTestModelTO);
 
-            NUnit.Framework.Assert.AreEqual("", serviceTest.FailureMessage);
-            NUnit.Framework.Assert.AreEqual(2, serviceTest.TestSteps.Count);
+            Assert.AreEqual("", serviceTest.FailureMessage);
+            Assert.AreEqual(2, serviceTest.TestSteps.Count);
 
-            NUnit.Framework.Assert.AreEqual("StepOne", serviceTest.TestSteps[0].StepDescription);
-            NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[0].Type);
-            NUnit.Framework.Assert.IsNotNull(serviceTest.TestSteps[0].Result);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.DebugForTest);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.Message);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[0].Result.RunTestResult);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.TestName);
+            Assert.AreEqual("StepOne", serviceTest.TestSteps[0].StepDescription);
+            Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[0].Type);
+            Assert.IsNotNull(serviceTest.TestSteps[0].Result);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.DebugForTest);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.Message);
+            Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[0].Result.RunTestResult);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.TestName);
 
-            NUnit.Framework.Assert.AreEqual("StepTwo", serviceTest.TestSteps[1].StepDescription);
-            NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[1].Type);
-            NUnit.Framework.Assert.IsNotNull(serviceTest.TestSteps[1].Result);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.DebugForTest);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.Message);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Result.RunTestResult);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.TestName);
+            Assert.AreEqual("StepTwo", serviceTest.TestSteps[1].StepDescription);
+            Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[1].Type);
+            Assert.IsNotNull(serviceTest.TestSteps[1].Result);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.DebugForTest);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.Message);
+            Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Result.RunTestResult);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.TestName);
         }
 
         [Test]
@@ -208,24 +207,24 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             var evaluator = new Evaluator(mockDataObject.Object, mockResourceCatalog.Object, mockWorkspace.Object, mockBuilderSerializer.Object);
             var serviceTest = evaluator.TryEval(helloWorldId, mockDataObject.Object, serviceTestModelTO);
 
-            NUnit.Framework.Assert.AreEqual("Object reference not set to an instance of an object.\r\n", serviceTest.FailureMessage);
-            NUnit.Framework.Assert.AreEqual(2, serviceTest.TestSteps.Count);
+            Assert.AreEqual("Object reference not set to an instance of an object.\r\n", serviceTest.FailureMessage);
+            Assert.AreEqual(2, serviceTest.TestSteps.Count);
 
-            NUnit.Framework.Assert.AreEqual("StepOne", serviceTest.TestSteps[0].StepDescription);
-            NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[0].Type);
-            NUnit.Framework.Assert.IsNotNull(serviceTest.TestSteps[0].Result);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.DebugForTest);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.Message);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[0].Result.RunTestResult);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.TestName);
+            Assert.AreEqual("StepOne", serviceTest.TestSteps[0].StepDescription);
+            Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[0].Type);
+            Assert.IsNotNull(serviceTest.TestSteps[0].Result);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.DebugForTest);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.Message);
+            Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[0].Result.RunTestResult);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.TestName);
 
-            NUnit.Framework.Assert.AreEqual("StepTwo", serviceTest.TestSteps[1].StepDescription);
-            NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[1].Type);
-            NUnit.Framework.Assert.IsNotNull(serviceTest.TestSteps[1].Result);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.DebugForTest);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.Message);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Result.RunTestResult);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.TestName);
+            Assert.AreEqual("StepTwo", serviceTest.TestSteps[1].StepDescription);
+            Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[1].Type);
+            Assert.IsNotNull(serviceTest.TestSteps[1].Result);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.DebugForTest);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.Message);
+            Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Result.RunTestResult);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.TestName);
         }
 
         [Test]
@@ -264,24 +263,24 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             var evaluator = new Evaluator(mockDataObject.Object, mockResourceCatalog.Object, mockWorkspace.Object, mockBuilderSerializer.Object);
             var serviceTest = evaluator.TryEval(helloWorldId, mockDataObject.Object, serviceTestModelTO);
 
-            NUnit.Framework.Assert.AreEqual("Object reference not set to an instance of an object.\r\n", serviceTest.FailureMessage);
-            NUnit.Framework.Assert.AreEqual(2, serviceTest.TestSteps.Count);
+            Assert.AreEqual("Object reference not set to an instance of an object.\r\n", serviceTest.FailureMessage);
+            Assert.AreEqual(2, serviceTest.TestSteps.Count);
 
-            NUnit.Framework.Assert.AreEqual("StepOne", serviceTest.TestSteps[0].StepDescription);
-            NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[0].Type);
-            NUnit.Framework.Assert.IsNotNull(serviceTest.TestSteps[0].Result);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.DebugForTest);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.Message);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[0].Result.RunTestResult);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.TestName);
+            Assert.AreEqual("StepOne", serviceTest.TestSteps[0].StepDescription);
+            Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[0].Type);
+            Assert.IsNotNull(serviceTest.TestSteps[0].Result);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.DebugForTest);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.Message);
+            Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[0].Result.RunTestResult);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.TestName);
 
-            NUnit.Framework.Assert.AreEqual("StepTwo", serviceTest.TestSteps[1].StepDescription);
-            NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[1].Type);
-            NUnit.Framework.Assert.IsNotNull(serviceTest.TestSteps[1].Result);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.DebugForTest);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.Message);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Result.RunTestResult);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.TestName);
+            Assert.AreEqual("StepTwo", serviceTest.TestSteps[1].StepDescription);
+            Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[1].Type);
+            Assert.IsNotNull(serviceTest.TestSteps[1].Result);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.DebugForTest);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.Message);
+            Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Result.RunTestResult);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.TestName);
         }
 
         [Test]
@@ -328,32 +327,32 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             var evaluator = new Evaluator(mockDataObject.Object, mockResourceCatalog.Object, mockWorkspace.Object, mockBuilderSerializer.Object);
             var serviceTest = evaluator.TryEval(helloWorldId, mockDataObject.Object, serviceTestModelTO);
 
-            NUnit.Framework.Assert.AreEqual("Failed: Assert Equal. Expected Equal To '1' for '[[a]]' but got ''\r\nObject reference not set to an instance of an object.\r\n", serviceTest.FailureMessage);
-            NUnit.Framework.Assert.AreEqual(2, serviceTest.TestSteps.Count);
+            Assert.AreEqual("Failed: Assert Equal. Expected Equal To '1' for '[[a]]' but got ''\r\nObject reference not set to an instance of an object.\r\n", serviceTest.FailureMessage);
+            Assert.AreEqual(2, serviceTest.TestSteps.Count);
 
-            NUnit.Framework.Assert.AreEqual(1, serviceTest.Outputs.Count);
-            NUnit.Framework.Assert.AreEqual("=", serviceTest.Outputs[0].AssertOp);
-            NUnit.Framework.Assert.AreEqual("1", serviceTest.Outputs[0].Value);
-            NUnit.Framework.Assert.AreEqual("[[a]]", serviceTest.Outputs[0].Variable);
-            NUnit.Framework.Assert.IsNotNull(serviceTest.Outputs[0].Result);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestFailed ,serviceTest.Outputs[0].Result.RunTestResult);
-            NUnit.Framework.Assert.AreEqual("Failed: Assert Equal. Expected Equal To '1' for '[[a]]' but got ''\r\n", serviceTest.Outputs[0].Result.Message);
+            Assert.AreEqual(1, serviceTest.Outputs.Count);
+            Assert.AreEqual("=", serviceTest.Outputs[0].AssertOp);
+            Assert.AreEqual("1", serviceTest.Outputs[0].Value);
+            Assert.AreEqual("[[a]]", serviceTest.Outputs[0].Variable);
+            Assert.IsNotNull(serviceTest.Outputs[0].Result);
+            Assert.AreEqual(RunResult.TestFailed ,serviceTest.Outputs[0].Result.RunTestResult);
+            Assert.AreEqual("Failed: Assert Equal. Expected Equal To '1' for '[[a]]' but got ''\r\n", serviceTest.Outputs[0].Result.Message);
 
-            NUnit.Framework.Assert.AreEqual("StepOne", serviceTest.TestSteps[0].StepDescription);
-            NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[0].Type);
-            NUnit.Framework.Assert.IsNotNull(serviceTest.TestSteps[0].Result);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.DebugForTest);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.Message);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[0].Result.RunTestResult);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.TestName);
+            Assert.AreEqual("StepOne", serviceTest.TestSteps[0].StepDescription);
+            Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[0].Type);
+            Assert.IsNotNull(serviceTest.TestSteps[0].Result);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.DebugForTest);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.Message);
+            Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[0].Result.RunTestResult);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.TestName);
 
-            NUnit.Framework.Assert.AreEqual("StepTwo", serviceTest.TestSteps[1].StepDescription);
-            NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[1].Type);
-            NUnit.Framework.Assert.IsNotNull(serviceTest.TestSteps[1].Result);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.DebugForTest);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.Message);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Result.RunTestResult);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.TestName);
+            Assert.AreEqual("StepTwo", serviceTest.TestSteps[1].StepDescription);
+            Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[1].Type);
+            Assert.IsNotNull(serviceTest.TestSteps[1].Result);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.DebugForTest);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.Message);
+            Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Result.RunTestResult);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.TestName);
         }
 
         [Test]
@@ -400,30 +399,30 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             var evaluator = new Evaluator(mockDataObject.Object, mockResourceCatalog.Object, mockWorkspace.Object, mockBuilderSerializer.Object);
             var serviceTest = evaluator.TryEval(helloWorldId, mockDataObject.Object, serviceTestModelTO);
 
-            NUnit.Framework.Assert.AreEqual("Failed\r\nFailed: Expected Error containing '' but got 'Object reference not set to an instance of an object.'", serviceTest.FailureMessage);
-            NUnit.Framework.Assert.AreEqual(2, serviceTest.TestSteps.Count);
+            Assert.AreEqual("Failed\r\nFailed: Expected Error containing '' but got 'Object reference not set to an instance of an object.'", serviceTest.FailureMessage);
+            Assert.AreEqual(2, serviceTest.TestSteps.Count);
 
-            NUnit.Framework.Assert.AreEqual(1, serviceTest.Outputs.Count);
-            NUnit.Framework.Assert.AreEqual("There is An Error", serviceTest.Outputs[0].AssertOp);
-            NUnit.Framework.Assert.AreEqual("1", serviceTest.Outputs[0].Value);
-            NUnit.Framework.Assert.AreEqual("[[a]]", serviceTest.Outputs[0].Variable);
-            NUnit.Framework.Assert.IsNull(serviceTest.Outputs[0].Result);
+            Assert.AreEqual(1, serviceTest.Outputs.Count);
+            Assert.AreEqual("There is An Error", serviceTest.Outputs[0].AssertOp);
+            Assert.AreEqual("1", serviceTest.Outputs[0].Value);
+            Assert.AreEqual("[[a]]", serviceTest.Outputs[0].Variable);
+            Assert.IsNull(serviceTest.Outputs[0].Result);
 
-            NUnit.Framework.Assert.AreEqual("StepOne", serviceTest.TestSteps[0].StepDescription);
-            NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[0].Type);
-            NUnit.Framework.Assert.IsNotNull(serviceTest.TestSteps[0].Result);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.DebugForTest);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.Message);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[0].Result.RunTestResult);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.TestName);
+            Assert.AreEqual("StepOne", serviceTest.TestSteps[0].StepDescription);
+            Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[0].Type);
+            Assert.IsNotNull(serviceTest.TestSteps[0].Result);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.DebugForTest);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.Message);
+            Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[0].Result.RunTestResult);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.TestName);
 
-            NUnit.Framework.Assert.AreEqual("StepTwo", serviceTest.TestSteps[1].StepDescription);
-            NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[1].Type);
-            NUnit.Framework.Assert.IsNotNull(serviceTest.TestSteps[1].Result);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.DebugForTest);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.Message);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Result.RunTestResult);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.TestName);
+            Assert.AreEqual("StepTwo", serviceTest.TestSteps[1].StepDescription);
+            Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[1].Type);
+            Assert.IsNotNull(serviceTest.TestSteps[1].Result);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.DebugForTest);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.Message);
+            Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Result.RunTestResult);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.TestName);
         }
 
         [Test]
@@ -470,30 +469,30 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             var evaluator = new Evaluator(mockDataObject.Object, mockResourceCatalog.Object, mockWorkspace.Object, mockBuilderSerializer.Object);
             var serviceTest = evaluator.TryEval(helloWorldId, mockDataObject.Object, serviceTestModelTO);
 
-            NUnit.Framework.Assert.AreEqual("Failed: Object reference not set to an instance of an object.\r\nFailed: Expected Error containing '' but got 'Object reference not set to an instance of an object.'", serviceTest.FailureMessage);
-            NUnit.Framework.Assert.AreEqual(2, serviceTest.TestSteps.Count);
+            Assert.AreEqual("Failed: Object reference not set to an instance of an object.\r\nFailed: Expected Error containing '' but got 'Object reference not set to an instance of an object.'", serviceTest.FailureMessage);
+            Assert.AreEqual(2, serviceTest.TestSteps.Count);
 
-            NUnit.Framework.Assert.AreEqual(1, serviceTest.Outputs.Count);
-            NUnit.Framework.Assert.AreEqual("There is No Error", serviceTest.Outputs[0].AssertOp);
-            NUnit.Framework.Assert.AreEqual("1", serviceTest.Outputs[0].Value);
-            NUnit.Framework.Assert.AreEqual("[[a]]", serviceTest.Outputs[0].Variable);
-            NUnit.Framework.Assert.IsNull(serviceTest.Outputs[0].Result);
+            Assert.AreEqual(1, serviceTest.Outputs.Count);
+            Assert.AreEqual("There is No Error", serviceTest.Outputs[0].AssertOp);
+            Assert.AreEqual("1", serviceTest.Outputs[0].Value);
+            Assert.AreEqual("[[a]]", serviceTest.Outputs[0].Variable);
+            Assert.IsNull(serviceTest.Outputs[0].Result);
 
-            NUnit.Framework.Assert.AreEqual("StepOne", serviceTest.TestSteps[0].StepDescription);
-            NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[0].Type);
-            NUnit.Framework.Assert.IsNotNull(serviceTest.TestSteps[0].Result);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.DebugForTest);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.Message);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[0].Result.RunTestResult);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.TestName);
+            Assert.AreEqual("StepOne", serviceTest.TestSteps[0].StepDescription);
+            Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[0].Type);
+            Assert.IsNotNull(serviceTest.TestSteps[0].Result);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.DebugForTest);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.Message);
+            Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[0].Result.RunTestResult);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.TestName);
 
-            NUnit.Framework.Assert.AreEqual("StepTwo", serviceTest.TestSteps[1].StepDescription);
-            NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[1].Type);
-            NUnit.Framework.Assert.IsNotNull(serviceTest.TestSteps[1].Result);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.DebugForTest);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.Message);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Result.RunTestResult);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.TestName);
+            Assert.AreEqual("StepTwo", serviceTest.TestSteps[1].StepDescription);
+            Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[1].Type);
+            Assert.IsNotNull(serviceTest.TestSteps[1].Result);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.DebugForTest);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.Message);
+            Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Result.RunTestResult);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.TestName);
         }
 
         [Test]
@@ -539,24 +538,24 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             var evaluator = new Evaluator(mockDataObject.Object, mockResourceCatalog.Object, mockWorkspace.Object, mockBuilderSerializer.Object);
             var serviceTest = evaluator.TryEval(helloWorldId, mockDataObject.Object, serviceTestModelTO);
 
-            NUnit.Framework.Assert.AreEqual("Please ensure that you have entered an integer or decimal number for Start\r\n", serviceTest.FailureMessage);
-            NUnit.Framework.Assert.AreEqual(2, serviceTest.TestSteps.Count);
+            Assert.AreEqual("Please ensure that you have entered an integer or decimal number for Start\r\n", serviceTest.FailureMessage);
+            Assert.AreEqual(2, serviceTest.TestSteps.Count);
 
-            NUnit.Framework.Assert.AreEqual("StepOne", serviceTest.TestSteps[0].StepDescription);
-            NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[0].Type);
-            NUnit.Framework.Assert.IsNotNull(serviceTest.TestSteps[0].Result);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.DebugForTest);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.Message);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[0].Result.RunTestResult);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.TestName);
+            Assert.AreEqual("StepOne", serviceTest.TestSteps[0].StepDescription);
+            Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[0].Type);
+            Assert.IsNotNull(serviceTest.TestSteps[0].Result);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.DebugForTest);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.Message);
+            Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[0].Result.RunTestResult);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.TestName);
 
-            NUnit.Framework.Assert.AreEqual("StepTwo", serviceTest.TestSteps[1].StepDescription);
-            NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[1].Type);
-            NUnit.Framework.Assert.IsNotNull(serviceTest.TestSteps[1].Result);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.DebugForTest);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.Message);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Result.RunTestResult);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.TestName);
+            Assert.AreEqual("StepTwo", serviceTest.TestSteps[1].StepDescription);
+            Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[1].Type);
+            Assert.IsNotNull(serviceTest.TestSteps[1].Result);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.DebugForTest);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.Message);
+            Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Result.RunTestResult);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.TestName);
         }
 
         [Test]
@@ -608,31 +607,31 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             var evaluator = new Evaluator(mockDataObject.Object, mockResourceCatalog.Object, mockWorkspace.Object, mockBuilderSerializer.Object);
             var serviceTest = evaluator.TryEval(helloWorldId, mockDataObject.Object, serviceTestModelTO);
 
-            NUnit.Framework.Assert.AreEqual("", serviceTest.FailureMessage);
-            NUnit.Framework.Assert.AreEqual(2, serviceTest.TestSteps.Count);
+            Assert.AreEqual("", serviceTest.FailureMessage);
+            Assert.AreEqual(2, serviceTest.TestSteps.Count);
 
-            NUnit.Framework.Assert.AreEqual("StepOne", serviceTest.TestSteps[0].StepDescription);
-            NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[0].Type);
-            NUnit.Framework.Assert.IsNotNull(serviceTest.TestSteps[0].Result);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.DebugForTest);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.Message);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[0].Result.RunTestResult);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.TestName);
+            Assert.AreEqual("StepOne", serviceTest.TestSteps[0].StepDescription);
+            Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[0].Type);
+            Assert.IsNotNull(serviceTest.TestSteps[0].Result);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.DebugForTest);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.Message);
+            Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[0].Result.RunTestResult);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.TestName);
 
-            NUnit.Framework.Assert.AreEqual(0, serviceTest.TestSteps[0].Children.Count);
+            Assert.AreEqual(0, serviceTest.TestSteps[0].Children.Count);
 
-            NUnit.Framework.Assert.AreEqual("StepTwo", serviceTest.TestSteps[1].StepDescription);
-            NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[1].Type);
-            NUnit.Framework.Assert.IsNotNull(serviceTest.TestSteps[1].Result);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.DebugForTest);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.Message);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Result.RunTestResult);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.TestName);
+            Assert.AreEqual("StepTwo", serviceTest.TestSteps[1].StepDescription);
+            Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[1].Type);
+            Assert.IsNotNull(serviceTest.TestSteps[1].Result);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.DebugForTest);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.Message);
+            Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Result.RunTestResult);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.TestName);
 
-            NUnit.Framework.Assert.AreEqual(1, serviceTest.TestSteps[1].Children.Count);
-            NUnit.Framework.Assert.AreEqual("ChildStep", serviceTest.TestSteps[1].Children[0].StepDescription);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Children[0].Result.RunTestResult);
-            NUnit.Framework.Assert.AreEqual(helloWorldId, serviceTest.TestSteps[1].Children[0].UniqueId);
+            Assert.AreEqual(1, serviceTest.TestSteps[1].Children.Count);
+            Assert.AreEqual("ChildStep", serviceTest.TestSteps[1].Children[0].StepDescription);
+            Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Children[0].Result.RunTestResult);
+            Assert.AreEqual(helloWorldId, serviceTest.TestSteps[1].Children[0].UniqueId);
         }
 
         [Test]
@@ -682,24 +681,24 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             var evaluator = new Evaluator(mockDataObject.Object, mockResourceCatalog.Object, mockWorkspace.Object, mockBuilderSerializer.Object);
             var serviceTest = evaluator.TryEval(helloWorldId, mockDataObject.Object, serviceTestModelTO);
 
-            NUnit.Framework.Assert.AreEqual("The FROM field is Required\r\nCannot execute a For Each with no content\r\n", serviceTest.FailureMessage);
-            NUnit.Framework.Assert.AreEqual(2, serviceTest.TestSteps.Count);
+            Assert.AreEqual("The FROM field is Required\r\nCannot execute a For Each with no content\r\n", serviceTest.FailureMessage);
+            Assert.AreEqual(2, serviceTest.TestSteps.Count);
 
-            NUnit.Framework.Assert.AreEqual("StepOne", serviceTest.TestSteps[0].StepDescription);
-            NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[0].Type);
-            NUnit.Framework.Assert.IsNotNull(serviceTest.TestSteps[0].Result);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.DebugForTest);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.Message);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[0].Result.RunTestResult);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.TestName);
+            Assert.AreEqual("StepOne", serviceTest.TestSteps[0].StepDescription);
+            Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[0].Type);
+            Assert.IsNotNull(serviceTest.TestSteps[0].Result);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.DebugForTest);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.Message);
+            Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[0].Result.RunTestResult);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.TestName);
 
-            NUnit.Framework.Assert.AreEqual("StepTwo", serviceTest.TestSteps[1].StepDescription);
-            NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[1].Type);
-            NUnit.Framework.Assert.IsNotNull(serviceTest.TestSteps[1].Result);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.DebugForTest);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.Message);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Result.RunTestResult);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.TestName);
+            Assert.AreEqual("StepTwo", serviceTest.TestSteps[1].StepDescription);
+            Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[1].Type);
+            Assert.IsNotNull(serviceTest.TestSteps[1].Result);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.DebugForTest);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.Message);
+            Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Result.RunTestResult);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.TestName);
         }
 
         [Test]
@@ -750,31 +749,31 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             var evaluator = new Evaluator(mockDataObject.Object, mockResourceCatalog.Object, mockWorkspace.Object, mockBuilderSerializer.Object);
             var serviceTest = evaluator.TryEval(helloWorldId, mockDataObject.Object, serviceTestModelTO);
 
-            NUnit.Framework.Assert.AreEqual("The FROM field is Required\r\n", serviceTest.FailureMessage);
-            NUnit.Framework.Assert.AreEqual(2, serviceTest.TestSteps.Count);
+            Assert.AreEqual("The FROM field is Required\r\n", serviceTest.FailureMessage);
+            Assert.AreEqual(2, serviceTest.TestSteps.Count);
 
-            NUnit.Framework.Assert.AreEqual("StepOne", serviceTest.TestSteps[0].StepDescription);
-            NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[0].Type);
-            NUnit.Framework.Assert.IsNotNull(serviceTest.TestSteps[0].Result);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.DebugForTest);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.Message);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[0].Result.RunTestResult);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.TestName);
+            Assert.AreEqual("StepOne", serviceTest.TestSteps[0].StepDescription);
+            Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[0].Type);
+            Assert.IsNotNull(serviceTest.TestSteps[0].Result);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.DebugForTest);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.Message);
+            Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[0].Result.RunTestResult);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.TestName);
 
-            NUnit.Framework.Assert.AreEqual(0, serviceTest.TestSteps[0].Children.Count);
+            Assert.AreEqual(0, serviceTest.TestSteps[0].Children.Count);
 
-            NUnit.Framework.Assert.AreEqual("StepTwo", serviceTest.TestSteps[1].StepDescription);
-            NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[1].Type);
-            NUnit.Framework.Assert.IsNotNull(serviceTest.TestSteps[1].Result);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.DebugForTest);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.Message);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Result.RunTestResult);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.TestName);
+            Assert.AreEqual("StepTwo", serviceTest.TestSteps[1].StepDescription);
+            Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[1].Type);
+            Assert.IsNotNull(serviceTest.TestSteps[1].Result);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.DebugForTest);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.Message);
+            Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Result.RunTestResult);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.TestName);
 
-            NUnit.Framework.Assert.AreEqual(1, serviceTest.TestSteps[1].Children.Count);
-            NUnit.Framework.Assert.AreEqual("ChildStep", serviceTest.TestSteps[1].Children[0].StepDescription);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Children[0].Result.RunTestResult);
-            NUnit.Framework.Assert.AreEqual(helloWorldId, serviceTest.TestSteps[1].Children[0].UniqueId);
+            Assert.AreEqual(1, serviceTest.TestSteps[1].Children.Count);
+            Assert.AreEqual("ChildStep", serviceTest.TestSteps[1].Children[0].StepDescription);
+            Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Children[0].Result.RunTestResult);
+            Assert.AreEqual(helloWorldId, serviceTest.TestSteps[1].Children[0].UniqueId);
         }
 
         [Test]
@@ -824,24 +823,24 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             var evaluator = new Evaluator(mockDataObject.Object, mockResourceCatalog.Object, mockWorkspace.Object, mockBuilderSerializer.Object);
             var serviceTest = evaluator.TryEval(helloWorldId, mockDataObject.Object, serviceTestModelTO);
 
-            NUnit.Framework.Assert.AreEqual("DataSource cannot be empty\r\nAlias cannot be empty\r\n", serviceTest.FailureMessage);
-            NUnit.Framework.Assert.AreEqual(2, serviceTest.TestSteps.Count);
+            Assert.AreEqual("DataSource cannot be empty\r\nAlias cannot be empty\r\n", serviceTest.FailureMessage);
+            Assert.AreEqual(2, serviceTest.TestSteps.Count);
 
-            NUnit.Framework.Assert.AreEqual("StepOne", serviceTest.TestSteps[0].StepDescription);
-            NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[0].Type);
-            NUnit.Framework.Assert.IsNotNull(serviceTest.TestSteps[0].Result);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.DebugForTest);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.Message);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[0].Result.RunTestResult);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.TestName);
+            Assert.AreEqual("StepOne", serviceTest.TestSteps[0].StepDescription);
+            Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[0].Type);
+            Assert.IsNotNull(serviceTest.TestSteps[0].Result);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.DebugForTest);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.Message);
+            Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[0].Result.RunTestResult);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.TestName);
 
-            NUnit.Framework.Assert.AreEqual("StepTwo", serviceTest.TestSteps[1].StepDescription);
-            NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[1].Type);
-            NUnit.Framework.Assert.IsNotNull(serviceTest.TestSteps[1].Result);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.DebugForTest);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.Message);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Result.RunTestResult);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.TestName);
+            Assert.AreEqual("StepTwo", serviceTest.TestSteps[1].StepDescription);
+            Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[1].Type);
+            Assert.IsNotNull(serviceTest.TestSteps[1].Result);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.DebugForTest);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.Message);
+            Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Result.RunTestResult);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.TestName);
         }
 
         [Test]
@@ -892,31 +891,31 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             var evaluator = new Evaluator(mockDataObject.Object, mockResourceCatalog.Object, mockWorkspace.Object, mockBuilderSerializer.Object);
             var serviceTest = evaluator.TryEval(helloWorldId, mockDataObject.Object, serviceTestModelTO);
 
-            NUnit.Framework.Assert.AreEqual("DataSource cannot be empty\r\nAlias cannot be empty\r\n", serviceTest.FailureMessage);
-            NUnit.Framework.Assert.AreEqual(2, serviceTest.TestSteps.Count);
+            Assert.AreEqual("DataSource cannot be empty\r\nAlias cannot be empty\r\n", serviceTest.FailureMessage);
+            Assert.AreEqual(2, serviceTest.TestSteps.Count);
 
-            NUnit.Framework.Assert.AreEqual("StepOne", serviceTest.TestSteps[0].StepDescription);
-            NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[0].Type);
-            NUnit.Framework.Assert.IsNotNull(serviceTest.TestSteps[0].Result);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.DebugForTest);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.Message);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[0].Result.RunTestResult);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.TestName);
+            Assert.AreEqual("StepOne", serviceTest.TestSteps[0].StepDescription);
+            Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[0].Type);
+            Assert.IsNotNull(serviceTest.TestSteps[0].Result);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.DebugForTest);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.Message);
+            Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[0].Result.RunTestResult);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.TestName);
 
-            NUnit.Framework.Assert.AreEqual(0, serviceTest.TestSteps[0].Children.Count);
+            Assert.AreEqual(0, serviceTest.TestSteps[0].Children.Count);
 
-            NUnit.Framework.Assert.AreEqual("StepTwo", serviceTest.TestSteps[1].StepDescription);
-            NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[1].Type);
-            NUnit.Framework.Assert.IsNotNull(serviceTest.TestSteps[1].Result);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.DebugForTest);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.Message);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Result.RunTestResult);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.TestName);
+            Assert.AreEqual("StepTwo", serviceTest.TestSteps[1].StepDescription);
+            Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[1].Type);
+            Assert.IsNotNull(serviceTest.TestSteps[1].Result);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.DebugForTest);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.Message);
+            Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Result.RunTestResult);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.TestName);
 
-            NUnit.Framework.Assert.AreEqual(1, serviceTest.TestSteps[1].Children.Count);
-            NUnit.Framework.Assert.AreEqual("ChildStep", serviceTest.TestSteps[1].Children[0].StepDescription);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Children[0].Result.RunTestResult);
-            NUnit.Framework.Assert.AreEqual(helloWorldId, serviceTest.TestSteps[1].Children[0].UniqueId);
+            Assert.AreEqual(1, serviceTest.TestSteps[1].Children.Count);
+            Assert.AreEqual("ChildStep", serviceTest.TestSteps[1].Children[0].StepDescription);
+            Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Children[0].Result.RunTestResult);
+            Assert.AreEqual(helloWorldId, serviceTest.TestSteps[1].Children[0].UniqueId);
         }
 
         [Test]
@@ -960,31 +959,31 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             var evaluator = new Evaluator(mockDataObject.Object, mockResourceCatalog.Object, mockWorkspace.Object, mockBuilderSerializer.Object);
             var serviceTest = evaluator.TryEval(helloWorldId, mockDataObject.Object, serviceTestModelTO);
 
-            NUnit.Framework.Assert.AreEqual("", serviceTest.FailureMessage);
-            NUnit.Framework.Assert.AreEqual(2, serviceTest.TestSteps.Count);
+            Assert.AreEqual("", serviceTest.FailureMessage);
+            Assert.AreEqual(2, serviceTest.TestSteps.Count);
 
-            NUnit.Framework.Assert.AreEqual("StepOne", serviceTest.TestSteps[0].StepDescription);
-            NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[0].Type);
-            NUnit.Framework.Assert.IsNotNull(serviceTest.TestSteps[0].Result);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.DebugForTest);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.Message);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[0].Result.RunTestResult);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[0].Result.TestName);
+            Assert.AreEqual("StepOne", serviceTest.TestSteps[0].StepDescription);
+            Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[0].Type);
+            Assert.IsNotNull(serviceTest.TestSteps[0].Result);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.DebugForTest);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.Message);
+            Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[0].Result.RunTestResult);
+            Assert.IsNull(serviceTest.TestSteps[0].Result.TestName);
 
-            NUnit.Framework.Assert.AreEqual(0, serviceTest.TestSteps[0].Children.Count);
+            Assert.AreEqual(0, serviceTest.TestSteps[0].Children.Count);
 
-            NUnit.Framework.Assert.AreEqual("StepTwo", serviceTest.TestSteps[1].StepDescription);
-            NUnit.Framework.Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[1].Type);
-            NUnit.Framework.Assert.IsNotNull(serviceTest.TestSteps[1].Result);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.DebugForTest);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.Message);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Result.RunTestResult);
-            NUnit.Framework.Assert.IsNull(serviceTest.TestSteps[1].Result.TestName);
+            Assert.AreEqual("StepTwo", serviceTest.TestSteps[1].StepDescription);
+            Assert.AreEqual(StepType.Mock, serviceTest.TestSteps[1].Type);
+            Assert.IsNotNull(serviceTest.TestSteps[1].Result);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.DebugForTest);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.Message);
+            Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Result.RunTestResult);
+            Assert.IsNull(serviceTest.TestSteps[1].Result.TestName);
 
-            NUnit.Framework.Assert.AreEqual(1, serviceTest.TestSteps[1].Children.Count);
-            NUnit.Framework.Assert.AreEqual("ChildStep", serviceTest.TestSteps[1].Children[0].StepDescription);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Children[0].Result.RunTestResult);
-            NUnit.Framework.Assert.AreEqual(helloWorldId, serviceTest.TestSteps[1].Children[0].UniqueId);
+            Assert.AreEqual(1, serviceTest.TestSteps[1].Children.Count);
+            Assert.AreEqual("ChildStep", serviceTest.TestSteps[1].Children[0].StepDescription);
+            Assert.AreEqual(RunResult.TestPending, serviceTest.TestSteps[1].Children[0].Result.RunTestResult);
+            Assert.AreEqual(helloWorldId, serviceTest.TestSteps[1].Children[0].UniqueId);
         }
 
         internal class EvaluatorTestSetup

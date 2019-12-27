@@ -7,7 +7,6 @@ using System;
 namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
 {
     [TestFixture]
-    [SetUpFixture]
     public class SharepointSearchToEqualityTests
     {
         [Test]

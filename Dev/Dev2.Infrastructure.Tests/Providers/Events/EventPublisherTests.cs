@@ -16,7 +16,6 @@ using NUnit.Framework;
 namespace Dev2.Infrastructure.Tests.Providers.Events
 {
     [TestFixture]
-    [SetUpFixture]
     public class EventPublisherTests
     {
         [Test]

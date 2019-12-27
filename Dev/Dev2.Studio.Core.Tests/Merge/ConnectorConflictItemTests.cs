@@ -14,7 +14,6 @@ using System.Collections.Generic;
 namespace Dev2.Core.Tests.Merge
 {
     [TestFixture]
-    [SetUpFixture]
     public class ConnectorConflictItemTests
     {
         readonly Guid _grouping = Guid.Empty;

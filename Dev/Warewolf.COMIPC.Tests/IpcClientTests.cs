@@ -20,7 +20,6 @@ using WarewolfCOMIPC.Client;
 namespace WarewolfCOMIPC.Test
 {
     [TestFixture]
-    [SetUpFixture]
     public class IpcClientTests
     {
         [Test]

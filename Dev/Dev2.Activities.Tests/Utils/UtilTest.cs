@@ -17,7 +17,6 @@ namespace Dev2.Tests.Activities.Utils
     ///to contain all UtilTest Unit Tests
     ///</summary>
     [TestFixture]
-    [SetUpFixture]
     public class UtilTest
     {
         /// <summary>

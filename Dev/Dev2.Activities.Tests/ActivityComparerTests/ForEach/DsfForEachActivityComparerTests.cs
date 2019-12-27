@@ -10,7 +10,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Tests.Activities.ActivityComparerTests.ForEach
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfForEachActivityComparerTests
     {
         [Test]

@@ -4,7 +4,6 @@ using NUnit.Framework;
 namespace WarewolfParsingTest
 {
     [TestFixture]
-    [SetUpFixture]
     public class TestAst
     {
         [Test]

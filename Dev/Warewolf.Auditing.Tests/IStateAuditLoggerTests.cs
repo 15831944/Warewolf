@@ -23,7 +23,6 @@ using Warewolf.Storage;
 namespace Warewolf.Auditing.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class IStateAuditLoggerTests
     {
         IDSFDataObject _dSFDataObject;

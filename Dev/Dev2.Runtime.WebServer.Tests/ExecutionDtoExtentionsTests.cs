@@ -24,7 +24,6 @@ using Moq;
 namespace Dev2.Runtime.WebServer.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ExecutionDtoExtentionsTests
     {
         [Test]

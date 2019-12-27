@@ -28,7 +28,6 @@ using Dev2.Data.Interfaces.Enums;
 namespace Dev2.Data.Tests.BinaryDataList
 {
     [TestFixture]
-    [SetUpFixture]
 
     public class DataListUtilTest
     {

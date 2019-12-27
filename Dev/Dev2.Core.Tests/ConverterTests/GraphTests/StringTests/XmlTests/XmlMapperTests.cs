@@ -17,7 +17,6 @@ using Unlimited.Framework.Converters.Graph.String.Xml;
 namespace Unlimited.UnitTest.Framework.ConverterTests.GraphTests.StringTests.XmlTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class XmlMapperTests
     {
         internal string Given()

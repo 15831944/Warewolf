@@ -26,7 +26,6 @@ using Warewolf.Storage.Interfaces;
 namespace Dev2.Tests.Activities
 {
     [TestFixture]
-    [SetUpFixture]
     public class ServiceTestHelperTests
     {
         [Test]

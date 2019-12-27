@@ -20,7 +20,6 @@ using Warewolf.Streams;
 namespace Warewolf.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class SeriLogConnectionTests
     {
         [Test]

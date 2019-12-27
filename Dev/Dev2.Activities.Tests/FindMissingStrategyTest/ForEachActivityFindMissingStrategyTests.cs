@@ -20,7 +20,6 @@ namespace Dev2.Tests.Activities.FindMissingStrategyTest
     /// Summary description for ForEachActivityFindMissingStrategyTests
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class ForEachActivityFindMissingStrategyTests
     {
         /// <summary>

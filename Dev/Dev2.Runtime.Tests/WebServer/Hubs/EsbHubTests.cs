@@ -22,7 +22,6 @@ using Moq;
 namespace Dev2.Tests.Runtime.WebServer.Hubs
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime WebServer")]
     
     public class EsbHubTests

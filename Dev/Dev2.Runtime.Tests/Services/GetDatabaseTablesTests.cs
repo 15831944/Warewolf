@@ -30,7 +30,6 @@ using System.Linq;
 namespace Dev2.Tests.Runtime.Services
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("MSSql Get Database Tables")]
     public class GetDatabaseTablesTests
     {

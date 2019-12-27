@@ -11,7 +11,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Tests.Activities.ActivityComparerTests.CreateJson
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfCreateJsonActivityComparerTest
     {
         [Test]

@@ -21,7 +21,6 @@ using Moq;
 namespace Warewolf.Studio.ViewModels.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ManageSqlServerSourceViewModelTests
     {
         #region Fields

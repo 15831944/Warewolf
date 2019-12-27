@@ -16,7 +16,6 @@ using Warewolf.Logging;
 namespace Warewolf.Common.Framework48.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ILoggerPublisherTests
     {
         [Test]

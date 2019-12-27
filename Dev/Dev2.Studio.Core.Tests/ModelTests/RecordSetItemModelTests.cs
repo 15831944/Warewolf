@@ -7,7 +7,6 @@ using NUnit.Framework;
 namespace Dev2.Core.Tests.ModelTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class RecordSetItemModelTests
     {
         #region Test Fields

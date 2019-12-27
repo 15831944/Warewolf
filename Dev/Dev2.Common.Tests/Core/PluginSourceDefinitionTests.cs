@@ -18,7 +18,6 @@ using System.Collections.ObjectModel;
 namespace Dev2.Common.Tests.Core
 {
     [TestFixture]
-    [SetUpFixture]
     public class PluginSourceDefinitionTests
     {
         [Test]

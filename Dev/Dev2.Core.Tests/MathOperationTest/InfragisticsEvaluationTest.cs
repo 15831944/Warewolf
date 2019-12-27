@@ -21,7 +21,6 @@ namespace Dev2.Tests.MathOperationTest
     /// This Test class exists to test any changes that are made on the Infragistics source code. Ideally, if infragistics was part of the build then this would reside in that solution
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class InfragisticsEvaluationTest
     {
 

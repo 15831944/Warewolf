@@ -16,7 +16,6 @@ using NUnit.Framework;
 namespace Dev2.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class GatherSystemInformationTOTests
     {
         [Test]
@@ -27,7 +26,7 @@ namespace Dev2.Tests
             //------------Execute Test---------------------------
             var informationTO = new GatherSystemInformationTO();
             //------------Assert Results-------------------------
-            Assert.IsInstanceOf(informationTO.GetType(),typeof(IDev2TOFn));
+            Assert.IsInstanceOf(typeof(IDev2TOFn), informationTO);
         }
 
         [Test]

@@ -11,7 +11,6 @@ using System.Text;
 namespace Dev2.Studio
 {
     [TestFixture]
-    [SetUpFixture]
 
     public class ResourceExtensionHelperTests
     {

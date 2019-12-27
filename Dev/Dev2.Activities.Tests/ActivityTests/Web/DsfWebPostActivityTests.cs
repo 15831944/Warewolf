@@ -36,7 +36,6 @@ using Warewolf.Storage.Interfaces;
 namespace Dev2.Tests.Activities.ActivityTests.Web
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfWebPostActivityTests
     {
 
@@ -51,7 +50,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             //------------Execute Test---------------------------
             var dsfWebPostActivity = new DsfWebPostActivity();
             //------------Assert Results-------------------------
-            Assert.IsInstanceOf(dsfWebPostActivity.GetType(), typeof(DsfActivity));
+            Assert.IsInstanceOf(typeof(DsfActivity), dsfWebPostActivity);
         }
 
         [Test]
@@ -266,7 +265,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             //------------Assert Results-------------------------
             Assert.IsNotNull(dsfWebPostActivity.OutputDescription);
             Assert.AreEqual(1, environment.Errors.Count);
-            StringAssert.Contains(environment.Errors.ToList()[0], "Invalid character after parsing property name");
+            StringAssert.Contains("Invalid character after parsing property name", environment.Errors.ToList()[0]);
         }
 
 

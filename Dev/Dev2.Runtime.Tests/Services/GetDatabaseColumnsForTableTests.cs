@@ -28,8 +28,7 @@ using Warewolf.Test.Agent;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    [TestFixture]
-    [SetUpFixture]    
+    [TestFixture]    
     public class GetDatabaseColumnsForTableTests
     {
         public static Depends _containerOps;

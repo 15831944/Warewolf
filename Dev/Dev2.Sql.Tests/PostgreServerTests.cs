@@ -11,7 +11,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Dev2.Sql.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class PostgreServerTests
     {
         [Test]

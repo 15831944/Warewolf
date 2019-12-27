@@ -23,7 +23,6 @@ using Warewolf.Storage.Interfaces;
 namespace Dev2.Tests.Activities.ActivityTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class AdvancedRecordsetActivityWorkerTests
     {
         static AdvancedRecordsetActivity CreateAdvancedRecordsetActivity()
@@ -78,10 +77,6 @@ namespace Dev2.Tests.Activities.ActivityTests
             const string varName = "varName";
             const string varValue = "varValue";
             var mockAdvancedRecordsetFactory = new Mock<IAdvancedRecordsetFactory>();
-            //mockAdvancedRecordsetFactory.Setup(advancedRecordsetFactory => advancedRecordsetFactory.New(It.IsAny<IExecutionEnvironment>())).Returns(mockAdvancedRecordset.Object)
-
-            //TODO: Merge constructors
-
             using (var viewModel = new AdvancedRecordsetActivityWorker(null, null, mockAdvancedRecordsetFactory.Object))
             {
                 viewModel.AddDeclarations(varName, varValue);

@@ -1,5 +1,6 @@
 using System.Activities.Presentation.Model;
 using System.Collections.Generic;
+using System.Threading;
 using Dev2.Activities.Designers2.Core;
 using Dev2.Activities.Designers2.CreateJSON;
 using Dev2.Common.Interfaces.Help;
@@ -14,6 +15,7 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Activities.Designers.Tests.CreateJsonDesignerViewModelTests
 {
     [TestFixture]
+    [Apartment(ApartmentState.STA)]
     public class CreateJsonDesignerViewModelTests
     {
         [Test]
@@ -25,7 +27,7 @@ namespace Dev2.Activities.Designers.Tests.CreateJsonDesignerViewModelTests
             //------------Execute Test---------------------------
             var createJsonDesignerViewModel = CreateViewModel();
             //------------Assert Results-------------------------
-            Assert.IsInstanceOf(createJsonDesignerViewModel.GetType(), typeof(ActivityDesignerViewModel));
+            Assert.IsInstanceOf(typeof(ActivityDesignerViewModel), createJsonDesignerViewModel);
         }
 
         [Test]
@@ -37,7 +39,7 @@ namespace Dev2.Activities.Designers.Tests.CreateJsonDesignerViewModelTests
             //------------Execute Test---------------------------
             var createJsonDesignerViewModel = CreateViewModel();
             //------------Assert Results-------------------------
-            Assert.IsInstanceOf(createJsonDesignerViewModel.GetType(), typeof(ActivityCollectionDesignerViewModel<JsonMappingTo>));
+            Assert.IsInstanceOf(typeof(ActivityCollectionDesignerViewModel<JsonMappingTo>), createJsonDesignerViewModel);
         }
 
         [Test]

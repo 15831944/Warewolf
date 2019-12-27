@@ -16,7 +16,6 @@ using System.ComponentModel;
 namespace Dev2.Common.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class NameValueTests
     {
         [Test]

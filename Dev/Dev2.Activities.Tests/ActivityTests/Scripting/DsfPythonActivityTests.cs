@@ -11,22 +11,8 @@ using Warewolf.Core;
 namespace Dev2.Tests.Activities.ActivityTests.Scripting
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfPythonActivityTests : BaseActivityUnitTest
     {
-        [OneTimeTearDown]
-        public static void Cleaner()
-        {
-            try
-            {
-            }
-            catch (Exception)
-            {
-                //supress exceptio
-            }
-        }
-        
-      
         [Test]
         [Author("Nkosinathi Sangweni")]
         public void Attribute_GivenIsNew_ShouldhaveCorrectValues()
@@ -56,7 +42,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             //---------------Execute Test ----------------------
 
             //---------------Test Result -----------------------
-            Assert.IsInstanceOf(act.GetType(), typeof(DsfActivityAbstract<string>));
+            Assert.IsInstanceOf(typeof(DsfActivityAbstract<string>), act);
         }
 
         [Test]
@@ -66,7 +52,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             //---------------Set up test pack-------------------
             var act = new DsfPythonActivity();
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOf(act.GetType(), typeof(DsfActivityAbstract<string>));
+            Assert.IsInstanceOf(typeof(DsfActivityAbstract<string>), act);
             //---------------Execute Test ----------------------
             var displayName = act.DisplayName;
             //---------------Test Result -----------------------
@@ -81,7 +67,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             //---------------Set up test pack-------------------
             var act = new DsfPythonActivity();
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOf(act.GetType(), typeof(DsfActivityAbstract<string>));
+            Assert.IsInstanceOf(typeof(DsfActivityAbstract<string>), act);
             //---------------Execute Test ----------------------
             var displayName = act.Script;
             //---------------Test Result -----------------------

@@ -15,7 +15,6 @@ using NUnit.Framework;
 namespace Dev2.Common.Tests.DateAndTime
 {
     [TestFixture]
-    [SetUpFixture]
     public class DateTimeConverterFactoryTests
     {
         [SetUp]

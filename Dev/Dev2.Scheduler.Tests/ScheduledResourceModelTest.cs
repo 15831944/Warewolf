@@ -27,7 +27,6 @@ using System.Text;
 namespace Dev2.Scheduler.Test
 {
     [TestFixture]
-    [SetUpFixture]
     public class ScheduledResourceModelTest
     {
         Mock<IDev2TaskService> _mockService;

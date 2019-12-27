@@ -25,7 +25,6 @@ namespace Dev2.Integration.Tests.Dev2.Studio.Core.Tests.Models
     ///to contain all EnvironmentModelTest Unit Tests
     ///</summary>
     [TestFixture]
-    [SetUpFixture]
     public class EnvironmentModelTest
     {
         /// <summary>
@@ -48,7 +47,7 @@ namespace Dev2.Integration.Tests.Dev2.Studio.Core.Tests.Models
             var conn = CreateConnection();
 
             conn.ConnectAsync(Guid.Empty).Wait(60000);
-            NUnit.Framework.Assert.IsTrue(conn.IsConnected);
+            Assert.IsTrue(conn.IsConnected);
             conn.Disconnect();
         }
 
@@ -71,11 +70,11 @@ namespace Dev2.Integration.Tests.Dev2.Studio.Core.Tests.Models
             {
 
                 var returnData = conn.ExecuteCommand(request, Guid.Empty);
-                NUnit.Framework.Assert.IsTrue(returnData.Contains("Workflow"));
+                Assert.IsTrue(returnData.Contains("Workflow"));
             }
             else
             {
-                NUnit.Framework.Assert.Fail("Unable to create a connection to the server");
+                Assert.Fail("Unable to create a connection to the server");
             }
             conn.ConnectAsync(Guid.Empty).Wait(60000);
         }
@@ -93,11 +92,11 @@ namespace Dev2.Integration.Tests.Dev2.Studio.Core.Tests.Models
             if(conn.IsConnected)
             {
                 var returnData = conn.ExecuteCommand(xmlString, Guid.Empty);
-                NUnit.Framework.Assert.IsTrue(returnData.Contains("Workflow"));
+                Assert.IsTrue(returnData.Contains("Workflow"));
             }
             else
             {
-                NUnit.Framework.Assert.Fail("Unable to create a connection to the server");
+                Assert.Fail("Unable to create a connection to the server");
             }
             conn.ConnectAsync(Guid.Empty).Wait(60000);
 

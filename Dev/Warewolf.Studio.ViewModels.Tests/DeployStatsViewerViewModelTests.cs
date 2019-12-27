@@ -24,7 +24,6 @@ using System.Collections.ObjectModel;
 namespace Warewolf.Studio.ViewModels.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class DeployStatsViewerViewModelTests
     {
         [Test]

@@ -18,7 +18,6 @@ namespace Dev2.Infrastructure.Tests.Services.Security
     /// Summary description for SecuritySettingsTOTests
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class SecuritySettingsTOTests
     {
         [Test]

@@ -17,7 +17,6 @@ using System.Linq;
 namespace Warewolf.QueueWorker.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class QueueWorkerArgsTests
     {
         [Test]

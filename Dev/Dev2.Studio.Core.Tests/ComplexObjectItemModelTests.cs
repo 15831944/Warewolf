@@ -8,7 +8,6 @@ using NUnit.Framework;
 namespace Dev2.Core.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ComplexObjectItemModelTests
     {
         [Test]
@@ -22,8 +21,8 @@ namespace Dev2.Core.Tests
             var complexObjectItemModel = new ComplexObjectItemModel("TestItem");
             //------------Assert Results-------------------------
             Assert.IsNotNull(complexObjectItemModel);
-            Assert.IsInstanceOf(complexObjectItemModel.GetType(), typeof(DataListItemModel));
-            Assert.IsInstanceOf(complexObjectItemModel.GetType(), typeof(IComplexObjectItemModel));
+            Assert.IsInstanceOf(typeof(DataListItemModel), complexObjectItemModel);
+            Assert.IsInstanceOf(typeof(IComplexObjectItemModel), complexObjectItemModel);
             Assert.IsNull(complexObjectItemModel.Parent);
             Assert.IsTrue(complexObjectItemModel.IsParentObject);
             Assert.AreEqual("TestItem",complexObjectItemModel.DisplayName);

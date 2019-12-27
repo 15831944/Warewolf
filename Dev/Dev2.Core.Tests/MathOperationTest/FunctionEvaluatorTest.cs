@@ -20,7 +20,6 @@ namespace Dev2.Tests.MathOperationTest
     /// Summary description for FunctionEvaluatorTest
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class FunctionEvaluatorTest
     {
         IFunctionEvaluator _eval = MathOpsFactory.CreateFunctionEvaluator();

@@ -17,7 +17,6 @@ using Warewolf.Studio.Core;
 namespace Warewolf.Studio.ViewModels.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class RequestServiceNameViewModelTests
     {
         [Test]

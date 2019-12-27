@@ -17,7 +17,6 @@ namespace Dev2.Tests.Activities.TOTests
     /// Summary description for BaseConvertDTOTests
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class BaseConvertDtoTests
     {
         [Test]

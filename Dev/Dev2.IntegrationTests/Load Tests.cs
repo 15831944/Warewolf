@@ -14,7 +14,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Dev2.Integration.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class Load_Tests
     {
         [Test]

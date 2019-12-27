@@ -14,7 +14,6 @@ using Warewolf.Sharepoint;
 namespace Dev2.Data.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class SharepointHelperTests
     {
         [Test]

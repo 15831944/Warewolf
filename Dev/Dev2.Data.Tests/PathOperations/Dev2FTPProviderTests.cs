@@ -20,7 +20,6 @@ using static Dev2.Data.PathOperations.Dev2FTPProvider;
 namespace Dev2.Data.Tests.PathOperations
 {
     [TestFixture]
-    [SetUpFixture]
     public class Dev2FTPProviderTests
     {
         [Test]

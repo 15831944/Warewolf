@@ -23,7 +23,6 @@ using Newtonsoft.Json;
 namespace Dev2.Core.Tests.Workspaces
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Studio Workspaces Core")]
     public class WorkspaceItemRepositoryTests
     {

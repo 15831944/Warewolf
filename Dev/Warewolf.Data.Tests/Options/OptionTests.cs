@@ -14,7 +14,6 @@ using Warewolf.Options;
 namespace Warewolf.Data.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class OptionTests
     {
         [Test]

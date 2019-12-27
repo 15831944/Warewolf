@@ -17,7 +17,6 @@ using Dev2.Common.Utils;
 namespace Dev2.Utils.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class InterpreterTests
     {
         [Test]

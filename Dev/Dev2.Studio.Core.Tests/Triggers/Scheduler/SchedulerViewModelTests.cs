@@ -45,7 +45,6 @@ using System.Windows.Controls;
 namespace Dev2.Core.Tests.Triggers.Scheduler
 {
     [TestFixture]
-    [SetUpFixture]
     [NUnit.Framework.Category("Studio Triggers Scheduler Core")]
     public class SchedulerViewModelTests
     {

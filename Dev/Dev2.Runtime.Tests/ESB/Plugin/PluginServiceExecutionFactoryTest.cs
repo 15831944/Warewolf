@@ -23,7 +23,6 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
     /// Summary description for PluginServiceExecutionFactory
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime ESB")]
     public class PluginServiceExecutionFactoryTest
     {
@@ -47,7 +46,7 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
 
                 var result = PluginServiceExecutionFactory.GetNamespaces(source);
                 //------------Assert Results-------------------------
-                NUnit.Framework.Assert.IsTrue(result.Count > 0);
+                Assert.IsTrue(result.Count > 0);
             }
         }
 
@@ -64,7 +63,7 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
 
                 var result = PluginServiceExecutionFactory.GetNamespacesWithJsonObjects(source);
                 //------------Assert Results-------------------------
-                NUnit.Framework.Assert.IsTrue(result.Count > 0);
+                Assert.IsTrue(result.Count > 0);
             }
         }
 
@@ -102,7 +101,7 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             {
                 var result = PluginServiceExecutionFactory.GetMethods(source.AssemblyLocation, source.AssemblyName, service.Namespace);
                 //------------Assert Results-------------------------
-                NUnit.Framework.Assert.IsTrue(result.Count > 0);
+                Assert.IsTrue(result.Count > 0);
             }
         }
 
@@ -119,7 +118,7 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             {
                 var result = PluginServiceExecutionFactory.GetConstructors(source.AssemblyLocation, source.AssemblyName, service.Namespace);
                 //------------Assert Results-------------------------
-                NUnit.Framework.Assert.IsTrue(result.Count > 0);
+                Assert.IsTrue(result.Count > 0);
             }
         }
 
@@ -136,7 +135,7 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             {
                 var result = PluginServiceExecutionFactory.GetMethodsWithReturns(source.AssemblyLocation, source.AssemblyName, service.Namespace);
                 //------------Assert Results-------------------------
-                NUnit.Framework.Assert.IsTrue(result.Count > 0);
+                Assert.IsTrue(result.Count > 0);
             }
         }
 
@@ -153,8 +152,8 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
             {
                 var result = PluginServiceExecutionFactory.GetMethodsWithReturns(source.AssemblyLocation, source.AssemblyName, service.Namespace);
                 //------------Assert Results-------------------------
-                NUnit.Framework.Assert.IsTrue(result.Count > 0);
-                NUnit.Framework.Assert.IsTrue(result.Any(method => method.IsVoid));
+                Assert.IsTrue(result.Count > 0);
+                Assert.IsTrue(result.Any(method => method.IsVoid));
             }
         }
 
@@ -189,11 +188,11 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
                 var castResult = JsonConvert.DeserializeObject(result.ToString()) as dynamic;
                 if (castResult != null)
                 {
-                    NUnit.Framework.StringAssert.Contains(castResult.Name.ToString(), "test data");
+                    StringAssert.Contains(castResult.Name.ToString(), "test data");
                 }
                 else
                 {
-                    NUnit.Framework.Assert.Fail("Failed Conversion for Assert");
+                    Assert.Fail("Failed Conversion for Assert");
                 }
             }
 

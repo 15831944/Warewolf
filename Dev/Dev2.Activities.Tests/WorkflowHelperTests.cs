@@ -23,7 +23,6 @@ using Moq;
 namespace Dev2.Tests.Activities
 {
     [TestFixture]
-    [SetUpFixture]
     public class WorkflowHelperTests
     {
         [SetUp]
@@ -70,7 +69,7 @@ namespace Dev2.Tests.Activities
             var result = new WorkflowHelper().CreateWorkflow(DisplayName);
 
             Assert.IsNotNull(result);
-            Assert.IsInstanceOf(result.Implementation.GetType(), typeof(Flowchart));
+            Assert.IsInstanceOf(typeof(Flowchart), result.Implementation);
 
             var flowChart = (Flowchart)result.Implementation;
             Assert.AreEqual(flowChart.DisplayName, DisplayName);

@@ -19,7 +19,6 @@ namespace Dev2.Tests.Runtime.Services
     /// Summary description for HostSecureConfigTest
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class HostSecureConfigTests
     {
         public static Guid DefaultServerID = Guid.Parse("{D53BBCC5-4794-4DFA-B096-3AA815692E66}");

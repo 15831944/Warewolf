@@ -18,7 +18,6 @@ using Moq;
 namespace Dev2.Common.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ComPluginServiceDefinitionTests
     {
         [Test]

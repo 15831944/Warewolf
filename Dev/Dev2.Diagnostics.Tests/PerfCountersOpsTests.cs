@@ -12,7 +12,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Dev2.Diagnostics.Test
 {
     [TestFixture]
-    [SetUpFixture]
     public class PerfCountersOpsTests
     {
         public static Guid ResourceGuid = Guid.NewGuid();

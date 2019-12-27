@@ -11,12 +11,12 @@
 using NUnit.Framework;
 using System;
 using System.Threading.Tasks;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Warewolf.Pooling;
 
 namespace Warewolf.Common.NetStandard20.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ObjectPoolTests
     {
         [Test]
@@ -46,9 +46,9 @@ namespace Warewolf.Common.NetStandard20.Tests
                 TestClass actualResult = objectPool.AcquireObject();
 
                 //--------------Assert-------------------------------
-                Assert.AreEqual(expectedResult, actualResult);
+                NUnit.Framework.Assert.AreEqual(expectedResult, actualResult);
 
-                Assert.AreEqual(expectedResult.GetValue(i), actualResult.GetValue(i));
+                NUnit.Framework.Assert.AreEqual(expectedResult.GetValue(i), actualResult.GetValue(i));
 
                 objectPool.ReleaseObject(actualResult);
             });
@@ -67,9 +67,9 @@ namespace Warewolf.Common.NetStandard20.Tests
             {
                 TestClass actualResult = objectPool.AcquireObject();
 
-                Assert.AreEqual(expectedResult, actualResult);
+                NUnit.Framework.Assert.AreEqual(expectedResult, actualResult);
 
-                Assert.AreEqual(expectedResult.GetValue(i), actualResult.GetValue(i));
+                NUnit.Framework.Assert.AreEqual(expectedResult.GetValue(i), actualResult.GetValue(i));
 
                 objectPool.ReleaseObject(actualResult);
             });

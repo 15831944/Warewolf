@@ -14,7 +14,6 @@ using NUnit.Framework;
 namespace Dev2.Data.Tests.Parsers
 {
     [TestFixture]
-    [SetUpFixture]
     public class ServiceActivityVariableMappingTests
     {
         [Test]

@@ -16,7 +16,6 @@ using NUnit.Framework;
 namespace Dev2.Infrastructure.Tests.MoqInstallerActions
 {
     [TestFixture]
-    [SetUpFixture]
     public class WarewolfSecurityOperationsTest
     {
         

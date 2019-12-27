@@ -17,7 +17,6 @@ using System.Net.Mail;
 namespace Dev2.Tests.Activities.Activities
 {
     [TestFixture]
-    [SetUpFixture]
     public class EmailSenderTests
     {
         [Test]

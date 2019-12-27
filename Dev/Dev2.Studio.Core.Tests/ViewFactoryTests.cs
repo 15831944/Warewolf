@@ -7,7 +7,6 @@ using NUnit.Framework;
 namespace Dev2.Core.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ViewFactoryTests
     {
         [Test]
@@ -18,7 +17,7 @@ namespace Dev2.Core.Tests
             var viewFactory = new ViewFactory();
             //---------------Assert Precondition----------------
             //---------------Execute Test ----------------------
-            Assert.IsInstanceOf(viewFactory.GetType(), typeof(IViewFactory));
+            Assert.IsInstanceOf(typeof(IViewFactory), viewFactory);
             //---------------Test Result -----------------------
         }
 
@@ -29,7 +28,7 @@ namespace Dev2.Core.Tests
             //---------------Set up test pack-------------------
             var viewFactory = new ViewFactory();
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOf(viewFactory.GetType(), typeof(IViewFactory));
+            Assert.IsInstanceOf(typeof(IViewFactory), viewFactory);
             //---------------Execute Test ----------------------
             var view = viewFactory.GetViewGivenServerResourceType("crap");
             //---------------Test Result -----------------------
@@ -44,7 +43,7 @@ namespace Dev2.Core.Tests
             var viewFactory = new ViewFactory();
             var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(viewFactory);
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOf(viewFactory.GetType(), typeof(IViewFactory));
+            Assert.IsInstanceOf(typeof(IViewFactory), viewFactory);
             //---------------Execute Test ----------------------
             var concurrentDictionary = privateObject.GetField("_viewMap") as ConcurrentDictionary<string, Func<IView>>;
             //---------------Test Result -----------------------
@@ -60,7 +59,7 @@ namespace Dev2.Core.Tests
             var viewFactory = new ViewFactory();
             var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(viewFactory);
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOf(viewFactory.GetType(), typeof(IViewFactory));
+            Assert.IsInstanceOf(typeof(IViewFactory), viewFactory);
             //---------------Execute Test ----------------------
             var concurrentDictionary = privateObject.GetField("_viewMap") as ConcurrentDictionary<string, Func<IView>>;
             //---------------Test Result -----------------------
@@ -76,7 +75,7 @@ namespace Dev2.Core.Tests
             var viewFactory = new ViewFactory();
             var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(viewFactory);
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOf(viewFactory.GetType(), typeof(IViewFactory));
+            Assert.IsInstanceOf(typeof(IViewFactory), viewFactory);
             //---------------Execute Test ----------------------
             var concurrentDictionary = privateObject.GetField("_viewMap") as ConcurrentDictionary<string, Func<IView>>;
             //---------------Test Result -----------------------
@@ -92,7 +91,7 @@ namespace Dev2.Core.Tests
             var viewFactory = new ViewFactory();
             var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(viewFactory);
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOf(viewFactory.GetType(), typeof(IViewFactory));
+            Assert.IsInstanceOf(typeof(IViewFactory), viewFactory);
             //---------------Execute Test ----------------------
             var concurrentDictionary = privateObject.GetField("_viewMap") as ConcurrentDictionary<string, Func<IView>>;
             //---------------Test Result -----------------------
@@ -108,7 +107,7 @@ namespace Dev2.Core.Tests
             var viewFactory = new ViewFactory();
             var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(viewFactory);
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOf(viewFactory.GetType(), typeof(IViewFactory));
+            Assert.IsInstanceOf(typeof(IViewFactory), viewFactory);
             //---------------Execute Test ----------------------
             var concurrentDictionary = privateObject.GetField("_viewMap") as ConcurrentDictionary<string, Func<IView>>;
             //---------------Test Result -----------------------
@@ -124,7 +123,7 @@ namespace Dev2.Core.Tests
             var viewFactory = new ViewFactory();
             var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(viewFactory);
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOf(viewFactory.GetType(), typeof(IViewFactory));
+            Assert.IsInstanceOf(typeof(IViewFactory), viewFactory);
             //---------------Execute Test ----------------------
             var concurrentDictionary = privateObject.GetField("_viewMap") as ConcurrentDictionary<string, Func<IView>>;
             //---------------Test Result -----------------------
@@ -140,7 +139,7 @@ namespace Dev2.Core.Tests
             var viewFactory = new ViewFactory();
             var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(viewFactory);
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOf(viewFactory.GetType(), typeof(IViewFactory));
+            Assert.IsInstanceOf(typeof(IViewFactory), viewFactory);
             //---------------Execute Test ----------------------
             var concurrentDictionary = privateObject.GetField("_viewMap") as ConcurrentDictionary<string, Func<IView>>;
             //---------------Test Result -----------------------
@@ -156,7 +155,7 @@ namespace Dev2.Core.Tests
             var viewFactory = new ViewFactory();
             var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(viewFactory);
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOf(viewFactory.GetType(), typeof(IViewFactory));
+            Assert.IsInstanceOf(typeof(IViewFactory), viewFactory);
             //---------------Execute Test ----------------------
             var concurrentDictionary = privateObject.GetField("_viewMap") as ConcurrentDictionary<string, Func<IView>>;
             //---------------Test Result -----------------------
@@ -172,7 +171,7 @@ namespace Dev2.Core.Tests
             var viewFactory = new ViewFactory();
             var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(viewFactory);
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOf(viewFactory.GetType(), typeof(IViewFactory));
+            Assert.IsInstanceOf(typeof(IViewFactory), viewFactory);
             //---------------Execute Test ----------------------
             var concurrentDictionary = privateObject.GetField("_viewMap") as ConcurrentDictionary<string, Func<IView>>;
             //---------------Test Result -----------------------
@@ -188,7 +187,7 @@ namespace Dev2.Core.Tests
             var viewFactory = new ViewFactory();
             var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(viewFactory);
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOf(viewFactory.GetType(), typeof(IViewFactory));
+            Assert.IsInstanceOf(typeof(IViewFactory), viewFactory);
             //---------------Execute Test ----------------------
             var concurrentDictionary = privateObject.GetField("_viewMap") as ConcurrentDictionary<string, Func<IView>>;
             //---------------Test Result -----------------------
@@ -204,7 +203,7 @@ namespace Dev2.Core.Tests
             var viewFactory = new ViewFactory();
             var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(viewFactory);
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOf(viewFactory.GetType(), typeof(IViewFactory));
+            Assert.IsInstanceOf(typeof(IViewFactory), viewFactory);
             //---------------Execute Test ----------------------
             var concurrentDictionary = privateObject.GetField("_viewMap") as ConcurrentDictionary<string, Func<IView>>;
             //---------------Test Result -----------------------
@@ -220,7 +219,7 @@ namespace Dev2.Core.Tests
             var viewFactory = new ViewFactory();
             var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(viewFactory);
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOf(viewFactory.GetType(), typeof(IViewFactory));
+            Assert.IsInstanceOf(typeof(IViewFactory), viewFactory);
             //---------------Execute Test ----------------------
             var concurrentDictionary = privateObject.GetField("_viewMap") as ConcurrentDictionary<string, Func<IView>>;
             //---------------Test Result -----------------------
@@ -236,7 +235,7 @@ namespace Dev2.Core.Tests
             var viewFactory = new ViewFactory();
             var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(viewFactory);
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOf(viewFactory.GetType(), typeof(IViewFactory));
+            Assert.IsInstanceOf(typeof(IViewFactory), viewFactory);
             //---------------Execute Test ----------------------
             var concurrentDictionary = privateObject.GetField("_viewMap") as ConcurrentDictionary<string, Func<IView>>;
             //---------------Test Result -----------------------
@@ -252,7 +251,7 @@ namespace Dev2.Core.Tests
             var viewFactory = new ViewFactory();
             var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(viewFactory);
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOf(viewFactory.GetType(), typeof(IViewFactory));
+            Assert.IsInstanceOf(typeof(IViewFactory), viewFactory);
             //---------------Execute Test ----------------------
             var concurrentDictionary = privateObject.GetField("_viewMap") as ConcurrentDictionary<string, Func<IView>>;
             //---------------Test Result -----------------------
@@ -268,7 +267,7 @@ namespace Dev2.Core.Tests
             var viewFactory = new ViewFactory();
             var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(viewFactory);
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOf(viewFactory.GetType(), typeof(IViewFactory));
+            Assert.IsInstanceOf(typeof(IViewFactory), viewFactory);
             //---------------Execute Test ----------------------
             var concurrentDictionary = privateObject.GetField("_viewMap") as ConcurrentDictionary<string, Func<IView>>;
             //---------------Test Result -----------------------
@@ -284,7 +283,7 @@ namespace Dev2.Core.Tests
             var viewFactory = new ViewFactory();
             var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(viewFactory);
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOf(viewFactory.GetType(), typeof(IViewFactory));
+            Assert.IsInstanceOf(typeof(IViewFactory), viewFactory);
             //---------------Execute Test ----------------------
             var concurrentDictionary = privateObject.GetField("_viewMap") as ConcurrentDictionary<string, Func<IView>>;
             //---------------Test Result -----------------------
@@ -300,7 +299,7 @@ namespace Dev2.Core.Tests
             var viewFactory = new ViewFactory();
             var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(viewFactory);
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOf(viewFactory.GetType(), typeof(IViewFactory));
+            Assert.IsInstanceOf(typeof(IViewFactory), viewFactory);
             //---------------Execute Test ----------------------
             var concurrentDictionary = privateObject.GetField("_viewMap") as ConcurrentDictionary<string, Func<IView>>;
             //---------------Test Result -----------------------
@@ -316,7 +315,7 @@ namespace Dev2.Core.Tests
             var viewFactory = new ViewFactory();
             var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(viewFactory);
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOf(viewFactory.GetType(), typeof(IViewFactory));
+            Assert.IsInstanceOf(typeof(IViewFactory), viewFactory);
             //---------------Execute Test ----------------------
             var concurrentDictionary = privateObject.GetField("_viewMap") as ConcurrentDictionary<string, Func<IView>>;
             //---------------Test Result -----------------------

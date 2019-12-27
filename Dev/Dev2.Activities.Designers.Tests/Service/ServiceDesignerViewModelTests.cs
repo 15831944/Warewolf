@@ -17,6 +17,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using Caliburn.Micro;
 using Dev2.Activities.Designers2.Core;
 using Dev2.Activities.Designers2.Service;
@@ -50,6 +51,7 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Activities.Designers.Tests.Service
 {
     [TestFixture]
+    [Apartment(ApartmentState.STA)]
     public class ServiceDesignerViewModelTests
     {
         const string ExpectedName = "TestServiceName";

@@ -10,7 +10,6 @@ using Dev2.Runtime.ESB.Execution;
 namespace Dev2.Tests.Activities.ActivityComparerTests.Database
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfSqlServerDatabaseActivityEqualityTests
     {
         [Test]

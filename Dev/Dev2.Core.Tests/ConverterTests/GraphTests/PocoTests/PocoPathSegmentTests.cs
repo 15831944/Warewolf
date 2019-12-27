@@ -16,7 +16,6 @@ using Unlimited.Framework.Converters.Graph.Poco;
 namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class PocoPathSegmentTests
     {
         /// <summary>

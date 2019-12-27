@@ -19,7 +19,6 @@ using Newtonsoft.Json;
 namespace Dev2.Tests.Runtime.ServiceModel.Data
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime Hosting")]
     public class DropBoxSourceTests
     {
@@ -45,7 +44,6 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
 
 
         [Test]
-        [DeploymentItem("EnableDocker.txt")]
         [Author("Siphamandla Dube")]
         [Category(nameof(DropBoxSource))]
         public void DropBoxSource_ToString_SetProperty_JsonSerializedObjectReturnedAsString_AreEqual_ExpectTrue()
@@ -53,11 +51,10 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             var testDropBoxSource = SetupDefaultDropBoxSource();
             var actualDropBoxSourceToString = testDropBoxSource.ToString();
             var expected = JsonConvert.SerializeObject(testDropBoxSource);
-            NUnit.Framework.Assert.AreEqual(expected, actualDropBoxSourceToString);
+            Assert.AreEqual(expected, actualDropBoxSourceToString);
         }
 
         [Test]
-        [DeploymentItem("EnableDocker.txt")]
         [Author("Siphamandla Dube")]
         [Category(nameof(DropBoxSource))]
         public void DropBoxSource_ToString_EmptyObject_AreEqual_ExpectedTrue()
@@ -65,11 +62,10 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             var testDropBoxSource = new DropBoxSource();
             var actualSerializedDropBoxSource = testDropBoxSource.ToString();
             var expected = JsonConvert.SerializeObject(testDropBoxSource);
-            NUnit.Framework.Assert.AreEqual(expected, actualSerializedDropBoxSource);
+            Assert.AreEqual(expected, actualSerializedDropBoxSource);
         }
 
         [Test]
-        [DeploymentItem("EnableDocker.txt")]
         [Author("Siphamandla Dube")]
         [Category(nameof(DropBoxSource))]
         public void DropBoxSource_AppKey_CannotBeEmpty()
@@ -83,11 +79,10 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             //------------Execute Test---------------------------
             var appKey = dbSource.AppKey;
             //------------Assert Results-------------------------
-            NUnit.Framework.StringAssert.Contains(appKey, "");
+            StringAssert.Contains(appKey, "");
         }
 
         [Test]
-        [DeploymentItem("EnableDocker.txt")]
         [Author("Siphamandla Dube")]
         [Category(nameof(DropBoxSource))]
         public void DropBoxSource_ToXml_SetProperty_AreEqual_ExpectTrue()
@@ -101,15 +96,14 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             {
                 if (attribEnum.Current.Name == "Name")
                 {
-                    NUnit.Framework.Assert.AreEqual("TestResource", attribEnum.Current.Value);
+                    Assert.AreEqual("TestResource", attribEnum.Current.Value);
                     break;
                 }
             }
-            NUnit.Framework.Assert.IsNull(workflowXamlDefintion);
+            Assert.IsNull(workflowXamlDefintion);
         }
 
         [Test]
-        [DeploymentItem("EnableDocker.txt")]
         [Author("Siphamandla Dube")]
         [Category(nameof(DropBoxSource))]
         public void DropBoxSource_ToXmlEmptyObject_XElementWithNoInformation_AreEqual_ExpectTrue()
@@ -123,14 +117,13 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             {
                 if (attribEnum.Current.Name == "Name")
                 {
-                    NUnit.Framework.Assert.AreEqual(string.Empty, attribEnum.Current.Value);
+                    Assert.AreEqual(string.Empty, attribEnum.Current.Value);
                     break;
                 }
             }
         }
 
         [Test]
-        [DeploymentItem("EnableDocker.txt")]
         [Author("Siphamandla Dube")]
         [Category(nameof(DropBoxSource))]
         public void DropBoxSource_XML_Constractor_Initialise_ExpectTrue()
@@ -140,15 +133,14 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             //------------------------Act-----------------------------
             var dropBoxSource = new DropBoxSource(element);
             //------------------------Assert--------------------------
-            NUnit.Framework.Assert.AreEqual("", dropBoxSource.AccessToken);
-            NUnit.Framework.Assert.AreEqual("", dropBoxSource.AppKey);
-            NUnit.Framework.Assert.AreEqual("", dropBoxSource.AuthorRoles);
-            NUnit.Framework.Assert.AreEqual("test server", dropBoxSource.ResourceName);
-            NUnit.Framework.Assert.AreEqual("DropBoxSource", dropBoxSource.ResourceType);
+            Assert.AreEqual("", dropBoxSource.AccessToken);
+            Assert.AreEqual("", dropBoxSource.AppKey);
+            Assert.AreEqual("", dropBoxSource.AuthorRoles);
+            Assert.AreEqual("test server", dropBoxSource.ResourceName);
+            Assert.AreEqual("DropBoxSource", dropBoxSource.ResourceType);
         }
 
         [Test]
-        [DeploymentItem("EnableDocker.txt")]
         [Author("Siphamandla Dube")]
         [Category(nameof(DropBoxSource))]
         public void DropBoxSource_AppKey_And_AccessToken_Equals_ExpectTrue()
@@ -165,11 +157,10 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
 
             var isDropboxSource = dropBoxSource.Equals(mockOAuthSource.Object);
             //------------------------Assert--------------------------
-            NUnit.Framework.Assert.IsTrue(isDropboxSource);
+            Assert.IsTrue(isDropboxSource);
         }
 
         [Test]
-        [DeploymentItem("EnableDocker.txt")]
         [Author("Siphamandla Dube")]
         [Category(nameof(DropBoxSource))]
         public void DropBoxSource_Other_IsNull_Equals_ExpectFalse()
@@ -186,7 +177,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
 
             var isDropboxSource = dropBoxSource.Equals(null);
             //------------------------Assert--------------------------
-            NUnit.Framework.Assert.IsFalse(isDropboxSource);
+            Assert.IsFalse(isDropboxSource);
         }
 
         DropBoxSource SetupDefaultDropBoxSource()

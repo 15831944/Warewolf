@@ -5,7 +5,6 @@ using NUnit.Framework;
 namespace Dev2.Data.Tests.ServiceModel
 {
     [TestFixture]
-    [SetUpFixture]
     public class OauthSourceTests
     {
         [Test]

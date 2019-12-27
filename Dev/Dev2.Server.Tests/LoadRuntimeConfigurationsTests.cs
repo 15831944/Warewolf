@@ -7,7 +7,6 @@ using Moq;
 namespace Dev2.Server.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class LoadRuntimeConfigurationsTests
     {
         [Test]

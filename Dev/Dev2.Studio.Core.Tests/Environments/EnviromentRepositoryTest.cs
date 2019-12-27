@@ -36,7 +36,6 @@ using Dev2.Studio.Interfaces.Enums;
 namespace Dev2.Core.Tests.Environments
 {
     [TestFixture]
-    [SetUpFixture]
     public class EnviromentRepositoryTest
     {
         static readonly object TestLock = new object();

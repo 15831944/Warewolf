@@ -57,7 +57,6 @@ using Dev2.Instrumentation;
 namespace Dev2.Core.Tests.Workflows
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Studio Workflows Core")]
     public partial class WorkflowDesignerUnitTest
     {

@@ -9,7 +9,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Tests.Activities.ActivityComparerTests.NumberFormat
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfFindRecordsMultipleCriteriaActivityComparerTest
     {
         [Test]

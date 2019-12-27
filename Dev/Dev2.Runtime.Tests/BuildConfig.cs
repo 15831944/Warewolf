@@ -4,7 +4,6 @@ using Warewolf.Test.Agent;
 namespace Dev2.Activities.Specs
 {
     [TestFixture]
-    [SetUpFixture]
     public static class BuildConfig
     {
         [OneTimeSetUp]

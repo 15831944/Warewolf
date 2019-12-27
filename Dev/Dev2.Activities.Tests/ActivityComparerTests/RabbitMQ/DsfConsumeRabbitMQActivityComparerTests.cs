@@ -7,7 +7,6 @@ using NUnit.Framework;
 namespace Dev2.Tests.Activities.ActivityComparerTests.RabbitMQ
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfConsumeRabbitMqActivityComparerTests
     {
         [Test]

@@ -22,7 +22,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Dev2.Data.Tests.Util
 {
     [TestFixture]
-    [SetUpFixture]
     public class CommonDataUtilsTests
     {
         [Test]

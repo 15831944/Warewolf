@@ -5,7 +5,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Tests.Activities.ActivityComparerTests.PathOperations
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfFolderReadActivityNewComparerTests
     {
         [Test]

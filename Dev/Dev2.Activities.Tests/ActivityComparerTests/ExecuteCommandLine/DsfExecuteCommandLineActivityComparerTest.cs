@@ -6,7 +6,6 @@ using System.Diagnostics;
 namespace Dev2.Tests.Activities.ActivityComparerTests.ExecuteCommand
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfExecuteCommandLineActivityComparerTest
     {
         [Test]

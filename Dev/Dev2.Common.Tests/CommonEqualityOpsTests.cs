@@ -19,7 +19,6 @@ using Warewolf.Security.Encryption;
 namespace Dev2.Common.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class CommonEqualityOpsTests
     {
         [Test]

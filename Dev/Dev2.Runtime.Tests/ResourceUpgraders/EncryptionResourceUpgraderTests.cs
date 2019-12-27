@@ -17,7 +17,6 @@ using Warewolf.Security.Encryption;
 namespace Dev2.Tests.Runtime.ResourceUpgraders
 {
     [TestFixture]
-    [SetUpFixture]
     public class EncryptionResourceUpgraderTests
     {
         readonly string _connectionString;

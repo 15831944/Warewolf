@@ -15,7 +15,6 @@ using NUnit.Framework;
 namespace Dev2.Tests.ConverterTests.Base
 {
     [TestFixture]
-    [SetUpFixture]
     public class BaseConvertTest
     {
         static readonly Dev2BaseConversionFactory Fac = new Dev2BaseConversionFactory();

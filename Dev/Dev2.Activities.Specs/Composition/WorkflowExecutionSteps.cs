@@ -5119,7 +5119,6 @@ namespace Dev2.Activities.Specs.Composition
             TryGetValue("LogFileContent", out string logFileContent);
             NUnit.Framework.Assert.IsTrue(logFileContent.Contains(searchString), $"detailed log file does not contain {searchString}");
         }
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         [Given(@"the audit database is empty")]
         public void GivenTheAuditDatabaseIsEmpty()
         {
@@ -5144,8 +5143,6 @@ namespace Dev2.Activities.Specs.Composition
             //    NUnit.Framework.Assert.AreEqual(val, value);
             //}
         }
-
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         [Then(@"The audit database has ""(.*)"" search results containing ""(.*)"" with type ""(.*)"" for ""(.*)"" as")]
         public void ThenTheAuditDatabaseHasSearchResultsContainingWithTypeWithActivityForAs(int expectedCount, string activityName, string auditType, string workflowName, Table table)
         {
@@ -5177,8 +5174,6 @@ namespace Dev2.Activities.Specs.Composition
             //    }
             //}
         }
-
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         [Then(@"The audit database has ""(.*)"" search results for ""(.*)"" as")]
         public void ThenTheAuditDatabaseHasSearchResultsForAs(int expectedCount, string workflowName, Table table)
         {
@@ -5200,7 +5195,6 @@ namespace Dev2.Activities.Specs.Composition
             //    }
             //}
         }
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         [Then(@"The audit database has ""(.*)"" search results containing ""(.*)"" with log type ""(.*)"" for ""(.*)""")]
         public void ThenTheLogFileSearchResultsContainFor(int expectedCount, string activityName, string logType, string workflowName)
         {

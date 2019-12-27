@@ -19,7 +19,6 @@ using Dev2.Common.Wrappers;
 namespace Dev2.Server.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class WebServerConfigurationTests
     {
         [SetUp]

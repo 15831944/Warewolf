@@ -19,7 +19,6 @@ using System.Text;
 namespace Dev2.Infrastructure.Tests.Communication
 {
     [TestFixture]
-    [SetUpFixture]
     public class Dev2JsonSerializerTests
     {
         readonly JsonSerializerSettings _serializerSettings = new JsonSerializerSettings

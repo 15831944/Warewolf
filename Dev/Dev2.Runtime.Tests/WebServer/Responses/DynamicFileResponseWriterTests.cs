@@ -18,7 +18,6 @@ using NUnit.Framework;
 namespace Dev2.Tests.Runtime.WebServer.Responses
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime WebServer")]
     public class DynamicFileResponseWriterTests
     {
@@ -87,7 +86,7 @@ namespace Dev2.Tests.Runtime.WebServer.Responses
 
                 //------------Assert Results-------------------------
                 Assert.AreEqual(ContentTypes.Html, context.ResponseMessage.Content.Headers.ContentType);
-                Assert.IsInstanceOf(context.ResponseMessage.Content.GetType(), typeof(StringContent));
+                Assert.IsInstanceOf(typeof(StringContent), context.ResponseMessage.Content);
                 var task = context.ResponseMessage.Content.ReadAsStringAsync();
                 task.Wait();
 

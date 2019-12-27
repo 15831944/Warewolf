@@ -9,7 +9,6 @@ namespace Warewolf.Studio.ViewModels.Tests
     using Moq;
 
     [TestFixture]
-    [SetUpFixture]
     public class ManageNewServerSourceModelTests
     {
         #region Fields

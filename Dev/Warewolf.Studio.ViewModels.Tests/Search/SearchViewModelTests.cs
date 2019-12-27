@@ -11,7 +11,6 @@ using System.Collections.ObjectModel;
 namespace Warewolf.Studio.ViewModels.Tests.Search
 {
     [TestFixture]
-    [SetUpFixture]
     public class SearchViewModelTests
     {
         #region Fields

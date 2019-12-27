@@ -9,7 +9,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace WarewolfParsingTest
 {
     [TestFixture]
-    [SetUpFixture]
     public class EvalFunctionTests
     {
 

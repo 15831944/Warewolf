@@ -18,7 +18,6 @@ using Warewolf.Core;
 namespace Dev2.Tests.Activities.ActivityTests.Scripting
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfJavascriptActivityTests : BaseActivityUnitTest
     {
         [OneTimeTearDown]
@@ -30,40 +29,29 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             }
             catch (Exception)
             {
-                //supress exceptio
+                //try delete
             }
         }
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext { get; set; }
+        
         [OneTimeSetUp]
-        public static void Init(TestContext context)
+        public static void Init()
         {
-            try
-            {
-                File.WriteAllBytes(GetJsTmpFile(), Encoding.ASCII.GetBytes(@"if (!String.prototype.endsWith) 
+            File.WriteAllBytes(GetJsTmpFile(), Encoding.ASCII.GetBytes(@"if (!String.prototype.endsWith) 
+                    {
+                        String.prototype.endsWith = function(searchString, position) 
                         {
-                            String.prototype.endsWith = function(searchString, position) 
+                            var subjectString = this.toString();
+                            if (typeof position !== 'number' || !isFinite(position) || Math.floor(position) !== position || position > subjectString.length)
                             {
-                                var subjectString = this.toString();
-                                if (typeof position !== 'number' || !isFinite(position) || Math.floor(position) !== position || position > subjectString.length)
-                                {
-                                    position = subjectString.length;
-                                }
-                                position -= searchString.length;
-                                var lastIndex = subjectString.indexOf(searchString, position);
-                                return lastIndex !== -1 && lastIndex === position;
-                            };
-                       }"));
-            }
-            catch (Exception ex)
-            {
-                //supress exceptio
-                Assert.Fail(ex.Message);
-            }
+                                position = subjectString.length;
+                            }
+                            position -= searchString.length;
+                            var lastIndex = subjectString.indexOf(searchString, position);
+                            return lastIndex !== -1 && lastIndex === position;
+                        };
+                   }"));
         }
+        
         [Test]
         [Author("Nkosinathi Sangweni")]
         public void Attribute_GivenIsNew_ShouldhaveCorrectValues()
@@ -93,7 +81,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             //---------------Execute Test ----------------------
 
             //---------------Test Result -----------------------
-            Assert.IsInstanceOf(act.GetType(), typeof(DsfActivityAbstract<string>));
+            Assert.IsInstanceOf(typeof(DsfActivityAbstract<string>), act);
         }
 
         [Test]
@@ -103,7 +91,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             //---------------Set up test pack-------------------
             var act = new DsfJavascriptActivity();
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOf(act.GetType(), typeof(DsfActivityAbstract<string>));
+            Assert.IsInstanceOf(typeof(DsfActivityAbstract<string>), act);
             //---------------Execute Test ----------------------
             var displayName = act.DisplayName;
             //---------------Test Result -----------------------
@@ -118,7 +106,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Scripting
             //---------------Set up test pack-------------------
             var act = new DsfJavascriptActivity();
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOf(act.GetType(), typeof(DsfActivityAbstract<string>));
+            Assert.IsInstanceOf(typeof(DsfActivityAbstract<string>), act);
             //---------------Execute Test ----------------------
             var displayName = act.Script;
             //---------------Test Result -----------------------

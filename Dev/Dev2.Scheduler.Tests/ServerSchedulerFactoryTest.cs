@@ -26,7 +26,6 @@ using Moq;
 namespace Dev2.Scheduler.Test
 {
     [TestFixture]
-    [SetUpFixture]
     public class ServerSchedulerFactoryTest
     {
         [Test]

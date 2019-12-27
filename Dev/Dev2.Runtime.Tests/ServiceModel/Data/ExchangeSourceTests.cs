@@ -12,7 +12,6 @@ using System.Collections.Generic;
 namespace Dev2.Tests.Runtime.ServiceModel
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime Hosting")]
     public class ExchangeSourceTests
     {
@@ -40,7 +39,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             var testDbSource = SetupDefaultSource();
             var actualDbSourceToString = testDbSource.ToString();
             var expected = JsonConvert.SerializeObject(testDbSource);
-            NUnit.Framework.Assert.AreEqual(expected, actualDbSourceToString);
+            Assert.AreEqual(expected, actualDbSourceToString);
         }
 
         [Test]
@@ -51,7 +50,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             var testDbSource = new ExchangeSource();
             var actualSerializedDbSource = testDbSource.ToString();
             var expected = JsonConvert.SerializeObject(testDbSource);
-            NUnit.Framework.Assert.AreEqual(expected, actualSerializedDbSource);
+            Assert.AreEqual(expected, actualSerializedDbSource);
         }
 
         [Test]
@@ -74,16 +73,16 @@ namespace Dev2.Tests.Runtime.ServiceModel
                 Password = "test"
             };
 
-            NUnit.Framework.Assert.IsNotNull(testDbSource.DataList);
-            NUnit.Framework.Assert.IsNotNull(testDbSource.EmailFrom);
-            NUnit.Framework.Assert.IsNotNull(testDbSource.EmailTo);
-            NUnit.Framework.Assert.IsNotNull(testDbSource.Path);
-            NUnit.Framework.Assert.IsNotNull(testDbSource.TestFromAddress);
-            NUnit.Framework.Assert.IsNotNull(testDbSource.Type);
-            NUnit.Framework.Assert.IsNotNull(testDbSource.Timeout);
-            NUnit.Framework.Assert.IsNotNull(testDbSource.TestToAddress);
-            NUnit.Framework.Assert.IsNotNull(testDbSource.UserName);
-            NUnit.Framework.Assert.IsNotNull(testDbSource.Password);
+            Assert.IsNotNull(testDbSource.DataList);
+            Assert.IsNotNull(testDbSource.EmailFrom);
+            Assert.IsNotNull(testDbSource.EmailTo);
+            Assert.IsNotNull(testDbSource.Path);
+            Assert.IsNotNull(testDbSource.TestFromAddress);
+            Assert.IsNotNull(testDbSource.Type);
+            Assert.IsNotNull(testDbSource.Timeout);
+            Assert.IsNotNull(testDbSource.TestToAddress);
+            Assert.IsNotNull(testDbSource.UserName);
+            Assert.IsNotNull(testDbSource.Password);
         }
 
         [Test]
@@ -94,7 +93,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             var testDbSource = new ExchangeSource();
             var result = testDbSource.Equals(testDbSource);
 
-            NUnit.Framework.Assert.IsTrue(result);
+            Assert.IsTrue(result);
         }
 
         [Test]
@@ -111,11 +110,11 @@ namespace Dev2.Tests.Runtime.ServiceModel
             {
                 if (attribEnum.Current.Name == "Name")
                 {
-                    NUnit.Framework.Assert.AreEqual("TestResourceIMadeUp", attribEnum.Current.Value);
+                    Assert.AreEqual("TestResourceIMadeUp", attribEnum.Current.Value);
                     break;
                 }
             }
-            NUnit.Framework.Assert.IsNull(workflowXamlDefintion);
+            Assert.IsNull(workflowXamlDefintion);
         }
 
         [Test]
@@ -132,7 +131,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             {
                 if (attribEnum.Current.Name == "Name")
                 {
-                    NUnit.Framework.Assert.AreEqual(string.Empty, attribEnum.Current.Value);
+                    Assert.AreEqual(string.Empty, attribEnum.Current.Value);
                     break;
                 }
             }
@@ -147,7 +146,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             var expectedXml = testDbSource.ToXml();
 
             testDbSource = new ExchangeSource(expectedXml);
-            NUnit.Framework.Assert.IsNotNull(testDbSource);
+            Assert.IsNotNull(testDbSource);
         }
 
         [Test]
@@ -168,18 +167,18 @@ namespace Dev2.Tests.Runtime.ServiceModel
 
             testDbSource.Send(new FakeEmailSender(), message);
 
-            NUnit.Framework.Assert.IsNotNull(message.Body);
-            NUnit.Framework.Assert.IsNotNull(message.Attachments);
-            NUnit.Framework.Assert.IsNotNull(message.BcCs);
-            NUnit.Framework.Assert.IsNotNull(message.CCs);
-            NUnit.Framework.Assert.IsNotNull(message.Subject);
-            NUnit.Framework.Assert.IsNotNull(message.Tos);
+            Assert.IsNotNull(message.Body);
+            Assert.IsNotNull(message.Attachments);
+            Assert.IsNotNull(message.BcCs);
+            Assert.IsNotNull(message.CCs);
+            Assert.IsNotNull(message.Subject);
+            Assert.IsNotNull(message.Tos);
         }
     }
 
     public class FakeEmailSender : IExchangeEmailSender
     {
-        public void Send(Microsoft.Exchange.WebServices.Data.ExchangeService service, EmailMessage message)
+        public void Send(ExchangeService service, EmailMessage message)
         {
         }
     }

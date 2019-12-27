@@ -26,7 +26,6 @@ namespace Dev2.Tests.Runtime.ServiceModel
 {
     // PBI 1220 - 2013.05.27 - TWR - Created
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime Hosting")]
     public class WebServicesTest
     {

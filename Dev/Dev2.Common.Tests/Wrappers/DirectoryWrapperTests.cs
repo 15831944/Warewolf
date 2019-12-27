@@ -16,7 +16,6 @@ using NUnit.Framework;
 namespace Dev2.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class DirectoryWrapperTests
     {
         private static IDirectory NewIDirectoryInstance()

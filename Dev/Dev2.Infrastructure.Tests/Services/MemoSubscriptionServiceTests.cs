@@ -18,7 +18,6 @@ using Moq;
 namespace Dev2.Infrastructure.Tests.Services
 {
     [TestFixture]
-    [SetUpFixture]
     public class MemoSubscriptionServiceTests
     {
         [Test]

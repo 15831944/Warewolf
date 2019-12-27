@@ -17,7 +17,6 @@ using System.Linq;
 namespace Dev2.Common.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class DllListingTests
     {
         [Test]

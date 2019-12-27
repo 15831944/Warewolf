@@ -6,7 +6,6 @@ using NUnit.Framework;
 namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.ExceptionTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class DropboxFileNotFoundExceptionTests
     {
         [Test]
@@ -37,7 +36,6 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.ExceptionTests
     } 
     
     [TestFixture]
-    [SetUpFixture]
     public class DropboxPathNotFileFoundExceptionTests
     {
         [Test]
@@ -68,7 +66,6 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.ExceptionTests
     }
     
     [TestFixture]
-    [SetUpFixture]
     public class DropboxFileMalformdedExceptionTests
     {
         [Test]

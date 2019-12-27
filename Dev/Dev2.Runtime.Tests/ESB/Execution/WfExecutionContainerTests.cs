@@ -11,7 +11,6 @@ using Moq;
 namespace Dev2.Tests.Runtime.ESB.Execution
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime ESB")]
     public class WfExecutionContainerTests
     {
@@ -35,7 +34,7 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             }
             catch(Exception ex)
             {
-                NUnit.Framework.Assert.Fail(ex.Message);
+                Assert.Fail(ex.Message);
             }
             //---------------Test Result -----------------------
         }

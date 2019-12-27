@@ -29,7 +29,6 @@ using Dev2.Common.Interfaces.Versioning;
 namespace Dev2.Tests.Runtime.Hosting
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime Hosting")]
     public class ServerVersionRepositoryTests
     {
@@ -55,7 +54,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var items = serverVersionRepostory.GetVersions(resourceId);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(0, items.Count);
+            Assert.AreEqual(0, items.Count);
         }
         [Test]
         [Author("Leon Rajindrapersadh")]
@@ -79,7 +78,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var items = serverVersionRepostory.GetVersions(resourceId);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(0, items.Count);
+            Assert.AreEqual(0, items.Count);
         }
         [Test]
         [Author("Leon Rajindrapersadh")]
@@ -103,7 +102,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var items = serverVersionRepostory.GetVersions(resourceId);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(0, items.Count);
+            Assert.AreEqual(0, items.Count);
         }
         [Test]
         [Author("Leon Rajindrapersadh")]
@@ -126,7 +125,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var items = serverVersionRepostory.GetVersions(resourceId);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(0, items.Count);
+            Assert.AreEqual(0, items.Count);
         }
         [Test]
         [Author("Leon Rajindrapersadh")]
@@ -150,7 +149,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var items = serverVersionRepostory.GetVersions(resourceId);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(0, items.Count);
+            Assert.AreEqual(0, items.Count);
         }
 
 
@@ -180,7 +179,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var items = serverVersionRepostory.GetVersions(resourceId);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(0, items.Count);
+            Assert.AreEqual(0, items.Count);
 
 
         }
@@ -206,7 +205,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var items = serverVersionRepostory.GetVersions(resourceId);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(0, items.Count);
+            Assert.AreEqual(0, items.Count);
         }
 
         [Test]
@@ -234,7 +233,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var items = serverVersionRepostory.GetVersions(resourceId);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(2, items.Count);
+            Assert.AreEqual(2, items.Count);
         }
 
 
@@ -383,7 +382,7 @@ namespace Dev2.Tests.Runtime.Hosting
             var res = serverVersionRepostory.RollbackTo(resourceId, "2");
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(res.VersionHistory.Count, 1);
+            Assert.AreEqual(res.VersionHistory.Count, 1);
             cat.Verify(a => a.SaveResource(Guid.Empty, It.IsAny<StringBuilder>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()));
             cat.Verify(a => a.DeleteResource(Guid.Empty, "moon", "WorkflowService", false));
         }
@@ -424,7 +423,7 @@ namespace Dev2.Tests.Runtime.Hosting
             var res = serverVersionRepostory.RollbackTo(resourceId, "2");
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(res.VersionHistory.Count, 1);
+            Assert.AreEqual(res.VersionHistory.Count, 1);
             cat.Verify(a => a.SaveResource(Guid.Empty, It.IsAny<StringBuilder>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()));
             cat.Verify(a => a.DeleteResource(Guid.Empty, "moon", "Unknown", false), Times.Never());
         }
@@ -466,7 +465,7 @@ namespace Dev2.Tests.Runtime.Hosting
             var res = serverVersionRepostory.RollbackTo(resourceId, "2");
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(1, res.VersionHistory.Count);
+            Assert.AreEqual(1, res.VersionHistory.Count);
             cat.Verify(a => a.SaveResource(Guid.Empty, It.IsAny<StringBuilder>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()));
             cat.Verify(a => a.DeleteResource(Guid.Empty, "moon", "Unknown", false), Times.Never());
         }
@@ -504,7 +503,7 @@ namespace Dev2.Tests.Runtime.Hosting
             var filedel = "2_" + dt.Ticks + "_jjj";
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(res.Count, 1);
+            Assert.AreEqual(res.Count, 1);
             file.Verify(a => a.Delete(filedel));
 
         }
@@ -540,7 +539,7 @@ namespace Dev2.Tests.Runtime.Hosting
             var filedel = versionId.ToString() + "_2_" + dt.Ticks + "_jjj";
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(res.Count, 0);
+            Assert.AreEqual(res.Count, 0);
             file.Verify(a => a.Delete(filedel), Times.Never());
 
         }

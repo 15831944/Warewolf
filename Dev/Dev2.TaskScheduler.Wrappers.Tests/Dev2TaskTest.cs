@@ -17,7 +17,6 @@ using System.Runtime.InteropServices;
 namespace Dev2.TaskScheduler.Wrappers.Test
 {
     [TestFixture]
-    [SetUpFixture]
     public class Dev2TaskTest
     {
         TaskService _taskService;

@@ -19,7 +19,6 @@ using Unlimited.UnitTest.Framework.ConverterTests.GraphTests;
 namespace Dev2.Tests.ConverterTests.GraphTests.PocoTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class PocoMapperTests
     {
         #region Private/Internal Methods

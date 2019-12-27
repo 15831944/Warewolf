@@ -30,7 +30,6 @@ using Warewolf.Storage.Interfaces;
 namespace Dev2.Tests.Runtime.WF
 {
     [TestFixture]
-    [SetUpFixture]
     public class WfApplicationUtilsTests
     {
         [Test]

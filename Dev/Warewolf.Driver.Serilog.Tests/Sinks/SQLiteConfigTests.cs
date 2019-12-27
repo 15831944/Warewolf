@@ -14,7 +14,6 @@ using Warewolf.Driver.Serilog;
 namespace Warewolf.Tests.Sinks
 {
     [TestFixture]
-    [SetUpFixture]
     public class SQLiteConfigTests
     {
         [Test]

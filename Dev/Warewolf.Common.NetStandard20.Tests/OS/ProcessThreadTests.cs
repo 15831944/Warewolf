@@ -17,7 +17,6 @@ using ProcessStartInfo = System.Diagnostics.ProcessStartInfo;
 namespace Warewolf.OS.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ProcessThreadTests
     {
         readonly ProcessStartInfo _startInfo = new ProcessStartInfo()

@@ -20,7 +20,6 @@ namespace Dev2.Tests.Runtime.ServiceModel
 {
     // BUG 9500 - 2013.05.31 - TWR : added proper testing
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime Hosting")]
     public class PluginSourceTests
     {

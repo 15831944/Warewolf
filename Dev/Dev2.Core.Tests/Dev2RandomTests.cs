@@ -21,7 +21,6 @@ using NUnit.Framework;
 namespace Dev2.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     [ExcludeFromCodeCoverage]
     public class Dev2RandomTests
     {

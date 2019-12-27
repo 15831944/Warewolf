@@ -27,7 +27,6 @@ namespace Dev2.Tests.Activities.ActivityTests
     ///     Summary description for RandomActivityTests
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class RandomActivityTests : BaseActivityUnitTest
     {
         /// <summary>

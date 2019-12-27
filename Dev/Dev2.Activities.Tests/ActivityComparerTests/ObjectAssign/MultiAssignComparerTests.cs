@@ -8,7 +8,6 @@ namespace Dev2.Tests.Activities.ActivityComparerTests.ObjectAssign
 
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfMultiAssignObjectActivityComparerTests
     {
         [Test]

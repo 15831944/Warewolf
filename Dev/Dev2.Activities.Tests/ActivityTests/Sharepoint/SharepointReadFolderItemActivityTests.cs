@@ -17,7 +17,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
 {
     [TestFixture]
-    [SetUpFixture]
     public class SharepointReadFolderItemActivityTests : BaseActivityUnitTest
     {
         SharepointReadFolderItemActivity CreateActivity()

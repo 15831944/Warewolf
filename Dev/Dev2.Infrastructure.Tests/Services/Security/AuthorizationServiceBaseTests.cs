@@ -28,7 +28,6 @@ using Moq;
 namespace Dev2.Infrastructure.Tests.Services.Security
 {
     [TestFixture]
-    [SetUpFixture]
     public class AuthorizationServiceBaseTests
     {
         [Test]

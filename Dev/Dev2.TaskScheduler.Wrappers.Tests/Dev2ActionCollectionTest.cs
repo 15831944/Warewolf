@@ -21,7 +21,6 @@ namespace Dev2.TaskScheduler.Wrappers.Test
     /// Test thatthe wrappers are passing through the correct values
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class Dev2ActionCollectionTest
     {
         ActionCollection _nativeInstance;

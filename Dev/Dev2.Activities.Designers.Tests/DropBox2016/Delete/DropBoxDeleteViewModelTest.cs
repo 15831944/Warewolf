@@ -23,7 +23,6 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Delete
         DropBoxDeleteViewModel CreateMockViewModel()
         {
             var dropBoxSourceManager = new Mock<IDropboxSourceManager>();
-            var agg = new Mock<IEventAggregator>();
             var dropBoxDeleteViewModel = new DropBoxDeleteViewModel(CreateModelItem(), dropBoxSourceManager.Object);
             return dropBoxDeleteViewModel;
         }
@@ -46,7 +45,7 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Delete
             Assert.IsFalse(dropBoxDeleteViewModel.ShowLarge);
             Assert.AreEqual(dropBoxDeleteViewModel.ThumbVisibility, Visibility.Collapsed);
             //------------Assert Results-------------------------
-            Assert.IsInstanceOf(dropBoxDeleteViewModel.GetType(), typeof(ActivityDesignerViewModel));
+            Assert.IsInstanceOf(typeof(ActivityDesignerViewModel), dropBoxDeleteViewModel);
         }
 
         [Test]
@@ -78,7 +77,7 @@ namespace Dev2.Activities.Designers.Tests.DropBox2016.Delete
             //------------Execute Test---------------------------
             dropBoxDeleteViewModel.Validate();
             //------------Assert Results-------------------------
-            Assert.IsInstanceOf(dropBoxDeleteViewModel.GetType(), typeof(ActivityDesignerViewModel));
+            Assert.IsInstanceOf(typeof(ActivityDesignerViewModel), dropBoxDeleteViewModel);
             Assert.IsNotNull(dropBoxDeleteViewModel.Sources);
         }
 

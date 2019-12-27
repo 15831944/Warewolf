@@ -14,7 +14,6 @@ using NUnit.Framework;
 namespace Dev2.Tests.Activities.Validation
 {
     [TestFixture]
-    [SetUpFixture]
     
     public class IsValidExpressionRuleTests
     {

@@ -11,7 +11,6 @@ using Warewolf.Storage;
 namespace Dev2.Tests.Activities
 {
     [TestFixture]
-    [SetUpFixture]
     public class TestMockStepTests
     {
         [Test]

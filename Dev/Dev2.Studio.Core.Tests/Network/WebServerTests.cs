@@ -17,7 +17,6 @@ using Moq;
 namespace Dev2.Core.Tests.Network
 {
     [TestFixture]
-    [SetUpFixture]
     public class WebServerTests
     {
 

@@ -14,7 +14,6 @@ using Warewolf.Storage.Interfaces;
 namespace Dev2.Services.Execution.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class DatabaseServiceExecutionTests
     {
         [Test]

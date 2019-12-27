@@ -5,7 +5,6 @@ using NUnit.Framework;
 namespace Dev2.Tests.Activities.ActivityTests.DropBox2016
 {
     [TestFixture]
-    [SetUpFixture]
 
     public class DropboxUploadSuccessResultShould
     {

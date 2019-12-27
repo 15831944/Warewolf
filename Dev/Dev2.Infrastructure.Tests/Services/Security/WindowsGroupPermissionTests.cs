@@ -17,7 +17,6 @@ using NUnit.Framework;
 namespace Dev2.Infrastructure.Tests.Services.Security
 {
     [TestFixture]
-    [SetUpFixture]
     public class WindowsGroupPermissionTests
     {
         [Test]

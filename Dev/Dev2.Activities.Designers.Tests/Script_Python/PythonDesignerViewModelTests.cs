@@ -25,8 +25,6 @@ namespace Dev2.Activities.Designers.Tests.Script_Python
     [TestFixture]
     public class PythonDesignerViewModelTests
     {
-        public TestContext TestContext { get; set; }
-
         static string GetJsTmpFile()
         {
             var codeBase = Assembly.GetExecutingAssembly().Location;
@@ -35,7 +33,7 @@ namespace Dev2.Activities.Designers.Tests.Script_Python
         }
 
         [OneTimeSetUp]
-        public static void Init(TestContext context)
+        public static void Init()
         {
             try
             {
@@ -62,7 +60,7 @@ namespace Dev2.Activities.Designers.Tests.Script_Python
         }
 
         [OneTimeTearDown]
-        public static void Cleaner()
+        public static void Cleanup()
         {
             try
             {
@@ -70,7 +68,7 @@ namespace Dev2.Activities.Designers.Tests.Script_Python
             }
             catch (Exception)
             {
-                //supress exceptio
+                //try delete
             }
         }
 

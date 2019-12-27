@@ -18,7 +18,6 @@ using Warewolf.Storage;
 namespace Dev2.Tests.Runtime.ESB.Execution
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime ESB")]
     public class InternalServiceContainerTests
     {
@@ -41,8 +40,8 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             //---------------Execute Test ----------------------
             var internalServiceContainer = new InternalServiceContainer(serviceAction, dsfObj.Object, workSpace.Object, channel.Object, esbExecuteRequest);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual(4, esbExecuteRequest.Args.Count);
-            NUnit.Framework.Assert.IsNotNull(internalServiceContainer, "Cannot create new InternalServiceContainer object.");
+            Assert.AreEqual(4, esbExecuteRequest.Args.Count);
+            Assert.IsNotNull(internalServiceContainer, "Cannot create new InternalServiceContainer object.");
 
         }
 
@@ -62,13 +61,13 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             var internalServiceContainer = new InternalServiceContainer(serviceAction, dsfObj.Object, workSpace.Object, channel.Object, esbExecuteRequest);
             var privateObject = new Microsoft.VisualStudio.TestTools.UnitTesting.PrivateObject(internalServiceContainer);
             //---------------Assert Precondition----------------
-            NUnit.Framework.Assert.AreEqual(4, esbExecuteRequest.Args.Count);
+            Assert.AreEqual(4, esbExecuteRequest.Args.Count);
             //---------------Execute Test ----------------------
             var errorResultTO = new ErrorResultTO();
             privateObject.Invoke("GenerateRequestDictionaryFromDataObject", errorResultTO);
 
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual(0, esbExecuteRequest.Args.Count);
+            Assert.AreEqual(0, esbExecuteRequest.Args.Count);
         }
 
         [Test]
@@ -87,12 +86,12 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             var esbExecuteRequest = new EsbExecuteRequest();
             var internalServiceContainer = new InternalServiceContainer(serviceAction, dsfObj.Object, workSpace.Object, channel.Object, esbExecuteRequest);
             //---------------Assert Precondition----------------
-            NUnit.Framework.Assert.AreEqual(4, esbExecuteRequest.Args.Count);
+            Assert.AreEqual(4, esbExecuteRequest.Args.Count);
             //---------------Execute Test ----------------------
             internalServiceContainer.Execute(out ErrorResultTO errorResultTO, 1);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual(1, errorResultTO.FetchErrors().Count);
-            NUnit.Framework.Assert.AreEqual(string.Format(ErrorResource.CouldNotLocateManagementService, "name"), errorResultTO.FetchErrors().Single());
+            Assert.AreEqual(1, errorResultTO.FetchErrors().Count);
+            Assert.AreEqual(string.Format(ErrorResource.CouldNotLocateManagementService, "name"), errorResultTO.FetchErrors().Single());
         }
 
         [Test]
@@ -113,7 +112,7 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             locater.Setup(loc => loc.LocateManagementService("Name")).Returns(new FetchPluginSources());
             var internalServiceContainer = new InternalServiceContainer(serviceAction, dsfObj.Object, workSpace.Object, channel.Object, esbExecuteRequest, locater.Object);
             //---------------Assert Precondition----------------
-            NUnit.Framework.Assert.AreEqual(4, esbExecuteRequest.Args.Count);
+            Assert.AreEqual(4, esbExecuteRequest.Args.Count);
             //---------------Execute Test ----------------------
             var execute = internalServiceContainer.Execute(out ErrorResultTO errorResultTO, 1);
             //---------------Test Result -----------------------

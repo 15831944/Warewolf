@@ -9,6 +9,7 @@
 */
 
 using System.Activities.Presentation.Model;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using Dev2.Activities.Designers2.Core.Controls;
@@ -19,6 +20,7 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Activities.Designers.Tests.Designers2.Core.Controls
 {
     [TestFixture]
+    [Apartment(ApartmentState.STA)]
     public class Dev2DataGridTests
     {
         [Test]

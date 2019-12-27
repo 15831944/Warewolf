@@ -21,7 +21,6 @@ namespace Dev2.TaskScheduler.Wrappers.Test
     /// Test trigger wrapper
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class Dev2TriggerTests
     {
 

@@ -21,7 +21,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Tests.Activities.TOTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ActivityDtoTests
     {
         [Test]
@@ -73,7 +72,7 @@ namespace Dev2.Tests.Activities.TOTests
             //------------Execute Test---------------------------
             var activityDTO = new ActivityDTO(fieldName, fieldValue, indexNumber, inserted);
             //------------Assert Results-------------------------
-            Assert.IsInstanceOf(activityDTO.GetType(), typeof(IPerformsValidation));
+            Assert.IsInstanceOf(typeof(IPerformsValidation), activityDTO);
         }
 
         [Test]
@@ -353,8 +352,8 @@ namespace Dev2.Tests.Activities.TOTests
             //------------Assert Results-------------------------
             Assert.IsNotNull(rulesSet);
             Assert.AreEqual(2, rulesSet.Rules.Count);
-            Assert.IsInstanceOf(rulesSet.Rules[0].GetType(), typeof(IsStringEmptyRule));
-            Assert.IsInstanceOf(rulesSet.Rules[1].GetType(), typeof(IsValidExpressionRule));
+            Assert.IsInstanceOf(typeof(IsStringEmptyRule), rulesSet.Rules[0]);
+            Assert.IsInstanceOf(typeof(IsValidExpressionRule), rulesSet.Rules[1]);
         }
 
         [Test]
@@ -369,7 +368,7 @@ namespace Dev2.Tests.Activities.TOTests
             //------------Assert Results-------------------------
             Assert.IsNotNull(rulesSet);
             Assert.AreEqual(1, rulesSet.Rules.Count);
-            Assert.IsInstanceOf(rulesSet.Rules[0].GetType(), typeof(IsValidExpressionRule));
+            Assert.IsInstanceOf(typeof(IsValidExpressionRule), rulesSet.Rules[0]);
         }
 
 

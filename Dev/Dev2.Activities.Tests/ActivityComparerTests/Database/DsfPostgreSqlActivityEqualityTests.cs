@@ -8,7 +8,6 @@ using Warewolf.Core;
 namespace Dev2.Tests.Activities.ActivityComparerTests.Database
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfPostgreSqlActivityEqualityTests
     {
         [Test]

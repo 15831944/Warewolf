@@ -16,7 +16,6 @@ namespace Dev2.Utils.Tests
 {
 
     [TestFixture]
-    [SetUpFixture]
     public class JsonPathNodeTests
     {
         [Test]

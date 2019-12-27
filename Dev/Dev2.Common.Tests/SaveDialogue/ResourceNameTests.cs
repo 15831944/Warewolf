@@ -13,7 +13,6 @@ using NUnit.Framework;
 namespace Dev2.Common.Tests.SaveDialogue
 {
     [TestFixture]
-    [SetUpFixture]
     public class ResourceNameTests
     {
 

@@ -80,7 +80,6 @@ namespace Dev2.Diagnostics.Test
     }
 
     [TestFixture]
-    [SetUpFixture]
     public class PerformanceCounterPersistenceTest
     {
 

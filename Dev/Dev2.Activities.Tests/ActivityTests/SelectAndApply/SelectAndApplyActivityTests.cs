@@ -17,7 +17,6 @@ using WarewolfParserInterop;
 namespace Dev2.Tests.Activities.ActivityTests.SelectAndApply
 {
     [TestFixture]
-    [SetUpFixture]
     public class SelectAndApplyActivityTests : BaseActivityUnitTest
     {
         DsfSelectAndApplyActivity CreateActivity()

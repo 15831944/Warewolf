@@ -17,7 +17,6 @@ using Warewolf.OS;
 namespace Warewolf.OS.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ProcessThreadListTests
     {
         [Test]

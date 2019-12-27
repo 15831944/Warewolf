@@ -21,7 +21,6 @@ using Newtonsoft.Json.Serialization;
 namespace Dev2.Tests.Diagnostics
 {
     [TestFixture]
-    [SetUpFixture]
     public class DebugStateTests
     {
 

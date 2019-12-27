@@ -39,7 +39,6 @@ namespace Dev2.Common.Tests
     }
 
     [TestFixture]
-    [SetUpFixture]
     public class MapperTests
     {
         [Test]

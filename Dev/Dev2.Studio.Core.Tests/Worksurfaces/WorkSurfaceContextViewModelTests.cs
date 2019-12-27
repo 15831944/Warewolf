@@ -50,7 +50,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Dev2.Core.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     [NUnit.Framework.Category("Studio Worksurfaces Core")]
     public class WorkSurfaceContextViewModelTests
     {

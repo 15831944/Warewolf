@@ -54,9 +54,9 @@ namespace Dev2.Runtime.Configuration.Tests.ViewModels
             //------------Execute Test---------------------------
             delegateCommand.Execute(new { Name = "Tshepo", Surname = "Ntlhokoa" });
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsNotNull(prop);
-            NUnit.Framework.Assert.IsNotNull("Tshepo", prop.Name);
-            NUnit.Framework.Assert.IsNotNull("Ntlhokoa", prop.Surname);
+            Assert.IsNotNull(prop);
+            Assert.IsNotNull("Tshepo", prop.Name);
+            Assert.IsNotNull("Ntlhokoa", prop.Surname);
         }
 
         [Test]
@@ -74,8 +74,8 @@ namespace Dev2.Runtime.Configuration.Tests.ViewModels
             //------------Execute Test---------------------------
             var canExecute = delegateCommand.CanExecute(null);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(canExecuteWasCalled);
-            NUnit.Framework.Assert.IsTrue(canExecute);
+            Assert.IsTrue(canExecuteWasCalled);
+            Assert.IsTrue(canExecute);
         }
 
         [Test]
@@ -88,7 +88,7 @@ namespace Dev2.Runtime.Configuration.Tests.ViewModels
             //------------Execute Test---------------------------
             var canExecute = delegateCommand.CanExecute(null);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(canExecute);
+            Assert.IsTrue(canExecute);
         }
     }
 }

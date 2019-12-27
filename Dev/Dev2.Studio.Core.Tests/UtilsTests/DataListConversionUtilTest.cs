@@ -17,7 +17,6 @@ namespace Dev2.Core.Tests.UtilsTests
     /// Summary description for NewWorkflowNamesTests
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class DataListConversionUtilTest
     {
         /// <summary>

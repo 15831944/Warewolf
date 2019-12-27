@@ -17,7 +17,6 @@ using Unlimited.Framework.Converters.Graph.String.Json;
 namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.JsonTest
 {
     [TestFixture]
-    [SetUpFixture]
     public class JsonPathSegmentTests {
         
         #region CreatePathSegment Tests

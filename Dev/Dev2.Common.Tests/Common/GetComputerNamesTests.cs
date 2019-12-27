@@ -15,7 +15,6 @@ using System;
 namespace Dev2.Common.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class GetComputerNamesTests
     {
         [OneTimeSetUp]

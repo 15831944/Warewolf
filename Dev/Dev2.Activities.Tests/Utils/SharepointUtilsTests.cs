@@ -13,7 +13,6 @@ using Warewolf.Storage;
 namespace Dev2.Tests.Activities.Utils
 {
     [TestFixture]
-    [SetUpFixture]
     public class SharepointUtilsTests
     {
         [Test]
@@ -280,7 +279,7 @@ namespace Dev2.Tests.Activities.Utils
             //------------Execute Test---------------------------
             var value = SharepointUtils.CastWarewolfValueToCorrectType("true", SharepointFieldType.Boolean);
             //------------Assert Results-------------------------
-            Assert.IsInstanceOf(value.GetType(), typeof(Boolean));
+            Assert.IsInstanceOf(typeof(Boolean), value);
         } 
         
         [Test]
@@ -294,7 +293,7 @@ namespace Dev2.Tests.Activities.Utils
             //------------Execute Test---------------------------
             var value = SharepointUtils.CastWarewolfValueToCorrectType("Bob", SharepointFieldType.Text);
             //------------Assert Results-------------------------
-            Assert.IsInstanceOf(value.GetType(), typeof(String));
+            Assert.IsInstanceOf(typeof(String), value);
         }
         
         [Test]
@@ -308,7 +307,7 @@ namespace Dev2.Tests.Activities.Utils
             //------------Execute Test---------------------------
             var value = SharepointUtils.CastWarewolfValueToCorrectType("Bob", SharepointFieldType.Note);
             //------------Assert Results-------------------------
-            Assert.IsInstanceOf(value.GetType(), typeof(String));
+            Assert.IsInstanceOf(typeof(String), value);
         }
         
         [Test]
@@ -322,7 +321,7 @@ namespace Dev2.Tests.Activities.Utils
             //------------Execute Test---------------------------
             var value = SharepointUtils.CastWarewolfValueToCorrectType("2", SharepointFieldType.Integer);
             //------------Assert Results-------------------------
-            Assert.IsInstanceOf(value.GetType(), typeof(Int32));
+            Assert.IsInstanceOf(typeof(Int32), value);
         }
         
         [Test]
@@ -336,7 +335,7 @@ namespace Dev2.Tests.Activities.Utils
             //------------Execute Test---------------------------
             var value = SharepointUtils.CastWarewolfValueToCorrectType("2.15", SharepointFieldType.Number);
             //------------Assert Results-------------------------
-            Assert.IsInstanceOf(value.GetType(), typeof(Decimal));
+            Assert.IsInstanceOf(typeof(Decimal), value);
         }
 
         [Test]
@@ -350,7 +349,7 @@ namespace Dev2.Tests.Activities.Utils
             //------------Execute Test---------------------------
             var value = SharepointUtils.CastWarewolfValueToCorrectType("2", SharepointFieldType.Number);
             //------------Assert Results-------------------------
-            Assert.IsInstanceOf(value.GetType(), typeof(Decimal));
+            Assert.IsInstanceOf(typeof(Decimal), value);
         }
         
         [Test]
@@ -364,7 +363,7 @@ namespace Dev2.Tests.Activities.Utils
             //------------Execute Test---------------------------
             var value = SharepointUtils.CastWarewolfValueToCorrectType("2.01", SharepointFieldType.Currency);
             //------------Assert Results-------------------------
-            Assert.IsInstanceOf(value.GetType(), typeof(Decimal));
+            Assert.IsInstanceOf(typeof(Decimal), value);
         }
         
         [Test]
@@ -378,7 +377,7 @@ namespace Dev2.Tests.Activities.Utils
             //------------Execute Test---------------------------
             var value = SharepointUtils.CastWarewolfValueToCorrectType(DateTime.Now, SharepointFieldType.DateTime);
             //------------Assert Results-------------------------
-            Assert.IsInstanceOf(value.GetType(), typeof(DateTime));
+            Assert.IsInstanceOf(typeof(DateTime), value);
         }
     }
 }

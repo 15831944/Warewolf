@@ -21,7 +21,6 @@ using Moq;
 namespace Warewolf.Studio.ViewModels.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ManageOracleSourceViewModelTests
     {
         #region Fields
@@ -729,7 +728,7 @@ namespace Warewolf.Studio.ViewModels.Tests
             _targetUpdateManagerRequestServiceName.OkCommand.Execute(null);
 
             //assert
-            Assert.IsInstanceOf(_targetUpdateManagerRequestServiceName.Item.GetType(), typeof(DbSourceDefinition));
+            Assert.IsInstanceOf(typeof(DbSourceDefinition), _targetUpdateManagerRequestServiceName.Item);
             _updateManagerMock.Verify(it => it.Save(_targetUpdateManagerRequestServiceName.Item));
             Assert.AreEqual(_targetUpdateManagerRequestServiceName.Item.Name, _targetUpdateManagerRequestServiceName.HeaderText);
             Assert.AreEqual(_targetUpdateManagerRequestServiceName.Item.Name, _targetUpdateManagerRequestServiceName.Header);
@@ -772,7 +771,7 @@ namespace Warewolf.Studio.ViewModels.Tests
             _targetUpdateManagerAggregatorDbSource.OkCommand.Execute(null);
 
             //assert
-            Assert.IsInstanceOf(_targetUpdateManagerAggregatorDbSource.Item.GetType(), typeof(DbSourceDefinition));
+            Assert.IsInstanceOf(typeof(DbSourceDefinition), _targetUpdateManagerAggregatorDbSource.Item);
             _updateManagerMock.Verify(it => it.Save(_targetUpdateManagerAggregatorDbSource.Item));
             Assert.AreEqual(_targetUpdateManagerAggregatorDbSource.Item.Name, _targetUpdateManagerAggregatorDbSource.HeaderText);
             Assert.AreEqual(_targetUpdateManagerAggregatorDbSource.Item.Name, _targetUpdateManagerAggregatorDbSource.Header);

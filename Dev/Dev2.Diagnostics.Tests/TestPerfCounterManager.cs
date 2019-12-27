@@ -11,7 +11,6 @@ using Moq;
 namespace Dev2.Diagnostics.Test
 {
     [TestFixture]
-    [SetUpFixture]
     public class TestPerfCounterManager
     {
         public static Guid CounterGuid = Guid.NewGuid();

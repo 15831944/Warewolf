@@ -22,7 +22,6 @@ using Warewolf.Triggers;
 namespace Dev2.Server.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class QueueProcessorMonitorTests
     {
         [Test]

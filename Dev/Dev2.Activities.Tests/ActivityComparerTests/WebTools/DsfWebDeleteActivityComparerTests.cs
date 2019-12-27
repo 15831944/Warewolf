@@ -10,7 +10,6 @@ using Dev2.Common;
 namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfWebDeleteActivityComparerTests
     {
         [Test]

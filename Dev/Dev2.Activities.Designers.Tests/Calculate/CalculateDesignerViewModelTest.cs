@@ -26,7 +26,7 @@ namespace Dev2.Activities.Designers.Tests.Calculate
 
             //------------Assert Results-------------------------
             Assert.IsNotNull(calculateDesignerViewModel);
-            Assert.IsInstanceOf(calculateDesignerViewModel.GetType(), typeof(ActivityDesignerViewModel));
+            Assert.IsInstanceOf(typeof(ActivityDesignerViewModel), calculateDesignerViewModel);
             Assert.AreEqual("Calculate", calculateDesignerViewModel.ModelItem.GetProperty("DisplayName"));
         }
 

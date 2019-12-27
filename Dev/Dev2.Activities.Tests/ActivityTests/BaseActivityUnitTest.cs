@@ -37,15 +37,9 @@ using Warewolf.Storage.Interfaces;
 
 
 namespace ActivityUnitTests
-
 {
-    [TestFixture]
-    [SetUpFixture]
     public class BaseActivityUnitTest
     {
-        
-       
-
         public BaseActivityUnitTest()
         {
             Config.Server.EnableDetailedLogging = false;
@@ -55,10 +49,8 @@ namespace ActivityUnitTests
                 Action = new DsfCommentActivity()
             };
            DataObject = new DsfDataObject("",Guid.NewGuid());
-      
         }
 
-        
         protected Guid ExecutionId { get; set; }
 
         protected string TestData { get; set; }
@@ -103,7 +95,6 @@ namespace ActivityUnitTests
                          new Variable<bool>{Name = "HasError"},
                          new Variable<string>{Name = "ExplicitDataList"},
                          new Variable<bool>{Name = "IsValid"},
-                         //new Variable<UnlimitedObject>{Name = "d"},
                          new Variable<Util>{ Name = "t"},
                          new Variable<Dev2DataListDecisionHandler>{Name = "Dev2DecisionHandler"}
 

@@ -21,13 +21,11 @@ using WarewolfParserInterop;
 namespace Dev2.Tests.Activities.ActivityComparerTests.CountRecordset
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfRecordsetNullhandlerLengthActivityTest : BaseActivityUnitTest
     {
         [Test]
         [Category("DsfRecordsetNullhandlerLength")]
         [Author("Candice Daniel")]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void RecordsetNullhandlerLength_BlankResultVariable()
         {
             //---------------Set up test pack-------------------

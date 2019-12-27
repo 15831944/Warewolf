@@ -19,7 +19,6 @@ namespace Dev2.Tests.Activities.TOTests
     /// Summary description for DataSplitDTOTests
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class DataSplitDTOTests
     {
         [Test]

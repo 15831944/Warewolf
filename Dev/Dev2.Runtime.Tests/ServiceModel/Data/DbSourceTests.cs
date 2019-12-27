@@ -21,7 +21,6 @@ namespace Dev2.Tests.Runtime.ServiceModel
 
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime Hosting")]
     public class DbSourceTests
     {
@@ -33,7 +32,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             var testDbSource = SetupDefaultDbSource();
             var actualDbSourceToString = testDbSource.ToString();
             var expected = JsonConvert.SerializeObject(testDbSource);
-            NUnit.Framework.Assert.AreEqual(expected, actualDbSourceToString);
+            Assert.AreEqual(expected, actualDbSourceToString);
         }
 
         [Test]
@@ -42,7 +41,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             var testDbSource = new DbSource();
             var actualSerializedDbSource = testDbSource.ToString();
             var expected = JsonConvert.SerializeObject(testDbSource);
-            NUnit.Framework.Assert.AreEqual(expected, actualSerializedDbSource);
+            Assert.AreEqual(expected, actualSerializedDbSource);
         }
 
         #endregion ToString Tests
@@ -64,7 +63,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             //------------Execute Test---------------------------
             var connectionString = dbSource.ConnectionString;
             //------------Assert Results-------------------------
-            NUnit.Framework.StringAssert.Contains(connectionString,",1433");
+            StringAssert.Contains(connectionString,",1433");
         }
 
         [Test]
@@ -85,7 +84,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             var connectionString = dbSource.ConnectionString;
             //------------Assert Results-------------------------
             var contains = connectionString.Contains(",1433");
-            NUnit.Framework.Assert.IsFalse(contains);
+            Assert.IsFalse(contains);
         }
 
         [Test]
@@ -106,7 +105,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             var connectionString = dbSource.ConnectionString;
             //------------Assert Results-------------------------
             var contains = connectionString.Contains(",2011");
-            NUnit.Framework.Assert.IsTrue(contains);
+            Assert.IsTrue(contains);
         }
 
         #region ToXml Tests
@@ -123,11 +122,11 @@ namespace Dev2.Tests.Runtime.ServiceModel
             {
                 if(attribEnum.Current.Name == "Name")
                 {
-                    NUnit.Framework.Assert.AreEqual("TestResourceIMadeUp", attribEnum.Current.Value);
+                    Assert.AreEqual("TestResourceIMadeUp", attribEnum.Current.Value);
                     break;
                 }
             }
-            NUnit.Framework.Assert.IsNull(workflowXamlDefintion);
+            Assert.IsNull(workflowXamlDefintion);
         }
 
         [Test]
@@ -142,7 +141,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             {
                 if(attribEnum.Current.Name == "Name")
                 {
-                    NUnit.Framework.Assert.AreEqual(string.Empty, attribEnum.Current.Value);
+                    Assert.AreEqual(string.Empty, attribEnum.Current.Value);
                     break;
                 }
             }

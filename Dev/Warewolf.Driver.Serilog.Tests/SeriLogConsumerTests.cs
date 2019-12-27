@@ -22,7 +22,6 @@ using Warewolf.Logging;
 namespace Warewolf.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class SeriLogConsumerTests
     {
 

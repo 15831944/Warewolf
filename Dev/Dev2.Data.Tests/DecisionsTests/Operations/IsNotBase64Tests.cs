@@ -17,7 +17,6 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
     /// Is Not Bse64 Decision
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class IsNotBase64Tests
     {
         [Test]

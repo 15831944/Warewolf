@@ -23,7 +23,6 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
     /// Summary description for DateTimeParserTests
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class StandardDateTimeParserTests
     {
         [SetUp]

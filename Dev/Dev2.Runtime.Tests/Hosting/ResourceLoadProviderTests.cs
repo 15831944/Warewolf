@@ -24,7 +24,6 @@ using Moq;
 namespace Dev2.Tests.Runtime.Hosting
 {
     [TestFixture]
-    [SetUpFixture]
     public class ResourceLoadProviderTests
     {
         [Test]
@@ -43,11 +42,11 @@ namespace Dev2.Tests.Runtime.Hosting
 
             var resources = provider.FindByType(typeof(Workflow).FullName);
 
-            NUnit.Framework.Assert.IsTrue(resources.Any(o => o == expected));
+            Assert.IsTrue(resources.Any(o => o == expected));
 
             var resources2 = provider.FindByType<Workflow>();
 
-            NUnit.Framework.Assert.IsTrue(resources2.Any(o => o == expected));
+            Assert.IsTrue(resources2.Any(o => o == expected));
         }
     }
 }

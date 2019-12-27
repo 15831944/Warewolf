@@ -19,7 +19,6 @@ using NUnit.Framework;
 namespace Dev2.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class TokenizerTest
     {
         const string Search = "AB-CD-DE-FG-HI";

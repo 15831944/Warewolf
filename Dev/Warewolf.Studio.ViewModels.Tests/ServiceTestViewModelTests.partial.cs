@@ -171,7 +171,6 @@ namespace Warewolf.Studio.ViewModels.Tests
         [Test]
         [Timeout(60000)]
         [Author("Nkosinathi Sangweni")]
-        [DeploymentItem("JsonResources\\DebugStates.json", "JsonResources")]
         public void PrepopulateTestsUsingDebug_DebugItemDesicion_ShouldHaveAddServiceTestStep()
         {
             //---------------Set up test pack-------------------
@@ -221,7 +220,6 @@ namespace Warewolf.Studio.ViewModels.Tests
         [Test]
         [Timeout(60000)]
         [Author("Nkosinathi Sangweni")]
-        [DeploymentItem("JsonResources\\DebugStates.json", "JsonResources")]
         public void PrepopulateTestsUsingDebug_DebugIDesicion_ShouldHaveAddServiceTestStepShouldHaveArmOptions()
         {
             //---------------Set up test pack-------------------
@@ -269,7 +267,6 @@ namespace Warewolf.Studio.ViewModels.Tests
         [Test]
         [Timeout(60000)]
         [Author("Nkosinathi Sangweni")]
-        [DeploymentItem("JsonResources\\DebugStates.json", "JsonResources")]
         public void AddChildDebugItems_GivenTestStepNotContainsStep_ShouldAddStep()
         {
             //---------------Set up test pack-------------------
@@ -327,7 +324,6 @@ namespace Warewolf.Studio.ViewModels.Tests
         [Test]
         [Timeout(60000)]
         [Author("Nkosinathi Sangweni")]
-        [DeploymentItem("JsonResources\\DebugStatesWithMockAssign.json", "JsonResources")]
         public void AddChildDebugItems_GivenMockStep_ShouldAddStep()
         {
             //---------------Set up test pack-------------------
@@ -374,7 +370,6 @@ namespace Warewolf.Studio.ViewModels.Tests
         [Test]
         [Timeout(60000)]
         [Author("Nkosinathi Sangweni")]
-        [DeploymentItem("JsonResources\\DebugStates.json", "JsonResources")]
         public void AddChildDebugItems_GivenTestStepContainsStep_ShouldNotAddStep()
         {
             //---------------Set up test pack-------------------
@@ -432,7 +427,6 @@ namespace Warewolf.Studio.ViewModels.Tests
         [Test]
         [Timeout(60000)]
         [Author("Nkosinathi Sangweni")]
-        [DeploymentItem("JsonResources\\DebugStates.json", "JsonResources")]
         public void AddChildDebugItems_GivenDecision_ShouldNotAddStepFromDebugState()
         {
             //---------------Set up test pack-------------------
@@ -504,8 +498,6 @@ namespace Warewolf.Studio.ViewModels.Tests
         [Test]
         [Timeout(60000)]
         [Author("Nkosinathi Sangweni")]
-        [DeploymentItem("JsonResources\\DebugStates.json", "JsonResources")]
-        [DeploymentItem("JsonResources\\sequenceState.json", "JsonResources")]
         public void AddChildDebugItems_GivenSequence_ShouldAddtestStepFromDebugState()
         {
             //---------------Set up test pack-------------------
@@ -568,7 +560,6 @@ namespace Warewolf.Studio.ViewModels.Tests
         [Test]
         [Timeout(60000)]
         [Author("Nkosinathi Sangweni")]
-        [DeploymentItem("JsonResources\\DebugStates.json", "JsonResources")]
         public void SwitchFromDebug_GivenDebugState_ShouldAddtestStepFromDebugState()
         {
             //---------------Set up test pack-------------------
@@ -626,8 +617,6 @@ namespace Warewolf.Studio.ViewModels.Tests
         [Test]
         [Timeout(60000)]
         [Author("Nkosinathi Sangweni")]
-        [DeploymentItem("JsonResources\\DotnetllDebugStates.json", "JsonResources")]
-        [DeploymentItem("JsonResources\\dotnetDllState.json", "JsonResources")]
         public void EnhancedDotNetDllFromDebug_GivenDebugState_ShouldAddtestStepFromDebugState()
         {
             //---------------Set up test pack-------------------
@@ -687,8 +676,6 @@ namespace Warewolf.Studio.ViewModels.Tests
         [Test]
         [Timeout(60000)]
         [Author("Nkosinathi Sangweni")]
-        [DeploymentItem("JsonResources\\DebugStates.json", "JsonResources")]
-        [DeploymentItem("JsonResources\\sequenceState.json", "JsonResources")]
         public void AddChildDebugItems_GivenSequenceWithChildren_ShouldAddStepWithOutputsFromDebugState()
         {
             Thread.Sleep(10);
@@ -743,7 +730,6 @@ namespace Warewolf.Studio.ViewModels.Tests
         [Test]
         [Timeout(60000)]
         [Author("Nkosinathi Sangweni")]
-        [DeploymentItem("JsonResources\\DebugStates.json", "JsonResources")]
         public void SetInputs_GivenDebugStates_ShouldAddTestInputValues()
         {
             //---------------Set up test pack-------------------
@@ -784,7 +770,6 @@ namespace Warewolf.Studio.ViewModels.Tests
         [Test]
         [Timeout(60000)]
         [Author("Nkosinathi Sangweni")]
-        [DeploymentItem("JsonResources\\DebugStates.json", "JsonResources")]
         public void SetOutputs_GivenDebugStates_ShouldAddTestOutput()
         {
             //---------------Set up test pack-------------------
@@ -826,7 +811,6 @@ namespace Warewolf.Studio.ViewModels.Tests
         [Test]
         [Timeout(60000)]
         [Author("Nkosinathi Sangweni")]
-        [DeploymentItem("JsonResources\\DebugStates.json", "JsonResources")]
         public void SetOutputs_GivenDebugStatesMultipleOutputs_ShouldAddAllTestOutputs()
         {
             //---------------Set up test pack-------------------
@@ -1445,7 +1429,6 @@ namespace Warewolf.Studio.ViewModels.Tests
         [Test]
         [Timeout(60000)]
         [Author("Nkosinathi Sangweni")]
-        [DeploymentItem("JsonResources\\DebugStates.json", "JsonResources")]
         public void ProcessInputsAndOutputs_GivenStepDebugStates_ShouldNotAdd()
         {
             //---------------Set up test pack-------------------
@@ -1487,7 +1470,6 @@ namespace Warewolf.Studio.ViewModels.Tests
         [Test]
         [Timeout(60000)]
         [Author("Nkosinathi Sangweni")]
-        [DeploymentItem("JsonResources\\DebugStates.json", "JsonResources")]
         public void ProcessInputsAndOutputs_GivenInputStepDebugStates_ShouldAddInput()
         {
             //---------------Set up test pack-------------------
@@ -1531,7 +1513,6 @@ namespace Warewolf.Studio.ViewModels.Tests
         [Test]
         [Timeout(60000)]
         [Author("Nkosinathi Sangweni")]
-        [DeploymentItem("JsonResources\\DebugStates.json", "JsonResources")]
         public void ProcessInputsAndOutputs_GivenOutputStepDebugStates_ShouldAddOutput()
         {
             //---------------Set up test pack-------------------
@@ -1576,7 +1557,6 @@ namespace Warewolf.Studio.ViewModels.Tests
         [Test]
         [Timeout(60000)]
         [Author("Nkosinathi Sangweni")]
-        [DeploymentItem("JsonResources\\DebugStates.json", "JsonResources")]
         public void PrepopulateTestsUsingDebug_GivenWrongMessage_ShouldAddTests()
         {
             //---------------Set up test pack-------------------

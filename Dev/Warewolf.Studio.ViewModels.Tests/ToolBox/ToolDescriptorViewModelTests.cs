@@ -11,7 +11,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Warewolf.Studio.ViewModels.ToolBox.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ToolDescriptorViewModelTests
     {
         #region Fields

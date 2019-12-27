@@ -22,7 +22,6 @@ using NUnit.Framework;
 namespace Dev2.Core.Tests.Network
 {
     [TestFixture]
-    [SetUpFixture]
     public partial class ServerProxyTests
     {
         [Test]

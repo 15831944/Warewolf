@@ -14,7 +14,6 @@ using NUnit.Framework;
 namespace Dev2.Tests.Runtime.Hosting
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime Hosting")]
     public class ServiceDefinitionLoaderTest
     {

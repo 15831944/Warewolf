@@ -20,7 +20,6 @@ using Warewolf.Streams;
 namespace Warewolf.Trigger.Queue.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class QueueTests
     {
         [Test]

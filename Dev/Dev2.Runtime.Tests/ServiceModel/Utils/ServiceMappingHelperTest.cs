@@ -26,7 +26,6 @@ namespace Dev2.Tests.Runtime.ServiceModel.Utils
     /// Summary description for ServiceMappingHelperTest
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime Hosting")]
     public class ServiceMappingHelperTest
     {

@@ -19,7 +19,6 @@ using Moq;
 namespace Dev2.Studio.Tests.ViewModels.Workflow
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfActivityDropViewModelTests
     {
         [Test]

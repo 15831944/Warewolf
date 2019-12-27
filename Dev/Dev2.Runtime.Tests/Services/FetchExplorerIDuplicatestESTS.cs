@@ -24,7 +24,6 @@ using Moq;
 namespace Dev2.Tests.Runtime.Services
 {
     [TestFixture]
-    [SetUpFixture]
     public class FetchResourceDuplicatesTests
     {
         [Test]

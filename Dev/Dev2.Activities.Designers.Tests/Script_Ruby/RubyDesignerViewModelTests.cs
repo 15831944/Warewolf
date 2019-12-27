@@ -25,21 +25,15 @@ namespace Dev2.Activities.Designers.Tests.Script_Ruby
     [TestFixture]
     public class RubyDesignerViewModelTests
     {
-
         static string GetJsTmpFile()
         {
             var codeBase = Assembly.GetExecutingAssembly().Location;
             var directoryName = Path.GetDirectoryName(codeBase);
             return directoryName + "\\jsFile.js ";
         }
-
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext { get; set; }
+        
         [OneTimeSetUp]
-        public static void Init(TestContext context)
+        public static void Init()
         {
             try
             {
@@ -60,10 +54,10 @@ namespace Dev2.Activities.Designers.Tests.Script_Ruby
             }
             catch (Exception ex)
             {
-                //supress exceptio
                 Assert.Fail(ex.Message);
             }
         }
+        
         [OneTimeTearDown]
         public static void Cleaner()
         {
@@ -73,7 +67,7 @@ namespace Dev2.Activities.Designers.Tests.Script_Ruby
             }
             catch (Exception)
             {
-                //supress exceptio
+                //try delete
             }
         }
 

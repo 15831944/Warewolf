@@ -17,7 +17,6 @@ using System.Collections.Generic;
 namespace Dev2.Infrastructure.Tests.SharedModels
 {
     [TestFixture]
-    [SetUpFixture]
     public class CompileMessageListTests
     {
         [Test]

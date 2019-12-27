@@ -17,7 +17,6 @@ using Unlimited.Framework.Converters.Graph.Poco;
 namespace Unlimited.UnitTest.Framework.ConverterTests.GraphTests.PocoTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class PocoInterrogatorTests
     {
         #region Private/Internal Methods

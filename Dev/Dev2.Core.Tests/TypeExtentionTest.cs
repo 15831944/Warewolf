@@ -19,7 +19,6 @@ namespace Dev2.Tests
     /// Summary description for TypeExtentionTest
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class TypeExtentionTest
     {
         /// <summary>

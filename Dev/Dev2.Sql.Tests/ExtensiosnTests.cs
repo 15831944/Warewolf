@@ -15,7 +15,6 @@ using Warewolf.ComponentModel;
 namespace Dev2.Sql.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ExtensiosnTests
     {
         [Test]

@@ -7,7 +7,6 @@ using NUnit.Framework;
 namespace Dev2.Tests.Runtime.Hosting
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime Hosting")]
     public class ServiceActionRepoTests
     {
@@ -23,8 +22,8 @@ namespace Dev2.Tests.Runtime.Hosting
             ServiceActionRepo.Instance.AddToCache(id, ds);
             //------------Assert Results-------------------------
             var readDs = ServiceActionRepo.Instance.ReadCache(id);
-            NUnit.Framework.Assert.IsNotNull(readDs);
-            NUnit.Framework.Assert.AreEqual("Ds 1",readDs.DisplayName);
+            Assert.IsNotNull(readDs);
+            Assert.AreEqual("Ds 1",readDs.DisplayName);
         }
 
         [Test]
@@ -41,8 +40,8 @@ namespace Dev2.Tests.Runtime.Hosting
             ServiceActionRepo.Instance.AddToCache(id, ds2);
             //------------Assert Results-------------------------
             var readDs = ServiceActionRepo.Instance.ReadCache(id);
-            NUnit.Framework.Assert.IsNotNull(readDs);
-            NUnit.Framework.Assert.AreEqual("Ds 2",readDs.DisplayName);
+            Assert.IsNotNull(readDs);
+            Assert.AreEqual("Ds 2",readDs.DisplayName);
         }
 
 
@@ -58,7 +57,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var readDs = ServiceActionRepo.Instance.ReadCache(Guid.NewGuid());
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsNull(readDs);
+            Assert.IsNull(readDs);
         }
 
         [Test]
@@ -73,8 +72,8 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var readDs = ServiceActionRepo.Instance.ReadCache(id);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsNotNull(readDs);
-            NUnit.Framework.Assert.AreEqual("Ds 1", readDs.DisplayName);
+            Assert.IsNotNull(readDs);
+            Assert.AreEqual("Ds 1", readDs.DisplayName);
         }
 
         [Test]
@@ -93,10 +92,10 @@ namespace Dev2.Tests.Runtime.Hosting
             ServiceActionRepo.Instance.RemoveFromCache(id);
             //------------Assert Results-------------------------
             var readDs = ServiceActionRepo.Instance.ReadCache(id);
-            NUnit.Framework.Assert.IsNull(readDs);
+            Assert.IsNull(readDs);
             var readDs2 = ServiceActionRepo.Instance.ReadCache(id2);
-            NUnit.Framework.Assert.IsNull(readDs);
-            NUnit.Framework.Assert.AreEqual("Ds 2", readDs2.DisplayName);
+            Assert.IsNull(readDs);
+            Assert.AreEqual("Ds 2", readDs2.DisplayName);
         }
     }
 }

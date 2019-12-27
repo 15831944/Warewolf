@@ -17,7 +17,6 @@ using System.Collections.Generic;
 namespace Dev2.Common.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class WcfActionTests
     {
         [Test]

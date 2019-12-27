@@ -6,7 +6,6 @@ using System.IO;
 namespace Dev2.Diagnostics.Test
 {
     [TestFixture]
-    [SetUpFixture]
     public class Dev2LoggerTests
     {
         [Test]
@@ -61,7 +60,6 @@ namespace Dev2.Diagnostics.Test
 
         [Test]
         [Author("Ashley Lewis")]
-        [NUnit.Framework.DeploymentItem("Settings.config")]
         public void UpdateFileLoggerToProgramData_UpdateFromAsyncRollingFileAppender_ToParallelForwardingAppender()
         {
             //------------Setup for test-------------------------

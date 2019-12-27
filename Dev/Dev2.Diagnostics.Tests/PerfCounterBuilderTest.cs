@@ -11,7 +11,6 @@ using Moq;
 namespace Dev2.Diagnostics.Test
 {
     [TestFixture]
-    [SetUpFixture]
     public class PerfCounterBuilderTest
     {
         const string CategoryName = "Warewolf";

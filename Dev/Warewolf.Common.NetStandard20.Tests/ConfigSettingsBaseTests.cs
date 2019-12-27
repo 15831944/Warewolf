@@ -9,15 +9,16 @@
 */
 
 
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json;
 using Warewolf.VirtualFileSystem;
+using Assert = NUnit.Framework.Assert;
 
 namespace Warewolf.Configuration
 {
     [TestFixture]
-    [SetUpFixture]
     public class ConfigSettingsBaseTests
     {
         private const int DefaultSomeInt = 123;

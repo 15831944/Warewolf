@@ -19,7 +19,6 @@ using Moq;
 namespace Dev2.Data.Tests.ServiceModel
 {
     [TestFixture]
-    [SetUpFixture]
     public class SharePointSourceTests
     {
         [Test]

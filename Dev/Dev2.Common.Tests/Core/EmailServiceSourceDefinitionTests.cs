@@ -17,7 +17,6 @@ using System;
 namespace Dev2.Common.Tests.Core
 {
     [TestFixture]
-    [SetUpFixture]
     public class EmailServiceSourceDefinitionTests
     {
         [Test]

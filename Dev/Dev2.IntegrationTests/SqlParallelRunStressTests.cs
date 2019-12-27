@@ -8,7 +8,6 @@ using NUnit.Framework;
 namespace Dev2.Integration.Tests.Server_Refresh
 {
     [TestFixture]
-    [SetUpFixture]
     public class SqlParallelRunStressTests
     {
         [Test]
@@ -31,19 +30,19 @@ namespace Dev2.Integration.Tests.Server_Refresh
                     var stringResult = b.Result.Replace(Environment.NewLine, "").Replace(" ", "");
 
                     var hasTestResult = stringResult.Contains(item1.ToString());
-                    NUnit.Framework.Assert.IsTrue(hasTestResult);
+                    Assert.IsTrue(hasTestResult);
                     var hasTestResult1 = stringResult.Contains(item2.ToString());
-                    NUnit.Framework.Assert.IsTrue(hasTestResult1);
+                    Assert.IsTrue(hasTestResult1);
                     var hasTestResult2 = stringResult.Contains(item3.ToString());
-                    NUnit.Framework.Assert.IsTrue(hasTestResult2);
+                    Assert.IsTrue(hasTestResult2);
                     var hasTestResult3 = stringResult.Contains(item4.ToString());
-                    NUnit.Framework.Assert.IsTrue(hasTestResult3);
+                    Assert.IsTrue(hasTestResult3);
                     var hasTestResult4 = stringResult.Contains(item5.ToString());
-                    NUnit.Framework.Assert.IsTrue(hasTestResult4);
+                    Assert.IsTrue(hasTestResult4);
                 }
                 catch (Exception ex)
                 {
-                    NUnit.Framework.Assert.Fail(ex.StackTrace);
+                    Assert.Fail(ex.StackTrace);
                 }
 
             });
@@ -73,7 +72,7 @@ namespace Dev2.Integration.Tests.Server_Refresh
             {
                 list[a - 1].ContinueWith((b) =>
                   {
-                      NUnit.Framework.StringAssert.Contains(b.Result, "\"Result\": \"Passed\"");
+                      StringAssert.Contains(b.Result, "\"Result\": \"Passed\"");
                   }
                 );
 

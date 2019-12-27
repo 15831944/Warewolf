@@ -35,7 +35,6 @@ using Warewolf.Storage.Interfaces;
 namespace Dev2.Tests.Activities.ActivityTests.Web
 {
     [TestFixture]
-    [SetUpFixture]
 
     public class DsfWebDeleteActivityTests
     {
@@ -70,7 +69,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             //---------------Execute Test ----------------------
 
             //---------------Test Result -----------------------
-            Assert.IsInstanceOf(dsfWebDeleteActivity.GetType(), typeof(DsfActivity));
+            Assert.IsInstanceOf(typeof(DsfActivity), dsfWebDeleteActivity);
         }
         
         [Test]
@@ -80,7 +79,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Web
             //---------------Set up test pack-------------------
             var dsfWebDeleteActivity = CreateTestDeleteActivity();
             //---------------Assert Precondition----------------
-            Assert.IsInstanceOf(dsfWebDeleteActivity.GetType(), typeof(DsfActivity));
+            Assert.IsInstanceOf(typeof(DsfActivity), dsfWebDeleteActivity);
             //---------------Execute Test ----------------------
             var toolDescAtribute = dsfWebDeleteActivity.GetType().GetCustomAttributes(true).Single(o => o.GetType() == typeof(ToolDescriptorInfo));
             //---------------Test Result -----------------------

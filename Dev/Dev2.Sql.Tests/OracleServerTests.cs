@@ -11,14 +11,12 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Dev2.Sql.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class OracleServerTests
     {
         [Test]
         [Author("Trevor Williams-Ros")]
         [Category("OracleServer_Connect")]
         [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
-        [NUnit.Framework.DeploymentItem("Oracle.ManagedDataAccess.dll")]
         
         public void OracleServer_Connect_ConnectionStringIsNull_ThrowsArgumentNullException()
     
@@ -42,7 +40,6 @@ namespace Dev2.Sql.Tests
         [Author("Trevor Williams-Ros")]
         [Category("OracleServer_Connect")]
         [NUnit.Framework.ExpectedException(typeof(ArgumentException))]
-        [NUnit.Framework.DeploymentItem("Oracle.ManagedDataAccess.dll")]
         
         public void OracleServer_Connect_ConnectionStringIsInvalid_ThrowsArgumentException()
     
@@ -66,7 +63,6 @@ namespace Dev2.Sql.Tests
         [Author("Trevor Williams-Ros")]
         [Category("OracleServer_FetchDataTable")]
         [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
-        [NUnit.Framework.DeploymentItem("Oracle.ManagedDataAccess.dll")]
         
         public void OracleServer_FetchDataTable_CommandIsNull_ThrowsArgumentNullException()
     
@@ -90,7 +86,6 @@ namespace Dev2.Sql.Tests
         [Author("Trevor Williams-Ros")]
         [Category("OracleServer_FetchDatabases")]
         [NUnit.Framework.ExpectedException(typeof(Exception))]
-        [NUnit.Framework.DeploymentItem("Oracle.ManagedDataAccess.dll")]
         
         public void OracleServer_FetchDatabases_ConnectionNotInitialized_ThrowsConnectFirstException()
     
@@ -114,7 +109,6 @@ namespace Dev2.Sql.Tests
         [Author("Trevor Williams-Ros")]
         [Category("OracleServer_FetchStoredProcedures")]
         [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
-        [NUnit.Framework.DeploymentItem("Oracle.ManagedDataAccess.dll")]
         
         public void OracleServer_FetchStoredProcedures_FunctionProcessorIsNull_ThrowsArgumentNullException()
     

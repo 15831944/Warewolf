@@ -22,7 +22,6 @@ using Moq;
 namespace Dev2.Core.Tests.ConnectionHelpers
 {
     [TestFixture]
-    [SetUpFixture]
     public class ConnectControlSingletonTests
     {
 

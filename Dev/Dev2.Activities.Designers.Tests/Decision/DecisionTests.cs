@@ -177,7 +177,7 @@ namespace Dev2.Activities.Designers.Tests.Decision
             public string GetDisplayText => DisplayText;
             public void TestUpdateDecisionDisplayName(DecisionTO dec)
             {
-                this.UpdateDecisionDisplayName(dec);
+                UpdateDecisionDisplayName(dec);
             }
         }
 

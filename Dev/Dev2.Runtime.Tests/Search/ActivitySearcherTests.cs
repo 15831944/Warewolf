@@ -23,7 +23,6 @@ using Warewolf.ResourceManagement;
 namespace Dev2.Tests.Runtime.Search
 {
     [TestFixture]
-    [SetUpFixture]
     public class ActivitySearcherTests
     {
         [Test]
@@ -73,13 +72,13 @@ namespace Dev2.Tests.Runtime.Search
             mockResourceActivityCache.Setup(c => c.Cache).Returns(cache);
             mockResourceCatalog.Setup(res => res.GetResourceActivityCache(It.IsAny<Guid>())).Returns(mockResourceActivityCache.Object);
             var searchResults = searcher.GetSearchResults(search);
-            NUnit.Framework.Assert.AreEqual(1, searchResults.Count);
+            Assert.AreEqual(1, searchResults.Count);
             var searchResult = searchResults[0];
-            NUnit.Framework.Assert.AreEqual(Guid.Empty, searchResult.ResourceId);
-            NUnit.Framework.Assert.AreEqual("Set a value", searchResult.Match);
-            NUnit.Framework.Assert.AreEqual("Test Resource", searchResult.Name);
-            NUnit.Framework.Assert.AreEqual("Folder", searchResult.Path);
-            NUnit.Framework.Assert.AreEqual(Common.Interfaces.Search.SearchItemType.ToolTitle, searchResult.Type);
+            Assert.AreEqual(Guid.Empty, searchResult.ResourceId);
+            Assert.AreEqual("Set a value", searchResult.Match);
+            Assert.AreEqual("Test Resource", searchResult.Name);
+            Assert.AreEqual("Folder", searchResult.Path);
+            Assert.AreEqual(Common.Interfaces.Search.SearchItemType.ToolTitle, searchResult.Type);
         }
 
         [Test]
@@ -120,7 +119,7 @@ namespace Dev2.Tests.Runtime.Search
             mockResourceActivityCache.Setup(c => c.Cache).Returns(cache);
             mockResourceCatalog.Setup(res => res.GetResourceActivityCache(It.IsAny<Guid>())).Returns(mockResourceActivityCache.Object);
             var searchResults = searcher.GetSearchResults(searchValue);
-            NUnit.Framework.Assert.AreEqual(0, searchResults.Count);
+            Assert.AreEqual(0, searchResults.Count);
         }
 
         [Test]
@@ -191,11 +190,11 @@ namespace Dev2.Tests.Runtime.Search
             mockResourceActivityCache.Setup(c => c.Cache).Returns(cache);
             mockResourceCatalog.Setup(res => res.GetResourceActivityCache(It.IsAny<Guid>())).Returns(mockResourceActivityCache.Object);
             var searchResults = searcher.GetSearchResults(searchValue);
-            NUnit.Framework.Assert.AreEqual(2, searchResults.Count);
-            NUnit.Framework.Assert.AreEqual(Guid.Empty, searchResults[0].ResourceId);
-            NUnit.Framework.Assert.AreEqual("Set Bob Name", searchResults[0].Match);
-            NUnit.Framework.Assert.AreEqual(Guid.Empty, searchResults[1].ResourceId);
-            NUnit.Framework.Assert.AreEqual("Get Bob Name", searchResults[1].Match);
+            Assert.AreEqual(2, searchResults.Count);
+            Assert.AreEqual(Guid.Empty, searchResults[0].ResourceId);
+            Assert.AreEqual("Set Bob Name", searchResults[0].Match);
+            Assert.AreEqual(Guid.Empty, searchResults[1].ResourceId);
+            Assert.AreEqual("Get Bob Name", searchResults[1].Match);
         }
 
         [Test]
@@ -277,18 +276,18 @@ namespace Dev2.Tests.Runtime.Search
             mockResourceCatalog.Setup(res => res.GetResourceActivityCache(It.IsAny<Guid>())).Returns(mockResourceActivityCache.Object);
             var searchResults = searcher.GetSearchResults(searchValue);
 
-            NUnit.Framework.Assert.AreEqual(3, searchResults.Count);
+            Assert.AreEqual(3, searchResults.Count);
 
             var firstItem = searchResults.First(result => result.Match == "Set Bob Name");
             var secondItem = searchResults.First(result => result.Match == "Get Bob Name");
             var otherItem = searchResults.First(result => result.ResourceId == otherResourceId);
 
-            NUnit.Framework.Assert.AreEqual(Guid.Empty, firstItem.ResourceId);
-            NUnit.Framework.Assert.AreEqual("Set Bob Name", firstItem.Match);
-            NUnit.Framework.Assert.AreEqual(Guid.Empty, secondItem.ResourceId);
-            NUnit.Framework.Assert.AreEqual("Get Bob Name", secondItem.Match);
-            NUnit.Framework.Assert.AreEqual(otherResourceId, otherItem.ResourceId);
-            NUnit.Framework.Assert.AreEqual("What's bobs name", otherItem.Match);
+            Assert.AreEqual(Guid.Empty, firstItem.ResourceId);
+            Assert.AreEqual("Set Bob Name", firstItem.Match);
+            Assert.AreEqual(Guid.Empty, secondItem.ResourceId);
+            Assert.AreEqual("Get Bob Name", secondItem.Match);
+            Assert.AreEqual(otherResourceId, otherItem.ResourceId);
+            Assert.AreEqual("What's bobs name", otherItem.Match);
         }
     }
 }

@@ -13,7 +13,6 @@ using WarewolfParserInterop;
 namespace WarewolfParsingTest
 {
     [TestFixture]
-    [SetUpFixture]
     public class TestParser
     {
         [Test]

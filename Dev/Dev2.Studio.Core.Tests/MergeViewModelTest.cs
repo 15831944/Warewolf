@@ -22,7 +22,6 @@ using Moq;
 namespace Dev2.Core.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class MergeViewModelTest
     {
         private const string ResourceName = "MergeResource";

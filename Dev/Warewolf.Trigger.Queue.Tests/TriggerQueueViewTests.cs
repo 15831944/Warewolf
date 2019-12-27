@@ -42,7 +42,6 @@ using Warewolf.Auditing;
 namespace Warewolf.Trigger.Queue.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class TriggerQueueViewTests
     {
         Mock<IResource> _mockQueueSource;

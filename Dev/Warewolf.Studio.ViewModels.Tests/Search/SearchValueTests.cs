@@ -8,7 +8,6 @@ using System;
 namespace Warewolf.Studio.ViewModels.Tests.Search
 {
     [TestFixture]
-    [SetUpFixture]
     public class SearchValueTests
     {
         [Test]

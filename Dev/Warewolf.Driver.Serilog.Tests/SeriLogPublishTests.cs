@@ -25,7 +25,6 @@ using System.Text;
 namespace Warewolf.Driver.Serilog.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class SeriLogPublishTests
     {
         [Test]

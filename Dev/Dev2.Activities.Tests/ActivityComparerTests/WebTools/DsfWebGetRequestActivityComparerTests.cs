@@ -11,7 +11,6 @@ using Dev2.Common.State;
 namespace Dev2.Tests.Activities.ActivityComparerTests.WebTools
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfWebGetRequestActivityComparerTests
     {
         [Test]

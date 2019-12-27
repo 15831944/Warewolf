@@ -12,6 +12,7 @@ using System;
 using System.Activities.Presentation.Model;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using Dev2.Activities.Designers2.DataMerge;
 using Dev2.Common.Interfaces.Help;
 using Dev2.Studio.Core.Activities.Utils;
@@ -23,6 +24,7 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Activities.Designers.Tests.DataMerge
 {
     [TestFixture]
+    [Apartment(ApartmentState.STA)]
     public class DataMergeDesignerViewModelTests
     {
         [Test]
@@ -86,7 +88,7 @@ namespace Dev2.Activities.Designers.Tests.DataMerge
             var modelItem = ModelItemUtils.CreateModelItem(new DsfDataMergeActivity());
             var viewModel = new DataMergeDesignerViewModel(modelItem);
             dynamic mi = viewModel.ModelItem;
-            NUnit.Framework.Assert.AreEqual(2, mi.MergeCollection.Count);
+            Assert.AreEqual(2, mi.MergeCollection.Count);
         }
 
         [Test]
@@ -101,10 +103,9 @@ namespace Dev2.Activities.Designers.Tests.DataMerge
                 new DataMergeDTO("", "None", "", 0, "", "Left"),
                 new DataMergeDTO("", "None", "", 0, "", "Left")
             };
-            //NUnit.Framework.Assert.IsTrue(items.All(dto => dto.EnablePadding));
             var viewModel = new DataMergeDesignerViewModel(CreateModelItem(items));            
             dynamic mi = viewModel.ModelItem;
-            NUnit.Framework.Assert.AreEqual(5, mi.MergeCollection.Count);
+            Assert.AreEqual(5, mi.MergeCollection.Count);
         }
 
         [Test]

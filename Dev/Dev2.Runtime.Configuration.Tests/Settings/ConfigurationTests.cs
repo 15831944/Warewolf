@@ -18,7 +18,6 @@ using NUnit.Framework;
 namespace Dev2.Runtime.Configuration.Tests.Settings
 {
     [TestFixture]
-    [SetUpFixture]
     public class ConfigurationTests
     {
         #region CTOR
@@ -90,8 +89,8 @@ namespace Dev2.Runtime.Configuration.Tests.Settings
         {
             var config = new Configuration.Settings.Configuration("localhost");
             var result = config.ToXml();
-            NUnit.Framework.Assert.IsNotNull(result);
-            NUnit.Framework.Assert.IsInstanceOf(result.GetType(), typeof(XElement));
+            Assert.IsNotNull(result);
+            Assert.IsInstanceOf(typeof(XElement), result);
         }
 
         [Test]
@@ -114,13 +113,13 @@ namespace Dev2.Runtime.Configuration.Tests.Settings
                     
                     var actual = result.Element(settings.SettingName).ToString(SaveOptions.DisableFormatting);
                     
-                    NUnit.Framework.Assert.AreEqual(expected, actual);
+                    Assert.AreEqual(expected, actual);
                 }
                 else if((version = value as Version) != null)
                 {
                     var actual = result.AttributeSafe(property.Name);
                     var expected = version.ToString(2);
-                    NUnit.Framework.Assert.AreEqual(expected, actual);
+                    Assert.AreEqual(expected, actual);
                 }
             }
         }
@@ -129,7 +128,7 @@ namespace Dev2.Runtime.Configuration.Tests.Settings
         public void HasErrorReturnsFalse()
         {
             var config = new Configuration.Settings.Configuration(XmlResource.Fetch("Settings"));
-            NUnit.Framework.Assert.IsFalse(config.HasError);
+            Assert.IsFalse(config.HasError);
         }
 
         [Test]
@@ -137,7 +136,7 @@ namespace Dev2.Runtime.Configuration.Tests.Settings
         {
             var config = new Configuration.Settings.Configuration(XmlResource.Fetch("Settings"));
             config.Logging.Error = "Error";
-            NUnit.Framework.Assert.IsTrue(config.HasError);
+            Assert.IsTrue(config.HasError);
         }
 
         [Test]
@@ -145,7 +144,7 @@ namespace Dev2.Runtime.Configuration.Tests.Settings
         {
             var config = new Configuration.Settings.Configuration(XmlResource.Fetch("Settings"));
             config.Security.Error = "Error";
-            NUnit.Framework.Assert.IsTrue(config.HasError);
+            Assert.IsTrue(config.HasError);
         }
 
         [Test]
@@ -153,7 +152,7 @@ namespace Dev2.Runtime.Configuration.Tests.Settings
         {
             var config = new Configuration.Settings.Configuration(XmlResource.Fetch("Settings"));
             config.Backup.Error = "Error";
-            NUnit.Framework.Assert.IsTrue(config.HasError);
+            Assert.IsTrue(config.HasError);
         }
 
         [Test]
@@ -161,14 +160,14 @@ namespace Dev2.Runtime.Configuration.Tests.Settings
         {
             var config = new Configuration.Settings.Configuration(XmlResource.Fetch("Settings"));
             config.Logging.IsDataAndTimeLogged = true;
-            NUnit.Framework.Assert.IsTrue(config.HasChanges);
+            Assert.IsTrue(config.HasChanges);
         }
 
         [Test]
         public void LoggingSettingChangedExpectsHasChangesFalseWhenInitializating()
         {
             var config = new Configuration.Settings.Configuration(XmlResource.Fetch("Settings"));
-            NUnit.Framework.Assert.IsFalse(config.HasChanges);
+            Assert.IsFalse(config.HasChanges);
         }
 
         #endregion
@@ -186,7 +185,7 @@ namespace Dev2.Runtime.Configuration.Tests.Settings
 
             foreach(var value in properties.Select(property => property.GetValue(config)))
             {
-                NUnit.Framework.Assert.IsNotNull(value);
+                Assert.IsNotNull(value);
             }
         }
 

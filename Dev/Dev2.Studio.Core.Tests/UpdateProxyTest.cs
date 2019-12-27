@@ -18,7 +18,6 @@ using Dev2.Util;
 namespace Dev2.Core.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class UpdateProxyTest
     {
         [Test]

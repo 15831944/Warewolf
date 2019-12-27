@@ -9,7 +9,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Tests.Activities.ActivityComparerTests.SelectAndApply
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfSelectAndApplyActivityComparerTests
     {
         [Test]

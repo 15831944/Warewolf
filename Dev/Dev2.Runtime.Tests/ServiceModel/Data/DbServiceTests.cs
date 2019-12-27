@@ -21,7 +21,6 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
     /// Summary description for DbServiceTests
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime Hosting")]
     [ExcludeFromCodeCoverage]
     public class DbServiceTests
@@ -71,9 +70,9 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             var testElm = XElement.Parse(xmlDataString);
             var dbService = new DbService(testElm);
 
-            NUnit.Framework.Assert.AreEqual("TravsTestService", dbService.ResourceName);
-            NUnit.Framework.Assert.AreEqual("DbService", dbService.ResourceType);
-            NUnit.Framework.Assert.AreEqual("af8d2d38-22b5-4599-8357-adce196beb83", dbService.ResourceID.ToString());
+            Assert.AreEqual("TravsTestService", dbService.ResourceName);
+            Assert.AreEqual("DbService", dbService.ResourceType);
+            Assert.AreEqual("af8d2d38-22b5-4599-8357-adce196beb83", dbService.ResourceID.ToString());
         }
 
         [Test]
@@ -95,7 +94,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             var actual = new DbService(xml);
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(ExpectedName, actual.Recordset.Name);
+            Assert.AreEqual(ExpectedName, actual.Recordset.Name);
         }
 
         [Test]
@@ -111,14 +110,14 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             var actual = DbService.Create();
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsNotNull(actual);
-            NUnit.Framework.Assert.AreEqual(Guid.Empty, actual.ResourceID);
-            NUnit.Framework.Assert.AreEqual("DbService", actual.ResourceType);
+            Assert.IsNotNull(actual);
+            Assert.AreEqual(Guid.Empty, actual.ResourceID);
+            Assert.AreEqual("DbService", actual.ResourceType);
 
-            NUnit.Framework.Assert.IsNotNull(actual.Source);
-            NUnit.Framework.Assert.IsInstanceOf(actual.Source.GetType(), typeof(DbSource));
-            NUnit.Framework.Assert.AreEqual(Guid.Empty, actual.Source.ResourceID);
-            NUnit.Framework.Assert.AreEqual("DbSource", actual.Source.ResourceType);
+            Assert.IsNotNull(actual.Source);
+            Assert.IsInstanceOf(typeof(DbSource), actual.Source);
+            Assert.AreEqual(Guid.Empty, actual.Source.ResourceID);
+            Assert.AreEqual("DbSource", actual.Source.ResourceType);
         }
 
         #endregion
@@ -176,7 +175,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             var expectedResult = string.Format(expected, resourceId);
             var actual = xElement.ToString();
             FixBreaks(ref expectedResult, ref actual);
-            NUnit.Framework.Assert.AreEqual(expectedResult, actual);
+            Assert.AreEqual(expectedResult, actual);
         }
 
         [Test]
@@ -219,7 +218,7 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             var returnedXelm = dbService.ToXml();
             var actual = returnedXelm.ToString();
             FixBreaks(ref xmlDataString, ref actual);
-            NUnit.Framework.Assert.AreEqual(xmlDataString, actual);
+            Assert.AreEqual(xmlDataString, actual);
         }
 
 

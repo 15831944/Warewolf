@@ -28,7 +28,6 @@ using NUnit.Framework;
 namespace Dev2.Tests.Runtime.Hosting
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime Hosting")]
     public class TestCatalogTests
     {
@@ -52,11 +51,11 @@ namespace Dev2.Tests.Runtime.Hosting
         {
             //------------Setup for test--------------------------
             //------------Assert Preconditions-------------------
-            NUnit.Framework.Assert.IsFalse(Directory.Exists(EnvironmentVariables.TestPath));
+            Assert.IsFalse(Directory.Exists(EnvironmentVariables.TestPath));
             //------------Execute Test---------------------------
             new TestCatalog();
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(Directory.Exists(EnvironmentVariables.TestPath));
+            Assert.IsTrue(Directory.Exists(EnvironmentVariables.TestPath));
         }
 
         [Test]
@@ -70,7 +69,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             testCatalog.SaveTests(resourceID, null);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsFalse(Directory.Exists(EnvironmentVariables.TestPath + "\\" + resourceID));
+            Assert.IsFalse(Directory.Exists(EnvironmentVariables.TestPath + "\\" + resourceID));
         }
 
         [Test]
@@ -84,7 +83,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             testCatalog.SaveTests(resourceID, new List<IServiceTestModelTO>());
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsFalse(Directory.Exists(EnvironmentVariables.TestPath + "\\" + resourceID));
+            Assert.IsFalse(Directory.Exists(EnvironmentVariables.TestPath + "\\" + resourceID));
         }
 
         [Test]
@@ -112,23 +111,23 @@ namespace Dev2.Tests.Runtime.Hosting
             testCatalog.SaveTests(resourceID, serviceTestModelTos);
             //------------Assert Results-------------------------
             var path = EnvironmentVariables.TestPath + "\\" + resourceID;
-            NUnit.Framework.Assert.IsTrue(Directory.Exists(path));
+            Assert.IsTrue(Directory.Exists(path));
             var testFiles = Directory.EnumerateFiles(path).ToList();
             var test1FilePath = path + "\\" + "Test 1.test";
-            NUnit.Framework.Assert.AreEqual(test1FilePath, testFiles[0]);
+            Assert.AreEqual(test1FilePath, testFiles[0]);
             var test2FilePath = path + "\\" + "Test 2.test";
-            NUnit.Framework.Assert.AreEqual(test2FilePath, testFiles[1]);
+            Assert.AreEqual(test2FilePath, testFiles[1]);
 
             var test1String = File.ReadAllText(test1FilePath);
             var serializer = new Dev2JsonSerializer();
             var test1 = serializer.Deserialize<IServiceTestModelTO>(test1String);
-            NUnit.Framework.Assert.AreEqual("Test 1", test1.TestName);
-            NUnit.Framework.Assert.IsTrue(test1.Enabled);
+            Assert.AreEqual("Test 1", test1.TestName);
+            Assert.IsTrue(test1.Enabled);
 
             var test2String = File.ReadAllText(test2FilePath);
             var test2 = serializer.Deserialize<IServiceTestModelTO>(test2String);
-            NUnit.Framework.Assert.AreEqual("Test 2", test2.TestName);
-            NUnit.Framework.Assert.IsFalse(test2.Enabled);
+            Assert.AreEqual("Test 2", test2.TestName);
+            Assert.IsFalse(test2.Enabled);
         }
 
 
@@ -151,16 +150,16 @@ namespace Dev2.Tests.Runtime.Hosting
             testCatalog.SaveTest(resourceID, testToSave);
             //------------Assert Results-------------------------
             var path = EnvironmentVariables.TestPath + "\\" + resourceID;
-            NUnit.Framework.Assert.IsTrue(Directory.Exists(path));
+            Assert.IsTrue(Directory.Exists(path));
             var testFiles = Directory.EnumerateFiles(path).ToList();
             var test1FilePath = path + "\\" + "Test 1.test";
-            NUnit.Framework.Assert.AreEqual(test1FilePath, testFiles[0]);
+            Assert.AreEqual(test1FilePath, testFiles[0]);
           
             var test1String = File.ReadAllText(test1FilePath);
             var serializer = new Dev2JsonSerializer();
             var test1 = serializer.Deserialize<IServiceTestModelTO>(test1String);
-            NUnit.Framework.Assert.AreEqual("Test 1", test1.TestName);
-            NUnit.Framework.Assert.IsFalse(test1.Enabled);
+            Assert.AreEqual("Test 1", test1.TestName);
+            Assert.IsFalse(test1.Enabled);
             
         }
 
@@ -191,20 +190,20 @@ namespace Dev2.Tests.Runtime.Hosting
             testCatalog.SaveTest(resourceID, testToSave2);
             //------------Assert Results-------------------------
             var path = EnvironmentVariables.TestPath + "\\" + resourceID;
-            NUnit.Framework.Assert.IsTrue(Directory.Exists(path));
+            Assert.IsTrue(Directory.Exists(path));
             var testFiles = Directory.EnumerateFiles(path).ToList();
             var test2FilePath = path + "\\" + "Test 2.test";
-            NUnit.Framework.Assert.AreEqual(test2FilePath, testFiles[1]);
+            Assert.AreEqual(test2FilePath, testFiles[1]);
           
             var test2String = File.ReadAllText(test2FilePath);
             var serializer = new Dev2JsonSerializer();
             var test1 = serializer.Deserialize<IServiceTestModelTO>(test2String);
-            NUnit.Framework.Assert.AreEqual("Test 2", test1.TestName);
-            NUnit.Framework.Assert.IsFalse(test1.Enabled);
+            Assert.AreEqual("Test 2", test1.TestName);
+            Assert.IsFalse(test1.Enabled);
 
             var testInList = testCatalog.FetchTest(resourceID, "Test 2");
-            NUnit.Framework.Assert.IsNotNull(testInList);
-            NUnit.Framework.Assert.AreEqual("Test 2",testInList.TestName);
+            Assert.IsNotNull(testInList);
+            Assert.AreEqual("Test 2",testInList.TestName);
             
         }
 
@@ -235,22 +234,22 @@ namespace Dev2.Tests.Runtime.Hosting
 
             //------------Assert Preconditions-------------------
             var path = EnvironmentVariables.TestPath + "\\" + resourceID;
-            NUnit.Framework.Assert.IsTrue(Directory.Exists(path));
+            Assert.IsTrue(Directory.Exists(path));
             var testFiles = Directory.EnumerateFiles(path).ToList();
             var test1FilePath = path + "\\" + "Test 1.test";
             var test2FilePath = path + "\\" + "Test 2.test";
-            NUnit.Framework.Assert.AreEqual(test1FilePath, testFiles[0]);
-            NUnit.Framework.Assert.AreEqual(test2FilePath, testFiles[1]);
+            Assert.AreEqual(test1FilePath, testFiles[0]);
+            Assert.AreEqual(test2FilePath, testFiles[1]);
 
             var test1String = File.ReadAllText(test2FilePath);
             var serializer = new Dev2JsonSerializer();
             var test2 = serializer.Deserialize<IServiceTestModelTO>(test1String);
-            NUnit.Framework.Assert.AreEqual("Test 2", test2.TestName);
-            NUnit.Framework.Assert.IsFalse(test2.Enabled);
+            Assert.AreEqual("Test 2", test2.TestName);
+            Assert.IsFalse(test2.Enabled);
 
             var testInList = testCatalog.FetchTest(resourceID, "Test 2");
-            NUnit.Framework.Assert.IsNotNull(testInList);
-            NUnit.Framework.Assert.AreEqual("Test 2", testInList.TestName);
+            Assert.IsNotNull(testInList);
+            Assert.AreEqual("Test 2", testInList.TestName);
             //------------Execute Test---------------------------
             var testToSaveUpdate = new ServiceTestModelTO
             {
@@ -262,13 +261,13 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Assert Results-------------------------
             var test2StringUpdated = File.ReadAllText(test2FilePath);
             var test2Updated = serializer.Deserialize<IServiceTestModelTO>(test2StringUpdated);
-            NUnit.Framework.Assert.AreEqual("Test 2", test2Updated.TestName);
-            NUnit.Framework.Assert.IsTrue(test2Updated.Enabled);
+            Assert.AreEqual("Test 2", test2Updated.TestName);
+            Assert.IsTrue(test2Updated.Enabled);
 
             var testInListUpdated = testCatalog.FetchTest(resourceID, "Test 2");
-            NUnit.Framework.Assert.IsNotNull(testInListUpdated);
-            NUnit.Framework.Assert.AreEqual("Test 2", testInListUpdated.TestName);
-            NUnit.Framework.Assert.IsTrue(testInListUpdated.Enabled);
+            Assert.IsNotNull(testInListUpdated);
+            Assert.AreEqual("Test 2", testInListUpdated.TestName);
+            Assert.IsTrue(testInListUpdated.Enabled);
 
         }
 
@@ -296,31 +295,31 @@ namespace Dev2.Tests.Runtime.Hosting
             testCatalog.SaveTests(resourceID, serviceTestModelTos);
             //------------Assert Preconditions-------------------
             var path = EnvironmentVariables.TestPath + "\\" + resourceID;
-            NUnit.Framework.Assert.IsTrue(Directory.Exists(path));
+            Assert.IsTrue(Directory.Exists(path));
             var testFiles = Directory.EnumerateFiles(path).ToList();
             var test1FilePath = path + "\\" + "Test 1.test";
-            NUnit.Framework.Assert.AreEqual(test1FilePath, testFiles[0]);
+            Assert.AreEqual(test1FilePath, testFiles[0]);
             var test2FilePath = path + "\\" + "Test 2.test";
-            NUnit.Framework.Assert.AreEqual(test2FilePath, testFiles[1]);
+            Assert.AreEqual(test2FilePath, testFiles[1]);
             var modelTO = testCatalog.Tests.Select(pair => pair.Value.Single(to => to.TestName == "Test 2")).Single();
-            NUnit.Framework.Assert.IsNotNull(modelTO);
+            Assert.IsNotNull(modelTO);
             var test1String = File.ReadAllText(test1FilePath);
             var serializer = new Dev2JsonSerializer();
             var test1 = serializer.Deserialize<IServiceTestModelTO>(test1String);
-            NUnit.Framework.Assert.AreEqual("Test 1", test1.TestName);
-            NUnit.Framework.Assert.IsTrue(test1.Enabled);
+            Assert.AreEqual("Test 1", test1.TestName);
+            Assert.IsTrue(test1.Enabled);
 
             var test2String = File.ReadAllText(test2FilePath);
             var test2 = serializer.Deserialize<IServiceTestModelTO>(test2String);
-            NUnit.Framework.Assert.AreEqual("Test 2", test2.TestName);
-            NUnit.Framework.Assert.IsFalse(test2.Enabled);
+            Assert.AreEqual("Test 2", test2.TestName);
+            Assert.IsFalse(test2.Enabled);
             //------------Execute Test---------------------------
             testCatalog.DeleteTest(resourceID, "Test 2");
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(File.Exists(test1FilePath));
-            NUnit.Framework.Assert.IsFalse(File.Exists(test2FilePath));
+            Assert.IsTrue(File.Exists(test1FilePath));
+            Assert.IsFalse(File.Exists(test2FilePath));
             modelTO = testCatalog.Tests.Select(pair => pair.Value.SingleOrDefault(to => to.TestName == "Test 2")).SingleOrDefault();
-            NUnit.Framework.Assert.IsNull(modelTO);
+            Assert.IsNull(modelTO);
         }
 
         [Test]
@@ -347,32 +346,32 @@ namespace Dev2.Tests.Runtime.Hosting
             testCatalog.SaveTests(resourceID, serviceTestModelTos);
             //------------Assert Preconditions-------------------
             var path = EnvironmentVariables.TestPath + "\\" + resourceID;
-            NUnit.Framework.Assert.IsTrue(Directory.Exists(path));
+            Assert.IsTrue(Directory.Exists(path));
             var testFiles = Directory.EnumerateFiles(path).ToList();
             var test1FilePath = path + "\\" + "Test 1.test";
-            NUnit.Framework.Assert.AreEqual(test1FilePath, testFiles[0]);
+            Assert.AreEqual(test1FilePath, testFiles[0]);
             var test2FilePath = path + "\\" + "Test 2.test";
-            NUnit.Framework.Assert.AreEqual(test2FilePath, testFiles[1]);
+            Assert.AreEqual(test2FilePath, testFiles[1]);
             var modelTO = testCatalog.Tests.Select(pair => pair.Value.Single(to => to.TestName == "Test 2")).Single();
-            NUnit.Framework.Assert.IsNotNull(modelTO);
+            Assert.IsNotNull(modelTO);
             var test1String = File.ReadAllText(test1FilePath);
             var serializer = new Dev2JsonSerializer();
             var test1 = serializer.Deserialize<IServiceTestModelTO>(test1String);
-            NUnit.Framework.Assert.AreEqual("Test 1", test1.TestName);
-            NUnit.Framework.Assert.IsTrue(test1.Enabled);
+            Assert.AreEqual("Test 1", test1.TestName);
+            Assert.IsTrue(test1.Enabled);
 
             var test2String = File.ReadAllText(test2FilePath);
             var test2 = serializer.Deserialize<IServiceTestModelTO>(test2String);
-            NUnit.Framework.Assert.AreEqual("Test 2", test2.TestName);
-            NUnit.Framework.Assert.IsFalse(test2.Enabled);
+            Assert.AreEqual("Test 2", test2.TestName);
+            Assert.IsFalse(test2.Enabled);
             //------------Execute Test---------------------------
             testCatalog.DeleteAllTests(resourceID);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsFalse(File.Exists(test1FilePath));
-            NUnit.Framework.Assert.IsFalse(File.Exists(test2FilePath));
+            Assert.IsFalse(File.Exists(test1FilePath));
+            Assert.IsFalse(File.Exists(test2FilePath));
             modelTO = testCatalog.Tests.Select(pair => pair.Value.SingleOrDefault(to => to.TestName == "Test 2")).SingleOrDefault();
-            NUnit.Framework.Assert.IsNull(modelTO);
-            NUnit.Framework.Assert.IsFalse(Directory.Exists(path));
+            Assert.IsNull(modelTO);
+            Assert.IsFalse(Directory.Exists(path));
         }
 
         [Test]
@@ -417,15 +416,15 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             testCatalog.Load();
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(2, testCatalog.Tests.Count);
+            Assert.AreEqual(2, testCatalog.Tests.Count);
             var res1Tests = testCatalog.Tests[resourceID];
-            NUnit.Framework.Assert.AreEqual(2, res1Tests.Count);
-            NUnit.Framework.Assert.AreEqual("Test 1", res1Tests[0].TestName);
-            NUnit.Framework.Assert.AreEqual("Test 2", res1Tests[1].TestName);
+            Assert.AreEqual(2, res1Tests.Count);
+            Assert.AreEqual("Test 1", res1Tests[0].TestName);
+            Assert.AreEqual("Test 2", res1Tests[1].TestName);
             var res2Tests = testCatalog.Tests[resourceID2];
-            NUnit.Framework.Assert.AreEqual(2, res2Tests.Count);
-            NUnit.Framework.Assert.AreEqual("Test 21", res2Tests[0].TestName);
-            NUnit.Framework.Assert.AreEqual("Test 22", res2Tests[1].TestName);
+            Assert.AreEqual(2, res2Tests.Count);
+            Assert.AreEqual("Test 21", res2Tests[0].TestName);
+            Assert.AreEqual("Test 22", res2Tests[1].TestName);
         }
 
         [Test]
@@ -469,21 +468,21 @@ namespace Dev2.Tests.Runtime.Hosting
             testCatalog.SaveTests(resourceID2, res2ServiceTestModelTos);
             testCatalog.Load();
             //------------Assert Preconditions-------------------
-            NUnit.Framework.Assert.AreEqual(2, testCatalog.Tests.Count);
+            Assert.AreEqual(2, testCatalog.Tests.Count);
             var res1Tests = testCatalog.Tests[resourceID];
-            NUnit.Framework.Assert.AreEqual(2, res1Tests.Count);
-            NUnit.Framework.Assert.AreEqual("Test 1", res1Tests[0].TestName);
-            NUnit.Framework.Assert.AreEqual("Test 2", res1Tests[1].TestName);
+            Assert.AreEqual(2, res1Tests.Count);
+            Assert.AreEqual("Test 1", res1Tests[0].TestName);
+            Assert.AreEqual("Test 2", res1Tests[1].TestName);
             var res2Tests = testCatalog.Tests[resourceID2];
-            NUnit.Framework.Assert.AreEqual(2, res2Tests.Count);
-            NUnit.Framework.Assert.AreEqual("Test 21", res2Tests[0].TestName);
-            NUnit.Framework.Assert.AreEqual("Test 22", res2Tests[1].TestName);
+            Assert.AreEqual(2, res2Tests.Count);
+            Assert.AreEqual("Test 21", res2Tests[0].TestName);
+            Assert.AreEqual("Test 22", res2Tests[1].TestName);
             DirectoryWrapperInstance().CleanUp(EnvironmentVariables.TestPath);
             Directory.CreateDirectory(EnvironmentVariables.TestPath);
             //------------Execute Test---------------------------
             testCatalog.ReloadAllTests();
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(0, testCatalog.Tests.Count);
+            Assert.AreEqual(0, testCatalog.Tests.Count);
 
         }
 
@@ -531,9 +530,9 @@ namespace Dev2.Tests.Runtime.Hosting
             var tests = testCatalog.Fetch(resourceID2);
             //------------Assert Results-------------------------
             var res2Tests = tests;
-            NUnit.Framework.Assert.AreEqual(2, res2Tests.Count);
-            NUnit.Framework.Assert.AreEqual("Test 21", res2Tests[0].TestName);
-            NUnit.Framework.Assert.AreEqual("Test 22", res2Tests[1].TestName);
+            Assert.AreEqual(2, res2Tests.Count);
+            Assert.AreEqual("Test 21", res2Tests[0].TestName);
+            Assert.AreEqual("Test 22", res2Tests[1].TestName);
         }
 
         [Test]
@@ -596,15 +595,15 @@ namespace Dev2.Tests.Runtime.Hosting
             var tests = testCatalog.Fetch(resourceID2);
             //------------Assert Results-------------------------
             var res2Tests = tests;
-            NUnit.Framework.Assert.AreEqual(2, res2Tests.Count);
-            NUnit.Framework.Assert.AreEqual(true, res2Tests[0].TestFailing);
-            NUnit.Framework.Assert.AreEqual(true, res2Tests[0].TestInvalid);
-            NUnit.Framework.Assert.AreEqual(true, res2Tests[0].TestPending);
-            NUnit.Framework.Assert.AreEqual(true, res2Tests[0].TestPassed);
-            NUnit.Framework.Assert.AreEqual(true, res2Tests[1].TestPassed);
-            NUnit.Framework.Assert.AreEqual(true, res2Tests[1].TestPassed);
-            NUnit.Framework.Assert.AreEqual(true, res2Tests[1].TestPassed);
-            NUnit.Framework.Assert.AreEqual(true, res2Tests[1].TestPassed);
+            Assert.AreEqual(2, res2Tests.Count);
+            Assert.AreEqual(true, res2Tests[0].TestFailing);
+            Assert.AreEqual(true, res2Tests[0].TestInvalid);
+            Assert.AreEqual(true, res2Tests[0].TestPending);
+            Assert.AreEqual(true, res2Tests[0].TestPassed);
+            Assert.AreEqual(true, res2Tests[1].TestPassed);
+            Assert.AreEqual(true, res2Tests[1].TestPassed);
+            Assert.AreEqual(true, res2Tests[1].TestPassed);
+            Assert.AreEqual(true, res2Tests[1].TestPassed);
         }
 
         [Test]
@@ -650,9 +649,9 @@ namespace Dev2.Tests.Runtime.Hosting
             var tests = testCatalog.Fetch(resourceID2);
             //------------Assert Results-------------------------
             var res2Tests = tests;
-            NUnit.Framework.Assert.AreEqual(2, res2Tests.Count);
-            NUnit.Framework.Assert.AreEqual("Test 21", res2Tests[0].TestName);
-            NUnit.Framework.Assert.AreEqual("Test 22", res2Tests[1].TestName);
+            Assert.AreEqual(2, res2Tests.Count);
+            Assert.AreEqual("Test 21", res2Tests[0].TestName);
+            Assert.AreEqual("Test 22", res2Tests[1].TestName);
         }
 
         [Test]
@@ -698,7 +697,7 @@ namespace Dev2.Tests.Runtime.Hosting
             var tests = testCatalog.Fetch(Guid.NewGuid());
             //------------Assert Results-------------------------
             var res2Tests = tests;
-            NUnit.Framework.Assert.AreEqual(0, res2Tests.Count);
+            Assert.AreEqual(0, res2Tests.Count);
         }
 
 
@@ -728,8 +727,8 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var test = testCatalog.FetchTest(resourceID, "Test 2");
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsNotNull(test);
-            NUnit.Framework.Assert.AreEqual("Test 2",test.TestName);
+            Assert.IsNotNull(test);
+            Assert.AreEqual("Test 2",test.TestName);
         }
 
         [Test]
@@ -758,7 +757,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var test = testCatalog.FetchTest(resourceID, "Test 6");
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsNull(test);
+            Assert.IsNull(test);
         }
 
         [Test]
@@ -787,7 +786,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var test = testCatalog.FetchTest(resourceID, "Test 6");
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsNull(test);
+            Assert.IsNull(test);
         }
 
 
@@ -859,39 +858,39 @@ namespace Dev2.Tests.Runtime.Hosting
             var updatedTest1 = updatedTests[0];
             var updatedTest2 = updatedTests[1];
 
-            NUnit.Framework.Assert.AreEqual("Test 1",updatedTest1.TestName);
-            NUnit.Framework.Assert.IsTrue(updatedTest1.TestInvalid);
-            NUnit.Framework.Assert.IsFalse(updatedTest1.TestFailing);
-            NUnit.Framework.Assert.IsFalse(updatedTest1.TestPassed);
-            NUnit.Framework.Assert.IsFalse(updatedTest1.TestPending);
-            NUnit.Framework.Assert.AreEqual(2,updatedTest1.Inputs.Count);
-            NUnit.Framework.Assert.AreEqual("Age",updatedTest1.Inputs[0].Variable);
-            NUnit.Framework.Assert.AreEqual("20",updatedTest1.Inputs[0].Value);
-            NUnit.Framework.Assert.AreEqual("Gender", updatedTest1.Inputs[1].Variable);
-            NUnit.Framework.Assert.AreEqual("", updatedTest1.Inputs[1].Value);
-            NUnit.Framework.Assert.IsFalse(updatedTest1.Inputs[1].EmptyIsNull);
+            Assert.AreEqual("Test 1",updatedTest1.TestName);
+            Assert.IsTrue(updatedTest1.TestInvalid);
+            Assert.IsFalse(updatedTest1.TestFailing);
+            Assert.IsFalse(updatedTest1.TestPassed);
+            Assert.IsFalse(updatedTest1.TestPending);
+            Assert.AreEqual(2,updatedTest1.Inputs.Count);
+            Assert.AreEqual("Age",updatedTest1.Inputs[0].Variable);
+            Assert.AreEqual("20",updatedTest1.Inputs[0].Value);
+            Assert.AreEqual("Gender", updatedTest1.Inputs[1].Variable);
+            Assert.AreEqual("", updatedTest1.Inputs[1].Value);
+            Assert.IsFalse(updatedTest1.Inputs[1].EmptyIsNull);
 
-            NUnit.Framework.Assert.AreEqual(1, updatedTest1.Outputs.Count);
-            NUnit.Framework.Assert.AreEqual("MessageForUser", updatedTest1.Outputs[0].Variable);
-            NUnit.Framework.Assert.AreEqual("This is the message", updatedTest1.Outputs[0].Value);
+            Assert.AreEqual(1, updatedTest1.Outputs.Count);
+            Assert.AreEqual("MessageForUser", updatedTest1.Outputs[0].Variable);
+            Assert.AreEqual("This is the message", updatedTest1.Outputs[0].Value);
             
 
 
-            NUnit.Framework.Assert.AreEqual("Test 2",updatedTest2.TestName);
-            NUnit.Framework.Assert.IsTrue(updatedTest2.TestInvalid);
-            NUnit.Framework.Assert.IsFalse(updatedTest2.TestFailing);
-            NUnit.Framework.Assert.IsFalse(updatedTest2.TestPassed);
-            NUnit.Framework.Assert.IsFalse(updatedTest2.TestPending);
-            NUnit.Framework.Assert.AreEqual(2, updatedTest2.Inputs.Count);
-            NUnit.Framework.Assert.AreEqual("Age", updatedTest2.Inputs[0].Variable);
-            NUnit.Framework.Assert.AreEqual("25", updatedTest2.Inputs[0].Value);
-            NUnit.Framework.Assert.AreEqual("Gender", updatedTest2.Inputs[1].Variable);
-            NUnit.Framework.Assert.AreEqual("", updatedTest2.Inputs[1].Value);
-            NUnit.Framework.Assert.IsFalse(updatedTest2.Inputs[1].EmptyIsNull);
+            Assert.AreEqual("Test 2",updatedTest2.TestName);
+            Assert.IsTrue(updatedTest2.TestInvalid);
+            Assert.IsFalse(updatedTest2.TestFailing);
+            Assert.IsFalse(updatedTest2.TestPassed);
+            Assert.IsFalse(updatedTest2.TestPending);
+            Assert.AreEqual(2, updatedTest2.Inputs.Count);
+            Assert.AreEqual("Age", updatedTest2.Inputs[0].Variable);
+            Assert.AreEqual("25", updatedTest2.Inputs[0].Value);
+            Assert.AreEqual("Gender", updatedTest2.Inputs[1].Variable);
+            Assert.AreEqual("", updatedTest2.Inputs[1].Value);
+            Assert.IsFalse(updatedTest2.Inputs[1].EmptyIsNull);
 
-            NUnit.Framework.Assert.AreEqual(1, updatedTest2.Outputs.Count);
-            NUnit.Framework.Assert.AreEqual("MessageForUser", updatedTest2.Outputs[0].Variable);
-            NUnit.Framework.Assert.AreEqual("", updatedTest2.Outputs[0].Value);
+            Assert.AreEqual(1, updatedTest2.Outputs.Count);
+            Assert.AreEqual("MessageForUser", updatedTest2.Outputs[0].Variable);
+            Assert.AreEqual("", updatedTest2.Outputs[0].Value);
         }
 
 
@@ -992,39 +991,39 @@ namespace Dev2.Tests.Runtime.Hosting
             var updatedTest1 = updatedTests[0];
             var updatedTest2 = updatedTests[1];
 
-            NUnit.Framework.Assert.AreEqual("Test 1",updatedTest1.TestName);
-            NUnit.Framework.Assert.IsTrue(updatedTest1.TestInvalid);
-            NUnit.Framework.Assert.IsFalse(updatedTest1.TestFailing);
-            NUnit.Framework.Assert.IsFalse(updatedTest1.TestPassed);
-            NUnit.Framework.Assert.IsFalse(updatedTest1.TestPending);
-            NUnit.Framework.Assert.AreEqual(9,updatedTest1.Inputs.Count);
-            NUnit.Framework.Assert.AreEqual("Age",updatedTest1.Inputs[0].Variable);
-            NUnit.Framework.Assert.AreEqual("20",updatedTest1.Inputs[0].Value);
-            NUnit.Framework.Assert.AreEqual("Gender", updatedTest1.Inputs[1].Variable);
-            NUnit.Framework.Assert.AreEqual("", updatedTest1.Inputs[1].Value);
-            NUnit.Framework.Assert.IsFalse(updatedTest1.Inputs[1].EmptyIsNull);
+            Assert.AreEqual("Test 1",updatedTest1.TestName);
+            Assert.IsTrue(updatedTest1.TestInvalid);
+            Assert.IsFalse(updatedTest1.TestFailing);
+            Assert.IsFalse(updatedTest1.TestPassed);
+            Assert.IsFalse(updatedTest1.TestPending);
+            Assert.AreEqual(9,updatedTest1.Inputs.Count);
+            Assert.AreEqual("Age",updatedTest1.Inputs[0].Variable);
+            Assert.AreEqual("20",updatedTest1.Inputs[0].Value);
+            Assert.AreEqual("Gender", updatedTest1.Inputs[1].Variable);
+            Assert.AreEqual("", updatedTest1.Inputs[1].Value);
+            Assert.IsFalse(updatedTest1.Inputs[1].EmptyIsNull);
 
-            NUnit.Framework.Assert.AreEqual(2, updatedTest1.Outputs.Count);
-            NUnit.Framework.Assert.AreEqual("MessageForUser", updatedTest1.Outputs[0].Variable);
-            NUnit.Framework.Assert.AreEqual("This is the message", updatedTest1.Outputs[0].Value);
+            Assert.AreEqual(2, updatedTest1.Outputs.Count);
+            Assert.AreEqual("MessageForUser", updatedTest1.Outputs[0].Variable);
+            Assert.AreEqual("This is the message", updatedTest1.Outputs[0].Value);
             
 
 
-            NUnit.Framework.Assert.AreEqual("Test 2",updatedTest2.TestName);
-            NUnit.Framework.Assert.IsTrue(updatedTest2.TestInvalid);
-            NUnit.Framework.Assert.IsFalse(updatedTest2.TestFailing);
-            NUnit.Framework.Assert.IsFalse(updatedTest2.TestPassed);
-            NUnit.Framework.Assert.IsFalse(updatedTest2.TestPending);
-            NUnit.Framework.Assert.AreEqual(6, updatedTest2.Inputs.Count);
-            NUnit.Framework.Assert.AreEqual("Age", updatedTest2.Inputs[0].Variable);
-            NUnit.Framework.Assert.AreEqual("25", updatedTest2.Inputs[0].Value);
-            NUnit.Framework.Assert.AreEqual("Gender", updatedTest2.Inputs[1].Variable);
-            NUnit.Framework.Assert.AreEqual("", updatedTest2.Inputs[1].Value);
-            NUnit.Framework.Assert.IsFalse(updatedTest2.Inputs[1].EmptyIsNull);
+            Assert.AreEqual("Test 2",updatedTest2.TestName);
+            Assert.IsTrue(updatedTest2.TestInvalid);
+            Assert.IsFalse(updatedTest2.TestFailing);
+            Assert.IsFalse(updatedTest2.TestPassed);
+            Assert.IsFalse(updatedTest2.TestPending);
+            Assert.AreEqual(6, updatedTest2.Inputs.Count);
+            Assert.AreEqual("Age", updatedTest2.Inputs[0].Variable);
+            Assert.AreEqual("25", updatedTest2.Inputs[0].Value);
+            Assert.AreEqual("Gender", updatedTest2.Inputs[1].Variable);
+            Assert.AreEqual("", updatedTest2.Inputs[1].Value);
+            Assert.IsFalse(updatedTest2.Inputs[1].EmptyIsNull);
 
-            NUnit.Framework.Assert.AreEqual(2, updatedTest2.Outputs.Count);
-            NUnit.Framework.Assert.AreEqual("MessageForUser", updatedTest2.Outputs[0].Variable);
-            NUnit.Framework.Assert.AreEqual("", updatedTest2.Outputs[0].Value);
+            Assert.AreEqual(2, updatedTest2.Outputs.Count);
+            Assert.AreEqual("MessageForUser", updatedTest2.Outputs[0].Variable);
+            Assert.AreEqual("", updatedTest2.Outputs[0].Value);
         }
 
         [Test]
@@ -1127,12 +1126,12 @@ namespace Dev2.Tests.Runtime.Hosting
             var updatedTests = testCatalog.Fetch(resourceID);
             var updatedTest1 = updatedTests[0];
 
-            NUnit.Framework.Assert.AreEqual("Test 1", updatedTest1.TestName);
-            NUnit.Framework.Assert.IsTrue(updatedTest1.TestInvalid);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestInvalid, updatedTest1.TestSteps[0].Result.RunTestResult);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestInvalid, updatedTest1.TestSteps[0].StepOutputs[0].Result.RunTestResult);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestInvalid, updatedTest1.TestSteps[1].Result.RunTestResult);
-            NUnit.Framework.Assert.AreEqual(RunResult.TestInvalid, updatedTest1.TestSteps[1].Children[0].StepOutputs[0].Result.RunTestResult);
+            Assert.AreEqual("Test 1", updatedTest1.TestName);
+            Assert.IsTrue(updatedTest1.TestInvalid);
+            Assert.AreEqual(RunResult.TestInvalid, updatedTest1.TestSteps[0].Result.RunTestResult);
+            Assert.AreEqual(RunResult.TestInvalid, updatedTest1.TestSteps[0].StepOutputs[0].Result.RunTestResult);
+            Assert.AreEqual(RunResult.TestInvalid, updatedTest1.TestSteps[1].Result.RunTestResult);
+            Assert.AreEqual(RunResult.TestInvalid, updatedTest1.TestSteps[1].Children[0].StepOutputs[0].Result.RunTestResult);
         }
     }
 }

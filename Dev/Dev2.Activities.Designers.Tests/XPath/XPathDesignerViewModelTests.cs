@@ -10,6 +10,7 @@
 
 using System.Activities.Presentation.Model;
 using System.Collections.Generic;
+using System.Threading;
 using Dev2.Activities.Designers2.XPath;
 using Dev2.Common.Interfaces.Help;
 using Dev2.Studio.Core.Activities.Utils;
@@ -21,7 +22,7 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Activities.Designers.Tests.XPath
 {
     [TestFixture]
-    
+    [Apartment(ApartmentState.STA)]
     public class XPathDesignerViewModelTests
     {
         [Test]
@@ -62,7 +63,7 @@ namespace Dev2.Activities.Designers.Tests.XPath
             var modelItem = ModelItemUtils.CreateModelItem(new DsfXPathActivity());
             var viewModel = new XPathDesignerViewModel(modelItem);
             dynamic mi = viewModel.ModelItem;
-            NUnit.Framework.Assert.AreEqual(2, mi.ResultsCollection.Count);
+            Assert.AreEqual(2, mi.ResultsCollection.Count);
         }
 
         [Test]
@@ -79,7 +80,7 @@ namespace Dev2.Activities.Designers.Tests.XPath
             };
             var viewModel = new XPathDesignerViewModel(CreateModelItem(items));
             dynamic mi = viewModel.ModelItem;
-            NUnit.Framework.Assert.AreEqual(5, mi.ResultsCollection.Count);
+            Assert.AreEqual(5, mi.ResultsCollection.Count);
         }
 
         [Test]

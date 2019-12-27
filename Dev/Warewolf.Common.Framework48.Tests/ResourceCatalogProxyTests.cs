@@ -18,7 +18,6 @@ using System.Text;
 namespace Warewolf.Common.Framework48.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ResourceCatalogProxyTests
     {
         [Test]

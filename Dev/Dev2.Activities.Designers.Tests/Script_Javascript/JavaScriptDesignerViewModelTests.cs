@@ -25,21 +25,15 @@ namespace Dev2.Activities.Designers.Tests.Script_Javascript
     [TestFixture]
     public class JavaScriptDesignerViewModelTests
     {
-
         static string GetJsTmpFile()
         {
             var codeBase = Assembly.GetExecutingAssembly().Location;
             var directoryName = Path.GetDirectoryName(codeBase);
             return directoryName + "\\jsFile.js ";
         }
-
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext { get; set; }
+        
         [OneTimeSetUp]
-        public static void Init(TestContext context)
+        public static void Init()
         {
             try
             {
@@ -64,8 +58,9 @@ namespace Dev2.Activities.Designers.Tests.Script_Javascript
                 Assert.Fail(ex.Message);
             }
         }
+        
         [OneTimeTearDown]
-        public static void Cleaner()
+        public static void Cleanup()
         {
             try
             {
@@ -73,7 +68,7 @@ namespace Dev2.Activities.Designers.Tests.Script_Javascript
             }
             catch (Exception)
             {
-                //supress exceptio
+                //try delete
             }
         }
 

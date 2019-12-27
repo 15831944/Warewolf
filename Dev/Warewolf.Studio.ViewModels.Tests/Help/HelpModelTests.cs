@@ -7,7 +7,6 @@ using Dev2.Common.Interfaces.Help;
 namespace Warewolf.Studio.Models.Help.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class HelpModelTests
     {
         #region Fields

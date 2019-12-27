@@ -17,7 +17,6 @@ namespace Dev2.Data.Tests.DecisionsTests
     /// Summary description for NotEndsWithTests
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class NotEndsWithTests
     {
         [Test]

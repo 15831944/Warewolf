@@ -21,7 +21,6 @@ using NUnit.Framework;
 namespace Unlimited.UnitTest.Framework.PathOperationTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ActivityIOFactoryTests
     {
         #region Create Path From String Tests

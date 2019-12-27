@@ -32,7 +32,6 @@ using Moq;
 namespace Dev2.Core.Tests.IntellisenseProvider
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Intellisense Provider Core")]
     public class DefaultIntellisenseProviderTest
     {

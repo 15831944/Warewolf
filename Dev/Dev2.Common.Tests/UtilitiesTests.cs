@@ -19,7 +19,6 @@ using System.Threading;
 namespace Dev2.Common.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class UtilitiesTests
     {
         class Example

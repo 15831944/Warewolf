@@ -20,11 +20,7 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
-    /// <summary>
-    /// Tests that the Properties have not changed on the activities
-    /// </summary>
     [TestFixture]
-    [SetUpFixture]
     
     public class HighLevel_ActivityTests : BaseActivityUnitTest
     {
@@ -34,24 +30,10 @@ namespace Dev2.Tests.Activities.ActivityTests
 
         #endregion Fields
 
-        #region Test Context
-
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext { get; set; }
-
-        #endregion Test Context
-
         #region Additional test attributes
 
-        //
-        // You can use the following additional attributes as you write your tests:
-        //
-        // Use ClassInitialize to run code before running the first test in the class
         [OneTimeSetUp]
-        public static void MyClassInitialize(TestContext testContext)
+        public static void MyClassInitialize()
         {
             _activityList = GetAllActivities();
         }

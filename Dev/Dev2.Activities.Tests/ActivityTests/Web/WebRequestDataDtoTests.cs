@@ -7,7 +7,6 @@ using NUnit.Framework;
 namespace Dev2.Tests.Activities.ActivityTests.Web
 {
     [TestFixture]
-    [SetUpFixture]
     public class WebRequestDataDtoTests
     {
         [Test]

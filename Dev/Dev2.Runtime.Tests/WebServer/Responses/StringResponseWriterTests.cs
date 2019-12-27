@@ -20,7 +20,6 @@ using NUnit.Framework;
 namespace Dev2.Tests.Runtime.WebServer.Responses
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime WebServer")]
     public class StringResponseWriterTests
     {
@@ -61,7 +60,7 @@ namespace Dev2.Tests.Runtime.WebServer.Responses
             //------------Setup for test--------------------------
 
             //------------Execute Test---------------------------
-            var responseWriter = new StringResponseWriter("XXX", (string)null);
+            new StringResponseWriter("XXX", (string)null);
 
             //------------Assert Results-------------------------
         }
@@ -84,7 +83,7 @@ namespace Dev2.Tests.Runtime.WebServer.Responses
 
             //------------Assert Results-------------------------
             Assert.AreEqual(ContentTypes.Plain, context.ResponseMessage.Content.Headers.ContentType);
-            Assert.IsInstanceOf(context.ResponseMessage.Content.GetType(), typeof(StringContent));
+            Assert.IsInstanceOf(typeof(StringContent), context.ResponseMessage.Content);
             var task = context.ResponseMessage.Content.ReadAsStringAsync();
             task.Wait();
 
@@ -113,7 +112,7 @@ namespace Dev2.Tests.Runtime.WebServer.Responses
             Assert.AreEqual("attachment", context.ResponseMessage.Content.Headers.ContentDisposition.DispositionType);
             Assert.AreEqual("attachment; filename=Output.xml", context.ResponseMessage.Content.Headers.ContentDisposition.ToString());
 
-            Assert.IsInstanceOf(context.ResponseMessage.Content.GetType(), typeof(StringContent));
+            Assert.IsInstanceOf(typeof(StringContent), context.ResponseMessage.Content);
             var task = context.ResponseMessage.Content.ReadAsStringAsync();
             task.Wait();
 

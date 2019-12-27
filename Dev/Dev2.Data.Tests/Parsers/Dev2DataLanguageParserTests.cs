@@ -28,7 +28,6 @@ using Warewolf.Resource.Errors;
 namespace Dev2.Data.Tests.Parsers
 {
     [TestFixture]
-    [SetUpFixture]
     public class Dev2DataLanguageParserTests
     {
         [Test]

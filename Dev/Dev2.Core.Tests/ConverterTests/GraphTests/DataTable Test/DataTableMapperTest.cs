@@ -18,7 +18,6 @@ using NUnit.Framework;
 namespace Dev2.Tests.ConverterTests.GraphTests.DataTable_Test
 {
     [TestFixture]
-    [SetUpFixture]
     public class DataTableMapperTest
     {
 

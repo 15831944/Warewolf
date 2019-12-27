@@ -316,10 +316,10 @@ namespace Dev2.Activities.Designers.Tests.FindRecordsMultipleCriteria
 
             //------------Assert Results-------------------------
             Assert.IsNotNull(rulesSet);
-            Assert.IsInstanceOf(rulesSet.Rules[0].GetType(), typeof(IsStringEmptyOrWhiteSpaceRule));
-            Assert.IsInstanceOf(rulesSet.Rules[1].GetType(), typeof(IsValidExpressionRule));
-            Assert.IsInstanceOf(rulesSet.Rules[2].GetType(), typeof(HasNoDuplicateEntriesRule));
-            Assert.IsInstanceOf(rulesSet.Rules[3].GetType(), typeof(HasNoIndexsInRecordsetsRule));
+            Assert.IsInstanceOf(typeof(IsStringEmptyOrWhiteSpaceRule), rulesSet.Rules[0]);
+            Assert.IsInstanceOf(typeof(IsValidExpressionRule), rulesSet.Rules[1]);
+            Assert.IsInstanceOf(typeof(HasNoDuplicateEntriesRule), rulesSet.Rules[2]);
+            Assert.IsInstanceOf(typeof(HasNoIndexsInRecordsetsRule), rulesSet.Rules[3]);
         }
 
         [Test]
@@ -336,8 +336,8 @@ namespace Dev2.Activities.Designers.Tests.FindRecordsMultipleCriteria
             var rulesSet = viewModel.GetRuleSet("Result");
             //------------Assert Results-------------------------
             Assert.IsNotNull(rulesSet);
-            Assert.IsInstanceOf(rulesSet.Rules[0].GetType(), typeof(IsStringEmptyOrWhiteSpaceRule));
-            Assert.IsInstanceOf(rulesSet.Rules[1].GetType(), typeof(IsValidExpressionRule));
+            Assert.IsInstanceOf(typeof(IsStringEmptyOrWhiteSpaceRule), rulesSet.Rules[0]);
+            Assert.IsInstanceOf(typeof(IsValidExpressionRule), rulesSet.Rules[1]);
         }
 
 

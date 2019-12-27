@@ -7,7 +7,6 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016
 {
     //These test cannot be run on the build server, best to cemment them out when checking in
     [TestFixture]
-    [SetUpFixture]
     public class LocalPathManagerTests
     {
         [SetUp]

@@ -22,7 +22,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Dev2.Tests.Activities.ActivityTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class FindRecordsMultipleCriteriaActivityTest : BaseActivityUnitTest
     {
         public NUnit.Framework.TestContext TestContext { get; set; }

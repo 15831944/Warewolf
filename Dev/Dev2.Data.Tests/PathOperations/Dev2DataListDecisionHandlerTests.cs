@@ -6,7 +6,6 @@ using Warewolf.Storage;
 namespace Dev2.Data.Tests.PathOperations
 {
     [TestFixture]
-    [SetUpFixture]
     public class Dev2DataListDecisionHandlerTests
     {
         [Test]

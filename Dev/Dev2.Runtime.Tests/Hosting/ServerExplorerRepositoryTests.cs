@@ -35,7 +35,6 @@ using Moq;
 namespace Dev2.Tests.Runtime.Hosting
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime Hosting")]
     public class ServerExplorerRepositoryTests
     {
@@ -162,10 +161,10 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var root = serverExplorerRepository.Load(Guid.NewGuid());
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("Folder", root.ResourceType);
-            NUnit.Framework.Assert.AreEqual(2, root.Children.Count);
-            NUnit.Framework.Assert.AreEqual("Services", root.Children.First().DisplayName);
-            NUnit.Framework.Assert.AreEqual("Bobs", root.Children[1].DisplayName);
+            Assert.AreEqual("Folder", root.ResourceType);
+            Assert.AreEqual(2, root.Children.Count);
+            Assert.AreEqual("Services", root.Children.First().DisplayName);
+            Assert.AreEqual("Bobs", root.Children[1].DisplayName);
         }
 
         [Test]
@@ -197,8 +196,8 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var root = serverExplorerRepository.Load("Folder", Guid.NewGuid());
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("Folder", root.ResourceType);
-            NUnit.Framework.Assert.AreEqual(root.Permissions, Permissions.Contribute);
+            Assert.AreEqual("Folder", root.ResourceType);
+            Assert.AreEqual(root.Permissions, Permissions.Contribute);
             factory.Verify(a => a.CreateRootExplorerItem("Folder", It.IsAny<string>(), It.IsAny<Guid>()));
         }
 
@@ -231,7 +230,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var root = serverExplorerRepository.Load("Folder", "monkey");
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("Folder", root.ResourceType);
+            Assert.AreEqual("Folder", root.ResourceType);
             factory.Verify(a => a.CreateRootExplorerItem("Folder", It.IsAny<string>(), It.IsAny<Guid>()));
         }
 
@@ -258,8 +257,8 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.RenameItem(explorerItem, "bob", Guid.NewGuid());
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("Requested folder does not exist on server. Folder: bob", result.Message);
-            NUnit.Framework.Assert.AreEqual(ExecStatus.NoMatch, result.Status);
+            Assert.AreEqual("Requested folder does not exist on server. Folder: bob", result.Message);
+            Assert.AreEqual(ExecStatus.NoMatch, result.Status);
         }
 
 
@@ -294,8 +293,8 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.RenameItem(explorerItem, "dave", Guid.NewGuid());
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("moo", result.Message);
-            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.AccessViolation);
+            Assert.AreEqual("moo", result.Message);
+            Assert.AreEqual(result.Status, ExecStatus.AccessViolation);
             catalogue.Verify(a => a.RenameResource(It.IsAny<Guid>(), guid, "dave","bob"));
             catalogue.Verify(a => a.GetResourceList(It.IsAny<Guid>()));
         }
@@ -331,8 +330,8 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.RenameItem(explorerItem, "dave", Guid.NewGuid());
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("There is an item that exists with the same name and path", result.Message);
-            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Fail);
+            Assert.AreEqual("There is an item that exists with the same name and path", result.Message);
+            Assert.AreEqual(result.Status, ExecStatus.Fail);
 
         }
 
@@ -369,8 +368,8 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.MoveItem(explorerItem, "dave", Guid.NewGuid());
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("There is an item that exists with the same name and path", result.Message);
-            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Fail);
+            Assert.AreEqual("There is an item that exists with the same name and path", result.Message);
+            Assert.AreEqual(result.Status, ExecStatus.Fail);
             catalogue.Verify(a => a.RenameCategory(It.IsAny<Guid>(), "bob", "dave", It.IsAny<List<IResource>>()), Times.Exactly(0));
             catalogue.Verify(a => a.GetResourceList(It.IsAny<Guid>()));
         }
@@ -408,8 +407,8 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.MoveItem(explorerItem, "dave", Guid.NewGuid());
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("moo", result.Message);
-            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.AccessViolation);
+            Assert.AreEqual("moo", result.Message);
+            Assert.AreEqual(result.Status, ExecStatus.AccessViolation);
             catalogue.Verify(a => a.RenameCategory(It.IsAny<Guid>(), "bob", "dave", It.IsAny<List<IResource>>()));
             catalogue.Verify(a => a.GetResourceList(It.IsAny<Guid>()));
         }
@@ -448,8 +447,8 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.MoveItem(explorerItem, "dave", Guid.NewGuid());
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("moo", result.Message);
-            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Success);
+            Assert.AreEqual("moo", result.Message);
+            Assert.AreEqual(result.Status, ExecStatus.Success);
             catalogue.Verify(a => a.RenameCategory(It.IsAny<Guid>(), "bob\\dave", "dave", It.IsAny<List<IResource>>()));
             catalogue.Verify(a => a.GetResourceList(It.IsAny<Guid>()));
         }
@@ -481,8 +480,8 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.DeleteItem(explorerItem, Guid.NewGuid());
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("bob", result.Message);
-            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.DuplicateMatch);
+            Assert.AreEqual("bob", result.Message);
+            Assert.AreEqual(result.Status, ExecStatus.DuplicateMatch);
             catalogue.Verify(a => a.DeleteResource(It.IsAny<Guid>(), guid, "DbSource"));
         }
 
@@ -513,8 +512,8 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.DeleteItem(explorerItem, Guid.NewGuid());
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("bob", result.Message);
-            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.DuplicateMatch);
+            Assert.AreEqual("bob", result.Message);
+            Assert.AreEqual(result.Status, ExecStatus.DuplicateMatch);
             catalogue.Verify(a => a.DeleteResource(It.IsAny<Guid>(), guid, "DbSource"));
             testCatalogue.Verify(catalog => catalog.DeleteAllTests(It.IsAny<Guid>()), Times.Once);
         }
@@ -543,8 +542,8 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.DeleteItem(explorerItem, Guid.NewGuid());
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("Requested folder does not exist on server. Folder: bob", result.Message);
-            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Fail);
+            Assert.AreEqual("Requested folder does not exist on server. Folder: bob", result.Message);
+            Assert.AreEqual(result.Status, ExecStatus.Fail);
 
         }
         [Test]
@@ -580,8 +579,8 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = serverExplorerRepository.RenameFolder("monkey", "moocowimpi", Guid.NewGuid());
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("Error Renaming", result.Message);
-            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Fail);
+            Assert.AreEqual("Error Renaming", result.Message);
+            Assert.AreEqual(result.Status, ExecStatus.Fail);
         }
 
 
@@ -618,8 +617,8 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = serverExplorerRepository.RenameFolder("monkey", "moocowimpi", Guid.NewGuid());
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("Error Renaming", result.Message);
-            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Fail);
+            Assert.AreEqual("Error Renaming", result.Message);
+            Assert.AreEqual(result.Status, ExecStatus.Fail);
         }
 
         [Test]
@@ -655,8 +654,8 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = serverExplorerRepository.RenameFolder("monkey", "moocowimpi", Guid.NewGuid());
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("Requested folder does not exist on server. Folder: monkey", result.Message);
-            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.NoMatch);
+            Assert.AreEqual("Requested folder does not exist on server. Folder: monkey", result.Message);
+            Assert.AreEqual(result.Status, ExecStatus.NoMatch);
         }
 
 
@@ -694,8 +693,8 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = serverExplorerRepository.RenameFolder("monkey", "moocowimpi", Guid.NewGuid());
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("Requested folder does not exist on server. Folder: monkey", result.Message);
-            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.NoMatch);
+            Assert.AreEqual("Requested folder does not exist on server. Folder: monkey", result.Message);
+            Assert.AreEqual(result.Status, ExecStatus.NoMatch);
         }
 
         [Test]
@@ -731,8 +730,8 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = serverExplorerRepository.RenameFolder("monkey", "moocowimpi", Guid.NewGuid());
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("Error Renaming", result.Message);
-            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Fail);
+            Assert.AreEqual("Error Renaming", result.Message);
+            Assert.AreEqual(result.Status, ExecStatus.Fail);
         }
 
         [Test]
@@ -753,8 +752,8 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.RenameFolder("monkey", "moocowimpi", Guid.NewGuid());
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("Requested folder does not exist on server. Folder: monkey", result.Message);
-            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.NoMatch);
+            Assert.AreEqual("Requested folder does not exist on server. Folder: monkey", result.Message);
+            Assert.AreEqual(result.Status, ExecStatus.NoMatch);
 
         }
         
@@ -778,8 +777,8 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.AddItem(item, Guid.NewGuid());
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("Requested folder already exists on server.", result.Message);
-            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Fail);
+            Assert.AreEqual("Requested folder already exists on server.", result.Message);
+            Assert.AreEqual(result.Status, ExecStatus.Fail);
             sync.Verify(m => m.AddItemMessage(It.IsAny<IExplorerItem>()), Times.Never());
         }
 
@@ -803,8 +802,8 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.AddItem(item, Guid.NewGuid());
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("Only user resources can be added from this repository", result.Message);
-            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Fail);
+            Assert.AreEqual("Only user resources can be added from this repository", result.Message);
+            Assert.AreEqual(result.Status, ExecStatus.Fail);
             sync.Verify(m => m.AddItemMessage(It.IsAny<IExplorerItem>()), Times.Never());
         }
 
@@ -832,8 +831,8 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.AddItem(item, Guid.NewGuid());
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("", result.Message);
-            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Success);
+            Assert.AreEqual("", result.Message);
+            Assert.AreEqual(result.Status, ExecStatus.Success);
             dir.Verify(a => a.Exists(It.IsAny<string>()));
             dir.Verify(a => a.CreateIfNotExists(It.IsAny<string>()));
             sync.Verify(m => m.AddItemMessage(It.IsAny<IExplorerItem>()), Times.Once());
@@ -859,8 +858,8 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.AddItem(item, Guid.NewGuid());
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("bobe", result.Message);
-            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Fail);
+            Assert.AreEqual("bobe", result.Message);
+            Assert.AreEqual(result.Status, ExecStatus.Fail);
             dir.Verify(a => a.Exists(It.IsAny<string>()));
             dir.Verify(a => a.CreateIfNotExists(It.IsAny<string>()));
 
@@ -885,8 +884,8 @@ namespace Dev2.Tests.Runtime.Hosting
             res.Setup(a => a.GetResourcePath(It.IsAny<Guid>())).Returns("bob");
             var result = serverExplorerRepository.DeleteFolder("bob", false, Guid.NewGuid());
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("Requested folder does not exist on server. Folder: " + "bob", result.Message);
-            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Fail);
+            Assert.AreEqual("Requested folder does not exist on server. Folder: " + "bob", result.Message);
+            Assert.AreEqual(result.Status, ExecStatus.Fail);
 
         }
 
@@ -908,8 +907,8 @@ namespace Dev2.Tests.Runtime.Hosting
             res.Setup(a => a.GetResourcePath(It.IsAny<Guid>())).Returns("bob");
             var result = serverExplorerRepository.DeleteFolder("bob", false, Guid.NewGuid());
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("Requested folder does not exist on server. Folder: " + "bob", result.Message);
-            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Fail);
+            Assert.AreEqual("Requested folder does not exist on server. Folder: " + "bob", result.Message);
+            Assert.AreEqual(result.Status, ExecStatus.Fail);
 
         }
         [Test]
@@ -931,8 +930,8 @@ namespace Dev2.Tests.Runtime.Hosting
             res.Setup(a => a.GetResourcePath(It.IsAny<Guid>())).Returns("bob");
             var result = serverExplorerRepository.DeleteFolder("  ", false, Guid.NewGuid());
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("You may not delete the root path", result.Message);
-            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Fail);
+            Assert.AreEqual("You may not delete the root path", result.Message);
+            Assert.AreEqual(result.Status, ExecStatus.Fail);
 
         }
 
@@ -960,8 +959,8 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.DeleteFolder("bob", true, Guid.NewGuid());
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("", result.Message);
-            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Success);
+            Assert.AreEqual("", result.Message);
+            Assert.AreEqual(result.Status, ExecStatus.Success);
             dir.Verify(a => a.Delete(It.IsAny<string>(), true));
 
         }
@@ -991,8 +990,8 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.DeleteFolder("bob", true, Guid.NewGuid());
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("", result.Message);
-            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Success);
+            Assert.AreEqual("", result.Message);
+            Assert.AreEqual(result.Status, ExecStatus.Success);
             dir.Verify(a => a.Delete(It.IsAny<string>(), true));
             testCatalogue.Verify(catalog => catalog.DeleteAllTests(guid), Times.Once);
 
@@ -1034,8 +1033,8 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.DeleteFolder("bob", true, Guid.NewGuid());
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("", result.Message);
-            NUnit.Framework.Assert.AreEqual(ExecStatus.Success, result.Status);
+            Assert.AreEqual("", result.Message);
+            Assert.AreEqual(ExecStatus.Success, result.Status);
             dir.Verify(a => a.Delete(It.IsAny<string>(), true));
 
         }
@@ -1065,8 +1064,8 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var result = serverExplorerRepository.DeleteFolder("bob", true, Guid.NewGuid());
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("moon", result.Message);
-            NUnit.Framework.Assert.AreEqual(result.Status, ExecStatus.Fail);
+            Assert.AreEqual("moon", result.Message);
+            Assert.AreEqual(result.Status, ExecStatus.Fail);
             dir.Verify(a => a.Delete(It.IsAny<string>(), true));
 
         }
@@ -1096,8 +1095,8 @@ namespace Dev2.Tests.Runtime.Hosting
             var result = serverExplorerRepository.DeleteFolder("bob", true, Guid.NewGuid());
             //------------Assert Results-------------------------
             dir.Verify(a => a.Delete(It.IsAny<string>(), true), Times.Once());
-            NUnit.Framework.Assert.AreEqual(ExecStatus.Success, result.Status);
-            NUnit.Framework.Assert.AreEqual("", result.Message);
+            Assert.AreEqual(ExecStatus.Success, result.Status);
+            Assert.AreEqual("", result.Message);
 
         }
 
@@ -1132,8 +1131,8 @@ namespace Dev2.Tests.Runtime.Hosting
             var sync = new Mock<IExplorerRepositorySync>();
             var repo = new ServerExplorerRepository(new Config(catalogue.Object, factory.Object, dir.Object, new FileWrapper(), testCatalogue.Object), sync.Object);
             var res = repo.AddItem(null, Guid.NewGuid());
-            NUnit.Framework.Assert.AreEqual(ExecStatus.Fail, res.Status);
-            NUnit.Framework.Assert.AreEqual("Item to add was null", res.Message);
+            Assert.AreEqual(ExecStatus.Fail, res.Status);
+            Assert.AreEqual("Item to add was null", res.Message);
             
 
         }
@@ -1152,8 +1151,8 @@ namespace Dev2.Tests.Runtime.Hosting
             var sync = new Mock<IExplorerRepositorySync>();
             var repo = new ServerExplorerRepository(new Config(catalogue.Object, factory.Object, dir.Object, new FileWrapper(), testCatalogue.Object), sync.Object);
             var res = repo.RenameItem(null, "bob", Guid.NewGuid());
-            NUnit.Framework.Assert.AreEqual(ExecStatus.Fail, res.Status);
-            NUnit.Framework.Assert.AreEqual("Item to rename was null", res.Message);
+            Assert.AreEqual(ExecStatus.Fail, res.Status);
+            Assert.AreEqual("Item to rename was null", res.Message);
             
 
         }
@@ -1172,8 +1171,8 @@ namespace Dev2.Tests.Runtime.Hosting
             var sync = new Mock<IExplorerRepositorySync>();
             var repo = new ServerExplorerRepository(new Config(catalogue.Object, factory.Object, dir.Object, new FileWrapper(), testCatalogue.Object), sync.Object);
             var res = repo.DeleteItem(null, Guid.NewGuid());
-            NUnit.Framework.Assert.AreEqual(ExecStatus.Fail, res.Status);
-            NUnit.Framework.Assert.AreEqual("Item to delete was null", res.Message);
+            Assert.AreEqual(ExecStatus.Fail, res.Status);
+            Assert.AreEqual("Item to delete was null", res.Message);
             
 
         }

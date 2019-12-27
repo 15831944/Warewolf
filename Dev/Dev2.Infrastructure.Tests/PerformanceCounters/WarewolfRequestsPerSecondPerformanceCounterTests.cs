@@ -8,7 +8,6 @@ using System.Linq;
 namespace Dev2.Infrastructure.Tests.PerformanceCounters
 {
     [TestFixture]
-    [SetUpFixture]
     public class WarewolfRequestsPerSecondPerformanceCounterTests
     {
         const string CounterName = "Request Per Second";

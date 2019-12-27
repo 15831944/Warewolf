@@ -29,7 +29,7 @@ namespace Dev2.Activities.Designers.Tests.Preview
 
             //------------Assert Results-------------------------
             Assert.IsNotNull(previewViewModel.Inputs);
-            Assert.IsInstanceOf(previewViewModel.Inputs.GetType(), typeof(ObservableCollection<ObservablePair<string, string>>));
+            Assert.IsInstanceOf(typeof(ObservableCollection<ObservablePair<string, string>>), previewViewModel.Inputs);
             Assert.AreEqual(0, previewViewModel.Inputs.Count);
 
             Assert.IsNotNull(previewViewModel.PreviewCommand);
@@ -45,7 +45,7 @@ namespace Dev2.Activities.Designers.Tests.Preview
             var previewViewModel = new PreviewViewModel();
 
             //------------Assert Results-------------------------
-            Assert.IsInstanceOf(previewViewModel.GetType(), typeof(INotifyPropertyChanged));
+            Assert.IsInstanceOf(typeof(INotifyPropertyChanged), previewViewModel);
         }
 
         [Test]

@@ -9,7 +9,6 @@ using NUnit.Framework;
 namespace Dev2.Runtime.Configuration.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class AutoCompleteBoxTests
     {
         [Test]
@@ -26,9 +25,9 @@ namespace Dev2.Runtime.Configuration.Tests
             autoCompleteBox.Text = "item";
             //------------Assert Results-------------------------
             var filteredList = autoCompleteBox.View;
-            NUnit.Framework.Assert.IsNotNull(filteredList);
-            NUnit.Framework.Assert.AreEqual(1,filteredList.Count);
-            NUnit.Framework.Assert.AreEqual("item1",filteredList[0]);
+            Assert.IsNotNull(filteredList);
+            Assert.AreEqual(1,filteredList.Count);
+            Assert.AreEqual("item1",filteredList[0]);
         }
 
         [Test]
@@ -45,8 +44,8 @@ namespace Dev2.Runtime.Configuration.Tests
             autoCompleteBox.Text = "ite";
             //------------Assert Results-------------------------
             var filteredList = autoCompleteBox.View;
-            NUnit.Framework.Assert.IsNotNull(filteredList);
-            NUnit.Framework.Assert.AreEqual(0,filteredList.Count);
+            Assert.IsNotNull(filteredList);
+            Assert.AreEqual(0,filteredList.Count);
         }
 
         [Test]
@@ -60,7 +59,7 @@ namespace Dev2.Runtime.Configuration.Tests
             //------------Execute Test---------------------------
             autoCompleteBox.DefaultText = "DText";
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("DText",autoCompleteBox.DefaultText);
+            Assert.AreEqual("DText",autoCompleteBox.DefaultText);
         }
 
         [Test]
@@ -76,10 +75,10 @@ namespace Dev2.Runtime.Configuration.Tests
             autoCompleteBox.Text = "t";
             //------------Assert Results-------------------------
             var filteredList = autoCompleteBox.View;
-            NUnit.Framework.Assert.IsNotNull(filteredList);
-            NUnit.Framework.Assert.AreEqual(2, filteredList.Count);
-            NUnit.Framework.Assert.AreEqual("item1", filteredList[0]);
-            NUnit.Framework.Assert.AreEqual("anotherThing", filteredList[1]);
+            Assert.IsNotNull(filteredList);
+            Assert.AreEqual(2, filteredList.Count);
+            Assert.AreEqual("item1", filteredList[0]);
+            Assert.AreEqual("anotherThing", filteredList[1]);
         }
 
         [Test]
@@ -94,14 +93,14 @@ namespace Dev2.Runtime.Configuration.Tests
             autoCompleteBox.Text = "t";
             //------------Assert Preconditions-------------------
             var filteredList = autoCompleteBox.View;
-            NUnit.Framework.Assert.IsNotNull(filteredList);
-            NUnit.Framework.Assert.AreEqual(2, filteredList.Count);
-            NUnit.Framework.Assert.AreEqual("item1", filteredList[0]);
-            NUnit.Framework.Assert.AreEqual("anotherThing", filteredList[1]);
+            Assert.IsNotNull(filteredList);
+            Assert.AreEqual(2, filteredList.Count);
+            Assert.AreEqual("item1", filteredList[0]);
+            Assert.AreEqual("anotherThing", filteredList[1]);
             //------------Execute Test---------------------------
             autoCompleteBox.SelectedItem = filteredList[1];
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("anotherThing", autoCompleteBox.Text);
+            Assert.AreEqual("anotherThing", autoCompleteBox.Text);
         }
 
         [Test]
@@ -117,14 +116,14 @@ namespace Dev2.Runtime.Configuration.Tests
             autoCompleteBox.CustomSelection = true;
             //------------Assert Preconditions-------------------
             var filteredList = autoCompleteBox.View;
-            NUnit.Framework.Assert.IsNotNull(filteredList);
-            NUnit.Framework.Assert.AreEqual(2, filteredList.Count);
-            NUnit.Framework.Assert.AreEqual("item1", filteredList[0]);
-            NUnit.Framework.Assert.AreEqual("anotherThing", filteredList[1]);
+            Assert.IsNotNull(filteredList);
+            Assert.AreEqual(2, filteredList.Count);
+            Assert.AreEqual("item1", filteredList[0]);
+            Assert.AreEqual("anotherThing", filteredList[1]);
             //------------Execute Test---------------------------
             autoCompleteBox.SelectedItem = filteredList[1];
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual("t", autoCompleteBox.Text);
+            Assert.AreEqual("t", autoCompleteBox.Text);
         }
 
         [Test]
@@ -148,11 +147,11 @@ namespace Dev2.Runtime.Configuration.Tests
             autoCompleteBox.Text = "item2";
             //------------Assert Results-------------------------
             var filteredList = autoCompleteBox.View;
-            NUnit.Framework.Assert.IsNotNull(filteredList);
-            NUnit.Framework.Assert.AreEqual(3, filteredList.Count);
-            NUnit.Framework.Assert.AreEqual("item1", filteredList[0]);
-            NUnit.Framework.Assert.AreEqual("myValues", filteredList[1]);
-            NUnit.Framework.Assert.AreEqual("anotherThing", filteredList[2]);
+            Assert.IsNotNull(filteredList);
+            Assert.AreEqual(3, filteredList.Count);
+            Assert.AreEqual("item1", filteredList[0]);
+            Assert.AreEqual("myValues", filteredList[1]);
+            Assert.AreEqual("anotherThing", filteredList[2]);
         }
 
         [Test]
@@ -176,8 +175,8 @@ namespace Dev2.Runtime.Configuration.Tests
             autoCompleteBox.Text = "item1";
             //------------Assert Results-------------------------
             var filteredList = autoCompleteBox.View;
-            NUnit.Framework.Assert.IsNotNull(filteredList);
-            NUnit.Framework.Assert.AreEqual(0, filteredList.Count);
+            Assert.IsNotNull(filteredList);
+            Assert.AreEqual(0, filteredList.Count);
         }
 
         [Test]
@@ -201,11 +200,11 @@ namespace Dev2.Runtime.Configuration.Tests
             autoCompleteBox.Text = "item2";
             //------------Assert Results-------------------------
             var filteredList = autoCompleteBox.View;
-            NUnit.Framework.Assert.IsNotNull(filteredList);
-            NUnit.Framework.Assert.AreEqual(3, filteredList.Count);
-            NUnit.Framework.Assert.AreEqual("item1", filteredList[0]);
-            NUnit.Framework.Assert.AreEqual("myValues", filteredList[1]);
-            NUnit.Framework.Assert.AreEqual("anotherThing", filteredList[2]);
+            Assert.IsNotNull(filteredList);
+            Assert.AreEqual(3, filteredList.Count);
+            Assert.AreEqual("item1", filteredList[0]);
+            Assert.AreEqual("myValues", filteredList[1]);
+            Assert.AreEqual("anotherThing", filteredList[2]);
         }
 
         [Test]
@@ -229,8 +228,8 @@ namespace Dev2.Runtime.Configuration.Tests
             autoCompleteBox.Text = "item1";
             //------------Assert Results-------------------------
             var filteredList = autoCompleteBox.View;
-            NUnit.Framework.Assert.IsNotNull(filteredList);
-            NUnit.Framework.Assert.AreEqual(0, filteredList.Count);
+            Assert.IsNotNull(filteredList);
+            Assert.AreEqual(0, filteredList.Count);
         }
 
 
@@ -265,8 +264,8 @@ namespace Dev2.Runtime.Configuration.Tests
             autoCompleteBox.PopulateComplete();
             //------------Assert Results-------------------------
             var filteredList = autoCompleteBox.View;
-            NUnit.Framework.Assert.IsNotNull(filteredList);
-            NUnit.Framework.Assert.AreEqual(3, filteredList.Count);
+            Assert.IsNotNull(filteredList);
+            Assert.AreEqual(3, filteredList.Count);
         }
 
         [Test]
@@ -296,8 +295,8 @@ namespace Dev2.Runtime.Configuration.Tests
             autoCompleteBox.Text = "item1";
             //------------Assert Results-------------------------
             var filteredList = autoCompleteBox.View;
-            NUnit.Framework.Assert.IsNotNull(filteredList);
-            NUnit.Framework.Assert.AreEqual(3, filteredList.Count);
+            Assert.IsNotNull(filteredList);
+            Assert.AreEqual(3, filteredList.Count);
         }
     }
 }

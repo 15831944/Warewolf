@@ -21,7 +21,6 @@ using System.IO;
 namespace Dev2.Core.Tests.ViewModelTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ExceptionViewModelTest
     {
         #region Class Members

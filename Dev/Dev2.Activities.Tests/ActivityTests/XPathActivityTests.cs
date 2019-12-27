@@ -28,7 +28,6 @@ namespace Dev2.Tests.Activities.ActivityTests
     /// Summary description for DataSplitActivityTest
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     
     public class XPathActivityTests : BaseActivityUnitTest
     {

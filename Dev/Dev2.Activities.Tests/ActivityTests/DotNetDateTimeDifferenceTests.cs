@@ -26,7 +26,6 @@ namespace ActivityUnitTests.ActivityTests
     /// Summary description for DateTimeDifferenceTests
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
 
     public class DotNetDateTimeDifferenceTests : BaseActivityUnitTest
     {

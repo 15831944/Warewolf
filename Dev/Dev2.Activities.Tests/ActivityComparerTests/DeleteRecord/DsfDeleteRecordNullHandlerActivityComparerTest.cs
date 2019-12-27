@@ -7,7 +7,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Tests.Activities.ActivityComparerTests.DeleteRecord
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfDeleteRecordNullHandlerActivityComparerTest
     {
         [Test]

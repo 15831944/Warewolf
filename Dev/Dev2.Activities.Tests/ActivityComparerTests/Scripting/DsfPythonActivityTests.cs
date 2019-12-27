@@ -8,7 +8,6 @@ using NUnit.Framework;
 namespace Dev2.Tests.Activities.ActivityComparerTests.Scripting
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfPythonActivityTests
     {
         [Test]

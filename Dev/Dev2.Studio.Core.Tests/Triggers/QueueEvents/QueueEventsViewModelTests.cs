@@ -37,7 +37,6 @@ using Warewolf.UI;
 namespace Dev2.Core.Tests.Triggers.QueueEvents
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Studio Triggers Queue Core")]
     public class QueueEventsViewModelTests
     {

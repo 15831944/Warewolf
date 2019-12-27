@@ -25,7 +25,6 @@ namespace Dev2.Tests.Activities.ActivityTests
     /// Summary description for RecordsetLengthTest
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class RecordsetLengthTest : BaseActivityUnitTest
     {
         /// <summary>

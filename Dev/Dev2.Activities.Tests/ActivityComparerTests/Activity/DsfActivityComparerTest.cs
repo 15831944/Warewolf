@@ -9,7 +9,6 @@ using Warewolf.Core;
 namespace Dev2.Tests.Activities.ActivityComparerTests.Activity
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfActivityComparerTest
     {
         [Test]

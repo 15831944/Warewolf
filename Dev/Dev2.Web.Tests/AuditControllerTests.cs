@@ -24,7 +24,6 @@ using Warewolf.Auditing;
 namespace Dev2.Web.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class AuditControllerTests
     {
         [Test]
@@ -102,8 +101,8 @@ namespace Dev2.Web.Tests
                 var result = controller.AuditList("invalidJson");
                 
                 //-------------------Assert-----------------------------------
-                Assert.IsInstanceOf(result.GetType(), typeof(ActionResult));
-                Assert.IsInstanceOf(result.GetType(), typeof(PartialViewResult));
+                Assert.IsInstanceOf(typeof(ActionResult), result);
+                Assert.IsInstanceOf(typeof(PartialViewResult), result);
 
                 var partialViewResult = (PartialViewResult)result; 
                 Assert.AreEqual("AuditList", partialViewResult.ViewName);
@@ -137,8 +136,8 @@ namespace Dev2.Web.Tests
                 var result = controller.AuditList(expectedAudits);
 
                 //-------------------Assert-----------------------------------
-                Assert.IsInstanceOf(result.GetType(), typeof(ActionResult));
-                Assert.IsInstanceOf(result.GetType(), typeof(PartialViewResult));
+                Assert.IsInstanceOf(typeof(ActionResult), result);
+                Assert.IsInstanceOf(typeof(PartialViewResult), result);
 
                 var partialViewResult = (PartialViewResult)result;
                 Assert.AreEqual("AuditList", partialViewResult.ViewName);

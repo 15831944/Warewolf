@@ -7,7 +7,6 @@ using NUnit.Framework;
 namespace Dev2.Tests.Activities.ActivityComparerTests.Sharepoint
 {
     [TestFixture]
-    [SetUpFixture]
     public class SharepointUpdateListItemActivityEqualityTests
     {
         [Test]

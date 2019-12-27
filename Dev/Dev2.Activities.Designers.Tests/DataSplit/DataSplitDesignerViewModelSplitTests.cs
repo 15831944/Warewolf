@@ -11,6 +11,7 @@
 using System;
 using System.Activities.Presentation.Model;
 using System.Collections.Generic;
+using System.Threading;
 using Dev2.Activities.Designers2.DataSplit;
 using Dev2.Common.Interfaces.Help;
 using Dev2.Studio.Core.Activities.Utils;
@@ -23,6 +24,7 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Activities.Designers.Tests.DataSplit
 {
     [TestFixture]
+    [Apartment(ApartmentState.STA)]
     public class DataSplitDesignerViewModelSplitTests
     {
         [Test]
@@ -53,7 +55,7 @@ namespace Dev2.Activities.Designers.Tests.DataSplit
             var modelItem = ModelItemUtils.CreateModelItem(new DsfDataSplitActivity());
             var viewModel = new DataSplitDesignerViewModel(modelItem);
             dynamic mi = viewModel.ModelItem;
-            NUnit.Framework.Assert.AreEqual(2, mi.ResultsCollection.Count);
+            Assert.AreEqual(2, mi.ResultsCollection.Count);
         }
 
         [Test]
@@ -89,7 +91,7 @@ namespace Dev2.Activities.Designers.Tests.DataSplit
             };
             var viewModel = new DataSplitDesignerViewModel(CreateModelItem(items));
             dynamic mi = viewModel.ModelItem;
-            NUnit.Framework.Assert.AreEqual(5, mi.ResultsCollection.Count);
+            Assert.AreEqual(5, mi.ResultsCollection.Count);
         }
 
         [Test]

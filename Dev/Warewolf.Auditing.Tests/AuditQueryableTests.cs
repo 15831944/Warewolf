@@ -17,7 +17,6 @@ using System.Text;
 namespace Warewolf.Auditing.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class AuditQueryableTests
     {
         string sqlMessage = "SELECT * FROM (SELECT json_extract(Properties, '$.Message') AS Message, Level, TimeStamp FROM Logs) ";
@@ -57,7 +56,6 @@ namespace Warewolf.Auditing.Tests
         [Test]
         [Author("Candice Daniel")]
         [Category(nameof(AuditQueryable))]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AuditQueryable_QueryLogData_FilterBy_NoParameters()
         {
             var connstring = @"C:\ProgramData\Warewolf\Audits\AuditDB.db";
@@ -74,7 +72,6 @@ namespace Warewolf.Auditing.Tests
         [Test]
         [Author("Candice Daniel")]
         [Category(nameof(AuditQueryable))]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AuditQueryable_QueryLogData_FilterBy_ExecutionId_EventLevel()
         {
             var executionID = Guid.NewGuid();
@@ -95,7 +92,6 @@ namespace Warewolf.Auditing.Tests
         [Test]
         [Author("Candice Daniel")]
         [Category(nameof(AuditQueryable))]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AuditQueryable_QueryLogData_FilterBy_EventLevel_IncorrectLevel()
         {
             var connstring = @"C:\ProgramData\Warewolf\Audits\AuditDB.db";
@@ -113,7 +109,6 @@ namespace Warewolf.Auditing.Tests
         [Test]
         [Author("Candice Daniel")]
         [Category(nameof(AuditQueryable))]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AuditQueryable_QueryLogData_FilterBy_ExecutionId()
         {
             var executionID = Guid.NewGuid();
@@ -133,7 +128,6 @@ namespace Warewolf.Auditing.Tests
         [Test]
         [Author("Candice Daniel")]
         [Category(nameof(AuditQueryable))]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AuditQueryable_QueryLogData_FilterBy_EventLevel_Debug()
         {
             var connstring = @"C:\ProgramData\Warewolf\Audits\AuditDB.db";
@@ -153,7 +147,6 @@ namespace Warewolf.Auditing.Tests
         [Test]
         [Author("Candice Daniel")]
         [Category(nameof(AuditQueryable))]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AuditQueryable_QueryLogData_FilterBy_EventLevel_Information()
         {
             var connstring = @"C:\ProgramData\Warewolf\Audits\AuditDB.db";
@@ -173,7 +166,6 @@ namespace Warewolf.Auditing.Tests
         [Test]
         [Author("Candice Daniel")]
         [Category(nameof(AuditQueryable))]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AuditQueryable_QueryLogData_FilterBy_EventLevel_Warning()
         {
             var connstring = @"C:\ProgramData\Warewolf\Audits\AuditDB.db";
@@ -193,7 +185,6 @@ namespace Warewolf.Auditing.Tests
         [Test]
         [Author("Candice Daniel")]
         [Category(nameof(AuditQueryable))]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AuditQueryable_QueryLogData_FilterBy_EventLevel_Error()
         {
             var connstring = @"C:\ProgramData\Warewolf\Audits\AuditDB.db";
@@ -213,7 +204,6 @@ namespace Warewolf.Auditing.Tests
         [Test]
         [Author("Candice Daniel")]
         [Category(nameof(AuditQueryable))]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AuditQueryable_QueryLogData_FilterBy_EventLevel_Fatal()
         {
             var connstring = @"C:\ProgramData\Warewolf\Audits\AuditDB.db";
@@ -233,7 +223,6 @@ namespace Warewolf.Auditing.Tests
         [Test]
         [Author("Candice Daniel")]
         [Category(nameof(AuditQueryable))]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AuditQueryable_QueryLogData_FilterBy_DateTime()
         {
             var connstring = @"C:\ProgramData\Warewolf\Audits\AuditDB.db";
@@ -256,7 +245,6 @@ namespace Warewolf.Auditing.Tests
         [Test]
         [Author("Candice Daniel")]
         [Category(nameof(AuditQueryable))]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AuditQueryable_QueryLogData_DateTime_EventLevel()
         {
             var connstring = @"C:\ProgramData\Warewolf\Audits\AuditDB.db";
@@ -280,7 +268,6 @@ namespace Warewolf.Auditing.Tests
         [Test]
         [Author("Candice Daniel")]
         [Category(nameof(AuditQueryable))]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AuditQueryable_QueryLogData_FilterBy_DateTime_EventLevel_executionID()
         {
             var executionID = Guid.NewGuid();
@@ -306,7 +293,6 @@ namespace Warewolf.Auditing.Tests
         [Test]
         [Author("Candice Daniel")]
         [Category(nameof(AuditQueryable))]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void AuditQueryable_QueryLogData_FilterBy_DateTime_On_UrlEncoded_DateTime_EventLevel_and_executionID_Should_Not_Break()
         {
             var executionID = Guid.NewGuid();

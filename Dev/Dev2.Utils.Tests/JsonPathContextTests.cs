@@ -17,7 +17,6 @@ using static Dev2.Common.Utils.JsonPathContext;
 namespace Dev2.Utils.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class JsonPathContextTests
     {
         [Test]

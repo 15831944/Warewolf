@@ -8,7 +8,6 @@ using Moq;
 namespace Dev2.Tests.DataList
 {
     [TestFixture]
-    [SetUpFixture]
     public class DebugToTests
     {
        

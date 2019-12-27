@@ -27,7 +27,6 @@ using Moq;
 namespace Dev2.Tests.Activities.ActivityTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class SqlBulkInsertActivityTests : BaseActivityUnitTest
     {
         public TestContext TestContext { get; set; }
@@ -60,8 +59,8 @@ namespace Dev2.Tests.Activities.ActivityTests
 
             var sqlBulkInserter = px.GetProperty("SqlBulkInserter");
             //------------Assert Results-------------------------
-            Assert.IsInstanceOf(sqlBulkInserter.GetType(), typeof(ISqlBulkInserter));
-            Assert.IsInstanceOf(sqlBulkInserter.GetType(), typeof(SqlBulkInserter));
+            Assert.IsInstanceOf(typeof(ISqlBulkInserter), sqlBulkInserter);
+            Assert.IsInstanceOf(typeof(SqlBulkInserter), sqlBulkInserter);
         }
 
         [Test]
@@ -77,8 +76,8 @@ namespace Dev2.Tests.Activities.ActivityTests
             //------------Execute Test---------------------------
             var sqlBulkInserter = p.GetProperty("SqlBulkInserter");
             //------------Assert Results-------------------------
-            Assert.IsInstanceOf(sqlBulkInserter.GetType(), typeof(ISqlBulkInserter));
-            Assert.IsNotInstanceOf(sqlBulkInserter.GetType(), typeof(SqlBulkInserter));
+            Assert.IsInstanceOf(typeof(ISqlBulkInserter), sqlBulkInserter);
+            Assert.IsNotInstanceOf(typeof(SqlBulkInserter), sqlBulkInserter);
         }
 
         [Test]
@@ -1275,7 +1274,6 @@ namespace Dev2.Tests.Activities.ActivityTests
         [Test]
         [Author("Travis Frisinger")]
         [Category("DsfSqlBulkInsertActivity_Execute")]
-        [DeploymentItem(@"x86\SQLite.Interop.dll")]
         public void DsfSqlBulkInsertActivity_Execute_WithInputMappingsWithNonNullableColumnWithDataMappedWhenMultiTable_HasDataTableWithData()
         {
             //------------Setup for test--------------------------

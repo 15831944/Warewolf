@@ -12,7 +12,6 @@ using NUnit.Framework;
 namespace Warewolf.Resource.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class MessagesTests
     {
         [Test]

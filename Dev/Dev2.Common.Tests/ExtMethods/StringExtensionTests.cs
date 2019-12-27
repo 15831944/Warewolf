@@ -16,7 +16,6 @@ using System.Text;
 namespace Dev2.Tests.ExtMethods
 {
     [TestFixture]
-    [SetUpFixture]
 
     public class StringExtensionTests
     {

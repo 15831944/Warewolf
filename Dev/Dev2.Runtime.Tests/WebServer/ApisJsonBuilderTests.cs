@@ -14,7 +14,6 @@ using Moq;
 namespace Dev2.Tests.Runtime.WebServer
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime WebServer")]
     public class ApisJsonBuilderTests
     {
@@ -255,7 +254,7 @@ namespace Dev2.Tests.Runtime.WebServer
                 SpecificationVersion = "0.15",
                 Apis = new List<SingleApi>()
             };
-            Assert.IsInstanceOf(apiJson.GetHashCode().GetType(), typeof(int), "ApisJson object did not hash.");
+            Assert.IsInstanceOf(typeof(int), apiJson.GetHashCode(), "ApisJson object did not hash.");
         }
 
         [Test]

@@ -12,7 +12,6 @@ using Warewolf.Storage;
 namespace Dev2.Tests.Activities.ActivityTests.Exchange
 {
     [TestFixture]
-    [SetUpFixture]
     public class DsfExchangeEmailNewActivityTest
     {
         [Test]

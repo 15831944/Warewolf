@@ -14,7 +14,6 @@ using NUnit.Framework;
 namespace Dev2.Common.Tests.Utils
 {
     [TestFixture]
-    [SetUpFixture]
     public class JSONUtilsTests
     {
         [Test]

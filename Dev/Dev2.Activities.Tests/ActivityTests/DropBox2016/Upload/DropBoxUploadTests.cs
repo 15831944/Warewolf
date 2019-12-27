@@ -20,7 +20,6 @@ using Moq;
 namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Upload
 {
     [TestFixture]
-    [SetUpFixture]
 
     public class DropBoxUploadTests
     {
@@ -89,7 +88,7 @@ namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.Upload
             var metadata = dropBoxUpload.ExecuteTask(It.IsAny<IDropboxClient>());
             //---------------Test Result -----------------------
             Assert.IsNotNull(metadata);
-            Assert.IsInstanceOf(metadata.GetType(),typeof(DropboxFailureResult));
+            Assert.IsInstanceOf(typeof(DropboxFailureResult), metadata);
         }
 
        

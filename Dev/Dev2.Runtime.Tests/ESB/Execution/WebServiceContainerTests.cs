@@ -10,7 +10,6 @@ using Moq;
 namespace Dev2.Tests.Runtime.ESB.Execution
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime ESB")]
     public class WebServiceContainerTests
     {
@@ -30,7 +29,7 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             }
             catch(Exception ex)
             {
-                NUnit.Framework.Assert.Fail(ex.Message);
+                Assert.Fail(ex.Message);
             }
             //---------------Test Result -----------------------
         }
@@ -51,7 +50,7 @@ namespace Dev2.Tests.Runtime.ESB.Execution
             //---------------Execute Test ----------------------
             var execute = webServiceContainer.Execute(out resultTO, 0);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual(valueFunction, execute);
+            Assert.AreEqual(valueFunction, execute);
         }
     }
 }

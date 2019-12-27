@@ -18,8 +18,7 @@ using NUnit.Framework;
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
-    [TestFixture]
-    [SetUpFixture]    
+    [TestFixture]    
     public class AbstractMultipleFilesActivityTests : BaseActivityUnitTest
     {
         [Test]

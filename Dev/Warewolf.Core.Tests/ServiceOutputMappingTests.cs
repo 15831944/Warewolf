@@ -4,7 +4,6 @@
 namespace Warewolf.Core.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ServiceOutputMappingTests
     {
         [Test]

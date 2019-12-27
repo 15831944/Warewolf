@@ -21,7 +21,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Tests.Activities.ActivityTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class DateTimeActivityTests : BaseActivityUnitTest
     {
         [SetUp]

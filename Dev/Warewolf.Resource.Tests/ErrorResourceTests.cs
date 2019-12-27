@@ -13,7 +13,6 @@ using Warewolf.Resource.Errors;
 namespace Warewolf.Resource.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ErrorResourceTests
     {
         [Test]

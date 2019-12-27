@@ -20,7 +20,6 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
     /// <author>trevor.williams-ros</author>
     /// <date>2013/02/13</date>
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime Hosting")]
     public class RecordsetTests
     {

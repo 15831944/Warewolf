@@ -32,7 +32,6 @@ using Warewolf.Storage;
 namespace Dev2.Tests.Runtime.ESB
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime ESB")]
     public class RemoteWorkflowExecutionContainerTests
     {
@@ -73,7 +72,7 @@ namespace Dev2.Tests.Runtime.ESB
 
             container.Execute(out ErrorResultTO errors, 0);
 
-            NUnit.Framework.Assert.AreEqual("Service not found", errors.MakeDisplayReady(), "Execute did not return an error for a non-existent resource catalog connection.");
+            Assert.AreEqual("Service not found", errors.MakeDisplayReady(), "Execute did not return an error for a non-existent resource catalog connection.");
         }
 
         [Test]
@@ -89,7 +88,7 @@ namespace Dev2.Tests.Runtime.ESB
             //------------Execute Test---------------------------
             container.PerformLogExecution(LogUri, 0);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(LogUri, container.LogExecutionUrl);
+            Assert.AreEqual(LogUri, container.LogExecutionUrl);
         }
 
         [Test]
@@ -106,7 +105,7 @@ namespace Dev2.Tests.Runtime.ESB
             //------------Execute Test---------------------------
             container.PerformLogExecution(LogUri, 0);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(ExpectedLogUri, container.LogExecutionUrl);
+            Assert.AreEqual(ExpectedLogUri, container.LogExecutionUrl);
 
         }
 
@@ -125,7 +124,7 @@ namespace Dev2.Tests.Runtime.ESB
             //------------Execute Test---------------------------
             container.PerformLogExecution(LogUri, 0);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(ExpectedLogUri, container.LogExecutionUrl);
+            Assert.AreEqual(ExpectedLogUri, container.LogExecutionUrl);
         }
 
         static RemoteWorkflowExecutionContainerMock CreateExecutionContainer(IResourceCatalog resourceCatalog, string dataListShape = "<DataList></DataList>", string dataListData = "",string webResponse= "<DataList><NumericGUID>74272317-2264-4564-3988-700350008298</NumericGUID></DataList>")

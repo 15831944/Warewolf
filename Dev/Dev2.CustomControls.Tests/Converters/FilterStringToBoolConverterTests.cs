@@ -7,7 +7,6 @@ using NUnit.Framework;
 namespace Dev2.CustomControls.Tests.Converters
 {
     [TestFixture]
-    [SetUpFixture]
     public class FilterStringToBoolConverterTests
     {
         [Test]

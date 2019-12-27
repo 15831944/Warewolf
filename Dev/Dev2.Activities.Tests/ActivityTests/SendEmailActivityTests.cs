@@ -26,7 +26,6 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Tests.Activities.ActivityTests
 {
     [TestFixture]
-    [SetUpFixture]
     
     public class SendEmailActivityTests : BaseActivityUnitTest
     {
@@ -38,7 +37,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             //------------Execute Test---------------------------
             var activity = GetSendEmailActivity();
             //------------Assert Results-------------------------
-            Assert.IsInstanceOf(activity.GetType(), typeof(DsfActivityAbstract<string>));
+            Assert.IsInstanceOf(typeof(DsfActivityAbstract<string>), activity);
         }
 
         [Test]
@@ -50,7 +49,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             //------------Execute Test---------------------------
             var emailSender = activity.EmailSender;
             //------------Assert Results-------------------------
-            Assert.IsInstanceOf(emailSender.GetType(), typeof(EmailSender));
+            Assert.IsInstanceOf(typeof(EmailSender), emailSender);
         }
 
         [Test]
@@ -65,7 +64,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             var actual = activity.EmailSender;
             //------------Assert Results-------------------------
             Assert.AreEqual(emailSender, actual);
-            Assert.IsNotInstanceOf(actual.GetType(), typeof(EmailSender));
+            Assert.IsNotInstanceOf(typeof(EmailSender), actual);
         }
 
         [Test]

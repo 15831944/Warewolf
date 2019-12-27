@@ -21,7 +21,6 @@ using Moq;
 namespace Dev2.Tests.Activities.TOTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ValidatedObjectTests
     {
         [Test]

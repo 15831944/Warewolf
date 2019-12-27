@@ -16,7 +16,6 @@ using NUnit.Framework;
 namespace Dev2.Tests.Activities.ActivityTests
 {
     [TestFixture]
-    [SetUpFixture]
     public class SqlBulkCopyWrapperTest
     {
         [Test]

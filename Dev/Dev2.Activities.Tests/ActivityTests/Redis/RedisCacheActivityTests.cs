@@ -24,12 +24,10 @@ using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Warewolf.Driver.Redis;
 using Warewolf.Storage;
-using Warewolf.Storage.Interfaces;
 
 namespace Dev2.Tests.Activities.ActivityTests.Redis
 {
     [TestFixture]
-    [SetUpFixture]
     public class RedisCacheActivityTests : BaseActivityTests
     {
         static RedisCacheActivity CreateRedisActivity()
@@ -231,7 +229,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Redis
         private static void TestAnonymousAuth(out string key, out string hostName, out string password, out int port)
         {
             key = "key1";
-            hostName = "192.168.104.19";
+            hostName = Depends.RigOpsIP;
             password = "";
             port = 6380;
         }
@@ -282,15 +280,6 @@ namespace Dev2.Tests.Activities.ActivityTests.Redis
 
         }
 
-        public List<DebugItem> GetDebugInputs(IExecutionEnvironment env, int update)
-        {
-            return base.GetDebugInputs(env, update);
-        }
-
-        public List<DebugItem> GetDebugOutputs(IExecutionEnvironment env, int update)
-        {
-            return base.GetDebugOutputs(env, update);
-        }
         public void TestExecuteTool(IDSFDataObject dataObject)
         {
             base.ExecuteTool(dataObject, 0);

@@ -12,7 +12,6 @@ using NUnit.Framework;
 namespace Dev2.Tests.Runtime.ServiceModel
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime Hosting")]
     public class ComPluginServicesTest
     {
@@ -55,7 +54,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
         {
             var services = new ComPluginServicesMock();
             var result = services.DeserializeService("{'root' : 'hello' }");
-            NUnit.Framework.Assert.AreEqual(result.ResourceID, Guid.Empty);
+            Assert.AreEqual(result.ResourceID, Guid.Empty);
         }
 
         [Test]
@@ -67,16 +66,16 @@ namespace Dev2.Tests.Runtime.ServiceModel
             var services = new ComPluginServicesMock();
             var result = services.DeserializeService(service.ToString());
 
-            NUnit.Framework.Assert.AreEqual(Guid.Parse("89098b76-ac11-40b2-b3e8-b175314cb3bb"), service.ResourceID);
-            NUnit.Framework.Assert.AreEqual("ComPluginService", service.ResourceType);
-            NUnit.Framework.Assert.AreEqual(Guid.Parse("00746beb-46c1-48a8-9492-e2d20817fcd5"), service.Source.ResourceID);
-            NUnit.Framework.Assert.AreEqual("ComPluginTesterSource", service.Source.ResourceName);
-            NUnit.Framework.Assert.AreEqual("Dev2.Terrain.Mountain", service.Namespace);
-            NUnit.Framework.Assert.AreEqual("Echo", service.Method.Name);
+            Assert.AreEqual(Guid.Parse("89098b76-ac11-40b2-b3e8-b175314cb3bb"), service.ResourceID);
+            Assert.AreEqual("ComPluginService", service.ResourceType);
+            Assert.AreEqual(Guid.Parse("00746beb-46c1-48a8-9492-e2d20817fcd5"), service.Source.ResourceID);
+            Assert.AreEqual("ComPluginTesterSource", service.Source.ResourceName);
+            Assert.AreEqual("Dev2.Terrain.Mountain", service.Namespace);
+            Assert.AreEqual("Echo", service.Method.Name);
 
-            NUnit.Framework.Assert.AreEqual("<root>hello</root>", service.Method.Parameters.First(p => p.Name == "text").DefaultValue);
+            Assert.AreEqual("<root>hello</root>", service.Method.Parameters.First(p => p.Name == "text").DefaultValue);
 
-            NUnit.Framework.Assert.AreEqual("reverb", service.Recordsets[0].Fields.First(f => f.Name == "echo").Alias);
+            Assert.AreEqual("reverb", service.Recordsets[0].Fields.First(f => f.Name == "echo").Alias);
         }
 
         [Test]
@@ -85,7 +84,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             var services = new ComPluginServicesMock();
             var result = (ComPluginService)services.DeserializeService(null, "ComPluginService");
 
-            NUnit.Framework.Assert.AreEqual(result.ResourceID, Guid.Empty);
+            Assert.AreEqual(result.ResourceID, Guid.Empty);
         }
 
         [Test]
@@ -96,16 +95,16 @@ namespace Dev2.Tests.Runtime.ServiceModel
             var services = new ComPluginServicesMock();
             var service = (ComPluginService)services.DeserializeService(xml, "ComPluginService");
 
-            NUnit.Framework.Assert.AreEqual(Guid.Parse("89098b76-ac11-40b2-b3e8-b175314cb3bb"), service.ResourceID);
-            NUnit.Framework.Assert.AreEqual("ComPluginService", service.ResourceType);
-            NUnit.Framework.Assert.AreEqual(Guid.Parse("00746beb-46c1-48a8-9492-e2d20817fcd5"), service.Source.ResourceID);
-            NUnit.Framework.Assert.AreEqual("ComPluginTesterSource", service.Source.ResourceName);
-            NUnit.Framework.Assert.AreEqual("Dev2.Terrain.Mountain", service.Namespace);
-            NUnit.Framework.Assert.AreEqual("Echo", service.Method.Name);
+            Assert.AreEqual(Guid.Parse("89098b76-ac11-40b2-b3e8-b175314cb3bb"), service.ResourceID);
+            Assert.AreEqual("ComPluginService", service.ResourceType);
+            Assert.AreEqual(Guid.Parse("00746beb-46c1-48a8-9492-e2d20817fcd5"), service.Source.ResourceID);
+            Assert.AreEqual("ComPluginTesterSource", service.Source.ResourceName);
+            Assert.AreEqual("Dev2.Terrain.Mountain", service.Namespace);
+            Assert.AreEqual("Echo", service.Method.Name);
 
-            NUnit.Framework.Assert.AreEqual("<root>hello</root>", service.Method.Parameters.First(p => p.Name == "text").DefaultValue);
+            Assert.AreEqual("<root>hello</root>", service.Method.Parameters.First(p => p.Name == "text").DefaultValue);
 
-            NUnit.Framework.Assert.AreEqual("reverb", service.Recordsets[0].Fields.First(f => f.Name == "echo").Alias);
+            Assert.AreEqual("reverb", service.Recordsets[0].Fields.First(f => f.Name == "echo").Alias);
         }
 
         #endregion
@@ -117,7 +116,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
         {
             var services = new ComPluginServices();
             var result = services.Namespaces(null, Guid.Empty, Guid.Empty);
-            NUnit.Framework.Assert.AreEqual(0, result.Count);
+            Assert.AreEqual(0, result.Count);
         }
 
         [Test]
@@ -125,7 +124,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
         {
             var services = new ComPluginServices();
             var result = services.Namespaces(new ComPluginSource(), Guid.Empty, Guid.Empty);
-            NUnit.Framework.Assert.AreEqual(0, result.Count);
+            Assert.AreEqual(0, result.Count);
         }
 
         [Test]
@@ -140,7 +139,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             var services = new ComPluginServices();
             var result = services.Namespaces(source, workspaceID, Guid.Empty);
 
-            NUnit.Framework.Assert.IsTrue(result.Count > 0);
+            Assert.IsTrue(result.Count > 0);
         }
 
         #endregion
@@ -152,7 +151,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
         {
             var services = new ComPluginServices();
             var result = services.Methods(null, Guid.Empty, Guid.Empty);
-            NUnit.Framework.Assert.AreEqual(0, result.Count);
+            Assert.AreEqual(0, result.Count);
         }
 
         [Test]
@@ -160,7 +159,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
         {
             var services = new ComPluginServices();
             var result = services.Methods(new ComPluginService(), Guid.Empty, Guid.Empty);
-            NUnit.Framework.Assert.AreEqual(0, result.Count);
+            Assert.AreEqual(0, result.Count);
         }
 
         [Test]
@@ -174,7 +173,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             var services = new ComPluginServices();
             var result = services.Methods(service, workspaceID, Guid.Empty);
 
-            NUnit.Framework.Assert.IsTrue(result.Count > 5, "Not enough items in COM server method list.");
+            Assert.IsTrue(result.Count > 5, "Not enough items in COM server method list.");
         }
 
         #endregion
@@ -198,7 +197,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             {
                 //Calls the execution correctly;
                 
-                NUnit.Framework.Assert.AreEqual("[Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified", e.InnerException.Message);
+                Assert.AreEqual("[Microsoft][ODBC Driver Manager] Data source name not found and no default driver specified", e.InnerException.Message);
                 
             }
             
@@ -213,7 +212,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             //------------Execute Test---------------------------
             var result = services.Test(null, out string serializedResult);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(result[0].HasErrors);
+            Assert.IsTrue(result[0].HasErrors);
         }
 
         [Test]
@@ -224,7 +223,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             //------------Execute Test---------------------------
             var result = services.Test("xxx", out string serializedResult);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(result[0].HasErrors);
+            Assert.IsTrue(result[0].HasErrors);
         }
 
         #endregion

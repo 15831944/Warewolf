@@ -11,7 +11,6 @@ using System.Text;
 namespace Dev2.Tests.Runtime.Search
 {
     [TestFixture]
-    [SetUpFixture]
     public class VariableListSearcherTests
     {
         [Test]
@@ -19,14 +18,14 @@ namespace Dev2.Tests.Runtime.Search
         public void Constructor_NullResourceCatalog_ExpectException()
         {
             var variableListSearcher = new VariableListSearcher(null);
-            NUnit.Framework.Assert.IsNull(variableListSearcher);
+            Assert.IsNull(variableListSearcher);
         }
 
         [Test]
         public void Constructor_ResourceCatalogTestCatalog_ExpectNoException()
         {
             var variableListSearcher = new VariableListSearcher(new Mock<IResourceCatalog>().Object);
-            NUnit.Framework.Assert.IsNotNull(variableListSearcher);
+            Assert.IsNotNull(variableListSearcher);
         }
 
         [Test]
@@ -59,13 +58,13 @@ namespace Dev2.Tests.Runtime.Search
 
             var variableListSearcher = new VariableListSearcher(mockResourceCatalog.Object);
             var searchResults = variableListSearcher.GetSearchResults(searchValue);
-            NUnit.Framework.Assert.AreEqual(1, searchResults.Count);
+            Assert.AreEqual(1, searchResults.Count);
             var searchResult = searchResults[0];
-            NUnit.Framework.Assert.AreEqual(Guid.Empty, searchResult.ResourceId);
-            NUnit.Framework.Assert.AreEqual("scalar1", searchResult.Match);
-            NUnit.Framework.Assert.AreEqual("Test Resource", searchResult.Name);
-            NUnit.Framework.Assert.AreEqual("Folder", searchResult.Path);
-            NUnit.Framework.Assert.AreEqual(Common.Interfaces.Search.SearchItemType.Scalar, searchResult.Type);
+            Assert.AreEqual(Guid.Empty, searchResult.ResourceId);
+            Assert.AreEqual("scalar1", searchResult.Match);
+            Assert.AreEqual("Test Resource", searchResult.Name);
+            Assert.AreEqual("Folder", searchResult.Path);
+            Assert.AreEqual(Common.Interfaces.Search.SearchItemType.Scalar, searchResult.Type);
         }
 
 
@@ -101,7 +100,7 @@ namespace Dev2.Tests.Runtime.Search
 
             var variableListSearcher = new VariableListSearcher(mockResourceCatalog.Object);
             var searchResults = variableListSearcher.GetSearchResults(searchValue);
-            NUnit.Framework.Assert.AreEqual(0, searchResults.Count);            
+            Assert.AreEqual(0, searchResults.Count);            
         }
 
         [Test]
@@ -135,19 +134,19 @@ namespace Dev2.Tests.Runtime.Search
 
             var variableListSearcher = new VariableListSearcher(mockResourceCatalog.Object);
             var searchResults = variableListSearcher.GetSearchResults(searchValue);
-            NUnit.Framework.Assert.AreEqual(2, searchResults.Count);
+            Assert.AreEqual(2, searchResults.Count);
             var searchResult = searchResults[0];
-            NUnit.Framework.Assert.AreEqual(Guid.Empty, searchResult.ResourceId);
-            NUnit.Framework.Assert.AreEqual("Recset", searchResult.Match);
-            NUnit.Framework.Assert.AreEqual("Test Resource", searchResult.Name);
-            NUnit.Framework.Assert.AreEqual("Folder", searchResult.Path);
-            NUnit.Framework.Assert.AreEqual(Common.Interfaces.Search.SearchItemType.RecordSet, searchResult.Type);
+            Assert.AreEqual(Guid.Empty, searchResult.ResourceId);
+            Assert.AreEqual("Recset", searchResult.Match);
+            Assert.AreEqual("Test Resource", searchResult.Name);
+            Assert.AreEqual("Folder", searchResult.Path);
+            Assert.AreEqual(Common.Interfaces.Search.SearchItemType.RecordSet, searchResult.Type);
             searchResult = searchResults[1];
-            NUnit.Framework.Assert.AreEqual(Guid.Empty, searchResult.ResourceId);
-            NUnit.Framework.Assert.AreEqual("Recset", searchResult.Match);
-            NUnit.Framework.Assert.AreEqual("Test Resource", searchResult.Name);
-            NUnit.Framework.Assert.AreEqual("Folder", searchResult.Path);
-            NUnit.Framework.Assert.AreEqual(Common.Interfaces.Search.SearchItemType.RecordSet, searchResult.Type);
+            Assert.AreEqual(Guid.Empty, searchResult.ResourceId);
+            Assert.AreEqual("Recset", searchResult.Match);
+            Assert.AreEqual("Test Resource", searchResult.Name);
+            Assert.AreEqual("Folder", searchResult.Path);
+            Assert.AreEqual(Common.Interfaces.Search.SearchItemType.RecordSet, searchResult.Type);
         }
 
 
@@ -184,13 +183,13 @@ namespace Dev2.Tests.Runtime.Search
 
             var variableListSearcher = new VariableListSearcher(mockResourceCatalog.Object);
             var searchResults = variableListSearcher.GetSearchResults(searchValue);
-            NUnit.Framework.Assert.AreEqual(1, searchResults.Count);
+            Assert.AreEqual(1, searchResults.Count);
             var searchResult = searchResults[0];
-            NUnit.Framework.Assert.AreEqual(Guid.Empty, searchResult.ResourceId);
-            NUnit.Framework.Assert.AreEqual("@Person", searchResult.Match);
-            NUnit.Framework.Assert.AreEqual("Test Resource", searchResult.Name);
-            NUnit.Framework.Assert.AreEqual("Folder", searchResult.Path);
-            NUnit.Framework.Assert.AreEqual(Common.Interfaces.Search.SearchItemType.Object, searchResult.Type);
+            Assert.AreEqual(Guid.Empty, searchResult.ResourceId);
+            Assert.AreEqual("@Person", searchResult.Match);
+            Assert.AreEqual("Test Resource", searchResult.Name);
+            Assert.AreEqual("Folder", searchResult.Path);
+            Assert.AreEqual(Common.Interfaces.Search.SearchItemType.Object, searchResult.Type);
             
         }
 
@@ -230,37 +229,37 @@ namespace Dev2.Tests.Runtime.Search
 
             var variableListSearcher = new VariableListSearcher(mockResourceCatalog.Object);
             var searchResults = variableListSearcher.GetSearchResults(searchValue);
-            NUnit.Framework.Assert.AreEqual(5, searchResults.Count);
+            Assert.AreEqual(5, searchResults.Count);
             var searchResult = searchResults[0];
-            NUnit.Framework.Assert.AreEqual(Guid.Empty, searchResult.ResourceId);
-            NUnit.Framework.Assert.AreEqual("scalar1", searchResult.Match);
-            NUnit.Framework.Assert.AreEqual("Test Resource", searchResult.Name);
-            NUnit.Framework.Assert.AreEqual("Folder", searchResult.Path);
-            NUnit.Framework.Assert.AreEqual(Common.Interfaces.Search.SearchItemType.Scalar, searchResult.Type);
+            Assert.AreEqual(Guid.Empty, searchResult.ResourceId);
+            Assert.AreEqual("scalar1", searchResult.Match);
+            Assert.AreEqual("Test Resource", searchResult.Name);
+            Assert.AreEqual("Folder", searchResult.Path);
+            Assert.AreEqual(Common.Interfaces.Search.SearchItemType.Scalar, searchResult.Type);
             searchResult = searchResults[1];
-            NUnit.Framework.Assert.AreEqual(Guid.Empty, searchResult.ResourceId);
-            NUnit.Framework.Assert.AreEqual("scalar2", searchResult.Match);
-            NUnit.Framework.Assert.AreEqual("Test Resource", searchResult.Name);
-            NUnit.Framework.Assert.AreEqual("Folder", searchResult.Path);
-            NUnit.Framework.Assert.AreEqual(Common.Interfaces.Search.SearchItemType.Scalar, searchResult.Type);
+            Assert.AreEqual(Guid.Empty, searchResult.ResourceId);
+            Assert.AreEqual("scalar2", searchResult.Match);
+            Assert.AreEqual("Test Resource", searchResult.Name);
+            Assert.AreEqual("Folder", searchResult.Path);
+            Assert.AreEqual(Common.Interfaces.Search.SearchItemType.Scalar, searchResult.Type);
             searchResult = searchResults[2];
-            NUnit.Framework.Assert.AreEqual(Guid.Empty, searchResult.ResourceId);
-            NUnit.Framework.Assert.AreEqual("Recset", searchResult.Match);
-            NUnit.Framework.Assert.AreEqual("Test Resource", searchResult.Name);
-            NUnit.Framework.Assert.AreEqual("Folder", searchResult.Path);
-            NUnit.Framework.Assert.AreEqual(Common.Interfaces.Search.SearchItemType.RecordSet, searchResult.Type);
+            Assert.AreEqual(Guid.Empty, searchResult.ResourceId);
+            Assert.AreEqual("Recset", searchResult.Match);
+            Assert.AreEqual("Test Resource", searchResult.Name);
+            Assert.AreEqual("Folder", searchResult.Path);
+            Assert.AreEqual(Common.Interfaces.Search.SearchItemType.RecordSet, searchResult.Type);
             searchResult = searchResults[3];
-            NUnit.Framework.Assert.AreEqual(Guid.Empty, searchResult.ResourceId);
-            NUnit.Framework.Assert.AreEqual("Recset", searchResult.Match);
-            NUnit.Framework.Assert.AreEqual("Test Resource", searchResult.Name);
-            NUnit.Framework.Assert.AreEqual("Folder", searchResult.Path);
-            NUnit.Framework.Assert.AreEqual(Common.Interfaces.Search.SearchItemType.RecordSet, searchResult.Type);
+            Assert.AreEqual(Guid.Empty, searchResult.ResourceId);
+            Assert.AreEqual("Recset", searchResult.Match);
+            Assert.AreEqual("Test Resource", searchResult.Name);
+            Assert.AreEqual("Folder", searchResult.Path);
+            Assert.AreEqual(Common.Interfaces.Search.SearchItemType.RecordSet, searchResult.Type);
             searchResult = searchResults[4];
-            NUnit.Framework.Assert.AreEqual(Guid.Empty, searchResult.ResourceId);
-            NUnit.Framework.Assert.AreEqual("@Person", searchResult.Match);
-            NUnit.Framework.Assert.AreEqual("Test Resource", searchResult.Name);
-            NUnit.Framework.Assert.AreEqual("Folder", searchResult.Path);
-            NUnit.Framework.Assert.AreEqual(Common.Interfaces.Search.SearchItemType.Object, searchResult.Type);
+            Assert.AreEqual(Guid.Empty, searchResult.ResourceId);
+            Assert.AreEqual("@Person", searchResult.Match);
+            Assert.AreEqual("Test Resource", searchResult.Name);
+            Assert.AreEqual("Folder", searchResult.Path);
+            Assert.AreEqual(Common.Interfaces.Search.SearchItemType.Object, searchResult.Type);
 
         }
     }

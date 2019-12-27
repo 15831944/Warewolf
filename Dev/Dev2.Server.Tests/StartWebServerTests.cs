@@ -19,7 +19,6 @@ using Warewolf;
 namespace Dev2.Server.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class StartWebServerTests
     {
         [Test]

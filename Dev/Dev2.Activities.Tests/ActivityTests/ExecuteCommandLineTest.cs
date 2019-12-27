@@ -27,7 +27,6 @@ namespace Dev2.Tests.Activities.ActivityTests
     /// Summary description for CountRecordsTest
     /// </summary>
     [TestFixture]
-    [SetUpFixture]
     public class ExecuteCommandLineTest : BaseActivityUnitTest
     {
         /// <summary>
@@ -81,7 +80,6 @@ namespace Dev2.Tests.Activities.ActivityTests
         }
 
         [Test]
-        [DeploymentItem(CommandLineToolName)]
         public void OnExecuteWhereConsoleDoesNothingExpectNothingForResult()
         {
             //------------Setup for test--------------------------

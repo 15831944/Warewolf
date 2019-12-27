@@ -17,7 +17,6 @@ using Warewolf.Interfaces;
 namespace Dev2.Tests.Activities.Activities.Redis
 {
     [TestFixture]
-    [SetUpFixture]
     public class RedisCacheTests
     {
         [Test]

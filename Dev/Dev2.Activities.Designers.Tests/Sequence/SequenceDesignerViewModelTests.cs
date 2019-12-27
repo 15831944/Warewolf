@@ -64,7 +64,7 @@ namespace Dev2.Activities.Designers.Tests.Sequence
             sequenceDesignerViewModel.Validate();
             //------------Assert Results-------------------------
             Assert.IsNotNull(sequenceDesignerViewModel);
-            Assert.IsInstanceOf(sequenceDesignerViewModel.GetType(), typeof(ActivityDesignerViewModel));
+            Assert.IsInstanceOf(typeof(ActivityDesignerViewModel), sequenceDesignerViewModel);
             Assert.AreEqual("Created Sequence", sequenceDesignerViewModel.ModelItem.GetProperty("DisplayName"));
         }
 

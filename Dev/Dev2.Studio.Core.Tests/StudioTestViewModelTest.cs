@@ -20,7 +20,6 @@ using Warewolf.Studio.ViewModels;
 namespace Dev2.Core.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class StudioTestViewModelTest
     {
         [SetUp]

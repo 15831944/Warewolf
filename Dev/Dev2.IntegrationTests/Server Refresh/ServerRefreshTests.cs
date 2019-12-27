@@ -13,7 +13,6 @@ using NUnit.Framework;
 namespace Dev2.Integration.Tests.Server_Refresh
 {
     [TestFixture]
-    [SetUpFixture]
     public class ServerRefreshTests
     {
         const string PassResult = @"C:\ProgramData\Warewolf\Resources\PassResult.bite";
@@ -30,8 +29,8 @@ namespace Dev2.Integration.Tests.Server_Refresh
 
         public void Run_a_workflow_to_test_server_refresh()
         {
-            NUnit.Framework.Assert.IsTrue(File.Exists(PassResult));
-            NUnit.Framework.Assert.IsFalse(File.Exists(PassResultOld));
+            Assert.IsTrue(File.Exists(PassResult));
+            Assert.IsFalse(File.Exists(PassResultOld));
 
             SetupPermissions();
             var explorerRefresh = ExecuteRequest(new Uri("http://localhost:3142/services/FetchExplorerItemsService.json?ReloadResourceCatalogue=true"));
@@ -63,13 +62,13 @@ namespace Dev2.Integration.Tests.Server_Refresh
             var passRequest2Result = passRequest2.Result;
             var passRequest3Result = passRequest3.Result;
             var passRequest4Result = passRequest4.Result;
-            NUnit.Framework.StringAssert.Contains(failRequest1Result, "Resource RefreshTest not found");
-            NUnit.Framework.StringAssert.Contains(failRequest2Result, "Resource RefreshTest not found");
-            NUnit.Framework.StringAssert.Contains(failRequest3Result, "Resource RefreshTest not found");
-            NUnit.Framework.StringAssert.Contains(passRequest1Result, "Pass");
-            NUnit.Framework.StringAssert.Contains(passRequest2Result, "Pass");
-            NUnit.Framework.StringAssert.Contains(passRequest3Result, "Pass");
-            NUnit.Framework.StringAssert.Contains(passRequest4Result, "Pass");
+            StringAssert.Contains(failRequest1Result, "Resource RefreshTest not found");
+            StringAssert.Contains(failRequest2Result, "Resource RefreshTest not found");
+            StringAssert.Contains(failRequest3Result, "Resource RefreshTest not found");
+            StringAssert.Contains(passRequest1Result, "Pass");
+            StringAssert.Contains(passRequest2Result, "Pass");
+            StringAssert.Contains(passRequest3Result, "Pass");
+            StringAssert.Contains(passRequest4Result, "Pass");
             explorerRefresh = ExecuteRequest(new Uri("http://localhost:3142/services/FetchExplorerItemsService.json?ReloadResourceCatalogue=true"));
         }
 

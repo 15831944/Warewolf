@@ -18,10 +18,12 @@ using Dev2.Studio.Interfaces;
 using NUnit.Framework;
 using Moq;
 using System;
+using System.Threading;
 
 namespace Dev2.Activities.Designers.Tests.GatherSystemInformation
 {
     [TestFixture]
+    [Apartment(ApartmentState.STA)]
     public class GatherSystemInformationDesignerViewModelTests
     {
         [Test]
@@ -73,7 +75,7 @@ namespace Dev2.Activities.Designers.Tests.GatherSystemInformation
             var modelItem = ModelItemUtils.CreateModelItem(new DsfGatherSystemInformationActivity());
             var viewModel = new GatherSystemInformationDesignerViewModel(modelItem);
             dynamic mi = viewModel.ModelItem;
-            NUnit.Framework.Assert.AreEqual(2, mi.SystemInformationCollection.Count);
+            Assert.AreEqual(2, mi.SystemInformationCollection.Count);
         }
 
         [Test]
@@ -90,7 +92,7 @@ namespace Dev2.Activities.Designers.Tests.GatherSystemInformation
             };
             var viewModel = new GatherSystemInformationDesignerViewModel(CreateModelItem(items));
             dynamic mi = viewModel.ModelItem;
-            NUnit.Framework.Assert.AreEqual(5, mi.SystemInformationCollection.Count);
+            Assert.AreEqual(5, mi.SystemInformationCollection.Count);
         }
 
 

@@ -27,7 +27,6 @@ using System.Threading.Tasks;
 namespace Warewolf.Studio.ViewModels.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ManageSqliteSourceViewModelTests
     {
         Mock<IManageDatabaseSourceModel> _updateManagerMock;

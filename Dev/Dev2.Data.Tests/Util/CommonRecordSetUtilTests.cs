@@ -19,7 +19,6 @@ using Moq;
 namespace Dev2.Data.Tests.Util
 {
     [TestFixture]
-    [SetUpFixture]
     public class CommonRecordSetUtilTests
     {
         [Test]

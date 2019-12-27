@@ -22,7 +22,6 @@ using Dev2.Common;
 namespace Warewolf.Studio.ViewModels.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ManageNewServerViewModelTests
     {
         #region Fields
@@ -487,7 +486,7 @@ namespace Warewolf.Studio.ViewModels.Tests
 
             //assert
             _requestServiceNameViewModelMock.Verify(it => it.ShowSaveDialog());
-            Assert.IsInstanceOf(_targetRequestServiceViewModel.Item.GetType(), typeof(ServerSource));
+            Assert.IsInstanceOf(typeof(ServerSource), _targetRequestServiceViewModel.Item);
             _updateManagerMock.Verify(it => it.Save(_targetRequestServiceViewModel.Item));
             Assert.AreEqual(expectedAuthenticationType, _targetRequestServiceViewModel.Item.AuthenticationType);
             Assert.AreEqual(expectedAddress, _targetRequestServiceViewModel.Item.Address);

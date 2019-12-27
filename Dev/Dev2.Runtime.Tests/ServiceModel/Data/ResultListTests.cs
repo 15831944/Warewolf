@@ -16,7 +16,6 @@ using Newtonsoft.Json;
 namespace Dev2.Tests.Runtime.ServiceModel.Data
 {
     [TestFixture]
-    [SetUpFixture]
     [Category("Runtime Hosting")]
     public class ResultListTests
     {

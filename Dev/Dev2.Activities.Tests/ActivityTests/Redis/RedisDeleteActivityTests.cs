@@ -21,7 +21,6 @@ using Warewolf.Storage.Interfaces;
 namespace Dev2.Tests.Activities.ActivityTests.Redis
 {
     [TestFixture]
-    [SetUpFixture]
     public class RedisRemoveActivityTests : BaseActivityTests
     {
         static RedisRemoveActivity CreateRedisRemoveActivity()

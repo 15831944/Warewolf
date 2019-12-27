@@ -18,7 +18,6 @@ using WarewolfParserInterop;
 namespace Dev2.Data.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class WarewolfIteratorTests
     {
         [Test]

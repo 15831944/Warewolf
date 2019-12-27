@@ -14,7 +14,6 @@ using NUnit.Framework;
 namespace Dev2.Core.Tests.AppResources.Browsers
 {
     [TestFixture]
-    [SetUpFixture]
 	[Category("Studio Resources Core")]
     public class BrowserPopupControllerTests
     {

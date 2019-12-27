@@ -13,7 +13,6 @@ using NUnit.Framework;
 namespace Dev2.Core.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class DebugProviderTests
     {
     }

@@ -15,6 +15,7 @@ using Dev2.TO;
 using NUnit.Framework;
 using Moq;
 using System.Activities.Presentation.Model;
+using System.Threading;
 using Dev2.Common.Interfaces.Help;
 using Dev2.Studio.Interfaces;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
@@ -23,6 +24,7 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 namespace Dev2.Activities.Designers.Tests.MultiAssignObjectTests
 {
     [TestFixture]
+    [Apartment(ApartmentState.STA)]
     public class MultiAssignObjectViewModelTests
     {
         [Test]
@@ -34,7 +36,7 @@ namespace Dev2.Activities.Designers.Tests.MultiAssignObjectTests
             //------------Execute Test---------------------------
             var dsfMultiAssignObjectActivityViewModel = CreateDsfMultiAssignObjectActivityViewModel();
             //------------Assert Results-------------------------
-            Assert.IsInstanceOf(dsfMultiAssignObjectActivityViewModel.GetType(), typeof(ActivityDesignerViewModel));
+            Assert.IsInstanceOf(typeof(ActivityDesignerViewModel), dsfMultiAssignObjectActivityViewModel);
         }
 
         [Test]
@@ -46,7 +48,7 @@ namespace Dev2.Activities.Designers.Tests.MultiAssignObjectTests
             //------------Execute Test---------------------------
             var dsfMultiAssignObjectActivityViewModel = CreateDsfMultiAssignObjectActivityViewModel();
             //------------Assert Results-------------------------
-            Assert.IsInstanceOf(dsfMultiAssignObjectActivityViewModel.GetType(), typeof(ActivityCollectionDesignerViewModel<AssignObjectDTO>));
+            Assert.IsInstanceOf(typeof(ActivityCollectionDesignerViewModel<AssignObjectDTO>), dsfMultiAssignObjectActivityViewModel);
         }
 
         [Test]

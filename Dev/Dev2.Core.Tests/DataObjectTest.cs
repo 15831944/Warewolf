@@ -30,7 +30,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Dev2.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class DataObjectTest
     {
 

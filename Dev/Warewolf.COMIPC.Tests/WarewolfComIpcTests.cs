@@ -22,7 +22,6 @@ using System.Diagnostics;
 namespace WarewolfCOMIPC.Test
 {
     [TestFixture]
-    [SetUpFixture]
     public class WarewolfComIpcTests
     {
         [OneTimeSetUp]
@@ -45,8 +44,6 @@ namespace WarewolfCOMIPC.Test
         [Test]
         [Author("Hagashen Naidu")]
         [Category("WarewolfCOMIPCClient_Execute")]
-        [DeploymentItem("Warewolf.COMIPC.exe")]
-        [DeploymentItem("Dev2.Runtime.Tests.dll")]
         public void WarewolfCOMIPCClient_Execute_GetType_ShouldReturnType()
         {
             //------------Setup for test--------------------------
@@ -61,8 +58,6 @@ namespace WarewolfCOMIPC.Test
 
         [Test]
         [Author("Nkosinathi Sangweni")]
-        [DeploymentItem("Warewolf.COMIPC.exe")]
-        [DeploymentItem("Dev2.Runtime.Tests.dll")]
         public void GetMethods_GivenConnection_ShouldReturnMethodList()
         {
             //---------------Set up test pack-------------------
@@ -79,8 +74,6 @@ namespace WarewolfCOMIPC.Test
         
         [Test]
         [Author("Nkosinathi Sangweni")]
-        [DeploymentItem("Dev2.Runtime.Tests.dll")]
-        [DeploymentItem("Warewolf.COMIPC.exe"),DeploymentItem("Warewolf.COMIPC.pdb")]
         public void ExecuteSpecifiedMethod_GivenConnection_ReturnSuccess()
         {
             //---------------Set up test pack-------------------
@@ -98,8 +91,6 @@ namespace WarewolfCOMIPC.Test
         [Test]
         [Author("Siphamandla Dube")]
         [Category(nameof(WarewolfCOMIPC))]
-        [DeploymentItem("Dev2.Runtime.Tests.dll")]
-        [DeploymentItem("Warewolf.COMIPC.exe"), DeploymentItem("Warewolf.COMIPC.pdb")]
         public void ExecuteSpecifiedMethod_Instance_IsNotNull()
         {
             //---------------Arrange----------------------------

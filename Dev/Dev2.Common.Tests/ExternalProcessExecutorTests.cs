@@ -18,7 +18,6 @@ using Warewolf.OS;
 namespace Dev2.Common.Tests
 {
     [TestFixture]
-    [SetUpFixture]
     public class ExternalProcessExecutorTests
     {
         [Test]

@@ -29,7 +29,6 @@ using Dev2.Utilities;
 namespace Dev2.Tests.Activities.ActivityTests
 {
     [TestFixture]
-    [SetUpFixture]
 
     public class DotNetMultiAssignObjectActivityTest : BaseActivityUnitTest
     {
