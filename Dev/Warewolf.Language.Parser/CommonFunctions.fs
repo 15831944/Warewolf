@@ -5,7 +5,6 @@ open DataStorage
 open System.Diagnostics.CodeAnalysis
 open System
 
-[<ExcludeFromCodeCoverage>]
 type WarewolfEvalResult = 
     | WarewolfAtomResult of WarewolfAtom
     | WarewolfAtomListresult of WarewolfParserInterop.WarewolfAtomList<WarewolfAtomRecord>

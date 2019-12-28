@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp2.2;net48</TargetFrameworks>
+    <TargetFrameworks>netcoreapp2.2</TargetFrameworks>
 
     <IsPackable>false</IsPackable>
 
@@ -19,8 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Dev2.Infrastructure.Tests\Dev2.Infrastructure.Tests.csproj" />
     <ProjectReference Include="..\Warewolf.Driver.RabbitMQ\Warewolf.Driver.RabbitMQ.csproj" />
+    <ProjectReference Include="..\Warewolf.UnitTestAttributes\Warewolf.UnitTestAttributes.csproj" />
   </ItemGroup>
 
 </Project>

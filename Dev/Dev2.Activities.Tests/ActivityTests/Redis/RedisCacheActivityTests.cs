@@ -17,6 +17,7 @@ using Dev2.Activities.RedisCache;
 using Dev2.Common;
 using Dev2.Data.ServiceModel;
 using Dev2.Diagnostics;
+using Dev2.Infrastructure.Tests;
 using Dev2.Interfaces;
 using Dev2.Runtime.Interfaces;
 using NUnit.Framework;

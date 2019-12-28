@@ -26,6 +26,7 @@ using Moq;
 using Newtonsoft.Json;
 using Warewolf.Test.Agent;
 using System.Linq;
+using Dev2.Infrastructure.Tests;
 
 namespace Dev2.Tests.Runtime.Services
 {

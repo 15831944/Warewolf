@@ -17,6 +17,7 @@ using IConnection = RabbitMQ.Client.IConnection;
 using Warewolf.Data;
 using System.Threading.Tasks;
 using Warewolf.Streams;
+using Warewolf.UnitTestAttributes;
 
 namespace Warewolf.Driver.RabbitMQ.Tests
 {
@@ -75,6 +76,7 @@ namespace Warewolf.Driver.RabbitMQ.Tests
         [Test]
         [Author("Siphamandla Dube")]
         [Category(nameof(RabbitMQSource))]
+        [Depends(Depends.ContainerType.RabbitMQ)]
         public void RabbitMQSource_Publish_Success()
         {
             //----------------------Arrange----------------------
@@ -121,7 +123,7 @@ namespace Warewolf.Driver.RabbitMQ.Tests
 
             public TestPublishSuccess()
             {
-                _factory = new ConnectionFactory() { HostName = Depends.SVRDEVIP, UserName = "test", Password = "test" };
+                _factory = new ConnectionFactory() { HostName = Depends.RigOpsIP, UserName = "test", Password = "test" };
             }
 
             private IConnection NewConnection()

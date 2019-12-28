@@ -29,7 +29,7 @@ namespace Dev2.Tests.Activities.TOTests
             //------------Setup for test--------------------------
             var dataObject = new DsfDataObject(xmldata: string.Empty, dataListId: Guid.NewGuid());
             dataObject.Environment.Assign("[[a]]", "10",0);
-            dataObject.Environment.Assign("[[as]]", "hellow world", 0);
+            dataObject.Environment.Assign("[[as]]", "hello world", 0);
             dataObject.Environment.Assign("[[af]]", "9.9", 0);
             dataObject.Environment.Assign("[[b]]", "20", 0);
             dataObject.Environment.Assign("[[rec(1).a]]", "50", 0);
@@ -47,7 +47,7 @@ namespace Dev2.Tests.Activities.TOTests
             const string dnf = "af";
             var scalarsSn = new[] { "[[x().z]]", "[[x]]", sn, sns, snf };
             var scalarsDn = new[] { "z", "x", dn, dns, dnf };
-            var scalarsV = new[] { new object[] { null }, (object)null, 10, "hellow world", 9.9 };
+            var scalarsV = new[] { new object[] { null }, (object)null, 10, "hello world", 9.9 };
             for (int i = 0; i < scalarsSn.Length; i++)
             {
                 var jsonMappingEvaluatedLocal = new JsonMappingEvaluated(
@@ -60,7 +60,7 @@ namespace Dev2.Tests.Activities.TOTests
                 jsonMappingEvaluatedLocal.Simple.DestinationName.Should().Be(scalarsDn[i]);
                 if (i != 0)
                 {
-                    jsonMappingEvaluatedLocal.EvalResult.Should().Be(dataObject.Environment.EvalForJson(scalarsSn[i]));
+                    Assert.AreEqual(jsonMappingEvaluatedLocal.EvalResult, dataObject.Environment.EvalForJson(scalarsSn[i]));
                     jsonMappingEvaluatedLocal.GetEvalResultAsObject().Should().Be(scalarsV[i]);
                 }
                 jsonMappingEvaluatedLocal.Count.Should().Be(1);
@@ -75,7 +75,7 @@ namespace Dev2.Tests.Activities.TOTests
             jsonMappingEvaluated.Simple.Should().NotBeNull();
             jsonMappingEvaluated.Simple.SourceName.Should().Be(sn);
             jsonMappingEvaluated.Simple.DestinationName.Should().Be(dn);
-            ((CommonFunctions.WarewolfEvalResult.WarewolfAtomListresult)jsonMappingEvaluated.EvalResult).Item.GetValue(0).Should().Be(
+            Assert.AreEqual(((CommonFunctions.WarewolfEvalResult.WarewolfAtomListresult)jsonMappingEvaluated.EvalResult).Item.GetValue(0), 
                 ((CommonFunctions.WarewolfEvalResult.WarewolfAtomListresult)dataObject.Environment.Eval(sn,0)).Item.GetValue(0));
             jsonMappingEvaluated.Count.Should().Be(1);
 

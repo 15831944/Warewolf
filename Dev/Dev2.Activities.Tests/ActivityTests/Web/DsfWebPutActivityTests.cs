@@ -18,10 +18,10 @@ using Dev2.Common.Interfaces.Core.Graph;
 using Dev2.Common.Interfaces.DB;
 using Dev2.Data.TO;
 using Dev2.DynamicServices;
+using Dev2.Infrastructure.Tests;
 using Dev2.Interfaces;
 using Dev2.Runtime.Interfaces;
 using Dev2.Runtime.ServiceModel.Data;
-using Dev2.Tests.Activities.XML;
 using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
@@ -30,6 +30,7 @@ using Unlimited.Framework.Converters.Graph.String.Json;
 using Warewolf.Core;
 using Warewolf.Storage;
 using Warewolf.Storage.Interfaces;
+using XmlResource = Dev2.Tests.Activities.XML.XmlResource;
 
 namespace Dev2.Tests.Activities.ActivityTests.Web
 {

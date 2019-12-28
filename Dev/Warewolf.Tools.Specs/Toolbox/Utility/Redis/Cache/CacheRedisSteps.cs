@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading;
+using Dev2.Infrastructure.Tests;
 using TechTalk.SpecFlow;
 using TechTalk.SpecFlow.Assist;
 using Unlimited.Applications.BusinessDesignStudio.Activities;

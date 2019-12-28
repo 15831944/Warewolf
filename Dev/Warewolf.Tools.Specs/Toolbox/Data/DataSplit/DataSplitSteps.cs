@@ -16,6 +16,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using Dev2.Data.Util;
+using Dev2.Infrastructure.Tests;
 using Dev2.Interfaces;
 using Dev2.Runtime.ESB.Control;
 using NUnit.Framework;

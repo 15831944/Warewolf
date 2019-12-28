@@ -28,6 +28,7 @@ using WarewolfParserInterop;
 using Dev2.Activities.Specs.BaseTypes;
 using System.Reflection;
 using System.IO;
+using Dev2.Infrastructure.Tests;
 using Warewolf.Test.Agent;
 
 namespace Warewolf.ToolsSpecs.Toolbox.Recordset.SqlBulkInsert

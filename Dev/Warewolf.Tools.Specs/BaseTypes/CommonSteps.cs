@@ -42,6 +42,7 @@ using System.Reflection;
 using Dev2.Activities.Designers2.AdvancedRecordset;
 using Warewolf.Test.Agent;
 using System.Threading;
+using Dev2.Infrastructure.Tests;
 
 namespace Dev2.Activities.Specs.BaseTypes
 {
