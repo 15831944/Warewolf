@@ -12,6 +12,7 @@ using System;
 using System.Collections.Specialized;
 using Dev2.Runtime.Security;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.Runtime.Services
 {

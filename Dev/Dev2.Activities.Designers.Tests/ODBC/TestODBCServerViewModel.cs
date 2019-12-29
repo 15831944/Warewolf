@@ -15,6 +15,7 @@ using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Studio.Core.Activities.Utils;
 using NUnit.Framework;
 using Warewolf.Core;
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Activities.Designers.Tests.ODBC

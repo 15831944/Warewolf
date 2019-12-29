@@ -24,6 +24,7 @@ using NUnit.Framework;
 using Moq;
 using Warewolf.Studio.Core;
 using Dev2.ConnectionHelpers;
+using Warewolf.UnitTestAttributes;
 
 namespace Warewolf.Studio.ViewModels.Tests
 {

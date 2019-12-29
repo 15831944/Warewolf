@@ -16,6 +16,7 @@ using Serilog;
 using System;
 using Warewolf.Driver.Serilog;
 using Warewolf.Streams;
+using Warewolf.UnitTestAttributes;
 
 namespace Warewolf.Tests
 {

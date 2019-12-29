@@ -16,6 +16,7 @@ using Dev2.Runtime.ServiceModel.Esb.Brokers.Plugin;
 using DummyNamespaceForTest;
 using NUnit.Framework;
 using Newtonsoft.Json;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.Runtime.ESB.Plugin
 {

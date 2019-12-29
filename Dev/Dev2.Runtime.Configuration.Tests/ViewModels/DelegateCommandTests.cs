@@ -11,6 +11,7 @@
 using System;
 using Dev2.Runtime.Configuration.ViewModels.Base;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Runtime.Configuration.Tests.ViewModels
 {

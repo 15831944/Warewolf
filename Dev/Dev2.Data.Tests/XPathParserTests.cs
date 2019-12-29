@@ -15,6 +15,7 @@ using System.Reflection;
 using System.Text;
 using Dev2.Data.Parsers;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Data.Tests

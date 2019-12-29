@@ -11,7 +11,7 @@ using Dev2.Studio.Interfaces;
 using NUnit.Framework;
 using Moq;
 using Warewolf.Studio.Core;
-
+using Warewolf.UnitTestAttributes;
 
 
 namespace Warewolf.Studio.ViewModels.Tests

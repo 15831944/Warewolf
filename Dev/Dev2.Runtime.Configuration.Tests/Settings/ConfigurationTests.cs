@@ -14,6 +14,7 @@ using System.Xml.Linq;
 using Dev2.Runtime.Configuration.Settings;
 using Dev2.Runtime.Configuration.Tests.XML;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Runtime.Configuration.Tests.Settings
 {

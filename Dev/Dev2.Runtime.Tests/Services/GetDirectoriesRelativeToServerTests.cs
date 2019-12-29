@@ -24,6 +24,7 @@ using Dev2.Explorer;
 using Dev2.Runtime.ESB.Management.Services;
 using NUnit.Framework;
 using Moq;
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Tests.Runtime.Services

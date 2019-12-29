@@ -58,7 +58,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("CommonFunctions_AtomToInt")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void CommonFunctions_AtomToInt()
         {
             CommonFunctions.atomToInt(DataStorage.WarewolfAtom.Nothing);
@@ -67,7 +67,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("CommonFunctions_AtomToInt")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void CommonFunctions_AtomToInt_neg()
         {
             CommonFunctions.atomToInt(DataStorage.WarewolfAtom.NewInt(-1));
@@ -162,7 +162,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("CommonFunctions_AtomToJsonCompatable")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void CommonFunctions_EvalResultToJsonCompatableJson()
         {
             var env = CreateEnvironmentWithData();
@@ -173,7 +173,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("CommonFunctions_AtomToJsonCompatable")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void CommonFunctions_getLastIndexFromRecordSet()
         {
             var env = CreateEnvironmentWithData();
@@ -184,7 +184,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("CommonFunctions_AtomToJsonCompatable")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void CommonFunctions_deleteValues()
         {
             var env = CreateEnvironmentWithData();

@@ -17,6 +17,7 @@ using Dev2.SignalR.Wrappers;
 using Dev2.SignalR.Wrappers.New;
 using Dev2.Threading;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Core.Tests.Network

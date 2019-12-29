@@ -19,6 +19,7 @@ using Dev2.Infrastructure.Tests;
 using Dev2.Intellisense.Helper;
 using NUnit.Framework;
 using Moq;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Core.Tests
 {

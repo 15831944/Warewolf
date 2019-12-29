@@ -30,6 +30,7 @@ using Dev2.Studio.Interfaces;
 using Dev2.Util;
 using NUnit.Framework;
 using Moq;
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Activities.Designers.Tests.Email

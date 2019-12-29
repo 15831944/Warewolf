@@ -54,6 +54,7 @@ using Newtonsoft.Json;
 using Warewolf.Configuration;
 using Warewolf.Studio.ViewModels;
 using Warewolf.Triggers;
+using Warewolf.UnitTestAttributes;
 
 namespace BusinessDesignStudio.Unit.Tests
 {

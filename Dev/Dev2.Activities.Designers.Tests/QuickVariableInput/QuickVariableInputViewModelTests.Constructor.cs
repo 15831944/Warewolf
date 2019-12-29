@@ -14,6 +14,7 @@ using Dev2.Activities.Designers2.Core.QuickVariableInput;
 using Dev2.Activities.Preview;
 using Dev2.Runtime.Configuration.ViewModels.Base;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Activities.Designers.Tests.QuickVariableInput
 {

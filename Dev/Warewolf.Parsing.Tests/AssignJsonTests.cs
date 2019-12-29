@@ -527,7 +527,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("AssignEvaluation_ToJObj")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void AssignEvaluation_ToJObj_ErrorIfWrongType()
         {
             //------------Setup for test--------------------------
@@ -541,7 +541,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("AssignEvaluation_ToJObj")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void AssignEvaluation_ToJArray_ErrorIfWrongType()
         {
             //------------Setup for test--------------------------
@@ -646,7 +646,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("AssignEvaluation_assignGivenAValue")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void AssignEvaluation_assignGivenAValue_ArrayJson_InvalidIndex()
         {
             var env = CreateTestEnvWithData();
@@ -659,7 +659,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("AssignEvaluation_assignGivenAValue")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void AssignEvaluation_assignGivenAValue_ArrayJson_InvalidNamesExpresion()
         {
             var exp = LanguageAST.JsonIdentifierExpression.Terminal;
@@ -748,7 +748,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("AssignEvaluation_IndexToInt")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void AssignEvaluation_IndexToInt_ErrorsForAnExpression()
         {
             //------------Setup for test--------------------------
@@ -779,7 +779,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("AssignEvaluation_assignGivenAValue")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void AssignEvaluation_FailsIfExpressionIsNotOfCorrectType()
         {
             var env = CreateTestEnvWithData();
@@ -972,7 +972,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("AssignEvaluation_assignGivenAValue")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void AssignEvaluation_LanguageExpressionToJsonExpression_Atom()
         {
             var parsed = EvaluationFunctions.parseLanguageExpressionWithoutUpdate("bob");
@@ -982,7 +982,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("AssignEvaluation_assignGivenAValue")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void AssignEvaluation_LanguageExpressionToJsonExpression_Complex()
         {
             var parsed = EvaluationFunctions.parseLanguageExpressionWithoutUpdate("[[[[bob]]]]");

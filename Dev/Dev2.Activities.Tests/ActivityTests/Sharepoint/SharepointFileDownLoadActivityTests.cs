@@ -11,6 +11,7 @@ using Dev2.DynamicServices;
 using Dev2.Runtime.Interfaces;
 using NUnit.Framework;
 using Moq;
+using Warewolf.UnitTestAttributes;
 using static Dev2.Tests.Activities.ActivityTests.Sharepoint.SharepointCopyFileActivityTests;
 
 namespace Dev2.Tests.Activities.ActivityTests.Sharepoint

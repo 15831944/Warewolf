@@ -12,6 +12,7 @@ using Dev2.Common.Interfaces.Help;
 using Dev2.Common.Interfaces.Infrastructure;
 using Dev2.Studio.Interfaces;
 using Moq;
+using Warewolf.UnitTestAttributes;
 
 namespace Warewolf.Studio.ViewModels.Tests
 {

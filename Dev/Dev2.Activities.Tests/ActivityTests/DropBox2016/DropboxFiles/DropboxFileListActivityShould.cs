@@ -26,6 +26,7 @@ using Warewolf.Storage;
 using Warewolf.Storage.Interfaces;
 using Dev2.Common.Wrappers;
 using System.Net.Http;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.Activities.ActivityTests.DropBox2016.DropboxFiles
 {

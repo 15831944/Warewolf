@@ -22,6 +22,7 @@ using Dev2.Triggers;
 using Warewolf.Trigger.Queue;
 using System.Collections.Generic;
 using Warewolf.Triggers;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Core.Tests.Triggers
 {

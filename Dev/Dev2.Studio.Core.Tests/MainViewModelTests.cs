@@ -62,6 +62,7 @@ using Warewolf.Studio.ViewModels;
 using Dev2.Common.Interfaces.Studio.Controller;
 using Dev2.Instrumentation;
 using Dev2.Triggers;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Core.Tests
 {

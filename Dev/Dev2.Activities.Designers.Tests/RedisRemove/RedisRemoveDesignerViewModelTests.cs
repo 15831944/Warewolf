@@ -20,6 +20,7 @@ using Dev2.Studio.Core.Activities.Utils;
 using Dev2.Studio.Interfaces;
 using NUnit.Framework;
 using Moq;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Activities.Designers.Tests.RedisRemove
 {

@@ -23,6 +23,7 @@ using Moq;
 using Warewolf.Data;
 using Warewolf.Options;
 using Warewolf.Triggers;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.Runtime.Services
 {

@@ -11,6 +11,7 @@
 using Dev2.Common.Interfaces.Core.Convertors.Base;
 using Dev2.Converters;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.ConverterTests.Base
 {

@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.Runtime.ServiceModel
 {

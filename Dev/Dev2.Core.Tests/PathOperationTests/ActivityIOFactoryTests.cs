@@ -16,6 +16,7 @@ using Dev2.Data.PathOperations;
 using Dev2.PathOperations;
 using Dev2.Tests;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 
 namespace Unlimited.UnitTest.Framework.PathOperationTests

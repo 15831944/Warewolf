@@ -17,6 +17,7 @@ using System.Text.RegularExpressions;
 using Dev2.Common;
 using Dev2.Common.Interfaces.Enums;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests
 {

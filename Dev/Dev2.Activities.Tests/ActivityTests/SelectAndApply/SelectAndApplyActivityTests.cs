@@ -12,6 +12,7 @@ using NUnit.Framework;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Warewolf.Resource.Errors;
 using Warewolf.Storage;
+using Warewolf.UnitTestAttributes;
 using WarewolfParserInterop;
 
 namespace Dev2.Tests.Activities.ActivityTests.SelectAndApply

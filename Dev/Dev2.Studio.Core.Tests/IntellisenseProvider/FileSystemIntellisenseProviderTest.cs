@@ -21,6 +21,7 @@ using Dev2.Studio.Interfaces.DataList;
 using Dev2.Studio.Interfaces.Enums;
 using Dev2.Studio.ViewModels.DataList;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Core.Tests.IntellisenseProvider
 {

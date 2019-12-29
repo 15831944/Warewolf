@@ -149,7 +149,7 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Publish
         [Test]
         [Author("Clint Stedman")]
         [Category("DsfPublishRabbitMQActivity_Execute")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void DsfPublishRabbitMQActivity_Execute_Failure_NullException()
         {
             //------------Setup for test--------------------------

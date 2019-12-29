@@ -14,6 +14,7 @@ using System.Windows;
 using System.Windows.Media.Imaging;
 using Dev2.Studio.AppResources.Converters;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Core.Tests.AppResources.Converters
 {

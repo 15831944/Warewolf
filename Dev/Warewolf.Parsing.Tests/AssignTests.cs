@@ -15,7 +15,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("AssignEvaluationRecsets_AssignARecset")]
-        [NUnit.Framework.ExpectedException(typeof(NullValueInVariableException))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(NullValueInVariableException))]
         public void AssignEvaluationRecsets_AssignARecset_Last_WithFraming()
         {
             //------------Setup for test--------------------------
@@ -46,7 +46,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("AssignEvaluationRecsets_AssignARecset")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void GetIntFromAtomTestLessThan0()
         {
             //------------Setup for test--------------------------
@@ -64,7 +64,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("AssignEvaluationRecsets_AssignARecset")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void GetIntFromAtomTestLessNotAnInt()
         {
             //------------Setup for test--------------------------
@@ -441,7 +441,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Nkosinathi Sangweni")]
         [Category("Assign")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void Assign_Given_Value_ContainsOpeningLanguageBracktes_Should_Assign_Value_Correclty_JsonObjects()
         {
             //------------Setup for test--------------------------
@@ -499,7 +499,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("AssignEvaluationRecsets_AssignAShape")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void Assign_Shape_Recset_JsonThrows()
         {
             //------------Setup for test--------------------------

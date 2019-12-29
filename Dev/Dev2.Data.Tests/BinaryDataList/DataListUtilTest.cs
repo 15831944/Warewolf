@@ -24,6 +24,7 @@ using ServiceStack.Text;
 using Warewolf.Storage;
 using Warewolf.Storage.Interfaces;
 using Dev2.Data.Interfaces.Enums;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Data.Tests.BinaryDataList
 {

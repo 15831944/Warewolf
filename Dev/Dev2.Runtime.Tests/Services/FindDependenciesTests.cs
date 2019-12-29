@@ -16,6 +16,7 @@ using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Workspaces;
 using NUnit.Framework;
 using Moq;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.Runtime.Services
 {

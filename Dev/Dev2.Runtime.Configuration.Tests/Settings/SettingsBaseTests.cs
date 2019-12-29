@@ -12,6 +12,7 @@ using System;
 using System.Data;
 using System.Xml.Linq;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Runtime.Configuration.Tests.Settings
 {

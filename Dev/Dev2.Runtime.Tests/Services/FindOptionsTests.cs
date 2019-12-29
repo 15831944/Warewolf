@@ -22,6 +22,7 @@ using System.Collections.Generic;
 using System.Runtime.Serialization;
 using System.Text;
 using Warewolf.Options;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.Runtime.Services
 {

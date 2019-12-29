@@ -8,7 +8,7 @@ using Dev2.Threading;
 using Dev2.TO;
 using NUnit.Framework;
 using Moq;
-
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Activities.Designers.Tests.Sharepoint

@@ -6,7 +6,7 @@ using Dev2.Runtime.ServiceModel;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Tests.Runtime.XML;
 using NUnit.Framework;
-
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Tests.Runtime.ServiceModel

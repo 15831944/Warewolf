@@ -12,6 +12,7 @@ using System;
 using System.Runtime.InteropServices;
 using Dev2.Services.Security.MoqInstallerActions;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Infrastructure.Tests.MoqInstallerActions
 {

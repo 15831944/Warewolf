@@ -19,6 +19,7 @@ using Dev2.Common;
 using Dev2.Utilities;
 using NUnit.Framework;
 using Moq;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.Activities
 {

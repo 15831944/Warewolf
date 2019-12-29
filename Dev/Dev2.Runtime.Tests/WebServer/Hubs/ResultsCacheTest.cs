@@ -11,6 +11,7 @@
 using System;
 using Dev2.Communication;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.Runtime.WebServer.Hubs
 {

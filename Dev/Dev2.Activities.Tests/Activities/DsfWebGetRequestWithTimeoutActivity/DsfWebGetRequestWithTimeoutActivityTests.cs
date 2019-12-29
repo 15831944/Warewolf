@@ -29,6 +29,7 @@ using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Warewolf.Storage;
 using Warewolf.Storage.Interfaces;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.Activities.DsfWebGetRequestWithTimeoutActivityTests
 {

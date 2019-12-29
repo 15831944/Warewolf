@@ -520,7 +520,7 @@ namespace Dev2.Data.Tests.Util
         [Test]
         [Author("Rory McGuire")]
         [Category(nameof(CommonDataUtils))]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void CommonDataUtils_AddMissingFileDirectoryParts_GivenNullSource_ShouldReturnError()
         {
             var commonDataUtils = new CommonDataUtils();

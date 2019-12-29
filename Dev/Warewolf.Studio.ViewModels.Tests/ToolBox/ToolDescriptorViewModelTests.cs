@@ -7,6 +7,7 @@ using Dev2.Common.Interfaces.Toolbox;
 using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
+using Warewolf.UnitTestAttributes;
 
 namespace Warewolf.Studio.ViewModels.ToolBox.Tests
 {

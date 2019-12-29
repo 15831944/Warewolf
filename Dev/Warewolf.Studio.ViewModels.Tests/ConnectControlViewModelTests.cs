@@ -85,7 +85,7 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         [Test]
         [NUnit.Framework.Timeout(60000)]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [UnitTestAttributes.ExpectedException(typeof(ArgumentNullException))]
         public void TestConnectControlViewModelServerNull()
         {
             //act
@@ -95,7 +95,7 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         [Test]
         [NUnit.Framework.Timeout(60000)]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [UnitTestAttributes.ExpectedException(typeof(ArgumentNullException))]
         public void TestConnectControlViewModelEventAggregatorNull()
         {
             //act
@@ -105,7 +105,7 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         [Test]
         [NUnit.Framework.Timeout(60000)]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [UnitTestAttributes.ExpectedException(typeof(ArgumentNullException))]
         public void TestConnectControlViewModelExpectedProperties()
         {
             //act

@@ -25,6 +25,7 @@ using System.Text;
 using Warewolf.Auditing;
 using Warewolf.Interfaces.Auditing;
 using Warewolf.Triggers;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.Runtime.Services
 {

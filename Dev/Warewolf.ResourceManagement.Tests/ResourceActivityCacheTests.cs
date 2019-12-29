@@ -4,6 +4,7 @@ using Dev2;
 using Dev2.Activities;
 using NUnit.Framework;
 using Moq;
+using Warewolf.UnitTestAttributes;
 
 namespace Warewolf.ResourceManagement.Tests
 {

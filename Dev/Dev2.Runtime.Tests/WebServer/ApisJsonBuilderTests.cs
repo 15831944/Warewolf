@@ -9,6 +9,7 @@ using Dev2.Runtime.WebServer;
 using Dev2.Services.Security;
 using NUnit.Framework;
 using Moq;
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Tests.Runtime.WebServer

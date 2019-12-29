@@ -23,6 +23,7 @@ using Dev2.Common.Interfaces.Explorer;
 using System.Threading;
 using Dev2.Common.Interfaces.Toolbox;
 using Dev2.Common.Interfaces.ToolBase.ExchangeEmail;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Core.Tests
 {

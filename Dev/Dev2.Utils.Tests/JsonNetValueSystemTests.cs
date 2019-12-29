@@ -12,6 +12,7 @@ using Dev2.Common.Utils;
 using NUnit.Framework;
 using Newtonsoft.Json.Linq;
 using System;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Utils.Tests
 {

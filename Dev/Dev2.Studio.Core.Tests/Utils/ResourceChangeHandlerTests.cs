@@ -18,6 +18,7 @@ using Dev2.Studio.Views.ResourceManagement;
 using Dev2.Utils;
 using NUnit.Framework;
 using Moq;
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Core.Tests.Utils

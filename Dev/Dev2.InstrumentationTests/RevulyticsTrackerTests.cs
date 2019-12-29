@@ -4,6 +4,7 @@ using System.IO;
 using System.Reflection;
 using RUISDK_5_3_1;
 using System.Configuration;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Instrumentation.Tests
 {

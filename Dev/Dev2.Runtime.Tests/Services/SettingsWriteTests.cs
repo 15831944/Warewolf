@@ -21,6 +21,7 @@ using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Services.Security;
 using NUnit.Framework;
 using Newtonsoft.Json;
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Tests.Runtime.Services

@@ -9,6 +9,7 @@ using log4net.Config;
 using NUnit.Framework;
 using Moq;
 using Warewolf.Configuration;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Core.Tests.Settings
 {

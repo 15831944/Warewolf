@@ -46,6 +46,7 @@ using NUnit.Framework;
 using Moq;
 using Moq.Protected;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Activities.Designers.Tests.Service

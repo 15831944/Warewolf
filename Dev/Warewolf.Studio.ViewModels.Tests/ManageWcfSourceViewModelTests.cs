@@ -10,6 +10,7 @@ using Dev2.Common.SaveDialog;
 using Dev2.Studio.Interfaces;
 using System.Text;
 using System.Xml.Linq;
+using Warewolf.UnitTestAttributes;
 
 namespace Warewolf.Studio.ViewModels.Tests
 {

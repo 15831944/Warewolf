@@ -14,6 +14,7 @@ using Dev2.Common;
 using Dev2.Common.Interfaces.Diagnostics.Debug;
 using Dev2.Diagnostics;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.Diagnostics
 {

@@ -14,6 +14,7 @@ using Warewolf.Test.Agent;
 using System.Threading;
 using Dev2.Activities.Specs.Composition;
 using Dev2.Infrastructure.Tests;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Activities.Specs.Deploy
 {

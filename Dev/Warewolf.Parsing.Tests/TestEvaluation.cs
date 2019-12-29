@@ -196,7 +196,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("WarewolfParse_Eval")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void WarewolfParse_Eval_where_WithNoIndexAndMultipleColumns_ComplexIndex()
         {
 
@@ -229,7 +229,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("WarewolfParse_Eval")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void WarewolfParse_Eval_where_nonExistentRecset()
         {
 
@@ -294,7 +294,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("WarewolfParse_EvalWhere")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void WarewolfParse_Eval_where_WithNoIndexAndMultipleColumns_MultipleEvalsErrorsOnScalar()
         {
 
@@ -350,7 +350,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("WarewolfParse_EvalWhere")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void WarewolfParse_Eval_where_recset()
         {
 
@@ -367,7 +367,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("WarewolfParse_EvalWhere")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void WarewolfParse_Eval_where_WithNoIndexAndMultipleColumns_MultipleEvalsErrorsOnComplex()
         {
 
@@ -749,7 +749,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("Eval")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void Eval_DataMergeRecSet_Json()
         {
             //------------Setup for test--------------------------
@@ -766,7 +766,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("Eval")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void Eval_DataMergeRecSet_Json_Array()
         {
             //------------Setup for test--------------------------
@@ -783,7 +783,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("Eval")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void Eval_DataMergeRecSet_Json_Array_star()
         {
             //------------Setup for test--------------------------

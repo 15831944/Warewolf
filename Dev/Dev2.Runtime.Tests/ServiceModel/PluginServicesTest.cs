@@ -17,6 +17,7 @@ using Dev2.Tests.Runtime.ServiceModel.Data;
 using Dev2.Tests.Runtime.XML;
 using DummyNamespaceForTest;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.Runtime.ServiceModel
 {

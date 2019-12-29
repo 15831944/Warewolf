@@ -17,6 +17,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Warewolf.Resource.Errors;
+using Warewolf.UnitTestAttributes;
 using WarewolfParserInterop;
 
 namespace Warewolf.Storage.Tests

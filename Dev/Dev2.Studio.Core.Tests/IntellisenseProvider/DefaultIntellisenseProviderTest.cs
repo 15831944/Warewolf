@@ -28,6 +28,7 @@ using Dev2.Studio.Interfaces.Enums;
 using Dev2.Studio.ViewModels.DataList;
 using NUnit.Framework;
 using Moq;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Core.Tests.IntellisenseProvider
 {

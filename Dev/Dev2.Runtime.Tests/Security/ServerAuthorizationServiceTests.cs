@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using Dev2.Common.Interfaces.Enums;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.Runtime.Security
 {

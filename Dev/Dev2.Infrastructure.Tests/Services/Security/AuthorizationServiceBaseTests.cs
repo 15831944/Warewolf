@@ -23,6 +23,7 @@ using Dev2.Services.Security;
 using Dev2.Services.Security.MoqInstallerActions;
 using NUnit.Framework;
 using Moq;
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Infrastructure.Tests.Services.Security

@@ -6,6 +6,7 @@ using Dev2.DynamicServices;
 using Dev2.Runtime.ServiceModel.Data;
 using NUnit.Framework;
 using Moq;
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Tests

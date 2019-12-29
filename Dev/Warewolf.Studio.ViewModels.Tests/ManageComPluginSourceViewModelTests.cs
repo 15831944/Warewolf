@@ -141,7 +141,7 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         [Test]
         [NUnit.Framework.Timeout(60000)]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [UnitTestAttributes.ExpectedException(typeof(ArgumentNullException))]
         public void TestManagePluginSourceViewModelAsyncWorkerNull()
         {
             //act
@@ -150,7 +150,7 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         [Test]
         [NUnit.Framework.Timeout(60000)]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [UnitTestAttributes.ExpectedException(typeof(ArgumentNullException))]
         public void TestManagePluginSourceViewModelUpdateManagerNull()
         {
             //act
@@ -159,7 +159,7 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         [Test]
         [NUnit.Framework.Timeout(60000)]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [UnitTestAttributes.ExpectedException(typeof(ArgumentNullException))]
         public void TestManagePluginSourceViewModelAggregatorNull()
         {
             //act
@@ -168,7 +168,7 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         [Test]
         [NUnit.Framework.Timeout(60000)]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [UnitTestAttributes.ExpectedException(typeof(ArgumentNullException))]
         public void TestManagePluginSourceViewModelRequestServiceNameViewModelNull()
         {
             //act
@@ -177,7 +177,7 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         [Test]
         [NUnit.Framework.Timeout(60000)]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [UnitTestAttributes.ExpectedException(typeof(ArgumentNullException))]
         public void TestManagePluginSourceViewModePluginSourceNull()
         {
             //act

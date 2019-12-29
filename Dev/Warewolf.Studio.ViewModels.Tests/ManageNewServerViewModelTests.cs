@@ -18,6 +18,7 @@ using NUnit.Framework;
 
 using Moq;
 using Dev2.Common;
+using Warewolf.UnitTestAttributes;
 
 namespace Warewolf.Studio.ViewModels.Tests
 {

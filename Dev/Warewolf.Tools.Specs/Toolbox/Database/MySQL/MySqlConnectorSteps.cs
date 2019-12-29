@@ -27,6 +27,7 @@ using System.IO;
 using System.Reflection;
 using System.Threading;
 using Dev2.Infrastructure.Tests;
+using Warewolf.UnitTestAttributes;
 
 namespace Warewolf.ToolsSpecs.Toolbox.Resources.MySQL
 {

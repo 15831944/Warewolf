@@ -13,6 +13,7 @@ using System.Globalization;
 using System.Windows;
 using Dev2.Studio.Core.AppResources.Converters;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Core.Tests.AppResources.Converters
 {

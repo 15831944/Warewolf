@@ -14,6 +14,7 @@ using Dev2.CustomControls.Progress;
 using Dev2.Studio.Core.Helpers;
 using NUnit.Framework;
 using Moq;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Core.Tests.Helpers
 {

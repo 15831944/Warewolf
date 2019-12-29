@@ -17,7 +17,7 @@ using Dev2.Studio.Interfaces;
 using NUnit.Framework;
 using Moq;
 using Warewolf.Core;
-
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Activities.Designers.Tests.Core.DotNet

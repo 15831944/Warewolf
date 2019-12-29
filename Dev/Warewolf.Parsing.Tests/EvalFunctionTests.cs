@@ -47,7 +47,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("Eval")]
-        [NUnit.Framework.ExpectedException(typeof(NullValueInVariableException))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(NullValueInVariableException))]
         public void Eval_RecSet_NonExistent()
         {
             //------------Setup for test--------------------------
@@ -96,7 +96,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("Eval")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void Eval_RecSetWithIndexExpression_EvaluatesToExp()
         {
             //------------Setup for test--------------------------
@@ -161,7 +161,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("Eval")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void Eval_Indexes_ExpectException()
         {
             //------------Setup for test--------------------------
@@ -180,7 +180,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("Eval")]
-        [NUnit.Framework.ExpectedException(typeof(NullValueInVariableException))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(NullValueInVariableException))]
         public void Eval_RecSet_Index_NonExistent()
         {
             //------------Setup for test--------------------------
@@ -513,7 +513,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("Eval")]
-        [NUnit.Framework.ExpectedException(typeof(NullValueInVariableException))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(NullValueInVariableException))]
         public void Eval_PositionsRecSet_ComplexScalar()
         {
             //------------Setup for test--------------------------
@@ -578,7 +578,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("Eval")]
-        [NUnit.Framework.ExpectedException(typeof(NullValueInVariableException))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(NullValueInVariableException))]
         public void Eval_PositionsRecSet_ExpNonExist()
         {
             //------------Setup for test--------------------------
@@ -611,7 +611,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("Eval")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void Eval_PositionsRecSet_Json()
         {
             //------------Setup for test--------------------------
@@ -628,7 +628,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("Eval")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void Eval_PositionsRecSet_Json_Array()
         {
             //------------Setup for test--------------------------
@@ -645,7 +645,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("Eval")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void Eval_PositionsRecSet_Json_Array_star()
         {
             //------------Setup for test--------------------------
@@ -707,7 +707,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("Eval")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void Eval_evalIndexes_IndexesValid_RecsetName()
         {
             //------------Setup for test--------------------------
@@ -724,7 +724,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("Eval")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void Eval_evalIndexes_IndexesValid_RecsetName_Complex()
         {
             //------------Setup for test--------------------------

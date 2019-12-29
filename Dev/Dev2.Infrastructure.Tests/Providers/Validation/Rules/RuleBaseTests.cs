@@ -10,6 +10,7 @@
 
 using System;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
 {

@@ -27,6 +27,7 @@ using Dev2.Workspaces;
 using NUnit.Framework;
 using Moq;
 using Warewolf.Storage;
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Tests.Runtime.ESB

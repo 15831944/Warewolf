@@ -5,7 +5,7 @@ using Dev2.Common.Interfaces;
 using Dev2.DataList;
 using Dev2.DataList.Contract;
 using NUnit.Framework;
-
+using Warewolf.UnitTestAttributes;
 
 
 namespace Warewolf.Studio.ViewModels.Tests

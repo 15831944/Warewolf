@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Common.Tests
 {

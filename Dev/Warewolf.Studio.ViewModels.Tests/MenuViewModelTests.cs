@@ -19,6 +19,7 @@ using Dev2.Studio.Interfaces;
 using Microsoft.Practices.Prism.Commands;
 using NUnit.Framework;
 using Moq;
+using Warewolf.UnitTestAttributes;
 
 namespace Warewolf.Studio.ViewModels.Tests
 {

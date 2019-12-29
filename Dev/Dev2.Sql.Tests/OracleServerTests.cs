@@ -16,7 +16,7 @@ namespace Dev2.Sql.Tests
         [Test]
         [Author("Trevor Williams-Ros")]
         [Category("OracleServer_Connect")]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(ArgumentNullException))]
         
         public void OracleServer_Connect_ConnectionStringIsNull_ThrowsArgumentNullException()
     
@@ -39,7 +39,7 @@ namespace Dev2.Sql.Tests
         [Test]
         [Author("Trevor Williams-Ros")]
         [Category("OracleServer_Connect")]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentException))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(ArgumentException))]
         
         public void OracleServer_Connect_ConnectionStringIsInvalid_ThrowsArgumentException()
     
@@ -62,7 +62,7 @@ namespace Dev2.Sql.Tests
         [Test]
         [Author("Trevor Williams-Ros")]
         [Category("OracleServer_FetchDataTable")]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(ArgumentNullException))]
         
         public void OracleServer_FetchDataTable_CommandIsNull_ThrowsArgumentNullException()
     
@@ -85,7 +85,7 @@ namespace Dev2.Sql.Tests
         [Test]
         [Author("Trevor Williams-Ros")]
         [Category("OracleServer_FetchDatabases")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         
         public void OracleServer_FetchDatabases_ConnectionNotInitialized_ThrowsConnectFirstException()
     
@@ -108,7 +108,7 @@ namespace Dev2.Sql.Tests
         [Test]
         [Author("Trevor Williams-Ros")]
         [Category("OracleServer_FetchStoredProcedures")]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(ArgumentNullException))]
         
         public void OracleServer_FetchStoredProcedures_FunctionProcessorIsNull_ThrowsArgumentNullException()
     
@@ -356,7 +356,7 @@ namespace Dev2.Sql.Tests
         [Test]
         [Author("Trevor Williams-Ros")]
         [Category("OracleServer_CreateCommand")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         
         public void OracleServer_CreateCommand_ConnectionNotInitialized_ThrowsConnectFirstException()
     

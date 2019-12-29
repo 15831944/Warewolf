@@ -25,6 +25,7 @@ using Newtonsoft.Json.Serialization;
 using TestingDotnetDllCascading;
 using WarewolfCOMIPC.Client;
 using System.Diagnostics;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.Runtime.ESB.ComPlugin
 {

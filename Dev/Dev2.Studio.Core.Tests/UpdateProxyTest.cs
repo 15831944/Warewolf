@@ -14,6 +14,7 @@ using Dev2.Common.Interfaces.WebServices;
 using System.Collections.Generic;
 using Dev2.Common.Interfaces.Deploy;
 using Dev2.Util;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Core.Tests
 {

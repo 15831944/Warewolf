@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Infrastructure.Tests

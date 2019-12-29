@@ -17,6 +17,7 @@ using Warewolf.Core;
 using Dev2.Studio.Core;
 using System.ComponentModel;
 using Dev2.Util;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Core.Tests.Helpers
 {

@@ -1,6 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
-
+using Warewolf.UnitTestAttributes;
 
 
 namespace Warewolf.Studio.ViewModels.Tests

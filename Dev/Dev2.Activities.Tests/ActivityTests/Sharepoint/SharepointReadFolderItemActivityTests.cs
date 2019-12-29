@@ -334,7 +334,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
         [Test]
         [Author("Pieter Terblanche")]
         [Category("SharepointFileUpload_Execute")]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(ArgumentNullException))]
         public void SharepointFileUploadActivity_ValidateRequest_SharepointServerResourceId_EmptyGuid()
         {
             //------------Setup for test--------------------------

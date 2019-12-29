@@ -26,6 +26,7 @@ using Moq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using TestingDotnetDllCascading;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.Runtime.ESB.Plugin
 {

@@ -26,6 +26,7 @@ using Dev2.Tests.Runtime.XML;
 using Dev2.Workspaces;
 using NUnit.Framework;
 using Moq;
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.DynamicServices.Test

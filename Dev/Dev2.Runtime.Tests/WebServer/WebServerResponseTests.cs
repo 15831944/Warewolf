@@ -13,6 +13,7 @@ using System.Linq;
 using System.Net.Http;
 using Dev2.Runtime.WebServer;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.Runtime.WebServer
 {

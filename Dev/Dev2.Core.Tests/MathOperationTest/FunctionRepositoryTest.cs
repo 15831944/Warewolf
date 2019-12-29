@@ -14,6 +14,7 @@ using Dev2.Common.Interfaces;
 using Dev2.Data.MathOperations;
 using Dev2.MathOperations;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Tests.MathOperationTest

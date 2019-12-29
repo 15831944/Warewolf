@@ -18,7 +18,7 @@ using Dev2.Runtime.Security;
 using Dev2.Tests.Runtime.XML;
 using NUnit.Framework;
 using Moq;
-
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Tests.Runtime.Services

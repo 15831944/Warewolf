@@ -13,6 +13,7 @@ using Caliburn.Micro;
 using Dev2.Studio.ViewModels.WorkSurface;
 using NUnit.Framework;
 using Moq;
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Core.Tests

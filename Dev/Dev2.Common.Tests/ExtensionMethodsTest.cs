@@ -18,6 +18,7 @@ using ChinhDo.Transactions;
 using Dev2.Common.Common;
 using Dev2.Common.ExtMethods;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Common.Tests

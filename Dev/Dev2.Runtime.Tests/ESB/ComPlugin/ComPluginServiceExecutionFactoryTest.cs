@@ -15,7 +15,7 @@ using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Runtime.ServiceModel.Esb.Brokers.ComPlugin;
 using DummyNamespaceForTest;
 using NUnit.Framework;
-
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Tests.Runtime.ESB.ComPlugin

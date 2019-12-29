@@ -91,7 +91,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("UpdateInPlace_Update")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void UpdateInPlace_Update_ApplyLambda_Atom()
         {
             //------------Setup for test--------------------------
@@ -107,7 +107,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("UpdateInPlace_Update")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void UpdateInPlace_Update_ApplyLambda_NonExistent()
         {
             //------------Setup for test--------------------------

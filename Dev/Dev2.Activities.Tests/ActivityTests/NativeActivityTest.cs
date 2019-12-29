@@ -36,6 +36,7 @@ using NUnit.Framework;
 using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Warewolf.Storage;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.Activities.ActivityTests
 {

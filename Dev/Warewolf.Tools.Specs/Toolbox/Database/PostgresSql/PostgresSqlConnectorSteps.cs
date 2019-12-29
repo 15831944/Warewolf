@@ -23,6 +23,7 @@ using TechTalk.SpecFlow;
 using Warewolf.Core;
 using Warewolf.Studio.ViewModels;
 using Warewolf.Tools.Specs.Toolbox.Database;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Activities.Specs.Toolbox.Resources
 {

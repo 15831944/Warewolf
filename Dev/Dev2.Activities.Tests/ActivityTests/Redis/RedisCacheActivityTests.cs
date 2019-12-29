@@ -25,6 +25,7 @@ using Moq;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Warewolf.Driver.Redis;
 using Warewolf.Storage;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.Activities.ActivityTests.Redis
 {

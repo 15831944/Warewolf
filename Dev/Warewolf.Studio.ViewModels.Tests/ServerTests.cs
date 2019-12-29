@@ -502,7 +502,7 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         [Test]
         [NUnit.Framework.Timeout(60000)]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [UnitTestAttributes.ExpectedException(typeof(ArgumentNullException))]
         public void EnvironmentModel_Constructor_NullConnection_ThrowsArgumentNullException()
         {
             new Server(Guid.NewGuid(), null);
@@ -524,7 +524,7 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         [Test]
         [NUnit.Framework.Timeout(60000)]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [UnitTestAttributes.ExpectedException(typeof(ArgumentNullException))]
         public void EnvironmentModel_Constructor_ConnectionAndNullResourceRepository_ThrowsArgumentNullException()
         {
             var connection = CreateConnection();
@@ -568,7 +568,7 @@ namespace Warewolf.Studio.ViewModels.Tests
         [NUnit.Framework.Timeout(60000)]
         [Author("Trevor Williams-Ros")]
         [Category("EnvironmentModel_Connect")]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentException))]
+        [UnitTestAttributes.ExpectedException(typeof(ArgumentException))]
         public void EnvironmentModel_Connect_IsNotConnectedAndNameIsEmpty_ThrowsArgumentException()
         {
             var connection = CreateConnection();
@@ -620,7 +620,7 @@ namespace Warewolf.Studio.ViewModels.Tests
         [Test]
         [NUnit.Framework.Timeout(60000)]
         [Category("EnvironmentModel_Connect")]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [UnitTestAttributes.ExpectedException(typeof(ArgumentNullException))]
         public void EnvironmentModel_ConnectOther_Null_ThrowsArgumentNullException()
         {
             var connection = CreateConnection();
@@ -702,7 +702,7 @@ namespace Warewolf.Studio.ViewModels.Tests
         [NUnit.Framework.Timeout(60000)]
         [Author("Trevor Williams-Ros")]
         [Category("EnvironmentModel_Connect")]
-        [NUnit.Framework.ExpectedException(typeof(InvalidOperationException))]
+        [UnitTestAttributes.ExpectedException(typeof(InvalidOperationException))]
         public void EnvironmentModel_ConnectOther_NonNullAndNotConnectedFails_ThrowsInvalidOperationException()
         {
             var c1 = CreateConnection();

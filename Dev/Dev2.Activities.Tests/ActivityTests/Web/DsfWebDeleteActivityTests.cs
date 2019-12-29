@@ -31,6 +31,7 @@ using Unlimited.Framework.Converters.Graph.String.Json;
 using Warewolf.Core;
 using Warewolf.Storage;
 using Warewolf.Storage.Interfaces;
+using Warewolf.UnitTestAttributes;
 using XmlResource = Dev2.Tests.Activities.XML.XmlResource;
 
 namespace Dev2.Tests.Activities.ActivityTests.Web

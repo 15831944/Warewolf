@@ -13,6 +13,7 @@ using System.Xml.Linq;
 using Dev2.Data.ServiceModel;
 using Dev2.Infrastructure.Tests;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Data.Tests.ServiceModel
 {

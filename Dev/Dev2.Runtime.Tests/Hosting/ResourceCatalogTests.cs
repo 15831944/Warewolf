@@ -47,6 +47,7 @@ using Unlimited.Framework.Converters.Graph.Ouput;
 using Warewolf.ResourceManagement;
 using System.Collections.Concurrent;
 using Dev2.Common.Interfaces.Wrappers;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.Runtime.Hosting
 {

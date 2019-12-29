@@ -31,6 +31,7 @@ using Dev2.Util;
 using NUnit.Framework;
 using Moq;
 using Dev2.Studio.Interfaces.Enums;
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Core.Tests.Environments

@@ -17,6 +17,7 @@ using Unlimited.Framework.Converters.Graph.Poco;
 using Unlimited.Framework.Converters.Graph.String;
 using Unlimited.Framework.Converters.Graph.String.Json;
 using Unlimited.Framework.Converters.Graph.String.Xml;
+using Warewolf.UnitTestAttributes;
 
 namespace Unlimited.UnitTest.Framework.ConverterTests.GraphTests.StringTests {
     [TestFixture]

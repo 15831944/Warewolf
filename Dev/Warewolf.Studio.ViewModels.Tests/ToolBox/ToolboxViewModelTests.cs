@@ -7,7 +7,7 @@ using Dev2.Common.Interfaces.Toolbox;
 using Dev2.Studio.Interfaces;
 using NUnit.Framework;
 using Moq;
-
+using Warewolf.UnitTestAttributes;
 
 
 namespace Warewolf.Studio.ViewModels.ToolBox.Tests

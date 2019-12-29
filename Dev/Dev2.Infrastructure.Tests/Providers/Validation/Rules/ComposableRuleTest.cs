@@ -13,6 +13,7 @@ using Dev2.Common.Interfaces.Infrastructure.Providers.Errors;
 using Dev2.Providers.Errors;
 using Dev2.Providers.Validation.Rules;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Infrastructure.Tests.Providers.Validation.Rules
 {

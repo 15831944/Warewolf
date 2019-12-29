@@ -7,6 +7,7 @@ using Dev2.Common.Interfaces.Help;
 using NUnit.Framework;
 
 using Moq;
+using Warewolf.UnitTestAttributes;
 
 namespace Warewolf.Studio.ViewModels.Help.Tests
 {

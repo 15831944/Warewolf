@@ -13,6 +13,7 @@ using Dev2.Common.Interfaces.Infrastructure.Events;
 using Dev2.Services;
 using NUnit.Framework;
 using Moq;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Infrastructure.Tests.Services
 {

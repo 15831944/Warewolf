@@ -12,6 +12,7 @@ using Dev2.Utilities;
 using Dev2.Studio.Interfaces;
 using Moq;
 using Dev2.Common.Interfaces.Diagnostics.Debug;
+using Warewolf.UnitTestAttributes;
 
 namespace Warewolf.MergeParser.Tests
 {

@@ -14,6 +14,7 @@ using Dev2.Data.Interfaces.Enums;
 using Dev2.Data.Operations;
 using Dev2.Data.TO;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Data.Tests.Operations

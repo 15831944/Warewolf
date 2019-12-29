@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Core.Tests.Triggers

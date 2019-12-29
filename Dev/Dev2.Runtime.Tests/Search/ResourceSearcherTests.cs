@@ -6,6 +6,7 @@ using Dev2.Runtime.Interfaces;
 using Dev2.Runtime.Search;
 using NUnit.Framework;
 using Moq;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.Runtime.Search
 {

@@ -19,6 +19,7 @@ using Dev2.Tests.Activities.ActivityTests;
 using NUnit.Framework;
 using Moq;
 using Warewolf.ResourceManagement;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.Runtime.Search
 {

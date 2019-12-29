@@ -18,6 +18,7 @@ using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Studio.Interfaces;
 using NUnit.Framework;
 using Moq;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Core.Tests.ConnectionHelpers
 {

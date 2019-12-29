@@ -11,6 +11,7 @@
 using System;
 using Dev2.CustomControls.Progress;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Core.Tests.Dialogs
 {

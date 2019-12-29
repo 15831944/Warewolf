@@ -10,7 +10,7 @@ using Dev2.Data.Interfaces.Enums;
 using Dev2.Runtime.ServiceModel.Data;
 using NUnit.Framework;
 using Moq;
-
+using Warewolf.UnitTestAttributes;
 
 
 namespace Warewolf.Studio.ViewModels.Tests

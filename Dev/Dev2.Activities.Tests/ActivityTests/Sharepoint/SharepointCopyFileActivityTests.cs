@@ -207,7 +207,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
         [Test]
         [Author("Siphamandla Dube")]
         [Category(nameof(SharepointCopyFileActivity))]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(ArgumentNullException))]
         public void SharepointCopyFileActivity_ValidateRequest_SharepointServerResourceId_EmptyGuid()
         {
             //------------Setup for test--------------------------
@@ -242,7 +242,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
         [Test]
         [Author("Siphamandla Dube")]
         [Category(nameof(SharepointCopyFileActivity))]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(ArgumentNullException))]
         public void SharepointCopyFileActivity_ValidateRequest_ServerInputPathFrom_IsEmpty_ExpectAreEqual_Success()
         {
             //------------Setup for test--------------------------
@@ -280,7 +280,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Sharepoint
         [Test]
         [Author("Siphamandla Dube")]
         [Category(nameof(SharepointCopyFileActivity))]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(ArgumentNullException))]
         public void SharepointCopyFileActivity_ValidateRequest_ServerInputPathTo_IsEmpty_Expect_Exception()
         {
             //------------Setup for test--------------------------

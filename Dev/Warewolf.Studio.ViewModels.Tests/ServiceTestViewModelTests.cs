@@ -52,7 +52,7 @@ namespace Warewolf.Studio.ViewModels.Tests
         [NUnit.Framework.Timeout(60000)]
 		[Author("Hagashen Naidu")]
 		[Category("TestFrameworkViewModel_Constructor")]
-		[NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+		[UnitTestAttributes.ExpectedException(typeof(ArgumentNullException))]
 		public void TestFrameworkViewModel_Constructor_NullResourceModel_ShouldThrowException()
 		{
 			//------------Setup for test--------------------------
@@ -67,7 +67,7 @@ namespace Warewolf.Studio.ViewModels.Tests
         [NUnit.Framework.Timeout(60000)]
 		[Author("Nkosinathi Sangweni")]
 		[Category("TestFrameworkViewModel_Constructor")]
-		[NUnit.Framework.ExpectedException(typeof(NullReferenceException))]
+		[UnitTestAttributes.ExpectedException(typeof(NullReferenceException))]
 		public void TestFrameworkViewModel_MsgConstructor_NullMessage_ShouldThrowException()
 		{
 			//------------Setup for test--------------------------

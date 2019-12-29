@@ -12,6 +12,7 @@ using System;
 using System.Data;
 using Dev2.Activities.SqlBulkInsert;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.Activities.ActivityTests
 {

@@ -445,7 +445,7 @@ namespace Warewolf.Storage.Tests
         [Test]
         [Author("Candice Daniel")]
         [Category(nameof(WarewolfListIterator))]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [UnitTestAttributes.ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void WarewolfListIterator_FetchNextValue_NoValuesToIterateOn_ReturnsException()
         {
             //------------Setup for test--------------------------

@@ -18,6 +18,7 @@ using Dev2.Workspaces;
 using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json;
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Core.Tests.Workspaces

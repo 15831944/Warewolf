@@ -2,6 +2,7 @@ using System;
 using System.Xml.Linq;
 using Dev2.Runtime.ServiceModel.Data;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Tests.Runtime.ServiceModel

@@ -20,6 +20,7 @@ using System.Linq;
 using Dev2.Common.State;
 using Dev2.Infrastructure.Tests;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
 {
@@ -440,7 +441,7 @@ namespace Dev2.Tests.Activities.ActivityTests.RabbitMQ.Consume
         [Test]
         [Author("Mthembu Sanele")]
         [Category("DsfConsumeRabbitMQActivity_Execute")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void PerformExecution_Given_No_Source_Should_Return_NullException()
         {
             //------------Setup for test--------------------------

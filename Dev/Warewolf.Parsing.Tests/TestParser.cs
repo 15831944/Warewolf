@@ -402,7 +402,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("WarewolfParse_Eval")]
-        [NUnit.Framework.ExpectedException(typeof(NullValueInVariableException))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(NullValueInVariableException))]
         public void WarewolfParse_Eval_Scalar_NonExistent_ExpectException()
         {
             var env = CreateTestEnvWithData();
@@ -413,7 +413,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("WarewolfParse_Eval")]
-        [NUnit.Framework.ExpectedException(typeof(NullValueInVariableException))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(NullValueInVariableException))]
         public void WarewolfParse_Eval_Recset_NoIndex_ExpectAnException()
         {
             var env = WarewolfTestData.CreateTestEnvWithData;
@@ -730,7 +730,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("WarewolfParse_Eval")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void WarewolfParse_Eval_FramedAssign_List_IndexExpression()
         {
             var assigns = new List<IAssignValue>
@@ -925,7 +925,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("WarewolfParse_Eval")]
-        [NUnit.Framework.ExpectedException(typeof(NullReferenceException))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(NullReferenceException))]
         public void WarewolfParse_Eval_FramedAssign_WithNoIndexLeftAndRightError()
         {
 
@@ -1287,7 +1287,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("WarewolfParse_Eval")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void WarewolfParse_Eval_Delete_Scalar()
         {
             var env = new ExecutionEnvironment();
@@ -1329,7 +1329,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("WarewolfParse_Eval")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void WarewolfParse_Eval_Delete_Exp_fail()
         {
 
@@ -1357,7 +1357,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("WarewolfParse_Eval")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void WarewolfParse_Eval_Delete_NonExistent()
         {
             var env = new ExecutionEnvironment();

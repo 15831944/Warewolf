@@ -15,6 +15,7 @@ using Dev2.Common.Interfaces.Core.Graph;
 using NUnit.Framework;
 using Unlimited.Framework.Converters.Graph.String.Json;
 using Unlimited.Framework.Converters.Graph.String.Xml;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.ConverterTests.GraphTests.StringTests.XmlTests
 {

@@ -23,6 +23,7 @@ using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Studio.Core;
 using Dev2.Explorer;
 using System.Linq;
+using Warewolf.UnitTestAttributes;
 
 namespace Warewolf.Studio.ViewModels.Tests
 {

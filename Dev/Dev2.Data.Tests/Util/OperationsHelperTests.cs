@@ -13,6 +13,7 @@ using Dev2.Data.Util;
 using NUnit.Framework;
 using Moq;
 using System;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Data.Tests.Util
 {

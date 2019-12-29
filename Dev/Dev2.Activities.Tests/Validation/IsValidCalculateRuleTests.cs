@@ -11,6 +11,7 @@
 using System;
 using Dev2.Validation;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.Activities.Validation
 {

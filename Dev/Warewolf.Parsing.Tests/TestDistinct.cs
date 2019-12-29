@@ -31,7 +31,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("Distinct_EvalDistinct")]
-        [NUnit.Framework.ExpectedException(typeof(NullValueInVariableException))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(NullValueInVariableException))]
         public void Distinct_EvalDistinct_MultipleRecsetsExpectSomethingBad()
         {
             //------------Setup for test--------------------------
@@ -81,7 +81,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("Distinct_EvalDistinct")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void Distinct_EvalDistinct_HappyPath_indexExp_ExpectDistinctResults()
         {
             //------------Setup for test--------------------------
@@ -112,7 +112,7 @@ namespace WarewolfParsingTest
         [Test]
         [Author("Leon Rajindrapersadh")]
         [Category("Distinct_EvalDistinct")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
         public void Distinct_EvalDistinct_HappyPathComplexResult_ExpectDistinctResults()
         {
             //------------Setup for test--------------------------

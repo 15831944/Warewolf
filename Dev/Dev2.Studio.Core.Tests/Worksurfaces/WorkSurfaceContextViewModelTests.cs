@@ -63,7 +63,7 @@ namespace Dev2.Core.Tests
         [Test]
         [Author("Hagashen Naidu")]
         [NUnit.Framework.Category("WorkSurfaceContextViewModel_Constructor")]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(ArgumentNullException))]
         public void WorkSurfaceContextViewModel_Constructor_NullWorkSurfaceKey_ExpectException()
         {
             //------------Setup for test--------------------------
@@ -78,7 +78,7 @@ namespace Dev2.Core.Tests
         [Test]
         [Author("Hagashen Naidu")]
         [NUnit.Framework.Category("WorkSurfaceContextViewModel_Constructor")]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(ArgumentNullException))]
         public void WorkSurfaceContextViewModel_Constructor_NullWorkSurfaceViewModel_ExpectException()
         {
             //------------Setup for test--------------------------

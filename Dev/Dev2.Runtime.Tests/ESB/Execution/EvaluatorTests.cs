@@ -27,6 +27,7 @@ using System.Collections.ObjectModel;
 using System.Security.Principal;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Warewolf.Storage;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.Runtime.ESB.Execution
 {

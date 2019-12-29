@@ -20,6 +20,7 @@ using Dev2.Providers.Errors;
 using Dev2.Runtime.ServiceModel.Data;
 using Dev2.Tests.Runtime.XML;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Tests.Runtime.ServiceModel.Data

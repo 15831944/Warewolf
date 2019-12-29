@@ -17,6 +17,7 @@ using Dev2.Interfaces;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using Warewolf.Tools.Specs.BaseTypes;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Activities.Specs.Toolbox.Utility.WebRequest
 {

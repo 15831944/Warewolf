@@ -29,7 +29,7 @@ namespace Dev2.Sql.Tests
         [Test]
         [Author("Trevor Williams-Ros")]
         [Category("SqlServer_Connect")]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(ArgumentNullException))]
 
         public void SqlServer_Connect_ConnectionStringIsNull_ThrowsArgumentNullException()
 
@@ -52,7 +52,7 @@ namespace Dev2.Sql.Tests
         [Test]
         [Author("Trevor Williams-Ros")]
         [Category("SqlServer_Connect")]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(ArgumentNullException))]
 
         public void SqlServer_Connect_ConnectionStringIsInvalid_ThrowsArgumentException()
 
@@ -75,7 +75,7 @@ namespace Dev2.Sql.Tests
         [Test]
         [Author("Trevor Williams-Ros")]
         [Category("SqlServer_Connect")]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(ArgumentNullException))]
 
         public void SqlServer_Connect_CommandTextIsNull_ThrowsArgumentNullException()
 
@@ -98,7 +98,7 @@ namespace Dev2.Sql.Tests
         [Test]
         [Author("Trevor Williams-Ros")]
         [Category("SqlServer_FetchDataTable")]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(ArgumentNullException))]
 
         public void SqlServer_FetchDataTable_CommandIsNull_ThrowsArgumentNullException()
 
@@ -122,7 +122,7 @@ namespace Dev2.Sql.Tests
         [Test]
         [Author("Trevor Williams-Ros")]
         [Category("SqlServer_FetchDatabases")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
 
         public void SqlServer_FetchDatabases_ConnectionNotInitialized_ThrowsConnectFirstException()
 
@@ -145,7 +145,7 @@ namespace Dev2.Sql.Tests
         [Test]
         [Author("Trevor Williams-Ros")]
         [Category("SqlServer_FetchStoredProcedures")]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(ArgumentNullException))]
 
         public void SqlServer_FetchStoredProcedures_FunctionProcessorIsNull_ThrowsArgumentNullException()
 
@@ -646,7 +646,7 @@ namespace Dev2.Sql.Tests
 
         [Test]
         [Author("Leon Rajindrapersadh")]
-        [NUnit.Framework.ExpectedException(typeof(DbEx))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(DbEx))]
         [Category("SqlServer_FetchDataTable")]
         public void SqlServer_FetchDataTable_OnException()
 
@@ -946,7 +946,7 @@ namespace Dev2.Sql.Tests
         [Test]
         [Author("Trevor Williams-Ros")]
         [Category("SqlServer_CreateCommand")]
-        [NUnit.Framework.ExpectedException(typeof(Exception))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(Exception))]
 
         public void SqlServer_CreateCommand_ConnectionNotInitialized_ThrowsConnectFirstException()
 

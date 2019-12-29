@@ -7,6 +7,7 @@ using Moq;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.Runtime.Search
 {

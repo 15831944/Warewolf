@@ -12,6 +12,7 @@ using System.Linq;
 using System.Xml;
 using Dev2.Data.Interfaces.Enums;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Data.Tests
 {

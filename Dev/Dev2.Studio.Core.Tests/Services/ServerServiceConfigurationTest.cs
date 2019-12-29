@@ -15,6 +15,7 @@ using Dev2.Services;
 using Dev2.Studio.Core.Services;
 using NUnit.Framework;
 using Moq;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Core.Tests.Services
 {

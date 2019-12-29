@@ -8,6 +8,7 @@ using Dev2.Runtime.ServiceModel.Esb.Brokers.Plugin;
 using NUnit.Framework;
 using Moq;
 using TestingDotnetDllCascading;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.Runtime
 {

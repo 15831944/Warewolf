@@ -12,6 +12,7 @@ using System;
 using System.ComponentModel;
 using Dev2.Services.Security;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Infrastructure.Tests.Services.Security

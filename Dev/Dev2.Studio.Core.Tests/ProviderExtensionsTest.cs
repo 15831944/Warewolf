@@ -12,6 +12,7 @@ using System;
 using Dev2.Intellisense.Provider;
 using Dev2.Studio.Interfaces;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Core.Tests
 {

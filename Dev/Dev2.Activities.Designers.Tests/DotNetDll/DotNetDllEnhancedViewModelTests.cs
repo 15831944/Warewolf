@@ -25,6 +25,7 @@ using Moq;
 using TestingDotnetDllCascading;
 using Warewolf.Core;
 using Warewolf.Testing;
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Activities.Designers.Tests.DotNetDll

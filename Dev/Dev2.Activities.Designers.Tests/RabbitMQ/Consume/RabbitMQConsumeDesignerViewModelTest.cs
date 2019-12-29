@@ -13,7 +13,7 @@ using System.Windows;
 using Dev2.Common.Interfaces.Core;
 using Dev2.Common.Interfaces.Help;
 using Dev2.Studio.Interfaces;
-
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Activities.Designers.Tests.RabbitMQ.Consume

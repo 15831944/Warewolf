@@ -32,6 +32,7 @@ using Moq;
 using Dev2.Studio.ViewModels.WorkSurface;
 using Dev2.Common.Interfaces.Studio.Controller;
 using Dev2.Services.Security;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Core.Tests.Workflows
 {

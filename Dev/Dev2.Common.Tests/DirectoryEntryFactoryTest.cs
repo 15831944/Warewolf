@@ -12,6 +12,7 @@ using System;
 using NUnit.Framework;
 using Dev2.Common.Interfaces.Wrappers;
 using Dev2.Common.Wrappers;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Common.Tests
 {

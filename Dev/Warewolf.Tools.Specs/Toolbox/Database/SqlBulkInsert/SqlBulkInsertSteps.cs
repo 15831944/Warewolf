@@ -30,6 +30,7 @@ using System.Reflection;
 using System.IO;
 using Dev2.Infrastructure.Tests;
 using Warewolf.Test.Agent;
+using Warewolf.UnitTestAttributes;
 
 namespace Warewolf.ToolsSpecs.Toolbox.Recordset.SqlBulkInsert
 {

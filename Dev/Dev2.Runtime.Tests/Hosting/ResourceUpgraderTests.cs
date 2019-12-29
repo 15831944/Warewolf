@@ -15,6 +15,7 @@ using Dev2.Common.Interfaces.Data;
 using Dev2.Runtime.Hosting;
 using NUnit.Framework;
 using Moq;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.Runtime.Hosting
 {

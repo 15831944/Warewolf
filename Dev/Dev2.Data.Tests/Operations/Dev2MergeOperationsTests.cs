@@ -12,6 +12,7 @@ using System;
 using Dev2.Data.Interfaces;
 using Dev2.Data.Operations;
 using NUnit.Framework;
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Data.Tests.Operations

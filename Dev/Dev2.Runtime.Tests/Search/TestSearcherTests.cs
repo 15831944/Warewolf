@@ -8,6 +8,7 @@ using NUnit.Framework;
 using Moq;
 using System;
 using System.Collections.Generic;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.Runtime.Search
 {

@@ -46,7 +46,7 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         [Test]
         [NUnit.Framework.Timeout(60000)]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [UnitTestAttributes.ExpectedException(typeof(ArgumentNullException))]
         public void TestManageOAuthSourceViewModelConstructorNullIManageOAuthSourceModel()
         {
             var requestServiceNameViewModel = new Mock<IRequestServiceNameViewModel>();
@@ -58,7 +58,7 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         [Test]
         [NUnit.Framework.Timeout(60000)]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [UnitTestAttributes.ExpectedException(typeof(ArgumentNullException))]
         public void TestManageOAuthSourceViewModelConstructorNullIRequestServiceNameViewModel()
         {
             Task<IRequestServiceNameViewModel> nullParam = null;
@@ -67,7 +67,7 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         [Test]
         [NUnit.Framework.Timeout(60000)]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [UnitTestAttributes.ExpectedException(typeof(ArgumentNullException))]
         public void TestManageOAuthSourceViewModelConstructor2NullIManageOAuthSourceModel()
         {
             IManageOAuthSourceModel nullParam = null;
@@ -76,7 +76,7 @@ namespace Warewolf.Studio.ViewModels.Tests
 
         [Test]
         [NUnit.Framework.Timeout(60000)]
-        [NUnit.Framework.ExpectedException(typeof(ArgumentNullException))]
+        [UnitTestAttributes.ExpectedException(typeof(ArgumentNullException))]
         public void TestManageOAuthSourceViewModelConstructorNullIOAuthSource()
         {
             IOAuthSource nullParam = null;

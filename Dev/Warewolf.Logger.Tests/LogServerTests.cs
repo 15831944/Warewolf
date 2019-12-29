@@ -15,6 +15,7 @@ using System;
 using System.Collections.Generic;
 using Warewolf.Interfaces.Auditing;
 using Warewolf.Logging;
+using Warewolf.UnitTestAttributes;
 
 namespace Warewolf.Logger.Tests
 {

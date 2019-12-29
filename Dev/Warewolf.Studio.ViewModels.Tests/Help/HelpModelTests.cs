@@ -3,6 +3,7 @@ using Microsoft.Practices.Prism.PubSubEvents;
 using NUnit.Framework;
 using Moq;
 using Dev2.Common.Interfaces.Help;
+using Warewolf.UnitTestAttributes;
 
 namespace Warewolf.Studio.Models.Help.Tests
 {

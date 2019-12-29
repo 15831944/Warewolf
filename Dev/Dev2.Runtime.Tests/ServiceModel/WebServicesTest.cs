@@ -20,6 +20,7 @@ using Dev2.Tests.Runtime.ServiceModel.Data;
 using Dev2.Tests.Runtime.XML;
 using NUnit.Framework;
 using Moq;
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Tests.Runtime.ServiceModel

@@ -55,7 +55,7 @@ namespace Dev2.Tests.Activities.ActivityTests
         [Test]
         [Author("Hagashen Naidu")]
         [Category("DsfActivity_GetForEachInputs")]
-        [NUnit.Framework.ExpectedException(typeof(NotImplementedException))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(NotImplementedException))]
         public void DsfActivity_GetForEachInputs_WhenExecuted_ThrowsException()
         {
             //------------Setup for test--------------------------
@@ -69,7 +69,7 @@ namespace Dev2.Tests.Activities.ActivityTests
         [Test]
         [Author("Hagashen Naidu")]
         [Category("DsfActivity_GetForEachOutputs")]
-        [NUnit.Framework.ExpectedException(typeof(NotImplementedException))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(NotImplementedException))]
         public void DsfActivity_GetForEachOutputs_WhenExecuted_ThrowsException()
         {
             //------------Setup for test--------------------------
@@ -83,7 +83,7 @@ namespace Dev2.Tests.Activities.ActivityTests
         [Test]
         [Author("Hagashen Naidu")]
         [Category("DsfActivity_UpdateForEachInputs")]
-        [NUnit.Framework.ExpectedException(typeof(NotImplementedException))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(NotImplementedException))]
         public void DsfActivity_UpdateForEachInputs_WhenExecuted_ThrowsException()
         {
             //------------Setup for test--------------------------
@@ -97,7 +97,7 @@ namespace Dev2.Tests.Activities.ActivityTests
         [Test]
         [Author("Hagashen Naidu")]
         [Category("DsfActivity_UpdateForEachOutputs")]
-        [NUnit.Framework.ExpectedException(typeof(NotImplementedException))]
+        [Warewolf.UnitTestAttributes.ExpectedException(typeof(NotImplementedException))]
         public void DsfActivity_UpdateForEachOutputs_WhenExecuted_ThrowsException()
         {
             //------------Setup for test--------------------------

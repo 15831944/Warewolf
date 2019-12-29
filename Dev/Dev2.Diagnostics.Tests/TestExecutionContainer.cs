@@ -12,6 +12,7 @@ using Dev2.Runtime;
 using Dev2.Runtime.ESB.Execution;
 using NUnit.Framework;
 using Moq;
+using Warewolf.UnitTestAttributes;
 
 
 namespace Dev2.Diagnostics.Test

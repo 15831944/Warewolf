@@ -53,6 +53,7 @@ using Dev2.Data.Interfaces.Enums;
 using Dev2.Data.Interfaces;
 using Dev2.Studio.Interfaces.Enums;
 using Dev2.Instrumentation;
+using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Core.Tests.Workflows
 {

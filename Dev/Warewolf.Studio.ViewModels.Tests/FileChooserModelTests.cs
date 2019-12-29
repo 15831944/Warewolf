@@ -5,6 +5,7 @@ using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.Wrappers;
 using NUnit.Framework;
 using Moq;
+using Warewolf.UnitTestAttributes;
 
 namespace Warewolf.Studio.ViewModels.Tests
 {
