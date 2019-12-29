@@ -168,6 +168,7 @@ namespace Dev2.Tests.Runtime.Services
         [Test]
         [Author("Hagashen Naidu")]
         [Category("MSSql")]
+        [Depends(Depends.ContainerType.MSSQL)]
         public void GetDatabaseColumnsForTable_Execute_ValidDatabaseSource_WithSchema_OnlyReturnsForThatSchema()
         {
             var parser = new Mock<IActivityParser>();
@@ -222,6 +223,7 @@ namespace Dev2.Tests.Runtime.Services
         [Test]
         [Author("Hagashen Naidu")]
         [Category("MSSql with Invalid Schema")]
+        [Depends(Depends.ContainerType.MSSQL)]
         public void GetDatabaseColumnsForTable_Execute_NullSchema_ValidDatabaseSource_ReturnsFromAllSchemas()
         {
             var parser = new Mock<IActivityParser>();
@@ -271,6 +273,7 @@ namespace Dev2.Tests.Runtime.Services
         [Test]
         [Author("Hagashen Naidu")]
         [Category("MSSql with Invalid Schema")]
+        [Depends(Depends.ContainerType.MSSQL)]
         public void GetDatabaseColumnsForTable_Execute_EmptySchema_ValidDatabaseSource_ReturnsFromAllSchemas()
         {
             var parser = new Mock<IActivityParser>();
