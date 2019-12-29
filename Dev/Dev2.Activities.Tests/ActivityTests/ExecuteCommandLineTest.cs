@@ -154,10 +154,7 @@ namespace Dev2.Tests.Activities.ActivityTests
                 Assert.Fail(fetchErrors);
             }
             GetScalarValueFromEnvironment(result.Environment, "OutVar1", out string actual, out string error);
-
-            // remove test datalist ;)
-
-            StringAssert.Contains(actual, "");
+            StringAssert.Contains("", actual);
         }
 
         [Test]
@@ -234,7 +231,7 @@ namespace Dev2.Tests.Activities.ActivityTests
 
             // remove test datalist ;)
 
-            StringAssert.Contains(actual, "This is output from the user");
+            StringAssert.Contains("This is output from the user", actual);
 
         }
 
@@ -266,10 +263,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             }
             GetScalarValueFromEnvironment(result.Environment, "OutVar1", out string actual, out string error);
 
-            // remove test datalist ;)
-
-            StringAssert.Contains(actual, "This is output from the user");
-
+            StringAssert.Contains("This is output from the user", actual);
         }
 
         [Test]
@@ -346,7 +340,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsNull(actual);
             var fetchErrors = DataObject.Environment.FetchErrors();
             // remove test datalist ;)
-            StringAssert.Contains(fetchErrors, "The console errored");
+            StringAssert.Contains("The console errored", fetchErrors);
 
         }
 
@@ -382,7 +376,6 @@ namespace Dev2.Tests.Activities.ActivityTests
             actual.AddRange(actualArray.Select(s => s.Trim()));
 
             CollectionAssert.AreEqual(expected, actual, new ActivityUnitTests.Utils.StringComparer());
-
         }
 
         [Test]
@@ -418,7 +411,6 @@ namespace Dev2.Tests.Activities.ActivityTests
             actual.AddRange(actualArray.Select(s => s.Trim()));
 
             CollectionAssert.AreEqual(expected, actual, new ActivityUnitTests.Utils.StringComparer());
-
         }
 
         [Test]
@@ -449,8 +441,6 @@ namespace Dev2.Tests.Activities.ActivityTests
             actual.AddRange(actualArray.Select(s => s.Trim()));
 
             CollectionAssert.AreEqual(expected, actual, new ActivityUnitTests.Utils.StringComparer());
-
-
         }
 
         [Test]

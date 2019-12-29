@@ -336,10 +336,10 @@ namespace Dev2.Tests.Runtime.ServiceModel
             var result = pluginServices.Test(serviceDef, out string serializedResult);
             ////------------Assert Results-------------------------
             Assert.AreEqual(1, result[0].Fields.Count);
-            StringAssert.Contains(result[0].Fields[0].Alias, "Message");
-            StringAssert.Contains(result[0].Fields[0].Name, "Message");
-            StringAssert.Contains(result[0].Fields[0].Path.ActualPath, "Message");
-            StringAssert.Contains(result[0].Fields[0].Path.SampleData, "Howdy__COMMA__");
+            StringAssert.Contains("Message", result[0].Fields[0].Alias);
+            StringAssert.Contains("Message", result[0].Fields[0].Name);
+            StringAssert.Contains("Message", result[0].Fields[0].Path.ActualPath);
+            StringAssert.Contains("Howdy__COMMA__", result[0].Fields[0].Path.SampleData);
         }
 
         [Test]
@@ -362,10 +362,10 @@ namespace Dev2.Tests.Runtime.ServiceModel
             var result = pluginServices.Test(serviceDef, out string serializedResult);
             ////------------Assert Results-------------------------
             Assert.AreEqual(1, result[0].Fields.Count);
-            StringAssert.Contains(result[0].Fields[0].Alias, "message");
-            StringAssert.Contains(result[0].Fields[0].Name, "message");
-            StringAssert.Contains(result[0].Fields[0].Path.ActualPath, "message");
-            StringAssert.Contains(result[0].Fields[0].Path.SampleData, "Howzit__COMMA__");
+            StringAssert.Contains("message", result[0].Fields[0].Alias);
+            StringAssert.Contains("message", result[0].Fields[0].Name);
+            StringAssert.Contains("message", result[0].Fields[0].Path.ActualPath);
+            StringAssert.Contains("Howzit__COMMA__", result[0].Fields[0].Path.SampleData);
         }
 
         [Test]

@@ -15,9 +15,6 @@ using NUnit.Framework;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    /// <summary>
-    /// Summary description for HostSecureConfigTest
-    /// </summary>
     [TestFixture]
     public class HostSecureConfigTests
     {
@@ -29,15 +26,12 @@ namespace Dev2.Tests.Runtime.Services
         static NameValueCollection _newSettings;
         static NameValueCollection _defaultSettings;
 
-        public static NameValueCollection CreateDefaultConfig()
-        {
-            return HostSecureConfig.CreateSettings(DefaultServerID.ToString(), DefaultServerKey, DefaultSystemKeyPublic);
-        }
+        public static NameValueCollection CreateDefaultConfig() => HostSecureConfig.CreateSettings(DefaultServerID.ToString(), DefaultServerKey, DefaultSystemKeyPublic);
 
         #region Class Initialize/Cleanup
 
         [OneTimeSetUp]
-        public static void ClassInitialize(TestContext testContext)
+        public static void ClassInitialize()
         {
             _defaultSettings = CreateDefaultConfig();
             _newSettings = HostSecureConfig.CreateSettings(string.Empty, string.Empty, DefaultSystemKeyPublic);
@@ -54,28 +48,9 @@ namespace Dev2.Tests.Runtime.Services
 
         [Test]
         [ExpectedException(typeof(ArgumentNullException))]
-        
-        public void HostSecureConfig_WithoutConfig_Expected_ThrowsArgumentNullException()
-
-        {
-            
-            new HostSecureConfig(null);
-            
-        }
-
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        // The tests run in parallel??? so there is no guarantee that the config saved is the one actually being used!!! 
-        //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-        //[Test]
-        //public void HostSecureConfig_WithConfig_Expected_LoadsDefaultValues()
-        //{
-        //    HostSecureConfig.SaveConfig(_defaultSettings);
-        //    TestConfig(DefaultServerID, DefaultServerKey, DefaultSystemKeyPublic, false, new HostSecureConfig());
-        //}
+        public void HostSecureConfig_WithoutConfig_Expected_ThrowsArgumentNullException() => new HostSecureConfig(null);
 
         [Test]
-        
         public void HostSecureConfig_WithDefaultSettings_Expected_LoadsDefaultValues()
         {
             TestConfig(DefaultServerID, DefaultServerKey, DefaultSystemKeyPublic, false);
@@ -135,8 +110,5 @@ namespace Dev2.Tests.Runtime.Services
         }
 
         #endregion
-
-
-
     }
 }

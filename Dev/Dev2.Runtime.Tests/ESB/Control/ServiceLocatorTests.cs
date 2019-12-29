@@ -21,7 +21,7 @@ namespace Dev2.Tests.Runtime.ESB.Control
     public class ServiceLocatorTests
     {
         [OneTimeSetUp]
-        public static void Init(TestContext context)
+        public static void Init()
         {
             var pCounter = new Mock<IWarewolfPerformanceCounterLocater>();
             CustomContainer.Register(pCounter.Object);

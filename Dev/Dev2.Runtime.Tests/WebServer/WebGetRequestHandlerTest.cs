@@ -30,7 +30,7 @@ namespace Dev2.Tests.Runtime.WebServer
     public class WebGetRequestHandlerTest
     {
         [OneTimeSetUp]
-        public static void Init(TestContext context)
+        public static void Init()
         {
             var pCounter = new Mock<IWarewolfPerformanceCounterLocater>();
             pCounter.Setup(locater => locater.GetCounter(It.IsAny<Guid>(), It.IsAny<WarewolfPerfCounterType>())).Returns(new EmptyCounter());

@@ -29,7 +29,7 @@ namespace Dev2.Tests.Runtime.Services
         static string _testDir;
 
         [OneTimeSetUp]
-        public static void MyClassInit(TestContext context)
+        public static void MyClassInit()
         {
             _testDir = TestContext.CurrentContext.TestDirectory;
         }
@@ -101,7 +101,7 @@ namespace Dev2.Tests.Runtime.Services
             var esb = new FetchDebugItemFile();
             var actual = esb.Execute(new Dictionary<string, StringBuilder> { { "DebugItemFilePath", new StringBuilder(serverLogPath) } }, null);
             var msg = ConvertToMsg(actual);
-            StringAssert.Contains(msg.Message.ToString(), Expected);
+            StringAssert.Contains(Expected, msg.Message.ToString());
         }
 
         [Test]

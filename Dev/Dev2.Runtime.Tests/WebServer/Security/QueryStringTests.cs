@@ -81,7 +81,7 @@ namespace Dev2.Tests.Runtime.WebServer.Security
             {
                 count++;
                 var current = enumerator.Current;
-                Assert.IsInstanceOf(current.GetType(), typeof(KeyValuePair<string, string>));
+                Assert.IsInstanceOf(typeof(KeyValuePair<string, string>), current);
                 var kvp = (KeyValuePair<string, string>)current;
                 Assert.AreEqual(kvp.Key, "key");
                 Assert.AreEqual(kvp.Value, "value");

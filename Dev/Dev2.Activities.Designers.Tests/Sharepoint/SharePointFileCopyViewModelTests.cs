@@ -17,64 +17,30 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
     [TestFixture]
     public class SharePointFileCopyViewModelTests
     {
-        public const string TestOwner = "Bernardt Joubert";
         public const string Category = "SharePoint";
 
         ModelItem CreateModelItem()
         {
             var fileUploadactivity = new SharepointCopyFileActivity();
-
             return ModelItemUtils.CreateModelItem(fileUploadactivity);
         }
 
         [Test]
-        [Author(TestOwner)]
         [Category(Category)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void SharePointCopyFileDesignerViewModel_Constructor_NullModelItem_ThrowsException()
-        {
-            //------------Setup for test--------------------------
-
-
-            //------------Execute Test---------------------------
-            var sharepointFileCopyDesignerViewModel = new SharePointCopyFileDesignerViewModel(CreateModelItem());
-
-            //------------Assert Results-------------------------
-            Assert.IsNull(sharepointFileCopyDesignerViewModel);
-        }
+        public void SharePointCopyFileDesignerViewModel_Constructor_NullModelItem_ThrowsException() => new SharePointCopyFileDesignerViewModel(null);
 
         [Test]
-        [Author(TestOwner)]
         [Category(Category)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void SharePointCopyFileDesignerViewModel_Constructor_NullAsyncWorker_ThrowsException()
-        {
-            //------------Setup for test--------------------------
-
-
-            //------------Execute Test---------------------------
-            
-            new SharePointCopyFileDesignerViewModel(CreateModelItem(), null, new Mock<IServer>().Object);
-            //------------Assert Results-------------------------
-        }
+        public void SharePointCopyFileDesignerViewModel_Constructor_NullAsyncWorker_ThrowsException() => new SharePointCopyFileDesignerViewModel(CreateModelItem(), null, new Mock<IServer>().Object);
 
         [Test]
-        [Author(TestOwner)]
         [Category(Category)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void SharePointCopyFileDesignerViewModel_Constructor_NullEnvironmentModel_ThrowsException()
-        {
-            //------------Setup for test--------------------------
-
-
-            //------------Execute Test---------------------------
-            
-            new SharePointCopyFileDesignerViewModel(CreateModelItem(), new SynchronousAsyncWorker(), null);
-            //------------Assert Results-------------------------
-        }
+        public void SharePointCopyFileDesignerViewModel_Constructor_NullEnvironmentModel_ThrowsException() => new SharePointCopyFileDesignerViewModel(CreateModelItem(), new SynchronousAsyncWorker(), null);
 
         [Test]
-        [Author(TestOwner)]
         [Category(Category)]
         public void SharePointCopyFileDesignerViewModel_InitilizeProperties_ReturnsSuccess()
         {
@@ -90,16 +56,15 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
         }
 
         [Test]
-        [Author(TestOwner)]
         [Category(Category)]
         public void SharePointCopyFileDesignerViewModel_SetProperties_ReturnsSuccess()
         {
             //------------Setup for test--------------------------
-
             var modelItem = CreateModelItem();
             modelItem.SetProperty("ServerInputPathFrom", "TestFolder");
             modelItem.SetProperty("ServerInputPathTo", "TestFolder");
             modelItem.SetProperty("SharepointServerResourceId", Guid.NewGuid());
+
             //------------Execute Test---------------------------
             var sharepointFileCopyDesignerViewModel = new SharePointCopyFileDesignerViewModel(modelItem, new SynchronousAsyncWorker(), new Mock<IServer>().Object);
             sharepointFileCopyDesignerViewModel.Errors = new List<IActionableErrorInfo> { new ActionableErrorInfo() { Message = "Please Select a SharePoint Server" } };
@@ -108,16 +73,15 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             var inputPathTo = modelItem.GetProperty<string>("ServerInputPathTo");
             var sourceId = modelItem.GetProperty<Guid>("SharepointServerResourceId");
 
+            //------------Assert Results-------------------------
             Assert.IsNotNull(inputPathfrom);
             Assert.IsNotNull(inputPathTo);
             Assert.IsNotNull(sharepointFileCopyDesignerViewModel.ServerInputPathFrom);
             Assert.IsNotNull(sharepointFileCopyDesignerViewModel.ServerInputPathTo);
             Assert.AreNotEqual(sourceId, Guid.Empty);
-            //------------Assert Results-------------------------
         }
 
         [Test]
-        [Author(TestOwner)]
         [Category(Category)]
         public void SharePointFileUploadDesignerViewModel_SetPropertiesNullSource_ReturnsSuccess()
         {
@@ -134,16 +98,14 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             var inputPathfrom = modelItem.GetProperty<string>("ServerInputPathFrom");
             var inputPathTo = modelItem.GetProperty<string>("ServerInputPathTo");
 
-
+            //------------Assert Results-------------------------
             Assert.IsNotNull(inputPathfrom);
             Assert.IsNotNull(inputPathTo);
             Assert.IsNotNull(sharepointFileCopyDesignerViewModel.ServerInputPathFrom);
             Assert.IsNotNull(sharepointFileCopyDesignerViewModel.ServerInputPathTo);
-            //------------Assert Results-------------------------
         }
 
         [Test]
-        [Author(TestOwner)]
         [Category(Category)]
         public void SharePointFileUploadDesignerViewModel_SetPropertiesNullLocalPathFrom_ReturnsSuccess()
         {
@@ -160,13 +122,12 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
 
             var inputPathTo = modelItem.GetProperty<string>("ServerInputPathTo");
 
+            //------------Assert Results-------------------------
             Assert.IsNotNull(inputPathTo);
             Assert.IsNotNull(sharepointFileCopyDesignerViewModel.ServerInputPathTo);
-            //------------Assert Results-------------------------
         }
 
         [Test]
-        [Author(TestOwner)]
         [Category(Category)]
         public void SharePointFileUploadDesignerViewModel_SetPropertiesNullLocalPathTo_ReturnsSuccess()
         {
@@ -187,10 +148,10 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             mockMainViewModel.Setup(model => model.HelpViewModel).Returns(mockHelpWindowViewModel.Object);
             CustomContainer.Register(mockMainViewModel.Object);
 
+            //------------Assert Results-------------------------
             sharepointFileCopyDesignerViewModel.UpdateHelpDescriptor("Test");
             Assert.IsNotNull(inputPathfrom);
             Assert.IsNotNull(sharepointFileCopyDesignerViewModel.ServerInputPathTo);
-            //------------Assert Results-------------------------
         }
     }
 }

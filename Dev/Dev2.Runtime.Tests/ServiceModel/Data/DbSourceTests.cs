@@ -63,7 +63,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
             //------------Execute Test---------------------------
             var connectionString = dbSource.ConnectionString;
             //------------Assert Results-------------------------
-            StringAssert.Contains(connectionString,",1433");
+            StringAssert.Contains(",1433", connectionString);
         }
 
         [Test]

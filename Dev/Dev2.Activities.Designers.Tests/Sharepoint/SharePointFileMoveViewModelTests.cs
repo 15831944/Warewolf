@@ -17,7 +17,6 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
     [TestFixture]
     public class SharePointFileMoveViewModelTests
     {
-        public const string TestOwner = "Bernardt Joubert";
         public const string Category = "SharePoint";
 
         ModelItem CreateModelItem()
@@ -28,7 +27,6 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
         }
 
         [Test]
-        [Author(TestOwner)]
         [Category(Category)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SharePointMoveFileDesignerViewModel_Constructor_NullModelItem_ThrowsException()
@@ -37,13 +35,12 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
 
 
             //------------Execute Test---------------------------
-            var sharepointFileMoveDesignerViewModel = new SharePointMoveFileDesignerViewModel(CreateModelItem());
+            var sharepointFileMoveDesignerViewModel = new SharePointMoveFileDesignerViewModel(null);
             //------------Assert Results-------------------------
             Assert.IsNull(sharepointFileMoveDesignerViewModel);
         }
 
         [Test]
-        [Author(TestOwner)]
         [Category(Category)]
         [ExpectedException(typeof(ArgumentNullException))]
         public void SharePointMoveFileDesignerViewModel_Constructor_NullAsyncWorker_ThrowsException()
@@ -58,22 +55,11 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
         }
 
         [Test]
-        [Author(TestOwner)]
         [Category(Category)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void SharePointMoveFileDesignerViewModel_Constructor_NullEnvironmentModel_ThrowsException()
-        {
-            //------------Setup for test--------------------------
-
-
-            //------------Execute Test---------------------------
-            
-            new SharePointMoveFileDesignerViewModel(CreateModelItem(), new SynchronousAsyncWorker(), null);
-            //------------Assert Results-------------------------
-        }
+        public void SharePointMoveFileDesignerViewModel_Constructor_NullEnvironmentModel_ThrowsException() => new SharePointMoveFileDesignerViewModel(CreateModelItem(), new SynchronousAsyncWorker(), null);
 
         [Test]
-        [Author(TestOwner)]
         [Category(Category)]
         public void SharePointMoveFileDesignerViewModel_InitilizeProperties_ReturnsSuccess()
         {
@@ -85,22 +71,21 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
 
             sharepointFileMoveDesignerViewModel.UpdateHelpDescriptor("Test");
 
+            //------------Assert Results-------------------------
             Assert.IsNotNull(sharepointFileMoveDesignerViewModel);
             Assert.IsNotNull(sharepointFileMoveDesignerViewModel.CollectionName);
-            //------------Assert Results-------------------------
         }
 
         [Test]
-        [Author(TestOwner)]
         [Category(Category)]
         public void SharePointMoveFileDesignerViewModel_SetProperties_ReturnsSuccess()
         {
             //------------Setup for test--------------------------
-
             var modelItem = CreateModelItem();
             modelItem.SetProperty("ServerInputPathFrom", "TestFolder");
             modelItem.SetProperty("ServerInputPathTo", "TestFolder");
             modelItem.SetProperty("SharepointServerResourceId", Guid.NewGuid());
+
             //------------Execute Test---------------------------
             var sharepointFileMoveDesignerViewModel = new SharePointMoveFileDesignerViewModel(modelItem, new SynchronousAsyncWorker(), new Mock<IServer>().Object);
             sharepointFileMoveDesignerViewModel.Errors = new List<IActionableErrorInfo> { new ActionableErrorInfo() { Message = "Please Select a SharePoint Server" } };
@@ -116,21 +101,19 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             CustomContainer.Register(mockMainViewModel.Object);
             sharepointFileMoveDesignerViewModel.UpdateHelpDescriptor("Test");
 
+            //------------Assert Results-------------------------
             Assert.IsNotNull(inputPathfrom);
             Assert.IsNotNull(inputPathTo);
             Assert.IsNotNull(sharepointFileMoveDesignerViewModel.ServerInputPathFrom);
             Assert.IsNotNull(sharepointFileMoveDesignerViewModel.ServerInputPathTo);
             Assert.AreNotEqual(sourceId, Guid.Empty);
-            //------------Assert Results-------------------------
         }
 
         [Test]
-        [Author(TestOwner)]
         [Category(Category)]
         public void SharePointMoveFileDesignerViewModel_SetPropertiesNullSource_ReturnsSuccess()
         {
             //------------Setup for test--------------------------
-
             var modelItem = CreateModelItem();
             modelItem.SetProperty("ServerInputPathFrom", "TestFolder");
             modelItem.SetProperty("ServerInputPathTo", "TestFolder");
@@ -142,25 +125,23 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             var inputPathfrom = modelItem.GetProperty<string>("ServerInputPathFrom");
             var inputPathTo = modelItem.GetProperty<string>("ServerInputPathTo");
 
-
+            //------------Assert Results-------------------------
             Assert.IsNotNull(inputPathfrom);
             Assert.IsNotNull(inputPathTo);
             Assert.IsNotNull(sharepointFileMoveDesignerViewModel.ServerInputPathFrom);
             Assert.IsNotNull(sharepointFileMoveDesignerViewModel.ServerInputPathTo);
-            //------------Assert Results-------------------------
         }
 
         [Test]
-        [Author(TestOwner)]
         [Category(Category)]
         public void SharePointMoveFileDesignerViewModel_SetPropertiesNullLocalPathFrom_ReturnsSuccess()
         {
             //------------Setup for test--------------------------
-
             var modelItem = CreateModelItem();
 
             modelItem.SetProperty("ServerInputPathTo", "TestFolder");
             modelItem.SetProperty("SharepointServerResourceId", Guid.NewGuid());
+
             //------------Execute Test---------------------------
             var sharepointFileMoveDesignerViewModel = new SharePointMoveFileDesignerViewModel(modelItem, new SynchronousAsyncWorker(), new Mock<IServer>().Object);
             sharepointFileMoveDesignerViewModel.Errors = new List<IActionableErrorInfo> { new ActionableErrorInfo() { Message = "Please Select a SharePoint Server" } };
@@ -168,22 +149,21 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
 
             var inputPathTo = modelItem.GetProperty<string>("ServerInputPathTo");
 
+            //------------Assert Results-------------------------
             Assert.IsNotNull(inputPathTo);
             Assert.IsNotNull(sharepointFileMoveDesignerViewModel.ServerInputPathTo);
-            //------------Assert Results-------------------------
         }
 
         [Test]
-        [Author(TestOwner)]
         [Category(Category)]
         public void SharePointMoveFileDesignerViewModel_SetPropertiesNullLocalPathTo_ReturnsSuccess()
         {
             //------------Setup for test--------------------------
-
             var modelItem = CreateModelItem();
 
             modelItem.SetProperty("ServerInputPathFrom", "TestFolder");
             modelItem.SetProperty("SharepointServerResourceId", Guid.NewGuid());
+
             //------------Execute Test---------------------------
             var sharepointFileMoveDesignerViewModel = new SharePointMoveFileDesignerViewModel(modelItem, new SynchronousAsyncWorker(), new Mock<IServer>().Object);
             sharepointFileMoveDesignerViewModel.Errors = new List<IActionableErrorInfo> { new ActionableErrorInfo() { Message = "Please Select a SharePoint Server" } };
@@ -191,9 +171,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
         
             var inputPathfrom = modelItem.GetProperty<string>("ServerInputPathFrom");
 
+            //------------Assert Results-------------------------
             Assert.IsNotNull(inputPathfrom);
             Assert.IsNotNull(sharepointFileMoveDesignerViewModel.ServerInputPathTo);
-            //------------Assert Results-------------------------
         }
     }
 }

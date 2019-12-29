@@ -532,9 +532,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsNotNull(jContainer);
             var values = jContainer.Children().Select(token => token.ToString()).ToList();
             Assert.IsNotNull(values);
-            StringAssert.Contains(values[0], "Pizza");
-            StringAssert.Contains(values[1], "Burger");
-            StringAssert.Contains(values[2], "Chicken");
+            StringAssert.Contains("Pizza", values[0]);
+            StringAssert.Contains("Burger", values[1]);
+            StringAssert.Contains("Chicken", values[2]);
         }
        
         [Test]
@@ -1215,8 +1215,9 @@ namespace Dev2.Tests.Activities.ActivityTests
 
             Assert.AreEqual(1, err.FetchErrors().Count);
             var single = err.FetchErrors().Single();
-            StringAssert.Contains(single, "is not compatible with");
+            StringAssert.Contains("is not compatible with", single);
         }
+        
         [Test]
         [Author("Candice Daniel")]
         public void Execute_GivenValidArgs_ListType_ToObject_ShouldReturnValidData_IsServiceTestExecution()
@@ -1266,9 +1267,9 @@ namespace Dev2.Tests.Activities.ActivityTests
             Assert.IsNotNull(jContainer);
             var values = jContainer.Children().Select(token => token.ToString()).ToList();
             Assert.IsNotNull(values);
-            StringAssert.Contains(values[0], "Pizza");
-            StringAssert.Contains(values[1], "Burger");
-            StringAssert.Contains(values[2], "Chicken");
+            StringAssert.Contains("Pizza", values[0]);
+            StringAssert.Contains("Burger", values[1]);
+            StringAssert.Contains("Chicken", values[2]);
             Assert.IsTrue(mock.Object.IsServiceTestExecution);
         }
     }

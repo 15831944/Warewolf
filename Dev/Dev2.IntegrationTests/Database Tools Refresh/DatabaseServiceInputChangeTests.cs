@@ -37,7 +37,7 @@ namespace Dev2.Integration.Tests.Database_Tools_Refresh
         private IDbSource _selectedSource;
 
         [OneTimeSetUp]
-        public static void ClassInit(TestContext context)
+        public static void ClassInit()
         {
             var aggr = new Mock<IEventAggregator>();
             DataListSingleton.SetDataList(new DataListViewModel(aggr.Object));

@@ -31,10 +31,7 @@ namespace Dev2.Core.Tests.Workspaces
         static string _testDir;
 
         [OneTimeSetUp]
-        public static void MyClassInit(TestContext context)
-        {
-            _testDir = context.TestDirectory;
-        }
+        public static void MyClassInit() => _testDir = TestContext.CurrentContext.TestDirectory;
 
         #endregion
 

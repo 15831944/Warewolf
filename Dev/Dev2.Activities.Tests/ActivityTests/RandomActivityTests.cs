@@ -23,18 +23,9 @@ using NUnit.Framework;
 
 namespace Dev2.Tests.Activities.ActivityTests
 {
-    /// <summary>
-    ///     Summary description for RandomActivityTests
-    /// </summary>
     [TestFixture]
     public class RandomActivityTests : BaseActivityUnitTest
     {
-        /// <summary>
-        ///     Gets or sets the test context which provides
-        ///     information about and functionality for the current test run.
-        /// </summary>
-        public TestContext TestContext { get; set; }
-
         #region Numbers Tests
 
         [Test]

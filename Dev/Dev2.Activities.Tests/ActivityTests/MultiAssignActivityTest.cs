@@ -575,8 +575,6 @@ namespace Dev2.Tests.Activities.ActivityTests
                                                     , "Value10" };
             var actual = RetrieveAllRecordSetFieldValues(result.Environment, "gRec", "opt", out string error);
 
-            // remove test datalist ;)
-
             CollectionAssert.AreEqual(expected, actual);
         }
 

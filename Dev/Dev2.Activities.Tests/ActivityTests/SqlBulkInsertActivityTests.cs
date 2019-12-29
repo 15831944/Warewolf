@@ -975,7 +975,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             if(dataObject != null)
             {
                 var executionErrors = dataObject.Environment.FetchErrors();
-                StringAssert.Contains(executionErrors, "[[recset1(-1).field2]]");
+                StringAssert.Contains("[[recset1(-1).field2]]", executionErrors);
             }
             else
             {
@@ -1027,7 +1027,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             if(dataObject != null)
             {
                 var executionErrors = dataObject.Environment.FetchErrors();
-                StringAssert.Contains(executionErrors, "Input string was not in a correct format");
+                StringAssert.Contains("Input string was not in a correct format", executionErrors);
                 Assert.IsFalse(executionErrors.Contains("Problems with Iterators for SQLBulkInsert"), "Iterator exception has been added ;(");
             }
             else
@@ -1378,7 +1378,7 @@ namespace Dev2.Tests.Activities.ActivityTests
             if(dataObject != null)
             {
                 var executionErrors = dataObject.Environment.FetchErrors();
-                StringAssert.Contains(executionErrors, "The column TestCol2 does not allow NULL. Please check your mappings to ensure you have mapped data into it.");
+                StringAssert.Contains("The column TestCol2 does not allow NULL. Please check your mappings to ensure you have mapped data into it.", executionErrors);
             }
             else
             {

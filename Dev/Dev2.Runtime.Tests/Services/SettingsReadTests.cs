@@ -31,16 +31,6 @@ namespace Dev2.Tests.Runtime.Services
     [TestFixture]
     public class SettingsReadTests
     {
-
-        #region ClassInitialize
-
-        [OneTimeSetUp]
-        public static void MyClassInitialize(TestContext context)
-        {
-        }
-
-        #endregion
-
         #region Execute
 
         [Test]
@@ -111,7 +101,7 @@ namespace Dev2.Tests.Runtime.Services
             Assert.IsNotNull(settings);
             Assert.IsNotNull(settings.Security);
             Assert.IsTrue(settings.HasError);
-            StringAssert.Contains(settings.Error, invalidFormat);
+            StringAssert.Contains(invalidFormat, settings.Error);
 
             var expected = SecurityRead.DefaultPermissions[0];
             var actual = settings.Security.WindowsGroupPermissions[0];
@@ -137,7 +127,7 @@ namespace Dev2.Tests.Runtime.Services
 
             //------------Assert Results-------------------------
             Assert.IsNotNull(endpoint);
-            Assert.IsInstanceOf(endpoint.GetType(), typeof(SecurityRead));
+            Assert.IsInstanceOf(typeof(SecurityRead), endpoint);
         }
 
         #region HandlesType

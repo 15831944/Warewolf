@@ -29,7 +29,7 @@ namespace Dev2.Tests.Runtime.Services
         static string _testDir;
 
         [OneTimeSetUp]
-        public static void MyClassInit(TestContext context)
+        public static void MyClassInit()
         {
             _testDir = TestContext.CurrentContext.TestDirectory;
         }

@@ -17,7 +17,6 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
     [TestFixture]
     public class SharePointFileDownLoadViewModelTests
     {
-        public const string TestOwner = "Bernardt Joubert";
         public const string Category = "SharePoint";
 
         ModelItem CreateModelItem()
@@ -27,78 +26,43 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
         }
 
         [Test]
-        [Author(TestOwner)]
         [Category(Category)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void SharepointFileDownloadDesignerViewModel_Constructor_NullModelItem_ThrowsException()
-        {
-            //------------Setup for test--------------------------
-
-
-            //------------Execute Test---------------------------
-            var sharepointReadFolderDesignerViewModel = new SharePointFileDownLoadDesignerViewModel(CreateModelItem());
-            //------------Assert Results-------------------------
-            Assert.IsNull(sharepointReadFolderDesignerViewModel);
-        }
+        public void SharepointFileDownloadDesignerViewModel_Constructor_NullModelItem_ThrowsException() => new SharePointFileDownLoadDesignerViewModel(null);
 
         [Test]
-        [Author(TestOwner)]
         [Category(Category)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void SharepointFileDownloadDesignerViewModel_Constructor_NullAsyncWorker_ThrowsException()
-        {
-            //------------Setup for test--------------------------
-
-
-            //------------Execute Test---------------------------
-            
-            new SharePointFileDownLoadDesignerViewModel(CreateModelItem(), null, new Mock<IServer>().Object);
-            //------------Assert Results-------------------------
-        }
+        public void SharepointFileDownloadDesignerViewModel_Constructor_NullAsyncWorker_ThrowsException() => new SharePointFileDownLoadDesignerViewModel(CreateModelItem(), null, new Mock<IServer>().Object);
 
         [Test]
-        [Author(TestOwner)]
         [Category(Category)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void SharePointFileDownLoadDesignerViewModel_Constructor_NullEnvironmentModel_ThrowsException()
-        {
-            //------------Setup for test--------------------------
-
-
-            //------------Execute Test---------------------------
-            
-            new SharePointFileDownLoadDesignerViewModel(CreateModelItem(), new SynchronousAsyncWorker(), null);
-            //------------Assert Results-------------------------
-        }
+        public void SharePointFileDownLoadDesignerViewModel_Constructor_NullEnvironmentModel_ThrowsException() => new SharePointFileDownLoadDesignerViewModel(CreateModelItem(), new SynchronousAsyncWorker(), null);
 
         [Test]
-        [Author(TestOwner)]
         [Category(Category)]
         public void SharePointFileDownLoadDesignerViewModel_InitilizeProperties_ReturnsSuccess()
         {
-            //------------Setup for test--------------------------
-
-
             //------------Execute Test---------------------------
             var sharepointFileDownLoadDesignerViewModel = new SharePointFileDownLoadDesignerViewModel(CreateModelItem(), new SynchronousAsyncWorker(), new Mock<IServer>().Object);
 
             sharepointFileDownLoadDesignerViewModel.UpdateHelpDescriptor("Test");
 
+            //------------Assert Results-------------------------
             Assert.IsNotNull(sharepointFileDownLoadDesignerViewModel);
             Assert.IsNotNull(sharepointFileDownLoadDesignerViewModel.CollectionName);
-            //------------Assert Results-------------------------
         }
 
         [Test]
-        [Author(TestOwner)]
         [Category(Category)]
         public void SharePointFileDownLoadDesignerViewModel_SetProperties_ReturnsSuccess()
         {
             //------------Setup for test--------------------------
-
             var modelItem = CreateModelItem();
             modelItem.SetProperty("LocalInputPath", "TestFolder");
             modelItem.SetProperty("SharepointServerResourceId", Guid.NewGuid());
+
             //------------Execute Test---------------------------
             var sharepointReadFolderDesignerViewModel = new SharePointFileDownLoadDesignerViewModel(modelItem, new SynchronousAsyncWorker(), new Mock<IServer>().Object);
             sharepointReadFolderDesignerViewModel.Errors = new List<IActionableErrorInfo> { new ActionableErrorInfo() { Message = "Please Select a SharePoint Server" } };
@@ -112,21 +76,20 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             CustomContainer.Register(mockMainViewModel.Object);
             sharepointReadFolderDesignerViewModel.UpdateHelpDescriptor("Test");
 
+            //------------Assert Results-------------------------
             Assert.IsNotNull(inputPath);
             Assert.IsNotNull(sharepointReadFolderDesignerViewModel.LocalInputPath);
             Assert.AreNotEqual(sourceId, Guid.Empty);
-            //------------Assert Results-------------------------
         }
 
         [Test]
-        [Author(TestOwner)]
         [Category(Category)]
         public void SharePointFileDownLoadDesignerViewModel_SetPropertiesNullSource_ReturnsSuccess()
         {
             //------------Setup for test--------------------------
-
             var modelItem = CreateModelItem();
             modelItem.SetProperty("LocalInputPath", "TestFolder");
+
             //------------Execute Test---------------------------
             var sharepointReadFolderDesignerViewModel = new SharePointFileDownLoadDesignerViewModel(modelItem, new SynchronousAsyncWorker(), new Mock<IServer>().Object);
             sharepointReadFolderDesignerViewModel.Errors = new List<IActionableErrorInfo> { new ActionableErrorInfo() { Message = "Please Select a SharePoint Server" } };
@@ -134,18 +97,16 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             var inputPath = modelItem.GetProperty<string>("LocalInputPath");
             var sourceId = modelItem.GetProperty<Guid>("SharepointServerResourceId");
 
+            //------------Assert Results-------------------------
             Assert.IsNotNull(inputPath);
             Assert.IsNotNull(sharepointReadFolderDesignerViewModel.LocalInputPath);
-            //------------Assert Results-------------------------
         }
 
         [Test]
-        [Author(TestOwner)]
         [Category(Category)]
         public void SharePointFileDownLoadDesignerViewModel_SetPropertiesNullLocalPath_ReturnsSuccess()
         {
             //------------Setup for test--------------------------
-
             var modelItem = CreateModelItem();
             modelItem.SetProperty("SharepointServerResourceId", Guid.NewGuid());
 
@@ -154,9 +115,8 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             sharepointReadFolderDesignerViewModel.Errors = new List<IActionableErrorInfo> { new ActionableErrorInfo() { Message = "Please Select a SharePoint Server" } };
             sharepointReadFolderDesignerViewModel.Validate();
 
-
-            Assert.IsNotNull(sharepointReadFolderDesignerViewModel.LocalInputPath);
             //------------Assert Results-------------------------
+            Assert.IsNotNull(sharepointReadFolderDesignerViewModel.LocalInputPath);
         }
     }
 }

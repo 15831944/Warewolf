@@ -35,46 +35,19 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
         [Author(TestOwner)]
         [Category(Category)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void SharepointReadFolderDesignerViewModel_Constructor_NullModelItem_ThrowsException()
-        {
-            //------------Setup for test--------------------------
-
-
-            //------------Execute Test---------------------------
-            var sharepointReadFolderDesignerViewModel = new SharePointReadFolderDesignerViewModel(CreateModelItem());
-            //------------Assert Results-------------------------
-            Assert.IsNull(sharepointReadFolderDesignerViewModel);
-        }
+        public void SharepointReadFolderDesignerViewModel_Constructor_NullModelItem_ThrowsException() => new SharePointReadFolderDesignerViewModel(null);
 
         [Test]
         [Author(TestOwner)]
         [Category(Category)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void SharepointReadFolderDesignerViewModel_Constructor_NullAsyncWorker_ThrowsException()
-        {
-            //------------Setup for test--------------------------
-
-
-            //------------Execute Test---------------------------
-            
-            new SharePointReadFolderDesignerViewModel(CreateModelItem(), null, new Mock<IServer>().Object);
-            //------------Assert Results-------------------------
-        }
+        public void SharepointReadFolderDesignerViewModel_Constructor_NullAsyncWorker_ThrowsException() => new SharePointReadFolderDesignerViewModel(CreateModelItem(), null, new Mock<IServer>().Object);
 
         [Test]
         [Author(TestOwner)]
         [Category(Category)]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void SharepointReadFolderDesignerViewModel_Constructor_NullEnvironmentModel_ThrowsException()
-        {
-            //------------Setup for test--------------------------
-
-
-            //------------Execute Test---------------------------
-            
-            new SharePointReadFolderDesignerViewModel(CreateModelItem(), new SynchronousAsyncWorker(), null);
-            //------------Assert Results-------------------------
-        }
+        public void SharepointReadFolderDesignerViewModel_Constructor_NullEnvironmentModel_ThrowsException() => new SharePointReadFolderDesignerViewModel(CreateModelItem(), new SynchronousAsyncWorker(), null);
 
         [Test]
         [Author(TestOwner)]
@@ -89,9 +62,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
 
             sharepointReadFolderDesignerViewModel.UpdateHelpDescriptor("Test");
 
+            //------------Assert Results-------------------------
             Assert.IsNotNull(sharepointReadFolderDesignerViewModel);
             Assert.IsNotNull(sharepointReadFolderDesignerViewModel.CollectionName);
-            //------------Assert Results-------------------------
         }
 
         [Test]
@@ -100,8 +73,8 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
         public void SharepointReadFolderDesignerViewModel_GetProperties_ReturnsSuccess()
         {
             //------------Setup for test--------------------------
-
             var modelItem = CreateModelItem();
+
             //------------Execute Test---------------------------
             var sharepointReadFolderDesignerViewModel = new SharePointReadFolderDesignerViewModel(modelItem, new SynchronousAsyncWorker(), new Mock<IServer>().Object);
             sharepointReadFolderDesignerViewModel.Validate();
@@ -110,11 +83,11 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             var isFolders = modelItem.GetProperty<bool>("IsFoldersSelected");
            var inputPath = modelItem.GetProperty<string>("ServerInputPath");
 
+            //------------Assert Results-------------------------
             Assert.IsNotNull(inputPath);
             Assert.IsTrue(isFileandFolders);
             Assert.IsTrue(isFiles);
             Assert.IsTrue(isFolders);
-            //------------Assert Results-------------------------
         }
 
         [Test]
@@ -123,8 +96,8 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
         public void SharepointReadFolderDesignerViewModel_ValidInputs_ReturnsSuccess()
         {
             //------------Setup for test--------------------------
-
             var modelItem = CreateModelItem();
+
             //------------Execute Test---------------------------
             var sharepointReadFolderDesignerViewModel = new SharePointReadFolderDesignerViewModel(modelItem, new SynchronousAsyncWorker(), new Mock<IServer>().Object);
             sharepointReadFolderDesignerViewModel.Validate();
@@ -133,11 +106,11 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             sharepointReadFolderDesignerViewModel.IsFilesSelected = true;
             sharepointReadFolderDesignerViewModel.IsFoldersSelected = true;
 
+            //------------Assert Results-------------------------
             Assert.IsTrue(sharepointReadFolderDesignerViewModel.IsFilesAndFoldersSelected);
             Assert.IsTrue(sharepointReadFolderDesignerViewModel.IsFilesSelected);
             Assert.IsTrue(sharepointReadFolderDesignerViewModel.IsFoldersSelected);
             Assert.IsNotNull(sharepointReadFolderDesignerViewModel.ServerInputPath);
-            //------------Assert Results-------------------------
         }
 
         [Test]
@@ -146,9 +119,9 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
         public void SharepointReadFolderDesignerViewModel_SetProperties_ReturnsSuccess()
         {
             //------------Setup for test--------------------------
-
             var modelItem = CreateModelItem();
             modelItem.SetProperty("SharepointServerResourceId",Guid.NewGuid());
+
             //------------Execute Test---------------------------
             var sharepointReadFolderDesignerViewModel = new SharePointReadFolderDesignerViewModel(modelItem, new SynchronousAsyncWorker(), new Mock<IServer>().Object);
             sharepointReadFolderDesignerViewModel.Errors = new List<IActionableErrorInfo> { new ActionableErrorInfo() { Message = "Please Select a SharePoint Server" } };
@@ -165,12 +138,12 @@ namespace Dev2.Activities.Designers.Tests.Sharepoint
             CustomContainer.Register(mockMainViewModel.Object);
             sharepointReadFolderDesignerViewModel.UpdateHelpDescriptor("Test");
 
+            //------------Assert Results-------------------------
             Assert.IsNotNull(inputPath);
             Assert.IsTrue(isFileandFolders);
             Assert.IsTrue(isFiles);
             Assert.IsTrue(isFolders);
             Assert.AreNotEqual(sourceId,Guid.Empty);
-            //------------Assert Results-------------------------
         }
     }
 }

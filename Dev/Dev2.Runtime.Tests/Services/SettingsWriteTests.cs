@@ -28,16 +28,6 @@ namespace Dev2.Tests.Runtime.Services
     [TestFixture]
     public class SettingsWriteTests
     {
-
-        #region ClassInitialize
-
-        [OneTimeSetUp]
-        public static void MyClassInitialize(TestContext context)
-        {
-        }
-
-        #endregion
-
         ExecuteMessage ToMsg(StringBuilder sb)
         {
             var serializer = new Dev2JsonSerializer();

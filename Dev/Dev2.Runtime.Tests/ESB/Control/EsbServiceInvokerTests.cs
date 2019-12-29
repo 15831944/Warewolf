@@ -32,7 +32,7 @@ namespace Dev2.Tests.Runtime.ESB.Control
     public class EsbServiceInvokerTests
     {
         [OneTimeSetUp]
-        public static void Init(TestContext context)
+        public static void Init()
         {
             var pCounter = new Mock<IWarewolfPerformanceCounterLocater>();
             pCounter.Setup(locater => locater.GetCounter(It.IsAny<Guid>(), It.IsAny<WarewolfPerfCounterType>())).Returns(new EmptyCounter());
@@ -64,7 +64,6 @@ namespace Dev2.Tests.Runtime.ESB.Control
         public void DispatchDebugErrors_GivenObjects_ShouldWritesCorrectly()
         {
             //---------------Set up test pack-------------------
-            //DispatchDebugErrors(ErrorResultTO errors, IDSFDataObject dataObject, StateType stateType)
             var channel = new Mock<IEsbChannel>();
             var workSpace = new Mock<IWorkspace>();
             var obj = new Mock<IDSFDataObject>();
@@ -106,7 +105,6 @@ namespace Dev2.Tests.Runtime.ESB.Control
         public void GenerateInvokeContainer_GivenValidArgsAndIsLocalInvokeFalse_ShouldNotThrowException()
         {
             //---------------Set up test pack-------------------
-            //GenerateInvokeContainer(IDSFDataObject dataObject, String serviceName, bool isLocalInvoke, Guid masterDataListId = default(Guid))
             var channel = new Mock<IEsbChannel>();
             var workSpace = new Mock<IWorkspace>();
             var obj = new Mock<IDSFDataObject>();
@@ -125,7 +123,6 @@ namespace Dev2.Tests.Runtime.ESB.Control
         public void GenerateInvokeContainer_GivenValidArgsAndIsLocalInvokeTrueEmptyCacheNullService_ShouldReturnNull()
         {
             //---------------Set up test pack-------------------
-            //GenerateInvokeContainer(IDSFDataObject dataObject, String serviceName, bool isLocalInvoke, Guid masterDataListId = default(Guid))
             var channel = new Mock<IEsbChannel>();
             var workSpace = new Mock<IWorkspace>();
             var obj = new Mock<IDSFDataObject>();

@@ -259,12 +259,11 @@ namespace Dev2.Tests.Runtime.ServiceModel.Data
             var xml = expected.ToXml();
             var actual = new WebService(xml);
             //------------Assert Results-------------------------
-            StringAssert.Contains(actual.RequestHeaders, "\n");
-            StringAssert.Contains(actual.RequestBody, "\n");
+            StringAssert.Contains("\n", actual.RequestHeaders);
+            StringAssert.Contains("\n", actual.RequestBody);
         }
 
         #endregion
-
 
         #region Dispose
 

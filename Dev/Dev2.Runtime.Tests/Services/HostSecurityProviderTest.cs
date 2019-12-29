@@ -23,9 +23,6 @@ using Moq;
 
 namespace Dev2.Tests.Runtime.Services
 {
-    /// <summary>
-    /// Summary description for HostSecurityProviderTest
-    /// </summary>
     [TestFixture]
     public class HostSecurityProviderTest
     {
@@ -37,7 +34,7 @@ namespace Dev2.Tests.Runtime.Services
         #region Class Initialize/Cleanup
 
         [OneTimeSetUp]
-        public static void ClassInitialize(TestContext testContext)
+        public static void ClassInitialize()
         {
             TestXml = XmlResource.Fetch("HostSecurityProvider");
             TestXmlServerSigned = XmlResource.Fetch("HostSecurityProviderServerSigned");
@@ -56,10 +53,7 @@ namespace Dev2.Tests.Runtime.Services
 
         [Test]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void HostSecurityProvider_ConstructorWithNull_Expected_ThrowsArgumentNullException()
-        {
-            var provider = new HostSecurityProviderImpl(null);
-        }
+        public void HostSecurityProvider_ConstructorWithNull_Expected_ThrowsArgumentNullException() => new HostSecurityProviderImpl(null);
 
         [Test]
         public void HostSecurityProvider_ConstructorWithDefaultConfig_Expected_ReturnsDefaultValues()

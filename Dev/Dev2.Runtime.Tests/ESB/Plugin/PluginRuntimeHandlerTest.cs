@@ -557,7 +557,7 @@ namespace Dev2.Tests.Runtime.ESB.Plugin
                 var dev2MethodInfo = instance.Args.MethodsToRun.First();
                 var run = isolated.Value.Run(dev2MethodInfo, instance, out string stringOBj);
                 Assert.IsNotNull(run);
-                StringAssert.Contains(stringOBj, "Default");
+                StringAssert.Contains("Default", stringOBj);
             }
         }
 

@@ -39,7 +39,7 @@ namespace Dev2.Tests.Runtime.ESB
         static Connection _connection;
 
         [OneTimeSetUp]
-        public static void ClassInitialize(TestContext context)
+        public static void ClassInitialize()
         {
             _connectionXml = XmlResource.Fetch("ServerConnection2");
             _connection = new Connection(_connectionXml);

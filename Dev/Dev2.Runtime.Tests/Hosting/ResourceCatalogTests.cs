@@ -61,7 +61,7 @@ namespace Dev2.Tests.Runtime.Hosting
         static string _testDir;
 
         [OneTimeSetUp]
-        public static void MyClassInit(TestContext context)
+        public static void MyClassInit()
         {
             _testDir = TestContext.CurrentContext.TestDirectory;
         }
@@ -959,7 +959,7 @@ namespace Dev2.Tests.Runtime.Hosting
             //------------Execute Test---------------------------
             var resourceContents = resourceCatalog.GetResourceContents(webService);
             //------------Assert Results-------------------------
-            StringAssert.Contains(resourceContents.ToString(), "\n");
+            StringAssert.Contains("\n", resourceContents.ToString());
         }
 
         [Test]
@@ -2594,10 +2594,8 @@ namespace Dev2.Tests.Runtime.Hosting
             Assert.IsNotNull(workflow);
             Assert.AreEqual(2, workflow.Count);
 
-            // the ordering swaps around - hence the contains assert ;)
-
-            StringAssert.Contains(workflow[0].ResourceName, "Bug6619");
-            StringAssert.Contains(workflow[1].ResourceName, "Bug6619");
+            StringAssert.Contains("Bug6619", workflow[0].ResourceName);
+            StringAssert.Contains("Bug6619", workflow[1].ResourceName);
         }
 
         [Test]
@@ -2629,7 +2627,6 @@ namespace Dev2.Tests.Runtime.Hosting
             var workflow = rc.GetResourceList(workspaceID, filterParams);
             //------------Assert Results-------------------------
             Assert.AreEqual(0, workflow.Count);
-
         }
 
         [Test]

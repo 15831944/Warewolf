@@ -33,7 +33,7 @@ namespace Dev2.Tests.Runtime.ESB.Control
     public class EsbServicesEndpointTests
     {
         [OneTimeSetUp]
-        public static void Init(TestContext context)
+        public static void Init()
         {
             var pCounter = new Mock<IWarewolfPerformanceCounterLocater>();
             using (var emptyCounter = new EmptyCounter())
