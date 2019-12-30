@@ -20,9 +20,6 @@ using Warewolf.Resource.Errors;
 
 namespace Dev2.Runtime.Security
 {
-    /// <summary>
-    /// The Secure Config
-    /// </summary>
     public class HostSecureConfig : ISecureConfig
     {
         const string SectionName = "secureSettings";
@@ -93,7 +90,6 @@ namespace Dev2.Runtime.Security
             }
             else
             {
-                // BUG 8395: settings is a ReadOnlyNameValueCollection so create a new collection instead 
                 var newSettings = new NameValueCollection();
 
                 #region New server installation so initialize config with new server id and key
@@ -209,15 +205,9 @@ namespace Dev2.Runtime.Security
 
         #region CreateSettings
 
-        /// <summary>
-        /// Creates the a <see cref="NameValueCollection"/> configuration settings.
-        /// </summary>
-        /// <param name="serverID">The server ID.</param>
-        /// <param name="serverKey">The server key.</param>
-        /// <param name="systemKey">The system key.</param>
-        /// <returns>a <see cref="NameValueCollection"/> configuration.</returns>
-
-        public static NameValueCollection CreateSettings(string serverID, string serverKey, string systemKey) => new NameValueCollection
+        public static NameValueCollection CreateSettings(string serverID, string serverKey, string systemKey)
+        {
+            var result = new NameValueCollection
             {
                 {
                     "ServerID", serverID
@@ -229,6 +219,8 @@ namespace Dev2.Runtime.Security
                     "SystemKey", systemKey
                 }
             };
+            return result;
+        }
 
         #endregion
 

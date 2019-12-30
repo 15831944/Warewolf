@@ -55,7 +55,7 @@ namespace Dev2.Tests.Runtime.ServiceModel
         {
             var source = new RedisSource
             {
-                HostName = $"{Depends.RigOpsIP}",
+                HostName = Depends.EnableDocker?Depends.RigOpsIP:Depends.SVRDEVIP,
                 AuthenticationType = Dev2.Runtime.ServiceModel.Data.AuthenticationType.Anonymous,
                 Port = "6380"
             }.ToString();

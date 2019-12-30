@@ -38,11 +38,6 @@ namespace Dev2.Tests.Runtime.Services
             _newSettings = HostSecureConfig.CreateSettings(string.Empty, string.Empty, DefaultSystemKeyPublic);
         }
 
-        [OneTimeTearDown]
-        public static void ClassCleanup()
-        {
-        }
-
         #endregion
 
         #region Ctor
@@ -52,16 +47,10 @@ namespace Dev2.Tests.Runtime.Services
         public void HostSecureConfig_WithoutConfig_Expected_ThrowsArgumentNullException() => new HostSecureConfig(null);
 
         [Test]
-        public void HostSecureConfig_WithDefaultSettings_Expected_LoadsDefaultValues()
-        {
-            TestConfig(DefaultServerID, DefaultServerKey, DefaultSystemKeyPublic, false);
-        }
+        public void HostSecureConfig_WithDefaultSettings_Expected_LoadsDefaultValues() => TestConfig(DefaultServerID, DefaultServerKey, DefaultSystemKeyPublic, false);
 
         [Test]
-        public void HostSecureConfig_WithNewSettings_Expected_LoadsNewValues()
-        {
-            TestConfig(DefaultServerID, DefaultServerKey, DefaultSystemKeyPublic, true);
-        }
+        public void HostSecureConfig_WithNewSettings_Expected_LoadsNewValues() => TestConfig(DefaultServerID, DefaultServerKey, DefaultSystemKeyPublic, true);
 
         #endregion
 
@@ -93,7 +82,9 @@ namespace Dev2.Tests.Runtime.Services
                 Assert.AreNotEqual(expectedServerKey, actualServerKey64);
 
                 Assert.IsNotNull(config.SaveConfigSettings);
-                Assert.AreNotEqual(_newSettings, config.SaveConfigSettings);
+                Assert.AreNotEqual(_newSettings.Get("ServerID"), config.SaveConfigSettings.Get("ServerID"));
+                Assert.AreNotEqual(_newSettings.Get("ServerKey"), config.SaveConfigSettings.Get("ServerKey"));
+                Assert.AreNotEqual(_newSettings.Get("SystemKey"), config.SaveConfigSettings.Get("SystemKey"));
 
                 Assert.AreEqual(1, config.SaveConfigHitCount);
                 Assert.AreEqual(1, config.ProtectConfigHitCount);

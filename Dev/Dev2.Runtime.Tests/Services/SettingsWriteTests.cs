@@ -73,7 +73,7 @@ namespace Dev2.Tests.Runtime.Services
             //------------Execute Test---------------------------
             var execute = settingsWrite.Execute(new Dictionary<string, StringBuilder> { { "Settings", new StringBuilder("Something") } }, null);
             //------------Assert Results-------------------------
-            StringAssert.Contains(execute.ToString(), "Error writing settings.");
+            StringAssert.Contains("Error writing settings.", execute.ToString());
 
         }
 
@@ -98,7 +98,7 @@ namespace Dev2.Tests.Runtime.Services
 
             var msg = ToMsg(execute);
 
-            StringAssert.Contains(msg.Message.ToString(), "Success");
+            StringAssert.Contains("Success", msg.Message.ToString());
         }
 
         #endregion Exeute

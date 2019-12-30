@@ -87,17 +87,17 @@ namespace Dev2.Tests.Activities.ActivityTests.Redis
             Assert.AreEqual("Assign", actualInnerActivity.DisplayName);
 
             Assert.IsTrue(debugInputs is List<DebugItem>, "Debug inputs must return List<DebugItem>");
-            Assert.AreEqual(3, debugInputs.Count);
+            Assert.AreEqual(4, debugInputs.Count);
 
             Assert.AreEqual(1, debugInputs[0].ResultsList.Count);
             AssertDebugItems(debugInputs, 0, 0, "Key", null, "=", sut.Key);
+            AssertDebugItems(debugInputs, 1, 0, "Redis key { " + sut.Key + " } not found", null, "", "");
 
-            AssertDebugItems(debugInputs, 1, 0, "1", null, "", "");
-            AssertDebugItems(debugInputs, 1, 1, null, "[[objectId1]]", "=", "ObjectName1");
+            AssertDebugItems(debugInputs, 2, 0, "1", null, "", "");
+            AssertDebugItems(debugInputs, 2, 1, null, "[[objectId1]]", "=", "ObjectName1");
 
-            AssertDebugItems(debugInputs, 2, 0, "2", null, "", "");
-            AssertDebugItems(debugInputs, 2, 1, null, "[[objectId2]]", "=", "ObjectName2");
-
+            AssertDebugItems(debugInputs, 3, 0, "2", null, "", "");
+            AssertDebugItems(debugInputs, 3, 1, null, "[[objectId2]]", "=", "ObjectName2");
         }
 
         [Test]
@@ -113,7 +113,6 @@ namespace Dev2.Tests.Activities.ActivityTests.Redis
             var isCalValue = GlobalConstants.CalculateTextConvertPrefix + "rec(*).name" + GlobalConstants.CalculateTextConvertSuffix;
             var innerActivity = new DsfMultiAssignActivity() { FieldsCollection = new List<ActivityDTO> { new ActivityDTO("[[objectId1]]", "ObjectName1", 1), new ActivityDTO("[[objectId2]]", "ObjectName2", 2), new ActivityDTO(isCalValue, "ObjectName3", 3) } };
 
-
             GenerateMocks(key, redisSource, out Mock<IResourceCatalog> mockResourceCatalog, out Mock<IDSFDataObject> mockDataObject);
             GenerateSUTInstance(key, hostName, port, password, mockResourceCatalog, out Dictionary<string, string> evel, out TestRedisActivity sut, innerActivity);
             //----------------------Act--------------------------
@@ -127,20 +126,20 @@ namespace Dev2.Tests.Activities.ActivityTests.Redis
             Assert.AreEqual("Assign", actualInnerActivity.DisplayName);
 
             Assert.IsTrue(debugInputs is List<DebugItem>, "Debug inputs must return List<DebugItem>");
-            Assert.AreEqual(4, debugInputs.Count);
+            Assert.AreEqual(5, debugInputs.Count);
 
             Assert.AreEqual(1, debugInputs[0].ResultsList.Count);
             AssertDebugItems(debugInputs, 0, 0, "Key", null, "=", sut.Key);
+            AssertDebugItems(debugInputs, 1, 0, "Redis key { " + sut.Key + " } not found", null, "", "");
 
-            AssertDebugItems(debugInputs, 1, 0, "1", null, "", "");
-            AssertDebugItems(debugInputs, 1, 1, null, "[[objectId1]]", "=", "ObjectName1");
+            AssertDebugItems(debugInputs, 2, 0, "1", null, "", "");
+            AssertDebugItems(debugInputs, 2, 1, null, "[[objectId1]]", "=", "ObjectName1");
 
-            AssertDebugItems(debugInputs, 2, 0, "2", null, "", "");
-            AssertDebugItems(debugInputs, 2, 1, null, "[[objectId2]]", "=", "ObjectName2");
+            AssertDebugItems(debugInputs, 3, 0, "2", null, "", "");
+            AssertDebugItems(debugInputs, 3, 1, null, "[[objectId2]]", "=", "ObjectName2");
 
-            AssertDebugItems(debugInputs, 3, 0, "3", null, "", "");
-            AssertDebugItems(debugInputs, 3, 1, null, isCalValue, "=", isCalValue);
-
+            AssertDebugItems(debugInputs, 4, 0, "3", null, "", "");
+            AssertDebugItems(debugInputs, 4, 1, null, isCalValue, "=", isCalValue);
         }
 
         [Test]
@@ -230,13 +229,13 @@ namespace Dev2.Tests.Activities.ActivityTests.Redis
 
         private static void TestAnonymousAuth(out string key, out string hostName, out string password, out int port)
         {
-            key = "key1";
-            hostName = Depends.RigOpsIP;
+            key = "key" + Guid.NewGuid();
+            hostName = Depends.EnableDocker?Depends.RigOpsIP:Depends.SVRDEVIP;
             password = "";
             port = 6380;
         }
 
-        private static void GenerateSUTInstance(string key, string hostName, int port, string password, Mock<IResourceCatalog> mockResourceCatalog, out Dictionary<string, string> evel, out TestRedisActivity sut, Activity innerActivity)
+        static void GenerateSUTInstance(string key, string hostName, int port, string password, Mock<IResourceCatalog> mockResourceCatalog, out Dictionary<string, string> evel, out TestRedisActivity sut, Activity innerActivity)
         {
             evel = new Dictionary<string, string> { { "", "" } };
             var impl = new RedisCacheImpl(hostName, port, password);
@@ -251,7 +250,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Redis
             };
         }
 
-        private static void GenerateMocks(string key, RedisSource redisSource, out Mock<IResourceCatalog> mockResourceCatalog, out Mock<IDSFDataObject> mockDataObject)
+        static void GenerateMocks(string key, RedisSource redisSource, out Mock<IResourceCatalog> mockResourceCatalog, out Mock<IDSFDataObject> mockDataObject)
         {
             mockResourceCatalog = new Mock<IResourceCatalog>();
             mockDataObject = new Mock<IDSFDataObject>();
@@ -264,7 +263,7 @@ namespace Dev2.Tests.Activities.ActivityTests.Redis
             mockDataObject.Setup(o => o.Environment).Returns(environment);
         }
 
-        private void AssertDebugItems(List<DebugItem> debugInputs, int listIndex, int resultListIndex, string expLabel, string expVariable, string expOparator, string expValue)
+        void AssertDebugItems(List<DebugItem> debugInputs, int listIndex, int resultListIndex, string expLabel, string expVariable, string expOparator, string expValue)
         {
             Assert.AreEqual(expLabel, debugInputs[listIndex].ResultsList[resultListIndex].Label);
             Assert.AreEqual(expOparator, debugInputs[listIndex].ResultsList[resultListIndex].Operator);

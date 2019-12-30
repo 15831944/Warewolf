@@ -15,6 +15,7 @@ namespace Warewolf.UnitTestAttributes
         public static readonly string RigOpsIP = "T004124.premier.local";
         public static readonly string SVRDEVIP = "SVRDEV.premier.local";
         public static readonly string TFSBLDIP = "TFSBLD.premier.local";
+        public static readonly bool EnableDocker = false;
 
         public enum ContainerType
         {
@@ -86,19 +87,19 @@ namespace Warewolf.UnitTestAttributes
             switch (_containerType)
             {
                 case ContainerType.MySQL:
-                    InjectMySQLContainer(true);
+                    InjectMySQLContainer(EnableDocker);
                     break;
                 case ContainerType.MSSQL:
-                    InjectMSSQLContainer(true);
+                    InjectMSSQLContainer(EnableDocker);
                     break;
                 case ContainerType.RabbitMQ:
-                    InjectRabbitMQContainer(true);
+                    InjectRabbitMQContainer(EnableDocker);
                     break;
                 case ContainerType.CIRemote:
-                    InjectCIRemoteContainer(true);
+                    InjectCIRemoteContainer(EnableDocker);
                     break;
                 case ContainerType.PostGreSQL:
-                    InjectPostGreSQLContainer(true);
+                    InjectPostGreSQLContainer(EnableDocker);
                     break;
             }
         }
