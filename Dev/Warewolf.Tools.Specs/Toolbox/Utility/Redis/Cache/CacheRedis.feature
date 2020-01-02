@@ -56,29 +56,29 @@ Scenario: Data Not Exist For Given Key (TTL exceeded) Spec
 
 @RedisCache
 Scenario: Input Variable Keys Are Less Then Cached Data Variable Keys
-	Given Redis source "192.168.104.19" with password "pass123" and port "6379"
-	And I have "key1" of "MyData" and "ttl1" of "15" seconds
-	And I have "key2" of "MyData" and "ttl2" of "3" seconds
+	Given Redis source "SVRDEV.premier.local" with password "pass123" and port "6379"
+	And I have "key1" of "MyData" with GUID and "ttl1" of "15" seconds
+	And I have "key2" of "MyData" with GUID and "ttl2" of "3" seconds
 	And an assign "dataToStore1" into "DsfMultiAssignActivity1" with
-		| name      | value   |
+		| name     | value   |
 		| [[Var1]] | "Test1" |
 		| [[Var2]] | "Test2" |
 	And an assign "dataToStore2" into "DsfMultiAssignActivity2" with
 		| name      | value   |
 		| [[Var1]] | "Test21" |
 	Then the assigned "key1", "ttl1" and innerActivity "DsfMultiAssignActivity1" is executed by "RedisActivity1"
-	And the Redis Cache under "MyData" will contain
+	And the Redis Cache under "key1" with GUID will contain
 		| name     | value   |
 		| [[Var1]] | "Test1" |
 		| [[Var2]] | "Test2" |
 	Then the assigned "key2", "ttl2" and innerActivity "DsfMultiAssignActivity2" is executed by "RedisActivity2"
 	Then "RedisActivity2" output variables have the following values
-		| var      | value   |
-		| [[Var1]] | "Test1" |
+		| var      | value    |
+		| [[Var1]] | "Test21" |
 
-
+@Ignore
 Scenario: Input Variable Keys Are Greater Then Cached Data Variable Keys
-	Given Redis source "192.168.104.19" with password "pass123" and port "6379"
+	Given Redis source "SVRDEV.premier.local" with password "pass123" and port "6379"
 	And I have "key1" of "MyData" and "ttl1" of "15" seconds
 	And I have "key2" of "MyData" and "ttl2" of "3" seconds
 	And an assign "dataToStore1" into "DsfMultiAssignActivity1" with
@@ -98,5 +98,3 @@ Scenario: Input Variable Keys Are Greater Then Cached Data Variable Keys
 		| [[Var2]] | "Test2" |
 	Then the assigned "key2", "ttl2" and innerActivity "DsfMultiAssignActivity2" is executed by "RedisActivity2"
 	Then "RedisActivity2" output variables have the following values
-	#And the debug output has "cached data missing key:[[Var3]]" error
-	#And the debug output has "cached data missing key:[[Var4]]" error

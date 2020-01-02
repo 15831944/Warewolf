@@ -123,7 +123,7 @@ namespace Warewolf.Driver.RabbitMQ.Tests
 
             public TestPublishSuccess()
             {
-                _factory = new ConnectionFactory() { HostName = Depends.RigOpsIP, UserName = "test", Password = "test" };
+                _factory = new ConnectionFactory() { HostName = Depends.EnableDocker?Depends.RigOpsIP:Depends.SVRDEVIP, UserName = "test", Password = "test" };
             }
 
             private IConnection NewConnection()

@@ -51,7 +51,7 @@ namespace Warewolf.Tools.Specs.Toolbox.Utility.Redis.Cache
         public void GivenValidRedisSource()
         {
             _containerOps = new Depends(Depends.ContainerType.AnonymousRedis);
-            SetUpRedisClientConnection(Depends.RigOpsIP, "", 6380);
+            SetUpRedisClientConnection(Depends.EnableDocker?Depends.RigOpsIP:Depends.SVRDEVIP, "", 6380);
         }
 
         [Given(@"I have a key ""(.*)"" and ttl of ""(.*)"" milliseconds")]
@@ -80,6 +80,14 @@ namespace Warewolf.Tools.Specs.Toolbox.Utility.Redis.Cache
         public void GivenIHaveOfAndOfSeconds(string keyName, string key, string ttlName, int ttl)
         {
             _scenarioContext.Add(keyName, key);
+            _scenarioContext.Add(ttlName, ttl);
+        }
+
+        [Given(@"I have ""(.*)"" of ""(.*)"" with GUID and ""(.*)"" of ""(.*)"" seconds")]
+        public void GivenIHaveKeyWithGUIDAndTTLOf(string keyName, string key, string ttlName, int ttl)
+        {
+            var myNewKey = key + Guid.NewGuid();
+            _scenarioContext.Add(keyName, myNewKey);
             _scenarioContext.Add(ttlName, ttl);
         }
 
@@ -113,20 +121,22 @@ namespace Warewolf.Tools.Specs.Toolbox.Utility.Redis.Cache
 
             _scenarioContext.Add(redisActivityName, redisActivity);
         }
-
-
+        
         [Then(@"the Redis Cache under ""(.*)"" will contain")]
         public void ThenTheRedisCacheUnderWillContain(string keyStoringData, Table table)
         {
             AssertTableDataToActual(keyStoringData, table);
         }
+        
+        [Then(@"the Redis Cache under ""(.*)"" with GUID will contain")]
+        public void TheRedisCacheUnderWillContain(string keyName, Table table) => AssertTableDataToActual(_scenarioContext.Get<string>(keyName), table);
 
         private void AssertTableDataToActual(string keyStoringData, Table table)
         {
             var impl = _scenarioContext.Get<RedisCacheImpl>("impl");
 
-            var expCachedData = GetExpectedCachedDataFrom(table);
             var actualCachedData = GetCachedData(impl, keyStoringData);
+            var expCachedData = GetExpData(table);
 
             Assert.AreEqual(expCachedData.Count, actualCachedData.Count);
             var count = 0;
@@ -136,6 +146,20 @@ namespace Warewolf.Tools.Specs.Toolbox.Utility.Redis.Cache
                 Assert.AreEqual(expCachedData[count].Value, actualCachedData[count].Value);
                 count++;
             }
+        }
+
+        List<SpecAssignValue> GetExpData(Table table)
+        {
+            var rows = table.Rows;
+            var result = new List<SpecAssignValue>();
+            foreach (var row in rows)
+            {
+                var name = row.Values.ElementAt(0);
+                var values = row.Values.ElementAt(1);
+                result.Add(new SpecAssignValue(name, values));
+            }
+
+            return result;
         }
 
         [Then(@"""(.*)"" output variables have the following values")]
@@ -154,11 +178,6 @@ namespace Warewolf.Tools.Specs.Toolbox.Utility.Redis.Cache
             var myNewKey = key + Guid.NewGuid();
             GenerateResourceAndDataObject(myNewKey, ttl);
             _scenarioContext.Add("key", myNewKey);
-        }
-
-        private List<SpecAssignValue> GetExpectedCachedDataFrom(Table table)
-        {
-            return table.CreateSet<SpecAssignValue>() as List<SpecAssignValue>;
         }
 
         private List<ActivityDTO> GetActivitiesDTOFrom(Table table)
@@ -190,7 +209,7 @@ namespace Warewolf.Tools.Specs.Toolbox.Utility.Redis.Cache
             } while (Stoptime.ElapsedMilliseconds < ttl);
 
             var actualCachedData = GetCachedData(impl, key);
-            Assert.IsNull(actualCachedData);
+            Assert.AreEqual(0, actualCachedData.Count);
         }
 
         [Given(@"an assign ""(.*)"" as")]
@@ -323,7 +342,7 @@ namespace Warewolf.Tools.Specs.Toolbox.Utility.Redis.Cache
 
             ExecuteCacheTool(redisActivityNew, mockDataobject);
 
-            var sdfsf = redisActivityNew.SpecPerformExecution(new Dictionary<string, string> { { It.IsAny<string>(), It.IsAny<string>() } });
+            var sdfsf = redisActivityNew.SpecPerformExecution(new Dictionary<string, string> { { string.Empty, string.Empty } });
 
             var actualDataStored = GetCachedData(redisImpl, myKey);
 
@@ -365,7 +384,7 @@ namespace Warewolf.Tools.Specs.Toolbox.Utility.Redis.Cache
             var actualCachedData = GetCachedData(impl, key);
 
             Assert.AreEqual(0, table.RowCount);
-            Assert.IsNull(actualCachedData, $"Key=Value exists: {actualCachedData?.FirstOrDefault()}={actualCachedData?.FirstOrDefault()}");
+            Assert.AreEqual(0, actualCachedData.Count);
         }
 
         [Then(@"the assign ""(.*)"" is executed")]

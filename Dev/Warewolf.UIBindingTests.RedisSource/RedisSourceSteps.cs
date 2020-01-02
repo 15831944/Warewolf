@@ -122,9 +122,9 @@ namespace Warewolf.UIBindingTests
         void TypeContainerHostName()
         {
             var redisSourceControl = _scenarioContext.Get<RedisSourceControl>(Utils.ViewNameKey);
-            redisSourceControl.EnterHostName(Depends.RigOpsIP);
+            redisSourceControl.EnterHostName(Depends.EnableDocker?Depends.RigOpsIP:Depends.SVRDEVIP);
             var viewModel = _scenarioContext.Get<RedisSourceViewModel>("viewModel");
-            Assert.AreEqual(Depends.RigOpsIP, viewModel.HostName);
+            Assert.AreEqual(Depends.EnableDocker?Depends.RigOpsIP:Depends.SVRDEVIP, viewModel.HostName);
         }
 
         [Given(@"I type HostName as ""(.*)""")]

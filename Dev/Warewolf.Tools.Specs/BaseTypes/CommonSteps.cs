@@ -399,9 +399,9 @@ namespace Dev2.Activities.Specs.BaseTypes
         [Given(@"call the web service ""(.*)""")]
         public void GivenCallTheWebService(string onErrorWebserviceToCall)
         {
-            if (Dev2.Activities.Specs.Toolbox.Data.DataSplit.DataSplitSteps._containerOps != null)
+            if (Toolbox.Data.DataSplit.DataSplitSteps._containerOps != null)
             {
-                onErrorWebserviceToCall = onErrorWebserviceToCall.Replace("tst-ci-remote:3142", Depends.RigOpsIP + ":3144");
+                onErrorWebserviceToCall = onErrorWebserviceToCall.Replace("tst-ci-remote:3142", Depends.EnableDocker?Depends.RigOpsIP + ":3144":Depends.CIRemoteIP);
             }
             _scenarioContext.Add("webserviceToCall", onErrorWebserviceToCall);
         }
@@ -565,9 +565,9 @@ namespace Dev2.Activities.Specs.BaseTypes
         [Then(@"the result from the web service ""(.*)"" will have the same data as variable ""(.*)""")]
         public void ThenTheResultFromTheWebServiceWillHaveTheSameDataAsVariable(string webservice, string errorVariable)
         {
-            if (Dev2.Activities.Specs.Toolbox.Data.DataSplit.DataSplitSteps._containerOps != null)
+            if (Toolbox.Data.DataSplit.DataSplitSteps._containerOps != null)
             {
-                webservice = webservice.Replace("tst-ci-remote:3142", Depends.RigOpsIP + ":3144");
+                webservice = webservice.Replace("tst-ci-remote:3142", Depends.EnableDocker?Depends.RigOpsIP + ":3144":Depends.CIRemoteIP);
             }
             var result = _scenarioContext.Get<IDSFDataObject>("result");
 
@@ -606,7 +606,7 @@ namespace Dev2.Activities.Specs.BaseTypes
                 }
             }
             while (webCallResult.Contains("<FatalError>") && retryCount < 10);
-            StringAssert.Contains(webCallResult, errorValue);
+            StringAssert.Contains(errorValue, webCallResult);
         }
 
         [Then(@"the result variable ""(.*)"" will be ""(.*)""")]

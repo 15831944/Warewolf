@@ -106,15 +106,9 @@ namespace Warewolf.ToolsSpecs.Toolbox.Resources.MySQL
 
         #region Private Methods
 
-        MySqlDatabaseDesignerViewModel GetViewModel()
-        {
-            return _scenarioContext.Get<MySqlDatabaseDesignerViewModel>("viewModel");
-        }
+        MySqlDatabaseDesignerViewModel GetViewModel() => _scenarioContext.Get<MySqlDatabaseDesignerViewModel>("viewModel");
 
-        Mock<IDbServiceModel> GetServiceModel()
-        {
-            return _scenarioContext.Get<Mock<IDbServiceModel>>("mockDbServiceModel");
-        }
+        Mock<IDbServiceModel> GetServiceModel() => _scenarioContext.Get<Mock<IDbServiceModel>>("mockDbServiceModel");
 
         #endregion
 
@@ -480,10 +474,7 @@ namespace Warewolf.ToolsSpecs.Toolbox.Resources.MySQL
         [Given(@"Mysql Server Recordset Name equals ""(.*)""")]
         [When(@"Mysql Server Recordset Name equals ""(.*)""")]
         [Then(@"Mysql Server Recordset Name equals ""(.*)""")]
-        public void ThenMysqlServerRecordsetNameEquals(string recsetName)
-        {
-            Assert.IsTrue(string.Equals(recsetName, GetViewModel().OutputsRegion.RecordsetName));
-        }
+        public void ThenMysqlServerRecordsetNameEquals(string recsetName) => Assert.AreEqual(recsetName, GetViewModel().OutputsRegion.RecordsetName);
 
         [Then(@"Mysql Server Outputs appear as")]
         public void ThenMysqlServerOutputsAppearAs(Table table)
@@ -566,6 +557,7 @@ namespace Warewolf.ToolsSpecs.Toolbox.Resources.MySQL
             Assert.IsNotNull(vm.ActionRegion);
             vm.ActionRegion.SelectedAction = vm.ActionRegion.Actions.FirstOrDefault(p => p.Name == actionName);
             SetDbAction(activityName, actionName);
+            vm.OutputsRegion.RecordsetName = actionName;
         }
 
         [Given(@"MySql Command Timeout is ""(.*)"" millisenconds for ""(.*)""")]

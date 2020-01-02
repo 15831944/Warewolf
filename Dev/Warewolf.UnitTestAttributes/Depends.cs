@@ -15,6 +15,7 @@ namespace Warewolf.UnitTestAttributes
         public static readonly string RigOpsIP = "T004124.premier.local";
         public static readonly string SVRDEVIP = "SVRDEV.premier.local";
         public static readonly string TFSBLDIP = "TFSBLD.premier.local";
+        public static readonly string CIRemoteIP = "tst-ci-remote.premier.local:3142";
         public static readonly bool EnableDocker = false;
 
         public enum ContainerType

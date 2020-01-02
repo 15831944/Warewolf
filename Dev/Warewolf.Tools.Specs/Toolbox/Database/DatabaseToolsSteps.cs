@@ -239,11 +239,13 @@ namespace Warewolf.Tools.Specs.Toolbox.Database
                 throw new TimeoutException("Connection to Warewolf server \"" + server.Name + "\" timed out.");
             }
         }
+        
         public void DebugWriterSubscribe(IServer environmentModel)
         {
             _debugWriterSubscriptionService = new SubscriptionService<DebugWriterWriteMessage>(environmentModel.Connection.ServerEvents);
             _debugWriterSubscriptionService.Subscribe(msg => Append(msg.DebugState));
         }
+        
         void Append(IDebugState debugState)
         {
             TryGetValue("debugStates", out List<IDebugState> debugStates);

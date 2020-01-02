@@ -66,7 +66,7 @@ Scenario: Execute MySql Server With Timeout
     And Mysql server is Enabled
     And I Select "NewMySqlSource" as MySql Server Source for "MySqlActivity"
     And I Select "Pr_CitiesGetCountries_Delayed" as MySql Server Action for "MySqlActivity"
-	And MySql Command Timeout is "30" millisenconds for "MySqlActivity"
+	And MySql Command Timeout is "3" millisenconds for "MySqlActivity"
 	And Validate MySql Server is Enabled
     And I click MySql Generate Outputs
     And I click Test on Mysql

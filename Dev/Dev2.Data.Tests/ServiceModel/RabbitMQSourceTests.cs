@@ -143,7 +143,7 @@ namespace Dev2.Data.Tests.ServiceModel
         {
             //-------------------------------Arrange-----------------------------
             string xmlString = $@"<Source ID=""1a82a341-b678-4992-a25a-39cdd57198d4"" Name=""Example Rabbit MQ Source"" ResourceType=""RabbitMQSource"" IsValid=""false"" 
-                                               ConnectionString=""HostName={Depends.RigOpsIP};Port=;UserName=test;Password=test;VirtualHost=/"" Type=""RabbitMQSource"" ServerVersion=""1.4.1.27"" ServerID=""693ca20d-fb17-4044-985a-df3051d6bac7"">
+                                               ConnectionString=""HostName={(Depends.EnableDocker?Depends.RigOpsIP:Depends.SVRDEVIP)};Port=;UserName=test;Password=test;VirtualHost=/"" Type=""RabbitMQSource"" ServerVersion=""1.4.1.27"" ServerID=""693ca20d-fb17-4044-985a-df3051d6bac7"">
                                           <DisplayName>Example Rabbit MQ Source</DisplayName>
                                           <AuthorRoles>
                                           </AuthorRoles>
@@ -157,7 +157,7 @@ namespace Dev2.Data.Tests.ServiceModel
             //----------------------Pre-Assert---------------------------------
             NUnit.Framework.Assert.AreEqual(nameof(RabbitMQSource), rabbitMqSource.ResourceType);
             NUnit.Framework.Assert.AreEqual(5672, rabbitMqSource.Port);
-            NUnit.Framework.Assert.AreEqual(Depends.RigOpsIP, rabbitMqSource.HostName);
+            NUnit.Framework.Assert.AreEqual(Depends.EnableDocker?Depends.RigOpsIP:Depends.SVRDEVIP, rabbitMqSource.HostName);
             NUnit.Framework.Assert.AreEqual("test", rabbitMqSource.UserName);
             NUnit.Framework.Assert.AreEqual("test", rabbitMqSource.Password);
             NUnit.Framework.Assert.AreEqual("/", rabbitMqSource.VirtualHost);
@@ -178,7 +178,7 @@ namespace Dev2.Data.Tests.ServiceModel
         {
             //-------------------------------Arrange-----------------------------
             var port = 5672;
-            var hostName = Depends.RigOpsIP;
+            var hostName = Depends.EnableDocker?Depends.RigOpsIP:Depends.SVRDEVIP;
             var userName = "test";
             var password = "test";
             var virtualHost = "/";
@@ -194,7 +194,7 @@ namespace Dev2.Data.Tests.ServiceModel
             //----------------------Pre-Assert---------------------------------
             NUnit.Framework.Assert.AreEqual(nameof(RabbitMQSource), rabbitMqSource.ResourceType);
             NUnit.Framework.Assert.AreEqual(5672, rabbitMqSource.Port);
-            NUnit.Framework.Assert.AreEqual(Depends.RigOpsIP, rabbitMqSource.HostName);
+            NUnit.Framework.Assert.AreEqual(Depends.EnableDocker?Depends.RigOpsIP:Depends.SVRDEVIP, rabbitMqSource.HostName);
             NUnit.Framework.Assert.AreEqual("test", rabbitMqSource.UserName);
             NUnit.Framework.Assert.AreEqual("test", rabbitMqSource.Password);
             NUnit.Framework.Assert.AreEqual("/", rabbitMqSource.VirtualHost);
