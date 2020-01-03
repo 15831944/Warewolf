@@ -58,6 +58,7 @@ namespace Dev2.Common.Tests
             //----------------Test if it does dispose-----------
             //----------------Act-------------------------------
             entry.Dispose();
+            Assert.AreNotEqual(Environment.MachineName, entry.Name);
         }
 
         [Test]

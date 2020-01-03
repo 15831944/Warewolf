@@ -18,7 +18,7 @@ namespace Dev2.Common.Tests
     public class GetComputerNamesTests
     {
         [OneTimeSetUp]
-        public static void InitializeTests(TestContext testContext)
+        public static void InitializeTests()
         {
             try
             {

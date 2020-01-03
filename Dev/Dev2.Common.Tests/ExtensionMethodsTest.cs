@@ -134,7 +134,7 @@ namespace Dev2.Common.Tests
             var result = xe.ElementSafeStringBuilder("y");
 
             //------------Assert Results-------------------------
-            StringAssert.Contains(result.ToString(), "y");
+            StringAssert.Contains("y", result.ToString());
         }
 
         [Test]
@@ -170,7 +170,7 @@ namespace Dev2.Common.Tests
             var result = xe.ElementSafe("y");
 
             //------------Assert Results-------------------------
-            StringAssert.Contains(result, "y");
+            StringAssert.Contains("y", result);
         }
 
         [Test]
@@ -188,7 +188,7 @@ namespace Dev2.Common.Tests
             var result = xe.ElementSafe("q");
 
             //------------Assert Results-------------------------
-            Assert.AreEqual(result, string.Empty);
+            Assert.AreEqual(string.Empty, result);
         }
 
         [Test]
@@ -206,7 +206,7 @@ namespace Dev2.Common.Tests
             var result = xe.AttributeSafe("foo");
 
             //------------Assert Results-------------------------
-            StringAssert.Contains(result, "bar");
+            StringAssert.Contains("bar", result);
         }
 
         [Test]
@@ -224,7 +224,7 @@ namespace Dev2.Common.Tests
             var result = xe.AttributeSafe("foo2");
 
             //------------Assert Results-------------------------
-            Assert.AreEqual(result, string.Empty);
+            Assert.AreEqual(string.Empty, result);
         }
 
 
