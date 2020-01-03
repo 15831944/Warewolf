@@ -111,9 +111,9 @@ namespace Dev2.Data.Tests.PathOperations
             catch (Exception e)
             {
                 hadException = true;
-                NUnit.Framework.Assert.AreEqual(expectedMessage, e.Message);
+                Assert.AreEqual(expectedMessage, e.Message);
             }
-            NUnit.Framework.Assert.IsTrue(hadException, "expected exception");
+            Assert.IsTrue(hadException, "expected exception");
 
             mockLoginImpl.Verify(o => o.LogonUser("IntegrationTester", "DEV2", password, 3, 3, out v), Times.Once);
         }

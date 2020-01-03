@@ -34,12 +34,12 @@ namespace Dev2.Data.Tests
             var fetchNextIndex = reverseIndexIterator.FetchNextIndex();
 
             //---------------------------Assert---------------------------
-            NUnit.Framework.Assert.IsFalse(reverseIndexIterator.IsEmpty);
-            NUnit.Framework.Assert.AreEqual(4, reverseIndexIterator.IndexList.Count());
-            NUnit.Framework.Assert.AreEqual(1, fetchNextIndex);
-            NUnit.Framework.Assert.AreEqual(4, reverseIndexIterator.IndexList.Count());
-            NUnit.Framework.Assert.AreEqual(4, reverseIndexIterator.MaxIndex());
-            NUnit.Framework.Assert.IsFalse(reverseIndexIterator.HasMore());
+            Assert.IsFalse(reverseIndexIterator.IsEmpty);
+            Assert.AreEqual(4, reverseIndexIterator.IndexList.Count());
+            Assert.AreEqual(1, fetchNextIndex);
+            Assert.AreEqual(4, reverseIndexIterator.IndexList.Count());
+            Assert.AreEqual(4, reverseIndexIterator.MaxIndex());
+            Assert.IsFalse(reverseIndexIterator.HasMore());
         }
 
         [Test]
@@ -61,12 +61,12 @@ namespace Dev2.Data.Tests
             //---------------------------Act------------------------------
             var fetchNextIndex = reverseIndexIterator.FetchNextIndex();
             //---------------------------Assert---------------------------
-            NUnit.Framework.Assert.IsFalse(reverseIndexIterator.IsEmpty);
-            NUnit.Framework.Assert.AreEqual(1, reverseIndexIterator.IndexList.Count());
-            NUnit.Framework.Assert.AreEqual(0, fetchNextIndex);
-            NUnit.Framework.Assert.AreEqual(1, reverseIndexIterator.IndexList.Count());
-            NUnit.Framework.Assert.AreEqual(4, reverseIndexIterator.MaxIndex());
-            NUnit.Framework.Assert.IsFalse(reverseIndexIterator.HasMore());
+            Assert.IsFalse(reverseIndexIterator.IsEmpty);
+            Assert.AreEqual(1, reverseIndexIterator.IndexList.Count());
+            Assert.AreEqual(0, fetchNextIndex);
+            Assert.AreEqual(1, reverseIndexIterator.IndexList.Count());
+            Assert.AreEqual(4, reverseIndexIterator.MaxIndex());
+            Assert.IsFalse(reverseIndexIterator.HasMore());
         }
 
         [Test]
@@ -88,12 +88,12 @@ namespace Dev2.Data.Tests
             //---------------------------Act------------------------------
             var fetchNextIndex = reverseIndexIterator.HasMore();
             //---------------------------Assert---------------------------
-            NUnit.Framework.Assert.IsTrue(reverseIndexIterator.IsEmpty);
-            NUnit.Framework.Assert.AreEqual(1, reverseIndexIterator.IndexList.Count());
-            NUnit.Framework.Assert.IsFalse(fetchNextIndex);
-            NUnit.Framework.Assert.AreEqual(1, reverseIndexIterator.IndexList.Count());
-            NUnit.Framework.Assert.AreEqual(4, reverseIndexIterator.MaxIndex());
-            NUnit.Framework.Assert.IsFalse(reverseIndexIterator.HasMore());
+            Assert.IsTrue(reverseIndexIterator.IsEmpty);
+            Assert.AreEqual(1, reverseIndexIterator.IndexList.Count());
+            Assert.IsFalse(fetchNextIndex);
+            Assert.AreEqual(1, reverseIndexIterator.IndexList.Count());
+            Assert.AreEqual(4, reverseIndexIterator.MaxIndex());
+            Assert.IsFalse(reverseIndexIterator.HasMore());
         }
     }
 }

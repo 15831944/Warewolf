@@ -38,7 +38,7 @@ namespace Dev2.Data.Tests.Operations
             //------------Execute Test---------------------------
             var scrEndPoint = ActivityIOFactory.CreateOperationEndPointFromIOPath(ActivityIOFactory.CreatePathFromString(Path, string.Empty, null, true));
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(enActivityIOPathType.SFTP, scrEndPoint.IOPath.PathType);
+            Assert.AreEqual(enActivityIOPathType.SFTP, scrEndPoint.IOPath.PathType);
         }
 
         [Test]
@@ -50,7 +50,7 @@ namespace Dev2.Data.Tests.Operations
             var activityOperationsBroker = ActivityIOFactory.CreateOperationsBroker();
             var raw = activityOperationsBroker.PutRaw(scrEndPoint,
                 new Dev2PutRawOperationTO(WriteType.Overwrite, "Some content to write"));
-            NUnit.Framework.Assert.AreEqual("Success", raw);
+            Assert.AreEqual("Success", raw);
         }
 
         [Test]
@@ -60,7 +60,7 @@ namespace Dev2.Data.Tests.Operations
             var scrEndPoint = ActivityIOFactory.CreateOperationEndPointFromIOPath(ActivityIOFactory.CreatePathFromString(tempPath, string.Empty, null, true, ""));
             var activityOperationsBroker = ActivityIOFactory.CreateOperationsBroker();
             var create = activityOperationsBroker.Create(scrEndPoint, new Dev2CRUDOperationTO(false,false), false);
-            NUnit.Framework.Assert.AreEqual("Success", create);
+            Assert.AreEqual("Success", create);
         }
         
         [Test]
@@ -73,7 +73,7 @@ namespace Dev2.Data.Tests.Operations
             var activityOperationsBroker = ActivityIOFactory.CreateOperationsBroker();
             var raw = activityOperationsBroker.PutRaw(scrEndPoint,
                 new Dev2PutRawOperationTO(WriteType.AppendTop, "Some content to write"));
-            NUnit.Framework.Assert.AreEqual("Success", raw);
+            Assert.AreEqual("Success", raw);
         }
     }
 }

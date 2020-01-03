@@ -45,15 +45,15 @@ namespace Dev2.Data.Tests
 
             serviceTestOutputTO.OnSearchTypeChanged();
 
-            NUnit.Framework.Assert.AreEqual("[[variable]]", serviceTestOutputTO.Variable);
-            NUnit.Framework.Assert.AreEqual("hello", serviceTestOutputTO.Value);
-            NUnit.Framework.Assert.AreEqual("from", serviceTestOutputTO.From);
-            NUnit.Framework.Assert.AreEqual("to", serviceTestOutputTO.To);
-            NUnit.Framework.Assert.AreEqual("=", serviceTestOutputTO.AssertOp);
-            NUnit.Framework.Assert.IsFalse(serviceTestOutputTO.HasOptionsForValue);
-            NUnit.Framework.Assert.AreEqual(1, serviceTestOutputTO.OptionsForValue.Count);
-            NUnit.Framework.Assert.AreEqual(">", serviceTestOutputTO.OptionsForValue[0]);
-            NUnit.Framework.Assert.AreEqual(testRunResult, serviceTestOutputTO.Result);
+            Assert.AreEqual("[[variable]]", serviceTestOutputTO.Variable);
+            Assert.AreEqual("hello", serviceTestOutputTO.Value);
+            Assert.AreEqual("from", serviceTestOutputTO.From);
+            Assert.AreEqual("to", serviceTestOutputTO.To);
+            Assert.AreEqual("=", serviceTestOutputTO.AssertOp);
+            Assert.IsFalse(serviceTestOutputTO.HasOptionsForValue);
+            Assert.AreEqual(1, serviceTestOutputTO.OptionsForValue.Count);
+            Assert.AreEqual(">", serviceTestOutputTO.OptionsForValue[0]);
+            Assert.AreEqual(testRunResult, serviceTestOutputTO.Result);
         }
     }
 }

@@ -68,7 +68,7 @@ namespace Dev2.Data.Tests.Operations
         {
             var actual = _indexFinder.FindIndex("ABCFDEFGHIB", enIndexFinderOccurrence.FirstOccurrence, "F",
                                    enIndexFinderDirection.LeftToRight, false, 0);
-            NUnit.Framework.Assert.AreEqual(4, actual.ElementAt(0));
+            Assert.AreEqual(4, actual.ElementAt(0));
         }
 
         [Test]
@@ -76,7 +76,7 @@ namespace Dev2.Data.Tests.Operations
         {
             var actual = _indexFinder.FindIndex("ABCFDEFGHIB", enIndexFinderOccurrence.LastOccurrence, "F",
                                    enIndexFinderDirection.LeftToRight, false, 0);
-            NUnit.Framework.Assert.AreEqual(7, actual.ElementAt(0));
+            Assert.AreEqual(7, actual.ElementAt(0));
         }
 
         [Test]
@@ -84,7 +84,7 @@ namespace Dev2.Data.Tests.Operations
         {
             var actual = _indexFinder.FindIndex("ABCFDEFGHIB", enIndexFinderOccurrence.LastOccurrence, "F",
                                    enIndexFinderDirection.RightToLeft, false, 0);
-            NUnit.Framework.Assert.AreEqual(8, actual.ElementAt(0));
+            Assert.AreEqual(8, actual.ElementAt(0));
         }
 
         [Test]
@@ -92,8 +92,8 @@ namespace Dev2.Data.Tests.Operations
         {
             var actual = _indexFinder.FindIndex("ABCFDEFGHIB", enIndexFinderOccurrence.AllOccurrences, "F",
                                    enIndexFinderDirection.RightToLeft, false, 0);
-            NUnit.Framework.Assert.AreEqual(5, actual.ElementAt(0));
-            NUnit.Framework.Assert.AreEqual(8, actual.ElementAt(1));
+            Assert.AreEqual(5, actual.ElementAt(0));
+            Assert.AreEqual(8, actual.ElementAt(1));
         }
 
         //Juries Bug 8725
@@ -102,8 +102,8 @@ namespace Dev2.Data.Tests.Operations
         {
             var actual = _indexFinder.FindIndex("ABFFDFFGHIB", enIndexFinderOccurrence.AllOccurrences, "FF",
                                    enIndexFinderDirection.RightToLeft, false, 0);
-            NUnit.Framework.Assert.AreEqual(5, actual.ElementAt(0));
-            NUnit.Framework.Assert.AreEqual(8, actual.ElementAt(1));
+            Assert.AreEqual(5, actual.ElementAt(0));
+            Assert.AreEqual(8, actual.ElementAt(1));
         }
 
         //Juries Bug 8725
@@ -112,7 +112,7 @@ namespace Dev2.Data.Tests.Operations
         {
             var actual = _indexFinder.FindIndex("ABFFDFFGHIB", enIndexFinderOccurrence.FirstOccurrence, "FF",
                                    enIndexFinderDirection.RightToLeft, false, 0);
-            NUnit.Framework.Assert.AreEqual(5, actual.ElementAt(0));
+            Assert.AreEqual(5, actual.ElementAt(0));
         }
 
         //Juries Bug 8725
@@ -121,7 +121,7 @@ namespace Dev2.Data.Tests.Operations
         {
             var actual = _indexFinder.FindIndex("ABFFDFFGHIB", enIndexFinderOccurrence.LastOccurrence, "FF",
                                    enIndexFinderDirection.RightToLeft, false, 0);
-            NUnit.Framework.Assert.AreEqual(8, actual.ElementAt(0));
+            Assert.AreEqual(8, actual.ElementAt(0));
         }
 
         //Juries Bug 8725
@@ -130,8 +130,8 @@ namespace Dev2.Data.Tests.Operations
         {
             var actual = _indexFinder.FindIndex("ABFFDFFGHIB", enIndexFinderOccurrence.AllOccurrences, "FF",
                                    enIndexFinderDirection.LeftToRight, false, 0);
-            NUnit.Framework.Assert.AreEqual(3, actual.ElementAt(0));
-            NUnit.Framework.Assert.AreEqual(6, actual.ElementAt(1));
+            Assert.AreEqual(3, actual.ElementAt(0));
+            Assert.AreEqual(6, actual.ElementAt(1));
         }
 
         //Juries Bug 8725
@@ -140,7 +140,7 @@ namespace Dev2.Data.Tests.Operations
         {
             var actual = _indexFinder.FindIndex("ABFFDFFGHIB", enIndexFinderOccurrence.FirstOccurrence, "FF",
                                    enIndexFinderDirection.LeftToRight, false, 0);
-            NUnit.Framework.Assert.AreEqual(3, actual.ElementAt(0));
+            Assert.AreEqual(3, actual.ElementAt(0));
         }
 
         //Juries Bug 8725
@@ -149,7 +149,7 @@ namespace Dev2.Data.Tests.Operations
         {
             var actual = _indexFinder.FindIndex("ABFFDFFGHIB", enIndexFinderOccurrence.LastOccurrence, "FF",
                                    enIndexFinderDirection.LeftToRight, false, 0);
-            NUnit.Framework.Assert.AreEqual(6, actual.ElementAt(0));
+            Assert.AreEqual(6, actual.ElementAt(0));
         }
 
         [Test]
@@ -157,7 +157,7 @@ namespace Dev2.Data.Tests.Operations
         {
             var actual = _indexFinder.FindIndex("ABCFDEFGHIB", enIndexFinderOccurrence.FirstOccurrence, "F",
                                    enIndexFinderDirection.RightToLeft, false, 0);
-            NUnit.Framework.Assert.AreEqual(5, actual.ElementAt(0));
+            Assert.AreEqual(5, actual.ElementAt(0));
         }
 
         [Test]
@@ -165,7 +165,7 @@ namespace Dev2.Data.Tests.Operations
         {
             var actual = _indexFinder.FindIndex("ABCFDEFGHIB", enIndexFinderOccurrence.FirstOccurrence, "F",
                                    enIndexFinderDirection.LeftToRight, true, 0);
-            NUnit.Framework.Assert.AreEqual(4, actual.ElementAt(0));
+            Assert.AreEqual(4, actual.ElementAt(0));
         }
 
         [Test]
@@ -173,7 +173,7 @@ namespace Dev2.Data.Tests.Operations
         {
             var actual = _indexFinder.FindIndex("ABCFDEFGHIB", enIndexFinderOccurrence.FirstOccurrence, "f",
                                    enIndexFinderDirection.LeftToRight, true, 0);
-            NUnit.Framework.Assert.AreEqual(-1, actual.ElementAt(0));
+            Assert.AreEqual(-1, actual.ElementAt(0));
         }
 
         [Test]
@@ -181,7 +181,7 @@ namespace Dev2.Data.Tests.Operations
         {
             var actual = _indexFinder.FindIndex("ABCFDEFGHIB", enIndexFinderOccurrence.FirstOccurrence, "Z",
                                    enIndexFinderDirection.LeftToRight, false, 0);
-            NUnit.Framework.Assert.AreEqual(-1, actual.ElementAt(0));
+            Assert.AreEqual(-1, actual.ElementAt(0));
         }
 
         [Test]
@@ -189,7 +189,7 @@ namespace Dev2.Data.Tests.Operations
         {
             var actual = _indexFinder.FindIndex("ABCFDEFGHIB", "First Occurrence", "Z",
                                    null, false, "0");
-            NUnit.Framework.Assert.AreEqual(-1, actual.ElementAt(0));
+            Assert.AreEqual(-1, actual.ElementAt(0));
         }
 
         [Test]
@@ -197,8 +197,8 @@ namespace Dev2.Data.Tests.Operations
         {
             var actual = _indexFinder.FindIndex("ABCFDEFGHIB", enIndexFinderOccurrence.AllOccurrences, "F",
                                    enIndexFinderDirection.LeftToRight, false, 0);
-            NUnit.Framework.Assert.AreEqual(4, actual.ElementAt(0));
-            NUnit.Framework.Assert.AreEqual(7, actual.ElementAt(1));
+            Assert.AreEqual(4, actual.ElementAt(0));
+            Assert.AreEqual(7, actual.ElementAt(1));
         }
 
         [Test]
@@ -206,7 +206,7 @@ namespace Dev2.Data.Tests.Operations
         {
             var actual = _indexFinder.FindIndex("ABCFDEFGHIB", enIndexFinderOccurrence.AllOccurrences, "F",
                                    enIndexFinderDirection.LeftToRight, false, 4);
-            NUnit.Framework.Assert.AreEqual(7, actual.ElementAt(0));
+            Assert.AreEqual(7, actual.ElementAt(0));
         }
 
 

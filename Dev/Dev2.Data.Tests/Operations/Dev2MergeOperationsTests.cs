@@ -59,28 +59,28 @@ namespace Dev2.Data.Tests.Operations
         public void Merge_Index_Merge_Left_Padding_Pad_Five_Chars_Expected_Successful_Merge()
         {
             _mergeOperations.Merge(@"TestData!!", "Index", "15", "0", "Left");
-            NUnit.Framework.Assert.AreEqual("TestData!!00000", _mergeOperations.MergeData.ToString());
+            Assert.AreEqual("TestData!!00000", _mergeOperations.MergeData.ToString());
         }
 
         [Test]
         public void Merge_Index_Merge_Right_Padding_Pad_Five_Chars_Expected_Successful_Merge()
         {
             _mergeOperations.Merge(@"TestData!!", "Index", "15", "0", "Right");
-            NUnit.Framework.Assert.AreEqual("00000TestData!!", _mergeOperations.MergeData.ToString());
+            Assert.AreEqual("00000TestData!!", _mergeOperations.MergeData.ToString());
         }
 
         [Test]
         public void Merge_Index_Merge_Right_Padding_Remove_Five_Chars_Expected_Successful_Merge()
         {
             _mergeOperations.Merge(@"TestData!!", "Index", "5", "0", "Right");
-            NUnit.Framework.Assert.AreEqual("TestD", _mergeOperations.MergeData.ToString());
+            Assert.AreEqual("TestD", _mergeOperations.MergeData.ToString());
         }
 
         [Test]
         public void Merge_Index_Merge_Left_Padding_Remove_Five_Chars_Expected_Successful_Merge()
         {
             _mergeOperations.Merge(@"TestData!!", "Index", "5", "0", "Left");
-            NUnit.Framework.Assert.AreEqual("TestD", _mergeOperations.MergeData.ToString());
+            Assert.AreEqual("TestD", _mergeOperations.MergeData.ToString());
         }
 
         #endregion
@@ -91,7 +91,7 @@ namespace Dev2.Data.Tests.Operations
         public void Merge_Tab_Merge_Expected_Successful_Merge()
         {
             _mergeOperations.Merge(@"TestData!!", "Tab", "", "", "Left");
-            NUnit.Framework.Assert.AreEqual("TestData!!	", _mergeOperations.MergeData.ToString());
+            Assert.AreEqual("TestData!!	", _mergeOperations.MergeData.ToString());
         }
 
         #endregion
@@ -102,7 +102,7 @@ namespace Dev2.Data.Tests.Operations
         public void Merge_Chars_Merge_Expected_Successful_Merge()
         {
             _mergeOperations.Merge(@"TestData!!", "Chars", " wow amazing test data:)", "", "Left");
-            NUnit.Framework.Assert.AreEqual("TestData!! wow amazing test data:)", _mergeOperations.MergeData.ToString());
+            Assert.AreEqual("TestData!! wow amazing test data:)", _mergeOperations.MergeData.ToString());
         }
 
         #endregion
@@ -114,7 +114,7 @@ namespace Dev2.Data.Tests.Operations
         {
             _mergeOperations.Merge(@"TestData!!", "New Line", "", "", "Left");
             const string expected = "TestData!!";
-            NUnit.Framework.Assert.AreEqual(expected, _mergeOperations.MergeData.ToString().Trim());
+            Assert.AreEqual(expected, _mergeOperations.MergeData.ToString().Trim());
         }
 
         #endregion

@@ -26,8 +26,8 @@ namespace Dev2.Data.Tests.BinaryDataList
 
             var il = new IndexList(null, 5);
 
-            NUnit.Framework.Assert.AreEqual(1, il.MinValue);
-            NUnit.Framework.Assert.AreEqual(5, il.MaxValue);
+            Assert.AreEqual(1, il.MinValue);
+            Assert.AreEqual(5, il.MaxValue);
         }
 
         [Test]
@@ -40,9 +40,9 @@ namespace Dev2.Data.Tests.BinaryDataList
             var gaps = new HashSet<int> { 1, 3 };
             var il = new IndexList(gaps, 5);
 
-            NUnit.Framework.Assert.AreEqual(1, il.MinValue);
-            NUnit.Framework.Assert.AreEqual(5, il.MaxValue);
-            NUnit.Framework.Assert.AreEqual(3, il.Count());
+            Assert.AreEqual(1, il.MinValue);
+            Assert.AreEqual(5, il.MaxValue);
+            Assert.AreEqual(3, il.Count());
         }
         
         [Test]
@@ -55,9 +55,9 @@ namespace Dev2.Data.Tests.BinaryDataList
             var gaps = new HashSet<int> { 1, 5 };
             var il = new IndexList(gaps, 4, 3);
 
-            NUnit.Framework.Assert.AreEqual(3, il.MinValue);
-            NUnit.Framework.Assert.AreEqual(4, il.MaxValue);
-            NUnit.Framework.Assert.AreEqual(1, il.Count());
+            Assert.AreEqual(3, il.MinValue);
+            Assert.AreEqual(4, il.MaxValue);
+            Assert.AreEqual(1, il.Count());
         }
         
     }

@@ -32,7 +32,7 @@ namespace Dev2.Data.Tests.PathOperations
             var doPathExistOperation = new DoPathExistOperation(mockActivityIOPath.Object);
             //--------------------------Act-----------------------------
             //--------------------------Assert--------------------------
-            NUnit.Framework.Assert.Throws<NullReferenceException>(() => doPathExistOperation.ExecuteOperation());
+            Assert.Throws<NullReferenceException>(() => doPathExistOperation.ExecuteOperation());
         }
 
         [Test]
@@ -53,7 +53,7 @@ namespace Dev2.Data.Tests.PathOperations
             var isExecuteOperation = doPathExistOperation.ExecuteOperation();
             //--------------------------Assert--------------------------
             mockActivityIOPath.VerifyAll();
-            NUnit.Framework.Assert.IsFalse(isExecuteOperation);
+            Assert.IsFalse(isExecuteOperation);
         }
 
         [Test]
@@ -77,7 +77,7 @@ namespace Dev2.Data.Tests.PathOperations
             //--------------------------Assert--------------------------
             mockActivityIOPath.VerifyAll();
             mockDirectory.VerifyAll();
-            NUnit.Framework.Assert.IsTrue(isExecuteOperation);
+            Assert.IsTrue(isExecuteOperation);
         }
 
         [Test]
@@ -100,7 +100,7 @@ namespace Dev2.Data.Tests.PathOperations
             //--------------------------Assert--------------------------
             mockActivityIOPath.VerifyAll();
             mockDirectory.VerifyAll();
-            NUnit.Framework.Assert.IsTrue(isExecuteOperation);
+            Assert.IsTrue(isExecuteOperation);
         }
 
         [Test]
@@ -123,7 +123,7 @@ namespace Dev2.Data.Tests.PathOperations
             //--------------------------Assert--------------------------
             mockActivityIOPath.VerifyAll();
             mockfileWrapper.VerifyAll();
-            NUnit.Framework.Assert.IsTrue(isExecuteOperation);
+            Assert.IsTrue(isExecuteOperation);
         }
 
         [Test]
@@ -147,7 +147,7 @@ namespace Dev2.Data.Tests.PathOperations
             //--------------------------Assert--------------------------
             mockActivityIOPath.VerifyAll();
             mockfileWrapper.VerifyAll();
-            NUnit.Framework.Assert.IsTrue(isExecuteOperation);
+            Assert.IsTrue(isExecuteOperation);
         }
 
         [Test]
@@ -171,7 +171,7 @@ namespace Dev2.Data.Tests.PathOperations
             //--------------------------Assert--------------------------
             mockActivityIOPath.VerifyAll();
             mockDirectory.VerifyAll();
-            NUnit.Framework.Assert.IsFalse(isExecuteOperation);
+            Assert.IsFalse(isExecuteOperation);
         }
 
         [Test]
@@ -194,7 +194,7 @@ namespace Dev2.Data.Tests.PathOperations
             //--------------------------Assert--------------------------
             mockActivityIOPath.VerifyAll();
             mockDirectory.VerifyAll();
-            NUnit.Framework.Assert.IsFalse(isExecuteOperation);
+            Assert.IsFalse(isExecuteOperation);
         }
     }
 }

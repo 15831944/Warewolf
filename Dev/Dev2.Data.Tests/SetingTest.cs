@@ -44,9 +44,9 @@ namespace Dev2.Data.Tests
             var settings = serializer.Deserialize<Settings.Settings>(jsonPermissions.ToString());
 
             var serialized = settings.ToString();
-            NUnit.Framework.Assert.IsNotNull(settings);
-            NUnit.Framework.Assert.IsNotNull(settings.Security);
-            NUnit.Framework.Assert.AreEqual(2, settings.Security.WindowsGroupPermissions.Count);
+            Assert.IsNotNull(settings);
+            Assert.IsNotNull(settings.Security);
+            Assert.AreEqual(2, settings.Security.WindowsGroupPermissions.Count);
         }
     }
 }

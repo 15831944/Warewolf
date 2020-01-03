@@ -23,7 +23,7 @@ namespace Dev2.Data.Tests
         {
             var indexes = new List<int> { 1, 2, 3 };
             var listIndexIterator = new ListIndexIterator(indexes);
-            NUnit.Framework.Assert.IsNotNull(listIndexIterator);
+            Assert.IsNotNull(listIndexIterator);
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace Dev2.Data.Tests
             var indexes = new List<int> { 1, 2, 3 };
             var listIndexIterator = new ListIndexIterator(indexes);
             var maxIndex = listIndexIterator.MaxIndex();
-            NUnit.Framework.Assert.AreEqual(3, maxIndex);
+            Assert.AreEqual(3, maxIndex);
         }
 
         [Test]
@@ -44,11 +44,11 @@ namespace Dev2.Data.Tests
         {
             var indexes = new List<int> { 1, 2, 3 };
             var listIndexIterator = new ListIndexIterator(indexes);
-            NUnit.Framework.Assert.IsFalse(listIndexIterator.IsEmpty);
-            NUnit.Framework.Assert.IsTrue(listIndexIterator.HasMore());
+            Assert.IsFalse(listIndexIterator.IsEmpty);
+            Assert.IsTrue(listIndexIterator.HasMore());
             var fetchNextIndex = listIndexIterator.FetchNextIndex();
-            NUnit.Framework.Assert.AreEqual(1, fetchNextIndex);
-            NUnit.Framework.Assert.IsTrue(listIndexIterator.HasMore());
+            Assert.AreEqual(1, fetchNextIndex);
+            Assert.IsTrue(listIndexIterator.HasMore());
         }
 
         [Test]
@@ -59,11 +59,11 @@ namespace Dev2.Data.Tests
             var indexes = new List<int> { 1, 2, 3 };
             var indexListIndexIterator = new ListIndexIterator(indexes);
             var fetchNextIndex = indexListIndexIterator.FetchNextIndex();
-            NUnit.Framework.Assert.AreEqual(1, fetchNextIndex);
+            Assert.AreEqual(1, fetchNextIndex);
             fetchNextIndex = indexListIndexIterator.FetchNextIndex();
-            NUnit.Framework.Assert.AreEqual(2, fetchNextIndex);
+            Assert.AreEqual(2, fetchNextIndex);
             fetchNextIndex = indexListIndexIterator.FetchNextIndex();
-            NUnit.Framework.Assert.AreEqual(3, fetchNextIndex);
+            Assert.AreEqual(3, fetchNextIndex);
         }
     }
 }

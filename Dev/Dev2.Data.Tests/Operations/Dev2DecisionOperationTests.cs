@@ -35,17 +35,17 @@ namespace Dev2.Data.Tests.Operations
             //exe
             var actual = comparer.Invoke(new[] { "2", "100" });
             //assert
-            NUnit.Framework.Assert.IsTrue(actual, "IsLessThan returned the wrong result when comparing integers");
+            Assert.IsTrue(actual, "IsLessThan returned the wrong result when comparing integers");
 
             //exe
             actual = comparer.Invoke(new[] { "SomeVal", "Val2" });
             //assert
-            NUnit.Framework.Assert.IsTrue(actual, "IsLessThan returned the wrong result when comparing strings");
+            Assert.IsTrue(actual, "IsLessThan returned the wrong result when comparing strings");
 
             //exe
             actual = comparer.Invoke(new[] { string.Empty });
             //assert
-            NUnit.Framework.Assert.IsFalse(actual, "IsLessThan returned the wrong result when comparing empty string");
+            Assert.IsFalse(actual, "IsLessThan returned the wrong result when comparing empty string");
         }
 
         [Test]
@@ -57,7 +57,7 @@ namespace Dev2.Data.Tests.Operations
             var isLessThan = new IsLessThan();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(decisionType, isLessThan.HandlesType());
+            Assert.AreEqual(decisionType, isLessThan.HandlesType());
         }
 
         [Test]
@@ -75,7 +75,7 @@ namespace Dev2.Data.Tests.Operations
             var actual = comparer.Invoke(new[] { "100", "2" });
 
             //assert
-            NUnit.Framework.Assert.IsFalse(actual, "IsLessThan returned the wrong result when comparing integers");
+            Assert.IsFalse(actual, "IsLessThan returned the wrong result when comparing integers");
         }
 
         [Test]
@@ -93,7 +93,7 @@ namespace Dev2.Data.Tests.Operations
             var actual = comparer.Invoke(new[] { "2.75", "100.25" });
 
             //assert
-            NUnit.Framework.Assert.IsTrue(actual, "IsLessThan returned the wrong result when comparing integers");
+            Assert.IsTrue(actual, "IsLessThan returned the wrong result when comparing integers");
         }
 
         #endregion
@@ -115,7 +115,7 @@ namespace Dev2.Data.Tests.Operations
             var actual = comparer.Invoke(new[] { "100", "2" });
 
             //assert
-            NUnit.Framework.Assert.IsTrue(actual, "IsGreaterThan returned the wrong result when comparing integers");
+            Assert.IsTrue(actual, "IsGreaterThan returned the wrong result when comparing integers");
         }
 
         [Test]
@@ -133,17 +133,17 @@ namespace Dev2.Data.Tests.Operations
             var actual = comparer.Invoke(new[] { "2", "100" });
 
             //assert
-            NUnit.Framework.Assert.IsFalse(actual, "IsGreaterThan returned the wrong result when comparing integers");
+            Assert.IsFalse(actual, "IsGreaterThan returned the wrong result when comparing integers");
 
             //exe
             actual = comparer.Invoke(new[] { "SomeVal", "AnotherVal" });
             //assert
-            NUnit.Framework.Assert.IsTrue(actual, "IsGreaterThan returned the wrong result when comparing strings");
+            Assert.IsTrue(actual, "IsGreaterThan returned the wrong result when comparing strings");
 
             //exe
             actual = comparer.Invoke(new[] { string.Empty });
             //assert
-            NUnit.Framework.Assert.IsFalse(actual, "IsGreaterThan returned the wrong result when comparing empty string");
+            Assert.IsFalse(actual, "IsGreaterThan returned the wrong result when comparing empty string");
         }
 
 
@@ -156,7 +156,7 @@ namespace Dev2.Data.Tests.Operations
             var greaterThan = new IsGreaterThan();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(decisionType, greaterThan.HandlesType());
+            Assert.AreEqual(decisionType, greaterThan.HandlesType());
         }
 
         #endregion
@@ -178,7 +178,7 @@ namespace Dev2.Data.Tests.Operations
             var actual = comparer.Invoke(new[] { "2", "2" });
 
             //assert
-            NUnit.Framework.Assert.IsTrue(actual, "IsGreaterThanOrEqual returned the wrong result when comparing integers");
+            Assert.IsTrue(actual, "IsGreaterThanOrEqual returned the wrong result when comparing integers");
         }
 
         [Test]
@@ -196,16 +196,16 @@ namespace Dev2.Data.Tests.Operations
             var actual = comparer.Invoke(new[] { "100", "2" });
 
             //assert
-            NUnit.Framework.Assert.IsTrue(actual, "IsGreaterThanOrEqual returned the wrong result when comparing integers");
+            Assert.IsTrue(actual, "IsGreaterThanOrEqual returned the wrong result when comparing integers");
             //exe
             actual = comparer.Invoke(new[] { "Vals", "Val2" });
             //assert
-            NUnit.Framework.Assert.IsTrue(actual, "IsGreaterThanOrEqual returned the wrong result when comparing strings");
+            Assert.IsTrue(actual, "IsGreaterThanOrEqual returned the wrong result when comparing strings");
 
             //exe
             actual = comparer.Invoke(new[] { string.Empty });
             //assert
-            NUnit.Framework.Assert.IsFalse(actual, "IsGreaterThanOrEqual returned the wrong result when comparing empty string");
+            Assert.IsFalse(actual, "IsGreaterThanOrEqual returned the wrong result when comparing empty string");
         }
 
         [Test]
@@ -223,7 +223,7 @@ namespace Dev2.Data.Tests.Operations
             var actual = comparer.Invoke(new[] { "2", "100" });
 
             //assert
-            NUnit.Framework.Assert.IsFalse(actual, "IsGreaterThanOrEqual returned the wrong result when comparing integers");
+            Assert.IsFalse(actual, "IsGreaterThanOrEqual returned the wrong result when comparing integers");
         }
 
 
@@ -236,7 +236,7 @@ namespace Dev2.Data.Tests.Operations
             var isGreaterThanOrEqual = new IsGreaterThanOrEqual();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(decisionType, isGreaterThanOrEqual.HandlesType());
+            Assert.AreEqual(decisionType, isGreaterThanOrEqual.HandlesType());
         }
 
 
@@ -259,7 +259,7 @@ namespace Dev2.Data.Tests.Operations
             var actual = comparer.Invoke(new[] { "2", "100" });
 
             //assert
-            NUnit.Framework.Assert.IsTrue(actual, "IsLessThanOrEqual returned the wrong result when comparing integers");
+            Assert.IsTrue(actual, "IsLessThanOrEqual returned the wrong result when comparing integers");
         }
 
         [Test]
@@ -276,17 +276,17 @@ namespace Dev2.Data.Tests.Operations
             //exe
             var actual = comparer.Invoke(new[] { "2", "2" });
             //assert
-            NUnit.Framework.Assert.IsTrue(actual, "IsLessThanOrEqual returned the wrong result when comparing integers");
+            Assert.IsTrue(actual, "IsLessThanOrEqual returned the wrong result when comparing integers");
 
             //exe
             actual = comparer.Invoke(new[] { "SomeVal", "SomeVal" });
             //assert
-            NUnit.Framework.Assert.IsTrue(actual, "IsLessThanOrEqual returned the wrong result when comparing strings");
+            Assert.IsTrue(actual, "IsLessThanOrEqual returned the wrong result when comparing strings");
 
             //exe
             actual = comparer.Invoke(new[] {string.Empty});
             //assert
-            NUnit.Framework.Assert.IsFalse(actual, "IsLessThanOrEqual returned the wrong result when comparing empty string");
+            Assert.IsFalse(actual, "IsLessThanOrEqual returned the wrong result when comparing empty string");
         }
 
         [Test]
@@ -298,7 +298,7 @@ namespace Dev2.Data.Tests.Operations
             var isLessThanOrEqual = new IsLessThanOrEqual();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(decisionType, isLessThanOrEqual.HandlesType());
+            Assert.AreEqual(decisionType, isLessThanOrEqual.HandlesType());
         }
 
         [Test]
@@ -316,7 +316,7 @@ namespace Dev2.Data.Tests.Operations
             var actual = comparer.Invoke(new[] { "100", "2" });
 
             //assert
-            NUnit.Framework.Assert.IsFalse(actual, "IsLessThanOrEqual returned the wrong result when comparing integers");
+            Assert.IsFalse(actual, "IsLessThanOrEqual returned the wrong result when comparing integers");
         }
 
 
@@ -339,7 +339,7 @@ namespace Dev2.Data.Tests.Operations
             var actual = comparer.Invoke(new[] { "100", "100" });
 
             //assert
-            NUnit.Framework.Assert.IsTrue(actual, "IsEqual returned the wrong result when comparing integers");
+            Assert.IsTrue(actual, "IsEqual returned the wrong result when comparing integers");
         }           
         
         [Test]
@@ -357,17 +357,17 @@ namespace Dev2.Data.Tests.Operations
             var actual = comparer.Invoke(new[] { "1.8", "1.80" });
 
             //assert
-            NUnit.Framework.Assert.IsTrue(actual, "IsEqual returned the wrong result when comparing integers");
+            Assert.IsTrue(actual, "IsEqual returned the wrong result when comparing integers");
 
             //exe
             actual = comparer.Invoke(new[] { "Val", "Val" });
             //assert
-            NUnit.Framework.Assert.IsTrue(actual, "IsEqual returned the wrong result when comparing strings");
+            Assert.IsTrue(actual, "IsEqual returned the wrong result when comparing strings");
 
             //exe
             actual = comparer.Invoke(new[] { string.Empty, "Something" });
             //assert
-            NUnit.Framework.Assert.IsFalse(actual, "IsEqual returned the wrong result when comparing empty string");
+            Assert.IsFalse(actual, "IsEqual returned the wrong result when comparing empty string");
         }
 
 
@@ -380,7 +380,7 @@ namespace Dev2.Data.Tests.Operations
             var isEqual = new IsEqual();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(decisionType, isEqual.HandlesType());
+            Assert.AreEqual(decisionType, isEqual.HandlesType());
         }
 
 
@@ -394,7 +394,7 @@ namespace Dev2.Data.Tests.Operations
         {
             var comparer = new IsNotEqual();            
             var actual = comparer.Invoke(new[] { "100", "100" });
-            NUnit.Framework.Assert.IsFalse(actual, "IsNotEqual returned the wrong result when comparing integers");
+            Assert.IsFalse(actual, "IsNotEqual returned the wrong result when comparing integers");
         }
 
         [Test]
@@ -404,10 +404,10 @@ namespace Dev2.Data.Tests.Operations
         {            
             var comparer = new IsNotEqual();
             var actual = comparer.Invoke(new[] { "1.08", "1.80" });
-            NUnit.Framework.Assert.IsTrue(actual, "IsNotEqual returned the wrong result when comparing integers");
+            Assert.IsTrue(actual, "IsNotEqual returned the wrong result when comparing integers");
             
             actual = comparer.Invoke(new[] { "Val", "Val" });
-            NUnit.Framework.Assert.IsFalse(actual, "IsNotEqual returned the wrong result when comparing strings");
+            Assert.IsFalse(actual, "IsNotEqual returned the wrong result when comparing strings");
         }
 
 
@@ -420,7 +420,7 @@ namespace Dev2.Data.Tests.Operations
             var isNotEqual = new IsNotEqual();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(decisionType, isNotEqual.HandlesType());
+            Assert.AreEqual(decisionType, isNotEqual.HandlesType());
         }
 
 
@@ -448,7 +448,7 @@ namespace Dev2.Data.Tests.Operations
             var result = notBetween.Invoke(cols);
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsFalse(result);
+            Assert.IsFalse(result);
         }
 
         [Test]
@@ -467,7 +467,7 @@ namespace Dev2.Data.Tests.Operations
             var result = notBetween.Invoke(cols);
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(result);
+            Assert.IsTrue(result);
         }
 
         #endregion

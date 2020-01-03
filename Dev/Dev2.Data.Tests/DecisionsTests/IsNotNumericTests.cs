@@ -19,7 +19,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = isNotNumeric.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(result);
+            Assert.IsTrue(result);
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = notStartsWith.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsFalse(result);
+            Assert.IsFalse(result);
         }
 
         [Test]
@@ -47,7 +47,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             var isNotNumeric = new IsNotNumeric();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(decisionType, isNotNumeric.HandlesType());
+            Assert.AreEqual(decisionType, isNotNumeric.HandlesType());
         }
     }
 }

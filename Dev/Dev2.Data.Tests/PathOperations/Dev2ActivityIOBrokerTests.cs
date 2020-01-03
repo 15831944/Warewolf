@@ -48,13 +48,13 @@ namespace Dev2.Data.Tests.PathOperations
             var ioPath = mockIoPath.Object;
             mockPath.Setup(o => o.IOPath).Returns(ioPath);
             mockPath.Setup(o => o.Get(ioPath, It.IsAny<List<string>>()))
-                .Callback<IActivityIOPath, List<string>>((path, filesToRemove) => NUnit.Framework.Assert.AreEqual(0, filesToRemove.Count))
+                .Callback<IActivityIOPath, List<string>>((path, filesToRemove) => Assert.AreEqual(0, filesToRemove.Count))
                 .Returns(new MemoryStream(Encoding.UTF8.GetBytes("some string")));
 
             var broker = new Dev2ActivityIOBroker(mockFileWrapper.Object, mockCommonData.Object);
             var result = broker.Get(mockPath.Object);
 
-            NUnit.Framework.Assert.AreEqual("some string", result);
+            Assert.AreEqual("some string", result);
 
             mockPath.Verify(o => o.IOPath, Times.Exactly(1));
             mockPath.Verify(o => o.Get(ioPath, It.IsAny<List<string>>()), Times.Once);
@@ -68,7 +68,7 @@ namespace Dev2.Data.Tests.PathOperations
             fileMock.Setup(point => point.Get(It.IsAny<IActivityIOPath>(), It.IsAny<List<string>>())).Returns(new ByteBuffer(Encoding.ASCII.GetBytes("")));
 
             var stringEncodingContents = broker.Get(fileMock.Object, true);
-            NUnit.Framework.Assert.IsNotNull(stringEncodingContents);
+            Assert.IsNotNull(stringEncodingContents);
         }
 
         [Test]
@@ -83,8 +83,8 @@ namespace Dev2.Data.Tests.PathOperations
 
             var stringEncodingContents = broker.Get(fileMock.Object, true);
 
-            NUnit.Framework.Assert.IsNotNull(stringEncodingContents);
-            NUnit.Framework.Assert.AreEqual(iAmGood, stringEncodingContents);
+            Assert.IsNotNull(stringEncodingContents);
+            Assert.AreEqual(iAmGood, stringEncodingContents);
         }
 
         [Test]
@@ -111,7 +111,7 @@ namespace Dev2.Data.Tests.PathOperations
 
             var result = broker.PutRaw(dst, args);
 
-            NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
+            Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
 
             mockDst.Verify(o => o.RequiresLocalTmpStorage(), Times.Once);
             mockImplementation.Verify(o => o.CreateTmpFile(), Times.Once);
@@ -143,7 +143,7 @@ namespace Dev2.Data.Tests.PathOperations
 
             var result = broker.PutRaw(dst, args);
 
-            NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
+            Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
 
             mockDst.Verify(o => o.RequiresLocalTmpStorage(), Times.Once);
             mockDst.Verify(o => o.PathExist(It.IsAny<Dev2ActivityIOPath>()), Times.Once);
@@ -176,7 +176,7 @@ namespace Dev2.Data.Tests.PathOperations
 
             var result = broker.PutRaw(dst, args);
 
-            NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, result);
+            Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, result);
 
             mockDst.Verify(o => o.RequiresLocalTmpStorage(), Times.Once);
             mockDst.Verify(o => o.PathExist(It.IsAny<Dev2ActivityIOPath>()), Times.Once);
@@ -205,7 +205,7 @@ namespace Dev2.Data.Tests.PathOperations
 
             var result = broker.PutRaw(dst, args);
 
-            NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, result);
+            Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, result);
 
             mockDst.Verify(o => o.RequiresLocalTmpStorage(), Times.Once);
             mockDst.Verify(o => o.PathExist(It.IsAny<Dev2ActivityIOPath>()), Times.Once);
@@ -235,7 +235,7 @@ namespace Dev2.Data.Tests.PathOperations
 
             var result = broker.PutRaw(dst, args);
 
-            NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
+            Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
 
             mockDst.Verify(o => o.RequiresLocalTmpStorage(), Times.Once);
             mockDst.Verify(o => o.PathExist(It.IsAny<Dev2ActivityIOPath>()), Times.Once);
@@ -262,7 +262,7 @@ namespace Dev2.Data.Tests.PathOperations
 
             var delete = broker.Delete(dstMock.Object);
 
-            NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, delete);
+            Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, delete);
 
             dstMock.Verify(o => o.Delete(ioPath), Times.Once);
             mockImplementation.Verify(o => o.RemoveAllTmpFiles(), Times.Once);
@@ -290,7 +290,7 @@ namespace Dev2.Data.Tests.PathOperations
 
             var delete = broker.Delete(dstMock.Object);
 
-            NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, delete);
+            Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, delete);
 
             dstMock.Verify(o => o.Delete(ioPath), Times.Once);
             mockImplementation.Verify(o => o.RemoveAllTmpFiles(), Times.Once);
@@ -316,7 +316,7 @@ namespace Dev2.Data.Tests.PathOperations
 
             var delete = broker.Delete(dstMock.Object);
 
-            NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, delete);
+            Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, delete);
 
             dstMock.Verify(o => o.Delete(ioPath), Times.Once);
             mockImplementation.Verify(o => o.RemoveAllTmpFiles(), Times.Once);
@@ -342,7 +342,7 @@ namespace Dev2.Data.Tests.PathOperations
 
             var result = broker.ListDirectory(endPoint, readTypes);
 
-            NUnit.Framework.Assert.AreEqual(expectedList, result);
+            Assert.AreEqual(expectedList, result);
 
             mockImplementation.Verify(o => o.ListDirectory(endPoint, readTypes), Times.Once);
         }
@@ -373,7 +373,7 @@ namespace Dev2.Data.Tests.PathOperations
 
             var result = broker.Create(dst, args, true);
 
-            NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
+            Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
 
             mockCommon.Verify(o => o.ValidateEndPoint(dst, args), Times.Once);
             mockDriver.Verify(o => o.CreateEndPoint(dst, args, true), Times.Once);
@@ -406,7 +406,7 @@ namespace Dev2.Data.Tests.PathOperations
 
             var result = broker.Create(mockDst.Object, args, true);
 
-            NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, result);
+            Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, result);
 
             mockDriver.Verify(o => o.CreateEndPoint(dst, args, true), Times.Once);
             mockCommon.Verify(o => o.ValidateEndPoint(dst, args), Times.Once);
@@ -447,11 +447,11 @@ namespace Dev2.Data.Tests.PathOperations
             } catch (Exception e)
             {
                 hadException = true;
-                NUnit.Framework.Assert.AreEqual(exception, e);
+                Assert.AreEqual(exception, e);
             }
-            NUnit.Framework.Assert.IsTrue(hadException);
+            Assert.IsTrue(hadException);
 
-            NUnit.Framework.Assert.IsNull(result);
+            Assert.IsNull(result);
 
             mockDriver.Verify(o => o.CreateEndPoint(dst, args, true), Times.Once);
             mockCommon.Verify(o => o.ValidateEndPoint(dst, args), Times.Once);
@@ -484,9 +484,9 @@ namespace Dev2.Data.Tests.PathOperations
             catch (Exception exc)
             {
                 hadException = true;
-                NUnit.Framework.Assert.AreEqual(ErrorResource.SourceAndDestinationNOTFilesOrDirectory, exc.Message);
+                Assert.AreEqual(ErrorResource.SourceAndDestinationNOTFilesOrDirectory, exc.Message);
             }
-            NUnit.Framework.Assert.IsTrue(hadException);
+            Assert.IsTrue(hadException);
 
             src.Verify(o => o.Delete(It.IsAny<IActivityIOPath>()), Times.Never);
             mockDriver.Verify(o => o.RemoveAllTmpFiles(), Times.Once);
@@ -519,9 +519,9 @@ namespace Dev2.Data.Tests.PathOperations
             catch (Exception exc)
             {
                 hadException = true;
-                NUnit.Framework.Assert.AreEqual(ErrorResource.DestinationDirectoryExist, exc.Message);
+                Assert.AreEqual(ErrorResource.DestinationDirectoryExist, exc.Message);
             }
-            NUnit.Framework.Assert.IsTrue(hadException);
+            Assert.IsTrue(hadException);
         }
 
         [Test]
@@ -596,9 +596,9 @@ namespace Dev2.Data.Tests.PathOperations
             catch (Exception e)
             {
                 hadException = true;
-                NUnit.Framework.Assert.AreEqual(ErrorResource.SourceAndDestinationNOTFilesOrDirectory, e.Message);
+                Assert.AreEqual(ErrorResource.SourceAndDestinationNOTFilesOrDirectory, e.Message);
             }
-            NUnit.Framework.Assert.IsTrue(hadException);
+            Assert.IsTrue(hadException);
 
             mockDriver.Verify(o => o.RemoveAllTmpFiles(), Times.AtLeastOnce);
         }
@@ -687,7 +687,7 @@ namespace Dev2.Data.Tests.PathOperations
 
             var result = broker.Copy(src, dst, args);
 
-            NUnit.Framework.Assert.AreEqual(expectedOutcome, result);
+            Assert.AreEqual(expectedOutcome, result);
 
             mockSrc.Verify(o => o.RequiresLocalTmpStorage(), Times.Once);
 
@@ -793,7 +793,7 @@ namespace Dev2.Data.Tests.PathOperations
 
             var result = broker.Copy(src, dst, args);
 
-            NUnit.Framework.Assert.AreEqual(expectedOutcome, result);
+            Assert.AreEqual(expectedOutcome, result);
 
             mockSrc.Verify(o => o.RequiresLocalTmpStorage(), Times.Once);
 
@@ -917,9 +917,9 @@ namespace Dev2.Data.Tests.PathOperations
             } catch (Exception e)
             {
                 hadException = true;
-                NUnit.Framework.Assert.AreEqual(exception, e);
+                Assert.AreEqual(exception, e);
             }
-            NUnit.Framework.Assert.IsTrue(hadException);
+            Assert.IsTrue(hadException);
 
             mockValidator.Verify(o => o.ValidateCopySourceDestinationFileOperation(src, dst, args, It.IsAny<Func<string>>()), Times.Once);
             mockSrc.Verify(o => o.Delete(srcPath), Times.Never);
@@ -1011,7 +1011,7 @@ namespace Dev2.Data.Tests.PathOperations
 
             var result = broker.UnZip(src, dst, args);
 
-            NUnit.Framework.Assert.AreEqual(expectedStatus, result);
+            Assert.AreEqual(expectedStatus, result);
 
             if (srcRequiresLocalTempStorage)
             {

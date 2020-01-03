@@ -47,8 +47,8 @@ namespace Dev2.Data.Tests
             var returnData = _xPathParser.ExecuteXPath(XmlDocument, XPath);
             //------------Assert Results-------------------------
             var data = returnData as IList<string> ?? returnData.ToList();
-            NUnit.Framework.Assert.AreEqual(6, data.Count);
-            NUnit.Framework.Assert.AreEqual("<method name=\"ExtractOutMergeDataFromRequest\" signature=\"void(object)\" />", data[1]);
+            Assert.AreEqual(6, data.Count);
+            Assert.AreEqual("<method name=\"ExtractOutMergeDataFromRequest\" signature=\"void(object)\" />", data[1]);
         }
 
 
@@ -61,8 +61,8 @@ namespace Dev2.Data.Tests
             var returnData = _xPathParser.ExecuteXPath(XmlDocument, XPath);
             //------------Assert Results-------------------------
             var data = returnData as IList<string> ?? returnData.ToList();
-            NUnit.Framework.Assert.AreEqual(1, data.Count);
-            NUnit.Framework.Assert.AreEqual("true", data[0]);
+            Assert.AreEqual(1, data.Count);
+            Assert.AreEqual("true", data[0]);
         }
 
         [Test]
@@ -74,8 +74,8 @@ namespace Dev2.Data.Tests
             var returnData = _xPathParser.ExecuteXPath(XmlDocument, XPath);
             //------------Assert Results-------------------------
             var data = returnData as IList<string> ?? returnData.ToList();
-            NUnit.Framework.Assert.AreEqual(6, data.Count);
-            NUnit.Framework.Assert.AreEqual("<method name=\"ExtractOutMergeDataFromRequest\" signature=\"void(object)\" />", data[1]);
+            Assert.AreEqual(6, data.Count);
+            Assert.AreEqual("<method name=\"ExtractOutMergeDataFromRequest\" signature=\"void(object)\" />", data[1]);
         }
 
         [Test]
@@ -209,9 +209,9 @@ namespace Dev2.Data.Tests
             var returnData = _xPathParser.ExecuteXPath(data, xPath);
             //------------Assert Results-------------------------
             var dataList = returnData as IList<string> ?? returnData.ToList();
-            NUnit.Framework.Assert.AreEqual(11, dataList.Count);
-            NUnit.Framework.Assert.AreEqual("ActivityCollectionDesignerViewModel_ExecuteShowErrorsCommand_ShowErrorsIsTrue_ShowErrorsIsSetToFalse", dataList[0]);
-            NUnit.Framework.Assert.AreEqual("SortActivity_MultipleRecordSetContainingSameSortValue_DateTime_SortedWithTheRecordSetAppearingMultipleTimes", dataList[10]);
+            Assert.AreEqual(11, dataList.Count);
+            Assert.AreEqual("ActivityCollectionDesignerViewModel_ExecuteShowErrorsCommand_ShowErrorsIsTrue_ShowErrorsIsSetToFalse", dataList[0]);
+            Assert.AreEqual("SortActivity_MultipleRecordSetContainingSameSortValue_DateTime_SortedWithTheRecordSetAppearingMultipleTimes", dataList[10]);
         }
 
 
@@ -358,10 +358,10 @@ namespace Dev2.Data.Tests
 </Deployment>";
 
             var dataList = returnData as IList<string> ?? returnData.ToList();
-            NUnit.Framework.Assert.AreEqual(1, dataList.Count);
+            Assert.AreEqual(1, dataList.Count);
             var actual = dataList[0];
             FixBreaks(ref expected, ref actual);
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
 
         }
         void FixBreaks(ref string expected, ref string actual)
@@ -503,8 +503,8 @@ namespace Dev2.Data.Tests
             const string expected = @"D:\Builds\ReleaseGate\TestResults";
 
             var dataList = returnData as IList<string> ?? returnData.ToList();
-            NUnit.Framework.Assert.AreEqual(1, dataList.Count);
-            NUnit.Framework.Assert.AreEqual(expected, dataList[0]);
+            Assert.AreEqual(1, dataList.Count);
+            Assert.AreEqual(expected, dataList[0]);
 
         }
         
@@ -526,9 +526,9 @@ namespace Dev2.Data.Tests
             var result = _xPathParser.ExecuteXPath(data, xPath).ToList();
             //------------Assert Results-------------------------
 
-            NUnit.Framework.Assert.AreEqual(4241, result.Count);
-            NUnit.Framework.Assert.AreEqual("ActivityCollectionDesignerViewModel_ExecuteShowErrorsCommand_ShowErrorsIsTrue_ShowErrorsIsSetToFalse", result[0]);
-            NUnit.Framework.Assert.AreEqual("Instantiate_Where_MessageBrokerIsNull_Expected_ArgumentNullException", result[4240]);
+            Assert.AreEqual(4241, result.Count);
+            Assert.AreEqual("ActivityCollectionDesignerViewModel_ExecuteShowErrorsCommand_ShowErrorsIsTrue_ShowErrorsIsSetToFalse", result[0]);
+            Assert.AreEqual("Instantiate_Where_MessageBrokerIsNull_Expected_ArgumentNullException", result[4240]);
         }
 
         [Test]
@@ -540,8 +540,8 @@ namespace Dev2.Data.Tests
             var returnData = _xPathParser.ExecuteXPath("<x><a>1</a></x>", XPath);
             //------------Assert Results-------------------------
             var data = returnData as IList<string> ?? returnData.ToList();
-            NUnit.Framework.Assert.AreEqual(1, data.Count);
-            NUnit.Framework.Assert.AreEqual("1", data[0]);
+            Assert.AreEqual(1, data.Count);
+            Assert.AreEqual("1", data[0]);
         }
 
         [Test]
@@ -553,8 +553,8 @@ namespace Dev2.Data.Tests
             var returnData = _xPathParser.ExecuteXPath(XmlData, XPath);
             //------------Assert Results-------------------------
             var data = returnData as IList<string> ?? returnData.ToList();
-            NUnit.Framework.Assert.AreEqual(6, data.Count);
-            NUnit.Framework.Assert.AreEqual("<method name=\"ExtractOutMergeDataFromRequest\" signature=\"void(object)\" />", data[1]);
+            Assert.AreEqual(6, data.Count);
+            Assert.AreEqual("<method name=\"ExtractOutMergeDataFromRequest\" signature=\"void(object)\" />", data[1]);
         }
 
         [Test]
@@ -566,8 +566,8 @@ namespace Dev2.Data.Tests
             var returnData = _xPathParser.ExecuteXPath(XmlData, XPath);
             //------------Assert Results-------------------------
             var data = returnData as IList<string> ?? returnData.ToList();
-            NUnit.Framework.Assert.AreEqual(6, data.Count);
-            NUnit.Framework.Assert.AreEqual("<method name=\"ExtractOutMergeDataFromRequest\" signature=\"void(object)\" />", data[1]);
+            Assert.AreEqual(6, data.Count);
+            Assert.AreEqual("<method name=\"ExtractOutMergeDataFromRequest\" signature=\"void(object)\" />", data[1]);
         }
 
         [Test]
@@ -581,8 +581,8 @@ namespace Dev2.Data.Tests
             var returnData = _xPathParser.ExecuteXPath(XmlData, XPath);
             //------------Assert Results-------------------------
             var data = returnData as IList<string> ?? returnData.ToList();
-            NUnit.Framework.Assert.AreEqual(6, data.Count);
-            NUnit.Framework.Assert.AreEqual("ExtractOutMergeDataFromRequest", data[1]);
+            Assert.AreEqual(6, data.Count);
+            Assert.AreEqual("ExtractOutMergeDataFromRequest", data[1]);
         }
 
         [Test]
@@ -596,9 +596,9 @@ namespace Dev2.Data.Tests
             var returnData = _xPathParser.ExecuteXPath(XmlData, XPath);
             //------------Assert Results-------------------------
             var data = returnData as IList<string> ?? returnData.ToList();
-            NUnit.Framework.Assert.AreEqual(12, data.Count);
-            NUnit.Framework.Assert.AreEqual("ExtractInMergeDataFromRequest", data[0]);
-            NUnit.Framework.Assert.AreEqual("void(object)", data[1]);
+            Assert.AreEqual(12, data.Count);
+            Assert.AreEqual("ExtractInMergeDataFromRequest", data[0]);
+            Assert.AreEqual("void(object)", data[1]);
         }
 
         [Test]
@@ -658,9 +658,9 @@ namespace Dev2.Data.Tests
             //------------Execute Test---------------------------
             var ret = xPathParser.ExecuteXPath(xmlData, xPath);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsNotNull(ret);
-            NUnit.Framework.Assert.AreEqual(1, ret.Count());
-            NUnit.Framework.Assert.AreEqual("http://www.webserviceX.NET/", ret.ToList()[0]);
+            Assert.IsNotNull(ret);
+            Assert.AreEqual(1, ret.Count());
+            Assert.AreEqual("http://www.webserviceX.NET/", ret.ToList()[0]);
         }
 
         string LoadFile(string name)

@@ -21,7 +21,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = startsWith.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(result);
+            Assert.IsTrue(result);
         }
 
         [Test]
@@ -36,7 +36,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = startsWith.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsFalse(result);
+            Assert.IsFalse(result);
         }
 
         [Test]
@@ -49,7 +49,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             var isStartsWith = new IsStartsWith();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(startsWith, isStartsWith.HandlesType());
+            Assert.AreEqual(startsWith, isStartsWith.HandlesType());
         }
     }
 }

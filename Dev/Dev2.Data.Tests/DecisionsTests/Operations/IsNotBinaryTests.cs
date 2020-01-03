@@ -31,7 +31,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //------------Execute Test---------------------------
             var result = endsWith.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsFalse(result);
+            Assert.IsFalse(result);
         }
 
         [Test]
@@ -46,7 +46,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //------------Execute Test---------------------------
             var result = endsWith.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(result);
+            Assert.IsTrue(result);
         }
 
         [Test]
@@ -61,7 +61,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //------------Execute Test---------------------------
             var result = endsWith.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsFalse(result);
+            Assert.IsFalse(result);
         }
 
         [Test]
@@ -74,7 +74,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             var isEndsWith = new IsNotBinary();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(expected, isEndsWith.HandlesType());
+            Assert.AreEqual(expected, isEndsWith.HandlesType());
         }
     }
 }

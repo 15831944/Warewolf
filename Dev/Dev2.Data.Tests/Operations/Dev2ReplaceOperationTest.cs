@@ -20,17 +20,17 @@ namespace Dev2.Data.Tests.Operations
         [Author("Sanele Mthembu")]
         public void Dev2ReplaceOperation_ShouldHaveInstance()
         {
-            NUnit.Framework.Assert.IsNotNull(_dev2ReplaceOperation);
+            Assert.IsNotNull(_dev2ReplaceOperation);
         }
 
         [Test]
         [Author("Sanele Mthembu")]
         public void GivenReplaceFolderWithC_Dev2ReplaceOperation_Replace_ShouldReturnColder()
         {
-            NUnit.Framework.Assert.IsNotNull(_dev2ReplaceOperation);
+            Assert.IsNotNull(_dev2ReplaceOperation);
             var replaceCount = 0;
             var result = _dev2ReplaceOperation.Replace("FOLDER", "F", "C", false, out IErrorResultTO errorResultTo, ref replaceCount);
-            NUnit.Framework.Assert.AreEqual("COLDER", result);
+            Assert.AreEqual("COLDER", result);
         }
     }
 }

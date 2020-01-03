@@ -12,8 +12,8 @@ namespace Dev2.Data.Tests.DecisionsTests
             System.Threading.Thread.CurrentThread.CurrentCulture = new System.Globalization.CultureInfo("en-ZA");
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en-ZA");
 
-            NUnit.Framework.Assert.AreEqual("en-ZA", System.Threading.Thread.CurrentThread.CurrentCulture.Name);
-            NUnit.Framework.Assert.AreEqual("en-ZA", System.Threading.Thread.CurrentThread.CurrentUICulture.Name);
+            Assert.AreEqual("en-ZA", System.Threading.Thread.CurrentThread.CurrentCulture.Name);
+            Assert.AreEqual("en-ZA", System.Threading.Thread.CurrentThread.CurrentUICulture.Name);
         }
 
         [Test]
@@ -28,7 +28,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = isDate.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsFalse(result);
+            Assert.IsFalse(result);
         }
 
         [Test]
@@ -43,7 +43,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = notStartsWith.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(result);
+            Assert.IsTrue(result);
         }
 
         [Test]
@@ -56,7 +56,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             var isDate = new IsDate();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(decisionType, isDate.HandlesType());
+            Assert.AreEqual(decisionType, isDate.HandlesType());
         }
     }
 }

@@ -62,9 +62,9 @@ namespace Dev2.Data.Tests.PathOperations
             catch (Exception e)
             {
                 hadException = true;
-                NUnit.Framework.Assert.AreEqual(exception, e);
+                Assert.AreEqual(exception, e);
             }
-            NUnit.Framework.Assert.IsTrue(hadException);
+            Assert.IsTrue(hadException);
 
             file.Verify(o => o.Delete(""), Times.Once);
         }
@@ -102,18 +102,18 @@ namespace Dev2.Data.Tests.PathOperations
                     args.Setup(o => o.FileContents).Returns("some file content");
                     var result = driver.WriteToRemoteTempStorage(mockDst.Object, args.Object, tmpfile);
 
-                    NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, result);
+                    Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, result);
 
                     args.Verify(o => o.FileContents, Times.Once);
                 }
                 var contents = File.ReadAllText(somePath);
 
-                NUnit.Framework.Assert.AreEqual("some text", contents);
+                Assert.AreEqual("some text", contents);
 
                 somePathExists = File.Exists(somePath);
-                NUnit.Framework.Assert.IsTrue(somePathExists);
+                Assert.IsTrue(somePathExists);
                 tmpfileExists = File.Exists(tmpfile);
-                NUnit.Framework.Assert.IsTrue(tmpfileExists);
+                Assert.IsTrue(tmpfileExists);
             }
             finally
             {
@@ -155,18 +155,18 @@ namespace Dev2.Data.Tests.PathOperations
                     args.Setup(o => o.FileContents).Returns("some file content");
                     var result = driver.WriteToRemoteTempStorage(dst, args.Object, tmpfile);
 
-                    NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
+                    Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
 
                     args.Verify(o => o.FileContents, Times.Once);
                 }
                 var contents = File.ReadAllText(somePath);
 
-                NUnit.Framework.Assert.AreEqual("some textsome file content", contents);
+                Assert.AreEqual("some textsome file content", contents);
 
                 somePathExists = File.Exists(somePath);
-                NUnit.Framework.Assert.IsTrue(somePathExists);
+                Assert.IsTrue(somePathExists);
                 tmpfileExists = File.Exists(tmpfile);
-                NUnit.Framework.Assert.IsTrue(tmpfileExists);
+                Assert.IsTrue(tmpfileExists);
             }
             finally
             {
@@ -202,18 +202,18 @@ namespace Dev2.Data.Tests.PathOperations
             args.Setup(o => o.FileContents).Returns("some file content");
             var result = driver.WriteToRemoteTempStorage(mockDst.Object, args.Object, tmpfile);
 
-            NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
+            Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
 
             var contents = File.ReadAllText(tmpfile);
 
-            NUnit.Framework.Assert.AreEqual("some file content234", contents);
+            Assert.AreEqual("some file content234", contents);
 
             args.Verify(o => o.FileContents, Times.Once);
             mockDst.VerifyAll();
             mockFile.VerifyAll();
 
-            NUnit.Framework.Assert.IsTrue(File.Exists(somePath));
-            NUnit.Framework.Assert.IsTrue(File.Exists(tmpfile));
+            Assert.IsTrue(File.Exists(somePath));
+            Assert.IsTrue(File.Exists(tmpfile));
             File.Delete(somePath);
             File.Delete(tmpfile);
         }
@@ -253,18 +253,18 @@ namespace Dev2.Data.Tests.PathOperations
                     args.Setup(o => o.FileContents).Returns("some file content");
                     var result = driver.WriteToRemoteTempStorage(dst, args.Object, tmpfile);
 
-                    NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
+                    Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
 
                     args.Verify(o => o.FileContents, Times.Exactly(2));
                 }
                 var contents = File.ReadAllText(somePath);
 
-                NUnit.Framework.Assert.AreEqual("some file content", contents);
+                Assert.AreEqual("some file content", contents);
 
                 somePathExists = File.Exists(somePath);
-                NUnit.Framework.Assert.IsTrue(somePathExists);
+                Assert.IsTrue(somePathExists);
                 tmpfileExists = File.Exists(tmpfile);
-                NUnit.Framework.Assert.IsTrue(tmpfileExists);
+                Assert.IsTrue(tmpfileExists);
             }
             finally
             {
@@ -308,18 +308,18 @@ namespace Dev2.Data.Tests.PathOperations
                     args.Setup(o => o.FileContents).Returns(@"Content-Type:BASE64c29tZSBmaWxlIGNvbnRlbnQ=");
                     var result = driver.WriteToRemoteTempStorage(dst, args.Object, tmpfile);
 
-                    NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
+                    Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
 
                     args.Verify(o => o.FileContents, Times.Exactly(2));
                 }
                 var contents = File.ReadAllText(somePath);
 
-                NUnit.Framework.Assert.AreEqual("some file content", contents);
+                Assert.AreEqual("some file content", contents);
 
                 somePathExists = File.Exists(somePath);
-                NUnit.Framework.Assert.IsTrue(somePathExists);
+                Assert.IsTrue(somePathExists);
                 tmpfileExists = File.Exists(tmpfile);
-                NUnit.Framework.Assert.IsTrue(tmpfileExists);
+                Assert.IsTrue(tmpfileExists);
             }
             finally
             {
@@ -368,12 +368,12 @@ namespace Dev2.Data.Tests.PathOperations
                 }
                 var contents = File.ReadAllText(tmpfile);
 
-                NUnit.Framework.Assert.AreEqual("some textsome file content", contents);
+                Assert.AreEqual("some textsome file content", contents);
 
                 somePathExists = File.Exists(somePath);
-                NUnit.Framework.Assert.IsTrue(somePathExists);
+                Assert.IsTrue(somePathExists);
                 tmpfileExists = File.Exists(tmpfile);
-                NUnit.Framework.Assert.IsTrue(tmpfileExists);
+                Assert.IsTrue(tmpfileExists);
             }
             finally
             {
@@ -421,12 +421,12 @@ namespace Dev2.Data.Tests.PathOperations
                 }
                 var contents = File.ReadAllText(tmpfile);
 
-                NUnit.Framework.Assert.AreEqual("some file contentsome text", contents);
+                Assert.AreEqual("some file contentsome text", contents);
 
                 somePathExists = File.Exists(somePath);
-                NUnit.Framework.Assert.IsTrue(somePathExists);
+                Assert.IsTrue(somePathExists);
                 tmpfileExists = File.Exists(tmpfile);
-                NUnit.Framework.Assert.IsTrue(tmpfileExists);
+                Assert.IsTrue(tmpfileExists);
             }
             finally
             {
@@ -469,12 +469,12 @@ namespace Dev2.Data.Tests.PathOperations
                 }
                 var contents = File.ReadAllText(tmpfile);
 
-                NUnit.Framework.Assert.AreEqual("some file content", contents);
+                Assert.AreEqual("some file content", contents);
 
                 somePathExists = File.Exists(somePath);
-                NUnit.Framework.Assert.IsTrue(somePathExists);
+                Assert.IsTrue(somePathExists);
                 tmpfileExists = File.Exists(tmpfile);
-                NUnit.Framework.Assert.IsTrue(tmpfileExists);
+                Assert.IsTrue(tmpfileExists);
             }
             finally
             {
@@ -513,7 +513,7 @@ namespace Dev2.Data.Tests.PathOperations
                     });
 
                 var result = driver.MoveTmpFileToDestination(dst.Object, tempFileName);
-                NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
+                Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, result);
 
             }
             finally
@@ -548,7 +548,7 @@ namespace Dev2.Data.Tests.PathOperations
                     });
 
                 var result = driver.MoveTmpFileToDestination(dst.Object, tempFileName);
-                NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, result);
+                Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, result);
 
             }
             finally
@@ -583,7 +583,7 @@ namespace Dev2.Data.Tests.PathOperations
                     });
 
                 var result = driver.MoveTmpFileToDestination(dst.Object, tempFileName);
-                NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, result);
+                Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultBad, result);
 
             }
             finally
@@ -611,7 +611,7 @@ namespace Dev2.Data.Tests.PathOperations
 
             var filename = driver.ZipFileToALocalTempFile(mockSrc.Object, mockArgs.Object);
 
-            NUnit.Framework.Assert.IsTrue(ZipFile.IsZipFile(filename));
+            Assert.IsTrue(ZipFile.IsZipFile(filename));
             driver.RemoveAllTmpFiles();
 
             mockSrc.Verify(o => o.RequiresLocalTmpStorage(), Times.Once);
@@ -627,7 +627,7 @@ namespace Dev2.Data.Tests.PathOperations
         public void ActivityIOBrokerMainDriver_ZipFileToALocalTempFile_RequiresTmpStorage_False_ExpectSuccess()
         {
             var mockFile = new Mock<IFile>();
-            mockFile.Setup(o => o.WriteAllBytes(It.IsAny<string>(), It.IsAny<byte[]>())).Callback<string, byte[]>((filename, bytes) => new Dev2.Common.Wrappers.FileWrapper().WriteAllBytes(filename, bytes));
+            mockFile.Setup(o => o.WriteAllBytes(It.IsAny<string>(), It.IsAny<byte[]>())).Callback<string, byte[]>((filename, bytes) => new FileWrapper().WriteAllBytes(filename, bytes));
             var mockCommon = new Mock<ICommon>();
             var tmpDirectory = new Data.Util.CommonDataUtils().CreateTmpDirectory();
             mockCommon.Setup(o => o.CreateTmpDirectory()).Returns(tmpDirectory);
@@ -648,9 +648,9 @@ namespace Dev2.Data.Tests.PathOperations
 
                 var filename = driver.ZipFileToALocalTempFile(mockSrc.Object, mockArgs.Object);
 
-                NUnit.Framework.Assert.IsTrue(ZipFile.IsZipFile(filename));
+                Assert.IsTrue(ZipFile.IsZipFile(filename));
                 driver.RemoveAllTmpFiles();
-                NUnit.Framework.Assert.IsFalse(File.Exists(tmpDirectory));
+                Assert.IsFalse(File.Exists(tmpDirectory));
 
                 mockSrc.Verify(o => o.RequiresLocalTmpStorage(), Times.Once);
                 mockSrc.Verify(o => o.IOPath.Path, Times.Exactly(2));

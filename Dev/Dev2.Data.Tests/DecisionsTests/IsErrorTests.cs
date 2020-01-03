@@ -28,7 +28,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = isError.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(result);
+            Assert.IsTrue(result);
         }
 
         [Test]
@@ -43,7 +43,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = isError.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsFalse(result);
+            Assert.IsFalse(result);
         }
 
         [Test]
@@ -56,7 +56,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             var isError = new IsError();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(decisionType, isError.HandlesType());
+            Assert.AreEqual(decisionType, isError.HandlesType());
         }
     }
 }

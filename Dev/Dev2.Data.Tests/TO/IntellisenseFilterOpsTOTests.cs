@@ -28,8 +28,8 @@ namespace Dev2.Data.Tests.TO
             intellisenseFilterOpsTO.FilterCondition = "TestFilterCondition";
             intellisenseFilterOpsTO.FilterType = enIntellisensePartType.JsonObject;
             //-----------------------Assert-------------------------
-            NUnit.Framework.Assert.AreEqual("TestFilterCondition", intellisenseFilterOpsTO.FilterCondition);
-            NUnit.Framework.Assert.AreEqual(enIntellisensePartType.JsonObject, intellisenseFilterOpsTO.FilterType);
+            Assert.AreEqual("TestFilterCondition", intellisenseFilterOpsTO.FilterCondition);
+            Assert.AreEqual(enIntellisensePartType.JsonObject, intellisenseFilterOpsTO.FilterType);
         }
     }
 }

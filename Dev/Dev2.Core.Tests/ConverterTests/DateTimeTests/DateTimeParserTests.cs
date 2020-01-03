@@ -23,8 +23,6 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
     public class DateTimeParserTests
     {
         static IDateTimeParser _parser;
-        
-        public TestContext TestContext { get; set; }
 
         [SetUp]
         public void PreConditions()
@@ -37,7 +35,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         }
 
         [OneTimeSetUp]
-        public static void MyClassInitialize(TestContext testContext)
+        public static void MyClassInitialize()
         {
             _parser = DateTimeConverterFactory.CreateParser();
         }

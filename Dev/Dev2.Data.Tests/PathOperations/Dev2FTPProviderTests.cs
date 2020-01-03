@@ -34,9 +34,9 @@ namespace Dev2.Data.Tests.PathOperations
                 IOPath = mockActivityIOPath.Object
             };
 
-            NUnit.Framework.Assert.AreEqual(mockActivityIOPath.Object, dev2FTPProvider.IOPath);
-            NUnit.Framework.Assert.AreEqual(@"/", dev2FTPProvider.PathSeperator());
-            NUnit.Framework.Assert.IsTrue(dev2FTPProvider.RequiresLocalTmpStorage());
+            Assert.AreEqual(mockActivityIOPath.Object, dev2FTPProvider.IOPath);
+            Assert.AreEqual(@"/", dev2FTPProvider.PathSeperator());
+            Assert.IsTrue(dev2FTPProvider.RequiresLocalTmpStorage());
         }
 
         [Test]
@@ -59,7 +59,7 @@ namespace Dev2.Data.Tests.PathOperations
 
             var stream = dev2FTPProvider.Get(mockActivityIOPath.Object, filesToCleanup);
 
-            NUnit.Framework.Assert.AreEqual(null, stream);
+            Assert.AreEqual(null, stream);
             mockImplementation.Verify(implementation => implementation.IsStandardFtp(mockActivityIOPath.Object), Times.Once);
             mockImplementation.Verify(implementation => implementation.ReadFromFtp(mockActivityIOPath.Object, ref streamNullResult), Times.Once);
         }
@@ -79,11 +79,11 @@ namespace Dev2.Data.Tests.PathOperations
             try
             {
                 dev2FTPProvider.Get(mockActivityIOPath.Object, filesToCleanup);
-                NUnit.Framework.Assert.Fail("Code should have caused an exception to be thrown");
+                Assert.Fail("Code should have caused an exception to be thrown");
             }
             catch (Exception ex)
             {
-                NUnit.Framework.Assert.AreEqual("Object reference not set to an instance of an object. ,  [path]", ex.Message);
+                Assert.AreEqual("Object reference not set to an instance of an object. ,  [path]", ex.Message);
             }
         }
 
@@ -107,7 +107,7 @@ namespace Dev2.Data.Tests.PathOperations
 
             var stream = dev2FTPProvider.Get(mockActivityIOPath.Object, filesToCleanup);
 
-            NUnit.Framework.Assert.AreEqual(null, stream);
+            Assert.AreEqual(null, stream);
             mockImplementation.Verify(implementation => implementation.IsStandardFtp(mockActivityIOPath.Object), Times.Once);
             mockImplementation.Verify(implementation => implementation.ReadFromSftp(mockActivityIOPath.Object, ref streamNullResult, filesToCleanup), Times.Once);
         }
@@ -134,7 +134,7 @@ namespace Dev2.Data.Tests.PathOperations
             var dev2FTPProvider = new Dev2FTPProvider(mockImplementation.Object);
             var result = dev2FTPProvider.Put(streamResult, mockActivityIOPath.Object, mockDev2CRUDOperationTO.Object, whereToPut, filesToCleanup);
 
-            NUnit.Framework.Assert.AreEqual(1, result);
+            Assert.AreEqual(1, result);
             mockImplementation.Verify(implementation => implementation.WriteToFtp(streamResult, mockActivityIOPath.Object), Times.Once);
         }
 
@@ -160,7 +160,7 @@ namespace Dev2.Data.Tests.PathOperations
             var dev2FTPProvider = new Dev2FTPProvider(mockImplementation.Object);
 
             var result = dev2FTPProvider.Put(streamResult, null, mockDev2CRUDOperationTO.Object, whereToPut, filesToCleanup);
-            NUnit.Framework.Assert.AreEqual(0, result);
+            Assert.AreEqual(0, result);
         }
 
         [Test]
@@ -187,11 +187,11 @@ namespace Dev2.Data.Tests.PathOperations
             try
             {
                 dev2FTPProvider.Put(streamResult, mockActivityIOPath.Object, mockDev2CRUDOperationTO.Object, whereToPut, filesToCleanup);
-                NUnit.Framework.Assert.Fail("Code should have caused an exception to be thrown");
+                Assert.Fail("Code should have caused an exception to be thrown");
             }
             catch (Exception ex)
             {
-                NUnit.Framework.Assert.AreEqual("Object reference not set to an instance of an object.", ex.Message);
+                Assert.AreEqual("Object reference not set to an instance of an object.", ex.Message);
             }
         }
 
@@ -217,7 +217,7 @@ namespace Dev2.Data.Tests.PathOperations
             var dev2FTPProvider = new Dev2FTPProvider(mockImplementation.Object);
             var result = dev2FTPProvider.Put(streamResult, mockActivityIOPath.Object, mockDev2CRUDOperationTO.Object, whereToPut, filesToCleanup);
 
-            NUnit.Framework.Assert.AreEqual(1, result);
+            Assert.AreEqual(1, result);
             mockImplementation.Verify(implementation => implementation.WriteToSftp(streamResult, mockActivityIOPath.Object), Times.Once);
         }
 
@@ -242,7 +242,7 @@ namespace Dev2.Data.Tests.PathOperations
             var dev2FTPProvider = new Dev2FTPProvider(mockImplementation.Object);
             var result = dev2FTPProvider.Put(streamResult, mockActivityIOPath.Object, mockDev2CRUDOperationTO.Object, whereToPut, filesToCleanup);
 
-            NUnit.Framework.Assert.AreEqual(-1, result);
+            Assert.AreEqual(-1, result);
         }
 
         [Test]
@@ -270,7 +270,7 @@ namespace Dev2.Data.Tests.PathOperations
             var dev2FTPProvider = new Dev2FTPProvider(mockImplementation.Object);
             var result = dev2FTPProvider.Delete(mockActivityIOPath.Object);
 
-            NUnit.Framework.Assert.IsTrue(result);
+            Assert.IsTrue(result);
             mockImplementation.Verify(implementation => implementation.DeleteHandler(pathStack, userName, password, privateKeyFile), Times.Once);
         }
 
@@ -288,11 +288,11 @@ namespace Dev2.Data.Tests.PathOperations
             try
             {
                 dev2FTPProvider.Delete(mockActivityIOPath.Object);
-                NUnit.Framework.Assert.Fail("Code should have caused an exception to be thrown");
+                Assert.Fail("Code should have caused an exception to be thrown");
             }
             catch (Exception ex)
             {
-                NUnit.Framework.Assert.AreEqual("Object reference not set to an instance of an object.", ex.Message);
+                Assert.AreEqual("Object reference not set to an instance of an object.", ex.Message);
             }
         }
 
@@ -322,7 +322,7 @@ namespace Dev2.Data.Tests.PathOperations
             var dev2FTPProvider = new Dev2FTPProvider(mockImplementation.Object);
             var result = dev2FTPProvider.Delete(mockActivityIOPath.Object);
 
-            NUnit.Framework.Assert.IsTrue(result);
+            Assert.IsTrue(result);
             mockImplementation.Verify(implementation => implementation.DeleteOp(activityIOPathList), Times.Once);
         }
 
@@ -343,8 +343,8 @@ namespace Dev2.Data.Tests.PathOperations
             var dev2FTPProvider = new Dev2FTPProvider(mockImplementation.Object);
             var listDirectory = dev2FTPProvider.ListDirectory(mockActivityIOPath.Object);
 
-            NUnit.Framework.Assert.AreEqual(activityIOPathList, listDirectory);
-            NUnit.Framework.Assert.AreEqual(1, listDirectory.Count);
+            Assert.AreEqual(activityIOPathList, listDirectory);
+            Assert.AreEqual(1, listDirectory.Count);
             mockImplementation.Verify(implementation => implementation.ListDirectoryStandardFtp(mockActivityIOPath.Object), Times.Once);
         }
 
@@ -365,8 +365,8 @@ namespace Dev2.Data.Tests.PathOperations
             var dev2FTPProvider = new Dev2FTPProvider(mockImplementation.Object);
             var listDirectory = dev2FTPProvider.ListDirectory(mockActivityIOPath.Object);
 
-            NUnit.Framework.Assert.AreEqual(activityIOPathList, listDirectory);
-            NUnit.Framework.Assert.AreEqual(1, listDirectory.Count);
+            Assert.AreEqual(activityIOPathList, listDirectory);
+            Assert.AreEqual(1, listDirectory.Count);
             mockImplementation.Verify(implementation => implementation.ListDirectorySftp(mockActivityIOPath.Object), Times.Once);
         }
 
@@ -401,7 +401,7 @@ namespace Dev2.Data.Tests.PathOperations
             var dev2FTPProvider = new Dev2FTPProvider(mockImplementation.Object);
             var result = dev2FTPProvider.CreateDirectory(mockActivityIOPath.Object, mockDev2CRUDOperationTO.Object);
 
-            NUnit.Framework.Assert.IsTrue(result);
+            Assert.IsTrue(result);
 
             mockImplementation.Verify(implementation => implementation.IsDirectoryAlreadyPresent(mockActivityIOPath.Object), Times.Once);
             mockImplementation.Verify(implementation => implementation.DeleteHandler(pathStack, userName, password, privateKeyFile), Times.Once);
@@ -436,7 +436,7 @@ namespace Dev2.Data.Tests.PathOperations
             var dev2FTPProvider = new Dev2FTPProvider(mockImplementation.Object);
             var result = dev2FTPProvider.CreateDirectory(mockActivityIOPath.Object, mockDev2CRUDOperationTO.Object);
 
-            NUnit.Framework.Assert.IsTrue(result);
+            Assert.IsTrue(result);
 
             mockImplementation.Verify(implementation => implementation.IsDirectoryAlreadyPresent(mockActivityIOPath.Object), Times.Once);
             mockImplementation.Verify(implementation => implementation.CreateDirectorySftp(mockActivityIOPath.Object), Times.Once);
@@ -456,7 +456,7 @@ namespace Dev2.Data.Tests.PathOperations
             var dev2FTPProvider = new Dev2FTPProvider(mockImplementation.Object);
             var pathExists = dev2FTPProvider.PathExist(mockActivityIOPath.Object);
 
-            NUnit.Framework.Assert.IsTrue(pathExists);
+            Assert.IsTrue(pathExists);
             mockImplementation.Verify(implementation => implementation.PathIs(mockActivityIOPath.Object), Times.Once);
             mockImplementation.Verify(implementation => implementation.IsDirectoryAlreadyPresent(mockActivityIOPath.Object), Times.Once);
         }
@@ -475,7 +475,7 @@ namespace Dev2.Data.Tests.PathOperations
             var dev2FTPProvider = new Dev2FTPProvider(mockImplementation.Object);
             var pathExists = dev2FTPProvider.PathExist(mockActivityIOPath.Object);
 
-            NUnit.Framework.Assert.IsTrue(pathExists);
+            Assert.IsTrue(pathExists);
             mockImplementation.Verify(implementation => implementation.PathIs(mockActivityIOPath.Object), Times.Once);
             mockImplementation.Verify(implementation => implementation.IsFilePresent(mockActivityIOPath.Object), Times.Once);
         }
@@ -489,12 +489,12 @@ namespace Dev2.Data.Tests.PathOperations
 
             var dev2FTPProvider = new Dev2FTPProvider(mockImplementation.Object);
 
-            NUnit.Framework.Assert.IsFalse(dev2FTPProvider.HandlesType(Interfaces.Enums.enActivityIOPathType.FileSystem));
-            NUnit.Framework.Assert.IsFalse(dev2FTPProvider.HandlesType(Interfaces.Enums.enActivityIOPathType.Invalid));
-            NUnit.Framework.Assert.IsTrue(dev2FTPProvider.HandlesType(Interfaces.Enums.enActivityIOPathType.FTPS));
-            NUnit.Framework.Assert.IsTrue(dev2FTPProvider.HandlesType(Interfaces.Enums.enActivityIOPathType.SFTP));
-            NUnit.Framework.Assert.IsTrue(dev2FTPProvider.HandlesType(Interfaces.Enums.enActivityIOPathType.FTP));
-            NUnit.Framework.Assert.IsTrue(dev2FTPProvider.HandlesType(Interfaces.Enums.enActivityIOPathType.FTPES));
+            Assert.IsFalse(dev2FTPProvider.HandlesType(Interfaces.Enums.enActivityIOPathType.FileSystem));
+            Assert.IsFalse(dev2FTPProvider.HandlesType(Interfaces.Enums.enActivityIOPathType.Invalid));
+            Assert.IsTrue(dev2FTPProvider.HandlesType(Interfaces.Enums.enActivityIOPathType.FTPS));
+            Assert.IsTrue(dev2FTPProvider.HandlesType(Interfaces.Enums.enActivityIOPathType.SFTP));
+            Assert.IsTrue(dev2FTPProvider.HandlesType(Interfaces.Enums.enActivityIOPathType.FTP));
+            Assert.IsTrue(dev2FTPProvider.HandlesType(Interfaces.Enums.enActivityIOPathType.FTPES));
         }
 
         [Test]
@@ -512,8 +512,8 @@ namespace Dev2.Data.Tests.PathOperations
             var dev2FTPProvider = new Dev2FTPProvider(mockImplementation.Object);
             var foldersInDirectory = dev2FTPProvider.ListFoldersInDirectory(mockActivityIOPath.Object);
 
-            NUnit.Framework.Assert.AreEqual(activityIOPathList, foldersInDirectory);
-            NUnit.Framework.Assert.AreEqual(1, foldersInDirectory.Count);
+            Assert.AreEqual(activityIOPathList, foldersInDirectory);
+            Assert.AreEqual(1, foldersInDirectory.Count);
             mockImplementation.Verify(implementation => implementation.ListFoldersInDirectory(mockActivityIOPath.Object), Times.Once);
         }
 
@@ -546,8 +546,8 @@ namespace Dev2.Data.Tests.PathOperations
             mockImplementation.Setup(implementation => implementation.ExtendedDirList(path, userName, password, enableSsl, isNotCertVerifiable, privateKeyFile)).Returns(tmpDirData);
             mockImplementation.Setup(implementation => implementation.ExtractList(tmpDirData, It.IsAny<Func<string, bool>>()))
                 .Callback<string, Func<string, bool>>((string payload, Func<string, bool> matchFunc) => {
-                    NUnit.Framework.Assert.IsFalse(matchFunc("<dir>"));
-                    NUnit.Framework.Assert.IsTrue(matchFunc("ftp:\\testfile.txt"));
+                    Assert.IsFalse(matchFunc("<dir>"));
+                    Assert.IsTrue(matchFunc("ftp:\\testfile.txt"));
                     matchFunc(payload);
                 })
                 .Returns(extractList);
@@ -557,21 +557,21 @@ namespace Dev2.Data.Tests.PathOperations
             var dev2FTPProvider = new Dev2FTPProvider(mockImplementation.Object);
             var foldersInDirectory = dev2FTPProvider.ListFilesInDirectory(mockActivityIOPath.Object);
 
-            NUnit.Framework.Assert.AreEqual(2, foldersInDirectory.Count);
+            Assert.AreEqual(2, foldersInDirectory.Count);
 
-            NUnit.Framework.Assert.IsFalse(foldersInDirectory[0].IsNotCertVerifiable);
-            NUnit.Framework.Assert.AreEqual(password, foldersInDirectory[0].Password);
-            NUnit.Framework.Assert.AreEqual(path1, foldersInDirectory[0].Path);
-            NUnit.Framework.Assert.AreEqual(Interfaces.Enums.enActivityIOPathType.FileSystem, foldersInDirectory[0].PathType);
-            NUnit.Framework.Assert.AreEqual(privateKeyFile, foldersInDirectory[0].PrivateKeyFile);
-            NUnit.Framework.Assert.AreEqual(userName, foldersInDirectory[0].Username);
+            Assert.IsFalse(foldersInDirectory[0].IsNotCertVerifiable);
+            Assert.AreEqual(password, foldersInDirectory[0].Password);
+            Assert.AreEqual(path1, foldersInDirectory[0].Path);
+            Assert.AreEqual(Interfaces.Enums.enActivityIOPathType.FileSystem, foldersInDirectory[0].PathType);
+            Assert.AreEqual(privateKeyFile, foldersInDirectory[0].PrivateKeyFile);
+            Assert.AreEqual(userName, foldersInDirectory[0].Username);
 
-            NUnit.Framework.Assert.IsFalse(foldersInDirectory[1].IsNotCertVerifiable);
-            NUnit.Framework.Assert.AreEqual(password, foldersInDirectory[1].Password);
-            NUnit.Framework.Assert.AreEqual(path2, foldersInDirectory[1].Path);
-            NUnit.Framework.Assert.AreEqual(Interfaces.Enums.enActivityIOPathType.FileSystem, foldersInDirectory[1].PathType);
-            NUnit.Framework.Assert.AreEqual(privateKeyFile, foldersInDirectory[1].PrivateKeyFile);
-            NUnit.Framework.Assert.AreEqual(userName, foldersInDirectory[1].Username);
+            Assert.IsFalse(foldersInDirectory[1].IsNotCertVerifiable);
+            Assert.AreEqual(password, foldersInDirectory[1].Password);
+            Assert.AreEqual(path2, foldersInDirectory[1].Path);
+            Assert.AreEqual(Interfaces.Enums.enActivityIOPathType.FileSystem, foldersInDirectory[1].PathType);
+            Assert.AreEqual(privateKeyFile, foldersInDirectory[1].PrivateKeyFile);
+            Assert.AreEqual(userName, foldersInDirectory[1].Username);
 
             mockImplementation.Verify(implementation => implementation.EnableSsl(mockActivityIOPath.Object), Times.Once);
             mockImplementation.Verify(implementation => implementation.ExtendedDirList(path, userName, password, enableSsl, isNotCertVerifiable, privateKeyFile), Times.Once);
@@ -593,11 +593,11 @@ namespace Dev2.Data.Tests.PathOperations
             try
             {
                 dev2FTPProvider.ListFilesInDirectory(mockActivityIOPath.Object);
-                NUnit.Framework.Assert.Fail("Code should have caused an exception to be thrown");
+                Assert.Fail("Code should have caused an exception to be thrown");
             }
             catch (Exception ex)
             {
-                NUnit.Framework.Assert.AreEqual("Object reference not set to an instance of an object. : [path]", ex.Message);
+                Assert.AreEqual("Object reference not set to an instance of an object. : [path]", ex.Message);
             }
         }
     }

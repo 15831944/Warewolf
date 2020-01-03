@@ -1,5 +1,5 @@
 #pragma warning disable
-﻿/*
+ /*
 *  Warewolf - Once bitten, there's no going back
 *  Copyright 2019 by Warewolf Ltd <alpha@warewolf.io>
 *  Licensed under GNU Affero General Public License 3.0 or later.
@@ -28,9 +28,9 @@ namespace Dev2.Data.Tests.Util
         {
             var instance = new CommonRecordSetUtil();
 
-            NUnit.Framework.Assert.AreEqual("[[rec(*)]]", instance.ReplaceRecordBlankWithStar("[[rec(*)]]"));
-            NUnit.Framework.Assert.AreEqual("[[rec(*)]]", instance.ReplaceRecordBlankWithStar("[[rec()]]"));
-            NUnit.Framework.Assert.AreEqual("[[rec]]", instance.ReplaceRecordBlankWithStar("[[rec]]"));
+            Assert.AreEqual("[[rec(*)]]", instance.ReplaceRecordBlankWithStar("[[rec(*)]]"));
+            Assert.AreEqual("[[rec(*)]]", instance.ReplaceRecordBlankWithStar("[[rec()]]"));
+            Assert.AreEqual("[[rec]]", instance.ReplaceRecordBlankWithStar("[[rec]]"));
         }
 
         [Test]
@@ -40,10 +40,10 @@ namespace Dev2.Data.Tests.Util
         {
             var instance = new CommonRecordSetUtil();
 
-            NUnit.Framework.Assert.AreEqual("[[rec(*).n]]", instance.ReplaceRecordsetBlankWithStar("[[rec().n]]"));
-            NUnit.Framework.Assert.AreEqual("[[rec()]]", instance.ReplaceRecordsetBlankWithStar("[[rec()]]"));
-            NUnit.Framework.Assert.AreEqual("[[rec(a)]]", instance.ReplaceRecordsetBlankWithStar("[[rec(a)]]"));
-            NUnit.Framework.Assert.AreEqual("[[rec]]", instance.ReplaceRecordsetBlankWithStar("[[rec]]"));
+            Assert.AreEqual("[[rec(*).n]]", instance.ReplaceRecordsetBlankWithStar("[[rec().n]]"));
+            Assert.AreEqual("[[rec()]]", instance.ReplaceRecordsetBlankWithStar("[[rec()]]"));
+            Assert.AreEqual("[[rec(a)]]", instance.ReplaceRecordsetBlankWithStar("[[rec(a)]]"));
+            Assert.AreEqual("[[rec]]", instance.ReplaceRecordsetBlankWithStar("[[rec]]"));
         }
 
         [Test]
@@ -53,9 +53,9 @@ namespace Dev2.Data.Tests.Util
         {
             var instance = new CommonRecordSetUtil();
 
-            NUnit.Framework.Assert.AreEqual("[[rec(*).a]]", instance.ReplaceRecordsetBlankWithIndex("[[rec(*).a]]", 2));
-            NUnit.Framework.Assert.AreEqual("[[rec(2).a]]", instance.ReplaceRecordsetBlankWithIndex("[[rec().a]]", 2));
-            NUnit.Framework.Assert.AreEqual("[[rec]]", instance.ReplaceRecordsetBlankWithIndex("[[rec]]", 2));
+            Assert.AreEqual("[[rec(*).a]]", instance.ReplaceRecordsetBlankWithIndex("[[rec(*).a]]", 2));
+            Assert.AreEqual("[[rec(2).a]]", instance.ReplaceRecordsetBlankWithIndex("[[rec().a]]", 2));
+            Assert.AreEqual("[[rec]]", instance.ReplaceRecordsetBlankWithIndex("[[rec]]", 2));
         }
 
         [Test]
@@ -65,9 +65,9 @@ namespace Dev2.Data.Tests.Util
         {
             var instance = new CommonRecordSetUtil();
 
-            NUnit.Framework.Assert.AreEqual("[[rec(*)]]", instance.ReplaceObjectBlankWithIndex("[[rec(*)]]", 2));
-            NUnit.Framework.Assert.AreEqual("[[rec(2)]]", instance.ReplaceObjectBlankWithIndex("[[rec()]]", 2));
-            NUnit.Framework.Assert.AreEqual("[[rec]]", instance.ReplaceObjectBlankWithIndex("[[rec]]", 2));
+            Assert.AreEqual("[[rec(*)]]", instance.ReplaceObjectBlankWithIndex("[[rec(*)]]", 2));
+            Assert.AreEqual("[[rec(2)]]", instance.ReplaceObjectBlankWithIndex("[[rec()]]", 2));
+            Assert.AreEqual("[[rec]]", instance.ReplaceObjectBlankWithIndex("[[rec]]", 2));
         }
 
         [Test]
@@ -77,7 +77,7 @@ namespace Dev2.Data.Tests.Util
         {
             var instance = new CommonRecordSetUtil();
 
-            NUnit.Framework.Assert.AreEqual("rec(2).col1", instance.CreateRecordsetDisplayValue("rec", "col1", "2"));
+            Assert.AreEqual("rec(2).col1", instance.CreateRecordsetDisplayValue("rec", "col1", "2"));
         }
 
         [Test]
@@ -87,9 +87,9 @@ namespace Dev2.Data.Tests.Util
         {
             var instance = new CommonRecordSetUtil();
 
-            NUnit.Framework.Assert.AreEqual("[[rec(*)]]", instance.RemoveRecordsetBracketsFromValue("[[rec(*)]]"));
-            NUnit.Framework.Assert.AreEqual("rec(*)", instance.RemoveRecordsetBracketsFromValue("rec(*)"));
-            NUnit.Framework.Assert.AreEqual("rec", instance.RemoveRecordsetBracketsFromValue("rec"));
+            Assert.AreEqual("[[rec(*)]]", instance.RemoveRecordsetBracketsFromValue("[[rec(*)]]"));
+            Assert.AreEqual("rec(*)", instance.RemoveRecordsetBracketsFromValue("rec(*)"));
+            Assert.AreEqual("rec", instance.RemoveRecordsetBracketsFromValue("rec"));
         }
 
         [Test]
@@ -99,10 +99,10 @@ namespace Dev2.Data.Tests.Util
         {
             var instance = new CommonRecordSetUtil();
 
-            NUnit.Framework.Assert.AreEqual(Interfaces.Enums.enRecordsetIndexType.Blank, instance.GetRecordsetIndexType("[[rec()]]"));
-            NUnit.Framework.Assert.AreEqual(Interfaces.Enums.enRecordsetIndexType.Error, instance.GetRecordsetIndexType("[[rec(a)]]"));
-            NUnit.Framework.Assert.AreEqual(Interfaces.Enums.enRecordsetIndexType.Numeric, instance.GetRecordsetIndexType("[[rec(3)]]"));
-            NUnit.Framework.Assert.AreEqual(Interfaces.Enums.enRecordsetIndexType.Star, instance.GetRecordsetIndexType("[[rec(*)]]"));
+            Assert.AreEqual(Interfaces.Enums.enRecordsetIndexType.Blank, instance.GetRecordsetIndexType("[[rec()]]"));
+            Assert.AreEqual(Interfaces.Enums.enRecordsetIndexType.Error, instance.GetRecordsetIndexType("[[rec(a)]]"));
+            Assert.AreEqual(Interfaces.Enums.enRecordsetIndexType.Numeric, instance.GetRecordsetIndexType("[[rec(3)]]"));
+            Assert.AreEqual(Interfaces.Enums.enRecordsetIndexType.Star, instance.GetRecordsetIndexType("[[rec(*)]]"));
         }
 
         [Test]
@@ -112,10 +112,10 @@ namespace Dev2.Data.Tests.Util
         {
             var instance = new CommonRecordSetUtil();
 
-            NUnit.Framework.Assert.AreEqual(true, instance.IsStarIndex("[[rec(*)]]"));
-            NUnit.Framework.Assert.AreEqual(false, instance.IsStarIndex("[[rec()]]"));
-            NUnit.Framework.Assert.AreEqual(false, instance.IsStarIndex(""));
-            NUnit.Framework.Assert.AreEqual(false, instance.IsStarIndex(null));
+            Assert.AreEqual(true, instance.IsStarIndex("[[rec(*)]]"));
+            Assert.AreEqual(false, instance.IsStarIndex("[[rec()]]"));
+            Assert.AreEqual(false, instance.IsStarIndex(""));
+            Assert.AreEqual(false, instance.IsStarIndex(null));
         }
 
         [Test]
@@ -125,11 +125,11 @@ namespace Dev2.Data.Tests.Util
         {
             var instance = new CommonRecordSetUtil();
 
-            NUnit.Framework.Assert.AreEqual("*", instance.ExtractIndexRegionFromRecordset("[[rec(*)]]"));
-            NUnit.Framework.Assert.AreEqual("a", instance.ExtractIndexRegionFromRecordset("[[rec(a)]]"));
-            NUnit.Framework.Assert.AreEqual("2", instance.ExtractIndexRegionFromRecordset("[[rec(2)]]"));
-            NUnit.Framework.Assert.AreEqual("2", instance.ExtractIndexRegionFromRecordset("[[rec(2"));
-            NUnit.Framework.Assert.AreEqual("", instance.ExtractIndexRegionFromRecordset("[[rec]]"));
+            Assert.AreEqual("*", instance.ExtractIndexRegionFromRecordset("[[rec(*)]]"));
+            Assert.AreEqual("a", instance.ExtractIndexRegionFromRecordset("[[rec(a)]]"));
+            Assert.AreEqual("2", instance.ExtractIndexRegionFromRecordset("[[rec(2)]]"));
+            Assert.AreEqual("2", instance.ExtractIndexRegionFromRecordset("[[rec(2"));
+            Assert.AreEqual("", instance.ExtractIndexRegionFromRecordset("[[rec]]"));
         }
 
         [Test]
@@ -139,18 +139,18 @@ namespace Dev2.Data.Tests.Util
         {
             var instance = new CommonRecordSetUtil();
 
-            NUnit.Framework.Assert.AreEqual("rec(*)", instance.MakeValueIntoHighLevelRecordset("[[rec]]", true));
-            NUnit.Framework.Assert.AreEqual("rec()", instance.MakeValueIntoHighLevelRecordset("[[rec(]]", true));
-            NUnit.Framework.Assert.AreEqual("rec(*)", instance.MakeValueIntoHighLevelRecordset("[[rec)]]", true));
-            NUnit.Framework.Assert.AreEqual("rec()", instance.MakeValueIntoHighLevelRecordset("[[rec]]", false));
-            NUnit.Framework.Assert.AreEqual("rec()", instance.MakeValueIntoHighLevelRecordset("[[rec(]]", false));
-            NUnit.Framework.Assert.AreEqual("rec()", instance.MakeValueIntoHighLevelRecordset("[[rec)]]", false));
-            NUnit.Framework.Assert.AreEqual("rec(*)", instance.MakeValueIntoHighLevelRecordset("rec", true));
-            NUnit.Framework.Assert.AreEqual("rec()", instance.MakeValueIntoHighLevelRecordset("rec(", true));
-            NUnit.Framework.Assert.AreEqual("rec(*)", instance.MakeValueIntoHighLevelRecordset("rec)", true));
-            NUnit.Framework.Assert.AreEqual("rec()", instance.MakeValueIntoHighLevelRecordset("rec", false));
-            NUnit.Framework.Assert.AreEqual("rec()", instance.MakeValueIntoHighLevelRecordset("rec(", false));
-            NUnit.Framework.Assert.AreEqual("rec()", instance.MakeValueIntoHighLevelRecordset("rec)", false));
+            Assert.AreEqual("rec(*)", instance.MakeValueIntoHighLevelRecordset("[[rec]]", true));
+            Assert.AreEqual("rec()", instance.MakeValueIntoHighLevelRecordset("[[rec(]]", true));
+            Assert.AreEqual("rec(*)", instance.MakeValueIntoHighLevelRecordset("[[rec)]]", true));
+            Assert.AreEqual("rec()", instance.MakeValueIntoHighLevelRecordset("[[rec]]", false));
+            Assert.AreEqual("rec()", instance.MakeValueIntoHighLevelRecordset("[[rec(]]", false));
+            Assert.AreEqual("rec()", instance.MakeValueIntoHighLevelRecordset("[[rec)]]", false));
+            Assert.AreEqual("rec(*)", instance.MakeValueIntoHighLevelRecordset("rec", true));
+            Assert.AreEqual("rec()", instance.MakeValueIntoHighLevelRecordset("rec(", true));
+            Assert.AreEqual("rec(*)", instance.MakeValueIntoHighLevelRecordset("rec)", true));
+            Assert.AreEqual("rec()", instance.MakeValueIntoHighLevelRecordset("rec", false));
+            Assert.AreEqual("rec()", instance.MakeValueIntoHighLevelRecordset("rec(", false));
+            Assert.AreEqual("rec()", instance.MakeValueIntoHighLevelRecordset("rec)", false));
         }
 
         [Test]
@@ -160,13 +160,13 @@ namespace Dev2.Data.Tests.Util
         {
             var instance = new CommonRecordSetUtil();
 
-            NUnit.Framework.Assert.AreEqual("bab", instance.ExtractFieldNameOnlyFromValue("[[rec(*).bab]]"));
-            NUnit.Framework.Assert.AreEqual("ab", instance.ExtractFieldNameOnlyFromValue("rec(*).ab"));
-            NUnit.Framework.Assert.AreEqual("ab", instance.ExtractFieldNameOnlyFromValue("[[rec().ab]]"));
-            NUnit.Framework.Assert.AreEqual("ab", instance.ExtractFieldNameOnlyFromValue("[[rec().ab"));
-            NUnit.Framework.Assert.AreEqual("", instance.ExtractFieldNameOnlyFromValue("[[rec()."));
-            NUnit.Framework.Assert.AreEqual("", instance.ExtractFieldNameOnlyFromValue("[[rec()"));
-            NUnit.Framework.Assert.AreEqual("Name", instance.ExtractFieldNameOnlyFromValue("[[rec().Name]].sdgager()"));
+            Assert.AreEqual("bab", instance.ExtractFieldNameOnlyFromValue("[[rec(*).bab]]"));
+            Assert.AreEqual("ab", instance.ExtractFieldNameOnlyFromValue("rec(*).ab"));
+            Assert.AreEqual("ab", instance.ExtractFieldNameOnlyFromValue("[[rec().ab]]"));
+            Assert.AreEqual("ab", instance.ExtractFieldNameOnlyFromValue("[[rec().ab"));
+            Assert.AreEqual("", instance.ExtractFieldNameOnlyFromValue("[[rec()."));
+            Assert.AreEqual("", instance.ExtractFieldNameOnlyFromValue("[[rec()"));
+            Assert.AreEqual("Name", instance.ExtractFieldNameOnlyFromValue("[[rec().Name]].sdgager()"));
         }
 
         [Test]
@@ -176,12 +176,12 @@ namespace Dev2.Data.Tests.Util
         {
             var instance = new CommonRecordSetUtil();
 
-            NUnit.Framework.Assert.AreEqual("bab", instance.ExtractFieldNameFromValue("[[rec(*).bab]]"));
-            NUnit.Framework.Assert.AreEqual("ab", instance.ExtractFieldNameFromValue("rec(*).ab"));
-            NUnit.Framework.Assert.AreEqual("ab", instance.ExtractFieldNameFromValue("[[rec().ab]]"));
-            NUnit.Framework.Assert.AreEqual("ab", instance.ExtractFieldNameFromValue("[[rec().ab"));
-            NUnit.Framework.Assert.AreEqual("", instance.ExtractFieldNameFromValue("[[rec()."));
-            NUnit.Framework.Assert.AreEqual("", instance.ExtractFieldNameFromValue("[[rec()"));
+            Assert.AreEqual("bab", instance.ExtractFieldNameFromValue("[[rec(*).bab]]"));
+            Assert.AreEqual("ab", instance.ExtractFieldNameFromValue("rec(*).ab"));
+            Assert.AreEqual("ab", instance.ExtractFieldNameFromValue("[[rec().ab]]"));
+            Assert.AreEqual("ab", instance.ExtractFieldNameFromValue("[[rec().ab"));
+            Assert.AreEqual("", instance.ExtractFieldNameFromValue("[[rec()."));
+            Assert.AreEqual("", instance.ExtractFieldNameFromValue("[[rec()"));
         }
 
         [Test]
@@ -191,15 +191,15 @@ namespace Dev2.Data.Tests.Util
         {
             var instance = new CommonRecordSetUtil();
 
-            NUnit.Framework.Assert.AreEqual("rec", instance.ExtractRecordsetNameFromValue("[[rec(*).bab]]"));
-            NUnit.Framework.Assert.AreEqual("rec", instance.ExtractRecordsetNameFromValue("rec(*).ab"));
-            NUnit.Framework.Assert.AreEqual("rec", instance.ExtractRecordsetNameFromValue("[[rec().ab]]"));
-            NUnit.Framework.Assert.AreEqual("rec", instance.ExtractRecordsetNameFromValue("[[rec().ab"));
-            NUnit.Framework.Assert.AreEqual("rec", instance.ExtractRecordsetNameFromValue("[[rec()."));
-            NUnit.Framework.Assert.AreEqual("rec", instance.ExtractRecordsetNameFromValue("[[rec()"));
-            NUnit.Framework.Assert.AreEqual("", instance.ExtractRecordsetNameFromValue("rec"));
-            NUnit.Framework.Assert.AreEqual("", instance.ExtractRecordsetNameFromValue("[[rec]]"));
-            NUnit.Framework.Assert.AreEqual("", instance.ExtractRecordsetNameFromValue(null));
+            Assert.AreEqual("rec", instance.ExtractRecordsetNameFromValue("[[rec(*).bab]]"));
+            Assert.AreEqual("rec", instance.ExtractRecordsetNameFromValue("rec(*).ab"));
+            Assert.AreEqual("rec", instance.ExtractRecordsetNameFromValue("[[rec().ab]]"));
+            Assert.AreEqual("rec", instance.ExtractRecordsetNameFromValue("[[rec().ab"));
+            Assert.AreEqual("rec", instance.ExtractRecordsetNameFromValue("[[rec()."));
+            Assert.AreEqual("rec", instance.ExtractRecordsetNameFromValue("[[rec()"));
+            Assert.AreEqual("", instance.ExtractRecordsetNameFromValue("rec"));
+            Assert.AreEqual("", instance.ExtractRecordsetNameFromValue("[[rec]]"));
+            Assert.AreEqual("", instance.ExtractRecordsetNameFromValue(null));
         }
 
         [Test]
@@ -209,15 +209,15 @@ namespace Dev2.Data.Tests.Util
         {
             var instance = new CommonRecordSetUtil();
 
-            NUnit.Framework.Assert.AreEqual(false, instance.IsValueRecordsetWithFields(null));
-            NUnit.Framework.Assert.AreEqual(false, instance.IsValueRecordsetWithFields(""));
-            NUnit.Framework.Assert.AreEqual(false, instance.IsValueRecordsetWithFields("a"));
-            NUnit.Framework.Assert.AreEqual(false, instance.IsValueRecordsetWithFields("[[rec(*)]]"));
-            NUnit.Framework.Assert.AreEqual(false, instance.IsValueRecordsetWithFields("[[rec()]]"));
-            NUnit.Framework.Assert.AreEqual(true, instance.IsValueRecordsetWithFields("[[rec(*).a]]"));
-            NUnit.Framework.Assert.AreEqual(true, instance.IsValueRecordsetWithFields("[[rec(*).asdf]]"));
-            NUnit.Framework.Assert.AreEqual(true, instance.IsValueRecordsetWithFields("rec(*).a"));
-            NUnit.Framework.Assert.AreEqual(true, instance.IsValueRecordsetWithFields("rec(*).asdf"));
+            Assert.AreEqual(false, instance.IsValueRecordsetWithFields(null));
+            Assert.AreEqual(false, instance.IsValueRecordsetWithFields(""));
+            Assert.AreEqual(false, instance.IsValueRecordsetWithFields("a"));
+            Assert.AreEqual(false, instance.IsValueRecordsetWithFields("[[rec(*)]]"));
+            Assert.AreEqual(false, instance.IsValueRecordsetWithFields("[[rec()]]"));
+            Assert.AreEqual(true, instance.IsValueRecordsetWithFields("[[rec(*).a]]"));
+            Assert.AreEqual(true, instance.IsValueRecordsetWithFields("[[rec(*).asdf]]"));
+            Assert.AreEqual(true, instance.IsValueRecordsetWithFields("rec(*).a"));
+            Assert.AreEqual(true, instance.IsValueRecordsetWithFields("rec(*).asdf"));
         }
 
         [Test]
@@ -227,15 +227,15 @@ namespace Dev2.Data.Tests.Util
         {
             var instance = new CommonRecordSetUtil();
 
-            NUnit.Framework.Assert.AreEqual(false, instance.IsValueRecordset(null));
-            NUnit.Framework.Assert.AreEqual(false, instance.IsValueRecordset(""));
-            NUnit.Framework.Assert.AreEqual(false, instance.IsValueRecordset("a"));
-            NUnit.Framework.Assert.AreEqual(true, instance.IsValueRecordset("[[rec(*)]]"));
-            NUnit.Framework.Assert.AreEqual(true, instance.IsValueRecordset("[[rec()]]"));
-            NUnit.Framework.Assert.AreEqual(true, instance.IsValueRecordset("[[rec(*).a]]"));
-            NUnit.Framework.Assert.AreEqual(true, instance.IsValueRecordset("[[rec(*).asdf]]"));
-            NUnit.Framework.Assert.AreEqual(true, instance.IsValueRecordset("rec(*).a"));
-            NUnit.Framework.Assert.AreEqual(true, instance.IsValueRecordset("rec(*).asdf"));
+            Assert.AreEqual(false, instance.IsValueRecordset(null));
+            Assert.AreEqual(false, instance.IsValueRecordset(""));
+            Assert.AreEqual(false, instance.IsValueRecordset("a"));
+            Assert.AreEqual(true, instance.IsValueRecordset("[[rec(*)]]"));
+            Assert.AreEqual(true, instance.IsValueRecordset("[[rec()]]"));
+            Assert.AreEqual(true, instance.IsValueRecordset("[[rec(*).a]]"));
+            Assert.AreEqual(true, instance.IsValueRecordset("[[rec(*).asdf]]"));
+            Assert.AreEqual(true, instance.IsValueRecordset("rec(*).a"));
+            Assert.AreEqual(true, instance.IsValueRecordset("rec(*).asdf"));
         }
 
         [Test]
@@ -245,12 +245,12 @@ namespace Dev2.Data.Tests.Util
         {
             var instance = new CommonRecordSetUtil();
 
-            NUnit.Framework.Assert.AreEqual("[[rec(*)]]", instance.ReplaceRecordsetIndexWithStar("[[rec(*)]]"));
-            NUnit.Framework.Assert.AreEqual("[[rec(*)]]", instance.ReplaceRecordsetIndexWithStar("[[rec(2)]]"));
-            NUnit.Framework.Assert.AreEqual("[[rec(*).a]]", instance.ReplaceRecordsetIndexWithStar("[[rec(2).a]]"));
-            NUnit.Framework.Assert.AreEqual("rec(*).a", instance.ReplaceRecordsetIndexWithStar("rec(2).a"));
-            NUnit.Framework.Assert.AreEqual("[[rec(*)]]", instance.ReplaceRecordsetIndexWithStar("[[rec(a)]]"));
-            NUnit.Framework.Assert.AreEqual("[[rec()]]", instance.ReplaceRecordsetIndexWithStar("[[rec()]]"));
+            Assert.AreEqual("[[rec(*)]]", instance.ReplaceRecordsetIndexWithStar("[[rec(*)]]"));
+            Assert.AreEqual("[[rec(*)]]", instance.ReplaceRecordsetIndexWithStar("[[rec(2)]]"));
+            Assert.AreEqual("[[rec(*).a]]", instance.ReplaceRecordsetIndexWithStar("[[rec(2).a]]"));
+            Assert.AreEqual("rec(*).a", instance.ReplaceRecordsetIndexWithStar("rec(2).a"));
+            Assert.AreEqual("[[rec(*)]]", instance.ReplaceRecordsetIndexWithStar("[[rec(a)]]"));
+            Assert.AreEqual("[[rec()]]", instance.ReplaceRecordsetIndexWithStar("[[rec()]]"));
         }
 
         [Test]
@@ -260,13 +260,13 @@ namespace Dev2.Data.Tests.Util
         {
             var instance = new CommonRecordSetUtil();
 
-            NUnit.Framework.Assert.AreEqual("[[rec()]]", instance.ReplaceRecordsetIndexWithBlank("[[rec(*)]]"));
-            NUnit.Framework.Assert.AreEqual("[[rec()]]", instance.ReplaceRecordsetIndexWithBlank("[[rec(2)]]"));
-            NUnit.Framework.Assert.AreEqual("[[rec().a]]", instance.ReplaceRecordsetIndexWithBlank("[[rec(2).a]]"));
-            NUnit.Framework.Assert.AreEqual("rec().a", instance.ReplaceRecordsetIndexWithBlank("rec(2).a"));
-            NUnit.Framework.Assert.AreEqual("[[rec()]]", instance.ReplaceRecordsetIndexWithBlank("[[rec(a)]]"));
-            NUnit.Framework.Assert.AreEqual("[[rec()]]", instance.ReplaceRecordsetIndexWithBlank("[[rec()]]"));
-            NUnit.Framework.Assert.AreEqual("()", instance.ReplaceRecordsetIndexWithBlank("[[rec)(]]"));
+            Assert.AreEqual("[[rec()]]", instance.ReplaceRecordsetIndexWithBlank("[[rec(*)]]"));
+            Assert.AreEqual("[[rec()]]", instance.ReplaceRecordsetIndexWithBlank("[[rec(2)]]"));
+            Assert.AreEqual("[[rec().a]]", instance.ReplaceRecordsetIndexWithBlank("[[rec(2).a]]"));
+            Assert.AreEqual("rec().a", instance.ReplaceRecordsetIndexWithBlank("rec(2).a"));
+            Assert.AreEqual("[[rec()]]", instance.ReplaceRecordsetIndexWithBlank("[[rec(a)]]"));
+            Assert.AreEqual("[[rec()]]", instance.ReplaceRecordsetIndexWithBlank("[[rec()]]"));
+            Assert.AreEqual("()", instance.ReplaceRecordsetIndexWithBlank("[[rec)(]]"));
         }
 
         [Test]
@@ -276,14 +276,14 @@ namespace Dev2.Data.Tests.Util
         {
             var instance = new CommonRecordSetUtil();
             var boolV = false;
-            NUnit.Framework.Assert.AreEqual("rec", instance.RemoveRecordSetBraces("rec(*)", ref boolV));
-            NUnit.Framework.Assert.IsTrue(boolV);
+            Assert.AreEqual("rec", instance.RemoveRecordSetBraces("rec(*)", ref boolV));
+            Assert.IsTrue(boolV);
             boolV = false;
-            NUnit.Framework.Assert.AreEqual("rec", instance.RemoveRecordSetBraces("rec()", ref boolV));
-            NUnit.Framework.Assert.IsTrue(boolV);
+            Assert.AreEqual("rec", instance.RemoveRecordSetBraces("rec()", ref boolV));
+            Assert.IsTrue(boolV);
             boolV = false;
-            NUnit.Framework.Assert.AreEqual("a", instance.RemoveRecordSetBraces("a", ref boolV));
-            NUnit.Framework.Assert.IsFalse(boolV);
+            Assert.AreEqual("a", instance.RemoveRecordSetBraces("a", ref boolV));
+            Assert.IsFalse(boolV);
         }
 
         [Test]
@@ -309,11 +309,11 @@ namespace Dev2.Data.Tests.Util
 
             instance.ProcessRecordSetFields(payload, addCompleteParts, result, intellisensePart);
 
-            NUnit.Framework.Assert.AreEqual(4, result.Count);
-            NUnit.Framework.Assert.AreEqual("mockintellip1 / Select a specific row or Close", result[0].Message);
-            NUnit.Framework.Assert.AreEqual("mockintellip1 / Takes all rows ", result[1].Message);
-            NUnit.Framework.Assert.AreEqual("mockintellip1 / Take last row", result[2].Message);
-            NUnit.Framework.Assert.AreEqual("mockintellip1 / Use the field of a Recordset", result[3].Message);
+            Assert.AreEqual(4, result.Count);
+            Assert.AreEqual("mockintellip1 / Select a specific row or Close", result[0].Message);
+            Assert.AreEqual("mockintellip1 / Takes all rows ", result[1].Message);
+            Assert.AreEqual("mockintellip1 / Take last row", result[2].Message);
+            Assert.AreEqual("mockintellip1 / Use the field of a Recordset", result[3].Message);
         }
 
         [Test]
@@ -339,10 +339,10 @@ namespace Dev2.Data.Tests.Util
 
             instance.ProcessRecordSetFields(payload, addCompleteParts, result, intellisensePart);
 
-            NUnit.Framework.Assert.AreEqual(3, result.Count);
-            NUnit.Framework.Assert.AreEqual("mockintellip1 / Takes all rows ", result[0].Message);
-            NUnit.Framework.Assert.AreEqual("mockintellip1 / Take last row", result[1].Message);
-            NUnit.Framework.Assert.AreEqual("mockintellip1 / Use the field of a Recordset", result[2].Message);
+            Assert.AreEqual(3, result.Count);
+            Assert.AreEqual("mockintellip1 / Takes all rows ", result[0].Message);
+            Assert.AreEqual("mockintellip1 / Take last row", result[1].Message);
+            Assert.AreEqual("mockintellip1 / Use the field of a Recordset", result[2].Message);
         }
 
         [Test]
@@ -367,9 +367,9 @@ namespace Dev2.Data.Tests.Util
 
             instance.ProcessNonRecordsetFields(payload, result, intellisensePart);
 
-            NUnit.Framework.Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(1, result.Count);
 
-            NUnit.Framework.Assert.AreEqual("mockintellip1Desc / Use row at this index", result[0].Message);
+            Assert.AreEqual("mockintellip1Desc / Use row at this index", result[0].Message);
         }
 
         [Test]
@@ -394,9 +394,9 @@ namespace Dev2.Data.Tests.Util
 
             instance.ProcessNonRecordsetFields(payload, result, intellisensePart);
 
-            NUnit.Framework.Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(1, result.Count);
 
-            NUnit.Framework.Assert.AreEqual("mockintellip1Desc", result[0].Message);
+            Assert.AreEqual("mockintellip1Desc", result[0].Message);
         }
 
         [Test]
@@ -417,9 +417,9 @@ namespace Dev2.Data.Tests.Util
 
             instance.ProcessNonRecordsetFields(payload, result, intellisensePart);
 
-            NUnit.Framework.Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(1, result.Count);
 
-            NUnit.Framework.Assert.AreEqual("mockintellip1Desc", result[0].Message);
+            Assert.AreEqual("mockintellip1Desc", result[0].Message);
         }
 
         [Test]
@@ -453,9 +453,9 @@ namespace Dev2.Data.Tests.Util
 
             instance.ProcessRecordSetMatch(payload, result, "rawrec", "searchrec", intellisensePart);
 
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
-            NUnit.Framework.Assert.AreEqual("mockintellip1Desc / Select a specific row", result[0].Message);
-            NUnit.Framework.Assert.AreEqual("childintellipartDesc / Select a specific field at a specific row", result[1].Message);
+            Assert.AreEqual(2, result.Count);
+            Assert.AreEqual("mockintellip1Desc / Select a specific row", result[0].Message);
+            Assert.AreEqual("childintellipartDesc / Select a specific field at a specific row", result[1].Message);
         }
 
         [Test]
@@ -489,9 +489,9 @@ namespace Dev2.Data.Tests.Util
 
             instance.ProcessRecordSetMatch(payload, result, "rawrec", "searchrec", intellisensePart);
 
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
-            NUnit.Framework.Assert.AreEqual("mockintellip1Desc / Select a specific row", result[0].Message);
-            NUnit.Framework.Assert.AreEqual("childintellipartDesc / Select a specific field at a specific row", result[1].Message);
+            Assert.AreEqual(2, result.Count);
+            Assert.AreEqual("mockintellip1Desc / Select a specific row", result[0].Message);
+            Assert.AreEqual("childintellipartDesc / Select a specific field at a specific row", result[1].Message);
         }
 
         [Test]
@@ -527,14 +527,14 @@ namespace Dev2.Data.Tests.Util
             string[] parts = { "rec(1)" };
             bool emptyOk = false;
 
-            NUnit.Framework.Assert.AreEqual(true, instance.AddRecordSetIndex(payload, addCompleteParts, result, parts, intellisensePart, emptyOk));
-            NUnit.Framework.Assert.AreEqual(0, result.Count);
+            Assert.AreEqual(true, instance.AddRecordSetIndex(payload, addCompleteParts, result, parts, intellisensePart, emptyOk));
+            Assert.AreEqual(0, result.Count);
 
             addCompleteParts = true;
-            NUnit.Framework.Assert.AreEqual(false, instance.AddRecordSetIndex(payload, addCompleteParts, result, parts, intellisensePart, emptyOk));
+            Assert.AreEqual(false, instance.AddRecordSetIndex(payload, addCompleteParts, result, parts, intellisensePart, emptyOk));
 
-            NUnit.Framework.Assert.AreEqual(1, result.Count);
-            NUnit.Framework.Assert.AreEqual("mockintellip1Desc", result[0].Message);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual("mockintellip1Desc", result[0].Message);
         }
 
         [Test]
@@ -571,11 +571,11 @@ namespace Dev2.Data.Tests.Util
             string[] parts = { "rec(1)" };
             bool emptyOk = false;
 
-            NUnit.Framework.Assert.AreEqual(false, instance.RecordsetMatch(payload, addCompleteParts, result, "rawsearch", "search", emptyOk, parts, intellisensePart));
+            Assert.AreEqual(false, instance.RecordsetMatch(payload, addCompleteParts, result, "rawsearch", "search", emptyOk, parts, intellisensePart));
 
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
-            NUnit.Framework.Assert.AreEqual("mockintellip1Desc / Select a specific row", result[0].Message);
-            NUnit.Framework.Assert.AreEqual("childintellipartDesc / Select a specific field at a specific row", result[1].Message);
+            Assert.AreEqual(2, result.Count);
+            Assert.AreEqual("mockintellip1Desc / Select a specific row", result[0].Message);
+            Assert.AreEqual("childintellipartDesc / Select a specific field at a specific row", result[1].Message);
         }
 
         [Test]
@@ -612,9 +612,9 @@ namespace Dev2.Data.Tests.Util
             string[] parts = { "rec(1)" };
             bool emptyOk = false;
 
-            NUnit.Framework.Assert.AreEqual(true, instance.RecordsetMatch(payload, addCompleteParts, result, "rawsearch", "search", emptyOk, parts, intellisensePart));
+            Assert.AreEqual(true, instance.RecordsetMatch(payload, addCompleteParts, result, "rawsearch", "search", emptyOk, parts, intellisensePart));
 
-            NUnit.Framework.Assert.AreEqual(0, result.Count);
+            Assert.AreEqual(0, result.Count);
         }
 
         [Test]
@@ -653,9 +653,9 @@ namespace Dev2.Data.Tests.Util
 
             instance.OpenRecordsetItem(payload, result, intellisensePart);
 
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
-            NUnit.Framework.Assert.AreEqual(" / Select a specific row", result[0].Message);
-            NUnit.Framework.Assert.AreEqual(" / Select a specific row", result[1].Message);
+            Assert.AreEqual(2, result.Count);
+            Assert.AreEqual(" / Select a specific row", result[0].Message);
+            Assert.AreEqual(" / Select a specific row", result[1].Message);
         }
 
         [Test]
@@ -694,9 +694,9 @@ namespace Dev2.Data.Tests.Util
 
             instance.OpenRecordsetItem(payload, result, intellisensePart);
 
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
-            NUnit.Framework.Assert.AreEqual("[[recset([[childpayload(]])]]", result[0].Option.DisplayValue);
-            NUnit.Framework.Assert.AreEqual("[[recset([[childpayload(]]).childintellipartName]]", result[1].Option.DisplayValue);
+            Assert.AreEqual(2, result.Count);
+            Assert.AreEqual("[[recset([[childpayload(]])]]", result[0].Option.DisplayValue);
+            Assert.AreEqual("[[recset([[childpayload(]]).childintellipartName]]", result[1].Option.DisplayValue);
         }
     }
 }

@@ -31,7 +31,7 @@ namespace Dev2.Data.Tests.PathOperations
             //---------------------------Act-------------------------------
             var doDeleteOperation = new DoDeleteOperation(mockActivityIOPath.Object);
             //---------------------------Assert----------------------------
-            NUnit.Framework.Assert.IsFalse(doDeleteOperation.ExecuteOperation());
+            Assert.IsFalse(doDeleteOperation.ExecuteOperation());
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace Dev2.Data.Tests.PathOperations
             //---------------------------Act-------------------------------
             var doDeleteOperation = new DoDeleteOperation(mockActivityIOPath.Object, mockDev2LogonProvider.Object);
             //---------------------------Assert----------------------------
-            NUnit.Framework.Assert.IsFalse(doDeleteOperation.ExecuteOperation());
+            Assert.IsFalse(doDeleteOperation.ExecuteOperation());
         }
 
         [Test]
@@ -61,7 +61,7 @@ namespace Dev2.Data.Tests.PathOperations
             //---------------------------Act-------------------------------
             var doDeleteOperation = new DoDeleteOperation(mockDeleteHelper.Object, mockActivityIOPath.Object, mockDev2LogonProvider.Object, (arg1, arg2) => mockWindowsImpersonationContext.Object);
             //---------------------------Assert----------------------------
-            NUnit.Framework.Assert.IsFalse(doDeleteOperation.ExecuteOperation());
+            Assert.IsFalse(doDeleteOperation.ExecuteOperation());
         }
 
         [Test]
@@ -87,7 +87,7 @@ namespace Dev2.Data.Tests.PathOperations
 
             mockDeleteHelper.Verify(o => o.Delete(serverLogFile), Times.Once);
 
-            NUnit.Framework.Assert.IsTrue(result);
+            Assert.IsTrue(result);
         }
 
         [Test]
@@ -113,7 +113,7 @@ namespace Dev2.Data.Tests.PathOperations
 
             mockDeleteHelper.Verify(o => o.Delete(serverLogFile), Times.Once);
 
-            NUnit.Framework.Assert.IsFalse(result);
+            Assert.IsFalse(result);
         }
 
         [Test]
@@ -134,7 +134,7 @@ namespace Dev2.Data.Tests.PathOperations
             //---------------------------Act-------------------------------
             var doDeleteOperation = new DoDeleteOperation(mockDeleteHelper.Object, mockActivityIOPath.Object, mockDev2LogonProvider.Object, (arg1, arg2) => mockWindowsImpersonationContext.Object);
             //---------------------------Assert----------------------------
-            NUnit.Framework.Assert.IsFalse(doDeleteOperation.ExecuteOperation());
+            Assert.IsFalse(doDeleteOperation.ExecuteOperation());
         }
     }
 }

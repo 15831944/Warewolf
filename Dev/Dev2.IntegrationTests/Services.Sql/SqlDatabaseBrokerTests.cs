@@ -20,12 +20,9 @@ using NUnit.Framework;
 using System.Security.Claims;
 using System.Security.Principal;
 using System.Threading;
-using Warewolf.Security.Encryption;
 using System.Runtime.InteropServices;
 using System.Runtime.ConstrainedExecution;
 using System.Security;
-using Warewolf.Test.Agent;
-using System.IO;
 using Dev2.Infrastructure.Tests;
 using Warewolf.UnitTestAttributes;
 

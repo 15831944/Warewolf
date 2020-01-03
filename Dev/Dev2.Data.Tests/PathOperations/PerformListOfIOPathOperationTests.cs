@@ -34,7 +34,7 @@ namespace Dev2.Data.Tests.PathOperations
             var mockDirectory = new Mock<IDirectory>();
             //-----------------------Act----------------------------
             //-----------------------Assert-------------------------
-            NUnit.Framework.Assert.Throws<NullReferenceException>(()=> PerformListOfIOPathOperation.AppendBackSlashes(mockActivityIOPath.Object, mockFileWrapper.Object, mockDirectory.Object));
+            Assert.Throws<NullReferenceException>(()=> PerformListOfIOPathOperation.AppendBackSlashes(mockActivityIOPath.Object, mockFileWrapper.Object, mockDirectory.Object));
         }
 
         [Test]
@@ -51,7 +51,7 @@ namespace Dev2.Data.Tests.PathOperations
             var performListOfIOPathOperation = new TestPerformListOfIOPathOperation((arg1, arg2) => mockWindowsImpersonationContext.Object);
             //-----------------------Act----------------------------
             //-----------------------Assert-------------------------
-            NUnit.Framework.Assert.Throws<NullReferenceException>(() => PerformListOfIOPathOperation.AppendBackSlashes(mockActivityIOPath.Object, mockFileWrapper.Object, mockDirectory.Object));
+            Assert.Throws<NullReferenceException>(() => PerformListOfIOPathOperation.AppendBackSlashes(mockActivityIOPath.Object, mockFileWrapper.Object, mockDirectory.Object));
         }
 
         [Test]
@@ -71,7 +71,7 @@ namespace Dev2.Data.Tests.PathOperations
             var appendBackSlashes = PerformListOfIOPathOperation.AppendBackSlashes(mockActivityIOPath.Object, mockFileWrapper.Object, mockDirectory.Object);
             //-----------------------Assert-------------------------
             mockActivityIOPath.VerifyAll();
-            NUnit.Framework.Assert.AreEqual(path+"\\", appendBackSlashes);
+            Assert.AreEqual(path+"\\", appendBackSlashes);
         }
 
         [Test]
@@ -91,7 +91,7 @@ namespace Dev2.Data.Tests.PathOperations
             var appendBackSlashes = PerformListOfIOPathOperation.AppendBackSlashes(mockActivityIOPath.Object, mockFileWrapper.Object, mockDirectory.Object);
             //-----------------------Assert-------------------------
             mockActivityIOPath.VerifyAll();
-            NUnit.Framework.Assert.AreEqual(path, appendBackSlashes);
+            Assert.AreEqual(path, appendBackSlashes);
         }
 
         [Test]
@@ -114,7 +114,7 @@ namespace Dev2.Data.Tests.PathOperations
             //-----------------------Assert-------------------------
             mockActivityIOPath.VerifyAll();
             mockFileWrapper.VerifyAll();
-            NUnit.Framework.Assert.AreEqual(path+"\\", appendBackSlashes);
+            Assert.AreEqual(path+"\\", appendBackSlashes);
         }
 
         [Test]
@@ -134,7 +134,7 @@ namespace Dev2.Data.Tests.PathOperations
             var appendBackSlashes = PerformListOfIOPathOperation.AppendBackSlashes(mockActivityIOPath.Object, mockFileWrapper.Object, mockDirectory.Object);
             //-----------------------Assert-------------------------
             mockActivityIOPath.VerifyAll();
-            NUnit.Framework.Assert.AreEqual(path, appendBackSlashes);
+            Assert.AreEqual(path, appendBackSlashes);
         }
 
         [Test]
@@ -148,7 +148,7 @@ namespace Dev2.Data.Tests.PathOperations
             //-----------------------Act----------------------------
             var appendBackSlashes = PerformListOfIOPathOperation.AddDirsToResults(enumerableString, mockActivityIOPath.Object);
             //-----------------------Assert-------------------------
-            NUnit.Framework.Assert.AreEqual(0, appendBackSlashes.Count);
+            Assert.AreEqual(0, appendBackSlashes.Count);
         }
 
         [Test]
@@ -163,7 +163,7 @@ namespace Dev2.Data.Tests.PathOperations
             enumerableString.Add("testDir2");
             //-----------------------Act----------------------------
             //-----------------------Assert-------------------------
-            NUnit.Framework.Assert.Throws<IOException>(() => PerformListOfIOPathOperation.AddDirsToResults(enumerableString, mockActivityIOPath.Object));
+            Assert.Throws<IOException>(() => PerformListOfIOPathOperation.AddDirsToResults(enumerableString, mockActivityIOPath.Object));
         }
 
         [Test]
@@ -179,9 +179,9 @@ namespace Dev2.Data.Tests.PathOperations
             //-----------------------Act----------------------------
             var addDirsToResults = PerformListOfIOPathOperation.AddDirsToResults(enumerableString, mockActivityIOPath.Object);
             //-----------------------Assert-------------------------
-            NUnit.Framework.Assert.AreEqual(2,addDirsToResults.Count);
-            NUnit.Framework.Assert.AreEqual("ftp://testParth/logger1.log", addDirsToResults[0].Path);
-            NUnit.Framework.Assert.AreEqual("c://testParth/logger2.log", addDirsToResults[1].Path);
+            Assert.AreEqual(2,addDirsToResults.Count);
+            Assert.AreEqual("ftp://testParth/logger1.log", addDirsToResults[0].Path);
+            Assert.AreEqual("c://testParth/logger2.log", addDirsToResults[1].Path);
         }
 
         [Test]
@@ -197,7 +197,7 @@ namespace Dev2.Data.Tests.PathOperations
             //-----------------------Act----------------------------
             var getDirectoriesForType = PerformListOfIOPathOperation.GetDirectoriesForType(path, pattern, ReadTypes.Files, mockDirectory.Object);
             //-----------------------Assert-------------------------
-            NUnit.Framework.Assert.IsNotNull(getDirectoriesForType);
+            Assert.IsNotNull(getDirectoriesForType);
         }
 
         [Test]
@@ -213,7 +213,7 @@ namespace Dev2.Data.Tests.PathOperations
             //-----------------------Act----------------------------
             var getDirectoriesForType = PerformListOfIOPathOperation.GetDirectoriesForType(path, pattern, ReadTypes.Folders, mockDirectory.Object);
             //-----------------------Assert-------------------------
-            NUnit.Framework.Assert.IsNotNull(getDirectoriesForType);
+            Assert.IsNotNull(getDirectoriesForType);
         }
 
         [Test]
@@ -229,7 +229,7 @@ namespace Dev2.Data.Tests.PathOperations
             //-----------------------Act----------------------------
             var getDirectoriesForType = PerformListOfIOPathOperation.GetDirectoriesForType(path, pattern, ReadTypes.FilesAndFolders, mockDirectory.Object);
             //-----------------------Assert-------------------------
-            NUnit.Framework.Assert.IsNotNull(getDirectoriesForType);
+            Assert.IsNotNull(getDirectoriesForType);
         }
 
 
@@ -245,7 +245,7 @@ namespace Dev2.Data.Tests.PathOperations
             //-----------------------Act----------------------------
             var getDirectoriesForType = PerformListOfIOPathOperation.GetDirectoriesForType(path, string.Empty, ReadTypes.Files, mockDirectory.Object);
             //-----------------------Assert-------------------------
-            NUnit.Framework.Assert.IsNotNull(getDirectoriesForType);
+            Assert.IsNotNull(getDirectoriesForType);
         }
 
         [Test]
@@ -260,7 +260,7 @@ namespace Dev2.Data.Tests.PathOperations
             //-----------------------Act----------------------------
             var getDirectoriesForType = PerformListOfIOPathOperation.GetDirectoriesForType(path, string.Empty, ReadTypes.Folders, mockDirectory.Object);
             //-----------------------Assert-------------------------
-            NUnit.Framework.Assert.IsNotNull(getDirectoriesForType);
+            Assert.IsNotNull(getDirectoriesForType);
         }
 
         [Test]
@@ -275,7 +275,7 @@ namespace Dev2.Data.Tests.PathOperations
             //-----------------------Act----------------------------
             var getDirectoriesForType = PerformListOfIOPathOperation.GetDirectoriesForType(path, string.Empty, ReadTypes.FilesAndFolders, mockDirectory.Object);
             //-----------------------Assert-------------------------
-            NUnit.Framework.Assert.IsNotNull(getDirectoriesForType);
+            Assert.IsNotNull(getDirectoriesForType);
         }
 
         class TestPerformListOfIOPathOperation : PerformListOfIOPathOperation

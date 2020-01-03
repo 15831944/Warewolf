@@ -19,9 +19,6 @@ using NUnit.Framework;
 
 namespace Dev2.Tests.ConverterTests.DateTimeTests
 {
-    /// <summary>
-    /// Summary description for DateTimeParserTests
-    /// </summary>
     [TestFixture]
     public class StandardDateTimeParserTests
     {
@@ -37,39 +34,15 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
 
         static IDateTimeParser _parser;
 
-        /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
-        public TestContext TestContext { get; set; }
-
         #region Additional test attributes
-        //
-        // You can use the following additional attributes as you write your tests:
-        //
-        // Use ClassInitialize to run code before running the first test in the class
+        
         [OneTimeSetUp]
-        public static void MyClassInitialize(TestContext testContext)
+        public static void MyClassInitialize()
         {
             _parser = DateTimeConverterFactory.CreateStandardParser();
         }
 
-        // Use ClassCleanup to run code after all tests in a class have run
-        // [ClassCleanup()]
-        // public static void MyClassCleanup() { }
-        //
-        // Use TestInitialize to run code before running each test 
-        // [TestInitialize()]
-        // public void MyTestInitialize() { }
-        //
-        // Use TestCleanup to run code after each test has run
-        // [TestCleanup()]
-        // public void MyTestCleanup() { }
-        //
         #endregion
-
-        #region TryParseDateTime Tests
-
 
         #region Valid Parse Formats
 
@@ -611,11 +584,6 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
 
         #endregion TryParseDateTime Tests
 
-        #region TryParseTime Tests
-
-        /// <summary>
-        /// Parse time All Arguments valid expected Parsed Correctly
-        /// </summary>
         [Test]
         public void TryParseTime_AllArgs_Valid_Expected_ParsedOutCorrectly()
         {
@@ -632,9 +600,6 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             }
         }
 
-        /// <summary>
-        /// Parse time with input format as invalid expected error returned.
-        /// </summary>
         [Test]
         public void TryParseTime_InputFormat_Invalid_Expected_ErrorReturned()
         {
@@ -644,9 +609,6 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             Assert.IsFalse(isParseable);
         }
 
-        /// <summary>
-        /// Parse time invalid time expected error returned.
-        /// </summary>
         [Test]
         public void TryParseTime_Time_Invalid_Expected_ErrorReturned()
         {
@@ -656,9 +618,6 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             Assert.IsFalse(isParseable);
         }
 
-        /// <summary>
-        /// Parse time with input time NULL expected error returned.
-        /// </summary>
         [Test]
         public void TryParseTimeTimeNullExpectedErrorReturned()
         {
@@ -667,9 +626,6 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             Assert.IsFalse(isParseable);
         }
 
-        /// <summary>
-        /// Parse time using yy input format expected error returned.
-        /// </summary>
         [Test]
         public void TryParseTimeUsingYyExpectedErrorReturned()
         {
@@ -686,9 +642,6 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             }
         }
 
-        /// <summary>
-        /// parse time using yyyy input format expected year returned.
-        /// </summary>
         [Test]
         public void TryParseTimeUsingYyyyExpectedYearReturned()
         {
@@ -705,9 +658,6 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             }
         }
 
-        /// <summary>
-        /// Parse time using mm input format expected months returned correctly.
-        /// </summary>
         [Test]
         public void TryParseTimeUsingMmExpectedMonthsReturnedCorrectly()
         {
@@ -724,9 +674,6 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             }
         }
 
-        /// <summary>
-        /// Parse time using m input format expected month returned as single digit.
-        /// </summary>
         [Test]
         public void TryParseTime_Using_m_Expected_MonthReturnedAsSingleDigit()
         {
@@ -743,9 +690,6 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             }
         }
 
-        /// <summary>
-        /// Parse time using M as input format expected month returned as single digit.
-        /// </summary>
         [Test]
         public void TryParseTimeUsingMExpectedMonthReturnedAsSingleDigit()
         {
@@ -762,9 +706,6 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             }
         }
 
-        /// <summary>
-        /// Parse time using MM as input format expected month returned as padded digit.
-        /// </summary>
         [Test]
         public void TryParseTimeUsingMmExpectedMonthReturnedAsPaddedDigit()
         {
@@ -781,9 +722,6 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             }
         }
 
-        /// <summary>
-        /// Parse time using d as input format expected day returned as single digit.
-        /// </summary>
         [Test]
         public void TryParseTimeUsingDExpectedDayReturnedAsSingleDigit()
         {
@@ -800,9 +738,6 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             }
         }
 
-        /// <summary>
-        /// Parse time using dd as input format expected day returned as padded digit.
-        /// </summary>
         [Test]
         public void TryParseTimeUsingDdExpectedDayReturnedAsPaddedDigit()
         {
@@ -819,13 +754,6 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             }
         }
 
-
-
-
-
-        /// <summary>
-        /// Parse time using ss as input format expected seconds added to base time.
-        /// </summary>
         [Test]
         public void TryParseTimeUsingSsExpectedSecondsAddedToBaseTime()
         {
@@ -842,11 +770,6 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             }
         }
 
-
-
-        /// <summary>
-        /// Parse time using simple literal expected date added to base time.
-        /// </summary>
         [Test]
         public void TryParseTimeUsingSimpleLiteralExpectedDateAddedToBaseTime()
         {
@@ -862,10 +785,6 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
                 Assert.Fail("Incorect object returned");
             }
         }
-
-
-
-
 
         [Test]
         [Author("Nkosinathi Sangweni")]
@@ -926,6 +845,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             //---------------Test Result -----------------------
             Assert.IsFalse(bool.Parse(result.ToString()));
         }
+        
         [Test]
         [Author("Nkosinathi Sangweni")]
         public void IsNumber24H_GivenA_ShouldReturnFalse()
@@ -970,6 +890,4 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             Assert.AreEqual(7, int.Parse(result.ToString()));
         }
     }
-    #endregion
-    #endregion
 }

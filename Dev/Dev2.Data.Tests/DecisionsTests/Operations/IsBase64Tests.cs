@@ -28,7 +28,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //------------Execute Test---------------------------
             var result = isBase64.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(result);
+            Assert.IsTrue(result);
         }
 
         [Test]
@@ -43,7 +43,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //------------Execute Test---------------------------
             var result = isBase64.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsFalse(result);
+            Assert.IsFalse(result);
         }
 
         [Test]
@@ -58,7 +58,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //------------Execute Test---------------------------
             var result = isBase64.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsFalse(result);
+            Assert.IsFalse(result);
         }
 
         [Test]
@@ -71,7 +71,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             var isBase64 = new IsBase64();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(expected, isBase64.HandlesType());
+            Assert.AreEqual(expected, isBase64.HandlesType());
         }
     }
 }

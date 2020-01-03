@@ -37,12 +37,12 @@ namespace Dev2.Data.Tests.PathOperations
             }
             catch(Exception ex)
             {
-                NUnit.Framework.Assert.AreEqual("File C:/dadsdascasxxxacvaawqf not found ", ex.Message);
+                Assert.AreEqual("File C:/dadsdascasxxxacvaawqf not found ", ex.Message);
                 pass = true;
             }
             if(!pass)
             {
-                NUnit.Framework.Assert.Fail("The correct error wasn't returned.");
+                Assert.Fail("The correct error wasn't returned.");
             }
         }
 
@@ -60,12 +60,12 @@ namespace Dev2.Data.Tests.PathOperations
             }
             catch(Exception ex)
             {
-                NUnit.Framework.Assert.AreEqual("Directory not found C:/dadsdascasxxxacvaawqf", ex.Message);
+                Assert.AreEqual("Directory not found C:/dadsdascasxxxacvaawqf", ex.Message);
                 pass = true;
             }
             if(!pass)
             {
-                NUnit.Framework.Assert.Fail("The corrrect error wasnt returned");
+                Assert.Fail("The corrrect error wasnt returned");
             }
         }
     }

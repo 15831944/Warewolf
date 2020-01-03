@@ -18,7 +18,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = isXml.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsFalse(result);
+            Assert.IsFalse(result);
         }
 
         [Test]
@@ -47,7 +47,7 @@ Procedure:
             cols[0] = xmlFragment;
             //------------Execute Test---------------------------
             var result = notStartsWith.Invoke(cols);
-            NUnit.Framework.Assert.IsTrue(result);
+            Assert.IsTrue(result);
         }
 
         [Test]
@@ -60,7 +60,7 @@ Procedure:
             var isXml = new IsXml();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(decisionType, isXml.HandlesType());
+            Assert.AreEqual(decisionType, isXml.HandlesType());
         }
     }
 }

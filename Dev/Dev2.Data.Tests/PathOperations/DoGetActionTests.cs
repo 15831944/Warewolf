@@ -32,7 +32,7 @@ namespace Dev2.Data.Tests.PathOperations
             var doGetAction = new DoGetAction(mockActivityIOPath.Object);
             //------------------------Act------------------------------
             //------------------------Assert---------------------------
-            NUnit.Framework.Assert.Throws<Exception>(()=> doGetAction.ExecuteOperation());
+            Assert.Throws<Exception>(()=> doGetAction.ExecuteOperation());
         }
 
         [Test]
@@ -50,10 +50,10 @@ namespace Dev2.Data.Tests.PathOperations
             //------------------------Act------------------------------
             var executeOperation = doGetAction.ExecuteOperation();
             //------------------------Assert---------------------------
-            NUnit.Framework.Assert.IsTrue(executeOperation.CanRead);
-            NUnit.Framework.Assert.IsTrue(executeOperation.CanSeek);
-            NUnit.Framework.Assert.IsFalse(executeOperation.CanTimeout);
-            NUnit.Framework.Assert.IsTrue(executeOperation.CanWrite);
+            Assert.IsTrue(executeOperation.CanRead);
+            Assert.IsTrue(executeOperation.CanSeek);
+            Assert.IsFalse(executeOperation.CanTimeout);
+            Assert.IsTrue(executeOperation.CanWrite);
         }
 
         [Test]
@@ -73,10 +73,10 @@ namespace Dev2.Data.Tests.PathOperations
             var executeOperation = doGetAction.ExecuteOperation();
             //------------------------Assert---------------------------
             mockFileWrapper.VerifyAll();
-            NUnit.Framework.Assert.IsTrue(executeOperation.CanRead);
-            NUnit.Framework.Assert.IsTrue(executeOperation.CanSeek);
-            NUnit.Framework.Assert.IsFalse(executeOperation.CanTimeout);
-            NUnit.Framework.Assert.IsTrue(executeOperation.CanWrite);
+            Assert.IsTrue(executeOperation.CanRead);
+            Assert.IsTrue(executeOperation.CanSeek);
+            Assert.IsFalse(executeOperation.CanTimeout);
+            Assert.IsTrue(executeOperation.CanWrite);
         }
 
         [Test]
@@ -95,7 +95,7 @@ namespace Dev2.Data.Tests.PathOperations
             var doGetAction = new DoGetAction(mockActivityIOPath.Object, mockDev2LogonProvider.Object, mockFileWrapper.Object, (arg1, arg2) => mockWindowsImpersonationContext.Object);
             //------------------------Act------------------------------
             //------------------------Assert---------------------------
-            NUnit.Framework.Assert.Throws<Exception>(()=> doGetAction.ExecuteOperation());
+            Assert.Throws<Exception>(()=> doGetAction.ExecuteOperation());
         }
     }
 }

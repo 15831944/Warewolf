@@ -21,7 +21,7 @@ namespace Dev2.Data.Tests
         public void WarewolfAtomComparer_Equals_BothNull_ReturnTrue()
         {
             var comparer = new WarewolfAtomComparer();
-            NUnit.Framework.Assert.IsTrue(comparer.Equals(null, null));
+            Assert.IsTrue(comparer.Equals(null, null));
         }
         [Test]
         [Author("Candice Daniel")]
@@ -30,7 +30,7 @@ namespace Dev2.Data.Tests
         {
             var a = DataStorage.WarewolfAtom.NewDataString("a");
             var comparer = new WarewolfAtomComparer();
-            NUnit.Framework.Assert.IsFalse(comparer.Equals(a, null));
+            Assert.IsFalse(comparer.Equals(a, null));
         }
         [Test]
         [Author("Candice Daniel")]
@@ -39,7 +39,7 @@ namespace Dev2.Data.Tests
         {
             var a = DataStorage.WarewolfAtom.NewDataString("a");
             var comparer = new WarewolfAtomComparer();
-            NUnit.Framework.Assert.IsFalse(comparer.Equals(null, a));
+            Assert.IsFalse(comparer.Equals(null, a));
         }
         [Test]
         [Author("Candice Daniel")]
@@ -49,7 +49,7 @@ namespace Dev2.Data.Tests
             var a = DataStorage.WarewolfAtom.NewDataString("a");
             var b = DataStorage.WarewolfAtom.NewDataString("b");
             var comparer = new WarewolfAtomComparer();
-            NUnit.Framework.Assert.IsFalse(comparer.Equals(a, b));
+            Assert.IsFalse(comparer.Equals(a, b));
         }
         [Test]
         [Author("Candice Daniel")]
@@ -59,7 +59,7 @@ namespace Dev2.Data.Tests
             var a = DataStorage.WarewolfAtom.NewDataString("a");
             var b = DataStorage.WarewolfAtom.NewDataString("a");
             var comparer = new WarewolfAtomComparer();
-            NUnit.Framework.Assert.IsTrue(comparer.Equals(a, b));
+            Assert.IsTrue(comparer.Equals(a, b));
         }
         [Test]
         [Author("Candice Daniel")]
@@ -68,7 +68,7 @@ namespace Dev2.Data.Tests
         {
             var comparer = new WarewolfAtomComparer();
             var hashCode = comparer.GetHashCode(DataStorage.WarewolfAtom.NewDataString("a"));
-            NUnit.Framework.Assert.AreNotEqual(0, hashCode);
+            Assert.AreNotEqual(0, hashCode);
         }
     }
 }

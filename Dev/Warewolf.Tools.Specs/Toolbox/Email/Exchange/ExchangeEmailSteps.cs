@@ -9,15 +9,11 @@ using System.Activities.Statements;
 using System.Collections.Generic;
 using Dev2.Common.Interfaces;
 using Dev2.Common.Interfaces.Core;
-using Dev2.Common.Interfaces.ToolBase.ExchangeEmail;
 using Dev2.Data.TO;
 using Dev2.Interfaces;
 using Moq;
 using TechTalk.SpecFlow;
 using Warewolf.Tools.Specs.BaseTypes;
-using Moq.Language.Flow;
-using Moq.Language;
-using System.Reflection;
 
 namespace Dev2.Activities.Specs.Toolbox.Exchange.Email
 {

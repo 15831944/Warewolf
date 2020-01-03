@@ -25,7 +25,7 @@ namespace Dev2.Data.Tests
 
             var isEqual = dev2DecisionComparer.Equals(null, null);
 
-            NUnit.Framework.Assert.IsTrue(isEqual);
+            Assert.IsTrue(isEqual);
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace Dev2.Data.Tests
 
             var isEqual = dev2DecisionComparer.Equals(null, dev2DecisionB);
 
-            NUnit.Framework.Assert.IsFalse(isEqual);
+            Assert.IsFalse(isEqual);
         }
 
         [Test]
@@ -65,7 +65,7 @@ namespace Dev2.Data.Tests
 
             var isEqual = dev2DecisionComparer.Equals(dev2DecisionA, null);
 
-            NUnit.Framework.Assert.IsFalse(isEqual);
+            Assert.IsFalse(isEqual);
         }
 
         [Test]
@@ -93,7 +93,7 @@ namespace Dev2.Data.Tests
 
             var isEqual = dev2DecisionComparer.Equals(dev2DecisionA, dev2DecisionB);
 
-            NUnit.Framework.Assert.IsTrue(isEqual);
+            Assert.IsTrue(isEqual);
         }
 
         [Test]
@@ -121,7 +121,7 @@ namespace Dev2.Data.Tests
 
             var isEqual = dev2DecisionComparer.Equals(dev2DecisionA, dev2DecisionB);
 
-            NUnit.Framework.Assert.IsFalse(isEqual);
+            Assert.IsFalse(isEqual);
         }
 
         [Test]
@@ -141,7 +141,7 @@ namespace Dev2.Data.Tests
 
             var hashCode = dev2DecisionComparer.GetHashCode(dev2DecisionA);
 
-            NUnit.Framework.Assert.AreNotEqual(0, hashCode);
+            Assert.AreNotEqual(0, hashCode);
         }
     }
 }

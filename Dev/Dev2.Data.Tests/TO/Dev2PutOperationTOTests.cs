@@ -11,9 +11,9 @@ namespace Dev2.Data.Tests.Operations
         {
             var operationToFactory = new Dev2PutOperationTOFactory();
             var dev2PutOperationTo = operationToFactory.CreateDev2PutOperationTO(true, "SomeContent", true);
-            NUnit.Framework.Assert.IsNotNull(dev2PutOperationTo);
-            NUnit.Framework.Assert.IsTrue(dev2PutOperationTo.Append);
-            NUnit.Framework.Assert.IsFalse(string.IsNullOrEmpty(dev2PutOperationTo.FileContents));
+            Assert.IsNotNull(dev2PutOperationTo);
+            Assert.IsTrue(dev2PutOperationTo.Append);
+            Assert.IsFalse(string.IsNullOrEmpty(dev2PutOperationTo.FileContents));
         }
     }
 }

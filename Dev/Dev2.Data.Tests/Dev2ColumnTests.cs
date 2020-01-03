@@ -14,10 +14,10 @@ namespace Dev2.Data.Tests
                 enDev2ColumnArgumentDirection.None);
             var other = DataListFactory.CreateDev2Column("OtherColumn", "OtherColumnDescription", true,
                 enDev2ColumnArgumentDirection.None);
-            NUnit.Framework.Assert.IsNotNull(dev2Column);
-            NUnit.Framework.Assert.IsFalse(dev2Column.Equals(other));
+            Assert.IsNotNull(dev2Column);
+            Assert.IsFalse(dev2Column.Equals(other));
             var dev2Column2 = dev2Column;
-            NUnit.Framework.Assert.IsTrue(dev2Column == dev2Column2);
+            Assert.IsTrue(dev2Column == dev2Column2);
         }
     }
 }

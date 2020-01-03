@@ -42,7 +42,7 @@ namespace Dev2.Data.Tests.Parsers
             //---------------Execute Test ----------------------
             var newDev2DataLanguageParser = new Dev2DataLanguageParser();
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsNotNull(newDev2DataLanguageParser, "Cannot create new Dev2DataLanguageParser object.");
+            Assert.IsNotNull(newDev2DataLanguageParser, "Cannot create new Dev2DataLanguageParser object.");
         }
 
         [Test]
@@ -56,9 +56,9 @@ namespace Dev2.Data.Tests.Parsers
             //---------------Execute Test ----------------------
             var expressionIntoParts = parser.ParseExpressionIntoParts("[[x]]", new List<IDev2DataLanguageIntellisensePart>());
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual(1, expressionIntoParts.Count);
+            Assert.AreEqual(1, expressionIntoParts.Count);
             var error = expressionIntoParts.SingleOrDefault(result => !string.IsNullOrEmpty(result.Message));
-            NUnit.Framework.Assert.IsNotNull(error);
+            Assert.IsNotNull(error);
         }
 
         [Test]
@@ -72,9 +72,9 @@ namespace Dev2.Data.Tests.Parsers
             //---------------Execute Test ----------------------
             var expressionIntoParts = parser.ParseExpressionIntoParts("", new List<IDev2DataLanguageIntellisensePart>());
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual(0, expressionIntoParts.Count);
+            Assert.AreEqual(0, expressionIntoParts.Count);
             var error = expressionIntoParts.SingleOrDefault(result => !string.IsNullOrEmpty(result.Message));
-            NUnit.Framework.Assert.IsNull(error);
+            Assert.IsNull(error);
         }
 
         [Test]
@@ -87,7 +87,7 @@ namespace Dev2.Data.Tests.Parsers
             var concurrentDictionary = new ConcurrentDictionary<string, IList<IIntellisenseResult>>();
             var tryAdd = concurrentDictionary.TryAdd("[[a]]", new List<IIntellisenseResult> { IntellisenseFactory.CreateErrorResult(1, 2, null, "", enIntellisenseErrorCode.FieldNotFound, false) });
 
-            NUnit.Framework.Assert.IsTrue(tryAdd);
+            Assert.IsTrue(tryAdd);
             var fieldInfo = typeof(Dev2DataLanguageParser).GetField("_expressionCache", BindingFlags.Static | BindingFlags.NonPublic);
             if (fieldInfo != null)
             {
@@ -97,9 +97,9 @@ namespace Dev2.Data.Tests.Parsers
             //---------------Execute Test ----------------------
             var expressionIntoParts = parser.ParseExpressionIntoParts("[[a]]", new List<IDev2DataLanguageIntellisensePart>());
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual(1, expressionIntoParts.Count);
+            Assert.AreEqual(1, expressionIntoParts.Count);
             var error = expressionIntoParts.SingleOrDefault(result => !string.IsNullOrEmpty(result.Message));
-            NUnit.Framework.Assert.IsNull(error);
+            Assert.IsNull(error);
         }
 
         [Test]
@@ -117,13 +117,13 @@ namespace Dev2.Data.Tests.Parsers
             //---------------Execute Test ----------------------
             var expressionIntoParts = parser.ParseDataLanguageForIntellisense("[[a]]", datalist);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual(1, expressionIntoParts.Count);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseErrorCode.None, expressionIntoParts[0].ErrorCode);
-            NUnit.Framework.Assert.AreEqual("", expressionIntoParts[0].Message);
-            NUnit.Framework.Assert.AreEqual("[[var]]", expressionIntoParts[0].Option.DisplayValue);
-            NUnit.Framework.Assert.AreEqual("var", expressionIntoParts[0].Option.Field);
-            NUnit.Framework.Assert.AreEqual("", expressionIntoParts[0].Option.Recordset);
-            NUnit.Framework.Assert.AreEqual("", expressionIntoParts[0].Option.RecordsetIndex);
+            Assert.AreEqual(1, expressionIntoParts.Count);
+            Assert.AreEqual(enIntellisenseErrorCode.None, expressionIntoParts[0].ErrorCode);
+            Assert.AreEqual("", expressionIntoParts[0].Message);
+            Assert.AreEqual("[[var]]", expressionIntoParts[0].Option.DisplayValue);
+            Assert.AreEqual("var", expressionIntoParts[0].Option.Field);
+            Assert.AreEqual("", expressionIntoParts[0].Option.Recordset);
+            Assert.AreEqual("", expressionIntoParts[0].Option.RecordsetIndex);
         }
 
         [Test]
@@ -139,7 +139,7 @@ namespace Dev2.Data.Tests.Parsers
             //---------------Execute Test ----------------------
             var expressionIntoParts = parser.ParseDataLanguageForIntellisense("some value", datalist);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual(0, expressionIntoParts.Count);
+            Assert.AreEqual(0, expressionIntoParts.Count);
         }
 
         [Test]
@@ -156,7 +156,7 @@ namespace Dev2.Data.Tests.Parsers
             //---------------Execute Test ----------------------
             var expressionIntoParts = parser.ParseDataLanguageForIntellisense("", datalist);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual(0, expressionIntoParts.Count);
+            Assert.AreEqual(0, expressionIntoParts.Count);
         }
 
         [Test]
@@ -193,7 +193,7 @@ namespace Dev2.Data.Tests.Parsers
             }
             catch (Exception ex)
             {
-                NUnit.Framework.Assert.AreEqual("Error", ex.Message);
+                Assert.AreEqual("Error", ex.Message);
             }
         }
 
@@ -210,7 +210,7 @@ namespace Dev2.Data.Tests.Parsers
             //---------------Execute Test ----------------------
             var forActivityDataItems = parser.ParseForActivityDataItems(datalist);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual(1, forActivityDataItems.Count);
+            Assert.AreEqual(1, forActivityDataItems.Count);
         }
 
         [Test]
@@ -226,7 +226,7 @@ namespace Dev2.Data.Tests.Parsers
             //---------------Execute Test ----------------------
             var forActivityDataItems = parser.ParseForActivityDataItems(datalist);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual(2, forActivityDataItems.Count);
+            Assert.AreEqual(2, forActivityDataItems.Count);
         }
 
         [Test]
@@ -240,7 +240,7 @@ namespace Dev2.Data.Tests.Parsers
             //---------------Execute Test ----------------------
             var forActivityDataItems = parser.ParseForActivityDataItems("");
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual(0, forActivityDataItems.Count);
+            Assert.AreEqual(0, forActivityDataItems.Count);
         }
 
         [Test]
@@ -255,7 +255,7 @@ namespace Dev2.Data.Tests.Parsers
             }
             catch (Exception ex)
             {
-                NUnit.Framework.Assert.AreEqual("Recordset index (a) contains invalid character(s)", ex.Message);
+                Assert.AreEqual("Recordset index (a) contains invalid character(s)", ex.Message);
             }
         }
 
@@ -271,7 +271,7 @@ namespace Dev2.Data.Tests.Parsers
             }
             catch (Exception ex)
             {
-                NUnit.Framework.Assert.AreEqual("Recordset index [ -1 ] is not greater than zero", ex.Message);
+                Assert.AreEqual("Recordset index [ -1 ] is not greater than zero", ex.Message);
             }
         }
 
@@ -282,7 +282,7 @@ namespace Dev2.Data.Tests.Parsers
         {
             var parser = new ParserHelperUtil();
             var valid = parser.CheckValidIndex(new ParseTO(), "1", 1, 2);
-            NUnit.Framework.Assert.IsTrue(valid, "Valid recordset index marked as invalid.");
+            Assert.IsTrue(valid, "Valid recordset index marked as invalid.");
         }
 
         [Test]
@@ -297,7 +297,7 @@ namespace Dev2.Data.Tests.Parsers
             }
             catch (Exception ex)
             {
-                NUnit.Framework.Assert.AreEqual("Recordset index (ec(a).nam) contains invalid character(s)", ex.Message);
+                Assert.AreEqual("Recordset index (ec(a).nam) contains invalid character(s)", ex.Message);
             }
         }
 
@@ -313,7 +313,7 @@ namespace Dev2.Data.Tests.Parsers
             }
             catch (Exception ex)
             {
-                NUnit.Framework.Assert.AreEqual("Recordset index -1 is not greater than zero", ex.Message);
+                Assert.AreEqual("Recordset index -1 is not greater than zero", ex.Message);
             }
         }
 
@@ -324,7 +324,7 @@ namespace Dev2.Data.Tests.Parsers
         {
             var parser = new ParserHelperUtil();
             var invoke = parser.CheckCurrentIndex(new ParseTO(), 3, "rec(1)", "rec(1)".Length);
-            NUnit.Framework.Assert.IsTrue(invoke, "Positive recordset index marked as invalid.");
+            Assert.IsTrue(invoke, "Positive recordset index marked as invalid.");
         }
 
         [Test]
@@ -336,24 +336,24 @@ namespace Dev2.Data.Tests.Parsers
             var parser = new Dev2DataLanguageParser();
             const string text = @"<![CDATA[[[]]]]>";
             var parts = parser.ParseExpressionIntoParts(text, new List<IDev2DataLanguageIntellisensePart>());
-            NUnit.Framework.Assert.AreEqual(1, parts.Count);
-            NUnit.Framework.Assert.AreEqual(parts[0].Type, enIntellisenseResultType.Error);
-            NUnit.Framework.Assert.AreEqual(parts[0].ErrorCode, enIntellisenseErrorCode.SyntaxError);
-            NUnit.Framework.Assert.AreEqual(parts[0].Message, ErrorResource.VariableIsMissing);
+            Assert.AreEqual(1, parts.Count);
+            Assert.AreEqual(parts[0].Type, enIntellisenseResultType.Error);
+            Assert.AreEqual(parts[0].ErrorCode, enIntellisenseErrorCode.SyntaxError);
+            Assert.AreEqual(parts[0].Message, ErrorResource.VariableIsMissing);
 
             const string textNoBrackets = @"Some text[[";
             parts = parser.ParseExpressionIntoParts(textNoBrackets, new List<IDev2DataLanguageIntellisensePart>());
-            NUnit.Framework.Assert.AreEqual(1, parts.Count);
-            NUnit.Framework.Assert.AreEqual(parts[0].Type, enIntellisenseResultType.Error);
-            NUnit.Framework.Assert.AreEqual(parts[0].ErrorCode, enIntellisenseErrorCode.SyntaxError);
-            NUnit.Framework.Assert.AreEqual(parts[0].Message, ErrorResource.InvalidCloseRegion);
+            Assert.AreEqual(1, parts.Count);
+            Assert.AreEqual(parts[0].Type, enIntellisenseResultType.Error);
+            Assert.AreEqual(parts[0].ErrorCode, enIntellisenseErrorCode.SyntaxError);
+            Assert.AreEqual(parts[0].Message, ErrorResource.InvalidCloseRegion);
 
             const string textWithAuto = @"[[varName]]";
             parts = parser.ParseExpressionIntoParts(textWithAuto, new List<IDev2DataLanguageIntellisensePart>());
-            NUnit.Framework.Assert.AreEqual(1, parts.Count);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseResultType.Error, parts[0].Type);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseErrorCode.ScalarNotFound, parts[0].ErrorCode);
-            NUnit.Framework.Assert.AreEqual(" [[varName]] does not exist in your variable list", parts[0].Message);
+            Assert.AreEqual(1, parts.Count);
+            Assert.AreEqual(enIntellisenseResultType.Error, parts[0].Type);
+            Assert.AreEqual(enIntellisenseErrorCode.ScalarNotFound, parts[0].ErrorCode);
+            Assert.AreEqual(" [[varName]] does not exist in your variable list", parts[0].Message);
         }
 
         [Test]
@@ -363,8 +363,8 @@ namespace Dev2.Data.Tests.Parsers
         {
             var parser = new Dev2DataLanguageParser();
             var result = parser.ParseDataLanguageForIntellisense("[[recName([[varName)]]", null, true, null, true);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseErrorCode.SyntaxError, result[0].ErrorCode);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseResultType.Error, result[0].Type);
+            Assert.AreEqual(enIntellisenseErrorCode.SyntaxError, result[0].ErrorCode);
+            Assert.AreEqual(enIntellisenseResultType.Error, result[0].Type);
         }
 
         [Test]
@@ -376,9 +376,9 @@ namespace Dev2.Data.Tests.Parsers
 
             var parser = new Dev2DataLanguageParser();
             var result = parser.ParseDataLanguageForIntellisense("[[", dataList, false, null, false);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseErrorCode.None, result[0].ErrorCode);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseResultType.Selectable, result[0].Type);
-            NUnit.Framework.Assert.AreEqual("RecName Description / Select this variable", result[0].Message);
+            Assert.AreEqual(enIntellisenseErrorCode.None, result[0].ErrorCode);
+            Assert.AreEqual(enIntellisenseResultType.Selectable, result[0].Type);
+            Assert.AreEqual("RecName Description / Select this variable", result[0].Message);
         }
 
         [Test]
@@ -390,9 +390,9 @@ namespace Dev2.Data.Tests.Parsers
 
             var parser = new Dev2DataLanguageParser();
             var result = parser.ParseDataLanguageForIntellisense("[[[[]]]]", dataList, false, null, false);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseErrorCode.SyntaxError, result[0].ErrorCode);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseResultType.Error, result[0].Type);
-            NUnit.Framework.Assert.AreEqual("Variable [[]] is missing a name", result[0].Message);
+            Assert.AreEqual(enIntellisenseErrorCode.SyntaxError, result[0].ErrorCode);
+            Assert.AreEqual(enIntellisenseResultType.Error, result[0].Type);
+            Assert.AreEqual("Variable [[]] is missing a name", result[0].Message);
         }
 
         [Test]
@@ -404,9 +404,9 @@ namespace Dev2.Data.Tests.Parsers
 
             var parser = new Dev2DataLanguageParser();
             var result = parser.ParseDataLanguageForIntellisense("[[recNam]]", dataList, false, null, true);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseErrorCode.None, result[0].ErrorCode);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseResultType.Selectable, result[0].Type);
-            NUnit.Framework.Assert.AreEqual("RecName Description", result[0].Message);
+            Assert.AreEqual(enIntellisenseErrorCode.None, result[0].ErrorCode);
+            Assert.AreEqual(enIntellisenseResultType.Selectable, result[0].Type);
+            Assert.AreEqual("RecName Description", result[0].Message);
         }
 
         [Test]
@@ -420,9 +420,9 @@ namespace Dev2.Data.Tests.Parsers
             var result = parser.ParseDataLanguageForIntellisense("[[recName().field]]", dataList, false, null, true);
 
             // Note: studio does not allow recordsets with no fields
-            NUnit.Framework.Assert.AreEqual(enIntellisenseErrorCode.NeitherRecordsetNorFieldFound, result[0].ErrorCode);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseResultType.Error, result[0].Type);
-            NUnit.Framework.Assert.AreEqual("[[recName()]] does not exist in your variable list", result[0].Message);
+            Assert.AreEqual(enIntellisenseErrorCode.NeitherRecordsetNorFieldFound, result[0].ErrorCode);
+            Assert.AreEqual(enIntellisenseResultType.Error, result[0].Type);
+            Assert.AreEqual("[[recName()]] does not exist in your variable list", result[0].Message);
         }
 
         [Test]
@@ -435,21 +435,21 @@ namespace Dev2.Data.Tests.Parsers
             var parser = new Dev2DataLanguageParser();
             var result = parser.ParseDataLanguageForIntellisense("[[recName([[recName([[index).field]]", dataList, false, null, true);
 
-            NUnit.Framework.Assert.AreEqual(enIntellisenseErrorCode.None, result[0].ErrorCode);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseResultType.Selectable, result[0].Type);
-            NUnit.Framework.Assert.AreEqual("RecName Description", result[0].Message);
-            NUnit.Framework.Assert.AreEqual("[[recName]]", result[0].Option.DisplayValue);
-            NUnit.Framework.Assert.AreEqual("recName", result[0].Option.Field);
-            NUnit.Framework.Assert.AreEqual("", result[0].Option.Recordset);
-            NUnit.Framework.Assert.AreEqual("", result[0].Option.RecordsetIndex);
+            Assert.AreEqual(enIntellisenseErrorCode.None, result[0].ErrorCode);
+            Assert.AreEqual(enIntellisenseResultType.Selectable, result[0].Type);
+            Assert.AreEqual("RecName Description", result[0].Message);
+            Assert.AreEqual("[[recName]]", result[0].Option.DisplayValue);
+            Assert.AreEqual("recName", result[0].Option.Field);
+            Assert.AreEqual("", result[0].Option.Recordset);
+            Assert.AreEqual("", result[0].Option.RecordsetIndex);
 
-            NUnit.Framework.Assert.AreEqual(enIntellisenseErrorCode.SyntaxError, result[1].ErrorCode);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseResultType.Error, result[1].Type);
-            NUnit.Framework.Assert.AreEqual("Variable name [[index).field]] contains invalid character(s). Only use alphanumeric _ and - ", result[1].Message);
-            NUnit.Framework.Assert.AreEqual("[[index).field()]]", result[1].Option.DisplayValue);
-            NUnit.Framework.Assert.AreEqual("", result[1].Option.Field);
-            NUnit.Framework.Assert.AreEqual("index).field", result[1].Option.Recordset);
-            NUnit.Framework.Assert.AreEqual("", result[1].Option.RecordsetIndex);
+            Assert.AreEqual(enIntellisenseErrorCode.SyntaxError, result[1].ErrorCode);
+            Assert.AreEqual(enIntellisenseResultType.Error, result[1].Type);
+            Assert.AreEqual("Variable name [[index).field]] contains invalid character(s). Only use alphanumeric _ and - ", result[1].Message);
+            Assert.AreEqual("[[index).field()]]", result[1].Option.DisplayValue);
+            Assert.AreEqual("", result[1].Option.Field);
+            Assert.AreEqual("index).field", result[1].Option.Recordset);
+            Assert.AreEqual("", result[1].Option.RecordsetIndex);
         }
 
         [Test]
@@ -462,9 +462,9 @@ namespace Dev2.Data.Tests.Parsers
             var parser = new Dev2DataLanguageParser();
             var result = parser.ParseDataLanguageForIntellisense("[[recName([[index).field]]", dataList, false, null, true);
 
-            NUnit.Framework.Assert.AreEqual(enIntellisenseErrorCode.None, result[0].ErrorCode);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseResultType.Selectable, result[0].Type);
-            NUnit.Framework.Assert.AreEqual("RecName Description", result[0].Message);
+            Assert.AreEqual(enIntellisenseErrorCode.None, result[0].ErrorCode);
+            Assert.AreEqual(enIntellisenseResultType.Selectable, result[0].Type);
+            Assert.AreEqual("RecName Description", result[0].Message);
         }
 
         [Test]
@@ -477,9 +477,9 @@ namespace Dev2.Data.Tests.Parsers
             var parser = new Dev2DataLanguageParser();
             var result = parser.ParseDataLanguageForIntellisense("[[recName([[recName).field]]", dataList, false, null, true);
 
-            NUnit.Framework.Assert.AreEqual(enIntellisenseErrorCode.None, result[0].ErrorCode);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseResultType.Selectable, result[0].Type);
-            NUnit.Framework.Assert.AreEqual("RecName Description", result[0].Message);
+            Assert.AreEqual(enIntellisenseErrorCode.None, result[0].ErrorCode);
+            Assert.AreEqual(enIntellisenseResultType.Selectable, result[0].Type);
+            Assert.AreEqual("RecName Description", result[0].Message);
         }
 
         [Test]
@@ -491,17 +491,17 @@ namespace Dev2.Data.Tests.Parsers
 
             var parser = new Dev2DataLanguageParser();
             var result = parser.ParseDataLanguageForIntellisense("[[recName1", dataList, false, null, true);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseErrorCode.None, result[0].ErrorCode);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseResultType.Selectable, result[0].Type);
-            NUnit.Framework.Assert.AreEqual("RecName1 Description", result[0].Message);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseResultType.Selectable, result[1].Type);
-            NUnit.Framework.Assert.AreEqual("field1 Desc", result[1].Message);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseResultType.Selectable, result[2].Type);
-            NUnit.Framework.Assert.AreEqual("field1 Desc", result[2].Message);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseResultType.Selectable, result[3].Type);
-            NUnit.Framework.Assert.AreEqual("field2 Desc", result[3].Message);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseResultType.Selectable, result[4].Type);
-            NUnit.Framework.Assert.AreEqual("field2 Desc", result[4].Message);
+            Assert.AreEqual(enIntellisenseErrorCode.None, result[0].ErrorCode);
+            Assert.AreEqual(enIntellisenseResultType.Selectable, result[0].Type);
+            Assert.AreEqual("RecName1 Description", result[0].Message);
+            Assert.AreEqual(enIntellisenseResultType.Selectable, result[1].Type);
+            Assert.AreEqual("field1 Desc", result[1].Message);
+            Assert.AreEqual(enIntellisenseResultType.Selectable, result[2].Type);
+            Assert.AreEqual("field1 Desc", result[2].Message);
+            Assert.AreEqual(enIntellisenseResultType.Selectable, result[3].Type);
+            Assert.AreEqual("field2 Desc", result[3].Message);
+            Assert.AreEqual(enIntellisenseResultType.Selectable, result[4].Type);
+            Assert.AreEqual("field2 Desc", result[4].Message);
         }
 
         [Test]
@@ -513,11 +513,11 @@ namespace Dev2.Data.Tests.Parsers
 
             var parser = new Dev2DataLanguageParser();
             var result = parser.ParseDataLanguageForIntellisense("[[recName1.field", dataList, false, null, true);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseErrorCode.None, result[0].ErrorCode);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseResultType.Selectable, result[0].Type);
-            NUnit.Framework.Assert.AreEqual("field1 Desc", result[0].Message);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseResultType.Selectable, result[2].Type);
-            NUnit.Framework.Assert.AreEqual("field2 Desc", result[2].Message);
+            Assert.AreEqual(enIntellisenseErrorCode.None, result[0].ErrorCode);
+            Assert.AreEqual(enIntellisenseResultType.Selectable, result[0].Type);
+            Assert.AreEqual("field1 Desc", result[0].Message);
+            Assert.AreEqual(enIntellisenseResultType.Selectable, result[2].Type);
+            Assert.AreEqual("field2 Desc", result[2].Message);
         }
 
         [Test]
@@ -529,7 +529,7 @@ namespace Dev2.Data.Tests.Parsers
 
             var parser = new Dev2DataLanguageParser();
             var result = parser.ParseDataLanguageForIntellisense("[[recName1.Name", dataList, false, null, true);
-            NUnit.Framework.Assert.AreEqual(0, result.Count);
+            Assert.AreEqual(0, result.Count);
         }
 
         [Test]
@@ -541,11 +541,11 @@ namespace Dev2.Data.Tests.Parsers
 
             var parser = new Dev2DataLanguageParser();
             var result = parser.ParseDataLanguageForIntellisense("[[recName1.field", dataList, false, null, true);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseErrorCode.None, result[0].ErrorCode);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseResultType.Selectable, result[0].Type);
-            NUnit.Framework.Assert.AreEqual(" Input: Use last row, Result: Append new record", result[0].Message);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseResultType.Selectable, result[2].Type);
-            NUnit.Framework.Assert.AreEqual("field2 Desc", result[2].Message);
+            Assert.AreEqual(enIntellisenseErrorCode.None, result[0].ErrorCode);
+            Assert.AreEqual(enIntellisenseResultType.Selectable, result[0].Type);
+            Assert.AreEqual(" Input: Use last row, Result: Append new record", result[0].Message);
+            Assert.AreEqual(enIntellisenseResultType.Selectable, result[2].Type);
+            Assert.AreEqual("field2 Desc", result[2].Message);
         }
 
         [Test]
@@ -558,16 +558,16 @@ namespace Dev2.Data.Tests.Parsers
             const string nullText = null;
 
             var emptyList = parser.MakeParts(nullText, true);
-            NUnit.Framework.Assert.AreEqual(0, emptyList.Count);
+            Assert.AreEqual(0, emptyList.Count);
 
             var parts = parser.ParseForActivityDataItems(nullText);
-            NUnit.Framework.Assert.AreEqual(0, parts.Count);
+            Assert.AreEqual(0, parts.Count);
 
             const string unclosed = "[[varName";
             parts = parser.ParseForActivityDataItems(unclosed);
-            NUnit.Framework.Assert.AreEqual("varName", parts[0]);
+            Assert.AreEqual("varName", parts[0]);
 
-            NUnit.Framework.Assert.Throws<Dev2DataLanguageParseError>(() => parser.MakeParts(unclosed, true));
+            Assert.Throws<Dev2DataLanguageParseError>(() => parser.MakeParts(unclosed, true));
         }
 
         [Test]
@@ -579,9 +579,9 @@ namespace Dev2.Data.Tests.Parsers
 
             var parser = new Dev2DataLanguageParser();
             var result = parser.ParseDataLanguageForIntellisense("[[recName1", dataList, false);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseErrorCode.None, result[0].ErrorCode);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseResultType.Selectable, result[0].Type);
-            NUnit.Framework.Assert.AreEqual("RecName1 Description", result[0].Message);
+            Assert.AreEqual(enIntellisenseErrorCode.None, result[0].ErrorCode);
+            Assert.AreEqual(enIntellisenseResultType.Selectable, result[0].Type);
+            Assert.AreEqual("RecName1 Description", result[0].Message);
         }
 
         [Test]
@@ -594,19 +594,19 @@ namespace Dev2.Data.Tests.Parsers
 
             var parser = new Dev2DataLanguageParser();
             var result = parser.ParseDataLanguageForIntellisense("[[recName1.field", dataList, false, null, true);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseErrorCode.None, result[0].ErrorCode);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseResultType.Selectable, result[0].Type);
-            NUnit.Framework.Assert.AreEqual("field1 Desc", result[0].Message);
-            NUnit.Framework.Assert.AreEqual(enIntellisenseResultType.Selectable, result[2].Type);
-            NUnit.Framework.Assert.AreEqual("field2 Desc", result[2].Message);
+            Assert.AreEqual(enIntellisenseErrorCode.None, result[0].ErrorCode);
+            Assert.AreEqual(enIntellisenseResultType.Selectable, result[0].Type);
+            Assert.AreEqual("field1 Desc", result[0].Message);
+            Assert.AreEqual(enIntellisenseResultType.Selectable, result[2].Type);
+            Assert.AreEqual("field2 Desc", result[2].Message);
 
             var name = parser.ValidateName("field1", "Scalar");
 
-            NUnit.Framework.Assert.IsNull(name);
+            Assert.IsNull(name);
 
             name = parser.ValidateName("[[recName1]]", "Recordset");
 
-            NUnit.Framework.Assert.IsNotNull(name);
+            Assert.IsNotNull(name);
         }
     }
 }

@@ -25,7 +25,7 @@ namespace Dev2.Data.Tests.Builders
         {
             var builder = new RecordSetCollectionBuilder();
             builder.SetParsedOutput(null);
-            NUnit.Framework.Assert.AreEqual(0, builder.ParsedOutput.Count);
+            Assert.AreEqual(0, builder.ParsedOutput.Count);
         }
 
         [Test]
@@ -44,7 +44,7 @@ namespace Dev2.Data.Tests.Builders
             var defs = DataListFactory.CreateOutputParser().Parse(arguments);
             var builder = new RecordSetCollectionBuilder();
             builder.SetParsedOutput(defs);
-            NUnit.Framework.Assert.AreEqual(defs, builder.ParsedOutput);
+            Assert.AreEqual(defs, builder.ParsedOutput);
         }
 
         [Test]
@@ -68,11 +68,11 @@ namespace Dev2.Data.Tests.Builders
             //------------Execute Test---------------------------
             var collection = builder.Generate();
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsNotNull(collection);
-            NUnit.Framework.Assert.AreEqual(2, collection.RecordSetNames.Count);
-            NUnit.Framework.Assert.AreEqual("recA", collection.RecordSetNames[0]);
-            NUnit.Framework.Assert.AreEqual("recB", collection.RecordSetNames[1]);
-            NUnit.Framework.Assert.AreEqual(2, collection.RecordSets.Count);
+            Assert.IsNotNull(collection);
+            Assert.AreEqual(2, collection.RecordSetNames.Count);
+            Assert.AreEqual("recA", collection.RecordSetNames[0]);
+            Assert.AreEqual("recB", collection.RecordSetNames[1]);
+            Assert.AreEqual(2, collection.RecordSets.Count);
         }
 
 
@@ -97,10 +97,10 @@ namespace Dev2.Data.Tests.Builders
             //------------Execute Test---------------------------
             var collection = builder.Generate();
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsNotNull(collection);
-            NUnit.Framework.Assert.AreEqual(1, collection.RecordSetNames.Count);
-            NUnit.Framework.Assert.AreEqual("inrecA", collection.RecordSetNames[0]);
-            NUnit.Framework.Assert.AreEqual(1, collection.RecordSets.Count);
+            Assert.IsNotNull(collection);
+            Assert.AreEqual(1, collection.RecordSetNames.Count);
+            Assert.AreEqual("inrecA", collection.RecordSetNames[0]);
+            Assert.AreEqual(1, collection.RecordSets.Count);
         }
 
         [Test]
@@ -125,11 +125,11 @@ namespace Dev2.Data.Tests.Builders
             //------------Execute Test---------------------------
             var collection = builder.Generate();
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsNotNull(collection);
-            NUnit.Framework.Assert.AreEqual(2, collection.RecordSetNames.Count);
-            NUnit.Framework.Assert.AreEqual("recA", collection.RecordSetNames[0]);
-            NUnit.Framework.Assert.AreEqual("recB", collection.RecordSetNames[1]);
-            NUnit.Framework.Assert.AreEqual(2, collection.RecordSets.Count);
+            Assert.IsNotNull(collection);
+            Assert.AreEqual(2, collection.RecordSetNames.Count);
+            Assert.AreEqual("recA", collection.RecordSetNames[0]);
+            Assert.AreEqual("recB", collection.RecordSetNames[1]);
+            Assert.AreEqual(2, collection.RecordSets.Count);
         }
 
 
@@ -155,11 +155,11 @@ namespace Dev2.Data.Tests.Builders
             //------------Execute Test---------------------------
             var collection = builder.Generate();
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsNotNull(collection);
-            NUnit.Framework.Assert.AreEqual(2, collection.RecordSetNames.Count);
-            NUnit.Framework.Assert.AreEqual("recA", collection.RecordSetNames[0]);
-            NUnit.Framework.Assert.AreEqual("recB", collection.RecordSetNames[1]);
-            NUnit.Framework.Assert.AreEqual(2, collection.RecordSets.Count);
+            Assert.IsNotNull(collection);
+            Assert.AreEqual(2, collection.RecordSetNames.Count);
+            Assert.AreEqual("recA", collection.RecordSetNames[0]);
+            Assert.AreEqual("recB", collection.RecordSetNames[1]);
+            Assert.AreEqual(2, collection.RecordSets.Count);
         }
 
         [Test]
@@ -180,9 +180,9 @@ namespace Dev2.Data.Tests.Builders
             //------------Execute Test---------------------------
             var collection = builder.Generate();
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsNotNull(collection);
-            NUnit.Framework.Assert.AreEqual(1, collection.RecordSetNames.Count);
-            NUnit.Framework.Assert.AreEqual("recA", collection.RecordSetNames[0]);
+            Assert.IsNotNull(collection);
+            Assert.AreEqual(1, collection.RecordSetNames.Count);
+            Assert.AreEqual("recA", collection.RecordSetNames[0]);
         }
 
         [Test]
@@ -203,9 +203,9 @@ namespace Dev2.Data.Tests.Builders
             //------------Execute Test---------------------------
             var collection = builder.Generate();
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsNotNull(collection);
-            NUnit.Framework.Assert.AreEqual(1, collection.RecordSetNames.Count);
-            NUnit.Framework.Assert.AreEqual("Another", collection.RecordSetNames[0]);
+            Assert.IsNotNull(collection);
+            Assert.AreEqual(1, collection.RecordSetNames.Count);
+            Assert.AreEqual("Another", collection.RecordSetNames[0]);
         }
 
         [Test]
@@ -222,9 +222,9 @@ namespace Dev2.Data.Tests.Builders
             //------------Execute Test---------------------------
             var collection = builder.Generate();
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsNotNull(collection);
-            NUnit.Framework.Assert.AreEqual(1, collection.RecordSetNames.Count);
-            NUnit.Framework.Assert.AreEqual("prefix", collection.RecordSetNames[0]);
+            Assert.IsNotNull(collection);
+            Assert.AreEqual(1, collection.RecordSetNames.Count);
+            Assert.AreEqual("prefix", collection.RecordSetNames[0]);
         }
     }
 }

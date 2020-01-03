@@ -34,7 +34,7 @@ namespace Dev2.Data.Tests.PathOperations
             var ss = new DoPutAction( new MemoryStream(), mockActivityIOPath.Object, mockDev2CRUDOperationTO.Object, "testWhereToPut");
             //-------------------------Act---------------------------
             //-------------------------Assert------------------------
-            NUnit.Framework.Assert.Throws<IOException>(() => ss.ExecuteOperation());
+            Assert.Throws<IOException>(() => ss.ExecuteOperation());
         }
 
         [Test]
@@ -55,7 +55,7 @@ namespace Dev2.Data.Tests.PathOperations
             var ss = new DoPutAction(new MemoryStream(), mockActivityIOPath.Object, mockDev2CRUDOperationTO.Object, "TestWhere", mockDev2LogonProvider.Object, mockFileWrapper.Object, mockFilePath.Object, (arg1, arg2)=> mockWindowsImpersonationContext.Object);
             //-------------------------Act---------------------------
             //-------------------------Assert------------------------
-            NUnit.Framework.Assert.Throws<IOException>(()=> ss.ExecuteOperation());
+            Assert.Throws<IOException>(()=> ss.ExecuteOperation());
         }
 
         [Test]
@@ -76,7 +76,7 @@ namespace Dev2.Data.Tests.PathOperations
             var ss = new DoPutAction(new MemoryStream(), mockActivityIOPath.Object, mockDev2CRUDOperationTO.Object, "TestWhere", mockDev2LogonProvider.Object, mockFileWrapper.Object, mockFilePath.Object, (arg1, arg2) => mockWindowsImpersonationContext.Object);
             //-------------------------Act---------------------------
             //-------------------------Assert------------------------
-            NUnit.Framework.Assert.Throws<ArgumentNullException>(() => ss.ExecuteOperation());
+            Assert.Throws<ArgumentNullException>(() => ss.ExecuteOperation());
         }
 
         [Test]
@@ -96,7 +96,7 @@ namespace Dev2.Data.Tests.PathOperations
             var ss = new DoPutAction(new MemoryStream(), mockActivityIOPath.Object, mockDev2CRUDOperationTO.Object, null, mockDev2LogonProvider.Object, mockFileWrapper.Object, mockFilePath.Object, (arg1, arg2) => null);
             //-------------------------Act---------------------------
             //-------------------------Assert------------------------
-            NUnit.Framework.Assert.Throws<ArgumentNullException>(() => ss.ExecuteOperation());
+            Assert.Throws<ArgumentNullException>(() => ss.ExecuteOperation());
         }
 
         [Test]
@@ -121,7 +121,7 @@ namespace Dev2.Data.Tests.PathOperations
             //-------------------------Assert------------------------
             mockFilePath.VerifyAll();
             mockActivityIOPath.VerifyAll();
-            NUnit.Framework.Assert.AreEqual(0,xx);
+            Assert.AreEqual(0,xx);
         }
 
         [Test]
@@ -148,7 +148,7 @@ namespace Dev2.Data.Tests.PathOperations
             mockFilePath.VerifyAll();
             mockActivityIOPath.VerifyAll();
             mockDev2CRUDOperationTO.VerifyAll();
-            NUnit.Framework.Assert.AreEqual(0, xx);
+            Assert.AreEqual(0, xx);
         }
 
         [Test]
@@ -175,7 +175,7 @@ namespace Dev2.Data.Tests.PathOperations
             mockFilePath.VerifyAll();
             mockActivityIOPath.VerifyAll();
             mockDev2CRUDOperationTO.VerifyAll();
-            NUnit.Framework.Assert.AreEqual(0, xx);
+            Assert.AreEqual(0, xx);
         }
     }
 }

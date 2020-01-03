@@ -18,12 +18,12 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = isText.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsFalse(result);
+            Assert.IsFalse(result);
             //------------Execute Test---------------------------
             var emptyString = new[] { string.Empty };
             result = isText.Invoke(emptyString);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsFalse(result);
+            Assert.IsFalse(result);
         }
 
         [Test]
@@ -38,7 +38,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             //------------Execute Test---------------------------
             var result = notStartsWith.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(result);
+            Assert.IsTrue(result);
         }
 
         [Test]
@@ -51,7 +51,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             var isText = new IsText();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(decisionType, isText.HandlesType());
+            Assert.AreEqual(decisionType, isText.HandlesType());
         }
     }
 }

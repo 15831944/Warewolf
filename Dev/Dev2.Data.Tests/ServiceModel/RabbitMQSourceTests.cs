@@ -26,12 +26,12 @@ namespace Dev2.Data.Tests.ServiceModel
         public void RabbitMQSource_Validate_DefaultValues()
         {
             var rabbitMqSource = new RabbitMQSource();
-            NUnit.Framework.Assert.IsTrue(rabbitMqSource.IsSource);
-            NUnit.Framework.Assert.IsFalse(rabbitMqSource.IsService);
-            NUnit.Framework.Assert.IsFalse(rabbitMqSource.IsFolder);
-            NUnit.Framework.Assert.IsFalse(rabbitMqSource.IsReservedService);
-            NUnit.Framework.Assert.IsFalse(rabbitMqSource.IsServer);
-            NUnit.Framework.Assert.IsFalse(rabbitMqSource.IsResourceVersion);
+            Assert.IsTrue(rabbitMqSource.IsSource);
+            Assert.IsFalse(rabbitMqSource.IsService);
+            Assert.IsFalse(rabbitMqSource.IsFolder);
+            Assert.IsFalse(rabbitMqSource.IsReservedService);
+            Assert.IsFalse(rabbitMqSource.IsServer);
+            Assert.IsFalse(rabbitMqSource.IsResourceVersion);
         }
 
         [Test]
@@ -54,12 +54,12 @@ namespace Dev2.Data.Tests.ServiceModel
             var result = rabbitMqSource.ToXml();
 
             var rabbitMqSourceWithXml = new RabbitMQSource(result);
-            NUnit.Framework.Assert.AreEqual(nameof(RabbitMQSource), rabbitMqSourceWithXml.ResourceType);
-            NUnit.Framework.Assert.AreEqual(5672, rabbitMqSourceWithXml.Port);
-            NUnit.Framework.Assert.AreEqual("localhost", rabbitMqSourceWithXml.HostName);
-            NUnit.Framework.Assert.AreEqual("warewolf", rabbitMqSourceWithXml.UserName);
-            NUnit.Framework.Assert.AreEqual("test123", rabbitMqSourceWithXml.Password);
-            NUnit.Framework.Assert.AreEqual("hostyhost/", rabbitMqSourceWithXml.VirtualHost);
+            Assert.AreEqual(nameof(RabbitMQSource), rabbitMqSourceWithXml.ResourceType);
+            Assert.AreEqual(5672, rabbitMqSourceWithXml.Port);
+            Assert.AreEqual("localhost", rabbitMqSourceWithXml.HostName);
+            Assert.AreEqual("warewolf", rabbitMqSourceWithXml.UserName);
+            Assert.AreEqual("test123", rabbitMqSourceWithXml.Password);
+            Assert.AreEqual("hostyhost/", rabbitMqSourceWithXml.VirtualHost);
         }
 
         [Test]
@@ -68,11 +68,11 @@ namespace Dev2.Data.Tests.ServiceModel
         public void RabbitMQSource_Constructor_Validate_DefaultValues()
         {
             var rabbitMqSource = new RabbitMQSource();
-            NUnit.Framework.Assert.IsNotNull(rabbitMqSource.ResourceID);
-            NUnit.Framework.Assert.AreEqual(Guid.Empty, rabbitMqSource.ResourceID);
-            NUnit.Framework.Assert.AreEqual(nameof(RabbitMQSource), rabbitMqSource.ResourceType);
-            NUnit.Framework.Assert.AreEqual(5672, rabbitMqSource.Port);
-            NUnit.Framework.Assert.AreEqual("/", rabbitMqSource.VirtualHost);
+            Assert.IsNotNull(rabbitMqSource.ResourceID);
+            Assert.AreEqual(Guid.Empty, rabbitMqSource.ResourceID);
+            Assert.AreEqual(nameof(RabbitMQSource), rabbitMqSource.ResourceType);
+            Assert.AreEqual(5672, rabbitMqSource.Port);
+            Assert.AreEqual("/", rabbitMqSource.VirtualHost);
         }
 
         [Test]
@@ -102,12 +102,12 @@ namespace Dev2.Data.Tests.ServiceModel
 
             var xElement = XElement.Parse(xmlString);
             var rabbitMqSource = new RabbitMQSource(xElement);
-            NUnit.Framework.Assert.AreEqual(nameof(RabbitMQSource), rabbitMqSource.ResourceType);
-            NUnit.Framework.Assert.AreEqual(5672, rabbitMqSource.Port);
-            NUnit.Framework.Assert.AreEqual("", rabbitMqSource.HostName);
-            NUnit.Framework.Assert.AreEqual("", rabbitMqSource.UserName);
-            NUnit.Framework.Assert.AreEqual("", rabbitMqSource.Password);
-            NUnit.Framework.Assert.AreEqual("/", rabbitMqSource.VirtualHost);
+            Assert.AreEqual(nameof(RabbitMQSource), rabbitMqSource.ResourceType);
+            Assert.AreEqual(5672, rabbitMqSource.Port);
+            Assert.AreEqual("", rabbitMqSource.HostName);
+            Assert.AreEqual("", rabbitMqSource.UserName);
+            Assert.AreEqual("", rabbitMqSource.Password);
+            Assert.AreEqual("/", rabbitMqSource.VirtualHost);
         }
 
         [Test]
@@ -127,12 +127,12 @@ namespace Dev2.Data.Tests.ServiceModel
 
             var xElement = XElement.Parse(xmlString);
             var rabbitMqSource = new RabbitMQSource(xElement);
-            NUnit.Framework.Assert.AreEqual(nameof(RabbitMQSource), rabbitMqSource.ResourceType);
-            NUnit.Framework.Assert.AreEqual(5672, rabbitMqSource.Port);
-            NUnit.Framework.Assert.AreEqual("localhost", rabbitMqSource.HostName);
-            NUnit.Framework.Assert.AreEqual("warewolf", rabbitMqSource.UserName);
-            NUnit.Framework.Assert.AreEqual("test123", rabbitMqSource.Password);
-            NUnit.Framework.Assert.AreEqual("hostyhost/", rabbitMqSource.VirtualHost);
+            Assert.AreEqual(nameof(RabbitMQSource), rabbitMqSource.ResourceType);
+            Assert.AreEqual(5672, rabbitMqSource.Port);
+            Assert.AreEqual("localhost", rabbitMqSource.HostName);
+            Assert.AreEqual("warewolf", rabbitMqSource.UserName);
+            Assert.AreEqual("test123", rabbitMqSource.Password);
+            Assert.AreEqual("hostyhost/", rabbitMqSource.VirtualHost);
         }
 
         [Test]
@@ -155,18 +155,18 @@ namespace Dev2.Data.Tests.ServiceModel
             var xElement = XElement.Parse(xmlString);
             var rabbitMqSource = new RabbitMQSource(xElement);
             //----------------------Pre-Assert---------------------------------
-            NUnit.Framework.Assert.AreEqual(nameof(RabbitMQSource), rabbitMqSource.ResourceType);
-            NUnit.Framework.Assert.AreEqual(5672, rabbitMqSource.Port);
-            NUnit.Framework.Assert.AreEqual(Depends.EnableDocker?Depends.RigOpsIP:Depends.SVRDEVIP, rabbitMqSource.HostName);
-            NUnit.Framework.Assert.AreEqual("test", rabbitMqSource.UserName);
-            NUnit.Framework.Assert.AreEqual("test", rabbitMqSource.Password);
-            NUnit.Framework.Assert.AreEqual("/", rabbitMqSource.VirtualHost);
+            Assert.AreEqual(nameof(RabbitMQSource), rabbitMqSource.ResourceType);
+            Assert.AreEqual(5672, rabbitMqSource.Port);
+            Assert.AreEqual(Depends.EnableDocker?Depends.RigOpsIP:Depends.SVRDEVIP, rabbitMqSource.HostName);
+            Assert.AreEqual("test", rabbitMqSource.UserName);
+            Assert.AreEqual("test", rabbitMqSource.Password);
+            Assert.AreEqual("/", rabbitMqSource.VirtualHost);
 
             //-------------------------------Act---------------------------------
             using (var rabbitConnection = rabbitMqSource.NewConnection())
             {
                 //-------------------------------Assert------------------------------
-                NUnit.Framework.Assert.IsTrue(rabbitConnection.IsOpen);
+                Assert.IsTrue(rabbitConnection.IsOpen);
             }
         }
 
@@ -192,18 +192,18 @@ namespace Dev2.Data.Tests.ServiceModel
                 VirtualHost = virtualHost,
             };
             //----------------------Pre-Assert---------------------------------
-            NUnit.Framework.Assert.AreEqual(nameof(RabbitMQSource), rabbitMqSource.ResourceType);
-            NUnit.Framework.Assert.AreEqual(5672, rabbitMqSource.Port);
-            NUnit.Framework.Assert.AreEqual(Depends.EnableDocker?Depends.RigOpsIP:Depends.SVRDEVIP, rabbitMqSource.HostName);
-            NUnit.Framework.Assert.AreEqual("test", rabbitMqSource.UserName);
-            NUnit.Framework.Assert.AreEqual("test", rabbitMqSource.Password);
-            NUnit.Framework.Assert.AreEqual("/", rabbitMqSource.VirtualHost);
+            Assert.AreEqual(nameof(RabbitMQSource), rabbitMqSource.ResourceType);
+            Assert.AreEqual(5672, rabbitMqSource.Port);
+            Assert.AreEqual(Depends.EnableDocker?Depends.RigOpsIP:Depends.SVRDEVIP, rabbitMqSource.HostName);
+            Assert.AreEqual("test", rabbitMqSource.UserName);
+            Assert.AreEqual("test", rabbitMqSource.Password);
+            Assert.AreEqual("/", rabbitMqSource.VirtualHost);
 
             //-------------------------------Act---------------------------------
             using (var rabbitConnection = rabbitMqSource.NewConnection())
             {
                 //-------------------------------Assert------------------------------
-                NUnit.Framework.Assert.IsTrue(rabbitConnection.IsOpen);
+                Assert.IsTrue(rabbitConnection.IsOpen);
             }
         }
     }

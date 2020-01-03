@@ -36,7 +36,7 @@ namespace Dev2.Data.Tests.PathOperations
             //---------------------------Act------------------------------
             //---------------------------Assert---------------------------
             mockDev2CRUDOperationTO.VerifyAll();
-            NUnit.Framework.Assert.Throws<ArgumentNullException>(() => doCreateDirectory.ExecuteOperation());
+            Assert.Throws<ArgumentNullException>(() => doCreateDirectory.ExecuteOperation());
         }
 
         [Test]
@@ -55,7 +55,7 @@ namespace Dev2.Data.Tests.PathOperations
             //---------------------------Act------------------------------
             var isExecuteOperation = doCreateDirectory.ExecuteOperation();
             //---------------------------Assert---------------------------
-            NUnit.Framework.Assert.IsTrue(isExecuteOperation);
+            Assert.IsTrue(isExecuteOperation);
         }
 
         [Test]
@@ -75,7 +75,7 @@ namespace Dev2.Data.Tests.PathOperations
             //---------------------------Act------------------------------
             var isExecuteOperation = doCreateDirectory.ExecuteOperation();
             //---------------------------Assert---------------------------
-            NUnit.Framework.Assert.IsTrue(isExecuteOperation);
+            Assert.IsTrue(isExecuteOperation);
         }
 
         [Test]
@@ -98,7 +98,7 @@ namespace Dev2.Data.Tests.PathOperations
             var isExecuteOperation = doCreateDirectory.ExecuteOperation();
             //---------------------------Assert---------------------------
             mockDev2CRUDOperationTO.VerifyAll();
-            NUnit.Framework.Assert.IsTrue(isExecuteOperation);
+            Assert.IsTrue(isExecuteOperation);
         }
 
         [Test]
@@ -126,7 +126,7 @@ namespace Dev2.Data.Tests.PathOperations
             mockDirectory.VerifyAll();
             mockActivityIOPath.VerifyAll();
             mockDev2CRUDOperationTO.VerifyAll();
-            NUnit.Framework.Assert.IsTrue(isExecuteOperation);
+            Assert.IsTrue(isExecuteOperation);
         }
 
         [Test]
@@ -151,7 +151,7 @@ namespace Dev2.Data.Tests.PathOperations
             //---------------------------Assert---------------------------
             mockDev2CRUDOperationTO.VerifyAll();
             mockDirectory.VerifyAll();
-            NUnit.Framework.Assert.IsTrue(isExecuteOperation);
+            Assert.IsTrue(isExecuteOperation);
         }
     }
 }

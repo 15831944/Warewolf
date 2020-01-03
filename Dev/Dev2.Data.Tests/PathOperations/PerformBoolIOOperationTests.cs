@@ -34,7 +34,7 @@ namespace Dev2.Data.Tests.PathOperations
             
             //-------------------------Act---------------------------
             //-------------------------Assert------------------------
-            NUnit.Framework.Assert.Throws<NullReferenceException>(() => PerformBoolIOOperation.PathIs(mockActivityIOPath.Object, mockFile.Object, mockDirectory.Object));
+            Assert.Throws<NullReferenceException>(() => PerformBoolIOOperation.PathIs(mockActivityIOPath.Object, mockFile.Object, mockDirectory.Object));
         }
 
         [Test]
@@ -52,7 +52,7 @@ namespace Dev2.Data.Tests.PathOperations
             var pathIs = PerformBoolIOOperation.PathIs(mockActivityIOPath.Object, mockFile.Object, mockDirectory.Object);
             //-------------------------Assert------------------------
             mockActivityIOPath.VerifyAll();
-            NUnit.Framework.Assert.AreEqual(enPathType.Directory, pathIs);
+            Assert.AreEqual(enPathType.Directory, pathIs);
         }
 
         [Test]
@@ -75,7 +75,7 @@ namespace Dev2.Data.Tests.PathOperations
             //-------------------------Assert------------------------
             mockFile.VerifyAll();
             mockActivityIOPath.VerifyAll();
-            NUnit.Framework.Assert.AreEqual(enPathType.File, pathIs);
+            Assert.AreEqual(enPathType.File, pathIs);
         }
 
         [Test]
@@ -97,7 +97,7 @@ namespace Dev2.Data.Tests.PathOperations
             //-------------------------Assert------------------------
             mockDirectory.VerifyAll();
             mockActivityIOPath.VerifyAll();
-            NUnit.Framework.Assert.AreEqual(enPathType.File, pathIs);
+            Assert.AreEqual(enPathType.File, pathIs);
         }
 
         [Test]
@@ -120,7 +120,7 @@ namespace Dev2.Data.Tests.PathOperations
             //-------------------------Assert------------------------
             mockFile.VerifyAll();
             mockActivityIOPath.VerifyAll();
-            NUnit.Framework.Assert.AreEqual(enPathType.Directory, pathIs);
+            Assert.AreEqual(enPathType.Directory, pathIs);
         }
 
         [Test]
@@ -138,7 +138,7 @@ namespace Dev2.Data.Tests.PathOperations
             var pathIs = PerformBoolIOOperation.RequiresOverwrite(mockDev2CRUDOperationTO.Object, mockActivityIOPath.Object, mockDev2LogonProvider.Object);
             //-------------------------Assert------------------------
             mockDev2CRUDOperationTO.VerifyAll();
-            NUnit.Framework.Assert.IsNull(pathIs);
+            Assert.IsNull(pathIs);
         }
 
         [Test]
@@ -156,7 +156,7 @@ namespace Dev2.Data.Tests.PathOperations
             var pathIs = PerformBoolIOOperation.RequiresOverwrite(mockDev2CRUDOperationTO.Object, mockActivityIOPath.Object, mockDev2LogonProvider.Object);
             //-------------------------Assert------------------------
             mockDev2CRUDOperationTO.VerifyAll();
-            NUnit.Framework.Assert.IsNotNull(pathIs);
+            Assert.IsNotNull(pathIs);
         }
 
         [Test]
@@ -175,7 +175,7 @@ namespace Dev2.Data.Tests.PathOperations
             //-------------------------Assert------------------------
             mockFile.VerifyAll();
             mockActivityIOPath.VerifyAll();
-            NUnit.Framework.Assert.IsTrue(fileExist);
+            Assert.IsTrue(fileExist);
         }
 
         [Test]
@@ -194,7 +194,7 @@ namespace Dev2.Data.Tests.PathOperations
             //-------------------------Assert------------------------
             mockDirectory.VerifyAll();
             mockActivityIOPath.VerifyAll();
-            NUnit.Framework.Assert.IsTrue(directoryExist);
+            Assert.IsTrue(directoryExist);
         }
 
     }

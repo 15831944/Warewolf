@@ -330,7 +330,8 @@ namespace Dev2.Tests
             NUnit.Framework.Assert.AreEqual(dataObject.StateNotifier, clonedObject.StateNotifier);
             NUnit.Framework.Assert.AreNotEqual(dataObject.Settings, clonedObject.Settings);
             NUnit.Framework.Assert.AreEqual(dataObject.Settings.KeepLogsForDays, clonedObject.Settings.KeepLogsForDays);
-            NUnit.Framework.Assert.AreNotEqual(dataObject.AuthCache, clonedObject.AuthCache);
+            NUnit.Framework.Assert.AreEqual(0, dataObject.AuthCache.Count);
+            NUnit.Framework.Assert.AreEqual(0, clonedObject.AuthCache.Count);
             NUnit.Framework.Assert.AreEqual(dataObject.ExecutionException, clonedObject.ExecutionException);
         }
 

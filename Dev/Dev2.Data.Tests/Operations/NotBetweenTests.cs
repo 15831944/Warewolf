@@ -31,7 +31,7 @@ namespace Dev2.Data.Tests.Operations
             //------------Execute Test---------------------------
             var result = notBetween.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsFalse(result);
+            Assert.IsFalse(result);
         }
 
         [Test]
@@ -49,7 +49,7 @@ namespace Dev2.Data.Tests.Operations
             //------------Execute Test---------------------------
             var result = notBetween.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(result);
+            Assert.IsTrue(result);
         }
 
         [Test]
@@ -67,7 +67,7 @@ namespace Dev2.Data.Tests.Operations
             //------------Execute Test---------------------------
             var result = notBetween.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(result);
+            Assert.IsTrue(result);
         }
 
         [Test]
@@ -85,7 +85,7 @@ namespace Dev2.Data.Tests.Operations
             //------------Execute Test---------------------------
             var result = notBetween.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsFalse(result);
+            Assert.IsFalse(result);
         }
 
         [Test]
@@ -103,7 +103,7 @@ namespace Dev2.Data.Tests.Operations
             //------------Execute Test---------------------------
             var result = notBetween.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(result);
+            Assert.IsTrue(result);
         }
 
         [Test]
@@ -121,7 +121,7 @@ namespace Dev2.Data.Tests.Operations
             //------------Execute Test---------------------------
             var result = notBetween.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(result);
+            Assert.IsTrue(result);
         }
 
         [Test]
@@ -139,7 +139,7 @@ namespace Dev2.Data.Tests.Operations
             //------------Execute Test---------------------------
             var result = notBetween.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(result);
+            Assert.IsTrue(result);
         }
 
         [Test]
@@ -151,7 +151,7 @@ namespace Dev2.Data.Tests.Operations
             var notBetween = new NotBetween();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(enDecisionType.NotBetween, notBetween.HandlesType());
+            Assert.AreEqual(enDecisionType.NotBetween, notBetween.HandlesType());
         }
     }
 }

@@ -32,7 +32,7 @@ namespace Dev2.Data.Tests.PathOperations.Extention
             var dstEndPoint = ActivityIOFactory.CreateOperationEndPointFromIOPath(mockActivityIOPath.Object);
 
             var endpoint = dstEndPoint.Combine("@");
-            NUnit.Framework.Assert.AreEqual("test\\@", endpoint);
+            Assert.AreEqual("test\\@", endpoint);
         }
 
         [Test]
@@ -48,7 +48,7 @@ namespace Dev2.Data.Tests.PathOperations.Extention
             var dstEndPoint = ActivityIOFactory.CreateOperationEndPointFromIOPath(mockActivityIOPath.Object);
 
             var endpoint = dstEndPoint.Combine("@");
-            NUnit.Framework.Assert.AreEqual("test\\@", endpoint);
+            Assert.AreEqual("test\\@", endpoint);
         }
     }
 }

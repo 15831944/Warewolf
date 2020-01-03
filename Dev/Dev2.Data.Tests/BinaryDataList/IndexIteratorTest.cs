@@ -29,7 +29,7 @@ namespace Dev2.Data.Tests.BinaryDataList
                 cnt++;
             }
 
-            NUnit.Framework.Assert.AreEqual(cnt, 100);
+            Assert.AreEqual(cnt, 100);
         }
 
         [Test]
@@ -50,8 +50,8 @@ namespace Dev2.Data.Tests.BinaryDataList
                 cnt++;
             }
 
-            NUnit.Framework.Assert.AreEqual(cnt, maxValue - gaps.Count);
-            NUnit.Framework.Assert.AreEqual(2, firstIdx);
+            Assert.AreEqual(cnt, maxValue - gaps.Count);
+            Assert.AreEqual(2, firstIdx);
         }
 
         [Test]
@@ -72,8 +72,8 @@ namespace Dev2.Data.Tests.BinaryDataList
                 cnt++;
             }
 
-            NUnit.Framework.Assert.AreEqual(cnt, maxValue - gaps.Count);
-            NUnit.Framework.Assert.AreEqual(2, firstIdx);
+            Assert.AreEqual(cnt, maxValue - gaps.Count);
+            Assert.AreEqual(2, firstIdx);
         }
 
         [Test]
@@ -83,7 +83,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             var ii = new IndexIterator(gaps, 2);
 
 
-            NUnit.Framework.Assert.AreEqual(1,ii.MaxIndex());
+            Assert.AreEqual(1,ii.MaxIndex());
         }
 
 
@@ -96,8 +96,8 @@ namespace Dev2.Data.Tests.BinaryDataList
             var gaps = new HashSet<int>(new List<int> { 2 });
             var ii = new IndexIterator(gaps, 2);
 
-            NUnit.Framework.Assert.AreEqual(1, ii.MaxIndex());
-            NUnit.Framework.Assert.IsFalse(ii.IsEmpty);
+            Assert.AreEqual(1, ii.MaxIndex());
+            Assert.IsFalse(ii.IsEmpty);
         }
 
 
@@ -110,8 +110,8 @@ namespace Dev2.Data.Tests.BinaryDataList
             var gaps = new HashSet<int>(new List<int> { 2,3 });
             var ii = new IndexIterator(gaps, 3);
 
-            NUnit.Framework.Assert.AreEqual(1, ii.MaxIndex());
-            NUnit.Framework.Assert.IsFalse(ii.IsEmpty);
+            Assert.AreEqual(1, ii.MaxIndex());
+            Assert.IsFalse(ii.IsEmpty);
         }
     }
 }

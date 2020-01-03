@@ -32,7 +32,7 @@ namespace Dev2.Data.Tests
             var listOfIndex = new ListOfIndex(indexes);
             //-----------------------Act----------------------------
             //-----------------------Assert-------------------------
-            NUnit.Framework.Assert.AreEqual(4 , listOfIndex.Count());
+            Assert.AreEqual(4 , listOfIndex.Count());
         }
 
         [Test]
@@ -50,7 +50,7 @@ namespace Dev2.Data.Tests
             var listOfIndex = new ListOfIndex(indexes);
             //-----------------------Act----------------------------
             //-----------------------Assert-------------------------
-            NUnit.Framework.Assert.AreEqual(15, listOfIndex.GetMaxIndex());
+            Assert.AreEqual(15, listOfIndex.GetMaxIndex());
         }
 
         [Test]
@@ -71,9 +71,9 @@ namespace Dev2.Data.Tests
                 MinValue = 15
             };
             //-----------------------Assert-------------------------
-            NUnit.Framework.Assert.AreEqual(15, listOfIndex.MinValue);
-            NUnit.Framework.Assert.AreEqual(25, listOfIndex.MaxValue);
-            NUnit.Framework.Assert.AreEqual(4, listOfIndex.Indexes.Count);
+            Assert.AreEqual(15, listOfIndex.MinValue);
+            Assert.AreEqual(25, listOfIndex.MaxValue);
+            Assert.AreEqual(4, listOfIndex.Indexes.Count);
         }
     }
 }

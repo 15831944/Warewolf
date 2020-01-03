@@ -28,7 +28,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //------------Execute Test---------------------------
             var result = isHex.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(result);
+            Assert.IsTrue(result);
         }
 
         [Test]
@@ -43,7 +43,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //------------Execute Test---------------------------
             var result = isHex.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(result);
+            Assert.IsTrue(result);
         }
 
         [Test]
@@ -58,7 +58,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //------------Execute Test---------------------------
             var result = isHex.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsFalse(result);
+            Assert.IsFalse(result);
         }
 
         [Test]
@@ -73,7 +73,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //------------Execute Test---------------------------
             var result = isHex.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsFalse(result);
+            Assert.IsFalse(result);
         }
 
         [Test]
@@ -86,7 +86,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             var isisHex = new IsHex();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(expected, isisHex.HandlesType());
+            Assert.AreEqual(expected, isisHex.HandlesType());
         }
     }
 }

@@ -10,10 +10,7 @@ using Dev2.Studio.Interfaces;
 using NUnit.Framework;
 using TechTalk.SpecFlow;
 using System.Linq;
-using Warewolf.Test.Agent;
-using System.Threading;
 using Dev2.Activities.Specs.Composition;
-using Dev2.Infrastructure.Tests;
 using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Activities.Specs.Deploy

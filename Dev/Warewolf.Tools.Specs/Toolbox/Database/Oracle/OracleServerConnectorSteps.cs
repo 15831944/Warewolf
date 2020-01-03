@@ -22,9 +22,7 @@ using Warewolf.Core;
 using Warewolf.Tools.Specs.Toolbox.Database;
 using Warewolf.Studio.ViewModels;
 using Dev2.Activities.Specs.BaseTypes;
-using Dev2.Infrastructure.Tests;
 using Dev2.Studio.Core;
-using Dev2.Studio.Core.Models;
 using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Activities.Specs.Toolbox.Resources

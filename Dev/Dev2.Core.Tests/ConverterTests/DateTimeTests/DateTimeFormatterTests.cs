@@ -19,10 +19,7 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
     [TestFixture]
     public class DateTimeFormatterTests
     {
-
         static IDateTimeFormatter _formatter;
-
-        public TestContext TestContext { get; set; }
 
         [SetUp]
         public void PreConditions()
@@ -35,35 +32,17 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
         }
 
         #region Additional test attributes
-        //
-        // You can use the following additional attributes as you write your tests:
-        //
-        // Use ClassInitialize to run code before running the first test in the class
+        
         [OneTimeSetUp]
-        public static void MyClassInitialize(TestContext testContext)
+        public static void MyClassInitialize()
         {
             _formatter = DateTimeConverterFactory.CreateFormatter();
         }
-
-        // Use ClassCleanup to run code after all tests in a class have run
-        // [ClassCleanup()]
-        // public static void MyClassCleanup() { }
-        //
-        // Use TestInitialize to run code before running each test 
-        // [TestInitialize()]
-        // public void MyTestInitialize() { }
-        //
-        // Use TestCleanup to run code after each test has run
-        // [TestCleanup()]
-        // public void MyTestCleanup() { }
-        //
+        
         #endregion
 
         #region Format Tests
 
-        /// <summary>
-        /// Tests that the formatter can correctly read input format and return a correctly formatted output
-        /// </summary>
         [Test]
         public void FormatAllArgsValid_Expected_ResultFormattedAccordingToOutputFormat()
         {
@@ -78,9 +57,6 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             Assert.AreEqual(expected, result);
         }
 
-        /// <summary>
-        /// Tests that the formatter can accept and return formats with Timezone values
-        /// </summary>
         [Test]
         public void FormatAllArgsValid_WithTimeZone_Expected_ResultContainsFullTimezoneName()
         {
@@ -95,9 +71,6 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             Assert.AreEqual(expected, result);
         }
 
-        /// <summary>
-        /// Tests that the formatter correctly fails to retrieve the correct input given an invalid input format
-        /// </summary>
         [Test]
         public void FormatInputFormatInvalid_Expected_UnableToParseInvalidInputFormat()
         {
@@ -118,10 +91,6 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             }
         }
 
-        //2012.09.27: massimo.guerrera - Added for the new functionality for the time modification
-        /// <summary>
-        /// Tests that invalid modifiers are not used to modify date
-        /// </summary>
         [Test]
         public void FormatTimeModifierTypeInvalid_Expected_DateNotModified()
         {
@@ -164,9 +133,6 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             Assert.AreEqual("2011/10/14", result);
         }
 
-        /// <summary>
-        /// Tests that non-matching input to format does not return any date time format
-        /// </summary>
         [Test]
         public void FormatDateTimeInvalid_Expected_ErrorMessageReturnedByFormatter()
         {
@@ -187,9 +153,6 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             }
         }
 
-        /// <summary>
-        /// Tests that null datetime values are correctly handled by the Formatter
-        /// </summary>
         [Test]
         public void FormatDateTimeNULLorEmpty_Expected_ErrorMessageReturnedByFormatter()
         {
@@ -210,9 +173,6 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             }
         }
 
-        /// <summary>
-        /// Tests that modifier that is empty does not modify date in any way
-        /// </summary>
         [Test]
         public void FormatTimeModifierTypeNULLorEmpty_Expected_SameDateReturned()
         {
@@ -228,11 +188,6 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             Assert.AreEqual(expected, result);
         }       
         
-         
-
-        /// <summary>
-        /// Tests that if the output format is empty, the formatter returns an error regarding this
-        /// </summary>
         [Test]
         public void FormatOutputFormatNULLorEmpty_Expected_NoOutputFormattingPerformed()
         {
@@ -248,9 +203,6 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             Assert.AreEqual(expected, result);
         }
 
-        /// <summary>
-        /// Tests that if there is an empty output format specified, the input format is used
-        /// </summary>
         [Test]
         public void FormatInputFormatNULLorEmpty_Expected_DateValueAssumesInputFormat()
         {
@@ -266,10 +218,6 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             Assert.AreEqual(expected, result);
         }
 
-        //27.09.2012: massimo.guerrera - Added after bug was found
-        /// <summary>
-        /// Tests that the formatter is able to apply a week when it is not given one
-        /// </summary>
         [Test]
         public void TryFormat_Converting_Date_To_Week_Expected_WeekofTheSpecifiedDataReturned()
         {
@@ -282,10 +230,6 @@ namespace Dev2.Tests.ConverterTests.DateTimeTests
             Assert.IsTrue(result == "2");
         }
 
-        //27.09.2012: massimo.guerrera - Added after bug was found
-        /// <summary>
-        /// Tests that the formatter is able to apply a week when it is not given one
-        /// </summary>
         [Test]
         public void TryFormat_Converting_Date_To_ww_Expected_WeekReturnedInDoubleDigitFormat()
         {

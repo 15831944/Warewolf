@@ -1,5 +1,4 @@
-﻿using System;
-using TechTalk.SpecFlow;
+﻿using TechTalk.SpecFlow;
 
 namespace Warewolf.Tools.Specs.Toolbox.Utility.Redis.Source
 {

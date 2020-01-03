@@ -16,7 +16,7 @@ namespace Dev2.Data.Tests.Operations
             //------------Execute Test---------------------------
             var fetchDecisionFunction = decisionFactory.FetchDecisionFunction(decisionType);             
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(decisionType, fetchDecisionFunction.HandlesType());
+            Assert.AreEqual(decisionType, fetchDecisionFunction.HandlesType());
         }
         [Test]
         [Author("Sanele Mthmembu")]        
@@ -25,7 +25,7 @@ namespace Dev2.Data.Tests.Operations
             //------------Setup for test--------------------------
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsNotNull(Dev2DecisionFactory.Instance());            
+            Assert.IsNotNull(Dev2DecisionFactory.Instance());            
         }
     }
 }

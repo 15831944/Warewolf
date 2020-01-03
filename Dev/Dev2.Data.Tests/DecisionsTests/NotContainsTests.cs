@@ -33,7 +33,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             var result = notStartsWith.Invoke(cols);
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsFalse(result);
+            Assert.IsFalse(result);
         }
 
         [Test]
@@ -52,7 +52,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             var result = notStartsWith.Invoke(cols);
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(result);
+            Assert.IsTrue(result);
 
         }
 
@@ -67,7 +67,7 @@ namespace Dev2.Data.Tests.DecisionsTests
             var notContains = new NotContains();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(decisionType, notContains.HandlesType());
+            Assert.AreEqual(decisionType, notContains.HandlesType());
         }
     }
 }

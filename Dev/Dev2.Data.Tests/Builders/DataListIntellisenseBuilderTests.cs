@@ -30,10 +30,10 @@ namespace Dev2.Data.Tests.Builders
 
             var result = builder.Generate();
 
-            NUnit.Framework.Assert.IsNotNull(builder.FilterTO);
+            Assert.IsNotNull(builder.FilterTO);
 
-            NUnit.Framework.Assert.AreEqual(0, result.Count);
-            NUnit.Framework.Assert.AreEqual(false, result.IsReadOnly);
+            Assert.AreEqual(0, result.Count);
+            Assert.AreEqual(false, result.IsReadOnly);
         }
 
         [Test]
@@ -45,10 +45,10 @@ namespace Dev2.Data.Tests.Builders
             builder.DataList = "<asdf";
             var result = builder.Generate();
 
-            NUnit.Framework.Assert.IsNotNull(builder.FilterTO);
+            Assert.IsNotNull(builder.FilterTO);
 
-            NUnit.Framework.Assert.AreEqual(0, result.Count);
-            NUnit.Framework.Assert.AreEqual(false, result.IsReadOnly);
+            Assert.AreEqual(0, result.Count);
+            Assert.AreEqual(false, result.IsReadOnly);
         }
 
         [Test]
@@ -63,22 +63,22 @@ namespace Dev2.Data.Tests.Builders
 
             var result = builder.Generate();
 
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
-            NUnit.Framework.Assert.AreEqual("", result[0].Description);
-            NUnit.Framework.Assert.AreEqual("scalar1", result[0].Name);
-            NUnit.Framework.Assert.IsNull(result[0].Children);
+            Assert.AreEqual(2, result.Count);
+            Assert.AreEqual("", result[0].Description);
+            Assert.AreEqual("scalar1", result[0].Name);
+            Assert.IsNull(result[0].Children);
 
-            NUnit.Framework.Assert.AreEqual("", result[1].Description);
-            NUnit.Framework.Assert.AreEqual("rs", result[1].Name);
-            NUnit.Framework.Assert.AreEqual(2, result[1].Children.Count);
+            Assert.AreEqual("", result[1].Description);
+            Assert.AreEqual("rs", result[1].Name);
+            Assert.AreEqual(2, result[1].Children.Count);
 
-            NUnit.Framework.Assert.AreEqual("", result[1].Children[0].Description);
-            NUnit.Framework.Assert.AreEqual("f1", result[1].Children[0].Name);
-            NUnit.Framework.Assert.IsNull(result[1].Children[0].Children);
+            Assert.AreEqual("", result[1].Children[0].Description);
+            Assert.AreEqual("f1", result[1].Children[0].Name);
+            Assert.IsNull(result[1].Children[0].Children);
 
-            NUnit.Framework.Assert.AreEqual("", result[1].Children[1].Description);
-            NUnit.Framework.Assert.AreEqual("f2", result[1].Children[1].Name);
-            NUnit.Framework.Assert.IsNull(result[1].Children[1].Children);
+            Assert.AreEqual("", result[1].Children[1].Description);
+            Assert.AreEqual("f2", result[1].Children[1].Name);
+            Assert.IsNull(result[1].Children[1].Children);
         }
 
         [Test]
@@ -98,10 +98,10 @@ namespace Dev2.Data.Tests.Builders
 
             var result = builder.Generate();
 
-            NUnit.Framework.Assert.AreEqual(1, result.Count);
-            NUnit.Framework.Assert.AreEqual("scalar desc", result[0].Description);
-            NUnit.Framework.Assert.AreEqual("scalar1", result[0].Name);
-            NUnit.Framework.Assert.IsNull(result[0].Children);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual("scalar desc", result[0].Description);
+            Assert.AreEqual("scalar1", result[0].Name);
+            Assert.IsNull(result[0].Children);
         }
 
         [Test]
@@ -121,11 +121,11 @@ namespace Dev2.Data.Tests.Builders
 
             var result = builder.Generate();
 
-            NUnit.Framework.Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(1, result.Count);
 
-            NUnit.Framework.Assert.AreEqual("", result[0].Description);
-            NUnit.Framework.Assert.AreEqual("rs()", result[0].Name);
-            NUnit.Framework.Assert.IsNull(result[0].Children);
+            Assert.AreEqual("", result[0].Description);
+            Assert.AreEqual("rs()", result[0].Name);
+            Assert.IsNull(result[0].Children);
         }
 
         [Test]
@@ -145,19 +145,19 @@ namespace Dev2.Data.Tests.Builders
 
             var result = builder.Generate();
 
-            NUnit.Framework.Assert.AreEqual(1, result.Count);
+            Assert.AreEqual(1, result.Count);
 
-            NUnit.Framework.Assert.AreEqual("", result[0].Description);
-            NUnit.Framework.Assert.AreEqual("rs", result[0].Name);
-            NUnit.Framework.Assert.AreEqual(2, result[0].Children.Count);
+            Assert.AreEqual("", result[0].Description);
+            Assert.AreEqual("rs", result[0].Name);
+            Assert.AreEqual(2, result[0].Children.Count);
 
-            NUnit.Framework.Assert.AreEqual("", result[0].Children[0].Description);
-            NUnit.Framework.Assert.AreEqual("f1", result[0].Children[0].Name);
-            NUnit.Framework.Assert.IsNull(result[0].Children[0].Children);
+            Assert.AreEqual("", result[0].Children[0].Description);
+            Assert.AreEqual("f1", result[0].Children[0].Name);
+            Assert.IsNull(result[0].Children[0].Children);
 
-            NUnit.Framework.Assert.AreEqual("", result[0].Children[1].Description);
-            NUnit.Framework.Assert.AreEqual("f2", result[0].Children[1].Name);
-            NUnit.Framework.Assert.IsNull(result[0].Children[1].Children);
+            Assert.AreEqual("", result[0].Children[1].Description);
+            Assert.AreEqual("f2", result[0].Children[1].Name);
+            Assert.IsNull(result[0].Children[1].Children);
         }
 
 
@@ -171,9 +171,9 @@ namespace Dev2.Data.Tests.Builders
                 DataList = string.Format("<DataList><Person Description=\"\" IsEditable=\"{0}\" ColumnIODirection=\"{1}\" ><Name Description=\"\" IsEditable=\"{0}\" ColumnIODirection=\"{1}\" /></Person></DataList>", True, None)
             };
             var result = intellisenseBuilder.Generate();
-            NUnit.Framework.Assert.IsNotNull(result);
-            NUnit.Framework.Assert.AreEqual("Person", result[0].Name);
-            NUnit.Framework.Assert.AreEqual(1, result[0].Children.Count);
+            Assert.IsNotNull(result);
+            Assert.AreEqual("Person", result[0].Name);
+            Assert.AreEqual(1, result[0].Children.Count);
         }
 
         [Test]
@@ -190,9 +190,9 @@ namespace Dev2.Data.Tests.Builders
                 }
             };
             var result = intellisenseBuilder.Generate();
-            NUnit.Framework.Assert.IsNotNull(result);
-            NUnit.Framework.Assert.AreEqual("Person()", result[0].Name);
-            NUnit.Framework.Assert.IsNull(result[0].Children);
+            Assert.IsNotNull(result);
+            Assert.AreEqual("Person()", result[0].Name);
+            Assert.IsNull(result[0].Children);
         }
 
         [Test]
@@ -209,9 +209,9 @@ namespace Dev2.Data.Tests.Builders
                 }
             };
             var result = intellisenseBuilder.Generate();
-            NUnit.Framework.Assert.IsNotNull(result);
-            NUnit.Framework.Assert.AreEqual("Person", result[0].Name);
-            NUnit.Framework.Assert.AreEqual(1, result[0].Children.Count);
+            Assert.IsNotNull(result);
+            Assert.AreEqual("Person", result[0].Name);
+            Assert.AreEqual(1, result[0].Children.Count);
         }
     }
 }

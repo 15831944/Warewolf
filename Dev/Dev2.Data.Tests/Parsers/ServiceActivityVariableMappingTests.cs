@@ -30,7 +30,7 @@ namespace Dev2.Data.Tests.Parsers
             var mappingDefinition = string.Empty;
 
             var result = languageParser.Parse(mappingDefinition);
-            NUnit.Framework.Assert.AreEqual(0, result.Count);
+            Assert.AreEqual(0, result.Count);
         }
 
         [Test]
@@ -47,7 +47,7 @@ namespace Dev2.Data.Tests.Parsers
             const string mappingDefinition = @"<DataList></DataList>";
 
             var result = languageParser.Parse(mappingDefinition);
-            NUnit.Framework.Assert.AreEqual(0, result.Count);
+            Assert.AreEqual(0, result.Count);
         }
 
         [Test]
@@ -64,7 +64,7 @@ namespace Dev2.Data.Tests.Parsers
             const string mappingDefinition = @"<Inputs><Input Name=""Name"" Source="""" IsObject=""False"" /></Inputs>";
 
             var result = languageParser.Parse(mappingDefinition);
-            NUnit.Framework.Assert.AreEqual(0, result.Count);
+            Assert.AreEqual(0, result.Count);
         }
 
         [Test]
@@ -81,20 +81,20 @@ namespace Dev2.Data.Tests.Parsers
             const string mappingDefinition = @"<Outputs><Output Name=""Message"" MapsTo="""" Value="""" IsObject=""False"" /></Outputs>";
 
             var result = languageParser.Parse(mappingDefinition);
-            NUnit.Framework.Assert.AreEqual(1, result.Count);
-            NUnit.Framework.Assert.AreEqual("", result[0].DefaultValue);
-            NUnit.Framework.Assert.IsFalse(result[0].EmptyToNull);
-            NUnit.Framework.Assert.IsFalse(result[0].IsEvaluated);
-            NUnit.Framework.Assert.IsFalse(result[0].IsJsonArray);
-            NUnit.Framework.Assert.IsFalse(result[0].IsObject);
-            NUnit.Framework.Assert.IsFalse(result[0].IsRecordSet);
-            NUnit.Framework.Assert.IsFalse(result[0].IsRequired);
-            NUnit.Framework.Assert.IsFalse(result[0].IsTextResponse);
-            NUnit.Framework.Assert.AreEqual("", result[0].MapsTo);
-            NUnit.Framework.Assert.AreEqual("Message", result[0].Name);
-            NUnit.Framework.Assert.AreEqual("", result[0].RawValue);
-            NUnit.Framework.Assert.AreEqual("", result[0].RecordSetName);
-            NUnit.Framework.Assert.AreEqual("", result[0].Value);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual("", result[0].DefaultValue);
+            Assert.IsFalse(result[0].EmptyToNull);
+            Assert.IsFalse(result[0].IsEvaluated);
+            Assert.IsFalse(result[0].IsJsonArray);
+            Assert.IsFalse(result[0].IsObject);
+            Assert.IsFalse(result[0].IsRecordSet);
+            Assert.IsFalse(result[0].IsRequired);
+            Assert.IsFalse(result[0].IsTextResponse);
+            Assert.AreEqual("", result[0].MapsTo);
+            Assert.AreEqual("Message", result[0].Name);
+            Assert.AreEqual("", result[0].RawValue);
+            Assert.AreEqual("", result[0].RecordSetName);
+            Assert.AreEqual("", result[0].Value);
         }
 
         [Test]
@@ -111,20 +111,20 @@ namespace Dev2.Data.Tests.Parsers
             const string mappingDefinition = @"<Outputs><Output Name=""[[Message]]"" MapsTo="""" Value=""world"" IsObject=""False"" /></Outputs>";
 
             var result = languageParser.Parse(mappingDefinition);
-            NUnit.Framework.Assert.AreEqual(1, result.Count);
-            NUnit.Framework.Assert.AreEqual("", result[0].DefaultValue);
-            NUnit.Framework.Assert.IsFalse(result[0].EmptyToNull);
-            NUnit.Framework.Assert.IsTrue(result[0].IsEvaluated);
-            NUnit.Framework.Assert.IsFalse(result[0].IsJsonArray);
-            NUnit.Framework.Assert.IsFalse(result[0].IsObject);
-            NUnit.Framework.Assert.IsFalse(result[0].IsRecordSet);
-            NUnit.Framework.Assert.IsFalse(result[0].IsRequired);
-            NUnit.Framework.Assert.IsFalse(result[0].IsTextResponse);
-            NUnit.Framework.Assert.AreEqual("Message", result[0].MapsTo);
-            NUnit.Framework.Assert.AreEqual("[[Message]]", result[0].Name);
-            NUnit.Framework.Assert.AreEqual("world", result[0].RawValue);
-            NUnit.Framework.Assert.AreEqual("", result[0].RecordSetName);
-            NUnit.Framework.Assert.AreEqual("world", result[0].Value);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual("", result[0].DefaultValue);
+            Assert.IsFalse(result[0].EmptyToNull);
+            Assert.IsTrue(result[0].IsEvaluated);
+            Assert.IsFalse(result[0].IsJsonArray);
+            Assert.IsFalse(result[0].IsObject);
+            Assert.IsFalse(result[0].IsRecordSet);
+            Assert.IsFalse(result[0].IsRequired);
+            Assert.IsFalse(result[0].IsTextResponse);
+            Assert.AreEqual("Message", result[0].MapsTo);
+            Assert.AreEqual("[[Message]]", result[0].Name);
+            Assert.AreEqual("world", result[0].RawValue);
+            Assert.AreEqual("", result[0].RecordSetName);
+            Assert.AreEqual("world", result[0].Value);
         }
 
         [Test]
@@ -141,20 +141,20 @@ namespace Dev2.Data.Tests.Parsers
             const string mappingDefinition = @"<Outputs><Output Name=""[[Message]]"" MapsTo="""" Value=""[[world]]"" IsObject=""False"" /></Outputs>";
 
             var result = languageParser.Parse(mappingDefinition);
-            NUnit.Framework.Assert.AreEqual(1, result.Count);
-            NUnit.Framework.Assert.AreEqual("", result[0].DefaultValue);
-            NUnit.Framework.Assert.IsFalse(result[0].EmptyToNull);
-            NUnit.Framework.Assert.IsTrue(result[0].IsEvaluated);
-            NUnit.Framework.Assert.IsFalse(result[0].IsJsonArray);
-            NUnit.Framework.Assert.IsFalse(result[0].IsObject);
-            NUnit.Framework.Assert.IsFalse(result[0].IsRecordSet);
-            NUnit.Framework.Assert.IsFalse(result[0].IsRequired);
-            NUnit.Framework.Assert.IsFalse(result[0].IsTextResponse);
-            NUnit.Framework.Assert.AreEqual("Message", result[0].MapsTo);
-            NUnit.Framework.Assert.AreEqual("[[Message]]", result[0].Name);
-            NUnit.Framework.Assert.AreEqual("[[world]]", result[0].RawValue);
-            NUnit.Framework.Assert.AreEqual("", result[0].RecordSetName);
-            NUnit.Framework.Assert.AreEqual("world", result[0].Value);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual("", result[0].DefaultValue);
+            Assert.IsFalse(result[0].EmptyToNull);
+            Assert.IsTrue(result[0].IsEvaluated);
+            Assert.IsFalse(result[0].IsJsonArray);
+            Assert.IsFalse(result[0].IsObject);
+            Assert.IsFalse(result[0].IsRecordSet);
+            Assert.IsFalse(result[0].IsRequired);
+            Assert.IsFalse(result[0].IsTextResponse);
+            Assert.AreEqual("Message", result[0].MapsTo);
+            Assert.AreEqual("[[Message]]", result[0].Name);
+            Assert.AreEqual("[[world]]", result[0].RawValue);
+            Assert.AreEqual("", result[0].RecordSetName);
+            Assert.AreEqual("world", result[0].Value);
         }
 
         [Test]
@@ -171,20 +171,20 @@ namespace Dev2.Data.Tests.Parsers
             const string mappingDefinition = @"<Outputs><Output Name=""[[Message]]"" MapsTo=""[[NewMessage]]"" Value=""[[world]]"" IsObject=""False"" /></Outputs>";
 
             var result = languageParser.Parse(mappingDefinition);
-            NUnit.Framework.Assert.AreEqual(1, result.Count);
-            NUnit.Framework.Assert.AreEqual("", result[0].DefaultValue);
-            NUnit.Framework.Assert.IsFalse(result[0].EmptyToNull);
-            NUnit.Framework.Assert.IsTrue(result[0].IsEvaluated);
-            NUnit.Framework.Assert.IsFalse(result[0].IsJsonArray);
-            NUnit.Framework.Assert.IsFalse(result[0].IsObject);
-            NUnit.Framework.Assert.IsFalse(result[0].IsRecordSet);
-            NUnit.Framework.Assert.IsFalse(result[0].IsRequired);
-            NUnit.Framework.Assert.IsFalse(result[0].IsTextResponse);
-            NUnit.Framework.Assert.AreEqual("NewMessage", result[0].MapsTo);
-            NUnit.Framework.Assert.AreEqual("[[Message]]", result[0].Name);
-            NUnit.Framework.Assert.AreEqual("[[NewMessage]]", result[0].RawValue);
-            NUnit.Framework.Assert.AreEqual("", result[0].RecordSetName);
-            NUnit.Framework.Assert.AreEqual("NewMessage", result[0].Value);
+            Assert.AreEqual(1, result.Count);
+            Assert.AreEqual("", result[0].DefaultValue);
+            Assert.IsFalse(result[0].EmptyToNull);
+            Assert.IsTrue(result[0].IsEvaluated);
+            Assert.IsFalse(result[0].IsJsonArray);
+            Assert.IsFalse(result[0].IsObject);
+            Assert.IsFalse(result[0].IsRecordSet);
+            Assert.IsFalse(result[0].IsRequired);
+            Assert.IsFalse(result[0].IsTextResponse);
+            Assert.AreEqual("NewMessage", result[0].MapsTo);
+            Assert.AreEqual("[[Message]]", result[0].Name);
+            Assert.AreEqual("[[NewMessage]]", result[0].RawValue);
+            Assert.AreEqual("", result[0].RecordSetName);
+            Assert.AreEqual("NewMessage", result[0].Value);
         }
 
         [Test]
@@ -201,35 +201,35 @@ namespace Dev2.Data.Tests.Parsers
             const string mappingDefinition = @"<Inputs><Input Name=""a"" Source="""" IsObject=""False"" Recordset=""rec"" /><Input Name=""b"" Source="""" IsObject=""False"" Recordset=""rec"" /></Inputs>";
 
             var result = languageParser.Parse(mappingDefinition);
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
+            Assert.AreEqual(2, result.Count);
 
-            NUnit.Framework.Assert.AreEqual("", result[0].DefaultValue);
-            NUnit.Framework.Assert.IsFalse(result[0].EmptyToNull);
-            NUnit.Framework.Assert.IsFalse(result[0].IsEvaluated);
-            NUnit.Framework.Assert.IsFalse(result[0].IsJsonArray);
-            NUnit.Framework.Assert.IsFalse(result[0].IsObject);
-            NUnit.Framework.Assert.IsTrue(result[0].IsRecordSet);
-            NUnit.Framework.Assert.IsFalse(result[0].IsRequired);
-            NUnit.Framework.Assert.IsFalse(result[0].IsTextResponse);
-            NUnit.Framework.Assert.AreEqual("", result[0].MapsTo);
-            NUnit.Framework.Assert.AreEqual("a", result[0].Name);
-            NUnit.Framework.Assert.AreEqual("", result[0].RawValue);
-            NUnit.Framework.Assert.AreEqual("rec", result[0].RecordSetName);
-            NUnit.Framework.Assert.AreEqual("", result[0].Value);
+            Assert.AreEqual("", result[0].DefaultValue);
+            Assert.IsFalse(result[0].EmptyToNull);
+            Assert.IsFalse(result[0].IsEvaluated);
+            Assert.IsFalse(result[0].IsJsonArray);
+            Assert.IsFalse(result[0].IsObject);
+            Assert.IsTrue(result[0].IsRecordSet);
+            Assert.IsFalse(result[0].IsRequired);
+            Assert.IsFalse(result[0].IsTextResponse);
+            Assert.AreEqual("", result[0].MapsTo);
+            Assert.AreEqual("a", result[0].Name);
+            Assert.AreEqual("", result[0].RawValue);
+            Assert.AreEqual("rec", result[0].RecordSetName);
+            Assert.AreEqual("", result[0].Value);
 
-            NUnit.Framework.Assert.AreEqual("", result[1].DefaultValue);
-            NUnit.Framework.Assert.IsFalse(result[1].EmptyToNull);
-            NUnit.Framework.Assert.IsFalse(result[1].IsEvaluated);
-            NUnit.Framework.Assert.IsFalse(result[1].IsJsonArray);
-            NUnit.Framework.Assert.IsFalse(result[1].IsObject);
-            NUnit.Framework.Assert.IsTrue(result[1].IsRecordSet);
-            NUnit.Framework.Assert.IsFalse(result[1].IsRequired);
-            NUnit.Framework.Assert.IsFalse(result[1].IsTextResponse);
-            NUnit.Framework.Assert.AreEqual("", result[1].MapsTo);
-            NUnit.Framework.Assert.AreEqual("b", result[1].Name);
-            NUnit.Framework.Assert.AreEqual("", result[1].RawValue);
-            NUnit.Framework.Assert.AreEqual("rec", result[1].RecordSetName);
-            NUnit.Framework.Assert.AreEqual("", result[1].Value);
+            Assert.AreEqual("", result[1].DefaultValue);
+            Assert.IsFalse(result[1].EmptyToNull);
+            Assert.IsFalse(result[1].IsEvaluated);
+            Assert.IsFalse(result[1].IsJsonArray);
+            Assert.IsFalse(result[1].IsObject);
+            Assert.IsTrue(result[1].IsRecordSet);
+            Assert.IsFalse(result[1].IsRequired);
+            Assert.IsFalse(result[1].IsTextResponse);
+            Assert.AreEqual("", result[1].MapsTo);
+            Assert.AreEqual("b", result[1].Name);
+            Assert.AreEqual("", result[1].RawValue);
+            Assert.AreEqual("rec", result[1].RecordSetName);
+            Assert.AreEqual("", result[1].Value);
         }
 
         [Test]
@@ -247,35 +247,35 @@ namespace Dev2.Data.Tests.Parsers
 
             var result = languageParser.Parse(mappingDefinition);
 
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
+            Assert.AreEqual(2, result.Count);
 
-            NUnit.Framework.Assert.AreEqual("", result[0].DefaultValue);
-            NUnit.Framework.Assert.IsFalse(result[0].EmptyToNull);
-            NUnit.Framework.Assert.IsFalse(result[0].IsEvaluated);
-            NUnit.Framework.Assert.IsFalse(result[0].IsJsonArray);
-            NUnit.Framework.Assert.IsFalse(result[0].IsObject);
-            NUnit.Framework.Assert.IsTrue(result[0].IsRecordSet);
-            NUnit.Framework.Assert.IsFalse(result[0].IsRequired);
-            NUnit.Framework.Assert.IsFalse(result[0].IsTextResponse);
-            NUnit.Framework.Assert.AreEqual("a", result[0].MapsTo);
-            NUnit.Framework.Assert.AreEqual("a", result[0].Name);
-            NUnit.Framework.Assert.AreEqual("1", result[0].RawValue);
-            NUnit.Framework.Assert.AreEqual("rec", result[0].RecordSetName);
-            NUnit.Framework.Assert.AreEqual("1", result[0].Value);
+            Assert.AreEqual("", result[0].DefaultValue);
+            Assert.IsFalse(result[0].EmptyToNull);
+            Assert.IsFalse(result[0].IsEvaluated);
+            Assert.IsFalse(result[0].IsJsonArray);
+            Assert.IsFalse(result[0].IsObject);
+            Assert.IsTrue(result[0].IsRecordSet);
+            Assert.IsFalse(result[0].IsRequired);
+            Assert.IsFalse(result[0].IsTextResponse);
+            Assert.AreEqual("a", result[0].MapsTo);
+            Assert.AreEqual("a", result[0].Name);
+            Assert.AreEqual("1", result[0].RawValue);
+            Assert.AreEqual("rec", result[0].RecordSetName);
+            Assert.AreEqual("1", result[0].Value);
 
-            NUnit.Framework.Assert.AreEqual("", result[1].DefaultValue);
-            NUnit.Framework.Assert.IsFalse(result[1].EmptyToNull);
-            NUnit.Framework.Assert.IsFalse(result[1].IsEvaluated);
-            NUnit.Framework.Assert.IsFalse(result[1].IsJsonArray);
-            NUnit.Framework.Assert.IsFalse(result[1].IsObject);
-            NUnit.Framework.Assert.IsTrue(result[1].IsRecordSet);
-            NUnit.Framework.Assert.IsFalse(result[1].IsRequired);
-            NUnit.Framework.Assert.IsFalse(result[1].IsTextResponse);
-            NUnit.Framework.Assert.AreEqual("b", result[1].MapsTo);
-            NUnit.Framework.Assert.AreEqual("b", result[1].Name);
-            NUnit.Framework.Assert.AreEqual("2", result[1].RawValue);
-            NUnit.Framework.Assert.AreEqual("rec", result[1].RecordSetName);
-            NUnit.Framework.Assert.AreEqual("2", result[1].Value);
+            Assert.AreEqual("", result[1].DefaultValue);
+            Assert.IsFalse(result[1].EmptyToNull);
+            Assert.IsFalse(result[1].IsEvaluated);
+            Assert.IsFalse(result[1].IsJsonArray);
+            Assert.IsFalse(result[1].IsObject);
+            Assert.IsTrue(result[1].IsRecordSet);
+            Assert.IsFalse(result[1].IsRequired);
+            Assert.IsFalse(result[1].IsTextResponse);
+            Assert.AreEqual("b", result[1].MapsTo);
+            Assert.AreEqual("b", result[1].Name);
+            Assert.AreEqual("2", result[1].RawValue);
+            Assert.AreEqual("rec", result[1].RecordSetName);
+            Assert.AreEqual("2", result[1].Value);
         }
 
         [Test]
@@ -293,7 +293,7 @@ namespace Dev2.Data.Tests.Parsers
 
             var result = languageParser.Parse(mappingDefinition);
 
-            NUnit.Framework.Assert.AreEqual(0, result.Count);
+            Assert.AreEqual(0, result.Count);
         }
 
         [Test]
@@ -311,35 +311,35 @@ namespace Dev2.Data.Tests.Parsers
 
             var result = languageParser.Parse(mappingDefinition);
 
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
+            Assert.AreEqual(2, result.Count);
 
-            NUnit.Framework.Assert.AreEqual("", result[0].DefaultValue);
-            NUnit.Framework.Assert.IsFalse(result[0].EmptyToNull);
-            NUnit.Framework.Assert.IsFalse(result[0].IsEvaluated);
-            NUnit.Framework.Assert.IsFalse(result[0].IsJsonArray);
-            NUnit.Framework.Assert.IsFalse(result[0].IsObject);
-            NUnit.Framework.Assert.IsTrue(result[0].IsRecordSet);
-            NUnit.Framework.Assert.IsFalse(result[0].IsRequired);
-            NUnit.Framework.Assert.IsFalse(result[0].IsTextResponse);
-            NUnit.Framework.Assert.AreEqual("a", result[0].MapsTo);
-            NUnit.Framework.Assert.AreEqual("a", result[0].Name);
-            NUnit.Framework.Assert.AreEqual("1", result[0].RawValue);
-            NUnit.Framework.Assert.AreEqual("rec", result[0].RecordSetName);
-            NUnit.Framework.Assert.AreEqual("1", result[0].Value);
+            Assert.AreEqual("", result[0].DefaultValue);
+            Assert.IsFalse(result[0].EmptyToNull);
+            Assert.IsFalse(result[0].IsEvaluated);
+            Assert.IsFalse(result[0].IsJsonArray);
+            Assert.IsFalse(result[0].IsObject);
+            Assert.IsTrue(result[0].IsRecordSet);
+            Assert.IsFalse(result[0].IsRequired);
+            Assert.IsFalse(result[0].IsTextResponse);
+            Assert.AreEqual("a", result[0].MapsTo);
+            Assert.AreEqual("a", result[0].Name);
+            Assert.AreEqual("1", result[0].RawValue);
+            Assert.AreEqual("rec", result[0].RecordSetName);
+            Assert.AreEqual("1", result[0].Value);
 
-            NUnit.Framework.Assert.AreEqual("", result[1].DefaultValue);
-            NUnit.Framework.Assert.IsFalse(result[1].EmptyToNull);
-            NUnit.Framework.Assert.IsFalse(result[1].IsEvaluated);
-            NUnit.Framework.Assert.IsFalse(result[1].IsJsonArray);
-            NUnit.Framework.Assert.IsFalse(result[1].IsObject);
-            NUnit.Framework.Assert.IsTrue(result[1].IsRecordSet);
-            NUnit.Framework.Assert.IsTrue(result[1].IsRequired);
-            NUnit.Framework.Assert.IsFalse(result[1].IsTextResponse);
-            NUnit.Framework.Assert.AreEqual("b", result[1].MapsTo);
-            NUnit.Framework.Assert.AreEqual("b", result[1].Name);
-            NUnit.Framework.Assert.AreEqual("2", result[1].RawValue);
-            NUnit.Framework.Assert.AreEqual("rec", result[1].RecordSetName);
-            NUnit.Framework.Assert.AreEqual("2", result[1].Value);
+            Assert.AreEqual("", result[1].DefaultValue);
+            Assert.IsFalse(result[1].EmptyToNull);
+            Assert.IsFalse(result[1].IsEvaluated);
+            Assert.IsFalse(result[1].IsJsonArray);
+            Assert.IsFalse(result[1].IsObject);
+            Assert.IsTrue(result[1].IsRecordSet);
+            Assert.IsTrue(result[1].IsRequired);
+            Assert.IsFalse(result[1].IsTextResponse);
+            Assert.AreEqual("b", result[1].MapsTo);
+            Assert.AreEqual("b", result[1].Name);
+            Assert.AreEqual("2", result[1].RawValue);
+            Assert.AreEqual("rec", result[1].RecordSetName);
+            Assert.AreEqual("2", result[1].Value);
         }
     }
 

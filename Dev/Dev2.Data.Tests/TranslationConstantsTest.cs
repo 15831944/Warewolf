@@ -14,9 +14,9 @@ namespace Dev2.Data.Tests
         public void TranslationConstants_ShouldReturn()
         {
             var list = TranslationConstants.systemTags as IList;
-            NUnit.Framework.Assert.IsTrue(list.Contains(enSystemTag.PostData));
-            NUnit.Framework.Assert.IsTrue(list.Contains(enSystemTag.InstanceId));
-            NUnit.Framework.Assert.IsTrue(list.Contains(enSystemTag.SystemModel));
+            Assert.IsTrue(list.Contains(enSystemTag.PostData));
+            Assert.IsTrue(list.Contains(enSystemTag.InstanceId));
+            Assert.IsTrue(list.Contains(enSystemTag.SystemModel));
         }        
     }
 }

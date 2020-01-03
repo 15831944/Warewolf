@@ -28,10 +28,10 @@ namespace Dev2.Data.Tests.TO
             resultTo.AddError("some message", true);
             resultTo.AddError("some message", true);
 
-            NUnit.Framework.Assert.IsTrue(resultTo.HasErrors());
-            NUnit.Framework.Assert.AreEqual(1, resultTo.FetchErrors().Count);
-            NUnit.Framework.Assert.AreEqual("some message", resultTo.FetchErrors()[0]);
-            NUnit.Framework.Assert.AreEqual("<InnerError>some message</InnerError>", resultTo.MakeDataListReady());
+            Assert.IsTrue(resultTo.HasErrors());
+            Assert.AreEqual(1, resultTo.FetchErrors().Count);
+            Assert.AreEqual("some message", resultTo.FetchErrors()[0]);
+            Assert.AreEqual("<InnerError>some message</InnerError>", resultTo.MakeDataListReady());
         }
         
         [Test]
@@ -44,11 +44,11 @@ namespace Dev2.Data.Tests.TO
             resultTo.AddError("some message", true);
             resultTo.AddError("deferent message", true);
 
-            NUnit.Framework.Assert.IsTrue(resultTo.HasErrors());
-            NUnit.Framework.Assert.AreEqual(2, resultTo.FetchErrors().Count);
-            NUnit.Framework.Assert.AreEqual("some message", resultTo.FetchErrors()[0]);
-            NUnit.Framework.Assert.AreEqual("deferent message", resultTo.FetchErrors()[1]);
-            NUnit.Framework.Assert.AreEqual("<InnerError>some message</InnerError><InnerError>deferent message</InnerError>", resultTo.MakeDataListReady());
+            Assert.IsTrue(resultTo.HasErrors());
+            Assert.AreEqual(2, resultTo.FetchErrors().Count);
+            Assert.AreEqual("some message", resultTo.FetchErrors()[0]);
+            Assert.AreEqual("deferent message", resultTo.FetchErrors()[1]);
+            Assert.AreEqual("<InnerError>some message</InnerError><InnerError>deferent message</InnerError>", resultTo.MakeDataListReady());
         }
 
         [Test]
@@ -62,12 +62,12 @@ namespace Dev2.Data.Tests.TO
             resultTo.AddError("some message", true);
             resultTo.AddError("deferent message", false);
 
-            NUnit.Framework.Assert.IsTrue(resultTo.HasErrors());
-            NUnit.Framework.Assert.AreEqual(3, resultTo.FetchErrors().Count);
-            NUnit.Framework.Assert.AreEqual("some message", resultTo.FetchErrors()[0]);
-            NUnit.Framework.Assert.AreEqual("some message", resultTo.FetchErrors()[1]);
-            NUnit.Framework.Assert.AreEqual("deferent message", resultTo.FetchErrors()[2]);
-            NUnit.Framework.Assert.AreEqual("<InnerError>some message</InnerError><InnerError>some message</InnerError><InnerError>deferent message</InnerError>", resultTo.MakeDataListReady());
+            Assert.IsTrue(resultTo.HasErrors());
+            Assert.AreEqual(3, resultTo.FetchErrors().Count);
+            Assert.AreEqual("some message", resultTo.FetchErrors()[0]);
+            Assert.AreEqual("some message", resultTo.FetchErrors()[1]);
+            Assert.AreEqual("deferent message", resultTo.FetchErrors()[2]);
+            Assert.AreEqual("<InnerError>some message</InnerError><InnerError>some message</InnerError><InnerError>deferent message</InnerError>", resultTo.MakeDataListReady());
         }
         
         [Test]
@@ -78,10 +78,10 @@ namespace Dev2.Data.Tests.TO
             var resultTo = new ErrorResultTO();
             resultTo.AddError(null, true);
 
-            NUnit.Framework.Assert.IsFalse(resultTo.HasErrors());
+            Assert.IsFalse(resultTo.HasErrors());
             // Shouldn't this be passing?
-            NUnit.Framework.Assert.AreEqual(0, resultTo.FetchErrors().Count);
-            NUnit.Framework.Assert.AreEqual("", resultTo.MakeDataListReady());
+            Assert.AreEqual(0, resultTo.FetchErrors().Count);
+            Assert.AreEqual("", resultTo.MakeDataListReady());
         }
 
         [Test]
@@ -90,10 +90,10 @@ namespace Dev2.Data.Tests.TO
         public void ErrorResultTO_MakeErrorResultFromDataListStringWithMultipleErrorsExpectedCorrectErrorResultTO()
         {
             var makeErrorResultFromDataListString = ErrorResultTO.MakeErrorResultFromDataListString("<InnerError>First Error</InnerError><InnerError>Second Error</InnerError>");
-            NUnit.Framework.Assert.IsTrue(makeErrorResultFromDataListString.HasErrors());
-            NUnit.Framework.Assert.AreEqual(2, makeErrorResultFromDataListString.FetchErrors().Count);
-            NUnit.Framework.Assert.AreEqual("First Error", makeErrorResultFromDataListString.FetchErrors()[0]);
-            NUnit.Framework.Assert.AreEqual("Second Error", makeErrorResultFromDataListString.FetchErrors()[1]);
+            Assert.IsTrue(makeErrorResultFromDataListString.HasErrors());
+            Assert.AreEqual(2, makeErrorResultFromDataListString.FetchErrors().Count);
+            Assert.AreEqual("First Error", makeErrorResultFromDataListString.FetchErrors()[0]);
+            Assert.AreEqual("Second Error", makeErrorResultFromDataListString.FetchErrors()[1]);
         }
 
         [Test]
@@ -105,8 +105,8 @@ namespace Dev2.Data.Tests.TO
             //------------Execute Test---------------------------
             var makeErrorResultFromDataListString = ErrorResultTO.MakeErrorResultFromDataListString("<InnerError>Could not insert <> into a field</InnerError>");
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(1, makeErrorResultFromDataListString.FetchErrors().Count);
-            NUnit.Framework.Assert.AreEqual("<Error><InnerError>Could not insert <> into a field</InnerError></Error>", makeErrorResultFromDataListString.FetchErrors()[0]);
+            Assert.AreEqual(1, makeErrorResultFromDataListString.FetchErrors().Count);
+            Assert.AreEqual("<Error><InnerError>Could not insert <> into a field</InnerError></Error>", makeErrorResultFromDataListString.FetchErrors()[0]);
         }
 
         [Test]
@@ -116,15 +116,15 @@ namespace Dev2.Data.Tests.TO
         {
             var errorResultTo = new ErrorResultTO();
 
-            NUnit.Framework.Assert.AreEqual(0, errorResultTo.FetchErrors().Count);
+            Assert.AreEqual(0, errorResultTo.FetchErrors().Count);
             errorResultTo.AddError("SomeError");
-            NUnit.Framework.Assert.AreEqual(1, errorResultTo.FetchErrors().Count);
+            Assert.AreEqual(1, errorResultTo.FetchErrors().Count);
 
             var merge = new ErrorResultTO();
             merge.AddError("Error to merge");
             errorResultTo.MergeErrors(merge);
 
-            NUnit.Framework.Assert.AreEqual(2, errorResultTo.FetchErrors().Count);
+            Assert.AreEqual(2, errorResultTo.FetchErrors().Count);
         }
 
         [Test]
@@ -134,14 +134,14 @@ namespace Dev2.Data.Tests.TO
         {
             var errorResultTo = new ErrorResultTO();
 
-            NUnit.Framework.Assert.AreEqual(0, errorResultTo.FetchErrors().Count);
+            Assert.AreEqual(0, errorResultTo.FetchErrors().Count);
             errorResultTo.AddError("SomeError");
 
-            NUnit.Framework.Assert.AreEqual(1, errorResultTo.FetchErrors().Count);
+            Assert.AreEqual(1, errorResultTo.FetchErrors().Count);
 
             var merge = new ErrorResultTO();
             errorResultTo.MergeErrors(merge);
-            NUnit.Framework.Assert.AreEqual(1, errorResultTo.FetchErrors().Count);
+            Assert.AreEqual(1, errorResultTo.FetchErrors().Count);
         }
 
         [Test]
@@ -151,13 +151,13 @@ namespace Dev2.Data.Tests.TO
         {
             var errorResultTo = new ErrorResultTO();
 
-            NUnit.Framework.Assert.AreEqual(0, errorResultTo.FetchErrors().Count);
+            Assert.AreEqual(0, errorResultTo.FetchErrors().Count);
             errorResultTo.AddError("SomeError");
 
-            NUnit.Framework.Assert.AreEqual(1, errorResultTo.FetchErrors().Count);
+            Assert.AreEqual(1, errorResultTo.FetchErrors().Count);
 
             errorResultTo.MergeErrors(null);
-            NUnit.Framework.Assert.AreEqual(1, errorResultTo.FetchErrors().Count);
+            Assert.AreEqual(1, errorResultTo.FetchErrors().Count);
         }
 
         [Test]
@@ -167,13 +167,13 @@ namespace Dev2.Data.Tests.TO
         {
             var errorResultTo = new ErrorResultTO();
 
-            NUnit.Framework.Assert.AreEqual(0, errorResultTo.FetchErrors().Count);
+            Assert.AreEqual(0, errorResultTo.FetchErrors().Count);
             errorResultTo.AddError("SomeError");
 
-            NUnit.Framework.Assert.AreEqual(1, errorResultTo.FetchErrors().Count);
+            Assert.AreEqual(1, errorResultTo.FetchErrors().Count);
 
             errorResultTo.RemoveError("SomeError");
-            NUnit.Framework.Assert.AreEqual(0, errorResultTo.FetchErrors().Count);
+            Assert.AreEqual(0, errorResultTo.FetchErrors().Count);
         }
 
         [Test]
@@ -185,11 +185,11 @@ namespace Dev2.Data.Tests.TO
             errorResultTo.AddError("SomeError");
             errorResultTo.AddError("AnotherError");
 
-            NUnit.Framework.Assert.AreEqual(2, errorResultTo.FetchErrors().Count);
+            Assert.AreEqual(2, errorResultTo.FetchErrors().Count);
 
             errorResultTo.ClearErrors();
 
-            NUnit.Framework.Assert.AreEqual(0, errorResultTo.FetchErrors().Count);
+            Assert.AreEqual(0, errorResultTo.FetchErrors().Count);
         }
 
         [Test]
@@ -202,14 +202,14 @@ namespace Dev2.Data.Tests.TO
             result.Append("AnotherError");
             var errorResultTo = new ErrorResultTO();
 
-            NUnit.Framework.Assert.AreEqual(0, errorResultTo.FetchErrors().Count);
+            Assert.AreEqual(0, errorResultTo.FetchErrors().Count);
             errorResultTo.AddError("SomeError");
             errorResultTo.AddError("AnotherError");
 
-            NUnit.Framework.Assert.AreEqual(2, errorResultTo.FetchErrors().Count);
+            Assert.AreEqual(2, errorResultTo.FetchErrors().Count);
 
             var makeDisplayReady = errorResultTo.MakeDisplayReady();
-            NUnit.Framework.Assert.AreEqual(result.ToString(), makeDisplayReady);
+            Assert.AreEqual(result.ToString(), makeDisplayReady);
         }
 
         [Test]
@@ -220,14 +220,14 @@ namespace Dev2.Data.Tests.TO
             var result = "<InnerError>SomeError</InnerError><InnerError>AnotherError</InnerError>";
             var errorResultTo = new ErrorResultTO();
 
-            NUnit.Framework.Assert.AreEqual(0, errorResultTo.FetchErrors().Count);
+            Assert.AreEqual(0, errorResultTo.FetchErrors().Count);
             errorResultTo.AddError("SomeError");
             errorResultTo.AddError("AnotherError");
 
-            NUnit.Framework.Assert.AreEqual(2, errorResultTo.FetchErrors().Count);
+            Assert.AreEqual(2, errorResultTo.FetchErrors().Count);
 
             var makeDisplayReady = errorResultTo.MakeDataListReady();
-            NUnit.Framework.Assert.AreEqual(result, makeDisplayReady);
+            Assert.AreEqual(result, makeDisplayReady);
         }
 
         [Test]
@@ -237,14 +237,14 @@ namespace Dev2.Data.Tests.TO
         {
             var errorResultTo = new ErrorResultTO();
 
-            NUnit.Framework.Assert.AreEqual(0, errorResultTo.FetchErrors().Count);
+            Assert.AreEqual(0, errorResultTo.FetchErrors().Count);
             errorResultTo.AddError("this is some exception's \"message\" string");
             errorResultTo.AddError("Another \"Error\"");
             errorResultTo.AddError("\"Error\" message");
 
             var makeDisplayReady = errorResultTo.MakeDataListReady(false);
             var result = "\"errors\": [ \"this is some exception's \\\"message\\\" string\",\"Another \\\"Error\\\"\",\"\\\"Error\\\" message\"]";
-            NUnit.Framework.Assert.AreEqual(result, makeDisplayReady);
+            Assert.AreEqual(result, makeDisplayReady);
         }
 
         [Test]
@@ -255,14 +255,14 @@ namespace Dev2.Data.Tests.TO
             var result = "\"errors\": [ \"SomeError\",\"AnotherError\"]";
             var errorResultTo = new ErrorResultTO();
 
-            NUnit.Framework.Assert.AreEqual(0, errorResultTo.FetchErrors().Count);
+            Assert.AreEqual(0, errorResultTo.FetchErrors().Count);
             errorResultTo.AddError("SomeError");
             errorResultTo.AddError("AnotherError");
 
-            NUnit.Framework.Assert.AreEqual(2, errorResultTo.FetchErrors().Count);
+            Assert.AreEqual(2, errorResultTo.FetchErrors().Count);
 
             var makeDisplayReady = errorResultTo.MakeDataListReady(false);
-            NUnit.Framework.Assert.AreEqual(result, makeDisplayReady);
+            Assert.AreEqual(result, makeDisplayReady);
         }
 
         [Test]
@@ -273,15 +273,15 @@ namespace Dev2.Data.Tests.TO
             var result = "\"errors\": [ \"SomeError\",\"Resource has unrecognized formatting, this Warewolf Server may be to outdated to read this resource.\",\"Another Error\"]";
             var errorResultTo = new ErrorResultTO();
 
-            NUnit.Framework.Assert.AreEqual(0, errorResultTo.FetchErrors().Count);
+            Assert.AreEqual(0, errorResultTo.FetchErrors().Count);
             errorResultTo.AddError("SomeError");
             errorResultTo.AddError("Cannot set unknown member");
             errorResultTo.AddError("Another Error");
 
-            NUnit.Framework.Assert.AreEqual(3, errorResultTo.FetchErrors().Count);
+            Assert.AreEqual(3, errorResultTo.FetchErrors().Count);
 
             var makeDisplayReady = errorResultTo.MakeDataListReady(false);
-            NUnit.Framework.Assert.AreEqual(result, makeDisplayReady);
+            Assert.AreEqual(result, makeDisplayReady);
         }
     }
 }

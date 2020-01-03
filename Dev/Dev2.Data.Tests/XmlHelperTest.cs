@@ -38,7 +38,7 @@ Procedure:
    at Dev2.Services.Execution.DatabaseServiceExecution.SqlExecution(ErrorResultTO errors, Object& executeService) in c:\Development\Dev\Dev2.Services.Execution\DatabaseServiceExecution.cs:line 118</InnerError>";
             var isXml = XmlHelper.IsXml(XmlFragment, out bool isFragment, out bool isHtml);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsTrue(isXml);
+            Assert.IsTrue(isXml);
         }
 
         [Test]
@@ -50,7 +50,7 @@ Procedure:
             const string XmlFragment = @"HHHHHHH";
             var isXml = XmlHelper.IsXml(XmlFragment, out bool isFragment, out bool isHtml);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsFalse(isXml);
+            Assert.IsFalse(isXml);
         }
 
         [Test]
@@ -62,7 +62,7 @@ Procedure:
             const string HTMLFragment = @"<html><body></body></html>";
             var isXml = XmlHelper.IsXml(HTMLFragment, out bool isFragment, out bool isHtml);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsFalse(isXml);
+            Assert.IsFalse(isXml);
         }
 
         [Test]
@@ -75,7 +75,7 @@ Procedure:
             //---------------Execute Test ----------------------
             var cleanXml = xml.ToCleanXml();
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual("Hello world", cleanXml);
+            Assert.AreEqual("Hello world", cleanXml);
         }
 
         [Test]
@@ -88,7 +88,7 @@ Procedure:
             //---------------Execute Test ----------------------
             var cleanXml = xml.ToCleanXml();
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual("", cleanXml);
+            Assert.AreEqual("", cleanXml);
         }
 
         [Test]
@@ -101,7 +101,7 @@ Procedure:
             //---------------Execute Test ----------------------
             var cleanXml = xml.ToCleanXml();
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual("<Person></Person>", cleanXml);
+            Assert.AreEqual("<Person></Person>", cleanXml);
         }
 
         [Test]
@@ -114,7 +114,7 @@ Procedure:
             //---------------Execute Test ----------------------
             var cleanXml = xml.ToCleanXml();
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual("<ADL><![CDATA[some stuff]]></ADL>", cleanXml);
+            Assert.AreEqual("<ADL><![CDATA[some stuff]]></ADL>", cleanXml);
         }
        
     }

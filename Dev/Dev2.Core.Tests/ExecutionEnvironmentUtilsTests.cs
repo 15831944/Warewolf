@@ -70,10 +70,10 @@ namespace Dev2.Tests
             //------------Execute Test---------------------------
             var swaggerOutputForService = ExecutionEnvironmentUtils.GetSwaggerOutputForService(mockResource.Object, "<DataList></DataList>", "http://serverName:3142/public/resourceName.api").Replace(Environment.NewLine, "").Replace(" ", "");
             //------------Assert Results-------------------------
-            StringAssert.Contains(swaggerOutputForService, expectedSwaggerVersion);
-            StringAssert.Contains(swaggerOutputForService, expectedEmptyParameters);
-            StringAssert.Contains(swaggerOutputForService, expectedEmptyResponse);
-            StringAssert.Contains(swaggerOutputForService, "\"schemes\":[\"http\"]");
+            StringAssert.Contains(expectedSwaggerVersion, swaggerOutputForService);
+            StringAssert.Contains(expectedEmptyParameters, swaggerOutputForService);
+            StringAssert.Contains(expectedEmptyResponse, swaggerOutputForService);
+            StringAssert.Contains("\"schemes\":[\"http\"]", swaggerOutputForService);
         }
 
         [Test]
@@ -99,10 +99,10 @@ namespace Dev2.Tests
             //------------Execute Test---------------------------
             var swaggerOutputForService = ExecutionEnvironmentUtils.GetSwaggerOutputForService(mockResource.Object, "<DataList><Name Description=\"\" IsEditable=\"True\" ColumnIODirection=\"Input\" /></DataList>", "https://serverName:3142/public/resourceName.api").Replace(Environment.NewLine, "").Replace(" ", "");
             //------------Assert Results-------------------------
-            StringAssert.Contains(swaggerOutputForService, expectedSwaggerVersion);
-            StringAssert.Contains(swaggerOutputForService, expectedParameters);
-            StringAssert.Contains(swaggerOutputForService, expectedEmptyResponse);
-            StringAssert.Contains(swaggerOutputForService, "\"schemes\":[\"https\"]");
+            StringAssert.Contains(expectedSwaggerVersion, swaggerOutputForService);
+            StringAssert.Contains(expectedParameters, swaggerOutputForService);
+            StringAssert.Contains(expectedEmptyResponse, swaggerOutputForService);
+            StringAssert.Contains("\"schemes\":[\"https\"]", swaggerOutputForService);
         }
 
         [Test]
@@ -128,11 +128,11 @@ namespace Dev2.Tests
             //------------Execute Test---------------------------
             var swaggerOutputForService = ExecutionEnvironmentUtils.GetSwaggerOutputForService(mockResource.Object, "<DataList> <rc Description=\"\" IsEditable=\"True\" ColumnIODirection=\"Input\"><test Description=\"\" IsEditable=\"True\" ColumnIODirection=\"Input\" /></rc></DataList>", "http://serverName:3142/public/resourceName.api").Replace(Environment.NewLine, "").Replace(" ", "");
             //------------Assert Results-------------------------
-            StringAssert.Contains(swaggerOutputForService, expectedSwaggerVersion);
-            StringAssert.Contains(swaggerOutputForService, expectedParameters);
-            StringAssert.Contains(swaggerOutputForService, expectedEmptyResponse);
-            StringAssert.Contains(swaggerOutputForService, expectedDataListDefinition);
-            StringAssert.Contains(swaggerOutputForService, "\"schemes\":[\"http\"]");
+            StringAssert.Contains(expectedSwaggerVersion, swaggerOutputForService);
+            StringAssert.Contains(expectedParameters, swaggerOutputForService);
+            StringAssert.Contains(expectedEmptyResponse, swaggerOutputForService);
+            StringAssert.Contains(expectedDataListDefinition, swaggerOutputForService);
+            StringAssert.Contains("\"schemes\":[\"http\"]", swaggerOutputForService);
         }
 
         [Test]
@@ -158,12 +158,12 @@ namespace Dev2.Tests
             //------------Execute Test---------------------------
             var swaggerOutputForService = ExecutionEnvironmentUtils.GetSwaggerOutputForService(mockResource.Object, "<DataList><Name Description=\"\" IsEditable=\"True\" ColumnIODirection=\"Input\" /> <rc Description=\"\" IsEditable=\"True\" ColumnIODirection=\"Input\"><test Description=\"\" IsEditable=\"True\" ColumnIODirection=\"Input\" /></rc></DataList>", "https://serverName:3142/public/resourceName.api").Replace(Environment.NewLine, "").Replace(" ", "");
             //------------Assert Results-------------------------
-            StringAssert.Contains(swaggerOutputForService, expectedSwaggerVersion);
-            StringAssert.Contains(swaggerOutputForService, expectedParameters);
-            StringAssert.Contains(swaggerOutputForService, expectedEmptyResponse);
-            StringAssert.Contains(swaggerOutputForService, expectedDataListDefinition);
-            StringAssert.Contains(swaggerOutputForService, "\"produces\":[\"application/json\",\"application/xml\"]");
-            StringAssert.Contains(swaggerOutputForService, "\"schemes\":[\"https\"]");
+            StringAssert.Contains(expectedSwaggerVersion, swaggerOutputForService);
+            StringAssert.Contains(expectedParameters, swaggerOutputForService);
+            StringAssert.Contains(expectedEmptyResponse, swaggerOutputForService);
+            StringAssert.Contains(expectedDataListDefinition, swaggerOutputForService);
+            StringAssert.Contains("\"produces\":[\"application/json\",\"application/xml\"]", swaggerOutputForService);
+            StringAssert.Contains("\"schemes\":[\"https\"]", swaggerOutputForService);
         }
 
         [Test]
@@ -183,12 +183,12 @@ namespace Dev2.Tests
             //------------Execute Test---------------------------
             var actual = ExecutionEnvironmentUtils.GetXmlOutputFromEnvironment(dataObj, dataList, 0);
             //------------Assert Results-------------------------
-            StringAssert.Contains(actual, "<DataList>");
-            StringAssert.Contains(actual, "<rec>");
-            StringAssert.Contains(actual, "<a>1</a>");
-            StringAssert.Contains(actual, "<a>2</a>");
-            StringAssert.Contains(actual, "</rec>");
-            StringAssert.Contains(actual, "</DataList>");
+            StringAssert.Contains("<DataList>", actual);
+            StringAssert.Contains("<rec>", actual);
+            StringAssert.Contains("<a>1</a>", actual);
+            StringAssert.Contains("<a>2</a>", actual);
+            StringAssert.Contains("</rec>", actual);
+            StringAssert.Contains("</DataList>", actual);
         }
 
         [Test]
@@ -217,13 +217,13 @@ namespace Dev2.Tests
             //------------Execute Test---------------------------
             var actual = ExecutionEnvironmentUtils.GetXmlOutputFromEnvironment(dataObj, dataList, 0);
             //------------Assert Results-------------------------
-            StringAssert.Contains(actual, "<DataList>");
-            StringAssert.Contains(actual, "<rec>");
-            StringAssert.Contains(actual, "<a>1</a>");
-            StringAssert.Contains(actual, "<a></a>");
-            StringAssert.Contains(actual, "</rec>");
-            StringAssert.Contains(actual, "</DataList>");
-            StringAssert.Contains(actual, "<FullName>Bob Mary</FullName>");
+            StringAssert.Contains("<DataList>", actual);
+            StringAssert.Contains("<rec>", actual);
+            StringAssert.Contains("<a>1</a>", actual);
+            StringAssert.Contains("<a></a>", actual);
+            StringAssert.Contains("</rec>", actual);
+            StringAssert.Contains("</DataList>", actual);
+            StringAssert.Contains("<FullName>Bob Mary</FullName>", actual);
             Assert.IsFalse(actual.Contains("<Name>Bob</Name>"));
             Assert.IsFalse(actual.Contains("<Surname>Mary</Surname>"));
             Assert.IsFalse(actual.Contains("<b>2</b>"));
@@ -256,11 +256,11 @@ namespace Dev2.Tests
             //------------Execute Test---------------------------
             var actual = ExecutionEnvironmentUtils.GetJsonOutputFromEnvironment(dataObj, dataList, 0);
             //------------Assert Results-------------------------
-            StringAssert.Contains(actual, "rec");
-            StringAssert.Contains(actual, "\"a\": \"1\"");
-            StringAssert.Contains(actual, "\"a\": \"\"");
-            StringAssert.Contains(actual, "\"a\": \"\"");
-            StringAssert.Contains(actual, "\"FullName\": \"Bob Mary\"");
+            StringAssert.Contains("rec", actual);
+            StringAssert.Contains("\"a\": \"1\"", actual);
+            StringAssert.Contains("\"a\": \"\"", actual);
+            StringAssert.Contains("\"a\": \"\"", actual);
+            StringAssert.Contains("\"FullName\": \"Bob Mary\"", actual);
             Assert.IsFalse(actual.Contains("\"Name\": \"Bob\""));
             Assert.IsFalse(actual.Contains("\"Surname\": \"Mary\""));
             Assert.IsFalse(actual.Contains("\"b\": \"2\""));

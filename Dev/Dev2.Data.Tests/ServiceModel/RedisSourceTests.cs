@@ -24,12 +24,12 @@ namespace Dev2.Data.Tests.ServiceModel
         public void RedisSource_Validate_DefaultValues()
         {
             var redisSource = new RedisSource();
-            NUnit.Framework.Assert.IsTrue(redisSource.IsSource);
-            NUnit.Framework.Assert.IsFalse(redisSource.IsService);
-            NUnit.Framework.Assert.IsFalse(redisSource.IsFolder);
-            NUnit.Framework.Assert.IsFalse(redisSource.IsReservedService);
-            NUnit.Framework.Assert.IsFalse(redisSource.IsServer);
-            NUnit.Framework.Assert.IsFalse(redisSource.IsResourceVersion);
+            Assert.IsTrue(redisSource.IsSource);
+            Assert.IsFalse(redisSource.IsService);
+            Assert.IsFalse(redisSource.IsFolder);
+            Assert.IsFalse(redisSource.IsReservedService);
+            Assert.IsFalse(redisSource.IsServer);
+            Assert.IsFalse(redisSource.IsResourceVersion);
         }
         [Test]
         [Author("Candice Daniel")]
@@ -37,11 +37,11 @@ namespace Dev2.Data.Tests.ServiceModel
         public void RedisSource_Constructor_Validate_DefaultValues()
         {
             var redisSource = new RedisSource();
-            NUnit.Framework.Assert.IsNotNull(redisSource.ResourceID);
-            NUnit.Framework.Assert.AreEqual(Guid.Empty, redisSource.ResourceID);
-            NUnit.Framework.Assert.AreEqual(nameof(RedisSource), redisSource.ResourceType);
-            NUnit.Framework.Assert.AreEqual("6379", redisSource.Port);
-            NUnit.Framework.Assert.AreEqual(AuthenticationType.Anonymous, redisSource.AuthenticationType);
+            Assert.IsNotNull(redisSource.ResourceID);
+            Assert.AreEqual(Guid.Empty, redisSource.ResourceID);
+            Assert.AreEqual(nameof(RedisSource), redisSource.ResourceType);
+            Assert.AreEqual("6379", redisSource.Port);
+            Assert.AreEqual(AuthenticationType.Anonymous, redisSource.AuthenticationType);
 
         }
         [Test]
@@ -64,11 +64,11 @@ namespace Dev2.Data.Tests.ServiceModel
             var result = redisSource.ToXml();
 
             var redisSourceWithXml = new RedisSource(result);
-            NUnit.Framework.Assert.AreEqual(nameof(RedisSource), redisSourceWithXml.ResourceType);
-            NUnit.Framework.Assert.AreEqual("6379", redisSourceWithXml.Port);
-            NUnit.Framework.Assert.AreEqual("localhost", redisSourceWithXml.HostName);
-            NUnit.Framework.Assert.AreEqual("", redisSourceWithXml.Password);
-            NUnit.Framework.Assert.AreEqual(AuthenticationType.Anonymous, redisSourceWithXml.AuthenticationType);
+            Assert.AreEqual(nameof(RedisSource), redisSourceWithXml.ResourceType);
+            Assert.AreEqual("6379", redisSourceWithXml.Port);
+            Assert.AreEqual("localhost", redisSourceWithXml.HostName);
+            Assert.AreEqual("", redisSourceWithXml.Password);
+            Assert.AreEqual(AuthenticationType.Anonymous, redisSourceWithXml.AuthenticationType);
         }
         [Test]
         [Author("Candice Daniel")]
@@ -90,11 +90,11 @@ namespace Dev2.Data.Tests.ServiceModel
             var result = redisSource.ToXml();
 
             var redisSourceWithXml = new RedisSource(result);
-            NUnit.Framework.Assert.AreEqual(nameof(RedisSource), redisSourceWithXml.ResourceType);
-            NUnit.Framework.Assert.AreEqual("6379", redisSourceWithXml.Port);
-            NUnit.Framework.Assert.AreEqual("localhost", redisSourceWithXml.HostName);
-            NUnit.Framework.Assert.AreEqual("test123", redisSourceWithXml.Password);
-            NUnit.Framework.Assert.AreEqual(AuthenticationType.Password, redisSourceWithXml.AuthenticationType);
+            Assert.AreEqual(nameof(RedisSource), redisSourceWithXml.ResourceType);
+            Assert.AreEqual("6379", redisSourceWithXml.Port);
+            Assert.AreEqual("localhost", redisSourceWithXml.HostName);
+            Assert.AreEqual("test123", redisSourceWithXml.Password);
+            Assert.AreEqual(AuthenticationType.Password, redisSourceWithXml.AuthenticationType);
         }
     }
 }

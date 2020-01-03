@@ -43,7 +43,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var isArray = DataListUtil.IsArray(ref scalr);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsFalse(isArray);
+            Assert.IsFalse(isArray);
         }
 
         [Test]
@@ -56,7 +56,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var isArray = DataListUtil.IsArray(ref scalr);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsTrue(isArray);
+            Assert.IsTrue(isArray);
         }
 
         [Test]
@@ -72,13 +72,13 @@ namespace Dev2.Data.Tests.BinaryDataList
             try
             {
                 var operations = DataListUtil.GetAllPossibleExpressionsForFunctionOperations("[[a]]", env.Object, out ErrorResultTO errorResultTO, 1);
-                NUnit.Framework.Assert.AreEqual(0, operations.Count);
+                Assert.AreEqual(0, operations.Count);
                 env.Setup(environment => environment.EvalAsListOfStrings(It.IsAny<string>(), It.IsAny<int>())).Throws(new Exception("error"));
                 DataListUtil.GetAllPossibleExpressionsForFunctionOperations("[[a]]", env.Object, out errorResultTO, 1);
             }
             catch (Exception ex)
             {
-                NUnit.Framework.Assert.AreEqual("error", ex.Message);
+                Assert.AreEqual("error", ex.Message);
 
             }
             //---------------Test Result -----------------------
@@ -97,11 +97,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             try
             {
                 var generateDefsFromDataList = DataListUtil.GenerateDefsFromDataList(datalist, enDev2ColumnArgumentDirection.Input);
-                NUnit.Framework.Assert.IsNotNull(generateDefsFromDataList);
+                Assert.IsNotNull(generateDefsFromDataList);
             }
             catch (Exception ex)
             {
-                NUnit.Framework.Assert.Fail(ex.Message);
+                Assert.Fail(ex.Message);
 
             }
 
@@ -123,12 +123,12 @@ namespace Dev2.Data.Tests.BinaryDataList
             try
             {
                 var generateDefsFromDataList = DataListUtil.GenerateDefsFromDataList(datalist, enDev2ColumnArgumentDirection.Input);
-                NUnit.Framework.Assert.IsNotNull(generateDefsFromDataList);
-                NUnit.Framework.Assert.AreNotEqual(0, generateDefsFromDataList.Count);
+                Assert.IsNotNull(generateDefsFromDataList);
+                Assert.AreNotEqual(0, generateDefsFromDataList.Count);
             }
             catch (Exception ex)
             {
-                NUnit.Framework.Assert.Fail(ex.Message);
+                Assert.Fail(ex.Message);
 
             }
 
@@ -146,7 +146,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //------------Execute Test---------------------------
             var result = DataListUtil.IsJson(startingData);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(result, "Else Valid JSON not detected as such");
+            Assert.IsTrue(result, "Else Valid JSON not detected as such");
         }
 
         [Test]
@@ -158,7 +158,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //------------Execute Test---------------------------
             var result = DataListUtil.IsJson(startingData);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(result, "Else Valid JSON not detected as such");
+            Assert.IsTrue(result, "Else Valid JSON not detected as such");
         }
 
         [Test]
@@ -170,7 +170,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //------------Execute Test---------------------------
             var result = DataListUtil.IsJson(startingData);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsFalse(result, "Invalid JSON not detected as such");
+            Assert.IsFalse(result, "Invalid JSON not detected as such");
         }
 
         [Test]
@@ -183,7 +183,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //------------Execute Test---------------------------
             var result = DataListUtil.AdjustForEncodingIssues(startingData);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(startingData, result, "The data has changed when there was no encoding issues.");
+            Assert.AreEqual(startingData, result, "The data has changed when there was no encoding issues.");
         }
 
         [Test]
@@ -194,11 +194,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //------------Setup for test--------------------------
             const char c = (char)65279;
             var startingData = c + "<A></A>";
-            NUnit.Framework.Assert.IsFalse(startingData.StartsWith("<", StringComparison.OrdinalIgnoreCase));
+            Assert.IsFalse(startingData.StartsWith("<", StringComparison.OrdinalIgnoreCase));
             //------------Execute Test---------------------------
             var result = DataListUtil.AdjustForEncodingIssues(startingData);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(result.StartsWith("<", StringComparison.Ordinal));
+            Assert.IsTrue(result.StartsWith("<", StringComparison.Ordinal));
         }
 
         [Test]
@@ -213,7 +213,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             var result = DataListUtil.IsSystemTag(tag);
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(result);
+            Assert.IsTrue(result);
         }
 
         [Test]
@@ -228,7 +228,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             var result = DataListUtil.IsSystemTag(tag);
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(result);
+            Assert.IsTrue(result);
         }
 
         [Test]
@@ -240,7 +240,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             const string exp = "[[rs(*).val]]";
             var result = DataListUtil.ReplaceStarWithFixedIndex(exp, 1);
 
-            NUnit.Framework.Assert.AreEqual("[[rs(1).val]]", result, "Did not replace index in recordset");
+            Assert.AreEqual("[[rs(1).val]]", result, "Did not replace index in recordset");
         }
 
         [Test]
@@ -252,7 +252,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             const string exp = "[[rs(*).val]]";
             var result = DataListUtil.ReplaceStarWithFixedIndex(exp, -1);
 
-            NUnit.Framework.Assert.AreEqual("[[rs(*).val]]", result, "Replaced with invalid index in recordset");
+            Assert.AreEqual("[[rs(*).val]]", result, "Replaced with invalid index in recordset");
         }
 
         [Test]
@@ -263,7 +263,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             const string exp = "[[@rs().val]]";
             var result = DataListUtil.ReplaceObjectBlankWithIndex(exp, 1);
 
-            NUnit.Framework.Assert.AreEqual("[[@rs(1).val]]", result, "Replaced with invalid index in recordset");
+            Assert.AreEqual("[[@rs(1).val]]", result, "Replaced with invalid index in recordset");
         }
 
 
@@ -297,7 +297,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             DataListUtil.UpsertTokens(target, null);
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(0, target.Count);
+            Assert.AreEqual(0, target.Count);
         }
 
         [Test]
@@ -319,7 +319,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             DataListUtil.UpsertTokens(target, tokenizer.Object);
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(TokenCount, target.Count);
+            Assert.AreEqual(TokenCount, target.Count);
         }
 
         [Test]
@@ -350,9 +350,9 @@ namespace Dev2.Data.Tests.BinaryDataList
             DataListUtil.UpsertTokens(target, tokenizer.Object);
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(TokenCount * DuplicateCount, target.Count);
+            Assert.AreEqual(TokenCount * DuplicateCount, target.Count);
             var groups = target.GroupBy(g => g.Key).ToList();
-            NUnit.Framework.Assert.AreEqual(3, groups.Count);
+            Assert.AreEqual(3, groups.Count);
             foreach (var grp in groups)
             {
                 var enumerator = grp.GetEnumerator();
@@ -361,7 +361,7 @@ namespace Dev2.Data.Tests.BinaryDataList
                 {
                     duplicateCount++;
                 }
-                NUnit.Framework.Assert.AreEqual(DuplicateCount, duplicateCount);
+                Assert.AreEqual(DuplicateCount, duplicateCount);
             }
         }
 
@@ -395,7 +395,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             DataListUtil.UpsertTokens(target, tokenizer2.Object);
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(ExpectedCount, target.Count);
+            Assert.AreEqual(ExpectedCount, target.Count);
 
             // Expect only vars from second tokenizer
             var keys = target.Select(p => p.Key);
@@ -403,7 +403,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             foreach (var key in keys)
             {
                 var expected = $"[[Var{i++}]]";
-                NUnit.Framework.Assert.AreEqual(expected, key);
+                Assert.AreEqual(expected, key);
             }
         }
 
@@ -426,7 +426,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             DataListUtil.UpsertTokens(target, tokenizer.Object);
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(5, target.Count);
+            Assert.AreEqual(5, target.Count);
 
             // Expect only vars from second tokenizer
             var keys = target.Select(p => p.Key);
@@ -434,7 +434,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             foreach (var key in keys)
             {
                 var expected = $"[[Var{i++}]]";
-                NUnit.Framework.Assert.AreEqual(expected, key);
+                Assert.AreEqual(expected, key);
             }
         }
 
@@ -457,14 +457,14 @@ namespace Dev2.Data.Tests.BinaryDataList
             DataListUtil.UpsertTokens(target, tokenizer.Object, "prefix", null, true);
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(TokenCount, target.Count);
+            Assert.AreEqual(TokenCount, target.Count);
 
             var keys = target.Select(p => p.Key);
             var i = 0;
             foreach (var key in keys)
             {
                 var expected = $"[[prefixVar{i++}]]";
-                NUnit.Framework.Assert.AreEqual(expected, key);
+                Assert.AreEqual(expected, key);
             }
         }
 
@@ -487,14 +487,14 @@ namespace Dev2.Data.Tests.BinaryDataList
             DataListUtil.UpsertTokens(target, tokenizer.Object, "prefix", "suffix", true);
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(TokenCount, target.Count);
+            Assert.AreEqual(TokenCount, target.Count);
 
             var keys = target.Select(p => p.Key);
             var i = 0;
             foreach (var key in keys)
             {
                 var expected = $"[[prefixVar{i++}suffix]]";
-                NUnit.Framework.Assert.AreEqual(expected, key);
+                Assert.AreEqual(expected, key);
             }
         }
 
@@ -522,17 +522,17 @@ namespace Dev2.Data.Tests.BinaryDataList
             DataListUtil.UpsertTokens(target, tokenizer.Object, "rs(*).", "a", false);
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(TokenCount, target.Count);
+            Assert.AreEqual(TokenCount, target.Count);
 
             for (var i = 0; i < TokenCount; i++)
             {
                 if (i == 1 || i == 4)
                 {
-                    NUnit.Framework.Assert.AreEqual(string.Empty, target[i].Key);
+                    Assert.AreEqual(string.Empty, target[i].Key);
                 }
                 else
                 {
-                    NUnit.Framework.Assert.AreEqual($"[[rs(*).{tokens[i]}a]]", target[i].Key);
+                    Assert.AreEqual($"[[rs(*).{tokens[i]}a]]", target[i].Key);
                 }
             }
         }
@@ -562,11 +562,11 @@ namespace Dev2.Data.Tests.BinaryDataList
             //------------Assert Results-------------------------
             const int ExpectedCount = TokenCount - 2;
 
-            NUnit.Framework.Assert.AreEqual(ExpectedCount, target.Count);
+            Assert.AreEqual(ExpectedCount, target.Count);
 
             for (var i = 0; i < ExpectedCount; i++)
             {
-                NUnit.Framework.Assert.AreEqual($"[[rs(*).f{i + 1}a]]", target[i].Key);
+                Assert.AreEqual($"[[rs(*).f{i + 1}a]]", target[i].Key);
             }
         }
 
@@ -582,7 +582,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var result = DataListUtil.ExtractFieldNameOnlyFromValue(recSetFiedWithNoClosingBrace);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual(expectedFielName, result);
+            Assert.AreEqual(expectedFielName, result);
         }
 
         [Test]
@@ -597,7 +597,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var result = DataListUtil.ExtractFieldNameOnlyFromValue(recSetFiedWithNoClosingBrace);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual(expectedFielName, result);
+            Assert.AreEqual(expectedFielName, result);
         }
 
         [Test]
@@ -610,7 +610,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var indexWithBlank = DataListUtil.ReplaceRecordsetIndexWithBlank(recName);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual(recName, indexWithBlank);
+            Assert.AreEqual(recName, indexWithBlank);
         }
 
         [Test]
@@ -623,7 +623,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var indexWithBlank = DataListUtil.ReplaceRecordsetIndexWithBlank(recName);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual("rec().name", indexWithBlank);
+            Assert.AreEqual("rec().name", indexWithBlank);
         }
 
         [Test]
@@ -636,7 +636,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var indexWithStar = DataListUtil.ReplaceRecordsetIndexWithStar(recName);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual("rec(*).name", indexWithStar);
+            Assert.AreEqual("rec(*).name", indexWithStar);
         }
         [Test]
         [Author("Nkosinathi Sangweni")]
@@ -648,7 +648,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var indexWithStar = DataListUtil.ReplaceRecordsetIndexWithStar(recName);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual("rec(*).name", indexWithStar);
+            Assert.AreEqual("rec(*).name", indexWithStar);
         }
         [Test]
         public void VariableNameToMapTo_GivenVariable_ShouldReturnVariableName()
@@ -659,7 +659,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var variableName = DataListUtil.GetVariableNameToMapOutputTo(recName);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual("name", variableName);
+            Assert.AreEqual("name", variableName);
         }
 
 
@@ -672,7 +672,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var fieldName = DataListUtil.GetVariableNameToMapOutputTo(recName);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual("name", fieldName);
+            Assert.AreEqual("name", fieldName);
         }
 
         [Test]
@@ -685,8 +685,8 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var isCalcEvaluation = DataListUtil.IsCalcEvaluation(exp, out string newExp);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsFalse(isCalcEvaluation);
-            NUnit.Framework.Assert.AreEqual(string.Empty, newExp);
+            Assert.IsFalse(isCalcEvaluation);
+            Assert.AreEqual(string.Empty, newExp);
         }
 
         [Test]
@@ -699,8 +699,8 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var isCalcEvaluation = DataListUtil.IsCalcEvaluation(exp, out string newExp);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsTrue(isCalcEvaluation);
-            NUnit.Framework.Assert.AreEqual("rec(*).name", newExp);
+            Assert.IsTrue(isCalcEvaluation);
+            Assert.AreEqual("rec(*).name", newExp);
         }
 
         [Test]
@@ -713,8 +713,8 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var isCalcEvaluation = DataListUtil.IsCalcEvaluation(exp, out string newExp);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsTrue(isCalcEvaluation);
-            NUnit.Framework.Assert.AreEqual("rec(*).name", newExp);
+            Assert.IsTrue(isCalcEvaluation);
+            Assert.AreEqual("rec(*).name", newExp);
         }
 
         [Test]
@@ -727,8 +727,8 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var isCalcEvaluation = DataListUtil.IsCalcEvaluation(exp, out string newExp);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsFalse(isCalcEvaluation);
-            NUnit.Framework.Assert.AreEqual(string.Empty, newExp);
+            Assert.IsFalse(isCalcEvaluation);
+            Assert.AreEqual(string.Empty, newExp);
         }
 
         [Test]
@@ -741,8 +741,8 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var isCalcEvaluation = DataListUtil.IsCalcEvaluation(exp, out string newExp);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsFalse(isCalcEvaluation);
-            NUnit.Framework.Assert.AreEqual(string.Empty, newExp);
+            Assert.IsFalse(isCalcEvaluation);
+            Assert.AreEqual(string.Empty, newExp);
         }
 
 
@@ -756,7 +756,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var encrypted = DataListUtil.IsFullyEvaluated(v);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsTrue(encrypted);
+            Assert.IsTrue(encrypted);
         }
 
         [Test]
@@ -769,7 +769,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var encrypted = DataListUtil.IsFullyEvaluated(v);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsFalse(encrypted);
+            Assert.IsFalse(encrypted);
         }
 
         [Test]
@@ -782,7 +782,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var encrypted = DataListUtil.IsFullyEvaluated(v);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsFalse(encrypted);
+            Assert.IsFalse(encrypted);
         }
 
         [Test]
@@ -795,7 +795,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var encrypted = DataListUtil.NotEncrypted(v);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsTrue(encrypted);
+            Assert.IsTrue(encrypted);
         }
 
         [Test]
@@ -808,7 +808,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var encrypted = DataListUtil.NotEncrypted(v);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsTrue(encrypted);
+            Assert.IsTrue(encrypted);
         }
 
         [Test]
@@ -821,7 +821,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var fixedRexSet = DataListUtil.ReplaceRecordsetBlankWithIndex(reSet, 1);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual("rec(1).Name", fixedRexSet);
+            Assert.AreEqual("rec(1).Name", fixedRexSet);
         }
 
         [Test]
@@ -834,7 +834,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var fixedRexSet = DataListUtil.ReplaceRecordsetBlankWithIndex(reSet, 2);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual("rec(1).Name", fixedRexSet);
+            Assert.AreEqual("rec(1).Name", fixedRexSet);
         }
 
         [Test]
@@ -847,7 +847,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var recordsetBlankWithStar = DataListUtil.ReplaceRecordsetBlankWithStar(reSet);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual("rec(1).Name", recordsetBlankWithStar);
+            Assert.AreEqual("rec(1).Name", recordsetBlankWithStar);
         }
 
         [Test]
@@ -860,7 +860,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var recordsetBlankWithStar = DataListUtil.ReplaceRecordsetBlankWithStar(reSet);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual("rec(*).Name", recordsetBlankWithStar);
+            Assert.AreEqual("rec(*).Name", recordsetBlankWithStar);
         }
 
         [Test]
@@ -873,7 +873,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var recordsetBlankWithStar = DataListUtil.ReplaceRecordBlankWithStar(reSet);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual(reSet, recordsetBlankWithStar);
+            Assert.AreEqual(reSet, recordsetBlankWithStar);
         }
 
         [Test]
@@ -886,7 +886,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var recordsetBlankWithStar = DataListUtil.ReplaceRecordBlankWithStar(reSet);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual("rec(*).Name", recordsetBlankWithStar);
+            Assert.AreEqual("rec(*).Name", recordsetBlankWithStar);
         }
 
         [Test]
@@ -899,7 +899,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var hasNegativeIndex = DataListUtil.HasNegativeIndex(reSet);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsFalse(hasNegativeIndex);
+            Assert.IsFalse(hasNegativeIndex);
         }
 
         [Test]
@@ -912,7 +912,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var hasNegativeIndex = DataListUtil.HasNegativeIndex(reSet);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsFalse(hasNegativeIndex);
+            Assert.IsFalse(hasNegativeIndex);
         }
 
         [Test]
@@ -925,7 +925,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var hasNegativeIndex = DataListUtil.HasNegativeIndex(reSet);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsFalse(hasNegativeIndex);
+            Assert.IsFalse(hasNegativeIndex);
         }
 
         [Test]
@@ -938,7 +938,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var hasNegativeIndex = DataListUtil.HasNegativeIndex(reSet);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsTrue(hasNegativeIndex);
+            Assert.IsTrue(hasNegativeIndex);
         }
 
         [Test]
@@ -952,7 +952,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var field = DataListUtil.ExtractFieldNameFromValue(reSet);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual("Name", field);
+            Assert.AreEqual("Name", field);
         }
         [Test]
         [Author("Nkosinathi Sangweni")]
@@ -964,7 +964,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var field = DataListUtil.ExtractFieldNameFromValue(reSet);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual("Name", field);
+            Assert.AreEqual("Name", field);
         }
         [Test]
         [Author("Nkosinathi Sangweni")]
@@ -976,7 +976,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var field = DataListUtil.ExtractFieldNameFromValue(reSet);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual("Name", field);
+            Assert.AreEqual("Name", field);
         }
 
         [Test]
@@ -989,7 +989,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var recName = DataListUtil.ExtractRecordsetNameFromValue(reSet);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual("rec", recName);
+            Assert.AreEqual("rec", recName);
         }
 
         [Test]
@@ -1002,7 +1002,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var recName = DataListUtil.ExtractRecordsetNameFromValue(reSet);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual("rec", recName);
+            Assert.AreEqual("rec", recName);
         }
 
         [Test]
@@ -1015,7 +1015,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var noBrackets = DataListUtil.StripBracketsFromValue(reSet);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual("rec().Name", noBrackets);
+            Assert.AreEqual("rec().Name", noBrackets);
         }
 
         [Test]
@@ -1028,7 +1028,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var noBrackets = DataListUtil.StripBracketsFromValue(reSet);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual("rec().Name", noBrackets);
+            Assert.AreEqual("rec().Name", noBrackets);
         }
 
         [Test]
@@ -1041,7 +1041,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var highLevelRecordset = DataListUtil.MakeValueIntoHighLevelRecordset(reSet, true);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual("rec(*)", highLevelRecordset);
+            Assert.AreEqual("rec(*)", highLevelRecordset);
         }
         [Test]
         [Author("Nkosinathi Sangweni")]
@@ -1053,7 +1053,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var highLevelRecordset = DataListUtil.MakeValueIntoHighLevelRecordset(reSet);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual("rec()", highLevelRecordset);
+            Assert.AreEqual("rec()", highLevelRecordset);
         }
         [Test]
         [Author("Nkosinathi Sangweni")]
@@ -1065,7 +1065,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var highLevelRecordset = DataListUtil.MakeValueIntoHighLevelRecordset(reSet);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual("rec()", highLevelRecordset);
+            Assert.AreEqual("rec()", highLevelRecordset);
         }
         [Test]
         [Author("Nkosinathi Sangweni")]
@@ -1077,7 +1077,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var highLevelRecordset = DataListUtil.MakeValueIntoHighLevelRecordset(reSet);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual("rec()", highLevelRecordset);
+            Assert.AreEqual("rec()", highLevelRecordset);
         }
 
         [Test]
@@ -1090,7 +1090,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var isStarIndex = DataListUtil.IsStarIndex(reSet);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsTrue(isStarIndex);
+            Assert.IsTrue(isStarIndex);
         }
 
         [Test]
@@ -1103,8 +1103,8 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var isStarIndex = DataListUtil.IsStarIndex(reSet);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsFalse(isStarIndex);
-            NUnit.Framework.Assert.IsFalse(DataListUtil.IsStarIndex(string.Empty));
+            Assert.IsFalse(isStarIndex);
+            Assert.IsFalse(DataListUtil.IsStarIndex(string.Empty));
         }
 
         [Test]
@@ -1117,8 +1117,8 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var shouldEncrypt = DataListUtil.ShouldEncrypt(value);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsFalse(shouldEncrypt);
-            NUnit.Framework.Assert.IsFalse(shouldEncrypt);
+            Assert.IsFalse(shouldEncrypt);
+            Assert.IsFalse(shouldEncrypt);
         }
 
         [Test]
@@ -1131,7 +1131,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var shouldEncrypt = DataListUtil.ShouldEncrypt(value);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsTrue(shouldEncrypt);
+            Assert.IsTrue(shouldEncrypt);
         }
 
         [Test]
@@ -1144,7 +1144,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var shouldEncrypt = DataListUtil.ShouldEncrypt(value);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsFalse(shouldEncrypt);
+            Assert.IsFalse(shouldEncrypt);
         }
         public class Car
         {
@@ -1162,8 +1162,8 @@ namespace Dev2.Data.Tests.BinaryDataList
             const string cars = "{ \"Name\":\"Mick\",\"SurName\":\"Mouse\",\"Cars\":[]}";
             var model = DataListUtil.ConvertFromJsonToModel<Car>(new StringBuilder(cars));
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsNotNull(model);
-            NUnit.Framework.Assert.AreEqual(typeof(Car), model.GetType());
+            Assert.IsNotNull(model);
+            Assert.AreEqual(typeof(Car), model.GetType());
         }
 
         [Test]
@@ -1186,7 +1186,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Test Result -----------------------
             var expected = cars.RemoveWhiteSpace().ToJson();
             var actual = builder.ToString().RemoveWhiteSpace().ToJson();
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -1198,7 +1198,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var generateDefsFromDataListForDebug = DataListUtil.GenerateDefsFromDataListForDebug("", enDev2ColumnArgumentDirection.Output);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual(0, generateDefsFromDataListForDebug.Count);
+            Assert.AreEqual(0, generateDefsFromDataListForDebug.Count);
         }
         [Test]
         [Author("Nkosinathi Sangweni")]
@@ -1209,7 +1209,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var generateDefsFromDataListForDebug = DataListUtil.GenerateDefsFromDataListForDebug("<Datalist></Datalist>", enDev2ColumnArgumentDirection.Output);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual(0, generateDefsFromDataListForDebug.Count);
+            Assert.AreEqual(0, generateDefsFromDataListForDebug.Count);
         }
 
         [Test]
@@ -1222,8 +1222,8 @@ namespace Dev2.Data.Tests.BinaryDataList
             const string datalist = @"<DataList><Car Description=""A recordset of information about a car"" IsEditable=""True"" ColumnIODirection=""Both"" ><Make Description=""Make of vehicle"" IsEditable=""True"" ColumnIODirection=""None"" /><Model Description=""Model of vehicle"" IsEditable=""True"" ColumnIODirection=""None"" /></Car><Country Description=""name of Country"" IsEditable=""True"" ColumnIODirection=""Both"" /><Person Description="""" IsEditable=""True"" IsJson=""True"" IsArray=""False"" ColumnIODirection=""None"" ><Age Description="""" IsEditable=""True"" IsJson=""True"" IsArray=""False"" ColumnIODirection=""None"" ></Age><Name Description="""" IsEditable=""True"" IsJson=""True"" IsArray=""False"" ColumnIODirection=""None"" ></Name><School Description="""" IsEditable=""True"" IsJson=""True"" IsArray=""False"" ColumnIODirection=""None"" ><Name Description="""" IsEditable=""True"" IsJson=""True"" IsArray=""False"" ColumnIODirection=""None"" ></Name><Location Description="""" IsEditable=""True"" IsJson=""True"" IsArray=""False"" ColumnIODirection=""None"" ></Location></School></Person></DataList>";
             var generateDefsFromDataListForDebug = DataListUtil.GenerateDefsFromDataListForDebug(datalist, enDev2ColumnArgumentDirection.Output);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreNotEqual(0, generateDefsFromDataListForDebug.Count);
-            NUnit.Framework.Assert.AreEqual(2, generateDefsFromDataListForDebug.Count);
+            Assert.AreNotEqual(0, generateDefsFromDataListForDebug.Count);
+            Assert.AreEqual(2, generateDefsFromDataListForDebug.Count);
         }
 
         [Test]
@@ -1235,7 +1235,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var displayValue = DataListUtil.CreateRecordsetDisplayValue("rec", "Name", "1");
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual("rec(1).Name", displayValue);
+            Assert.AreEqual("rec(1).Name", displayValue);
         }
 
         [Test]
@@ -1249,7 +1249,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             var list = DataListUtil.GenerateSerializableDefsFromDataList("<DataList></DataList>", enDev2ColumnArgumentDirection);
             //---------------Test Result -----------------------
             var containsInput = list.Contains("Input");
-            NUnit.Framework.Assert.IsTrue(containsInput);
+            Assert.IsTrue(containsInput);
         }
 
         [Test]
@@ -1263,7 +1263,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             var list = DataListUtil.GenerateSerializableDefsFromDataList("<DataList></DataList>", enDev2ColumnArgumentDirection);
             //---------------Test Result -----------------------
             var containsInput = list.Contains("Output");
-            NUnit.Framework.Assert.IsTrue(containsInput);
+            Assert.IsTrue(containsInput);
         }
 
         [Test]
@@ -1280,9 +1280,9 @@ namespace Dev2.Data.Tests.BinaryDataList
             s2 = DataListUtil.RemoveLanguageBrackets(s2);
             s3 = DataListUtil.RemoveLanguageBrackets(s3);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual("V1", s1);
-            NUnit.Framework.Assert.AreEqual("V1", s2);
-            NUnit.Framework.Assert.AreEqual("V1", s3);
+            Assert.AreEqual("V1", s1);
+            Assert.AreEqual("V1", s2);
+            Assert.AreEqual("V1", s3);
         }
 
         [Test]
@@ -1295,7 +1295,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var isValueRecordsetWithFields = DataListUtil.IsValueRecordsetWithFields(rec);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsTrue(isValueRecordsetWithFields);
+            Assert.IsTrue(isValueRecordsetWithFields);
         }
 
         [Test]
@@ -1308,7 +1308,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var isValueRecordsetWithFields = DataListUtil.IsValueRecordsetWithFields(rec);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsFalse(isValueRecordsetWithFields);
+            Assert.IsFalse(isValueRecordsetWithFields);
         }
 
         [Test]
@@ -1321,7 +1321,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var isXml = DataListUtil.IsXml(noXml, out bool isFragment);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsFalse(isXml);
+            Assert.IsFalse(isXml);
         }
 
         [Test]
@@ -1334,7 +1334,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var isXml = DataListUtil.IsXml(noXml);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsFalse(isXml);
+            Assert.IsFalse(isXml);
         }
 
         [Test]
@@ -1347,7 +1347,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var isXml = DataListUtil.IsXml(noXml, out bool isFragment);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsTrue(isXml);
+            Assert.IsTrue(isXml);
         }
 
         [Test]
@@ -1360,7 +1360,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var isXml = DataListUtil.IsXml(noXml);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsTrue(isXml);
+            Assert.IsTrue(isXml);
         }
 
         [Test]
@@ -1373,7 +1373,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             //---------------Execute Test ----------------------
             var removeRecordsetBracketsFromValue = DataListUtil.RemoveRecordsetBracketsFromValue(recSet);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual("rec.name", removeRecordsetBracketsFromValue);
+            Assert.AreEqual("rec.name", removeRecordsetBracketsFromValue);
         }
 
         [Test]
@@ -1390,9 +1390,9 @@ namespace Dev2.Data.Tests.BinaryDataList
             var recSetIsScalr = DataListUtil.IsValueScalar(recSet);
             var sclarIsScalr = DataListUtil.IsValueScalar(sclar);
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsTrue(sclarIsScalr);
-            NUnit.Framework.Assert.IsFalse(cmlpIsScalr);
-            NUnit.Framework.Assert.IsFalse(recSetIsScalr);
+            Assert.IsTrue(sclarIsScalr);
+            Assert.IsFalse(cmlpIsScalr);
+            Assert.IsFalse(recSetIsScalr);
         }
 
         [Test]
@@ -1413,7 +1413,7 @@ namespace Dev2.Data.Tests.BinaryDataList
             catch (Exception ex)
             {
 
-                NUnit.Framework.Assert.Fail(ex.Message);
+                Assert.Fail(ex.Message);
             }
 
             //---------------Test Result -----------------------

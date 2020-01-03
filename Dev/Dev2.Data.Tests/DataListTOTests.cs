@@ -28,8 +28,8 @@ namespace Dev2.Data.Tests
             //--------------------------Act-----------------------------------
             var dataListTo = new DataListTO(dataList.ToString());
             //--------------------------Assert--------------------------------
-            NUnit.Framework.Assert.AreEqual(0, dataListTo.Inputs.Count);
-            NUnit.Framework.Assert.AreEqual(0, dataListTo.Outputs.Count);
+            Assert.AreEqual(0, dataListTo.Inputs.Count);
+            Assert.AreEqual(0, dataListTo.Outputs.Count);
         }
 
         [Test]
@@ -43,8 +43,8 @@ namespace Dev2.Data.Tests
             //--------------------------Act-----------------------------------
             var dataListTo = new DataListTO(dataList.ToString(), false);
             //--------------------------Assert--------------------------------
-            NUnit.Framework.Assert.AreEqual(0, dataListTo.Inputs.Count);
-            NUnit.Framework.Assert.AreEqual(0, dataListTo.Outputs.Count);
+            Assert.AreEqual(0, dataListTo.Inputs.Count);
+            Assert.AreEqual(0, dataListTo.Outputs.Count);
         }
 
         [Test]
@@ -67,13 +67,13 @@ namespace Dev2.Data.Tests
             var dataListTo = new DataListTO(dataList.ToString(), true);
 
             //--------------------------Assert--------------------------------
-            NUnit.Framework.Assert.AreEqual(4, dataListTo.Inputs.Count);
-            NUnit.Framework.Assert.AreEqual(0, dataListTo.Outputs.Count);
+            Assert.AreEqual(4, dataListTo.Inputs.Count);
+            Assert.AreEqual(0, dataListTo.Outputs.Count);
 
-            NUnit.Framework.Assert.AreEqual("Child1", dataListTo.Inputs[0]);
-            NUnit.Framework.Assert.AreEqual("[[Child2(*).Child3]]", dataListTo.Inputs[1]);
-            NUnit.Framework.Assert.AreEqual("[[Child2(*).Child4]]", dataListTo.Inputs[2]);
-            NUnit.Framework.Assert.AreEqual("[[Child2(*).Child5]]", dataListTo.Inputs[3]);
+            Assert.AreEqual("Child1", dataListTo.Inputs[0]);
+            Assert.AreEqual("[[Child2(*).Child3]]", dataListTo.Inputs[1]);
+            Assert.AreEqual("[[Child2(*).Child4]]", dataListTo.Inputs[2]);
+            Assert.AreEqual("[[Child2(*).Child5]]", dataListTo.Inputs[3]);
         }
 
         [Test]
@@ -100,14 +100,14 @@ namespace Dev2.Data.Tests
             var dataListTo = new DataListTO(dataList.ToString(), false);
 
             //--------------------------Assert--------------------------------
-            NUnit.Framework.Assert.AreEqual(2, dataListTo.Inputs.Count);
-            NUnit.Framework.Assert.AreEqual(2, dataListTo.Outputs.Count);
+            Assert.AreEqual(2, dataListTo.Inputs.Count);
+            Assert.AreEqual(2, dataListTo.Outputs.Count);
 
-            NUnit.Framework.Assert.AreEqual("Child0", dataListTo.Inputs[0]);
-            NUnit.Framework.Assert.AreEqual("Child01", dataListTo.Inputs[1]);
+            Assert.AreEqual("Child0", dataListTo.Inputs[0]);
+            Assert.AreEqual("Child01", dataListTo.Inputs[1]);
 
-            NUnit.Framework.Assert.AreEqual("Child01", dataListTo.Outputs[0]);
-            NUnit.Framework.Assert.AreEqual("Child02", dataListTo.Outputs[1]);
+            Assert.AreEqual("Child01", dataListTo.Outputs[0]);
+            Assert.AreEqual("Child02", dataListTo.Outputs[1]);
         }
 
         [Test]
@@ -134,14 +134,14 @@ namespace Dev2.Data.Tests
             var dataListTo = new DataListTO(dataList.ToString(), false);
 
             //--------------------------Assert--------------------------------
-            NUnit.Framework.Assert.AreEqual(2, dataListTo.Inputs.Count);
-            NUnit.Framework.Assert.AreEqual(2, dataListTo.Outputs.Count);
+            Assert.AreEqual(2, dataListTo.Inputs.Count);
+            Assert.AreEqual(2, dataListTo.Outputs.Count);
 
-            NUnit.Framework.Assert.AreEqual("Child0", dataListTo.Inputs[0]);
-            NUnit.Framework.Assert.AreEqual("Child01", dataListTo.Inputs[1]);
+            Assert.AreEqual("Child0", dataListTo.Inputs[0]);
+            Assert.AreEqual("Child01", dataListTo.Inputs[1]);
 
-            NUnit.Framework.Assert.AreEqual("Child01", dataListTo.Outputs[0]);
-            NUnit.Framework.Assert.AreEqual("Child02", dataListTo.Outputs[1]);
+            Assert.AreEqual("Child01", dataListTo.Outputs[0]);
+            Assert.AreEqual("Child02", dataListTo.Outputs[1]);
         }
 
         [Test]
@@ -169,14 +169,14 @@ namespace Dev2.Data.Tests
             var dataListTo = new DataListTO(dataList.ToString(), false);
 
             //--------------------------Assert--------------------------------
-            NUnit.Framework.Assert.AreEqual(2, dataListTo.Inputs.Count);
-            NUnit.Framework.Assert.AreEqual(2, dataListTo.Outputs.Count);
+            Assert.AreEqual(2, dataListTo.Inputs.Count);
+            Assert.AreEqual(2, dataListTo.Outputs.Count);
 
-            NUnit.Framework.Assert.AreEqual("Child0", dataListTo.Inputs[0]);
-            NUnit.Framework.Assert.AreEqual("Child01", dataListTo.Inputs[1]);
+            Assert.AreEqual("Child0", dataListTo.Inputs[0]);
+            Assert.AreEqual("Child01", dataListTo.Inputs[1]);
 
-            NUnit.Framework.Assert.AreEqual("Child01", dataListTo.Outputs[0]);
-            NUnit.Framework.Assert.AreEqual("Child02", dataListTo.Outputs[1]);
+            Assert.AreEqual("Child01", dataListTo.Outputs[0]);
+            Assert.AreEqual("Child02", dataListTo.Outputs[1]);
         }
 
         [Test]
@@ -204,18 +204,18 @@ namespace Dev2.Data.Tests
             var dataListTo = new DataListTO(dataList.ToString(), false);
 
             //--------------------------Assert--------------------------------
-            NUnit.Framework.Assert.AreEqual(4, dataListTo.Inputs.Count);
-            NUnit.Framework.Assert.AreEqual(4, dataListTo.Outputs.Count);
+            Assert.AreEqual(4, dataListTo.Inputs.Count);
+            Assert.AreEqual(4, dataListTo.Outputs.Count);
 
-            NUnit.Framework.Assert.AreEqual("Child0", dataListTo.Inputs[0]);
-            NUnit.Framework.Assert.AreEqual("Child01", dataListTo.Inputs[1]);
-            NUnit.Framework.Assert.AreEqual("[[Child2(*).Child3]]", dataListTo.Inputs[2]);
-            NUnit.Framework.Assert.AreEqual("[[Child2(*).Child4]]", dataListTo.Inputs[3]);
+            Assert.AreEqual("Child0", dataListTo.Inputs[0]);
+            Assert.AreEqual("Child01", dataListTo.Inputs[1]);
+            Assert.AreEqual("[[Child2(*).Child3]]", dataListTo.Inputs[2]);
+            Assert.AreEqual("[[Child2(*).Child4]]", dataListTo.Inputs[3]);
 
-            NUnit.Framework.Assert.AreEqual("Child01", dataListTo.Outputs[0]);
-            NUnit.Framework.Assert.AreEqual("Child02", dataListTo.Outputs[1]);
-            NUnit.Framework.Assert.AreEqual("[[Child2(*).Child3]]", dataListTo.Outputs[2]);
-            NUnit.Framework.Assert.AreEqual("[[Child2(*).Child5]]", dataListTo.Outputs[3]);
+            Assert.AreEqual("Child01", dataListTo.Outputs[0]);
+            Assert.AreEqual("Child02", dataListTo.Outputs[1]);
+            Assert.AreEqual("[[Child2(*).Child3]]", dataListTo.Outputs[2]);
+            Assert.AreEqual("[[Child2(*).Child5]]", dataListTo.Outputs[3]);
         }
 
         [Test]
@@ -226,14 +226,14 @@ namespace Dev2.Data.Tests
             const string expectedResult = @"<DataList><Car Description=""A recordset of information about a car"" IsEditable=""True"" ColumnIODirection=""Both"" ><Make Description=""Make of vehicle"" IsEditable=""True"" ColumnIODirection=""None"" /><Model Description=""Model of vehicle"" IsEditable=""True"" ColumnIODirection=""None"" /></Car><Country Description=""name of Country"" IsEditable=""True"" ColumnIODirection=""Both"" /><Person Description="""" IsEditable=""True"" IsJson=""True"" IsArray=""False"" ColumnIODirection=""None"" ><Age Description="""" IsEditable=""True"" IsJson=""True"" IsArray=""False"" ColumnIODirection=""None"" ></Age><Name Description="""" IsEditable=""True"" IsJson=""True"" IsArray=""False"" ColumnIODirection=""None"" ></Name><School Description="""" IsEditable=""True"" IsJson=""True"" IsArray=""False"" ColumnIODirection=""None"" ><Name Description="""" IsEditable=""True"" IsJson=""True"" IsArray=""False"" ColumnIODirection=""None"" ></Name><Location Description="""" IsEditable=""True"" IsJson=""True"" IsArray=""False"" ColumnIODirection=""None"" ></Location></School></Person></DataList>";
             var dataList = new DataListTO(expectedResult, true);
 
-            NUnit.Framework.Assert.AreEqual("Country", dataList.Inputs[0]);
-            NUnit.Framework.Assert.AreEqual("[[Car(*).Make]]", dataList.Inputs[1]);
-            NUnit.Framework.Assert.AreEqual("[[Car(*).Model]]", dataList.Inputs[2]);
-            NUnit.Framework.Assert.AreEqual("[[Person(*).Age]]", dataList.Inputs[3]);
-            NUnit.Framework.Assert.AreEqual("[[Person(*).Name]]", dataList.Inputs[4]);
-            NUnit.Framework.Assert.AreEqual("[[Person(*).School]]", dataList.Inputs[5]);
+            Assert.AreEqual("Country", dataList.Inputs[0]);
+            Assert.AreEqual("[[Car(*).Make]]", dataList.Inputs[1]);
+            Assert.AreEqual("[[Car(*).Model]]", dataList.Inputs[2]);
+            Assert.AreEqual("[[Person(*).Age]]", dataList.Inputs[3]);
+            Assert.AreEqual("[[Person(*).Name]]", dataList.Inputs[4]);
+            Assert.AreEqual("[[Person(*).School]]", dataList.Inputs[5]);
 
-            NUnit.Framework.Assert.AreEqual(6, dataList.Inputs.Count);
+            Assert.AreEqual(6, dataList.Inputs.Count);
         }
     }
 }

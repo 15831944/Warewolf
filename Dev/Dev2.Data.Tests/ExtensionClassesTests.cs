@@ -14,13 +14,13 @@ namespace Dev2.Data.Tests
         [Test]
         public void DataListConstants_ShouldHave_AllConstants()
         {
-            NUnit.Framework.Assert.IsNotNull(DataListConstants.DefaultCase);
-            NUnit.Framework.Assert.IsNotNull(DataListConstants.DefaultDecision);
-            NUnit.Framework.Assert.IsNotNull(DataListConstants.DefaultStack);
-            NUnit.Framework.Assert.IsNotNull(DataListConstants.DefaultSwitch);
-            NUnit.Framework.Assert.IsNotNull(DataListConstants.EmptyRowStartIdx);
-            NUnit.Framework.Assert.IsNotNull(DataListConstants.MinRowSize);
-            NUnit.Framework.Assert.IsNotNull(DataListConstants.RowGrowthFactor);
+            Assert.IsNotNull(DataListConstants.DefaultCase);
+            Assert.IsNotNull(DataListConstants.DefaultDecision);
+            Assert.IsNotNull(DataListConstants.DefaultStack);
+            Assert.IsNotNull(DataListConstants.DefaultSwitch);
+            Assert.IsNotNull(DataListConstants.EmptyRowStartIdx);
+            Assert.IsNotNull(DataListConstants.MinRowSize);
+            Assert.IsNotNull(DataListConstants.RowGrowthFactor);
         }
 
         
@@ -28,33 +28,33 @@ namespace Dev2.Data.Tests
         public void GivenResourceName_ResourceForTree_ToString_ShouldReturtnResourceName()
         {
             var resourceForTree = new ResourceForTree();
-            NUnit.Framework.Assert.IsNotNull(resourceForTree);
+            Assert.IsNotNull(resourceForTree);
             resourceForTree.ResourceName = "SomeName";
             var res = resourceForTree.ToString();
-            NUnit.Framework.Assert.AreEqual("SomeName", res);
+            Assert.AreEqual("SomeName", res);
         }
 
         [Test]
         public void GivenTagName_SystemTag_ShouldSurroundNameWithTags()
         {
             var tag = new SystemTag("SomeName");
-            NUnit.Framework.Assert.IsNotNull(tag);
-            NUnit.Framework.Assert.AreEqual("<SomeName>", tag.StartTag);
-            NUnit.Framework.Assert.AreEqual("</SomeName>", tag.EndTag);
+            Assert.IsNotNull(tag);
+            Assert.AreEqual("<SomeName>", tag.StartTag);
+            Assert.AreEqual("</SomeName>", tag.EndTag);
         }
 
         [Test]
         public void GivenName_InputDefinition_ShouldNameWithTags()
         {
             var inputDefinition = new InputDefinition("SomeName", "MapsToSomething", false);
-            NUnit.Framework.Assert.IsNotNull(inputDefinition);
-            NUnit.Framework.Assert.AreEqual("SomeName", inputDefinition.Name);
-            NUnit.Framework.Assert.AreEqual("MapsToSomething", inputDefinition.MapsTo);
-            NUnit.Framework.Assert.AreEqual("<MapsToSomething>", inputDefinition.StartTagSearch);
-            NUnit.Framework.Assert.AreEqual("</MapsToSomething>", inputDefinition.EndTagSearch);
-            NUnit.Framework.Assert.AreEqual("<SomeName>", inputDefinition.StartTagReplace);
-            NUnit.Framework.Assert.AreEqual("</SomeName>", inputDefinition.EndTagReplace);
-            NUnit.Framework.Assert.IsFalse(inputDefinition.IsEvaluated);
+            Assert.IsNotNull(inputDefinition);
+            Assert.AreEqual("SomeName", inputDefinition.Name);
+            Assert.AreEqual("MapsToSomething", inputDefinition.MapsTo);
+            Assert.AreEqual("<MapsToSomething>", inputDefinition.StartTagSearch);
+            Assert.AreEqual("</MapsToSomething>", inputDefinition.EndTagSearch);
+            Assert.AreEqual("<SomeName>", inputDefinition.StartTagReplace);
+            Assert.AreEqual("</SomeName>", inputDefinition.EndTagReplace);
+            Assert.IsFalse(inputDefinition.IsEvaluated);
         }
        
 
@@ -62,19 +62,19 @@ namespace Dev2.Data.Tests
         public void SearchTO_ShouldHaveConstructor()
         {
             var searchTo = new SearchTO("searchField", "seacrchType", "searchCriteria", "result");
-            NUnit.Framework.Assert.IsNotNull(searchTo);
-            NUnit.Framework.Assert.AreEqual("searchField", searchTo.FieldsToSearch);
-            NUnit.Framework.Assert.AreEqual("seacrchType", searchTo.SearchType);
-            NUnit.Framework.Assert.AreEqual("searchCriteria", searchTo.SearchCriteria);
-            NUnit.Framework.Assert.AreEqual("result", searchTo.Result);
+            Assert.IsNotNull(searchTo);
+            Assert.AreEqual("searchField", searchTo.FieldsToSearch);
+            Assert.AreEqual("seacrchType", searchTo.SearchType);
+            Assert.AreEqual("searchCriteria", searchTo.SearchCriteria);
+            Assert.AreEqual("result", searchTo.Result);
         }
 
         [Test]
         public void CreateEvaluationFunctionTO_ShouldHaveConstructor()
         {
             var evaluationFunctionTo = MathOpsFactory.CreateEvaluationFunctionTO("someFunction");
-            NUnit.Framework.Assert.IsNotNull(evaluationFunctionTo);
-            NUnit.Framework.Assert.AreEqual("someFunction", evaluationFunctionTo.Function);
+            Assert.IsNotNull(evaluationFunctionTo);
+            Assert.AreEqual("someFunction", evaluationFunctionTo.Function);
         }
 
         
@@ -83,9 +83,9 @@ namespace Dev2.Data.Tests
         {
             var indexes = new List<int> {1,2};
             var listOfIndex = new ListOfIndex(indexes);
-            NUnit.Framework.Assert.IsNotNull(listOfIndex);
+            Assert.IsNotNull(listOfIndex);
             var maxIndex = listOfIndex.GetMaxIndex();
-            NUnit.Framework.Assert.AreEqual(2, maxIndex);
+            Assert.AreEqual(2, maxIndex);
         }
 
         [Test]
@@ -93,9 +93,9 @@ namespace Dev2.Data.Tests
         {
             var indexes = new List<int> { 1, 2 };
             var listOfIndex = new ListOfIndex(indexes);
-            NUnit.Framework.Assert.IsNotNull(listOfIndex);
+            Assert.IsNotNull(listOfIndex);
             var count = listOfIndex.Count();
-            NUnit.Framework.Assert.AreEqual(2, count);
+            Assert.AreEqual(2, count);
         }
     }
 }

@@ -31,7 +31,7 @@ namespace Dev2.Data.Tests.ServiceModel
             var actual = ServiceUtils.MappingNamesChanged(null, new List<IDev2Definition>());
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(actual);
+            Assert.IsTrue(actual);
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace Dev2.Data.Tests.ServiceModel
             var actual = ServiceUtils.MappingNamesChanged(new List<IDev2Definition>(), null);
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(actual);
+            Assert.IsTrue(actual);
         }
 
         [Test]
@@ -63,7 +63,7 @@ namespace Dev2.Data.Tests.ServiceModel
             stringBuilder.AppendLine(xmlDocument);
             var actual = ServiceUtils.ExtractDataList(stringBuilder);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(string.Empty, actual);
+            Assert.AreEqual(string.Empty, actual);
         }
 
         [Test]
@@ -91,7 +91,7 @@ namespace Dev2.Data.Tests.ServiceModel
             var actual = ServiceUtils.MappingNamesChanged(oldMappings, newMappings);
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsFalse(actual);
+            Assert.IsFalse(actual);
         }
 
         [Test]
@@ -118,7 +118,7 @@ namespace Dev2.Data.Tests.ServiceModel
             var actual = ServiceUtils.MappingNamesChanged(oldMappings, newMappings);
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(actual);
+            Assert.IsTrue(actual);
         }
 
         [Test]
@@ -146,7 +146,7 @@ namespace Dev2.Data.Tests.ServiceModel
             var actual = ServiceUtils.MappingNamesChanged(oldMappings, newMappings);
 
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(actual);
+            Assert.IsTrue(actual);
         }
 
         static IDev2Definition CreateNameMapping(string name)

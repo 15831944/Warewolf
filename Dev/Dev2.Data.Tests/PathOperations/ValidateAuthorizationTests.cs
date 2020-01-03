@@ -29,7 +29,7 @@ namespace Dev2.Data.Tests.PathOperations
             //--------------------------Act------------------------------
             var doLogOn = ValidateAuthorization.DoLogOn(mockValidateAuthorization.Object, mockActivityIOPath.Object);
             //--------------------------Assert---------------------------
-            NUnit.Framework.Assert.IsNull(doLogOn);
+            Assert.IsNull(doLogOn);
         }
 
         [Test]
@@ -43,7 +43,7 @@ namespace Dev2.Data.Tests.PathOperations
             //--------------------------Act------------------------------
             var doLogOn = ValidateAuthorization.RequiresAuth(mockActivityIOPath.Object, mockDev2LogonProvider.Object);
             //--------------------------Assert---------------------------
-            NUnit.Framework.Assert.IsNull(doLogOn);
+            Assert.IsNull(doLogOn);
         }
     }
 }

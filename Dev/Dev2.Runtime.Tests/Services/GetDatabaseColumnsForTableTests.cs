@@ -11,13 +11,10 @@
 using System;
 using System.Activities;
 using System.Collections.Generic;
-using System.IO;
-using System.Reflection;
 using System.Runtime.Serialization;
 using System.Text;
 using Dev2.Common.Interfaces.Core.DynamicServices;
 using Dev2.Common.Interfaces.Enums;
-using Dev2.Infrastructure.Tests;
 using Dev2.Runtime.ESB.Management.Services;
 using Dev2.Runtime.Hosting;
 using Dev2.Runtime.ServiceModel.Data;
@@ -25,7 +22,6 @@ using Dev2.Workspaces;
 using NUnit.Framework;
 using Moq;
 using Newtonsoft.Json;
-using Warewolf.Test.Agent;
 using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Tests.Runtime.Services

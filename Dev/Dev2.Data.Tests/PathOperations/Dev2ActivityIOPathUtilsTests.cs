@@ -14,7 +14,7 @@ namespace Dev2.Data.Tests.PathOperations
         {
             const string resourcesPath = @"C:\ProgramData\Warewolf\Resources";
             var fullDir = Dev2ActivityIOPathUtils.ExtractFullDirectoryPath(resourcesPath);
-            NUnit.Framework.Assert.AreEqual(resourcesPath, fullDir);
+            Assert.AreEqual(resourcesPath, fullDir);
         }
 
         [Test]
@@ -23,21 +23,21 @@ namespace Dev2.Data.Tests.PathOperations
             const string serverLogFile = @"C:\ProgramData\Warewolf\Server Log\wareWolf-Server.log";
             const string containingFolder = @"C:\ProgramData\Warewolf\Server Log\";
             var results = Dev2ActivityIOPathUtils.ExtractFullDirectoryPath(serverLogFile);
-            NUnit.Framework.Assert.AreEqual(containingFolder, results);
+            Assert.AreEqual(containingFolder, results);
         }
         [Test]
         public void IsStarWildCard_Given_Star_In_Path_Returns_True()
         {
             const string resourcesPath = @"C:\ProgramData\Warewolf\*.*";
             var results = Dev2ActivityIOPathUtils.IsStarWildCard(resourcesPath);
-            NUnit.Framework.Assert.IsTrue(results);
+            Assert.IsTrue(results);
         }
         [Test]
         public void IsDirectory_Given_Drive_Returns_True()
         {
             const string resourcesPath = @"C:\\";
             var results = Dev2ActivityIOPathUtils.IsDirectory(resourcesPath);
-            NUnit.Framework.Assert.IsTrue(results);
+            Assert.IsTrue(results);
         }
     }
 }

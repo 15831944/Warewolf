@@ -59,63 +59,63 @@ namespace Dev2.Data.Tests
 
             var listItems = dataListConversionUtils.CreateListToBindTo(mockDataListModel.Object);
 
-            NUnit.Framework.Assert.AreEqual(8, listItems.Count);
+            Assert.AreEqual(8, listItems.Count);
 
-            NUnit.Framework.Assert.AreEqual("[[a]]", listItems[0].DisplayValue);
-            NUnit.Framework.Assert.AreEqual("[[a]]", listItems[0].Field);
-            NUnit.Framework.Assert.AreEqual("1", listItems[0].Value);
-            NUnit.Framework.Assert.IsNull(listItems[0].Index);
-            NUnit.Framework.Assert.IsFalse(listItems[0].IsObject);
-            NUnit.Framework.Assert.IsNull(listItems[0].Recordset);
+            Assert.AreEqual("[[a]]", listItems[0].DisplayValue);
+            Assert.AreEqual("[[a]]", listItems[0].Field);
+            Assert.AreEqual("1", listItems[0].Value);
+            Assert.IsNull(listItems[0].Index);
+            Assert.IsFalse(listItems[0].IsObject);
+            Assert.IsNull(listItems[0].Recordset);
 
-            NUnit.Framework.Assert.AreEqual("[[b]]", listItems[1].DisplayValue);
-            NUnit.Framework.Assert.AreEqual("[[b]]", listItems[1].Field);
-            NUnit.Framework.Assert.AreEqual("2", listItems[1].Value);
-            NUnit.Framework.Assert.IsNull(listItems[1].Index);
-            NUnit.Framework.Assert.IsFalse(listItems[1].IsObject);
-            NUnit.Framework.Assert.IsNull(listItems[1].Recordset);
+            Assert.AreEqual("[[b]]", listItems[1].DisplayValue);
+            Assert.AreEqual("[[b]]", listItems[1].Field);
+            Assert.AreEqual("2", listItems[1].Value);
+            Assert.IsNull(listItems[1].Index);
+            Assert.IsFalse(listItems[1].IsObject);
+            Assert.IsNull(listItems[1].Recordset);
 
-            NUnit.Framework.Assert.AreEqual("[[rec().a]](1).[[a]]", listItems[2].DisplayValue);
-            NUnit.Framework.Assert.AreEqual("[[a]]", listItems[2].Field);
-            NUnit.Framework.Assert.AreEqual("1", listItems[2].Value);
-            NUnit.Framework.Assert.AreEqual("1", listItems[2].Index);
-            NUnit.Framework.Assert.IsFalse(listItems[2].IsObject);
-            NUnit.Framework.Assert.AreEqual("[[rec().a]]", listItems[2].Recordset);
+            Assert.AreEqual("[[rec().a]](1).[[a]]", listItems[2].DisplayValue);
+            Assert.AreEqual("[[a]]", listItems[2].Field);
+            Assert.AreEqual("1", listItems[2].Value);
+            Assert.AreEqual("1", listItems[2].Index);
+            Assert.IsFalse(listItems[2].IsObject);
+            Assert.AreEqual("[[rec().a]]", listItems[2].Recordset);
 
-            NUnit.Framework.Assert.AreEqual("[[rec().a]](1).[[b]]", listItems[3].DisplayValue);
-            NUnit.Framework.Assert.AreEqual("[[b]]", listItems[3].Field);
-            NUnit.Framework.Assert.AreEqual("2", listItems[3].Value);
-            NUnit.Framework.Assert.AreEqual("1", listItems[3].Index);
-            NUnit.Framework.Assert.IsFalse(listItems[3].IsObject);
-            NUnit.Framework.Assert.AreEqual("[[rec().a]]", listItems[3].Recordset);
+            Assert.AreEqual("[[rec().a]](1).[[b]]", listItems[3].DisplayValue);
+            Assert.AreEqual("[[b]]", listItems[3].Field);
+            Assert.AreEqual("2", listItems[3].Value);
+            Assert.AreEqual("1", listItems[3].Index);
+            Assert.IsFalse(listItems[3].IsObject);
+            Assert.AreEqual("[[rec().a]]", listItems[3].Recordset);
 
-            NUnit.Framework.Assert.AreEqual("[[rec().b]](2).[[a]]", listItems[4].DisplayValue);
-            NUnit.Framework.Assert.AreEqual("[[a]]", listItems[4].Field);
-            NUnit.Framework.Assert.AreEqual("1", listItems[4].Value);
-            NUnit.Framework.Assert.AreEqual("2", listItems[4].Index);
-            NUnit.Framework.Assert.IsFalse(listItems[4].IsObject);
-            NUnit.Framework.Assert.AreEqual("[[rec().b]]", listItems[4].Recordset);
+            Assert.AreEqual("[[rec().b]](2).[[a]]", listItems[4].DisplayValue);
+            Assert.AreEqual("[[a]]", listItems[4].Field);
+            Assert.AreEqual("1", listItems[4].Value);
+            Assert.AreEqual("2", listItems[4].Index);
+            Assert.IsFalse(listItems[4].IsObject);
+            Assert.AreEqual("[[rec().b]]", listItems[4].Recordset);
 
-            NUnit.Framework.Assert.AreEqual("[[rec().b]](2).[[b]]", listItems[5].DisplayValue);
-            NUnit.Framework.Assert.AreEqual("[[b]]", listItems[5].Field);
-            NUnit.Framework.Assert.AreEqual("2", listItems[5].Value);
-            NUnit.Framework.Assert.AreEqual("2", listItems[5].Index);
-            NUnit.Framework.Assert.IsFalse(listItems[5].IsObject);
-            NUnit.Framework.Assert.AreEqual("[[rec().b]]", listItems[5].Recordset);
+            Assert.AreEqual("[[rec().b]](2).[[b]]", listItems[5].DisplayValue);
+            Assert.AreEqual("[[b]]", listItems[5].Field);
+            Assert.AreEqual("2", listItems[5].Value);
+            Assert.AreEqual("2", listItems[5].Index);
+            Assert.IsFalse(listItems[5].IsObject);
+            Assert.AreEqual("[[rec().b]]", listItems[5].Recordset);
 
-            NUnit.Framework.Assert.AreEqual("@item", listItems[6].DisplayValue);
-            NUnit.Framework.Assert.AreEqual("item", listItems[6].Field);
-            NUnit.Framework.Assert.AreEqual("1", listItems[6].Value);
-            NUnit.Framework.Assert.IsNull(listItems[6].Index);
-            NUnit.Framework.Assert.IsTrue(listItems[6].IsObject);
-            NUnit.Framework.Assert.IsNull(listItems[6].Recordset);
+            Assert.AreEqual("@item", listItems[6].DisplayValue);
+            Assert.AreEqual("item", listItems[6].Field);
+            Assert.AreEqual("1", listItems[6].Value);
+            Assert.IsNull(listItems[6].Index);
+            Assert.IsTrue(listItems[6].IsObject);
+            Assert.IsNull(listItems[6].Recordset);
 
-            NUnit.Framework.Assert.AreEqual("@newItem", listItems[7].DisplayValue);
-            NUnit.Framework.Assert.AreEqual("newItem", listItems[7].Field);
-            NUnit.Framework.Assert.AreEqual("2", listItems[7].Value);
-            NUnit.Framework.Assert.IsNull(listItems[7].Index);
-            NUnit.Framework.Assert.IsTrue(listItems[7].IsObject);
-            NUnit.Framework.Assert.IsNull(listItems[7].Recordset);
+            Assert.AreEqual("@newItem", listItems[7].DisplayValue);
+            Assert.AreEqual("newItem", listItems[7].Field);
+            Assert.AreEqual("2", listItems[7].Value);
+            Assert.IsNull(listItems[7].Index);
+            Assert.IsTrue(listItems[7].IsObject);
+            Assert.IsNull(listItems[7].Recordset);
         }
 
         [Test]
@@ -159,63 +159,63 @@ namespace Dev2.Data.Tests
 
             var listItems = dataListConversionUtils.GetOutputs(mockDataListModel.Object);
 
-            NUnit.Framework.Assert.AreEqual(8, listItems.Count);
+            Assert.AreEqual(8, listItems.Count);
 
-            NUnit.Framework.Assert.AreEqual("[[a]]", listItems[0].DisplayValue);
-            NUnit.Framework.Assert.AreEqual("[[a]]", listItems[0].Field);
-            NUnit.Framework.Assert.AreEqual("1", listItems[0].Value);
-            NUnit.Framework.Assert.IsNull(listItems[0].Index);
-            NUnit.Framework.Assert.IsFalse(listItems[0].IsObject);
-            NUnit.Framework.Assert.IsNull(listItems[0].Recordset);
+            Assert.AreEqual("[[a]]", listItems[0].DisplayValue);
+            Assert.AreEqual("[[a]]", listItems[0].Field);
+            Assert.AreEqual("1", listItems[0].Value);
+            Assert.IsNull(listItems[0].Index);
+            Assert.IsFalse(listItems[0].IsObject);
+            Assert.IsNull(listItems[0].Recordset);
 
-            NUnit.Framework.Assert.AreEqual("[[b]]", listItems[1].DisplayValue);
-            NUnit.Framework.Assert.AreEqual("[[b]]", listItems[1].Field);
-            NUnit.Framework.Assert.IsNull(listItems[1].Value);
-            NUnit.Framework.Assert.IsNull(listItems[1].Index);
-            NUnit.Framework.Assert.IsFalse(listItems[1].IsObject);
-            NUnit.Framework.Assert.IsNull(listItems[1].Recordset);
+            Assert.AreEqual("[[b]]", listItems[1].DisplayValue);
+            Assert.AreEqual("[[b]]", listItems[1].Field);
+            Assert.IsNull(listItems[1].Value);
+            Assert.IsNull(listItems[1].Index);
+            Assert.IsFalse(listItems[1].IsObject);
+            Assert.IsNull(listItems[1].Recordset);
 
-            NUnit.Framework.Assert.AreEqual("[[rec().a]](1).[[a]]", listItems[2].DisplayValue);
-            NUnit.Framework.Assert.AreEqual("[[a]]", listItems[2].Field);
-            NUnit.Framework.Assert.AreEqual("1", listItems[2].Value);
-            NUnit.Framework.Assert.AreEqual("1", listItems[2].Index);
-            NUnit.Framework.Assert.IsFalse(listItems[2].IsObject);
-            NUnit.Framework.Assert.AreEqual("[[rec().a]]", listItems[2].Recordset);
+            Assert.AreEqual("[[rec().a]](1).[[a]]", listItems[2].DisplayValue);
+            Assert.AreEqual("[[a]]", listItems[2].Field);
+            Assert.AreEqual("1", listItems[2].Value);
+            Assert.AreEqual("1", listItems[2].Index);
+            Assert.IsFalse(listItems[2].IsObject);
+            Assert.AreEqual("[[rec().a]]", listItems[2].Recordset);
 
-            NUnit.Framework.Assert.AreEqual("[[rec().a]](1).[[b]]", listItems[3].DisplayValue);
-            NUnit.Framework.Assert.AreEqual("[[b]]", listItems[3].Field);
-            NUnit.Framework.Assert.IsNull(listItems[3].Value);
-            NUnit.Framework.Assert.AreEqual("1", listItems[3].Index);
-            NUnit.Framework.Assert.IsFalse(listItems[3].IsObject);
-            NUnit.Framework.Assert.AreEqual("[[rec().a]]", listItems[3].Recordset);
+            Assert.AreEqual("[[rec().a]](1).[[b]]", listItems[3].DisplayValue);
+            Assert.AreEqual("[[b]]", listItems[3].Field);
+            Assert.IsNull(listItems[3].Value);
+            Assert.AreEqual("1", listItems[3].Index);
+            Assert.IsFalse(listItems[3].IsObject);
+            Assert.AreEqual("[[rec().a]]", listItems[3].Recordset);
 
-            NUnit.Framework.Assert.AreEqual("[[rec().b]](2).[[a]]", listItems[4].DisplayValue);
-            NUnit.Framework.Assert.AreEqual("[[a]]", listItems[4].Field);
-            NUnit.Framework.Assert.AreEqual("1", listItems[4].Value);
-            NUnit.Framework.Assert.AreEqual("2", listItems[4].Index);
-            NUnit.Framework.Assert.IsFalse(listItems[4].IsObject);
-            NUnit.Framework.Assert.AreEqual("[[rec().b]]", listItems[4].Recordset);
+            Assert.AreEqual("[[rec().b]](2).[[a]]", listItems[4].DisplayValue);
+            Assert.AreEqual("[[a]]", listItems[4].Field);
+            Assert.AreEqual("1", listItems[4].Value);
+            Assert.AreEqual("2", listItems[4].Index);
+            Assert.IsFalse(listItems[4].IsObject);
+            Assert.AreEqual("[[rec().b]]", listItems[4].Recordset);
 
-            NUnit.Framework.Assert.AreEqual("[[rec().b]](2).[[b]]", listItems[5].DisplayValue);
-            NUnit.Framework.Assert.AreEqual("[[b]]", listItems[5].Field);
-            NUnit.Framework.Assert.AreEqual("2", listItems[5].Value);
-            NUnit.Framework.Assert.AreEqual("2", listItems[5].Index);
-            NUnit.Framework.Assert.IsFalse(listItems[5].IsObject);
-            NUnit.Framework.Assert.AreEqual("[[rec().b]]", listItems[5].Recordset);
+            Assert.AreEqual("[[rec().b]](2).[[b]]", listItems[5].DisplayValue);
+            Assert.AreEqual("[[b]]", listItems[5].Field);
+            Assert.AreEqual("2", listItems[5].Value);
+            Assert.AreEqual("2", listItems[5].Index);
+            Assert.IsFalse(listItems[5].IsObject);
+            Assert.AreEqual("[[rec().b]]", listItems[5].Recordset);
 
-            NUnit.Framework.Assert.AreEqual("@item", listItems[6].DisplayValue);
-            NUnit.Framework.Assert.AreEqual("item", listItems[6].Field);
-            NUnit.Framework.Assert.AreEqual("1", listItems[6].Value);
-            NUnit.Framework.Assert.IsNull(listItems[6].Index);
-            NUnit.Framework.Assert.IsTrue(listItems[6].IsObject);
-            NUnit.Framework.Assert.IsNull(listItems[6].Recordset);
+            Assert.AreEqual("@item", listItems[6].DisplayValue);
+            Assert.AreEqual("item", listItems[6].Field);
+            Assert.AreEqual("1", listItems[6].Value);
+            Assert.IsNull(listItems[6].Index);
+            Assert.IsTrue(listItems[6].IsObject);
+            Assert.IsNull(listItems[6].Recordset);
 
-            NUnit.Framework.Assert.AreEqual("@newItem", listItems[7].DisplayValue);
-            NUnit.Framework.Assert.AreEqual("newItem", listItems[7].Field);
-            NUnit.Framework.Assert.AreEqual("2", listItems[7].Value);
-            NUnit.Framework.Assert.IsNull(listItems[7].Index);
-            NUnit.Framework.Assert.IsTrue(listItems[7].IsObject);
-            NUnit.Framework.Assert.IsNull(listItems[7].Recordset);
+            Assert.AreEqual("@newItem", listItems[7].DisplayValue);
+            Assert.AreEqual("newItem", listItems[7].Field);
+            Assert.AreEqual("2", listItems[7].Value);
+            Assert.IsNull(listItems[7].Index);
+            Assert.IsTrue(listItems[7].IsObject);
+            Assert.IsNull(listItems[7].Recordset);
         }
     }
 }

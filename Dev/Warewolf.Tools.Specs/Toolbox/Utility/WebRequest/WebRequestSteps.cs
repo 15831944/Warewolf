@@ -12,7 +12,6 @@ using System;
 using System.Activities.Statements;
 using System.Collections.Generic;
 using Dev2.Data.Util;
-using Dev2.Infrastructure.Tests;
 using Dev2.Interfaces;
 using NUnit.Framework;
 using TechTalk.SpecFlow;

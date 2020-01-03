@@ -342,7 +342,7 @@ namespace Dev2.Tests.Diagnostics
             //---------------Execute Test ----------------------
             var serializeToJsonString = debugState.SerializeToJsonString(new DefaultSerializationBinder());
             //---------------Test Result -----------------------
-            StringAssert.Contains(serializeToJsonString, "\"StateType\": \"End\"");
+            StringAssert.Contains("\"StateType\": \"End\"", serializeToJsonString);
         }
         #endregion
 

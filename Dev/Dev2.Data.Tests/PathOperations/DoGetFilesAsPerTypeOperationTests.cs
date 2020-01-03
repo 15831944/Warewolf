@@ -30,7 +30,7 @@ namespace Dev2.Data.Tests.PathOperations
             var mockActivityIOPath = new Mock<IActivityIOPath>();
             //---------------------------Act-------------------------------
             //---------------------------Assert----------------------------
-            NUnit.Framework.Assert.Throws<NullReferenceException>(() => new DoGetFilesAsPerTypeOperation(mockActivityIOPath.Object, Interfaces.Enums.ReadTypes.Files));
+            Assert.Throws<NullReferenceException>(() => new DoGetFilesAsPerTypeOperation(mockActivityIOPath.Object, Interfaces.Enums.ReadTypes.Files));
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace Dev2.Data.Tests.PathOperations
             //---------------------------Act-------------------------------
             var doGetFilesAsPerTypeOperation = new DoGetFilesAsPerTypeOperation(mockActivityIOPath.Object, Interfaces.Enums.ReadTypes.Files);
             //---------------------------Assert----------------------------
-            NUnit.Framework.Assert.Throws<Exception>(() => doGetFilesAsPerTypeOperation.ExecuteOperation());
+            Assert.Throws<Exception>(() => doGetFilesAsPerTypeOperation.ExecuteOperation());
         }
 
         [Test]
@@ -69,7 +69,7 @@ namespace Dev2.Data.Tests.PathOperations
             };
             //---------------------------Assert----------------------------
             mockActivityIOPath.VerifyAll();
-            NUnit.Framework.Assert.Throws<Exception>(() => doGetFilesAsPerTypeOperation.ExecuteOperation());
+            Assert.Throws<Exception>(() => doGetFilesAsPerTypeOperation.ExecuteOperation());
         }
 
         [Test]
@@ -94,7 +94,7 @@ namespace Dev2.Data.Tests.PathOperations
             var list = doGetFilesAsPerTypeOperation.ExecuteOperation();
             //---------------------------Assert----------------------------
             mockActivityIOPath.VerifyAll();
-            NUnit.Framework.Assert.AreEqual(0, list.Count);
+            Assert.AreEqual(0, list.Count);
         }
 
         [Test]
@@ -120,7 +120,7 @@ namespace Dev2.Data.Tests.PathOperations
             var list = doGetFilesAsPerTypeOperation.ExecuteOperation();
             //---------------------------Assert----------------------------
             mockActivityIOPath.VerifyAll();
-            NUnit.Framework.Assert.AreEqual(0, list.Count);
+            Assert.AreEqual(0, list.Count);
         }
 
         [Test]
@@ -146,7 +146,7 @@ namespace Dev2.Data.Tests.PathOperations
             var list = doGetFilesAsPerTypeOperation.ExecuteOperationWithAuth();
             //---------------------------Assert----------------------------
             mockActivityIOPath.VerifyAll();
-            NUnit.Framework.Assert.AreEqual(0, list.Count);
+            Assert.AreEqual(0, list.Count);
         }
 
         [Test]
@@ -173,7 +173,7 @@ namespace Dev2.Data.Tests.PathOperations
             //---------------------------Assert----------------------------
             mockDirectory.VerifyAll();
             mockActivityIOPath.VerifyAll();
-            NUnit.Framework.Assert.AreEqual(0, list.Count);
+            Assert.AreEqual(0, list.Count);
         }
     }
 }

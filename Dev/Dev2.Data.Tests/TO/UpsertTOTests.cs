@@ -13,9 +13,9 @@ namespace Dev2.Data.Tests.Operations
             const string someexpression = "SomeExpression";
             const string somepayload = "SomePayLoad";
             var upsertTo = new UpsertTO(someexpression, somepayload);
-            NUnit.Framework.Assert.IsNotNull(upsertTo);
-            NUnit.Framework.Assert.AreEqual(someexpression, upsertTo.Expression);
-            NUnit.Framework.Assert.AreEqual(somepayload, upsertTo.Payload);
+            Assert.IsNotNull(upsertTo);
+            Assert.AreEqual(someexpression, upsertTo.Expression);
+            Assert.AreEqual(somepayload, upsertTo.Payload);
         }
     }
 }

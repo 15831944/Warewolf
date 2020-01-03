@@ -11,22 +11,22 @@ namespace Dev2.Data.Tests.ServiceModel
         public void OauthSource_ShouldContructorAndDefaultValuiesSet()
         {
             OauthSource oauthSource = new DropBoxSource();
-            NUnit.Framework.Assert.IsNotNull(oauthSource);
-            NUnit.Framework.Assert.IsTrue(oauthSource.IsSource);
-            NUnit.Framework.Assert.IsFalse(oauthSource.IsService);
-            NUnit.Framework.Assert.IsFalse(oauthSource.IsFolder);
-            NUnit.Framework.Assert.IsFalse(oauthSource.IsReservedService);
-            NUnit.Framework.Assert.IsFalse(oauthSource.IsServer);
-            NUnit.Framework.Assert.IsFalse(oauthSource.IsResourceVersion);
+            Assert.IsNotNull(oauthSource);
+            Assert.IsTrue(oauthSource.IsSource);
+            Assert.IsFalse(oauthSource.IsService);
+            Assert.IsFalse(oauthSource.IsFolder);
+            Assert.IsFalse(oauthSource.IsReservedService);
+            Assert.IsFalse(oauthSource.IsServer);
+            Assert.IsFalse(oauthSource.IsResourceVersion);
         }
 
         [Test]
         public void OauthSource_ToXml_ShouldContructorAndDefaultValuiesSet()
         {
             OauthSource oauthSource = new DropBoxSource();
-            NUnit.Framework.Assert.IsNotNull(oauthSource);
+            Assert.IsNotNull(oauthSource);
             var xElement = oauthSource.ToXml();
-            NUnit.Framework.Assert.IsNotNull(xElement);
+            Assert.IsNotNull(xElement);
         }
         [Test]
         public void GivenXelement_DropBox_ShouldHaveContructorAndDefaultValuiesSet()
@@ -53,9 +53,9 @@ namespace Dev2.Data.Tests.ServiceModel
 
             var element = XElement.Parse(conStr);
             OauthSource oauthSource = new DropBoxSource(element);
-            NUnit.Framework.Assert.IsNotNull(oauthSource);
+            Assert.IsNotNull(oauthSource);
             var xElement = oauthSource.ToXml();
-            NUnit.Framework.Assert.IsNotNull(xElement);
+            Assert.IsNotNull(xElement);
         }
     }
 }

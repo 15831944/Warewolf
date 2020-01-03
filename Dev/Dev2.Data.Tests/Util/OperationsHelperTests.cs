@@ -39,7 +39,7 @@ namespace Dev2.Data.Tests.Util
             var mockPathAuth = new Mock<IPathAuth>();
             mockPathAuth.Setup(pathAuth => pathAuth.Username).Returns(userName);
             var operationsHelper = OperationsHelper.ExtractUserName(mockPathAuth.Object);
-            NUnit.Framework.Assert.AreEqual(expectedUserName, operationsHelper);
+            Assert.AreEqual(expectedUserName, operationsHelper);
         }
 
         [Test]
@@ -52,7 +52,7 @@ namespace Dev2.Data.Tests.Util
             var mockPathAuth = new Mock<IPathAuth>();
             mockPathAuth.Setup(pathAuth => pathAuth.Username).Returns(userName);
             var operationsHelper = OperationsHelper.ExtractUserName(mockPathAuth.Object);
-            NUnit.Framework.Assert.AreEqual(expectedUserName, operationsHelper);
+            Assert.AreEqual(expectedUserName, operationsHelper);
         }
 
         [Test]
@@ -65,7 +65,7 @@ namespace Dev2.Data.Tests.Util
             var mockPathAuth = new Mock<IPathAuth>();
             mockPathAuth.Setup(pathAuth => pathAuth.Username).Returns(userName);
             var operationsHelper = OperationsHelper.ExtractUserName(mockPathAuth.Object);
-            NUnit.Framework.Assert.AreEqual(expectedUserName, operationsHelper);
+            Assert.AreEqual(expectedUserName, operationsHelper);
         }
 
         [Test]
@@ -87,7 +87,7 @@ namespace Dev2.Data.Tests.Util
             var mockActivityIOPath = new Mock<IActivityIOPath>();
             mockActivityIOPath.Setup(activityIOPath => activityIOPath.Username).Returns(userName);
             var operationsHelper = OperationsHelper.ExtractDomain(mockActivityIOPath.Object);
-            NUnit.Framework.Assert.AreEqual(expectedUserName, operationsHelper);
+            Assert.AreEqual(expectedUserName, operationsHelper);
         }
 
         [Test]
@@ -100,7 +100,7 @@ namespace Dev2.Data.Tests.Util
             var mockActivityIOPath = new Mock<IActivityIOPath>();
             mockActivityIOPath.Setup(activityIOPath => activityIOPath.Username).Returns(userName);
             var operationsHelper = OperationsHelper.ExtractDomain(mockActivityIOPath.Object);
-            NUnit.Framework.Assert.AreEqual(expectedUserName, operationsHelper);
+            Assert.AreEqual(expectedUserName, operationsHelper);
         }
 
         [Test]
@@ -113,7 +113,7 @@ namespace Dev2.Data.Tests.Util
             var mockActivityIOPath = new Mock<IActivityIOPath>();
             mockActivityIOPath.Setup(activityIOPath => activityIOPath.Username).Returns(userName);
             var operationsHelper = OperationsHelper.ExtractDomain(mockActivityIOPath.Object);
-            NUnit.Framework.Assert.AreEqual(expectedUserName, operationsHelper);
+            Assert.AreEqual(expectedUserName, operationsHelper);
         }
     }
 }

@@ -26,11 +26,11 @@ namespace Dev2.Data.Tests
         public void OptomizedObservableCollectionTests_Ctor()
         {
             var items = GetInputTestDataDataNames();
-            NUnit.Framework.Assert.AreEqual(2, items.Count);
-            NUnit.Framework.Assert.AreEqual("scalar1", items[0].DisplayValue);
-            NUnit.Framework.Assert.AreEqual("ScalarData1", items[0].Value);
-            NUnit.Framework.Assert.AreEqual("scalar2", items[1].DisplayValue);
-            NUnit.Framework.Assert.AreEqual("ScalarData2", items[1].Value);
+            Assert.AreEqual(2, items.Count);
+            Assert.AreEqual("scalar1", items[0].DisplayValue);
+            Assert.AreEqual("ScalarData1", items[0].Value);
+            Assert.AreEqual("scalar2", items[1].DisplayValue);
+            Assert.AreEqual("ScalarData2", items[1].Value);
         }
 
         [Test]

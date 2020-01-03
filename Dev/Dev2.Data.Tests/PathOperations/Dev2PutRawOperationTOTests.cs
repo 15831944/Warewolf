@@ -29,7 +29,7 @@ namespace Dev2.Data.Tests.PathOperations
             //------------Execute Test---------------------------
             var dev2PutRawOperation = new Dev2PutRawOperationTO(WriteType,Contents);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsNotNull(dev2PutRawOperation);
+            Assert.IsNotNull(dev2PutRawOperation);
         }
 
         [Test]
@@ -43,8 +43,8 @@ namespace Dev2.Data.Tests.PathOperations
             //------------Execute Test---------------------------
             var dev2PutRawOperation = new Dev2PutRawOperationTO(WriteType, Contents);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(WriteType,dev2PutRawOperation.WriteType);
-            NUnit.Framework.Assert.AreEqual(Contents,dev2PutRawOperation.FileContents);
+            Assert.AreEqual(WriteType,dev2PutRawOperation.WriteType);
+            Assert.AreEqual(Contents,dev2PutRawOperation.FileContents);
         }
     }
 }

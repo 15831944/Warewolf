@@ -52,7 +52,7 @@ namespace Dev2.Data.Tests.PathOperations
 
             var pathReturned = driver.GetFileNameFromEndPoint(mockEndpoint.Object);
 
-            NUnit.Framework.Assert.AreEqual(path, pathReturned);
+            Assert.AreEqual(path, pathReturned);
         }
 
         [Test]
@@ -70,7 +70,7 @@ namespace Dev2.Data.Tests.PathOperations
 
             var pathReturned = driver.GetFileNameFromEndPoint(mockEndpoint.Object, mockActIo.Object);
 
-            NUnit.Framework.Assert.AreEqual(path, pathReturned);
+            Assert.AreEqual(path, pathReturned);
         }
 
         [Test]
@@ -88,8 +88,8 @@ namespace Dev2.Data.Tests.PathOperations
 
             var returnedList = broker.ListDirectory(endPoint.Object, ReadTypes.FilesAndFolders);
 
-            NUnit.Framework.Assert.AreEqual(0, returnedList.Count);
-            NUnit.Framework.Assert.AreEqual(mockList.Object, returnedList);
+            Assert.AreEqual(0, returnedList.Count);
+            Assert.AreEqual(mockList.Object, returnedList);
 
             endPoint.Verify(o => o.ListDirectory(ioPath), Times.Once);
         }
@@ -108,8 +108,8 @@ namespace Dev2.Data.Tests.PathOperations
 
             var returnedList = broker.ListDirectory(endPoint.Object, ReadTypes.Files);
 
-            NUnit.Framework.Assert.AreEqual(0, returnedList.Count);
-            NUnit.Framework.Assert.AreEqual(mockList.Object, returnedList);
+            Assert.AreEqual(0, returnedList.Count);
+            Assert.AreEqual(mockList.Object, returnedList);
 
             endPoint.Verify(o => o.ListFilesInDirectory(ioPath), Times.Once);
         }
@@ -128,8 +128,8 @@ namespace Dev2.Data.Tests.PathOperations
 
             var returnedList = broker.ListDirectory(endPoint.Object, ReadTypes.Folders);
 
-            NUnit.Framework.Assert.AreEqual(0, returnedList.Count);
-            NUnit.Framework.Assert.AreEqual(mockList.Object, returnedList);
+            Assert.AreEqual(0, returnedList.Count);
+            Assert.AreEqual(mockList.Object, returnedList);
 
             endPoint.Verify(o => o.ListFoldersInDirectory(ioPath), Times.Once);
         }
@@ -148,7 +148,7 @@ namespace Dev2.Data.Tests.PathOperations
             var driver = new ActivityIOBrokerBaseDriver();
             var result = driver.CreateDirectory(endPoint.Object, dev2CrudOperationTO);
 
-            NUnit.Framework.Assert.IsTrue(result);
+            Assert.IsTrue(result);
             endPoint.Verify(o => o.CreateDirectory(ioPath, dev2CrudOperationTO));
         }
 
@@ -171,7 +171,7 @@ namespace Dev2.Data.Tests.PathOperations
             //--------------------------Act-----------------------------
             var endPoint =  driver.CreateEndPoint(mockActivityIOOperationsEndPoint.Object, mockDev2CRUDOperationTO.Object, true);
             //--------------------------Assert--------------------------
-            NUnit.Framework.Assert.AreEqual("Success", endPoint);
+            Assert.AreEqual("Success", endPoint);
 
             mockActivityIOOperationsEndPoint.VerifyAll();
             mockActivityIOPath.VerifyAll();
@@ -197,7 +197,7 @@ namespace Dev2.Data.Tests.PathOperations
             //--------------------------Act-----------------------------
             var endPoint = driver.CreateEndPoint(mockActivityIOOperationsEndPoint.Object, mockDev2CRUDOperationTO.Object, true);
             //--------------------------Assert--------------------------
-            NUnit.Framework.Assert.AreEqual("Success", endPoint);
+            Assert.AreEqual("Success", endPoint);
 
             mockActivityIOOperationsEndPoint.VerifyAll();
             mockActivityIOPath.VerifyAll();
@@ -223,7 +223,7 @@ namespace Dev2.Data.Tests.PathOperations
             //--------------------------Act-----------------------------
             var endPoint = driver.CreateEndPoint(mockActivityIOOperationsEndPoint.Object, mockDev2CRUDOperationTO.Object, true);
             //--------------------------Assert--------------------------
-            NUnit.Framework.Assert.AreEqual("Success", endPoint);
+            Assert.AreEqual("Success", endPoint);
 
             mockActivityIOOperationsEndPoint.VerifyAll();
             mockActivityIOPath.VerifyAll();
@@ -248,7 +248,7 @@ namespace Dev2.Data.Tests.PathOperations
             //--------------------------Act-----------------------------
             var endPoint = driver.CreateEndPoint(mockDst.Object, mockArgs.Object, true);
             //--------------------------Assert--------------------------
-            NUnit.Framework.Assert.AreEqual("Failure", endPoint);
+            Assert.AreEqual("Failure", endPoint);
 
             mockDst.VerifyAll();
             mockActivityIOPath.VerifyAll();
@@ -274,7 +274,7 @@ namespace Dev2.Data.Tests.PathOperations
             //--------------------------Act-----------------------------
             var endPoint = driver.CreateEndPoint(mockDst.Object, mockArgs.Object, true);
             //--------------------------Assert--------------------------
-            NUnit.Framework.Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, endPoint);
+            Assert.AreEqual(ActivityIOBrokerBaseDriver.ResultOk, endPoint);
 
             mockDst.VerifyAll();
             mockActivityIOPath.VerifyAll();
@@ -301,7 +301,7 @@ namespace Dev2.Data.Tests.PathOperations
             //--------------------------Act-----------------------------
             var endPoint = driver.CreateEndPoint(mockActivityIOOperationsEndPoint.Object, mockDev2CRUDOperationTO.Object, true);
             //--------------------------Assert--------------------------
-            NUnit.Framework.Assert.AreEqual("Success", endPoint);
+            Assert.AreEqual("Success", endPoint);
 
             mockActivityIOOperationsEndPoint.VerifyAll();
             mockActivityIOPath.VerifyAll();

@@ -143,7 +143,7 @@ namespace Dev2.Data.Tests.Operations
             var actual = dev2NumberFormatter.Format(formatNumberTO);
             actual = "'" + actual + "'";
 
-            NUnit.Framework.Assert.AreEqual(formatNumberTO.Number, actual);
+            Assert.AreEqual(formatNumberTO.Number, actual);
         }
 
         [Test]
@@ -154,7 +154,7 @@ namespace Dev2.Data.Tests.Operations
             var actual = dev2NumberFormatter.Format(formatNumberTO);
             actual = "'" + actual + "'";
 
-            NUnit.Framework.Assert.AreEqual(formatNumberTO.Number, actual);
+            Assert.AreEqual(formatNumberTO.Number, actual);
         }
 
         #endregion No Opertation Tests
@@ -170,20 +170,20 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = 123.12d;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
         public void Format_Given_NegativeNumberWithDecimalsAndNoneRoundingType_ShouldNotRoundDown()
         {
             var formatNumberTO = new FormatNumberTO();
-            NUnit.Framework.Assert.IsNotNull(formatNumberTO);
+            Assert.IsNotNull(formatNumberTO);
             formatNumberTO = new FormatNumberTO("123.12345", "None", 2, false, 0);
             var dev2NumberFormatter = new Dev2NumberFormatter();
             var actual = dev2NumberFormatter.Format(formatNumberTO);
             const double expectedDouble = 123.12345d;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -195,7 +195,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = -123.12d;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -207,7 +207,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = 123.13d;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -219,7 +219,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = -123.13d;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -231,7 +231,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = 123d;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -243,7 +243,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = -123d;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -255,7 +255,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = 124d;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -267,7 +267,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = 124;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -279,7 +279,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = 0d;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         #endregion Normal Rounding Tests
@@ -295,7 +295,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = 123.13d;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -307,7 +307,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = -123.13d;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -319,7 +319,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = 124d;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -331,7 +331,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = -124d;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -343,7 +343,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = 0d;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         #endregion Up Rounding tests
@@ -359,7 +359,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = 123.12d;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -371,7 +371,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = -123.12d;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -383,7 +383,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = 123d;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -395,7 +395,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = -123d;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -407,7 +407,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = 0d;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         #endregion Down Rounding tests
@@ -423,7 +423,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = 120d;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -435,7 +435,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = -120d;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -447,7 +447,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = 0d;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         #endregion Negative Rounding
@@ -463,7 +463,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = 123d;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -475,7 +475,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = -123d;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -487,7 +487,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = 123.12d;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -499,7 +499,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = -123.12d;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -511,7 +511,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = 123.12300d;
             var expected = expectedDouble.ToString("###.###00");
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -523,7 +523,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = -123.12300d;
             var expected = expectedDouble.ToString("###.###00");
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -536,7 +536,7 @@ namespace Dev2.Data.Tests.Operations
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -548,7 +548,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = -12d;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -560,7 +560,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = 0d;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -572,7 +572,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = 0d;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         #endregion Adjust Decimal Places Tests
@@ -588,7 +588,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = 123.124d;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -600,7 +600,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = -123.124d;
             var expected = expectedDouble.ToString(CultureInfo.InvariantCulture);
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -612,7 +612,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = 0d;
             var expected = expectedDouble.ToString("0.000");
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -624,7 +624,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = 123.124d;
             var expected = expectedDouble.ToString("###.###0");
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -636,7 +636,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = -123.124d;
             var expected = expectedDouble.ToString("###.###0");
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         [Test]
@@ -648,7 +648,7 @@ namespace Dev2.Data.Tests.Operations
             const double expectedDouble = 0d;
             var expected = expectedDouble.ToString("0.0000");
 
-            NUnit.Framework.Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, actual);
         }
 
         #endregion Round And Adjust Decimal Tests

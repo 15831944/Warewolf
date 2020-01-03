@@ -30,10 +30,10 @@ namespace Dev2.Data.Tests.SystemTemplates.Models
                 DisplayText = "TestDisplayText"
             };
             //-----------------------Assert---------------------
-            NUnit.Framework.Assert.AreEqual(Dev2ModelType.Dev2Switch, dev2Switch.ModelName);
-            NUnit.Framework.Assert.AreEqual("TestSwitchVariable", dev2Switch.SwitchVariable);
-            NUnit.Framework.Assert.AreEqual("TestSwitchExpression", dev2Switch.SwitchExpression);
-            NUnit.Framework.Assert.AreEqual("TestDisplayText", dev2Switch.DisplayText);
+            Assert.AreEqual(Dev2ModelType.Dev2Switch, dev2Switch.ModelName);
+            Assert.AreEqual("TestSwitchVariable", dev2Switch.SwitchVariable);
+            Assert.AreEqual("TestSwitchExpression", dev2Switch.SwitchExpression);
+            Assert.AreEqual("TestDisplayText", dev2Switch.DisplayText);
         }
     }
 }

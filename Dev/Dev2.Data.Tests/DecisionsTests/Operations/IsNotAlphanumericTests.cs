@@ -28,7 +28,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //------------Execute Test---------------------------
             var result = isNotAlphanumeric.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(result);
+            Assert.IsTrue(result);
         }
 
         [Test]
@@ -43,7 +43,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //------------Execute Test---------------------------
             var result = isNotAlphanumeric.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsFalse(result);
+            Assert.IsFalse(result);
         }
 
         [Test]
@@ -58,7 +58,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //------------Execute Test---------------------------
             var result = isNotAlphanumeric.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(result);
+            Assert.IsTrue(result);
         }
 
         [Test]
@@ -71,7 +71,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             var IsNotAlphanumeric = new IsNotAlphanumeric();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(expected, IsNotAlphanumeric.HandlesType());
+            Assert.AreEqual(expected, IsNotAlphanumeric.HandlesType());
         }
     }
 }

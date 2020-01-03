@@ -28,12 +28,12 @@ namespace Dev2.Data.Tests.ServiceModel
         {
             var sharepointSource = new SharepointSource();
 
-            NUnit.Framework.Assert.IsTrue(sharepointSource.IsSource);
-            NUnit.Framework.Assert.IsFalse(sharepointSource.IsService);
-            NUnit.Framework.Assert.IsFalse(sharepointSource.IsFolder);
-            NUnit.Framework.Assert.IsFalse(sharepointSource.IsReservedService);
-            NUnit.Framework.Assert.IsFalse(sharepointSource.IsServer);
-            NUnit.Framework.Assert.IsFalse(sharepointSource.IsResourceVersion);
+            Assert.IsTrue(sharepointSource.IsSource);
+            Assert.IsFalse(sharepointSource.IsService);
+            Assert.IsFalse(sharepointSource.IsFolder);
+            Assert.IsFalse(sharepointSource.IsReservedService);
+            Assert.IsFalse(sharepointSource.IsServer);
+            Assert.IsFalse(sharepointSource.IsResourceVersion);
         }
 
         [Test]
@@ -59,9 +59,9 @@ namespace Dev2.Data.Tests.ServiceModel
             var sharepointSource = new SharepointSource(mockSharepointHelperFactory.Object);
 
             var sharepointList = sharepointSource.LoadLists();
-            NUnit.Framework.Assert.AreEqual(2, sharepointList.Count);
-            NUnit.Framework.Assert.AreEqual("SharepointFullName", sharepointList[0].FullName);
-            NUnit.Framework.Assert.AreEqual("SharepointFullNameDup", sharepointList[1].FullName);
+            Assert.AreEqual(2, sharepointList.Count);
+            Assert.AreEqual("SharepointFullName", sharepointList[0].FullName);
+            Assert.AreEqual("SharepointFullNameDup", sharepointList[1].FullName);
         }
 
         [Test]
@@ -90,9 +90,9 @@ namespace Dev2.Data.Tests.ServiceModel
             var sharepointSource = new SharepointSource(mockSharepointHelperFactory.Object);
 
             var sharepointList = sharepointSource.LoadFieldsForList(listName);
-            NUnit.Framework.Assert.AreEqual(2, sharepointList.Count);
-            NUnit.Framework.Assert.AreEqual("SharepointName", sharepointList[0].Name);
-            NUnit.Framework.Assert.AreEqual("SharepointNameDup", sharepointList[1].Name);
+            Assert.AreEqual(2, sharepointList.Count);
+            Assert.AreEqual("SharepointName", sharepointList[0].Name);
+            Assert.AreEqual("SharepointNameDup", sharepointList[1].Name);
         }
 
         [Test]
@@ -101,11 +101,11 @@ namespace Dev2.Data.Tests.ServiceModel
         public void SharePointSource_ShouldHaveConstructorAndSetDefaultValues()
         {
             var sharepointSource = new SharepointSource();
-            NUnit.Framework.Assert.IsNotNull(sharepointSource);
-            NUnit.Framework.Assert.AreEqual("SharepointServerSource", sharepointSource.ResourceType);
+            Assert.IsNotNull(sharepointSource);
+            Assert.AreEqual("SharepointServerSource", sharepointSource.ResourceType);
             sharepointSource.AuthenticationType = AuthenticationType.User;
             var xElement = sharepointSource.ToXml();
-            NUnit.Framework.Assert.IsNotNull(xElement);
+            Assert.IsNotNull(xElement);
         }
 
         [Test]
@@ -114,11 +114,11 @@ namespace Dev2.Data.Tests.ServiceModel
         public void SharePointSource_GivenNoURL_TestConnection_ShouldReturn()
         {
             var sharepointSource = new SharepointSource();
-            NUnit.Framework.Assert.IsNotNull(sharepointSource);
-            NUnit.Framework.Assert.AreEqual("SharepointServerSource", sharepointSource.ResourceType);
+            Assert.IsNotNull(sharepointSource);
+            Assert.AreEqual("SharepointServerSource", sharepointSource.ResourceType);
             sharepointSource.AuthenticationType = AuthenticationType.User;
             var testConnection = sharepointSource.TestConnection();
-            NUnit.Framework.Assert.IsTrue(testConnection.Contains("Test Failed"));
+            Assert.IsTrue(testConnection.Contains("Test Failed"));
         }
 
         [Test]
@@ -148,9 +148,9 @@ namespace Dev2.Data.Tests.ServiceModel
 
             var xElement = XElement.Parse(conStr);
             var sharepointSource = new SharepointSource(xElement);
-            NUnit.Framework.Assert.IsNotNull(sharepointSource);
-            NUnit.Framework.Assert.IsNotNull(sharepointSource.ResourceID);
-            NUnit.Framework.Assert.AreEqual("SharepointServerSource", sharepointSource.ResourceType);
+            Assert.IsNotNull(sharepointSource);
+            Assert.IsNotNull(sharepointSource.ResourceID);
+            Assert.AreEqual("SharepointServerSource", sharepointSource.ResourceType);
         }
     }
 }

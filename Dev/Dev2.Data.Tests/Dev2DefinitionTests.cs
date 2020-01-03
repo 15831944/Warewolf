@@ -17,7 +17,7 @@ namespace Dev2.Data.Tests
             //---------------Execute Test ----------------------
 
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.IsNotNull(dev2Definition);
+            Assert.IsNotNull(dev2Definition);
         }
 
         [Test]
@@ -27,12 +27,12 @@ namespace Dev2.Data.Tests
             //---------------Set up test pack-------------------
             var dev2Definition = new Dev2Definition("a", "b", "c", false, "", false, "");
             //---------------Assert Precondition----------------
-            NUnit.Framework.Assert.IsNotNull(dev2Definition);
+            Assert.IsNotNull(dev2Definition);
             //---------------Execute Test ----------------------
             //---------------Test Result -----------------------
-            NUnit.Framework.Assert.AreEqual("a", dev2Definition.Name);
-            NUnit.Framework.Assert.AreEqual("b", dev2Definition.MapsTo);
-            NUnit.Framework.Assert.AreEqual("c", dev2Definition.Value);
+            Assert.AreEqual("a", dev2Definition.Name);
+            Assert.AreEqual("b", dev2Definition.MapsTo);
+            Assert.AreEqual("c", dev2Definition.Value);
         }
     }
 }

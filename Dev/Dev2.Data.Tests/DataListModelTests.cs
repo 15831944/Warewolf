@@ -67,34 +67,34 @@ namespace Dev2.Data.Tests
                                     </Truck></Data>", Shape);
 
 
-            NUnit.Framework.Assert.AreEqual(1, dataListModel.RecordSets.Count);
-            NUnit.Framework.Assert.AreEqual(1, dataListModel.RecordSets[0].Columns.Count);
-            NUnit.Framework.Assert.AreEqual(1, dataListModel.RecordSets[0].Columns.Values.Count);
+            Assert.AreEqual(1, dataListModel.RecordSets.Count);
+            Assert.AreEqual(1, dataListModel.RecordSets[0].Columns.Count);
+            Assert.AreEqual(1, dataListModel.RecordSets[0].Columns.Values.Count);
             var values = dataListModel.RecordSets[0].Columns.Values.First();
-            NUnit.Framework.Assert.AreEqual(2, values.Count);
-            NUnit.Framework.Assert.AreEqual(null, values[0].Description);
-            NUnit.Framework.Assert.AreEqual(enDev2ColumnArgumentDirection.Input, values[0].IODirection);
-            NUnit.Framework.Assert.AreEqual(false, values[0].IsEditable);
-            NUnit.Framework.Assert.AreEqual("Make", values[0].Name);
-            NUnit.Framework.Assert.AreEqual("", values[0].Value);
+            Assert.AreEqual(2, values.Count);
+            Assert.AreEqual(null, values[0].Description);
+            Assert.AreEqual(enDev2ColumnArgumentDirection.Input, values[0].IODirection);
+            Assert.AreEqual(false, values[0].IsEditable);
+            Assert.AreEqual("Make", values[0].Name);
+            Assert.AreEqual("", values[0].Value);
 
-            NUnit.Framework.Assert.AreEqual(null, values[1].Description);
-            NUnit.Framework.Assert.AreEqual(enDev2ColumnArgumentDirection.Output, values[1].IODirection);
-            NUnit.Framework.Assert.AreEqual(false, values[1].IsEditable);
-            NUnit.Framework.Assert.AreEqual("Model", values[1].Name);
-            NUnit.Framework.Assert.AreEqual("", values[1].Value);
+            Assert.AreEqual(null, values[1].Description);
+            Assert.AreEqual(enDev2ColumnArgumentDirection.Output, values[1].IODirection);
+            Assert.AreEqual(false, values[1].IsEditable);
+            Assert.AreEqual("Model", values[1].Name);
+            Assert.AreEqual("", values[1].Value);
 
-            NUnit.Framework.Assert.AreEqual(1, dataListModel.ShapeRecordSets.Count);
-            NUnit.Framework.Assert.AreEqual(1, dataListModel.ShapeRecordSets[0].Columns.Count);
+            Assert.AreEqual(1, dataListModel.ShapeRecordSets.Count);
+            Assert.AreEqual(1, dataListModel.ShapeRecordSets[0].Columns.Count);
             var col = dataListModel.ShapeRecordSets[0].Columns.First();
             values = col.Value;
-            NUnit.Framework.Assert.AreEqual(1, col.Key);
-            NUnit.Framework.Assert.AreEqual(2, values.Count);
-            NUnit.Framework.Assert.AreEqual("Make of vehicle", values[0].Description);
-            NUnit.Framework.Assert.AreEqual(enDev2ColumnArgumentDirection.Input, values[0].IODirection);
-            NUnit.Framework.Assert.AreEqual(true, values[0].IsEditable);
-            NUnit.Framework.Assert.AreEqual("Make", values[0].Name);
-            NUnit.Framework.Assert.AreEqual(null, values[0].Value);
+            Assert.AreEqual(1, col.Key);
+            Assert.AreEqual(2, values.Count);
+            Assert.AreEqual("Make of vehicle", values[0].Description);
+            Assert.AreEqual(enDev2ColumnArgumentDirection.Input, values[0].IODirection);
+            Assert.AreEqual(true, values[0].IsEditable);
+            Assert.AreEqual("Make", values[0].Name);
+            Assert.AreEqual(null, values[0].Value);
         }
 
         [Test]
@@ -106,74 +106,74 @@ namespace Dev2.Data.Tests
             dataListModel.Create("", Shape);
 
             // verify
-            NUnit.Framework.Assert.AreEqual(1, dataListModel.RecordSets.Count);
-            NUnit.Framework.Assert.AreEqual(1, dataListModel.RecordSets[0].Columns.Count);
-            NUnit.Framework.Assert.AreEqual(1, dataListModel.RecordSets[0].Columns.Values.Count);
+            Assert.AreEqual(1, dataListModel.RecordSets.Count);
+            Assert.AreEqual(1, dataListModel.RecordSets[0].Columns.Count);
+            Assert.AreEqual(1, dataListModel.RecordSets[0].Columns.Values.Count);
             var values = dataListModel.RecordSets[0].Columns.Values.First();
-            NUnit.Framework.Assert.AreEqual(2, values.Count);
-            NUnit.Framework.Assert.AreEqual("Make of vehicle", values[0].Description);
-            NUnit.Framework.Assert.AreEqual(enDev2ColumnArgumentDirection.None, values[0].IODirection);
-            NUnit.Framework.Assert.AreEqual(true, values[0].IsEditable);
-            NUnit.Framework.Assert.AreEqual("Make", values[0].Name);
-            NUnit.Framework.Assert.AreEqual(null, values[0].Value);
+            Assert.AreEqual(2, values.Count);
+            Assert.AreEqual("Make of vehicle", values[0].Description);
+            Assert.AreEqual(enDev2ColumnArgumentDirection.None, values[0].IODirection);
+            Assert.AreEqual(true, values[0].IsEditable);
+            Assert.AreEqual("Make", values[0].Name);
+            Assert.AreEqual(null, values[0].Value);
 
-            NUnit.Framework.Assert.AreEqual("Model of vehicle", values[1].Description);
-            NUnit.Framework.Assert.AreEqual(enDev2ColumnArgumentDirection.None, values[1].IODirection);
-            NUnit.Framework.Assert.AreEqual(true, values[1].IsEditable);
-            NUnit.Framework.Assert.AreEqual("Model", values[1].Name);
-            NUnit.Framework.Assert.AreEqual(null, values[1].Value);
+            Assert.AreEqual("Model of vehicle", values[1].Description);
+            Assert.AreEqual(enDev2ColumnArgumentDirection.None, values[1].IODirection);
+            Assert.AreEqual(true, values[1].IsEditable);
+            Assert.AreEqual("Model", values[1].Name);
+            Assert.AreEqual(null, values[1].Value);
 
-            NUnit.Framework.Assert.AreEqual(1, dataListModel.ComplexObjects.Count);
-            NUnit.Framework.Assert.AreEqual("", dataListModel.ComplexObjects[0].Description);
-            NUnit.Framework.Assert.AreEqual("@Person", dataListModel.ComplexObjects[0].Name);
-            NUnit.Framework.Assert.AreEqual(null, dataListModel.ComplexObjects[0].Value);
-            NUnit.Framework.Assert.AreEqual(enDev2ColumnArgumentDirection.Both, dataListModel.ComplexObjects[0].IODirection);
-            NUnit.Framework.Assert.AreEqual(false, dataListModel.ComplexObjects[0].IsArray);
-            NUnit.Framework.Assert.AreEqual(false, dataListModel.ComplexObjects[0].IsEditable);
-            NUnit.Framework.Assert.AreEqual(null, dataListModel.ComplexObjects[0].Parent);
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.ComplexObjects[0].Children.Count);
+            Assert.AreEqual(1, dataListModel.ComplexObjects.Count);
+            Assert.AreEqual("", dataListModel.ComplexObjects[0].Description);
+            Assert.AreEqual("@Person", dataListModel.ComplexObjects[0].Name);
+            Assert.AreEqual(null, dataListModel.ComplexObjects[0].Value);
+            Assert.AreEqual(enDev2ColumnArgumentDirection.Both, dataListModel.ComplexObjects[0].IODirection);
+            Assert.AreEqual(false, dataListModel.ComplexObjects[0].IsArray);
+            Assert.AreEqual(false, dataListModel.ComplexObjects[0].IsEditable);
+            Assert.AreEqual(null, dataListModel.ComplexObjects[0].Parent);
+            Assert.AreEqual(0, dataListModel.ComplexObjects[0].Children.Count);
 
-            NUnit.Framework.Assert.AreEqual(1, dataListModel.Scalars.Count);
-            NUnit.Framework.Assert.AreEqual("name of Country", dataListModel.Scalars[0].Description);
-            NUnit.Framework.Assert.AreEqual(enDev2ColumnArgumentDirection.Both, dataListModel.Scalars[0].IODirection);
-            NUnit.Framework.Assert.AreEqual(true, dataListModel.Scalars[0].IsEditable);
-            NUnit.Framework.Assert.AreEqual("Country", dataListModel.Scalars[0].Name);
-            NUnit.Framework.Assert.AreEqual(null, dataListModel.Scalars[0].Value);
+            Assert.AreEqual(1, dataListModel.Scalars.Count);
+            Assert.AreEqual("name of Country", dataListModel.Scalars[0].Description);
+            Assert.AreEqual(enDev2ColumnArgumentDirection.Both, dataListModel.Scalars[0].IODirection);
+            Assert.AreEqual(true, dataListModel.Scalars[0].IsEditable);
+            Assert.AreEqual("Country", dataListModel.Scalars[0].Name);
+            Assert.AreEqual(null, dataListModel.Scalars[0].Value);
 
-            NUnit.Framework.Assert.AreEqual(1, dataListModel.ShapeComplexObjects.Count);
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.ShapeComplexObjects[0].Children.Count);
-            NUnit.Framework.Assert.AreEqual("", dataListModel.ShapeComplexObjects[0].Description);
-            NUnit.Framework.Assert.AreEqual(enDev2ColumnArgumentDirection.Both, dataListModel.ShapeComplexObjects[0].IODirection);
-            NUnit.Framework.Assert.AreEqual(false, dataListModel.ShapeComplexObjects[0].IsArray);
-            NUnit.Framework.Assert.AreEqual(false, dataListModel.ShapeComplexObjects[0].IsEditable);
-            NUnit.Framework.Assert.AreEqual("@Person", dataListModel.ShapeComplexObjects[0].Name);
-            NUnit.Framework.Assert.AreEqual(null, dataListModel.ShapeComplexObjects[0].Parent);
-            NUnit.Framework.Assert.AreEqual(null, dataListModel.ShapeComplexObjects[0].Value);
+            Assert.AreEqual(1, dataListModel.ShapeComplexObjects.Count);
+            Assert.AreEqual(0, dataListModel.ShapeComplexObjects[0].Children.Count);
+            Assert.AreEqual("", dataListModel.ShapeComplexObjects[0].Description);
+            Assert.AreEqual(enDev2ColumnArgumentDirection.Both, dataListModel.ShapeComplexObjects[0].IODirection);
+            Assert.AreEqual(false, dataListModel.ShapeComplexObjects[0].IsArray);
+            Assert.AreEqual(false, dataListModel.ShapeComplexObjects[0].IsEditable);
+            Assert.AreEqual("@Person", dataListModel.ShapeComplexObjects[0].Name);
+            Assert.AreEqual(null, dataListModel.ShapeComplexObjects[0].Parent);
+            Assert.AreEqual(null, dataListModel.ShapeComplexObjects[0].Value);
 
-            NUnit.Framework.Assert.AreEqual(1, dataListModel.ShapeRecordSets.Count);
-            NUnit.Framework.Assert.AreEqual(1, dataListModel.ShapeRecordSets[0].Columns.Count);
+            Assert.AreEqual(1, dataListModel.ShapeRecordSets.Count);
+            Assert.AreEqual(1, dataListModel.ShapeRecordSets[0].Columns.Count);
             var col = dataListModel.ShapeRecordSets[0].Columns.First();
             values = col.Value;
-            NUnit.Framework.Assert.AreEqual(1, col.Key);
-            NUnit.Framework.Assert.AreEqual(2, values.Count);
-            NUnit.Framework.Assert.AreEqual("Make of vehicle", values[0].Description);
-            NUnit.Framework.Assert.AreEqual(enDev2ColumnArgumentDirection.None, values[0].IODirection);
-            NUnit.Framework.Assert.AreEqual(true, values[0].IsEditable);
-            NUnit.Framework.Assert.AreEqual("Make", values[0].Name);
-            NUnit.Framework.Assert.AreEqual(null, values[0].Value);
+            Assert.AreEqual(1, col.Key);
+            Assert.AreEqual(2, values.Count);
+            Assert.AreEqual("Make of vehicle", values[0].Description);
+            Assert.AreEqual(enDev2ColumnArgumentDirection.None, values[0].IODirection);
+            Assert.AreEqual(true, values[0].IsEditable);
+            Assert.AreEqual("Make", values[0].Name);
+            Assert.AreEqual(null, values[0].Value);
 
-            NUnit.Framework.Assert.AreEqual("Model of vehicle", values[1].Description);
-            NUnit.Framework.Assert.AreEqual(enDev2ColumnArgumentDirection.None, values[1].IODirection);
-            NUnit.Framework.Assert.AreEqual(true, values[1].IsEditable);
-            NUnit.Framework.Assert.AreEqual("Model", values[1].Name);
-            NUnit.Framework.Assert.AreEqual(null, values[1].Value);
+            Assert.AreEqual("Model of vehicle", values[1].Description);
+            Assert.AreEqual(enDev2ColumnArgumentDirection.None, values[1].IODirection);
+            Assert.AreEqual(true, values[1].IsEditable);
+            Assert.AreEqual("Model", values[1].Name);
+            Assert.AreEqual(null, values[1].Value);
 
-            NUnit.Framework.Assert.AreEqual(1, dataListModel.ShapeScalars.Count);
-            NUnit.Framework.Assert.AreEqual("name of Country", dataListModel.ShapeScalars[0].Description);
-            NUnit.Framework.Assert.AreEqual(enDev2ColumnArgumentDirection.Both, dataListModel.ShapeScalars[0].IODirection);
-            NUnit.Framework.Assert.AreEqual(true, dataListModel.ShapeScalars[0].IsEditable);
-            NUnit.Framework.Assert.AreEqual("Country", dataListModel.ShapeScalars[0].Name);
-            NUnit.Framework.Assert.AreEqual(null, dataListModel.ShapeScalars[0].Value);
+            Assert.AreEqual(1, dataListModel.ShapeScalars.Count);
+            Assert.AreEqual("name of Country", dataListModel.ShapeScalars[0].Description);
+            Assert.AreEqual(enDev2ColumnArgumentDirection.Both, dataListModel.ShapeScalars[0].IODirection);
+            Assert.AreEqual(true, dataListModel.ShapeScalars[0].IsEditable);
+            Assert.AreEqual("Country", dataListModel.ShapeScalars[0].Name);
+            Assert.AreEqual(null, dataListModel.ShapeScalars[0].Value);
         }
 
         [Test]
@@ -187,12 +187,12 @@ namespace Dev2.Data.Tests
                 @"<Food Description="""" IsEditable=""True"" IsJson=""False"" IsArray=""False"" ColumnIODirection=""None"" />"
                 , "<datalist></datalist>");
 
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.Scalars.Count);
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.ShapeScalars.Count);
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.ComplexObjects.Count);
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.ShapeComplexObjects.Count);
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.RecordSets.Count);
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.ShapeRecordSets.Count);
+            Assert.AreEqual(0, dataListModel.Scalars.Count);
+            Assert.AreEqual(0, dataListModel.ShapeScalars.Count);
+            Assert.AreEqual(0, dataListModel.ComplexObjects.Count);
+            Assert.AreEqual(0, dataListModel.ShapeComplexObjects.Count);
+            Assert.AreEqual(0, dataListModel.RecordSets.Count);
+            Assert.AreEqual(0, dataListModel.ShapeRecordSets.Count);
         }
 
         [Test]
@@ -206,19 +206,19 @@ namespace Dev2.Data.Tests
                 @"<Food Description="""" IsEditable=""True"" IsJson=""False"" IsArray=""False"" />"
                 , "<datalist><WebServerUrl /><Food /></datalist>");
 
-            NUnit.Framework.Assert.AreEqual(1, dataListModel.Scalars.Count);
-            NUnit.Framework.Assert.AreEqual(1, dataListModel.ShapeScalars.Count);
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.ComplexObjects.Count);
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.ShapeComplexObjects.Count);
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.RecordSets.Count);
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.ShapeRecordSets.Count);
+            Assert.AreEqual(1, dataListModel.Scalars.Count);
+            Assert.AreEqual(1, dataListModel.ShapeScalars.Count);
+            Assert.AreEqual(0, dataListModel.ComplexObjects.Count);
+            Assert.AreEqual(0, dataListModel.ShapeComplexObjects.Count);
+            Assert.AreEqual(0, dataListModel.RecordSets.Count);
+            Assert.AreEqual(0, dataListModel.ShapeRecordSets.Count);
 
 
-            NUnit.Framework.Assert.AreEqual("", dataListModel.Scalars[0].Description);
-            NUnit.Framework.Assert.AreEqual(enDev2ColumnArgumentDirection.None, dataListModel.Scalars[0].IODirection);
-            NUnit.Framework.Assert.AreEqual(true, dataListModel.Scalars[0].IsEditable);
-            NUnit.Framework.Assert.AreEqual("Food", dataListModel.Scalars[0].Name);
-            NUnit.Framework.Assert.AreEqual("", dataListModel.Scalars[0].Value);
+            Assert.AreEqual("", dataListModel.Scalars[0].Description);
+            Assert.AreEqual(enDev2ColumnArgumentDirection.None, dataListModel.Scalars[0].IODirection);
+            Assert.AreEqual(true, dataListModel.Scalars[0].IsEditable);
+            Assert.AreEqual("Food", dataListModel.Scalars[0].Name);
+            Assert.AreEqual("", dataListModel.Scalars[0].Value);
         }
 
         [Test]
@@ -232,19 +232,19 @@ namespace Dev2.Data.Tests
                 @"<Food Description="""" IsEditable=""True"" IsJson=""False"" IsArray=""False"" ColumnIODirection=""None"" />"
                 , "<datalist><WebServerUrl /><Food /></datalist>");
 
-            NUnit.Framework.Assert.AreEqual(1, dataListModel.Scalars.Count);
-            NUnit.Framework.Assert.AreEqual(1, dataListModel.ShapeScalars.Count);
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.ComplexObjects.Count);
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.ShapeComplexObjects.Count);
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.RecordSets.Count);
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.ShapeRecordSets.Count);
+            Assert.AreEqual(1, dataListModel.Scalars.Count);
+            Assert.AreEqual(1, dataListModel.ShapeScalars.Count);
+            Assert.AreEqual(0, dataListModel.ComplexObjects.Count);
+            Assert.AreEqual(0, dataListModel.ShapeComplexObjects.Count);
+            Assert.AreEqual(0, dataListModel.RecordSets.Count);
+            Assert.AreEqual(0, dataListModel.ShapeRecordSets.Count);
 
 
-            NUnit.Framework.Assert.AreEqual("", dataListModel.Scalars[0].Description);
-            NUnit.Framework.Assert.AreEqual(enDev2ColumnArgumentDirection.None, dataListModel.Scalars[0].IODirection);
-            NUnit.Framework.Assert.AreEqual(true, dataListModel.Scalars[0].IsEditable);
-            NUnit.Framework.Assert.AreEqual("Food", dataListModel.Scalars[0].Name);
-            NUnit.Framework.Assert.AreEqual("", dataListModel.Scalars[0].Value);
+            Assert.AreEqual("", dataListModel.Scalars[0].Description);
+            Assert.AreEqual(enDev2ColumnArgumentDirection.None, dataListModel.Scalars[0].IODirection);
+            Assert.AreEqual(true, dataListModel.Scalars[0].IsEditable);
+            Assert.AreEqual("Food", dataListModel.Scalars[0].Name);
+            Assert.AreEqual("", dataListModel.Scalars[0].Value);
         }
 
         [Test]
@@ -258,19 +258,19 @@ namespace Dev2.Data.Tests
                 @"<Food Description="""" IsEditable=""True"" IsJson=""False"" IsArray=""False"" ColumnIODirection=""Output"" />"
                 , "<datalist><WebServerUrl /><Food /></datalist>");
 
-            NUnit.Framework.Assert.AreEqual(1, dataListModel.Scalars.Count);
-            NUnit.Framework.Assert.AreEqual(1, dataListModel.ShapeScalars.Count);
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.ComplexObjects.Count);
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.ShapeComplexObjects.Count);
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.RecordSets.Count);
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.ShapeRecordSets.Count);
+            Assert.AreEqual(1, dataListModel.Scalars.Count);
+            Assert.AreEqual(1, dataListModel.ShapeScalars.Count);
+            Assert.AreEqual(0, dataListModel.ComplexObjects.Count);
+            Assert.AreEqual(0, dataListModel.ShapeComplexObjects.Count);
+            Assert.AreEqual(0, dataListModel.RecordSets.Count);
+            Assert.AreEqual(0, dataListModel.ShapeRecordSets.Count);
 
 
-            NUnit.Framework.Assert.AreEqual("", dataListModel.Scalars[0].Description);
-            NUnit.Framework.Assert.AreEqual(enDev2ColumnArgumentDirection.None, dataListModel.Scalars[0].IODirection);
-            NUnit.Framework.Assert.AreEqual(true, dataListModel.Scalars[0].IsEditable);
-            NUnit.Framework.Assert.AreEqual("Food", dataListModel.Scalars[0].Name);
-            NUnit.Framework.Assert.AreEqual("", dataListModel.Scalars[0].Value);
+            Assert.AreEqual("", dataListModel.Scalars[0].Description);
+            Assert.AreEqual(enDev2ColumnArgumentDirection.None, dataListModel.Scalars[0].IODirection);
+            Assert.AreEqual(true, dataListModel.Scalars[0].IsEditable);
+            Assert.AreEqual("Food", dataListModel.Scalars[0].Name);
+            Assert.AreEqual("", dataListModel.Scalars[0].Value);
         }
 
         [Test]
@@ -284,37 +284,37 @@ namespace Dev2.Data.Tests
                 @"<Food Description="""" IsEditable=""True"" IsJson=""False"" IsArray=""False"" ColumnIODirection=""None"" />"
                 , "<datalist><Country /><Food /></datalist>");
 
-            NUnit.Framework.Assert.AreEqual(2, dataListModel.Scalars.Count);
-            NUnit.Framework.Assert.AreEqual("", dataListModel.Scalars[0].Description);
-            NUnit.Framework.Assert.AreEqual(enDev2ColumnArgumentDirection.None, dataListModel.Scalars[0].IODirection);
-            NUnit.Framework.Assert.AreEqual(true, dataListModel.Scalars[0].IsEditable);
-            NUnit.Framework.Assert.AreEqual("Country", dataListModel.Scalars[0].Name);
-            NUnit.Framework.Assert.AreEqual("", dataListModel.Scalars[0].Value);
+            Assert.AreEqual(2, dataListModel.Scalars.Count);
+            Assert.AreEqual("", dataListModel.Scalars[0].Description);
+            Assert.AreEqual(enDev2ColumnArgumentDirection.None, dataListModel.Scalars[0].IODirection);
+            Assert.AreEqual(true, dataListModel.Scalars[0].IsEditable);
+            Assert.AreEqual("Country", dataListModel.Scalars[0].Name);
+            Assert.AreEqual("", dataListModel.Scalars[0].Value);
 
-            NUnit.Framework.Assert.AreEqual("", dataListModel.Scalars[1].Description);
-            NUnit.Framework.Assert.AreEqual(enDev2ColumnArgumentDirection.None, dataListModel.Scalars[1].IODirection);
-            NUnit.Framework.Assert.AreEqual(true, dataListModel.Scalars[1].IsEditable);
-            NUnit.Framework.Assert.AreEqual("Food", dataListModel.Scalars[1].Name);
-            NUnit.Framework.Assert.AreEqual("", dataListModel.Scalars[1].Value);
+            Assert.AreEqual("", dataListModel.Scalars[1].Description);
+            Assert.AreEqual(enDev2ColumnArgumentDirection.None, dataListModel.Scalars[1].IODirection);
+            Assert.AreEqual(true, dataListModel.Scalars[1].IsEditable);
+            Assert.AreEqual("Food", dataListModel.Scalars[1].Name);
+            Assert.AreEqual("", dataListModel.Scalars[1].Value);
 
-            NUnit.Framework.Assert.AreEqual(2, dataListModel.ShapeScalars.Count);
+            Assert.AreEqual(2, dataListModel.ShapeScalars.Count);
 
-            NUnit.Framework.Assert.AreEqual("", dataListModel.Scalars[0].Description);
-            NUnit.Framework.Assert.AreEqual(enDev2ColumnArgumentDirection.None, dataListModel.Scalars[0].IODirection);
-            NUnit.Framework.Assert.AreEqual(true, dataListModel.Scalars[0].IsEditable);
-            NUnit.Framework.Assert.AreEqual("Country", dataListModel.Scalars[0].Name);
-            NUnit.Framework.Assert.AreEqual("", dataListModel.Scalars[0].Value);
+            Assert.AreEqual("", dataListModel.Scalars[0].Description);
+            Assert.AreEqual(enDev2ColumnArgumentDirection.None, dataListModel.Scalars[0].IODirection);
+            Assert.AreEqual(true, dataListModel.Scalars[0].IsEditable);
+            Assert.AreEqual("Country", dataListModel.Scalars[0].Name);
+            Assert.AreEqual("", dataListModel.Scalars[0].Value);
 
-            NUnit.Framework.Assert.AreEqual("", dataListModel.Scalars[1].Description);
-            NUnit.Framework.Assert.AreEqual(enDev2ColumnArgumentDirection.None, dataListModel.Scalars[1].IODirection);
-            NUnit.Framework.Assert.AreEqual(true, dataListModel.Scalars[1].IsEditable);
-            NUnit.Framework.Assert.AreEqual("Food", dataListModel.Scalars[1].Name);
-            NUnit.Framework.Assert.AreEqual("", dataListModel.Scalars[1].Value);
+            Assert.AreEqual("", dataListModel.Scalars[1].Description);
+            Assert.AreEqual(enDev2ColumnArgumentDirection.None, dataListModel.Scalars[1].IODirection);
+            Assert.AreEqual(true, dataListModel.Scalars[1].IsEditable);
+            Assert.AreEqual("Food", dataListModel.Scalars[1].Name);
+            Assert.AreEqual("", dataListModel.Scalars[1].Value);
 
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.ComplexObjects.Count);
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.ShapeComplexObjects.Count);
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.RecordSets.Count);
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.ShapeRecordSets.Count);
+            Assert.AreEqual(0, dataListModel.ComplexObjects.Count);
+            Assert.AreEqual(0, dataListModel.ShapeComplexObjects.Count);
+            Assert.AreEqual(0, dataListModel.RecordSets.Count);
+            Assert.AreEqual(0, dataListModel.ShapeRecordSets.Count);
         }
 
         [Test]
@@ -330,12 +330,12 @@ namespace Dev2.Data.Tests
             dataListModel.Create(Data, Shape);
             var result = converter.CreateListToBindTo(dataListModel);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsNotNull(result);
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
-            NUnit.Framework.Assert.AreEqual("", dataListModel.ComplexObjects[0].Description);
-            NUnit.Framework.Assert.AreEqual("Country", result[0].DisplayValue);
-            NUnit.Framework.Assert.AreEqual("@Person", result[1].DisplayValue);
-            NUnit.Framework.Assert.IsTrue(result[1].IsObject);
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result.Count);
+            Assert.AreEqual("", dataListModel.ComplexObjects[0].Description);
+            Assert.AreEqual("Country", result[0].DisplayValue);
+            Assert.AreEqual("@Person", result[1].DisplayValue);
+            Assert.IsTrue(result[1].IsObject);
         }
 
         [Test]
@@ -366,12 +366,12 @@ namespace Dev2.Data.Tests
             dataListModel.Create(Data, Shape);
             var result = converter.CreateListToBindTo(dataListModel);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsNotNull(result);
-            NUnit.Framework.Assert.AreEqual(2, result.Count);
-            NUnit.Framework.Assert.AreEqual("", dataListModel.ComplexObjects[0].Description);
-            NUnit.Framework.Assert.AreEqual("Country", result[0].DisplayValue);
-            NUnit.Framework.Assert.AreEqual("@Person", result[1].DisplayValue);
-            NUnit.Framework.Assert.IsTrue(result[1].IsObject);
+            Assert.IsNotNull(result);
+            Assert.AreEqual(2, result.Count);
+            Assert.AreEqual("", dataListModel.ComplexObjects[0].Description);
+            Assert.AreEqual("Country", result[0].DisplayValue);
+            Assert.AreEqual("@Person", result[1].DisplayValue);
+            Assert.IsTrue(result[1].IsObject);
         }
 
         [Test]
@@ -400,75 +400,75 @@ namespace Dev2.Data.Tests
             dataListModel.Create(Data, Shape);
 
             // verify
-            NUnit.Framework.Assert.AreEqual(1, dataListModel.RecordSets.Count);
-            NUnit.Framework.Assert.AreEqual(1, dataListModel.RecordSets[0].Columns.Count);
-            NUnit.Framework.Assert.AreEqual(1, dataListModel.RecordSets[0].Columns.Values.Count);
+            Assert.AreEqual(1, dataListModel.RecordSets.Count);
+            Assert.AreEqual(1, dataListModel.RecordSets[0].Columns.Count);
+            Assert.AreEqual(1, dataListModel.RecordSets[0].Columns.Values.Count);
             var values = dataListModel.RecordSets[0].Columns.Values.First();
-            NUnit.Framework.Assert.AreEqual(2, values.Count);
-            NUnit.Framework.Assert.AreEqual("Make of vehicle", values[0].Description);
-            NUnit.Framework.Assert.AreEqual(enDev2ColumnArgumentDirection.Input, values[0].IODirection);
-            NUnit.Framework.Assert.AreEqual(true, values[0].IsEditable);
-            NUnit.Framework.Assert.AreEqual("Make", values[0].Name);
-            NUnit.Framework.Assert.AreEqual(null, values[0].Value);
+            Assert.AreEqual(2, values.Count);
+            Assert.AreEqual("Make of vehicle", values[0].Description);
+            Assert.AreEqual(enDev2ColumnArgumentDirection.Input, values[0].IODirection);
+            Assert.AreEqual(true, values[0].IsEditable);
+            Assert.AreEqual("Make", values[0].Name);
+            Assert.AreEqual(null, values[0].Value);
 
-            NUnit.Framework.Assert.AreEqual("Model of vehicle", values[1].Description);
-            NUnit.Framework.Assert.AreEqual(enDev2ColumnArgumentDirection.Output, values[1].IODirection);
-            NUnit.Framework.Assert.AreEqual(true, values[1].IsEditable);
-            NUnit.Framework.Assert.AreEqual("Model", values[1].Name);
-            NUnit.Framework.Assert.AreEqual(null, values[1].Value);
+            Assert.AreEqual("Model of vehicle", values[1].Description);
+            Assert.AreEqual(enDev2ColumnArgumentDirection.Output, values[1].IODirection);
+            Assert.AreEqual(true, values[1].IsEditable);
+            Assert.AreEqual("Model", values[1].Name);
+            Assert.AreEqual(null, values[1].Value);
 
-            NUnit.Framework.Assert.AreEqual(1, dataListModel.ComplexObjects.Count);
-            NUnit.Framework.Assert.AreEqual("", dataListModel.ComplexObjects[0].Description);
-            NUnit.Framework.Assert.AreEqual("@a", dataListModel.ComplexObjects[0].Name);
-            NUnit.Framework.Assert.AreEqual(null, dataListModel.ComplexObjects[0].Value);
-            NUnit.Framework.Assert.AreEqual(enDev2ColumnArgumentDirection.Both, dataListModel.ComplexObjects[0].IODirection);
-            NUnit.Framework.Assert.AreEqual(false, dataListModel.ComplexObjects[0].IsArray);
-            NUnit.Framework.Assert.AreEqual(false, dataListModel.ComplexObjects[0].IsEditable);
-            NUnit.Framework.Assert.AreEqual(null, dataListModel.ComplexObjects[0].Parent);
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.ComplexObjects[0].Children.Count);
+            Assert.AreEqual(1, dataListModel.ComplexObjects.Count);
+            Assert.AreEqual("", dataListModel.ComplexObjects[0].Description);
+            Assert.AreEqual("@a", dataListModel.ComplexObjects[0].Name);
+            Assert.AreEqual(null, dataListModel.ComplexObjects[0].Value);
+            Assert.AreEqual(enDev2ColumnArgumentDirection.Both, dataListModel.ComplexObjects[0].IODirection);
+            Assert.AreEqual(false, dataListModel.ComplexObjects[0].IsArray);
+            Assert.AreEqual(false, dataListModel.ComplexObjects[0].IsEditable);
+            Assert.AreEqual(null, dataListModel.ComplexObjects[0].Parent);
+            Assert.AreEqual(0, dataListModel.ComplexObjects[0].Children.Count);
 
-            NUnit.Framework.Assert.AreEqual(1, dataListModel.Scalars.Count);
-            NUnit.Framework.Assert.AreEqual("name of Country", dataListModel.Scalars[0].Description);
-            NUnit.Framework.Assert.AreEqual(enDev2ColumnArgumentDirection.Both, dataListModel.Scalars[0].IODirection);
-            NUnit.Framework.Assert.AreEqual(true, dataListModel.Scalars[0].IsEditable);
-            NUnit.Framework.Assert.AreEqual("Country", dataListModel.Scalars[0].Name);
-            NUnit.Framework.Assert.AreEqual(null, dataListModel.Scalars[0].Value);
+            Assert.AreEqual(1, dataListModel.Scalars.Count);
+            Assert.AreEqual("name of Country", dataListModel.Scalars[0].Description);
+            Assert.AreEqual(enDev2ColumnArgumentDirection.Both, dataListModel.Scalars[0].IODirection);
+            Assert.AreEqual(true, dataListModel.Scalars[0].IsEditable);
+            Assert.AreEqual("Country", dataListModel.Scalars[0].Name);
+            Assert.AreEqual(null, dataListModel.Scalars[0].Value);
 
-            NUnit.Framework.Assert.AreEqual(1, dataListModel.ShapeComplexObjects.Count);
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.ShapeComplexObjects[0].Children.Count);
-            NUnit.Framework.Assert.AreEqual("", dataListModel.ShapeComplexObjects[0].Description);
-            NUnit.Framework.Assert.AreEqual(enDev2ColumnArgumentDirection.Both, dataListModel.ShapeComplexObjects[0].IODirection);
-            NUnit.Framework.Assert.AreEqual(false, dataListModel.ShapeComplexObjects[0].IsArray);
-            NUnit.Framework.Assert.AreEqual(false, dataListModel.ShapeComplexObjects[0].IsEditable);
-            NUnit.Framework.Assert.AreEqual("@a", dataListModel.ShapeComplexObjects[0].Name);
-            NUnit.Framework.Assert.AreEqual(null, dataListModel.ShapeComplexObjects[0].Parent);
-            NUnit.Framework.Assert.AreEqual(null, dataListModel.ShapeComplexObjects[0].Value);
+            Assert.AreEqual(1, dataListModel.ShapeComplexObjects.Count);
+            Assert.AreEqual(0, dataListModel.ShapeComplexObjects[0].Children.Count);
+            Assert.AreEqual("", dataListModel.ShapeComplexObjects[0].Description);
+            Assert.AreEqual(enDev2ColumnArgumentDirection.Both, dataListModel.ShapeComplexObjects[0].IODirection);
+            Assert.AreEqual(false, dataListModel.ShapeComplexObjects[0].IsArray);
+            Assert.AreEqual(false, dataListModel.ShapeComplexObjects[0].IsEditable);
+            Assert.AreEqual("@a", dataListModel.ShapeComplexObjects[0].Name);
+            Assert.AreEqual(null, dataListModel.ShapeComplexObjects[0].Parent);
+            Assert.AreEqual(null, dataListModel.ShapeComplexObjects[0].Value);
 
-            NUnit.Framework.Assert.AreEqual(1, dataListModel.ShapeRecordSets.Count);
-            NUnit.Framework.Assert.AreEqual(1, dataListModel.ShapeRecordSets[0].Columns.Count);
+            Assert.AreEqual(1, dataListModel.ShapeRecordSets.Count);
+            Assert.AreEqual(1, dataListModel.ShapeRecordSets[0].Columns.Count);
             var col = dataListModel.ShapeRecordSets[0].Columns.First();
             values = col.Value;
-            NUnit.Framework.Assert.AreEqual(1, col.Key);
-            NUnit.Framework.Assert.AreEqual(2, values.Count);
-            NUnit.Framework.Assert.AreEqual("Make of vehicle", values[0].Description);
-            NUnit.Framework.Assert.AreEqual(enDev2ColumnArgumentDirection.Input, values[0].IODirection);
-            NUnit.Framework.Assert.AreEqual(true, values[0].IsEditable);
-            NUnit.Framework.Assert.AreEqual("Make", values[0].Name);
-            NUnit.Framework.Assert.AreEqual(null, values[0].Value);
+            Assert.AreEqual(1, col.Key);
+            Assert.AreEqual(2, values.Count);
+            Assert.AreEqual("Make of vehicle", values[0].Description);
+            Assert.AreEqual(enDev2ColumnArgumentDirection.Input, values[0].IODirection);
+            Assert.AreEqual(true, values[0].IsEditable);
+            Assert.AreEqual("Make", values[0].Name);
+            Assert.AreEqual(null, values[0].Value);
 
-            NUnit.Framework.Assert.AreEqual("Model of vehicle", values[1].Description);
-            NUnit.Framework.Assert.AreEqual(enDev2ColumnArgumentDirection.Output, values[1].IODirection);
-            NUnit.Framework.Assert.AreEqual(true, values[1].IsEditable);
-            NUnit.Framework.Assert.AreEqual("Model", values[1].Name);
-            NUnit.Framework.Assert.AreEqual(null, values[1].Value);
+            Assert.AreEqual("Model of vehicle", values[1].Description);
+            Assert.AreEqual(enDev2ColumnArgumentDirection.Output, values[1].IODirection);
+            Assert.AreEqual(true, values[1].IsEditable);
+            Assert.AreEqual("Model", values[1].Name);
+            Assert.AreEqual(null, values[1].Value);
 
 
-            NUnit.Framework.Assert.AreEqual(1, dataListModel.ShapeScalars.Count);
-            NUnit.Framework.Assert.AreEqual("name of Country", dataListModel.ShapeScalars[0].Description);
-            NUnit.Framework.Assert.AreEqual(enDev2ColumnArgumentDirection.Both, dataListModel.ShapeScalars[0].IODirection);
-            NUnit.Framework.Assert.AreEqual(true, dataListModel.ShapeScalars[0].IsEditable);
-            NUnit.Framework.Assert.AreEqual("Country", dataListModel.ShapeScalars[0].Name);
-            NUnit.Framework.Assert.AreEqual(null, dataListModel.ShapeScalars[0].Value);
+            Assert.AreEqual(1, dataListModel.ShapeScalars.Count);
+            Assert.AreEqual("name of Country", dataListModel.ShapeScalars[0].Description);
+            Assert.AreEqual(enDev2ColumnArgumentDirection.Both, dataListModel.ShapeScalars[0].IODirection);
+            Assert.AreEqual(true, dataListModel.ShapeScalars[0].IsEditable);
+            Assert.AreEqual("Country", dataListModel.ShapeScalars[0].Name);
+            Assert.AreEqual(null, dataListModel.ShapeScalars[0].Value);
         }
 
         [Test]
@@ -493,34 +493,34 @@ namespace Dev2.Data.Tests
             dataListModel.Create(Data, Shape);
 
 
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.RecordSets.Count);
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.ShapeRecordSets.Count);
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.Scalars.Count);
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.ShapeScalars.Count);
+            Assert.AreEqual(0, dataListModel.RecordSets.Count);
+            Assert.AreEqual(0, dataListModel.ShapeRecordSets.Count);
+            Assert.AreEqual(0, dataListModel.Scalars.Count);
+            Assert.AreEqual(0, dataListModel.ShapeScalars.Count);
 
 
             const string expectedValue = "{\r\n  \"Description\": \"\",\r\n  \"IsEditable\": \"True\",\r\n  \"IsJson\": \"True\",\r\n  \"IsArray\": \"False\",\r\n  \"ColumnIODirection\": \"Output\",\r\n  \"FoodName\": {\r\n    \"Description\": \"\",\r\n    \"IsEditable\": \"True\",\r\n    \"IsJson\": \"True\",\r\n    \"IsArray\": \"False\",\r\n    \"ColumnIODirection\": \"None\"\r\n  }\r\n}";
 
-            NUnit.Framework.Assert.AreEqual(1, dataListModel.ComplexObjects.Count);
-            NUnit.Framework.Assert.AreEqual("", dataListModel.ComplexObjects[0].Description);
-            NUnit.Framework.Assert.AreEqual("@Food", dataListModel.ComplexObjects[0].Name);
-            NUnit.Framework.Assert.AreEqual(expectedValue, dataListModel.ComplexObjects[0].Value);
-            NUnit.Framework.Assert.AreEqual(enDev2ColumnArgumentDirection.Output, dataListModel.ComplexObjects[0].IODirection);
-            NUnit.Framework.Assert.AreEqual(false, dataListModel.ComplexObjects[0].IsArray);
-            NUnit.Framework.Assert.AreEqual(false, dataListModel.ComplexObjects[0].IsEditable);
-            NUnit.Framework.Assert.AreEqual(null, dataListModel.ComplexObjects[0].Parent);
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.ComplexObjects[0].Children.Count);
+            Assert.AreEqual(1, dataListModel.ComplexObjects.Count);
+            Assert.AreEqual("", dataListModel.ComplexObjects[0].Description);
+            Assert.AreEqual("@Food", dataListModel.ComplexObjects[0].Name);
+            Assert.AreEqual(expectedValue, dataListModel.ComplexObjects[0].Value);
+            Assert.AreEqual(enDev2ColumnArgumentDirection.Output, dataListModel.ComplexObjects[0].IODirection);
+            Assert.AreEqual(false, dataListModel.ComplexObjects[0].IsArray);
+            Assert.AreEqual(false, dataListModel.ComplexObjects[0].IsEditable);
+            Assert.AreEqual(null, dataListModel.ComplexObjects[0].Parent);
+            Assert.AreEqual(0, dataListModel.ComplexObjects[0].Children.Count);
 
 
-            NUnit.Framework.Assert.AreEqual(1, dataListModel.ShapeComplexObjects.Count);
-            NUnit.Framework.Assert.AreEqual("", dataListModel.ShapeComplexObjects[0].Description);
-            NUnit.Framework.Assert.AreEqual("@Food", dataListModel.ShapeComplexObjects[0].Name);
-            NUnit.Framework.Assert.AreEqual(expectedValue, dataListModel.ShapeComplexObjects[0].Value);
-            NUnit.Framework.Assert.AreEqual(enDev2ColumnArgumentDirection.Output, dataListModel.ShapeComplexObjects[0].IODirection);
-            NUnit.Framework.Assert.AreEqual(false, dataListModel.ShapeComplexObjects[0].IsArray);
-            NUnit.Framework.Assert.AreEqual(false, dataListModel.ShapeComplexObjects[0].IsEditable);
-            NUnit.Framework.Assert.AreEqual(null, dataListModel.ShapeComplexObjects[0].Parent);
-            NUnit.Framework.Assert.AreEqual(0, dataListModel.ShapeComplexObjects[0].Children.Count);
+            Assert.AreEqual(1, dataListModel.ShapeComplexObjects.Count);
+            Assert.AreEqual("", dataListModel.ShapeComplexObjects[0].Description);
+            Assert.AreEqual("@Food", dataListModel.ShapeComplexObjects[0].Name);
+            Assert.AreEqual(expectedValue, dataListModel.ShapeComplexObjects[0].Value);
+            Assert.AreEqual(enDev2ColumnArgumentDirection.Output, dataListModel.ShapeComplexObjects[0].IODirection);
+            Assert.AreEqual(false, dataListModel.ShapeComplexObjects[0].IsArray);
+            Assert.AreEqual(false, dataListModel.ShapeComplexObjects[0].IsEditable);
+            Assert.AreEqual(null, dataListModel.ShapeComplexObjects[0].Parent);
+            Assert.AreEqual(0, dataListModel.ShapeComplexObjects[0].Children.Count);
         }
     }
 }

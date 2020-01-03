@@ -26,7 +26,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //exe
             var result = isBetween.Invoke(new[] { "50", "2", "100" });
             //assert
-            NUnit.Framework.Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
+            Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
         }
 
         [Test]
@@ -39,7 +39,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //exe
             var result = isBetween.Invoke(new[] { "50", "100", "2" });
             //assert
-            NUnit.Framework.Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
+            Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
         }
 
         [Test]
@@ -52,7 +52,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //exe
             var result = isBetween.Invoke(new[] { "100", "2", "50" });
             //assert
-            NUnit.Framework.Assert.IsFalse(result, "IsBetween returned the wrong result when comparing integers");
+            Assert.IsFalse(result, "IsBetween returned the wrong result when comparing integers");
         }
 
         [Test]
@@ -65,7 +65,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //exe
             var result = isBetween.Invoke(new[] { "2", "2", "50" });
             //assert
-            NUnit.Framework.Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
+            Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
         }
 
         [Test]
@@ -78,7 +78,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //exe
             var result = isBetween.Invoke(new[] { "50", "2", "50" });
             //assert
-            NUnit.Framework.Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
+            Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
         }
 
         [Test]
@@ -91,7 +91,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //exe
             var result = isBetween.Invoke(new[] { "2016/10/14", "2016/10/13", "2016/10/16" });
             //assert
-            NUnit.Framework.Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
+            Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
         }
 
         [Test]
@@ -104,7 +104,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //exe
             var result = isBetween.Invoke(new[] { "2016/10/14", "2016/10/16", "2016/10/13" });
             //assert
-            NUnit.Framework.Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
+            Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
         }
 
         [Test]
@@ -117,7 +117,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //exe
             var result = isBetween.Invoke(new[] { "2016/10/17", "2016/10/13", "2016/10/16" });
             //assert
-            NUnit.Framework.Assert.IsFalse(result, "IsBetween returned the wrong result when comparing integers");
+            Assert.IsFalse(result, "IsBetween returned the wrong result when comparing integers");
         }
 
         [Test]
@@ -130,7 +130,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //exe
             var result = isBetween.Invoke(new[] { "2016/10/13", "2016/10/13", "2016/10/16" });
             //assert
-            NUnit.Framework.Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
+            Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
         }
 
         [Test]
@@ -143,7 +143,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //exe
             var result = comparer.Invoke(new[] { "2016/10/16", "2016/10/13", "2016/10/16" });
             //assert
-            NUnit.Framework.Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
+            Assert.IsTrue(result, "IsBetween returned the wrong result when comparing integers");
         }
 
         [Test]
@@ -161,7 +161,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             //------------Execute Test---------------------------
             var result = isBetween.Invoke(cols);
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.IsTrue(result);
+            Assert.IsTrue(result);
         }
 
         [Test]
@@ -173,7 +173,7 @@ namespace Dev2.Data.Tests.DecisionsTests.Operations
             var isBetween = new IsBetween();
             //------------Execute Test---------------------------
             //------------Assert Results-------------------------
-            NUnit.Framework.Assert.AreEqual(enDecisionType.IsBetween, isBetween.HandlesType());
+            Assert.AreEqual(enDecisionType.IsBetween, isBetween.HandlesType());
         }
     }
 }

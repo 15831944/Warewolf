@@ -15,16 +15,12 @@ using Dev2.ViewModels.Merge;
 using NUnit.Framework;
 using Moq;
 using System;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 using TechTalk.SpecFlow;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
-using Warewolf.Test.Agent;
 using Warewolf.MergeParser;
 using Warewolf.Studio.ViewModels;
 using Dev2.Activities.DropBox2016;
-using Dev2.Infrastructure.Tests;
 using Warewolf.UnitTestAttributes;
 
 namespace Dev2.Activities.Specs.Merge

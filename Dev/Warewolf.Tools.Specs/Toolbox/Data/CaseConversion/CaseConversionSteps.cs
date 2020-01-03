@@ -18,7 +18,6 @@ using NUnit.Framework;
 using TechTalk.SpecFlow;
 using Unlimited.Applications.BusinessDesignStudio.Activities;
 using Warewolf.Tools.Specs.BaseTypes;
-using Dev2.TO;
 
 namespace Dev2.Activities.Specs.Toolbox.Data.CaseConversion
 {
