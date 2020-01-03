@@ -33,7 +33,7 @@ namespace Dev2.Activities.Specs.Search
             localHost.Connect();
             if (!localHost.IsConnected)
             {
-                NUnit.Framework.Assert.Fail("expected valid connection to localhost");
+                Assert.Fail("expected valid connection to localhost");
             }
             searchValue = new Common.Search.Search();
         }
@@ -41,8 +41,8 @@ namespace Dev2.Activities.Specs.Search
         [Given(@"I have the Search View open")]
         public void GivenIHaveTheSearchViewOpen()
         {
-            NUnit.Framework.Assert.IsNotNull(localHost);
-            NUnit.Framework.Assert.IsNotNull(localHost.ResourceRepository);
+            Assert.IsNotNull(localHost);
+            Assert.IsNotNull(localHost.ResourceRepository);
         }
 
         [Given(@"I check the ""(.*)"" checkbox")]
@@ -102,7 +102,7 @@ namespace Dev2.Activities.Specs.Search
             {
                 expectedSearchResult
             };
-            NUnit.Framework.Assert.IsTrue(results.Contains(expectedSearchResult));
+            Assert.IsTrue(results.Contains(expectedSearchResult));
         }
 
         private static SearchItemType GetSearchItemType(string type)

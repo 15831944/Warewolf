@@ -62,7 +62,7 @@ namespace Dev2.Activities.Specs.Deploy
         {
             var remoteServer = _scenarioContext.Get<IServer>("destinationServer");
             var loadContextualResourceModel = remoteServer.ResourceRepository.LoadContextualResourceModel(_resourceId);
-            NUnit.Framework.Assert.AreEqual(p0, loadContextualResourceModel.DisplayName, "Expected Resource to be " + p0 + " on load for ci-remote");
+            Assert.AreEqual(p0, loadContextualResourceModel.DisplayName, "Expected Resource to be " + p0 + " on load for ci-remote");
         }
 
         [Given(@"And the localhost resource is ""(.*)""")]
@@ -70,8 +70,8 @@ namespace Dev2.Activities.Specs.Deploy
         {
             var loaclHost = _scenarioContext.Get<IServer>("sourceServer");
             var loadContextualResourceModel = loaclHost.ResourceRepository.LoadContextualResourceModel(_resourceId);
-            NUnit.Framework.Assert.AreEqual(p0, loadContextualResourceModel.DisplayName, "Expected Resource to be " + p0 + " on load for localhost");
-            NUnit.Framework.Assert.AreEqual(p0, loadContextualResourceModel.ResourceName, "Expected Resource to be " + p0 + " on load for localhost");
+            Assert.AreEqual(p0, loadContextualResourceModel.DisplayName, "Expected Resource to be " + p0 + " on load for localhost");
+            Assert.AreEqual(p0, loadContextualResourceModel.ResourceName, "Expected Resource to be " + p0 + " on load for localhost");
         }
 
         [Given(@"I reload the destination resources")]
@@ -100,8 +100,8 @@ namespace Dev2.Activities.Specs.Deploy
         {
             var destinationServer = _scenarioContext.Get<IServer>("destinationServer");
             var loadContextualResourceModel = destinationServer.ResourceRepository.LoadContextualResourceModel(_resourceId);
-            NUnit.Framework.Assert.AreEqual(p0, loadContextualResourceModel.DisplayName, "Failed to Update " + loadContextualResourceModel.DisplayName + " after deploy");
-            NUnit.Framework.Assert.AreEqual(p0, loadContextualResourceModel.ResourceName, "Failed to Update " + loadContextualResourceModel.ResourceName + " after deploy");
+            Assert.AreEqual(p0, loadContextualResourceModel.DisplayName, "Failed to Update " + loadContextualResourceModel.DisplayName + " after deploy");
+            Assert.AreEqual(p0, loadContextualResourceModel.ResourceName, "Failed to Update " + loadContextualResourceModel.ResourceName + " after deploy");
         }
 
         [Given(@"I RollBack Resource")]
@@ -123,10 +123,10 @@ namespace Dev2.Activities.Specs.Deploy
             var destinationServer = _scenarioContext.Get<IServer>("destinationServer");
             var localResource = destinationServer.ResourceRepository.LoadContextualResourceModel(resourceId);
 
-            NUnit.Framework.Assert.IsNotNull(localResource, originalName + " failed to deploy.");
+            Assert.IsNotNull(localResource, originalName + " failed to deploy.");
 
-            NUnit.Framework.Assert.AreEqual(originalName, localResource.DisplayName, "Failed to Update " + localResource.DisplayName + " after deploy");
-            NUnit.Framework.Assert.AreEqual(originalName, localResource.ResourceName, "Failed to Update " + localResource.ResourceName + " after deploy");
+            Assert.AreEqual(originalName, localResource.DisplayName, "Failed to Update " + localResource.DisplayName + " after deploy");
+            Assert.AreEqual(originalName, localResource.ResourceName, "Failed to Update " + localResource.ResourceName + " after deploy");
         }
         
         [When(@"I deploy the workflow")]
@@ -150,7 +150,7 @@ namespace Dev2.Activities.Specs.Deploy
                 {
                     if (result.HasError)
                     {
-                        NUnit.Framework.Assert.Fail("Error returned from deploy operation. " + result.ErrorDetails);
+                        Assert.Fail("Error returned from deploy operation. " + result.ErrorDetails);
                     }
                 }
             }

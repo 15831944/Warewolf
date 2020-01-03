@@ -34,7 +34,7 @@ namespace Dev2.Activities.Specs.BrowserDebug
         {
             var webResult = _externalProcessExecutor.WebResult.First();
             var contains = webResult.Contains(p0);
-            NUnit.Framework.Assert.IsTrue(contains, webResult + " does not contain " + p0);
+            Assert.IsTrue(contains, webResult + " does not contain " + p0);
         }
 
         [Then(@"Browser content is not ""(.*)""")]
@@ -42,13 +42,13 @@ namespace Dev2.Activities.Specs.BrowserDebug
         {
             var webResult = _externalProcessExecutor.WebResult.First();
             var contains = webResult.Contains(checkString);
-            NUnit.Framework.Assert.IsFalse(contains);
+            Assert.IsFalse(contains);
         }
 
         [Then(@"The Debug in Browser content contains ""(.*)""")]
         public void ThenTheDebugInBrowserContentContains(string containedText)
         {
-            NUnit.Framework.Assert.IsTrue(_externalProcessExecutor.WebResult.First().Contains(containedText),
+            Assert.IsTrue(_externalProcessExecutor.WebResult.First().Contains(containedText),
                 _externalProcessExecutor.WebResult.First());
         }
 
@@ -65,8 +65,8 @@ namespace Dev2.Activities.Specs.BrowserDebug
         {
             var debugStates = GetDebugStates();
             var msg = debugStates[1].ErrorMessage;
-            NUnit.Framework.Assert.IsTrue(debugStates.Last().HasError);
-            NUnit.Framework.Assert.AreEqual("invalid variable assigned to d@teMonth", msg);
+            Assert.IsTrue(debugStates.Last().HasError);
+            Assert.AreEqual("invalid variable assigned to d@teMonth", msg);
         }
 
         [Given(@"The Debug in Browser content contains has children with no Inputs and Ouputs")]
@@ -75,11 +75,11 @@ namespace Dev2.Activities.Specs.BrowserDebug
         public void TheDebugInBrowserContentHaveGivenVariable()
         {
             var deserialize = GetDebugStates();
-            NUnit.Framework.Assert.IsNotNull(deserialize);
+            Assert.IsNotNull(deserialize);
             foreach (var debugState in deserialize)
             {
-                NUnit.Framework.Assert.AreEqual(0, debugState.Inputs.Count);
-                NUnit.Framework.Assert.AreEqual(0, debugState.Outputs.Count);
+                Assert.AreEqual(0, debugState.Inputs.Count);
+                Assert.AreEqual(0, debugState.Outputs.Count);
             }
         }
 
@@ -88,9 +88,9 @@ namespace Dev2.Activities.Specs.BrowserDebug
         {
             var allDebugStates = GetDebugStates();
             var debugState = allDebugStates.FirstOrDefault(p => p.DisplayName == stepName);
-            NUnit.Framework.Assert.IsNotNull(debugState);
-            NUnit.Framework.Assert.AreEqual(inputCount, debugState.Inputs.Count);
-            NUnit.Framework.Assert.AreEqual(outputCount, debugState.Outputs.Count);
+            Assert.IsNotNull(debugState);
+            Assert.AreEqual(inputCount, debugState.Inputs.Count);
+            Assert.AreEqual(outputCount, debugState.Outputs.Count);
         }
 
         [Given(@"The Debug in Browser hello world content has inputs and outputs")]
@@ -108,10 +108,10 @@ namespace Dev2.Activities.Specs.BrowserDebug
 
                 if (!debugState.IsFinalStep())
                 {
-                    NUnit.Framework.Assert.IsTrue(debugState.Inputs.Count > 0);
+                    Assert.IsTrue(debugState.Inputs.Count > 0);
                 }
 
-                NUnit.Framework.Assert.IsTrue(debugState.Outputs.Count > 0);
+                Assert.IsTrue(debugState.Outputs.Count > 0);
             }
         }
 
@@ -121,7 +121,7 @@ namespace Dev2.Activities.Specs.BrowserDebug
         public void WhenTheDebugInBrowserContentContainsForDotnetHasStates(int numberOfStates)
         {
             var allDebugStates = GetDebugStates();
-            NUnit.Framework.Assert.AreEqual(numberOfStates, allDebugStates.Count);
+            Assert.AreEqual(numberOfStates, allDebugStates.Count);
         }
 
         [When(@"The (.*) debug state has (.*) children")]
@@ -131,7 +131,7 @@ namespace Dev2.Activities.Specs.BrowserDebug
         {
             var allDebugStates = GetDebugStates();
             var debugState = allDebugStates[stateIndex];
-            NUnit.Framework.Assert.AreEqual(numberOfChildren, debugState.Children.Count);
+            Assert.AreEqual(numberOfChildren, debugState.Children.Count);
         }
 
 
@@ -162,10 +162,10 @@ namespace Dev2.Activities.Specs.BrowserDebug
                     }
                 }
             }
-            NUnit.Framework.Assert.AreEqual(expectedflow.Count, actualflow.Count);
-            NUnit.Framework.Assert.AreEqual(expectedflow[0], actualflow[0]);
-            NUnit.Framework.Assert.AreEqual(expectedflow[1], actualflow[1]);
-            NUnit.Framework.Assert.AreEqual(expectedflow[2], actualflow[2]);
+            Assert.AreEqual(expectedflow.Count, actualflow.Count);
+            Assert.AreEqual(expectedflow[0], actualflow[0]);
+            Assert.AreEqual(expectedflow[1], actualflow[1]);
+            Assert.AreEqual(expectedflow[2], actualflow[2]);
         }
 
         [Given(@"The Debug in Browser content contains the variable assigned executed ""(.*)"" times")]
@@ -183,7 +183,7 @@ namespace Dev2.Activities.Specs.BrowserDebug
 
                 if (debugState.StateType != StateType.End)
                 {
-                    NUnit.Framework.Assert.IsTrue(debugState.Children.Count == numExecutions);
+                    Assert.IsTrue(debugState.Children.Count == numExecutions);
                 }
             }
         }
@@ -195,14 +195,14 @@ namespace Dev2.Activities.Specs.BrowserDebug
             var actualOrder = allDebugStates[p0].Outputs;
             var expectedOrder = table.Rows.ToList();
 
-            NUnit.Framework.Assert.AreEqual(expectedOrder.Count, actualOrder[0].ResultsList.Count);
+            Assert.AreEqual(expectedOrder.Count, actualOrder[0].ResultsList.Count);
 
             for (int i = 0; i < expectedOrder.Count; i++)
             {
                 var val1 = actualOrder[0].ResultsList[i].Value;
                 var val2 = expectedOrder[i].Values.Single();
 
-                NUnit.Framework.Assert.AreEqual(val1, val2);
+                Assert.AreEqual(val1, val2);
             }
         }
     }

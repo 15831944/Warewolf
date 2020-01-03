@@ -56,7 +56,7 @@ namespace Dev2.Activities.Specs.Sources
             }
             if (pingReply.Status != IPStatus.Success)
             {
-                NUnit.Framework.Assert.Fail(server + " is unavailable");
+                Assert.Fail(server + " is unavailable");
             }
         }
 
@@ -175,7 +175,7 @@ namespace Dev2.Activities.Specs.Sources
         public void ThenTheResultIs(string p0)
         {
             var result = ScenarioContext.Current.Get<string>("result");
-            NUnit.Framework.Assert.AreEqual(p0, result);
+            Assert.AreEqual(p0, result);
         }
 
         [Given(@"User as ""(.*)""")]

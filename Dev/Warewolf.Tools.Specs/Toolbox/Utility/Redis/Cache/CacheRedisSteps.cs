@@ -241,6 +241,8 @@ namespace Warewolf.Tools.Specs.Toolbox.Utility.Redis.Cache
 
         [Then(@"I execute the cache tool")]
         [When(@"I execute the cache tool")]
+        [Then(@"I execute the Redis Cache tool")]
+        [When(@"I execute the Redis Cache tool")]
         public void WhenIExecuteThecacheTool()
         {
             var redisActivityOld = _scenarioContext.Get<SpecRedisActivity>(nameof(RedisCacheActivity));

@@ -29,7 +29,7 @@ namespace Dev2.Activities.Specs
             {
                 sourceString = File.ReadAllText("Out\\LargeRowsDataSplit.txt");
             }
-            NUnit.Framework.Assert.IsFalse(string.IsNullOrEmpty(sourceString), "Cannot find Deployment Item LargeRowsDataSplit.txt");
+            Assert.IsFalse(string.IsNullOrEmpty(sourceString), "Cannot find Deployment Item LargeRowsDataSplit.txt");
             var act = new DsfDataSplitActivity { SourceString = sourceString, ResultsCollection = resultsCollection, SkipBlankRows = true };
             var dataObject = new DsfDataObject("", Guid.Empty)
             {
@@ -39,8 +39,8 @@ namespace Dev2.Activities.Specs
 
             var totalCount = dataObject.Environment.GetCount("rec");
             var res = dataObject.Environment.Eval("[[rec().data]]", 0) as CommonFunctions.WarewolfEvalResult.WarewolfAtomListresult;
-            NUnit.Framework.Assert.AreEqual("0827373254", res.Item.First().ToString());
-            NUnit.Framework.Assert.AreEqual(8300000, totalCount, CurrentDl);
+            Assert.AreEqual("0827373254", res.Item.First().ToString());
+            Assert.AreEqual(8300000, totalCount, CurrentDl);
         }
     }
 }

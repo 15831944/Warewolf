@@ -39,9 +39,11 @@ namespace Warewolf.OS.Tests
             Assert.IsFalse(processThread.IsAlive);
             Assert.AreEqual(0, processThread.Pid);
         }
+        
         [Test]
         [Author("Rory McGuire")]
         [Category(nameof(ProcessMonitor))]
+        [Timeout(30000)]
         public void ProcessThread_Start_GivenValid_ExpectNewProcessCreated()
         {
             var mockConfig = new Mock<IJobConfig>();
@@ -52,7 +54,6 @@ namespace Warewolf.OS.Tests
             var process = mockProcess.Object;
             mockProcessFactory.Setup(o => o.Start(_startInfo)).Returns(process);
             var expectedConfig = mockConfig.Object;
-
 
             var processThread = new ProcessThreadForTesting(_startInfo, mockChildProcessTracker.Object, mockProcessFactory.Object, expectedConfig);
             var done = false;
@@ -96,6 +97,7 @@ namespace Warewolf.OS.Tests
         [Test]
         [Author("Rory McGuire")]
         [Category(nameof(ProcessMonitor))]
+        [Timeout(30000)]
         public void ProcessThread_Kill_GivenDeadProcess_DoNotThrow()
         {
             var mockConfig = new Mock<IJobConfig>();
