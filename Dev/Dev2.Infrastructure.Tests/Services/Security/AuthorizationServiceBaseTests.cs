@@ -730,6 +730,7 @@ namespace Dev2.Infrastructure.Tests.Services.Security
         [Test]
         [Author("Siphamandla Dube")]
         [Category("AuthorizationServiceBase_AdministratorsMembersOfWarewolfGroup_WhenAdministratorsMembersOfTheGroup")]
+        [Ignore("There is no \"IntegrationTester\" user on the premier.local domain")]
         public void AuthorizationServiceBase_IsAuthorizedToConnect_ToLocalServer_AdministratorsMembersOfWarewolfGroup_WhenMemberOfAdministrator_ExpectTrue()
         {
             //------------Setup for test--------------------------

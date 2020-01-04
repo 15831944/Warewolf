@@ -34,7 +34,7 @@ namespace Dev2.Infrastructure.Tests
             //------------Execute Test---------------------------
             var serverSettingsFolder = EnvironmentVariables.ServerSettingsFolder;
             //------------Assert Results-------------------------
-            StringAssert.Contains(serverSettingsFolder, serverSettingsFolderPart);
+            StringAssert.Contains(serverSettingsFolderPart, serverSettingsFolder);
         }
 
         [Test]
@@ -47,7 +47,7 @@ namespace Dev2.Infrastructure.Tests
             //------------Execute Test---------------------------
             var filePath = EnvironmentVariables.ServerLogSettingsFile;
             //------------Assert Results-------------------------
-            StringAssert.Contains(filePath, filePart);
+            StringAssert.Contains(filePart, filePath);
         }
 
         [Test]
@@ -60,7 +60,7 @@ namespace Dev2.Infrastructure.Tests
             //------------Execute Test---------------------------
             var serverSecurityFilePath = EnvironmentVariables.ServerSecuritySettingsFile;
             //------------Assert Results-------------------------
-            StringAssert.Contains(serverSecurityFilePath, serverSecurityFilePart);
+            StringAssert.Contains(serverSecurityFilePart, serverSecurityFilePath);
         }
 
         [Test]
@@ -73,7 +73,7 @@ namespace Dev2.Infrastructure.Tests
             //------------Execute Test---------------------------
             var filePath = EnvironmentVariables.ServerLogFile;
             //------------Assert Results-------------------------
-            StringAssert.Contains(filePath, filePart);
+            StringAssert.Contains(filePart, filePath);
         }
 
         [Test]
@@ -86,7 +86,7 @@ namespace Dev2.Infrastructure.Tests
             //------------Execute Test---------------------------
             var folderPath = EnvironmentVariables.ResourcePath;
             //------------Assert Results-------------------------
-            StringAssert.Contains(folderPath, folderPart);
+            StringAssert.Contains(folderPart, folderPath);
         }
 
         [Test]
@@ -99,7 +99,7 @@ namespace Dev2.Infrastructure.Tests
             //------------Execute Test---------------------------
             var folderPath = EnvironmentVariables.TestPath;
             //------------Assert Results-------------------------
-            StringAssert.Contains(folderPath, folderPart);
+            StringAssert.Contains(folderPart, folderPath);
         }
 
         [Test]
@@ -112,7 +112,7 @@ namespace Dev2.Infrastructure.Tests
             //------------Execute Test---------------------------
             var folderPath = EnvironmentVariables.WorkspacePath;
             //------------Assert Results-------------------------
-            StringAssert.Contains(folderPath, folderPart);
+            StringAssert.Contains(folderPart, folderPath);
         }
         [Test]
         [Author("Candice Daniel")]
@@ -124,7 +124,7 @@ namespace Dev2.Infrastructure.Tests
             //------------Execute Test---------------------------
             var folderPath = EnvironmentVariables.GetWorkspacePath(Guid.Empty);
             //------------Assert Results-------------------------
-            StringAssert.Contains(folderPath, folderPart);
+            StringAssert.Contains(folderPart, folderPath);
         }
 
         [Test]
@@ -138,7 +138,7 @@ namespace Dev2.Infrastructure.Tests
             //------------Execute Test---------------------------
             var folderPath = EnvironmentVariables.GetWorkspacePath(guid);
             //------------Assert Results-------------------------
-            StringAssert.Contains(folderPath, folderPart);
+            StringAssert.Contains(folderPart, folderPath);
         }
         [Test]
         [Author("Candice Daniel")]
@@ -150,7 +150,7 @@ namespace Dev2.Infrastructure.Tests
             //------------Execute Test---------------------------
             var path = EnvironmentVariables.ServerPerfmonSettingsFile;
             //------------Assert Results-------------------------
-            StringAssert.Contains(path, folderPart);
+            StringAssert.Contains(folderPart, path);
         }
 
         [Test]
@@ -163,7 +163,7 @@ namespace Dev2.Infrastructure.Tests
             //------------Execute Test---------------------------
             var path = EnvironmentVariables.ServerResourcePerfmonSettingsFile;
             //------------Assert Results-------------------------
-            StringAssert.Contains(path, folderPart);
+            StringAssert.Contains(folderPart, path);
         }
 
         [Test]
@@ -176,7 +176,7 @@ namespace Dev2.Infrastructure.Tests
             //------------Execute Test---------------------------
             var path = EnvironmentVariables.WorkflowDetailLogArchivePath(new Guid("c550ca0d-d324-45de-92bb-0c91879eb8b3"), null);
             //------------Assert Results-------------------------
-            StringAssert.Contains(path, folderPart);
+            StringAssert.Contains(folderPart, path);
         }
         [Test]
         [Author("Candice Daniel")]
@@ -188,7 +188,7 @@ namespace Dev2.Infrastructure.Tests
             //------------Execute Test---------------------------
             var path = EnvironmentVariables.WorkflowDetailLogArchivePath(new Guid("c550ca0d-d324-45de-92bb-0c91879eb8b3"), "testing");
             //------------Assert Results-------------------------
-            StringAssert.Contains(path,folderPart);
+            StringAssert.Contains(folderPart, path);
         }
        
         [Test]
@@ -201,7 +201,7 @@ namespace Dev2.Infrastructure.Tests
             //------------Execute Test---------------------------
             var path = EnvironmentVariables.AppDataPath;
             //------------Assert Results-------------------------
-            StringAssert.Contains(path, folderPart);
+            StringAssert.Contains(folderPart, path);
         }
 
         [Test]
@@ -214,7 +214,7 @@ namespace Dev2.Infrastructure.Tests
             //------------Execute Test---------------------------
             var path = EnvironmentVariables.VersionsPath;
             //------------Assert Results-------------------------
-            StringAssert.Contains(path, folderPart);
+            StringAssert.Contains(folderPart, path);
         }
 
         [Test]
@@ -227,7 +227,7 @@ namespace Dev2.Infrastructure.Tests
             //------------Execute Test---------------------------
             var path = EnvironmentVariables.DetailedLogsArchives;
             //------------Assert Results-------------------------
-            StringAssert.Contains(path, folderPart);
+            StringAssert.Contains(folderPart, path);
         }
 
         [Test]
@@ -240,7 +240,7 @@ namespace Dev2.Infrastructure.Tests
             //------------Execute Test---------------------------
             var folderPath = EnvironmentVariables.WorkflowDetailLogPath(It.IsAny<Guid>(), It.IsAny<string>());
             //------------Assert Results-------------------------
-            StringAssert.Contains(folderPath, folderPart);
+            StringAssert.Contains(folderPart, folderPath);
             var directory = new DirectoryWrapper();
             directory.Delete(folderPath, true);
         }

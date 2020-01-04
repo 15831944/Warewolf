@@ -183,7 +183,7 @@ namespace Dev2.Infrastructure.Tests.MoqInstallerActions
             var result = warewolfGroupOps.FormatUserForInsert("Guest", "MyPC");
 
             //------------Assert Results-------------------------
-            StringAssert.Contains(result, "WinNT://MyPC/Guest");
+            StringAssert.Contains("WinNT://MyPC/Guest", result);
         }
 
         [Test]
@@ -199,7 +199,7 @@ namespace Dev2.Infrastructure.Tests.MoqInstallerActions
             var result = warewolfGroupOps.FormatUserForInsert("Dev2\\DummyUser", "MyPC");
 
             //------------Assert Results-------------------------
-            StringAssert.Contains(result, "WinNT://Dev2/DummyUser");
+            StringAssert.Contains("WinNT://Dev2/DummyUser", result);
         }
 
         #region Exception Test

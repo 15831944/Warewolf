@@ -36,37 +36,6 @@ namespace Dev2.Data.Tests.Operations
 
         #endregion Properties
 
-        #region Additional test attributes
-
-        //
-        // You can use the following additional attributes as you write your tests:
-        //
-        // Use ClassInitialize to run code before running the first test in the class
-        [OneTimeSetUp]
-        public static void MyClassInitialize(TestContext testContext)
-        {
-        }
-
-        // Use ClassCleanup to run code after all tests in a class have run
-        [OneTimeTearDown]
-        public static void MyClassCleanup()
-        {
-        }
-
-        // Use TestInitialize to run code before running each test 
-        [SetUp]
-        public void MyTestInitialize()
-        {
-        }
-
-        // Use TestCleanup to run code after each test has run
-        [TearDown]
-        public void MyTestCleanup()
-        {
-        }
-
-        #endregion
-
         #region Test Methods
 
         #region Error Tests

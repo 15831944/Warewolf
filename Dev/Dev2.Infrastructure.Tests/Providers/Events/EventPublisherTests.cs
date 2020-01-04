@@ -22,9 +22,7 @@ namespace Dev2.Infrastructure.Tests.Providers.Events
         [Description("GetEvent must add a new subject when invoked for the first time for the type.")]
         [Category("UnitTest")]
         [Author("Trevor Williams-Ros")]
-        
         public void EventPublisherGetEvent_UnitTest_FirstTimeForType_New()
-
         {
             var publisher = new EventPublisher();
             Assert.AreEqual(0, publisher.Count);
@@ -32,16 +30,14 @@ namespace Dev2.Infrastructure.Tests.Providers.Events
             var actual = publisher.GetEvent<object>();
             Assert.AreEqual(1, publisher.Count);
             Assert.IsNotNull(actual);
-            Assert.IsInstanceOf(actual.GetType(), typeof(IObservable<object>));
+            Assert.IsInstanceOf(typeof(IObservable<object>), actual);
         }
 
         [Test]
         [Description("GetEvent must return an existing subject when invoked for the second time for the type.")]
         [Category("UnitTest")]
         [Author("Trevor Williams-Ros")]
-        
         public void EventPublisherGetEvent_UnitTest_SecondTimeForType_Existing()
-
         {
             var publisher = new EventPublisher();
             Assert.AreEqual(0, publisher.Count);
@@ -49,19 +45,18 @@ namespace Dev2.Infrastructure.Tests.Providers.Events
             var first = publisher.GetEvent<object>();
             Assert.AreEqual(1, publisher.Count);
             Assert.IsNotNull(first);
-            Assert.IsInstanceOf(first.GetType(), typeof(IObservable<object>));
+            Assert.IsInstanceOf(typeof(IObservable<object>), first);
 
             var second = publisher.GetEvent<object>();
             Assert.AreEqual(1, publisher.Count);
             Assert.IsNotNull(second);
-            Assert.IsInstanceOf(second.GetType(), typeof(IObservable<object>));
+            Assert.IsInstanceOf(typeof(IObservable<object>), second);
         }
 
         [Test]
         [Description("Publish must find the subject and invoke OnNext on it for a type that has been previously requested by GetEvent.")]
         [Category("UnitTest")]
         [Author("Trevor Williams-Ros")]
-        
         public void EventPublisherPublish_UnitTest_RegisteredType_FindsSubjectAndInvokesOnNext()
 
         {
@@ -78,9 +73,7 @@ namespace Dev2.Infrastructure.Tests.Providers.Events
         [Description("Publish must find the subject and invoke OnNext on it for an object whose type has been previously requested by GetEvent.")]
         [Category("UnitTest")]
         [Author("Trevor Williams-Ros")]
-        
         public void EventPublisherPublish_UnitTest_RegisteredObjectType_FindsSubjectAndInvokesOnNext()
-
         {
             var memo = new DesignValidationMemo() as object;
 
@@ -91,14 +84,11 @@ namespace Dev2.Infrastructure.Tests.Providers.Events
             subscription.Dispose();
         }
 
-
         [Test]
         [Description("Publish must not find the subject and not invoke OnNext for a type that has not been previously requested by GetEvent.")]
         [Category("UnitTest")]
         [Author("Trevor Williams-Ros")]
-        
         public void EventPublisherPublish_UnitTest_UnregisteredType_DoesNotFindSubject()
-
         {
             var memo = new Memo();
 

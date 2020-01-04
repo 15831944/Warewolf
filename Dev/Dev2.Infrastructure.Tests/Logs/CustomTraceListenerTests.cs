@@ -28,7 +28,7 @@ namespace Dev2.Infrastructure.Tests.Logs
             //------------Execute Test---------------------------
             var loggingFileName = CustomTextWriter.LoggingFileName;
             //------------Assert Results-------------------------
-            StringAssert.Contains(loggingFileName, "Warewolf Studio.log");   
+            StringAssert.Contains("Warewolf Studio.log", loggingFileName);   
         }
 
         [Test]
@@ -41,7 +41,7 @@ namespace Dev2.Infrastructure.Tests.Logs
             //------------Execute Test---------------------------
             var loggingFileName = CustomTextWriter.LoggingFileName;
             //------------Assert Results-------------------------
-            StringAssert.Contains(loggingFileName, "Warewolf Studio.log");
+            StringAssert.Contains("Warewolf Studio.log", loggingFileName);
 
         }
 
@@ -54,7 +54,7 @@ namespace Dev2.Infrastructure.Tests.Logs
             //------------Execute Test---------------------------
             var loggingFileName = CustomTextWriter.LoggingFileName;
             //------------Assert Results-------------------------
-            StringAssert.Contains(loggingFileName, "Warewolf Studio.log");
+            StringAssert.Contains("Warewolf Studio.log", loggingFileName);
         }
 
         [Test]
@@ -67,8 +67,8 @@ namespace Dev2.Infrastructure.Tests.Logs
             //------------Execute Test---------------------------
             var warewolfAppPath = CustomTextWriter.WarewolfAppPath;
             //------------Assert Results-------------------------
-            StringAssert.Contains(warewolfAppPath, localAppDataPath);
-            StringAssert.Contains(warewolfAppPath, "Warewolf");
+            StringAssert.Contains(localAppDataPath, warewolfAppPath);
+            StringAssert.Contains("Warewolf", warewolfAppPath);
         }
 
         [Test]
@@ -81,9 +81,9 @@ namespace Dev2.Infrastructure.Tests.Logs
             //------------Execute Test---------------------------
             var warewolfAppPath = CustomTextWriter.StudioLogPath;
             //------------Assert Results-------------------------
-            StringAssert.Contains(warewolfAppPath, localAppDataPath);
-            StringAssert.Contains(warewolfAppPath, "Warewolf");
-            StringAssert.Contains(warewolfAppPath, "Studio Logs");
+            StringAssert.Contains(localAppDataPath, warewolfAppPath);
+            StringAssert.Contains("Warewolf", warewolfAppPath);
+            StringAssert.Contains("Studio Logs", warewolfAppPath);
         }
 
         [Test]
@@ -96,10 +96,10 @@ namespace Dev2.Infrastructure.Tests.Logs
             //------------Execute Test---------------------------
             var loggingFileName = CustomTextWriter.LoggingFileName;
             //------------Assert Results-------------------------
-            StringAssert.Contains(loggingFileName, localAppDataPath);
-            StringAssert.Contains(loggingFileName, "Warewolf");
-            StringAssert.Contains(loggingFileName, "Studio Logs");
-            StringAssert.Contains(loggingFileName, "Warewolf Studio.log");
+            StringAssert.Contains(localAppDataPath, loggingFileName);
+            StringAssert.Contains("Warewolf", loggingFileName);
+            StringAssert.Contains("Studio Logs", loggingFileName);
+            StringAssert.Contains("Warewolf Studio.log", loggingFileName);
         }
 
         [Test]
@@ -114,10 +114,10 @@ namespace Dev2.Infrastructure.Tests.Logs
             //------------Execute Test---------------------------
             var loggingFileName = CustomTextWriter.LoggingFileName;
             //------------Assert Results-------------------------
-            StringAssert.Contains(loggingFileName, localAppDataPath);
-            StringAssert.Contains(loggingFileName, "Warewolf");
-            StringAssert.Contains(loggingFileName, "Studio Logs");
-            StringAssert.Contains(loggingFileName, fileName); 
+            StringAssert.Contains(localAppDataPath, loggingFileName);
+            StringAssert.Contains("Warewolf", loggingFileName);
+            StringAssert.Contains("Studio Logs", loggingFileName);
+            StringAssert.Contains(fileName, loggingFileName); 
         }
     }
 }
