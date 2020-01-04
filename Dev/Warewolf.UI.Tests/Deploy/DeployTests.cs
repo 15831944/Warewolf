@@ -1,19 +1,20 @@
 ﻿using Microsoft.VisualStudio.TestTools.UITesting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Reflection;
-using Warewolf.Test.Agent;
 using Warewolf.UI.Tests.Deploy.DeployUIMapClasses;
 using Warewolf.UI.Tests.DialogsUIMapClasses;
 using Warewolf.UI.Tests.Explorer.ExplorerUIMapClasses;
 using Warewolf.UI.Tests.ServerSource.ServerSourceUIMapClasses;
 using Warewolf.UI.Tests.Settings.SettingsUIMapClasses;
 using Warewolf.UI.Tests.WorkflowTab.WorkflowTabUIMapClasses;
+using Warewolf.UnitTestAttributes;
 
 namespace Warewolf.UI.Tests
 {
     [CodedUITest]
     public class DeployTests
     {
+        static Depends _containerOps;
+        
         [TestMethod]
         [TestCategory("Deploy")]
         public void Deploy_Tab_Default_View()
@@ -161,10 +162,8 @@ namespace Warewolf.UI.Tests
             UIMap.Click_Deploy_Ribbon_Button();
         }
 
-        static ContainerLauncher _containerOps;
-
         [ClassInitialize]
-        public static void MyClassInitialize(TestContext testContext) => _containerOps = TestLauncher.StartLocalCIRemoteContainer(testContext.ResultsDirectory);
+        public static void MyClassInitialize(TestContext testContext) => _containerOps = new Depends(Depends.ContainerType.CIRemote);
 
         [ClassCleanup]
         public static void CleanupContainer() => _containerOps?.Dispose();

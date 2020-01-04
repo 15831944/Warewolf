@@ -1,11 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UITesting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Drawing;
-using System.Reflection;
-using Warewolf.Test.Agent;
 using Warewolf.UI.Tests.Explorer.ExplorerUIMapClasses;
 using Warewolf.UI.Tests.Search.SearchUIMapClasses;
 using Warewolf.UI.Tests.ServerSource.ServerSourceUIMapClasses;
+using Warewolf.UnitTestAttributes;
 
 namespace Warewolf.UI.Tests.Search
 {
@@ -33,7 +32,7 @@ namespace Warewolf.UI.Tests.Search
         [TestCategory(nameof(Search))]
         public void Clicking_Edit_Server_Button_Opens_Server_Source_Tab()
         {
-            _containerOps = TestLauncher.StartLocalCIRemoteContainer(System.IO.Path.Combine(System.IO.Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "TestResults"));
+            _containerOps = new Depends(Depends.ContainerType.CIRemote);
             Mouse.Click(UIMap.MainStudioWindow.SideMenuBar.SearchButton, new Point(16, 11));
             Mouse.Click(SearchUIMap.MainStudioWindow.DockManager.SplitPaneMiddle.TabManSplitPane.TabMan.SearchTab.SearchConnectControlCustom.ServerComboBox.ServersToggleButton);
             Mouse.Click(SearchUIMap.MainStudioWindow.ComboboxItemAsRemoteConnectionIntegration);
@@ -147,7 +146,7 @@ namespace Warewolf.UI.Tests.Search
             UIMap.AssertStudioIsRunning();
         }
 
-        static ContainerLauncher _containerOps;
+        static Depends _containerOps;
 
         [TestCleanup]
         public void CleanupContainer() => _containerOps?.Dispose();
