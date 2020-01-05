@@ -742,7 +742,7 @@ namespace Dev2.Data.Tests.Util
             var path = commonDataUtils.CreateTmpDirectory();
             //---------------Test Result -----------------------
             NUnit.Framework.Assert.AreEqual(fullName, path);
-            NUnit.Framework.StringAssert.Contains(path, GlobalConstants.TempLocation);
+            NUnit.Framework.StringAssert.Contains(GlobalConstants.TempLocation, path);
             mockDirectoryWrapper.Verify(o => o.CreateDirectory(fullName), Times.Once);
         }
 
