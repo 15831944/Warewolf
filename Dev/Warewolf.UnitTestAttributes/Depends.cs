@@ -64,25 +64,28 @@ namespace Warewolf.UnitTestAttributes
         public Depends(ContainerType type)
         {
             _containerType = type;
-            using (var client = new WebClientWithExtendedTimeout
-                {Credentials = CredentialCache.DefaultNetworkCredentials})
+            if (EnableDocker)
             {
-                string result = "";
-                string containerType = ConvertToString(_containerType);
-                string address = $"http://{RigOpsIP}:3142/public/Container/Async/Start/{containerType}.json";
-                var retryCount = 0;
-                do
+                using (var client = new WebClientWithExtendedTimeout
+                    {Credentials = CredentialCache.DefaultNetworkCredentials})
                 {
-                    result = client.DownloadString(address);
-                    Container = JsonConvert.DeserializeObject<Container>(result);
-                } while (string.IsNullOrEmpty(Container.Port) && retryCount++ < 10);
+                    string result = "";
+                    string containerType = ConvertToString(_containerType);
+                    string address = $"http://{RigOpsIP}:3142/public/Container/Async/Start/{containerType}.json";
+                    var retryCount = 0;
+                    do
+                    {
+                        result = client.DownloadString(address);
+                        Container = JsonConvert.DeserializeObject<Container>(result);
+                    } while (string.IsNullOrEmpty(Container.Port) && retryCount++ < 10);
 
-                if (string.IsNullOrEmpty(Container.Port))
-                {
-                    throw new Exception($"Container for {containerType} type dependency not found.");
+                    if (string.IsNullOrEmpty(Container.Port))
+                    {
+                        throw new Exception($"Container for {containerType} type dependency not found.");
+                    }
+
+                    Container.IP = RigOpsIP;
                 }
-
-                Container.IP = RigOpsIP;
             }
 
             switch (_containerType)
