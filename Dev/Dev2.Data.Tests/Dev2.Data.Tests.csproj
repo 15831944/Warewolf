@@ -304,10 +304,6 @@
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>if exist "$(SolutionDir)Dev2.Core.Tests\bin\Debug\System.Threading.Tasks.Extensions.dll" copy /Y "$(SolutionDir)Dev2.Core.Tests\bin\Debug\System.Threading.Tasks.Extensions.dll" "$(TargetDir)"
-      if exist "$(SolutionDir)Dev2.Core.Tests\bin\Debug\Moq.dll" copy /Y "$(SolutionDir)Dev2.Core.Tests\bin\Debug\Moq.dll" "$(TargetDir)"</PostBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
