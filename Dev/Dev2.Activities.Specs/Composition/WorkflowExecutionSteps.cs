@@ -649,15 +649,11 @@ namespace Dev2.Activities.Specs.Composition
                                                     .SelectMany(item => item.ResultsList).ToList());
         }
 
-
         IDebugState DebugToUse(int stepNumber, List<IDebugState> toolSpecificDebug)
         {
             var debugToUse = toolSpecificDebug[stepNumber - 1];
             return debugToUse;
         }
-
-
-
 
         [Then(@"Workflow ""(.*)"" has errors")]
         public void ThenWorkflowHasErrors(string workFlowName, Table table)
@@ -675,7 +671,6 @@ namespace Dev2.Activities.Specs.Composition
                 Assert.IsFalse(string.IsNullOrEmpty(first));
             }
         }
-
 
         [Then(@"the ""(.*)"" in step (.*) for ""(.*)"" debug outputs as")]
         public void ThenTheInStepForDebugOutputsAs(string toolName, int stepNumber, string forEachName, Table table)
